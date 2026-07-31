@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "scope.schema.json",
+  "title": "Wikidéb'IA — Cadrage d'un débat",
+  "description": "Fichier scope.json, version 1.0, révision corrective 1.0.6.",
+  "type": "object",
+  "properties": {
+    "scope_schema_version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "debate_id": {
+      "$ref": "common.schema.json#/$defs/debateId"
+    },
+    "canonical_title_fr": {
+      "$ref": "common.schema.json#/$defs/canonicalTitle"
+    },
+    "proposition_fr": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope_summary_fr": {
+      "type": "string",
+      "minLength": 1
+    },
+    "jurisdiction": {
+      "$ref": "common.schema.json#/$defs/nullableString"
+    },
+    "timeframe": {
+      "$ref": "common.schema.json#/$defs/nullableString"
+    },
+    "included_topics": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "excluded_topics": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "residual_ambiguities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "related_debates": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "editorial_constraints": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "source_documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "$ref": "common.schema.json#/$defs/relativePath"
+          },
+          "sha256": {
+            "$ref": "common.schema.json#/$defs/sha256"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256"
+        ]
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "scope_schema_version",
+    "debate_id",
+    "canonical_title_fr",
+    "proposition_fr",
+    "scope_summary_fr",
+    "jurisdiction",
+    "timeframe",
+    "included_topics",
+    "excluded_topics",
+    "residual_ambiguities",
+    "related_debates",
+    "editorial_constraints",
+    "source_documents"
+  ]
+}

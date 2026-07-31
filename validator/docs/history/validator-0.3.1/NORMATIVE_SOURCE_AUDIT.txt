@@ -1,0 +1,11 @@
+AUDIT DES SOURCES NORMATIVES — 2026-07-27
+
+Norme active unique : WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md
+Norme antérieure archivée : history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.8.md
+Catalogue d’exigences : 287 exigences atomiques, révision 1.1.9
+Nouvelles exigences : ARG-029 à ARG-033
+Nouveaux contrôles : WDV-EDT-014 et WDV-EDT-015
+
+Les documents spécialisés, le workflow, le profil de rendu, le catalogue et la matrice de traçabilité désignent la norme 1.1.9 comme source active. Les règles 1.1.8 restent historiques et compatibles. Aucun invariant du graphe ni aucune autorisation d’écriture distante n’a été modifié.
+
+AUDIT : RÉUSSI

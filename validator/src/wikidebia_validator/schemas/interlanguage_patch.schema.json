@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "interlanguage_patch.schema.json",
+  "title": "Wikidéb'IA — Patch interlangue français",
+  "description": "Patch déterministe des liens français vers les pages anglaises, version 1.0, révision corrective 1.0.6.",
+  "type": "object",
+  "properties": {
+    "interlanguage_patch_version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "debate_id": {
+      "$ref": "common.schema.json#/$defs/debateId"
+    },
+    "structural_sha256": {
+      "$ref": "common.schema.json#/$defs/sha256"
+    },
+    "created_at": {
+      "$ref": "common.schema.json#/$defs/dateTime"
+    },
+    "validated_at": {
+      "$ref": "common.schema.json#/$defs/nullableDateTime"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "validated",
+        "partially_applied",
+        "applied",
+        "blocked"
+      ]
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "page_id": {
+            "oneOf": [
+              {
+                "$ref": "common.schema.json#/$defs/debateId"
+              },
+              {
+                "$ref": "common.schema.json#/$defs/nodeId"
+              }
+            ]
+          },
+          "page_type": {
+            "$ref": "common.schema.json#/$defs/pageType"
+          },
+          "source_path": {
+            "$ref": "common.schema.json#/$defs/relativePath"
+          },
+          "source_sha256": {
+            "$ref": "common.schema.json#/$defs/sha256"
+          },
+          "staged_path": {
+            "$ref": "common.schema.json#/$defs/relativePath"
+          },
+          "staged_sha256": {
+            "$ref": "common.schema.json#/$defs/sha256"
+          },
+          "target_language": {
+            "const": "en"
+          },
+          "target_title": {
+            "$ref": "common.schema.json#/$defs/canonicalTitle"
+          },
+          "creation_date": {
+            "$ref": "common.schema.json#/$defs/date"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "prepared",
+              "validated",
+              "applied",
+              "blocked"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "page_id",
+          "page_type",
+          "source_path",
+          "source_sha256",
+          "staged_path",
+          "staged_sha256",
+          "target_language",
+          "target_title",
+          "creation_date",
+          "status"
+        ]
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "interlanguage_patch_version",
+    "debate_id",
+    "structural_sha256",
+    "created_at",
+    "validated_at",
+    "status",
+    "entries"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "validated",
+              "partially_applied",
+              "applied"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "validated_at": {
+            "$ref": "common.schema.json#/$defs/dateTime"
+          }
+        }
+      }
+    }
+  ]
+}

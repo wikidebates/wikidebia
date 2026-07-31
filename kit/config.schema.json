@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Configuration du kit générique Wikidéb'IA",
+  "type": "object",
+  "required": [
+    "kit_version",
+    "debate_id",
+    "corpus_root",
+    "validator",
+    "family",
+    "sites",
+    "logs_dir",
+    "operation",
+    "publication_profile"
+  ],
+  "properties": {
+    "kit_version": {
+      "const": "2.1.17"
+    },
+    "debate_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "corpus_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "validator": {
+      "type": "object",
+      "required": [
+        "command",
+        "required_version",
+        "fingerprint_path"
+      ],
+      "properties": {
+        "required_version": {
+          "const": "0.4.16"
+        },
+        "command": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "fingerprint_path": {
+          "type": "string"
+        }
+      }
+    },
+    "change_tags": {
+      "const": [
+        "chatgpt"
+      ]
+    },
+    "operation": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "languages",
+        "edit_summaries"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "full_page",
+            "parameter_update"
+          ]
+        }
+      }
+    },
+    "publication_profile": {
+      "enum": [
+        "norm_1_2_direct_interlanguage",
+        "legacy"
+      ]
+    }
+  }
+}

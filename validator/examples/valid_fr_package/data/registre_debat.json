@@ -1,0 +1,388 @@
+{
+  "schema": {
+    "registry_version": "1.0",
+    "graph_version": "1.0",
+    "mediawiki_structure_version": "1.0",
+    "render_profile_version": "1.0",
+    "validator_version": "0.2.1"
+  },
+  "debate": {
+    "id": "exemple",
+    "scope": {
+      "proposition_fr": "Faut-il adopter la mesure X ?",
+      "scope_summary_fr": "Débat pilote.",
+      "jurisdiction": null,
+      "timeframe": null,
+      "included_topics": [],
+      "excluded_topics": [],
+      "residual_ambiguities": []
+    },
+    "labels": {
+      "fr": {
+        "pro": "Arguments pour l'adoption",
+        "con": "Arguments contre l'adoption"
+      },
+      "en": {
+        "pro": null,
+        "con": null
+      }
+    },
+    "pages": {
+      "fr": {
+        "canonical_title": "Faut-il adopter la mesure X ?",
+        "title_status": "locked",
+        "generation": {
+          "status": "validated",
+          "assigned_batch_id": null,
+          "creation_date": "2026-07-23",
+          "generated_at": "2026-07-23T18:00:00+02:00",
+          "validated_at": "2026-07-23T18:00:00+02:00"
+        },
+        "file": {
+          "path": "output/fr/debate/debate.wiki",
+          "sha256": "f48f22be5739c1645b1f12ac704045314c4d615947bcd25967f9d7984a6f2963",
+          "status": "validated"
+        },
+        "wiki": {
+          "check_status": "unchecked",
+          "decision": null,
+          "remote_revision_id": null,
+          "remote_sha256": null,
+          "published_at": null,
+          "checked_at": null,
+          "remote_title": null
+        },
+        "interlanguage": {
+          "status": "pending",
+          "target_language": "en",
+          "target_title": null,
+          "inserted_at": null,
+          "verified_at": null
+        }
+      },
+      "en": {
+        "canonical_title": null,
+        "title_status": "unassigned",
+        "generation": {
+          "status": "pending",
+          "assigned_batch_id": null,
+          "creation_date": null,
+          "generated_at": null,
+          "validated_at": null
+        },
+        "file": {
+          "path": "output/en/debate/debate.wiki",
+          "sha256": null,
+          "status": "absent"
+        },
+        "wiki": {
+          "check_status": "unchecked",
+          "decision": null,
+          "remote_revision_id": null,
+          "remote_sha256": null,
+          "published_at": null,
+          "checked_at": null,
+          "remote_title": null
+        },
+        "interlanguage": {
+          "status": "not_applicable"
+        }
+      }
+    }
+  },
+  "graph": {
+    "lifecycle": {
+      "status": "locked",
+      "validated_at": "2026-07-23T18:00:00+02:00",
+      "locked_at": "2026-07-23T18:00:00+02:00",
+      "locked_by_stage": "graph_finalization",
+      "structural_sha256": "e7ab522694a6bda8c43aeb7b1a29a17f376b6b8406ecc33e598e81356aa8f10f"
+    },
+    "depth_policy": {
+      "normal_target": 3,
+      "declared_maximum": 3,
+      "exception_reason": null,
+      "maximum_observed": 1
+    },
+    "nodes": [
+      {
+        "id": "A0001",
+        "status": "active",
+        "fr": {
+          "canonical_title": "La mesure X produirait un bénéfice collectif",
+          "displayed_title": "Un bénéfice collectif",
+          "title_status": "locked",
+          "rubriques": [
+            "Société"
+          ],
+          "keywords": [
+            "mesure X"
+          ]
+        },
+        "en": {
+          "canonical_title": null,
+          "displayed_title": null,
+          "title_status": "unassigned",
+          "sections": [],
+          "keywords": []
+        },
+        "pages": {
+          "fr": {
+            "generation": {
+              "status": "validated",
+              "assigned_batch_id": "FR-A-001",
+              "creation_date": "2026-07-23",
+              "generated_at": "2026-07-23T18:00:00+02:00",
+              "validated_at": "2026-07-23T18:00:00+02:00"
+            },
+            "file": {
+              "path": "output/fr/arguments/A0001.wiki",
+              "sha256": "47744f9a9a6bf1158205f731b7afffcc9cea248f3fecb5330e2d74ea090e70a3",
+              "status": "validated"
+            },
+            "wiki": {
+              "check_status": "unchecked",
+              "decision": null,
+              "remote_revision_id": null,
+              "remote_sha256": null,
+              "published_at": null,
+              "checked_at": null,
+              "remote_title": null
+            },
+            "interlanguage": {
+              "status": "pending",
+              "target_language": "en",
+              "target_title": null,
+              "inserted_at": null,
+              "verified_at": null
+            }
+          },
+          "en": {
+            "generation": {
+              "status": "pending",
+              "assigned_batch_id": null,
+              "creation_date": null,
+              "generated_at": null,
+              "validated_at": null
+            },
+            "file": {
+              "path": "output/en/arguments/A0001.wiki",
+              "sha256": null,
+              "status": "absent"
+            },
+            "wiki": {
+              "check_status": "unchecked",
+              "decision": null,
+              "remote_revision_id": null,
+              "remote_sha256": null,
+              "published_at": null,
+              "checked_at": null,
+              "remote_title": null
+            },
+            "interlanguage": {
+              "status": "not_applicable"
+            }
+          }
+        },
+        "sources": {
+          "fr": {
+            "bibliography": [],
+            "webliography": [],
+            "videography": []
+          },
+          "en": {
+            "bibliography": [],
+            "webliography": [],
+            "videography": []
+          }
+        },
+        "derived": {
+          "occurrence_count": 1,
+          "minimum_depth": 1,
+          "maximum_depth": 1,
+          "is_main_argument_anywhere": true,
+          "is_reused": false,
+          "primary_occurrence_id": "O00001"
+        }
+      },
+      {
+        "id": "A0002",
+        "status": "active",
+        "fr": {
+          "canonical_title": "La mesure X porterait une atteinte disproportionnée aux libertés",
+          "displayed_title": "Une atteinte disproportionnée",
+          "title_status": "locked",
+          "rubriques": [
+            "Société"
+          ],
+          "keywords": [
+            "mesure X"
+          ]
+        },
+        "en": {
+          "canonical_title": null,
+          "displayed_title": null,
+          "title_status": "unassigned",
+          "sections": [],
+          "keywords": []
+        },
+        "pages": {
+          "fr": {
+            "generation": {
+              "status": "validated",
+              "assigned_batch_id": "FR-A-001",
+              "creation_date": "2026-07-23",
+              "generated_at": "2026-07-23T18:00:00+02:00",
+              "validated_at": "2026-07-23T18:00:00+02:00"
+            },
+            "file": {
+              "path": "output/fr/arguments/A0002.wiki",
+              "sha256": "0306065c9dd974f485a62a15c7d9de77c39869170948bce51c60ed16cb94e79f",
+              "status": "validated"
+            },
+            "wiki": {
+              "check_status": "unchecked",
+              "decision": null,
+              "remote_revision_id": null,
+              "remote_sha256": null,
+              "published_at": null,
+              "checked_at": null,
+              "remote_title": null
+            },
+            "interlanguage": {
+              "status": "pending",
+              "target_language": "en",
+              "target_title": null,
+              "inserted_at": null,
+              "verified_at": null
+            }
+          },
+          "en": {
+            "generation": {
+              "status": "pending",
+              "assigned_batch_id": null,
+              "creation_date": null,
+              "generated_at": null,
+              "validated_at": null
+            },
+            "file": {
+              "path": "output/en/arguments/A0002.wiki",
+              "sha256": null,
+              "status": "absent"
+            },
+            "wiki": {
+              "check_status": "unchecked",
+              "decision": null,
+              "remote_revision_id": null,
+              "remote_sha256": null,
+              "published_at": null,
+              "checked_at": null,
+              "remote_title": null
+            },
+            "interlanguage": {
+              "status": "not_applicable"
+            }
+          }
+        },
+        "sources": {
+          "fr": {
+            "bibliography": [],
+            "webliography": [],
+            "videography": []
+          },
+          "en": {
+            "bibliography": [],
+            "webliography": [],
+            "videography": []
+          }
+        },
+        "derived": {
+          "occurrence_count": 1,
+          "minimum_depth": 1,
+          "maximum_depth": 1,
+          "is_main_argument_anywhere": true,
+          "is_reused": false,
+          "primary_occurrence_id": "O00002"
+        }
+      }
+    ],
+    "edges": [],
+    "occurrences": [
+      {
+        "id": "O00001",
+        "node_id": "A0001",
+        "parent_occurrence_id": null,
+        "edge_id": null,
+        "branch": "pro",
+        "depth": 1,
+        "order": 1,
+        "occurrence_role": "primary",
+        "render_children": false
+      },
+      {
+        "id": "O00002",
+        "node_id": "A0002",
+        "parent_occurrence_id": null,
+        "edge_id": null,
+        "branch": "con",
+        "depth": 1,
+        "order": 1,
+        "occurrence_role": "primary",
+        "render_children": false
+      }
+    ],
+    "derived_counts": {
+      "main_pro": 1,
+      "main_con": 1,
+      "justifications_by_depth": {},
+      "objections_by_depth": {},
+      "distinct_nodes": 2,
+      "total_occurrences": 2,
+      "reused_nodes": 0,
+      "additional_reuses": 0,
+      "developed_nodes": 0,
+      "leaf_nodes": 2,
+      "maximum_depth": 1
+    }
+  },
+  "batches": [
+    {
+      "batch_schema_version": "1.0",
+      "id": "FR-A-001",
+      "debate_id": "exemple",
+      "language": "fr",
+      "page_type": "argument",
+      "strategy": "subtree",
+      "root_node_ids": [
+        "A0001",
+        "A0002"
+      ],
+      "node_ids": [
+        "A0001",
+        "A0002"
+      ],
+      "dependency_node_ids": [],
+      "status": "validated",
+      "inputs": {
+        "registry_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "structural_sha256": "e7ab522694a6bda8c43aeb7b1a29a17f376b6b8406ecc33e598e81356aa8f10f",
+        "render_profile_version": "1.0",
+        "handoff_path": "handoff/FR-A-001_input.json"
+      },
+      "outputs": {
+        "individual_directory": "output/fr/arguments",
+        "aggregate_path": "output/fr/aggregates/arguments_batch_001.wiki",
+        "aggregate_sha256": "00e2b221f7c2b4d703fabd85bd033965f44605f1073af57c694f02239fd77b2f",
+        "report_path": "reports/fr_batch_001.txt"
+      },
+      "work": {
+        "work_id": "W03.FR.001",
+        "conversation_name": "[EX] 03.FR.001 — Arguments français — lot pilote",
+        "started_at": "2026-07-23T18:00:00+02:00",
+        "completed_at": "2026-07-23T18:00:00+02:00"
+      }
+    }
+  ],
+  "validations": [],
+  "migrations": []
+}

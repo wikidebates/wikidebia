@@ -1,0 +1,7 @@
+{{Argument
+|avertissements-argument=Argument généré par IA
+|résumé=La mesure X limiterait certaines libertés au-delà de ce qui serait nécessaire.
+|rubriques=Société
+|mots-clés=mesure X
+|date-création=2026-07-23
+}}

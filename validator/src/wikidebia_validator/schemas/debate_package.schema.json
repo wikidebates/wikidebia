@@ -1,0 +1,554 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "debate_package.schema.json",
+  "title": "Wikidéb'IA — Manifeste du paquet d'un débat",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "package_schema_version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "debate_id": {
+      "$ref": "common.schema.json#/$defs/debateId"
+    },
+    "short_code": {
+      "$ref": "common.schema.json#/$defs/shortCode"
+    },
+    "global_status": {
+      "$ref": "common.schema.json#/$defs/globalStatus"
+    },
+    "created_at": {
+      "$ref": "common.schema.json#/$defs/dateTime"
+    },
+    "updated_at": {
+      "$ref": "common.schema.json#/$defs/dateTime"
+    },
+    "normative_versions": {
+      "$ref": "common.schema.json#/$defs/normativeVersions"
+    },
+    "core_files": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        },
+        "registry": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        },
+        "graph_json": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        },
+        "graph_markdown": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        },
+        "sources": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "registry",
+        "graph_json",
+        "graph_markdown",
+        "sources"
+      ]
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "$ref": "page_manifest.schema.json"
+      }
+    },
+    "batches": {
+      "type": "array",
+      "items": {
+        "$ref": "batch_manifest.schema.json"
+      }
+    },
+    "works": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "work_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "work_type": {
+            "$ref": "common.schema.json#/$defs/workType"
+          },
+          "conversation_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "planned",
+              "in_progress",
+              "completed",
+              "blocked",
+              "obsolete"
+            ]
+          },
+          "input_handoff": {
+            "$ref": "common.schema.json#/$defs/nullableRelativePath"
+          },
+          "output_handoff": {
+            "$ref": "common.schema.json#/$defs/nullableRelativePath"
+          },
+          "started_at": {
+            "$ref": "common.schema.json#/$defs/nullableDateTime"
+          },
+          "completed_at": {
+            "$ref": "common.schema.json#/$defs/nullableDateTime"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "work_id",
+          "work_type",
+          "conversation_name",
+          "status",
+          "input_handoff",
+          "output_handoff",
+          "started_at",
+          "completed_at"
+        ]
+      }
+    },
+    "validations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/validationId"
+          },
+          "scope": {
+            "$ref": "common.schema.json#/$defs/validationScope"
+          },
+          "language": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "common.schema.json#/$defs/language"
+              }
+            ]
+          },
+          "validator_version": {
+            "$ref": "common.schema.json#/$defs/version"
+          },
+          "executed_at": {
+            "$ref": "common.schema.json#/$defs/dateTime"
+          },
+          "input_sha256": {
+            "$ref": "common.schema.json#/$defs/sha256"
+          },
+          "result": {
+            "$ref": "common.schema.json#/$defs/validationResult"
+          },
+          "blocking_errors": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "warnings": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "report_path": {
+            "$ref": "common.schema.json#/$defs/relativePath"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "scope",
+          "language",
+          "validator_version",
+          "executed_at",
+          "input_sha256",
+          "result",
+          "blocking_errors",
+          "warnings",
+          "report_path"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "result": {
+                  "enum": [
+                    "passed",
+                    "passed_with_warnings"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "blocking_errors": {
+                  "const": 0
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "release": {
+      "type": "object",
+      "properties": {
+        "release_manifest_path": {
+          "$ref": "common.schema.json#/$defs/nullableRelativePath"
+        },
+        "release_zip_path": {
+          "$ref": "common.schema.json#/$defs/nullableRelativePath"
+        },
+        "released_at": {
+          "$ref": "common.schema.json#/$defs/nullableDateTime"
+        },
+        "archived_at": {
+          "$ref": "common.schema.json#/$defs/nullableDateTime"
+        },
+        "release_receipt_path": {
+          "$ref": "common.schema.json#/$defs/nullableRelativePath"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "release_manifest_path",
+        "release_zip_path",
+        "released_at",
+        "archived_at",
+        "release_receipt_path"
+      ]
+    },
+    "publication_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "local_release_status": {
+          "type": "string",
+          "enum": [
+            "corrective_in_progress",
+            "corrective_blocked",
+            "release_ready"
+          ]
+        },
+        "remote_write_authorized": {
+          "type": "boolean"
+        },
+        "remote_template_compatibility": {
+          "type": "string",
+          "enum": [
+            "blocked",
+            "passed",
+            "not_checked"
+          ]
+        },
+        "blocking_reason": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ]
+        },
+        "checked_at": {
+          "$ref": "common.schema.json#/$defs/dateTime"
+        }
+      },
+      "required": [
+        "local_release_status",
+        "remote_write_authorized",
+        "remote_template_compatibility",
+        "blocking_reason",
+        "checked_at"
+      ]
+    },
+    "editorial_controls": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "creation_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "individual_review_path": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        },
+        "individual_review_report_path": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        },
+        "keyword_vocabulary_path": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        },
+        "required_reports": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/relativePath"
+          },
+          "uniqueItems": true
+        },
+        "debate_documentation": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "min_subsections": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "min_references": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "reject_singleton_bucket_pattern": {
+              "type": "boolean"
+            },
+            "profile_rationale": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "min_subsections",
+            "min_references",
+            "reject_singleton_bucket_pattern"
+          ]
+        },
+        "introduction_references": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "required": {
+              "type": "boolean",
+              "description": "Active le contrôle documentaire des introductions ; ne fixe aucun nombre minimal d’appels inline sous les normes 1.2.4 et ultérieures."
+            },
+            "min_subsections": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Champ historique de compatibilité ; les minima structurels actifs sont déclarés dans debate_documentation."
+            }
+          },
+          "required": [
+            "required"
+          ]
+        },
+        "summary_style_review_path": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        },
+        "summary_style": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "min_sentences": {
+              "type": "integer",
+              "minimum": 2,
+              "maximum": 10
+            },
+            "long_sentence_words": {
+              "type": "integer",
+              "minimum": 20,
+              "maximum": 80
+            },
+            "max_average_sentence_words": {
+              "type": "number",
+              "minimum": 15,
+              "maximum": 50
+            },
+            "max_long_sentence_ratio": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "max_sentence_words": {
+              "type": "integer",
+              "minimum": 30,
+              "maximum": 120
+            },
+            "opening_title_similarity_enabled": {
+              "type": "boolean"
+            },
+            "opening_similarity_threshold": {
+              "type": "number",
+              "minimum": 0.5,
+              "maximum": 1
+            },
+            "opening_max_extra_significant_words": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 20
+            },
+            "quantitative_claim_review_required": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "enabled",
+            "min_sentences",
+            "long_sentence_words",
+            "max_average_sentence_words",
+            "max_long_sentence_ratio",
+            "max_sentence_words"
+          ]
+        },
+        "introduction_review_path": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        }
+      },
+      "required": [
+        "creation_date",
+        "individual_review_path",
+        "individual_review_report_path",
+        "keyword_vocabulary_path",
+        "required_reports",
+        "debate_documentation",
+        "introduction_references"
+      ]
+    },
+    "traceability_controls": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "current_corrective_work_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "current_handoff_path": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        },
+        "required_corrective_handoffs": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/relativePath"
+          },
+          "uniqueItems": true
+        },
+        "remote_write_must_be_false": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "current_corrective_work_id",
+        "current_handoff_path",
+        "required_corrective_handoffs",
+        "remote_write_must_be_false"
+      ]
+    }
+  },
+  "required": [
+    "package_schema_version",
+    "debate_id",
+    "short_code",
+    "global_status",
+    "created_at",
+    "updated_at",
+    "normative_versions",
+    "core_files",
+    "pages",
+    "batches",
+    "works",
+    "validations",
+    "release"
+  ],
+  "description": "Manifeste global du paquet, version 1.0, révision corrective 1.0.6. Les objets pages et lots sont intégrés et peuvent être projetés séparément.",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "normative_versions": {
+            "properties": {
+              "consolidated_norm": {
+                "const": "1.2.4"
+              }
+            },
+            "required": [
+              "consolidated_norm"
+            ]
+          }
+        },
+        "required": [
+          "normative_versions"
+        ]
+      },
+      "then": {
+        "required": [
+          "editorial_controls"
+        ],
+        "properties": {
+          "editorial_controls": {
+            "required": [
+              "introduction_review_path"
+            ],
+            "properties": {
+              "debate_documentation": {
+                "required": [
+                  "profile_rationale"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "normative_versions": {
+            "properties": {
+              "consolidated_norm": {
+                "enum": [
+                  "1.2.5",
+                  "1.2.6",
+                  "1.2.7",
+                  "1.2.8",
+                  "1.2.9",
+                  "1.2.10",
+                  "1.2.11",
+                  "1.2.12",
+                  "1.2.13",
+                  "1.2.15"
+                ]
+              }
+            },
+            "required": [
+              "consolidated_norm"
+            ]
+          }
+        },
+        "required": [
+          "normative_versions"
+        ]
+      },
+      "then": {
+        "required": [
+          "editorial_controls"
+        ],
+        "properties": {
+          "editorial_controls": {
+            "required": [
+              "introduction_review_path"
+            ],
+            "properties": {
+              "debate_documentation": {
+                "required": [
+                  "profile_rationale"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

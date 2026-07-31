@@ -1,0 +1,217 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "page_manifest.schema.json",
+  "title": "Wikidéb'IA — Manifeste individuel d'une page",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "page_manifest_version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "debate_id": {
+      "$ref": "common.schema.json#/$defs/debateId"
+    },
+    "page_id": {
+      "oneOf": [
+        {
+          "$ref": "common.schema.json#/$defs/debateId"
+        },
+        {
+          "$ref": "common.schema.json#/$defs/nodeId"
+        }
+      ]
+    },
+    "page_type": {
+      "$ref": "common.schema.json#/$defs/pageType"
+    },
+    "language": {
+      "$ref": "common.schema.json#/$defs/language"
+    },
+    "canonical_title": {
+      "$ref": "common.schema.json#/$defs/canonicalTitle"
+    },
+    "file_path": {
+      "$ref": "common.schema.json#/$defs/relativePath"
+    },
+    "sha256": {
+      "$ref": "common.schema.json#/$defs/nullableSha256"
+    },
+    "creation_date": {
+      "$ref": "common.schema.json#/$defs/nullableDate"
+    },
+    "batch_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "common.schema.json#/$defs/batchId"
+        }
+      ]
+    },
+    "status": {
+      "$ref": "common.schema.json#/$defs/pageStatus"
+    },
+    "structure_version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "render_profile_version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "passed",
+            "passed_with_warnings",
+            "failed"
+          ]
+        },
+        "report_path": {
+          "$ref": "common.schema.json#/$defs/nullableRelativePath"
+        },
+        "validated_at": {
+          "$ref": "common.schema.json#/$defs/nullableDateTime"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "report_path",
+        "validated_at"
+      ]
+    },
+    "wiki": {
+      "$ref": "common.schema.json#/$defs/wikiRecord"
+    }
+  },
+  "required": [
+    "page_manifest_version",
+    "debate_id",
+    "page_id",
+    "page_type",
+    "language",
+    "canonical_title",
+    "file_path",
+    "sha256",
+    "creation_date",
+    "batch_id",
+    "status",
+    "structure_version",
+    "render_profile_version",
+    "validation",
+    "wiki"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "page_type": {
+            "const": "argument"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "page_id": {
+            "$ref": "common.schema.json#/$defs/nodeId"
+          },
+          "batch_id": {
+            "$ref": "common.schema.json#/$defs/batchId"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "page_id": {
+            "$ref": "common.schema.json#/$defs/debateId"
+          },
+          "batch_id": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "validated",
+              "published"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "sha256": {
+            "$ref": "common.schema.json#/$defs/sha256"
+          },
+          "creation_date": {
+            "$ref": "common.schema.json#/$defs/date"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "validated",
+              "published"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "validation": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "passed",
+                  "passed_with_warnings"
+                ]
+              },
+              "report_path": {
+                "$ref": "common.schema.json#/$defs/relativePath"
+              },
+              "validated_at": {
+                "$ref": "common.schema.json#/$defs/dateTime"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "published"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "wiki": {
+            "properties": {
+              "check_status": {
+                "enum": [
+                  "created",
+                  "equivalent_existing"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "description": "Objet individuel de page intégré au manifeste global ou utilisé comme projection autonome, version 1.0, révision corrective 1.0.6."
+}

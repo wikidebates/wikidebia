@@ -1,0 +1,35 @@
+# Données locales, privées ou volumineuses
+/private/
+/corpus/
+/archives/
+/updates/
+/incoming/
+/logs/
+/plans/
+/.state/
+/.venv/
+
+# Configurations locales
+/config/wikidebia.local.json
+/configs/
+/.gitconfig-wikidebia
+/user-config.py
+/user-password.cfg
+
+# Pywikibot et fichiers d’exécution
+/apicache/
+*.lwp
+throttle.ctrl
+
+# Python et outils
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.egg-info/
+
+# Éditeurs et système
+.DS_Store
+*~
+
+# Amorçage temporaire
+/WIKIDEBIA_BOOTSTRAP_*.py

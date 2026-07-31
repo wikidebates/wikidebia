@@ -1,0 +1,13 @@
+Wikidéb’IA Validator 0.3.0
+Date : 2026-07-26
+
+Suite pytest : 59 tests réussis, 0 échec.
+Auto-audit : réussi (UTF-8, fins de ligne, syntaxe Python et JSON).
+Compatibilité descendante : un paquet réel déclaré sous la norme 1.1.7 a passé les portées schema et editorial avec 0 erreur et 0 avertissement.
+
+Nouveaux contrôles 1.1.8 testés :
+- absence de signalement pour des phrases courtes et variées ;
+- signalement d’une accumulation de phrases longues ;
+- couverture page par page et langue par langue du registre de revue ;
+- exigence de vérification humaine des termes techniques ;
+- unicité de la norme active 1.1.8.

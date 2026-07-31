@@ -1,0 +1,43 @@
+{
+  "batch_collection_version": "1.0",
+  "debate_id": "exemple",
+  "language": "fr",
+  "batches": [
+    {
+      "batch_schema_version": "1.0",
+      "id": "FR-A-001",
+      "debate_id": "exemple",
+      "language": "fr",
+      "page_type": "argument",
+      "strategy": "subtree",
+      "root_node_ids": [
+        "A0001",
+        "A0002"
+      ],
+      "node_ids": [
+        "A0001",
+        "A0002"
+      ],
+      "dependency_node_ids": [],
+      "status": "validated",
+      "inputs": {
+        "registry_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "structural_sha256": "e7ab522694a6bda8c43aeb7b1a29a17f376b6b8406ecc33e598e81356aa8f10f",
+        "render_profile_version": "1.0",
+        "handoff_path": "handoff/FR-A-001_input.json"
+      },
+      "outputs": {
+        "individual_directory": "output/fr/arguments",
+        "aggregate_path": "output/fr/aggregates/arguments_batch_001.wiki",
+        "aggregate_sha256": "00e2b221f7c2b4d703fabd85bd033965f44605f1073af57c694f02239fd77b2f",
+        "report_path": "reports/fr_batch_001.txt"
+      },
+      "work": {
+        "work_id": "W03.FR.001",
+        "conversation_name": "[EX] 03.FR.001 — Arguments français — lot pilote",
+        "started_at": "2026-07-23T18:00:00+02:00",
+        "completed_at": "2026-07-23T18:00:00+02:00"
+      }
+    }
+  ]
+}

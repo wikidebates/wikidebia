@@ -1,0 +1,5 @@
+# Dépendances nécessaires aux commandes ./wikidebia
+jsonschema>=4.18,<5
+referencing>=0.30,<1
+pytest>=8,<9
+pywikibot>=11.5,<12

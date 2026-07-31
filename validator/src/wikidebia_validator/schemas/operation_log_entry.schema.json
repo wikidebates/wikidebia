@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "operation_log_entry.schema.json",
+  "title": "Wikidéb'IA — Entrée de journal d'opération",
+  "description": "Schéma d’une ligne JSONL d’import, de patch interlangue ou de migration, version 1.0, révision corrective 1.0.6.",
+  "type": "object",
+  "properties": {
+    "log_schema_version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "timestamp": {
+      "$ref": "common.schema.json#/$defs/dateTime"
+    },
+    "operation": {
+      "type": "string",
+      "enum": [
+        "import",
+        "interlanguage_local",
+        "interlanguage_remote",
+        "migration"
+      ]
+    },
+    "debate_id": {
+      "$ref": "common.schema.json#/$defs/debateId"
+    },
+    "language": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "common.schema.json#/$defs/language"
+        }
+      ]
+    },
+    "page_id": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "common.schema.json#/$defs/debateId"
+        },
+        {
+          "$ref": "common.schema.json#/$defs/nodeId"
+        }
+      ]
+    },
+    "title": {
+      "$ref": "common.schema.json#/$defs/nullableCanonicalTitle"
+    },
+    "source_path": {
+      "$ref": "common.schema.json#/$defs/nullableRelativePath"
+    },
+    "local_sha256": {
+      "$ref": "common.schema.json#/$defs/nullableSha256"
+    },
+    "remote_sha256": {
+      "$ref": "common.schema.json#/$defs/nullableSha256"
+    },
+    "remote_revision_id": {
+      "$ref": "common.schema.json#/$defs/remoteRevisionId"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "would_create",
+        "created",
+        "equivalent_existing",
+        "collision",
+        "skipped",
+        "prepared",
+        "validated",
+        "applied",
+        "blocked",
+        "error",
+        "migration_applied",
+        "exists_same",
+        "exists_different",
+        "resume_skip",
+        "would_update",
+        "updated"
+      ]
+    },
+    "error_code": {
+      "$ref": "common.schema.json#/$defs/nullableString"
+    },
+    "message": {
+      "$ref": "common.schema.json#/$defs/nullableString"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "log_schema_version",
+    "timestamp",
+    "operation",
+    "debate_id",
+    "language",
+    "page_id",
+    "title",
+    "source_path",
+    "local_sha256",
+    "remote_sha256",
+    "remote_revision_id",
+    "status",
+    "error_code",
+    "message"
+  ]
+}

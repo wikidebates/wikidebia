@@ -1,0 +1,1 @@
+Audit de non-régression 0.3.0 : tous les contrôles 0.2.9 sont conservés. La norme 1.1.8 ajoute WDV-EDT-013, avec des seuils déclarés par le paquet, un avertissement heuristique sur l'accumulation de phrases longues et une revue humaine obligatoire de l'accessibilité et des termes techniques. Le code d'exécution ne contient aucune constante propre à un corpus.

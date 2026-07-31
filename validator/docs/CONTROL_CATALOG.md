@@ -1,0 +1,95 @@
+# Catalogue des codes de contrôle — 0.4.16
+
+| Code | Signification |
+|---|---|
+| `WDV-SCH-001` | Fichier JSON illisible |
+| `WDV-SCH-002` | Schéma JSON introuvable ou non applicable |
+| `WDV-SCH-003` | Violation de JSON Schema |
+| `WDV-FS-001` | Fichier obligatoire manquant |
+| `WDV-FS-002` | Chemin non sûr ou extérieur au paquet |
+| `WDV-FS-003` | Empreinte SHA-256 incorrecte |
+| `WDV-FS-004` | Fichier déclaré mais absent |
+| `WDV-FS-005` | Normalisation textuelle non conforme |
+| `WDV-FS-006` | Fichier orphelin ou dupliqué |
+| `WDV-GRA-001` | Identifiant dupliqué |
+| `WDV-GRA-002` | Titre canonique dupliqué ou collision normalisée |
+| `WDV-GRA-003` | Référence à un nœud inexistant |
+| `WDV-GRA-004` | Référence à une relation ou occurrence inexistante |
+| `WDV-GRA-005` | Cycle détecté |
+| `WDV-GRA-006` | Autojustification ou auto-objection |
+| `WDV-GRA-007` | Relation directe dupliquée |
+| `WDV-GRA-008` | Occurrence incohérente avec sa relation |
+| `WDV-GRA-009` | Profondeur ou branche incorrecte |
+| `WDV-GRA-010` | Occurrence primaire absente ou multiple |
+| `WDV-GRA-011` | Occurrence secondaire développée |
+| `WDV-GRA-012` | Nœud ou occurrence orphelin |
+| `WDV-GRA-013` | Compteur dérivé incorrect |
+| `WDV-GRA-014` | Projection JSON divergente du registre maître |
+| `WDV-GRA-015` | Empreinte structurelle incorrecte |
+| `WDV-GRA-016` | Titre non conforme |
+| `WDV-GRA-017` | Branches principales incomplètes |
+| `WDV-BAT-001` | Lot inconnu ou identifiant de nœud inexistant |
+| `WDV-BAT-002` | Chevauchement entre lots |
+| `WDV-BAT-003` | Lacune de couverture des lots |
+| `WDV-BAT-004` | Dépendance de lot incohérente |
+| `WDV-BAT-005` | Lot obsolète ou empreinte d'entrée incohérente |
+| `WDV-MWK-001` | Wikicode mal formé |
+| `WDV-MWK-002` | Modèle principal incorrect |
+| `WDV-MWK-003` | Paramètre inconnu ou interdit |
+| `WDV-MWK-004` | Paramètre obligatoire absent |
+| `WDV-MWK-005` | Paramètre vide interdit |
+| `WDV-MWK-006` | Ordre des paramètres incorrect |
+| `WDV-MWK-007` | Valeur fixe incorrecte |
+| `WDV-MWK-008` | Relation MediaWiki absente, supplémentaire ou erronée |
+| `WDV-MWK-009` | Rubrique, section ou mot-clé non conforme |
+| `WDV-MWK-010` | Date de création incorrecte |
+| `WDV-MWK-011` | Lien interlangue prématuré, absent ou erroné |
+| `WDV-MWK-012` | Sous-modèle ou paramètre documentaire incorrect |
+| `WDV-MWK-013` | Agrégat incohérent avec les fichiers individuels |
+| `WDV-MWK-014` | Langue ou typographie documentaire non conforme |
+| `WDV-MWK-015` | Tiret cadratin employé comme parenthèse dans la prose française |
+| `WDV-MWK-016` | Ordre alphabétique des rubriques ou sections incorrect |
+| `WDV-MWK-017` | Majuscule initiale de sujet ou topic incorrecte |
+| `WDV-MWK-018` | Saut de ligne ou espace entre deux modèles MediaWiki adjacents |
+| `WDV-BIL-001` | Identifiants ou pages bilingues divergents |
+| `WDV-BIL-002` | Relations bilingues divergentes |
+| `WDV-BIL-003` | Occurrence primaire ou réutilisation bilingue divergente |
+| `WDV-BIL-004` | Correspondance rubriques-sections divergente |
+| `WDV-BIL-005` | Titre interlangue divergent |
+| `WDV-BIL-006` | Asymétrie éditoriale bilingue substantielle |
+| `WDV-WF-001` | État global incompatible avec les fichiers présents |
+| `WDV-WF-002` | Transition d'état interdite |
+| `WDV-WF-003` | Validation préalable absente ou échouée |
+| `WDV-WF-004` | Transmission incompatible avec le paquet |
+| `WDV-WF-005` | Champ verrouillé ou version normative incohérente |
+| `WDV-SRC-001` | Source dupliquée ou identifiant documentaire dupliqué |
+| `WDV-SRC-002` | Usage de source vers une page inexistante |
+| `WDV-SRC-003` | Source rejetée encore utilisée ou source vérifiée inutilisée |
+| `WDV-SRC-004` | Langue documentaire non préférée ou équivalent local ignoré |
+| `WDV-SRC-005` | Sélection bibliographique de la page de débat inadéquate |
+| `WDV-DOC-001` | Contrôle éditorial humain requis |
+| `WDV-DOC-002` | Pagination bibliographique incorrecte |
+| `WDV-DOC-003` | Date sitographique non documentaire |
+| `WDV-DOC-004` | Métadonnées sitographiques redondantes ou attribution non vérifiée |
+| `WDV-DOC-005` | Date documentaire au format machine |
+| `WDV-EDT-001` | Titres affichés copiés mécaniquement |
+| `WDV-EDT-002` | Classification ou mots-clés mécaniques |
+| `WDV-EDT-003` | Résumé contenant une auto-objection ou du métadiscours |
+| `WDV-EDT-004` | Documentation de la page de débat insuffisante ou mécanique |
+| `WDV-EDT-005` | Migration corrective des dates incomplète |
+| `WDV-EDT-006` | Traçabilité corrective ou revue humaine absente |
+| `WDV-EDT-007` | Titre affiché tronqué ou mal formé |
+| `WDV-EDT-008` | Mot-clé non nominal, non pertinent ou hors vocabulaire contrôlé |
+| `WDV-EDT-009` | Guillemets canoniques non conformes |
+| `WDV-EDT-010` | Références d’introduction non conformes |
+| `WDV-EDT-011` | Régression normative ou handoff courant incohérent |
+| `WDV-EDT-012` | Revue individuelle des titres et rubriques absente ou incohérente |
+| `WDV-EDT-013` | Style du résumé trop lourd ou revue des termes techniques absente |
+| `WDV-EDT-014` | Première phrase du résumé trop proche du titre |
+| `WDV-EDT-015` | Donnée chiffrée sans attestation documentaire conforme |
+| `WDV-EDT-016` | Titre canonique non autonome en raison d’un référent contextuel |
+| `WDV-EDT-017` | Revue structurelle bilingue de l’introduction absente ou incohérente |
+| `WDV-EDT-018` | Forme de sujet-complet ou complete-topic incorrecte |
+| `WDV-EDT-019` | Revue de précision et de profondeur documentaire du débat absente |
+| `WDV-EDT-020` | Force expressive du résumé non ancrée dans le texte |
+| `WDV-INT-001` | Erreur interne du validateur |

@@ -1,0 +1,780 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "argument_graph.schema.json",
+  "title": "Wikidéb'IA — Projection du graphe argumentatif",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "graph_schema_version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "debate": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/debateId"
+        },
+        "title_fr": {
+          "type": "string",
+          "minLength": 1
+        },
+        "labels": {
+          "type": "object",
+          "properties": {
+            "fr": {
+              "type": "object",
+              "properties": {
+                "pro": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "con": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "pro",
+                "con"
+              ]
+            },
+            "en": {
+              "type": "object",
+              "properties": {
+                "pro": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "con": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "pro",
+                "con"
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "fr",
+            "en"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title_fr",
+        "labels"
+      ]
+    },
+    "lifecycle": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "validated",
+            "locked",
+            "migration_required"
+          ]
+        },
+        "validated_at": {
+          "$ref": "common.schema.json#/$defs/nullableDateTime"
+        },
+        "locked_at": {
+          "$ref": "common.schema.json#/$defs/nullableDateTime"
+        },
+        "locked_by_stage": {
+          "$ref": "common.schema.json#/$defs/nullableString"
+        },
+        "structural_sha256": {
+          "$ref": "common.schema.json#/$defs/nullableSha256"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "validated_at",
+        "locked_at",
+        "locked_by_stage",
+        "structural_sha256"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "locked"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "validated_at": {
+                "$ref": "common.schema.json#/$defs/dateTime"
+              },
+              "locked_at": {
+                "$ref": "common.schema.json#/$defs/dateTime"
+              },
+              "locked_by_stage": {
+                "$ref": "common.schema.json#/$defs/nonEmptyString"
+              },
+              "structural_sha256": {
+                "$ref": "common.schema.json#/$defs/sha256"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "depth_policy": {
+      "type": "object",
+      "properties": {
+        "normal_target": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 3
+        },
+        "declared_maximum": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "exception_reason": {
+          "$ref": "common.schema.json#/$defs/nullableString"
+        },
+        "maximum_observed": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "normal_target",
+        "declared_maximum",
+        "exception_reason",
+        "maximum_observed"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "declared_maximum": {
+                "minimum": 4
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "exception_reason": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/nodeId"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "retired"
+            ]
+          },
+          "fr": {
+            "type": "object",
+            "properties": {
+              "canonical_title": {
+                "$ref": "common.schema.json#/$defs/canonicalTitle"
+              },
+              "displayed_title": {
+                "$ref": "common.schema.json#/$defs/displayedTitle"
+              },
+              "title_status": {
+                "type": "string",
+                "enum": [
+                  "draft",
+                  "normalized",
+                  "validated",
+                  "locked"
+                ]
+              },
+              "rubriques": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Aménagement",
+                    "Culture",
+                    "Droit",
+                    "Écologie",
+                    "Économie",
+                    "Éducation",
+                    "Éthique",
+                    "Géopolitique",
+                    "Histoire",
+                    "Philosophie",
+                    "Politique",
+                    "Psychologie",
+                    "Religion et spiritualité",
+                    "Santé",
+                    "Science",
+                    "Société",
+                    "Sport et loisirs",
+                    "Technologie"
+                  ]
+                },
+                "uniqueItems": true,
+                "minItems": 1,
+                "maxItems": 4
+              },
+              "keywords": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "minItems": 1
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "canonical_title",
+              "displayed_title",
+              "title_status",
+              "rubriques",
+              "keywords"
+            ]
+          },
+          "en": {
+            "type": "object",
+            "properties": {
+              "canonical_title": {
+                "$ref": "common.schema.json#/$defs/nullableCanonicalTitle"
+              },
+              "displayed_title": {
+                "$ref": "common.schema.json#/$defs/nullableDisplayedTitle"
+              },
+              "title_status": {
+                "type": "string",
+                "enum": [
+                  "unassigned",
+                  "draft",
+                  "validated",
+                  "locked"
+                ]
+              },
+              "sections": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Planning",
+                    "Culture",
+                    "Law",
+                    "Ecology",
+                    "Economy",
+                    "Education",
+                    "Ethics",
+                    "Geopolitics",
+                    "History",
+                    "Philosophy",
+                    "Politics",
+                    "Psychology",
+                    "Religion and spirituality",
+                    "Health",
+                    "Science",
+                    "Society",
+                    "Sport and leisure",
+                    "Technology"
+                  ]
+                },
+                "uniqueItems": true,
+                "maxItems": 4
+              },
+              "keywords": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "canonical_title",
+              "displayed_title",
+              "title_status",
+              "sections",
+              "keywords"
+            ],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "title_status": {
+                      "const": "unassigned"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "canonical_title": {
+                      "type": "null"
+                    },
+                    "displayed_title": {
+                      "type": "null"
+                    },
+                    "sections": {
+                      "maxItems": 0
+                    },
+                    "keywords": {
+                      "maxItems": 0
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "title_status": {
+                      "enum": [
+                        "validated",
+                        "locked"
+                      ]
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "canonical_title": {
+                      "$ref": "common.schema.json#/$defs/canonicalTitle"
+                    },
+                    "displayed_title": {
+                      "$ref": "common.schema.json#/$defs/displayedTitle"
+                    },
+                    "sections": {
+                      "minItems": 1
+                    },
+                    "keywords": {
+                      "minItems": 1
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "pages": {
+            "type": "object",
+            "properties": {
+              "fr": {
+                "$ref": "common.schema.json#/$defs/argumentPageRecordFr"
+              },
+              "en": {
+                "$ref": "common.schema.json#/$defs/argumentPageRecordEn"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "fr",
+              "en"
+            ]
+          },
+          "sources": {
+            "type": "object",
+            "properties": {
+              "fr": {
+                "type": "object",
+                "properties": {
+                  "bibliography": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "common.schema.json#/$defs/sourceId"
+                    },
+                    "uniqueItems": true
+                  },
+                  "webliography": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "common.schema.json#/$defs/sourceId"
+                    },
+                    "uniqueItems": true
+                  },
+                  "videography": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "common.schema.json#/$defs/sourceId"
+                    },
+                    "uniqueItems": true
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "bibliography",
+                  "webliography",
+                  "videography"
+                ]
+              },
+              "en": {
+                "type": "object",
+                "properties": {
+                  "bibliography": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "common.schema.json#/$defs/sourceId"
+                    },
+                    "uniqueItems": true
+                  },
+                  "webliography": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "common.schema.json#/$defs/sourceId"
+                    },
+                    "uniqueItems": true
+                  },
+                  "videography": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "common.schema.json#/$defs/sourceId"
+                    },
+                    "uniqueItems": true
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "bibliography",
+                  "webliography",
+                  "videography"
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "fr",
+              "en"
+            ]
+          },
+          "derived": {
+            "type": "object",
+            "properties": {
+              "occurrence_count": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "minimum_depth": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "maximum_depth": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "is_main_argument_anywhere": {
+                "type": "boolean"
+              },
+              "is_reused": {
+                "type": "boolean"
+              },
+              "primary_occurrence_id": {
+                "$ref": "common.schema.json#/$defs/occurrenceId"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "occurrence_count",
+              "minimum_depth",
+              "maximum_depth",
+              "is_main_argument_anywhere",
+              "is_reused",
+              "primary_occurrence_id"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "status",
+          "fr",
+          "en",
+          "pages",
+          "sources"
+        ]
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/edgeId"
+          },
+          "parent_node_id": {
+            "$ref": "common.schema.json#/$defs/nodeId"
+          },
+          "child_node_id": {
+            "$ref": "common.schema.json#/$defs/nodeId"
+          },
+          "relation": {
+            "type": "string",
+            "enum": [
+              "justification",
+              "objection"
+            ]
+          },
+          "order": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "retired"
+            ]
+          },
+          "introduced_in_pass": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "parent_node_id",
+          "child_node_id",
+          "relation",
+          "order",
+          "status"
+        ]
+      }
+    },
+    "occurrences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/occurrenceId"
+          },
+          "node_id": {
+            "$ref": "common.schema.json#/$defs/nodeId"
+          },
+          "parent_occurrence_id": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "common.schema.json#/$defs/occurrenceId"
+              }
+            ]
+          },
+          "edge_id": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "common.schema.json#/$defs/edgeId"
+              }
+            ]
+          },
+          "branch": {
+            "type": "string",
+            "enum": [
+              "pro",
+              "con"
+            ]
+          },
+          "depth": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "order": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "occurrence_role": {
+            "type": "string",
+            "enum": [
+              "primary",
+              "secondary"
+            ]
+          },
+          "render_children": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "node_id",
+          "parent_occurrence_id",
+          "edge_id",
+          "branch",
+          "depth",
+          "order",
+          "occurrence_role",
+          "render_children"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "depth": {
+                  "const": 1
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "parent_occurrence_id": {
+                  "type": "null"
+                },
+                "edge_id": {
+                  "type": "null"
+                },
+                "occurrence_role": {
+                  "const": "primary"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "parent_occurrence_id": {
+                  "$ref": "common.schema.json#/$defs/occurrenceId"
+                },
+                "edge_id": {
+                  "$ref": "common.schema.json#/$defs/edgeId"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "occurrence_role": {
+                  "const": "secondary"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "render_children": {
+                  "const": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "derived_counts": {
+      "type": "object",
+      "properties": {
+        "main_pro": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "main_con": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "justifications_by_depth": {
+          "type": "object",
+          "patternProperties": {
+            "^[1-9]\\d*$": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "objections_by_depth": {
+          "type": "object",
+          "patternProperties": {
+            "^[1-9]\\d*$": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "distinct_nodes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "total_occurrences": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reused_nodes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "additional_reuses": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "developed_nodes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "leaf_nodes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maximum_depth": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "main_pro",
+        "main_con",
+        "justifications_by_depth",
+        "objections_by_depth",
+        "distinct_nodes",
+        "total_occurrences",
+        "reused_nodes",
+        "additional_reuses",
+        "developed_nodes",
+        "leaf_nodes",
+        "maximum_depth"
+      ]
+    }
+  },
+  "required": [
+    "graph_schema_version",
+    "debate",
+    "lifecycle",
+    "depth_policy",
+    "nodes",
+    "edges",
+    "occurrences",
+    "derived_counts"
+  ],
+  "description": "Projection structurelle du graphe, version 1.0, révision corrective 1.0.6."
+}

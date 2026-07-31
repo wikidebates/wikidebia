@@ -1,0 +1,947 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "common.schema.json",
+  "title": "Wikidéb'IA — Définitions communes",
+  "description": "Définitions communes aux schémas JSON version 1.0, révision corrective du paquet 1.0.6. La langue courante est limitée à fr/en.",
+  "$defs": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+(?:\\.\\d+)?$"
+    },
+    "nullableVersion": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^\\d+\\.\\d+(?:\\.\\d+)?$"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "nullableDate": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "dateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "nullableDateTime": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "nullableSha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?!.*//)[^\\u0000-\\u001F]+$"
+    },
+    "nullableRelativePath": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/relativePath"
+        }
+      ]
+    },
+    "debateId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$",
+      "minLength": 2,
+      "maxLength": 100
+    },
+    "shortCode": {
+      "type": "string",
+      "pattern": "^[A-Z0-9]{2,8}$"
+    },
+    "nodeId": {
+      "type": "string",
+      "pattern": "^A\\d{4,}$"
+    },
+    "edgeId": {
+      "type": "string",
+      "pattern": "^E\\d{4,}$"
+    },
+    "occurrenceId": {
+      "type": "string",
+      "pattern": "^O\\d{4,}$"
+    },
+    "batchId": {
+      "type": "string",
+      "pattern": "^(?:FR|EN)-A-\\d{3,}$"
+    },
+    "validationId": {
+      "type": "string",
+      "pattern": "^V\\d{8}-\\d{3,}$"
+    },
+    "migrationId": {
+      "type": "string",
+      "pattern": "^M\\d{8}-\\d{3,}$"
+    },
+    "sourceId": {
+      "type": "string",
+      "pattern": "^S\\d{5,}$"
+    },
+    "handoffId": {
+      "type": "string",
+      "pattern": "^H-[A-Z0-9._-]+$"
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "fr",
+        "en"
+      ]
+    },
+    "globalStatus": {
+      "type": "string",
+      "enum": [
+        "initialized",
+        "graph_draft",
+        "graph_validated",
+        "graph_locked",
+        "fr_debate_validated",
+        "fr_arguments_in_progress",
+        "fr_content_complete",
+        "fr_validated",
+        "en_titles_locked",
+        "en_debate_validated",
+        "en_arguments_in_progress",
+        "en_content_complete",
+        "en_validated",
+        "bilingual_validated",
+        "interlanguage_prepared",
+        "release_ready",
+        "published",
+        "interlanguage_applied",
+        "released",
+        "archived",
+        "migration_required",
+        "blocked",
+        "corrective_in_progress",
+        "corrective_blocked"
+      ]
+    },
+    "workType": {
+      "type": "string",
+      "enum": [
+        "initialization",
+        "graph",
+        "fr_debate_page",
+        "fr_argument_batch",
+        "fr_global_validation",
+        "en_titles",
+        "en_debate_page",
+        "en_argument_batch",
+        "en_global_validation",
+        "bilingual_validation",
+        "interlanguage",
+        "release_archive",
+        "migration",
+        "corrective_prepublication"
+      ]
+    },
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[\\s\\S]*\\S[\\s\\S]*$"
+    },
+    "nullableString": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      ]
+    },
+    "canonicalTitle": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "not": {
+        "anyOf": [
+          {
+            "pattern": "\\.$"
+          },
+          {
+            "pattern": "’"
+          },
+          {
+            "pattern": "^\\s|\\s$"
+          }
+        ]
+      }
+    },
+    "nullableCanonicalTitle": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/canonicalTitle"
+        }
+      ]
+    },
+    "displayedTitle": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "not": {
+        "anyOf": [
+          {
+            "pattern": "\\.$"
+          },
+          {
+            "pattern": "’"
+          },
+          {
+            "pattern": "^\\s|\\s$"
+          }
+        ]
+      }
+    },
+    "nullableDisplayedTitle": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/displayedTitle"
+        }
+      ]
+    },
+    "generationStatus": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "assigned",
+        "in_progress",
+        "generated",
+        "validated",
+        "failed",
+        "obsolete"
+      ]
+    },
+    "fileStatus": {
+      "type": "string",
+      "enum": [
+        "absent",
+        "present",
+        "validated",
+        "obsolete"
+      ]
+    },
+    "wikiCheckStatus": {
+      "type": "string",
+      "enum": [
+        "unchecked",
+        "absent",
+        "equivalent_existing",
+        "collision",
+        "created",
+        "manual_review"
+      ]
+    },
+    "wikiDecision": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        null,
+        "create",
+        "reuse_existing",
+        "rename_local",
+        "manual_review",
+        "none"
+      ]
+    },
+    "interlanguageStatusFr": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "ready",
+        "inserted",
+        "verified",
+        "blocked"
+      ]
+    },
+    "interlanguageStatusEn": {
+      "const": "not_applicable"
+    },
+    "validationResult": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "passed_with_warnings",
+        "failed"
+      ]
+    },
+    "validationScope": {
+      "type": "string",
+      "enum": [
+        "graph",
+        "fr_debate",
+        "fr_batch",
+        "fr_global",
+        "en_titles",
+        "en_debate",
+        "en_batch",
+        "en_global",
+        "bilingual",
+        "interlanguage",
+        "release",
+        "corrective_editorial_review",
+        "corrective_full"
+      ]
+    },
+    "pageType": {
+      "type": "string",
+      "enum": [
+        "debate",
+        "argument"
+      ]
+    },
+    "pageStatus": {
+      "type": "string",
+      "enum": [
+        "planned",
+        "assigned",
+        "generated",
+        "validated",
+        "obsolete",
+        "published",
+        "failed"
+      ]
+    },
+    "normativeVersions": {
+      "type": "object",
+      "properties": {
+        "mediawiki_structure": {
+          "$ref": "#/$defs/version"
+        },
+        "render_profile": {
+          "$ref": "#/$defs/version"
+        },
+        "registry": {
+          "$ref": "#/$defs/version"
+        },
+        "graph": {
+          "$ref": "#/$defs/version"
+        },
+        "workflow": {
+          "$ref": "#/$defs/version"
+        },
+        "validator": {
+          "$ref": "#/$defs/nullableVersion"
+        },
+        "consolidated_norm": {
+          "$ref": "#/$defs/nullableVersion"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "mediawiki_structure",
+        "render_profile",
+        "registry",
+        "graph",
+        "workflow",
+        "validator"
+      ]
+    },
+    "generationRecord": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/generationStatus"
+        },
+        "assigned_batch_id": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/batchId"
+            }
+          ]
+        },
+        "creation_date": {
+          "$ref": "#/$defs/nullableDate"
+        },
+        "generated_at": {
+          "$ref": "#/$defs/nullableDateTime"
+        },
+        "validated_at": {
+          "$ref": "#/$defs/nullableDateTime"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "assigned_batch_id",
+        "creation_date",
+        "generated_at",
+        "validated_at"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "pending"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "creation_date": {
+                "type": "null"
+              },
+              "generated_at": {
+                "type": "null"
+              },
+              "validated_at": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "generated",
+                  "validated"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "creation_date": {
+                "$ref": "#/$defs/date"
+              },
+              "generated_at": {
+                "$ref": "#/$defs/dateTime"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "validated"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "validated_at": {
+                "$ref": "#/$defs/dateTime"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "fileRecord": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/relativePath"
+        },
+        "sha256": {
+          "$ref": "#/$defs/nullableSha256"
+        },
+        "status": {
+          "$ref": "#/$defs/fileStatus"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "status"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "absent"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "sha256": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "present",
+                  "validated"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "sha256": {
+                "$ref": "#/$defs/sha256"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "wikiRecord": {
+      "type": "object",
+      "properties": {
+        "check_status": {
+          "$ref": "#/$defs/wikiCheckStatus"
+        },
+        "checked_at": {
+          "$ref": "#/$defs/nullableDateTime"
+        },
+        "decision": {
+          "$ref": "#/$defs/wikiDecision"
+        },
+        "remote_title": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "remote_revision_id": {
+          "$ref": "#/$defs/remoteRevisionId"
+        },
+        "remote_sha256": {
+          "$ref": "#/$defs/nullableSha256"
+        },
+        "published_at": {
+          "$ref": "#/$defs/nullableDateTime"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "check_status",
+        "decision",
+        "remote_revision_id",
+        "remote_sha256",
+        "published_at",
+        "checked_at",
+        "remote_title"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "check_status": {
+                "const": "unchecked"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "checked_at": {
+                "type": "null"
+              },
+              "remote_revision_id": {
+                "type": "null"
+              },
+              "remote_sha256": {
+                "type": "null"
+              },
+              "published_at": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "check_status": {
+                "enum": [
+                  "absent",
+                  "equivalent_existing",
+                  "collision",
+                  "created",
+                  "manual_review"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "checked_at": {
+                "$ref": "#/$defs/dateTime"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "check_status": {
+                "enum": [
+                  "equivalent_existing",
+                  "created"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "remote_title": {
+                "$ref": "#/$defs/nonEmptyString"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "check_status": {
+                "const": "created"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "remote_revision_id": {
+                "oneOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^\\d+$"
+                  }
+                ]
+              },
+              "published_at": {
+                "$ref": "#/$defs/dateTime"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "interlanguageFrRecord": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/interlanguageStatusFr"
+        },
+        "target_language": {
+          "const": "en"
+        },
+        "target_title": {
+          "$ref": "#/$defs/nullableCanonicalTitle"
+        },
+        "inserted_at": {
+          "$ref": "#/$defs/nullableDateTime"
+        },
+        "verified_at": {
+          "$ref": "#/$defs/nullableDateTime"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "target_language",
+        "target_title",
+        "inserted_at",
+        "verified_at"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "pending"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "target_title": {
+                "type": "null"
+              },
+              "inserted_at": {
+                "type": "null"
+              },
+              "verified_at": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "ready",
+                  "inserted",
+                  "verified"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "target_title": {
+                "$ref": "#/$defs/canonicalTitle"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "inserted",
+                  "verified"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "inserted_at": {
+                "$ref": "#/$defs/dateTime"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "verified"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "verified_at": {
+                "$ref": "#/$defs/dateTime"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "interlanguageEnRecord": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/interlanguageStatusEn"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ]
+    },
+    "debatePageRecordFr": {
+      "type": "object",
+      "properties": {
+        "canonical_title": {
+          "$ref": "#/$defs/canonicalTitle"
+        },
+        "title_status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "normalized",
+            "validated",
+            "locked"
+          ]
+        },
+        "generation": {
+          "$ref": "#/$defs/generationRecord"
+        },
+        "file": {
+          "$ref": "#/$defs/fileRecord"
+        },
+        "wiki": {
+          "$ref": "#/$defs/wikiRecord"
+        },
+        "interlanguage": {
+          "$ref": "#/$defs/interlanguageFrRecord"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "canonical_title",
+        "title_status",
+        "generation",
+        "file",
+        "wiki",
+        "interlanguage"
+      ]
+    },
+    "debatePageRecordEn": {
+      "type": "object",
+      "properties": {
+        "canonical_title": {
+          "$ref": "#/$defs/nullableCanonicalTitle"
+        },
+        "title_status": {
+          "type": "string",
+          "enum": [
+            "unassigned",
+            "draft",
+            "validated",
+            "locked"
+          ]
+        },
+        "generation": {
+          "$ref": "#/$defs/generationRecord"
+        },
+        "file": {
+          "$ref": "#/$defs/fileRecord"
+        },
+        "wiki": {
+          "$ref": "#/$defs/wikiRecord"
+        },
+        "interlanguage": {
+          "$ref": "#/$defs/interlanguageEnRecord"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "canonical_title",
+        "title_status",
+        "generation",
+        "file",
+        "wiki",
+        "interlanguage"
+      ]
+    },
+    "argumentPageRecordFr": {
+      "type": "object",
+      "properties": {
+        "generation": {
+          "$ref": "#/$defs/generationRecord"
+        },
+        "file": {
+          "$ref": "#/$defs/fileRecord"
+        },
+        "wiki": {
+          "$ref": "#/$defs/wikiRecord"
+        },
+        "interlanguage": {
+          "$ref": "#/$defs/interlanguageFrRecord"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "generation",
+        "file",
+        "wiki",
+        "interlanguage"
+      ]
+    },
+    "argumentPageRecordEn": {
+      "type": "object",
+      "properties": {
+        "generation": {
+          "$ref": "#/$defs/generationRecord"
+        },
+        "file": {
+          "$ref": "#/$defs/fileRecord"
+        },
+        "wiki": {
+          "$ref": "#/$defs/wikiRecord"
+        },
+        "interlanguage": {
+          "$ref": "#/$defs/interlanguageEnRecord"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "generation",
+        "file",
+        "wiki",
+        "interlanguage"
+      ]
+    },
+    "httpUrl": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https?://"
+    },
+    "nullableHttpUrl": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/httpUrl"
+        }
+      ]
+    },
+    "digitsString": {
+      "type": "string",
+      "pattern": "^\\d+$"
+    },
+    "nullableDigitsString": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/digitsString"
+        }
+      ]
+    },
+    "remoteRevisionId": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "string",
+          "pattern": "^\\d+$"
+        }
+      ]
+    }
+  }
+}

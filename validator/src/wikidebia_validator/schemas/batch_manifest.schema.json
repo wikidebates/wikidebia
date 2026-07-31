@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "batch_manifest.schema.json",
+  "title": "Wikidéb'IA — Manifeste de lot de pages Argument",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "batch_schema_version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "id": {
+      "$ref": "common.schema.json#/$defs/batchId"
+    },
+    "debate_id": {
+      "$ref": "common.schema.json#/$defs/debateId"
+    },
+    "language": {
+      "$ref": "common.schema.json#/$defs/language"
+    },
+    "page_type": {
+      "const": "argument"
+    },
+    "strategy": {
+      "type": "string",
+      "enum": [
+        "subtree",
+        "size_balanced",
+        "manual_editorial"
+      ]
+    },
+    "root_node_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/nodeId"
+      },
+      "uniqueItems": true
+    },
+    "node_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/nodeId"
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    },
+    "dependency_node_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/nodeId"
+      },
+      "uniqueItems": true
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "planned",
+        "assigned",
+        "in_progress",
+        "generated",
+        "validated",
+        "released",
+        "obsolete",
+        "failed"
+      ]
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "registry_sha256": {
+          "$ref": "common.schema.json#/$defs/nullableSha256"
+        },
+        "structural_sha256": {
+          "$ref": "common.schema.json#/$defs/nullableSha256"
+        },
+        "render_profile_version": {
+          "$ref": "common.schema.json#/$defs/version"
+        },
+        "handoff_path": {
+          "$ref": "common.schema.json#/$defs/nullableRelativePath"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "registry_sha256",
+        "structural_sha256",
+        "render_profile_version",
+        "handoff_path"
+      ]
+    },
+    "outputs": {
+      "type": "object",
+      "properties": {
+        "individual_directory": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        },
+        "aggregate_path": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        },
+        "aggregate_sha256": {
+          "$ref": "common.schema.json#/$defs/nullableSha256"
+        },
+        "report_path": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "individual_directory",
+        "aggregate_path",
+        "aggregate_sha256",
+        "report_path"
+      ]
+    },
+    "work": {
+      "type": "object",
+      "properties": {
+        "work_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "conversation_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "started_at": {
+          "$ref": "common.schema.json#/$defs/nullableDateTime"
+        },
+        "completed_at": {
+          "$ref": "common.schema.json#/$defs/nullableDateTime"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "work_id",
+        "conversation_name",
+        "started_at",
+        "completed_at"
+      ]
+    }
+  },
+  "required": [
+    "batch_schema_version",
+    "id",
+    "debate_id",
+    "language",
+    "page_type",
+    "strategy",
+    "root_node_ids",
+    "node_ids",
+    "dependency_node_ids",
+    "status",
+    "inputs",
+    "outputs",
+    "work"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "language": {
+            "const": "fr"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "id": {
+            "pattern": "^FR-A-\\d{3,}$"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "id": {
+            "pattern": "^EN-A-\\d{3,}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "generated",
+              "validated",
+              "released"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "inputs": {
+            "properties": {
+              "registry_sha256": {
+                "$ref": "common.schema.json#/$defs/sha256"
+              },
+              "structural_sha256": {
+                "$ref": "common.schema.json#/$defs/sha256"
+              }
+            }
+          },
+          "outputs": {
+            "properties": {
+              "aggregate_sha256": {
+                "$ref": "common.schema.json#/$defs/sha256"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "generated",
+              "validated",
+              "released"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "work": {
+            "properties": {
+              "completed_at": {
+                "$ref": "common.schema.json#/$defs/dateTime"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "description": "Manifeste d’un lot de pages Argument, version 1.0, révision corrective 1.0.6."
+}

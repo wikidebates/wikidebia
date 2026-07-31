@@ -1,0 +1,15 @@
+{
+  "scope_schema_version": "1.0",
+  "debate_id": "exemple",
+  "canonical_title_fr": "Faut-il adopter la mesure X ?",
+  "proposition_fr": "Faut-il adopter la mesure X ?",
+  "scope_summary_fr": "Débat pilote.",
+  "jurisdiction": null,
+  "timeframe": null,
+  "included_topics": [],
+  "excluded_topics": [],
+  "residual_ambiguities": [],
+  "related_debates": [],
+  "editorial_constraints": [],
+  "source_documents": []
+}

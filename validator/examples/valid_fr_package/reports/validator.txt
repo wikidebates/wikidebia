@@ -1,0 +1,9 @@
+VALIDATEUR WIKIDÉB'IA
+Version : 0.2.1
+Paquet : examples/valid_fr_package
+Portées : schema, coherence, graph, batches, sources, files, wikicode, bilingual, workflow
+
+INFO WDV-DOC-001 — Les contrôles de qualité argumentative, d'équilibre, de quasi-doublons sémantiques et de fidélité documentaire restent soumis à une revue humaine.
+
+Erreurs : 0 | Avertissements : 0 | Informations : 1
+VALIDATION GLOBALE : RÉUSSIE

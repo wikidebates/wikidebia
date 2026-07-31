@@ -1,0 +1,83 @@
+{
+  "catalog_version": "1.1.0",
+  "package_revision": "1.1.0",
+  "draft": "https://json-schema.org/draft/2020-12/schema",
+  "schema_count": 15,
+  "schemas": [
+    {
+      "path": "archive_receipt.schema.json",
+      "id": "archive_receipt.schema.json",
+      "title": "Wikidéb'IA — Reçu externe d'archive"
+    },
+    {
+      "path": "argument_graph.schema.json",
+      "id": "argument_graph.schema.json",
+      "title": "Wikidéb'IA — Projection du graphe argumentatif"
+    },
+    {
+      "path": "argument_registry.schema.json",
+      "id": "argument_registry.schema.json",
+      "title": "Wikidéb'IA — Registre maître d'un débat"
+    },
+    {
+      "path": "batch_collection.schema.json",
+      "id": "batch_collection.schema.json",
+      "title": "Wikidéb'IA — Collection de lots"
+    },
+    {
+      "path": "batch_manifest.schema.json",
+      "id": "batch_manifest.schema.json",
+      "title": "Wikidéb'IA — Manifeste de lot de pages Argument"
+    },
+    {
+      "path": "common.schema.json",
+      "id": "common.schema.json",
+      "title": "Wikidéb'IA — Définitions communes"
+    },
+    {
+      "path": "debate_package.schema.json",
+      "id": "debate_package.schema.json",
+      "title": "Wikidéb'IA — Manifeste du paquet d'un débat"
+    },
+    {
+      "path": "handoff.schema.json",
+      "id": "handoff.schema.json",
+      "title": "Wikidéb'IA — Transmission entre Work"
+    },
+    {
+      "path": "interlanguage_patch.schema.json",
+      "id": "interlanguage_patch.schema.json",
+      "title": "Wikidéb'IA — Patch interlangue français"
+    },
+    {
+      "path": "operation_log_entry.schema.json",
+      "id": "operation_log_entry.schema.json",
+      "title": "Wikidéb'IA — Entrée de journal d'opération"
+    },
+    {
+      "path": "page_manifest.schema.json",
+      "id": "page_manifest.schema.json",
+      "title": "Wikidéb'IA — Manifeste individuel d'une page"
+    },
+    {
+      "path": "release_manifest.schema.json",
+      "id": "release_manifest.schema.json",
+      "title": "Wikidéb'IA — Manifeste de libération"
+    },
+    {
+      "path": "scope.schema.json",
+      "id": "scope.schema.json",
+      "title": "Wikidéb'IA — Cadrage d'un débat"
+    },
+    {
+      "path": "source_registry.schema.json",
+      "id": "source_registry.schema.json",
+      "title": "Wikidéb'IA — Registre documentaire"
+    },
+    {
+      "path": "requirements_catalog.schema.json",
+      "id": "requirements_catalog.schema.json",
+      "title": "Wikidéb'IA — Catalogue consolidé des exigences"
+    }
+  ]
+}

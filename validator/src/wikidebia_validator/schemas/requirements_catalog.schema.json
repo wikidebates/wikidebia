@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "requirements_catalog.schema.json",
+  "title": "Wikidéb'IA — Catalogue consolidé des exigences",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "requirements_catalog_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+(?:\\.\\d+)?$"
+    },
+    "generated_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "active_package_revision": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+(?:\\.\\d+)?$"
+    },
+    "precedence": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "requirements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z]{2,4}-\\d{3}$"
+          },
+          "domain": {
+            "type": "string",
+            "minLength": 1
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "disposition": {
+            "enum": [
+              "active",
+              "superseded",
+              "modified",
+              "deferred"
+            ]
+          },
+          "enforcement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "normative_files": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "note": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "domain",
+          "statement",
+          "disposition",
+          "enforcement",
+          "sources",
+          "normative_files",
+          "note"
+        ]
+      }
+    },
+    "source_aliases": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      }
+    }
+  },
+  "required": [
+    "requirements_catalog_version",
+    "generated_date",
+    "active_package_revision",
+    "precedence",
+    "requirements",
+    "source_aliases"
+  ]
+}

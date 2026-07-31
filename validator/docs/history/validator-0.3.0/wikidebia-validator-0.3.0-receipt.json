@@ -1,0 +1,28 @@
+{
+  "artifact": "wikidebia-validator-0.3.0.zip",
+  "version": "0.3.0",
+  "normative_revision": "1.1.8",
+  "based_on": "wikidebia-validator-0.2.9.zip",
+  "size_bytes": 300135,
+  "sha256": "b013ac97d4764968f7bb8c2986686f4a83d850af53d056056fa826962b491be0",
+  "package_manifest_sha256": "5709aca9bc69a187cdfe0255d38f1c53105f8826a27134eaf90c971a0c463b49",
+  "created_at": "2026-07-26T17:10:00Z",
+  "archive_test": {
+    "format": "zip",
+    "members": 145,
+    "integrity": "passed",
+    "first_bad_member": null
+  },
+  "tests": {
+    "pytest": "59 passed",
+    "self_audit": "passed",
+    "backward_compatibility_1_1_7": "schema+editorial passed with 0 errors and 0 warnings"
+  },
+  "changes": {
+    "active_norm": "1.1.8",
+    "new_control": "WDV-EDT-013",
+    "summary_style": "general-public encyclopedic, thesis first, varied sentence length, technical terms defined",
+    "graph_modification": false,
+    "remote_write_authorized": false
+  }
+}

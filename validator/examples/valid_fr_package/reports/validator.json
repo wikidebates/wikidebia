@@ -1,0 +1,78 @@
+{
+  "validator_version": "0.2.1",
+  "package_root": "examples/valid_fr_package",
+  "scopes": [
+    "schema",
+    "coherence",
+    "graph",
+    "batches",
+    "sources",
+    "files",
+    "wikicode",
+    "bilingual",
+    "workflow"
+  ],
+  "result": "passed",
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  "metrics": {
+    "coherence": {
+      "debate_id": "exemple"
+    },
+    "graph": {
+      "main_pro": 1,
+      "main_con": 1,
+      "justifications_by_depth": {},
+      "objections_by_depth": {},
+      "distinct_nodes": 2,
+      "total_occurrences": 2,
+      "reused_nodes": 0,
+      "additional_reuses": 0,
+      "developed_nodes": 0,
+      "leaf_nodes": 2,
+      "maximum_depth": 1
+    },
+    "batches": {
+      "count": 1,
+      "fr_owned": 2,
+      "en_owned": 0
+    },
+    "sources": {
+      "count": 0,
+      "verified": 0
+    },
+    "files": {
+      "declared_pages": 3,
+      "core_files": 5
+    },
+    "wikicode": {
+      "declared_pages": 3,
+      "parsed_pages": 3
+    },
+    "bilingual": {
+      "active_nodes": 2,
+      "strict": false
+    },
+    "workflow": {
+      "global_status": "fr_validated",
+      "passed_validation_scopes": [
+        "fr_debate",
+        "fr_global",
+        "graph"
+      ]
+    }
+  },
+  "findings": [
+    {
+      "code": "WDV-DOC-001",
+      "level": "INFO",
+      "message": "Les contrôles de qualité argumentative, d'équilibre, de quasi-doublons sémantiques et de fidélité documentaire restent soumis à une revue humaine.",
+      "path": null,
+      "pointer": null,
+      "details": {}
+    }
+  ]
+}

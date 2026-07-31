@@ -1,0 +1,17 @@
+===== PAGE : La mesure X produirait un bénéfice collectif =====
+{{Argument
+|avertissements-argument=Argument généré par IA
+|résumé=La mesure X mutualiserait certains bénéfices et réduirait des coûts collectifs.
+|rubriques=Société
+|mots-clés=mesure X
+|date-création=2026-07-23
+}}
+
+===== PAGE : La mesure X porterait une atteinte disproportionnée aux libertés =====
+{{Argument
+|avertissements-argument=Argument généré par IA
+|résumé=La mesure X limiterait certaines libertés au-delà de ce qui serait nécessaire.
+|rubriques=Société
+|mots-clés=mesure X
+|date-création=2026-07-23
+}}

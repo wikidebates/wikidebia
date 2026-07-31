@@ -1,0 +1,13 @@
+Contrôles réussis : 11
+[OK] Manifeste SHA-256 concordant
+[OK] ZIP sûr : 02_schemas_json/schemas_json_wikidebia_v1.0.6.zip
+[OK] ZIP sûr : 04_outils_existants/wikidebia_pywikibot_sources_communes.zip
+[OK] ZIP interne des schémas identique au dossier lisible
+[OK] Structures MediaWiki conformes aux sources et décisions
+[OK] Cinq fichiers de provenance et le registre des décisions sont conformes
+[OK] Blocs Markdown et références de schémas contrôlés
+[OK] Valeurs et transitions normatives critiques contrôlées
+[OK] 15 schémas et 14 exemples contrôlés
+[OK] Intégrité et syntaxe de l'outil Pywikibot historique contrôlées
+[OK] 252 exigences consolidées, identifiants uniques et provenance résolue
+AUDIT GLOBAL : RÉUSSI

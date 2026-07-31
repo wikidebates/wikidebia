@@ -1,0 +1,5 @@
+Wikidéb’IA Validator 0.4.16
+Norme implémentée : 1.2.15
+Tests pytest : 137 réussis, 0 échec
+Exécution depuis le dossier du validateur et depuis un dossier courant extérieur : réussie
+Résultat : RÉUSSI

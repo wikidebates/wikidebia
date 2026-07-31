@@ -1,0 +1,21 @@
+{{Débat
+|sujet=Mesure X
+|sujet-complet=l'adoption de la mesure X
+|avancement=Débat construit
+|avertissements-débat=Débat généré par IA
+|introduction={{Sous-partie
+|titre=Définition
+|contenu=La mesure X est une mesure pilote.
+}}
+|arguments-pour={{Argument pour
+|page=La mesure X produirait un bénéfice collectif
+|titre-affiché=Un bénéfice collectif
+}}
+|arguments-contre={{Argument contre
+|page=La mesure X porterait une atteinte disproportionnée aux libertés
+|titre-affiché=Une atteinte disproportionnée
+}}
+|rubriques=Société
+|mots-clés=mesure X
+|date-création=2026-07-23
+}}

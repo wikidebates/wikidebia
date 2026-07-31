@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+VENV="$ROOT/.venv"
+VENV_PYTHON="$VENV/bin/python"
+REQUIREMENTS="$ROOT/requirements-runtime.txt"
+STATE_DIR="$ROOT/.state"
+MARKER="$STATE_DIR/runtime-requirements.sha256"
+BOOTSTRAP_PYTHON="${PYTHON:-python3}"
+
+fail() {
+  printf 'WIKIDEBIA BLOQUÉ : %s\n' "$1" >&2
+  exit 2
+}
+
+if ! command -v "$BOOTSTRAP_PYTHON" >/dev/null 2>&1; then
+  fail "Python 3 est introuvable. Installez python3 puis relancez la commande."
+fi
+
+if [[ ! -x "$VENV_PYTHON" ]] || ! "$VENV_PYTHON" -c 'import sys' >/dev/null 2>&1; then
+  printf 'Préparation de l’environnement Python local .venv/...\n' >&2
+  rm -rf -- "$VENV"
+  if ! "$BOOTSTRAP_PYTHON" -m venv "$VENV"; then
+    fail "Impossible de créer .venv. Sous Debian/Ubuntu, installez python3-venv puis relancez la commande."
+  fi
+fi
+
+[[ -f "$REQUIREMENTS" ]] || fail "requirements-runtime.txt est absent. Réinstallez le kit Wikidéb’IA."
+mkdir -p -- "$STATE_DIR"
+
+REQUIREMENTS_SHA="$($VENV_PYTHON - "$REQUIREMENTS" <<'PY_HASH'
+from pathlib import Path
+import hashlib
+import sys
+print(hashlib.sha256(Path(sys.argv[1]).read_bytes()).hexdigest())
+PY_HASH
+)"
+
+MISSING="$($VENV_PYTHON - <<'PY_MODULES'
+import importlib.util
+modules = ("jsonschema", "referencing", "pytest", "pywikibot")
+print(" ".join(name for name in modules if importlib.util.find_spec(name) is None))
+PY_MODULES
+)"
+
+INSTALLED_SHA=""
+if [[ -f "$MARKER" ]]; then
+  INSTALLED_SHA="$(tr -d '[:space:]' < "$MARKER")"
+fi
+
+if [[ -n "$MISSING" || "$INSTALLED_SHA" != "$REQUIREMENTS_SHA" ]]; then
+  if [[ -n "$MISSING" ]]; then
+    printf 'Installation des dépendances Python manquantes : %s\n' "$MISSING" >&2
+  else
+    printf 'Mise à niveau des dépendances Python de Wikidéb’IA...\n' >&2
+  fi
+  if ! "$VENV_PYTHON" -m pip install --disable-pip-version-check -r "$REQUIREMENTS"; then
+    fail "Installation des dépendances Python impossible. Vérifiez l’accès réseau puis relancez la commande."
+  fi
+  printf '%s\n' "$REQUIREMENTS_SHA" > "$MARKER"
+fi
+
+exec "$VENV_PYTHON" "$ROOT/kit/scripts/wikidebia_manage.py" --root "$ROOT" "$@"

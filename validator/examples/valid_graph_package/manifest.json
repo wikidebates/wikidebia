@@ -1,0 +1,47 @@
+{
+  "package_schema_version": "1.0",
+  "debate_id": "exemple",
+  "short_code": "EX",
+  "global_status": "graph_locked",
+  "created_at": "2026-07-23T18:00:00+02:00",
+  "updated_at": "2026-07-23T18:00:00+02:00",
+  "normative_versions": {
+    "mediawiki_structure": "1.0",
+    "render_profile": "1.0",
+    "registry": "1.0",
+    "graph": "1.0",
+    "workflow": "1.0",
+    "validator": "0.2.1"
+  },
+  "core_files": {
+    "scope": "scope.json",
+    "registry": "data/registre_debat.json",
+    "graph_json": "graph/graphe_argumentatif.json",
+    "graph_markdown": "graph/graphe_argumentatif.md",
+    "sources": "data/sources.json"
+  },
+  "pages": [],
+  "batches": [],
+  "works": [],
+  "validations": [
+    {
+      "id": "V20260723-005",
+      "scope": "graph",
+      "language": null,
+      "validator_version": "0.2.1",
+      "executed_at": "2026-07-23T18:00:00+02:00",
+      "input_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "result": "passed",
+      "blocking_errors": 0,
+      "warnings": 0,
+      "report_path": "reports/graph.txt"
+    }
+  ],
+  "release": {
+    "release_manifest_path": null,
+    "release_zip_path": null,
+    "released_at": null,
+    "archived_at": null,
+    "release_receipt_path": null
+  }
+}

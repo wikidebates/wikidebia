@@ -1,0 +1,486 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "source_registry.schema.json",
+  "title": "Wikidéb'IA — Registre documentaire",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "source_registry_version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "debate_id": {
+      "$ref": "common.schema.json#/$defs/debateId"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/sourceId"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "bibliography",
+              "webliography",
+              "videography"
+            ]
+          },
+          "language": {
+            "$ref": "common.schema.json#/$defs/language"
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "authors": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "minItems": 0
+              },
+              "article": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "work": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "volume": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "issue": {
+                "$ref": "common.schema.json#/$defs/nullableDigitsString"
+              },
+              "location": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "publisher": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "place": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "date": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "link": {
+                "$ref": "common.schema.json#/$defs/nullableHttpUrl"
+              },
+              "page": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "site": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "title": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "authors",
+              "article",
+              "work",
+              "volume",
+              "issue",
+              "location",
+              "publisher",
+              "place",
+              "date",
+              "link",
+              "page",
+              "site",
+              "title"
+            ]
+          },
+          "verification": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "unverified",
+                  "verified",
+                  "rejected"
+                ]
+              },
+              "verified_at": {
+                "$ref": "common.schema.json#/$defs/nullableDateTime"
+              },
+              "primary_source": {
+                "type": "boolean"
+              },
+              "notes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "language_verified": {
+                "type": "boolean"
+              },
+              "authorship_checked": {
+                "type": "boolean"
+              },
+              "authorship_verified": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "status",
+              "verified_at",
+              "primary_source",
+              "notes"
+            ]
+          },
+          "usage": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "page_id": {
+                  "oneOf": [
+                    {
+                      "$ref": "common.schema.json#/$defs/debateId"
+                    },
+                    {
+                      "$ref": "common.schema.json#/$defs/nodeId"
+                    }
+                  ]
+                },
+                "language": {
+                  "$ref": "common.schema.json#/$defs/language"
+                },
+                "role": {
+                  "type": "string",
+                  "enum": [
+                    "supports_summary",
+                    "supports_introduction",
+                    "pro_reference",
+                    "con_reference",
+                    "neutral_reference",
+                    "context"
+                  ]
+                },
+                "language_fit": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "native",
+                        "official_translation",
+                        "original_no_equivalent",
+                        "object_of_analysis"
+                      ]
+                    }
+                  ]
+                },
+                "preferred_equivalent_source_id": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "$ref": "common.schema.json#/$defs/sourceId"
+                    }
+                  ]
+                },
+                "documentary_scope": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "string",
+                      "enum": [
+                        "foundational_work",
+                        "broad_synthesis",
+                        "narrow_argument",
+                        "introduction_fact",
+                        "context"
+                      ]
+                    }
+                  ]
+                },
+                "selection_reason": {
+                  "$ref": "common.schema.json#/$defs/nullableString"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "page_id",
+                "language",
+                "role"
+              ]
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "deduplication_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "document_kind": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "book",
+                  "monograph",
+                  "handbook",
+                  "edited_volume",
+                  "synthesis_report",
+                  "review_article",
+                  "journal_article",
+                  "book_chapter",
+                  "conference_paper",
+                  "thesis",
+                  "legal_text",
+                  "other"
+                ]
+              }
+            ]
+          },
+          "equivalence_group": {
+            "$ref": "common.schema.json#/$defs/nullableString"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type",
+          "language",
+          "metadata",
+          "verification",
+          "usage",
+          "deduplication_key"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "bibliography"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "metadata": {
+                  "anyOf": [
+                    {
+                      "properties": {
+                        "article": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "article"
+                      ]
+                    },
+                    {
+                      "properties": {
+                        "work": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "work"
+                      ]
+                    }
+                  ],
+                  "properties": {
+                    "authors": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "minItems": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "webliography"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "metadata": {
+                  "properties": {
+                    "link": {
+                      "$ref": "common.schema.json#/$defs/httpUrl"
+                    },
+                    "site": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "videography"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "metadata": {
+                  "properties": {
+                    "link": {
+                      "$ref": "common.schema.json#/$defs/httpUrl"
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "authors": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "minItems": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "verification": {
+                  "properties": {
+                    "status": {
+                      "const": "verified"
+                    }
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "verification": {
+                  "properties": {
+                    "verified_at": {
+                      "$ref": "common.schema.json#/$defs/dateTime"
+                    }
+                  }
+                },
+                "usage": {
+                  "minItems": 1
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "verification": {
+                  "properties": {
+                    "status": {
+                      "const": "rejected"
+                    }
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "verification": {
+                  "properties": {
+                    "notes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "minItems": 1
+                    }
+                  }
+                },
+                "usage": {
+                  "maxItems": 0
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "videography"
+                },
+                "metadata": {
+                  "properties": {
+                    "authors": {
+                      "type": "array",
+                      "maxItems": 0
+                    }
+                  },
+                  "required": [
+                    "authors"
+                  ]
+                }
+              },
+              "required": [
+                "type",
+                "metadata"
+              ]
+            },
+            "then": {
+              "properties": {
+                "verification": {
+                  "properties": {
+                    "notes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "minItems": 1
+                    }
+                  },
+                  "required": [
+                    "notes"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "source_registry_version",
+    "debate_id",
+    "sources"
+  ],
+  "description": "Registre documentaire compatible 1.0–1.2. Les normes 1.2.x distinguent la langue réelle de la source de la langue d'usage, documentent les équivalents, la portée des références de débat et la vérification d'auteur des ressources web."
+}

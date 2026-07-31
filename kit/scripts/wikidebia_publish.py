@@ -1,0 +1,1619 @@
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+import unicodedata
+from dataclasses import asdict, dataclass
+from pathlib import Path
+from typing import Any, Protocol
+
+KIT_VERSION = "2.1.17"
+REQUIRED_VALIDATOR_VERSION = "0.4.16"
+DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
+REQUIRED_DIRECT_SCOPES = {"schema", "coherence", "graph", "files", "batches", "sources", "wikicode", "bilingual", "editorial", "workflow"}
+PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
+SPLIT_ADJACENT_TEMPLATES_RE = re.compile(r"}}[ \t\r\n]+\{\{")
+LEGACY_PROFILE = "legacy"
+DEFAULT_FAMILY_DIR = Path(__file__).resolve().parent.parent / "families"
+
+
+class PublicationError(RuntimeError):
+    pass
+
+
+class IdentityError(PublicationError):
+    pass
+
+
+class RevisionConflict(PublicationError):
+    pass
+
+
+class CollisionError(PublicationError):
+    pass
+
+
+def normalize_wikicode(text: str) -> str:
+    return text.replace("\r\n", "\n").replace("\r", "\n").rstrip("\n")
+
+def _alphabetical_key(value: str) -> str:
+    folded = unicodedata.normalize("NFKD", value.casefold())
+    return "".join(c for c in folded if not unicodedata.combining(c))
+
+
+def alphabetical_values(value: str) -> list[str]:
+    items = [item.strip() for item in value.split(",") if item.strip()]
+    return sorted(items, key=_alphabetical_key)
+
+
+def _first_alpha_is_upper(value: str) -> bool:
+    first = next((c for c in value.strip() if c.isalpha()), "")
+    return bool(first and first.isupper())
+
+
+def _complete_topic_is_interrogative(value: str, language: str) -> bool:
+    clean = value.strip()
+    if not clean or "?" in clean:
+        return True
+    if language == "fr":
+        return bool(re.match(r"^(?:si\b|faut[- ]?il\b|est[- ]?ce\s+que\b|doit[- ]?on\b|peut[- ]?on\b)", clean, flags=re.I))
+    return bool(re.match(r"^(?:whether\b|if\b|should\b|can\b|could\b|is\b|are\b|do\b|does\b|must\b)", clean, flags=re.I))
+
+
+def sha_text(text: str) -> str:
+    return hashlib.sha256(normalize_wikicode(text).encode("utf-8")).hexdigest()
+
+
+def sha_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def sha_object(value: Any) -> str:
+    payload = json.dumps(
+        value,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+        allow_nan=False,
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def sha_tree(path: Path) -> str:
+    path = path.resolve()
+    if path.is_file():
+        return sha_file(path)
+    if not path.is_dir():
+        raise PublicationError(f"Chemin à empreinter introuvable : {path}")
+    digest = hashlib.sha256()
+    for item in sorted(candidate for candidate in path.rglob("*") if candidate.is_file()):
+        relative = item.relative_to(path).as_posix().encode("utf-8")
+        digest.update(len(relative).to_bytes(8, "big"))
+        digest.update(relative)
+        digest.update(bytes.fromhex(sha_file(item)))
+    return digest.hexdigest()
+
+
+def dotted_get(value: Any, dotted_path: str) -> Any:
+    current = value
+    for part in dotted_path.split("."):
+        if not isinstance(current, dict) or part not in current:
+            raise PublicationError(f"Champ introuvable : {dotted_path}")
+        current = current[part]
+    return current
+
+
+def recursive_find_version(value: Any) -> str | None:
+    if isinstance(value, dict):
+        for key in ("validator_version", "version"):
+            candidate = value.get(key)
+            if isinstance(candidate, str) and candidate:
+                return candidate
+        for child in value.values():
+            found = recursive_find_version(child)
+            if found:
+                return found
+    elif isinstance(value, list):
+        for child in value:
+            found = recursive_find_version(child)
+            if found:
+                return found
+    return None
+
+
+@dataclass(frozen=True)
+class ParameterSpan:
+    name: str
+    value_start: int
+    value_end: int
+
+
+def _main_template_parameter_spans(text: str) -> list[ParameterSpan]:
+    start = text.find("{{")
+    if start < 0:
+        raise PublicationError("Aucun modèle principal trouvé")
+    template_depth = 0
+    link_depth = 0
+    in_comment = False
+    pipes: list[int] = []
+    main_close: int | None = None
+    index = start
+    while index < len(text):
+        if in_comment:
+            end = text.find("-->", index)
+            if end < 0:
+                raise PublicationError("Commentaire HTML non fermé")
+            index = end + 3
+            in_comment = False
+            continue
+        if text.startswith("<!--", index):
+            in_comment = True
+            index += 4
+            continue
+        if text.startswith("[[", index):
+            link_depth += 1
+            index += 2
+            continue
+        if text.startswith("]]", index) and link_depth:
+            link_depth -= 1
+            index += 2
+            continue
+        if text.startswith("{{", index):
+            template_depth += 1
+            index += 2
+            continue
+        if text.startswith("}}", index):
+            if template_depth == 1:
+                main_close = index
+                break
+            if template_depth > 1:
+                template_depth -= 1
+                index += 2
+                continue
+            raise PublicationError("Fermeture de modèle inattendue")
+        if text[index] == "|" and template_depth == 1 and link_depth == 0:
+            pipes.append(index)
+        index += 1
+    if main_close is None:
+        raise PublicationError("Modèle principal non fermé")
+    boundaries = pipes + [main_close]
+    spans: list[ParameterSpan] = []
+    for position, pipe in enumerate(pipes):
+        segment_end = boundaries[position + 1]
+        segment = text[pipe + 1 : segment_end]
+        equal = segment.find("=")
+        if equal < 0:
+            continue
+        name = segment[:equal].strip()
+        if not name:
+            continue
+        spans.append(
+            ParameterSpan(
+                name=name,
+                value_start=pipe + 1 + equal + 1,
+                value_end=segment_end,
+            )
+        )
+    return spans
+
+
+
+def _main_template_close_index(text: str) -> int:
+    """Retourne la position du }} fermant le modèle principal."""
+    start = text.find("{{")
+    if start < 0:
+        raise PublicationError("Aucun modèle principal trouvé")
+
+    template_depth = 0
+    link_depth = 0
+    in_comment = False
+    index = start
+
+    while index < len(text):
+        if in_comment:
+            end = text.find("-->", index)
+            if end < 0:
+                raise PublicationError("Commentaire HTML non fermé")
+            index = end + 3
+            in_comment = False
+            continue
+
+        if text.startswith("<!--", index):
+            in_comment = True
+            index += 4
+            continue
+
+        if text.startswith("[[", index):
+            link_depth += 1
+            index += 2
+            continue
+
+        if text.startswith("]]", index) and link_depth:
+            link_depth -= 1
+            index += 2
+            continue
+
+        if text.startswith("{{", index):
+            template_depth += 1
+            index += 2
+            continue
+
+        if text.startswith("}}", index):
+            if template_depth == 1:
+                return index
+
+            if template_depth > 1:
+                template_depth -= 1
+                index += 2
+                continue
+
+            raise PublicationError(
+                "Fermeture de modèle inattendue"
+            )
+
+        index += 1
+
+    raise PublicationError("Modèle principal non fermé")
+
+
+def extract_parameter(text: str, parameter: str) -> str:
+    matches = [
+        span
+        for span in _main_template_parameter_spans(text)
+        if span.name == parameter
+    ]
+
+    if len(matches) != 1:
+        raise PublicationError(
+            f"Le paramètre |{parameter}= doit apparaître exactement "
+            f"une fois ; trouvé : {len(matches)}"
+        )
+
+    span = matches[0]
+
+    return text[
+        span.value_start:span.value_end
+    ].rstrip(" \t\r\n")
+
+
+def replace_parameter(
+    text: str,
+    parameter: str,
+    value: str,
+    *,
+    insert_if_missing: bool = False,
+) -> str:
+    matches = [
+        span
+        for span in _main_template_parameter_spans(text)
+        if span.name == parameter
+    ]
+
+    if len(matches) == 0 and insert_if_missing:
+        close = _main_template_close_index(text)
+        clean = value.rstrip(" \t\r\n")
+
+        if close > 0 and text[close - 1] in "\r\n":
+            insertion = f"|{parameter}={clean}\n"
+        else:
+            insertion = f"\n|{parameter}={clean}\n"
+
+        return text[:close] + insertion + text[close:]
+
+    if len(matches) != 1:
+        raise PublicationError(
+            f"Le paramètre |{parameter}= doit apparaître exactement "
+            f"une fois ; trouvé : {len(matches)}"
+        )
+
+    span = matches[0]
+    old_value = text[span.value_start:span.value_end]
+    suffix = old_value[
+        len(old_value.rstrip(" \t\r\n")):
+    ]
+    clean = value.rstrip(" \t\r\n")
+
+    return (
+        text[:span.value_start]
+        + clean
+        + suffix
+        + text[span.value_end:]
+    )
+
+@dataclass
+class PageAction:
+    operation_id: str
+    kind: str
+    language: str
+    page_id: str
+    page_type: str
+    title: str
+    source_path: str
+    parameter: str | None
+    local_file_sha256: str
+    local_target_sha256: str
+    remote_revision_id: int | None
+    remote_sha256: str | None
+    remote_target_sha256: str | None
+    desired_sha256: str | None
+    classification: str
+    operation: str
+    note: str | None = None
+
+
+class Adapter(Protocol):
+    def open_language(self, language: str, expected_user: str) -> None: ...
+    def close_language(self) -> None: ...
+    def assert_identity(self, expected_user: str) -> None: ...
+    def available_change_tags(self) -> set[str]: ...
+    def read_page(self, title: str) -> tuple[bool, int | None, str]: ...
+    def read_revision(self, title: str, revision_id: int) -> dict[str, Any] | None: ...
+    def write_page(
+        self,
+        *,
+        title: str,
+        text: str,
+        summary: str,
+        tags: list[str],
+        expected_user: str,
+        create_only: bool,
+        base_revision_id: int | None,
+    ) -> int: ...
+
+
+class PywikibotAdapter:
+    def __init__(
+        self,
+        family: str,
+        codes: dict[str, str],
+        pywikibot_dir: str | Path,
+        family_file: str | Path | None = None,
+    ) -> None:
+        self.family = family
+        self.codes = codes
+        self.pywikibot_dir = Path(pywikibot_dir).expanduser().resolve()
+        self.family_file = (
+            Path(family_file).expanduser().resolve()
+            if family_file
+            else (DEFAULT_FAMILY_DIR / f"{family}_family.py").resolve()
+        )
+        self.site: Any | None = None
+
+    def _prepare_environment(self) -> None:
+        if not self.pywikibot_dir.is_dir():
+            raise PublicationError(f"Dossier Pywikibot introuvable : {self.pywikibot_dir}")
+        if not (self.pywikibot_dir / "user-config.py").is_file():
+            raise PublicationError(f"user-config.py absent dans : {self.pywikibot_dir}")
+        os.environ["PYWIKIBOT_DIR"] = str(self.pywikibot_dir)
+
+    def _register_family(self, pywikibot: Any) -> None:
+        family_files = getattr(getattr(pywikibot, "config", None), "family_files", None)
+        if family_files is None:
+            raise PublicationError("Configuration des familles Pywikibot indisponible")
+        if self.family not in family_files:
+            if not self.family_file.is_file():
+                raise PublicationError(f"Fichier de famille introuvable : {self.family_file}")
+            family_files[self.family] = str(self.family_file)
+
+    def open_language(self, language: str, expected_user: str) -> None:
+        self._prepare_environment()
+        import pywikibot
+        self._register_family(pywikibot)
+        self.site = pywikibot.Site(code=self.codes[language], fam=self.family)
+        if self.site.user() is not None:
+            self.site.logout()
+        self.site.login()
+        self.assert_identity(expected_user)
+
+    def close_language(self) -> None:
+        try:
+            if self.site is not None and self.site.user() is not None:
+                self.site.logout()
+        finally:
+            self.site = None
+
+    def assert_identity(self, expected_user: str) -> None:
+        actual = None if self.site is None else self.site.user()
+        if actual != expected_user:
+            raise IdentityError(f"Compte actif inattendu : {actual!r}")
+
+    def available_change_tags(self) -> set[str]:
+        if self.site is None:
+            raise PublicationError("Site non ouvert")
+        tags: set[str] = set()
+        continuation: dict[str, Any] = {}
+        while True:
+            data = self.site.simple_request(
+                action="query",
+                list="tags",
+                tglimit="max",
+                tgprop="active|defined",
+                **continuation,
+            ).submit()
+            for row in ((data.get("query") or {}).get("tags") or []):
+                if row.get("name") and ("active" in row or row.get("active") is True):
+                    tags.add(str(row["name"]))
+            if not data.get("continue"):
+                break
+            continuation = data["continue"]
+        return tags
+
+    def read_page(self, title: str) -> tuple[bool, int | None, str]:
+        if self.site is None:
+            raise PublicationError("Site non ouvert")
+        import pywikibot
+        page = pywikibot.Page(self.site, title)
+        if not page.exists():
+            return False, None, ""
+        return True, int(page.latest_revision_id), page.text
+
+    def read_revision(self, title: str, revision_id: int) -> dict[str, Any] | None:
+        if self.site is None:
+            raise PublicationError("Site non ouvert")
+        data = self.site.simple_request(
+            action="query",
+            prop="revisions",
+            revids=int(revision_id),
+            rvprop="ids|content|comment|tags",
+            rvslots="main",
+        ).submit()
+        for page in ((data.get("query") or {}).get("pages") or {}).values():
+            revisions = page.get("revisions") or []
+            if not revisions:
+                continue
+            revision = revisions[0]
+            slot = (revision.get("slots") or {}).get("main") or {}
+            return {
+                "revision_id": int(revision.get("revid", revision_id)),
+                "text": slot.get("content", slot.get("*", revision.get("*", ""))),
+                "summary": revision.get("comment", "") or "",
+                "tags": list(revision.get("tags") or []),
+            }
+        return None
+
+    def write_page(
+        self,
+        *,
+        title: str,
+        text: str,
+        summary: str,
+        tags: list[str],
+        expected_user: str,
+        create_only: bool,
+        base_revision_id: int | None,
+    ) -> int:
+        if self.site is None:
+            raise PublicationError("Site non ouvert")
+        self.assert_identity(expected_user)
+        parameters: dict[str, Any] = {
+            "action": "edit",
+            "title": title,
+            "text": text,
+            "summary": summary,
+            "bot": 1,
+            "assert": "user",
+            "assertuser": expected_user,
+            "md5": hashlib.md5(text.encode("utf-8")).hexdigest(),
+        }
+        if tags:
+            parameters["tags"] = "|".join(tags)
+        if create_only:
+            parameters["createonly"] = 1
+        else:
+            if base_revision_id is None:
+                raise RevisionConflict("baserevid absent pour une modification")
+            parameters["baserevid"] = int(base_revision_id)
+            parameters["nocreate"] = 1
+        parameters["token"] = self.site.tokens["csrf"]
+        data = self.site.simple_request(**parameters).submit()
+        return int(data["edit"]["newrevid"])
+
+
+class GenericPublisher:
+    def __init__(self, config: dict[str, Any], adapter: Adapter, config_path: Path) -> None:
+        self.config = config
+        self.adapter = adapter
+        self.config_path = config_path.resolve()
+        self.project_root = Path(config.get("project_root") or Path.cwd()).expanduser().resolve()
+        self.root = self._resolve(config["corpus_root"])
+        self.manifest_path = self.root / str(config.get("manifest_file", "manifest.json"))
+        if not self.manifest_path.is_file():
+            raise PublicationError(f"Manifest introuvable : {self.manifest_path}")
+        self.manifest = json.loads(self.manifest_path.read_text(encoding="utf-8"))
+        self.operation = dict(config["operation"])
+        self.publication_profile = str(config.get("publication_profile") or LEGACY_PROFILE)
+        self.languages = tuple(self.operation.get("languages") or config.get("languages") or ())
+        self.tags = list(config.get("change_tags") or ["chatgpt"])
+        logs_dir = self._resolve(config["logs_dir"])
+        operation_id = str(self.operation.get("id") or self.operation.get("kind") or "publication")
+        self.log_path = logs_dir / f"{operation_id}.jsonl"
+        self._tag_cache: dict[str, set[str]] = {}
+        self._registry_cache: dict[str, Any] | None | bool = False
+        self._validate_configuration()
+
+    def _resolve(self, value: str | Path) -> Path:
+        path = Path(value).expanduser()
+        return path.resolve() if path.is_absolute() else (self.project_root / path).resolve()
+
+    def _validate_configuration(self) -> None:
+        if str(self.config.get("kit_version") or "") not in {KIT_VERSION, "2"}:
+            raise PublicationError(f"kit_version doit être {KIT_VERSION}")
+        if self.manifest.get("debate_id") != self.config.get("debate_id"):
+            raise PublicationError("debate_id divergent entre la configuration et le manifeste")
+        validator = self.config.get("validator") or {}
+        if validator.get("required_version") != REQUIRED_VALIDATOR_VERSION:
+            raise PublicationError(
+                f"Le validateur requis doit être exactement {REQUIRED_VALIDATOR_VERSION}"
+            )
+        if self.publication_profile == DIRECT_INTERLANGUAGE_PROFILE:
+            scopes = {str(value) for value in (validator.get("scopes") or [])}
+            missing_scopes = sorted(REQUIRED_DIRECT_SCOPES - scopes)
+            if missing_scopes:
+                raise PublicationError(
+                    "Portées obligatoires du validateur absentes : " + ", ".join(missing_scopes)
+                )
+        if self.tags != ["chatgpt"]:
+            raise PublicationError("La balise obligatoire doit être exactement : chatgpt")
+        if not self.languages:
+            raise PublicationError("Aucune langue sélectionnée")
+        sites = self.config.get("sites") or {}
+        summaries = self.operation.get("edit_summaries") or {}
+        for language in self.languages:
+            site = sites.get(language) or {}
+            if not str(site.get("code") or "").strip():
+                raise PublicationError(f"Code de site absent pour {language}")
+            if not str(site.get("expected_user") or "").strip():
+                raise PublicationError(f"expected_user absent pour {language}")
+            if not str(summaries.get(language) or "").strip():
+                raise PublicationError(f"Résumé de modification absent pour {language}")
+        if self.publication_profile not in {DIRECT_INTERLANGUAGE_PROFILE, LEGACY_PROFILE}:
+            raise PublicationError(
+                "publication_profile doit être norm_1_2_direct_interlanguage ou legacy"
+            )
+        kind = self.operation.get("kind")
+        if kind not in {"full_page", "parameter_update"}:
+            raise PublicationError("operation.kind doit être full_page ou parameter_update")
+        if kind == "full_page":
+            configured_order = list(self.operation.get("page_type_order") or [])
+            if "debate" in configured_order and "argument" in configured_order:
+                if configured_order.index("debate") > configured_order.index("argument"):
+                    raise PublicationError(
+                        "page_type_order doit placer debate avant argument dans chaque langue"
+                    )
+        if kind == "parameter_update":
+            parameters = self.operation.get("parameters") or {}
+            for language in self.languages:
+                if not str(parameters.get(language) or "").strip():
+                    raise PublicationError(f"Paramètre cible absent pour {language}")
+            if self.operation.get("create_missing") is True:
+                raise PublicationError("parameter_update ne peut pas créer une page absente")
+            if (
+                self.publication_profile == DIRECT_INTERLANGUAGE_PROFILE
+                and any(str(parameters.get(language) or "") == "interlangue" for language in self.languages)
+            ):
+                raise PublicationError(
+                    "Le profil 1.2.15 intègre interlangue dans la création complète; "
+                    "une opération parameter_update interlangue est interdite."
+                )
+        requirements = self.config.get("manifest_requirements") or {}
+        for field, expected in requirements.items():
+            actual = dotted_get(self.manifest, field)
+            if actual != expected:
+                raise PublicationError(
+                    f"Exigence de manifeste divergente pour {field} : {actual!r} au lieu de {expected!r}"
+                )
+
+    def _prepare_logging(self) -> None:
+        self.log_path.parent.mkdir(parents=True, exist_ok=True)
+        probe = self.log_path.parent / ".wikidebia_write_probe"
+        try:
+            probe.write_text("ok\n", encoding="utf-8")
+            probe.unlink()
+        except OSError as exc:
+            raise PublicationError(f"Répertoire de journaux inaccessible : {exc}") from exc
+
+    def _log(self, event: dict[str, Any]) -> None:
+        self.log_path.parent.mkdir(parents=True, exist_ok=True)
+        with self.log_path.open("a", encoding="utf-8", newline="\n") as stream:
+            stream.write(json.dumps(event, ensure_ascii=False, sort_keys=True) + "\n")
+
+    def _site(self, language: str) -> tuple[str, str]:
+        site = self.config["sites"][language]
+        return str(site["code"]), str(site["expected_user"])
+
+    def _summary(self, language: str) -> str:
+        return str(self.operation["edit_summaries"][language])
+
+    def _parameter(self, language: str) -> str | None:
+        if self.operation["kind"] != "parameter_update":
+            return None
+        return str(self.operation["parameters"][language])
+
+    def _change_tag_gate(self, language: str) -> None:
+        if language not in self._tag_cache:
+            self._tag_cache[language] = self.adapter.available_change_tags()
+        missing = [tag for tag in self.tags if tag not in self._tag_cache[language]]
+        if missing:
+            raise PublicationError(
+                f"Balise(s) inactive(s) sur {language} : {', '.join(missing)}"
+            )
+
+    def _selected_pages(self) -> list[dict[str, Any]]:
+        page_types = set(self.operation.get("page_types") or [])
+        excluded = set(self.operation.get("exclude_page_types") or [])
+        selected = []
+        for row in self.manifest.get("pages", []):
+            if row.get("language") not in self.languages:
+                continue
+            if page_types and row.get("page_type") not in page_types:
+                continue
+            if row.get("page_type") in excluded:
+                continue
+            selected.append(row)
+        if not selected:
+            raise PublicationError("Aucune page du manifeste ne correspond à l'opération")
+        identities = [(row.get("language"), row.get("page_id")) for row in selected]
+        if len(identities) != len(set(identities)):
+            raise PublicationError("Identifiants de pages dupliqués dans la sélection")
+        language_order = {
+            value: index
+            for index, value in enumerate(self.operation.get("language_order") or self.languages)
+        }
+        configured_type_order = list(self.operation.get("page_type_order") or [])
+        if self.operation.get("kind") == "full_page":
+            # Invariant de publication : la page Débat/Debate précède toujours
+            # toutes les pages Argument de la même langue.
+            type_order = {"debate": 0, "argument": 1}
+        else:
+            type_order = {value: index for index, value in enumerate(configured_type_order)}
+        selected.sort(
+            key=lambda row: (
+                language_order.get(row.get("language"), 9999),
+                type_order.get(row.get("page_type"), 9999),
+                str(row.get("page_id", "")),
+                str(row.get("canonical_title", "")),
+            )
+        )
+        expected = self.operation.get("expected_counts") or {}
+        if expected:
+            for language, count in expected.items():
+                actual = sum(1 for row in selected if row.get("language") == language)
+                if actual != int(count):
+                    raise PublicationError(
+                        f"Nombre de pages {language} inattendu : {actual} au lieu de {count}"
+                    )
+        return selected
+
+    def _source_path(self, row: dict[str, Any]) -> Path:
+        template = self.operation.get("source_path_template")
+        if template:
+            relative = str(template).format(**row)
+        else:
+            field = str(self.operation.get("source_path_field") or "file_path")
+            relative = row.get(field)
+            if not relative:
+                raise PublicationError(
+                    f"Chemin source absent pour {row.get('language')}/{row.get('page_id')}"
+                )
+        return self.root / str(relative)
+
+    def _remote_title(self, row: dict[str, Any]) -> str:
+        overrides = self.operation.get("remote_title_overrides") or self.config.get("remote_title_overrides") or {}
+        by_language = overrides.get(row["language"], {})
+        return str(by_language.get(row["page_id"], row["canonical_title"]))
+
+    def _manifest_page(self, language: str, page_id: str) -> dict[str, Any] | None:
+        for row in self.manifest.get("pages", []):
+            if row.get("language") == language and str(row.get("page_id")) == page_id:
+                return row
+        return None
+
+    def _registry(self) -> dict[str, Any] | None:
+        """Charge le registre maître une seule fois, s'il est déclaré par le manifeste."""
+        if self._registry_cache is not False:
+            return self._registry_cache if isinstance(self._registry_cache, dict) else None
+        relative = str(((self.manifest.get("core_files") or {}).get("registry")) or "").strip()
+        if not relative:
+            self._registry_cache = None
+            return None
+        path = self.root / relative
+        if not path.is_file():
+            raise PublicationError(f"Registre maître introuvable : {path}")
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise PublicationError(f"Registre maître illisible : {path}") from exc
+        if not isinstance(data, dict):
+            raise PublicationError(f"Registre maître invalide : {path}")
+        self._registry_cache = data
+        return data
+
+    def _locked_english_title(self, page_id: str, page_type: str) -> str:
+        """Résout la cible anglaise sans exiger que la page anglaise soit dans le manifeste."""
+        english = self._manifest_page("en", page_id)
+        if english is not None:
+            title = str(english.get("canonical_title") or "").strip()
+            if not title:
+                raise PublicationError(
+                    f"Titre canonique anglais absent du manifeste : {page_id}"
+                )
+            return title
+
+        registry = self._registry()
+        record: dict[str, Any] | None = None
+        if registry is not None and page_type == "debate":
+            debate = registry.get("debate") or {}
+            if str(debate.get("id") or "") in {"", page_id, str(self.manifest.get("debate_id") or "")}:
+                candidate = ((debate.get("pages") or {}).get("en") or {})
+                if isinstance(candidate, dict):
+                    record = candidate
+        elif registry is not None and page_type == "argument":
+            for node in ((registry.get("graph") or {}).get("nodes") or []):
+                if isinstance(node, dict) and str(node.get("id") or "") == page_id:
+                    candidate = node.get("en") or {}
+                    if isinstance(candidate, dict):
+                        record = candidate
+                    break
+
+        if record is None:
+            raise PublicationError(
+                "Cible anglaise introuvable : aucune page anglaise dans le manifeste "
+                f"et aucune entrée correspondante dans le registre maître pour {page_id}"
+            )
+        status = str(record.get("title_status") or "").strip()
+        title = str(record.get("canonical_title") or "").strip()
+        if status != "locked" or not title:
+            raise PublicationError(
+                f"Titre canonique anglais non verrouillé dans le registre maître : {page_id}"
+            )
+        return title
+
+    def _validate_norm_120_page(self, row: dict[str, Any], text: str) -> None:
+        language = str(row.get("language") or "")
+        page_id = str(row.get("page_id") or "")
+        page_type = str(row.get("page_type") or "")
+        if SPLIT_ADJACENT_TEMPLATES_RE.search(text):
+            raise PublicationError(
+                "Deux modèles MediaWiki adjacents doivent être accolés sous la forme }}{{ : " + f"{language}/{page_id}"
+            )
+        if re.search(r"<\s*references\b", text, flags=re.IGNORECASE):
+            raise PublicationError(
+                f"Balise <references /> interdite en norme 1.2.11 : {language}/{page_id}"
+            )
+        names = [span.name for span in _main_template_parameter_spans(text)]
+        section_param = "rubriques" if language == "fr" else "sections"
+        if section_param in names:
+            actual_sections = [item.strip() for item in extract_parameter(text, section_param).split(",") if item.strip()]
+            expected_sections = alphabetical_values(extract_parameter(text, section_param))
+            if actual_sections != expected_sections:
+                raise PublicationError(
+                    f"{section_param} doit être rangé par ordre alphabétique : {language}/{page_id}"
+                )
+        if language == "en":
+            if "interlangue" in names:
+                raise PublicationError(f"Lien interlangue interdit en anglais : {page_id}")
+            if page_type == "debate":
+                if "type" in names:
+                    raise PublicationError("Le paramètre anglais |type= est interdit en norme 1.2.11")
+                if names.count("topic") != 1 or names.count("complete-topic") != 1:
+                    raise PublicationError(
+                        "La page Debate anglaise doit contenir exactement |topic= et |complete-topic="
+                    )
+        if page_type == "debate":
+            topic_param = "sujet" if language == "fr" else "topic"
+            complete_param = "sujet-complet" if language == "fr" else "complete-topic"
+            topic_value = extract_parameter(text, topic_param) if topic_param in names else ""
+            complete_value = extract_parameter(text, complete_param) if complete_param in names else ""
+            if not _first_alpha_is_upper(topic_value):
+                raise PublicationError(f"{topic_param} doit commencer par une majuscule : {language}/{page_id}")
+            if _complete_topic_is_interrogative(complete_value, language):
+                raise PublicationError(
+                    f"{complete_param} doit compléter l’en-tête sous une forme non interrogative : {language}/{page_id}"
+                )
+        if language == "en":
+            return
+        if language != "fr":
+            return
+        prose = ""
+        if page_type == "argument" and "résumé" in names:
+            prose = extract_parameter(text, "résumé")
+        elif page_type == "debate" and "introduction" in names:
+            prose = extract_parameter(text, "introduction")
+        prose_without_refs = re.sub(r"<ref\b[^>]*>.*?</ref>", "", prose, flags=re.IGNORECASE | re.DOTALL)
+        if PAIRED_EM_DASH_RE.search(prose_without_refs):
+            raise PublicationError(
+                f"Incise française entre tirets cadratins interdite; utiliser des parenthèses : {page_id}"
+            )
+        if names.count("interlangue") != 1:
+            raise PublicationError(
+                f"La page française doit contenir exactement un |interlangue= : {page_id}"
+            )
+        value = extract_parameter(text, "interlangue")
+        if not re.search(r"\{\{\s*Lien interlangue\b", value):
+            raise PublicationError(
+                f"Le lien français doit utiliser {{{{Lien interlangue}}}} : {page_id}"
+            )
+        target = self._locked_english_title(page_id, page_type)
+        target_value = extract_parameter(value, "page")
+        language_value = extract_parameter(value, "langue")
+        if language_value.strip() != "en" or target_value.strip() != target:
+            raise PublicationError(
+                f"Cible interlangue divergente pour {page_id} : {target_value!r} au lieu de {target!r}"
+            )
+
+    def _validate_local_files(self) -> None:
+        parameter_kind = self.operation["kind"] == "parameter_update"
+        for row in self._selected_pages():
+            path = self._source_path(row)
+            if not path.is_file():
+                raise PublicationError(f"Fichier local absent : {path}")
+            declared = row.get("sha256")
+            if declared and sha_file(path) != declared and not self.operation.get("allow_source_sha_mismatch", False):
+                raise PublicationError(f"Empreinte locale divergente : {path}")
+            text = path.read_text(encoding="utf-8")
+            if self.publication_profile == DIRECT_INTERLANGUAGE_PROFILE:
+                self._validate_norm_120_page(row, text)
+            if parameter_kind:
+                value = extract_parameter(text, str(self._parameter(row["language"])))
+                if not value.strip():
+                    raise PublicationError(
+                        f"Paramètre local vide : {row['language']}/{row['page_id']}"
+                    )
+
+    def _validator_command(self) -> list[str]:
+        validator = self.config["validator"]
+        command = [str(item) for item in validator["command"]]
+        if not command:
+            raise PublicationError("Commande du validateur vide")
+        scopes = list(validator.get("scopes") or [])
+        if "validate" in command:
+            index = command.index("validate")
+            command = command[: index + 1] + [str(self.root)] + command[index + 1 :]
+        else:
+            command.append(str(self.root))
+        for scope in scopes:
+            command.extend(["--scope", str(scope)])
+        command.extend(["--format", "json"])
+        return command
+
+    def _validate_structural_scopes(self) -> dict[str, Any]:
+        validator = self.config["validator"]
+        result = subprocess.run(
+            self._validator_command(),
+            cwd=self.project_root,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        if result.returncode != 0:
+            raise PublicationError("Validation structurelle refusée :\n" + result.stdout + result.stderr)
+        try:
+            report = json.loads(result.stdout)
+        except json.JSONDecodeError as exc:
+            raise PublicationError("Sortie JSON du validateur illisible") from exc
+        version = recursive_find_version(report)
+        if version != REQUIRED_VALIDATOR_VERSION:
+            raise PublicationError(
+                f"Version réelle du validateur divergente : {version!r}; attendu : {REQUIRED_VALIDATOR_VERSION}"
+            )
+        summary = report.get("summary") or {}
+        errors = int(summary.get("errors", 0))
+        warnings = int(summary.get("warnings", 0))
+        if report.get("result") != "passed" or errors != 0:
+            raise PublicationError("Validation structurelle non positive")
+        max_warnings = int(validator.get("max_warnings", 0))
+        if warnings > max_warnings:
+            raise PublicationError(
+                f"Trop d'avertissements du validateur : {warnings} > {max_warnings}"
+            )
+        for field, expected in (validator.get("expected_metrics") or {}).items():
+            actual = dotted_get(report, field)
+            if actual != expected:
+                raise PublicationError(
+                    f"Métrique divergente pour {field} : {actual!r} au lieu de {expected!r}"
+                )
+        return report
+
+    def _validate_local(self) -> dict[str, Any]:
+        self._validate_local_files()
+        return self._validate_structural_scopes()
+
+    def _package_fingerprints(self) -> dict[str, str]:
+        validator_path = self._resolve(self.config["validator"]["fingerprint_path"])
+        selected = []
+        for row in self._selected_pages():
+            path = self._source_path(row)
+            selected.append(
+                {
+                    "language": row["language"],
+                    "page_id": row["page_id"],
+                    "page_type": row.get("page_type"),
+                    "source_path": str(path.relative_to(self.root)),
+                    "sha256": sha_file(path),
+                }
+            )
+        return {
+            "manifest_sha256": sha_file(self.manifest_path),
+            "selected_sources_fingerprint": sha_object(selected),
+            "validator_fingerprint": sha_tree(validator_path),
+            "kit_script_sha256": sha_file(Path(__file__).resolve()),
+            "config_sha256": sha_file(self.config_path),
+        }
+
+    def inspect(self) -> dict[str, Any]:
+        report = self._validate_local()
+        counts: dict[str, dict[str, int]] = {}
+        for row in self._selected_pages():
+            language = str(row["language"])
+            page_type = str(row.get("page_type") or "unknown")
+            language_counts = counts.setdefault(language, {})
+            language_counts[page_type] = language_counts.get(page_type, 0) + 1
+        return {
+            "kit_version": KIT_VERSION,
+            "debate_id": self.config["debate_id"],
+            "operation": self.operation["id"],
+            "kind": self.operation["kind"],
+            "validator_version": recursive_find_version(report),
+            "counts": counts,
+        }
+
+    def build_plan(self) -> dict[str, Any]:
+        report = self._validate_local()
+        actions: list[dict[str, Any]] = []
+        blockers: list[dict[str, Any]] = []
+        selected = self._selected_pages()
+        for language in self.languages:
+            rows = [row for row in selected if row["language"] == language]
+            if not rows:
+                continue
+            _, user = self._site(language)
+            self.adapter.open_language(language, user)
+            try:
+                self.adapter.assert_identity(user)
+                self._change_tag_gate(language)
+                for row in rows:
+                    action = self._plan_row(row)
+                    action_dict = asdict(action)
+                    actions.append(action_dict)
+                    if action.operation == "block":
+                        blockers.append(
+                            {
+                                "language": action.language,
+                                "page_id": action.page_id,
+                                "page_type": action.page_type,
+                                "title": action.title,
+                                "classification": action.classification,
+                                "note": action.note,
+                            }
+                        )
+            finally:
+                self.adapter.close_language()
+        counts: dict[str, dict[str, int]] = {}
+        for language in self.languages:
+            language_actions = [item for item in actions if item["language"] == language]
+            counts[language] = {
+                operation: sum(1 for item in language_actions if item["operation"] == operation)
+                for operation in ("create", "update", "skip", "block")
+            }
+            counts[language]["total"] = len(language_actions)
+        plan: dict[str, Any] = {
+            "plan_version": "wikidebia-publication-plan-2.1.17",
+            "publication_profile": self.publication_profile,
+            "kit_version": KIT_VERSION,
+            "debate_id": self.config["debate_id"],
+            "operation_id": self.operation["id"],
+            "operation_kind": self.operation["kind"],
+            "required_validator_version": REQUIRED_VALIDATOR_VERSION,
+            "validator_report_sha256": sha_object(report),
+            "package_fingerprints": self._package_fingerprints(),
+            "change_tags": self.tags,
+            "edit_summaries": self.operation["edit_summaries"],
+            "actions": actions,
+            "blockers": blockers,
+            "counts": counts,
+        }
+        plan["plan_sha256"] = sha_object(plan)
+        return plan
+
+    def _plan_row(self, row: dict[str, Any]) -> PageAction:
+        language = str(row["language"])
+        page_id = str(row["page_id"])
+        page_type = str(row.get("page_type") or "unknown")
+        source_path = self._source_path(row)
+        local_text = source_path.read_text(encoding="utf-8")
+        parameter = self._parameter(language)
+        local_target = local_text if parameter is None else extract_parameter(local_text, parameter)
+        title = self._remote_title(row)
+        exists, revision_id, remote_text = self.adapter.read_page(title)
+        common = dict(
+            operation_id=str(self.operation["id"]),
+            kind=str(self.operation["kind"]),
+            language=language,
+            page_id=page_id,
+            page_type=page_type,
+            title=title,
+            source_path=str(source_path.relative_to(self.root)),
+            parameter=parameter,
+            local_file_sha256=sha_file(source_path),
+            local_target_sha256=sha_text(local_target),
+        )
+        if not exists:
+            if self.operation["kind"] == "full_page" and self.operation.get("create_missing", True):
+                return PageAction(
+                    **common,
+                    remote_revision_id=None,
+                    remote_sha256=None,
+                    remote_target_sha256=None,
+                    desired_sha256=sha_text(local_text),
+                    classification="remote_absent",
+                    operation="create",
+                )
+            return PageAction(
+                **common,
+                remote_revision_id=None,
+                remote_sha256=None,
+                remote_target_sha256=None,
+                desired_sha256=None,
+                classification="remote_absent",
+                operation="block",
+                note="La page distante est absente et l'opération ne l'autorise pas.",
+            )
+        if revision_id is None:
+            raise PublicationError(f"Révision distante absente : {title}")
+        try:
+            if self.operation["kind"] == "full_page":
+                remote_target = remote_text
+                desired_text = local_text
+            else:
+                assert parameter is not None
+                insert_missing = bool(
+                    self.operation.get("insert_missing_parameter", False)
+                )
+
+                matches = [
+                    span
+                    for span in _main_template_parameter_spans(remote_text)
+                    if span.name == parameter
+                ]
+
+                if len(matches) == 0 and insert_missing:
+                    remote_target = ""
+                else:
+                    remote_target = extract_parameter(
+                        remote_text,
+                        parameter,
+                    )
+
+                desired_text = replace_parameter(
+                    remote_text,
+                    parameter,
+                    local_target,
+                    insert_if_missing=insert_missing,
+                )
+        except PublicationError as exc:
+            return PageAction(
+                **common,
+                remote_revision_id=revision_id,
+                remote_sha256=sha_text(remote_text),
+                remote_target_sha256=None,
+                desired_sha256=None,
+                classification="remote_content_invalid",
+                operation="block",
+                note=str(exc),
+            )
+        if normalize_wikicode(remote_text) == normalize_wikicode(desired_text):
+            operation = "skip"
+            classification = "already_equivalent"
+        elif self.operation["kind"] == "parameter_update" or self.operation.get("update_existing", False):
+            operation = "update"
+            classification = "content_differs"
+        else:
+            operation = "block"
+            classification = "existing_page_collision"
+        note = None
+        if operation == "block":
+            note = "La page existe avec un contenu différent et update_existing=false."
+        return PageAction(
+            **common,
+            remote_revision_id=revision_id,
+            remote_sha256=sha_text(remote_text),
+            remote_target_sha256=sha_text(remote_target),
+            desired_sha256=sha_text(desired_text),
+            classification=classification,
+            operation=operation,
+            note=note,
+        )
+
+    def _verify_plan(self, plan: dict[str, Any], confirmation: str) -> None:
+        copy = dict(plan)
+        claimed = copy.pop("plan_sha256", None)
+        if not claimed or claimed != sha_object(copy) or confirmation != claimed:
+            raise PublicationError("SHA-256 du plan divergent")
+        if plan.get("kit_version") != KIT_VERSION:
+            raise PublicationError("Version du kit divergente")
+        if plan.get("required_validator_version") != REQUIRED_VALIDATOR_VERSION:
+            raise PublicationError("Version du validateur divergente dans le plan")
+        if plan.get("publication_profile") != self.publication_profile:
+            raise PublicationError("Profil de publication divergent dans le plan")
+        if plan.get("debate_id") != self.config.get("debate_id"):
+            raise PublicationError("Plan rattaché à un autre débat")
+        if plan.get("operation_id") != self.operation.get("id"):
+            raise PublicationError("Plan rattaché à une autre opération")
+        if plan.get("package_fingerprints") != self._package_fingerprints():
+            raise PublicationError("Corpus, configuration, validateur ou kit modifié depuis le plan")
+        if plan.get("change_tags") != self.tags:
+            raise PublicationError("Balises divergentes du plan")
+        if plan.get("edit_summaries") != self.operation.get("edit_summaries"):
+            raise PublicationError("Résumés de modification divergents du plan")
+        if plan.get("blockers"):
+            raise CollisionError("Le plan contient des bloqueurs")
+
+    def _desired_text(self, action: dict[str, Any], remote_text: str) -> tuple[str, str]:
+        source_path = self.root / action["source_path"]
+        if sha_file(source_path) != action["local_file_sha256"]:
+            raise PublicationError(f"Fichier local modifié depuis le plan : {action['source_path']}")
+        local_text = source_path.read_text(encoding="utf-8")
+        parameter = action.get("parameter")
+        local_target = local_text if not parameter else extract_parameter(local_text, str(parameter))
+        if sha_text(local_target) != action["local_target_sha256"]:
+            raise PublicationError(f"Cible locale modifiée depuis le plan : {action['page_id']}")
+        desired = (
+            local_text
+            if not parameter
+            else replace_parameter(
+                remote_text,
+                str(parameter),
+                local_target,
+                insert_if_missing=bool(
+                    self.operation.get(
+                        "insert_missing_parameter",
+                        False,
+                    )
+                ),
+            )
+        )
+        return desired, local_target
+
+    def _verify_written_revision(
+        self,
+        *,
+        title: str,
+        revision_id: int,
+        desired_text: str,
+        summary: str,
+    ) -> dict[str, Any]:
+        attempts = max(1, int(self.config.get("verification_attempts", 8)))
+        delay = max(0.0, float(self.config.get("verification_delay_seconds", 2)))
+        observed: dict[str, Any] | None = None
+        for index in range(attempts):
+            observed = self.adapter.read_revision(title, revision_id)
+            if (
+                observed
+                and sha_text(str(observed.get("text", ""))) == sha_text(desired_text)
+                and observed.get("summary") == summary
+                and all(tag in (observed.get("tags") or []) for tag in self.tags)
+            ):
+                return observed
+            if index + 1 < attempts and delay:
+                time.sleep(delay)
+        self._log(
+            {
+                "event": "verification_failure",
+                "title": title,
+                "revision_id": revision_id,
+                "expected_content_sha256": sha_text(desired_text),
+                "expected_summary": summary,
+                "expected_tags": self.tags,
+                "observed": observed,
+            }
+        )
+        raise RevisionConflict(f"Échec de vérification de la révision {revision_id} pour {title}")
+
+    def create_debate_test_receipt(
+        self,
+        *,
+        plan: dict[str, Any],
+        confirmation: str,
+    ) -> dict[str, Any]:
+        """Crée et vérifie la page Débat française canonique liée au plan signé."""
+        self._verify_plan(plan, confirmation)
+        self._validate_local()
+        self._prepare_logging()
+        if self.publication_profile != DIRECT_INTERLANGUAGE_PROFILE:
+            raise PublicationError("Le test de la page Débat est réservé au profil 1.2.15")
+        if self.operation.get("kind") != "full_page":
+            raise PublicationError("Le test de la page Débat exige une opération full_page")
+        actions = [
+            action
+            for action in plan.get("actions", [])
+            if action.get("language") == "fr" and action.get("page_type") == "debate"
+        ]
+        if len(actions) != 1:
+            raise PublicationError(
+                "Le plan doit contenir exactement une page Débat française canonique"
+            )
+        action = actions[0]
+        if action.get("operation") != "create" or action.get("classification") != "remote_absent":
+            raise CollisionError(
+                "Le test canonique exige que la page Débat française soit absente dans le plan"
+            )
+        current_language = "fr"
+        title = str(action["title"])
+        _, user = self._site(current_language)
+        summary = self._summary(current_language)
+        source_path = self.root / str(action["source_path"])
+        if sha_file(source_path) != action["local_file_sha256"]:
+            raise PublicationError("Fichier local modifié depuis le plan")
+        desired_text = source_path.read_text(encoding="utf-8")
+        self.adapter.open_language(current_language, user)
+        try:
+            self.adapter.assert_identity(user)
+            self._change_tag_gate(current_language)
+            exists, _, _ = self.adapter.read_page(title)
+            if exists:
+                raise CollisionError("La page Débat française existe déjà depuis la simulation")
+            revision_id = self.adapter.write_page(
+                title=title, text=desired_text, summary=summary, tags=self.tags,
+                expected_user=user, create_only=True, base_revision_id=None,
+            )
+            self._verify_written_revision(
+                title=title, revision_id=revision_id, desired_text=desired_text, summary=summary
+            )
+        finally:
+            self.adapter.close_language()
+        receipt: dict[str, Any] = {
+            "receipt_version": "wikidebia-debate-test-receipt-1",
+            "status": "passed",
+            "kit_version": KIT_VERSION,
+            "validator_version": REQUIRED_VALIDATOR_VERSION,
+            "plan_sha256": plan["plan_sha256"],
+            "package_fingerprints": plan["package_fingerprints"],
+            "debate_id": self.config["debate_id"],
+            "operation_id": self.operation["id"],
+            "language": current_language,
+            "page_id": action["page_id"],
+            "page_type": "debate",
+            "canonical_title": title,
+            "source_path": action["source_path"],
+            "local_file_sha256": action["local_file_sha256"],
+            "desired_sha256": action["desired_sha256"],
+            "content_sha256": sha_text(desired_text),
+            "revision_id": revision_id,
+            "expected_user": user,
+            "summary": summary,
+            "tags": self.tags,
+        }
+        receipt["receipt_sha256"] = sha_object(receipt)
+        self._log({"event": "canonical_debate_test_verified", **receipt})
+        return receipt
+
+    def _verify_debate_test_receipt(self, plan: dict[str, Any], receipt: dict[str, Any] | None) -> None:
+        if (
+            self.publication_profile != DIRECT_INTERLANGUAGE_PROFILE
+            or self.operation.get("kind") != "full_page"
+        ):
+            return
+        french_debate_actions = [
+            action
+            for action in plan.get("actions", [])
+            if action.get("language") == "fr"
+            and action.get("page_type") == "debate"
+            and action.get("operation") == "create"
+        ]
+        # Le reçu canonique n'est requis que lorsqu'une page Débat française doit
+        # réellement être créée. Une page déjà strictement équivalente est un skip
+        # sûr et ne doit pas empêcher la commande intégrée de reprendre.
+        if not french_debate_actions:
+            return
+        if not isinstance(receipt, dict):
+            raise PublicationError("Le profil 1.2.15 exige --debate-test-receipt")
+        copy = dict(receipt)
+        claimed = copy.pop("receipt_sha256", None)
+        if not claimed or claimed != sha_object(copy):
+            raise PublicationError("Empreinte du reçu de test de la page Débat divergente")
+        checks = {
+            "receipt_version": "wikidebia-debate-test-receipt-1",
+            "status": "passed",
+            "kit_version": KIT_VERSION,
+            "validator_version": REQUIRED_VALIDATOR_VERSION,
+            "plan_sha256": plan.get("plan_sha256"),
+            "package_fingerprints": plan.get("package_fingerprints"),
+            "debate_id": self.config.get("debate_id"),
+            "operation_id": self.operation.get("id"),
+            "language": "fr",
+            "page_type": "debate",
+            "tags": self.tags,
+        }
+        for field, expected in checks.items():
+            if receipt.get(field) != expected:
+                raise PublicationError(f"Reçu de test de la page Débat divergent : {field}")
+        title = str(receipt.get("canonical_title") or "")
+        language = "fr"
+        matching_actions = [
+            action
+            for action in plan.get("actions", [])
+            if action.get("language") == language
+            and action.get("page_type") == "debate"
+            and action.get("page_id") == receipt.get("page_id")
+            and action.get("title") == title
+        ]
+        if len(matching_actions) != 1:
+            raise PublicationError("La page Débat du reçu ne correspond pas au plan")
+        action = matching_actions[0]
+        if action.get("operation") != "create" or action.get("classification") != "remote_absent":
+            raise PublicationError("L'action Débat du reçu n'est pas une création distante absente")
+        action_checks = {
+            "source_path": action.get("source_path"),
+            "local_file_sha256": action.get("local_file_sha256"),
+            "desired_sha256": action.get("desired_sha256"),
+            "content_sha256": action.get("desired_sha256"),
+            "summary": self._summary(language),
+        }
+        for field, expected in action_checks.items():
+            if receipt.get(field) != expected:
+                raise PublicationError(f"Reçu de test de la page Débat divergent : {field}")
+        _, user = self._site(language)
+        if receipt.get("expected_user") != user:
+            raise PublicationError("Identité attendue divergente dans le reçu")
+        revision_id = int(receipt.get("revision_id") or 0)
+        if revision_id <= 0:
+            raise PublicationError("Identifiant de révision invalide dans le reçu Débat")
+        self.adapter.open_language(language, user)
+        try:
+            self.adapter.assert_identity(user)
+            self._change_tag_gate(language)
+            exists, latest_revision_id, latest_text = self.adapter.read_page(title)
+            if not exists or latest_revision_id != revision_id:
+                raise RevisionConflict(
+                    "La page Débat testée n'est plus à la révision attestée"
+                )
+            if sha_text(latest_text) != receipt.get("content_sha256"):
+                raise RevisionConflict("Le contenu courant de la page Débat testée diverge")
+            observed = self.adapter.read_revision(title, revision_id)
+            if not observed:
+                raise RevisionConflict("Révision du test de la page Débat introuvable")
+            if sha_text(str(observed.get("text", ""))) != receipt.get("content_sha256"):
+                raise RevisionConflict("Contenu du test de la page Débat divergent")
+            if observed.get("summary") != receipt.get("summary"):
+                raise RevisionConflict("Résumé du test de la page Débat divergent")
+            if any(tag not in (observed.get("tags") or []) for tag in self.tags):
+                raise RevisionConflict("Balise du test de la page Débat divergente")
+        finally:
+            self.adapter.close_language()
+
+    def publish(
+        self,
+        *,
+        plan: dict[str, Any],
+        confirmation: str,
+        language: str | None = None,
+        page_id: str | None = None,
+        page_type: str | None = None,
+        debate_test_receipt: dict[str, Any] | None = None,
+    ) -> dict[str, int]:
+        self._verify_plan(plan, confirmation)
+        self._verify_debate_test_receipt(plan, debate_test_receipt)
+        self._validate_local()
+        self._prepare_logging()
+        actions = list(plan["actions"])
+        if language:
+            actions = [item for item in actions if item["language"] == language]
+        if page_id:
+            actions = [item for item in actions if item["page_id"] == page_id]
+        if page_type:
+            actions = [item for item in actions if item["page_type"] == page_type]
+        if not actions:
+            raise PublicationError("Aucune action ne correspond aux filtres")
+        counts = {"created": 0, "updated": 0, "skipped": 0}
+        for current_language in self.languages:
+            language_actions = [item for item in actions if item["language"] == current_language]
+            if not language_actions:
+                continue
+            _, user = self._site(current_language)
+            summary = self._summary(current_language)
+            self.adapter.open_language(current_language, user)
+            try:
+                self.adapter.assert_identity(user)
+                self._change_tag_gate(current_language)
+                for action in language_actions:
+                    result = self._execute_action(action, user, summary)
+                    counts[result] += 1
+                    delay = max(0.0, float(self.config.get("write_delay_seconds", 0.5)))
+                    if result in {"created", "updated"} and delay:
+                        time.sleep(delay)
+            finally:
+                self.adapter.close_language()
+        return counts
+
+    def _execute_action(self, action: dict[str, Any], user: str, summary: str) -> str:
+        exists, revision_id, remote_text = self.adapter.read_page(action["title"])
+        if action["operation"] == "create":
+            source_path = self.root / action["source_path"]
+            if sha_file(source_path) != action["local_file_sha256"]:
+                raise PublicationError(f"Fichier local modifié : {action['source_path']}")
+            desired_text = source_path.read_text(encoding="utf-8")
+            if exists:
+                if sha_text(remote_text) == action["desired_sha256"]:
+                    self._log({"event": "resume_skip_equivalent", **self._identity(action), "revision_id": revision_id})
+                    return "skipped"
+                raise RevisionConflict(f"Collision créée depuis le plan : {action['title']}")
+            new_revision = self.adapter.write_page(
+                title=action["title"],
+                text=desired_text,
+                summary=summary,
+                tags=self.tags,
+                expected_user=user,
+                create_only=True,
+                base_revision_id=None,
+            )
+            self._verify_written_revision(
+                title=action["title"], revision_id=new_revision, desired_text=desired_text, summary=summary
+            )
+            self._log({
+                "event": "page_creation_verified",
+                **self._identity(action),
+                "new_revision_id": new_revision,
+                "content_sha256": sha_text(desired_text),
+                "summary": summary,
+                "tags": self.tags,
+            })
+            return "created"
+        if not exists or revision_id is None:
+            raise RevisionConflict(f"Page distante absente : {action['title']}")
+        desired_text, _ = self._desired_text(action, remote_text)
+        current_sha = sha_text(remote_text)
+        desired_sha = sha_text(desired_text)
+        if desired_sha == current_sha:
+            self._log({"event": "skip_equivalent", **self._identity(action), "revision_id": revision_id})
+            return "skipped"
+        if action["operation"] == "skip":
+            raise RevisionConflict(f"La page n'est plus équivalente : {action['title']}")
+        if action["operation"] != "update":
+            raise PublicationError(f"Opération non exécutable : {action['operation']}")
+        if revision_id != action["remote_revision_id"] or current_sha != action["remote_sha256"]:
+            raise RevisionConflict(f"Révision distante divergente depuis le plan : {action['title']}")
+        if desired_sha != action["desired_sha256"]:
+            raise PublicationError(f"Résultat local divergent du plan : {action['title']}")
+        new_revision = self.adapter.write_page(
+            title=action["title"],
+            text=desired_text,
+            summary=summary,
+            tags=self.tags,
+            expected_user=user,
+            create_only=False,
+            base_revision_id=revision_id,
+        )
+        self._verify_written_revision(
+            title=action["title"], revision_id=new_revision, desired_text=desired_text, summary=summary
+        )
+        event = "parameter_update_verified" if action["kind"] == "parameter_update" else "page_update_verified"
+        self._log({
+            "event": event,
+            **self._identity(action),
+            "old_revision_id": revision_id,
+            "new_revision_id": new_revision,
+            "old_content_sha256": current_sha,
+            "new_content_sha256": desired_sha,
+            "parameter": action.get("parameter"),
+            "summary": summary,
+            "tags": self.tags,
+        })
+        return "updated"
+
+    @staticmethod
+    def _identity(action: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "operation_id": action["operation_id"],
+            "language": action["language"],
+            "page_id": action["page_id"],
+            "page_type": action["page_type"],
+            "title": action["title"],
+        }
+
+
+def load_config(path: str | Path) -> tuple[dict[str, Any], Path]:
+    config_path = Path(path).expanduser().resolve()
+    return json.loads(config_path.read_text(encoding="utf-8")), config_path
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(
+        description="Kit générique de publication Wikidéb'IA : pages complètes ou paramètres ciblés."
+    )
+    parser.add_argument("--config", required=True)
+    parser.add_argument("--pywikibot-dir")
+    parser.add_argument("--mode", choices=("inspect", "plan", "debate-test", "publish"), default="plan")
+    parser.add_argument("--plan-output", default="wikidebia_plan.json")
+    parser.add_argument("--plan-input")
+    parser.add_argument("--confirm-plan-sha256")
+    parser.add_argument("--debate-test-receipt-output", default="wikidebia_debate_test_receipt.json")
+    parser.add_argument("--debate-test-receipt")
+    parser.add_argument("--language")
+    parser.add_argument("--page-id")
+    parser.add_argument("--page-type")
+    parser.add_argument("--execute", action="store_true")
+    args = parser.parse_args(argv)
+
+    config, config_path = load_config(args.config)
+    if args.pywikibot_dir:
+        config["pywikibot_dir"] = args.pywikibot_dir
+    project_root = Path(config.get("project_root") or Path.cwd()).expanduser().resolve()
+    def resolve(value: str | Path) -> Path:
+        candidate = Path(value).expanduser()
+        return candidate.resolve() if candidate.is_absolute() else (project_root / candidate).resolve()
+    family_file = config.get("family_file")
+    operation_languages = config["operation"].get("languages") or config.get("languages") or []
+    adapter = PywikibotAdapter(
+        str(config["family"]),
+        {language: str(config["sites"][language]["code"]) for language in operation_languages},
+        resolve(config["pywikibot_dir"]),
+        resolve(family_file) if family_file else None,
+    )
+    publisher = GenericPublisher(config, adapter, config_path)
+
+    if args.mode == "inspect":
+        if args.execute:
+            raise PublicationError("inspect est strictement en lecture seule")
+        print(json.dumps(publisher.inspect(), ensure_ascii=False, indent=2))
+        return 0
+    if args.mode == "plan":
+        if args.execute:
+            raise PublicationError("plan est strictement en lecture seule")
+        plan = publisher.build_plan()
+        Path(args.plan_output).write_text(
+            json.dumps(plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
+        print(plan["plan_sha256"])
+        print(json.dumps(plan["counts"], ensure_ascii=False, sort_keys=True))
+        return 3 if plan["blockers"] else 0
+    if args.mode == "debate-test":
+        if not args.execute or not args.plan_input or not args.confirm_plan_sha256:
+            raise PublicationError(
+                "debate-test exige --execute, --plan-input et --confirm-plan-sha256"
+            )
+        plan = json.loads(Path(args.plan_input).read_text(encoding="utf-8"))
+        receipt = publisher.create_debate_test_receipt(
+            plan=plan,
+            confirmation=args.confirm_plan_sha256,
+        )
+        Path(args.debate_test_receipt_output).write_text(
+            json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
+        print(receipt["receipt_sha256"])
+        return 0
+    if not args.execute or not args.plan_input or not args.confirm_plan_sha256:
+        raise PublicationError(
+            "publish exige --execute, --plan-input et --confirm-plan-sha256"
+        )
+    plan = json.loads(Path(args.plan_input).read_text(encoding="utf-8"))
+    receipt = None
+    if args.debate_test_receipt:
+        receipt = json.loads(Path(args.debate_test_receipt).read_text(encoding="utf-8"))
+    counts = publisher.publish(
+        plan=plan,
+        confirmation=args.confirm_plan_sha256,
+        language=args.language,
+        page_id=args.page_id,
+        page_type=args.page_type,
+        debate_test_receipt=receipt,
+    )
+    print(json.dumps(counts, ensure_ascii=False, sort_keys=True))
+    return 0
+
+
+if __name__ == "__main__":
+    try:
+        raise SystemExit(main())
+    except PublicationError as exc:
+        print(f"PUBLICATION BLOQUÉE : {exc}", file=sys.stderr)
+        raise SystemExit(2)

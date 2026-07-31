@@ -1,0 +1,532 @@
+# Structures MediaWiki autorisées de Wikidéb'IA
+
+- **Version du schéma :** 1.0
+- **Révision corrective du paquet :** 1.0.6
+- **Date de validation de cette version :** 2026-07-23
+- **Statut :** source normative
+- **Portée :** pages de débats et d'arguments en français et en anglais
+
+## 1. Fonction de ce document
+
+Ce document dépend du `cahier_des_charges_consolide_wikidebia.md` pour l'intention éditoriale et conserve l'autorité exclusive sur les noms de paramètres et sous-modèles autorisés.
+
+Ce document recense exclusivement les paramètres et sous-modèles autorisés dans les pages MediaWiki produites pour Wikidéb'IA.
+
+Il définit :
+
+- les quatre structures autorisées ;
+- le nom exact des modèles et sous-modèles ;
+- le nom exact, l'orthographe, les accents, les majuscules et les traits d'union des paramètres ;
+- l'ordre canonique des paramètres ;
+- les paramètres de date de création dans les quatre structures.
+
+Ce document **ne détermine pas** quels paramètres doivent effectivement apparaître dans une page générée. Les règles d'émission, les paramètres obligatoires, les paramètres conditionnels et les paramètres non utilisés par la génération sont définis dans `profils_rendu_wikidebia.md`.
+
+## 2. Principes normatifs
+
+1. Aucun paramètre, modèle ou sous-modèle absent de ce document ne peut être inventé.
+2. Les paramètres émis dans une page doivent respecter l'ordre de la structure correspondante.
+3. Un sous-modèle placé dans un paramètre peut être répété autant de fois que nécessaire.
+4. L'existence d'un paramètre dans la structure autorisée n'oblige pas à l'émettre.
+5. Les paramètres facultatifs vides sont omis conformément au profil de rendu.
+6. Les structures française et anglaise ne doivent jamais être mélangées.
+7. `date-création` et `creation-date` sont des paramètres autorisés et placés à la fin des quatre structures.
+8. Les liens interlangues sont autorisés uniquement dans les structures françaises.
+9. Les noms canoniques des pages sont enregistrés dans le manifeste et le registre du débat. Ils ne dépendent pas de l'utilisation de `nom=` ou `name=`.
+
+---
+
+# 3. Page française de type Débat
+
+```mediawiki
+{{Débat
+|sujet=
+|sujet-complet=
+|avancement=
+|avertissements-titre=
+|avertissements-débat=
+|introduction={{Sous-partie
+|titre=
+|contenu=
+|avertissements=
+}}
+|articles-Wikipédia={{Article Wikipédia
+|page=
+}}
+|arguments-pour={{Argument pour
+|page=
+|titre-affiché=
+|avertissements=
+}}
+|arguments-contre={{Argument contre
+|page=
+|titre-affiché=
+|avertissements=
+}}
+|avertissements-bibliographie=
+|bibliographie-pour={{Référence bibliographique pour
+|auteurs=
+|article=
+|ouvrage=
+|volume=
+|numéro=
+|localisation=
+|édition=
+|lieu=
+|date=
+|lien=
+|avertissements=
+}}
+|bibliographie-contre={{Référence bibliographique contre
+|auteurs=
+|article=
+|ouvrage=
+|volume=
+|numéro=
+|localisation=
+|édition=
+|lieu=
+|date=
+|lien=
+|avertissements=
+}}
+|bibliographie-ni-pour-ni-contre={{Référence bibliographique
+|auteurs=
+|article=
+|ouvrage=
+|volume=
+|numéro=
+|localisation=
+|édition=
+|lieu=
+|date=
+|lien=
+|avertissements=
+}}
+|avertissements-sitographie=
+|sitographie-pour={{Référence sitographique pour
+|lien=
+|page=
+|auteurs=
+|site=
+|date=
+|avertissements=
+}}
+|sitographie-contre={{Référence sitographique contre
+|lien=
+|page=
+|auteurs=
+|site=
+|date=
+|avertissements=
+}}
+|sitographie-ni-pour-ni-contre={{Référence sitographique
+|lien=
+|page=
+|auteurs=
+|site=
+|date=
+|avertissements=
+}}
+|avertissements-vidéographie=
+|vidéographie-pour={{Référence vidéographique pour
+|titre=
+|auteurs=
+|lien=
+|avertissements=
+}}
+|vidéographie-contre={{Référence vidéographique contre
+|titre=
+|auteurs=
+|lien=
+|avertissements=
+}}
+|vidéographie-ni-pour-ni-contre={{Référence vidéographique
+|titre=
+|auteurs=
+|lien=
+|avertissements=
+}}
+|débats-connexes={{Débat connexe
+|page=
+}}
+|rubriques=
+|mots-clés=
+|interlangue={{Lien interlangue
+|langue=
+|page=
+}}
+|date-création=
+}}
+```
+
+---
+
+# 4. Page française de type Argument
+
+```mediawiki
+{{Argument
+|initialisation=
+|nom=
+|avertissements-titre=
+|avertissements-argument=
+|avertissements-résumé=
+|résumé=
+|citations={{Citation
+|citation=
+|auteurs=
+|article=
+|ouvrage=
+|volume=
+|numéro=
+|page=
+|localisation=
+|édition=
+|lieu=
+|date=
+|lien=
+|avertissements=
+}}
+|avertissements-références=
+|références-bibliographiques={{Référence bibliographique
+|auteurs=
+|article=
+|ouvrage=
+|volume=
+|numéro=
+|localisation=
+|édition=
+|lieu=
+|date=
+|lien=
+|avertissements=
+}}
+|références-sitographiques={{Référence sitographique
+|lien=
+|page=
+|auteurs=
+|site=
+|date=
+|avertissements=
+}}
+|références-vidéographiques={{Référence vidéographique
+|titre=
+|auteurs=
+|lien=
+|avertissements=
+}}
+|avertissements-justifications=
+|justifications={{Justification
+|page=
+|titre-affiché=
+|avertissements=
+}}
+|avertissements-objections=
+|objections={{Objection
+|page=
+|titre-affiché=
+|avertissements=
+}}
+|débat-détaillé=
+|rubriques=
+|mots-clés=
+|interlangue={{Lien interlangue
+|langue=
+|page=
+}}
+|date-création=
+}}
+```
+
+---
+
+# 5. English Debate page
+
+```mediawiki
+{{Debate
+|topic=
+|complete-topic=
+|progress=
+|title-warnings=
+|debate-warnings=
+|introduction={{Subsection
+|title=
+|content=
+|warnings=
+}}
+|wikipedia-articles={{Wikipedia article
+|page=
+}}
+|pro-arguments={{Pro argument
+|page=
+|displayed-title=
+|warnings=
+}}
+|con-arguments={{Con argument
+|page=
+|displayed-title=
+|warnings=
+}}
+|pro-bibliography={{Pro bibliographical reference
+|authors=
+|article=
+|work=
+|volume=
+|issue=
+|location=
+|publisher=
+|place=
+|date=
+|link=
+|warnings=
+}}
+|con-bibliography={{Con bibliographical reference
+|authors=
+|article=
+|work=
+|volume=
+|issue=
+|location=
+|publisher=
+|place=
+|date=
+|link=
+|warnings=
+}}
+|bibliography={{Bibliographical reference
+|authors=
+|article=
+|work=
+|volume=
+|issue=
+|location=
+|publisher=
+|place=
+|date=
+|link=
+|warnings=
+}}
+|pro-webliography={{Pro web reference
+|link=
+|page=
+|authors=
+|site=
+|date=
+|warnings=
+}}
+|con-webliography={{Con web reference
+|link=
+|page=
+|authors=
+|site=
+|date=
+|warnings=
+}}
+|webliography={{Web reference
+|link=
+|page=
+|authors=
+|site=
+|date=
+|warnings=
+}}
+|pro-videography={{Pro video reference
+|title=
+|authors=
+|link=
+|warnings=
+}}
+|con-videography={{Con video reference
+|title=
+|authors=
+|link=
+|warnings=
+}}
+|videography={{Video reference
+|title=
+|authors=
+|link=
+|warnings=
+}}
+|related-debates={{Related debate
+|page=
+}}
+|sections=
+|keywords=
+|creation-date=
+}}
+```
+
+---
+
+# 6. English Argument page
+
+```mediawiki
+{{Argument
+|initialization=
+|name=
+|title-warnings=
+|argument-warnings=
+|summary-warnings=
+|summary=
+|quotes={{Quote
+|quote=
+|authors=
+|article=
+|work=
+|volume=
+|issue=
+|page=
+|location=
+|publisher=
+|place=
+|date=
+|link=
+|warnings=
+}}
+|reference-warnings=
+|bibliography={{Bibliographical reference
+|authors=
+|article=
+|work=
+|volume=
+|issue=
+|location=
+|publisher=
+|place=
+|date=
+|link=
+|warnings=
+}}
+|webliography={{Web reference
+|link=
+|page=
+|authors=
+|site=
+|date=
+|warnings=
+}}
+|videography={{Video reference
+|title=
+|authors=
+|link=
+|warnings=
+}}
+|justification-warnings=
+|justifications={{Justification
+|page=
+|displayed-title=
+|warnings=
+}}
+|objection-warnings=
+|objections={{Objection
+|page=
+|displayed-title=
+|warnings=
+}}
+|detailed-debate=
+|sections=
+|keywords=
+|creation-date=
+}}
+```
+
+---
+
+# 7. Autorité et évolution du schéma
+
+Toute modification de l'une de ces structures exige :
+
+1. une nouvelle version du présent document ;
+2. une mise à jour du profil de rendu concerné ;
+3. une mise à jour des schémas JSON et du validateur ;
+4. une mention de la version utilisée dans le manifeste de chaque débat ;
+5. l'absence de modification silencieuse des paquets de débats déjà validés.
+
+Les anciens paquets conservent la version de structure avec laquelle ils ont été créés.
+
+---
+
+# Addendum intégré 1.1.0 — 25 juillet 2026
+
+La source normative active est désormais `WIKIDEBIA_NORME_CONSOLIDEE_1.1.0.md`. Pour toutes les variantes de `Référence bibliographique` et `Bibliographical reference`, le paramètre `page=` est autorisé immédiatement après `localisation=`/`location=`. Il contient uniquement une page ou une plage normalisée (`36` ou `36-37`). `localisation=`/`location=` ne reçoit plus de pagination pure. Les dates de consultation sont interdites dans le paramètre documentaire `date=`.
+
+Les statuts correctifs et la date spécifique de W10.R1 sont définis par la norme consolidée. Les anciennes dispositions incompatibles de ce fichier sont historiques.
+# Addendum intégré 1.1.4 — structure historique
+
+La source normative active unique était `WIKIDEBIA_NORME_CONSOLIDEE_1.1.4.md` ; cet addendum est remplacé par l’addendum 1.1.5 ci-dessous. `page=` reste autorisé dans les références bibliographiques. L’ancienne révision autorisait `<references />`; la norme 1.2.0 conserve uniquement les appels `<ref>…</ref>` dans `contenu=`/`content=`. Les pages Argument générées n’emploient pas `nom`, `name`, `initialisation`, `initialization`, `citations`, `quotes`, `débat-détaillé` ni `detailed-debate`. Les dispositions incompatibles antérieures sont de provenance seulement.
+
+
+# Addendum 1.1.5 — historique, remplacé par 1.1.7
+
+La source normative active unique est `WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md`. Chaque titre affiché et chaque ensemble de rubriques fait l’objet d’une décision page par page ; aucun quota global ne remplace cette revue. Une rubrique ubiquitaire est admise lorsque sa pertinence est justifiée pour chaque nœud. Cette ancienne révision exigeait un reçu de test dans l’espace utilisateur ; cette disposition est remplacée par le test canonique de la page Débat en 1.2.3. Toute disposition antérieure incompatible est historique.
+
+
+# Addendum intégré 1.1.7 — règle active
+
+Chaque rubrique retenue est justifiée individuellement au moyen d’une structure générique ; aucune rubrique ne reçoit de traitement spécial. Les dates et chemins propres à un corpus sont déclarés par son manifeste et ne sont pas codés dans le moteur de validation. Toute disposition antérieure incompatible est historique.
+
+
+# Addendum actif 1.2.0 — structure corrigée
+
+Pour les paquets 1.2.0, la page Débat française emploie exclusivement `{{Lien interlangue}}`. La page Debate anglaise n’emploie pas `type=` et contient, dans cet ordre, `topic=` puis `complete-topic=`. Les balises `<references />` ne font partie d’aucune sortie générée. Toute disposition antérieure incompatible est historique.
+
+
+# Addendum intégré 1.2.1 — contrainte de contenu français
+
+Les structures MediaWiki ne changent pas. Dans les valeurs rédactionnelles françaises (`contenu=`, `résumé=` et passages équivalents), une incise parenthétique est rendue avec des parenthèses et non avec deux tirets cadratins.
+
+
+# Addendum intégré 1.2.2 — cohérence des exemples
+
+Les structures actives sont celles décrites ci-dessus : `{{Lien interlangue}}` sur toutes les pages françaises, `topic` puis `complete-topic` sur la page Debate anglaise, aucune balise `<references />`, et aucune phase de staging pour les paquets 1.2.x.
+
+
+# Addendum intégré 1.2.2 (historique, complété par 1.2.3) — cohérence de livraison
+
+Les règles 1.2.0 et 1.2.1 restent intégrées. Les exemples, profils et contrôles actifs sont ceux de la norme 1.2.2 : lien `{{Lien interlangue}}` présent dès la création française, aucune balise `<references />`, structure anglaise `topic` puis `complete-topic`, autonomie référentielle des titres canoniques et parenthèses pour les incises françaises.
+
+# Addendum intégré 1.2.6 — contraintes des valeurs de métadonnées
+
+Les structures MediaWiki ne changent pas. Dans les pages Débat/Debate, `sujet` et `topic` commencent par une majuscule. `sujet-complet` et `complete-topic` contiennent un complément non interrogatif compatible avec les en-têtes « Arguments pour et contre… » et « Pros and cons of… ». Les valeurs `rubriques` et `sections` sont triées alphabétiquement dans la langue de la page.
+
+# Addendum intégré 1.2.7 — absence de changement structurel
+
+Les structures MediaWiki sont inchangées par rapport à 1.2.6. La révision 1.2.7 porte uniquement sur la cohérence de livraison.
+
+
+## Correctif 1.2.10
+
+### Appels inline dans les introductions
+
+```mediawiki
+Texte factuel<ref>Jean Dupont, « Titre de l’article », ''Nom de la revue'', 25 juin 2012, p. 36-37, [https://example.org texte intégral].</ref>.
+```
+
+La forme anglaise rédige de la même manière le contenu directement dans `<ref>…</ref>`, avec une date telle que `25 June 2012`. Aucun modèle MediaWiki — y compris `{{Référence}}`, `{{Reference}}` ou un modèle documentaire spécialisé — n’est utilisé dans une note d’introduction. Les modèles documentaires spécialisés restent réservés aux neuf paramètres structurés de Débat/Debate et aux familles documentaires des pages Argument.
+
+### Couverture documentaire des pages de débat
+
+Les paramètres français `bibliographie-pour`, `bibliographie-contre`, `bibliographie-ni-pour-ni-contre`, `sitographie-pour`, `sitographie-contre`, `sitographie-ni-pour-ni-contre`, `vidéographie-pour`, `vidéographie-contre` et `vidéographie-ni-pour-ni-contre` contiennent chacun au moins deux sous-modèles. Les neuf paramètres anglais équivalents suivent le même minimum.
+
+### Dates et acronymes
+
+Les sous-paramètres documentaires `date=` utilisent le langage naturel ; `date-création` et `creation-date` restent au format `AAAA-MM-JJ`. Lorsqu’un acronyme courant existe, il figure dans `sujet-complet` ou `complete-topic`.
+
+
+## Correctif 1.2.11 — jonction de modèles adjacents
+
+Dans une valeur contenant plusieurs sous-modèles successifs, la fermeture du premier et l’ouverture du suivant sont jointes sans caractère intermédiaire :
+
+```mediawiki
+}}{{
+```
+
+La forme suivante est interdite, y compris avec des espaces, tabulations ou plusieurs lignes vides :
+
+```mediawiki
+}}
+{{
+```
+
+Cette règle vaut pour les pages Débat, Debate et Argument, en français comme en anglais. Elle s’applique aux fichiers individuels et aux agrégats.

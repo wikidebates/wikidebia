@@ -1,0 +1,16 @@
+Wikidéb’IA Validator 0.3.1
+Date : 2026-07-27
+
+Résultat : 67 tests réussis, 0 échec.
+
+Nouveaux contrôles 1.1.9 testés :
+- répétition exacte du titre dans la première phrase ;
+- paraphrase proche avec ajout minimal ;
+- ouverture réellement développée sans faux positif ;
+- détection des données chiffrées hors balises de référence ;
+- nouvelles attestations humaines page par page ;
+- vérification documentaire conditionnelle des données chiffrées ;
+- compatibilité des registres 1.1.8 ;
+- unicité de la norme active 1.1.9.
+
+La suite complète conserve les tests de schéma, graphe, fichiers, lots, wikicode, bilinguisme, workflow, recalcul, comparaison distante et non-régression éditoriale.

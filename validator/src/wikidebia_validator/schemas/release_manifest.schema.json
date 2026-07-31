@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "release_manifest.schema.json",
+  "title": "Wikidéb'IA — Manifeste de libération",
+  "description": "Inventaire interne final d’un débat, version 1.0, révision corrective 1.0.6. La liste de fichiers exclut le manifeste lui-même et le reçu externe.",
+  "type": "object",
+  "properties": {
+    "release_manifest_version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "debate_id": {
+      "$ref": "common.schema.json#/$defs/debateId"
+    },
+    "created_at": {
+      "$ref": "common.schema.json#/$defs/dateTime"
+    },
+    "normative_versions": {
+      "$ref": "common.schema.json#/$defs/normativeVersions"
+    },
+    "global_status": {
+      "type": "string",
+      "enum": [
+        "release_ready",
+        "published",
+        "interlanguage_applied",
+        "released"
+      ]
+    },
+    "structural_sha256": {
+      "$ref": "common.schema.json#/$defs/sha256"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "$ref": "common.schema.json#/$defs/relativePath"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "sha256": {
+            "$ref": "common.schema.json#/$defs/sha256"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "size_bytes",
+          "sha256"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "validation_reports": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/relativePath"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "publication_logs": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/relativePath"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "finalized_at": {
+      "$ref": "common.schema.json#/$defs/nullableDateTime"
+    },
+    "self_excluded": {
+      "const": true
+    },
+    "publication_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "local_release_status": {
+          "type": "string",
+          "enum": [
+            "corrective_in_progress",
+            "corrective_blocked",
+            "release_ready"
+          ]
+        },
+        "remote_write_authorized": {
+          "type": "boolean"
+        },
+        "remote_template_compatibility": {
+          "type": "string",
+          "enum": [
+            "blocked",
+            "passed",
+            "not_checked"
+          ]
+        },
+        "blocking_reason": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ]
+        },
+        "checked_at": {
+          "$ref": "common.schema.json#/$defs/dateTime"
+        }
+      },
+      "required": [
+        "local_release_status",
+        "remote_write_authorized",
+        "remote_template_compatibility",
+        "blocking_reason",
+        "checked_at"
+      ]
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "release_manifest_version",
+    "debate_id",
+    "created_at",
+    "normative_versions",
+    "global_status",
+    "structural_sha256",
+    "self_excluded",
+    "files",
+    "validation_reports",
+    "publication_logs",
+    "finalized_at"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "global_status": {
+            "enum": [
+              "released"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "finalized_at": {
+            "$ref": "common.schema.json#/$defs/dateTime"
+          }
+        }
+      }
+    }
+  ]
+}

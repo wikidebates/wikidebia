@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "archive_receipt.schema.json",
+  "title": "Wikidéb'IA — Reçu externe d'archive",
+  "description": "Reçu créé après le ZIP et conservé à côté de lui ; il n’est pas inclus dans l’archive qu’il décrit.",
+  "type": "object",
+  "properties": {
+    "archive_receipt_version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "debate_id": {
+      "$ref": "common.schema.json#/$defs/debateId"
+    },
+    "created_at": {
+      "$ref": "common.schema.json#/$defs/dateTime"
+    },
+    "archive_path": {
+      "$ref": "common.schema.json#/$defs/relativePath"
+    },
+    "archive_size_bytes": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "archive_sha256": {
+      "$ref": "common.schema.json#/$defs/sha256"
+    },
+    "release_manifest_path": {
+      "$ref": "common.schema.json#/$defs/relativePath"
+    },
+    "release_manifest_sha256": {
+      "$ref": "common.schema.json#/$defs/sha256"
+    },
+    "zip_integrity_test": {
+      "const": "passed"
+    },
+    "archived_at": {
+      "$ref": "common.schema.json#/$defs/nullableDateTime"
+    },
+    "archive_project": {
+      "$ref": "common.schema.json#/$defs/nullableString"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "archive_receipt_version",
+    "debate_id",
+    "created_at",
+    "archive_path",
+    "archive_size_bytes",
+    "archive_sha256",
+    "release_manifest_path",
+    "release_manifest_sha256",
+    "zip_integrity_test",
+    "archived_at",
+    "archive_project"
+  ]
+}

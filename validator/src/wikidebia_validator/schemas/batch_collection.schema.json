@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "batch_collection.schema.json",
+  "title": "Wikidéb'IA — Collection de lots",
+  "description": "Format de data/lots_fr.json et data/lots_en.json, version 1.0, révision corrective 1.0.6.",
+  "type": "object",
+  "properties": {
+    "batch_collection_version": {
+      "$ref": "common.schema.json#/$defs/version"
+    },
+    "debate_id": {
+      "$ref": "common.schema.json#/$defs/debateId"
+    },
+    "language": {
+      "$ref": "common.schema.json#/$defs/language"
+    },
+    "batches": {
+      "type": "array",
+      "items": {
+        "$ref": "batch_manifest.schema.json"
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "batch_collection_version",
+    "debate_id",
+    "language",
+    "batches"
+  ]
+}

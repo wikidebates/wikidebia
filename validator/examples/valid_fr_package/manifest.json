@@ -1,0 +1,196 @@
+{
+  "package_schema_version": "1.0",
+  "debate_id": "exemple",
+  "short_code": "EX",
+  "global_status": "fr_validated",
+  "created_at": "2026-07-23T18:00:00+02:00",
+  "updated_at": "2026-07-23T18:00:00+02:00",
+  "normative_versions": {
+    "mediawiki_structure": "1.0",
+    "render_profile": "1.0",
+    "registry": "1.0",
+    "graph": "1.0",
+    "workflow": "1.0",
+    "validator": "0.2.1"
+  },
+  "core_files": {
+    "scope": "scope.json",
+    "registry": "data/registre_debat.json",
+    "graph_json": "graph/graphe_argumentatif.json",
+    "graph_markdown": "graph/graphe_argumentatif.md",
+    "sources": "data/sources.json"
+  },
+  "pages": [
+    {
+      "page_manifest_version": "1.0",
+      "debate_id": "exemple",
+      "page_id": "exemple",
+      "page_type": "debate",
+      "language": "fr",
+      "canonical_title": "Faut-il adopter la mesure X ?",
+      "file_path": "output/fr/debate/debate.wiki",
+      "sha256": "f48f22be5739c1645b1f12ac704045314c4d615947bcd25967f9d7984a6f2963",
+      "creation_date": "2026-07-23",
+      "batch_id": null,
+      "status": "validated",
+      "structure_version": "1.0",
+      "render_profile_version": "1.0",
+      "validation": {
+        "status": "passed",
+        "report_path": "reports/exemple_fr.txt",
+        "validated_at": "2026-07-23T18:00:00+02:00"
+      },
+      "wiki": {
+        "check_status": "unchecked",
+        "decision": null,
+        "remote_revision_id": null,
+        "remote_sha256": null,
+        "published_at": null,
+        "checked_at": null,
+        "remote_title": null
+      }
+    },
+    {
+      "page_manifest_version": "1.0",
+      "debate_id": "exemple",
+      "page_id": "A0001",
+      "page_type": "argument",
+      "language": "fr",
+      "canonical_title": "La mesure X produirait un bénéfice collectif",
+      "file_path": "output/fr/arguments/A0001.wiki",
+      "sha256": "47744f9a9a6bf1158205f731b7afffcc9cea248f3fecb5330e2d74ea090e70a3",
+      "creation_date": "2026-07-23",
+      "batch_id": "FR-A-001",
+      "status": "validated",
+      "structure_version": "1.0",
+      "render_profile_version": "1.0",
+      "validation": {
+        "status": "passed",
+        "report_path": "reports/A0001_fr.txt",
+        "validated_at": "2026-07-23T18:00:00+02:00"
+      },
+      "wiki": {
+        "check_status": "unchecked",
+        "decision": null,
+        "remote_revision_id": null,
+        "remote_sha256": null,
+        "published_at": null,
+        "checked_at": null,
+        "remote_title": null
+      }
+    },
+    {
+      "page_manifest_version": "1.0",
+      "debate_id": "exemple",
+      "page_id": "A0002",
+      "page_type": "argument",
+      "language": "fr",
+      "canonical_title": "La mesure X porterait une atteinte disproportionnée aux libertés",
+      "file_path": "output/fr/arguments/A0002.wiki",
+      "sha256": "0306065c9dd974f485a62a15c7d9de77c39869170948bce51c60ed16cb94e79f",
+      "creation_date": "2026-07-23",
+      "batch_id": "FR-A-001",
+      "status": "validated",
+      "structure_version": "1.0",
+      "render_profile_version": "1.0",
+      "validation": {
+        "status": "passed",
+        "report_path": "reports/A0002_fr.txt",
+        "validated_at": "2026-07-23T18:00:00+02:00"
+      },
+      "wiki": {
+        "check_status": "unchecked",
+        "decision": null,
+        "remote_revision_id": null,
+        "remote_sha256": null,
+        "published_at": null,
+        "checked_at": null,
+        "remote_title": null
+      }
+    }
+  ],
+  "batches": [
+    {
+      "batch_schema_version": "1.0",
+      "id": "FR-A-001",
+      "debate_id": "exemple",
+      "language": "fr",
+      "page_type": "argument",
+      "strategy": "subtree",
+      "root_node_ids": [
+        "A0001",
+        "A0002"
+      ],
+      "node_ids": [
+        "A0001",
+        "A0002"
+      ],
+      "dependency_node_ids": [],
+      "status": "validated",
+      "inputs": {
+        "registry_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "structural_sha256": "e7ab522694a6bda8c43aeb7b1a29a17f376b6b8406ecc33e598e81356aa8f10f",
+        "render_profile_version": "1.0",
+        "handoff_path": "handoff/FR-A-001_input.json"
+      },
+      "outputs": {
+        "individual_directory": "output/fr/arguments",
+        "aggregate_path": "output/fr/aggregates/arguments_batch_001.wiki",
+        "aggregate_sha256": "00e2b221f7c2b4d703fabd85bd033965f44605f1073af57c694f02239fd77b2f",
+        "report_path": "reports/fr_batch_001.txt"
+      },
+      "work": {
+        "work_id": "W03.FR.001",
+        "conversation_name": "[EX] 03.FR.001 — Arguments français — lot pilote",
+        "started_at": "2026-07-23T18:00:00+02:00",
+        "completed_at": "2026-07-23T18:00:00+02:00"
+      }
+    }
+  ],
+  "works": [],
+  "validations": [
+    {
+      "id": "V20260723-005",
+      "scope": "graph",
+      "language": null,
+      "validator_version": "0.2.1",
+      "executed_at": "2026-07-23T18:00:00+02:00",
+      "input_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "result": "passed",
+      "blocking_errors": 0,
+      "warnings": 0,
+      "report_path": "reports/graph.txt"
+    },
+    {
+      "id": "V20260723-009",
+      "scope": "fr_debate",
+      "language": "fr",
+      "validator_version": "0.2.1",
+      "executed_at": "2026-07-23T18:00:00+02:00",
+      "input_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "result": "passed",
+      "blocking_errors": 0,
+      "warnings": 0,
+      "report_path": "reports/fr_debate.txt"
+    },
+    {
+      "id": "V20260723-009",
+      "scope": "fr_global",
+      "language": "fr",
+      "validator_version": "0.2.1",
+      "executed_at": "2026-07-23T18:00:00+02:00",
+      "input_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "result": "passed",
+      "blocking_errors": 0,
+      "warnings": 0,
+      "report_path": "reports/fr_global.txt"
+    }
+  ],
+  "release": {
+    "release_manifest_path": null,
+    "release_zip_path": null,
+    "released_at": null,
+    "archived_at": null,
+    "release_receipt_path": null
+  }
+}

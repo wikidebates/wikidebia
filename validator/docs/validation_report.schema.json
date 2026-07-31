@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "wikidebia-validator-report.schema.json",
+  "title": "Rapport structuré du validateur Wikidéb'IA",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["validator_version", "package_root", "scopes", "result", "summary", "metrics", "findings"],
+  "properties": {
+    "validator_version": {"type": "string", "minLength": 1},
+    "package_root": {"type": "string", "minLength": 1},
+    "scopes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "result": {"enum": ["passed", "passed_with_warnings", "failed"]},
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["errors", "warnings", "infos"],
+      "properties": {
+        "errors": {"type": "integer", "minimum": 0},
+        "warnings": {"type": "integer", "minimum": 0},
+        "infos": {"type": "integer", "minimum": 0}
+      }
+    },
+    "metrics": {"type": "object"},
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "level", "message", "path", "pointer", "details"],
+        "properties": {
+          "code": {"type": "string", "pattern": "^WDV-[A-Z]{2,3}-[0-9]{3}$"},
+          "level": {"enum": ["ERROR", "WARNING", "INFO"]},
+          "message": {"type": "string", "minLength": 1},
+          "path": {"type": ["string", "null"]},
+          "pointer": {"type": ["string", "null"]},
+          "details": {"type": "object"}
+        }
+      }
+    }
+  }
+}

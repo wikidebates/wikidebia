@@ -1,0 +1,4995 @@
+{
+  "requirements_catalog_version": "1.2.15",
+  "generated_date": "2026-07-31",
+  "active_package_revision": "1.2.15",
+  "precedence": [
+    "later explicit user decisions",
+    "WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+    "version-matched structures and schemas",
+    "version-matched render profiles and workflow",
+    "historical documents as provenance"
+  ],
+  "requirements": [
+    {
+      "id": "GOV-001",
+      "domain": "governance",
+      "statement": "The consolidated requirements baseline is the highest-level expression of user intent; structures define allowed syntax, profiles define rendering, the registry defines data, and the workflow defines execution.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "method summary",
+        "conversation decisions"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GOV-002",
+      "domain": "governance",
+      "statement": "When an original prompt conflicts with a later explicit user decision, the later decision prevails and the superseded rule remains documented.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "conversation decisions"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GOV-003",
+      "domain": "governance",
+      "statement": "Normative versions must be explicit; no validated debate package is silently migrated to a newer norm.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "conversation decisions"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GOV-004",
+      "domain": "governance",
+      "statement": "The active system is French-English only; Spanish or another language requires a new explicit version.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "audit correction"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GOV-005",
+      "domain": "governance",
+      "statement": "All structural choices must be persisted in files; conversation memory is never a source of truth.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "method summary"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ORG-001",
+      "domain": "organization",
+      "statement": "Use two ChatGPT projects: Wikidéb'IA for active production and Archives de Wikidéb'IA for completed debates.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "method summary"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ORG-002",
+      "domain": "organization",
+      "statement": "Move completed Work conversations to the archive project; generic conversation archiving is not a substitute.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "method summary"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ORG-003",
+      "domain": "organization",
+      "statement": "A Work cannot contain another Work; all Work conversations are autonomous and of the same level.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "method summary"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ORG-004",
+      "domain": "organization",
+      "statement": "Separate graph research, debate writing, argument writing, validation, English adaptation, interlanguage and publication into specialized Work.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "method summary"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ORG-005",
+      "domain": "organization",
+      "statement": "Lock canonical titles in both languages after graph validation and before French page generation; English page content remains deferred until after complete French validation.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ORG-006",
+      "domain": "organization",
+      "statement": "Work 03 and Work 07 batches of the same language are sequential unless an explicit future concurrency protocol is introduced.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "audit correction"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ORG-007",
+      "domain": "organization",
+      "statement": "Prefer high reasoning for ordinary production, very high reasoning for complex/final graph and validation tasks, and maximum only exceptionally when available.",
+      "disposition": "active",
+      "enforcement": "prompt guidance",
+      "sources": [
+        "method summary"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ORG-008",
+      "domain": "organization",
+      "statement": "The method may use a local directory but must not depend on one to function in the two-project organization.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "method summary"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-001",
+      "domain": "mediawiki",
+      "statement": "Use only parameters and nested templates allowed by the official French and English structures.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "official structures",
+        "debate prompt",
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/structures_mediawiki_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-002",
+      "domain": "mediawiki",
+      "statement": "Preserve canonical parameter order, spelling, accents, capitalization and hyphenation.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/structures_mediawiki_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-003",
+      "domain": "mediawiki",
+      "statement": "Omit every optional parameter and nested parameter that has no relevant content; mandatory parameters may never be empty.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "later user decision"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": "Supersedes original debate-prompt instruction to retain empty parameters."
+    },
+    {
+      "id": "MW-004",
+      "domain": "mediawiki",
+      "statement": "Allowed-but-not-generated warning parameters remain in the structural schema but are absent from automatic output.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-005",
+      "domain": "mediawiki",
+      "statement": "French Debate uses avancement=Débat construit.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "base project instruction",
+        "audit correction"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": "Corrected by the user on 2026-07-23; Débat en construction is not the active value."
+    },
+    {
+      "id": "MW-006",
+      "domain": "mediawiki",
+      "statement": "English Debate uses progress=Constructed debate.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-007",
+      "domain": "mediawiki",
+      "statement": "Use exact AI warnings: Débat généré par IA, Argument généré par IA, Debate generated by AI, Argument generated by AI.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-008",
+      "domain": "mediawiki",
+      "statement": "Do not generate nom/name or initialisation/initialization in Argument pages.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-009",
+      "domain": "mediawiki",
+      "statement": "Do not generate citations/quotes in Argument pages.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-010",
+      "domain": "mediawiki",
+      "statement": "Do not generate débat-détaillé/detailed-debate in Argument pages.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-011",
+      "domain": "mediawiki",
+      "statement": "date-création/creation-date is mandatory for all four page types.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/structures_mediawiki_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-012",
+      "domain": "mediawiki",
+      "statement": "Creation date is the date on which the page file in that language first becomes valid; it is immutable through corrections, enrichment, import and interlanguage insertion.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-013",
+      "domain": "mediawiki",
+      "statement": "Publication date is stored separately in import logs.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-014",
+      "domain": "mediawiki",
+      "statement": "French and English templates and parameters must never be mixed.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-015",
+      "domain": "mediawiki",
+      "statement": "Generated wikicode must be complete UTF-8 and contain no explanatory comments inside page content.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "TTL-001",
+      "domain": "titles",
+      "statement": "Every argument page has a stable internal identifier that is the source of truth for relations, files, translations and imports.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph prompt",
+        "argument prompt",
+        "method summary"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "TTL-002",
+      "domain": "titles",
+      "statement": "Canonical titles are complete autonomous argumentative propositions, not themes, and are understandable outside the local branch.",
+      "disposition": "active",
+      "enforcement": "human+automatic heuristics",
+      "sources": [
+        "graph prompt",
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "TTL-003",
+      "domain": "titles",
+      "statement": "Add the debate subject to a canonical title when necessary to avoid ambiguity with other pages.",
+      "disposition": "active",
+      "enforcement": "human+automatic heuristics",
+      "sources": [
+        "argument prompt",
+        "user feedback"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "TTL-004",
+      "domain": "titles",
+      "statement": "Displayed titles may be shorter but remain faithful, autonomous and unambiguous.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "debate prompt",
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md",
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "TTL-005",
+      "domain": "titles",
+      "statement": "Canonical and displayed titles must not be made identical by automation when contextual shortening is useful.",
+      "disposition": "active",
+      "enforcement": "human+warning",
+      "sources": [
+        "argument prompt",
+        "user feedback"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "TTL-006",
+      "domain": "titles",
+      "statement": "No canonical or displayed title ends with a period.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph prompt",
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "TTL-007",
+      "domain": "titles",
+      "statement": "Use straight apostrophes and reject typographic apostrophes in French and English titles.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "TTL-008",
+      "domain": "titles",
+      "statement": "Normalize and lock every French canonical and displayed title before French page generation.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "TTL-009",
+      "domain": "titles",
+      "statement": "Fix and lock English canonical and displayed titles only after complete French validation.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "TTL-010",
+      "domain": "titles",
+      "statement": "English titles are idiomatic, autonomous, conceptually equivalent and avoid contractions when they reduce encyclopedic tone.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "TTL-011",
+      "domain": "titles",
+      "statement": "Locked titles can change only through an explicit migration that updates every dependent link and file.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "conversation decisions"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-001",
+      "domain": "graph",
+      "statement": "The final logical structure is a directed acyclic graph, not merely a tree.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-002",
+      "domain": "graph",
+      "statement": "Distinguish nodes, edges and occurrences.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-003",
+      "domain": "graph",
+      "statement": "Camp and depth belong to occurrences, not to node identity.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-004",
+      "domain": "graph",
+      "statement": "One logical argument corresponds to one page per language even when reused in several branches or depths.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph prompt",
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-005",
+      "domain": "graph",
+      "statement": "Each active node has exactly one primary occurrence; additional occurrences are secondary and do not render children.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph design decision"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-006",
+      "domain": "graph",
+      "statement": "The rendered graph root is the exact French debate title and has exactly two main branches.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-007",
+      "domain": "graph",
+      "statement": "Maximize coverage of important reasoning, not raw node count; exclude decorative examples, administrative details and weak reformulations as autonomous nodes.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-008",
+      "domain": "graph",
+      "statement": "The graph must be balanced across camps without imposing artificial numerical symmetry.",
+      "disposition": "active",
+      "enforcement": "human+metrics",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-009",
+      "domain": "graph",
+      "statement": "No cycles, self-relations, duplicate direct relations, duplicate direct children or unknown relations.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph prompt",
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-010",
+      "domain": "graph",
+      "statement": "A child must directly justify or object to its parent rather than merely relate to the general debate.",
+      "disposition": "active",
+      "enforcement": "human+automatic heuristics",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-011",
+      "domain": "graph",
+      "statement": "Normal target depth is 3; levels 4 or 5 are allowed for central crucial discussion; deeper levels require explicit instruction and justification.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "later user feedback"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": "Supersedes original fixed maximum of level 3."
+    },
+    {
+      "id": "GR-012",
+      "domain": "graph",
+      "statement": "Perform an initial general documentary search before constructing the first graph.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-013",
+      "domain": "graph",
+      "statement": "Perform independent omission passes covering public debate and specialized literature.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-014",
+      "domain": "graph",
+      "statement": "Perform independent omission passes across relevant disciplinary families.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-015",
+      "domain": "graph",
+      "statement": "Perform an omission pass focused on actors, implementation and practical effects.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-016",
+      "domain": "graph",
+      "statement": "Perform an omission pass for intermediate positions, alternatives and conditional variants.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-017",
+      "domain": "graph",
+      "statement": "For every main argument and every crucial developed node, search explicitly for the strongest missing objection or counter-objection.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt",
+        "later user feedback"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-018",
+      "domain": "graph",
+      "statement": "Perform a free blind-spot pass from a different research question rather than rereading the same draft.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-019",
+      "domain": "graph",
+      "statement": "Stop research after a documented saturation pass when new searches mostly produce duplicates, examples or marginal variants.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-020",
+      "domain": "graph",
+      "statement": "Consolidate semantic duplicates, choose the best hierarchy, and record every fusion, deletion and reuse decision.",
+      "disposition": "active",
+      "enforcement": "human+automatic records",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-021",
+      "domain": "graph",
+      "statement": "Apply a deletion test: retain a node only when removing it would erase a significant distinct reasoning step.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-022",
+      "domain": "graph",
+      "statement": "Generate graph Markdown only from the registry/occurrences; never edit the projection independently.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph prompt",
+        "conversation decisions"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-023",
+      "domain": "graph",
+      "statement": "In the graph rendering, reused pages are linked with MediaWiki brackets at every occurrence; unique pages are not bracketed.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-024",
+      "domain": "graph",
+      "statement": "Graph outputs include registry, graph JSON, graph Markdown, consolidation log, research sources and validation report.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-025",
+      "domain": "graph",
+      "statement": "The consolidation log records concise reasons such as duplicate, example, case-specific, wrong level, same scope or insufficient autonomy.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-026",
+      "domain": "graph",
+      "statement": "The research source file identifies author/institution, title, link, date when available and the argumentative families supported, without duplicating references.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-027",
+      "domain": "graph",
+      "statement": "Do not release graph deliverables until automated blocking validations pass and a separate semantic review covers quasi-duplicates, logic, balance and title autonomy.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-001",
+      "domain": "debate_fr",
+      "statement": "sujet is the simplest general theme and is not the full interrogative debate proposition.",
+      "disposition": "active",
+      "enforcement": "human+automatic heuristics",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-002",
+      "domain": "debate_fr",
+      "statement": "sujet-complet expresses the exact object and integrates naturally in a sentence rather than copying the question mechanically.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-003",
+      "domain": "debate_fr",
+      "statement": "The introduction is encyclopedic, neutral, precise, substantial and normally divided into several useful subsections.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-004",
+      "domain": "debate_fr",
+      "statement": "Relevant introduction topics include definitions, scope, necessary concepts, interpretations, policy variants, history, French law, European/international context, foreign experience, current debate and alternatives.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-005",
+      "domain": "debate_fr",
+      "statement": "The introduction presents facts, uncertainty, interpretive disagreement, variants, implementation difficulties and relevant evolution without advocating a camp.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-006",
+      "domain": "debate_fr",
+      "statement": "Do not turn the introduction into a detailed pro/con list.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-007",
+      "domain": "debate_fr",
+      "statement": "Important factual claims in the introduction receive inline references; generated pages never add <references /> tags.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-008",
+      "domain": "debate_fr",
+      "statement": "Verify all contemporary legal, political, scientific and statistical information on the generation date.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-009",
+      "domain": "debate_fr",
+      "statement": "Do not confuse proposals with enacted law, unfinished procedures with completed ones, experiments with generalized policy, associations with causality, forecasts with facts, or recommendations with legal duties.",
+      "disposition": "active",
+      "enforcement": "human+warning heuristics",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-010",
+      "domain": "debate_fr",
+      "statement": "Use only verified existing French Wikipedia pages with exact titles, and prefer directly useful specific articles over overly general ones.",
+      "disposition": "active",
+      "enforcement": "external check+human",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-011",
+      "domain": "debate_fr",
+      "statement": "The main pro and con lists reproduce all and only primary depth-1 occurrences from the locked registry.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-012",
+      "domain": "debate_fr",
+      "statement": "A reused subordinate argument appears in a main list only if it also has a primary depth-1 occurrence in the graph.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-013",
+      "domain": "debate_fr",
+      "statement": "Search all nine documentary positions/categories; omit a category rather than force a weak or foreign source.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-014",
+      "domain": "debate_fr",
+      "statement": "Every reference on the French Debate page, including introduction citations, is fully available in French.",
+      "disposition": "modified",
+      "enforcement": "human+metadata",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": "Clarified by owner decisions and norm 1.1.4."
+    },
+    {
+      "id": "DFR-015",
+      "domain": "debate_fr",
+      "statement": "French editions are mandatory for books when pertinent and available; general-audience web/video resources require an official French version unless an exception is documented.",
+      "disposition": "modified",
+      "enforcement": "human+metadata",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": "Scientific primary literature is not excluded merely because its published language is English."
+    },
+    {
+      "id": "DFR-016",
+      "domain": "debate_fr",
+      "statement": "Automatic subtitles, browser translation, partial/unofficial translations, French summaries or reviews do not make a foreign resource a French source.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-017",
+      "domain": "debate_fr",
+      "statement": "Classify a source as pro or con only when it explicitly supports or opposes the debated proposition or a sufficiently close measure; otherwise classify it as neutral.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-018",
+      "domain": "debate_fr",
+      "statement": "Do not infer support for prohibition from evidence of harm or opposition from evidence of benefit; inspect the source position rather than its title.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-019",
+      "domain": "debate_fr",
+      "statement": "Avoid exact and semantic duplication across bibliography, webliography and videography; an editor page or download page does not duplicate the underlying cited publication unless it adds autonomous substantive content.",
+      "disposition": "active",
+      "enforcement": "human+automatic heuristics",
+      "sources": [
+        "debate prompt",
+        "user feedback"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-020",
+      "domain": "debate_fr",
+      "statement": "Related debates are included only when their page exists or creation is explicitly planned, and the relationship is directly thematic.",
+      "disposition": "active",
+      "enforcement": "external check+human",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-021",
+      "domain": "debate_fr",
+      "statement": "Select only central authorized sections; do not add a section solely for a secondary argument.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-022",
+      "domain": "debate_fr",
+      "statement": "Debate keywords are lower-case reusable themes, normally five to eight, excluding generic action words, proposition-specific phrases and redundant synonyms.",
+      "disposition": "active",
+      "enforcement": "human+automatic heuristics",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DEN-001",
+      "domain": "debate_en",
+      "statement": "The English Debate page is an autonomous adaptation for English-speaking or international context, not a mechanical translation of the French introduction.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "user feedback",
+        "debate method"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DEN-002",
+      "domain": "debate_en",
+      "statement": "It preserves the same main logical debate and primary arguments while adapting legal, political and cultural framing.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "user feedback"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DEN-003",
+      "domain": "debate_en",
+      "statement": "Use verified English-language references rather than reusing French-only documentary references by default.",
+      "disposition": "active",
+      "enforcement": "human+metadata",
+      "sources": [
+        "user feedback"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DEN-004",
+      "domain": "debate_en",
+      "statement": "Use only verified existing English Wikipedia pages with exact titles and direct relevance.",
+      "disposition": "active",
+      "enforcement": "external check+human",
+      "sources": [
+        "parallelized debate requirement"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DEN-005",
+      "domain": "debate_en",
+      "statement": "Apply the same epistemic cautions and neutral classification rules as the French Debate page.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "debate prompt adapted"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-001",
+      "domain": "arguments",
+      "statement": "Every distinct active graph node becomes exactly one French page and one English page by the end of the bilingual workflow.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-002",
+      "domain": "arguments",
+      "statement": "Argument pages reproduce graph justifications, objections and reuses exactly; writing may enrich prose but never add, delete, merge or retype nodes.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-003",
+      "domain": "arguments",
+      "statement": "The summary directly develops one reasoning: claim, premises, mechanism, relevance, applications, evidence and necessary limits.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-004",
+      "domain": "arguments",
+      "statement": "Summaries are complete fluid paragraphs, not outlines or lists, and do not merely restate the title.",
+      "disposition": "active",
+      "enforcement": "human+heuristics",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-005",
+      "domain": "arguments",
+      "statement": "Indicative summary lengths are 100–160 words for simple, 150–250 for intermediate and 200–350 for complex arguments; these are quality guides, not rigid padding targets.",
+      "disposition": "active",
+      "enforcement": "warning+human",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-006",
+      "domain": "arguments",
+      "statement": "Use concrete examples, typical situations, mechanisms, important studies, data, historical comparisons, distinctions, practical consequences and methodological limits when they materially improve understanding.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-007",
+      "domain": "arguments",
+      "statement": "Hypothetical examples are identified as hypothetical; important precise real cases are verified and referenced.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-008",
+      "domain": "arguments",
+      "statement": "Do not combine several independent arguments, anticipate every objection at length, repeat the same idea, accumulate unexplained studies or describe the page externally.",
+      "disposition": "active",
+      "enforcement": "human+heuristics",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-009",
+      "domain": "arguments",
+      "statement": "Reject metadiscursive formulations such as cet argument, l'argument, this argument, cette objection or cette justification.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "user feedback",
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-010",
+      "domain": "arguments",
+      "statement": "Treat pro and con pages with the same standards of development, evidence and methodological caution.",
+      "disposition": "active",
+      "enforcement": "human+metrics",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-011",
+      "domain": "arguments",
+      "statement": "The French and English summaries express the same logical node and have comparable depth, but each is idiomatic rather than literal.",
+      "disposition": "active",
+      "enforcement": "human+automatic structure",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-012",
+      "domain": "arguments",
+      "statement": "The English version must not be shorter, more schematic or less documented merely because it is produced second.",
+      "disposition": "active",
+      "enforcement": "human+metrics",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-001",
+      "domain": "references",
+      "statement": "Argument pages use a domain-appropriate documentary profile: bibliography is generally preferred, while source hierarchy follows the nature of the reasoning and webliography or videography must add substantive value.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-002",
+      "domain": "references",
+      "statement": "Prioritize the strongest sources appropriate to the field: scientific studies and syntheses, official legal materials and doctrine, primary historical sources and historiography, primary philosophical works and scholarship, official data and institutional reports, or equivalent authoritative material.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "argument prompt",
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-003",
+      "domain": "references",
+      "statement": "When an original study is accessible, prefer it, its DOI, journal page or official institutional report over a press article or secondary metadata page.",
+      "disposition": "active",
+      "enforcement": "human+metadata",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-004",
+      "domain": "references",
+      "statement": "Every source is real, verified, directly relevant, described without exaggeration and linked to the exact claim for which it is used.",
+      "disposition": "active",
+      "enforcement": "human+metadata",
+      "sources": [
+        "debate prompt",
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-005",
+      "domain": "references",
+      "statement": "Never invent authors, titles, publication details, methods, samples, statistics, conclusions, institutions, translations or URLs.",
+      "disposition": "active",
+      "enforcement": "human+metadata",
+      "sources": [
+        "debate prompt",
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-006",
+      "domain": "references",
+      "statement": "Do not present statistical association as demonstrated causality.",
+      "disposition": "active",
+      "enforcement": "human+warning heuristics",
+      "sources": [
+        "debate prompt",
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-007",
+      "domain": "references",
+      "statement": "Mention important limits of observational, cross-sectional, self-reported, small, old, country/platform-specific, contested or poorly generalizable studies.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-008",
+      "domain": "references",
+      "statement": "A study mentioned in a summary must appear in that page's documentary parameters; documentary lists are not general reading lists.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-009",
+      "domain": "references",
+      "statement": "Verify at least authors, exact title, container/work, year, volume/issue, location, publisher/institution, place, link and correspondence with the claim whenever applicable.",
+      "disposition": "active",
+      "enforcement": "human+metadata",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-010",
+      "domain": "references",
+      "statement": "Preserve original titles, author names and official proper names; adapt variable dates, places and ordinary editorial wording to the page language.",
+      "disposition": "active",
+      "enforcement": "human+automatic date checks",
+      "sources": [
+        "argument prompt",
+        "user feedback"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-011",
+      "domain": "references",
+      "statement": "French Argument pages prefer a verified French edition or equivalent whenever one exists; a foreign original requires documented absence of an equivalent or object-of-analysis status.",
+      "disposition": "active",
+      "enforcement": "human+metadata",
+      "sources": [
+        "user feedback"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-012",
+      "domain": "references",
+      "statement": "Inline reference calls in French prose appear before final punctuation; English prose uses the selected English convention after punctuation.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user feedback",
+        "audit correction"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-013",
+      "domain": "references",
+      "statement": "French numéro and English issue contain digits only; chapters, pages, ranges and other positions use localisation/location.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user feedback"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-014",
+      "domain": "references",
+      "statement": "Bibliographic fields are used semantically: article for an article/chapter/contribution, ouvrage/work for the journal/book/report/container, édition/publisher for publisher and lieu/place for publication place.",
+      "disposition": "active",
+      "enforcement": "human+metadata",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-015",
+      "domain": "references",
+      "statement": "HTTP/HTTPS links must be verified and point to the represented resource or authorized version.",
+      "disposition": "active",
+      "enforcement": "automatic+external check",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-016",
+      "domain": "references",
+      "statement": "Exact and semantic documentary duplicates are forbidden across categories and pages where they add no distinct value.",
+      "disposition": "active",
+      "enforcement": "human+automatic heuristics",
+      "sources": [
+        "debate prompt",
+        "user feedback"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-017",
+      "domain": "references",
+      "statement": "For every video, search the source page, description, credits, speakers and original publication for an author or editorially responsible entity.",
+      "disposition": "active",
+      "enforcement": "human+metadata",
+      "sources": [
+        "debate prompt",
+        "user feedback"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-018",
+      "domain": "references",
+      "statement": "Do not use a hosting platform or unofficial reposting account as author by default; prefer the official original source.",
+      "disposition": "active",
+      "enforcement": "human+metadata",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-019",
+      "domain": "references",
+      "statement": "When no responsible author/entity can be identified after real verification, omit the MediaWiki author field rather than inventing one and record the checks in the source registry.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "audit correction resolving prompt tension"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-020",
+      "domain": "references",
+      "statement": "Video models never receive site or date parameters that do not exist in their official structure.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/structures_mediawiki_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "CAT-001",
+      "domain": "classification",
+      "statement": "Use only the 18 authorized French rubriques and their exact official English correspondences.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "base project instruction",
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "CAT-002",
+      "domain": "classification",
+      "statement": "Argument pages normally use one to three genuinely relevant categories, exceptionally four.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "CAT-003",
+      "domain": "classification",
+      "statement": "Argument keywords are two to four simple site-level navigation concepts. A keyword may occur only once in the current debate when it is central to the argument and reusable across other wiki debates; local frequency is never an admissibility criterion.",
+      "disposition": "active",
+      "enforcement": "human+automatic",
+      "sources": [
+        "debate prompt",
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": "Owner correction 2026-07-25: reuse is evaluated at wiki scale, not debate scale."
+    },
+    {
+      "id": "CAT-004",
+      "domain": "classification",
+      "statement": "Keep established compound concepts when they function as recognized terms; otherwise split over-specific phrases into reusable concepts.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "CAT-005",
+      "domain": "classification",
+      "statement": "English keywords are idiomatic conceptual equivalents in the same thematic order as the French keywords.",
+      "disposition": "active",
+      "enforcement": "human+automatic",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "BI-001",
+      "domain": "bilingual",
+      "statement": "French and English share identical active identifiers, edges, reuses and logical primary occurrences.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "BI-002",
+      "domain": "bilingual",
+      "statement": "Different language pages may use different documentary sources when appropriate, while common sources retain identity in the source registry.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "argument prompt",
+        "user feedback"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "BI-003",
+      "domain": "bilingual",
+      "statement": "Only French pages contain interlanguage parameters; English pages never do.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user feedback"
+      ],
+      "normative_files": [
+        "01_normes/structures_mediawiki_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "BI-004",
+      "domain": "bilingual",
+      "statement": "French interlanguage targets come exclusively from canonical English titles locked before French page generation.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt",
+        "user feedback"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "BI-005",
+      "domain": "bilingual",
+      "statement": "Interlanguage links are present in initial French canonical files even when English pages are created later.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "BI-006",
+      "domain": "bilingual",
+      "statement": "Norm 1.2.0 uses no interlanguage staging; legacy staging is retained only for older packages.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "audit correction"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "BI-007",
+      "domain": "bilingual",
+      "statement": "Changing an English canonical title through migration updates the English page, all English links and all French interlanguage targets.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "BI-008",
+      "domain": "bilingual",
+      "statement": "Adding interlanguage never changes the creation date.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "FIL-001",
+      "domain": "files",
+      "statement": "One page equals one individual source file; aggregates are generated from individual files and never edited manually.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "user decision"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "FIL-002",
+      "domain": "files",
+      "statement": "File names use stable identifiers rather than textual titles.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "workflow design"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "FIL-003",
+      "domain": "files",
+      "statement": "A coherent batch normally contains 10–25 distinct pages and follows a main argument/subgraph when possible.",
+      "disposition": "active",
+      "enforcement": "human+automatic warning",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "FIL-004",
+      "domain": "files",
+      "statement": "Each page has exactly one owner batch per language; other batches may depend on it but may not regenerate it.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "workflow design"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "FIL-005",
+      "domain": "files",
+      "statement": "Batch reports state generated page count, identifiers, reuses, dependencies and normalization difficulties.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "FIL-006",
+      "domain": "files",
+      "statement": "Every Work handoff records debate ID, versions, required state, files, SHA-256, locks, allowed outputs and prior validations.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "workflow design"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "FIL-007",
+      "domain": "files",
+      "statement": "A receiving Work rejects mismatched IDs, versions, status or hashes instead of guessing the newest file.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "workflow design"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "FIL-008",
+      "domain": "files",
+      "statement": "Aggregate separators must contain exact canonical titles and the aggregate must be deterministic.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt adapted"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "FIL-009",
+      "domain": "files",
+      "statement": "Do not create cryptographic self-reference: archive SHA-256 belongs in an external receipt, not inside the archive it hashes.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "audit correction"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "IMP-001",
+      "domain": "import",
+      "statement": "Check remote title existence before import and classify absent, equivalent existing, collision or manual review.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "conversation decisions"
+      ],
+      "normative_files": [
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "IMP-002",
+      "domain": "import",
+      "statement": "Never overwrite an existing wiki page by default.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt",
+        "conversation decisions"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "IMP-003",
+      "domain": "import",
+      "statement": "Simulation is mandatory before writing; creation uses create-only semantics.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt",
+        "Pywikibot audit"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "IMP-004",
+      "domain": "import",
+      "statement": "Compare local and remote content, log differences, record revision IDs and re-read after import.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt",
+        "Pywikibot review"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "IMP-005",
+      "domain": "import",
+      "statement": "Resume logic is based on title and content SHA-256, not title alone.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "Pywikibot audit"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "IMP-006",
+      "domain": "import",
+      "statement": "Import and publication process the French Debate page before French Argument pages, then the English Debate page before English Argument pages; French interlanguage links are already included.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "workflow correction"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "IMP-007",
+      "domain": "import",
+      "statement": "Historical Pywikibot tools remain read-only/non-approved until adapted to the validator, create-only, hashes and new logs.",
+      "disposition": "active",
+      "enforcement": "human policy",
+      "sources": [
+        "Pywikibot audit"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-001",
+      "domain": "validation",
+      "statement": "Combine JSON Schema, semantic graph, batches, bilingual, wikicode, file/hash, workflow and report validation.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "validator launch request"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-002",
+      "domain": "validation",
+      "statement": "Use stable unique diagnostic codes and ERROR/WARNING/INFO severities.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "validator launch request"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-003",
+      "domain": "validation",
+      "statement": "Provide human-readable text and structured JSON output; blocking errors cause a non-zero exit code.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "validator launch request"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-004",
+      "domain": "validation",
+      "statement": "Validation mode never modifies files; recalculation/fix modes are explicit and separate.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "validator launch request"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-005",
+      "domain": "validation",
+      "statement": "Support whole-package and targeted validation with unit and integration tests.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "validator launch request"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-006",
+      "domain": "validation",
+      "statement": "Resolve local JSON Schema references using the modern referencing API rather than deprecated RefResolver architecture.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "audit correction"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-007",
+      "domain": "validation",
+      "statement": "Separate machine-provable constraints, automatic documentary heuristics and editorial judgments requiring human review.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "validator launch request"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-008",
+      "domain": "validation",
+      "statement": "Detect duplicate identifiers/titles, dangling references, cycles, self-relations, occurrence/edge mismatch, depth/branch errors, primary occurrence errors and derived-count errors.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph prompt",
+        "validator launch request"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-009",
+      "domain": "validation",
+      "statement": "Detect missing/duplicate pages, batch gaps/overlaps, stale inputs, missing files, bad hashes and invalid state transitions/handoffs.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "validator launch request"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-010",
+      "domain": "validation",
+      "statement": "Parse wikicode to detect unknown, forbidden, empty or misordered parameters, malformed templates, wrong fixed values, mixed languages and relation mismatches.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "debate prompt",
+        "argument prompt",
+        "validator launch request"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-011",
+      "domain": "validation",
+      "statement": "Validate interlanguage timing, uniqueness, direction and canonical target.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt",
+        "user decisions"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-012",
+      "domain": "validation",
+      "statement": "Validate bilingual structural identity and report editorial asymmetries in development/documentation for human review.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-013",
+      "domain": "validation",
+      "statement": "Flag summary skeletons, metadiscourse, unsupported mentioned studies, missing mechanisms and camp imbalance as heuristic or human-review findings rather than pretending full semantic proof.",
+      "disposition": "active",
+      "enforcement": "heuristic+human",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-014",
+      "domain": "validation",
+      "statement": "Do not release any Work stage with unresolved blocking errors; failure still produces a report and blocked handoff.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph prompt",
+        "workflow design"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARC-001",
+      "domain": "archive",
+      "statement": "A debate closes only after French, English, bilingual, interlanguage, import and release validations succeed.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "method summary"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARC-002",
+      "domain": "archive",
+      "statement": "The final package is autonomous outside conversations and contains manifests, registry, graph, pages, reports, patches and logs.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "method summary"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARC-003",
+      "domain": "archive",
+      "statement": "After verification, move all debate conversations and final artifacts to the archive project and remove debate-specific temporary files from the active project.",
+      "disposition": "active",
+      "enforcement": "human checklist",
+      "sources": [
+        "method summary"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "SUP-001",
+      "domain": "superseded",
+      "statement": "Retain every empty parameter in generated Debate pages.",
+      "disposition": "superseded",
+      "enforcement": "none",
+      "sources": [
+        "original debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": "Replaced by omission of optional empty parameters."
+    },
+    {
+      "id": "SUP-002",
+      "domain": "superseded",
+      "statement": "Former rule grouping Débat construit with Généré par IA.",
+      "disposition": "superseded",
+      "enforcement": "none",
+      "sources": [
+        "original debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": "Partially restored for avancement only; AI warning wording remains governed by MW-007."
+    },
+    {
+      "id": "SUP-003",
+      "domain": "superseded",
+      "statement": "Limit every graph to level 3 and forbid level 4.",
+      "disposition": "superseded",
+      "enforcement": "none",
+      "sources": [
+        "original graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": "Replaced by normal target 3 with justified levels 4–5."
+    },
+    {
+      "id": "SUP-004",
+      "domain": "superseded",
+      "statement": "Lock canonical English titles before French page generation while deferring English page content.",
+      "disposition": "modified",
+      "enforcement": "none",
+      "sources": [
+        "original argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": "Reactivated in a limited form by norm 1.2.0 to support direct interlanguage links."
+    },
+    {
+      "id": "SUP-005",
+      "domain": "superseded",
+      "statement": "Insert interlanguage links in the initial valid generation of every French page.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "original argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": "Reactivated by norm 1.2.0; late staging is historical only."
+    },
+    {
+      "id": "SUP-006",
+      "domain": "superseded",
+      "statement": "Produce French and English Argument pages in a single monolithic Work.",
+      "disposition": "superseded",
+      "enforcement": "none",
+      "sources": [
+        "original argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": "Replaced by separate sequential French and English Work."
+    },
+    {
+      "id": "SUP-007",
+      "domain": "superseded",
+      "statement": "Require every video author field to be filled regardless of verifiability.",
+      "disposition": "modified",
+      "enforcement": "none",
+      "sources": [
+        "original debate prompt",
+        "audit discussion"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": "Systematic search remains mandatory; verified absence is exceptionally represented by omission plus registry note."
+    },
+    {
+      "id": "GR-028",
+      "domain": "graph",
+      "statement": "After passes A–F, repeat complete saturation passes until two consecutive passes find no important distinct argument; perform at most six additional saturation passes and report the limit if important additions still occur.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-029",
+      "domain": "graph",
+      "statement": "After pruning, conduct a final independent omission pass over main arguments, strongest reasons and objections, intermediate positions, alternatives, affected actors, implementation, indirect and long-term effects; any important addition restarts consolidation on the affected branch.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-023",
+      "domain": "debate_fr",
+      "statement": "A debate, cross-interview, round table or parliamentary hearing presenting several positions is neutral videography; a pro/con video requires an explicit identifiable position.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-024",
+      "domain": "debate_fr",
+      "statement": "Do not duplicate the same video in several documentary positions and prefer a stable official source over an unidentified social repost.",
+      "disposition": "active",
+      "enforcement": "human+automatic heuristics",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-025",
+      "domain": "debate_fr",
+      "statement": "For a French translation or edition, use the verified French title, publisher, publication date and direct French link; distinguish correctly article/chapter, containing work, authoring institution and publisher.",
+      "disposition": "active",
+      "enforcement": "human+metadata",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-013",
+      "domain": "arguments",
+      "statement": "After each batch, report page count, identifiers, reused pages and material normalization difficulties without placing commentary inside wikicode.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-001",
+      "domain": "prompt_behavior",
+      "statement": "When title and scope are sufficiently clear, execute each Work autonomously without requesting intermediate validation or confirmation.",
+      "disposition": "active",
+      "enforcement": "prompt",
+      "sources": [
+        "graph prompt",
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-002",
+      "domain": "prompt_behavior",
+      "statement": "Infer minor missing scope details from the natural reading of the title; report only ambiguities that could materially alter the output.",
+      "disposition": "active",
+      "enforcement": "prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-003",
+      "domain": "prompt_behavior",
+      "statement": "Do not expose intermediate graph drafts; complete research, enrichment, consolidation, pruning and validation before delivering final graph files.",
+      "disposition": "active",
+      "enforcement": "prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-004",
+      "domain": "prompt_behavior",
+      "statement": "Final page-generation outputs contain complete wikicode without ellipses, placeholders or abridged sections.",
+      "disposition": "active",
+      "enforcement": "prompt+automatic",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-005",
+      "domain": "prompt_behavior",
+      "statement": "The final French Debate Work returns only a brief verification statement and the complete MediaWiki page artifact, not an additional page summary.",
+      "disposition": "active",
+      "enforcement": "prompt",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-006",
+      "domain": "prompt_behavior",
+      "statement": "Argument Work makes reasonable editorial decisions but records choices that could change the meaning of a node.",
+      "disposition": "active",
+      "enforcement": "prompt+human",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-007",
+      "domain": "prompt_behavior",
+      "statement": "Graph research uses Web sources when the subject requires current or external verification and represents several serious positions.",
+      "disposition": "active",
+      "enforcement": "prompt+human",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-008",
+      "domain": "prompt_behavior",
+      "statement": "Do not continue research indefinitely; stop according to the saturation criterion and disclose residual research limitations.",
+      "disposition": "active",
+      "enforcement": "prompt+human",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-030",
+      "domain": "graph",
+      "statement": "As a non-binding coverage guide, aim normally for roughly six to ten main arguments per camp; never create or keep nodes merely to reach a quota.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-031",
+      "domain": "graph",
+      "statement": "As a non-binding guide, a main argument normally receives two to five direct justifications and two to five direct objections; fewer are preferable when further children would be weak, redundant or remote.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-032",
+      "domain": "graph",
+      "statement": "A developed crucial node normally receives two to four strong justifications and objections without mechanical quotas; deeper levels 4 or 5 are used only where the discussion is central and requires them.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt",
+        "later user feedback"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-033",
+      "domain": "graph",
+      "statement": "Initial framing explicitly maps the evaluated proposition, important variants, affected actors, institutions, professionals, beneficiaries, third parties, indirect effects, relevant disciplines and material scope ambiguities.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-034",
+      "domain": "graph",
+      "statement": "A candidate node is autonomous only when it is a complete contestable proposition, adds a distinct premise, mechanism, objection or consequence, matters to serious debate, can sustain a substantive page and would leave a real gap if removed; examples and narrow administrative details remain examples.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-035",
+      "domain": "graph",
+      "statement": "Graph titles state the central reason directly, avoid metadiscourse and simple themes, and do not mechanically repeat the overall debate conclusion in every node.",
+      "disposition": "active",
+      "enforcement": "human+heuristic",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-036",
+      "domain": "graph",
+      "statement": "Logical review distinguishes principle from application, rule from example, cause from consequence, empirical finding from normative conclusion, legal from moral reasoning, economic from social reasoning, existence from feasibility of an alternative, and transition possibility from transition cost.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-037",
+      "domain": "graph",
+      "statement": "Strong-objection passes test premises, mechanisms, logical links, scope, proportionality, empirical validity, legal validity, practical implementation and less costly or less restrictive alternatives whenever relevant.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-038",
+      "domain": "graph",
+      "statement": "Graph research prioritizes official legal and institutional sources, scientific and academic publications, directly relevant professional or association reports, authoritative books and quality press for documented public positions, while representing several serious positions and verifying current facts.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-039",
+      "domain": "graph",
+      "statement": "The ASCII rendering contains only the debate title, camp labels, argument titles, Justifications/Objections labels and reuse brackets; it contains no IDs, level numbers, notes, summaries, references, categories, keywords, JSON or working comments.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-040",
+      "domain": "graph",
+      "statement": "The graph Markdown contains, in order, the title, complete ASCII graph, recap table, reused-page table, concise pass note, final-control note and residual scope/research limits.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-041",
+      "domain": "graph",
+      "statement": "The recap table reports main pro/con arguments, justifications and objections by depth, distinct pages, total occurrences, reused pages, additional reuses, developed pages and pages used only as secondary links; every value is recalculated from the registry.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-042",
+      "domain": "graph",
+      "statement": "The reused-page table reports canonical page, occurrence count, full-development location and other use locations, exactly matching occurrences and the unique primary occurrence.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-043",
+      "domain": "graph",
+      "statement": "The validation report lists executed checks, numerical results, corrected anomalies and each final result, and uses VALIDATION GLOBALE : RÉUSSIE only when no blocking error remains.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-044",
+      "domain": "graph",
+      "statement": "The consolidation log records completed passes and added, removed, merged, renamed, moved, reused and converted-to-example items, stop condition and residual limits, using concise editorial reasons rather than private reasoning.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-045",
+      "domain": "graph",
+      "statement": "Research sources record title, author or institution, date when available, link, verification role and pro/con/neutral status without forcing a position or duplicating documentary records.",
+      "disposition": "active",
+      "enforcement": "human+automatic heuristics",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-046",
+      "domain": "graph",
+      "statement": "The rendered tree has no orphan line, uses the correct box-drawing connectors and visually attaches every item to its actual parent.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "GR-047",
+      "domain": "graph",
+      "statement": "A title may not reappear within its own descendant subgraph, and a node may not combine independent reasonings merely for convenience.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-026",
+      "domain": "debate_fr",
+      "statement": "Inline introduction references specifically cover laws and bills, judicial decisions, historical dates, statistics, study results, foreign experiences, public policies, institutional statements and legislative-procedure status whenever these claims are material.",
+      "disposition": "active",
+      "enforcement": "human+heuristic",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-027",
+      "domain": "debate_fr",
+      "statement": "Wikipedia title verification includes accents, capitalization, disambiguation parentheses, singular/plural and the exact existing title; inventing or approximating a page title is forbidden.",
+      "disposition": "active",
+      "enforcement": "automatic+external check",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-028",
+      "domain": "debate_fr",
+      "statement": "Argument page links use the exact locked canonical title; displayed titles may omit obvious context but remain clear, faithful, grammatically autonomous and unambiguous, and never replace the canonical page field.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-029",
+      "domain": "debate_fr",
+      "statement": "Bibliography contains books, chapters, scientific or academic articles, reports and other publication-like works; webliography contains autonomous substantive web resources rather than mere catalogue, sales, announcement, download or summary pages for publications already cited.",
+      "disposition": "active",
+      "enforcement": "human+automatic heuristics",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-030",
+      "domain": "debate_fr",
+      "statement": "A bibliographic and a web reference to the same underlying work coexist only when the web page has independent substantial content and that distinct contribution is recorded; otherwise retain the primary publication.",
+      "disposition": "active",
+      "enforcement": "human+automatic heuristics",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-031",
+      "domain": "debate_fr",
+      "statement": "Do not duplicate a cited publication through an editor or bookseller page, release announcement, press article announcing it, press release or news page merely summarizing the same report or study.",
+      "disposition": "active",
+      "enforcement": "human+automatic heuristics",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-032",
+      "domain": "debate_fr",
+      "statement": "A related debate is not merely a shared theme, an argument or a Wikipedia article; it is a distinct debate page with a direct thematic relationship.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-033",
+      "domain": "debate_fr",
+      "statement": "If no sufficiently relevant verified French Wikipedia article, documentary source or related debate exists, omit the optional parameter rather than inventing, translating or weakening the criterion.",
+      "disposition": "active",
+      "enforcement": "human+automatic",
+      "sources": [
+        "debate prompt",
+        "later user decision"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-034",
+      "domain": "debate_fr",
+      "statement": "The French Debate Work performs a final structural, source, language, classification, duplicate, Wikipedia, graph-link, current-fact, interlanguage-timing and creation-date checklist before delivery.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-014",
+      "domain": "arguments",
+      "statement": "Each Argument page is informative and understandable independently of the graph, while remaining exactly one logical node.",
+      "disposition": "active",
+      "enforcement": "human+heuristic",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-015",
+      "domain": "arguments",
+      "statement": "A coherent batch preferably contains a main argument, its direct justifications and objections, lower dependent nodes and unproduced reused pages assigned to that owner batch, with dependencies declared rather than duplicated.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-016",
+      "domain": "arguments",
+      "statement": "Before page writing, extract all distinct node IDs, count occurrences, distinct pages, reuses, main arguments, justifications and objections, and report structural inconsistencies.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-017",
+      "domain": "arguments",
+      "statement": "Study evidence is used to confirm a mechanism, give an order of magnitude, show group variation, test a hypothesis, reveal a limit or provide a documented example, and its relevance is explained rather than merely cited.",
+      "disposition": "active",
+      "enforcement": "human+heuristic",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-018",
+      "domain": "arguments",
+      "statement": "Do not overload Argument pages with redundant references or unexplained study lists; every documentary item supports a statement actually made in that page.",
+      "disposition": "active",
+      "enforcement": "human+heuristic",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-019",
+      "domain": "arguments",
+      "statement": "Individual page files and aggregate page records remain clearly separated, syntactically complete and compatible with automated import; no explanatory commentary appears inside wikicode.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-020",
+      "domain": "arguments",
+      "statement": "The independent registry/JSON source stores IDs and relations separately from wikicode so pages and aggregates can be regenerated deterministically.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-021",
+      "domain": "arguments",
+      "statement": "French and English page sets undergo structural, title, wikicode, linguistic-reference and summary-quality checks, including broken links, self-relations, direct-child duplicates and camp parity.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-022",
+      "domain": "arguments",
+      "statement": "Canonical English titles are locked before French generation solely for direct interlanguage targets; English prose and documentation are not produced until French validation is complete.",
+      "disposition": "active",
+      "enforcement": "automatic+prompt",
+      "sources": [
+        "later user decision"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-021",
+      "domain": "references",
+      "statement": "French descriptive dates use natural French order and month names; English descriptive dates use natural English forms, while exact source titles remain unchanged.",
+      "disposition": "active",
+      "enforcement": "human+heuristic",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-022",
+      "domain": "references",
+      "statement": "Use the established French or English form of a publication place when one exists, and do not artificially translate place names normally retained unchanged.",
+      "disposition": "active",
+      "enforcement": "human+heuristic",
+      "sources": [
+        "argument prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-023",
+      "domain": "references",
+      "statement": "For translated or language-specific editions, link directly to the represented edition and use that edition’s verified title, publisher or broadcaster and date rather than metadata from another language version.",
+      "disposition": "active",
+      "enforcement": "human+external check",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-024",
+      "domain": "references",
+      "statement": "A bilingual resource counts for a language only when the complete relevant content is actually available in that language; an abstract, partial excerpt or review is insufficient.",
+      "disposition": "active",
+      "enforcement": "human+external check",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-025",
+      "domain": "references",
+      "statement": "When no individual video author is identifiable, use a verified media outlet, programme, institution or official editorial channel only if it is genuinely responsible for the content.",
+      "disposition": "active",
+      "enforcement": "human+external check",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-026",
+      "domain": "references",
+      "statement": "A missing video author remains exceptional and is accepted only after checking the page, description, credits, speakers and original source; the registry records those checks.",
+      "disposition": "active",
+      "enforcement": "human+external check",
+      "sources": [
+        "debate prompt",
+        "user feedback"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "FIL-010",
+      "domain": "files",
+      "statement": "The mandatory graph deliverables are graph/graphe_argumentatif.md, graph/graphe_argumentatif.json, graph/validation_report.txt, graph/consolidation_log.json and graph/research_sources.md, plus the master registry and handoffs required by the workflow.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "graph prompt",
+        "workflow design"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "FIL-011",
+      "domain": "files",
+      "statement": "Graph, page and aggregate outputs contain no ellipses or omitted branches; all mandatory artifacts are complete.",
+      "disposition": "active",
+      "enforcement": "automatic+prompt",
+      "sources": [
+        "graph prompt",
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "FIL-012",
+      "domain": "files",
+      "statement": "A Work output report lists produced paths, main counts, validation status and material residual limits without duplicating full artifacts in the conversation when files have been created.",
+      "disposition": "active",
+      "enforcement": "prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "FIL-013",
+      "domain": "files",
+      "statement": "Every aggregate page separator uses the exact locked canonical title and every page appears once; the individual files remain authoritative over aggregates.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "argument prompt",
+        "workflow design"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-009",
+      "domain": "prompt_behavior",
+      "statement": "The graph Work final response states completion, gives the five artifact paths, summarizes main counts, reports global validation and mentions only important residual limits; it does not paste the whole graph when the file exists.",
+      "disposition": "active",
+      "enforcement": "prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-010",
+      "domain": "prompt_behavior",
+      "statement": "Do not expose private detailed reasoning; logs contain only concise verifiable editorial operations and reasons.",
+      "disposition": "active",
+      "enforcement": "prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-011",
+      "domain": "prompt_behavior",
+      "statement": "Never claim that a search, pass, source verification or validation was performed unless it was actually executed on the current inputs.",
+      "disposition": "active",
+      "enforcement": "prompt+audit",
+      "sources": [
+        "graph prompt",
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-012",
+      "domain": "prompt_behavior",
+      "statement": "Numerical ranges are coverage guides only; never invent nodes, references or prose to satisfy a quota.",
+      "disposition": "active",
+      "enforcement": "prompt+human",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-013",
+      "domain": "prompt_behavior",
+      "statement": "Do not edit derived counts, graph projections or aggregate files manually; update the source registry and regenerate.",
+      "disposition": "active",
+      "enforcement": "automatic+prompt",
+      "sources": [
+        "graph prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-014",
+      "domain": "prompt_behavior",
+      "statement": "Do not deliver competing graph versions, incomplete branches, placeholders or points of suspension as final artifacts.",
+      "disposition": "active",
+      "enforcement": "prompt+automatic",
+      "sources": [
+        "graph prompt",
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-015",
+      "domain": "prompt_behavior",
+      "statement": "When a category has no qualifying source, omit it and disclose the absence where operationally useful instead of weakening language, relevance or verification requirements.",
+      "disposition": "active",
+      "enforcement": "prompt+human",
+      "sources": [
+        "debate prompt"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-016",
+      "domain": "prompt_behavior",
+      "statement": "For sufficiently clear large graphs, report structural counts and material ambiguities through files/reports rather than interrupting autonomous batch production for unnecessary confirmation.",
+      "disposition": "active",
+      "enforcement": "prompt",
+      "sources": [
+        "argument prompt",
+        "later workflow decision"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "SUP-008",
+      "domain": "superseded",
+      "statement": "Use a node model where camp and level are intrinsic fields of each node rather than occurrence properties.",
+      "disposition": "superseded",
+      "enforcement": "documentation",
+      "sources": [
+        "graph prompt",
+        "later graph design decision"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": "Replaced by nodes/edges/occurrences DAG model."
+    },
+    {
+      "id": "SUP-009",
+      "domain": "superseded",
+      "statement": "Generate Argument pages without mandatory AI-warning and creation-date fields.",
+      "disposition": "superseded",
+      "enforcement": "documentation",
+      "sources": [
+        "original argument prompt",
+        "later user decision"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": "Mandatory warnings and creation dates were added later."
+    },
+    {
+      "id": "SUP-010",
+      "domain": "superseded",
+      "statement": "Limit Argument documentary parameters to bibliography only.",
+      "disposition": "superseded",
+      "enforcement": "documentation",
+      "sources": [
+        "original argument prompt",
+        "later user decision"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": "Domain-appropriate documentary profile prefers bibliography but permits web/video sources when substantively necessary."
+    },
+    {
+      "id": "SUP-011",
+      "domain": "superseded",
+      "statement": "Use the original aggregate-only pages.wiki/pages.json layout as the authoritative storage format.",
+      "disposition": "superseded",
+      "enforcement": "documentation",
+      "sources": [
+        "original argument prompt",
+        "later workflow design"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": "Replaced by one individual source file per page plus generated aggregates."
+    },
+    {
+      "id": "SUP-012",
+      "domain": "superseded",
+      "statement": "Treat date-création or creation-date as the immediate draft-generation date even before validation.",
+      "disposition": "modified",
+      "enforcement": "documentation",
+      "sources": [
+        "original prompts",
+        "later user decision"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": "Refined to the date on which the language-specific page file first becomes valid."
+    },
+    {
+      "id": "SUP-013",
+      "domain": "superseded",
+      "statement": "Keep warning parameters and nested warnings present even when empty.",
+      "disposition": "superseded",
+      "enforcement": "documentation",
+      "sources": [
+        "original debate prompt",
+        "later user decision"
+      ],
+      "normative_files": [
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ],
+      "note": "Allowed structurally but not generated; empty optional parameters are omitted."
+    },
+    {
+      "id": "COR-001",
+      "domain": "editorial",
+      "statement": "Argument summaries defend the strongest sourced version of the node and contain no self-objection, weakening final concession, or metadiscourse.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "decision 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "COR-002",
+      "domain": "documentation",
+      "statement": "Pure bibliographic pagination is stored in page as digits or a hyphenated range; location/localisation is reserved for non-page locators.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "decision 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "COR-003",
+      "domain": "documentation",
+      "statement": "Web date contains a verified publication or substantive update date, never an access date; it is omitted when unverifiable.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "decision 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "COR-004",
+      "domain": "documentation",
+      "statement": "French pages cite a verified French edition of a book when a pertinent edition exists, without artificially translating scientific article titles.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "decision 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "COR-005",
+      "domain": "titles",
+      "statement": "Displayed titles are reviewed individually and may not be mechanically copied across the entire corpus.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "decision 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "COR-006",
+      "domain": "classification",
+      "statement": "Categories/sections and keywords are assigned individually and mechanically uniform distributions are blocked.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "decision 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "COR-007",
+      "domain": "debate_documentation",
+      "statement": "Debate pages use substantive introductions and non-quota documentary distributions covering the principal dimensions of the controversy.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "decision 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "COR-008",
+      "domain": "dates",
+      "statement": "Corpus-specific creation dates are declared in a local profile or manifest and never hard-coded in the generic norm, validator or publication kit.",
+      "disposition": "modified",
+      "enforcement": "automatic+profile",
+      "sources": [
+        "decision 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/schema_graphe_registre_wikidebia.md"
+      ],
+      "note": "Corpus-specific historical decisions remain only in archived provenance documents and in the corpus packages concerned."
+    },
+    {
+      "id": "COR-009",
+      "domain": "workflow",
+      "statement": "Corrective work uses corrective_in_progress/corrective_blocked and returns to release_ready only after full validation, without rewriting historical handoffs.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "decision 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "COR-010",
+      "domain": "publication",
+      "statement": "No W10 corrective revision performs remote writes; the aligned W11 kit is included separately, non-executed, and validates public-template compatibility before any write.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "decision 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "COR-011",
+      "domain": "validator",
+      "statement": "Validation is strictly read-only and every new binary corrective rule has positive and negative test coverage where applicable.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "decision 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "CAT-006",
+      "domain": "classification",
+      "statement": "French and English canonical/displayed titles use straight ASCII double quotes; typographic or angle quotation marks are forbidden in page names.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": "Keyboard-accessibility rule."
+    },
+    {
+      "id": "DEN-007",
+      "domain": "debate_en",
+      "statement": "Important factual claims in every English introduction subsection receive inline references; generated pages never add <references /> tags.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner non-regression audit 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "NORM-001",
+      "domain": "normative",
+      "statement": "Exactly one consolidated norm is active at normative root; older consolidated norms are stored only in history.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner non-regression audit 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "IMP-008",
+      "domain": "import",
+      "statement": "Existing pages are never overwritten by default; equivalent content is skipped and differing content is classified as a collision requiring manual review.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "workflow non-regression audit"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "IMP-009",
+      "domain": "import",
+      "statement": "Every successful write is re-read, content-hash verified and logged with its revision ID.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "workflow non-regression audit"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "IMP-010",
+      "domain": "import",
+      "statement": "Resume logic uses title, expected content SHA-256 and verified remote revision state.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "workflow non-regression audit"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "IMP-011",
+      "domain": "import",
+      "statement": "User-test and publication load the exact signed simulation plan from disk; they never rebuild it silently.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "workflow non-regression audit"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "IMP-012",
+      "domain": "import",
+      "statement": "The signed plan includes and rechecks fingerprints of manifest, release manifest and validator before any write.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "workflow non-regression audit"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "IMP-013",
+      "domain": "import",
+      "statement": "Resume planning accepts a French page already identical to the final interlanguage content instead of reporting a false collision.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "workflow non-regression audit"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "EDT-012",
+      "domain": "editorial",
+      "statement": "Every displayed title has a page-level review decision; no global identity quota substitutes for review.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "CAT-007",
+      "domain": "classification",
+      "statement": "Every selected rubric is reviewed page by page and has its own rationale; no rubric receives special treatment.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "CAT-008",
+      "domain": "classification",
+      "statement": "The review ledger rationale keys exactly match the selected rubrics for every active node.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-020",
+      "domain": "validation",
+      "statement": "Corpus-specific dates, report paths, Work identifiers and handoffs are package-declared and absent from generic runtime code.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-25"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-023",
+      "domain": "arguments",
+      "statement": "Argument summaries use a general-public encyclopedic style and state the central claim at the beginning rather than building a long academic introduction.",
+      "disposition": "active",
+      "enforcement": "human+heuristic",
+      "sources": [
+        "owner decision 2026-07-26"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-024",
+      "domain": "arguments",
+      "statement": "Summaries vary sentence length and avoid a sequence of long, heavily subordinated sentences; automated sentence-length signals are warnings, not proof of poor style.",
+      "disposition": "active",
+      "enforcement": "warning+human",
+      "sources": [
+        "owner decision 2026-07-26"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-025",
+      "domain": "arguments",
+      "statement": "Scientific, technical, legal and philosophical terms needed by the reasoning are briefly defined at their first meaningful occurrence for a non-specialist reader.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "owner decision 2026-07-26"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": "The rule applies generically to any specialized term that a non-specialist reader cannot reasonably be expected to know."
+    },
+    {
+      "id": "ARG-026",
+      "domain": "arguments",
+      "statement": "Definitions are integrated into the explanation and do not turn the summary into a glossary; common-language terms are not defined artificially.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "owner decision 2026-07-26"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-027",
+      "domain": "arguments",
+      "statement": "Names of researchers, studies and methods appear only when useful and normally after the idea they document has been explained in accessible language.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "owner decision 2026-07-26"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-028",
+      "domain": "arguments",
+      "statement": "A page-level human review attests thesis-first structure, general-public accessibility, sentence rhythm and treatment of necessary technical terms for every produced language.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-07-26"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-029",
+      "domain": "arguments",
+      "statement": "The opening sentence develops the argument beyond the canonical or displayed title by introducing a concrete phenomenon, decisive premise, causal mechanism, consequence or useful distinction; a close restatement of the title is insufficient.",
+      "disposition": "active",
+      "enforcement": "warning+human",
+      "sources": [
+        "owner decision 2026-07-27"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": "Automated title-opening similarity is heuristic and cannot replace page-level review."
+    },
+    {
+      "id": "ARG-030",
+      "domain": "arguments",
+      "statement": "Concrete examples, orders of magnitude and quantitative data are used only when they materially improve understanding or demonstration; their presence is never a quota or mandatory decoration.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "owner decision 2026-07-27"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-031",
+      "domain": "arguments",
+      "statement": "Every quantitative claim in a summary is supported by documentary material on the page and human-reviewed for population, scope, date and context; artificial precision is prohibited.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-07-27"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": "The validator can detect many digit-based claims but cannot establish substantive source support on its own."
+    },
+    {
+      "id": "ARG-032",
+      "domain": "arguments",
+      "statement": "A summary may use a firm, vivid and mildly biting formulation to convey the force of the reasoning, while avoiding sarcasm, militancy, contempt, caricature, unsupported certainty and mechanically repeated slogans.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "owner decision 2026-07-27"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "ARG-033",
+      "domain": "arguments",
+      "statement": "The page-level bilingual review records explicit decisions on title development, example-or-data relevance, quantitative verification when applicable, assertive tone and absence of polemical overstatement.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-07-27"
+      ],
+      "normative_files": [
+        "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "TTL-012",
+      "domain": "titles",
+      "statement": "A canonical title is referentially autonomous: contextual demonstratives and pronouns require an antecedent inside the title; a displayed title may rely on an unambiguous immediate context.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner clarification 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-016",
+      "domain": "mediawiki",
+      "statement": "All French pages, including the Debate page, use the Lien interlangue subtemplate from their first valid generation.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-017",
+      "domain": "mediawiki",
+      "statement": "English Debate pages use topic and complete-topic and never use type.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-018",
+      "domain": "mediawiki",
+      "statement": "Generated pages never contain references tags; inline ref calls remain allowed and required where applicable.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-035",
+      "domain": "french_debate",
+      "statement": "French Debate references, including inline introduction calls, are entirely available in French.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-027",
+      "domain": "references",
+      "statement": "Argument pages use a verified equivalent in the page language whenever one exists; cross-language use is explicitly justified.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-028",
+      "domain": "references",
+      "statement": "Debate bibliography contains foundational books or broad syntheses rather than narrow argument-level studies.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-029",
+      "domain": "references",
+      "statement": "Web authors are emitted only after attribution verification, and page is omitted when identical to site.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-019",
+      "domain": "mediawiki",
+      "statement": "Generated French prose uses parentheses, not paired em dashes, for parenthetical asides, appositions and inserted enumerations.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-021",
+      "domain": "validator",
+      "statement": "Package SHA-256 manifests are exhaustive; declared file, requirement and test counts equal the delivered artifacts.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "delivery audit 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "IMP-014",
+      "domain": "import",
+      "statement": "Canonical publication begins by creating and verifying the canonical French Debate page from the signed plan; a signed debate-test receipt is remotely reverified before any remaining write, and no user-space test page is created.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-022",
+      "domain": "validator",
+      "statement": "Publication configurations for page content run every applicable validation scope, including wikicode and editorial.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "delivery audit 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-020",
+      "domain": "mediawiki",
+      "statement": "Active examples and checklists include direct French interlanguage links and contain no late-staging instruction.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "delivery audit 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-036",
+      "domain": "french_debate",
+      "statement": "A bilingual introduction-review ledger records every actual subsection title, its purpose and why it is necessary for understanding the debate.",
+      "disposition": "active",
+      "enforcement": "human+automatic ledger",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ]
+    },
+    {
+      "id": "DFR-037",
+      "domain": "french_debate",
+      "statement": "A technical or specialized subsection is retained only when its relevance to the debated question is explained explicitly.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ]
+    },
+    {
+      "id": "DFR-038",
+      "domain": "french_debate",
+      "statement": "The introduction follows a coherent progression for a non-specialist reader, and each subsection title and opening make its role clear.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ]
+    },
+    {
+      "id": "DFR-039",
+      "domain": "french_debate",
+      "statement": "No universal minimum of five subsections or twenty references applies; any local minimum is justified by the breadth and complexity of the debate.",
+      "disposition": "active",
+      "enforcement": "human+profile",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ]
+    },
+    {
+      "id": "DFR-040",
+      "domain": "french_debate",
+      "statement": "Generic introduction rules contain no topic-specific checklist, corpus identifier or pilot-debate constant.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ]
+    },
+    {
+      "id": "DFR-041",
+      "domain": "french_debate",
+      "statement": "The introduction states the stakes of the debate explicitly rather than leaving them implicit in the argument tree.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ]
+    },
+    {
+      "id": "VAL-023",
+      "domain": "validator",
+      "statement": "For packages declaring norm 1.2.4 or later, the validator requires and checks the bilingual introduction-review ledger against the actual subsection titles.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ]
+    },
+    {
+      "id": "VAL-024",
+      "domain": "validator",
+      "statement": "The self-audit of generic components searches active rules, examples, code and configurations for pilot-corpus identifiers and topic-specific constants outside explicitly historical paths.",
+      "disposition": "active",
+      "enforcement": "audit",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ]
+    },
+    {
+      "id": "PRM-017",
+      "domain": "prompts",
+      "statement": "Introduction writing starts from the reader's comprehension needs, not from argument-tree branches or documentary source families.",
+      "disposition": "active",
+      "enforcement": "prompt",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/workflow_production_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ]
+    },
+    {
+      "id": "FIL-014",
+      "domain": "files",
+      "statement": "Debate-specific publication configurations remain in the debate corpus and are not distributed inside the generic publication kit.",
+      "disposition": "active",
+      "enforcement": "packaging",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ]
+    },
+    {
+      "id": "DFR-042",
+      "domain": "french_debate",
+      "statement": "Inline references in debate introductions are driven by factual claims requiring attribution; no global or per-subsection minimum applies.",
+      "disposition": "active",
+      "enforcement": "human+automatic",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ]
+    },
+    {
+      "id": "VAL-025",
+      "domain": "validator",
+      "statement": "For norm 1.2.4 and later, the validator does not require at least one inline reference call; it checks forbidden references tags, control activation and human review consistency.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-28"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ]
+    },
+    {
+      "id": "CAT-009",
+      "domain": "classification",
+      "statement": "French rubriques and English sections are alphabetized independently in their own language; bilingual equivalence compares conceptual sets rather than list positions.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-29"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ]
+    },
+    {
+      "id": "MW-021",
+      "domain": "mediawiki",
+      "statement": "The French sujet and English topic values begin with a capital letter.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-29"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ]
+    },
+    {
+      "id": "MW-022",
+      "domain": "mediawiki",
+      "statement": "French sujet-complet and English complete-topic are non-interrogative complements that fit the headings Arguments pour et contre… and Pros and cons of… naturally.",
+      "disposition": "active",
+      "enforcement": "human+heuristic",
+      "sources": [
+        "owner decision 2026-07-29"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ]
+    },
+    {
+      "id": "DFR-043",
+      "domain": "french_debate",
+      "statement": "For Debate-page rubriques and sections, precision takes precedence over exhaustiveness; only categories central to the controversy as a whole are retained.",
+      "disposition": "active",
+      "enforcement": "human",
+      "sources": [
+        "owner decision 2026-07-29"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ]
+    },
+    {
+      "id": "DFR-044",
+      "domain": "french_debate",
+      "statement": "Debate-page documentation is proportionate to the abundance of the literature, and bibliography, webliography and videography are reviewed separately without a universal quota.",
+      "disposition": "active",
+      "enforcement": "human+ledger",
+      "sources": [
+        "owner decision 2026-07-29"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ]
+    },
+    {
+      "id": "ARG-034",
+      "domain": "argument_pages",
+      "statement": "Each language-level summary review records an exact expression present in the summary that makes its firm, vivid or mildly biting force perceptible.",
+      "disposition": "active",
+      "enforcement": "human+automatic ledger",
+      "sources": [
+        "owner decision 2026-07-29"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ]
+    },
+    {
+      "id": "VAL-026",
+      "domain": "validator",
+      "statement": "The validator checks alphabetical rubrique/section order and the initial capital in sujet/topic for norm 1.2.6 packages.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-29"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ]
+    },
+    {
+      "id": "VAL-027",
+      "domain": "validator",
+      "statement": "The validator checks complete-topic heading fit heuristics, debate classification/documentation attestations, and that each forceful-expression excerpt occurs in the corresponding summary.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-07-29"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md"
+      ]
+    },
+    {
+      "id": "REF-030",
+      "domain": "references",
+      "statement": "Complete documentary dates are written in natural language in the page language; ISO machine dates are forbidden, while creation dates remain YYYY-MM-DD.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-30"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/structures_mediawiki_wikidebia.md"
+      ],
+      "note": "Bare years remain valid when only the year is known."
+    },
+    {
+      "id": "MW-023",
+      "domain": "mediawiki",
+      "statement": "Inline introduction citations are written directly as readable wikicode inside ref tags; no MediaWiki citation template is used in French or English.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner correction 2026-07-30"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/structures_mediawiki_wikidebia.md"
+      ],
+      "note": "Named references are permitted when their first definition contains direct textual wikicode; self-closing reuse remains allowed."
+    },
+    {
+      "id": "DFR-045",
+      "domain": "debate_documentation",
+      "statement": "Each of the nine documentary parameters on every French Débat and English Debate page contains at least two distinct references.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-07-30"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-024",
+      "domain": "mediawiki",
+      "statement": "When a subject has a common acronym, it is declared in the review ledger and used in sujet-complet or complete-topic.",
+      "disposition": "active",
+      "enforcement": "human+heuristic",
+      "sources": [
+        "owner decision 2026-07-30"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": "The ledger records null when no common acronym applies."
+    },
+    {
+      "id": "MW-025",
+      "domain": "mediawiki",
+      "statement": "Adjacent MediaWiki templates are concatenated as }}{{ without any intervening line break or whitespace in generated French and English page wikicode.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-30"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/structures_mediawiki_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": "The forbidden form includes one or more LF or CRLF line breaks, with optional horizontal whitespace, between }} and {{. The canonical replacement is }}{{."
+    },
+    {
+      "id": "PUB-021",
+      "domain": "publication",
+      "statement": "French pages may be published before English pages exist in the page manifest when future English canonical titles are locked in the master registry and match the French interlanguage targets.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-30"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "IMP-015",
+      "domain": "import",
+      "statement": "A debate archive can be extracted, validated, planned, tested, published and archived through one portable command, without requiring a release_ready filename suffix, with canonical scopes all, fr, en, fr-debate and en-debate.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-30"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ]
+    },
+    {
+      "id": "IMP-016",
+      "domain": "import",
+      "statement": "Within each language, the Debate page is always processed before all Argument pages; a configuration requesting the reverse order is rejected.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-30"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ]
+    },
+    {
+      "id": "FIL-015",
+      "domain": "files",
+      "statement": "Pywikibot credentials are stored only under private/pywikibot, while private, corpus, archives, updates, incoming, logs, plans, state and virtual-environment directories are excluded from Git.",
+      "disposition": "active",
+      "enforcement": "automatic+packaging",
+      "sources": [
+        "owner decision 2026-07-30"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ]
+    },
+    {
+      "id": "FIL-016",
+      "domain": "files",
+      "statement": "No persistent file in the installation stores the absolute path of the project root; configurations, reports, plans and logs use portable relative paths or identifiers.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-30"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ]
+    },
+    {
+      "id": "SUP-014",
+      "domain": "support",
+      "statement": "A one-command component update validates and tests staged packages, archives previous components and incoming archives, atomically installs the new versions and leaves updates empty after success.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-30"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ]
+    },
+    {
+      "id": "GOV-006",
+      "domain": "governance",
+      "statement": "The portable source tree is versioned in Git and pushed to the configured GitHub origin after successful updates, while runtime data and secrets remain untracked.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-07-30"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ]
+    },
+    {
+      "id": "IMP-017",
+      "domain": "import",
+      "statement": "Debate ZIP archives are placed directly in incoming; one ZIP is selected automatically regardless of its filename, while multiple ZIPs require a selector matching exactly the chosen filename stem.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-30"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ]
+    },
+    {
+      "id": "FIL-017",
+      "domain": "files",
+      "statement": "A debate archive filename is only a file selector and need not match manifest.debate_id; the internal debate_id is authoritative for corpus identity.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-07-30"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/cahier_des_charges_consolide_wikidebia.md"
+      ]
+    },
+    {
+      "id": "PUB-022",
+      "domain": "publication",
+      "statement": "Publication executes the currently installed validator and requires its exact runtime version and a positive report, while corpus normative_versions remain immutable historical provenance and need not equal installed component versions when the declared norm is compatible.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner correction 2026-07-31"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ]
+    }
+  ],
+  "source_aliases": {
+    "debate prompt": [
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/cahier_des_charges_consolide_wikidebia.md"
+    ],
+    "original debate prompt": [
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/cahier_des_charges_consolide_wikidebia.md"
+    ],
+    "debate prompt adapted": [
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/cahier_des_charges_consolide_wikidebia.md"
+    ],
+    "debate method": [
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/cahier_des_charges_consolide_wikidebia.md"
+    ],
+    "argument prompt": [
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/cahier_des_charges_consolide_wikidebia.md"
+    ],
+    "original argument prompt": [
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/cahier_des_charges_consolide_wikidebia.md"
+    ],
+    "argument prompt adapted": [
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/cahier_des_charges_consolide_wikidebia.md"
+    ],
+    "graph prompt": [
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/cahier_des_charges_consolide_wikidebia.md"
+    ],
+    "original graph prompt": [
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/cahier_des_charges_consolide_wikidebia.md"
+    ],
+    "method summary": [
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/cahier_des_charges_consolide_wikidebia.md"
+    ],
+    "official structures": [
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/structures_mediawiki_wikidebia.md"
+    ],
+    "base project instruction": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "user decision": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "user decisions": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "later user decision": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "user feedback": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "later user feedback": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "conversation decisions": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "graph design decision": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "later graph design decision": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "parallelized debate requirement": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "workflow design": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md",
+      "01_normes/workflow_production_wikidebia.md"
+    ],
+    "workflow correction": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md",
+      "01_normes/workflow_production_wikidebia.md"
+    ],
+    "audit correction": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md",
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/cahier_des_charges_consolide_wikidebia.md"
+    ],
+    "audit correction resolving prompt tension": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md",
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/cahier_des_charges_consolide_wikidebia.md"
+    ],
+    "audit discussion": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md",
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/cahier_des_charges_consolide_wikidebia.md"
+    ],
+    "Pywikibot audit": [
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/workflow_production_wikidebia.md"
+    ],
+    "Pywikibot review": [
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/workflow_production_wikidebia.md"
+    ],
+    "validator launch request": [
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/cahier_des_charges_consolide_wikidebia.md"
+    ],
+    "original prompts": [
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+      "01_normes/cahier_des_charges_consolide_wikidebia.md"
+    ],
+    "later workflow decision": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "later workflow design": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "decision 2026-07-25": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "owner decision 2026-07-25": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "owner non-regression audit 2026-07-25": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md",
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md"
+    ],
+    "workflow non-regression audit": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md",
+      "01_normes/workflow_production_wikidebia.md"
+    ],
+    "owner decision 2026-07-26": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "owner decision 2026-07-27": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "owner clarification 2026-07-28": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "owner decision 2026-07-28": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "delivery audit 2026-07-28": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md",
+      "00_sources_reference/PROVENANCE_DOCUMENTAIRE.md"
+    ],
+    "owner decision 2026-07-29": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "owner decision 2026-07-30": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "owner correction 2026-07-30": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "owner correction 2026-07-31": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+# Workflow de production Wikidéb’IA — norme 1.2.7
+
+**Statut :** workflow actif générique  
+**Portée :** production bilingue français–anglais, validation et publication MediaWiki
+
+## 1. Principes
+
+Le registre maître et les fichiers individuels sont les sources de vérité. Les titres canoniques français et anglais sont verrouillés avant la première génération des pages françaises. Les pages françaises contiennent donc immédiatement leur lien `{{Lien interlangue}}`, même si les pages anglaises sont rédigées et publiées ensuite. Leur publication n’exige pas que les pages anglaises existent déjà dans le manifeste : le titre anglais verrouillé du registre maître suffit.
+
+Aucun paquet 1.2.x ne produit de patch interlangue tardif ni de copie `staging/interlanguage/`. Les anciens dossiers restent lisibles uniquement pour la compatibilité historique.
+
+Chaque Work reçoit un handoff vérifié, modifie uniquement les champs autorisés et livre des rapports reproductibles. Aucune écriture distante n’est autorisée avant W11.
+
+## 2. États actifs
+
+```text
+initialized
+→ graph_draft
+→ graph_validated
+→ graph_locked
+→ fr_debate_validated
+→ fr_arguments_in_progress
+→ fr_content_complete
+→ fr_validated
+→ en_debate_validated
+→ en_arguments_in_progress
+→ en_content_complete
+→ en_validated
+→ bilingual_validated
+→ interlanguage_validated
+→ release_ready
+→ published
+→ archived
+```
+
+Les états `interlanguage_prepared` et `interlanguage_applied` sont historiques. Le validateur peut les accepter pour les paquets antérieurs à 1.2.0, mais une nouvelle production ne les émet pas.
+
+## 3. Work 00 — Cadrage
+
+Définir la proposition, le périmètre, les acteurs, juridictions, ambiguïtés, exclusions, versions normatives, date de création attendue et chemins du paquet. Créer `manifest.json`, `scope.json` et le registre initial sans inventer de contenu documentaire.
+
+## 4. Work 01 — Recherche, graphe et titres bilingues
+
+Effectuer les recherches et passes d’omission, construire puis consolider le DAG, fixer les occurrences et lots, et verrouiller les titres canoniques et affichés français et anglais. La rédaction anglaise des pages reste différée ; seul le titre anglais est nécessaire à ce stade pour les liens français directs.
+
+Contrôles obligatoires : DAG, absence de doublons, autonomie référentielle, titres idiomatiques, équilibre, saturation documentée, empreinte structurelle et revue humaine.
+
+## 5. Work 02 — Page Débat française
+
+Créer la page française avec `{{Lien interlangue}}` vers le titre canonique anglais verrouillé. Concevoir l’introduction à partir des connaissances nécessaires au lecteur : définition et périmètre, sens de la question, histoire, actualité lorsqu’elle est pertinente, connaissances préalables et enjeux. Chaque sous-partie répond à une question identifiable ; une section technique explique pourquoi elle compte pour le débat. L’introduction ne reproduit ni le graphe ni une checklist issue d’un corpus pilote. Produire le registre bilingue de revue des introductions. Les appels `<ref>…</ref>` sont ajoutés lorsque nécessaire ; leur contenu bibliographique ou web est rédigé directement en wikicode, sans aucun modèle MediaWiki et sans balise `<references />`. Les dates documentaires complètes sont écrites en langage naturel. Aucun minimum global ou par sous-partie n’est recherché. Toutes les références de la page Débat sont disponibles en français. La bibliographie privilégie les ouvrages fondamentaux et synthèses larges. Chacun des neuf paramètres documentaires de la page Débat contient au moins deux références distinctes.
+
+## 6. Work 03 — Arguments français
+
+Produire les pages par lots séquentiels. Chaque page contient son lien interlangue initial, reproduit exactement les relations du registre, emploie des références françaises lorsqu’un équivalent officiel existe et justifie toute source étrangère sans équivalent. Les incises françaises utilisent des parenthèses, non des tirets cadratins appariés.
+
+## 7. Work 04 — Validation française
+
+Exécuter au minimum les portées `schema`, `coherence`, `graph`, `files`, `batches`, `sources`, `wikicode`, `editorial` et `workflow`. Vérifier notamment le registre de revue de l’introduction, la fonction de chaque sous-partie, la progression et l’absence de minimum mécanique ou de checklist de corpus. Corriger les pages sources puis régénérer agrégats et empreintes. Zéro erreur et zéro avertissement non résolu sont exigés.
+
+## 8. Work 05 — Audit des titres bilingues
+
+Vérifier que les titres anglais verrouillés sont idiomatiques, autonomes et équivalents aux titres français. Toute modification est une migration qui met à jour le registre, les pages françaises et toutes les cibles interlangues avant la production anglaise.
+
+## 9. Work 06 — Page Debate anglaise
+
+Créer la page anglaise autonome avec `topic` et `complete-topic`, sans `type` ni interlangue. Adapter le contexte et utiliser des sources anglaises vérifiées.
+
+## 10. Work 07 — Arguments anglais
+
+Produire les pages anglaises par lots avec la même structure logique, une profondeur documentaire comparable et une rédaction idiomatique. Les pages anglaises ne contiennent jamais d’interlangue.
+
+## 11. Work 08 — Validation anglaise
+
+Exécuter les mêmes portées applicables que pour le français, notamment `wikicode` et `editorial`. Vérifier références, titres, relations, agrégats et empreintes.
+
+## 12. Work 09 — Validation bilingue
+
+Contrôler l’identité des nœuds, relations, occurrences, réutilisations et propriétaires de lots, ainsi que l’équivalence substantielle des résumés, rubriques/sections et mots-clés.
+
+## 13. Work 10 — Audit interlangue et prépublication
+
+Vérifier exactement un `{{Lien interlangue}}` dans chaque page française, sa cible canonique anglaise, l’absence de lien en anglais et l’absence totale de patch ou staging actif. Produire `reports/validation_interlanguage.txt`, la revue finale, le manifeste de libération et le handoff W11. W10 n’écrit jamais sur le wiki.
+
+## 14. Work 11 — Simulation, test de la page Débat et publication
+
+1. Exécuter toutes les portées applicables du validateur, y compris `wikicode` et `editorial`.
+2. Construire un plan déterministe signé par SHA-256.
+3. Vérifier les modèles publics, l’identité, la balise `chatgpt`, les collisions et les empreintes.
+4. Créer en premier l’unique page Débat française canonique, obligatoirement absente dans le plan, avec `createonly` ; relire la révision exacte et produire un reçu machine signé.
+5. Avant toute autre écriture, recharger le même plan et le reçu, vérifier leurs empreintes et confirmer que la page Débat est toujours à la révision attestée avec le même contenu, le même résumé et la même balise.
+6. Créer ensuite les autres pages françaises. Pour l’anglais, créer d’abord la page Debate puis les pages Argument anglaises. Dans chaque langue, la page principale précède donc toujours ses arguments.
+7. Ne créer aucune sous-page utilisateur de test. Une page Débat française préexistante bloque le test au lieu d’être écrasée ou réutilisée comme preuve.
+
+8. Le flux ordinaire est exposé par une commande intégrée unique : déposer le ZIP dans `incoming/`. Si un seul ZIP est présent, lancer `./wikidebia publish --scope PORTÉE`; s’il y en a plusieurs, lancer `./wikidebia publish IDENTIFIANT --scope PORTÉE`. Le fichier sélectionné est `incoming/IDENTIFIANT.zip`; son nom sert seulement à sélectionner l’archive et le `debate_id` interne détermine l’identité du corpus. Les portées `fr-debate`, `en-debate`, `fr`, `en` et `all` sont canoniques.
+9. Après succès, le ZIP du débat est déplacé dans `archives/debates/`; le corpus extrait reste dans `corpus/`, hors Git.
+8. Utiliser `createonly` pour toute création. Une modification explicitement autorisée exige `baserevid`.
+9. Relire chaque révision exacte, vérifier contenu, résumé et balise, puis journaliser.
+10. S’arrêter sur toute divergence, collision, perte d’identité, changement de plan ou révision concurrente.
+
+Aucune opération distincte de mise à jour interlangue n’existe pour les paquets 1.2.x.
+
+## 15. Reprises correctives
+
+Le cycle est `release_ready → corrective_in_progress → corrective_blocked` si nécessaire, puis retour à `release_ready` après validation complète. Les handoffs historiques sont immuables. Les constantes propres à un débat restent dans son profil local.
+
+## 16. Livrables
+
+Le paquet final contient le registre, le graphe, les pages individuelles, agrégats, sources, lots, rapports, revues humaines, manifestes, handoffs, journaux locaux et reçus SHA-256. Les archives de normes, validateur et kit possèdent des manifestes exhaustifs.
+
+## Addendum 1.2.6 — contrôles éditoriaux avant libération
+
+Avant `release_ready`, la reprise trie toutes les rubriques et sections dans leur langue, vérifie la majuscule initiale de `sujet`/`topic`, reformule les sujets complets comme compléments d’en-tête et réévalue la sélection documentaire de chaque page Débat/Debate. La revue des résumés enregistre pour chaque langue un extrait exact attestant la force expressive ; une attestation générique répétée sur toutes les pages est insuffisante.
+
+## Addendum 1.2.7 — cohérence de livraison
+
+Le workflow de production et de publication reste identique à celui de 1.2.6. Les composants génériques doivent toutefois refuser toute archive dont le catalogue renvoie à un fichier absent ou dont le compteur `declared_file_count` diverge.
+
+
+## Publication française avant production anglaise — norme 1.2.9
+
+Une opération W11 peut sélectionner uniquement `fr`. Le kit vérifie alors chaque cible `{{Lien interlangue}}` contre le titre anglais verrouillé dans `data/registre_debat.json`. L’absence des pages anglaises correspondantes dans `manifest.json` n’est pas bloquante. Elle le devient seulement si aucun titre anglais verrouillé ne permet de vérifier la cible française.
+
+
+## Addendum 1.2.11 — passe de compaction avant validation
+
+Après chaque génération ou correction de pages, rechercher récursivement la séquence `}}` suivie d’un ou plusieurs retours à la ligne puis de `{{`, avec d’éventuels espaces ou tabulations. Remplacer chaque occurrence par `}}{{` avant de régénérer les agrégats et les empreintes. Les portées `wikicode` et le préflight du kit bloquent toute occurrence résiduelle.
+## 18. Installation, mises à jour et sauvegarde Git
+
+L’installation est portable et pilotée par le lanceur racine `wikidebia`. Les composants entrants sont déposés dans `updates/`; `./wikidebia update` les vérifie, les teste, archive les versions précédentes dans `archives/updates/`, remplace les composants, vide `updates/` et synchronise le dépôt Git lorsque `origin` est configuré.
+
+Le dépôt suit les sources génériques et la documentation, mais ignore `private/`, `corpus/`, `archives/`, `updates/`, `incoming/`, `logs/`, `plans/`, `.state/` et `.venv/`. Les secrets Pywikibot résident dans `private/pywikibot/`. Aucun rapport ou fichier persistant ne contient le chemin absolu de l’installation.
+
+
+Les ZIP encore présents dans l’ancien dossier `incoming/debates/` sont migrés automatiquement vers `incoming/` pendant la mise à jour. Toute collision de noms avec un contenu différent bloque l’opération sans écrasement.
+
+
+## Compatibilité de publication — norme 1.2.15
+
+Avant de construire le plan, le kit exécute le validateur installé sur le corpus. La version réelle du validateur doit correspondre à celle exigée par le kit et le rapport doit être positif. Les versions historiques inscrites dans `manifest.json` ne sont ni comparées pour égalité aux versions installées, ni réécrites. La norme déclarée reste soumise à la liste de compatibilité et aux schémas du validateur courant.

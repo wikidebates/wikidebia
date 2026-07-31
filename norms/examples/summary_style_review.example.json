@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.1",
+  "normative_revision": "1.2.15",
+  "entries": [
+    {
+      "id": "A0001",
+      "languages": {
+        "fr": {
+          "status": "revised",
+          "thesis_first": true,
+          "general_public_style": true,
+          "sentence_rhythm_reviewed": true,
+          "technical_terms_reviewed": true,
+          "opening_develops_title": true,
+          "example_or_data_reviewed": true,
+          "assertive_tone_reviewed": true,
+          "no_artificial_example_or_number": true,
+          "no_polemical_overstatement": true,
+          "quantitative_claims_verified": true,
+          "quantitative_claims_note": "Le pourcentage cité a été vérifié dans la source documentaire de la page avec sa population et sa période.",
+          "note": "L’ouverture expose le mécanisme, l’exemple est utile et le ton reste ferme sans devenir polémique.",
+          "conviction_visible": true,
+          "forceful_expression": "Une formulation exacte et saillante présente dans le résumé."
+        },
+        "en": {
+          "status": "approved",
+          "thesis_first": true,
+          "general_public_style": true,
+          "sentence_rhythm_reviewed": true,
+          "technical_terms_reviewed": true,
+          "opening_develops_title": true,
+          "example_or_data_reviewed": true,
+          "assertive_tone_reviewed": true,
+          "no_artificial_example_or_number": true,
+          "no_polemical_overstatement": true,
+          "quantitative_claims_verified": false,
+          "quantitative_claims_note": "Aucune donnée chiffrée n’est présente dans ce résumé.",
+          "note": "The opening develops the mechanism, and the wording is firm without becoming polemical.",
+          "conviction_visible": true,
+          "forceful_expression": "An exact forceful expression that appears in the summary."
+        }
+      }
+    }
+  ]
+}

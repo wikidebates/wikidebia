@@ -1,0 +1,74 @@
+{
+  "artifact": "WIKIDEBIA_norme_1.1.9_sources.zip",
+  "normative_revision": "1.1.9",
+  "created_at": "2026-07-27T17:42:20Z",
+  "files": [
+    {
+      "path": "ARCHITECTURE_VALIDATEUR.md",
+      "size_bytes": 5180,
+      "sha256": "8a402c4f81516cce585e95e96c3975f0b71ca9d82d5fb12438abe19198925ac2"
+    },
+    {
+      "path": "CHANGELOG_NORMATIF.md",
+      "size_bytes": 1721,
+      "sha256": "54254e2286defa0e78e2b5d6f1a7725bbc4c010a3c97f6e7fb517b343a2aaea5"
+    },
+    {
+      "path": "CONTROL_CATALOG.md",
+      "size_bytes": 5731,
+      "sha256": "559c8d131bd2f22ca1725e8594545174d869462dcdf2ef02017d805ee63dbc64"
+    },
+    {
+      "path": "MATRICE_TRACEABILITE_DESIDERATA.md",
+      "size_bytes": 11684,
+      "sha256": "9dc14c151c8049ae2e05be767039b99ca5e7c8ef17a5688d5b14baa6f146c60d"
+    },
+    {
+      "path": "MIGRATION_1.1.9.md",
+      "size_bytes": 3336,
+      "sha256": "fb95dc80dae53f8c304fe180f4d8d8952b51fc78bd8e58d99852177b884f0934"
+    },
+    {
+      "path": "NORMATIVE_AUDIT_1.1.9.md",
+      "size_bytes": 2538,
+      "sha256": "eca9a03fe5ae9b369af5601a23a78060b22270f4d6a1bb9ceb49ecaab436a631"
+    },
+    {
+      "path": "README_AJOUT_AUX_SOURCES.md",
+      "size_bytes": 1093,
+      "sha256": "90df6aaf8ed458add31deed680f835072acc829e2b716e8acdcdc2c9db8aed89"
+    },
+    {
+      "path": "WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+      "size_bytes": 32861,
+      "sha256": "250614a2c3f927cffc5a5dbf808aa66f3ab4568e52996a921fd10c0dbe505b77"
+    },
+    {
+      "path": "profils_rendu_wikidebia.md",
+      "size_bytes": 36242,
+      "sha256": "5053e60a212436b88ae91113424d2966ca0c6d95d57cd3ff0e73db2d4f6f1761"
+    },
+    {
+      "path": "requirements_catalog_wikidebia.json",
+      "size_bytes": 141423,
+      "sha256": "91a7320cf67d96ebd6cfde61ebf74a95b4e88144afa0ddd348decbad942a828f"
+    },
+    {
+      "path": "summary_style_review.example.json",
+      "size_bytes": 1619,
+      "sha256": "39bca2c702c94641541c4ccaea878a8a727ca0a5e305746d33ad86e98acda8b2"
+    },
+    {
+      "path": "workflow_production_wikidebia.md",
+      "size_bytes": 53687,
+      "sha256": "65461f9041d46da14dac8512dd926b842e0dee4073ab0d3414e99fec9d22704e"
+    }
+  ],
+  "size_bytes": 74632,
+  "sha256": "c9be0dce59407d1351be2b6e42780c420083c63cceb62d3fe8b9b085b2917191",
+  "archive_test": {
+    "format": "zip",
+    "members": 12,
+    "integrity": "passed"
+  }
+}

@@ -1,0 +1,1128 @@
+from __future__ import annotations
+
+from collections import Counter
+from difflib import SequenceMatcher
+from pathlib import Path
+import re
+import unicodedata
+from typing import Any
+
+from .package import PackageContext
+from .wikicode import WikiParseError, get_subs, parse_template
+
+AUTO_OBJECTION_FR = re.compile(
+    r"^(?:cependant|toutefois|néanmoins|pourtant|mais|en revanche|inversement|une limite|cette limite|cet argument|l'argument)\b",
+    re.I,
+)
+AUTO_OBJECTION_EN = re.compile(
+    r"^(?:however|nevertheless|yet|but|by contrast|conversely|one limitation|this limitation|this argument|the argument)\b",
+    re.I,
+)
+ACCESS_DATE = re.compile(r"\b(?:consulté(?:e)?|accessed|retrieved)\b", re.I)
+PAGE_ONLY = re.compile(r"^(?:pages?|pp?\.)\s*[0-9]+(?:\s*[-–—]\s*[0-9]+)?$", re.I)
+PAGE_VALUE = re.compile(r"^[0-9]+(?:-[0-9]+)?$")
+ELLIPSIS = re.compile(r"(?:\.\.\.|…|\.\s*\.\s*\.)")
+MALFORMED_FR_INITIAL = re.compile(r"^(?:S|E)\s+[a-zàâçéèêëîïôûùüÿœ]", re.I)
+DANGLING_FR = re.compile(r"\b(?:de|du|des|à|au|aux|en|dans|par|pour|avec|sans|sur|sous|entre|et|ou|que|qui|dont|si|lorsque|comme)$", re.I)
+DANGLING_EN = re.compile(r"\b(?:of|to|in|on|for|with|without|by|and|or|that|which|when|as)$", re.I)
+DOUBLE_WORD = re.compile(r"\b([\wÀ-ÿ'-]+)\s+\1\b", re.I)
+ALLOWED_KEYWORD_KINDS = {"noun", "noun_phrase", "proper_name", "acronym"}
+COMPLEX_QUOTES = re.compile(r"[«»“”„‟‹›]")
+WORD_TOKEN = re.compile(r"[A-Za-zÀ-ÿ]+(?:[-’']+[A-Za-zÀ-ÿ]+)?")
+SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\s+")
+REF_BLOCK = re.compile(r"<ref\b[^>]*>.*?</ref>|<ref\b[^>]*/>", re.I | re.S)
+WIKI_MARKUP = re.compile(r"\{\{[^{}]*\}\}|\[\[[^\]]+\]\]")
+NUMERIC_CLAIM = re.compile(
+    r"(?<![A-Za-zÀ-ÿ])(?:\d{1,3}(?:[ \u00a0\u202f]\d{3})+|\d+)(?:[.,]\d+)?(?:\s*[-–—]\s*(?:\d{1,3}(?:[ \u00a0\u202f]\d{3})+|\d+)(?:[.,]\d+)?)?(?:\s*(?:%|pour\s+cent|percent))?",
+    re.I,
+)
+SIMILARITY_STOPWORDS = {
+    "fr": {
+        "a", "au", "aux", "avec", "ce", "ces", "cet", "cette", "d", "dans", "de", "des", "du", "elle", "elles", "en", "est", "et", "il", "ils", "l", "la", "le", "les", "leur", "leurs", "mais", "ne", "ou", "par", "pas", "peut", "peuvent", "plus", "pour", "que", "qui", "sa", "se", "ses", "son", "sont", "sur", "un", "une", "vers",
+    },
+    "en": {
+        "a", "an", "and", "are", "as", "at", "be", "by", "can", "could", "for", "from", "in", "is", "it", "may", "of", "on", "or", "that", "the", "their", "these", "this", "to", "toward", "towards", "with", "would",
+    },
+}
+
+
+def _plain_text(text: str) -> str:
+    clean = REF_BLOCK.sub(" ", text or "")
+    clean = WIKI_MARKUP.sub(" ", clean)
+    return re.sub(r"\s+", " ", clean).strip()
+
+
+def summary_first_sentence(text: str) -> str:
+    clean = _plain_text(text)
+    if not clean:
+        return ""
+    return SENTENCE_SPLIT.split(clean, maxsplit=1)[0].strip()
+
+
+def _fold_token(token: str, language: str) -> str:
+    folded = "".join(c for c in unicodedata.normalize("NFKD", token.casefold()) if not unicodedata.combining(c))
+    if language == "fr":
+        if len(folded) > 5 and folded.endswith("es"):
+            folded = folded[:-2]
+        elif len(folded) > 4 and folded.endswith("s"):
+            folded = folded[:-1]
+    else:
+        if len(folded) > 5 and folded.endswith("ies"):
+            folded = folded[:-3] + "y"
+        elif len(folded) > 5 and folded.endswith("ing"):
+            folded = folded[:-3]
+        elif len(folded) > 4 and folded.endswith("ed"):
+            folded = folded[:-2]
+        elif len(folded) > 4 and folded.endswith("s"):
+            folded = folded[:-1]
+    return folded
+
+
+def _similarity_tokens(text: str, language: str) -> list[str]:
+    expanded = re.sub(r"[-’']", " ", _plain_text(text))
+    tokens = [_fold_token(t, language) for t in WORD_TOKEN.findall(expanded)]
+    stop = SIMILARITY_STOPWORDS.get(language, set())
+    return [t for t in tokens if len(t) > 1 and t not in stop]
+
+
+def opening_title_similarity(summary: str, titles: list[str], language: str, controls: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Return a cautious signal when the opening adds almost nothing to a title."""
+    cfg = controls or {}
+    threshold = float(cfg.get("opening_similarity_threshold", 0.84))
+    max_extra = int(cfg.get("opening_max_extra_significant_words", 4))
+    opening = summary_first_sentence(summary)
+    opening_tokens = _similarity_tokens(opening, language)
+    best: dict[str, Any] = {
+        "issue": False,
+        "opening": opening,
+        "matched_title": "",
+        "sequence_similarity": 0.0,
+        "title_token_coverage": 0.0,
+        "jaccard_similarity": 0.0,
+        "extra_significant_words": len(opening_tokens),
+        "threshold": threshold,
+        "max_extra_significant_words": max_extra,
+    }
+    if not opening_tokens:
+        return best
+    opening_set = set(opening_tokens)
+    for title in titles:
+        title_tokens = _similarity_tokens(title or "", language)
+        if not title_tokens:
+            continue
+        title_set = set(title_tokens)
+        common = opening_set & title_set
+        union = opening_set | title_set
+        sequence = SequenceMatcher(None, " ".join(title_tokens), " ".join(opening_tokens)).ratio()
+        coverage = len(common) / len(title_set)
+        jaccard = len(common) / len(union) if union else 0.0
+        extra = sum(1 for token in opening_tokens if token not in title_set)
+        exact = title_tokens == opening_tokens
+        issue = exact or (
+            coverage >= 0.80
+            and extra <= max_extra
+            and (sequence >= threshold or jaccard >= max(0.72, threshold - 0.10))
+        )
+        candidate = {
+            "issue": issue,
+            "opening": opening,
+            "matched_title": title,
+            "sequence_similarity": round(sequence, 3),
+            "title_token_coverage": round(coverage, 3),
+            "jaccard_similarity": round(jaccard, 3),
+            "extra_significant_words": extra,
+            "threshold": threshold,
+            "max_extra_significant_words": max_extra,
+        }
+        if (candidate["issue"], candidate["sequence_similarity"], candidate["title_token_coverage"]) > (
+            best["issue"], best["sequence_similarity"], best["title_token_coverage"]
+        ):
+            best = candidate
+    return best
+
+
+def summary_quantitative_claims(text: str) -> list[str]:
+    """Return digit-based quantitative expressions outside references and wiki markup."""
+    return [m.group(0).strip() for m in NUMERIC_CLAIM.finditer(_plain_text(text))]
+
+
+def summary_sentence_word_counts(text: str) -> list[int]:
+    """Count lexical words per sentence after removing common inline wiki markup."""
+    clean = REF_BLOCK.sub(" ", text or "")
+    clean = WIKI_MARKUP.sub(" ", clean)
+    sentences = [s.strip() for s in SENTENCE_SPLIT.split(clean.strip()) if s.strip()]
+    return [len(WORD_TOKEN.findall(sentence)) for sentence in sentences]
+
+
+def summary_style_issues(text: str, controls: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Return cautious readability heuristics; these signals never replace human review."""
+    cfg = controls or {}
+    counts = summary_sentence_word_counts(text)
+    if not counts:
+        return {"issues": ["empty"], "sentence_word_counts": [], "average_sentence_words": 0.0, "long_sentence_ratio": 0.0}
+    min_sentences = int(cfg.get("min_sentences", 3))
+    long_words = int(cfg.get("long_sentence_words", 34))
+    max_average = float(cfg.get("max_average_sentence_words", 28))
+    max_ratio = float(cfg.get("max_long_sentence_ratio", 0.60))
+    max_sentence = int(cfg.get("max_sentence_words", 50))
+    average = sum(counts) / len(counts)
+    ratio = sum(count >= long_words for count in counts) / len(counts)
+    issues: list[str] = []
+    if len(counts) >= min_sentences and average > max_average and (ratio > max_ratio or all(count > max_average for count in counts)):
+        issues.append("long_sentence_accumulation")
+    if max(counts) > max_sentence:
+        issues.append("very_long_sentence")
+    return {
+        "issues": issues,
+        "sentence_word_counts": counts,
+        "average_sentence_words": round(average, 2),
+        "long_sentence_ratio": round(ratio, 3),
+        "thresholds": {
+            "min_sentences": min_sentences,
+            "long_sentence_words": long_words,
+            "max_average_sentence_words": max_average,
+            "max_long_sentence_ratio": max_ratio,
+            "max_sentence_words": max_sentence,
+        },
+    }
+
+
+def displayed_title_issues(title: str, language: str) -> list[str]:
+    """Return stable reason labels for malformed or truncated displayed titles."""
+    value = title or ""
+    issues: list[str] = []
+    if value != value.strip():
+        issues.append("surrounding_whitespace")
+    stripped = value.strip()
+    if not stripped:
+        return ["empty"]
+    if ELLIPSIS.search(stripped):
+        issues.append("ellipsis")
+    if COMPLEX_QUOTES.search(stripped):
+        issues.append("complex_quotes")
+    if stripped.count('"') % 2:
+        issues.append("unbalanced_quotes")
+    if len(stripped) < 12:
+        issues.append("too_short")
+    first_alpha = next((c for c in stripped if c.isalpha()), "")
+    if first_alpha and not first_alpha.isupper():
+        issues.append("lowercase_initial")
+    if language == "fr" and MALFORMED_FR_INITIAL.search(stripped):
+        issues.append("malformed_article")
+    dangling = DANGLING_FR if language == "fr" else DANGLING_EN
+    if dangling.search(stripped):
+        issues.append("dangling_connector")
+    if DOUBLE_WORD.search(stripped):
+        issues.append("doubled_word")
+    return issues
+
+
+def summary_word_ratio(fr_text: str, en_text: str) -> float:
+    fr_words = re.findall(r"\b[\wÀ-ÿ'-]+\b", fr_text or "")
+    en_words = re.findall(r"\b[\w'-]+\b", en_text or "")
+    return (len(en_words) / len(fr_words)) if fr_words else 0.0
+
+
+def keyword_form_issues(keywords: list[str]) -> list[str]:
+    issues: list[str] = []
+    if not 2 <= len(keywords) <= 4:
+        issues.append("count")
+    if len(keywords) != len(set(keywords)):
+        issues.append("duplicates")
+    for keyword in keywords:
+        if not isinstance(keyword, str) or not keyword.strip():
+            issues.append("empty")
+            continue
+        if keyword != keyword.strip():
+            issues.append("surrounding_whitespace")
+        if ELLIPSIS.search(keyword):
+            issues.append("ellipsis")
+        if len(keyword) > 40:
+            issues.append("too_long")
+        if len(WORD_TOKEN.findall(keyword)) > 4:
+            issues.append("too_many_words")
+    return sorted(set(issues))
+
+
+def _active(ctx: PackageContext) -> bool:
+    manifest = ctx.manifest() or {}
+    return (manifest.get("normative_versions") or {}).get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}
+
+
+def summary_has_auto_objection(text: str, language: str) -> bool:
+    sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", text.strip()) if s.strip()]
+    if not sentences:
+        return True
+    final = sentences[-1]
+    marker = AUTO_OBJECTION_FR if language == "fr" else AUTO_OBJECTION_EN
+    return bool(marker.search(final))
+
+
+def title_copy_ratio(nodes: list[dict[str, Any]], language: str) -> float:
+    vals = []
+    for node in nodes:
+        data = node.get(language) or {}
+        canonical = (data.get("canonical_title") or "").strip().casefold()
+        displayed = (data.get("displayed_title") or "").strip().casefold()
+        if canonical:
+            vals.append(canonical == displayed)
+    return sum(vals) / len(vals) if vals else 1.0
+
+
+def dominant_classification_ratio(nodes: list[dict[str, Any]], language: str) -> float:
+    key = "rubriques" if language == "fr" else "sections"
+    combos = [tuple((node.get(language) or {}).get(key) or []) for node in nodes]
+    if not combos:
+        return 1.0
+    return Counter(combos).most_common(1)[0][1] / len(combos)
+
+
+def _parse_page(ctx: PackageContext, rel: str):
+    text = ctx.read_text(rel)
+    if text is None:
+        return None
+    try:
+        return parse_template(text)
+    except WikiParseError:
+        return None
+
+
+def _summary(tmpl, lang: str) -> str:
+    return tmpl.one("résumé" if lang == "fr" else "summary") or ""
+
+
+
+
+def _consolidated_norm_from_manifest(manifest: dict[str, Any]) -> str | None:
+    return (manifest.get("normative_versions") or {}).get("consolidated_norm")
+
+
+def _validate_documentary_registry(ctx: PackageContext) -> tuple[int, int]:
+    sources = ctx.sources() or {}
+    pagination_errors = 0
+    date_errors = 0
+    for source in sources.get("sources", []):
+        metadata = source.get("metadata") or {}
+        location = metadata.get("location")
+        page = metadata.get("page")
+        if source.get("type") == "bibliography":
+            if isinstance(location, str) and PAGE_ONLY.fullmatch(location.strip()):
+                pagination_errors += 1
+                ctx.report.error("WDV-DOC-002", "Pagination bibliographique encore placée dans location/localisation", path=ctx.core_paths()["sources"], details={"source_id": source.get("id"), "value": location})
+            if page is not None and not PAGE_VALUE.fullmatch(str(page)):
+                pagination_errors += 1
+                ctx.report.error("WDV-DOC-002", "Valeur page bibliographique non normalisée", path=ctx.core_paths()["sources"], details={"source_id": source.get("id"), "value": page})
+        date = metadata.get("date")
+        if isinstance(date, str) and ACCESS_DATE.search(date):
+            date_errors += 1
+            ctx.report.error("WDV-DOC-003", "Date de simple consultation conservée comme date documentaire", path=ctx.core_paths()["sources"], details={"source_id": source.get("id"), "value": date})
+        if _consolidated_norm_from_manifest(ctx.manifest() or {}) in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} and isinstance(date, str) and re.fullmatch(r"\d{4}-\d{2}(?:-\d{2})?(?:[T ].*)?", date.strip()):
+            date_errors += 1
+            ctx.report.error("WDV-DOC-005", "Date documentaire au format machine dans le registre des sources", path=ctx.core_paths()["sources"], details={"source_id": source.get("id"), "value": date})
+    return pagination_errors, date_errors
+
+
+def _validate_debate_docs(ctx: PackageContext, manifest: dict[str, Any], controls: dict[str, Any], norm: str | None = None) -> dict[str, Any]:
+    metrics: dict[str, Any] = {}
+    cfg = controls.get("debate_documentation") or {}
+    min_subsections = int(cfg.get("min_subsections", 1))
+    min_references = int(cfg.get("min_references", 0))
+    reject_singleton = cfg.get("reject_singleton_bucket_pattern") is True
+    profile_rationale = cfg.get("profile_rationale")
+    if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} and (not isinstance(profile_rationale, str) or not profile_rationale.strip()):
+        ctx.report.error("WDV-EDT-004", "Justification des minima documentaires locaux absente", path="manifest.json")
+    debate_pages = [p for p in manifest.get("pages", []) if p.get("page_type") == "debate"]
+    doc_params = {
+        "fr": ["bibliographie-pour", "bibliographie-contre", "bibliographie-ni-pour-ni-contre", "sitographie-pour", "sitographie-contre", "sitographie-ni-pour-ni-contre", "vidéographie-pour", "vidéographie-contre", "vidéographie-ni-pour-ni-contre"],
+        "en": ["pro-bibliography", "con-bibliography", "bibliography", "pro-webliography", "con-webliography", "webliography", "pro-videography", "con-videography", "videography"],
+    }
+    for page in debate_pages:
+        lang = page.get("language")
+        tmpl = _parse_page(ctx, page.get("file_path"))
+        if not tmpl:
+            continue
+        intro_count = len(get_subs(tmpl, "introduction"))
+        bucket_templates = [get_subs(tmpl, param) for param in doc_params[lang]]
+        counts = [len(items) for items in bucket_templates]
+        distinct_counts = [
+            len({re.sub(r"\s+", " ", item.raw).strip().casefold() for item in items})
+            for items in bucket_templates
+        ]
+        total = sum(counts)
+        metrics[lang] = {"introduction_subsections": intro_count, "documentary_references": total, "bucket_counts": counts, "distinct_bucket_counts": distinct_counts, "profile_minima": {"subsections": min_subsections, "references": min_references}, "profile_rationale": profile_rationale}
+        if intro_count < min_subsections or total < min_references:
+            ctx.report.error("WDV-EDT-004", "Page de débat insuffisamment développée ou documentée selon le profil déclaré", path=page.get("file_path"), details=metrics[lang])
+        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}:
+            insufficient = {
+                param: {"total": count, "distinct": distinct}
+                for param, count, distinct in zip(doc_params[lang], counts, distinct_counts)
+                if distinct < 2
+            }
+            if insufficient:
+                ctx.report.error("WDV-EDT-004", "Chaque paramètre documentaire de la page de débat doit contenir au moins deux références distinctes", path=page.get("file_path"), details={"minimum_distinct_per_bucket": 2, "insufficient_buckets": insufficient, "bucket_counts": dict(zip(doc_params[lang], counts)), "distinct_bucket_counts": dict(zip(doc_params[lang], distinct_counts))})
+        nonzero = [x for x in counts if x]
+        if reject_singleton and nonzero and len(nonzero) >= 6 and len(set(nonzero)) == 1 and nonzero[0] == 1:
+            ctx.report.error("WDV-EDT-004", "Documentation répartie selon le motif mécanique d'une référence par rubrique", path=page.get("file_path"), details={"bucket_counts": counts})
+    return metrics
+
+def _validate_dates(ctx: PackageContext, manifest: dict[str, Any], expected: str | None) -> int:
+    errors = 0
+    if not expected:
+        ctx.report.error("WDV-EDT-005", "Date active attendue absente du profil de contrôle du paquet", path="manifest.json")
+        return 1
+    for page in manifest.get("pages", []):
+        if page.get("creation_date") != expected:
+            errors += 1
+            ctx.report.error("WDV-EDT-005", "Date active divergente dans le manifeste de page", path="manifest.json", details={"page_id": page.get("page_id"), "language": page.get("language"), "expected": expected, "actual": page.get("creation_date")})
+        tmpl = _parse_page(ctx, page.get("file_path"))
+        if tmpl:
+            param = "date-création" if page.get("language") == "fr" else "creation-date"
+            if tmpl.one(param) != expected:
+                errors += 1
+                ctx.report.error("WDV-EDT-005", "Date active divergente dans le wikicode canonique", path=page.get("file_path"), details={"expected": expected, "actual": tmpl.one(param)})
+        if page.get("language") == "fr":
+            canonical = Path(page.get("file_path", ""))
+            try:
+                suffix = canonical.relative_to(Path("output/fr"))
+            except ValueError:
+                continue
+            staging = (Path("staging/interlanguage/fr") / suffix).as_posix()
+            st = _parse_page(ctx, staging)
+            if st and st.one("date-création") != expected:
+                errors += 1
+                ctx.report.error("WDV-EDT-005", "Date active divergente dans le staging français", path=staging, details={"expected": expected, "actual": st.one("date-création")})
+    return errors
+
+def _validate_traceability(ctx: PackageContext, manifest: dict[str, Any], editorial_controls: dict[str, Any], trace_controls: dict[str, Any]) -> dict[str, Any]:
+    required_reports = editorial_controls.get("required_reports") or []
+    missing_reports = [p for p in required_reports if not ctx.exists(p)]
+    if missing_reports:
+        ctx.report.error("WDV-EDT-006", "Rapports déclarés obligatoires absents", details={"paths": missing_reports})
+    handoff_paths = trace_controls.get("required_corrective_handoffs") or []
+    missing_handoffs = [p for p in handoff_paths if not ctx.exists(p)]
+    if missing_handoffs:
+        ctx.report.error("WDV-EDT-006", "Handoffs correctifs déclarés absents", details={"paths": missing_handoffs})
+    checked = 0
+    for rel in handoff_paths:
+        data = ctx.load_json(rel) if ctx.exists(rel) else None
+        if not isinstance(data, dict):
+            continue
+        checked += 1
+        if data.get("remote_operations_performed") is not False:
+            ctx.report.error("WDV-EDT-006", "Un handoff correctif n'atteste pas l'absence d'opération distante", path=rel)
+        if data.get("debate_id") != manifest.get("debate_id"):
+            ctx.report.error("WDV-EDT-006", "Handoff correctif rattaché à un autre débat", path=rel)
+    gate = manifest.get("publication_gate") or {}
+    if trace_controls.get("remote_write_must_be_false") is True and gate.get("remote_write_authorized") is not False:
+        ctx.report.error("WDV-EDT-006", "Le paquet autorise à tort une écriture distante", path="manifest.json")
+    return {"reports_missing": missing_reports, "handoffs_declared": len(handoff_paths), "handoffs_checked": checked, "handoffs_missing": missing_handoffs, "remote_write_authorized": gate.get("remote_write_authorized")}
+
+
+def _load_keyword_vocabulary(ctx: PackageContext, controls: dict[str, Any]) -> tuple[dict[str, dict[str, Any]], dict[str, dict[str, Any]]]:
+    rel = controls.get("keyword_vocabulary_path")
+    data = ctx.load_json(rel) if isinstance(rel, str) and ctx.exists(rel) else None
+    if not isinstance(data, dict):
+        return {}, {}
+    entries = data.get("entries") or []
+    by_fr: dict[str, dict[str, Any]] = {}
+    by_en: dict[str, dict[str, Any]] = {}
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        fr = entry.get("fr")
+        en = entry.get("en")
+        if isinstance(fr, str): by_fr[fr] = entry
+        if isinstance(en, str): by_en[en] = entry
+    return by_fr, by_en
+
+
+def _validate_intro_references(ctx: PackageContext, manifest: dict[str, Any], controls: dict[str, Any]) -> dict[str, Any]:
+    metrics: dict[str, Any] = {}
+    cfg = controls.get("introduction_references") or {}
+    if cfg.get("required") is not True:
+        ctx.report.error("WDV-EDT-010", "Contrôle des appels inline des introductions non activé", path="manifest.json")
+    min_subsections = int(cfg.get("min_subsections", 1))
+    norm = (manifest.get("normative_versions") or {}).get("consolidated_norm")
+    typed_fr = {"référence bibliographique", "référence bibliographique pour", "référence bibliographique contre", "référence sitographique", "référence sitographique pour", "référence sitographique contre", "référence vidéographique", "référence vidéographique pour", "référence vidéographique contre"}
+    typed_en = {"bibliographical reference", "pro bibliographical reference", "con bibliographical reference", "web reference", "pro web reference", "con web reference", "video reference", "pro video reference", "con video reference"}
+    ref_pair_re = re.compile(r"<ref\b(?P<attrs>[^>/]*?)>(?P<body>.*?)</ref\s*>", flags=re.I | re.S)
+    ref_self_re = re.compile(r"<ref\b(?P<attrs>[^>]*)/\s*>", flags=re.I | re.S)
+    name_re = re.compile(r"\bname\s*=\s*(?:\"([^\"]+)\"|'([^']+)'|([^\s>]+))", flags=re.I)
+    template_re = re.compile(r"\{\{\s*([^|}\n]+)", flags=re.I)
+    machine_date_re = re.compile(r"(?<!\d)\d{4}-\d{2}(?:-\d{2})?(?:[T ][0-9:.+Z-]+)?(?!\d)")
+    for page in [p for p in manifest.get("pages", []) if p.get("page_type") == "debate"]:
+        lang = page.get("language")
+        tmpl = _parse_page(ctx, page.get("file_path"))
+        if not tmpl:
+            continue
+        intro = tmpl.one("introduction") or ""
+        blocks = [s.one("contenu" if lang == "fr" else "content") or "" for s in get_subs(tmpl, "introduction")]
+        invalid = []
+        invalid_models: list[dict[str, Any]] = []
+        invalid_direct_notes: list[dict[str, Any]] = []
+        machine_dates: list[dict[str, Any]] = []
+        defined_names: set[str] = set()
+        referenced_names: list[tuple[int, str]] = []
+        expected_model = "Référence" if lang == "fr" else "Reference"
+        typed_models = typed_fr if lang == "fr" else typed_en
+        for index, block in enumerate(blocks):
+            has_inline = bool(re.search(r"<ref\b", block, flags=re.I))
+            has_references_tag = bool(re.search(r"<references\b", block, flags=re.I))
+            if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}:
+                if has_references_tag:
+                    invalid.append(index + 1)
+            elif norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3"}:
+                if not has_inline or has_references_tag:
+                    invalid.append(index + 1)
+            elif not has_inline or block.count("<references />") != 1 or not block.rstrip().endswith("<references />"):
+                invalid.append(index + 1)
+            if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}:
+                for match in ref_pair_re.finditer(block):
+                    body = match.group("body").strip()
+                    attrs = match.group("attrs") or ""
+                    named = name_re.search(attrs)
+                    if named:
+                        defined_names.add(next(group for group in named.groups() if group is not None))
+                    if norm == "1.2.9":
+                        template = template_re.search(body)
+                        actual = template.group(1).strip() if template else ""
+                        if actual.casefold() != expected_model.casefold():
+                            invalid_models.append({"subsection": index + 1, "expected": expected_model, "actual": actual or None})
+                            if actual.casefold() in typed_models:
+                                invalid_models[-1]["typed_model_forbidden"] = True
+                        for dm in re.finditer(r"\|\s*date\s*=\s*([^|}\n]+)", body, flags=re.I):
+                            value = dm.group(1).strip()
+                            if re.fullmatch(r"\d{4}-\d{2}(?:-\d{2})?(?:[T ].*)?", value):
+                                machine_dates.append({"subsection": index + 1, "value": value})
+                    else:
+                        templates = [m.group(1).strip() for m in template_re.finditer(body)]
+                        if templates:
+                            invalid_direct_notes.append({"subsection": index + 1, "reason": "mediawiki_template_forbidden", "templates": templates})
+                        if not body:
+                            invalid_direct_notes.append({"subsection": index + 1, "reason": "empty_reference_body"})
+                        for dm in machine_date_re.finditer(body):
+                            machine_dates.append({"subsection": index + 1, "value": dm.group(0)})
+                for match in ref_self_re.finditer(block):
+                    named = name_re.search(match.group("attrs") or "")
+                    if named:
+                        referenced_names.append((index + 1, next(group for group in named.groups() if group is not None)))
+                    else:
+                        if norm == "1.2.9":
+                            invalid_models.append({"subsection": index + 1, "expected": expected_model, "actual": "self-closing unnamed ref"})
+                        else:
+                            invalid_direct_notes.append({"subsection": index + 1, "reason": "self_closing_unnamed_reference"})
+        missing_named = [{"subsection": idx, "name": name} for idx, name in referenced_names if name not in defined_names]
+        ref_calls = len(re.findall(r"<ref\b", intro, flags=re.I))
+        claim_driven_policy = norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}
+        metrics[lang] = {
+            "subsections": len(blocks),
+            "ref_calls": ref_calls,
+            "references_blocks": len(re.findall(r"<references\b", intro, flags=re.I)),
+            "invalid_subsections": invalid,
+            "minimum": min_subsections,
+            "claim_driven_policy": claim_driven_policy,
+            "expected_inline_reference_model": expected_model if norm == "1.2.9" else None,
+            "inline_reference_body_mode": "direct_wikicode_without_templates" if norm in {"1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} else None,
+            "invalid_inline_reference_models": invalid_models,
+            "invalid_direct_reference_notes": invalid_direct_notes,
+            "undefined_named_references": missing_named,
+            "machine_documentary_dates": machine_dates,
+        }
+        minimum_failure = (not claim_driven_policy) and len(blocks) < min_subsections
+        if minimum_failure or invalid:
+            if claim_driven_policy:
+                message = "Balise <references /> présente dans l’introduction"
+            elif norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3"}:
+                message = "Appels de référence inline absents ou balise <references /> présente"
+            else:
+                message = "Appels de référence inline absents ou bloc <references /> mal placé dans l’introduction"
+            ctx.report.error("WDV-EDT-010", message, path=page.get("file_path"), details=metrics[lang])
+        if norm == "1.2.9" and (invalid_models or missing_named):
+            ctx.report.error("WDV-EDT-010", f"Les appels inline de l’introduction doivent employer exclusivement le modèle {expected_model}", path=page.get("file_path"), details=metrics[lang])
+        if norm in {"1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} and (invalid_direct_notes or missing_named):
+            ctx.report.error("WDV-EDT-010", "Les appels inline de l’introduction doivent contenir une référence rédigée directement, sans modèle MediaWiki", path=page.get("file_path"), details=metrics[lang])
+        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} and machine_dates:
+            ctx.report.error("WDV-DOC-005", "Date documentaire au format machine dans un appel de référence inline", path=page.get("file_path"), details={"dates": machine_dates, "creation_date_parameters_unchanged": ["date-création", "creation-date"]})
+    return metrics
+
+
+INTRO_REVIEW_TRUE_FIELDS = (
+    "subject_and_scope_defined",
+    "debate_question_explained",
+    "history_and_evolution_addressed",
+    "current_state_addressed_or_not_applicable",
+    "stakes_explained",
+    "factual_claims_referenced",
+    "progression_coherent",
+    "no_argument_tree_mirroring",
+    "no_topic_specific_checklist",
+)
+
+
+def validate_introduction_review_data(review: Any, actual_titles: dict[str, list[str]], norm: str | None = None, complete_topics: dict[str, str] | None = None) -> list[dict[str, Any]]:
+    """Return stable inconsistencies in the bilingual introduction-review ledger."""
+    issues: list[dict[str, Any]] = []
+    if not isinstance(review, dict):
+        return [{"reason": "missing_or_invalid_document"}]
+    if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} and review.get("normative_revision") != norm:
+        issues.append({"reason": "wrong_normative_revision", "expected": norm, "actual": review.get("normative_revision")})
+    entries = review.get("entries")
+    if not isinstance(entries, list):
+        return issues + [{"reason": "missing_entries"}]
+    by_lang: dict[str, dict[str, Any]] = {}
+    for entry in entries:
+        if not isinstance(entry, dict) or entry.get("language") not in {"fr", "en"}:
+            issues.append({"reason": "invalid_entry"})
+            continue
+        lang = entry["language"]
+        if lang in by_lang:
+            issues.append({"reason": "duplicate_language", "language": lang})
+            continue
+        by_lang[lang] = entry
+    for lang, titles in actual_titles.items():
+        entry = by_lang.get(lang)
+        if not entry:
+            issues.append({"reason": "missing_language", "language": lang})
+            continue
+        for field in INTRO_REVIEW_TRUE_FIELDS:
+            if entry.get(field) is not True:
+                issues.append({"reason": "attestation_false_or_missing", "language": lang, "field": field})
+        if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}:
+            for field in ("complete_topic_fits_heading", "debate_sections_precise", "documentation_proportionate_to_literature"):
+                if entry.get(field) is not True:
+                    issues.append({"reason": field, "language": lang})
+            family_notes = entry.get("documentation_family_notes")
+            expected_families = {"bibliography", "webliography", "videography"}
+            if not isinstance(family_notes, dict) or set(family_notes) != expected_families:
+                issues.append({"reason": "documentation_family_notes", "language": lang})
+            else:
+                for family, note in family_notes.items():
+                    if not isinstance(note, str) or len(note.strip()) < 20:
+                        issues.append({"reason": "documentation_family_note", "language": lang, "family": family})
+        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}:
+            acronym = entry.get("common_acronym")
+            if acronym is not None and (not isinstance(acronym, str) or not acronym.strip()):
+                issues.append({"reason": "invalid_common_acronym", "language": lang})
+            if entry.get("common_acronym_used_or_not_applicable") is not True:
+                issues.append({"reason": "common_acronym_attestation", "language": lang})
+            if isinstance(acronym, str) and acronym.strip() and complete_topics is not None:
+                complete = complete_topics.get(lang, "")
+                if not re.search(rf"(?<![\w.-]){re.escape(acronym.strip())}(?![\w.-])", complete):
+                    issues.append({"reason": "common_acronym_missing_from_complete_topic", "language": lang, "acronym": acronym.strip(), "complete_topic": complete})
+        rows = entry.get("subsections")
+        if not isinstance(rows, list):
+            issues.append({"reason": "missing_subsections", "language": lang})
+            continue
+        ledger_titles = [row.get("title") for row in rows if isinstance(row, dict)]
+        if ledger_titles != titles:
+            issues.append({"reason": "subsection_titles_mismatch", "language": lang, "expected": titles, "actual": ledger_titles})
+        for index, row in enumerate(rows, start=1):
+            if not isinstance(row, dict):
+                issues.append({"reason": "invalid_subsection_entry", "language": lang, "index": index})
+                continue
+            if not isinstance(row.get("purpose"), str) or not row["purpose"].strip():
+                issues.append({"reason": "missing_purpose", "language": lang, "index": index})
+            if row.get("necessary_for_understanding") is not True:
+                issues.append({"reason": "subsection_not_attested_as_necessary", "language": lang, "index": index})
+            if row.get("technical_or_specialized") is True and row.get("relevance_to_debate_explained") is not True:
+                issues.append({"reason": "technical_relevance_not_explained", "language": lang, "index": index})
+    extra = sorted(set(by_lang) - set(actual_titles))
+    for lang in extra:
+        issues.append({"reason": "unexpected_language", "language": lang})
+    return issues
+
+
+def _validate_introduction_review(ctx: PackageContext, manifest: dict[str, Any], controls: dict[str, Any], norm: str | None) -> dict[str, Any]:
+    rel = controls.get("introduction_review_path")
+    if not isinstance(rel, str) or not rel:
+        ctx.report.error("WDV-EDT-017", "Registre bilingue de revue des introductions absent", path="manifest.json")
+        return {"path": rel, "issues": [{"reason": "missing_path"}]}
+    review = ctx.load_json(rel) if ctx.exists(rel) else None
+    actual_titles: dict[str, list[str]] = {}
+    complete_topics: dict[str, str] = {}
+    for page in [p for p in manifest.get("pages", []) if p.get("page_type") == "debate"]:
+        lang = page.get("language")
+        tmpl = _parse_page(ctx, page.get("file_path"))
+        if lang not in {"fr", "en"} or not tmpl:
+            continue
+        key = "titre" if lang == "fr" else "title"
+        complete_key = "sujet-complet" if lang == "fr" else "complete-topic"
+        actual_titles[lang] = [(sub.one(key) or "").strip() for sub in get_subs(tmpl, "introduction")]
+        complete_topics[lang] = (tmpl.one(complete_key) or "").strip()
+    issues = validate_introduction_review_data(review, actual_titles, norm=norm, complete_topics=complete_topics)
+    for issue in issues:
+        reason = issue.get("reason")
+        if reason in {"complete_topic_fits_heading", "invalid_common_acronym", "common_acronym_attestation", "common_acronym_missing_from_complete_topic"}:
+            code = "WDV-EDT-018"
+            message = "La forme de sujet-complet ou complete-topic, notamment l’usage de l’acronyme courant, n’est pas conforme"
+        elif reason in {"debate_sections_precise", "documentation_proportionate_to_literature", "documentation_family_notes", "documentation_family_note"}:
+            code = "WDV-EDT-019"
+            message = "La précision des rubriques ou la profondeur documentaire de la page de débat n’est pas attestée"
+        else:
+            code = "WDV-EDT-017"
+            message = "Revue structurelle de l’introduction absente ou incohérente"
+        ctx.report.error(code, message, path=rel, details=issue)
+    return {"path": rel, "languages": sorted(actual_titles), "subsection_titles": actual_titles, "issues": issues}
+
+
+def _validate_normative_non_regression(ctx: PackageContext, manifest: dict[str, Any], trace_controls: dict[str, Any]) -> dict[str, Any]:
+    norm = (manifest.get("normative_versions") or {}).get("consolidated_norm")
+    active = sorted(ctx.iter_files("normative/WIKIDEBIA_NORME_CONSOLIDEE_*.md"))
+    names=[Path(p).name for p in active]
+    expected=f"WIKIDEBIA_NORME_CONSOLIDEE_{norm}.md"
+    if len(active) != 1 or names != [expected]:
+        ctx.report.error("WDV-EDT-011", "La norme consolidée active n’est pas unique ou ne correspond pas au manifeste", path="normative", details={"active": names, "expected": expected})
+    handoff_rel=trace_controls.get("current_handoff_path")
+    expected_work=trace_controls.get("current_corrective_work_id")
+    handoff=ctx.load_json(handoff_rel) if isinstance(handoff_rel,str) and ctx.exists(handoff_rel) else None
+    if not isinstance(handoff, dict):
+        ctx.report.error("WDV-EDT-011", "Handoff correctif courant absent", path=handoff_rel or "manifest.json")
+    else:
+        nv=handoff.get("normative_versions") or {}
+        expected_validator=(manifest.get("normative_versions") or {}).get("validator")
+        if handoff.get("work_id") != expected_work or nv.get("consolidated_norm") != norm or nv.get("validator") != expected_validator or handoff.get("remote_operations_performed") is not False:
+            ctx.report.error("WDV-EDT-011", "Handoff correctif courant incohérent", path=handoff_rel, details={"work_id": handoff.get("work_id"), "normative_versions": nv, "remote_operations_performed": handoff.get("remote_operations_performed"), "expected_work": expected_work, "expected_norm": norm, "expected_validator": expected_validator})
+    return {"active_norms": names, "current_handoff": handoff_rel if isinstance(handoff, dict) else None}
+
+def validate_individual_review_data(review: Any, nodes: list[dict[str, Any]], norm: str | None = None) -> list[dict[str, Any]]:
+    """Return stable inconsistencies in a generic page-by-page editorial ledger."""
+    issues: list[dict[str, Any]] = []
+    if not isinstance(review, dict):
+        return [{"reason": "missing_or_invalid_document"}]
+    entries = review.get("entries")
+    if not isinstance(entries, list):
+        return [{"reason": "missing_entries"}]
+    active = {n.get("id"): n for n in nodes}
+    by_id: dict[str, dict[str, Any]] = {}
+    for entry in entries:
+        if not isinstance(entry, dict) or not isinstance(entry.get("id"), str):
+            issues.append({"reason": "invalid_entry"})
+            continue
+        node_id = entry["id"]
+        if node_id in by_id:
+            issues.append({"reason": "duplicate_entry", "node_id": node_id})
+        by_id[node_id] = entry
+    if set(by_id) != set(active):
+        issues.append({"reason": "coverage", "missing": sorted(set(active)-set(by_id)), "extra": sorted(set(by_id)-set(active))})
+    for node_id, node in active.items():
+        entry = by_id.get(node_id)
+        if not entry:
+            continue
+        fr = node.get("fr") or {}
+        en = node.get("en") or {}
+        if entry.get("title_decision") not in {"reformulated", "retained_after_review"}:
+            issues.append({"reason": "title_decision", "node_id": node_id})
+        if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}:
+            if entry.get("canonical_referents_explicit_fr") is not True or entry.get("canonical_referents_explicit_en") is not True:
+                issues.append({"reason": "canonical_referents_explicit", "node_id": node_id})
+            if entry.get("displayed_referents_explicit_fr") is not True or entry.get("displayed_referents_explicit_en") is not True:
+                issues.append({"reason": "displayed_referents_explicit", "node_id": node_id})
+        if not str(entry.get("title_reason") or "").strip():
+            issues.append({"reason": "title_reason", "node_id": node_id})
+        if entry.get("new_displayed_title_fr") != fr.get("displayed_title"):
+            issues.append({"reason": "displayed_title", "node_id": node_id})
+        selected = fr.get("rubriques") or []
+        if entry.get("new_rubriques") != selected:
+            issues.append({"reason": "rubriques", "node_id": node_id})
+        if entry.get("new_displayed_title_en") != en.get("displayed_title"):
+            issues.append({"reason": "displayed_title_en", "node_id": node_id})
+        if entry.get("new_sections_en") != (en.get("sections") or []):
+            issues.append({"reason": "sections_en", "node_id": node_id})
+        if entry.get("rubric_decision") not in {"adjusted", "retained_after_review"}:
+            issues.append({"reason": "rubric_decision", "node_id": node_id})
+        rationales = entry.get("rubric_rationales")
+        if not isinstance(rationales, dict):
+            issues.append({"reason": "rubric_rationales", "node_id": node_id})
+            continue
+        if set(rationales) != set(selected):
+            issues.append({"reason": "rubric_rationale_coverage", "node_id": node_id, "missing": sorted(set(selected)-set(rationales)), "extra": sorted(set(rationales)-set(selected))})
+        for rubric, reason in rationales.items():
+            if not isinstance(reason, str) or len(reason.strip()) < 12:
+                issues.append({"reason": "rubric_rationale", "node_id": node_id, "rubric": rubric})
+    return issues
+
+def _validate_individual_editorial_review(ctx: PackageContext, nodes: list[dict[str, Any]], controls: dict[str, Any]) -> dict[str, Any]:
+    rel = controls.get("individual_review_path")
+    review = ctx.load_json(rel) if isinstance(rel,str) and ctx.exists(rel) else None
+    norm = (((ctx.manifest() or {}).get("normative_versions") or {}).get("consolidated_norm"))
+    issues = validate_individual_review_data(review, nodes, norm=norm)
+    if issues:
+        ctx.report.error("WDV-EDT-012", "Revue individuelle des titres affichés et rubriques absente ou incohérente", path=rel or "manifest.json", details={"issue_count": len(issues), "issues": issues[:25]})
+    entries = review.get("entries", []) if isinstance(review, dict) else []
+    return {
+        "reviewed_nodes": len(entries),
+        "title_reformulated": sum(1 for e in entries if isinstance(e, dict) and e.get("title_decision") == "reformulated"),
+        "title_retained_after_review": sum(1 for e in entries if isinstance(e, dict) and e.get("title_decision") == "retained_after_review"),
+        "rubrics_adjusted": sum(1 for e in entries if isinstance(e, dict) and e.get("rubric_decision") == "adjusted"),
+        "rubric_rationales": sum(len(e.get("rubric_rationales") or {}) for e in entries if isinstance(e,dict)),
+        "issues": len(issues),
+    }
+
+def validate_summary_style_review_data(
+    review: Any,
+    nodes: list[dict[str, Any]],
+    page_languages: dict[str, set[str]],
+    norm: str = "1.1.8",
+    quantitative_pages: set[tuple[str, str]] | None = None,
+    summaries: dict[tuple[str, str], str] | None = None,
+) -> list[dict[str, Any]]:
+    """Validate page-level human attestations for direct, general-public summaries."""
+    issues: list[dict[str, Any]] = []
+    quantitative = quantitative_pages or set()
+    summary_map = summaries or {}
+    if not isinstance(review, dict):
+        return [{"reason": "missing_or_invalid_document"}]
+    if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} and review.get("normative_revision") != norm:
+        issues.append({"reason": "normative_revision", "expected": norm, "actual": review.get("normative_revision")})
+    entries = review.get("entries")
+    if not isinstance(entries, list):
+        return issues + [{"reason": "missing_entries"}]
+    active_ids = {n.get("id") for n in nodes}
+    by_id: dict[str, dict[str, Any]] = {}
+    for entry in entries:
+        if not isinstance(entry, dict) or not isinstance(entry.get("id"), str):
+            issues.append({"reason": "invalid_entry"})
+            continue
+        node_id = entry["id"]
+        if node_id in by_id:
+            issues.append({"reason": "duplicate_entry", "node_id": node_id})
+        by_id[node_id] = entry
+    expected = {node_id for node_id in active_ids if page_languages.get(node_id)}
+    if set(by_id) != expected:
+        issues.append({"reason": "coverage", "missing": sorted(expected-set(by_id)), "extra": sorted(set(by_id)-expected)})
+    required_true = ["thesis_first", "general_public_style", "sentence_rhythm_reviewed", "technical_terms_reviewed"]
+    if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}:
+        required_true += [
+            "opening_develops_title",
+            "example_or_data_reviewed",
+            "assertive_tone_reviewed",
+            "no_artificial_example_or_number",
+            "no_polemical_overstatement",
+        ]
+    if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}:
+        required_true += ["conviction_visible"]
+    for node_id in expected:
+        entry = by_id.get(node_id)
+        if not entry:
+            continue
+        languages = entry.get("languages")
+        if not isinstance(languages, dict):
+            issues.append({"reason": "languages", "node_id": node_id})
+            continue
+        expected_languages = page_languages.get(node_id, set())
+        if set(languages) != expected_languages:
+            issues.append({"reason": "language_coverage", "node_id": node_id, "missing": sorted(expected_languages-set(languages)), "extra": sorted(set(languages)-expected_languages)})
+        for lang in expected_languages:
+            decision = languages.get(lang)
+            if not isinstance(decision, dict):
+                issues.append({"reason": "language_decision", "node_id": node_id, "language": lang})
+                continue
+            if decision.get("status") not in {"approved", "revised"}:
+                issues.append({"reason": "status", "node_id": node_id, "language": lang})
+            for key in required_true:
+                if decision.get(key) is not True:
+                    issues.append({"reason": key, "node_id": node_id, "language": lang})
+            if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}:
+                expression = str(decision.get("forceful_expression") or "").strip()
+                summary_text = summary_map.get((node_id, lang), "")
+                normalized_expression = re.sub(r"\s+", " ", expression).casefold()
+                normalized_summary = re.sub(r"\s+", " ", _plain_text(summary_text)).casefold()
+                if len(WORD_TOKEN.findall(expression)) < 3 or len(expression) < 12:
+                    issues.append({"reason": "forceful_expression", "node_id": node_id, "language": lang})
+                elif normalized_expression not in normalized_summary:
+                    issues.append({"reason": "forceful_expression_not_in_summary", "node_id": node_id, "language": lang, "expression": expression})
+            if (node_id, lang) in quantitative:
+                if decision.get("quantitative_claims_verified") is not True:
+                    issues.append({"reason": "quantitative_claims_verified", "node_id": node_id, "language": lang})
+                if len(str(decision.get("quantitative_claims_note") or "").strip()) < 12:
+                    issues.append({"reason": "quantitative_claims_note", "node_id": node_id, "language": lang})
+            if len(str(decision.get("note") or "").strip()) < 12:
+                issues.append({"reason": "note", "node_id": node_id, "language": lang})
+    return issues
+
+
+def _validate_summary_style(
+    ctx: PackageContext,
+    nodes: list[dict[str, Any]],
+    manifest: dict[str, Any],
+    controls: dict[str, Any],
+    norm: str,
+) -> dict[str, Any]:
+    cfg = controls.get("summary_style") or {}
+    review_rel = controls.get("summary_style_review_path")
+    page_languages: dict[str, set[str]] = {}
+    node_map = {n.get("id"): n for n in nodes}
+    quantitative_pages: set[tuple[str, str]] = set()
+    summaries: dict[tuple[str, str], str] = {}
+    heuristic_warnings = 0
+    opening_warnings = 0
+    quantitative_summaries = 0
+    reviewed_pages = 0
+    for page in manifest.get("pages", []):
+        if page.get("page_type") != "argument":
+            continue
+        node_id = page.get("page_id")
+        lang = page.get("language")
+        if isinstance(node_id, str) and lang in {"fr", "en"}:
+            page_languages.setdefault(node_id, set()).add(lang)
+        tmpl = _parse_page(ctx, page.get("file_path"))
+        if not tmpl or lang not in {"fr", "en"}:
+            continue
+        summary = _summary(tmpl, lang)
+        if isinstance(node_id, str):
+            summaries[(node_id, lang)] = summary
+        if cfg.get("enabled") is True:
+            metrics = summary_style_issues(summary, cfg)
+            if metrics["issues"]:
+                heuristic_warnings += 1
+                ctx.report.warning(
+                    "WDV-EDT-013",
+                    "Le rythme du résumé paraît trop lourd pour un style encyclopédique grand public",
+                    path=page.get("file_path"),
+                    details={"node_id": node_id, "language": lang, **metrics},
+                )
+        if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} and cfg.get("opening_title_similarity_enabled", True) is True:
+            data = (node_map.get(node_id) or {}).get(lang) or {}
+            titles = [data.get("canonical_title") or "", data.get("displayed_title") or "", page.get("canonical_title") or ""]
+            opening_metrics = opening_title_similarity(summary, titles, lang, cfg)
+            if opening_metrics["issue"]:
+                opening_warnings += 1
+                ctx.report.warning(
+                    "WDV-EDT-014",
+                    "La première phrase du résumé répète ou paraphrase trop étroitement le titre",
+                    path=page.get("file_path"),
+                    details={"node_id": node_id, "language": lang, **opening_metrics},
+                )
+        claims = summary_quantitative_claims(summary) if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} else []
+        if claims:
+            quantitative_pages.add((node_id, lang))
+            quantitative_summaries += 1
+
+    review = ctx.load_json(review_rel) if isinstance(review_rel, str) and ctx.exists(review_rel) else None
+    issues = validate_summary_style_review_data(review, nodes, page_languages, norm=norm, quantitative_pages=quantitative_pages, summaries=summaries)
+    opening_review_reasons = {"opening_develops_title"}
+    quantitative_reasons = {"quantitative_claims_verified", "quantitative_claims_note"}
+    force_reasons = {"conviction_visible", "forceful_expression", "forceful_expression_not_in_summary"}
+    opening_issues = [i for i in issues if i.get("reason") in opening_review_reasons]
+    quantitative_issues = [i for i in issues if i.get("reason") in quantitative_reasons]
+    force_issues = [i for i in issues if i.get("reason") in force_reasons]
+    other_issues = [i for i in issues if i.get("reason") not in opening_review_reasons | quantitative_reasons | force_reasons]
+    if other_issues:
+        ctx.report.error(
+            "WDV-EDT-013",
+            "Revue humaine du style grand public, des exemples et du ton absente ou incohérente",
+            path=review_rel or "manifest.json",
+            details={"issue_count": len(other_issues), "issues": other_issues[:25]},
+        )
+    if force_issues:
+        ctx.report.error(
+            "WDV-EDT-020",
+            "La force expressive du résumé n’est pas attestée par un extrait réellement présent dans le texte",
+            path=review_rel or "manifest.json",
+            details={"issue_count": len(force_issues), "issues": force_issues[:25]},
+        )
+    if opening_issues:
+        ctx.report.error(
+            "WDV-EDT-014",
+            "L’attestation humaine que l’ouverture développe le titre est absente ou incohérente",
+            path=review_rel or "manifest.json",
+            details={"issue_count": len(opening_issues), "issues": opening_issues[:25]},
+        )
+    if quantitative_issues:
+        ctx.report.error(
+            "WDV-EDT-015",
+            "Une donnée chiffrée du résumé ne possède pas d’attestation documentaire humaine conforme",
+            path=review_rel or "manifest.json",
+            details={"issue_count": len(quantitative_issues), "issues": quantitative_issues[:25]},
+        )
+    if isinstance(review, dict) and isinstance(review.get("entries"), list):
+        reviewed_pages = sum(len((e.get("languages") or {})) for e in review["entries"] if isinstance(e, dict))
+    return {
+        "heuristic_warnings": heuristic_warnings,
+        "opening_similarity_warnings": opening_warnings,
+        "quantitative_summaries": quantitative_summaries,
+        "reviewed_language_pages": reviewed_pages,
+        "review_issues": len(issues),
+    }
+
+
+def validate_editorial(ctx: PackageContext) -> None:
+    if not _active(ctx):
+        return
+    manifest = ctx.manifest() or {}
+    norm = (manifest.get("normative_versions") or {}).get("consolidated_norm")
+    registry = ctx.registry() or {}
+    editorial_controls = manifest.get("editorial_controls") or {}
+    trace_controls = manifest.get("traceability_controls") or {}
+    if norm in {"1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} and (not editorial_controls or not trace_controls):
+        ctx.report.error("WDV-EDT-011", "Profils de contrôle déclaratifs absents du manifeste", path="manifest.json")
+    if norm in {"1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} and (not editorial_controls.get("summary_style") or not editorial_controls.get("summary_style_review_path")):
+        ctx.report.error("WDV-EDT-013", "Contrôles de style des résumés absents du manifeste", path="manifest.json")
+    if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}:
+        summary_cfg = editorial_controls.get("summary_style") or {}
+        required_119 = {
+            "opening_title_similarity_enabled",
+            "opening_similarity_threshold",
+            "opening_max_extra_significant_words",
+            "quantitative_claim_review_required",
+        }
+        missing_119 = sorted(required_119 - set(summary_cfg))
+        invalid_119 = sorted(
+            key for key in ("opening_title_similarity_enabled", "quantitative_claim_review_required")
+            if key in summary_cfg and summary_cfg.get(key) is not True
+        )
+        if missing_119 or invalid_119:
+            ctx.report.error(
+                "WDV-EDT-013",
+                "Configuration éditoriale 1.1.9 incomplète ou désactivée",
+                path="manifest.json",
+                details={"missing": missing_119, "must_be_true": invalid_119},
+            )
+    nodes = [n for n in (registry.get("graph") or {}).get("nodes", []) if n.get("status") == "active"]
+
+    title_metrics: dict[str, Any] = {}
+    classification_metrics: dict[str, Any] = {}
+    summary_counts: dict[str, Any] = {}
+    title_quality_counts = {"fr": 0, "en": 0}
+    keyword_quality_counts = {"fr": 0, "en": 0}
+    page_map = {(p.get("page_id"), p.get("language")): p for p in manifest.get("pages", [])}
+    vocab_fr, vocab_en = _load_keyword_vocabulary(ctx, editorial_controls) if norm in {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} else ({}, {})
+
+    for lang in ("fr", "en"):
+        ratio = title_copy_ratio(nodes, lang)
+        title_metrics[lang] = ratio
+        if norm not in {"1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} and ratio > 0.80:
+            ctx.report.error("WDV-EDT-001", "Les titres affichés sont copiés mécaniquement depuis les titres canoniques", path=ctx.core_paths()["registry"], details={"language": lang, "ratio": ratio})
+        cratio = dominant_classification_ratio(nodes, lang)
+        classification_metrics[lang] = cratio
+        if norm not in {"1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} and cratio > 0.90:
+            ctx.report.error("WDV-EDT-002", "Une classification unique domine mécaniquement le corpus", path=ctx.core_paths()["registry"], details={"language": lang, "ratio": cratio})
+
+        keyword_sets = [tuple((node.get(lang) or {}).get("keywords") or []) for node in nodes]
+        dominant_keyword_set_ratio = Counter(keyword_sets).most_common(1)[0][1] / len(keyword_sets) if keyword_sets else 1.0
+        threshold = 0.25 if norm in {"1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} else 0.15
+        if norm in {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} and dominant_keyword_set_ratio > threshold:
+            ctx.report.error("WDV-EDT-008", "Un même jeu de mots-clés domine mécaniquement le corpus", path=ctx.core_paths()["registry"], details={"language": lang, "ratio": dominant_keyword_set_ratio, "threshold": threshold})
+
+        bad_summary = 0
+        for node in nodes:
+            node_id = node.get("id")
+            data = node.get(lang) or {}
+            canonical_title = data.get("canonical_title") or ""
+            canonical_quote_reasons = []
+            if COMPLEX_QUOTES.search(canonical_title): canonical_quote_reasons.append("complex_quotes")
+            if canonical_title.count('"') % 2: canonical_quote_reasons.append("unbalanced_quotes")
+            if canonical_quote_reasons:
+                title_quality_counts[lang] += 1
+                ctx.report.error("WDV-EDT-009", "Guillemets non conformes dans un titre canonique", path=ctx.core_paths()["registry"], details={"node_id": node_id, "language": lang, "title": canonical_title, "reasons": canonical_quote_reasons})
+            title = data.get("displayed_title") or ""
+            reasons = displayed_title_issues(title, lang)
+            if reasons:
+                title_quality_counts[lang] += 1
+                ctx.report.error("WDV-EDT-007", "Titre affiché tronqué, mal formé ou grammaticalement incomplet", path=ctx.core_paths()["registry"], details={"node_id": node_id, "language": lang, "title": title, "reasons": reasons})
+
+            keywords = data.get("keywords") or []
+            kw_reasons = keyword_form_issues(keywords)
+            if kw_reasons:
+                keyword_quality_counts[lang] += 1
+                ctx.report.error("WDV-EDT-008", "Jeu de mots-clés mal formé", path=ctx.core_paths()["registry"], details={"node_id": node_id, "language": lang, "keywords": keywords, "reasons": kw_reasons})
+            if vocab_fr or vocab_en:
+                vocabulary = vocab_fr if lang == "fr" else vocab_en
+                for keyword in keywords:
+                    entry = vocabulary.get(keyword)
+                    if not entry:
+                        keyword_quality_counts[lang] += 1
+                        ctx.report.error("WDV-EDT-008", "Mot-clé absent du vocabulaire éditorial contrôlé", path=ctx.core_paths()["registry"], details={"node_id": node_id, "language": lang, "keyword": keyword})
+                    elif entry.get("kind") not in ALLOWED_KEYWORD_KINDS:
+                        keyword_quality_counts[lang] += 1
+                        ctx.report.error("WDV-EDT-008", "Mot-clé qui n'est ni un nom ni un groupe nominal", path=editorial_controls.get("keyword_vocabulary_path"), details={"node_id": node_id, "language": lang, "keyword": keyword, "kind": entry.get("kind")})
+                if lang == "fr":
+                    en_keywords = (node.get("en") or {}).get("keywords") or []
+                    if len(keywords) == len(en_keywords):
+                        for fr_keyword, en_keyword in zip(keywords, en_keywords):
+                            entry = vocab_fr.get(fr_keyword)
+                            if entry and entry.get("en") != en_keyword:
+                                keyword_quality_counts[lang] += 1
+                                ctx.report.error("WDV-EDT-008", "Traduction de mot-clé divergente du vocabulaire contrôlé", path=ctx.core_paths()["registry"], details={"node_id": node_id, "fr": fr_keyword, "actual_en": en_keyword, "expected_en": entry.get("en")})
+                    else:
+                        keyword_quality_counts[lang] += 1
+                        ctx.report.error("WDV-EDT-008", "Nombre de mots-clés divergent dans la paire bilingue", path=ctx.core_paths()["registry"], details={"node_id": node_id, "fr_count": len(keywords), "en_count": len(en_keywords)})
+
+            page = page_map.get((node_id, lang))
+            if not page:
+                continue
+            tmpl = _parse_page(ctx, page.get("file_path"))
+            if tmpl and summary_has_auto_objection(_summary(tmpl, lang), lang):
+                bad_summary += 1
+                ctx.report.error("WDV-EDT-003", "Le résumé se termine par une auto-objection, une concession ou du métadiscours", path=page.get("file_path"))
+        summary_counts[lang] = bad_summary
+        title_metrics[f"{lang}_dominant_keyword_set_ratio"] = dominant_keyword_set_ratio
+
+    if vocab_fr:
+        vocab_path = editorial_controls.get("keyword_vocabulary_path")
+        if len(vocab_fr) < 8:
+            ctx.report.error("WDV-EDT-008", "Vocabulaire de navigation à l’échelle du wiki insuffisant", path=vocab_path, details={"terms": len(vocab_fr), "minimum": 8})
+        actual_usage_fr = Counter(k for node in nodes for k in ((node.get("fr") or {}).get("keywords") or []))
+        for keyword, count in sorted(actual_usage_fr.items()):
+            entry = vocab_fr.get(keyword) or {}
+            if entry.get("scope") != "site_navigation" or entry.get("cross_debate_reusable") is not True:
+                ctx.report.error("WDV-EDT-008", "Portée inter-débat du mot-clé non attestée", path=vocab_path, details={"keyword": keyword, "scope": entry.get("scope"), "cross_debate_reusable": entry.get("cross_debate_reusable")})
+            if entry.get("local_frequency_is_validity_criterion") is not False:
+                ctx.report.error("WDV-EDT-008", "La fréquence locale est utilisée à tort comme critère d’admissibilité", path=vocab_path, details={"keyword": keyword})
+            if entry and entry.get("usage_count_in_debate") != count:
+                ctx.report.error("WDV-EDT-008", "Fréquence descriptive du vocabulaire divergente du registre", path=vocab_path, details={"keyword": keyword, "declared": entry.get("usage_count_in_debate"), "actual": count})
+
+    summary_ratio_errors = 0
+    if norm in {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}:
+        for node in nodes:
+            node_id = node.get("id")
+            fr_page = page_map.get((node_id, "fr"))
+            en_page = page_map.get((node_id, "en"))
+            if not fr_page or not en_page:
+                continue
+            fr_tmpl = _parse_page(ctx, fr_page.get("file_path"))
+            en_tmpl = _parse_page(ctx, en_page.get("file_path"))
+            if not fr_tmpl or not en_tmpl:
+                continue
+            fr_summary = _summary(fr_tmpl, "fr")
+            en_summary = _summary(en_tmpl, "en")
+            ratio = summary_word_ratio(fr_summary, en_summary)
+            if ratio < 0.60 or ratio > 1.45:
+                summary_ratio_errors += 1
+                ctx.report.error("WDV-BIL-006", "Asymétrie substantielle probable entre les résumés français et anglais", details={"node_id": node_id, "word_ratio_en_over_fr": ratio})
+
+    pagination_errors, date_errors = _validate_documentary_registry(ctx)
+    docs = _validate_debate_docs(ctx, manifest, editorial_controls, norm)
+    intro_refs = _validate_intro_references(ctx, manifest, editorial_controls) if norm in {"1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} else {}
+    normative_non_regression = _validate_normative_non_regression(ctx, manifest, trace_controls) if norm in {"1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} else {}
+    individual_review = _validate_individual_editorial_review(ctx, nodes, editorial_controls) if norm in {"1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} else {}
+    summary_style = _validate_summary_style(ctx, nodes, manifest, editorial_controls, norm) if norm in {"1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} else {}
+    introduction_review = _validate_introduction_review(ctx, manifest, editorial_controls, norm) if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} else {}
+    date_migration_errors = _validate_dates(ctx, manifest, editorial_controls.get("creation_date"))
+    trace = _validate_traceability(ctx, manifest, editorial_controls, trace_controls)
+
+    ctx.report.metrics["editorial"] = {
+        "active_nodes": len(nodes),
+        "canonical_display_copy_ratio": {k: v for k, v in title_metrics.items() if not k.endswith("dominant_keyword_set_ratio")},
+        "dominant_keyword_set_ratio": {lang: title_metrics.get(f"{lang}_dominant_keyword_set_ratio") for lang in ("fr", "en")},
+        "displayed_title_quality_errors": title_quality_counts,
+        "keyword_quality_errors": keyword_quality_counts,
+        "dominant_classification_ratio": classification_metrics,
+        "summary_auto_objections": summary_counts,
+        "summary_bilingual_ratio_errors": summary_ratio_errors,
+        "documentary_pagination_errors": pagination_errors,
+        "documentary_access_date_errors": date_errors,
+        "debate_documentation": docs,
+        "introduction_references": intro_refs,
+        "normative_non_regression": normative_non_regression,
+        "individual_editorial_review": individual_review,
+        "summary_style": summary_style,
+        "introduction_review": introduction_review,
+        "creation_date_errors": date_migration_errors,
+        "traceability": trace,
+    }
+    editorial_errors = any(f.level in {"ERROR", "WARNING"} and (f.code.startswith("WDV-EDT-") or f.code == "WDV-BIL-006") for f in ctx.report.findings)
+    if not editorial_errors:
+        review_path = editorial_controls.get("individual_review_report_path")
+        label = trace_controls.get("current_corrective_work_id", "current")
+        ctx.report.info("WDV-DOC-001", f"Revue éditoriale humaine {label} enregistrée et contrôles automatisés réussis.", path=review_path)

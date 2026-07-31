@@ -1,0 +1,99 @@
+{
+  "review_version": "1.0",
+  "normative_revision": "1.2.15",
+  "debate_id": "exemple_debat",
+  "entries": [
+    {
+      "language": "fr",
+      "subject_and_scope_defined": true,
+      "debate_question_explained": true,
+      "history_and_evolution_addressed": true,
+      "current_state_addressed_or_not_applicable": true,
+      "stakes_explained": true,
+      "progression_coherent": true,
+      "no_argument_tree_mirroring": true,
+      "no_topic_specific_checklist": true,
+      "subsections": [
+        {
+          "title": "Définition et périmètre",
+          "purpose": "Définir le sujet et les limites du débat.",
+          "necessary_for_understanding": true,
+          "technical_or_specialized": false,
+          "relevance_to_debate_explained": true
+        },
+        {
+          "title": "Origine et évolution du débat",
+          "purpose": "Donner les repères historiques nécessaires.",
+          "necessary_for_understanding": true,
+          "technical_or_specialized": false,
+          "relevance_to_debate_explained": true
+        },
+        {
+          "title": "Enjeux contemporains",
+          "purpose": "Présenter les conséquences principales de la réponse apportée.",
+          "necessary_for_understanding": true,
+          "technical_or_specialized": false,
+          "relevance_to_debate_explained": true
+        }
+      ],
+      "notes": "Exemple générique à adapter au sujet.",
+      "factual_claims_referenced": true,
+      "complete_topic_fits_heading": true,
+      "debate_sections_precise": true,
+      "documentation_proportionate_to_literature": true,
+      "documentation_family_notes": {
+        "bibliography": "Sélection de synthèses larges adaptée à l’étendue de la controverse.",
+        "webliography": "Ressources Web autonomes retenues uniquement pour leur apport distinct.",
+        "videography": "Couverture audiovisuelle examinée et retenue ou omise selon sa valeur propre."
+      },
+      "common_acronym": null,
+      "common_acronym_used_or_not_applicable": true
+    },
+    {
+      "language": "en",
+      "subject_and_scope_defined": true,
+      "debate_question_explained": true,
+      "history_and_evolution_addressed": true,
+      "current_state_addressed_or_not_applicable": true,
+      "stakes_explained": true,
+      "progression_coherent": true,
+      "no_argument_tree_mirroring": true,
+      "no_topic_specific_checklist": true,
+      "subsections": [
+        {
+          "title": "Definition and scope",
+          "purpose": "Define the subject and boundaries of the debate.",
+          "necessary_for_understanding": true,
+          "technical_or_specialized": false,
+          "relevance_to_debate_explained": true
+        },
+        {
+          "title": "Origins and development",
+          "purpose": "Provide the historical background needed by the reader.",
+          "necessary_for_understanding": true,
+          "technical_or_specialized": false,
+          "relevance_to_debate_explained": true
+        },
+        {
+          "title": "Current stakes",
+          "purpose": "Explain the main consequences of the answer to the debate.",
+          "necessary_for_understanding": true,
+          "technical_or_specialized": false,
+          "relevance_to_debate_explained": true
+        }
+      ],
+      "notes": "Generic example to adapt to the subject.",
+      "factual_claims_referenced": true,
+      "complete_topic_fits_heading": true,
+      "debate_sections_precise": true,
+      "documentation_proportionate_to_literature": true,
+      "documentation_family_notes": {
+        "bibliography": "Broad syntheses were selected in proportion to the scope of the controversy.",
+        "webliography": "Standalone Web resources were retained only when they added distinct substantive value.",
+        "videography": "Audiovisual coverage was reviewed and retained or omitted according to its own documentary value."
+      },
+      "common_acronym": null,
+      "common_acronym_used_or_not_applicable": true
+    }
+  ]
+}

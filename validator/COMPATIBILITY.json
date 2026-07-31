@@ -1,0 +1,40 @@
+{
+  "package": "wikidebia-validator",
+  "validator_version": "0.4.16",
+  "implemented_normative_revision": "1.2.15",
+  "compatible_normative_revisions": [
+    "1.1.0",
+    "1.1.1",
+    "1.1.2",
+    "1.1.3",
+    "1.1.4",
+    "1.1.5",
+    "1.1.6",
+    "1.1.7",
+    "1.1.8",
+    "1.1.9",
+    "1.2.0",
+    "1.2.1",
+    "1.2.2",
+    "1.2.3",
+    "1.2.4",
+    "1.2.5",
+    "1.2.6",
+    "1.2.7",
+    "1.2.8",
+    "1.2.9",
+    "1.2.10",
+    "1.2.11",
+    "1.2.12",
+    "1.2.13",
+    "1.2.14",
+    "1.2.15"
+  ],
+  "recommended_normative_archive": "wikidebia-normes.zip",
+  "independent_update_policy": {
+    "validator_patch_without_norm_change": true,
+    "new_norm_without_validator_change": "Allowed only when no automatic control, schema, or validator behavior must change."
+  },
+  "stable_archive_name": "wikidebia-validator.zip",
+  "version_source": "VERSIONS.json"
+}
