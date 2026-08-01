@@ -168,3 +168,8 @@ Un corpus déjà produit conserve les versions inscrites dans son manifeste. La 
 4. Un argument principal doit pouvoir structurer une famille argumentative distincte et ne pas avoir de parent général préférable.
 5. Toute occurrence fait l’objet d’une revue de placement ; les niveaux 1 reçoivent des attestations renforcées et les niveaux supérieurs attestent l’adéquation du parent immédiat.
 6. Les corpus déjà verrouillés ne sont pas restructurés silencieusement : la migration modifie explicitement occurrences, relations, projections, lots, pages liées et empreinte structurelle.
+
+
+## Correction du 1er août 2026 — identifiants de traçabilité du placement
+
+Les critères de placement adoptés en 1.2.20 sont conservés sans changement. Les identifiants `GR-045`, `GR-046` et `GR-047` étaient déjà affectés à d’autres exigences historiques et ne peuvent pas être réutilisés. Les exigences de placement reçoivent les identifiants `GR-048`, `GR-049` et `GR-050`. `VAL-029` reste le contrôle automatique associé.

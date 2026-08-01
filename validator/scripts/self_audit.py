@@ -141,8 +141,13 @@ def audit_normative_provenance(root: Path, errors: list[str]) -> None:
     except Exception as exc:
         errors.append(f"catalogue d'exigences illisible: {exc}")
         return
+    requirements = catalog.get("requirements") or []
+    requirement_ids = [req.get("id") for req in requirements if isinstance(req, dict)]
+    duplicate_ids = sorted({value for value in requirement_ids if value and requirement_ids.count(value) > 1})
+    for requirement_id in duplicate_ids:
+        errors.append(f"identifiant d'exigence dupliqué: {requirement_id}")
     aliases = catalog.get("source_aliases") or {}
-    used = {label for req in catalog.get("requirements", []) for label in (req.get("sources") or [])}
+    used = {label for req in requirements for label in (req.get("sources") or [])}
     missing_labels = sorted(used - set(aliases))
     for label in missing_labels:
         errors.append(f"étiquette de provenance sans alias: {label}")

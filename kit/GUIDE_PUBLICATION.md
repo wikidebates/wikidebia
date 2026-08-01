@@ -1,4 +1,4 @@
-# Guide de publication et de reprise Wikidéb’IA 2.2.6
+# Guide de publication et de reprise Wikidéb’IA 2.2.7
 
 ## Nouveau débat
 
@@ -34,3 +34,8 @@ Lors de la transition depuis un ancien lanceur où la commande de composants s�
 ```
 
 Après cette installation, employer `upgrade` pour les composants et réserver `update IDENTIFIANT` à la reprise d’un débat publié.
+
+
+## Exemples versionnés
+
+Le suffixe `1.2.x` des fichiers de `kit/configs/` désigne la norme attendue du corpus. Les champs `kit_version` et `validator.required_version` restent ceux des composants installés. Chaque exemple impose la norme correspondante dans `manifest_requirements`.

@@ -1,5 +1,6 @@
-Wikidéb’IA Validator 0.4.22
-Norme implémentée : 1.2.20
-Tests pytest : 175 réussis, 0 échec
-Contrôles nouveaux : WDV-EDT-022, registre de placement des occurrences et non-régression de la norme 1.2.19
+Wikidéb’IA Validator 0.4.23
+Norme implémentée : 1.2.21
+Tests pytest : 179 réussis, 0 échec
+Contrôles maintenus : WDV-EDT-022 pour les normes 1.2.20 et 1.2.21
+Tests nouveaux : identifiants GR-048 à GR-050 non conflictuels, structure réelle des arêtes et non-rétroactivité 1.2.19
 Résultat : RÉUSSI

@@ -1,11 +1,7 @@
-# Kit Wikidéb’IA 2.2.6
+# Kit Wikidéb’IA 2.2.7
 
-Le kit publie et reprend les corpus Wikidéb’IA avec plans signés. La version 2.2.6, alignée sur la norme 1.2.20 et le validateur 0.4.22, conserve les barrières éditoriales 2.2.2 et rétablit la mise à niveau depuis un seul ZIP complet.
+Kit générique de publication et de reprise aligné sur la norme 1.2.21 et le validateur 0.4.23.
 
-```bash
-./wikidebia publish
-./wikidebia update IDENTIFIANT --dry-run
-./wikidebia upgrade
-```
+Pour une mise à niveau, déposer de préférence le seul bundle complet dans `updates/`, puis lancer `./wikidebia upgrade`. Le mode trois ZIP reste accepté pour compatibilité.
 
-Pour une mise à niveau, déposer de préférence **le seul bundle complet** dans `updates/`, puis lancer `./wikidebia upgrade`. Le mode trois ZIP reste accepté pour compatibilité. Avec un ancien lanceur où `update` désigne encore les composants, utiliser exceptionnellement `./wikidebia update --no-git`.
+Les fichiers `configs/creation_*_<norme>.example.json` sont des exemples pour la norme de corpus indiquée dans leur nom. Ils utilisent toujours le kit et le validateur courants et vérifient la norme du corpus avec `manifest_requirements`.

@@ -118,3 +118,23 @@ def test_norm_1220_schema_accepts_graph_placement_review_path(tmp_path: Path):
     dump(tmp_path / "manifest.json", manifest)
     report = validate_package(tmp_path, scopes=["schema"])
     assert not any(f.code == "WDV-SCH-003" for f in report.findings)
+
+
+def test_norm_1219_schema_does_not_require_graph_placement_review_path(tmp_path: Path):
+    create_graph_package(tmp_path)
+    manifest = json.loads((tmp_path / "manifest.json").read_text())
+    manifest["normative_versions"]["consolidated_norm"] = "1.2.19"
+    manifest["editorial_controls"] = _editorial_controls_124()
+    dump(tmp_path / "manifest.json", manifest)
+    report = validate_package(tmp_path, scopes=["schema"])
+    assert not any(f.code == "WDV-SCH-003" and "graph_placement_review_path" in str(f.details) for f in report.findings)
+
+
+def test_norm_1221_schema_requires_graph_placement_review_path(tmp_path: Path):
+    create_graph_package(tmp_path)
+    manifest = json.loads((tmp_path / "manifest.json").read_text())
+    manifest["normative_versions"]["consolidated_norm"] = "1.2.21"
+    manifest["editorial_controls"] = _editorial_controls_124()
+    dump(tmp_path / "manifest.json", manifest)
+    report = validate_package(tmp_path, scopes=["schema"])
+    assert any(f.code == "WDV-SCH-003" for f in report.findings)

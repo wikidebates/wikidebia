@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.7 — 1er août 2026
+
+- alignement sur la norme 1.2.21 et le validateur 0.4.23 ;
+- réparation des exemples de configuration historiques, qui utilisent désormais le kit et le validateur courants tout en exigeant leur norme de corpus ;
+- ajout d’un test validant tous les exemples contre le schéma actif ;
+- aucune modification des opérations distantes de publication, reprise, déplacement ou suppression.
+
+
 ## 2.2.6 — 1er août 2026
 
 - alignement sur la norme 1.2.20 et le validateur 0.4.22 ;

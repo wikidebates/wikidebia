@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.23 — 1er août 2026
+
+- alignement sur la norme 1.2.21 ;
+- conservation de `WDV-EDT-022` pour les corpus 1.2.20 et 1.2.21 ;
+- correction des identifiants de traçabilité du placement (`GR-048` à `GR-050`) ;
+- tests renforcés sur les structures réelles des arêtes et sur la non-rétroactivité ;
+- compatibilité conservée avec les normes 1.1.0 à 1.2.20.
+
+
 ## 0.4.22 — 1er août 2026
 
 - alignement sur la norme 1.2.20 ;

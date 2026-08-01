@@ -49,7 +49,7 @@ def validate_package(root: str | Path, scopes: list[str] | None = None, previous
         if "workflow" in selected:
             validate_workflow(ctx, previous_status=previous_status)
         consolidated = ((ctx.manifest() or {}).get("normative_versions") or {}).get("consolidated_norm")
-        if consolidated not in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20"} or "editorial" not in selected:
+        if consolidated not in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21"} or "editorial" not in selected:
             report.info("WDV-DOC-001", "Les contrôles de qualité argumentative, d'équilibre, de quasi-doublons sémantiques et de fidélité documentaire restent soumis à une revue humaine.")
     except Exception as exc:  # defensive boundary: stable report instead of traceback by default
         report.error("WDV-INT-001", f"Erreur interne : {type(exc).__name__}: {exc}")

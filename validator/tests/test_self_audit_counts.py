@@ -74,3 +74,22 @@ def test_self_audit_ignores_runtime_cache_files(tmp_path):
     (pycache / "generated.pyc").write_bytes(b"temporary")
     result = subprocess.run([sys.executable, str(root / "scripts/self_audit.py")], capture_output=True, text=True)
     assert result.returncode == 0, result.stdout + result.stderr
+
+
+def test_self_audit_rejects_duplicate_requirement_ids(tmp_path):
+    root = _build_minimal_package(tmp_path)
+    catalog = root / "normative_reference" / "01_normes" / "requirements_catalog_wikidebia.json"
+    catalog.parent.mkdir(parents=True)
+    catalog.write_text(
+        json.dumps({
+            "requirements": [
+                {"id": "DUP-001", "sources": [], "normative_files": []},
+                {"id": "DUP-001", "sources": [], "normative_files": []},
+            ],
+            "source_aliases": {},
+        }, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    result = subprocess.run([sys.executable, str(root / "scripts/self_audit.py")], capture_output=True, text=True)
+    assert result.returncode == 1
+    assert "identifiant d'exigence dupliqué: DUP-001" in result.stdout

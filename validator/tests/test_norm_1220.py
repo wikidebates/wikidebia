@@ -15,7 +15,7 @@ def registry_with_science_objection(child_depth: int = 2):
             {"id": "O00002", "node_id": "A0002", "parent_occurrence_id": None, "edge_id": None, "depth": 1},
         ]
     else:
-        edges = [{"id": "E00001", "from_node_id": "A0001", "to_node_id": "A0002", "relation": "objection", "status": "active"}]
+        edges = [{"id": "E00001", "parent_node_id": "A0001", "child_node_id": "A0002", "relation": "objection", "order": 1, "status": "active"}]
         occurrences = [
             {"id": "O00001", "node_id": "A0001", "parent_occurrence_id": None, "edge_id": None, "depth": 1},
             {"id": "O00002", "node_id": "A0002", "parent_occurrence_id": "O00001", "edge_id": "E00001", "depth": 2},
@@ -100,6 +100,6 @@ def test_1220_requires_exact_occurrence_coverage():
     assert any(i["reason"] == "coverage" for i in issues)
 
 
-def test_1219_does_not_require_graph_placement_ledger():
-    # The new validator function is only invoked by the package validator for norm 1.2.20.
-    assert "1.2.19" != "1.2.20"
+def test_1221_accepts_same_placement_ledger_contract():
+    review = {"normative_revision": "1.2.21", "debate_id": "realisme", "entries": [main_entry(), subordinate_entry()]}
+    assert validate_graph_placement_review_data(review, registry_with_science_objection(), norm="1.2.21") == []

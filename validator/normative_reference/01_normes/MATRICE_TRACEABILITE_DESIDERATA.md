@@ -314,4 +314,4 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 
 | Titres affichés propositionnels et intelligibles | TTL-004, TTL-013, DFR-028, EDT-012, VAL-028 | Norme 1.2.19, profil de rendu, registre de revue et WDV-EDT-021 |
 
-| Placement sémantique des arguments principaux et subordonnés | GR-045, GR-046, GR-047, VAL-029 | Norme 1.2.20, workflow, profil, registre de placement et WDV-EDT-022 |
+| Placement sémantique des arguments principaux et subordonnés | GR-048, GR-049, GR-050, VAL-029 | Norme 1.2.21, workflow, profil, registre de placement et WDV-EDT-022 |

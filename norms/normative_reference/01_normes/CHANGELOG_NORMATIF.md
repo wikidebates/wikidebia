@@ -1,11 +1,20 @@
 # Changelog normatif
 
+## 1.2.21 — 1er août 2026
+
+- correction de la collision de traçabilité qui réutilisait à tort `GR-045`, `GR-046` et `GR-047` ;
+- attribution des identifiants non ambigus `GR-048`, `GR-049` et `GR-050` aux exigences de placement ;
+- conservation intégrale des critères de niveau 1 et de subordination introduits en 1.2.20 ;
+- aucun changement de graphe ni de contenu imposé aux corpus 1.2.20 ;
+- alignement recommandé : validateur 0.4.23 et kit 2.2.7.
+
+
 ## 1.2.20 — 1er août 2026
 
 - le niveau 1 est réservé aux réponses directes, autonomes et structurantes à la proposition du débat ;
 - les objections ciblées, preuves secondaires, exemples, interprétations particulières, doctrines instanciées et précisions techniques sont subordonnés à leur meilleure cible immédiate ;
 - ajout d’un registre de placement couvrant toutes les occurrences actives ;
-- ajout des exigences `GR-045`, `GR-046`, `GR-047` et `VAL-029` ;
+- ajout des règles de placement et du contrôle `VAL-029` ; une collision d’identifiants de catalogue, corrigée en 1.2.21, subsistait dans cette livraison ;
 - ajout du contrôle `WDV-EDT-022` dans le validateur 0.4.22 ;
 - alignement recommandé : validateur 0.4.22 et kit 2.2.6.
 
