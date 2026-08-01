@@ -6,5 +6,5 @@
 - contrôles du validateur et du kit testés positivement et négativement ;
 - compatibilité 1.1.0–1.2.17 conservée ;
 - reprise distante, Wikipédia obligatoire, absence de débats connexes, conversion JSON et publication non interactive conservées ;
-- validateur recommandé : 0.4.19 ;
-- kit recommandé : 2.2.3.
+- validateur recommandé : 0.4.20 ;
+- kit recommandé : 2.2.4.

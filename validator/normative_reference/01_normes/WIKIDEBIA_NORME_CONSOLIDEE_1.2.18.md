@@ -358,7 +358,9 @@ La présence des pages anglaises dans le manifeste de pages n’est pas une cond
 |title=
 |content=
 }}
-|wikipedia-articles=
+|wikipedia-articles={{Wikipedia article
+|page=Verified article directly related to the topic
+}}
 |pro-arguments={{Pro argument
 |page=Full canonical title
 |displayed-title=Displayed title

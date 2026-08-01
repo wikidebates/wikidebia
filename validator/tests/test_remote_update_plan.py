@@ -6,7 +6,7 @@ from wikidebia_validator.remote_plan import sha_object, validate_remote_plan
 
 def valid_plan():
     plan = {
-        "plan_version":"wikidebia-remote-update-plan-1.0","kit_version":"2.2.3","required_validator_version":"0.4.19",
+        "plan_version":"wikidebia-remote-update-plan-1.0","kit_version":"2.2.4","required_validator_version":"0.4.20",
         "debate_id":"demo","corpus_version":"v1","languages":["fr"],"scope_mode":"all",
         "state_source":{"kind":"published_state_receipt"},"new_manifest_sha256":"0"*64,"validator_report_sha256":"1"*64,
         "config_sha256":"2"*64,"operations":{name:[] for name in ("create","update","move","redirect","delete","skip","manual_review","blocked")},

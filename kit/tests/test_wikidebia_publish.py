@@ -56,7 +56,7 @@ def write_fixture(tmp_path: Path, kind: str):
     (corpus / "output" / "en" / "debate.wiki").write_text(en_debate, encoding="utf-8")
     manifest = {
       "debate_id":"demo",
-      "normative_versions":{"validator":"0.4.19"},
+      "normative_versions":{"validator":"0.4.20"},
       "core_files":{"registry":"data/registre_debat.json"},
       "pages":[
         {"language":"fr","page_id":"A1","page_type":"argument","canonical_title":"Titre FR","file_path":"output/fr/A1.wiki","sha256":module.sha_file(corpus / "output/fr/A1.wiki")},
@@ -74,7 +74,7 @@ def write_fixture(tmp_path: Path, kind: str):
     validator = tmp_path / "validator"
     validator.mkdir()
     validator_script = validator / "validate.py"
-    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.19','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.20','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     operation = {
       "id":"test",
       "kind":kind,
@@ -87,8 +87,8 @@ def write_fixture(tmp_path: Path, kind: str):
     }
     if kind == "parameter_update": operation["parameters"]={"fr":"résumé","en":"summary"}
     config = {
-      "kit_version":"2.2.3","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
-      "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.19","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
+      "kit_version":"2.2.4","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
+      "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.20","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
       "family":"wikidebates","family_file":str(Path(__file__)),"pywikibot_dir":str(tmp_path),
       "sites":{"fr":{"code":"fr","expected_user":"ChatGPT"},"en":{"code":"en","expected_user":"ChatGPT"}},
       "logs_dir":"logs","change_tags":["chatgpt"],"verification_attempts":1,"verification_delay_seconds":0,"write_delay_seconds":0,
@@ -658,12 +658,12 @@ def test_historical_manifest_versions_do_not_block_current_validation(tmp_path):
     publisher = module.GenericPublisher(config, FakeAdapter(), path)
     plan = publisher.build_plan()
     assert not plan["blockers"]
-    assert plan["required_validator_version"] == "0.4.19"
+    assert plan["required_validator_version"] == "0.4.20"
 
 
 def test_explicit_custom_manifest_requirement_is_still_enforced(tmp_path):
     config, path, _, _ = write_fixture(tmp_path, "full_page")
-    config["manifest_requirements"] = {"normative_versions.validator": "0.4.19"}
+    config["manifest_requirements"] = {"normative_versions.validator": "0.4.20"}
     path.write_text(json.dumps(config), encoding="utf-8")
     corpus = tmp_path / "corpus" / "demo"
     manifest_path = corpus / "manifest.json"
@@ -776,3 +776,38 @@ def test_direct_profile_rejects_fullwidth_comma(tmp_path):
 def test_author_separator_rule_is_not_retroactive_to_1217(tmp_path):
     config, path = _inject_author_value(tmp_path, "Auteur A ; Auteur B", "1.2.17")
     module.GenericPublisher(config, FakeAdapter(), path).build_plan()
+
+
+def test_direct_profile_rejects_empty_english_wikipedia_articles(tmp_path):
+    config, path, _, _ = write_fixture(tmp_path, "full_page")
+    corpus, manifest_path = make_direct_profile(config, path, tmp_path)
+    _write_valid_direct_argument(corpus, manifest_path)
+    en_debate = corpus / "output" / "en" / "debate.wiki"
+    current = en_debate.read_text(encoding="utf-8")
+    current = current.replace("|wikipedia-articles={{Wikipedia article\n|page=Demonstration\n}}\n", "|wikipedia-articles=\n")
+    en_debate.write_text(current, encoding="utf-8")
+    update_hash(manifest_path, "en", "DEBATE", en_debate)
+    try:
+        module.GenericPublisher(config, FakeAdapter(), path).build_plan()
+    except module.PublicationError as exc:
+        assert "wikipedia-articles" in str(exc)
+    else:
+        raise AssertionError("paramètre Wikipédia anglais vide accepté")
+
+
+def test_direct_profile_rejects_json_author_array_in_english_reference(tmp_path):
+    config, path, _, _ = write_fixture(tmp_path, "full_page")
+    corpus, manifest_path = make_direct_profile(config, path, tmp_path)
+    _write_valid_direct_argument(corpus, manifest_path)
+    en_debate = corpus / "output" / "en" / "debate.wiki"
+    current = en_debate.read_text(encoding="utf-8")
+    body, closing = current.rsplit("\n}}\n", 1)
+    current = body + "\n|webliography={{Web reference\n|link=https://example.test\n|authors=[\"Organisation A\", \"Person B\"]\n|site=Example\n}}\n}}\n" + closing
+    en_debate.write_text(current, encoding="utf-8")
+    update_hash(manifest_path, "en", "DEBATE", en_debate)
+    try:
+        module.GenericPublisher(config, FakeAdapter(), path).build_plan()
+    except module.PublicationError as exc:
+        assert "tableau JSON" in str(exc)
+    else:
+        raise AssertionError("tableau JSON authors anglais accepté")

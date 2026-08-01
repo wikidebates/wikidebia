@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.20 — 1er août 2026
+
+- maintien de tous les contrôles 0.4.19 ;
+- correction de l’exemple anglais de la norme active, qui ne montre plus `wikipedia-articles` vide ;
+- ajout d’un test de non-régression sur les squelettes Débat/Debate actifs ;
+- copie normative resynchronisée octet par octet.
+
 ## 0.4.19 — 1er août 2026
 
 - alignement sur la norme 1.2.18 ;

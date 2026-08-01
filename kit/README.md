@@ -1,6 +1,6 @@
-# Kit Wikidéb’IA 2.2.3
+# Kit Wikidéb’IA 2.2.4
 
-Le kit publie et reprend les corpus Wikidéb’IA avec plans signés. La version 2.2.3, alignée sur la norme 1.2.18 et le validateur 0.4.19, conserve les barrières éditoriales 2.2.2 et rétablit la mise à niveau depuis un seul ZIP complet.
+Le kit publie et reprend les corpus Wikidéb’IA avec plans signés. La version 2.2.4, alignée sur la norme 1.2.18 et le validateur 0.4.20, conserve les barrières éditoriales 2.2.2 et rétablit la mise à niveau depuis un seul ZIP complet.
 
 ```bash
 ./wikidebia publish

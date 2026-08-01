@@ -1,6 +1,6 @@
 {
   "package": "wikidebia-validator",
-  "validator_version": "0.4.19",
+  "validator_version": "0.4.20",
   "implemented_normative_revision": "1.2.18",
   "compatible_normative_revisions": [
     "1.1.0",

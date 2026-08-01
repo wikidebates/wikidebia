@@ -11,7 +11,7 @@ from wikidebia_validator.wikicode import parse_template, validate_template_shape
 def context(norm: str = "1.2.17") -> PackageContext:
     return PackageContext(
         root=Path("."),
-        report=Report("0.4.19", ".", ["wikicode"]),
+        report=Report("0.4.20", ".", ["wikicode"]),
         cache={"manifest.json": {"normative_versions": {"consolidated_norm": norm}}},
     )
 

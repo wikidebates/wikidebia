@@ -14,8 +14,8 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Protocol
 
-KIT_VERSION = "2.2.3"
-REQUIRED_VALIDATOR_VERSION = "0.4.19"
+KIT_VERSION = "2.2.4"
+REQUIRED_VALIDATOR_VERSION = "0.4.20"
 DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
 REQUIRED_DIRECT_SCOPES = {"schema", "coherence", "graph", "files", "batches", "sources", "wikicode", "bilingual", "editorial", "workflow"}
 PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
@@ -1055,7 +1055,7 @@ class GenericPublisher:
             }
             counts[language]["total"] = len(language_actions)
         plan: dict[str, Any] = {
-            "plan_version": "wikidebia-publication-plan-2.2.3",
+            "plan_version": "wikidebia-publication-plan-2.2.4",
             "publication_profile": self.publication_profile,
             "kit_version": KIT_VERSION,
             "debate_id": self.config["debate_id"],

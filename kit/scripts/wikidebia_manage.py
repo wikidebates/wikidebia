@@ -16,8 +16,8 @@ from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
 NORM_VERSION = "1.2.18"
-VALIDATOR_VERSION = "0.4.19"
-KIT_VERSION = "2.2.3"
+VALIDATOR_VERSION = "0.4.20"
+KIT_VERSION = "2.2.4"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",

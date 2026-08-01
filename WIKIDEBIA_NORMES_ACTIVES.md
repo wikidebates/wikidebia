@@ -1,19 +1,19 @@
 # Wikidéb’IA — Normes actives 1.2.18
 
 **Norme active :** 1.2.18  
-**Validateur :** 0.4.19  
-**Kit :** 2.2.3
+**Validateur :** 0.4.20  
+**Kit :** 2.2.4
 
 # Source incorporée : `COMPATIBILITY.json`
 
-**SHA-256 :** `d5612ad8dcf2b0f3c12bfe325dbd57ce4ca4345661735fa13e722d533aa658ca`
+**SHA-256 :** `cbdc6235a389603aec35fa6a0e70f860b093e7fe443157ba0c07bec04f938d3f`
 
 ```json
 {
   "package": "wikidebia-normes",
   "normative_revision": "1.2.18",
-  "recommended_validator_version": "0.4.19",
-  "recommended_kit_version": "2.2.3",
+  "recommended_validator_version": "0.4.20",
+  "recommended_kit_version": "2.2.4",
   "migration_required_for_existing_packages": true,
   "compatible_prior_normative_revisions": [
     "1.1.0",
@@ -53,7 +53,7 @@
 
 # Source incorporée : `README.md`
 
-**SHA-256 :** `6a22600227923bac0039f7a75a10a0c2b3a71ada4ba618f1c84cd1ee31a284e7`
+**SHA-256 :** `3d1e1fda34824119985648f54cc32c1429f542c3583cb3060f77ea9102476b30`
 
 ```
 # Wikidéb’IA — Normes 1.2.18
@@ -61,30 +61,30 @@
 Source normative active générique pour la production et la publication français–anglais. La révision 1.2.18 conserve les barrières 1.2.17 et corrige le séparateur des auteurs. La révision 1.2.17 impose au moins un article Wikipédia vérifié par page Débat/Debate, interdit le rendu des débats connexes, formalise la conversion des listes JSON d’auteurs et rend `./wikidebia publish` non interactif tout en conservant le plan signé.
 
 - norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md` ;
-- validateur recommandé : 0.4.19 ;
-- kit recommandé : 2.2.3.
+- validateur recommandé : 0.4.20 ;
+- kit recommandé : 2.2.4.
 ```
 
 # Source incorporée : `VERSIONS.json`
 
-**SHA-256 :** `7ef714706ad649efc400084a5407c2ea4c3193c1cf86c965886b0b63381c19fe`
+**SHA-256 :** `309ee49f75ac553541c773c21368556bb1e4a094825e6e930dafa9081e8c947f`
 
 ```json
 {
   "norm": "1.2.18",
-  "validator": "0.4.19",
-  "kit": "2.2.3"
+  "validator": "0.4.20",
+  "kit": "2.2.4"
 }
 ```
 
 # Source incorporée : `docs/ARCHITECTURE_VALIDATEUR.md`
 
-**SHA-256 :** `6bf564f5e31ff258a2320a7b4d310dc306cbb5eb344d4584abedd8bf067a848e`
+**SHA-256 :** `546c853493945c262e166ed1fe5a29e6f26abebfa0acf3a0502deed3cdbf3254`
 
 ```
 # Architecture normative et validation
 
-Le paquet normatif 1.2.18 recommande le validateur 0.4.19. Le pipeline sépare les contraintes de schéma, les invariants structurels, les contrôles documentaires et les revues humaines.
+Le paquet normatif 1.2.18 recommande le validateur 0.4.20. Le pipeline sépare les contraintes de schéma, les invariants structurels, les contrôles documentaires et les revues humaines.
 
 Les dates documentaires ISO, les modèles spécialisés dans les appels inline d’introduction et les paramètres documentaires de débat contenant moins de deux notices sont bloquants. Les dates de création restent contrôlées séparément au format `AAAA-MM-JJ`. L’acronyme courant est déclaré dans le registre de revue, puis comparé à `sujet-complet` ou `complete-topic`.
 
@@ -92,7 +92,7 @@ La publication française seule reste sûre parce que le kit compare le lien int
 
 La norme 1.2.18 ajoute un contrôle lexical déterministe sur le wikicode brut : toute jonction de modèles écrite sous la forme `}}` + saut de ligne + `{{` est bloquée et doit être compactée en `}}{{`.
 
-Le validateur 0.4.19 produit des chemins de paquet portables ; le kit 2.2.3 contrôle l’ordre de publication et la structure de l’installation.
+Le validateur 0.4.20 produit des chemins de paquet portables ; le kit 2.2.4 contrôle l’ordre de publication et la structure de l’installation.
 
 
 ## Reprise distante d’un corpus publié — révision 1.2.18
@@ -234,7 +234,7 @@ La révision 1.2.18 ajoute deux barrières de wikicode : article Wikipédia obli
 
 # Source incorporée : `docs/AUDIT_COMPLETUDE_1.2.18.md`
 
-**SHA-256 :** `c49d6355a2de19666323443d3c94fa19432ff9559681e3bd27dcdb95d00e3305`
+**SHA-256 :** `76f8b84f5b86fd21aa149afec84b846e61756fd2c14682ae2957fc17c89539cf`
 
 ```
 # Audit de complétude 1.2.18
@@ -245,8 +245,8 @@ La révision 1.2.18 ajoute deux barrières de wikicode : article Wikipédia obli
 - contrôles du validateur et du kit testés positivement et négativement ;
 - compatibilité 1.1.0–1.2.17 conservée ;
 - reprise distante, Wikipédia obligatoire, absence de débats connexes, conversion JSON et publication non interactive conservées ;
-- validateur recommandé : 0.4.19 ;
-- kit recommandé : 2.2.3.
+- validateur recommandé : 0.4.20 ;
+- kit recommandé : 2.2.4.
 ```
 
 # Source incorporée : `docs/AUDIT_COMPLETUDE_1.2.8.md`
@@ -284,10 +284,10 @@ La révision 1.2.18 ajoute deux barrières de wikicode : article Wikipédia obli
 
 # Source incorporée : `docs/CONTROL_CATALOG.md`
 
-**SHA-256 :** `c043405a081df5f7280c04c9790b61706c275f5fba53dfc01a63200ab8c50600`
+**SHA-256 :** `89754c4cea7bd3e4c3c2513a07ea9a7b5598dada622987372595c365c3ac4adf`
 
 ```
-# Catalogue des codes de contrôle — 0.4.19
+# Catalogue des codes de contrôle — 0.4.20
 
 | Code | Signification |
 |---|---|
@@ -441,6 +441,23 @@ Cette révision corrige uniquement le séparateur de plusieurs auteurs dans le w
 # Maintenance 1.2.18 / 0.4.19 / 2.2.3
 
 La norme éditoriale reste 1.2.18 et le validateur reste 0.4.19. Le kit 2.2.3 corrige le conditionnement des composants : un bundle complet unique redevient installable par le gestionnaire historique et par `./wikidebia upgrade`. Les ZIP internes n’embarquent plus `PACKAGE_RECEIPT.json`; les reçus sont conservés au niveau de la livraison complète. Aucun corpus n’a à migrer pour ce correctif technique.
+```
+
+# Source incorporée : `docs/MAINTENANCE_1.2.18_0.4.20_2.2.4.md`
+
+**SHA-256 :** `374649657b2a618e3654739d5883007db06e41dba62410396ca9ced192d6472f`
+
+```
+# Maintenance 1.2.18 / 0.4.20 / 2.2.4
+
+La norme éditoriale reste 1.2.18. Le validateur 0.4.20 et le kit 2.2.4 renforcent l’audit de non-régression sans modifier les corpus historiques :
+
+- le squelette anglais actif fournit désormais un `wikipedia-articles` non vide, cohérent avec la règle déjà bloquante ;
+- les tests contrôlent les exemples français et anglais de la norme active ;
+- la chronologie 2.2.0–2.2.3 du kit est corrigée dans le changelog ;
+- les barrières Wikipédia, débats connexes, auteurs JSON, séparateur `, `, publication non interactive, reprise distante et bundle unique restent actives.
+
+Aucun corpus conforme à 1.2.18 n’a à migrer pour cette maintenance documentaire et de test.
 ```
 
 # Source incorporée : `docs/MIGRATION_1.1.8.md`
@@ -698,10 +715,13 @@ La commande historique de mise à niveau des composants devient `./wikidebia upg
 
 # Source incorporée : `docs/MIGRATION_1.2.17.md`
 
-**SHA-256 :** `8af0e3df300fc88ffaf0b9994b0648616a433d4c19721f8a1d7b2f5782ed14be`
+**SHA-256 :** `a3f751f50f013b90ce104041a5f0c01a0a12d1c836e77530d793756097395de1`
 
 ```
 # Migration vers la norme 1.2.17
+
+> **Note actuelle :** ce document décrit la transition historique vers 1.2.17. La convention ` ; ` mentionnée ci-dessous a été corrigée par la norme 1.2.18. Toute production ou migration courante utilise `, ` entre plusieurs auteurs.
+
 
 1. Ajouter au moins un `{{Article Wikipédia|page=…}}` vérifié à chaque page Débat française et un `{{Wikipedia article|page=…}}` à chaque page Debate anglaise.
 2. Retirer tous les paramètres `débats-connexes` et `related-debates` des pages générées.
@@ -842,14 +862,14 @@ Le validateur 0.4.18 ajoute `WDV-MWK-019` et `WDV-DOC-006`. Le kit 2.2.1 appliqu
 
 # Source incorporée : `docs/NORMATIVE_AUDIT_1.2.18.md`
 
-**SHA-256 :** `e8421e0636801c58b45c23e4dbd9085128c64b1e77060790adb6223bad40b9be`
+**SHA-256 :** `b26b0b5cf8f81e7abd38d519e93347249b9afebc76c3e47db5edead432d8ee1f`
 
 ```
 # Audit normatif 1.2.18
 
 La correction du séparateur des auteurs est présente dans la norme consolidée, les structures MediaWiki, le profil de rendu, le cahier des charges, le workflow, le catalogue d’exigences et la matrice de traçabilité.
 
-L’exigence `REF-032` impose la forme `Auteur 1, Auteur 2`. Le validateur 0.4.19 ajoute `WDV-DOC-007`; le kit 2.2.3 applique le même précontrôle avant toute écriture. Les quatre barrières de 1.2.17 et toutes les capacités de reprise de 1.2.16 restent actives.
+L’exigence `REF-032` impose la forme `Auteur 1, Auteur 2`. Le validateur 0.4.20 ajoute `WDV-DOC-007`; le kit 2.2.4 applique le même précontrôle avant toute écriture. Les quatre barrières de 1.2.17 et toutes les capacités de reprise de 1.2.16 restent actives.
 ```
 
 # Source incorporée : `docs/NORMATIVE_AUDIT_1.2.8.md`
@@ -1782,10 +1802,16 @@ Chaque étiquette de provenance utilisée dans le catalogue doit être déclaré
 
 # Source incorporée : `normative_reference/01_normes/CHANGELOG_NORMATIF.md`
 
-**SHA-256 :** `721fe4fdeb8bf90107f6768922af1337468e8f6d4e888f4015978e6f80ef51d3`
+**SHA-256 :** `6bce00425c37606a69d70f153e40f04570d3b4cb4c21e7bff52f16d6e288fe75`
 
 ```
 # Changelog normatif
+
+## Maintenance 1.2.18 — 1er août 2026
+
+- correction du squelette anglais afin que `wikipedia-articles` ne soit jamais montré vide ;
+- ajout d’un contrôle permanent de cohérence des exemples actifs ;
+- alignement recommandé : validateur 0.4.20, kit 2.2.4.
 
 ## 1.2.18 — 1er août 2026
 
@@ -2307,7 +2333,7 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 
 # Source incorporée : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md`
 
-**SHA-256 :** `929f9570e239b5979942fe23f33a7bbec9343ae82a8bde38163e71c5181dcd70`
+**SHA-256 :** `aadcfdb929c8660fff78b90847334212445c2ecd56b0c212e4a59ab26fa6536d`
 
 ```
 # Norme consolidée Wikidéb’IA 1.2.18
@@ -2670,7 +2696,9 @@ La présence des pages anglaises dans le manifeste de pages n’est pas une cond
 |title=
 |content=
 }}
-|wikipedia-articles=
+|wikipedia-articles={{Wikipedia article
+|page=Verified article directly related to the topic
+}}
 |pro-arguments={{Pro argument
 |page=Full canonical title
 |displayed-title=Displayed title

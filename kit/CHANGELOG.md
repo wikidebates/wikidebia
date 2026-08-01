@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.2.4 — 1er août 2026
+
+- maintenance de non-régression sans changement de norme ;
+- correction de l’exemple anglais actif `wikipedia-articles` dans les sources normatives livrées ;
+- ajout de tests permanents sur les squelettes français et anglais ;
+- conservation du bundle complet unique et de toutes les barrières 2.2.0–2.2.3.
+
 ## 2.2.3 — 1er août 2026
 
 - rétablissement du bootstrap depuis un seul ZIP complet avec les gestionnaires historiques ;
@@ -10,14 +17,20 @@
 
 ## 2.2.2 — 1er août 2026
 
+- précontrôle du séparateur canonique `, ` entre plusieurs auteurs ;
+- refus du point-virgule, des virgules mal espacées et de la virgule pleine chasse pour les corpus 1.2.18 ;
+- alignement sur la norme 1.2.18 et le validateur 0.4.19.
+
+## 2.2.1 — 1er août 2026
+
 - suppression de la question interactive de `./wikidebia publish` ;
 - transmission automatique de l’empreinte du plan signé ;
 - préflight bloquant pour les articles Wikipédia absents ou vides ;
 - préflight bloquant pour `débats-connexes` / `related-debates` ;
 - préflight bloquant pour les tableaux JSON dans `auteurs` / `authors` ;
-- alignement sur la norme 1.2.18 et le validateur 0.4.19.
+- alignement sur la norme 1.2.17 et le validateur 0.4.18.
 
-## 2.2.2 — 31 juillet 2026
+## 2.2.0 — 31 juillet 2026
 
 - `./wikidebia update IDENTIFIANT` devient la commande de reprise d’un débat déjà publié ;
 - l’ancienne mise à niveau des composants devient `./wikidebia upgrade` ;

@@ -8,28 +8,28 @@
     "PACKAGE_MANIFEST_SHA256.json",
     "PACKAGE_RECEIPT.json"
   ],
-  "declared_file_count": 113,
+  "declared_file_count": 114,
   "declared_test_count": 0,
   "files": [
     {
       "path": "COMPATIBILITY.json",
       "size_bytes": 775,
-      "sha256": "d5612ad8dcf2b0f3c12bfe325dbd57ce4ca4345661735fa13e722d533aa658ca"
+      "sha256": "cbdc6235a389603aec35fa6a0e70f860b093e7fe443157ba0c07bec04f938d3f"
     },
     {
       "path": "README.md",
       "size_bytes": 635,
-      "sha256": "6a22600227923bac0039f7a75a10a0c2b3a71ada4ba618f1c84cd1ee31a284e7"
+      "sha256": "3d1e1fda34824119985648f54cc32c1429f542c3583cb3060f77ea9102476b30"
     },
     {
       "path": "VERSIONS.json",
       "size_bytes": 66,
-      "sha256": "7ef714706ad649efc400084a5407c2ea4c3193c1cf86c965886b0b63381c19fe"
+      "sha256": "309ee49f75ac553541c773c21368556bb1e4a094825e6e930dafa9081e8c947f"
     },
     {
       "path": "docs/ARCHITECTURE_VALIDATEUR.md",
       "size_bytes": 2490,
-      "sha256": "6bf564f5e31ff258a2320a7b4d310dc306cbb5eb344d4584abedd8bf067a848e"
+      "sha256": "546c853493945c262e166ed1fe5a29e6f26abebfa0acf3a0502deed3cdbf3254"
     },
     {
       "path": "docs/AUDIT_COMPLETUDE_1.2.10.md",
@@ -74,7 +74,7 @@
     {
       "path": "docs/AUDIT_COMPLETUDE_1.2.18.md",
       "size_bytes": 523,
-      "sha256": "c49d6355a2de19666323443d3c94fa19432ff9559681e3bd27dcdb95d00e3305"
+      "sha256": "76f8b84f5b86fd21aa149afec84b846e61756fd2c14682ae2957fc17c89539cf"
     },
     {
       "path": "docs/AUDIT_COMPLETUDE_1.2.8.md",
@@ -89,7 +89,7 @@
     {
       "path": "docs/CONTROL_CATALOG.md",
       "size_bytes": 6394,
-      "sha256": "c043405a081df5f7280c04c9790b61706c275f5fba53dfc01a63200ab8c50600"
+      "sha256": "89754c4cea7bd3e4c3c2513a07ea9a7b5598dada622987372595c365c3ac4adf"
     },
     {
       "path": "docs/MAINTENANCE_1.2.15_0.4.16_2.1.17.md",
@@ -115,6 +115,11 @@
       "path": "docs/MAINTENANCE_1.2.18_0.4.19_2.2.3.md",
       "size_bytes": 452,
       "sha256": "4d49935aacf627ccfb75f280e1bf0457c8a7a3f885cc896e9508a3291f491020"
+    },
+    {
+      "path": "docs/MAINTENANCE_1.2.18_0.4.20_2.2.4.md",
+      "size_bytes": 724,
+      "sha256": "374649657b2a618e3654739d5883007db06e41dba62410396ca9ced192d6472f"
     },
     {
       "path": "docs/MIGRATION_1.1.8.md",
@@ -168,8 +173,8 @@
     },
     {
       "path": "docs/MIGRATION_1.2.17.md",
-      "size_bytes": 672,
-      "sha256": "8af0e3df300fc88ffaf0b9994b0648616a433d4c19721f8a1d7b2f5782ed14be"
+      "size_bytes": 913,
+      "sha256": "a3f751f50f013b90ce104041a5f0c01a0a12d1c836e77530d793756097395de1"
     },
     {
       "path": "docs/MIGRATION_1.2.18.md",
@@ -229,7 +234,7 @@
     {
       "path": "docs/NORMATIVE_AUDIT_1.2.18.md",
       "size_bytes": 516,
-      "sha256": "e8421e0636801c58b45c23e4dbd9085128c64b1e77060790adb6223bad40b9be"
+      "sha256": "b26b0b5cf8f81e7abd38d519e93347249b9afebc76c3e47db5edead432d8ee1f"
     },
     {
       "path": "docs/NORMATIVE_AUDIT_1.2.8.md",
@@ -383,8 +388,8 @@
     },
     {
       "path": "normative_reference/01_normes/CHANGELOG_NORMATIF.md",
-      "size_bytes": 11523,
-      "sha256": "721fe4fdeb8bf90107f6768922af1337468e8f6d4e888f4015978e6f80ef51d3"
+      "size_bytes": 11788,
+      "sha256": "6bce00425c37606a69d70f153e40f04570d3b4cb4c21e7bff52f16d6e288fe75"
     },
     {
       "path": "normative_reference/01_normes/MATRICE_TRACEABILITE_DESIDERATA.md",
@@ -393,8 +398,8 @@
     },
     {
       "path": "normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
-      "size_bytes": 72934,
-      "sha256": "929f9570e239b5979942fe23f33a7bbec9343ae82a8bde38163e71c5181dcd70"
+      "size_bytes": 73009,
+      "sha256": "aadcfdb929c8660fff78b90847334212445c2ecd56b0c212e4a59ab26fa6536d"
     },
     {
       "path": "normative_reference/01_normes/cahier_des_charges_consolide_wikidebia.md",

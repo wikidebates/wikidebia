@@ -1,15 +1,22 @@
-# Wikidéb’IA — Validateur actif 0.4.19
+# Wikidéb’IA — Validateur actif 0.4.20
 
 **Norme active :** 1.2.18  
-**Validateur :** 0.4.19  
-**Kit :** 2.2.3
+**Validateur :** 0.4.20  
+**Kit :** 2.2.4
 
 # Source incorporée : `CHANGELOG.md`
 
-**SHA-256 :** `e5652eb44a81675758df813aa0a024bfc6b17b4b314bf579572553e0e345e277`
+**SHA-256 :** `090f1b747bd767d0ad2aac8855e09be5a091124f900872659a988021899819dc`
 
 ```
 # Changelog
+
+## 0.4.20 — 1er août 2026
+
+- maintien de tous les contrôles 0.4.19 ;
+- correction de l’exemple anglais de la norme active, qui ne montre plus `wikipedia-articles` vide ;
+- ajout d’un test de non-régression sur les squelettes Débat/Debate actifs ;
+- copie normative resynchronisée octet par octet.
 
 ## 0.4.19 — 1er août 2026
 
@@ -109,12 +116,12 @@
 
 # Source incorporée : `COMPATIBILITY.json`
 
-**SHA-256 :** `101903ebe344f03eb4fa934be94e674cba0324ece4784d046189a18afb6df033`
+**SHA-256 :** `45dacf0954830723a8ee854ce9e783f63d1e3b0956c3a163bb1afcf640a262e9`
 
 ```json
 {
   "package": "wikidebia-validator",
-  "validator_version": "0.4.19",
+  "validator_version": "0.4.20",
   "implemented_normative_revision": "1.2.18",
   "compatible_normative_revisions": [
     "1.1.0",
@@ -187,34 +194,34 @@ SOFTWARE.
 
 # Source incorporée : `README.md`
 
-**SHA-256 :** `4ee1529c62440518bf33f0a9468ecb564361538ff76787a791f9eac4884d9764`
+**SHA-256 :** `d1290dae51389f90368c77db8112d6be9454a8c6db11421d94031fe5ba140f92`
 
 ```
-# Validateur stable Wikidéb’IA 0.4.19
+# Validateur stable Wikidéb’IA 0.4.20
 
 Validateur local Python 3 aligné sur la norme 1.2.18 et rétrocompatible avec les révisions déclarées dans `COMPATIBILITY.json`. `validate` reste strictement en lecture seule.
 
-La version 0.4.19 bloque les pages Débat/Debate sans article Wikipédia, les paramètres de débats connexes dans les sorties 1.2.18 et les valeurs `auteurs`/`authors` sérialisées comme tableaux JSON et les séparateurs d’auteurs autres que la forme canonique `, `. La source active embarquée est `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md`.
+La version 0.4.20 bloque les pages Débat/Debate sans article Wikipédia, les paramètres de débats connexes dans les sorties 1.2.18 et les valeurs `auteurs`/`authors` sérialisées comme tableaux JSON et les séparateurs d’auteurs autres que la forme canonique `, `. La source active embarquée est `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md`.
 ```
 
 # Source incorporée : `VERSIONS.json`
 
-**SHA-256 :** `7ef714706ad649efc400084a5407c2ea4c3193c1cf86c965886b0b63381c19fe`
+**SHA-256 :** `309ee49f75ac553541c773c21368556bb1e4a094825e6e930dafa9081e8c947f`
 
 ```json
 {
   "norm": "1.2.18",
-  "validator": "0.4.19",
-  "kit": "2.2.3"
+  "validator": "0.4.20",
+  "kit": "2.2.4"
 }
 ```
 
 # Source incorporée : `docs/ARCHITECTURE.md`
 
-**SHA-256 :** `cbe3a9578e9310ab18d52c2e21a1ed494c1b41f5202e4b9d6bebaa987ba2339d`
+**SHA-256 :** `75283da637be033408ee9e9c174b6b3ae203cb4aac43897d82ee22b7ba1e224b`
 
 ```
-# Architecture du validateur 0.4.19
+# Architecture du validateur 0.4.20
 
 Le validateur conserve ses portées locales et en lecture seule. Sous 1.2.18, le module wikicode exige au moins un sous-modèle Wikipédia sur chaque page de débat, interdit le rendu des débats connexes et refuse les tableaux JSON dans les paramètres auteurs. Les comparaisons de versions utilisent désormais un ordre sémantique plutôt qu’une liste manuelle de révisions.
 ```
@@ -370,6 +377,21 @@ Les contrôles normatifs et éditoriaux 0.4.15 sont conservés sans modification
 - aucune écriture distante.
 ```
 
+# Source incorporée : `docs/AUDIT_NON_REGRESSION_0.4.20.md`
+
+**SHA-256 :** `554931e217de312b5cd659c8e98116154f8b7f5514793ea24a0c26b2235ac22c`
+
+```
+# Audit de non-régression 0.4.20
+
+- tous les contrôles 0.4.19 sont conservés ;
+- les squelettes actifs français et anglais contiennent un article Wikipédia non vide ;
+- aucun paramètre de débats connexes n’est rendu dans les squelettes actifs ;
+- les contrôles génériques `auteurs`/`authors` ne dépendent d’aucun nom d’auteur particulier ;
+- les versions compatibles restent continues de 1.1.0 à 1.2.18 ;
+- aucune écriture distante n’est ajoutée au validateur.
+```
+
 # Source incorporée : `docs/AUDIT_NON_REGRESSION_0.4.5.md`
 
 **SHA-256 :** `a1a88ae3900b879f7af9b14aebdb91793c173e718ff7c0222aa3763c155a34ec`
@@ -435,10 +457,10 @@ Les contrôles normatifs et éditoriaux 0.4.15 sont conservés sans modification
 
 # Source incorporée : `docs/CONTROL_CATALOG.md`
 
-**SHA-256 :** `c043405a081df5f7280c04c9790b61706c275f5fba53dfc01a63200ab8c50600`
+**SHA-256 :** `89754c4cea7bd3e4c3c2513a07ea9a7b5598dada622987372595c365c3ac4adf`
 
 ```
-# Catalogue des codes de contrôle — 0.4.19
+# Catalogue des codes de contrôle — 0.4.20
 
 | Code | Signification |
 |---|---|
@@ -778,10 +800,13 @@ Installer le validateur 0.4.17 sans réécrire les versions historiques des corp
 
 # Source incorporée : `docs/MIGRATION_1.2.17.md`
 
-**SHA-256 :** `8f4fcadf6ccfcf93821fd0baa5ef1d4d168e6e042f9d1a6e17f2cc12454070d9`
+**SHA-256 :** `24d5b545e21fe02109771cc8aa4ff461f6456e06fad9eda4c08cb8e258850092`
 
 ```
 # Migration validateur 0.4.18 / norme 1.2.17
+
+> **Note actuelle :** ce document décrit la transition historique vers 1.2.17. La convention ` ; ` mentionnée ci-dessous a été corrigée par la norme 1.2.18. Toute production ou migration courante utilise `, ` entre plusieurs auteurs.
+
 
 Corriger les pages Débat/Debate pour ajouter un article Wikipédia vérifié, retirer les débats connexes et convertir les listes JSON d’auteurs avant de déclarer 1.2.17. Les corpus historiques restent validés sous leur révision d’origine.
 ```
@@ -854,12 +879,12 @@ Remplacer le validateur 0.4.6, déclarer la norme 1.2.7, régénérer les emprei
 
 # Source incorporée : `docs/NORMATIVE_AUDIT.md`
 
-**SHA-256 :** `bf34c29ceba2fef3acbec437e9c90d9f4fa2fabae523b7c7d8abbe74b1ea4f3f`
+**SHA-256 :** `226f566ef7abcfda39b20bd1a11d4e6b179db1e5bfd8819b8b7531c25200c5da`
 
 ```
-# Audit normatif du validateur 0.4.19
+# Audit normatif du validateur 0.4.20
 
-Le validateur 0.4.19 embarque une copie synchronisée de la norme 1.2.18. Les contrôles 1.2.17 correspondent à `DFR-046`, `MW-026` et `REF-031`. La norme 1.2.18 ajoute `REF-032`, implémentée par `WDV-DOC-007`. La suppression de l’invite de publication relève du kit 2.2.3, pas du validateur.
+Le validateur 0.4.20 embarque une copie synchronisée de la norme 1.2.18. Les contrôles 1.2.17 correspondent à `DFR-046`, `MW-026` et `REF-031`. La norme 1.2.18 ajoute `REF-032`, implémentée par `WDV-DOC-007`. La suppression de l’invite de publication relève du kit 2.2.4, pas du validateur.
 ```
 
 # Source incorporée : `docs/NORMATIVE_CORRECTION_2026-07-23.md`
@@ -879,33 +904,33 @@ Décisions actives ajoutées après la livraison 1.0.6 :
 
 # Source incorporée : `docs/NORMATIVE_SOURCE_AUDIT.txt`
 
-**SHA-256 :** `d84cb36554057b00bff1117e652c642f6245493239840c788b497dbf28383a9c`
+**SHA-256 :** `e93e90c2454bc61be109035fdbca770f1e9816378eafb3b833f4a07454f7e136`
 
 ```
 AUDIT DE SOURCE NORMATIVE
-Version du validateur : 0.4.19
+Version du validateur : 0.4.20
 Source active : normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md
 Résultat : source unique présente et catalogue de provenance résolu.
 ```
 
 # Source incorporée : `docs/SELF_AUDIT_REPORT.txt`
 
-**SHA-256 :** `2a6013667d4c278ccf7ce1c0bec4d9662feec9eba3c7edd7e7557f1499fa296e`
+**SHA-256 :** `3ea9b90f369ddbb5d3e7dc2ae720cf6caf5a972213c0b8f540f04856262796a0`
 
 ```
-AUTO-AUDIT VALIDATEUR 0.4.19
+AUTO-AUDIT VALIDATEUR 0.4.20
 Résultat après empaquetage : RÉUSSI
 Contrôles : UTF-8, fins de ligne, syntaxe Python, JSON, inventaire, tailles, empreintes SHA-256, declared_file_count, declared_test_count, provenance, exemples actifs et révisions compatibles.
 ```
 
 # Source incorporée : `docs/TEST_REPORT.txt`
 
-**SHA-256 :** `beb11519e28bce2abc02655342c7d21a9f3c98160658532ba6ddc39807080637`
+**SHA-256 :** `11d16a08d76d932b18dea18158da4e1b9a9b1e63256e9cb4e28967e8fd036c59`
 
 ```
-Wikidéb’IA Validator 0.4.19
+Wikidéb’IA Validator 0.4.20
 Norme implémentée : 1.2.18
-Tests pytest : 153 réussis, 0 échec
+Tests pytest : 162 réussis, 0 échec
 Contrôles nouveaux : WDV-DOC-007 et non-régression des révisions 1.2.15, 1.2.16 et 1.2.18
 Résultat : RÉUSSI
 ```
@@ -3477,13 +3502,13 @@ Déclarer les versions 1.2.3 et 0.4.3, régénérer les manifestes, puis exécut
 
 # Source incorporée : `examples/remote_update_plan.example.json`
 
-**SHA-256 :** `dfeff4890464a0b4f8d0bb10b364347975c683d8361f823b12a2b91b3b47fdf3`
+**SHA-256 :** `cdd726eef4fa706c8f84d9be4ec4d3f689365756bf7b19aec885bc5610aad129`
 
 ```json
 {
   "plan_version": "wikidebia-remote-update-plan-1.0",
-  "kit_version": "2.2.3",
-  "required_validator_version": "0.4.19",
+  "kit_version": "2.2.4",
+  "required_validator_version": "0.4.20",
   "debate_id": "exemple_debat",
   "corpus_version": "2026-07-31.1",
   "languages": [
@@ -5812,10 +5837,16 @@ Chaque étiquette de provenance utilisée dans le catalogue doit être déclaré
 
 # Source incorporée : `normative_reference/01_normes/CHANGELOG_NORMATIF.md`
 
-**SHA-256 :** `721fe4fdeb8bf90107f6768922af1337468e8f6d4e888f4015978e6f80ef51d3`
+**SHA-256 :** `6bce00425c37606a69d70f153e40f04570d3b4cb4c21e7bff52f16d6e288fe75`
 
 ```
 # Changelog normatif
+
+## Maintenance 1.2.18 — 1er août 2026
+
+- correction du squelette anglais afin que `wikipedia-articles` ne soit jamais montré vide ;
+- ajout d’un contrôle permanent de cohérence des exemples actifs ;
+- alignement recommandé : validateur 0.4.20, kit 2.2.4.
 
 ## 1.2.18 — 1er août 2026
 
@@ -6337,7 +6368,7 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 
 # Source incorporée : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md`
 
-**SHA-256 :** `929f9570e239b5979942fe23f33a7bbec9343ae82a8bde38163e71c5181dcd70`
+**SHA-256 :** `aadcfdb929c8660fff78b90847334212445c2ecd56b0c212e4a59ab26fa6536d`
 
 ```
 # Norme consolidée Wikidéb’IA 1.2.18
@@ -6700,7 +6731,9 @@ La présence des pages anglaises dans le manifeste de pages n’est pas une cond
 |title=
 |content=
 }}
-|wikipedia-articles=
+|wikipedia-articles={{Wikipedia article
+|page=Verified article directly related to the topic
+}}
 |pro-arguments={{Pro argument
 |page=Full canonical title
 |displayed-title=Displayed title
@@ -33487,7 +33520,7 @@ La commande `./wikidebia publish` est entièrement non interactive : après vali
 
 # Source incorporée : `pyproject.toml`
 
-**SHA-256 :** `8b0522b445de25ffa66b1c5483289e1d91449877d542a3d5aba359f4a59fa263`
+**SHA-256 :** `1db731209ca9f81e5fa9950bd3c4c71bfa73326cee5ce6fb9a4de08bcd7dbc03`
 
 ```toml
 [build-system]
@@ -33496,7 +33529,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wikidebia-validator"
-version = "0.4.19"
+version = "0.4.20"
 description = "Validateur local stable des paquets Wikidéb'IA"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -33967,12 +34000,12 @@ raise SystemExit(main())
 
 # Source incorporée : `src/wikidebia_validator/__init__.py`
 
-**SHA-256 :** `59f03424f7547f5da8b474b03a81e83ec0e92be02aeafe0ec28f80dc77881d4e`
+**SHA-256 :** `d4fb78b925edc85a21678a98675eb592f57a28dbab69f8f42158bf474e641dfd`
 
 ```python
 __all__ = ["__version__"]
 
-__version__ = "0.4.19"
+__version__ = "0.4.20"
 ```
 
 # Source incorporée : `src/wikidebia_validator/__main__.py`
@@ -45030,7 +45063,7 @@ def test_validator_metadata_reports_0413():
 
 # Source incorporée : `tests/test_norm_1214.py`
 
-**SHA-256 :** `591632ca837768ba547fa4f950101c160d12e125d98438d9a3461d39c0361c5a`
+**SHA-256 :** `b2e0f82a840a052af043eb621969c714b75fcfe85ffd97873b5acfe0a0024a5f`
 
 ```python
 from pathlib import Path
@@ -45039,7 +45072,7 @@ from wikidebia_validator import __version__
 
 
 def test_validator_metadata_reports_0414():
-    assert __version__ == "0.4.19"
+    assert __version__ == "0.4.20"
 
 
 def test_norm_1214_is_declared_compatible():
@@ -45051,7 +45084,7 @@ def test_norm_1214_is_declared_compatible():
 
 # Source incorporée : `tests/test_norm_1217.py`
 
-**SHA-256 :** `385a9cded4922750709a2ae32dc567017296b1e607a130abd4e3d4de8f1f8a9a`
+**SHA-256 :** `565c291857ae28ff72809045b71a353c59010cb1942bda46ae75d31dff6315fa`
 
 ```python
 from __future__ import annotations
@@ -45067,7 +45100,7 @@ from wikidebia_validator.wikicode import parse_template, validate_template_shape
 def context(norm: str = "1.2.17") -> PackageContext:
     return PackageContext(
         root=Path("."),
-        report=Report("0.4.19", ".", ["wikicode"]),
+        report=Report("0.4.20", ".", ["wikicode"]),
         cache={"manifest.json": {"normative_versions": {"consolidated_norm": norm}}},
     )
 
@@ -45143,7 +45176,7 @@ def test_rules_are_not_retroactive_to_1216():
 
 # Source incorporée : `tests/test_norm_1218.py`
 
-**SHA-256 :** `c9759534d491c7551453b1738be6e29929c146a9ac9c3ed00ea26c1571202c88`
+**SHA-256 :** `b66251931f9cab8b23386503d507e5a8d085c5c5ff0d70d7af0bdfb9df973763`
 
 ```python
 from __future__ import annotations
@@ -45180,6 +45213,91 @@ def test_fullwidth_comma_is_rejected():
 
 def test_separator_rule_is_not_retroactive_to_1217():
     assert not any(i.code == "WDV-DOC-007" for i in issues("Auteur A ; Auteur B", "1.2.17"))
+
+
+def test_active_norm_debate_skeletons_have_nonempty_wikipedia_articles():
+    from pathlib import Path
+    source = Path(__file__).resolve().parents[1] / "normative_reference" / "01_normes" / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
+    norm = source.read_text(encoding="utf-8")
+    assert "|articles-Wikipédia={{Article Wikipédia" in norm
+    assert "|wikipedia-articles={{Wikipedia article" in norm
+    assert "|articles-Wikipédia=\n" not in norm
+    assert "|wikipedia-articles=\n" not in norm
+
+
+def test_active_norm_skeletons_do_not_render_related_debates():
+    from pathlib import Path
+    source = Path(__file__).resolve().parents[1] / "normative_reference" / "01_normes" / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
+    norm = source.read_text(encoding="utf-8")
+    # The terms may appear in prose explaining the prohibition, but never as rendered parameters.
+    assert "\n|débats-connexes=" not in norm
+    assert "\n|related-debates=" not in norm
+
+
+def test_json_author_rule_is_generic_not_name_specific():
+    findings = issues('["Organisation quelconque", "Personne quelconque"]')
+    assert any(i.code == "WDV-DOC-006" for i in findings)
+
+import pytest
+
+
+@pytest.mark.parametrize(
+    ("language", "page", "parameter", "model"),
+    [
+        ("fr", "debate", "bibliographie-ni-pour-ni-contre", "Référence bibliographique"),
+        ("fr", "debate", "sitographie-ni-pour-ni-contre", "Référence sitographique"),
+        ("fr", "debate", "vidéographie-ni-pour-ni-contre", "Référence vidéographique"),
+        ("en", "debate", "bibliography", "Bibliographical reference"),
+        ("en", "debate", "webliography", "Web reference"),
+        ("en", "debate", "videography", "Video reference"),
+    ],
+)
+def test_json_author_arrays_are_rejected_in_every_reference_family(language, page, parameter, model):
+    author_key = "auteurs" if language == "fr" else "authors"
+    if language == "fr":
+        base = debate("|articles-Wikipédia={{Article Wikipédia\n|page=Philosophie\n}}")
+        required = {
+            "Référence bibliographique": "|ouvrage=Ouvrage\n",
+            "Référence sitographique": "|lien=https://example.test\n|site=Exemple\n",
+            "Référence vidéographique": "|titre=Vidéo\n|lien=https://example.test/video\n",
+        }[model]
+        value = f"{{{{{model}\n|{author_key}=[\"Organisation A\", \"Personne B\"]\n{required}}}}}"
+        source = base.replace("|rubriques=Société", f"|{parameter}={value}\n|rubriques=Société")
+    else:
+        required = {
+            "Bibliographical reference": "|work=Work\n",
+            "Web reference": "|link=https://example.test\n|site=Example\n",
+            "Video reference": "|title=Video\n|link=https://example.test/video\n",
+        }[model]
+        value = f"{{{{{model}\n|{author_key}=[\"Organisation A\", \"Person B\"]\n{required}}}}}"
+        source = f"""{{{{Debate
+|topic=Topic
+|complete-topic=the topic
+|progress=Constructed debate
+|debate-warnings=Debate generated by AI
+|introduction={{{{Subsection
+|title=Definition
+|content=Text.
+}}}}
+|wikipedia-articles={{{{Wikipedia article
+|page=Philosophy
+}}}}
+|pro-arguments={{{{Pro argument
+|page=For
+|displayed-title=For
+}}}}
+|con-arguments={{{{Con argument
+|page=Against
+|displayed-title=Against
+}}}}
+|{parameter}={value}
+|sections=Society
+|keywords=topic
+|creation-date=2026-08-01
+}}}}"""
+    ctx = context("1.2.18")
+    validate_template_shape(ctx, parse_template(source), language, page, "debate.wiki")
+    assert any(i.code == "WDV-DOC-006" for i in ctx.report.findings)
 ```
 
 # Source incorporée : `tests/test_norm_122.py`
@@ -46158,7 +46276,7 @@ def test_remote_compare_is_read_only_and_fixture_mode(tmp_path: Path):
 
 # Source incorporée : `tests/test_remote_update_plan.py`
 
-**SHA-256 :** `3fa36f58dc601fcad491c05988ec00fcfcf25162dd4dec489cae5bc9d8d757de`
+**SHA-256 :** `ba88b8114ad08b678615fc29c1b0bdb007e334007c893e2ec8ef1a0fd2648a1e`
 
 ```python
 from __future__ import annotations
@@ -46169,7 +46287,7 @@ from wikidebia_validator.remote_plan import sha_object, validate_remote_plan
 
 def valid_plan():
     plan = {
-        "plan_version":"wikidebia-remote-update-plan-1.0","kit_version":"2.2.3","required_validator_version":"0.4.19",
+        "plan_version":"wikidebia-remote-update-plan-1.0","kit_version":"2.2.4","required_validator_version":"0.4.20",
         "debate_id":"demo","corpus_version":"v1","languages":["fr"],"scope_mode":"all",
         "state_source":{"kind":"published_state_receipt"},"new_manifest_sha256":"0"*64,"validator_report_sha256":"1"*64,
         "config_sha256":"2"*64,"operations":{name:[] for name in ("create","update","move","redirect","delete","skip","manual_review","blocked")},
@@ -46410,7 +46528,7 @@ def test_active_rule_sets_include_current_revision():
 
 # Source incorporée : `tests/test_versions_file.py`
 
-**SHA-256 :** `e300e96667e9152a53aac38a8fc24bc08a68163086562094014b4cebf1f57b0a`
+**SHA-256 :** `8405c231a97eea0a715609a628fee7aa5c419b2c1c8b6e8649b8611a8c20e479`
 
 ```python
 from __future__ import annotations
@@ -46425,7 +46543,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_versions_file_has_only_the_three_functional_versions():
     versions = json.loads((ROOT / "VERSIONS.json").read_text(encoding="utf-8"))
-    assert versions == {"norm": "1.2.18", "validator": "0.4.19", "kit": "2.2.3"}
+    assert versions == {"norm": "1.2.18", "validator": "0.4.20", "kit": "2.2.4"}
 
 
 def test_versions_file_matches_validator_metadata():

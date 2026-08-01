@@ -1,5 +1,11 @@
 # Changelog normatif
 
+## Maintenance 1.2.18 — 1er août 2026
+
+- correction du squelette anglais afin que `wikipedia-articles` ne soit jamais montré vide ;
+- ajout d’un contrôle permanent de cohérence des exemples actifs ;
+- alignement recommandé : validateur 0.4.20, kit 2.2.4.
+
 ## 1.2.18 — 1er août 2026
 
 - séparateur canonique des auteurs : virgule suivie d’une espace ;
