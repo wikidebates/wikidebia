@@ -15,9 +15,9 @@ import zipfile
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
-NORM_VERSION = "1.2.15"
-VALIDATOR_VERSION = "0.4.16"
-KIT_VERSION = "2.1.17"
+NORM_VERSION = "1.2.16"
+VALIDATOR_VERSION = "0.4.17"
+KIT_VERSION = "2.2.0"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",
@@ -948,6 +948,104 @@ def publish_debate(root: Path, debate_identifier: str | None, scope: str, assume
     return {str(key): int(value) for key, value in published.items()}
 
 
+
+def remote_update_config(root: Path, debate_id: str, scope: str, run_dir: Path) -> Path:
+    settings = load_local_settings(root)
+    languages = ["fr", "en"] if scope == "all" else [scope]
+    users = settings.get("expected_users") or {"fr": "ChatGPT", "en": "ChatGPT"}
+    sites = {language: {"code": language, "expected_user": str(users.get(language) or "ChatGPT")} for language in languages}
+    config = {
+        "kit_version": KIT_VERSION,
+        "project_root": ".",
+        "family": str(settings.get("family") or "wikidebates"),
+        "family_file": "kit/families/wikidebates_family.py",
+        "pywikibot_dir": "private/pywikibot",
+        "sites": sites,
+        "languages": languages,
+        "debate_id": debate_id,
+        "corpus_root": f"corpus/{debate_id}",
+        "logs_dir": f"logs/{debate_id}/{run_dir.name}",
+        "published_state_dir": ".state/published",
+        "receipts_dir": ".state/receipts",
+        "validator": {
+            "command": [".venv/bin/python", "validator/scripts/wikidebia_validate.py", "validate"],
+            "required_version": VALIDATOR_VERSION,
+            "scopes": ["schema", "coherence", "graph", "files", "batches", "sources", "wikicode", "bilingual", "editorial", "workflow"],
+        },
+        "edit_summaries": {
+            "fr": "Mise à jour du corpus Wikidéb’IA {debate_id}, version {corpus_version}",
+            "en": "Update of Wikidéb’IA corpus {debate_id}, version {corpus_version}",
+        },
+    }
+    path = run_dir / "config.json"
+    write_json(path, config)
+    return path
+
+
+def remote_update_command(root: Path, config: Path, *args: str) -> list[str]:
+    return [python_command(root), "kit/scripts/wikidebia_update.py", "--config", str(config.relative_to(root)), *args]
+
+
+def _prepare_update_corpus(root: Path, debate_identifier: str | None) -> tuple[str, Path | None]:
+    incoming = root / "incoming"
+    archive: Path | None = None
+    if debate_identifier:
+        exact = incoming / f"{debate_identifier}.zip"
+        if exact.is_file():
+            archive = exact
+        elif (root / "corpus" / debate_identifier / "manifest.json").is_file():
+            return debate_identifier, None
+        else:
+            try:
+                archive = find_debate_archive(root, debate_identifier)
+            except ManagementError:
+                raise ManagementError(f"Corpus installé ou archive introuvable pour {debate_identifier}")
+    else:
+        zips = sorted(incoming.glob("*.zip")) if incoming.is_dir() else []
+        if len(zips) == 1:
+            archive = zips[0]
+        else:
+            raise ManagementError("Indiquez l’identifiant du débat à reprendre")
+    debate_id, _ = install_debate_corpus(root, archive)
+    return debate_id, archive
+
+
+def update_debate(root: Path, debate_identifier: str | None, scope: str, assume_yes: bool, no_delete: bool, only_delete: bool, dry_run: bool, keep_zip: bool) -> dict[str, Any]:
+    ensure_credentials(root)
+    if no_delete and only_delete:
+        raise ManagementError("--no-delete et --only-delete sont incompatibles")
+    debate_id, archive = _prepare_update_corpus(root, debate_identifier)
+    run_dir = root / "plans" / debate_id / timestamp()
+    run_dir.mkdir(parents=True, exist_ok=True)
+    config = remote_update_config(root, debate_id, scope, run_dir)
+    plan_path = run_dir / "update-plan.json"
+    flags: list[str] = []
+    if no_delete:
+        flags.append("--no-delete")
+    if only_delete:
+        flags.append("--only-delete")
+    result = run(remote_update_command(root, config, "--mode", "plan", "--plan-output", str(plan_path.relative_to(root)), *flags), cwd=root, capture=True, check=False)
+    if result.returncode not in {0, 3}:
+        raise ManagementError((result.stderr or result.stdout or "Plan de reprise impossible").strip())
+    plan = json_load(plan_path)
+    print(json.dumps(plan.get("counts") or {}, ensure_ascii=False, indent=2))
+    if dry_run:
+        return {"status": "dry_run", "plan": str(plan_path.relative_to(root)), "plan_sha256": plan["plan_sha256"], "counts": plan.get("counts") or {}}
+    if (plan.get("operations") or {}).get("blocked"):
+        raise ManagementError(f"Le plan contient {len(plan['operations']['blocked'])} opération(s) bloquée(s); voir {plan_path.relative_to(root)}")
+    if not assume_yes:
+        answer = input(f"Confirmer le plan {plan['plan_sha256']} pour la reprise de {debate_id} ? [o/N] ").strip().casefold()
+        if answer not in {"o", "oui", "y", "yes"}:
+            raise ManagementError("Mise à jour annulée")
+    execute = run(remote_update_command(root, config, "--mode", "execute", "--plan-input", str(plan_path.relative_to(root)), "--confirm-plan-sha256", str(plan["plan_sha256"]), *flags), cwd=root, capture=True)
+    lines = (execute.stdout or "").strip().splitlines()
+    counts = json.loads(lines[-1]) if lines else {}
+    if archive is not None and not keep_zip:
+        destination = root / "archives" / "debates" / f"{timestamp()}-{debate_id}" / archive.name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.move(str(archive), destination)
+    return {"status": "executed", "plan": str(plan_path.relative_to(root)), "plan_sha256": plan["plan_sha256"], "counts": counts}
+
 def github_init(root: Path, remote: str, private: bool) -> None:
     if not git_is_repo(root):
         run(["git", "init", "-b", "main"], cwd=root)
@@ -1022,11 +1120,20 @@ def build_parser() -> argparse.ArgumentParser:
     publish.add_argument("--yes", action="store_true", help="Ne pas demander de confirmation interactive")
     publish.add_argument("--keep-zip", action="store_true", help="Ne pas archiver le ZIP après succès")
 
-    update = sub.add_parser("update", help="Installer les composants déposés dans updates/")
-    update.add_argument("archive", nargs="?", type=Path, help="Archive complète facultative")
-    update.add_argument("--allow-downgrade", action="store_true")
-    update.add_argument("--no-push", action="store_true", help="Créer le commit sans pousser vers origin")
-    update.add_argument("--no-git", action="store_true", help="Ne pas créer de commit Git")
+    update = sub.add_parser("update", help="Reprendre un débat déjà publié avec créations, mises à jour et retraits contrôlés")
+    update.add_argument("debate_identifier", nargs="?", help="Identifiant du débat installé ou nom du ZIP sans .zip")
+    update.add_argument("--scope", choices=("all", "fr", "en"), default="all")
+    update.add_argument("--yes", action="store_true", help="Confirmer automatiquement l’empreinte du plan")
+    update.add_argument("--no-delete", action="store_true", help="Exécuter la reprise sans suppressions finales")
+    update.add_argument("--only-delete", action="store_true", help="N’exécuter que les retraits sûrs et redirections de fusion")
+    update.add_argument("--dry-run", action="store_true", help="Produire seulement le plan signé")
+    update.add_argument("--keep-zip", action="store_true", help="Ne pas archiver le ZIP après succès")
+
+    upgrade = sub.add_parser("upgrade", help="Installer les composants déposés dans updates/")
+    upgrade.add_argument("archive", nargs="?", type=Path, help="Archive complète facultative")
+    upgrade.add_argument("--allow-downgrade", action="store_true")
+    upgrade.add_argument("--no-push", action="store_true", help="Créer le commit sans pousser vers origin")
+    upgrade.add_argument("--no-git", action="store_true", help="Ne pas créer de commit Git")
 
     github = sub.add_parser("github-init", help="Initialiser le dépôt et pousser vers GitHub")
     github.add_argument("remote", help="URL Git du dépôt, par exemple git@github.com:COMPTE/wikidebia.git")
@@ -1045,6 +1152,10 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(result, ensure_ascii=False, sort_keys=True))
         return 0
     if args.command == "update":
+        result = update_debate(root, args.debate_identifier, args.scope, args.yes, args.no_delete, args.only_delete, args.dry_run, args.keep_zip)
+        print(json.dumps(result, ensure_ascii=False, sort_keys=True))
+        return 0
+    if args.command == "upgrade":
         versions = update_sources(
             root,
             args.archive,

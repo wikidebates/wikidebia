@@ -1,4 +1,4 @@
-# Catalogue des codes de contrôle — 0.4.16
+# Catalogue des codes de contrôle — 0.4.17
 
 | Code | Signification |
 |---|---|
@@ -93,3 +93,9 @@
 | `WDV-EDT-019` | Revue de précision et de profondeur documentaire du débat absente |
 | `WDV-EDT-020` | Force expressive du résumé non ancrée dans le texte |
 | `WDV-INT-001` | Erreur interne du validateur |
+| `WDV-RMT-001` | Empreinte ou signature du plan distant incorrecte |
+| `WDV-RMT-002` | Compteurs du plan distant incohérents |
+| `WDV-RMT-003` | Cibles mutantes dupliquées ou conflictuelles |
+| `WDV-RMT-004` | Suppression sans préconditions de sûreté complètes |
+| `WDV-RMT-005` | Mise à jour sans état antérieur ou nouvelle empreinte |
+| `WDV-RMT-006` | Rapport de comparaison absent pour manual_review |

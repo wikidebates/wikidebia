@@ -1,5 +1,6 @@
-Wikidéb’IA Validator 0.4.16
-Norme implémentée : 1.2.15
-Tests pytest : 137 réussis, 0 échec
-Exécution depuis le dossier du validateur et depuis un dossier courant extérieur : réussie
+Wikidéb’IA Validator 0.4.17
+Norme implémentée : 1.2.16
+Tests pytest : 140 réussis, 0 échec
+Schémas : 19
+Contrôles de plan distant : WDV-RMT-001 à WDV-RMT-006
 Résultat : RÉUSSI

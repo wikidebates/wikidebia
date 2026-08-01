@@ -1,4 +1,4 @@
-# Catalogue des codes de contrôle — 0.4.16
+# Catalogue des codes de contrôle — 0.4.17
 
 | Code | Signification |
 |---|---|
@@ -93,3 +93,14 @@
 | `WDV-EDT-019` | Revue de précision et de profondeur documentaire du débat absente |
 | `WDV-EDT-020` | Force expressive du résumé non ancrée dans le texte |
 | `WDV-INT-001` | Erreur interne du validateur |
+
+## Contrôles de reprise distante 0.4.17
+
+| Code | Signification |
+|---|---|
+| `WDV-RMT-001` | Empreinte du plan de reprise divergente |
+| `WDV-RMT-002` | Compteurs du plan de reprise incohérents |
+| `WDV-RMT-003` | Opérations distantes mutantes contradictoires |
+| `WDV-RMT-004` | Suppression distante insuffisamment attestée |
+| `WDV-RMT-005` | Mise à jour distante insuffisamment attestée |
+| `WDV-RMT-006` | Revue manuelle sans comparaison correspondante |

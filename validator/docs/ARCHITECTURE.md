@@ -1,9 +1,9 @@
-# Architecture du validateur 0.4.16
+# Architecture du validateur 0.4.17
 
-Le validateur sépare le schéma, la cohérence du registre et du graphe, les fichiers, les lots, les sources, le wikicode, le bilinguisme, l’éditorial et le workflow.
+Le validateur sépare schémas, cohérence, graphe, lots, sources, fichiers, wikicode, bilinguisme, éditorial et workflow. La commande `validate-plan` ajoute une voie indépendante pour contrôler les artefacts de reprise distante.
 
-Les contrôles 1.2.11 restent actifs sous 1.2.15, notamment le refus d’une frontière de modèles écrite avec un espace ou un retour à la ligne entre `}}` et `{{`. Le code `WDV-MWK-018` impose la forme `}}{{`.
+Cette voie charge exclusivement un fichier local, applique `remote_update_plan.schema.json`, recalcule son empreinte déterministe et contrôle les invariants de sûreté. Elle n’importe pas Pywikibot, n’ouvre aucune session et n’effectue aucune comparaison distante.
 
-Les contrôles 1.2.10 sur les références directes, les dates documentaires, les paramètres documentaires, les acronymes et la publication française indépendante restent actifs.
+Les schémas `published_state`, `remote_migrations`, `remote_update_plan` et `remote_update_receipt` formalisent la frontière entre le validateur local et le kit distant. Le kit conserve seul la responsabilité des droits, révisions, lectures, écritures, déplacements et suppressions MediaWiki.
 
-Le moteur résout les chemins en mémoire pour accéder aux fichiers, mais les rapports texte et JSON n’enregistrent jamais le chemin absolu de l’installation. Un argument relatif reste relatif ; un argument absolu extérieur au dossier courant est réduit au nom du paquet.
+Les chemins persistants restent portables et aucune information secrète n’est traitée.

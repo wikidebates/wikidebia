@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.17 — 31 juillet 2026
+
+- alignement sur la norme 1.2.16 et le kit 2.2.0 ;
+- ajout des schémas d’état publié, de migrations, de plan et de reçu de reprise ;
+- ajout de `validate-plan`, strictement local et en lecture seule ;
+- contrôles WDV-RMT-001 à WDV-RMT-006 sur l’intégrité et la sécurité des plans distants ;
+- aucune connexion ni écriture MediaWiki dans le validateur.
+
 ## 0.4.16 — 31 juillet 2026
 
 - chemins de paquet absolus rendus indépendants du dossier courant ;

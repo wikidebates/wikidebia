@@ -8,6 +8,7 @@ from pathlib import Path
 from .codes import CODES
 from .recalc import recalculate
 from .validator import ALL_SCOPES, validate_package
+from .remote_plan import validate_remote_plan
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -20,6 +21,13 @@ def build_parser() -> argparse.ArgumentParser:
     validate.add_argument("--format", choices=["text", "json", "both"], default="text")
     validate.add_argument("--text-output", type=Path)
     validate.add_argument("--json-output", type=Path)
+
+
+    plan = sub.add_parser("validate-plan", help="Valider un plan signé de reprise distante sans accès au wiki")
+    plan.add_argument("plan", type=Path)
+    plan.add_argument("--format", choices=["text", "json", "both"], default="text")
+    plan.add_argument("--text-output", type=Path)
+    plan.add_argument("--json-output", type=Path)
 
     recalc = sub.add_parser("recalc", help="Recalcul explicite des données dérivées")
     recalc.add_argument("package", type=Path)
@@ -41,6 +49,21 @@ def main(argv: list[str] | None = None) -> int:
         # Backward-compatible convenience: wikidebia-validate PACKAGE
         parser.print_help()
         return 2
+    if command == "validate-plan":
+        report = validate_remote_plan(args.plan)
+        text = report.to_text()
+        data = json.dumps(report.to_dict(), ensure_ascii=False, indent=2) + "\n"
+        if args.text_output:
+            args.text_output.parent.mkdir(parents=True, exist_ok=True)
+            args.text_output.write_text(text, encoding="utf-8", newline="\n")
+        if args.json_output:
+            args.json_output.parent.mkdir(parents=True, exist_ok=True)
+            args.json_output.write_text(data, encoding="utf-8", newline="\n")
+        if args.format in {"text", "both"}:
+            sys.stdout.write(text)
+        if args.format in {"json", "both"}:
+            sys.stdout.write(data)
+        return 1 if report.errors else 0
     if command == "codes":
         if args.json:
             print(json.dumps(CODES, ensure_ascii=False, indent=2))

@@ -357,10 +357,10 @@ def _consolidated_norm(ctx: PackageContext) -> str | None:
 
 
 def _is_norm_120(ctx: PackageContext) -> bool:
-    return _consolidated_norm(ctx) in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}
+    return _consolidated_norm(ctx) in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.16"}
 
 def _is_norm_126(ctx: PackageContext) -> bool:
-    return _consolidated_norm(ctx) in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}
+    return _consolidated_norm(ctx) in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.16"}
 
 
 def _alphabetical_key(value: str) -> str:
@@ -439,10 +439,10 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
             if _complete_topic_looks_interrogative(complete, lang):
                 ctx.report.error("WDV-EDT-018", f"{complete_param} doit compléter l’en-tête de la page sous une forme non interrogative", path=rel, details={"actual": complete})
             declared_acronym = explicit_parenthetical_acronym(topic)
-            if _consolidated_norm(ctx) in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} and declared_acronym and not re.search(rf"(?<![\w.-]){re.escape(declared_acronym)}(?![\w.-])", complete):
+            if _consolidated_norm(ctx) in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.16"} and declared_acronym and not re.search(rf"(?<![\w.-]){re.escape(declared_acronym)}(?![\w.-])", complete):
                 ctx.report.error("WDV-EDT-018", f"{complete_param} doit employer l’acronyme courant déclaré dans {topic_param}", path=rel, details={"acronym": declared_acronym, "actual": complete})
 
-    if _consolidated_norm(ctx) in {"1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}:
+    if _consolidated_norm(ctx) in {"1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.16"}:
         matches = split_adjacent_templates(tmpl.raw)
         if matches:
             first = matches[0]
@@ -501,7 +501,7 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
                     ctx.report.error("WDV-DOC-002", f"Pagination bibliographique placée dans {sub.name}.{skey} au lieu de page", path=rel, details={"value": sval})
                 if skey == "date" and re.search(r"\b(?:consulté(?:e)?|accessed|retrieved)\b", sval, flags=re.I):
                     ctx.report.error("WDV-DOC-003", f"Date de consultation utilisée comme date documentaire dans {sub.name}", path=rel, details={"value": sval})
-                if _consolidated_norm(ctx) in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"} and skey == "date" and documentary_date_is_machine(sval):
+                if _consolidated_norm(ctx) in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.16"} and skey == "date" and documentary_date_is_machine(sval):
                     ctx.report.error("WDV-DOC-005", f"Date documentaire au format machine dans {sub.name}; utiliser une date en langage naturel", path=rel, details={"value": sval, "creation_date_parameters_unchanged": ["date-création", "creation-date"]})
             if _is_norm_120(ctx) and sub.name in {
                 "Référence sitographique", "Référence sitographique pour", "Référence sitographique contre",
@@ -650,7 +650,7 @@ PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
 
 
 def _validate_french_parenthetical_dashes(ctx: PackageContext, tmpl: Template, rel: str, page_type: str) -> None:
-    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15"}:
+    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.16"}:
         return
     values: list[tuple[str, str]] = []
     if page_type == "argument":

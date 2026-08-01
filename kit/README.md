@@ -1,78 +1,63 @@
-# Kit générique Wikidéb’IA — 2.1.17
+# Kit générique Wikidéb’IA — 2.2.0
 
-Le kit 2.1.17 fournit deux niveaux d’utilisation :
+Le kit sépare désormais trois opérations : publier un nouveau corpus, reprendre un corpus déjà publié et mettre à niveau les composants de l’installation.
 
-- `./wikidebia`, commande intégrée destinée à l’usage courant ;
-- `kit/scripts/wikidebia_publish.py`, moteur bas niveau conservé pour l’audit et les opérations spécialisées.
+## Publication initiale
 
-## Publier un débat
-
-Déposer le ZIP du débat dans `incoming/`. Aucun suffixe particulier n’est imposé. Si ce dossier contient un seul ZIP, lancer :
+Déposer le ZIP du débat dans `incoming/`, puis lancer :
 
 ```bash
 ./wikidebia publish
 ```
 
-S’il contient plusieurs ZIP, indiquer l’identifiant correspondant au nom du fichier sans `.zip` :
+Avec plusieurs ZIP, fournir le nom du fichier sans `.zip`. Le nom extérieur sélectionne l’archive ; `manifest.debate_id` reste l’identité du corpus. La publication valide le corpus avec le validateur 0.4.17, produit un plan signé, traite la page Débat avant les arguments et conserve un état publié signé contenant les révisions MediaWiki obtenues.
+
+## Reprise d’un débat déjà publié
 
 ```bash
-./wikidebia publish gpa_autorisation
+./wikidebia update IDENTIFIANT --dry-run
+./wikidebia update IDENTIFIANT
 ```
 
-Le fichier sélectionné est alors `incoming/gpa_autorisation.zip`. Son nom sert uniquement à choisir l’archive ; le champ `debate_id` du manifeste interne détermine l’identité du corpus et peut être différent. Une ancienne archive telle que `education_sexualite_ecole_fr_en_release_ready_repaired_2026-07-31.zip` reste donc publiable sans renommage lorsqu’elle est seule dans `incoming/`.
-
-La commande extrait le paquet de façon sûre, l’installe sous `corpus/`, exécute le validateur 0.4.16, construit le plan signé, crée et revérifie la page Débat française lorsque nécessaire, publie les pages dans l’ordre canonique et archive le ZIP après succès.
+Le moteur compare le dernier état publié signé, le wiki courant et le nouveau corpus. Il produit les catégories `create`, `skip`, `update`, `move`, `redirect`, `delete`, `manual_review` et `blocked`. Une page absente du nouveau manifeste n’est jamais supprimée sans preuve qu’elle appartenait à la version antérieure du même débat.
 
 Portées disponibles :
 
 ```bash
-./wikidebia publish --scope fr-debate
-./wikidebia publish --scope en-debate
-./wikidebia publish --scope fr
-./wikidebia publish --scope en
-./wikidebia publish --scope all
+./wikidebia update IDENTIFIANT --scope fr
+./wikidebia update IDENTIFIANT --scope en
+./wikidebia update IDENTIFIANT --no-delete
+./wikidebia update IDENTIFIANT --only-delete
+./wikidebia update IDENTIFIANT --dry-run
 ```
 
-Dans chaque langue, la page Débat ou Debate précède toujours les pages Argument. Le moteur refuse une configuration qui place `argument` avant `debate`.
+Une exécution réelle affiche l’empreinte SHA-256 du plan et demande sa confirmation, sauf avec `--yes`. Les mises à jour utilisent la révision distante attendue et `baserevid`. Une modification humaine ou indéterminée est classée `manual_review` avec comparaison de l’ancienne version, de la version distante et de la proposition.
 
-## Mettre à jour l’installation
+Les suppressions exigent l’ancien état publié, une révision distante inchangée, les marqueurs Wikidéb’IA, l’absence de réutilisation connue et le droit effectif `delete`. Le kit ne pose jamais de bandeau à la place d’une suppression. Les nouvelles pages sont vérifiées avant la première suppression.
 
-Déposer soit l’archive complète, soit les trois ZIP de composants dans `updates/`, puis lancer :
+Le dernier recours est un inventaire signé et en lecture seule placé sous `.state/inventories/<debate_id>/<langue>.json`, explicitement borné aux pages rattachées au débat.
+
+## Mise à niveau de l’installation
+
+Déposer les composants dans `updates/`, puis lancer :
 
 ```bash
-./wikidebia update
+./wikidebia upgrade
 ```
 
-La commande vérifie les manifestes et SHA-256, compare les versions, extrait dans une zone temporaire, exécute l’auto-audit et les tests, sauvegarde les composants précédents et les fichiers entrants dans `archives/updates/`, installe les nouvelles versions et vide `updates/`. Lorsque le dépôt Git possède un remote `origin`, le commit et le push sont automatiques.
+Cette commande valide et teste les paquets en zone temporaire, archive les versions précédentes, installe atomiquement les nouveaux composants et synchronise Git lorsque configuré.
 
-## GitHub et fichiers privés
+## Droits MediaWiki
 
-L’initialisation du dépôt distant se fait une seule fois :
+- création et modification : `edit`, `createpage` ;
+- déplacement : `move` ;
+- suppression : `delete` ;
+- consultation d’archives supprimées : `browsearchive`, éventuellement `deletedhistory`.
 
-```bash
-./wikidebia github-init git@github.com:COMPTE/wikidebia.git
-```
+Un groupe administrateur n’est pas requis lorsque ces droits sont attribués à un groupe limité ou au compte bot. Le préflight vérifie tous les wikis sélectionnés avant la première écriture.
 
-Le modèle `.gitignore` exclut `private/`, `corpus/`, `archives/`, `updates/`, `incoming/`, `logs/`, `plans/`, `.state/`, `.venv/` et la configuration locale. `user-config.py` et `user-password.cfg` résident dans `private/pywikibot/`.
+## Authentification et sécurité
 
-Toutes les configurations persistantes utilisent des chemins relatifs. Le dossier racine peut être renommé ou déplacé.
+La famille personnalisée `wikidebates`, les BotPasswords et la configuration `private/pywikibot/` sont réutilisés. Les langues sont traitées séquentiellement. Les secrets, corpus, plans, journaux, états, archives et environnements virtuels restent exclus de Git. Aucun chemin absolu persistant n’est produit.
 
-## Reconstruction automatique de l’environnement Python
-
-Le lanceur `./wikidebia` recrée `.venv/` lorsqu’il est absent ou inutilisable. Il installe ensuite, dans cet environnement local exclu de Git, les dépendances déclarées dans `requirements-runtime.txt`, notamment Pywikibot, JSON Schema et pytest. Un clone propre du dépôt peut donc être remis en service simplement avec :
-
-```bash
-./wikidebia doctor
-```
-
-La première exécution peut télécharger les paquets Python. Les commandes suivantes réutilisent l’environnement vérifié.
-
-## Sécurité conservée
-
-Le moteur bas niveau conserve les plans signés, `createonly`, `baserevid`, la vérification de la révision exacte, la balise `chatgpt`, le blocage des collisions, le contrôle des liens interlangues et la compaction obligatoire `}}{{`.
-
-Lors de la mise à jour, les ZIP encore présents dans l’ancien dossier `incoming/debates/` sont migrés automatiquement vers `incoming/`; une collision différente est bloquée sans écrasement.
-
-## Compatibilité des corpus historiques
-
-Les champs `normative_versions` du manifeste décrivent les versions utilisées lors de la production du corpus et ne sont pas réécrits lors d’une mise à jour locale. Le kit publie un corpus historique lorsque le validateur installé déclare sa norme compatible et renvoie un rapport positif sans erreur ni avertissement. La version réelle du validateur exécuté doit toujours être exactement celle exigée par le kit courant.
+Le moteur bas niveau se trouve dans `scripts/wikidebia_update.py`. Le validateur ne réalise aucune lecture ou écriture distante.

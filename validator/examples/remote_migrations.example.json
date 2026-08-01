@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "debate_id": "exemple_debat",
+  "entries": [
+    {
+      "language": "fr",
+      "old_page_id": "A0002",
+      "kind": "rename",
+      "new_page_id": "A0002",
+      "policy": "move",
+      "reason": "Clarification du titre canonique"
+    },
+    {
+      "language": "fr",
+      "old_page_id": "A0003",
+      "kind": "merge",
+      "target_page_id": "A0001",
+      "policy": "redirect",
+      "reason": "Deux arguments exprimaient la même identité logique"
+    }
+  ]
+}

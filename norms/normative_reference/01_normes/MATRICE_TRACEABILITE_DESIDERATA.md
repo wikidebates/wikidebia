@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.11
+- **Révision :** 1.2.16
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -277,3 +277,19 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 | Accepter un ZIP unique quel que soit son nom | IMP-017 | sélection automatique de l’unique fichier | automatique |
 | Conserver les anciennes archives descriptives | FIL-017 | aucune égalité imposée entre nom et `debate_id` | automatique |
 | Garder une identité de corpus sûre | FIL-017 | `manifest.debate_id` autoritatif après extraction | automatique |
+
+
+## Reprise d’un corpus déjà publié
+
+| Besoin | Exigences | Mise en œuvre |
+|---|---|---|
+| État publié vérifiable | GOV-007, FIL-018 | État signé par débat et langue, reçus et schémas |
+| Classification complète | PUB-023–PUB-024 | Plan `create/skip/update/move/redirect/delete/manual_review/blocked` |
+| Mise à jour sans écrasement humain | PUB-025–PUB-026 | Révision attendue, empreinte, `baserevid`, triple comparaison |
+| Retrait sûr | PUB-027–PUB-028 | Preuve d’appartenance, réutilisation, marqueurs, droits et absence de bandeau substitutif |
+| Renommage et fusion | PUB-029 | Déplacement ou politique explicite de redirection/suppression |
+| Plan signé et ordre d’exécution | PUB-030–PUB-031 | Empreinte confirmée et vérification du graphe avant suppression |
+| Idempotence et portées | PUB-032–PUB-033 | Reprise après interruption, `--no-delete`, `--only-delete`, `--dry-run` |
+| Droits et sessions | PUB-034–PUB-035 | Préflight global et traitement séquentiel des langues |
+| Validation locale | VAL-015 | Schémas et invariants du plan sans accès distant |
+| Généralité et secrets | SUP-015 | Aucun cas pilote actif, chemin absolu, secret ou invite interactive |

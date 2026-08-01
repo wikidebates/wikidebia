@@ -1,0 +1,48 @@
+{
+  "plan_version": "wikidebia-remote-update-plan-1.0",
+  "kit_version": "2.2.0",
+  "required_validator_version": "0.4.17",
+  "debate_id": "exemple_debat",
+  "corpus_version": "2026-07-31.1",
+  "languages": [
+    "fr"
+  ],
+  "scope_mode": "all",
+  "state_source": {
+    "kind": "published_state_receipt",
+    "paths": [
+      ".state/published/exemple_debat/fr/latest.json"
+    ]
+  },
+  "new_manifest_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "validator_report_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "config_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+  "operations": {
+    "create": [],
+    "update": [],
+    "move": [],
+    "redirect": [],
+    "delete": [],
+    "skip": [],
+    "manual_review": [],
+    "blocked": []
+  },
+  "comparisons": [],
+  "counts": {
+    "create": 0,
+    "update": 0,
+    "move": 0,
+    "redirect": 0,
+    "delete": 0,
+    "skip": 0,
+    "manual_review": 0,
+    "blocked": 0
+  },
+  "preconditions": [
+    "new_corpus_validated",
+    "plan_sha256_confirmed",
+    "effective_rights_checked_before_first_write",
+    "remote_revision_rechecked_before_each_mutation"
+  ],
+  "plan_sha256": "922c2aaeb1a3974965129331824401a07ba298275f25eb539d916ad108e7138f"
+}

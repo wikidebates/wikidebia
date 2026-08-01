@@ -1,0 +1,22 @@
+{
+  "state_version": "wikidebia-published-state-1.0",
+  "debate_id": "exemple_debat",
+  "language": "fr",
+  "corpus_version": "2026-07-31.1",
+  "publication_date": "2026-07-31T20:00:00Z",
+  "source_manifest_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "plan_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "receipt_path": ".state/receipts/exemple_debat/latest.json",
+  "receipt_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+  "pages": [
+    {
+      "page_id": "DEBATE",
+      "page_type": "debate",
+      "canonical_title": "Un exemple de débat doit-il être publié ?",
+      "content_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "revision_id": 12345,
+      "status": "published"
+    }
+  ],
+  "state_sha256": "69766d4ea8c8a1316136c972fa831bdf777ba97a40774dfa56acabb69d4ef0eb"
+}

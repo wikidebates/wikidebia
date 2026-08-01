@@ -1,17 +1,22 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.1.17",
-  "validator_version": "0.4.16",
+  "version": "2.2.0",
+  "validator_version": "0.4.17",
   "scope": [
     "publish_archive",
-    "update_components",
     "github_init",
     "doctor",
     "inspect",
     "plan",
     "debate_test",
     "full_page",
-    "parameter_update"
+    "parameter_update",
+    "remote_debate_update",
+    "component_upgrade",
+    "remote_delete",
+    "remote_move",
+    "remote_redirect",
+    "manual_review"
   ],
   "debate_specific_code": false,
   "change_tag": "chatgpt",
@@ -49,7 +54,19 @@
     "automatic_untrack_of_local_sensitive_files",
     "noninteractive_git_push",
     "github_sync_command",
-    "bounded_runtime_dependencies"
+    "bounded_runtime_dependencies",
+    "signed_published_state",
+    "signed_final_receipt",
+    "human_edit_protection",
+    "prewrite_effective_rights_gate",
+    "delete_ownership_attestation",
+    "delete_marker_recheck",
+    "cross_debate_reuse_block",
+    "remote_revision_recheck",
+    "graph_verification_before_delete",
+    "idempotent_restart",
+    "sequential_language_sessions",
+    "read_only_signed_remote_inventory_fallback"
   ],
   "publication_profiles": [
     "norm_1_2_direct_interlanguage",
@@ -82,9 +99,18 @@
     "pywikibot_bootstrap_after_clean_clone",
     "runtime_environment_doctor_checks",
     "git_security_doctor_checks",
-    "github_authentication_recovery_command"
+    "github_authentication_recovery_command",
+    "one_command_remote_debate_update",
+    "create_skip_update_move_redirect_delete_manual_review_blocked_plan",
+    "update_scope_fr_en",
+    "update_no_delete",
+    "update_only_delete",
+    "update_dry_run",
+    "component_upgrade_command",
+    "published_state_revision_ledger",
+    "explicit_merge_and_rename_migrations"
   ],
-  "normative_revision": "1.2.15",
+  "normative_revision": "1.2.16",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json"
 }

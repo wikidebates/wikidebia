@@ -24,6 +24,7 @@ SCHEMA_BY_PATH = {
     "patches/interlanguage_fr.validated.json": "interlanguage_patch.schema.json",
     "release_manifest.json": "release_manifest.schema.json",
     "normative/requirements_catalog_wikidebia.json": "requirements_catalog.schema.json",
+    "data/remote_migrations.json": "remote_migrations.schema.json",
 }
 
 

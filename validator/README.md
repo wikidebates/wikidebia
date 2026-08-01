@@ -1,15 +1,30 @@
-# Validateur stable Wikidéb’IA 0.4.16
+# Validateur stable Wikidéb’IA 0.4.17
 
-Validateur local Python 3 aligné sur la norme 1.2.15 et rétrocompatible avec les paquets 1.1.0 à 1.2.13. `validate` reste strictement en lecture seule ; `recalc --write` est la seule commande d’écriture locale. Aucune écriture distante n’est implémentée.
-
-La version 0.4.16 conserve tous les contrôles 0.4.13. La correction de sélection des ZIP est mise en œuvre par le kit 2.1.17 : le nom du fichier n’est pas une propriété du corpus validé, tandis que `manifest.debate_id` reste contrôlé comme identité interne.
-
-La source active unique embarquée est `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md`.
+Validateur local Python 3 aligné sur la norme 1.2.16 et compatible avec les paquets déclarant les normes 1.1.0 à 1.2.16. `validate` reste en lecture seule ; `recalc --write` est la seule écriture locale sur un corpus. Le validateur ne se connecte jamais à MediaWiki.
 
 ```bash
-PYTHONPATH=validator/src .venv/bin/python validator/scripts/wikidebia_validate.py validate corpus/mon_debat
+PYTHONPATH=src python scripts/wikidebia_validate.py validate /chemin/vers/corpus
 ```
 
-## Publication de corpus historiques
+## Plans de reprise distante
 
-Les champs `normative_versions.validator` et `normative_versions.kit` du manifeste décrivent la production d’origine. Ils ne doivent pas être remplacés par les versions installées. Le validateur 0.4.16 accepte les révisions normatives explicitement listées dans `COMPATIBILITY.json`; la publication doit exécuter ce validateur courant et exiger un rapport positif.
+La commande suivante contrôle un plan déjà produit par le kit sans lire le wiki :
+
+```bash
+PYTHONPATH=src python scripts/wikidebia_validate.py validate-plan plans/debat/update-plan.json
+```
+
+Elle vérifie le JSON Schema, l’empreinte signée, les compteurs, les opérations mutantes contradictoires, les préconditions de mise à jour et de suppression, et la présence des comparaisons associées à `manual_review`. Les codes stables sont `WDV-RMT-001` à `WDV-RMT-006`.
+
+Les schémas 0.4.17 couvrent :
+
+- l’état publié signé ;
+- les migrations de renommage et de fusion ;
+- le plan de reprise distante ;
+- le reçu final de reprise.
+
+## Corpus historiques
+
+Les versions inscrites dans `manifest.normative_versions` restent une provenance historique. La publication ou la reprise exécute le validateur courant et exige un rapport positif pour une norme listée dans `COMPATIBILITY.json`.
+
+La source normative active embarquée est `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.16.md`.

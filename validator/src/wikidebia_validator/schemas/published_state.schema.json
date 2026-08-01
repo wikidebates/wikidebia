@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "published_state.schema.json",
+  "title": "Wikidéb'IA — État publié vérifiable",
+  "type": "object",
+  "required": [
+    "state_version",
+    "debate_id",
+    "language",
+    "corpus_version",
+    "publication_date",
+    "source_manifest_sha256",
+    "plan_sha256",
+    "receipt_path",
+    "receipt_sha256",
+    "pages",
+    "state_sha256"
+  ],
+  "properties": {
+    "state_version": {
+      "const": "wikidebia-published-state-1.0"
+    },
+    "debate_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "language": {
+      "enum": [
+        "fr",
+        "en"
+      ]
+    },
+    "corpus_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "publication_date": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_manifest_sha256": {
+      "$ref": "common.schema.json#/$defs/sha256"
+    },
+    "plan_sha256": {
+      "$ref": "common.schema.json#/$defs/sha256"
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "page_id",
+          "page_type",
+          "canonical_title",
+          "content_sha256",
+          "revision_id",
+          "status"
+        ],
+        "properties": {
+          "page_id": {
+            "type": "string"
+          },
+          "page_type": {
+            "type": "string"
+          },
+          "canonical_title": {
+            "type": "string"
+          },
+          "content_sha256": {
+            "$ref": "common.schema.json#/$defs/sha256"
+          },
+          "revision_id": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "status": {
+            "enum": [
+              "published",
+              "retired",
+              "redirected",
+              "deleted"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "state_sha256": {
+      "$ref": "common.schema.json#/$defs/sha256"
+    },
+    "receipt_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "receipt_sha256": {
+      "$ref": "common.schema.json#/$defs/sha256"
+    }
+  },
+  "additionalProperties": false
+}

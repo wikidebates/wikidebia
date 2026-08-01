@@ -137,3 +137,12 @@ Les ZIP encore présents dans l’ancien dossier `incoming/debates/` sont migré
 ## Compatibilité de publication — norme 1.2.15
 
 Avant de construire le plan, le kit exécute le validateur installé sur le corpus. La version réelle du validateur doit correspondre à celle exigée par le kit et le rapport doit être positif. Les versions historiques inscrites dans `manifest.json` ne sont ni comparées pour égalité aux versions installées, ni réécrites. La norme déclarée reste soumise à la liste de compatibilité et aux schémas du validateur courant.
+
+
+## Reprise distante d’un corpus publié — révision 1.2.16
+
+Une reprise compare obligatoirement le dernier état publié signé, l’état distant courant et le nouveau corpus validé. Le kit produit un plan signé comprenant `create`, `skip`, `update`, `move`, `redirect`, `delete`, `manual_review` et `blocked`. Une page absente du nouveau manifeste n’est jamais supprimée sans preuve d’appartenance à la version antérieure du même débat.
+
+Les mises à jour et suppressions vérifient la révision ou l’empreinte attendue et utilisent le contrôle de concurrence MediaWiki. Toute modification humaine ou provenance indéterminée est classée `manual_review`. Les déplacements et fusions sont déclarés explicitement. Les suppressions sont exécutées seulement après vérification du nouveau graphe publié. Les opérations sont idempotentes et donnent lieu à un reçu final et à un nouvel état publié signé.
+
+Le validateur contrôle localement les structures et la cohérence des plans, mais toutes les lectures et écritures MediaWiki restent dans le kit.

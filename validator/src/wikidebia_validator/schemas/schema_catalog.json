@@ -1,8 +1,8 @@
 {
   "catalog_version": "1.1.0",
-  "package_revision": "1.1.0",
+  "package_revision": "1.2.16",
   "draft": "https://json-schema.org/draft/2020-12/schema",
-  "schema_count": 15,
+  "schema_count": 19,
   "schemas": [
     {
       "path": "archive_receipt.schema.json",
@@ -60,9 +60,34 @@
       "title": "Wikidéb'IA — Manifeste individuel d'une page"
     },
     {
+      "path": "published_state.schema.json",
+      "id": "published_state.schema.json",
+      "title": "Wikidéb'IA — État publié vérifiable"
+    },
+    {
       "path": "release_manifest.schema.json",
       "id": "release_manifest.schema.json",
       "title": "Wikidéb'IA — Manifeste de libération"
+    },
+    {
+      "path": "remote_migrations.schema.json",
+      "id": "remote_migrations.schema.json",
+      "title": "Wikidéb'IA — Migrations de titres et fusions"
+    },
+    {
+      "path": "remote_update_plan.schema.json",
+      "id": "remote_update_plan.schema.json",
+      "title": "Wikidéb'IA — Plan de reprise distante"
+    },
+    {
+      "path": "remote_update_receipt.schema.json",
+      "id": "remote_update_receipt.schema.json",
+      "title": "Wikidéb'IA — Reçu de reprise distante"
+    },
+    {
+      "path": "requirements_catalog.schema.json",
+      "id": "requirements_catalog.schema.json",
+      "title": "Wikidéb'IA — Catalogue consolidé des exigences"
     },
     {
       "path": "scope.schema.json",
@@ -73,11 +98,6 @@
       "path": "source_registry.schema.json",
       "id": "source_registry.schema.json",
       "title": "Wikidéb'IA — Registre documentaire"
-    },
-    {
-      "path": "requirements_catalog.schema.json",
-      "id": "requirements_catalog.schema.json",
-      "title": "Wikidéb'IA — Catalogue consolidé des exigences"
     }
   ]
 }

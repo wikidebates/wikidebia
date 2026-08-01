@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import hashlib
 import json
 import os
@@ -13,8 +14,8 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Protocol
 
-KIT_VERSION = "2.1.17"
-REQUIRED_VALIDATOR_VERSION = "0.4.16"
+KIT_VERSION = "2.2.0"
+REQUIRED_VALIDATOR_VERSION = "0.4.17"
 DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
 REQUIRED_DIRECT_SCOPES = {"schema", "coherence", "graph", "files", "batches", "sources", "wikicode", "bilingual", "editorial", "workflow"}
 PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
@@ -76,6 +77,13 @@ def sha_file(path: Path) -> str:
         for chunk in iter(lambda: stream.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def portable(path: Path, root: Path) -> str:
+    try:
+        return path.resolve().relative_to(root.resolve()).as_posix()
+    except ValueError:
+        return path.name
 
 
 def sha_object(value: Any) -> str:
@@ -602,7 +610,7 @@ class GenericPublisher:
                 and any(str(parameters.get(language) or "") == "interlangue" for language in self.languages)
             ):
                 raise PublicationError(
-                    "Le profil 1.2.15 intègre interlangue dans la création complète; "
+                    "Le profil 1.2.16 intègre interlangue dans la création complète; "
                     "une opération parameter_update interlangue est interdite."
                 )
         requirements = self.config.get("manifest_requirements") or {}
@@ -1007,7 +1015,7 @@ class GenericPublisher:
             }
             counts[language]["total"] = len(language_actions)
         plan: dict[str, Any] = {
-            "plan_version": "wikidebia-publication-plan-2.1.17",
+            "plan_version": "wikidebia-publication-plan-2.2.0",
             "publication_profile": self.publication_profile,
             "kit_version": KIT_VERSION,
             "debate_id": self.config["debate_id"],
@@ -1230,7 +1238,7 @@ class GenericPublisher:
         self._validate_local()
         self._prepare_logging()
         if self.publication_profile != DIRECT_INTERLANGUAGE_PROFILE:
-            raise PublicationError("Le test de la page Débat est réservé au profil 1.2.15")
+            raise PublicationError("Le test de la page Débat est réservé au profil 1.2.16")
         if self.operation.get("kind") != "full_page":
             raise PublicationError("Le test de la page Débat exige une opération full_page")
         actions = [
@@ -1316,7 +1324,7 @@ class GenericPublisher:
         if not french_debate_actions:
             return
         if not isinstance(receipt, dict):
-            raise PublicationError("Le profil 1.2.15 exige --debate-test-receipt")
+            raise PublicationError("Le profil 1.2.16 exige --debate-test-receipt")
         copy = dict(receipt)
         claimed = copy.pop("receipt_sha256", None)
         if not claimed or claimed != sha_object(copy):
@@ -1391,6 +1399,77 @@ class GenericPublisher:
         finally:
             self.adapter.close_language()
 
+    def _corpus_version(self) -> str:
+        for value in (
+            self.manifest.get("release_version"),
+            (self.manifest.get("release") or {}).get("version") if isinstance(self.manifest.get("release"), dict) else None,
+            self.manifest.get("generated_date"),
+        ):
+            if isinstance(value, str) and value.strip():
+                return value.strip()
+        return "manifest-" + sha_file(self.manifest_path)[:16]
+
+    def _save_published_state(self, language: str, actions: list[dict[str, Any]], plan: dict[str, Any]) -> None:
+        base_value = self.config.get("published_state_dir") or ".state/published"
+        base = self._resolve(base_value) / str(self.config["debate_id"]) / language
+        latest = base / "latest.json"
+        previous_pages: dict[str, dict[str, Any]] = {}
+        if latest.is_file():
+            try:
+                previous = json.loads(latest.read_text(encoding="utf-8"))
+                unsigned = dict(previous)
+                claimed = unsigned.pop("state_sha256", None)
+                if claimed == sha_object(unsigned) and previous.get("debate_id") == self.config["debate_id"]:
+                    previous_pages = {str(row.get("page_id")): dict(row) for row in previous.get("pages") or []}
+            except (OSError, json.JSONDecodeError):
+                previous_pages = {}
+        for action in actions:
+            exists, revision_id, remote_text = self.adapter.read_page(action["title"])
+            if not exists or revision_id is None:
+                continue
+            previous_pages[str(action["page_id"])] = {
+                "page_id": str(action["page_id"]),
+                "page_type": str(action.get("page_type") or "unknown"),
+                "canonical_title": str(action["title"]),
+                "content_sha256": sha_text(remote_text),
+                "revision_id": int(revision_id),
+                "status": "published",
+            }
+        now = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+        pages = sorted(previous_pages.values(), key=lambda row: (row.get("page_type", ""), row.get("page_id", "")))
+        receipt: dict[str, Any] = {
+            "receipt_version": "wikidebia-publication-state-receipt-1.0",
+            "kit_version": KIT_VERSION,
+            "debate_id": self.config["debate_id"],
+            "language": language,
+            "corpus_version": self._corpus_version(),
+            "published_at": now,
+            "plan_sha256": plan["plan_sha256"],
+            "pages": pages,
+        }
+        receipt["receipt_sha256"] = sha_object(receipt)
+        receipt_base = self._resolve(self.config.get("receipts_dir") or ".state/receipts") / str(self.config["debate_id"])
+        receipt_path = receipt_base / f"publication-{language}-{now.replace(':', '').replace('-', '')}.json"
+        receipt_base.mkdir(parents=True, exist_ok=True)
+        receipt_path.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+        state: dict[str, Any] = {
+            "state_version": "wikidebia-published-state-1.0",
+            "debate_id": self.config["debate_id"],
+            "language": language,
+            "corpus_version": self._corpus_version(),
+            "publication_date": now,
+            "source_manifest_sha256": sha_file(self.manifest_path),
+            "plan_sha256": plan["plan_sha256"],
+            "receipt_path": portable(receipt_path, self.project_root),
+            "receipt_sha256": receipt["receipt_sha256"],
+            "pages": pages,
+        }
+        state["state_sha256"] = sha_object(state)
+        base.mkdir(parents=True, exist_ok=True)
+        latest.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+        stamped = base / (now.replace(":", "").replace("-", "") + ".json")
+        stamped.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+
     def publish(
         self,
         *,
@@ -1431,6 +1510,7 @@ class GenericPublisher:
                     delay = max(0.0, float(self.config.get("write_delay_seconds", 0.5)))
                     if result in {"created", "updated"} and delay:
                         time.sleep(delay)
+                self._save_published_state(current_language, language_actions, plan)
             finally:
                 self.adapter.close_language()
         return counts

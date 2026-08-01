@@ -1,6 +1,8 @@
-Wikidéb’IA Kit 2.1.17
-Norme : 1.2.15
-Validateur requis : 0.4.16
-Tests pytest : 58 réussis, 0 échec
-Contrôles : sécurité Git, push non interactif, reprise GitHub, environnement Python, publication et mise à jour.
+Wikidéb’IA Kit 2.2.0
+Norme : 1.2.16
+Validateur requis : 0.4.17
+Tests pytest : 74 réussis, 0 échec
+Scénarios de reprise obligatoires : 15/15 réussis
+Test supplémentaire : inventaire distant signé en lecture seule
+Aucune connexion ni écriture MediaWiki réelle pendant les tests.
 Résultat : RÉUSSI

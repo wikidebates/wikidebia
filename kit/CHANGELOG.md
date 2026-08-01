@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.2.0 — 31 juillet 2026
+
+- `./wikidebia update IDENTIFIANT` devient la commande de reprise d’un débat déjà publié ;
+- l’ancienne mise à niveau des composants devient `./wikidebia upgrade` ;
+- état publié et reçus signés par débat et langue ;
+- opérations `create`, `skip`, `update`, `move`, `redirect`, `delete`, `manual_review` et `blocked` ;
+- détection des modifications humaines avec triple comparaison et absence d’écrasement par défaut ;
+- mises à jour avec `baserevid`, revérification de révision et plans signés ;
+- retraits calculés depuis l’ancien état publié, protection contre les réutilisations inter-débats et vérification des marqueurs ;
+- contrôle global des droits avant la première écriture, notamment `delete` ;
+- ordre sûr avec vérification du nouveau graphe avant suppression, idempotence et reprise après interruption ;
+- portées `--scope`, `--no-delete`, `--only-delete` et `--dry-run` ;
+- quinze scénarios obligatoires plus un test d’inventaire distant signé.
+
 ## 2.1.17 — 31 juillet 2026
 
 - restauration complète des exclusions Git sensibles ;
