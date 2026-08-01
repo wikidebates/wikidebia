@@ -382,6 +382,10 @@ def _is_norm_1217(ctx: PackageContext) -> bool:
     return _norm_at_least(ctx, "1.2.17")
 
 
+def _is_norm_1218(ctx: PackageContext) -> bool:
+    return _norm_at_least(ctx, "1.2.18")
+
+
 def _alphabetical_key(value: str) -> str:
     folded = unicodedata.normalize("NFKD", value.casefold())
     return "".join(c for c in folded if not unicodedata.combining(c))
@@ -534,9 +538,27 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
                                 "template": sub.name,
                                 "parameter": skey,
                                 "actual": sval,
-                                "conversion": "un élément -> texte brut ; plusieurs éléments -> valeurs séparées par ' ; ' ; liste vide -> paramètre omis",
+                                "conversion": "un élément -> texte brut ; plusieurs éléments -> valeurs séparées par ', ' ; liste vide -> paramètre omis",
                             },
                         )
+                    if _is_norm_1218(ctx):
+                        malformed_separator = (
+                            ";" in candidate
+                            or "，" in candidate
+                            or bool(re.search(r"\s+,|,(?! )|, {2,}|,$", candidate))
+                        )
+                        if malformed_separator:
+                            ctx.report.error(
+                                "WDV-DOC-007",
+                                "Plusieurs auteurs doivent être séparés exactement par une virgule suivie d’une espace",
+                                path=rel,
+                                details={
+                                    "template": sub.name,
+                                    "parameter": skey,
+                                    "actual": sval,
+                                    "expected_separator": ", ",
+                                },
+                            )
                 if skey in {"numéro", "issue"} and not sval.isdigit():
                     ctx.report.error("WDV-MWK-012", f"{sub.name}.{skey} doit contenir uniquement des chiffres", path=rel)
                 if skey in {"lien", "link"} and not re.match(r"^https?://", sval):
@@ -707,7 +729,7 @@ PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
 
 
 def _validate_french_parenthetical_dashes(ctx: PackageContext, tmpl: Template, rel: str, page_type: str) -> None:
-    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.17"}:
+    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18"}:
         return
     values: list[tuple[str, str]] = []
     if page_type == "argument":

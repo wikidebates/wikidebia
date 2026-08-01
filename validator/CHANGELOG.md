@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.19 — 1er août 2026
+
+- alignement sur la norme 1.2.18 ;
+- ajout de `WDV-DOC-007` pour la virgule canonique entre auteurs ;
+- refus du point-virgule, des virgules mal espacées et de la virgule pleine chasse sous 1.2.18 ;
+- compatibilité historique conservée jusqu’à 1.2.17.
+
+
 ## 0.4.18 — 1er août 2026
 
 - alignement sur la norme 1.2.17 ;
@@ -8,9 +16,9 @@
 - ajout de `WDV-DOC-006` contre les tableaux JSON dans `auteurs`/`authors` ;
 - compatibilité des révisions antérieures conservée.
 
-## 0.4.18 — 31 juillet 2026
+## 0.4.17 — 31 juillet 2026
 
-- alignement sur la norme 1.2.17 et le kit 2.2.1 ;
+- alignement sur la norme 1.2.16 et le kit 2.2.0 ;
 - ajout des schémas d’état publié, de migrations, de plan et de reçu de reprise ;
 - ajout de `validate-plan`, strictement local et en lecture seule ;
 - contrôles WDV-RMT-001 à WDV-RMT-006 sur l’intégrité et la sécurité des plans distants ;

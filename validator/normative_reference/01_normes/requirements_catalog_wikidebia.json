@@ -1,7 +1,7 @@
 {
-  "requirements_catalog_version": "1.2.17",
+  "requirements_catalog_version": "1.2.18",
   "generated_date": "2026-08-01",
-  "active_package_revision": "1.2.17",
+  "active_package_revision": "1.2.18",
   "precedence": [
     "later explicit user decisions",
     "WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
@@ -2190,7 +2190,7 @@
         "workflow correction"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -3755,7 +3755,7 @@
         "decision 2026-07-25"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
       "note": "Corpus-specific historical decisions remain only in archived provenance documents and in the corpus packages concerned."
@@ -4164,7 +4164,7 @@
         "owner clarification 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4178,7 +4178,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4192,7 +4192,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4206,7 +4206,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4220,7 +4220,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4234,7 +4234,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4248,7 +4248,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4262,7 +4262,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4276,7 +4276,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4290,7 +4290,7 @@
         "delivery audit 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4304,7 +4304,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -4319,7 +4319,7 @@
         "delivery audit 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -4334,7 +4334,7 @@
         "delivery audit 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -4349,7 +4349,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -4364,7 +4364,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -4379,7 +4379,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -4394,7 +4394,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4408,7 +4408,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -4423,7 +4423,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -4438,7 +4438,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4452,7 +4452,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4481,7 +4481,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4495,7 +4495,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4509,7 +4509,7 @@
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4523,7 +4523,7 @@
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -4538,7 +4538,7 @@
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -4553,7 +4553,7 @@
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -4568,7 +4568,7 @@
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -4583,7 +4583,7 @@
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -4598,7 +4598,7 @@
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -4613,7 +4613,7 @@
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4627,7 +4627,7 @@
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -4641,7 +4641,7 @@
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/structures_mediawiki_wikidebia.md"
       ],
       "note": "Bare years remain valid when only the year is known."
@@ -4656,7 +4656,7 @@
         "owner correction 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/structures_mediawiki_wikidebia.md"
       ],
       "note": "Named references are permitted when their first definition contains direct textual wikicode; self-closing reuse remains allowed."
@@ -4671,7 +4671,7 @@
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -4686,7 +4686,7 @@
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": "The ledger records null when no common acronym applies."
@@ -4701,7 +4701,7 @@
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/structures_mediawiki_wikidebia.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
@@ -4717,7 +4717,7 @@
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -4732,7 +4732,7 @@
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -4747,7 +4747,7 @@
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -4762,7 +4762,7 @@
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -4777,7 +4777,7 @@
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -4792,7 +4792,7 @@
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -4807,7 +4807,7 @@
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -4822,7 +4822,7 @@
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -4837,7 +4837,7 @@
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -4852,7 +4852,7 @@
         "owner correction 2026-07-31"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -4867,7 +4867,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
       "note": null
@@ -4882,7 +4882,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -4897,7 +4897,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -4912,7 +4912,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -4927,7 +4927,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -4942,7 +4942,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -4957,7 +4957,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/structures_mediawiki_wikidebia.md"
       ],
       "note": null
@@ -4972,7 +4972,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
       "note": null
@@ -4987,7 +4987,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
       "note": null
@@ -5002,7 +5002,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -5017,7 +5017,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -5032,7 +5032,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -5047,7 +5047,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -5062,7 +5062,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -5077,7 +5077,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -5092,7 +5092,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
       "note": null
@@ -5107,7 +5107,7 @@
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -5122,7 +5122,7 @@
         "owner decision 2026-08-01"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -5137,7 +5137,7 @@
         "owner decision 2026-08-01"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/structures_mediawiki_wikidebia.md"
       ],
       "note": null
@@ -5145,14 +5145,14 @@
     {
       "id": "REF-031",
       "domain": "references",
-      "statement": "JSON author arrays are converted to MediaWiki text: one item becomes a scalar, multiple items are separated by semicolons, and an empty list omits the parameter.",
+      "statement": "JSON author arrays are converted to MediaWiki text: one item becomes a scalar, multiple items are separated by a comma followed by a space, and an empty list omits the parameter.",
       "disposition": "active",
       "enforcement": "automatic",
       "sources": [
         "owner decision 2026-08-01"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -5167,8 +5167,24 @@
         "owner decision 2026-08-01"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-032",
+      "domain": "references",
+      "statement": "When several authors are rendered in auteurs or authors, the canonical separator is exactly a comma followed by one space; semicolons, fullwidth commas and malformed comma spacing are forbidden in generated output.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-08-01"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
+        "01_normes/structures_mediawiki_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
     }

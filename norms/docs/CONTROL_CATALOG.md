@@ -1,4 +1,4 @@
-# Catalogue des codes de contrôle — 0.4.18
+# Catalogue des codes de contrôle — 0.4.19
 
 | Code | Signification |
 |---|---|
@@ -74,6 +74,7 @@
 | `WDV-DOC-004` | Métadonnées sitographiques redondantes ou attribution non vérifiée |
 | `WDV-DOC-005` | Date documentaire au format machine |
 | `WDV-DOC-006` | Champ auteur sérialisé comme tableau JSON |
+| `WDV-DOC-007` | Séparateur d’auteurs non canonique |
 | `WDV-EDT-001` | Titres affichés copiés mécaniquement |
 | `WDV-EDT-002` | Classification ou mots-clés mécaniques |
 | `WDV-EDT-003` | Résumé contenant une auto-objection ou du métadiscours |

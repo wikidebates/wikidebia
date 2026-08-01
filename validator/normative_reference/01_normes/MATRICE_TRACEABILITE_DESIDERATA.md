@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.17
+- **Révision :** 1.2.18
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -303,3 +303,11 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 | Aucun paramètre de débats connexes | MW-026 | `WDV-MWK-003` + préflight kit | tests de refus |
 | Conversion des auteurs JSON | REF-031 | `WDV-DOC-006` + préflight kit | test `["Auteur"]` refusé |
 | Publication sans question `[o/N]` | IMP-018 | orchestration non interactive | test interdisant tout appel à `input()` |
+
+
+## Correction du 1er août 2026 — norme 1.2.18
+
+| Demande | Exigence | Contrôle | Preuve |
+|---|---|---|---|
+| Séparer plusieurs auteurs par une virgule | REF-032 | `WDV-DOC-007` + préflight kit | tests virgule correcte, point-virgule, espacement et virgule pleine chasse |
+| Conserver les protections précédentes | DFR-046, MW-026, REF-031, IMP-018 | non-régression complète | suites validateur et kit |

@@ -711,7 +711,7 @@ La révision 1.2.15 corrige le contrôle trop strict introduit en 1.2.13. Le nom
 Après extraction sûre, le champ `manifest.debate_id` devient l’identité autoritative : il détermine le dossier `corpus/<debate_id>`, les plans, les journaux et la configuration de publication. Il peut différer du nom du ZIP. Cette règle rend directement compatibles les archives historiques telles que `education_sexualite_ecole_fr_en_release_ready_repaired_2026-07-31.zip`, sans renommage et sans affaiblir la validation du manifeste ou du corpus.
 
 
-## Addendum 1.2.17 — reprise distante contrôlée d’un corpus publié
+## Addendum 1.2.16 — reprise distante contrôlée d’un corpus publié
 
 ### 1. Nature d’une reprise
 

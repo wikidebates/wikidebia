@@ -1,4 +1,4 @@
-# Guide de publication et de reprise Wikidéb’IA 2.2.1
+# Guide de publication et de reprise Wikidéb’IA 2.2.2
 
 ## Nouveau débat
 
@@ -26,6 +26,6 @@ Une révision ou une empreinte distante différente de l’état attendu produit
 La commande est `./wikidebia upgrade`, et non plus `update`.
 
 
-## Correctifs 2.2.1
+## Correctifs 2.2.2
 
-La publication ordinaire ne pose plus la question `Publier le débat … ? [o/N]`. Après validation, le gestionnaire transmet automatiquement le SHA-256 du plan au moteur. Avant cela, il bloque toute page Débat/Debate sans article Wikipédia, tout paramètre de débats connexes et toute valeur auteurs sérialisée comme tableau JSON.
+La publication ordinaire ne pose plus la question `Publier le débat … ? [o/N]`. Après validation, le gestionnaire transmet automatiquement le SHA-256 du plan au moteur. Avant cela, il bloque toute page Débat/Debate sans article Wikipédia, tout paramètre de débats connexes et toute valeur auteurs sérialisée comme tableau JSON et tout séparateur d’auteurs différent de la virgule suivie d’une espace.

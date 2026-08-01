@@ -54,7 +54,7 @@ def write_fixture(tmp_path: Path, kind: str):
     (corpus / "output" / "en" / "debate.wiki").write_text(en_debate, encoding="utf-8")
     manifest = {
       "debate_id":"demo",
-      "normative_versions":{"validator":"0.4.18"},
+      "normative_versions":{"validator":"0.4.19"},
       "core_files":{"registry":"data/registre_debat.json"},
       "pages":[
         {"language":"fr","page_id":"A1","page_type":"argument","canonical_title":"Titre FR","file_path":"output/fr/A1.wiki","sha256":module.sha_file(corpus / "output/fr/A1.wiki")},
@@ -72,7 +72,7 @@ def write_fixture(tmp_path: Path, kind: str):
     validator = tmp_path / "validator"
     validator.mkdir()
     validator_script = validator / "validate.py"
-    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.18','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.19','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     operation = {
       "id":"test",
       "kind":kind,
@@ -85,8 +85,8 @@ def write_fixture(tmp_path: Path, kind: str):
     }
     if kind == "parameter_update": operation["parameters"]={"fr":"résumé","en":"summary"}
     config = {
-      "kit_version":"2.2.1","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
-      "validator":{"command":[sys.executable,str(validator_script),"validate"],"required_version":"0.4.18","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
+      "kit_version":"2.2.2","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
+      "validator":{"command":[sys.executable,str(validator_script),"validate"],"required_version":"0.4.19","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
       "family":"wikidebates","family_file":str(Path(__file__)),"pywikibot_dir":str(tmp_path),
       "sites":{"fr":{"code":"fr","expected_user":"ChatGPT"},"en":{"code":"en","expected_user":"ChatGPT"}},
       "logs_dir":"logs","change_tags":["chatgpt"],"verification_attempts":1,"verification_delay_seconds":0,"write_delay_seconds":0,
@@ -186,7 +186,7 @@ def make_direct_profile(config, path, tmp_path):
     corpus = tmp_path / "corpus" / "demo"
     manifest_path = corpus / "manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    manifest["consolidated_norm"] = "1.2.17"
+    manifest["consolidated_norm"] = "1.2.18"
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
     fr_debate = corpus / "output" / "fr" / "debate.wiki"
     fr_debate.write_text(
@@ -508,7 +508,7 @@ def test_generic_kit_contains_no_debate_specific_configs():
         root / "README.md",
         root / "GUIDE_PUBLICATION.md",
         root / "config.example.json",
-        root / "configs" / "creation_bilingue_1.2.17.example.json",
+        root / "configs" / "creation_bilingue_1.2.18.example.json",
         root / "scripts" / "wikidebia_publish.py",
     ]
     combined = "\n".join(path.read_text(encoding="utf-8").casefold() for path in active_files)
@@ -656,12 +656,12 @@ def test_historical_manifest_versions_do_not_block_current_validation(tmp_path):
     publisher = module.GenericPublisher(config, FakeAdapter(), path)
     plan = publisher.build_plan()
     assert not plan["blockers"]
-    assert plan["required_validator_version"] == "0.4.18"
+    assert plan["required_validator_version"] == "0.4.19"
 
 
 def test_explicit_custom_manifest_requirement_is_still_enforced(tmp_path):
     config, path, _, _ = write_fixture(tmp_path, "full_page")
-    config["manifest_requirements"] = {"normative_versions.validator": "0.4.18"}
+    config["manifest_requirements"] = {"normative_versions.validator": "0.4.19"}
     path.write_text(json.dumps(config), encoding="utf-8")
     corpus = tmp_path / "corpus" / "demo"
     manifest_path = corpus / "manifest.json"
@@ -722,3 +722,55 @@ def test_direct_profile_rejects_json_author_array(tmp_path):
         assert "tableau JSON" in str(exc)
     else:
         raise AssertionError("tableau JSON auteurs accepté")
+
+
+def _set_norm(manifest_path, norm):
+    data = json.loads(manifest_path.read_text(encoding="utf-8"))
+    data.setdefault("normative_versions", {})["consolidated_norm"] = norm
+    manifest_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+def _inject_author_value(tmp_path, value, norm="1.2.18"):
+    config, path, _, _ = write_fixture(tmp_path, "full_page")
+    corpus, manifest_path = make_direct_profile(config, path, tmp_path)
+    _write_valid_direct_argument(corpus, manifest_path)
+    _set_norm(manifest_path, norm)
+    fr_debate = corpus / "output" / "fr" / "debate.wiki"
+    text = fr_debate.read_text(encoding="utf-8").replace("|interlangue=", f"|sitographie-ni-pour-ni-contre={{{{Référence sitographique\n|lien=https://example.test\n|auteurs={value}\n|site=Exemple\n}}}}\n|interlangue=")
+    fr_debate.write_text(text, encoding="utf-8")
+    update_hash(manifest_path, "fr", "DEBATE", fr_debate)
+    return config, path
+
+def test_direct_profile_accepts_comma_author_separator(tmp_path):
+    config, path = _inject_author_value(tmp_path, "Auteur A, Auteur B")
+    module.GenericPublisher(config, FakeAdapter(), path).build_plan()
+
+def test_direct_profile_rejects_semicolon_author_separator(tmp_path):
+    config, path = _inject_author_value(tmp_path, "Auteur A ; Auteur B")
+    try:
+        module.GenericPublisher(config, FakeAdapter(), path).build_plan()
+    except module.PublicationError as exc:
+        assert "virgule" in str(exc)
+    else:
+        raise AssertionError("point-virgule accepté")
+
+def test_direct_profile_rejects_bad_comma_spacing(tmp_path):
+    config, path = _inject_author_value(tmp_path, "Auteur A,Auteur B")
+    try:
+        module.GenericPublisher(config, FakeAdapter(), path).build_plan()
+    except module.PublicationError as exc:
+        assert "virgule" in str(exc)
+    else:
+        raise AssertionError("virgule sans espace acceptée")
+
+def test_direct_profile_rejects_fullwidth_comma(tmp_path):
+    config, path = _inject_author_value(tmp_path, "Auteur A， Auteur B")
+    try:
+        module.GenericPublisher(config, FakeAdapter(), path).build_plan()
+    except module.PublicationError as exc:
+        assert "virgule" in str(exc)
+    else:
+        raise AssertionError("virgule pleine chasse acceptée")
+
+def test_author_separator_rule_is_not_retroactive_to_1217(tmp_path):
+    config, path = _inject_author_value(tmp_path, "Auteur A ; Auteur B", "1.2.17")
+    module.GenericPublisher(config, FakeAdapter(), path).build_plan()

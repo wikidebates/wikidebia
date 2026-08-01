@@ -1,19 +1,19 @@
-# Wikidéb’IA — Normes actives 1.2.17
+# Wikidéb’IA — Normes actives 1.2.18
 
-**Norme active :** 1.2.17  
-**Validateur :** 0.4.18  
-**Kit :** 2.2.1
+**Norme active :** 1.2.18  
+**Validateur :** 0.4.19  
+**Kit :** 2.2.2
 
 # Source incorporée : `COMPATIBILITY.json`
 
-**SHA-256 :** `b147e3889c1c377a6c33ca00700b24901030a90041faa56926004eb4d958f6c7`
+**SHA-256 :** `8b1b7d8583d642f55e6bf4acd8c4bc2e58427fdd780e8750cdfa361a9f1d1478`
 
 ```json
 {
   "package": "wikidebia-normes",
-  "normative_revision": "1.2.17",
-  "recommended_validator_version": "0.4.18",
-  "recommended_kit_version": "2.2.1",
+  "normative_revision": "1.2.18",
+  "recommended_validator_version": "0.4.19",
+  "recommended_kit_version": "2.2.2",
   "migration_required_for_existing_packages": true,
   "compatible_prior_normative_revisions": [
     "1.1.0",
@@ -42,7 +42,8 @@
     "1.2.13",
     "1.2.14",
     "1.2.15",
-    "1.2.16"
+    "1.2.16",
+    "1.2.17"
   ],
   "migration_required_scope": "normative_revision_change_only",
   "stable_archive_name": "wikidebia-normes.zip",
@@ -52,49 +53,49 @@
 
 # Source incorporée : `README.md`
 
-**SHA-256 :** `c9f9762d8d1bbf88918901184638163907175de1eee50922d8ea4d56d9b96049`
+**SHA-256 :** `12b84fff9f24b97423b7393eea949aefb6cbd1e5021ca4a3cbdbc77ae107e41f`
 
 ```
-# Wikidéb’IA — Normes 1.2.17
+# Wikidéb’IA — Normes 1.2.18
 
-Source normative active générique pour la production et la publication français–anglais. La révision 1.2.17 impose au moins un article Wikipédia vérifié par page Débat/Debate, interdit le rendu des débats connexes, formalise la conversion des listes JSON d’auteurs et rend `./wikidebia publish` non interactif tout en conservant le plan signé.
+Source normative active générique pour la production et la publication français–anglais. La révision 1.2.18 conserve les barrières 1.2.17 et corrige le séparateur des auteurs. La révision 1.2.17 impose au moins un article Wikipédia vérifié par page Débat/Debate, interdit le rendu des débats connexes, formalise la conversion des listes JSON d’auteurs et rend `./wikidebia publish` non interactif tout en conservant le plan signé.
 
-- norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md` ;
-- validateur recommandé : 0.4.18 ;
-- kit recommandé : 2.2.1.
+- norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md` ;
+- validateur recommandé : 0.4.19 ;
+- kit recommandé : 2.2.2.
 ```
 
 # Source incorporée : `VERSIONS.json`
 
-**SHA-256 :** `b1e7ab02eab0815820c6c8ba26bb026050e2bcff9a16c68d249bd5469e9de024`
+**SHA-256 :** `e82c5205e7a70cb9a8a4138d37ffff0e8c75c37bfcedc90b7364c56e6cf71643`
 
 ```json
 {
-  "norm": "1.2.17",
-  "validator": "0.4.18",
-  "kit": "2.2.1"
+  "norm": "1.2.18",
+  "validator": "0.4.19",
+  "kit": "2.2.2"
 }
 ```
 
 # Source incorporée : `docs/ARCHITECTURE_VALIDATEUR.md`
 
-**SHA-256 :** `76320c105b168ca7b6817dc616f941be860e428d09d9d8b51a9e9a48a22367df`
+**SHA-256 :** `e1cd201ef430a3787ff04f62ea23cf5a379123d8c7c1b5ccab0e70fe92103cb1`
 
 ```
 # Architecture normative et validation
 
-Le paquet normatif 1.2.17 recommande le validateur 0.4.18. Le pipeline sépare les contraintes de schéma, les invariants structurels, les contrôles documentaires et les revues humaines.
+Le paquet normatif 1.2.18 recommande le validateur 0.4.19. Le pipeline sépare les contraintes de schéma, les invariants structurels, les contrôles documentaires et les revues humaines.
 
 Les dates documentaires ISO, les modèles spécialisés dans les appels inline d’introduction et les paramètres documentaires de débat contenant moins de deux notices sont bloquants. Les dates de création restent contrôlées séparément au format `AAAA-MM-JJ`. L’acronyme courant est déclaré dans le registre de revue, puis comparé à `sujet-complet` ou `complete-topic`.
 
 La publication française seule reste sûre parce que le kit compare le lien interlangue au titre anglais verrouillé dans le registre maître, même si aucune page anglaise correspondante n’existe encore dans le manifeste.
 
-La norme 1.2.17 ajoute un contrôle lexical déterministe sur le wikicode brut : toute jonction de modèles écrite sous la forme `}}` + saut de ligne + `{{` est bloquée et doit être compactée en `}}{{`.
+La norme 1.2.18 ajoute un contrôle lexical déterministe sur le wikicode brut : toute jonction de modèles écrite sous la forme `}}` + saut de ligne + `{{` est bloquée et doit être compactée en `}}{{`.
 
-Le validateur 0.4.18 produit des chemins de paquet portables ; le kit 2.2.1 contrôle l’ordre de publication et la structure de l’installation.
+Le validateur 0.4.19 produit des chemins de paquet portables ; le kit 2.2.2 contrôle l’ordre de publication et la structure de l’installation.
 
 
-## Reprise distante d’un corpus publié — révision 1.2.17
+## Reprise distante d’un corpus publié — révision 1.2.18
 
 Une reprise compare obligatoirement le dernier état publié signé, l’état distant courant et le nouveau corpus validé. Le kit produit un plan signé comprenant `create`, `skip`, `update`, `move`, `redirect`, `delete`, `manual_review` et `blocked`. Une page absente du nouveau manifeste n’est jamais supprimée sans preuve d’appartenance à la version antérieure du même débat.
 
@@ -102,7 +103,7 @@ Les mises à jour et suppressions vérifient la révision ou l’empreinte atten
 
 Le validateur contrôle localement les structures et la cohérence des plans, mais toutes les lectures et écritures MediaWiki restent dans le kit.
 
-La révision 1.2.17 ajoute deux barrières de wikicode : article Wikipédia obligatoire et conversion textuelle des auteurs. Les paramètres de débats connexes sont interdits dans les sorties générées.
+La révision 1.2.18 ajoute deux barrières de wikicode : article Wikipédia obligatoire et conversion textuelle des auteurs. Les paramètres de débats connexes sont interdits dans les sorties générées.
 ```
 
 # Source incorporée : `docs/AUDIT_COMPLETUDE_1.2.10.md`
@@ -200,16 +201,16 @@ La révision 1.2.17 ajoute deux barrières de wikicode : article Wikipédia obli
 
 # Source incorporée : `docs/AUDIT_COMPLETUDE_1.2.16.md`
 
-**SHA-256 :** `deb0f68be8edcfe6784f1149cf29bccb1cdc9c15ed531832cbaccd70243f5568`
+**SHA-256 :** `1c067b322c54bc5f216a9deb04b037f35b88677a451ec35a8257a09dcc314676`
 
 ```
-# Audit de complétude 1.2.17
+# Audit de complétude 1.2.16
 
-- norme consolidée active 1.2.17 présente et 1.2.15 archivée ;
+- norme consolidée active 1.2.16 présente et 1.2.15 archivée ;
 - catalogue, matrice, workflow, cahier des charges, profils et structures alignés ;
 - exemples génériques d’état publié, migrations et plan distant ;
-- schémas fournis par le validateur 0.4.18 ;
-- kit recommandé 2.2.1 ;
+- schémas fournis par le validateur 0.4.17 ;
+- kit recommandé 2.2.0 ;
 - aucune constante de corpus ni écriture distante dans la norme ou le validateur.
 
 **AUDIT DE COMPLÉTUDE : RÉUSSI**
@@ -229,6 +230,23 @@ La révision 1.2.17 ajoute deux barrières de wikicode : article Wikipédia obli
 - publication ordinaire non interactive testée ;
 - validateur recommandé 0.4.18 ;
 - kit recommandé 2.2.1.
+```
+
+# Source incorporée : `docs/AUDIT_COMPLETUDE_1.2.18.md`
+
+**SHA-256 :** `f850e41435479e110e9c5033d7624dde14d82f0832a84a3013fe508aa349862a`
+
+```
+# Audit de complétude 1.2.18
+
+- norme consolidée active 1.2.18 présente et 1.2.17 archivée ;
+- exigence `REF-032` ajoutée et tracée ;
+- séparateur `, ` documenté dans toutes les sources actives ;
+- contrôles du validateur et du kit testés positivement et négativement ;
+- compatibilité 1.1.0–1.2.17 conservée ;
+- reprise distante, Wikipédia obligatoire, absence de débats connexes, conversion JSON et publication non interactive conservées ;
+- validateur recommandé : 0.4.19 ;
+- kit recommandé : 2.2.2.
 ```
 
 # Source incorporée : `docs/AUDIT_COMPLETUDE_1.2.8.md`
@@ -266,10 +284,10 @@ La révision 1.2.17 ajoute deux barrières de wikicode : article Wikipédia obli
 
 # Source incorporée : `docs/CONTROL_CATALOG.md`
 
-**SHA-256 :** `ff6f26bf628ce979e3ed6239d5f4c6abf5c9325c165f6b1ef6d1fad09e0a689c`
+**SHA-256 :** `c043405a081df5f7280c04c9790b61706c275f5fba53dfc01a63200ab8c50600`
 
 ```
-# Catalogue des codes de contrôle — 0.4.18
+# Catalogue des codes de contrôle — 0.4.19
 
 | Code | Signification |
 |---|---|
@@ -345,6 +363,7 @@ La révision 1.2.17 ajoute deux barrières de wikicode : article Wikipédia obli
 | `WDV-DOC-004` | Métadonnées sitographiques redondantes ou attribution non vérifiée |
 | `WDV-DOC-005` | Date documentaire au format machine |
 | `WDV-DOC-006` | Champ auteur sérialisé comme tableau JSON |
+| `WDV-DOC-007` | Séparateur d’auteurs non canonique |
 | `WDV-EDT-001` | Titres affichés copiés mécaniquement |
 | `WDV-EDT-002` | Classification ou mots-clés mécaniques |
 | `WDV-EDT-003` | Résumé contenant une auto-objection ou du métadiscours |
@@ -386,10 +405,10 @@ La norme éditoriale reste 1.2.15. Le validateur 0.4.16 corrige uniquement la po
 
 # Source incorporée : `docs/MAINTENANCE_1.2.16_0.4.17_2.2.0.md`
 
-**SHA-256 :** `04eb0013400d1a60aa09900079a4d5ab899f7de82fbdd64d5581c7863a7e82d9`
+**SHA-256 :** `2eec925195ff66f9b3b681356aaef075e1ee94ea7e5ba342d1e8c2e89e230334`
 
 ```
-# Maintenance 1.2.17 / 0.4.18 / 2.2.1
+# Maintenance 1.2.16 / 0.4.17 / 2.2.0
 
 Cette livraison ajoute une capacité opérationnelle nouvelle : la reprise distante contrôlée. Les corpus historiques ne sont pas réécrits. Leur publication initiale reste régie par leur provenance normative ; une reprise utilise le validateur courant et l’état publié antérieur.
 ```
@@ -402,6 +421,16 @@ Cette livraison ajoute une capacité opérationnelle nouvelle : la reprise dista
 # Maintenance 1.2.17 / 0.4.18 / 2.2.1
 
 Cette révision corrige quatre défauts de génération et de publication : article Wikipédia vide, rendu indésirable des débats connexes, copie littérale de listes JSON d’auteurs et confirmation interactive de la commande de publication. Les corpus qui migrent vers 1.2.17 doivent corriger leur wikicode et recalculer leurs empreintes.
+```
+
+# Source incorporée : `docs/MAINTENANCE_1.2.18_0.4.19_2.2.2.md`
+
+**SHA-256 :** `f0b0f8733d0bcf72958a67f6c0d7035f2a8f64d0df35dced773447014db45ffc`
+
+```
+# Maintenance de la norme 1.2.18
+
+Cette révision corrige uniquement le séparateur de plusieurs auteurs dans le wikicode généré. La forme canonique est la virgule suivie d’une espace. Toutes les protections ajoutées en 1.2.16 et 1.2.17 sont conservées sans affaiblissement.
 ```
 
 # Source incorporée : `docs/MIGRATION_1.1.8.md`
@@ -672,6 +701,22 @@ La commande historique de mise à niveau des composants devient `./wikidebia upg
 6. Utiliser `./wikidebia publish` normalement : aucune confirmation interactive n’est désormais demandée.
 ```
 
+# Source incorporée : `docs/MIGRATION_1.2.18.md`
+
+**SHA-256 :** `3c7bac8274180fe84dfeb16f120ee06a83acf2962a9d81c9c9baa33d92276f02`
+
+```
+# Migration vers la norme 1.2.18
+
+1. Remplacer tout séparateur ` ; ` entre auteurs par `, `.
+2. Vérifier qu’aucune valeur `auteurs` ou `authors` ne contient une virgule sans exactement une espace après elle, une espace avant la virgule ou une virgule pleine chasse.
+3. Conserver la conversion JSON déjà exigée : un élément devient une valeur scalaire, une liste vide omet le paramètre.
+4. Conserver les contrôles 1.2.17 : article Wikipédia non vide, absence de débats connexes et publication sans invite interactive.
+5. Installer le validateur 0.4.19 et le kit 2.2.2, recalculer les empreintes et relancer toutes les portées.
+
+Les paquets qui restent déclarés sous 1.2.17 conservent leur provenance et ne reçoivent pas rétroactivement le nouveau contrôle de ponctuation.
+```
+
 # Source incorporée : `docs/MIGRATION_1.2.8.md`
 
 **SHA-256 :** `4955cb2a16cb56a6ad86aa381ed8c1f72517cf7154e125fd59ada4a890599122`
@@ -761,10 +806,10 @@ La révision distingue la provenance d’un corpus de l’environnement qui le p
 
 # Source incorporée : `docs/NORMATIVE_AUDIT_1.2.16.md`
 
-**SHA-256 :** `f348c327e68e7f92ef91c28dd722440ce071329b0daabaffa7c860ae90f1088c`
+**SHA-256 :** `99571c75cdc611a14e9712599edb083bc57a4b73c21aab4d1f04b9de961811fc`
 
 ```
-# Audit normatif 1.2.17
+# Audit normatif 1.2.16
 
 La spécification de reprise d’un corpus publié est traduite dans la norme consolidée, le cahier des charges, le workflow, les structures, le schéma du registre, les profils, le catalogue et la matrice. Dix-sept exigences atomiques nouvelles encadrent l’état publié, la classification des opérations, les modifications humaines, les retraits, les déplacements, les droits, l’idempotence, les reçus et la séparation validateur/kit.
 
@@ -783,6 +828,18 @@ Aucune constante du débat pilote n’est active. Le validateur reste local et e
 Les quatre corrections du 1er août 2026 sont présentes dans la norme consolidée, le profil de rendu, les structures MediaWiki, le workflow, le cahier des charges, le catalogue des exigences et la matrice de traçabilité. Les exigences nouvelles sont `DFR-046`, `MW-026`, `REF-031` et `IMP-018`.
 
 Le validateur 0.4.18 ajoute `WDV-MWK-019` et `WDV-DOC-006`. Le kit 2.2.1 applique les mêmes barrières avant toute écriture et supprime l’invite interactive de publication tout en conservant le plan signé.
+```
+
+# Source incorporée : `docs/NORMATIVE_AUDIT_1.2.18.md`
+
+**SHA-256 :** `bd06a9aa3c6085186c50f274f06143ba84a4c2226b3eb73c2cf1756b3d07f1d6`
+
+```
+# Audit normatif 1.2.18
+
+La correction du séparateur des auteurs est présente dans la norme consolidée, les structures MediaWiki, le profil de rendu, le cahier des charges, le workflow, le catalogue d’exigences et la matrice de traçabilité.
+
+L’exigence `REF-032` impose la forme `Auteur 1, Auteur 2`. Le validateur 0.4.19 ajoute `WDV-DOC-007`; le kit 2.2.2 applique le même précontrôle avant toute écriture. Les quatre barrières de 1.2.17 et toutes les capacités de reprise de 1.2.16 restent actives.
 ```
 
 # Source incorporée : `docs/NORMATIVE_AUDIT_1.2.8.md`
@@ -1266,12 +1323,12 @@ La norme, le workflow, le catalogue d’exigences, la matrice de traçabilité, 
 
 # Source incorporée : `examples/introduction_review.example.json`
 
-**SHA-256 :** `49487e3b79e8af58edee70b2be368144a75f451c95e1bd665160af08470ac737`
+**SHA-256 :** `b82d139a869f1eddd5335d535d46336b22885fc7589a05e22bb497934d06fc8d`
 
 ```json
 {
   "review_version": "1.0",
-  "normative_revision": "1.2.17",
+  "normative_revision": "1.2.18",
   "debate_id": "exemple_debat",
   "entries": [
     {
@@ -1485,12 +1542,12 @@ La norme, le workflow, le catalogue d’exigences, la matrice de traçabilité, 
 
 # Source incorporée : `examples/summary_style_review.example.json`
 
-**SHA-256 :** `bea4a057c0fa99c5754cf382cdc988deb178559f0107efeedf28d769c46468d6`
+**SHA-256 :** `8d6c71d2fef4a6031a1970fee7f73f15abe10a675b11238e2578dec5dc03df6f`
 
 ```json
 {
   "schema_version": "1.1",
-  "normative_revision": "1.2.17",
+  "normative_revision": "1.2.18",
   "entries": [
     {
       "id": "A0001",
@@ -1715,10 +1772,18 @@ Chaque étiquette de provenance utilisée dans le catalogue doit être déclaré
 
 # Source incorporée : `normative_reference/01_normes/CHANGELOG_NORMATIF.md`
 
-**SHA-256 :** `b98b1c1f1ded8e7c7db73f54dd75e54aa9a44ba71db53827dc57f5d0470378d2`
+**SHA-256 :** `e6440cbf5e8ae6645456395a3b588a4055e198649845704d58bfdc7277aa1df5`
 
 ```
 # Changelog normatif
+
+## 1.2.18 — 1er août 2026
+
+- séparateur canonique des auteurs : virgule suivie d’une espace ;
+- refus du point-virgule, des virgules mal espacées et de la virgule pleine chasse dans les sorties générées ;
+- compatibilité historique conservée pour les paquets déclarés sous 1.2.17 ;
+- alignement avec le validateur 0.4.19 et le kit 2.2.2.
+
 
 ## 1.2.17 — 1er août 2026
 
@@ -1728,7 +1793,7 @@ Chaque étiquette de provenance utilisée dans le catalogue doit être déclaré
 - la publication ordinaire devient non interactive tout en conservant la vérification automatique de l’empreinte du plan ;
 - alignement recommandé : validateur 0.4.18, kit 2.2.1.
 
-## 1.2.17 — 31 juillet 2026
+## 1.2.16 — 31 juillet 2026
 
 - distinction normative entre publication initiale et reprise ;
 - état publié signé par débat et langue ;
@@ -1737,7 +1802,7 @@ Chaque étiquette de provenance utilisée dans le catalogue doit être déclaré
 - protection absolue des modifications humaines ;
 - suppressions attestées, idempotentes et exécutées après vérification du nouveau graphe ;
 - droits MediaWiki vérifiés avant écriture, sessions linguistiques séquentielles ;
-- schémas, validation locale, reçus et commandes de reprise alignés sur le kit 2.2.1.
+- schémas, validation locale, reçus et commandes de reprise alignés sur le kit 2.2.0.
 
 ## 1.2.15 — 31 juillet 2026
 
@@ -1912,12 +1977,12 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 
 # Source incorporée : `normative_reference/01_normes/MATRICE_TRACEABILITE_DESIDERATA.md`
 
-**SHA-256 :** `9282c088c2fa27d6fde26ac26ee71dd907e154ab75bb2a9837d62882365a5708`
+**SHA-256 :** `b181c368f73ea70bc4165730935647135d25cee4e243e887a216c61756ea557a`
 
 ```
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.17
+- **Révision :** 1.2.18
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -2220,14 +2285,22 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 | Aucun paramètre de débats connexes | MW-026 | `WDV-MWK-003` + préflight kit | tests de refus |
 | Conversion des auteurs JSON | REF-031 | `WDV-DOC-006` + préflight kit | test `["Auteur"]` refusé |
 | Publication sans question `[o/N]` | IMP-018 | orchestration non interactive | test interdisant tout appel à `input()` |
+
+
+## Correction du 1er août 2026 — norme 1.2.18
+
+| Demande | Exigence | Contrôle | Preuve |
+|---|---|---|---|
+| Séparer plusieurs auteurs par une virgule | REF-032 | `WDV-DOC-007` + préflight kit | tests virgule correcte, point-virgule, espacement et virgule pleine chasse |
+| Conserver les protections précédentes | DFR-046, MW-026, REF-031, IMP-018 | non-régression complète | suites validateur et kit |
 ```
 
-# Source incorporée : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md`
+# Source incorporée : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md`
 
-**SHA-256 :** `e8acd81dcdfed3f053256e69325e7d4644b9983c86f070dc55c622e06a7f0883`
+**SHA-256 :** `a7b95e5326a17b269b3d6aee1a7a65b9cda02bce8d2675b3b8ae7cb8fe3b5f72`
 
 ```
-# Norme consolidée Wikidéb’IA 1.2.17
+# Norme consolidée Wikidéb’IA 1.2.18
 
 **Statut :** source normative active unique  
 **Date d’effet :** 31 juillet 2026  
@@ -2462,7 +2535,7 @@ Chaque usage bibliographique du débat indique s’il s’agit d’une œuvre fo
 
 `auteurs=` ou `authors=` n’est émis que lorsqu’une personne ou une organisation est explicitement responsable du contenu. À défaut, le paramètre est omis ; le nom du site n’est jamais recopié mécaniquement comme auteur. La vérification de l’attribution est enregistrée.
 
-Le registre JSON conserve `authors` sous forme de liste, mais cette liste ne doit jamais être sérialisée littéralement dans le wikicode. La conversion vers MediaWiki est obligatoire : une liste d’un élément devient le texte brut de cet élément (`["L'Encyclopédie philosophique"]` devient `|auteurs=L'Encyclopédie philosophique`) ; plusieurs éléments sont séparés par ` ; ` ; une liste vide entraîne l’omission du paramètre. Les crochets, guillemets et virgules syntaxiques du JSON ne sont jamais publiés.
+Le registre JSON conserve `authors` sous forme de liste, mais cette liste ne doit jamais être sérialisée littéralement dans le wikicode. La conversion vers MediaWiki est obligatoire : une liste d’un élément devient le texte brut de cet élément (`["L'Encyclopédie philosophique"]` devient `|auteurs=L'Encyclopédie philosophique`) ; plusieurs éléments sont séparés par une virgule suivie d’une espace (`Auteur 1, Auteur 2`) ; une liste vide entraîne l’omission du paramètre. Les crochets, guillemets et virgules syntaxiques du JSON ne sont jamais publiés.
 
 Lorsque le titre de la page et le nom du site sont identiques, seul `site=` est conservé. Les triples identiques `page`, `auteurs` et `site` sont interdits.
 
@@ -2940,7 +3013,7 @@ La révision 1.2.15 corrige le contrôle trop strict introduit en 1.2.13. Le nom
 Après extraction sûre, le champ `manifest.debate_id` devient l’identité autoritative : il détermine le dossier `corpus/<debate_id>`, les plans, les journaux et la configuration de publication. Il peut différer du nom du ZIP. Cette règle rend directement compatibles les archives historiques telles que `education_sexualite_ecole_fr_en_release_ready_repaired_2026-07-31.zip`, sans renommage et sans affaiblir la validation du manifeste ou du corpus.
 
 
-## Addendum 1.2.17 — reprise distante contrôlée d’un corpus publié
+## Addendum 1.2.16 — reprise distante contrôlée d’un corpus publié
 
 ### 1. Nature d’une reprise
 
@@ -2987,11 +3060,16 @@ Aucune constante active ne dépend d’un débat pilote, d’un titre, d’un no
 ## Addendum 1.2.17 — Wikipédia, débats connexes, auteurs et publication non interactive
 
 La révision 1.2.17 rend bloquante l’absence d’article Wikipédia dans les pages Débat/Debate, interdit l’émission des paramètres de débats connexes, impose la conversion des listes JSON d’auteurs en texte MediaWiki et supprime l’invite interactive de la commande `./wikidebia publish`. Le plan SHA-256 reste calculé, verrouillé et transmis automatiquement au moteur d’exécution ; la suppression de l’invite ne supprime donc ni le plan signé ni les contrôles de concurrence.
+
+
+## Correction 1.2.18 — séparateur canonique des auteurs
+
+La conversion d’un tableau JSON d’auteurs vers le wikicode emploie la virgule suivie d’une espace comme séparateur canonique : `Auteur 1, Auteur 2`. Le point-virgule, la virgule sans espace, la virgule précédée d’une espace et la virgule pleine chasse sont interdits dans les sorties générées. Une liste d’un seul élément reste une valeur scalaire et une liste vide entraîne l’omission du paramètre. Cette correction ne réinterprète pas rétroactivement les paquets qui demeurent déclarés sous la norme 1.2.17 ; leur provenance est conservée, mais toute nouvelle production ou migration vers 1.2.18 doit appliquer la forme canonique.
 ```
 
 # Source incorporée : `normative_reference/01_normes/cahier_des_charges_consolide_wikidebia.md`
 
-**SHA-256 :** `ed1009cfc9fb0ef395e8b4c6897b43b238eb051967f28398871d8208c281d882`
+**SHA-256 :** `f0bcde47dc8d5c690de58b0be6a73adb0f0eb26a6d6167921acb23dc1bed1659`
 
 ```
 # Cahier des charges consolidé de Wikidéb'IA
@@ -3491,7 +3569,7 @@ Le wikicode final est compact aux frontières de modèles adjacents. La séquenc
 Les versions normatives et techniques déclarées par un corpus restent une provenance immuable. Le flux intégré de publication accepte une révision antérieure lorsqu’elle est explicitement compatible avec le validateur installé et que la validation courante réussit. Il ne demande jamais de remplacer `normative_versions.validator`, `normative_versions.kit` ou `consolidated_norm` par les versions locales seulement pour franchir le préflight.
 
 
-## Reprise distante d’un corpus publié — révision 1.2.17
+## Reprise distante d’un corpus publié — révision 1.2.16
 
 Une reprise compare obligatoirement le dernier état publié signé, l’état distant courant et le nouveau corpus validé. Le kit produit un plan signé comprenant `create`, `skip`, `update`, `move`, `redirect`, `delete`, `manual_review` et `blocked`. Une page absente du nouveau manifeste n’est jamais supprimée sans preuve d’appartenance à la version antérieure du même débat.
 
@@ -3504,7 +3582,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 
 - rechercher et rendre au moins un article Wikipédia exact et vérifié dans chaque page Débat/Debate ; un paramètre Wikipédia vide est bloquant ;
 - ne jamais rendre `débats-connexes` ni `related-debates` ;
-- convertir les listes JSON d’auteurs en texte MediaWiki (`["Auteur"]` → `Auteur`, plusieurs auteurs séparés par ` ; `, liste vide → omission) ;
+- convertir les listes JSON d’auteurs en texte MediaWiki (`["Auteur"]` → `Auteur`, plusieurs auteurs séparés par `, `, liste vide → omission) ;
 - publier sans invite interactive : le plan signé est confirmé automatiquement par l’orchestrateur après validation, sans supprimer les contrôles d’empreinte et de concurrence.
 ```
 
@@ -13427,6 +13505,773 @@ La reprise réutilise la famille `wikidebates`, la configuration privée `privat
 Aucune constante active ne dépend d’un débat pilote, d’un titre, d’un nombre de pages ou d’une date de migration particulière. Aucun secret n’est incorporé aux archives. Les plans, journaux, reçus et états publiés conservent les résultats de chaque opération. Le cas `education_sexualite_ecole` peut servir de test d’intégration externe, mais ne constitue ni une règle ni une configuration embarquée.
 ```
 
+# Source incorporée : `normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md`
+
+**SHA-256 :** `9d0391d93157e866bc60e112d145047f6abc89192682adb50aad3ab2ebc00215`
+
+```
+# Norme consolidée Wikidéb’IA 1.2.17
+
+**Statut :** source normative active unique  
+**Date d’effet :** 31 juillet 2026  
+**Domaine :** production, validation et préparation à la publication de débats bilingues français–anglais sous MediaWiki  
+**Remplace comme sources actives séparées :** révision 1.0.6, correctif du 23 juillet 2026 et décisions correctives du 25 juillet 2026. Ces documents restent conservés dans `history/` à titre de provenance.
+
+## 1. Autorité et priorité
+
+En cas de contradiction, l’ordre suivant s’applique :
+
+1. décision explicite ultérieure du propriétaire du projet ;
+2. présente norme consolidée ;
+3. structures et schémas portant la même version ;
+4. profils de rendu et workflow portant la même version ;
+5. documents historiques et prompts, uniquement comme provenance.
+
+Un audit décrit un état constaté ; il ne crée pas une règle supérieure à une décision normative. Aucune migration vers une version nouvelle ne peut être silencieuse.
+
+## 2. Principes de production
+
+Chaque débat et chaque argument possède une page dédiée. Les relations sont matérialisées par les titres canoniques des pages liées. Le registre maître JSON est la source de vérité des identifiants, titres, relations, occurrences, propriétaires de lots et états de génération.
+
+Les productions française et anglaise doivent être fonctionnellement équivalentes : mêmes nœuds, mêmes relations, mêmes occurrences et même orientation argumentative. Elles peuvent employer une rédaction et une documentation adaptées à chaque langue.
+
+Les sorties générées doivent être prêtes à être relues et importées, sans métadiscours, sans paramètres d’avertissement vides, sans texte extérieur au modèle principal et sans normalisation silencieuse par le validateur.
+
+## 3. Invariants du graphe
+
+Sont verrouillés après validation du graphe :
+
+- `debate_id` ;
+- identifiants des nœuds, relations et occurrences ;
+- titres canoniques français et anglais ;
+- orientation, parenté, ordre et profondeur des relations ;
+- occurrence primaire et réutilisations ;
+- propriétaires et composition des lots.
+
+Les titres affichés, rubriques, sections, mots-clés, résumés et métadonnées documentaires peuvent être corrigés lorsque le workflow l’autorise. Toute modification d’un champ inclus dans l’objet canonique de l’empreinte structurelle impose un recalcul explicite et la documentation de l’ancienne et de la nouvelle empreinte.
+
+## 4. Titres canoniques et titres affichés
+
+Le titre canonique est le nom de page et la cible de relation. Il est complet, explicite, autonome et non ambigu. Il mentionne le sujet lorsque cela évite une collision avec d’autres débats.
+
+Le titre affiché est une formulation de lecture. Il peut être plus court lorsque son emplacement fournit un contexte immédiat et non ambigu. Il doit rester grammatical, fidèle et clair dans chacun de ses emplacements réels, sans être soumis à la même exigence d’autonomie hors contexte que le titre canonique.
+
+### 4.1 Autonomie référentielle du titre canonique
+
+Le titre canonique constitue le nom permanent de la page et la cible de ses liens. Il doit être compréhensible lorsqu’il est présenté isolément, notamment dans un résultat de recherche, une liste de pages, un historique, une catégorie ou un lien dépourvu de contexte explicatif.
+
+Il ne doit pas dépendre d’un élément extérieur au titre pour identifier son sujet. Une formulation anaphorique ou déictique est donc non conforme lorsque son antécédent n’est pas exprimé dans le titre lui-même. Sont notamment concernés les déterminants et pronoms tels que « ce », « cet », « cette », « ces », « celui-ci », « celle-ci », « il », « elle », « ils » ou « elles » lorsqu’ils renvoient seulement au parent, à la branche ou au paragraphe environnant.
+
+Le titre canonique remplace alors l’expression contextuelle par le nom ou la désignation explicite du référent. Cette règle porte sur l’autonomie du nom de page, non sur une catégorie particulière d’objets : elle s’applique de la même manière à une méthode, une institution, une théorie, un événement, une mesure, une personne, un résultat ou tout autre sujet.
+
+Exemple :
+
+- non conforme : `La répétition des défaillances de cette méthode réduit sa fiabilité` ;
+- conforme : `La répétition des défaillances de la méthode de contrôle croisé réduit sa fiabilité`.
+
+Les démonstratifs et pronoms ne sont pas interdits lorsqu’ils possèdent un antécédent explicite et non ambigu dans le titre lui-même. Ainsi, un possessif comme « sa fiabilité » peut reprendre la `méthode de contrôle croisé` déjà nommée dans la même proposition.
+
+Le titre affiché peut employer une expression contextuelle plus courte si son référent est immédiatement identifiable dans l’emplacement d’affichage, si aucune autre entité ne peut être visée, et si le raisonnement reste strictement identique au titre canonique.
+
+Un titre affiché ne peut jamais être obtenu par une troncature aveugle. Sont notamment interdits :
+
+- les ellipses `...` ou `…` ;
+- la suppression d’un article, déterminant ou mot initial nécessaire à la grammaire ;
+- un début de titre constitué d’une lettre résiduelle telle que `S ` ou `E ` ;
+- une fin sur une préposition, une conjonction ou un connecteur incomplet ;
+- les remplacements lexicaux qui créent un doublon, une construction hybride ou un énoncé non idiomatique ;
+- la présence accidentelle de mots d’une autre langue, hors noms propres et dénominations officielles.
+
+Lorsqu’une substitution contextuelle est employée pour distinguer titre canonique et titre affiché, elle doit être relue dans la phrase entière. Le titre validé dans le registre doit être reproduit à l’identique dans toutes les relations, pages Débat/Debate, agrégats, projections et fichiers canoniques, agrégats et manifestes.
+
+### 4.2 Guillemets dans les noms de pages et titres affichés
+
+Le critère est l’accessibilité sur un clavier d’ordinateur ordinaire, sans saisie d’un code Unicode ou d’une combinaison spécialisée. Les deux sites utilisent donc les **guillemets droits doubles ASCII** `"..."` dans les titres canoniques et les titres affichés :
+
+- français : `Le terme "effet de seuil" est défini...` ;
+- anglais : `The term "threshold effect" is defined...`.
+
+Les guillemets typographiques ou chevrons `« »`, `“ ”`, `„ ”`, `‹ ›` sont interdits dans les noms de pages et titres affichés. L’apostrophe droite ASCII `'` reste utilisée pour les élisions françaises et les contractions ou possessifs anglais ; elle ne remplace pas les guillemets d’une citation principale. Les guillemets droits doivent être équilibrés.
+
+La copie mécanique sans revue est interdite. Chaque titre affiché fait l'objet d'une décision éditoriale page par page, consignée dans un registre de revue. L'identité avec le titre canonique est autorisée lorsqu'elle constitue le meilleur libellé ; aucun quota global de différence ou d'identité n'est normatif.
+
+## 5. Résumés d’arguments
+
+Le résumé expose la version la plus forte du raisonnement porté par le nœud : prémisses, mécanisme, conclusion et portée documentée. Il ne modifie ni l’identité logique, ni l’orientation, ni la force soutenue par les sources.
+
+Le résumé ne doit pas :
+
+- anticiper une objection ;
+- se conclure par sa propre réfutation ;
+- ajouter une concession destinée seulement à équilibrer le texte ;
+- diminuer artificiellement la portée de la proposition ;
+- parler de « l’argument », de « la page » ou du « raisonnement présenté ».
+
+Les limites opposables sont portées par les pages d’objections reliées. Une délimitation nécessaire à l’identité de la proposition peut être conservée lorsqu’elle est formulée positivement.
+
+Une revue humaine bilingue est obligatoire avant `release_ready`. Les heuristiques automatiques détectent notamment les concessions finales et le métadiscours, mais ne remplacent pas cette revue.
+
+### 5.1 Style encyclopédique grand public
+
+Le résumé adopte un style encyclopédique destiné à un lectorat non spécialiste. Il présente l'idée centrale dès l'ouverture, puis explique le mécanisme utile à sa compréhension. Il privilégie des phrases courtes ou moyennes, de longueur variée, et évite les enchaînements de propositions longues qui donnent au texte l'allure d'un article universitaire.
+
+Tout terme scientifique, technique, juridique ou philosophique indispensable est défini brièvement lors de sa première occurrence significative dans la page. La définition est intégrée au raisonnement, par exemple : « Un essai randomisé répartit les participants par tirage au sort... » ou « Le contrôle de constitutionnalité désigne... ». Un terme de langue courante n'a pas à être défini artificiellement, et le résumé ne doit pas devenir un glossaire.
+
+La rédaction suit normalement cet ordre :
+
+1. thèse ou idée principale ;
+2. explication concrète du mécanisme ;
+3. exemple, donnée ou distinction réellement utile ;
+4. délimitation indispensable, seulement si elle appartient à l'identité de la proposition.
+
+Les noms d'auteurs, d'études et de méthodes ne précèdent pas l'explication qu'ils doivent éclairer. Ils sont mentionnés uniquement lorsqu'ils ajoutent une information nécessaire. Le résumé n'explique pas tout le dossier : il développe un seul nœud logique avec assez de précision pour être compris seul.
+
+Une revue page par page atteste, pour chaque langue produite : l'annonce directe de la thèse, l'accessibilité au grand public, le rythme des phrases et l'explication des termes techniques nécessaires. Le validateur peut signaler une accumulation de phrases longues, mais ce signal est heuristique et ne mesure ni la qualité logique ni la suffisance des définitions.
+
+Les résumés français et anglais d’un même nœud doivent être substantiellement équivalents : mêmes prémisses principales, mêmes éléments probants décisifs, même conclusion et même portée. Une différence de longueur n’est pas en soi une faute, mais un ratio anglais/français inférieur à 0,60 ou supérieur à 1,45 déclenche un blocage automatique et une reprise humaine.
+
+### 5.2 Ouverture, concrétisation et force expressive
+
+La première phrase du résumé ne répète pas mécaniquement le titre canonique ou le titre affiché. Elle développe immédiatement l’argument en présentant un phénomène concret, une prémisse décisive, un mécanisme causal, une conséquence ou une distinction utile. La thèse doit rester identifiable dès l’ouverture, mais sa simple reformulation ne constitue pas un développement suffisant.
+
+Un exemple concret, un ordre de grandeur ou une donnée chiffrée est ajouté lorsqu’il améliore réellement la compréhension ou renforce la démonstration. Son emploi n’est jamais obligatoire. Un chiffre doit être soutenu par une source documentaire de la page et présenté avec la portée, la population et le contexte nécessaires. Aucun exemple ou chiffre ne doit être ajouté pour donner artificiellement une impression de précision, de variété ou d’autorité.
+
+Le résumé adopte normalement une formulation ferme, imagée et légèrement mordante qui fait apparaître la force du raisonnement et la conviction de la voix qui le défend. Une rédaction uniformément lisse, distante ou neutralisée n’est pas conforme lorsque le nœud permet une expression plus saillante. Cette fermeté ne doit pas devenir un ton militant, sarcastique ou méprisant. Le texte ne ridiculise pas l’argument adverse, ne prête pas d’intentions aux personnes ou aux institutions et ne transforme pas une proposition discutée en vérité éditoriale incontestable. La revue page par page relève une expression réellement présente dans le résumé qui rend cette force perceptible.
+
+Les images explicatives, oppositions de formulation et phrases saillantes sont admises lorsqu’elles clarifient le mécanisme. Elles ne doivent pas devenir des slogans, être répétées mécaniquement d’une page à l’autre ou dépasser ce que permettent le titre, le graphe et les sources.
+
+La revue humaine page par page atteste en outre que l’ouverture développe le titre, que la pertinence d’un exemple ou d’une donnée a été examinée, que tout chiffre a fait l’objet d’une vérification documentaire explicite, et que le ton reste ferme sans devenir polémique.
+
+## 6. Rubriques, sections et mots-clés
+
+Les rubriques françaises autorisées sont : Aménagement, Culture, Droit, Écologie, Économie, Éducation, Éthique, Géopolitique, Histoire, Philosophie, Politique, Psychologie, Religion et spiritualité, Santé, Science, Société, Sport et loisirs, Technologie.
+
+Chaque nœud est classé individuellement. Une à trois rubriques réellement centrales sont normalement utilisées ; une quatrième est exceptionnelle et motivée. Une rubrique peut légitimement être présente sur tous les arguments d'un débat lorsque sa pertinence est démontrée page par page ; sa fréquence locale ne constitue ni une preuve de pertinence ni une anomalie automatique. Les décisions sont consignées dans un registre de revue. Dans chaque valeur MediaWiki et dans le registre correspondant, les rubriques françaises sont rangées par ordre alphabétique français et les sections anglaises par ordre alphabétique anglais. Les sections anglaises constituent le même ensemble conceptuel que les rubriques françaises, mais leur ordre est recalculé indépendamment dans la langue anglaise.
+
+Chaque page d’argument reçoit normalement **deux à quatre mots-clés thématiques**. Leur fonction principale est la navigation à l’échelle de l’ensemble du wiki : un clic doit pouvoir rapprocher des arguments relevant de débats différents autour d’un même phénomène, d’une même méthode, d’une même question épistémologique ou d’un même contexte institutionnel.
+
+Un mot-clé doit donc être :
+
+- simple et immédiatement compréhensible ;
+- central pour le raisonnement de la page ;
+- assez général pour pouvoir être réutilisé dans d’autres débats du wiki ;
+- assez précis pour former un regroupement utile ;
+- formulé comme un nom, un groupe nominal court, un nom propre ou un acronyme reconnu.
+
+Sont interdits :
+
+- les verbes, adjectifs ou adverbes isolés ;
+- les fragments de phrase ;
+- les formulations qui résument presque toute la proposition de la page ;
+- les détails propres à une étude, une date, un seuil ou un résultat lorsqu’un concept encyclopédique plus stable existe ;
+- les synonymes artificiels créés pour rendre les jeux de mots-clés différents.
+
+Un mot-clé thématique comporte normalement au plus quatre mots lexicaux et quarante caractères. Un vocabulaire contrôlé bilingue consigne chaque paire français–anglais, sa définition et, à titre informatif, ses usages dans le corpus courant.
+
+**La fréquence dans un débat particulier n’est jamais un critère d’admissibilité.** Un mot-clé peut n’apparaître que sur un seul argument du débat courant lorsque le concept est suffisamment général pour concerner d’autres arguments du wiki ou d’autres débats. Il n’existe donc ni minimum d’occurrences locales, ni plafond de taille du vocabulaire calculé en proportion du nombre d’arguments du débat.
+
+La réutilisation effective à l’intérieur du débat reste une information utile pour la revue, mais elle ne doit pas conduire à supprimer un thème central ou à le remplacer par un terme artificiellement plus vague. Un même jeu exact dominant plus de 25 % du corpus demeure bloquant, car il signalerait une attribution mécanique et rendrait la navigation peu discriminante.
+
+Les keywords anglais sont des équivalents idiomatiques, dans le même ordre conceptuel. Pour les rubriques et sections des pages Débat/Debate, la précision prime sur l’exhaustivité : seules les catégories qui caractérisent le débat dans son ensemble sont retenues, sans ajouter une catégorie parce qu’un argument secondaire, une méthode particulière ou une sous-partie de l’introduction la mentionne. Les pages Débat/Debate utilisent normalement cinq à huit mots-clés généraux.
+
+## 7. Documentation et références
+
+### 7.1 Principes communs
+
+Une source possède un identifiant documentaire unique, une notice vérifiable et des usages réciproques cohérents. Les doublons par DOI, ISBN, URL canonique ou clé normalisée sont interdits.
+
+La bibliographie est généralement prioritaire. La sitographie et la vidéographie sont complémentaires. La sélection documentaire s’adapte au domaine de l’argument : publications scientifiques et synthèses pour les questions empiriques, textes officiels et doctrine pour le droit, sources primaires et travaux historiques pour l’histoire, œuvres et commentaires académiques pour la philosophie, données et rapports institutionnels pour les politiques publiques, ou toute autre source de référence adaptée au sujet. Les pages Argument ne remplissent pas de quotas : chaque famille documentaire peut contenir zéro, une ou plusieurs références selon son apport réel. Les pages Débat et Debate suivent toutefois une règle de couverture propre : chacun de leurs neuf paramètres documentaires (trois positions pour chacune des familles bibliographie, sitographie/webliography et vidéographie) contient au moins deux références distinctes. Cette pluralité garantit qu’aucune position n’est représentée par une notice symbolique isolée.
+
+### 7.2 Pagination bibliographique
+
+Une page ou plage de pages utilise :
+
+```mediawiki
+|page=36-37
+```
+
+La valeur ne contient ni `page`, ni `pages`, ni `p.`, ni `pp.`. `localisation=` et `location=` sont réservés aux repères non strictement paginaires : chapitre, section, annexe, numéro ou identifiant d’article.
+
+Une incompatibilité entre la norme et un modèle public est un blocage de publication. Elle ne doit jamais être contournée silencieusement dans le corpus ou le kit.
+
+### 7.3 Dates sitographiques
+
+`date=` contient la date de publication ou de mise à jour substantielle. Lorsqu’une date complète est connue, elle est écrite en langage naturel dans la langue de la page (`25 juin 2012` en français, `25 June 2012` en anglais), jamais au format machine `2012-06-25`. Une année seule, par exemple `2012`, reste admise lorsqu’elle est la seule précision documentaire disponible. Une date de consultation n’est jamais placée dans `date=`. Lorsque la date documentaire n’est pas vérifiable, le paramètre est omis. Aucune date ne peut être inventée. Cette règle ne concerne pas `date-création` ni `creation-date`, qui restent obligatoirement au format `AAAA-MM-JJ`.
+
+### 7.4 Langue des sources et éditions linguistiques
+
+La langue enregistrée dans le registre documentaire est la langue réelle du contenu cité, et non la langue de la page qui l’utilise. Chaque usage indique séparément la langue de la page. La vérification de langue est explicite.
+
+Les pages Débat et Debate utilisent exclusivement des ressources intégralement disponibles dans leur propre langue, y compris les appels de référence de l’introduction et les listes documentaires structurées. Une page française de débat ne cite donc aucune ressource anglaise ; une édition, traduction, page, version doublée ou sous-titrée officiellement en français constitue une notice française distincte.
+
+Sur une page Argument française, une édition ou traduction française pertinente et vérifiable est toujours préférée lorsqu’elle existe. Une source primaire ou académique peut rester dans sa langue originale uniquement lorsqu’aucun équivalent français officiel et pertinent n’existe, ou lorsque la ressource étrangère est elle-même l’objet analysé. Cette décision est consignée dans l’usage documentaire. Les titres publiés ne sont jamais traduits artificiellement. La règle symétrique s’applique aux pages anglaises.
+
+Les éditions ou traductions d’une même œuvre partagent un identifiant d’équivalence documentaire. Le validateur bloque l’emploi d’une source étrangère sur une page Argument lorsqu’un équivalent vérifié dans la langue de la page est disponible dans le registre.
+
+### 7.5 Finalité et organisation des introductions Débat / Debate
+
+L’introduction apporte de manière synthétique les éléments nécessaires pour comprendre le débat avant la lecture des arguments. Elle permet au lecteur d’identifier le sujet, le sens exact de la question, son contexte et ses principaux enjeux. Elle ne constitue ni une revue exhaustive de la littérature, ni un résumé successif des arguments pour et contre, ni une reproduction des branches du graphe argumentatif.
+
+Elle traite normalement, dans un ordre adapté au sujet :
+
+1. de la définition du ou des sujets et de la délimitation du périmètre ;
+2. du sens précis de la question débattue, de ses principales interprétations et des distinctions nécessaires pour éviter les confusions ;
+3. des repères historiques permettant de comprendre l’apparition et l’évolution du débat ;
+4. de l’état actuel du débat lorsqu’il demeure contemporain, notamment ses principaux acteurs, institutions, évolutions ou cadres applicables ;
+5. des concepts, mécanismes, méthodes, données ou contextes indispensables à la compréhension du désaccord ;
+6. des enjeux intellectuels, sociaux, éthiques, politiques, juridiques, économiques, scientifiques ou pratiques du débat.
+
+D’autres sous-parties peuvent être ajoutées lorsqu’elles apportent un élément réellement nécessaire à la compréhension du sujet. Aucune liste thématique propre à un débat particulier ne devient une structure universelle applicable mécaniquement aux autres débats.
+
+Les sous-parties suivent une progression compréhensible pour un lecteur qui découvre le sujet. Chacune répond à une question identifiable et son utilité pour la compréhension du débat apparaît dès ses premières phrases. Une sous-partie technique, consacrée par exemple à une méthode, un indicateur, un cadre juridique ou un mécanisme spécialisé, n’est introduite que si le texte explique pourquoi cet élément est déterminant pour la question débattue.
+
+Les titres de sous-parties privilégient les formulations accessibles et informatives. Ils évitent les intitulés spécialisés ou abstraits dont le rapport avec le débat n’est pas immédiatement compréhensible.
+
+Le nombre de sous-parties et le volume documentaire dépendent de la complexité, de l’étendue du sujet et de l’abondance de la littérature disponible. Il n’existe pas de minimum universel de cinq sous-parties ni de vingt références. Le profil local peut déclarer des minima adaptés, accompagnés d’une justification non vide ; ces minima ne doivent jamais conduire à fragmenter artificiellement l’introduction ou à ajouter des sources sans apport réel. Inversement, une page portant sur une controverse abondamment documentée ne doit pas s’arrêter à une sélection symbolique ou minimale. Chaque famille applicable (bibliographie, sitographie et vidéographie) fait l’objet d’un examen séparé. Pour une page Débat ou Debate, les neuf paramètres documentaires sont tous présents et chacun contient au moins deux références distinctes ; une référence unique dans un paramètre est insuffisante. Au-delà de ce plancher structurel, le volume total reste proportionné à l’abondance et à la qualité de la littérature, sans remplissage artificiel.
+
+Chaque sous-partie substantielle contient les appels de référence inline nécessaires pour soutenir les affirmations factuelles qui exigent une attribution. Dans les introductions française et anglaise, chaque appel développé est rédigé directement en wikicode lisible à l’intérieur de `<ref>…</ref>`, sans passer par un modèle MediaWiki. Les modèles `{{Référence}}`, `{{Reference}}`, les modèles bibliographiques, sitographiques ou vidéographiques spécialisés et tout autre modèle de citation sont interdits dans le corps d’une note d’introduction. La note indique directement les éléments utiles à l’identification de la source — auteur, titre, publication ou site, date en langage naturel, pagination et lien selon le cas. Une référence nommée peut être définie sous la forme `<ref name="…">contenu rédigé directement</ref>` puis réutilisée avec `<ref name="…" />`. Les appels français sont placés avant la ponctuation finale ; les appels anglais suivent la convention anglaise. Les balises `<references />` et `<references>` ne sont jamais ajoutées : l’affichage des notes est géré par le wiki. Les mêmes sources peuvent également figurer dans les listes documentaires structurées de la page lorsque l’appel inline attribue une affirmation précise.
+
+Aucun nombre minimal d’appels `<ref>` n’est imposé à l’introduction dans son ensemble ni à une sous-partie particulière. Une introduction principalement définitionnelle, conceptuelle ou argumentative peut donc ne contenir aucun appel inline lorsqu’elle ne formule aucune affirmation factuelle externe nécessitant une attribution. Le contrôle porte sur l’adéquation entre les affirmations présentes et leurs sources, non sur la présence mécanique d’au moins une référence.
+
+Avant `release_ready`, une revue humaine bilingue consigne pour chaque langue que le sujet et le périmètre sont définis, que le sens de la question est expliqué, que l’histoire et l’actualité sont traitées lorsqu’elles sont pertinentes, que les enjeux sont explicites, que chaque sous-partie est nécessaire, que la progression est logique, qu’une section technique est contextualisée et que l’introduction ne reproduit ni le graphe ni une checklist propre à un corpus pilote.
+
+### 7.6 Sélection de la bibliographie des pages de débat
+
+La bibliographie d’une page Débat ou Debate constitue une sélection de référence sur l’ensemble de la controverse. Elle privilégie les livres incontournables, monographies, manuels, volumes collectifs, rapports de synthèse et articles de revue réellement panoramiques. Les articles scientifiques consacrés à une expérience, un protocole ou un résultat étroit appartiennent aux pages Argument concernées et ne sont pas accumulés dans la bibliographie générale du débat.
+
+Chaque usage bibliographique du débat indique s’il s’agit d’une œuvre fondatrice ou d’une synthèse large, ainsi qu’une justification de sélection. Une source étroite ou dépourvue de justification est bloquante.
+
+### 7.7 Métadonnées sitographiques et conversion des auteurs
+
+`auteurs=` ou `authors=` n’est émis que lorsqu’une personne ou une organisation est explicitement responsable du contenu. À défaut, le paramètre est omis ; le nom du site n’est jamais recopié mécaniquement comme auteur. La vérification de l’attribution est enregistrée.
+
+Le registre JSON conserve `authors` sous forme de liste, mais cette liste ne doit jamais être sérialisée littéralement dans le wikicode. La conversion vers MediaWiki est obligatoire : une liste d’un élément devient le texte brut de cet élément (`["L'Encyclopédie philosophique"]` devient `|auteurs=L'Encyclopédie philosophique`) ; plusieurs éléments sont séparés par ` ; ` ; une liste vide entraîne l’omission du paramètre. Les crochets, guillemets et virgules syntaxiques du JSON ne sont jamais publiés.
+
+Lorsque le titre de la page et le nom du site sont identiques, seul `site=` est conservé. Les triples identiques `page`, `auteurs` et `site` sont interdits.
+
+### 7.8 Incises parenthétiques dans la prose française
+
+Dans la prose française générée, une incise explicative, une apposition ou une énumération insérée à l’intérieur d’une phrase est délimitée par des parenthèses, et non par une paire de tirets cadratins.
+
+Exemple non conforme :
+
+`La mesure concerne plusieurs services essentiels — l’eau, l’énergie, les transports et la santé — sans s’appliquer aux activités de loisir.`
+
+Exemple conforme :
+
+`La mesure concerne plusieurs services essentiels (l’eau, l’énergie, les transports et la santé) sans s’appliquer aux activités de loisir.`
+
+Cette règle vise les tirets cadratins appariés employés comme signes de parenthèse dans les introductions, résumés et autres passages rédactionnels français. Elle n’interdit pas les traits d’union, les plages numériques, les listes MediaWiki, les titres d’œuvres cités fidèlement ni les tirets présents dans une citation reproduite comme telle.
+
+## 8. Structures MediaWiki actives
+
+### 7.9 Articles Wikipédia obligatoires et absence de débats connexes générés
+
+Toute page `Débat` française contient un paramètre `articles-Wikipédia` non vide avec au moins un sous-modèle `{{Article Wikipédia|page=…}}`. Toute page `Debate` anglaise contient de même `wikipedia-articles` avec au moins un `{{Wikipedia article|page=…}}`. Les titres exacts sont recherchés et vérifiés dans l’édition linguistique correspondante ; l’absence de résultat ne peut pas être déclarée sans recherche. Un article directement centré sur le sujet est privilégié, mais des articles de cadrage étroitement liés sont admis lorsque le titre exact du débat n’a pas de page dédiée.
+
+Les sorties générées ne contiennent jamais `débats-connexes` ni `related-debates`. Les relations entre débats peuvent rester décrites dans les données internes ou dans un registre éditorial, mais elles ne sont pas rendues dans les pages MediaWiki.
+
+### 8.1 Page Débat française
+
+```mediawiki
+{{Débat
+|sujet=
+|sujet-complet=
+|avancement=Débat construit
+|avertissements-débat=Débat généré par IA
+|introduction={{Sous-partie
+|titre=
+|contenu=
+}}
+|articles-Wikipédia={{Article Wikipédia
+|page=Article vérifié directement lié au sujet
+}}
+|arguments-pour={{Argument pour
+|page=Titre canonique complet
+|titre-affiché=Titre affiché
+}}
+|arguments-contre={{Argument contre
+|page=Titre canonique complet
+|titre-affiché=Titre affiché
+}}
+|bibliographie-pour=
+|bibliographie-contre=
+|bibliographie-ni-pour-ni-contre=
+|sitographie-pour=
+|sitographie-contre=
+|sitographie-ni-pour-ni-contre=
+|vidéographie-pour=
+|vidéographie-contre=
+|vidéographie-ni-pour-ni-contre=
+|rubriques=
+|mots-clés=
+|interlangue={{Lien interlangue
+|langue=en
+|page=Titre canonique anglais
+}}
+|date-création=AAAA-MM-JJ
+}}
+```
+
+Le paramètre `interlangue` est obligatoire dans le fichier français canonique dès sa première génération valide. Il utilise toujours `{{Lien interlangue}}` et vise le titre canonique anglais verrouillé, même si la page anglaise sera créée dans une phase ultérieure. La page anglaise peut donc être momentanément absente du wiki.
+
+Lorsque le sujet possède un acronyme courant et non ambigu, `sujet-complet` ou `complete-topic` l’emploie de préférence à la répétition de la forme développée. Exemple : `|sujet=Gestation pour autrui` et `|sujet-complet=l’autorisation de la GPA`. Le registre de revue indique, pour chaque langue, l’acronyme retenu ou atteste qu’aucun acronyme courant n’est applicable.
+
+La présence des pages anglaises dans le manifeste de pages n’est pas une condition de publication des pages françaises. Il suffit que leurs titres anglais futurs soient verrouillés dans le registre maître et repris exactement dans `{{Lien interlangue}}`. Les pages anglaises peuvent être générées, validées et publiées ultérieurement.
+
+### 8.2 Page Argument française
+
+```mediawiki
+{{Argument
+|avertissements-argument=Argument généré par IA
+|résumé=
+|références-bibliographiques={{Référence bibliographique
+|auteurs=
+|article=
+|ouvrage=
+|volume=
+|numéro=
+|localisation=
+|page=36-37
+|édition=
+|lieu=
+|date=
+|lien=
+}}
+|références-sitographiques=
+|références-vidéographiques=
+|justifications={{Justification
+|page=Titre canonique complet
+|titre-affiché=Titre affiché
+}}
+|objections={{Objection
+|page=Titre canonique complet
+|titre-affiché=Titre affiché
+}}
+|rubriques=
+|mots-clés=
+|interlangue={{Lien interlangue
+|langue=en
+|page=Titre canonique anglais
+}}
+|date-création=AAAA-MM-JJ
+}}
+```
+
+### 8.3 English Debate page
+
+```mediawiki
+{{Debate
+|topic=
+|complete-topic=
+|progress=Constructed debate
+|debate-warnings=Debate generated by AI
+|introduction={{Subsection
+|title=
+|content=
+}}
+|wikipedia-articles=
+|pro-arguments={{Pro argument
+|page=Full canonical title
+|displayed-title=Displayed title
+}}
+|con-arguments={{Con argument
+|page=Full canonical title
+|displayed-title=Displayed title
+}}
+|pro-bibliography=
+|con-bibliography=
+|bibliography=
+|pro-webliography=
+|con-webliography=
+|webliography=
+|pro-videography=
+|con-videography=
+|videography=
+|sections=
+|keywords=
+|creation-date=YYYY-MM-DD
+}}
+```
+
+### 8.4 English Argument page
+
+```mediawiki
+{{Argument
+|argument-warnings=Argument generated by AI
+|summary=
+|bibliography={{Bibliographical reference
+|authors=
+|article=
+|work=
+|volume=
+|issue=
+|location=
+|page=36-37
+|publisher=
+|place=
+|date=
+|link=
+}}
+|webliography=
+|videography=
+|justifications={{Justification
+|page=Full canonical title
+|displayed-title=Displayed title
+}}
+|objections={{Objection
+|page=Full canonical title
+|displayed-title=Displayed title
+}}
+|sections=
+|keywords=
+|creation-date=YYYY-MM-DD
+}}
+```
+
+Les pages anglaises ne contiennent pas de lien interlangue.
+
+## 9. Dates de création
+
+La date de création est une décision de production distincte de la date des sources. Elle seule utilise systématiquement le format machine `AAAA-MM-JJ` dans `date-création` et `creation-date`; les dates documentaires complètes utilisent le langage naturel. Chaque paquet déclare la date attendue pour chaque langue dans son manifeste ou son profil local. Le validateur compare cette valeur au wikicode, au registre et aux manifestes de pages. Le moteur générique ne contient aucune date propre à un corpus.
+
+La date devient immuable dès la première validation du fichier de la page. Elle ne change ni lors d’une correction, ni lors d’un enrichissement, ni lors d’une nouvelle tentative d’import. Comme le lien interlangue appartient dès l’origine au fichier français conforme aux normes 1.2.x, il ne donne lieu à aucune date secondaire.
+
+Les décisions propres à un corpus, y compris une date corrective historique, sont conservées dans son profil local ou ses rapports de migration, jamais dans la norme universelle.
+
+## 10. Workflow correctif et non-régression
+
+Le cycle correctif autorisé est :
+
+```text
+release_ready
+  → corrective_in_progress
+  → corrective_blocked (si une anomalie subsiste)
+  → corrective_in_progress (après reprise)
+  → release_ready (validation complète uniquement)
+```
+
+Le Work porte le type `corrective_prepublication`. Il crée un instantané initial, des handoffs correctifs nouveaux et une matrice de couverture. Les handoffs historiques ne sont jamais réécrits ; leurs empreintes décrivent l’état d’entrée de leur Work original. Chaque nouvelle reprise ajoute un handoff final propre à sa révision vers W11.
+
+Une seule norme consolidée est active à la racine du dossier `normative/`. Toute version consolidée antérieure est déplacée dans `normative/history/`. Les documents spécialisés — structures, profils, workflow, catalogue d’exigences et matrice de traçabilité — doivent pointer vers la même révision active et ne peuvent conserver une règle remplacée comme règle active.
+
+Le retour à `release_ready` exige :
+
+- zéro erreur bloquante ;
+- zéro avertissement non résolu ;
+- revue éditoriale humaine enregistrée ;
+- cohérence bilingue ;
+- manifeste de libération cohérent ;
+- preuve de l’absence d’écriture distante ;
+- audit de non-régression comparant la norme, le kit, les pages, les invariants, les fichiers et les exigences cumulées ;
+- kit de publication produit séparément, inclus dans la livraison complète et non exécuté.
+
+Aucune reprise corrective ne peut supprimer silencieusement une fonction, un contrôle, un test, un rapport, un fichier normatif ou une étape du kit. Une suppression intentionnelle exige une décision explicite, une justification et une trace dans le changelog.
+
+## 11. Validateur
+
+`validate` est strictement en lecture seule. Toute écriture locale dérivée passe par une commande distincte, explicitement demandée, telle que `recalc --write`. Le validateur n’effectue aucune connexion au wiki.
+
+Les contrôles sont répartis entre schémas JSON, cohérence et fichiers, graphe, lots, sources, wikicode, bilinguisme, workflow, contrôles éditoriaux automatisables et revue humaine obligatoire.
+
+Le validateur recommandé 0.4.13 conserve les contrôles antérieurs, applique les règles 1.2.6 à 1.2.9 aux paquets qui les déclarent et maintient la compatibilité explicite avec les révisions historiques annoncées. Chaque règle binaire nouvelle possède au moins un test positif et un test négatif. Les nombres de tests, exigences et fichiers déclarés dans les reçus doivent correspondre aux éléments réellement livrés.
+
+Les longueurs indicatives des résumés restent des guides éditoriaux et non des quotas. Une distribution systématiquement courte déclenche une information de revue humaine, sans provoquer de remplissage artificiel. La revue doit confirmer que chaque page demeure autonome, informative et fidèle à un seul nœud.
+
+## 12. Publication W11
+
+Aucune écriture distante n’est autorisée pendant une reprise W10 corrective. Le kit W11 est livré sans exécution et sans secret.
+
+Avant toute publication, W11 doit :
+
+1. exécuter une simulation globale déterministe et signer le plan par SHA-256 ;
+2. vérifier en lecture seule la compatibilité réelle des modèles publics ;
+3. refuser de poursuivre si un paramètre normatif requis n’est pas accepté ;
+4. effectuer comme première écriture distante un test sur l’unique page Débat française canonique du plan ;
+5. exiger que cette page soit absente lors de la simulation, la créer avec `createonly`, relire la révision exacte et produire un reçu machine signé ;
+6. avant toute autre écriture, recharger le même plan et le reçu, vérifier leurs empreintes, puis confirmer que la page Débat est toujours à la révision attestée avec le même contenu, le même résumé et la même balise ;
+7. après ce test, créer les autres pages françaises, puis les pages anglaises, les pages Argument précédant la page Debate dans la phase anglaise ;
+8. réauthentifier et vérifier l’identité à chaque phase et avant chaque écriture ;
+9. utiliser `assert=user` et `assertuser` ;
+10. classifier chaque titre distant comme `absent`, `equivalent_existing`, `collision` ou `manual_review` ;
+11. ne jamais écraser une page existante par défaut : une page équivalente est ignorée et une collision bloque le plan ; la page Débat française préexistante bloque spécifiquement le test ;
+12. comparer les contenus local et distant par SHA-256 et enregistrer les identifiants de révision ;
+13. utiliser `createonly` pour chaque création canonique ; aucune mise à jour interlangue distincte n’est prévue pour un paquet 1.2.x ;
+14. relire chaque page après écriture, vérifier son contenu et enregistrer la nouvelle révision ;
+15. s’arrêter sur perte de session, collision, divergence, droits insuffisants ou révision concurrente ;
+16. ne créer aucune sous-page utilisateur pour le test de publication ;
+17. écrire des journaux JSONL privés de simulation, test et import ;
+18. reprendre uniquement à partir du couple titre + SHA-256 de contenu et de révisions réelles vérifiées ;
+19. refuser l’exécution si le corpus, le validateur, la norme ou le plan ont changé depuis la simulation ;
+20. charger pour le test et la publication le fichier de plan signé produit par la simulation, sans le reconstruire silencieusement ;
+21. incorporer au plan les empreintes du manifeste, du manifeste de libération et du validateur, puis les revérifier avant toute écriture ;
+22. reconnaître comme état de reprise valide la page Débat française créée par le test seulement si son reçu reste valide et sa révision courante inchangée ;
+23. exiger pour la suite de la publication le reçu machine du test de la page Débat canonique, lié au plan signé et revérifié à distance immédiatement avant toute autre écriture.
+
+Les fichiers d’authentification, cookies, secrets et identifiants privés ne sont jamais inclus dans une archive publique.
+
+## 13. Profils locaux et invariants propres à un corpus
+
+Les nombres de nœuds, relations, occurrences, lots et pages, les dates correctives, les chemins de rapports et les Work particuliers sont des données locales. Ils sont déclarés dans le manifeste, le profil de contrôle ou les rapports du corpus concerné. Ils ne deviennent jamais des constantes de la norme, du validateur ou du kit génériques.
+
+Une reprise corrective conserve les invariants déclarés par son paquet et documente toute migration autorisée. Le statut local `release_ready` n’implique pas l’autorisation de publier : le champ de publication reste fermé jusqu’à la validation complète, au préflight et au test canonique de la page Débat W11.
+
+## 14. Renforcement éditorial cumulatif
+
+Avant `release_ready`, le corpus doit présenter :
+
+1. zéro titre canonique ou affiché contenant une ellipse, une troncature grammaticale ou des guillemets non conformes ;
+2. zéro lettre initiale résiduelle issue d’une suppression d’article ;
+3. concordance exacte de tous les titres affichés entre registre, relations, agrégats et fichiers canoniques ;
+4. deux à quatre mots-clés nominaux par page, issus du vocabulaire contrôlé bilingue ;
+5. zéro mot-clé français non traduit dans la liste anglaise ;
+6. vocabulaire thématique évalué à l’échelle du wiki, sans exigence de répétition dans le débat courant ;
+7. revue page par page de la pertinence des mots-clés ;
+8. équivalence substantielle des résumés bilingues ;
+9. appels de référence inline placés sur les affirmations factuelles qui nécessitent une attribution, sans quota mécanique par sous-partie ;
+10. maintien de tous les invariants verrouillés du graphe ;
+11. recalcul explicite de toutes les empreintes de fichiers et, si nécessaire, de l’empreinte structurelle ;
+12. absence totale d’écriture distante ;
+13. audit de non-régression des normes, du validateur et du kit W11.
+
+Le paquet déclare dans son manifeste les chemins du vocabulaire contrôlé, du registre individuel, des rapports requis et du handoff correctif courant. Le validateur ne déduit jamais ces chemins d’un sujet, d’un numéro de Work ou d’une rubrique particulière. Il ne peut jamais bloquer un mot-clé au seul motif qu’il n’apparaît qu’une fois dans le débat courant.
+
+## 15. Cohérence des livrables et garde-fous de publication
+
+Les archives de normes, du validateur et du kit comportent un manifeste SHA-256 exhaustif. Tout fichier livré, y compris un manifeste historique placé dans un sous-dossier, est soit déclaré avec sa taille et son empreinte, soit explicitement exclu par un chemin précis. Le reçu externe indique des nombres exacts et reproductibles.
+
+La configuration de publication d’un paquet 1.2.x exécute toutes les portées applicables du validateur, notamment `wikicode` et `editorial` lorsque des pages sont publiées. Le kit refuse une configuration qui omet une portée obligatoire du profil actif.
+
+La première écriture canonique de W11 est le test de l’unique page Débat française. La page doit être absente dans le plan et est créée avec `createonly`. Son reçu machine est lié au plan signé, au titre canonique, au fichier local, au contenu relu, à la révision distante, à l’identité vérifiée, au résumé et à la balise de modification. Avant toute autre écriture, le kit recharge ce reçu, en vérifie l’empreinte et confirme que la page courante reste exactement à la révision attestée. Aucune sous-page utilisateur n’est créée.
+
+Les exemples, guides et listes de contrôle livrés avec la norme doivent eux-mêmes respecter la règle active : toute page française d’exemple contient son unique `{{Lien interlangue}}`, et aucun exemple actif ne décrit une phase tardive d’ajout interlangue.
+
+## 16. Livrables minimaux d’une reprise prépublication
+
+La livraison complète contient au minimum :
+
+- le corpus bilingue `release_ready` et son reçu ;
+- la norme consolidée active et son changelog ;
+- le validateur aligné et sa suite de tests ;
+- le kit W11 aligné, non exécuté, et ses tests ;
+- un paquet de revue des pages ;
+- l’audit de non-régression ;
+- les reçus SHA-256 de chaque archive.
+
+La présence de ces éléments est vérifiée avant livraison. Leur absence constitue une régression bloquante.
+
+
+## Addendum 1.1.5 — ancienne preuve de test, remplacée par 1.2.3
+
+Cette ancienne disposition imposait un test dans l’espace utilisateur. Elle est conservée uniquement comme provenance et n’est plus applicable. La règle active est le test direct de la page Débat française canonique défini par la révision 1.2.3.
+
+## Addendum 1.1.5 — revue individuelle
+
+La conformité des titres affichés et des rubriques ne se déduit pas d'un seuil statistique global. Le paquet `release_ready` contient un registre couvrant chaque nœud actif et indiquant la décision sur le titre ainsi qu'une justification non vide pour chacune des rubriques retenues. Aucune rubrique n'est obligatoire, présumée pertinente ou soumise à un traitement spécial.
+
+
+## Addendum 1.1.7 — généralité des contrôles
+
+Les contrôles éditoriaux sont formulés sur les propriétés choisies par l’IA, et non sur une valeur particulière. Pour chaque nœud actif, le registre de revue contient une justification distincte pour chaque rubrique retenue. Le validateur exige une correspondance exacte entre les clés de justification et les rubriques de la page ; une justification d’une rubrique absente ou l’absence de justification d’une rubrique présente est bloquante.
+
+Les décisions locales — date de création, chemins des rapports, seuils documentaires du profil, Work courant et handoff — sont déclarées dans le manifeste du paquet. Elles ne sont jamais codées en dur dans le moteur générique. Les invariants propres à un corpus peuvent figurer dans une annexe ou un profil local, sans devenir une règle universelle.
+
+
+## Addendum 1.1.7 — avertissements et publication traçable
+
+Les valeurs actives d’avertissement sont exactement `Débat généré par IA`, `Argument généré par IA`, `Debate generated by AI` et `Argument generated by AI`. Les formulations avec `avec IA` ou `with AI` sont interdites dans les pages actives.
+
+Toute écriture distante produite par le kit W11 emploie un résumé localisé : `Contenu généré par ChatGPT 5.6` en français et `Content generated by ChatGPT 5.6` en anglais. La balise de modification `chatgpt` est obligatoire et doit être déclarée active par le wiki avant toute écriture. Après une écriture, le kit relit la révision exacte renvoyée par l’API et vérifie son contenu normalisé, son résumé et sa balise ; il ne se fie pas uniquement à la dernière révision visible.
+
+## Addendum 1.1.8 — lisibilité des résumés
+
+La norme 1.1.8 rend obligatoire le style encyclopédique grand public des résumés : idée principale annoncée dès l'ouverture, phrases de longueur variée, explication immédiate des termes techniques nécessaires et suppression des développements universitaires qui n'aident pas à comprendre le nœud. Le validateur 0.3.0 ajoute `WDV-EDT-013`, un avertissement heuristique sur l'accumulation de phrases longues, ainsi qu'un contrôle bloquant de la revue humaine page par page. Toutes les exigences 1.1.7 restent actives sauf contradiction explicite.
+
+## Addendum 1.1.9 — ouverture développée, exemples probants et force expressive
+
+La norme 1.1.9 interdit qu’une première phrase se contente de répéter ou de paraphraser étroitement le titre. Elle autorise les exemples et données uniquement lorsqu’ils éclairent réellement le mécanisme et exige une vérification documentaire explicite de toute donnée chiffrée. Elle autorise un style ferme, imagé et légèrement mordant, mais exclut le sarcasme, la caricature, le militantisme et les slogans mécaniques.
+
+Le validateur 0.3.1 ajoute `WDV-EDT-014`, avertissement heuristique sur la proximité excessive entre le titre et la première phrase, et `WDV-EDT-015`, contrôle de l’attestation humaine des affirmations chiffrées. La pertinence d’un exemple et la justesse du ton restent des contrôles humains. Toutes les exigences 1.1.8 restent actives sauf contradiction explicite.
+
+
+## Addendum 1.2.0 — interlangues directs, documentation localisée et titres autonomes
+
+La révision 1.2.0 remplace toute disposition antérieure qui imposait `{{Interlangue}}` à la page Débat, différait l’insertion des liens français, exigeait `<references />`, utilisait `|type=` dans la page Debate anglaise, autorisait des références étrangères sur une page de débat malgré une version locale, ou permettait des titres canoniques à référent implicite. Les pages françaises utilisent toutes `{{Lien interlangue}}` dès leur création ; les titres anglais sont verrouillés avant cette création, mais les pages anglaises restent produites ensuite.
+
+
+## Addendum 1.2.2 — cohérence intégrée et publication vérifiable
+
+La révision 1.2.2 intègre directement les règles 1.2.x dans les structures, profils, schéma du registre et workflow au lieu de les laisser seulement dans un addendum correctif. Elle supprime des documents actifs les exemples sans lien interlangue, les états de staging tardif et les constantes propres à un corpus. Elle exige des manifestes d’archive exhaustifs, des compteurs documentaires exacts, l’exécution des portées `wikicode` et `editorial` avant publication et un reçu de test alors effectué dans l’espace utilisateur ; ce mécanisme est remplacé par le test canonique de la page Débat en 1.2.3.
+
+
+## Addendum 1.2.3 — test canonique de la page Débat
+
+Le test de publication ne s’effectue plus dans l’espace utilisateur. Il consiste à créer en premier la page Débat française canonique prévue par le plan signé. Cette page doit être distante absente au moment de la simulation et au moment de l’écriture. Toute page préexistante bloque le test ; elle n’est ni écrasée ni assimilée à une preuve de bon fonctionnement.
+
+Le reçu du test identifie le débat, l’opération, le titre canonique, le chemin et l’empreinte du fichier local, le contenu attendu, la révision créée, l’utilisateur, le résumé et la balise. Avant la publication des autres pages, la révision courante de la page Débat doit être exactement celle du reçu. Une nouvelle révision, même proche ou équivalente, impose une nouvelle simulation et une revue explicite.
+
+
+## Addendum 1.2.4 — introduction orientée vers la compréhension et généralité des composants
+
+La révision 1.2.4 remplace toute checklist d’introduction issue d’un corpus particulier par une règle fonctionnelle applicable à tous les débats : définir le sujet et le périmètre, expliquer le sens de la question, donner les repères historiques et actuels pertinents, fournir les connaissances préalables nécessaires et exposer les enjeux. Le nombre de sous-parties et de références est déterminé par la complexité du sujet et justifié dans le profil local, sans minimum universel mécanique.
+
+Une revue bilingue de l’introduction est obligatoire. Elle relie chaque sous-partie réelle à une fonction explicite, atteste la progression, la contextualisation des sections techniques, l’absence de duplication du graphe et l’absence de checklist propre à un débat pilote. Les configurations, identifiants, titres, exemples et seuils propres à un corpus ne figurent pas dans les composants génériques actifs ; ils restent uniquement dans le paquet du corpus concerné ou dans des archives de provenance clairement historiques.
+
+
+## Addendum 1.2.5 — références d’introduction guidées par les affirmations
+
+La présence d’appels `<ref>` dans une introduction dépend exclusivement des affirmations factuelles qui exigent une attribution. Aucun minimum global ou par sous-partie n’est normatif. Le validateur contrôle l’interdiction des balises `<references />`, l’activation du contrôle documentaire et la revue humaine des affirmations, sans exiger qu’une introduction contienne au moins un appel inline. Toutes les exigences 1.2.4 restent actives sauf cette clarification corrective.
+
+## Addendum 1.2.6 — métadonnées de débat, classement, documentation et force expressive
+
+La révision 1.2.6 impose l’ordre alphabétique des rubriques françaises et des sections anglaises, chacune selon sa propre langue. L’équivalence bilingue porte sur l’ensemble conceptuel, non sur une position identique dans les listes.
+
+Les valeurs `sujet=` et `topic=` commencent par une majuscule. Les valeurs `sujet-complet=` et `complete-topic=` sont des groupes nominaux ou formulations non interrogatives qui complètent naturellement les en-têtes « Arguments pour et contre… » et « Pros and cons of… ». Elles ne recopient pas la question sous la forme `si`, `whether`, `faut-il`, `should` ou équivalente.
+
+Pour les rubriques et sections d’une page Débat/Debate, la précision prime sur l’exhaustivité. Une catégorie n’est retenue que si elle caractérise la controverse dans son ensemble. La revue de la page atteste également que la profondeur documentaire est proportionnée à l’abondance de la littérature et examine séparément bibliographie, sitographie et vidéographie sans imposer de quota universel.
+
+La force expressive des résumés n’est plus une simple permission abstraite. Chaque revue linguistique identifie une expression réellement présente dans le résumé qui rend la conviction et la fermeté du raisonnement perceptibles, tout en confirmant l’absence de sarcasme, de caricature et de militantisme.
+
+## Addendum 1.2.7 — cohérence de provenance et auto-audit
+
+La révision 1.2.7 ne modifie aucune règle éditoriale introduite en 1.2.6. Elle corrige la livraison générique : tous les alias et chemins du catalogue d’exigences désignent désormais des fichiers réellement présents ; les sources d’origine non distribuées séparément sont signalées comme telles au lieu d’être déclarées conservées ; la matrice de traçabilité est nettoyée ; et l’auto-audit vérifie le champ réel `declared_file_count` du manifeste et du reçu.
+
+Une archive ne peut être déclarée autonome lorsque son catalogue renvoie à un chemin absent. Toute source historique non livrée séparément doit être remplacée par une provenance consolidée explicite, sans inventer ni prétendre reproduire le document d’origine.
+
+
+## Addendum 1.2.8 — traçabilité exhaustive et cohérence des exemples
+
+La révision 1.2.8 ne modifie aucune exigence éditoriale de 1.2.6. Elle exige que chaque étiquette de provenance effectivement utilisée par le catalogue soit déclarée dans `source_aliases` et résolve vers au moins un fichier livré. Elle aligne les exemples actifs sur la révision courante, corrige leur langue, et étend les conditions de schéma applicables aux paquets 1.2.7 et 1.2.8. Les contrôles d’auto-audit doivent vérifier ces trois propriétés.
+
+
+## Addendum 1.2.9 — références, acronymes et publication française indépendante
+
+La révision 1.2.9 corrige cinq défauts observés lors d’une production réelle :
+
+1. les dates documentaires complètes sont rendues en langage naturel, tandis que les dates de création restent au format machine ;
+2. les appels inline des introductions sont rédigés directement dans `<ref>…</ref>` sans modèle de citation ;
+3. chacun des neuf paramètres documentaires d’une page Débat ou Debate contient au moins deux références ;
+4. un acronyme courant est employé dans `sujet-complet` ou `complete-topic` et déclaré dans le registre de revue ;
+5. le kit peut publier les pages françaises avant la création des pages anglaises, à condition que les titres anglais soient verrouillés dans le registre maître et correspondent aux liens interlangues français.
+
+
+## Addendum 1.2.10 — notes d’introduction rédigées directement
+
+La règle 1.2.9 qui imposait le modèle générique `Référence`/`Reference` est remplacée. Pour tout paquet déclarant la norme 1.2.10, le corps d’une note développée d’introduction contient directement une référence bibliographique ou web lisible, sans aucun appel de modèle MediaWiki. Les références nommées restent admises, à condition que leur première définition soit rédigée directement. Le validateur refuse tout `{{…}}` dans le corps d’une note d’introduction et continue de refuser les dates documentaires au format machine.
+
+Exemple français conforme :
+
+```mediawiki
+Une affirmation documentée<ref>Jean Dupont, « Titre de l’article », ''Nom de la revue'', 25 juin 2012, p. 36-37, [https://example.org texte intégral].</ref>.
+```
+
+Exemple anglais conforme :
+
+```mediawiki
+A documented claim.<ref>Jane Smith, “Article title”, ''Journal Name'', 25 June 2012, pp. 36–37, [https://example.org full text].</ref>
+```
+
+
+## Addendum 1.2.11 — compaction des modèles MediaWiki adjacents
+
+Dans tout wikicode de page produit sous la norme 1.2.11, deux modèles immédiatement successifs sont accolés sans saut de ligne, espace ni tabulation entre la fermeture du premier et l’ouverture du second. La forme `}}` suivie d’un retour à la ligne puis de `{{` est interdite ; elle est remplacée par `}}{{`. Cette règle vaut en français et en anglais, dans les pages individuelles comme dans les agrégats. Elle ne change ni le contenu des modèles ni l’ordre des paramètres : elle impose seulement une jonction compacte et déterministe entre sous-modèles adjacents.
+
+Le validateur 0.4.13 signale cette anomalie avec `WDV-MWK-018`. Le kit 2.1.13 l’intercepte également avant la construction d’un plan de publication. Les paquets déclarant une norme antérieure conservent leur comportement historique jusqu’à migration explicite.
+
+## 12. Installation portable, publication intégrée et sauvegarde des sources
+
+### 12.1 Publication d’un débat en une commande
+
+L’installation fournit un lanceur racine portable nommé `wikidebia`. Le ZIP d’un débat est déposé directement dans `incoming/`, sans suffixe de nom imposé. S’il est le seul ZIP du dossier, `wikidebia publish` le sélectionne automatiquement. Si plusieurs ZIP sont présents, la commande exige un identifiant et sélectionne exactement `incoming/<identifiant>.zip`. Le nom de base de l’archive sert uniquement à sélectionner le fichier ; le champ `debate_id` du manifeste détermine l’identité du corpus. Une seule invocation exécute l’extraction sûre, l’installation locale du corpus, toutes les portées de validation requises, la construction du plan signé, le test canonique français lorsqu’une page Débat doit être créée, la publication et l’archivage du ZIP après succès.
+
+Les portées canoniques sont `all`, `fr`, `en`, `fr-debate` et `en-debate`. `fr-debate` et `en-debate` ne créent que la page principale de la langue choisie ; `fr` et `en` créent la page principale puis toutes les pages Argument de cette langue ; `all` applique la même séquence au français puis à l’anglais.
+
+Dans chaque langue, la page Débat ou Debate est toujours traitée avant les pages Argument. En français, lorsqu’elle est absente, sa création `createonly` et sa revérification restent la première écriture distante du plan. En anglais, la page Debate est également publiée avant les arguments anglais. Une configuration qui demande l’ordre inverse est refusée.
+
+### 12.2 Mise à jour atomique en une commande
+
+Les nouvelles archives de normes, de validateur et de kit sont déposées dans `updates/`, soit séparément, soit dans une archive complète. La commande `wikidebia update` vérifie les inventaires et SHA-256, contrôle la cohérence des versions, extrait dans une zone temporaire, compare la copie normative, exécute l’auto-audit et toutes les suites de tests, puis remplace atomiquement `norms/`, `validator/` et `kit/`.
+
+Avant remplacement, les composants actifs et les fichiers entrants sont déplacés dans un sous-dossier horodaté de `archives/updates/`. Après succès, `updates/` est vide. Une mise à jour incomplète, divergente ou dont les tests échouent ne remplace aucun composant actif.
+
+### 12.3 Dépôt Git et périmètre sauvegardé
+
+Le dépôt Git, destiné notamment à un dépôt GitHub dont le nom contient normalement `wikidebia`, versionne uniquement les sources nécessaires et portables : `norms/`, `validator/`, `kit/`, le lanceur, les documents actifs, les exemples de configuration, la documentation et les contrôles d’intégration continue. Après une mise à jour réussie, ces modifications sont commitées et poussées automatiquement lorsque le remote `origin` est configuré.
+
+Ne sont jamais versionnés : `private/`, `corpus/`, `archives/`, `updates/`, `incoming/`, `logs/`, `plans/`, `.state/`, l’environnement virtuel et la configuration locale. Le fichier `.gitignore` actif exprime explicitement ces exclusions.
+
+### 12.4 Secrets et portabilité des chemins
+
+`user-config.py` et `user-password.cfg` résident dans `private/pywikibot/`, avec des permissions restrictives, et ne sont jamais placés à la racine ni suivis par Git. Lors de la première mise à jour, les fichiers historiques présents à la racine sont déplacés automatiquement vers ce dossier privé sans écrasement silencieux.
+
+Aucun fichier persistant situé dans l’installation ne conserve le chemin absolu du répertoire racine. Les configurations, plans, journaux, rapports, manifestes et scripts utilisent des chemins relatifs ou des identifiants portables. Les chemins absolus ne peuvent exister qu’en mémoire pendant l’exécution. L’installation reste donc déplaçable et renommable sans réécriture manuelle des sources.
+
+## Addendum 1.2.13 — sélection sûre des archives de débat
+
+Le dossier d’entrée des débats est le dossier unique `incoming/`; aucun sous-dossier `incoming/debates/` n’est utilisé et aucun autre type d’entrée n’y est prévu. Le nom d’une archive est `<debate_id>.zip`. Le suffixe éditorial `release_ready` n’est ni exigé ni interprété comme un identifiant.
+
+Lorsque `incoming/` contient exactement un ZIP, `./wikidebia publish` utilise ce fichier. Lorsqu’il en contient plusieurs, la commande sans identifiant est bloquée et affiche les identifiants disponibles ; `./wikidebia publish IDENTIFIANT` sélectionne uniquement `incoming/IDENTIFIANT.zip`. L’extension `.zip` ne fait pas partie de l’identifiant. Avant extraction durable ou publication, le kit vérifie que le nom du fichier et le champ `debate_id` du manifeste sont identiques.
+
+
+Les ZIP encore présents dans l’ancien dossier `incoming/debates/` sont migrés automatiquement vers `incoming/` pendant la mise à jour. Toute collision de noms avec un contenu différent bloque l’opération sans écrasement.
+
+
+## Addendum 1.2.15 — séparation entre le nom du ZIP et l’identité du débat
+
+La révision 1.2.15 corrige le contrôle trop strict introduit en 1.2.13. Le nom du ZIP est un sélecteur de fichier, pas l’identité normative du débat. Lorsque `incoming/` contient un seul ZIP, ce fichier est utilisé quel que soit son nom. Lorsqu’il en contient plusieurs, l’argument de `./wikidebia publish` correspond exactement au nom du ZIP sans l’extension `.zip`.
+
+Après extraction sûre, le champ `manifest.debate_id` devient l’identité autoritative : il détermine le dossier `corpus/<debate_id>`, les plans, les journaux et la configuration de publication. Il peut différer du nom du ZIP. Cette règle rend directement compatibles les archives historiques telles que `education_sexualite_ecole_fr_en_release_ready_repaired_2026-07-31.zip`, sans renommage et sans affaiblir la validation du manifeste ou du corpus.
+
+
+## Addendum 1.2.16 — reprise distante contrôlée d’un corpus publié
+
+### 1. Nature d’une reprise
+
+La reprise d’un débat déjà publié est une opération distincte d’une publication initiale. Elle compare trois états : la dernière version effectivement publiée par Wikidéb’IA, l’état distant courant et le nouveau corpus validé. Le plan classe chaque page dans une et une seule catégorie : `create`, `skip`, `update`, `move`, `redirect`, `delete`, `manual_review` ou `blocked`.
+
+Le nouveau manifeste ne constitue jamais, à lui seul, une preuve d’appartenance historique. Une page absente du nouveau corpus ne peut être retirée que si un état publié antérieur signé atteste qu’elle appartenait au même `debate_id` et à la même langue.
+
+### 2. État publié et source de vérité
+
+Après chaque publication ou reprise réussie, le kit conserve un état publié signé par débat et par langue. Cet état contient au minimum : `debate_id`, langue, version du corpus, date de publication, titre canonique, identifiant logique, type de page, empreinte SHA-256 du contenu, identifiant de révision MediaWiki, statut et référence du reçu final. Le dernier reçu local et cet état sont prioritaires. À défaut, le kit peut utiliser le dernier manifeste installé ou archivé, ou un inventaire distant en lecture seule explicitement rattaché au débat. Il refuse toute suppression si aucune de ces preuves n’est disponible.
+
+Les pages retirées sont calculées par différence entre les pages attestées de la dernière version publiée et les pages du nouveau corpus. Chaque retrait conserve l’ancien identifiant, l’ancienne empreinte, la dernière révision connue, le motif (`suppression`, `fusion`, `renommage` ou `remplacement`), la cible éventuelle et le résultat de la vérification distante.
+
+### 3. Mises à jour et modifications humaines
+
+Une mise à jour automatique est autorisée uniquement lorsque la page appartient au même débat dans les deux versions, que son identité logique est conservée ou explicitement migrée, que l’état distant courant correspond à la dernière empreinte ou révision publiée par Wikidéb’IA, que le nouveau corpus a été validé et que le plan signé est verrouillé. L’écriture MediaWiki utilise un contrôle de concurrence tel que `baserevid` ou un horodatage de base. Toute modification intervenue après la préparation du plan bloque l’écriture.
+
+Le kit distingue un état distant inchangé, une publication automatisée ultérieure connue, une modification humaine et une provenance indéterminée. Une modification humaine ou indéterminée est classée `manual_review`. Le rapport fournit l’ancienne version publiée, la version distante courante et la nouvelle version proposée. Aucun écrasement n’est effectué par défaut.
+
+### 4. Retraits, renommages et fusions
+
+Avant une suppression, le kit vérifie cumulativement l’appartenance historique, l’absence du nouveau corpus, l’absence de réutilisation connue par un autre débat, l’absence de déplacement ou d’autonomisation, la concordance de la révision et de l’empreinte distantes avec l’état publié attendu, la présence des marqueurs Wikidéb’IA et le droit MediaWiki `delete`. Une divergence postérieure classe la page `manual_review`. Le kit ne remplace jamais une suppression par un bandeau de demande de suppression.
+
+Un changement de titre conservant l’identité logique produit une opération `move`. Une fusion déclare sa cible et une politique explicite `redirect` ou `delete`; les liens entrants sont relevés dans le plan. Une ancienne page ne reste pas active sans relation déclarée avec le nouveau graphe.
+
+### 5. Plan, ordre et reprise
+
+Le plan distant contient les huit listes d’opérations, leurs préconditions, les empreintes anciennes et nouvelles, la révision distante attendue, la justification et le résultat. Sa sérialisation est déterministe, son empreinte SHA-256 est enregistrée et l’exécution réelle exige la confirmation de cette empreinte ou un mécanisme automatisé équivalent explicitement sécurisé.
+
+L’ordre normal est : validation complète; comparaison distante en lecture seule; signature du plan; création ou mise à jour de la page Débat/Debate; création des arguments; mise à jour des arguments conservés; déplacements et redirections; vérification du graphe publié; suppressions finales; reçu final et nouvel état publié. Une erreur avant la vérification du graphe interdit les suppressions finales.
+
+Toutes les opérations sont idempotentes. Une nouvelle exécution reconnaît les créations, mises à jour, déplacements et suppressions déjà achevés, et bloque les pages modifiées entre-temps. Les commandes canoniques sont `./wikidebia update IDENTIFIANT`, avec les portées `--scope fr`, `--scope en`, `--no-delete`, `--only-delete` et `--dry-run`. La mise à niveau des composants est exposée séparément par `./wikidebia upgrade`.
+
+### 6. Droits, authentification et séparation des responsabilités
+
+Les droits requis sont contrôlés avant la première écriture : `edit` et `createpage` pour créer ou modifier, `move` pour déplacer, `delete` pour supprimer, et, lorsque nécessaire, `browsearchive` ou `deletedhistory` pour consulter l’historique supprimé. Aucun groupe administrateur n’est exigé si les droits effectifs sont attribués à un groupe plus limité ou au compte bot. L’absence de `delete` arrête une portée comportant des suppressions avant toute écriture et sans invite Pywikibot interactive.
+
+La reprise réutilise la famille `wikidebates`, la configuration privée `private/pywikibot/`, les BotPasswords et le traitement séquentiel des langues. Les erreurs de connexion sont journalisées proprement. Le validateur reste strictement local et en lecture seule : il contrôle les schémas et la cohérence d’un plan, d’un état ou d’un reçu, mais ne compare ni ne modifie le wiki.
+
+### 7. Sécurité et généralité
+
+Aucune constante active ne dépend d’un débat pilote, d’un titre, d’un nombre de pages ou d’une date de migration particulière. Aucun secret n’est incorporé aux archives. Les plans, journaux, reçus et états publiés conservent les résultats de chaque opération. Le cas `education_sexualite_ecole` peut servir de test d’intégration externe, mais ne constitue ni une règle ni une configuration embarquée.
+
+## Addendum 1.2.17 — Wikipédia, débats connexes, auteurs et publication non interactive
+
+La révision 1.2.17 rend bloquante l’absence d’article Wikipédia dans les pages Débat/Debate, interdit l’émission des paramètres de débats connexes, impose la conversion des listes JSON d’auteurs en texte MediaWiki et supprime l’invite interactive de la commande `./wikidebia publish`. Le plan SHA-256 reste calculé, verrouillé et transmis automatiquement au moteur d’exécution ; la suppression de l’invite ne supprime donc ni le plan signé ni les contrôles de concurrence.
+```
+
 # Source incorporée : `normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.2.md`
 
 **SHA-256 :** `f8c2eafc6e11d85bba0356547661a618857844555efe28c019edbf7a4be60d86`
@@ -19870,7 +20715,7 @@ Avant verrouillage du graphe, contrôler que chaque titre canonique reste intell
 
 # Source incorporée : `normative_reference/01_normes/profils_rendu_wikidebia.md`
 
-**SHA-256 :** `7d7e3c648f445f802d5903608b8f16f23ada0a7b41659d6d7770b69a1511ee8d`
+**SHA-256 :** `357ce2a2b9e242980e3c323eabbb9a7c457e47ea322f3a69502c713658b0a25b`
 
 ```
 # Profils de rendu MediaWiki de Wikidéb'IA
@@ -19981,7 +20826,7 @@ Les dates descriptives françaises emploient l'ordre et les noms de mois frança
 16. Le champ d’auteur vidéographique peut désigner une personne, un média, une émission ou une institution effectivement responsable du contenu. Une plateforme d’hébergement ou un compte de republication ne doit pas être utilisé comme auteur par défaut.
 17. L’auteur d’une vidéo ne doit jamais être déduit du seul titre. La source officielle ou originale est privilégiée.
 18. Si aucun auteur ou responsable éditorial ne peut réellement être identifié après vérification, le paramètre MediaWiki `auteurs=` ou `authors=` est omis plutôt que laissé vide ou rempli par une attribution inventée. Le registre documentaire conserve alors une liste `authors` vide et une note expliquant les vérifications effectuées.
-19. La liste JSON `authors` est convertie avant rendu : un élément devient une valeur texte sans crochets ni guillemets, plusieurs éléments sont séparés par ` ; `, et une liste vide entraîne l’omission du paramètre. Une forme telle que `|auteurs=["Auteur"]` est bloquante.
+19. La liste JSON `authors` est convertie avant rendu : un élément devient une valeur texte sans crochets ni guillemets, plusieurs éléments sont séparés par `, `, et une liste vide entraîne l’omission du paramètre. Une forme telle que `|auteurs=["Auteur"]` est bloquante.
 19. Une association statistique ne doit jamais être présentée comme une causalité démontrée.
 20. Lorsqu'une étude est utilisée, l'article original, le DOI, la page de la revue ou le rapport officiel est préféré à une source de presse ou à une fiche secondaire.
 21. Les limites importantes des études observationnelles, transversales, autodéclarées, anciennes, restreintes à un petit échantillon, un pays ou une plateforme, contestées ou peu généralisables sont signalées.
@@ -20800,7 +21645,7 @@ Le profil de publication intégré impose `page_type_order=["debate", "argument"
 Les versions normatives et techniques déclarées par un corpus restent une provenance immuable. Le flux intégré de publication accepte une révision antérieure lorsqu’elle est explicitement compatible avec le validateur installé et que la validation courante réussit. Il ne demande jamais de remplacer `normative_versions.validator`, `normative_versions.kit` ou `consolidated_norm` par les versions locales seulement pour franchir le préflight.
 
 
-## Reprise distante d’un corpus publié — révision 1.2.17
+## Reprise distante d’un corpus publié — révision 1.2.16
 
 Une reprise compare obligatoirement le dernier état publié signé, l’état distant courant et le nouveau corpus validé. Le kit produit un plan signé comprenant `create`, `skip`, `update`, `move`, `redirect`, `delete`, `manual_review` et `blocked`. Une page absente du nouveau manifeste n’est jamais supprimée sans preuve d’appartenance à la version antérieure du même débat.
 
@@ -20811,13 +21656,13 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 
 # Source incorporée : `normative_reference/01_normes/requirements_catalog_wikidebia.json`
 
-**SHA-256 :** `1523ee35d84d18ba11d4c5e8cc972ce1c154296200f2c9b6cab6b9d9160e8b78`
+**SHA-256 :** `ac2adb50631ce377124058b3584566f6b5249cbfb994a26eae36d7934e064175`
 
 ```json
 {
-  "requirements_catalog_version": "1.2.17",
+  "requirements_catalog_version": "1.2.18",
   "generated_date": "2026-08-01",
-  "active_package_revision": "1.2.17",
+  "active_package_revision": "1.2.18",
   "precedence": [
     "later explicit user decisions",
     "WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
@@ -23006,7 +23851,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "workflow correction"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -24571,7 +25416,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "decision 2026-07-25"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
       "note": "Corpus-specific historical decisions remain only in archived provenance documents and in the corpus packages concerned."
@@ -24980,7 +25825,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner clarification 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -24994,7 +25839,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25008,7 +25853,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25022,7 +25867,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25036,7 +25881,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25050,7 +25895,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25064,7 +25909,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25078,7 +25923,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25092,7 +25937,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25106,7 +25951,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "delivery audit 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25120,7 +25965,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25135,7 +25980,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "delivery audit 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25150,7 +25995,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "delivery audit 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -25165,7 +26010,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -25180,7 +26025,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -25195,7 +26040,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -25210,7 +26055,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25224,7 +26069,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25239,7 +26084,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -25254,7 +26099,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25268,7 +26113,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25297,7 +26142,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25311,7 +26156,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25325,7 +26170,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25339,7 +26184,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -25354,7 +26199,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -25369,7 +26214,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -25384,7 +26229,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -25399,7 +26244,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -25414,7 +26259,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -25429,7 +26274,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25443,7 +26288,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"
       ],
       "note": null
     },
@@ -25457,7 +26302,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/structures_mediawiki_wikidebia.md"
       ],
       "note": "Bare years remain valid when only the year is known."
@@ -25472,7 +26317,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner correction 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/structures_mediawiki_wikidebia.md"
       ],
       "note": "Named references are permitted when their first definition contains direct textual wikicode; self-closing reuse remains allowed."
@@ -25487,7 +26332,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -25502,7 +26347,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": "The ledger records null when no common acronym applies."
@@ -25517,7 +26362,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/structures_mediawiki_wikidebia.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
@@ -25533,7 +26378,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25548,7 +26393,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25563,7 +26408,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25578,7 +26423,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -25593,7 +26438,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -25608,7 +26453,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25623,7 +26468,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25638,7 +26483,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25653,7 +26498,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -25668,7 +26513,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner correction 2026-07-31"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25683,7 +26528,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
       "note": null
@@ -25698,7 +26543,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25713,7 +26558,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25728,7 +26573,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -25743,7 +26588,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25758,7 +26603,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -25773,7 +26618,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/structures_mediawiki_wikidebia.md"
       ],
       "note": null
@@ -25788,7 +26633,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
       "note": null
@@ -25803,7 +26648,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
       "note": null
@@ -25818,7 +26663,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25833,7 +26678,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25848,7 +26693,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25863,7 +26708,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -25878,7 +26723,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -25893,7 +26738,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -25908,7 +26753,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
       "note": null
@@ -25923,7 +26768,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -25938,7 +26783,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-08-01"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -25953,7 +26798,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-08-01"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/structures_mediawiki_wikidebia.md"
       ],
       "note": null
@@ -25961,14 +26806,14 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
     {
       "id": "REF-031",
       "domain": "references",
-      "statement": "JSON author arrays are converted to MediaWiki text: one item becomes a scalar, multiple items are separated by semicolons, and an empty list omits the parameter.",
+      "statement": "JSON author arrays are converted to MediaWiki text: one item becomes a scalar, multiple items are separated by a comma followed by a space, and an empty list omits the parameter.",
       "disposition": "active",
       "enforcement": "automatic",
       "sources": [
         "owner decision 2026-08-01"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -25983,8 +26828,24 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
         "owner decision 2026-08-01"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
         "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "REF-032",
+      "domain": "references",
+      "statement": "When several authors are rendered in auteurs or authors, the canonical separator is exactly a comma followed by one space; semicolons, fullwidth commas and malformed comma spacing are forbidden in generated output.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-08-01"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
+        "01_normes/structures_mediawiki_wikidebia.md",
+        "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
     }
@@ -26164,7 +27025,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 
 # Source incorporée : `normative_reference/01_normes/schema_graphe_registre_wikidebia.md`
 
-**SHA-256 :** `e5a67484de17eed547dc3afce0c42fa10cb51c8b4fceb1aadc2dfb994b748028`
+**SHA-256 :** `9b7a4574fea8dad362d446e16e1ef39e1d56f9b00c93bfb2608e18fd2d7cc4e8`
 
 ```
 # Schéma du graphe et du registre maître de Wikidéb'IA
@@ -27870,7 +28731,7 @@ Le schéma de données ne change pas par rapport à 1.2.6. La révision 1.2.7 co
 Lors de la sérialisation des listes de sous-modèles dans les fichiers `.wiki` et leurs agrégats, deux sous-modèles consécutifs sont concaténés avec la jonction exacte `}}{{`. Aucun retour à la ligne ni espace n’est inséré entre les deux délimiteurs.
 
 
-## Reprise distante d’un corpus publié — révision 1.2.17
+## Reprise distante d’un corpus publié — révision 1.2.16
 
 Une reprise compare obligatoirement le dernier état publié signé, l’état distant courant et le nouveau corpus validé. Le kit produit un plan signé comprenant `create`, `skip`, `update`, `move`, `redirect`, `delete`, `manual_review` et `blocked`. Une page absente du nouveau manifeste n’est jamais supprimée sans preuve d’appartenance à la version antérieure du même débat.
 
@@ -27881,7 +28742,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 
 # Source incorporée : `normative_reference/01_normes/structures_mediawiki_wikidebia.md`
 
-**SHA-256 :** `360bd14fb8850d47a9fb70bc825adaf67e8af7979f61655ede47c5b2cc5c90de`
+**SHA-256 :** `e2796f1c271c6d7841ff28abb68e2eaa52391010ee6208424e87a973652d6f79`
 
 ```
 # Structures MediaWiki autorisées de Wikidéb'IA
@@ -28414,7 +29275,7 @@ La forme suivante est interdite, y compris avec des espaces, tabulations ou plus
 Cette règle vaut pour les pages Débat, Debate et Argument, en français comme en anglais. Elle s’applique aux fichiers individuels et aux agrégats.
 
 
-## Reprise distante d’un corpus publié — révision 1.2.17
+## Reprise distante d’un corpus publié — révision 1.2.16
 
 Une reprise compare obligatoirement le dernier état publié signé, l’état distant courant et le nouveau corpus validé. Le kit produit un plan signé comprenant `create`, `skip`, `update`, `move`, `redirect`, `delete`, `manual_review` et `blocked`. Une page absente du nouveau manifeste n’est jamais supprimée sans preuve d’appartenance à la version antérieure du même débat.
 
@@ -28425,7 +29286,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 
 # Source incorporée : `normative_reference/01_normes/workflow_production_wikidebia.md`
 
-**SHA-256 :** `b807376ea2fca1bdecee01a257499a686e37bb85d9991ed57ba91caa7bbe3649`
+**SHA-256 :** `365e342a96d2052a04321aedbb88a0f082ad429696eea82dc57174763ccbee54`
 
 ```
 # Workflow de production Wikidéb’IA — norme 1.2.7
@@ -28569,7 +29430,7 @@ Les ZIP encore présents dans l’ancien dossier `incoming/debates/` sont migré
 Avant de construire le plan, le kit exécute le validateur installé sur le corpus. La version réelle du validateur doit correspondre à celle exigée par le kit et le rapport doit être positif. Les versions historiques inscrites dans `manifest.json` ne sont ni comparées pour égalité aux versions installées, ni réécrites. La norme déclarée reste soumise à la liste de compatibilité et aux schémas du validateur courant.
 
 
-## Reprise distante d’un corpus publié — révision 1.2.17
+## Reprise distante d’un corpus publié — révision 1.2.16
 
 Une reprise compare obligatoirement le dernier état publié signé, l’état distant courant et le nouveau corpus validé. Le kit produit un plan signé comprenant `create`, `skip`, `update`, `move`, `redirect`, `delete`, `manual_review` et `blocked`. Une page absente du nouveau manifeste n’est jamais supprimée sans preuve d’appartenance à la version antérieure du même débat.
 

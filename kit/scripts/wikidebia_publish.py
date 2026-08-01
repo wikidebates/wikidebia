@@ -14,8 +14,8 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Protocol
 
-KIT_VERSION = "2.2.1"
-REQUIRED_VALIDATOR_VERSION = "0.4.18"
+KIT_VERSION = "2.2.2"
+REQUIRED_VALIDATOR_VERSION = "0.4.19"
 DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
 REQUIRED_DIRECT_SCOPES = {"schema", "coherence", "graph", "files", "batches", "sources", "wikicode", "bilingual", "editorial", "workflow"}
 PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
@@ -610,7 +610,7 @@ class GenericPublisher:
                 and any(str(parameters.get(language) or "") == "interlangue" for language in self.languages)
             ):
                 raise PublicationError(
-                    "Le profil 1.2.17 intègre interlangue dans la création complète; "
+                    "Le profil 1.2.18 intègre interlangue dans la création complète; "
                     "une opération parameter_update interlangue est interdite."
                 )
         requirements = self.config.get("manifest_requirements") or {}
@@ -804,6 +804,24 @@ class GenericPublisher:
             raise PublicationError(
                 f"Un champ auteurs/authors contient un tableau JSON au lieu de texte MediaWiki : {language}/{page_id}"
             )
+        norm = str(((self.manifest.get("normative_versions") or {}).get("consolidated_norm") or ""))
+        try:
+            norm_tuple = tuple(int(part) for part in norm.split("."))
+        except ValueError:
+            norm_tuple = ()
+        if norm_tuple >= (1, 2, 18):
+            for match in re.finditer(r"(?m)^\s*\|\s*(?:auteurs|authors)\s*=\s*(.*?)\s*$", text):
+                author_value = match.group(1).strip()
+                malformed_separator = (
+                    ";" in author_value
+                    or "，" in author_value
+                    or bool(re.search(r"\s+,|,(?! )|, {2,}|,$", author_value))
+                )
+                if malformed_separator:
+                    raise PublicationError(
+                        "Plusieurs auteurs doivent être séparés exactement par une virgule suivie d’une espace : "
+                        f"{language}/{page_id}"
+                    )
         section_param = "rubriques" if language == "fr" else "sections"
         if section_param in names:
             actual_sections = [item.strip() for item in extract_parameter(text, section_param).split(",") if item.strip()]
@@ -1037,7 +1055,7 @@ class GenericPublisher:
             }
             counts[language]["total"] = len(language_actions)
         plan: dict[str, Any] = {
-            "plan_version": "wikidebia-publication-plan-2.2.1",
+            "plan_version": "wikidebia-publication-plan-2.2.2",
             "publication_profile": self.publication_profile,
             "kit_version": KIT_VERSION,
             "debate_id": self.config["debate_id"],
@@ -1260,7 +1278,7 @@ class GenericPublisher:
         self._validate_local()
         self._prepare_logging()
         if self.publication_profile != DIRECT_INTERLANGUAGE_PROFILE:
-            raise PublicationError("Le test de la page Débat est réservé au profil 1.2.17")
+            raise PublicationError("Le test de la page Débat est réservé au profil 1.2.18")
         if self.operation.get("kind") != "full_page":
             raise PublicationError("Le test de la page Débat exige une opération full_page")
         actions = [
@@ -1346,7 +1364,7 @@ class GenericPublisher:
         if not french_debate_actions:
             return
         if not isinstance(receipt, dict):
-            raise PublicationError("Le profil 1.2.17 exige --debate-test-receipt")
+            raise PublicationError("Le profil 1.2.18 exige --debate-test-receipt")
         copy = dict(receipt)
         claimed = copy.pop("receipt_sha256", None)
         if not claimed or claimed != sha_object(copy):

@@ -495,7 +495,7 @@ Le wikicode final est compact aux frontières de modèles adjacents. La séquenc
 Les versions normatives et techniques déclarées par un corpus restent une provenance immuable. Le flux intégré de publication accepte une révision antérieure lorsqu’elle est explicitement compatible avec le validateur installé et que la validation courante réussit. Il ne demande jamais de remplacer `normative_versions.validator`, `normative_versions.kit` ou `consolidated_norm` par les versions locales seulement pour franchir le préflight.
 
 
-## Reprise distante d’un corpus publié — révision 1.2.17
+## Reprise distante d’un corpus publié — révision 1.2.16
 
 Une reprise compare obligatoirement le dernier état publié signé, l’état distant courant et le nouveau corpus validé. Le kit produit un plan signé comprenant `create`, `skip`, `update`, `move`, `redirect`, `delete`, `manual_review` et `blocked`. Une page absente du nouveau manifeste n’est jamais supprimée sans preuve d’appartenance à la version antérieure du même débat.
 
@@ -508,5 +508,5 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 
 - rechercher et rendre au moins un article Wikipédia exact et vérifié dans chaque page Débat/Debate ; un paramètre Wikipédia vide est bloquant ;
 - ne jamais rendre `débats-connexes` ni `related-debates` ;
-- convertir les listes JSON d’auteurs en texte MediaWiki (`["Auteur"]` → `Auteur`, plusieurs auteurs séparés par ` ; `, liste vide → omission) ;
+- convertir les listes JSON d’auteurs en texte MediaWiki (`["Auteur"]` → `Auteur`, plusieurs auteurs séparés par `, `, liste vide → omission) ;
 - publier sans invite interactive : le plan signé est confirmé automatiquement par l’orchestrateur après validation, sans supprimer les contrôles d’empreinte et de concurrence.

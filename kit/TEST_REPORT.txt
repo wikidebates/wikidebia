@@ -1,8 +1,9 @@
-Wikidéb’IA Kit 2.2.1
-Norme : 1.2.17
-Validateur requis : 0.4.18
-Tests pytest : 78 réussis, 0 échec
+Wikidéb’IA Kit 2.2.2
+Norme : 1.2.18
+Validateur requis : 0.4.19
+Tests pytest : 83 réussis, 0 échec
 Scénarios de reprise obligatoires : 15/15 réussis
-Test supplémentaire : inventaire distant signé en lecture seule
+Tests de séparateur : virgule correcte acceptée ; point-virgule, virgule mal espacée et virgule pleine chasse refusés
+Exécution de la suite par fichiers et groupes indépendants pour éviter une limite de durée de l’environnement de test
 Aucune connexion ni écriture MediaWiki réelle pendant les tests.
 Résultat : RÉUSSI

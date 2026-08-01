@@ -7,11 +7,11 @@ def test_singleton_keyword_remains_allowed_114():
 def test_active_norm_is_single_in_reference_tree():
     root=Path(__file__).parents[1]/"normative_reference"/"01_normes"
     active=sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md"))
-    assert active == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md"]
+    assert active == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md"]
 
 def test_norm_contains_w11_non_overwrite_and_order():
     root=Path(__file__).parents[1]/"normative_reference"/"01_normes"
-    text=(root/"WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md").read_text(encoding="utf-8")
+    text=(root/"WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md").read_text(encoding="utf-8")
     assert "ne jamais écraser une page existante par défaut" in text
     assert "première écriture distante un test sur l’unique page Débat française canonique" in text
     assert "ne créer aucune sous-page utilisateur" in text

@@ -1,8 +1,8 @@
 {
   "package": "wikidebia-normes",
-  "normative_revision": "1.2.17",
-  "recommended_validator_version": "0.4.18",
-  "recommended_kit_version": "2.2.1",
+  "normative_revision": "1.2.18",
+  "recommended_validator_version": "0.4.19",
+  "recommended_kit_version": "2.2.2",
   "migration_required_for_existing_packages": true,
   "compatible_prior_normative_revisions": [
     "1.1.0",
@@ -31,7 +31,8 @@
     "1.2.13",
     "1.2.14",
     "1.2.15",
-    "1.2.16"
+    "1.2.16",
+    "1.2.17"
   ],
   "migration_required_scope": "normative_revision_change_only",
   "stable_archive_name": "wikidebia-normes.zip",
