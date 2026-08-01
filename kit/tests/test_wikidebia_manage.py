@@ -31,7 +31,7 @@ def test_generated_config_is_relative_and_debate_first(tmp_path: Path):
     assert config["pywikibot_dir"] == "private/pywikibot"
     assert config["corpus_root"] == "corpus/demo"
     assert config["operation"]["page_type_order"] == ["debate", "argument"]
-    assert config["validator"]["required_version"] == "0.4.17"
+    assert config["validator"]["required_version"] == "0.4.18"
     assert config["manifest_requirements"] == {}
     assert str(tmp_path) not in path.read_text(encoding="utf-8")
 
@@ -282,3 +282,31 @@ def test_github_sync_commits_pending_safe_changes_before_push(tmp_path: Path, mo
     assert module.run(["git", "status", "--porcelain"], cwd=tmp_path, capture=True).stdout.strip() == ""
     assert module.run(["git", "log", "-1", "--pretty=%s"], cwd=tmp_path, capture=True).stdout.strip() == "Synchronisation sécurisée Wikidéb’IA"
     assert pushed == [(tmp_path, True)]
+
+
+def test_publish_command_has_no_interactive_prompt(monkeypatch, tmp_path: Path):
+    def forbidden_input(*args, **kwargs):
+        raise AssertionError("input() ne doit jamais être appelé par publish")
+    monkeypatch.setattr("builtins.input", forbidden_input)
+    monkeypatch.setattr(module, "ensure_credentials", lambda root: None)
+    archive = tmp_path / "incoming" / "demo.zip"
+    archive.parent.mkdir(parents=True)
+    archive.write_bytes(b"zip")
+    monkeypatch.setattr(module, "find_debate_archive", lambda root, identifier: archive)
+    corpus = tmp_path / "corpus" / "demo"
+    corpus.mkdir(parents=True)
+    monkeypatch.setattr(module, "install_debate_corpus", lambda root, selected: ("demo", corpus))
+    monkeypatch.setattr(module, "publication_config", lambda root, debate_id, scope, run_dir: run_dir / "config.json")
+    plan = {"blockers": [], "counts": {}, "actions": [], "plan_sha256": "a" * 64}
+    def fake_run(command, *, cwd, capture=False, check=True, env=None):
+        class Result:
+            stdout = '{"created":0,"updated":0,"skipped":0}\n'
+            returncode = 0
+        if "--mode" in command and command[command.index("--mode") + 1] == "plan":
+            output = Path(cwd) / command[command.index("--plan-output") + 1]
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_text(json.dumps(plan), encoding="utf-8")
+        return Result()
+    monkeypatch.setattr(module, "run", fake_run)
+    result = module.publish_debate(tmp_path, None, "all", False, True)
+    assert result == {"created": 0, "updated": 0, "skipped": 0}

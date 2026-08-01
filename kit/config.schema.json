@@ -15,7 +15,7 @@
   ],
   "properties": {
     "kit_version": {
-      "const": "2.2.0"
+      "const": "2.2.1"
     },
     "debate_id": {
       "type": "string",
@@ -34,7 +34,7 @@
       ],
       "properties": {
         "required_version": {
-          "const": "0.4.17"
+          "const": "0.4.18"
         },
         "command": {
           "type": "array",

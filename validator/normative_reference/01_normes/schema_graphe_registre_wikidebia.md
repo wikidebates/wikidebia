@@ -1701,7 +1701,7 @@ Le schéma de données ne change pas par rapport à 1.2.6. La révision 1.2.7 co
 Lors de la sérialisation des listes de sous-modèles dans les fichiers `.wiki` et leurs agrégats, deux sous-modèles consécutifs sont concaténés avec la jonction exacte `}}{{`. Aucun retour à la ligne ni espace n’est inséré entre les deux délimiteurs.
 
 
-## Reprise distante d’un corpus publié — révision 1.2.16
+## Reprise distante d’un corpus publié — révision 1.2.17
 
 Une reprise compare obligatoirement le dernier état publié signé, l’état distant courant et le nouveau corpus validé. Le kit produit un plan signé comprenant `create`, `skip`, `update`, `move`, `redirect`, `delete`, `manual_review` et `blocked`. Une page absente du nouveau manifeste n’est jamais supprimée sans preuve d’appartenance à la version antérieure du même débat.
 

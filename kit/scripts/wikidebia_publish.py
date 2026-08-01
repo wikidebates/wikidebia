@@ -14,8 +14,8 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Protocol
 
-KIT_VERSION = "2.2.0"
-REQUIRED_VALIDATOR_VERSION = "0.4.17"
+KIT_VERSION = "2.2.1"
+REQUIRED_VALIDATOR_VERSION = "0.4.18"
 DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
 REQUIRED_DIRECT_SCOPES = {"schema", "coherence", "graph", "files", "batches", "sources", "wikicode", "bilingual", "editorial", "workflow"}
 PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
@@ -610,7 +610,7 @@ class GenericPublisher:
                 and any(str(parameters.get(language) or "") == "interlangue" for language in self.languages)
             ):
                 raise PublicationError(
-                    "Le profil 1.2.16 intègre interlangue dans la création complète; "
+                    "Le profil 1.2.17 intègre interlangue dans la création complète; "
                     "une opération parameter_update interlangue est interdite."
                 )
         requirements = self.config.get("manifest_requirements") or {}
@@ -799,6 +799,11 @@ class GenericPublisher:
                 f"Balise <references /> interdite en norme 1.2.11 : {language}/{page_id}"
             )
         names = [span.name for span in _main_template_parameter_spans(text)]
+        json_author = re.search(r"(?m)^\s*\|\s*(?:auteurs|authors)\s*=\s*\[", text)
+        if json_author:
+            raise PublicationError(
+                f"Un champ auteurs/authors contient un tableau JSON au lieu de texte MediaWiki : {language}/{page_id}"
+            )
         section_param = "rubriques" if language == "fr" else "sections"
         if section_param in names:
             actual_sections = [item.strip() for item in extract_parameter(text, section_param).split(",") if item.strip()]
@@ -818,6 +823,23 @@ class GenericPublisher:
                         "La page Debate anglaise doit contenir exactement |topic= et |complete-topic="
                     )
         if page_type == "debate":
+            wikipedia_parameter = "articles-Wikipédia" if language == "fr" else "wikipedia-articles"
+            wikipedia_model = "Article Wikipédia" if language == "fr" else "Wikipedia article"
+            related_parameter = "débats-connexes" if language == "fr" else "related-debates"
+            if names.count(wikipedia_parameter) != 1:
+                raise PublicationError(
+                    f"La page de débat doit contenir exactement un |{wikipedia_parameter}= non vide : {language}/{page_id}"
+                )
+            wikipedia_value = extract_parameter(text, wikipedia_parameter)
+            article_pattern = rf"\{{\{{\s*{re.escape(wikipedia_model)}\b(?:(?!\}}\}}).)*\|\s*page\s*=\s*[^|{{}}\r\n]+(?:(?!\}}\}}).)*\}}\}}"
+            if not wikipedia_value.strip() or not re.search(article_pattern, wikipedia_value, flags=re.IGNORECASE | re.DOTALL):
+                raise PublicationError(
+                    f"|{wikipedia_parameter}= doit contenir au moins un sous-modèle {wikipedia_model} avec un titre vérifié : {language}/{page_id}"
+                )
+            if related_parameter in names:
+                raise PublicationError(
+                    f"Le paramètre |{related_parameter}= ne doit pas être publié : {language}/{page_id}"
+                )
             topic_param = "sujet" if language == "fr" else "topic"
             complete_param = "sujet-complet" if language == "fr" else "complete-topic"
             topic_value = extract_parameter(text, topic_param) if topic_param in names else ""
@@ -1015,7 +1037,7 @@ class GenericPublisher:
             }
             counts[language]["total"] = len(language_actions)
         plan: dict[str, Any] = {
-            "plan_version": "wikidebia-publication-plan-2.2.0",
+            "plan_version": "wikidebia-publication-plan-2.2.1",
             "publication_profile": self.publication_profile,
             "kit_version": KIT_VERSION,
             "debate_id": self.config["debate_id"],
@@ -1238,7 +1260,7 @@ class GenericPublisher:
         self._validate_local()
         self._prepare_logging()
         if self.publication_profile != DIRECT_INTERLANGUAGE_PROFILE:
-            raise PublicationError("Le test de la page Débat est réservé au profil 1.2.16")
+            raise PublicationError("Le test de la page Débat est réservé au profil 1.2.17")
         if self.operation.get("kind") != "full_page":
             raise PublicationError("Le test de la page Débat exige une opération full_page")
         actions = [
@@ -1324,7 +1346,7 @@ class GenericPublisher:
         if not french_debate_actions:
             return
         if not isinstance(receipt, dict):
-            raise PublicationError("Le profil 1.2.16 exige --debate-test-receipt")
+            raise PublicationError("Le profil 1.2.17 exige --debate-test-receipt")
         copy = dict(receipt)
         claimed = copy.pop("receipt_sha256", None)
         if not claimed or claimed != sha_object(copy):

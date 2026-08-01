@@ -15,9 +15,9 @@ import zipfile
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
-NORM_VERSION = "1.2.16"
-VALIDATOR_VERSION = "0.4.17"
-KIT_VERSION = "2.2.0"
+NORM_VERSION = "1.2.17"
+VALIDATOR_VERSION = "0.4.18"
+KIT_VERSION = "2.2.1"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",
@@ -900,10 +900,7 @@ def publish_debate(root: Path, debate_identifier: str | None, scope: str, assume
         raise ManagementError(f"Le plan contient {len(plan['blockers'])} bloqueur(s); voir {plan_path.relative_to(root)}")
     counts = plan.get("counts") or {}
     print(json.dumps(counts, ensure_ascii=False, indent=2))
-    if not assume_yes:
-        answer = input(f"Publier le débat {debate_id} avec la portée {scope} ? [o/N] ").strip().casefold()
-        if answer not in {"o", "oui", "y", "yes"}:
-            raise ManagementError("Publication annulée")
+    # Le plan signé est transmis automatiquement au moteur ; aucune invite interactive n’est utilisée.
 
     receipt_path = run_dir / "debate-test-receipt.json"
     french_create = any(
@@ -1117,7 +1114,7 @@ def build_parser() -> argparse.ArgumentParser:
     publish = sub.add_parser("publish", help="Valider, planifier et publier un ZIP de débat")
     publish.add_argument("debate_identifier", nargs="?", help="Nom du ZIP sans .zip; facultatif si incoming/ contient un seul ZIP. Le debate_id interne peut être différent.")
     publish.add_argument("--scope", choices=SCOPES, default="all")
-    publish.add_argument("--yes", action="store_true", help="Ne pas demander de confirmation interactive")
+    publish.add_argument("--yes", action="store_true", help=argparse.SUPPRESS)
     publish.add_argument("--keep-zip", action="store_true", help="Ne pas archiver le ZIP après succès")
 
     update = sub.add_parser("update", help="Reprendre un débat déjà publié avec créations, mises à jour et retraits contrôlés")

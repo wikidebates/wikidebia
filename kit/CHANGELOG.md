@@ -1,6 +1,15 @@
 # Changelog
 
-## 2.2.0 — 31 juillet 2026
+## 2.2.1 — 1er août 2026
+
+- suppression de la question interactive de `./wikidebia publish` ;
+- transmission automatique de l’empreinte du plan signé ;
+- préflight bloquant pour les articles Wikipédia absents ou vides ;
+- préflight bloquant pour `débats-connexes` / `related-debates` ;
+- préflight bloquant pour les tableaux JSON dans `auteurs` / `authors` ;
+- alignement sur la norme 1.2.17 et le validateur 0.4.18.
+
+## 2.2.1 — 31 juillet 2026
 
 - `./wikidebia update IDENTIFIANT` devient la commande de reprise d’un débat déjà publié ;
 - l’ancienne mise à niveau des composants devient `./wikidebia upgrade` ;

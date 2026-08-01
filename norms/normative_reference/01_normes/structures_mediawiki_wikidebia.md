@@ -28,11 +28,13 @@ Ce document **ne détermine pas** quels paramètres doivent effectivement appara
 2. Les paramètres émis dans une page doivent respecter l'ordre de la structure correspondante.
 3. Un sous-modèle placé dans un paramètre peut être répété autant de fois que nécessaire.
 4. L'existence d'un paramètre dans la structure autorisée n'oblige pas à l'émettre.
-5. Les paramètres facultatifs vides sont omis conformément au profil de rendu.
+5. Les paramètres facultatifs vides sont omis conformément au profil de rendu ; `articles-Wikipédia` et `wikipedia-articles` ne sont toutefois jamais facultatifs ni vides dans une sortie conforme à la révision 1.2.17.
 6. Les structures française et anglaise ne doivent jamais être mélangées.
 7. `date-création` et `creation-date` sont des paramètres autorisés et placés à la fin des quatre structures.
 8. Les liens interlangues sont autorisés uniquement dans les structures françaises.
 9. Les noms canoniques des pages sont enregistrés dans le manifeste et le registre du débat. Ils ne dépendent pas de l'utilisation de `nom=` ou `name=`.
+10. `débats-connexes` et `related-debates` restent décrits comme paramètres historiquement autorisés par les modèles du wiki, mais ils sont interdits dans toute sortie générée sous la révision 1.2.17.
+11. Les valeurs `auteurs` et `authors` sont du texte MediaWiki ; elles ne reçoivent jamais la sérialisation littérale d’une liste JSON.
 
 ---
 
@@ -146,9 +148,6 @@ Ce document **ne détermine pas** quels paramètres doivent effectivement appara
 |auteurs=
 |lien=
 |avertissements=
-}}
-|débats-connexes={{Débat connexe
-|page=
 }}
 |rubriques=
 |mots-clés=
@@ -348,9 +347,6 @@ Ce document **ne détermine pas** quels paramètres doivent effectivement appara
 |link=
 |warnings=
 }}
-|related-debates={{Related debate
-|page=
-}}
 |sections=
 |keywords=
 |creation-date=
@@ -532,7 +528,7 @@ La forme suivante est interdite, y compris avec des espaces, tabulations ou plus
 Cette règle vaut pour les pages Débat, Debate et Argument, en français comme en anglais. Elle s’applique aux fichiers individuels et aux agrégats.
 
 
-## Reprise distante d’un corpus publié — révision 1.2.16
+## Reprise distante d’un corpus publié — révision 1.2.17
 
 Une reprise compare obligatoirement le dernier état publié signé, l’état distant courant et le nouveau corpus validé. Le kit produit un plan signé comprenant `create`, `skip`, `update`, `move`, `redirect`, `delete`, `manual_review` et `blocked`. Une page absente du nouveau manifeste n’est jamais supprimée sans preuve d’appartenance à la version antérieure du même débat.
 

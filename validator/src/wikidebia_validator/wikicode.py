@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 import unicodedata
 from collections import Counter, defaultdict
@@ -356,11 +357,29 @@ def _consolidated_norm(ctx: PackageContext) -> str | None:
     return ((ctx.manifest() or {}).get("normative_versions") or {}).get("consolidated_norm")
 
 
+def _norm_tuple(value: str | None) -> tuple[int, ...]:
+    try:
+        return tuple(int(part) for part in str(value or "").split("."))
+    except ValueError:
+        return ()
+
+
+def _norm_at_least(ctx: PackageContext, minimum: str) -> bool:
+    current = _norm_tuple(_consolidated_norm(ctx))
+    target = _norm_tuple(minimum)
+    return bool(current and target and current >= target)
+
+
 def _is_norm_120(ctx: PackageContext) -> bool:
-    return _consolidated_norm(ctx) in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.16"}
+    return _norm_at_least(ctx, "1.2.0")
+
 
 def _is_norm_126(ctx: PackageContext) -> bool:
-    return _consolidated_norm(ctx) in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.16"}
+    return _norm_at_least(ctx, "1.2.6")
+
+
+def _is_norm_1217(ctx: PackageContext) -> bool:
+    return _norm_at_least(ctx, "1.2.17")
 
 
 def _alphabetical_key(value: str) -> str:
@@ -395,7 +414,15 @@ def split_adjacent_templates(text: str) -> list[re.Match[str]]:
 
 
 def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page_type: str, rel: str) -> None:
-    spec = TOP[(lang, page_type)] if _is_norm_120(ctx) else TOP_LEGACY[(lang, page_type)]
+    base_spec = TOP[(lang, page_type)] if _is_norm_120(ctx) else TOP_LEGACY[(lang, page_type)]
+    spec = {**base_spec, "order": list(base_spec["order"]), "required": list(base_spec["required"]), "forbidden_generated": list(base_spec["forbidden_generated"])}
+    if _is_norm_1217(ctx) and page_type == "debate":
+        wikipedia_parameter = "articles-Wikipédia" if lang == "fr" else "wikipedia-articles"
+        related_parameter = "débats-connexes" if lang == "fr" else "related-debates"
+        if wikipedia_parameter not in spec["required"]:
+            spec["required"].append(wikipedia_parameter)
+        if related_parameter not in spec["forbidden_generated"]:
+            spec["forbidden_generated"].append(related_parameter)
     if tmpl.name != spec["model"]:
         ctx.report.error("WDV-MWK-002", f"Modèle principal attendu {spec['model']}, trouvé {tmpl.name}", path=rel)
     keys = [k for k, _ in tmpl.params]
@@ -439,10 +466,10 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
             if _complete_topic_looks_interrogative(complete, lang):
                 ctx.report.error("WDV-EDT-018", f"{complete_param} doit compléter l’en-tête de la page sous une forme non interrogative", path=rel, details={"actual": complete})
             declared_acronym = explicit_parenthetical_acronym(topic)
-            if _consolidated_norm(ctx) in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.16"} and declared_acronym and not re.search(rf"(?<![\w.-]){re.escape(declared_acronym)}(?![\w.-])", complete):
+            if _norm_at_least(ctx, "1.2.9") and declared_acronym and not re.search(rf"(?<![\w.-]){re.escape(declared_acronym)}(?![\w.-])", complete):
                 ctx.report.error("WDV-EDT-018", f"{complete_param} doit employer l’acronyme courant déclaré dans {topic_param}", path=rel, details={"acronym": declared_acronym, "actual": complete})
 
-    if _consolidated_norm(ctx) in {"1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.16"}:
+    if _norm_at_least(ctx, "1.2.11"):
         matches = split_adjacent_templates(tmpl.raw)
         if matches:
             first = matches[0]
@@ -490,6 +517,26 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
                     ctx.report.error("WDV-MWK-005", f"Sous-paramètre vide interdit : {sub.name}.{skey}", path=rel)
                 if skey in {"avertissements", "warnings"}:
                     ctx.report.error("WDV-MWK-003", f"Sous-paramètre d'avertissement interdit dans une sortie générée : {sub.name}.{skey}", path=rel)
+                if _is_norm_1217(ctx) and skey in {"auteurs", "authors"}:
+                    candidate = sval.strip()
+                    parsed_json = None
+                    if candidate.startswith("["):
+                        try:
+                            parsed_json = json.loads(candidate)
+                        except json.JSONDecodeError:
+                            parsed_json = None
+                    if isinstance(parsed_json, list) or (candidate.startswith("[") and candidate.endswith("]")):
+                        ctx.report.error(
+                            "WDV-DOC-006",
+                            "Le champ auteur MediaWiki ne doit pas contenir une sérialisation de tableau JSON",
+                            path=rel,
+                            details={
+                                "template": sub.name,
+                                "parameter": skey,
+                                "actual": sval,
+                                "conversion": "un élément -> texte brut ; plusieurs éléments -> valeurs séparées par ' ; ' ; liste vide -> paramètre omis",
+                            },
+                        )
                 if skey in {"numéro", "issue"} and not sval.isdigit():
                     ctx.report.error("WDV-MWK-012", f"{sub.name}.{skey} doit contenir uniquement des chiffres", path=rel)
                 if skey in {"lien", "link"} and not re.match(r"^https?://", sval):
@@ -501,7 +548,7 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
                     ctx.report.error("WDV-DOC-002", f"Pagination bibliographique placée dans {sub.name}.{skey} au lieu de page", path=rel, details={"value": sval})
                 if skey == "date" and re.search(r"\b(?:consulté(?:e)?|accessed|retrieved)\b", sval, flags=re.I):
                     ctx.report.error("WDV-DOC-003", f"Date de consultation utilisée comme date documentaire dans {sub.name}", path=rel, details={"value": sval})
-                if _consolidated_norm(ctx) in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.16"} and skey == "date" and documentary_date_is_machine(sval):
+                if _norm_at_least(ctx, "1.2.9") and skey == "date" and documentary_date_is_machine(sval):
                     ctx.report.error("WDV-DOC-005", f"Date documentaire au format machine dans {sub.name}; utiliser une date en langage naturel", path=rel, details={"value": sval, "creation_date_parameters_unchanged": ["date-création", "creation-date"]})
             if _is_norm_120(ctx) and sub.name in {
                 "Référence sitographique", "Référence sitographique pour", "Référence sitographique contre",
@@ -594,6 +641,16 @@ def _validate_argument_content(ctx: PackageContext, tmpl: Template, rel: str, la
 
 
 def _validate_debate_content(ctx: PackageContext, tmpl: Template, rel: str, lang: str, registry: dict[str, Any], page_manifest: dict[str, Any]) -> None:
+    if _is_norm_1217(ctx):
+        wikipedia_parameter = "articles-Wikipédia" if lang == "fr" else "wikipedia-articles"
+        wikipedia_model = "Article Wikipédia" if lang == "fr" else "Wikipedia article"
+        articles = get_subs(tmpl, wikipedia_parameter)
+        if not articles or any(article.name != wikipedia_model or not (article.one("page") or "").strip() for article in articles):
+            ctx.report.error(
+                "WDV-MWK-019",
+                f"{wikipedia_parameter} doit contenir au moins un article Wikipédia vérifié",
+                path=rel,
+            )
     occs = [o for o in registry.get("graph", {}).get("occurrences", []) if o.get("depth") == 1]
     nodes = {n.get("id"): n for n in registry.get("graph", {}).get("nodes", [])}
     for branch, param in (("pro", "arguments-pour" if lang == "fr" else "pro-arguments"), ("con", "arguments-contre" if lang == "fr" else "con-arguments")):
@@ -650,7 +707,7 @@ PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
 
 
 def _validate_french_parenthetical_dashes(ctx: PackageContext, tmpl: Template, rel: str, page_type: str) -> None:
-    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.16"}:
+    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.17"}:
         return
     values: list[tuple[str, str]] = []
     if page_type == "argument":

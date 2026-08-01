@@ -141,3 +141,11 @@ Le wikicode généré ne contient jamais une fermeture de modèle `}}` suivie d�
 ## Décision du 31 juillet 2026 — compatibilité de publication
 
 Un corpus déjà produit conserve les versions inscrites dans son manifeste. La mise à jour de l’installation ne doit pas forcer leur égalité avec les composants courants. La publication est autorisée lorsque le validateur courant prend en charge la norme déclarée, s’exécute dans la version attendue et renvoie un rapport positif.
+
+
+## Décision du 1er août 2026 — rendu documentaire et publication
+
+1. `articles-Wikipédia` et `wikipedia-articles` sont obligatoires et non vides ; une recherche de titres exacts doit être effectuée dans Wikipédia.
+2. Les pages générées n’émettent plus `débats-connexes` ni `related-debates`.
+3. Une liste JSON d’auteurs est convertie en texte MediaWiki et n’est jamais copiée avec crochets et guillemets.
+4. `./wikidebia publish` exécute le plan validé sans question interactive ; l’empreinte du plan reste automatiquement transmise et vérifiée.

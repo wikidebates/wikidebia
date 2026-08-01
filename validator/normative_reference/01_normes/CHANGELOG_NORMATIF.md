@@ -1,6 +1,14 @@
 # Changelog normatif
 
-## 1.2.16 — 31 juillet 2026
+## 1.2.17 — 1er août 2026
+
+- `articles-Wikipédia` et `wikipedia-articles` deviennent obligatoires et non vides, avec au moins un titre exact vérifié ;
+- `débats-connexes` et `related-debates` sont interdits dans les sorties générées ;
+- les tableaux JSON d’auteurs sont convertis en texte MediaWiki et leur sérialisation littérale est bloquée ;
+- la publication ordinaire devient non interactive tout en conservant la vérification automatique de l’empreinte du plan ;
+- alignement recommandé : validateur 0.4.18, kit 2.2.1.
+
+## 1.2.17 — 31 juillet 2026
 
 - distinction normative entre publication initiale et reprise ;
 - état publié signé par débat et langue ;
@@ -9,7 +17,7 @@
 - protection absolue des modifications humaines ;
 - suppressions attestées, idempotentes et exécutées après vérification du nouveau graphe ;
 - droits MediaWiki vérifiés avant écriture, sessions linguistiques séquentielles ;
-- schémas, validation locale, reçus et commandes de reprise alignés sur le kit 2.2.0.
+- schémas, validation locale, reçus et commandes de reprise alignés sur le kit 2.2.1.
 
 ## 1.2.15 — 31 juillet 2026
 

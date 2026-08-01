@@ -1,4 +1,4 @@
-# Catalogue des codes de contrôle — 0.4.17
+# Catalogue des codes de contrôle — 0.4.18
 
 | Code | Signification |
 |---|---|
@@ -51,6 +51,7 @@
 | `WDV-MWK-016` | Ordre alphabétique des rubriques ou sections incorrect |
 | `WDV-MWK-017` | Majuscule initiale de sujet ou topic incorrecte |
 | `WDV-MWK-018` | Saut de ligne ou espace entre deux modèles MediaWiki adjacents |
+| `WDV-MWK-019` | Article Wikipédia obligatoire absent ou invalide |
 | `WDV-BIL-001` | Identifiants ou pages bilingues divergents |
 | `WDV-BIL-002` | Relations bilingues divergentes |
 | `WDV-BIL-003` | Occurrence primaire ou réutilisation bilingue divergente |
@@ -72,6 +73,7 @@
 | `WDV-DOC-003` | Date sitographique non documentaire |
 | `WDV-DOC-004` | Métadonnées sitographiques redondantes ou attribution non vérifiée |
 | `WDV-DOC-005` | Date documentaire au format machine |
+| `WDV-DOC-006` | Champ auteur sérialisé comme tableau JSON |
 | `WDV-EDT-001` | Titres affichés copiés mécaniquement |
 | `WDV-EDT-002` | Classification ou mots-clés mécaniques |
 | `WDV-EDT-003` | Résumé contenant une auto-objection ou du métadiscours |

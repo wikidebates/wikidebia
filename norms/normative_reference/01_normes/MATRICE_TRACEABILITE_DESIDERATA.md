@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.16
+- **Révision :** 1.2.17
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -293,3 +293,13 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 | Droits et sessions | PUB-034–PUB-035 | Préflight global et traitement séquentiel des langues |
 | Validation locale | VAL-015 | Schémas et invariants du plan sans accès distant |
 | Généralité et secrets | SUP-015 | Aucun cas pilote actif, chemin absolu, secret ou invite interactive |
+
+
+## Correction du 1er août 2026 — norme 1.2.17
+
+| Demande | Exigence | Contrôle | Preuve |
+|---|---|---|---|
+| Articles Wikipédia non vides et recherchés | DFR-046 | `WDV-MWK-019` + préflight kit | tests français et anglais |
+| Aucun paramètre de débats connexes | MW-026 | `WDV-MWK-003` + préflight kit | tests de refus |
+| Conversion des auteurs JSON | REF-031 | `WDV-DOC-006` + préflight kit | test `["Auteur"]` refusé |
+| Publication sans question `[o/N]` | IMP-018 | orchestration non interactive | test interdisant tout appel à `input()` |

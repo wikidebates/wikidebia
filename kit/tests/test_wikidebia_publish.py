@@ -54,7 +54,7 @@ def write_fixture(tmp_path: Path, kind: str):
     (corpus / "output" / "en" / "debate.wiki").write_text(en_debate, encoding="utf-8")
     manifest = {
       "debate_id":"demo",
-      "normative_versions":{"validator":"0.4.17"},
+      "normative_versions":{"validator":"0.4.18"},
       "core_files":{"registry":"data/registre_debat.json"},
       "pages":[
         {"language":"fr","page_id":"A1","page_type":"argument","canonical_title":"Titre FR","file_path":"output/fr/A1.wiki","sha256":module.sha_file(corpus / "output/fr/A1.wiki")},
@@ -72,7 +72,7 @@ def write_fixture(tmp_path: Path, kind: str):
     validator = tmp_path / "validator"
     validator.mkdir()
     validator_script = validator / "validate.py"
-    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.17','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.18','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     operation = {
       "id":"test",
       "kind":kind,
@@ -85,8 +85,8 @@ def write_fixture(tmp_path: Path, kind: str):
     }
     if kind == "parameter_update": operation["parameters"]={"fr":"résumé","en":"summary"}
     config = {
-      "kit_version":"2.2.0","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
-      "validator":{"command":[sys.executable,str(validator_script),"validate"],"required_version":"0.4.17","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
+      "kit_version":"2.2.1","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
+      "validator":{"command":[sys.executable,str(validator_script),"validate"],"required_version":"0.4.18","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
       "family":"wikidebates","family_file":str(Path(__file__)),"pywikibot_dir":str(tmp_path),
       "sites":{"fr":{"code":"fr","expected_user":"ChatGPT"},"en":{"code":"en","expected_user":"ChatGPT"}},
       "logs_dir":"logs","change_tags":["chatgpt"],"verification_attempts":1,"verification_delay_seconds":0,"write_delay_seconds":0,
@@ -186,14 +186,20 @@ def make_direct_profile(config, path, tmp_path):
     corpus = tmp_path / "corpus" / "demo"
     manifest_path = corpus / "manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    manifest["consolidated_norm"] = "1.2.16"
+    manifest["consolidated_norm"] = "1.2.17"
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
     fr_debate = corpus / "output" / "fr" / "debate.wiki"
     fr_debate.write_text(
-        "{{Débat\n|sujet=Démo\n|sujet-complet=la démonstration\n|interlangue={{Lien interlangue\n|langue=en\n|page=Demo debate\n}}\n}}\n",
+        "{{Débat\n|sujet=Démo\n|sujet-complet=la démonstration\n|articles-Wikipédia={{Article Wikipédia\n|page=Démonstration\n}}\n|interlangue={{Lien interlangue\n|langue=en\n|page=Demo debate\n}}\n}}\n",
+        encoding="utf-8",
+    )
+    en_debate = corpus / "output" / "en" / "debate.wiki"
+    en_debate.write_text(
+        "{{Debate\n|topic=Demo\n|complete-topic=the demonstration\n|wikipedia-articles={{Wikipedia article\n|page=Demonstration\n}}\n}}\n",
         encoding="utf-8",
     )
     update_hash(manifest_path, "fr", "DEBATE", fr_debate)
+    update_hash(manifest_path, "en", "DEBATE", en_debate)
     path.write_text(json.dumps(config), encoding="utf-8")
     return corpus, manifest_path
 
@@ -502,7 +508,7 @@ def test_generic_kit_contains_no_debate_specific_configs():
         root / "README.md",
         root / "GUIDE_PUBLICATION.md",
         root / "config.example.json",
-        root / "configs" / "creation_bilingue_1.2.16.example.json",
+        root / "configs" / "creation_bilingue_1.2.17.example.json",
         root / "scripts" / "wikidebia_publish.py",
     ]
     combined = "\n".join(path.read_text(encoding="utf-8").casefold() for path in active_files)
@@ -560,7 +566,7 @@ def test_direct_profile_rejects_lowercase_topic(tmp_path):
     _write_valid_direct_argument(corpus, manifest_path)
     source = corpus / "output" / "en" / "debate.wiki"
     source.write_text(
-        "{{Debate\n|topic=parapsychology\n|complete-topic=the scientific status of parapsychology\n}}\n",
+        "{{Debate\n|topic=parapsychology\n|complete-topic=the scientific status of parapsychology\n|wikipedia-articles={{Wikipedia article\n|page=Parapsychology\n}}\n}}\n",
         encoding="utf-8",
     )
     update_hash(manifest_path, "en", "DEBATE", source)
@@ -578,7 +584,7 @@ def test_direct_profile_rejects_interrogative_complete_topic(tmp_path):
     _write_valid_direct_argument(corpus, manifest_path)
     source = corpus / "output" / "en" / "debate.wiki"
     source.write_text(
-        "{{Debate\n|topic=Parapsychology\n|complete-topic=whether parapsychology meets the criteria for scientific status\n}}\n",
+        "{{Debate\n|topic=Parapsychology\n|complete-topic=whether parapsychology meets the criteria for scientific status\n|wikipedia-articles={{Wikipedia article\n|page=Parapsychology\n}}\n}}\n",
         encoding="utf-8",
     )
     update_hash(manifest_path, "en", "DEBATE", source)
@@ -650,12 +656,12 @@ def test_historical_manifest_versions_do_not_block_current_validation(tmp_path):
     publisher = module.GenericPublisher(config, FakeAdapter(), path)
     plan = publisher.build_plan()
     assert not plan["blockers"]
-    assert plan["required_validator_version"] == "0.4.17"
+    assert plan["required_validator_version"] == "0.4.18"
 
 
 def test_explicit_custom_manifest_requirement_is_still_enforced(tmp_path):
     config, path, _, _ = write_fixture(tmp_path, "full_page")
-    config["manifest_requirements"] = {"normative_versions.validator": "0.4.17"}
+    config["manifest_requirements"] = {"normative_versions.validator": "0.4.18"}
     path.write_text(json.dumps(config), encoding="utf-8")
     corpus = tmp_path / "corpus" / "demo"
     manifest_path = corpus / "manifest.json"
@@ -668,3 +674,51 @@ def test_explicit_custom_manifest_requirement_is_still_enforced(tmp_path):
         assert "Exigence de manifeste divergente" in str(exc)
     else:
         raise AssertionError("exigence explicite ignorée")
+
+
+def test_direct_profile_rejects_empty_wikipedia_articles(tmp_path):
+    config, path, _, _ = write_fixture(tmp_path, "full_page")
+    corpus, manifest_path = make_direct_profile(config, path, tmp_path)
+    fr_debate = corpus / "output" / "fr" / "debate.wiki"
+    text = fr_debate.read_text(encoding="utf-8")
+    text = text.replace("|articles-Wikipédia={{Article Wikipédia\n|page=Démonstration\n}}\n", "|articles-Wikipédia=\n")
+    fr_debate.write_text(text, encoding="utf-8")
+    update_hash(manifest_path, "fr", "DEBATE", fr_debate)
+    try:
+        module.GenericPublisher(config, FakeAdapter(), path).build_plan()
+    except module.PublicationError as exc:
+        assert "articles-Wikipédia" in str(exc)
+    else:
+        raise AssertionError("paramètre Wikipédia vide accepté")
+
+
+def test_direct_profile_rejects_related_debates(tmp_path):
+    config, path, _, _ = write_fixture(tmp_path, "full_page")
+    corpus, manifest_path = make_direct_profile(config, path, tmp_path)
+    _write_valid_direct_argument(corpus, manifest_path)
+    fr_debate = corpus / "output" / "fr" / "debate.wiki"
+    text = fr_debate.read_text(encoding="utf-8").replace("|interlangue=", "|débats-connexes={{Débat connexe\n|page=Autre débat\n}}\n|interlangue=")
+    fr_debate.write_text(text, encoding="utf-8")
+    update_hash(manifest_path, "fr", "DEBATE", fr_debate)
+    try:
+        module.GenericPublisher(config, FakeAdapter(), path).build_plan()
+    except module.PublicationError as exc:
+        assert "débats-connexes" in str(exc)
+    else:
+        raise AssertionError("débats connexes acceptés")
+
+
+def test_direct_profile_rejects_json_author_array(tmp_path):
+    config, path, _, _ = write_fixture(tmp_path, "full_page")
+    corpus, manifest_path = make_direct_profile(config, path, tmp_path)
+    _write_valid_direct_argument(corpus, manifest_path)
+    fr_debate = corpus / "output" / "fr" / "debate.wiki"
+    text = fr_debate.read_text(encoding="utf-8").replace("|interlangue=", "|sitographie-ni-pour-ni-contre={{Référence sitographique\n|lien=https://example.test\n|auteurs=[\"L'Encyclopédie philosophique\"]\n|site=L'Encyclopédie philosophique\n}}\n|interlangue=")
+    fr_debate.write_text(text, encoding="utf-8")
+    update_hash(manifest_path, "fr", "DEBATE", fr_debate)
+    try:
+        module.GenericPublisher(config, FakeAdapter(), path).build_plan()
+    except module.PublicationError as exc:
+        assert "tableau JSON" in str(exc)
+    else:
+        raise AssertionError("tableau JSON auteurs accepté")

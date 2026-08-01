@@ -1,4 +1,4 @@
-# Catalogue des codes de contrôle — 0.4.17
+# Catalogue des codes de contrôle — 0.4.18
 
 | Code | Signification |
 |---|---|
@@ -51,6 +51,7 @@
 | `WDV-MWK-016` | Ordre alphabétique des rubriques ou sections incorrect |
 | `WDV-MWK-017` | Majuscule initiale de sujet ou topic incorrecte |
 | `WDV-MWK-018` | Saut de ligne ou espace entre deux modèles MediaWiki adjacents |
+| `WDV-MWK-019` | Article Wikipédia obligatoire absent ou invalide |
 | `WDV-BIL-001` | Identifiants ou pages bilingues divergents |
 | `WDV-BIL-002` | Relations bilingues divergentes |
 | `WDV-BIL-003` | Occurrence primaire ou réutilisation bilingue divergente |
@@ -72,6 +73,7 @@
 | `WDV-DOC-003` | Date sitographique non documentaire |
 | `WDV-DOC-004` | Métadonnées sitographiques redondantes ou attribution non vérifiée |
 | `WDV-DOC-005` | Date documentaire au format machine |
+| `WDV-DOC-006` | Champ auteur sérialisé comme tableau JSON |
 | `WDV-EDT-001` | Titres affichés copiés mécaniquement |
 | `WDV-EDT-002` | Classification ou mots-clés mécaniques |
 | `WDV-EDT-003` | Résumé contenant une auto-objection ou du métadiscours |
@@ -93,14 +95,9 @@
 | `WDV-EDT-019` | Revue de précision et de profondeur documentaire du débat absente |
 | `WDV-EDT-020` | Force expressive du résumé non ancrée dans le texte |
 | `WDV-INT-001` | Erreur interne du validateur |
-
-## Contrôles de reprise distante 0.4.17
-
-| Code | Signification |
-|---|---|
-| `WDV-RMT-001` | Empreinte du plan de reprise divergente |
-| `WDV-RMT-002` | Compteurs du plan de reprise incohérents |
-| `WDV-RMT-003` | Opérations distantes mutantes contradictoires |
-| `WDV-RMT-004` | Suppression distante insuffisamment attestée |
-| `WDV-RMT-005` | Mise à jour distante insuffisamment attestée |
-| `WDV-RMT-006` | Revue manuelle sans comparaison correspondante |
+| `WDV-RMT-001` | Empreinte ou signature du plan distant incorrecte |
+| `WDV-RMT-002` | Compteurs du plan distant incohérents |
+| `WDV-RMT-003` | Cibles mutantes dupliquées ou conflictuelles |
+| `WDV-RMT-004` | Suppression sans préconditions de sûreté complètes |
+| `WDV-RMT-005` | Mise à jour sans état antérieur ou nouvelle empreinte |
+| `WDV-RMT-006` | Rapport de comparaison absent pour manual_review |

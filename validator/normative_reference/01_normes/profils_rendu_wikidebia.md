@@ -106,6 +106,7 @@ Les dates descriptives françaises emploient l'ordre et les noms de mois frança
 16. Le champ d’auteur vidéographique peut désigner une personne, un média, une émission ou une institution effectivement responsable du contenu. Une plateforme d’hébergement ou un compte de republication ne doit pas être utilisé comme auteur par défaut.
 17. L’auteur d’une vidéo ne doit jamais être déduit du seul titre. La source officielle ou originale est privilégiée.
 18. Si aucun auteur ou responsable éditorial ne peut réellement être identifié après vérification, le paramètre MediaWiki `auteurs=` ou `authors=` est omis plutôt que laissé vide ou rempli par une attribution inventée. Le registre documentaire conserve alors une liste `authors` vide et une note expliquant les vérifications effectuées.
+19. La liste JSON `authors` est convertie avant rendu : un élément devient une valeur texte sans crochets ni guillemets, plusieurs éléments sont séparés par ` ; `, et une liste vide entraîne l’omission du paramètre. Une forme telle que `|auteurs=["Auteur"]` est bloquante.
 19. Une association statistique ne doit jamais être présentée comme une causalité démontrée.
 20. Lorsqu'une étude est utilisée, l'article original, le DOI, la page de la revue ou le rapport officiel est préféré à une source de presse ou à une fiche secondaire.
 21. Les limites importantes des études observationnelles, transversales, autodéclarées, anciennes, restreintes à un petit échantillon, un pays ou une plateforme, contestées ou peu généralisables sont signalées.
@@ -158,9 +159,15 @@ ou :
 }}
 ```
 
-## 3.2 Paramètres conditionnels
+## 3.2 Paramètres obligatoires documentaires
 
-- `articles-Wikipédia`
+- `articles-Wikipédia` dans toute page Débat française, avec au moins un `{{Article Wikipédia|page=…}}` vérifié ;
+- `wikipedia-articles` dans toute page Debate anglaise, avec au moins un `{{Wikipedia article|page=…}}` vérifié.
+
+La recherche porte d’abord sur le sujet exact, puis sur les notions, institutions, doctrines, événements ou cadres directement nécessaires à sa compréhension. Le paramètre ne peut jamais être vide.
+
+## 3.3 Paramètres conditionnels
+
 - `bibliographie-pour`
 - `bibliographie-contre`
 - `bibliographie-ni-pour-ni-contre`
@@ -170,11 +177,10 @@ ou :
 - `vidéographie-pour`
 - `vidéographie-contre`
 - `vidéographie-ni-pour-ni-contre`
-- `débats-connexes`
 
 Ils sont omis lorsqu'aucun contenu pertinent et vérifié n'existe.
 
-## 3.3 Paramètre obligatoire dès la création
+## 3.4 Paramètre obligatoire dès la création
 
 `interlangue` est présent dans la première génération valide du fichier français canonique. Le titre anglais canonique doit être verrouillé dans le registre, mais la page anglaise cible peut être créée dans un second temps. Aucune copie de staging et aucune phase de patch interlangue séparée ne sont produites pour un paquet 1.2.0.
 
@@ -228,7 +234,7 @@ Une revue bilingue de l'introduction relie chaque titre réel à une fonction ex
 
 ### Wikipédia
 
-`articles-Wikipédia` contient uniquement des pages de Wikipédia en français dont l'existence et le titre exact ont été vérifiés, accents, capitalisation, parenthèses et nombre compris. Les articles doivent être directement utiles ; une page précise est préférée à une page trop générale.
+`articles-Wikipédia` est obligatoire, non vide et contient uniquement des pages de Wikipédia en français dont l'existence et le titre exact ont été vérifiés, accents, capitalisation, parenthèses et nombre compris. Les articles doivent être directement utiles ; une page précise est préférée à une page trop générale.
 
 Le titre vérifié respecte aussi les parenthèses d'homonymie, le singulier ou le pluriel et la formulation réellement publiée. Une approximation de titre est interdite.
 
@@ -250,9 +256,9 @@ La bibliographie représente les ouvrages, chapitres, articles, rapports et autr
 
 Une ressource bilingue ne compte comme française que si l'intégralité du contenu pertinent est accessible en français. Un résumé, un extrait, une recension ou une traduction partielle ne suffit pas.
 
-### Débats connexes et mots-clés
+### Mots-clés et non-rendu des débats connexes
 
-Un débat connexe est ajouté seulement si sa page existe ou si sa création est explicitement prévue, et s'il entretient un lien thématique direct.
+Les paramètres `débats-connexes` et `related-debates` ne sont jamais émis dans les pages générées. Les rapprochements éventuels restent dans les données internes et ne doivent pas produire un paramètre MediaWiki.
 
 Les rubriques d’une page Débat sont rangées par ordre alphabétique et choisies avec parcimonie : la précision prime sur l’exhaustivité, et une rubrique secondaire n’est pas ajoutée au seul motif qu’elle apparaît dans un argument ou une sous-partie. La liste des mots-clés d'une page Débat est resserrée, normalement de cinq à huit concepts réutilisables. Elle évite les mots d'action trop génériques (`interdiction`, `autorisation`, `obligation`), les formulations propres à une seule proposition et les synonymes redondants.
 
@@ -314,7 +320,6 @@ or:
 - `pro-videography`
 - `con-videography`
 - `videography`
-- `related-debates`
 
 They are omitted when no relevant and verified content exists.
 
@@ -920,7 +925,7 @@ Le profil de publication intégré impose `page_type_order=["debate", "argument"
 Les versions normatives et techniques déclarées par un corpus restent une provenance immuable. Le flux intégré de publication accepte une révision antérieure lorsqu’elle est explicitement compatible avec le validateur installé et que la validation courante réussit. Il ne demande jamais de remplacer `normative_versions.validator`, `normative_versions.kit` ou `consolidated_norm` par les versions locales seulement pour franchir le préflight.
 
 
-## Reprise distante d’un corpus publié — révision 1.2.16
+## Reprise distante d’un corpus publié — révision 1.2.17
 
 Une reprise compare obligatoirement le dernier état publié signé, l’état distant courant et le nouveau corpus validé. Le kit produit un plan signé comprenant `create`, `skip`, `update`, `move`, `redirect`, `delete`, `manual_review` et `blocked`. Une page absente du nouveau manifeste n’est jamais supprimée sans preuve d’appartenance à la version antérieure du même débat.
 
