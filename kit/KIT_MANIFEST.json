@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.2.4",
-  "validator_version": "0.4.20",
+  "version": "2.2.5",
+  "validator_version": "0.4.21",
   "scope": [
     "publish_archive",
     "github_init",
@@ -116,7 +116,7 @@
     "explicit_merge_and_rename_migrations",
     "single_complete_bundle_component_upgrade"
   ],
-  "normative_revision": "1.2.18",
+  "normative_revision": "1.2.19",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json"
 }

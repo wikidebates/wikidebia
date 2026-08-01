@@ -94,6 +94,7 @@ CODES = {
     "WDV-EDT-018": "Forme de sujet-complet ou complete-topic incorrecte",
     "WDV-EDT-019": "Revue de précision et de profondeur documentaire du débat absente",
     "WDV-EDT-020": "Force expressive du résumé non ancrée dans le texte",
+    "WDV-EDT-021": "Titre affiché non propositionnel ou argument incompréhensible",
     "WDV-RMT-001": "Empreinte du plan de reprise divergente",
     "WDV-RMT-002": "Compteurs du plan de reprise incohérents",
     "WDV-RMT-003": "Opérations distantes mutantes contradictoires",

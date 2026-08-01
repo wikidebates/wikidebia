@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.5 — 1er août 2026
+
+- alignement sur la norme 1.2.19 et le validateur 0.4.21 ;
+- conservation intégrale de la publication, de la reprise distante, des suppressions sûres et du bundle unique ;
+- activation du nouveau contrôle éditorial des titres affichés avant publication ;
+- aucune modification des plans historiques déjà signés.
+
+
 ## 2.2.4 — 1er août 2026
 
 - maintenance de non-régression sans changement de norme ;

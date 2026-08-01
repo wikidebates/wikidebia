@@ -1,7 +1,7 @@
-Wikidéb’IA Kit 2.2.4
-Norme : 1.2.18
-Validateur requis : 0.4.20
+Wikidéb’IA Kit 2.2.5
+Norme : 1.2.19
+Validateur requis : 0.4.21
 Tests pytest : 88 réussis, 0 échec
 Scénarios obligatoires de reprise distante : 15/15, plus inventaire distant signé
-Tests nouveaux : bundle complet unique, reçu facultatif vérifié, reçu incohérent refusé, squelette anglais Wikipédia non vide
+Tests nouveaux : alignement de version 1.2.19, maintien du bundle complet unique et non-régression de la publication sans invite
 Résultat : RÉUSSI

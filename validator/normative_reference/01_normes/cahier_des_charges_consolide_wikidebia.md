@@ -72,7 +72,7 @@ Le catalogue machine-readable complet est `requirements_catalog_wikidebia.json` 
 - **TTL-001 — ACTIVE — automatic** : Every argument page has a stable internal identifier that is the source of truth for relations, files, translations and imports.
 - **TTL-002 — ACTIVE — human+automatic heuristics** : Canonical titles are complete autonomous argumentative propositions, not themes, and are understandable outside the local branch.
 - **TTL-003 — ACTIVE — human+automatic heuristics** : Add the debate subject to a canonical title when necessary to avoid ambiguity with other pages.
-- **TTL-004 — ACTIVE — human** : Displayed titles may be shorter and context-dependent when their actual display context identifies the referent unambiguously; they remain faithful and grammatical.
+- **TTL-004 — ACTIVE — human+automatic heuristics** : Displayed titles may be shorter than canonical titles, but each remains a complete intelligible argumentative proposition with an explicit subject and predicate; a nominal topic label is insufficient.
 - **TTL-005 — ACTIVE — human+warning** : Canonical and displayed titles must not be made identical by automation when contextual shortening is useful.
 - **TTL-006 — ACTIVE — automatic** : No canonical or displayed title ends with a period.
 - **TTL-007 — ACTIVE — automatic** : Use straight apostrophes and reject typographic apostrophes in French and English titles.
@@ -161,7 +161,7 @@ Le catalogue machine-readable complet est `requirements_catalog_wikidebia.json` 
 - **DFR-025 — ACTIVE — human+metadata** : For a French translation or edition, use the verified French title, publisher, publication date and direct French link; distinguish correctly article/chapter, containing work, authoring institution and publisher.
 - **DFR-026 — ACTIVE — human+heuristic** : Inline introduction references specifically cover laws and bills, judicial decisions, historical dates, statistics, study results, foreign experiences, public policies, institutional statements and legislative-procedure status whenever these claims are material.
 - **DFR-027 — ACTIVE — automatic+external check** : Wikipedia title verification includes accents, capitalization, disambiguation parentheses, singular/plural and the exact existing title; inventing or approximating a page title is forbidden.
-- **DFR-028 — ACTIVE — automatic+human** : Argument page links use the exact locked canonical title; displayed titles may omit obvious context but remain clear, faithful, grammatically autonomous and unambiguous, and never replace the canonical page field.
+- **DFR-028 — ACTIVE — automatic+human** : Argument page links use the exact locked canonical title; displayed titles may omit redundant context but remain complete, faithful and intelligible argumentative sentences, never nominal labels and never replacements for the canonical page field.
 - **DFR-029 — ACTIVE — human+automatic heuristics** : Bibliography contains books, chapters, scientific or academic articles, reports and other publication-like works; webliography contains autonomous substantive web resources rather than mere catalogue, sales, announcement, download or summary pages for publications already cited.
 - **DFR-030 — ACTIVE — human+automatic heuristics** : A bibliographic and a web reference to the same underlying work coexist only when the web page has independent substantial content and that distinct contribution is recorded; otherwise retain the primary publication.
 - **DFR-031 — ACTIVE — human+automatic heuristics** : Do not duplicate a cited publication through an editor or bookseller page, release announcement, press article announcing it, press release or news page merely summarizing the same report or study.
@@ -385,6 +385,7 @@ Chaque rubrique retenue est justifiée individuellement au moyen d’une structu
 ## 21. Exigences ajoutées par la norme 1.2.0
 
 - **TTL-012 — ACTIVE — automatic+human** : A canonical title is referentially autonomous: every expression needed to identify its subject has an antecedent inside the title itself. Context-dependent demonstratives or pronouns are allowed only in displayed titles whose immediate context makes the referent unambiguous.
+- **TTL-013 — ACTIVE — human+automatic heuristics** : Every displayed title states the argumentative claim as a complete proposition; immediate context may shorten redundant framing but cannot supply a missing predicate, conclusion or logical relation.
 - **MW-016 — ACTIVE — automatic** : All French pages, including Débat, use `{{Lien interlangue}}` from their first valid generation.
 - **MW-017 — ACTIVE — automatic** : English Debate uses `topic` and `complete-topic`; `type` is forbidden.
 - **DFR-035 — ACTIVE — automatic+human** : French Debate references, including inline introduction calls, are entirely available in French.

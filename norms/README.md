@@ -1,7 +1,8 @@
-# Wikidéb’IA — Normes 1.2.18
+# Wikidéb’IA — Normes 1.2.19
 
-Source normative active générique pour la production et la publication français–anglais. La révision 1.2.18 conserve les barrières 1.2.17 et corrige le séparateur des auteurs. La révision 1.2.17 impose au moins un article Wikipédia vérifié par page Débat/Debate, interdit le rendu des débats connexes, formalise la conversion des listes JSON d’auteurs et rend `./wikidebia publish` non interactif tout en conservant le plan signé.
+Source normative active générique pour la production et la publication français–anglais. La révision 1.2.19 corrige les titres affichés trop elliptiques : chaque `titre-affiché` / `displayed-title` doit être une proposition argumentative complète et immédiatement intelligible, et non un simple groupe nominal. Elle conserve toutes les barrières documentaires, structurelles, de publication et de reprise des révisions antérieures.
 
-- norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md` ;
-- validateur recommandé : 0.4.20 ;
-- kit recommandé : 2.2.4.
+- norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.19.md` ;
+- validateur recommandé : 0.4.21 ;
+- kit recommandé : 2.2.5 ;
+- migration explicite requise pour appliquer la nouvelle règle aux corpus déjà verrouillés.

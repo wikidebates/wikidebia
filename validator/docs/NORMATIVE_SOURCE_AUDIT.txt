@@ -1,4 +1,4 @@
 AUDIT DE SOURCE NORMATIVE
-Version du validateur : 0.4.20
-Source active : normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md
+Version du validateur : 0.4.21
+Source active : normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.19.md
 Résultat : source unique présente et catalogue de provenance résolu.

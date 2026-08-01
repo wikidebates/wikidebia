@@ -1,14 +1,14 @@
 # Architecture normative et validation
 
-Le paquet normatif 1.2.18 recommande le validateur 0.4.20. Le pipeline sépare les contraintes de schéma, les invariants structurels, les contrôles documentaires et les revues humaines.
+Le paquet normatif 1.2.19 recommande le validateur 0.4.21.4.20. Le pipeline sépare les contraintes de schéma, les invariants structurels, les contrôles documentaires et les revues humaines.
 
 Les dates documentaires ISO, les modèles spécialisés dans les appels inline d’introduction et les paramètres documentaires de débat contenant moins de deux notices sont bloquants. Les dates de création restent contrôlées séparément au format `AAAA-MM-JJ`. L’acronyme courant est déclaré dans le registre de revue, puis comparé à `sujet-complet` ou `complete-topic`.
 
 La publication française seule reste sûre parce que le kit compare le lien interlangue au titre anglais verrouillé dans le registre maître, même si aucune page anglaise correspondante n’existe encore dans le manifeste.
 
-La norme 1.2.18 ajoute un contrôle lexical déterministe sur le wikicode brut : toute jonction de modèles écrite sous la forme `}}` + saut de ligne + `{{` est bloquée et doit être compactée en `}}{{`.
+Les contrôles historiques de compaction des modèles, de documentation, de wikicode et de publication restent actifs. La norme 1.2.19 ajoute une barrière éditoriale sur les titres affichés : les groupes nominaux sans prédicat sont rejetés par une heuristique conservatrice et la revue individuelle bilingue atteste la complétude et l’intelligibilité de chaque proposition.
 
-Le validateur 0.4.20 produit des chemins de paquet portables ; le kit 2.2.4 contrôle l’ordre de publication et la structure de l’installation.
+Le validateur 0.4.21 produit des chemins de paquet portables ; le kit 2.2.5 contrôle l’ordre de publication et la structure de l’installation.
 
 
 ## Reprise distante d’un corpus publié — révision 1.2.18

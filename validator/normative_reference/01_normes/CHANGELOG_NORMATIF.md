@@ -1,5 +1,14 @@
 # Changelog normatif
 
+## 1.2.19 — 1er août 2026
+
+- le titre affiché devient obligatoirement une proposition argumentative complète et intelligible ;
+- les simples groupes nominaux, thèmes et étiquettes doctrinales sont interdits ;
+- le contexte d’affichage peut raccourcir le cadrage mais ne peut fournir un prédicat ou une conclusion absents ;
+- la revue individuelle bilingue atteste la complétude de la proposition et l’intelligibilité de l’argument ;
+- ajout des exigences `TTL-013` et `VAL-028` et du contrôle `WDV-EDT-021` ;
+- alignement recommandé : validateur 0.4.21 et kit 2.2.5.
+
 ## Maintenance 1.2.18 — 1er août 2026
 
 - correction du squelette anglais afin que `wikipedia-articles` ne soit jamais montré vide ;

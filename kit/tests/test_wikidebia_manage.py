@@ -16,7 +16,7 @@ spec.loader.exec_module(module)
 
 
 def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = False) -> None:
-    versions = {"norm": "1.2.18", "validator": "0.4.20", "kit": "2.2.4"}
+    versions = {"norm": "1.2.19", "validator": "0.4.21", "kit": "2.2.5"}
     payloads = {
         "VERSIONS.json": (json.dumps(versions, ensure_ascii=False, indent=2) + "\n").encode("utf-8"),
         "README.md": f"# {artifact}\n".encode("utf-8"),
@@ -25,11 +25,11 @@ def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = F
         {"path": name, "size_bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
         for name, raw in sorted(payloads.items())
     ]
-    version = {"wikidebia-normes": "1.2.18", "wikidebia-validator": "0.4.20", "wikidebia-kit": "2.2.4"}[artifact]
+    version = {"wikidebia-normes": "1.2.19", "wikidebia-validator": "0.4.21", "wikidebia-kit": "2.2.5"}[artifact]
     manifest = {
         "artifact": artifact,
         "version": version,
-        "normative_revision": "1.2.18",
+        "normative_revision": "1.2.19",
         "declared_file_count": len(files),
         "declared_test_count": 0,
         "files": files,
@@ -44,7 +44,7 @@ def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = F
                 "receipt_version": "wikidebia-package-receipt-1.0",
                 "artifact": artifact,
                 "version": version,
-                "normative_revision": "1.2.18",
+                "normative_revision": "1.2.19",
                 "package_manifest_sha256": hashlib.sha256(manifest_raw).hexdigest(),
                 "declared_file_count": len(files),
                 "declared_test_count": 0,
@@ -59,7 +59,7 @@ def test_component_inspector_accepts_and_verifies_optional_receipt(tmp_path: Pat
     _write_component_zip(archive, "wikidebia-kit", include_receipt=True)
     metadata = module.inspect_component_zip(archive)
     assert metadata["artifact"] == "wikidebia-kit"
-    assert metadata["versions"]["kit"] == "2.2.4"
+    assert metadata["versions"]["kit"] == "2.2.5"
 
 
 def test_single_complete_bundle_is_collected_from_updates(tmp_path: Path):
@@ -125,7 +125,7 @@ def test_generated_config_is_relative_and_debate_first(tmp_path: Path):
     assert config["pywikibot_dir"] == "private/pywikibot"
     assert config["corpus_root"] == "corpus/demo"
     assert config["operation"]["page_type_order"] == ["debate", "argument"]
-    assert config["validator"]["required_version"] == "0.4.20"
+    assert config["validator"]["required_version"] == "0.4.21"
     assert config["manifest_requirements"] == {}
     assert str(tmp_path) not in path.read_text(encoding="utf-8")
 

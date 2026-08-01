@@ -624,6 +624,8 @@ locked
 
 Un titre `locked` ne peut être modifié qu'au moyen d'une migration.
 
+Pour les corpus 1.2.19 et ultérieurs, le registre de revue individuelle associe à chaque nœud les attestations booléennes `displayed_title_complete_proposition_fr`, `displayed_title_argument_intelligible_fr`, `displayed_title_complete_proposition_en` et `displayed_title_argument_intelligible_en`. Elles valent toutes `true` avant verrouillage. Le validateur compare en outre les titres revus aux valeurs exactes du registre maître.
+
 ## 10.4 Règles des titres
 
 Le validateur vérifie :

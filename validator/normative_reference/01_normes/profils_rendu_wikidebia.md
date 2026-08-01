@@ -82,7 +82,7 @@ Règles :
 5. Les titres français de tous les nœuds sont normalisés et verrouillés dans le graphe avant la génération des pages françaises.
 6. Les titres anglais sont fixés et verrouillés après validation du graphe, avant la génération des pages françaises ; le contenu anglais est produit ensuite.
 7. `nom=`, `name=`, `initialisation=` et `initialization=` ne sont pas utilisés pour déterminer ou répéter le titre de la page.
-8. Le titre affiché n'est pas rendu identique au titre canonique par automatisme : il est raccourci lorsque le contexte le permet sans perte de sens.
+8. Le titre affiché n'est pas rendu identique au titre canonique par automatisme. Il peut être plus concis, mais demeure une proposition argumentative complète : sujet et prédicat sont explicites, et le lecteur comprend ce qui est affirmé sans ouvrir la page. Un groupe nominal ou un simple thème est interdit.
 9. Les titres anglais évitent les contractions lorsqu'elles diminuent le ton encyclopédique.
 
 ## 2.5 Références et exactitude
@@ -817,7 +817,7 @@ Une évolution de ce profil exige :
 # Addendum intégré 1.1.0 — rendu correctif
 
 - Le résumé défend le nœud sans auto-objection, concession finale ni métadiscours.
-- Le titre affiché est revu individuellement et n’est pas copié mécaniquement depuis le titre canonique.
+- Le titre affiché est revu individuellement, n’est pas copié mécaniquement depuis le titre canonique et forme une proposition argumentative complète plutôt qu’un intitulé nominal.
 - Une à trois rubriques centrales et des mots-clés spécifiques sont normalement rendus.
 - Les agrégats sont toujours régénérés depuis les pages individuelles validées.
 - Les décisions historiques propres à un corpus restent dans son profil local et ne constituent pas une règle universelle.
@@ -854,7 +854,7 @@ Les pages de débat utilisent uniquement des sources dans leur propre langue. Le
 
 # Addendum intégré 1.2.1 — titres et typographie française
 
-Le titre canonique est autonome hors contexte : un démonstratif ou un pronom ne peut renvoyer seulement au parent ou à la branche. Le titre affiché peut être plus court et contextuel lorsque son emplacement réel identifie le référent sans ambiguïté. Dans les introductions, résumés et autres passages français générés, les incises explicatives et énumérations insérées sont placées entre parenthèses ; une paire de tirets cadratins utilisée comme parenthèse est interdite.
+Le titre canonique est autonome hors contexte : un démonstratif ou un pronom ne peut renvoyer seulement au parent ou à la branche. Le titre affiché peut être plus court et contextuel lorsque son emplacement réel identifie le référent sans ambiguïté, mais il doit toujours exprimer une proposition complète et intelligible ; le contexte ne compense jamais l’absence de prédicat ou de conclusion argumentative. Dans les introductions, résumés et autres passages français générés, les incises explicatives et énumérations insérées sont placées entre parenthèses ; une paire de tirets cadratins utilisée comme parenthèse est interdite.
 
 
 # Addendum intégré 1.2.2 — exemples et contrôles cohérents
@@ -932,3 +932,8 @@ Une reprise compare obligatoirement le dernier état publié signé, l’état d
 Les mises à jour et suppressions vérifient la révision ou l’empreinte attendue et utilisent le contrôle de concurrence MediaWiki. Toute modification humaine ou provenance indéterminée est classée `manual_review`. Les déplacements et fusions sont déclarés explicitement. Les suppressions sont exécutées seulement après vérification du nouveau graphe publié. Les opérations sont idempotentes et donnent lieu à un reçu final et à un nouvel état publié signé.
 
 Le validateur contrôle localement les structures et la cohérence des plans, mais toutes les lectures et écritures MediaWiki restent dans le kit.
+
+
+# Addendum actif 1.2.19 — titres affichés propositionnels
+
+Chaque `titre-affiché` et `displayed-title` énonce une proposition argumentative complète, sans point final. La concision est obtenue en supprimant un cadrage redondant, jamais en réduisant l’argument à un groupe nominal. La revue individuelle bilingue atteste explicitement la complétude de la phrase et l’intelligibilité de l’argument.

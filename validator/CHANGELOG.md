@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.21 — 1er août 2026
+
+- alignement sur la norme 1.2.19 ;
+- ajout de `WDV-EDT-021` pour les titres affichés manifestement réduits à un groupe nominal ;
+- ajout des attestations bilingues obligatoires de complétude propositionnelle et d’intelligibilité dans la revue individuelle ;
+- compatibilité conservée avec les normes 1.1.0 à 1.2.18 sans activation rétroactive ;
+- aucune écriture distante.
+
+
 ## 0.4.20 — 1er août 2026
 
 - maintien de tous les contrôles 0.4.19 ;

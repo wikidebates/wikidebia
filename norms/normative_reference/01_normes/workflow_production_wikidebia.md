@@ -152,3 +152,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 Avant la signature du plan, le validateur et le kit vérifient que chaque page Débat/Debate contient au moins un article Wikipédia vérifié, qu’aucun paramètre `débats-connexes` ou `related-debates` n’est rendu et qu’aucun champ `auteurs`/`authors` ne contient un tableau JSON littéral.
 
 La commande `./wikidebia publish` est entièrement non interactive : après validation positive et génération du plan, l’orchestrateur transmet lui-même l’empreinte SHA-256 du plan au moteur. L’option historique `--yes` reste tolérée pour compatibilité mais n’est plus nécessaire et aucune question `[o/N]` n’est affichée. La commande `update`, qui peut inclure des suppressions, conserve sa confirmation d’empreinte ou son équivalent automatisé explicite.
+
+## Contrôle 1.2.19 des titres affichés
+
+Avant le verrouillage du graphe et avant toute génération de page, chaque titre affiché est lu comme une phrase indépendante. La revue vérifie la présence d’un sujet, d’un prédicat et de la conclusion argumentative utile. Un intitulé nominal est reformulé, même lorsque le parent de l’occurrence permettrait d’en deviner le thème. Les quatre attestations bilingues de complétude et d’intelligibilité sont enregistrées dans le registre individuel ; une attestation absente ou fausse bloque la validation éditoriale.

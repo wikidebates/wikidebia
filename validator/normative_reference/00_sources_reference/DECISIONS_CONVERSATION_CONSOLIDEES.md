@@ -149,3 +149,12 @@ Un corpus déjà produit conserve les versions inscrites dans son manifeste. La 
 2. Les pages générées n’émettent plus `débats-connexes` ni `related-debates`.
 3. Une liste JSON d’auteurs est convertie en texte MediaWiki et n’est jamais copiée avec crochets et guillemets.
 4. `./wikidebia publish` exécute le plan validé sans question interactive ; l’empreinte du plan reste automatiquement transmise et vérifiée.
+
+
+## Décision du 1er août 2026 — titres affichés propositionnels et intelligibles
+
+1. Un titre affiché n’est pas un simple thème abrégé : il formule une proposition argumentative complète.
+2. Il contient au minimum un sujet et un prédicat explicites, sans point final, et permet de comprendre ce qui est affirmé sans ouvrir la page.
+3. Le contexte peut supprimer un cadrage redondant, mais ne peut remplacer le verbe, la conclusion ou la relation logique de l’argument.
+4. Les groupes nominaux tels que « La convergence entre observateurs » ou « Les renversements de l’histoire des sciences » sont non conformes tant qu’ils n’expriment pas ce qu’ils établissent.
+5. La revue individuelle bilingue atteste pour chaque nœud que le titre affiché est une proposition complète et que son argument est intelligible.
