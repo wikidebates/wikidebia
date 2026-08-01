@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.2.5",
-  "validator_version": "0.4.21",
+  "version": "2.2.6",
+  "validator_version": "0.4.22",
   "scope": [
     "publish_archive",
     "github_init",
@@ -71,7 +71,8 @@
     "no_related_debates_preflight",
     "json_author_array_preflight",
     "noninteractive_publish_with_signed_plan",
-    "legacy_single_bundle_bootstrap_compatibility"
+    "legacy_single_bundle_bootstrap_compatibility",
+    "graph_placement_review_validator_gate"
   ],
   "publication_profiles": [
     "norm_1_2_direct_interlanguage",
@@ -116,7 +117,7 @@
     "explicit_merge_and_rename_migrations",
     "single_complete_bundle_component_upgrade"
   ],
-  "normative_revision": "1.2.19",
+  "normative_revision": "1.2.20",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json"
 }

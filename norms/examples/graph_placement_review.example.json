@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "normative_revision": "1.2.20",
+  "debate_id": "exemple_debat",
+  "entries": [
+    {
+      "occurrence_id": "O00001",
+      "node_id": "A0001",
+      "declared_depth": 1,
+      "placement_status": "approved",
+      "declared_function": "main_argument",
+      "semantic_target": "debate",
+      "direct_fit": true,
+      "rationale": "Cette proposition répond directement au débat et organise une famille argumentative autonome.",
+      "main_argument_review": {
+        "direct_answer_to_debate": true,
+        "autonomous_without_parent": true,
+        "organizes_distinct_argument_family": true,
+        "more_general_nonduplicate_parent_available": false,
+        "principally_supports_or_attacks_specific_argument": false,
+        "principally_example_or_specialization": false
+      }
+    },
+    {
+      "occurrence_id": "O00002",
+      "node_id": "A0002",
+      "declared_depth": 2,
+      "placement_status": "moved_after_review",
+      "declared_function": "objection",
+      "semantic_target": "O00001",
+      "direct_fit": true,
+      "rationale": "Les renversements scientifiques visent précisément l’inférence tirée du succès des sciences.",
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    }
+  ]
+}

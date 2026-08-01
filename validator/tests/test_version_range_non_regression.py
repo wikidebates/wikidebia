@@ -12,4 +12,4 @@ def test_active_rule_sets_include_current_revision():
     files = ["coherence.py", "validator.py", "sources.py", "workflow.py", "bilingual.py", "files.py", "graph.py", "editorial.py", "batches.py"]
     for name in files:
         text = (root / name).read_text(encoding="utf-8")
-        assert "1.2.18" in text, name
+        assert "1.2.20" in text, name

@@ -404,6 +404,9 @@
         },
         "introduction_review_path": {
           "$ref": "common.schema.json#/$defs/relativePath"
+        },
+        "graph_placement_review_path": {
+          "$ref": "common.schema.json#/$defs/relativePath"
         }
       },
       "required": [
@@ -522,7 +525,8 @@
                   "1.2.16",
                   "1.2.17",
                   "1.2.18",
-                  "1.2.19"
+                  "1.2.19",
+                  "1.2.20"
                 ]
               }
             },
@@ -551,6 +555,37 @@
                 ]
               }
             }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "normative_versions": {
+            "properties": {
+              "consolidated_norm": {
+                "const": "1.2.20"
+              }
+            },
+            "required": [
+              "consolidated_norm"
+            ]
+          }
+        },
+        "required": [
+          "normative_versions"
+        ]
+      },
+      "then": {
+        "required": [
+          "editorial_controls"
+        ],
+        "properties": {
+          "editorial_controls": {
+            "required": [
+              "graph_placement_review_path"
+            ]
           }
         }
       }

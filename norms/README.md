@@ -1,8 +1,9 @@
-# Wikidéb’IA — Normes 1.2.19
+# Wikidéb’IA — Normes 1.2.20
 
-Source normative active générique pour la production et la publication français–anglais. La révision 1.2.19 corrige les titres affichés trop elliptiques : chaque `titre-affiché` / `displayed-title` doit être une proposition argumentative complète et immédiatement intelligible, et non un simple groupe nominal. Elle conserve toutes les barrières documentaires, structurelles, de publication et de reprise des révisions antérieures.
+Source normative active générique pour la production et la publication français–anglais. La révision 1.2.20 réserve le niveau 1 aux réponses directes, autonomes et structurantes à la proposition du débat. Les objections ciblées, preuves secondaires, exemples, interprétations particulières et doctrines instanciant une thèse générale sont rattachés à leur meilleure cible immédiate.
 
-- norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.19.md` ;
-- validateur recommandé : 0.4.21 ;
-- kit recommandé : 2.2.5 ;
-- migration explicite requise pour appliquer la nouvelle règle aux corpus déjà verrouillés.
+- norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.20.md` ;
+- validateur recommandé : 0.4.22 ;
+- kit recommandé : 2.2.6 ;
+- registre obligatoire : `editorial_controls.graph_placement_review_path` ;
+- migration structurelle explicite requise pour les corpus déjà verrouillés.

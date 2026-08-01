@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.2.6 — 1er août 2026
+
+- alignement sur la norme 1.2.20 et le validateur 0.4.22 ;
+- maintien du bundle complet unique et de la compatibilité avec les corpus historiques ;
+- aucune modification des barrières de publication et de reprise distante ;
+- le validateur courant impose désormais le registre de placement des occurrences pour les nouveaux corpus 1.2.20.
+
 ## 2.2.5 — 1er août 2026
 
 - alignement sur la norme 1.2.19 et le validateur 0.4.21 ;

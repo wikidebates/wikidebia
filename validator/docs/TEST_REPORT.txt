@@ -1,5 +1,5 @@
-Wikidéb’IA Validator 0.4.21
-Norme implémentée : 1.2.19
-Tests pytest : 167 réussis, 0 échec
-Contrôles nouveaux : WDV-EDT-021, attestations bilingues de complétude propositionnelle et non-régression de la norme 1.2.18
+Wikidéb’IA Validator 0.4.22
+Norme implémentée : 1.2.20
+Tests pytest : 175 réussis, 0 échec
+Contrôles nouveaux : WDV-EDT-022, registre de placement des occurrences et non-régression de la norme 1.2.19
 Résultat : RÉUSSI

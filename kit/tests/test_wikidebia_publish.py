@@ -56,7 +56,7 @@ def write_fixture(tmp_path: Path, kind: str):
     (corpus / "output" / "en" / "debate.wiki").write_text(en_debate, encoding="utf-8")
     manifest = {
       "debate_id":"demo",
-      "normative_versions":{"validator":"0.4.21"},
+      "normative_versions":{"validator":"0.4.22"},
       "core_files":{"registry":"data/registre_debat.json"},
       "pages":[
         {"language":"fr","page_id":"A1","page_type":"argument","canonical_title":"Titre FR","file_path":"output/fr/A1.wiki","sha256":module.sha_file(corpus / "output/fr/A1.wiki")},
@@ -74,7 +74,7 @@ def write_fixture(tmp_path: Path, kind: str):
     validator = tmp_path / "validator"
     validator.mkdir()
     validator_script = validator / "validate.py"
-    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.21','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.22','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     operation = {
       "id":"test",
       "kind":kind,
@@ -87,8 +87,8 @@ def write_fixture(tmp_path: Path, kind: str):
     }
     if kind == "parameter_update": operation["parameters"]={"fr":"résumé","en":"summary"}
     config = {
-      "kit_version":"2.2.5","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
-      "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.21","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
+      "kit_version":"2.2.6","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
+      "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.22","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
       "family":"wikidebates","family_file":str(Path(__file__)),"pywikibot_dir":str(tmp_path),
       "sites":{"fr":{"code":"fr","expected_user":"ChatGPT"},"en":{"code":"en","expected_user":"ChatGPT"}},
       "logs_dir":"logs","change_tags":["chatgpt"],"verification_attempts":1,"verification_delay_seconds":0,"write_delay_seconds":0,
@@ -188,7 +188,7 @@ def make_direct_profile(config, path, tmp_path):
     corpus = tmp_path / "corpus" / "demo"
     manifest_path = corpus / "manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    manifest["consolidated_norm"] = "1.2.19"
+    manifest["consolidated_norm"] = "1.2.20"
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
     fr_debate = corpus / "output" / "fr" / "debate.wiki"
     fr_debate.write_text(
@@ -510,7 +510,7 @@ def test_generic_kit_contains_no_debate_specific_configs():
         root / "README.md",
         root / "GUIDE_PUBLICATION.md",
         root / "config.example.json",
-        root / "configs" / "creation_bilingue_1.2.19.example.json",
+        root / "configs" / "creation_bilingue_1.2.20.example.json",
         root / "scripts" / "wikidebia_publish.py",
     ]
     combined = "\n".join(path.read_text(encoding="utf-8").casefold() for path in active_files)
@@ -658,12 +658,12 @@ def test_historical_manifest_versions_do_not_block_current_validation(tmp_path):
     publisher = module.GenericPublisher(config, FakeAdapter(), path)
     plan = publisher.build_plan()
     assert not plan["blockers"]
-    assert plan["required_validator_version"] == "0.4.21"
+    assert plan["required_validator_version"] == "0.4.22"
 
 
 def test_explicit_custom_manifest_requirement_is_still_enforced(tmp_path):
     config, path, _, _ = write_fixture(tmp_path, "full_page")
-    config["manifest_requirements"] = {"normative_versions.validator": "0.4.21"}
+    config["manifest_requirements"] = {"normative_versions.validator": "0.4.22"}
     path.write_text(json.dumps(config), encoding="utf-8")
     corpus = tmp_path / "corpus" / "demo"
     manifest_path = corpus / "manifest.json"
@@ -731,7 +731,7 @@ def _set_norm(manifest_path, norm):
     data.setdefault("normative_versions", {})["consolidated_norm"] = norm
     manifest_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-def _inject_author_value(tmp_path, value, norm="1.2.19"):
+def _inject_author_value(tmp_path, value, norm="1.2.20"):
     config, path, _, _ = write_fixture(tmp_path, "full_page")
     corpus, manifest_path = make_direct_profile(config, path, tmp_path)
     _write_valid_direct_argument(corpus, manifest_path)

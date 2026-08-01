@@ -95,3 +95,26 @@ def test_norm_124_schema_accepts_declared_introduction_review_and_rationale(tmp_
     dump(tmp_path / "manifest.json", manifest)
     report = validate_package(tmp_path, scopes=["schema"])
     assert not any(f.code == "WDV-SCH-003" for f in report.findings)
+
+
+
+def test_norm_1220_schema_requires_graph_placement_review_path(tmp_path: Path):
+    create_graph_package(tmp_path)
+    manifest = json.loads((tmp_path / "manifest.json").read_text())
+    manifest["normative_versions"]["consolidated_norm"] = "1.2.20"
+    manifest["editorial_controls"] = _editorial_controls_124()
+    dump(tmp_path / "manifest.json", manifest)
+    report = validate_package(tmp_path, scopes=["schema"])
+    assert any(f.code == "WDV-SCH-003" for f in report.findings)
+
+
+def test_norm_1220_schema_accepts_graph_placement_review_path(tmp_path: Path):
+    create_graph_package(tmp_path)
+    manifest = json.loads((tmp_path / "manifest.json").read_text())
+    manifest["normative_versions"]["consolidated_norm"] = "1.2.20"
+    controls = _editorial_controls_124()
+    controls["graph_placement_review_path"] = "reports/graph_placement_review.json"
+    manifest["editorial_controls"] = controls
+    dump(tmp_path / "manifest.json", manifest)
+    report = validate_package(tmp_path, scopes=["schema"])
+    assert not any(f.code == "WDV-SCH-003" for f in report.findings)

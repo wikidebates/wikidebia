@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.22 — 1er août 2026
+
+- alignement sur la norme 1.2.20 ;
+- ajout du contrôle bloquant `WDV-EDT-022` ;
+- contrôle d’un registre couvrant toutes les occurrences actives ;
+- tests renforcés pour empêcher la promotion au niveau 1 d’objections ciblées et d’exemples spécialisés ;
+- compatibilité conservée avec les normes 1.1.0 à 1.2.19.
+
 ## 0.4.21 — 1er août 2026
 
 - alignement sur la norme 1.2.19 ;

@@ -1710,3 +1710,45 @@ Une reprise compare obligatoirement le dernier état publié signé, l’état d
 Les mises à jour et suppressions vérifient la révision ou l’empreinte attendue et utilisent le contrôle de concurrence MediaWiki. Toute modification humaine ou provenance indéterminée est classée `manual_review`. Les déplacements et fusions sont déclarés explicitement. Les suppressions sont exécutées seulement après vérification du nouveau graphe publié. Les opérations sont idempotentes et donnent lieu à un reçu final et à un nouvel état publié signé.
 
 Le validateur contrôle localement les structures et la cohérence des plans, mais toutes les lectures et écritures MediaWiki restent dans le kit.
+
+
+# Addendum 1.2.20 — registre de placement des occurrences
+
+Le manifeste déclare :
+
+```json
+{
+  "editorial_controls": {
+    "graph_placement_review_path": "reports/graph_placement_review.json"
+  }
+}
+```
+
+Le registre de placement contient exactement une entrée par occurrence active. Chaque entrée reproduit `occurrence_id`, `node_id` et `declared_depth`, déclare `placement_status`, `declared_function`, `semantic_target`, `direct_fit=true` et une `rationale` non vide.
+
+Pour une occurrence de niveau 1 :
+
+```json
+{
+  "occurrence_id": "O00001",
+  "node_id": "A0001",
+  "declared_depth": 1,
+  "placement_status": "approved",
+  "declared_function": "main_argument",
+  "semantic_target": "debate",
+  "direct_fit": true,
+  "rationale": "Cette proposition répond directement au débat et organise une famille causale autonome.",
+  "main_argument_review": {
+    "direct_answer_to_debate": true,
+    "autonomous_without_parent": true,
+    "organizes_distinct_argument_family": true,
+    "more_general_nonduplicate_parent_available": false,
+    "principally_supports_or_attacks_specific_argument": false,
+    "principally_example_or_specialization": false
+  }
+}
+```
+
+Pour une occurrence de profondeur supérieure à 1, `semantic_target` est l’identifiant de l’occurrence parente, `declared_function` vaut `justification` ou `objection`, et `subordinate_review.parent_is_best_immediate_target` ainsi que `subordinate_review.relation_to_parent_explicit` valent `true`.
+
+Le validateur compare ce registre aux occurrences et relations actives. Une couverture incomplète, un niveau divergent, une cible erronée, une fonction incompatible ou une attestation défavorable bloque la validation éditoriale sous la norme 1.2.20.

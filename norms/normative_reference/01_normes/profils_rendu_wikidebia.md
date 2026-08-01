@@ -937,3 +937,12 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 # Addendum actif 1.2.19 — titres affichés propositionnels
 
 Chaque `titre-affiché` et `displayed-title` énonce une proposition argumentative complète, sans point final. La concision est obtenue en supprimant un cadrage redondant, jamais en réduisant l’argument à un groupe nominal. La revue individuelle bilingue atteste explicitement la complétude de la phrase et l’intelligibilité de l’argument.
+
+
+# Addendum actif 1.2.20 — hiérarchie argumentative
+
+Les listes `arguments-pour` et `arguments-contre` ne sont ni un inventaire de tous les arguments importants ni une table des matières disciplinaire. Elles contiennent uniquement les occurrences de profondeur 1 qui répondent directement au débat et structurent une famille autonome.
+
+Une objection qui ne prend sens qu’en visant une preuve déterminée est rendue sous cette preuve. Un exemple, une étude, une théorie scientifique, une doctrine ou un cas d’application est rendu sous l’argument général qu’il établit, conteste ou précise, sauf attestation explicite qu’il constitue lui-même une réponse autonome au débat.
+
+Le fichier `graph_placement_review_path` couvre chaque occurrence active. Il enregistre la cible sémantique, la fonction déclarée, la décision finale et une justification brève. Les arguments principaux possèdent en outre six attestations : réponse directe au débat, autonomie, tête de famille, absence de parent général préférable, absence de ciblage principal d’un argument déterminé et absence de simple fonction d’exemple ou de spécialisation.

@@ -1,4 +1,4 @@
-# Catalogue des codes de contrôle — 0.4.21
+# Catalogue des codes de contrôle — 0.4.22
 
 | Code | Signification |
 |---|---|
@@ -96,6 +96,7 @@
 | `WDV-EDT-019` | Revue de précision et de profondeur documentaire du débat absente |
 | `WDV-EDT-020` | Force expressive du résumé non ancrée dans le texte |
 | `WDV-EDT-021` | Titre affiché non propositionnel ou argument incompréhensible |
+| `WDV-EDT-022` | Revue du placement des arguments absente ou incohérente |
 | `WDV-INT-001` | Erreur interne du validateur |
 | `WDV-RMT-001` | Empreinte ou signature du plan distant incorrecte |
 | `WDV-RMT-002` | Compteurs du plan distant incohérents |

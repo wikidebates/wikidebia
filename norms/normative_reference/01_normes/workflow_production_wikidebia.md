@@ -156,3 +156,17 @@ La commande `./wikidebia publish` est entièrement non interactive : après vali
 ## Contrôle 1.2.19 des titres affichés
 
 Avant le verrouillage du graphe et avant toute génération de page, chaque titre affiché est lu comme une phrase indépendante. La revue vérifie la présence d’un sujet, d’un prédicat et de la conclusion argumentative utile. Un intitulé nominal est reformulé, même lorsque le parent de l’occurrence permettrait d’en deviner le thème. Les quatre attestations bilingues de complétude et d’intelligibilité sont enregistrées dans le registre individuel ; une attestation absente ou fausse bloque la validation éditoriale.
+
+
+## Contrôle 1.2.20 du placement des arguments
+
+Avant `graph_validated`, effectuer une passe indépendante qui ne juge ni le style des titres ni le nombre de nœuds, mais uniquement la fonction logique des occurrences.
+
+1. Pour chaque occurrence de niveau 1, formuler en une phrase sa réponse directe à la proposition du débat.
+2. Rechercher un parent plus général non redondant. S’il existe, déplacer l’occurrence sous ce parent.
+3. Vérifier si l’argument vise spécialement une preuve, une prémisse ou un mécanisme déjà présent. Dans ce cas, le rattacher comme objection ou justification à cette cible.
+4. Regrouper sous une thèse générale les exemples historiques, résultats scientifiques, doctrines particulières, applications sectorielles et précisions techniques qui n’ouvrent pas une famille autonome.
+5. Refaire le test après chaque déplacement, puis régénérer profondeurs, branches, lots, projections et empreinte structurelle.
+6. Produire `reports/graph_placement_review.json` et le déclarer dans `editorial_controls.graph_placement_review_path`.
+
+Le cas « les bouleversements de l’histoire des sciences » sert de test de régression générique : lorsqu’il conteste l’inférence du succès scientifique à la vérité ou au réalisme, il doit être une objection sous l’argument du succès scientifique, non un argument principal parallèle.

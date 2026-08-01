@@ -158,3 +158,13 @@ Un corpus déjà produit conserve les versions inscrites dans son manifeste. La 
 3. Le contexte peut supprimer un cadrage redondant, mais ne peut remplacer le verbe, la conclusion ou la relation logique de l’argument.
 4. Les groupes nominaux tels que « La convergence entre observateurs » ou « Les renversements de l’histoire des sciences » sont non conformes tant qu’ils n’expriment pas ce qu’ils établissent.
 5. La revue individuelle bilingue atteste pour chaque nœud que le titre affiché est une proposition complète et que son argument est intelligible.
+
+
+## Décision du 1er août 2026 — fonction des arguments principaux et placement dans le graphe
+
+1. Le niveau 1 est réservé aux réponses directes et autonomes à la proposition du débat.
+2. L’importance ou la spécialisation d’un argument ne suffit pas à en faire un argument principal.
+3. Une objection ciblée, une preuve secondaire, un exemple historique ou scientifique, une interprétation particulière, une doctrine instanciant une thèse plus générale ou une précision technique est placée sous l’argument qu’elle soutient ou attaque.
+4. Un argument principal doit pouvoir structurer une famille argumentative distincte et ne pas avoir de parent général préférable.
+5. Toute occurrence fait l’objet d’une revue de placement ; les niveaux 1 reçoivent des attestations renforcées et les niveaux supérieurs attestent l’adéquation du parent immédiat.
+6. Les corpus déjà verrouillés ne sont pas restructurés silencieusement : la migration modifie explicitement occurrences, relations, projections, lots, pages liées et empreinte structurelle.

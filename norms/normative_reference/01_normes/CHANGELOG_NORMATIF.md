@@ -1,5 +1,14 @@
 # Changelog normatif
 
+## 1.2.20 — 1er août 2026
+
+- le niveau 1 est réservé aux réponses directes, autonomes et structurantes à la proposition du débat ;
+- les objections ciblées, preuves secondaires, exemples, interprétations particulières, doctrines instanciées et précisions techniques sont subordonnés à leur meilleure cible immédiate ;
+- ajout d’un registre de placement couvrant toutes les occurrences actives ;
+- ajout des exigences `GR-045`, `GR-046`, `GR-047` et `VAL-029` ;
+- ajout du contrôle `WDV-EDT-022` dans le validateur 0.4.22 ;
+- alignement recommandé : validateur 0.4.22 et kit 2.2.6.
+
 ## 1.2.19 — 1er août 2026
 
 - le titre affiché devient obligatoirement une proposition argumentative complète et intelligible ;
