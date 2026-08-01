@@ -5,7 +5,7 @@
 - séparateur canonique des auteurs : virgule suivie d’une espace ;
 - refus du point-virgule, des virgules mal espacées et de la virgule pleine chasse dans les sorties générées ;
 - compatibilité historique conservée pour les paquets déclarés sous 1.2.17 ;
-- alignement avec le validateur 0.4.19 et le kit 2.2.2.
+- alignement avec le validateur 0.4.19 et le kit 2.2.3.
 
 
 ## 1.2.17 — 1er août 2026

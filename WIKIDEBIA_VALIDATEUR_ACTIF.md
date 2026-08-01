@@ -2,7 +2,7 @@
 
 **Norme active :** 1.2.18  
 **Validateur :** 0.4.19  
-**Kit :** 2.2.2
+**Kit :** 2.2.3
 
 # Source incorporée : `CHANGELOG.md`
 
@@ -199,13 +199,13 @@ La version 0.4.19 bloque les pages Débat/Debate sans article Wikipédia, les pa
 
 # Source incorporée : `VERSIONS.json`
 
-**SHA-256 :** `e82c5205e7a70cb9a8a4138d37ffff0e8c75c37bfcedc90b7364c56e6cf71643`
+**SHA-256 :** `7ef714706ad649efc400084a5407c2ea4c3193c1cf86c965886b0b63381c19fe`
 
 ```json
 {
   "norm": "1.2.18",
   "validator": "0.4.19",
-  "kit": "2.2.2"
+  "kit": "2.2.3"
 }
 ```
 
@@ -788,7 +788,7 @@ Corriger les pages Débat/Debate pour ajouter un article Wikipédia vérifié, r
 
 # Source incorporée : `docs/MIGRATION_1.2.18.md`
 
-**SHA-256 :** `3c7bac8274180fe84dfeb16f120ee06a83acf2962a9d81c9c9baa33d92276f02`
+**SHA-256 :** `f9cfcfe1bcf9b960111fcc9a592a57ca3afce0fa9447207e15a6ef190384ba92`
 
 ```
 # Migration vers la norme 1.2.18
@@ -797,7 +797,7 @@ Corriger les pages Débat/Debate pour ajouter un article Wikipédia vérifié, r
 2. Vérifier qu’aucune valeur `auteurs` ou `authors` ne contient une virgule sans exactement une espace après elle, une espace avant la virgule ou une virgule pleine chasse.
 3. Conserver la conversion JSON déjà exigée : un élément devient une valeur scalaire, une liste vide omet le paramètre.
 4. Conserver les contrôles 1.2.17 : article Wikipédia non vide, absence de débats connexes et publication sans invite interactive.
-5. Installer le validateur 0.4.19 et le kit 2.2.2, recalculer les empreintes et relancer toutes les portées.
+5. Installer le validateur 0.4.19 et le kit 2.2.3, recalculer les empreintes et relancer toutes les portées.
 
 Les paquets qui restent déclarés sous 1.2.17 conservent leur provenance et ne reçoivent pas rétroactivement le nouveau contrôle de ponctuation.
 ```
@@ -854,12 +854,12 @@ Remplacer le validateur 0.4.6, déclarer la norme 1.2.7, régénérer les emprei
 
 # Source incorporée : `docs/NORMATIVE_AUDIT.md`
 
-**SHA-256 :** `60127f7cda342b6a79bb8ca6c1fc3fdd7bff7e8e835fce7d86ddc24517d47452`
+**SHA-256 :** `bf34c29ceba2fef3acbec437e9c90d9f4fa2fabae523b7c7d8abbe74b1ea4f3f`
 
 ```
 # Audit normatif du validateur 0.4.19
 
-Le validateur 0.4.19 embarque une copie synchronisée de la norme 1.2.18. Les contrôles 1.2.17 correspondent à `DFR-046`, `MW-026` et `REF-031`. La norme 1.2.18 ajoute `REF-032`, implémentée par `WDV-DOC-007`. La suppression de l’invite de publication relève du kit 2.2.2, pas du validateur.
+Le validateur 0.4.19 embarque une copie synchronisée de la norme 1.2.18. Les contrôles 1.2.17 correspondent à `DFR-046`, `MW-026` et `REF-031`. La norme 1.2.18 ajoute `REF-032`, implémentée par `WDV-DOC-007`. La suppression de l’invite de publication relève du kit 2.2.3, pas du validateur.
 ```
 
 # Source incorporée : `docs/NORMATIVE_CORRECTION_2026-07-23.md`
@@ -3477,12 +3477,12 @@ Déclarer les versions 1.2.3 et 0.4.3, régénérer les manifestes, puis exécut
 
 # Source incorporée : `examples/remote_update_plan.example.json`
 
-**SHA-256 :** `e536fcc287514ef28a16ba4bd7f69730500a877d4c8176f358b555d71392d2e9`
+**SHA-256 :** `dfeff4890464a0b4f8d0bb10b364347975c683d8361f823b12a2b91b3b47fdf3`
 
 ```json
 {
   "plan_version": "wikidebia-remote-update-plan-1.0",
-  "kit_version": "2.2.2",
+  "kit_version": "2.2.3",
   "required_validator_version": "0.4.19",
   "debate_id": "exemple_debat",
   "corpus_version": "2026-07-31.1",
@@ -5812,7 +5812,7 @@ Chaque étiquette de provenance utilisée dans le catalogue doit être déclaré
 
 # Source incorporée : `normative_reference/01_normes/CHANGELOG_NORMATIF.md`
 
-**SHA-256 :** `e6440cbf5e8ae6645456395a3b588a4055e198649845704d58bfdc7277aa1df5`
+**SHA-256 :** `721fe4fdeb8bf90107f6768922af1337468e8f6d4e888f4015978e6f80ef51d3`
 
 ```
 # Changelog normatif
@@ -5822,7 +5822,7 @@ Chaque étiquette de provenance utilisée dans le catalogue doit être déclaré
 - séparateur canonique des auteurs : virgule suivie d’une espace ;
 - refus du point-virgule, des virgules mal espacées et de la virgule pleine chasse dans les sorties générées ;
 - compatibilité historique conservée pour les paquets déclarés sous 1.2.17 ;
-- alignement avec le validateur 0.4.19 et le kit 2.2.2.
+- alignement avec le validateur 0.4.19 et le kit 2.2.3.
 
 
 ## 1.2.17 — 1er août 2026
@@ -6337,7 +6337,7 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 
 # Source incorporée : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md`
 
-**SHA-256 :** `a7b95e5326a17b269b3d6aee1a7a65b9cda02bce8d2675b3b8ae7cb8fe3b5f72`
+**SHA-256 :** `929f9570e239b5979942fe23f33a7bbec9343ae82a8bde38163e71c5181dcd70`
 
 ```
 # Norme consolidée Wikidéb’IA 1.2.18
@@ -7020,7 +7020,7 @@ Dans chaque langue, la page Débat ou Debate est toujours traitée avant les pag
 
 ### 12.2 Mise à jour atomique en une commande
 
-Les nouvelles archives de normes, de validateur et de kit sont déposées dans `updates/`, soit séparément, soit dans une archive complète. La commande `wikidebia update` vérifie les inventaires et SHA-256, contrôle la cohérence des versions, extrait dans une zone temporaire, compare la copie normative, exécute l’auto-audit et toutes les suites de tests, puis remplace atomiquement `norms/`, `validator/` et `kit/`.
+Les nouvelles archives de normes, de validateur et de kit sont déposées dans `updates/`, de préférence dans un unique ZIP complet, ou séparément pour compatibilité. La commande `wikidebia upgrade` vérifie les inventaires et SHA-256, contrôle la cohérence des versions, extrait dans une zone temporaire, compare la copie normative, exécute l’auto-audit et toutes les suites de tests, puis remplace atomiquement `norms/`, `validator/` et `kit/`. Lors de la transition depuis un gestionnaire antérieur où cette opération s’appelait encore `update`, le même bundle complet reste accepté par cette ancienne commande.
 
 Avant remplacement, les composants actifs et les fichiers entrants sont déplacés dans un sous-dossier horodaté de `archives/updates/`. Après succès, `updates/` est vide. Une mise à jour incomplète, divergente ou dont les tests échouent ne remplace aucun composant actif.
 
@@ -46158,7 +46158,7 @@ def test_remote_compare_is_read_only_and_fixture_mode(tmp_path: Path):
 
 # Source incorporée : `tests/test_remote_update_plan.py`
 
-**SHA-256 :** `c0414b47b94e99239010e7d53c141f96235881c9fdb9125c3d8c5664ee490b4e`
+**SHA-256 :** `3fa36f58dc601fcad491c05988ec00fcfcf25162dd4dec489cae5bc9d8d757de`
 
 ```python
 from __future__ import annotations
@@ -46169,7 +46169,7 @@ from wikidebia_validator.remote_plan import sha_object, validate_remote_plan
 
 def valid_plan():
     plan = {
-        "plan_version":"wikidebia-remote-update-plan-1.0","kit_version":"2.2.2","required_validator_version":"0.4.19",
+        "plan_version":"wikidebia-remote-update-plan-1.0","kit_version":"2.2.3","required_validator_version":"0.4.19",
         "debate_id":"demo","corpus_version":"v1","languages":["fr"],"scope_mode":"all",
         "state_source":{"kind":"published_state_receipt"},"new_manifest_sha256":"0"*64,"validator_report_sha256":"1"*64,
         "config_sha256":"2"*64,"operations":{name:[] for name in ("create","update","move","redirect","delete","skip","manual_review","blocked")},
@@ -46410,7 +46410,7 @@ def test_active_rule_sets_include_current_revision():
 
 # Source incorporée : `tests/test_versions_file.py`
 
-**SHA-256 :** `06491288ac57907a6c3081df0fc63f137ec962ddef1759972396b48d38911ce5`
+**SHA-256 :** `e300e96667e9152a53aac38a8fc24bc08a68163086562094014b4cebf1f57b0a`
 
 ```python
 from __future__ import annotations
@@ -46425,7 +46425,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_versions_file_has_only_the_three_functional_versions():
     versions = json.loads((ROOT / "VERSIONS.json").read_text(encoding="utf-8"))
-    assert versions == {"norm": "1.2.18", "validator": "0.4.19", "kit": "2.2.2"}
+    assert versions == {"norm": "1.2.18", "validator": "0.4.19", "kit": "2.2.3"}
 
 
 def test_versions_file_matches_validator_metadata():

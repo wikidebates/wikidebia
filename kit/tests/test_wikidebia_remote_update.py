@@ -12,6 +12,8 @@ assert spec and spec.loader
 sys.modules[spec.name] = module
 spec.loader.exec_module(module)
 
+TEST_VALIDATOR_PYTHON = "/usr/bin/python3" if Path("/usr/bin/python3").is_file() else sys.executable
+
 MARKER = "|avertissements-argument=Argument généré par IA\n"
 
 
@@ -124,9 +126,9 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
     validator = root / "validator.py"
     validator.write_text("import json; print(json.dumps({'validator_version':'0.4.19','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     config = {
-        "kit_version":"2.2.2","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
+        "kit_version":"2.2.3","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
         "family":"wikidebates","pywikibot_dir":"private/pywikibot","sites":{lang:{"code":lang,"expected_user":"ChatGPT"} for lang in languages},
-        "validator":{"command":[sys.executable,str(validator),"validate"],"required_version":"0.4.19","scopes":[]},
+        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.19","scopes":[]},
         "published_state_dir":".state/published","receipts_dir":".state/receipts","logs_dir":"logs",
     }
     config_path = root / "config.json"

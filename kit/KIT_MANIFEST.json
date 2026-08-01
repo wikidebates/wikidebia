@@ -1,6 +1,6 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "validator_version": "0.4.19",
   "scope": [
     "publish_archive",
@@ -70,7 +70,8 @@
     "mandatory_wikipedia_article_preflight",
     "no_related_debates_preflight",
     "json_author_array_preflight",
-    "noninteractive_publish_with_signed_plan"
+    "noninteractive_publish_with_signed_plan",
+    "legacy_single_bundle_bootstrap_compatibility"
   ],
   "publication_profiles": [
     "norm_1_2_direct_interlanguage",
@@ -112,7 +113,8 @@
     "update_dry_run",
     "component_upgrade_command",
     "published_state_revision_ledger",
-    "explicit_merge_and_rename_migrations"
+    "explicit_merge_and_rename_migrations",
+    "single_complete_bundle_component_upgrade"
   ],
   "normative_revision": "1.2.18",
   "stable_archive_name": "wikidebia-kit.zip",

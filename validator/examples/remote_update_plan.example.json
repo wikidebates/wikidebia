@@ -1,6 +1,6 @@
 {
   "plan_version": "wikidebia-remote-update-plan-1.0",
-  "kit_version": "2.2.2",
+  "kit_version": "2.2.3",
   "required_validator_version": "0.4.19",
   "debate_id": "exemple_debat",
   "corpus_version": "2026-07-31.1",

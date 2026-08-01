@@ -34,7 +34,7 @@
     {
       "path": "VERSIONS.json",
       "size_bytes": 66,
-      "sha256": "e82c5205e7a70cb9a8a4138d37ffff0e8c75c37bfcedc90b7364c56e6cf71643"
+      "sha256": "7ef714706ad649efc400084a5407c2ea4c3193c1cf86c965886b0b63381c19fe"
     },
     {
       "path": "docs/ARCHITECTURE.md",
@@ -179,7 +179,7 @@
     {
       "path": "docs/MIGRATION_1.2.18.md",
       "size_bytes": 791,
-      "sha256": "3c7bac8274180fe84dfeb16f120ee06a83acf2962a9d81c9c9baa33d92276f02"
+      "sha256": "f9cfcfe1bcf9b960111fcc9a592a57ca3afce0fa9447207e15a6ef190384ba92"
     },
     {
       "path": "docs/MIGRATION_1.2.5.md",
@@ -204,7 +204,7 @@
     {
       "path": "docs/NORMATIVE_AUDIT.md",
       "size_bytes": 338,
-      "sha256": "60127f7cda342b6a79bb8ca6c1fc3fdd7bff7e8e835fce7d86ddc24517d47452"
+      "sha256": "bf34c29ceba2fef3acbec437e9c90d9f4fa2fabae523b7c7d8abbe74b1ea4f3f"
     },
     {
       "path": "docs/NORMATIVE_CORRECTION_2026-07-23.md",
@@ -414,7 +414,7 @@
     {
       "path": "examples/remote_update_plan.example.json",
       "size_bytes": 1288,
-      "sha256": "e536fcc287514ef28a16ba4bd7f69730500a877d4c8176f358b555d71392d2e9"
+      "sha256": "dfeff4890464a0b4f8d0bb10b364347975c683d8361f823b12a2b91b3b47fdf3"
     },
     {
       "path": "examples/summary_style_review.example.json",
@@ -584,7 +584,7 @@
     {
       "path": "normative_reference/01_normes/CHANGELOG_NORMATIF.md",
       "size_bytes": 11523,
-      "sha256": "e6440cbf5e8ae6645456395a3b588a4055e198649845704d58bfdc7277aa1df5"
+      "sha256": "721fe4fdeb8bf90107f6768922af1337468e8f6d4e888f4015978e6f80ef51d3"
     },
     {
       "path": "normative_reference/01_normes/MATRICE_TRACEABILITE_DESIDERATA.md",
@@ -593,8 +593,8 @@
     },
     {
       "path": "normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
-      "size_bytes": 72729,
-      "sha256": "a7b95e5326a17b269b3d6aee1a7a65b9cda02bce8d2675b3b8ae7cb8fe3b5f72"
+      "size_bytes": 72934,
+      "sha256": "929f9570e239b5979942fe23f33a7bbec9343ae82a8bde38163e71c5181dcd70"
     },
     {
       "path": "normative_reference/01_normes/cahier_des_charges_consolide_wikidebia.md",
@@ -1169,7 +1169,7 @@
     {
       "path": "tests/test_remote_update_plan.py",
       "size_bytes": 2006,
-      "sha256": "c0414b47b94e99239010e7d53c141f96235881c9fdb9125c3d8c5664ee490b4e"
+      "sha256": "3fa36f58dc601fcad491c05988ec00fcfcf25162dd4dec489cae5bc9d8d757de"
     },
     {
       "path": "tests/test_schema_cli.py",
@@ -1189,7 +1189,7 @@
     {
       "path": "tests/test_versions_file.py",
       "size_bytes": 1556,
-      "sha256": "06491288ac57907a6c3081df0fc63f137ec962ddef1759972396b48d38911ce5"
+      "sha256": "e300e96667e9152a53aac38a8fc24bc08a68163086562094014b4cebf1f57b0a"
     },
     {
       "path": "tests/test_wikicode.py",

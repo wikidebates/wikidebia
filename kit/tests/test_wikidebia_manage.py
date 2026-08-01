@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import importlib.util
+import hashlib
 import json
 import sys
+import zipfile
 from pathlib import Path
 
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "wikidebia_manage.py"
@@ -11,6 +13,98 @@ module = importlib.util.module_from_spec(spec)
 assert spec and spec.loader
 sys.modules[spec.name] = module
 spec.loader.exec_module(module)
+
+
+def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = False) -> None:
+    versions = {"norm": "1.2.18", "validator": "0.4.19", "kit": "2.2.3"}
+    payloads = {
+        "VERSIONS.json": (json.dumps(versions, ensure_ascii=False, indent=2) + "\n").encode("utf-8"),
+        "README.md": f"# {artifact}\n".encode("utf-8"),
+    }
+    files = [
+        {"path": name, "size_bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
+        for name, raw in sorted(payloads.items())
+    ]
+    version = {"wikidebia-normes": "1.2.18", "wikidebia-validator": "0.4.19", "wikidebia-kit": "2.2.3"}[artifact]
+    manifest = {
+        "artifact": artifact,
+        "version": version,
+        "normative_revision": "1.2.18",
+        "declared_file_count": len(files),
+        "declared_test_count": 0,
+        "files": files,
+    }
+    manifest_raw = (json.dumps(manifest, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+    with zipfile.ZipFile(path, "w") as bundle:
+        for name, raw in payloads.items():
+            bundle.writestr(name, raw)
+        bundle.writestr("PACKAGE_MANIFEST_SHA256.json", manifest_raw)
+        if include_receipt:
+            receipt = {
+                "receipt_version": "wikidebia-package-receipt-1.0",
+                "artifact": artifact,
+                "version": version,
+                "normative_revision": "1.2.18",
+                "package_manifest_sha256": hashlib.sha256(manifest_raw).hexdigest(),
+                "declared_file_count": len(files),
+                "declared_test_count": 0,
+            }
+            canonical = json.dumps(receipt, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+            receipt["receipt_sha256"] = hashlib.sha256(canonical).hexdigest()
+            bundle.writestr("PACKAGE_RECEIPT.json", json.dumps(receipt, ensure_ascii=False, indent=2) + "\n")
+
+
+def test_component_inspector_accepts_and_verifies_optional_receipt(tmp_path: Path):
+    archive = tmp_path / "wikidebia-kit.zip"
+    _write_component_zip(archive, "wikidebia-kit", include_receipt=True)
+    metadata = module.inspect_component_zip(archive)
+    assert metadata["artifact"] == "wikidebia-kit"
+    assert metadata["versions"]["kit"] == "2.2.3"
+
+
+def test_single_complete_bundle_is_collected_from_updates(tmp_path: Path):
+    updates = tmp_path / "updates"
+    updates.mkdir()
+    component_dir = tmp_path / "components"
+    component_dir.mkdir()
+    names = {
+        "wikidebia-normes": "wikidebia-normes.zip",
+        "wikidebia-validator": "wikidebia-validator.zip",
+        "wikidebia-kit": "wikidebia-kit.zip",
+    }
+    for artifact, name in names.items():
+        _write_component_zip(component_dir / name, artifact)
+    outer = updates / "WIKIDEBIA_COMPLET.zip"
+    with zipfile.ZipFile(outer, "w") as bundle:
+        for name in names.values():
+            bundle.write(component_dir / name, name)
+        bundle.writestr("README.txt", "bundle complet")
+    components, sources, workspace = module.collect_update_payload(tmp_path)
+    assert set(components) == set(names)
+    assert sources == [outer]
+    assert workspace.is_dir()
+
+
+def test_optional_receipt_with_bad_manifest_hash_is_rejected(tmp_path: Path):
+    archive = tmp_path / "wikidebia-kit.zip"
+    _write_component_zip(archive, "wikidebia-kit", include_receipt=True)
+    rewritten = tmp_path / "bad.zip"
+    with zipfile.ZipFile(archive) as source, zipfile.ZipFile(rewritten, "w") as target:
+        for info in source.infolist():
+            raw = source.read(info.filename)
+            if info.filename == "PACKAGE_RECEIPT.json":
+                receipt = json.loads(raw.decode("utf-8"))
+                receipt["package_manifest_sha256"] = "0" * 64
+                body = dict(receipt); body.pop("receipt_sha256", None)
+                receipt["receipt_sha256"] = hashlib.sha256(json.dumps(body, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
+                raw = (json.dumps(receipt, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+            target.writestr(info, raw)
+    try:
+        module.inspect_component_zip(rewritten)
+    except module.ManagementError as exc:
+        assert "Reçu incohérent" in str(exc)
+    else:
+        raise AssertionError("reçu incohérent accepté")
 
 
 def test_scope_values_cover_requested_publication_modes():

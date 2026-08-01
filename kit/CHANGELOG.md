@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.3 — 1er août 2026
+
+- rétablissement du bootstrap depuis un seul ZIP complet avec les gestionnaires historiques ;
+- retrait de `PACKAGE_RECEIPT.json` des trois ZIP de composants livrés, afin de respecter leur inventaire strict historique ;
+- acceptation et vérification d’un reçu facultatif par le gestionnaire courant ;
+- test d’intégration du bundle complet avec le gestionnaire 2.1.17 ;
+- documentation explicite de la transition `update` vers `upgrade`.
+
 ## 2.2.2 — 1er août 2026
 
 - suppression de la question interactive de `./wikidebia publish` ;

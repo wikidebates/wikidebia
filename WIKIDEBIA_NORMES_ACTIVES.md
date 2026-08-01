@@ -2,18 +2,18 @@
 
 **Norme active :** 1.2.18  
 **Validateur :** 0.4.19  
-**Kit :** 2.2.2
+**Kit :** 2.2.3
 
 # Source incorporée : `COMPATIBILITY.json`
 
-**SHA-256 :** `8b1b7d8583d642f55e6bf4acd8c4bc2e58427fdd780e8750cdfa361a9f1d1478`
+**SHA-256 :** `d5612ad8dcf2b0f3c12bfe325dbd57ce4ca4345661735fa13e722d533aa658ca`
 
 ```json
 {
   "package": "wikidebia-normes",
   "normative_revision": "1.2.18",
   "recommended_validator_version": "0.4.19",
-  "recommended_kit_version": "2.2.2",
+  "recommended_kit_version": "2.2.3",
   "migration_required_for_existing_packages": true,
   "compatible_prior_normative_revisions": [
     "1.1.0",
@@ -53,7 +53,7 @@
 
 # Source incorporée : `README.md`
 
-**SHA-256 :** `12b84fff9f24b97423b7393eea949aefb6cbd1e5021ca4a3cbdbc77ae107e41f`
+**SHA-256 :** `6a22600227923bac0039f7a75a10a0c2b3a71ada4ba618f1c84cd1ee31a284e7`
 
 ```
 # Wikidéb’IA — Normes 1.2.18
@@ -62,24 +62,24 @@ Source normative active générique pour la production et la publication frança
 
 - norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md` ;
 - validateur recommandé : 0.4.19 ;
-- kit recommandé : 2.2.2.
+- kit recommandé : 2.2.3.
 ```
 
 # Source incorporée : `VERSIONS.json`
 
-**SHA-256 :** `e82c5205e7a70cb9a8a4138d37ffff0e8c75c37bfcedc90b7364c56e6cf71643`
+**SHA-256 :** `7ef714706ad649efc400084a5407c2ea4c3193c1cf86c965886b0b63381c19fe`
 
 ```json
 {
   "norm": "1.2.18",
   "validator": "0.4.19",
-  "kit": "2.2.2"
+  "kit": "2.2.3"
 }
 ```
 
 # Source incorporée : `docs/ARCHITECTURE_VALIDATEUR.md`
 
-**SHA-256 :** `e1cd201ef430a3787ff04f62ea23cf5a379123d8c7c1b5ccab0e70fe92103cb1`
+**SHA-256 :** `6bf564f5e31ff258a2320a7b4d310dc306cbb5eb344d4584abedd8bf067a848e`
 
 ```
 # Architecture normative et validation
@@ -92,7 +92,7 @@ La publication française seule reste sûre parce que le kit compare le lien int
 
 La norme 1.2.18 ajoute un contrôle lexical déterministe sur le wikicode brut : toute jonction de modèles écrite sous la forme `}}` + saut de ligne + `{{` est bloquée et doit être compactée en `}}{{`.
 
-Le validateur 0.4.19 produit des chemins de paquet portables ; le kit 2.2.2 contrôle l’ordre de publication et la structure de l’installation.
+Le validateur 0.4.19 produit des chemins de paquet portables ; le kit 2.2.3 contrôle l’ordre de publication et la structure de l’installation.
 
 
 ## Reprise distante d’un corpus publié — révision 1.2.18
@@ -234,7 +234,7 @@ La révision 1.2.18 ajoute deux barrières de wikicode : article Wikipédia obli
 
 # Source incorporée : `docs/AUDIT_COMPLETUDE_1.2.18.md`
 
-**SHA-256 :** `f850e41435479e110e9c5033d7624dde14d82f0832a84a3013fe508aa349862a`
+**SHA-256 :** `c49d6355a2de19666323443d3c94fa19432ff9559681e3bd27dcdb95d00e3305`
 
 ```
 # Audit de complétude 1.2.18
@@ -246,7 +246,7 @@ La révision 1.2.18 ajoute deux barrières de wikicode : article Wikipédia obli
 - compatibilité 1.1.0–1.2.17 conservée ;
 - reprise distante, Wikipédia obligatoire, absence de débats connexes, conversion JSON et publication non interactive conservées ;
 - validateur recommandé : 0.4.19 ;
-- kit recommandé : 2.2.2.
+- kit recommandé : 2.2.3.
 ```
 
 # Source incorporée : `docs/AUDIT_COMPLETUDE_1.2.8.md`
@@ -431,6 +431,16 @@ Cette révision corrige quatre défauts de génération et de publication : arti
 # Maintenance de la norme 1.2.18
 
 Cette révision corrige uniquement le séparateur de plusieurs auteurs dans le wikicode généré. La forme canonique est la virgule suivie d’une espace. Toutes les protections ajoutées en 1.2.16 et 1.2.17 sont conservées sans affaiblissement.
+```
+
+# Source incorporée : `docs/MAINTENANCE_1.2.18_0.4.19_2.2.3.md`
+
+**SHA-256 :** `4d49935aacf627ccfb75f280e1bf0457c8a7a3f885cc896e9508a3291f491020`
+
+```
+# Maintenance 1.2.18 / 0.4.19 / 2.2.3
+
+La norme éditoriale reste 1.2.18 et le validateur reste 0.4.19. Le kit 2.2.3 corrige le conditionnement des composants : un bundle complet unique redevient installable par le gestionnaire historique et par `./wikidebia upgrade`. Les ZIP internes n’embarquent plus `PACKAGE_RECEIPT.json`; les reçus sont conservés au niveau de la livraison complète. Aucun corpus n’a à migrer pour ce correctif technique.
 ```
 
 # Source incorporée : `docs/MIGRATION_1.1.8.md`
@@ -703,7 +713,7 @@ La commande historique de mise à niveau des composants devient `./wikidebia upg
 
 # Source incorporée : `docs/MIGRATION_1.2.18.md`
 
-**SHA-256 :** `3c7bac8274180fe84dfeb16f120ee06a83acf2962a9d81c9c9baa33d92276f02`
+**SHA-256 :** `f9cfcfe1bcf9b960111fcc9a592a57ca3afce0fa9447207e15a6ef190384ba92`
 
 ```
 # Migration vers la norme 1.2.18
@@ -712,7 +722,7 @@ La commande historique de mise à niveau des composants devient `./wikidebia upg
 2. Vérifier qu’aucune valeur `auteurs` ou `authors` ne contient une virgule sans exactement une espace après elle, une espace avant la virgule ou une virgule pleine chasse.
 3. Conserver la conversion JSON déjà exigée : un élément devient une valeur scalaire, une liste vide omet le paramètre.
 4. Conserver les contrôles 1.2.17 : article Wikipédia non vide, absence de débats connexes et publication sans invite interactive.
-5. Installer le validateur 0.4.19 et le kit 2.2.2, recalculer les empreintes et relancer toutes les portées.
+5. Installer le validateur 0.4.19 et le kit 2.2.3, recalculer les empreintes et relancer toutes les portées.
 
 Les paquets qui restent déclarés sous 1.2.17 conservent leur provenance et ne reçoivent pas rétroactivement le nouveau contrôle de ponctuation.
 ```
@@ -832,14 +842,14 @@ Le validateur 0.4.18 ajoute `WDV-MWK-019` et `WDV-DOC-006`. Le kit 2.2.1 appliqu
 
 # Source incorporée : `docs/NORMATIVE_AUDIT_1.2.18.md`
 
-**SHA-256 :** `bd06a9aa3c6085186c50f274f06143ba84a4c2226b3eb73c2cf1756b3d07f1d6`
+**SHA-256 :** `e8421e0636801c58b45c23e4dbd9085128c64b1e77060790adb6223bad40b9be`
 
 ```
 # Audit normatif 1.2.18
 
 La correction du séparateur des auteurs est présente dans la norme consolidée, les structures MediaWiki, le profil de rendu, le cahier des charges, le workflow, le catalogue d’exigences et la matrice de traçabilité.
 
-L’exigence `REF-032` impose la forme `Auteur 1, Auteur 2`. Le validateur 0.4.19 ajoute `WDV-DOC-007`; le kit 2.2.2 applique le même précontrôle avant toute écriture. Les quatre barrières de 1.2.17 et toutes les capacités de reprise de 1.2.16 restent actives.
+L’exigence `REF-032` impose la forme `Auteur 1, Auteur 2`. Le validateur 0.4.19 ajoute `WDV-DOC-007`; le kit 2.2.3 applique le même précontrôle avant toute écriture. Les quatre barrières de 1.2.17 et toutes les capacités de reprise de 1.2.16 restent actives.
 ```
 
 # Source incorporée : `docs/NORMATIVE_AUDIT_1.2.8.md`
@@ -1772,7 +1782,7 @@ Chaque étiquette de provenance utilisée dans le catalogue doit être déclaré
 
 # Source incorporée : `normative_reference/01_normes/CHANGELOG_NORMATIF.md`
 
-**SHA-256 :** `e6440cbf5e8ae6645456395a3b588a4055e198649845704d58bfdc7277aa1df5`
+**SHA-256 :** `721fe4fdeb8bf90107f6768922af1337468e8f6d4e888f4015978e6f80ef51d3`
 
 ```
 # Changelog normatif
@@ -1782,7 +1792,7 @@ Chaque étiquette de provenance utilisée dans le catalogue doit être déclaré
 - séparateur canonique des auteurs : virgule suivie d’une espace ;
 - refus du point-virgule, des virgules mal espacées et de la virgule pleine chasse dans les sorties générées ;
 - compatibilité historique conservée pour les paquets déclarés sous 1.2.17 ;
-- alignement avec le validateur 0.4.19 et le kit 2.2.2.
+- alignement avec le validateur 0.4.19 et le kit 2.2.3.
 
 
 ## 1.2.17 — 1er août 2026
@@ -2297,7 +2307,7 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 
 # Source incorporée : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md`
 
-**SHA-256 :** `a7b95e5326a17b269b3d6aee1a7a65b9cda02bce8d2675b3b8ae7cb8fe3b5f72`
+**SHA-256 :** `929f9570e239b5979942fe23f33a7bbec9343ae82a8bde38163e71c5181dcd70`
 
 ```
 # Norme consolidée Wikidéb’IA 1.2.18
@@ -2980,7 +2990,7 @@ Dans chaque langue, la page Débat ou Debate est toujours traitée avant les pag
 
 ### 12.2 Mise à jour atomique en une commande
 
-Les nouvelles archives de normes, de validateur et de kit sont déposées dans `updates/`, soit séparément, soit dans une archive complète. La commande `wikidebia update` vérifie les inventaires et SHA-256, contrôle la cohérence des versions, extrait dans une zone temporaire, compare la copie normative, exécute l’auto-audit et toutes les suites de tests, puis remplace atomiquement `norms/`, `validator/` et `kit/`.
+Les nouvelles archives de normes, de validateur et de kit sont déposées dans `updates/`, de préférence dans un unique ZIP complet, ou séparément pour compatibilité. La commande `wikidebia upgrade` vérifie les inventaires et SHA-256, contrôle la cohérence des versions, extrait dans une zone temporaire, compare la copie normative, exécute l’auto-audit et toutes les suites de tests, puis remplace atomiquement `norms/`, `validator/` et `kit/`. Lors de la transition depuis un gestionnaire antérieur où cette opération s’appelait encore `update`, le même bundle complet reste accepté par cette ancienne commande.
 
 Avant remplacement, les composants actifs et les fichiers entrants sont déplacés dans un sous-dossier horodaté de `archives/updates/`. Après succès, `updates/` est vide. Une mise à jour incomplète, divergente ou dont les tests échouent ne remplace aucun composant actif.
 

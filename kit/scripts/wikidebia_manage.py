@@ -17,7 +17,7 @@ from typing import Any, Iterable
 
 NORM_VERSION = "1.2.18"
 VALIDATOR_VERSION = "0.4.19"
-KIT_VERSION = "2.2.2"
+KIT_VERSION = "2.2.3"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",
@@ -132,13 +132,33 @@ def inspect_component_zip(archive: Path) -> dict[str, Any]:
             if artifact not in COMPONENTS:
                 raise ManagementError(f"Type de composant inconnu dans {archive.name} : {artifact}")
             declared = {str(row["path"]): row for row in manifest.get("files", [])}
-            expected = set(declared) | {"PACKAGE_MANIFEST_SHA256.json"}
+            metadata_names = {"PACKAGE_MANIFEST_SHA256.json"}
+            if "PACKAGE_RECEIPT.json" in names:
+                metadata_names.add("PACKAGE_RECEIPT.json")
+            expected = set(declared) | metadata_names
             if names != expected:
                 missing = sorted(expected - names)
                 extra = sorted(names - expected)
                 raise ManagementError(
                     f"Inventaire divergent dans {archive.name}; absents={missing[:3]}, supplémentaires={extra[:3]}"
                 )
+            if "PACKAGE_RECEIPT.json" in names:
+                receipt = json.loads(bundle.read("PACKAGE_RECEIPT.json").decode("utf-8"))
+                manifest_payload = bundle.read("PACKAGE_MANIFEST_SHA256.json")
+                if str(receipt.get("artifact") or "") != artifact:
+                    raise ManagementError(f"Reçu associé au mauvais composant : {archive.name}")
+                if receipt.get("package_manifest_sha256") != hashlib.sha256(manifest_payload).hexdigest():
+                    raise ManagementError(f"Reçu incohérent avec le manifeste : {archive.name}")
+                if str(receipt.get("version") or "") != str(manifest.get("version") or ""):
+                    raise ManagementError(f"Version du reçu incohérente : {archive.name}")
+                if str(receipt.get("normative_revision") or "") != str(manifest.get("normative_revision") or ""):
+                    raise ManagementError(f"Révision normative du reçu incohérente : {archive.name}")
+                receipt_hash = str(receipt.get("receipt_sha256") or "")
+                receipt_body = dict(receipt)
+                receipt_body.pop("receipt_sha256", None)
+                canonical = json.dumps(receipt_body, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+                if receipt_hash and receipt_hash != hashlib.sha256(canonical).hexdigest():
+                    raise ManagementError(f"Empreinte du reçu incohérente : {archive.name}")
             for relative, row in declared.items():
                 payload = bundle.read(relative)
                 if len(payload) != int(row.get("size_bytes", -1)):

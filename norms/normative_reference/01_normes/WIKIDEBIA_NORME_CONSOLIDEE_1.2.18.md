@@ -678,7 +678,7 @@ Dans chaque langue, la page Débat ou Debate est toujours traitée avant les pag
 
 ### 12.2 Mise à jour atomique en une commande
 
-Les nouvelles archives de normes, de validateur et de kit sont déposées dans `updates/`, soit séparément, soit dans une archive complète. La commande `wikidebia update` vérifie les inventaires et SHA-256, contrôle la cohérence des versions, extrait dans une zone temporaire, compare la copie normative, exécute l’auto-audit et toutes les suites de tests, puis remplace atomiquement `norms/`, `validator/` et `kit/`.
+Les nouvelles archives de normes, de validateur et de kit sont déposées dans `updates/`, de préférence dans un unique ZIP complet, ou séparément pour compatibilité. La commande `wikidebia upgrade` vérifie les inventaires et SHA-256, contrôle la cohérence des versions, extrait dans une zone temporaire, compare la copie normative, exécute l’auto-audit et toutes les suites de tests, puis remplace atomiquement `norms/`, `validator/` et `kit/`. Lors de la transition depuis un gestionnaire antérieur où cette opération s’appelait encore `update`, le même bundle complet reste accepté par cette ancienne commande.
 
 Avant remplacement, les composants actifs et les fichiers entrants sont déplacés dans un sous-dossier horodaté de `archives/updates/`. Après succès, `updates/` est vide. Une mise à jour incomplète, divergente ou dont les tests échouent ne remplace aucun composant actif.
 

@@ -8,7 +8,7 @@ La publication française seule reste sûre parce que le kit compare le lien int
 
 La norme 1.2.18 ajoute un contrôle lexical déterministe sur le wikicode brut : toute jonction de modèles écrite sous la forme `}}` + saut de ligne + `{{` est bloquée et doit être compactée en `}}{{`.
 
-Le validateur 0.4.19 produit des chemins de paquet portables ; le kit 2.2.2 contrôle l’ordre de publication et la structure de l’installation.
+Le validateur 0.4.19 produit des chemins de paquet portables ; le kit 2.2.3 contrôle l’ordre de publication et la structure de l’installation.
 
 
 ## Reprise distante d’un corpus publié — révision 1.2.18
