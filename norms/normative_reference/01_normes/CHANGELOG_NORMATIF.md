@@ -239,3 +239,12 @@ Toutes les exigences 1.1.7 restent actives sauf contradiction explicite ci-dessu
 - migration sûre des pages déjà créées depuis l’état W10.R7.
 
 Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessus.
+
+
+## 1.2.23 — 2 août 2026
+
+- minuscule initiale harmonisée pour `sujet-complet` et `complete-topic` ;
+- préférence explicite pour un sujet nominal conventionnel ;
+- règles auteur/site/page étendues aux pages Argument et à la vidéographie, avec seconde recherche obligatoire en cas d’égalité auteur-site ;
+- résumé de modification distant simplifié en « Corrections » ;
+- compatibilité du fichier unique de mise à niveau renforcée.

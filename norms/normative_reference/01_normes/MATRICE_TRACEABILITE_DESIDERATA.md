@@ -316,3 +316,13 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 | Concision effective et absence de copie mécanique des titres affichés | TTL-014, EDT-012, VAL-030 | Norme 1.2.22, registre individuel, WDV-EDT-001 et WDV-EDT-012 |
 
 | Placement sémantique des arguments principaux et subordonnés | GR-048, GR-049, GR-050, VAL-029 | Norme 1.2.21, workflow, profil, registre de placement et WDV-EDT-022 |
+
+
+## Trace 1.2.23
+
+| Décision du 2 août 2026 | Exigences | Contrôle |
+|---|---|---|
+| Sujet nominal et complément en minuscule | TTL-015, TTL-016 | WDV-EDT-018 + revue d’introduction |
+| Métadonnées Argument et vidéographie | REF-033, VAL-031 | WDV-DOC-004 |
+| Résumé « Corrections » | PUB-036 | tests du kit |
+| Mise à niveau avec un seul ZIP | IMP-019 | tests du gestionnaire et du bundle |

@@ -181,3 +181,12 @@ Un corpus déjà produit conserve les versions inscrites dans son manifeste. La 
 ## Correction du 1er août 2026 — identifiants de traçabilité du placement
 
 Les critères de placement adoptés en 1.2.20 sont conservés sans changement. Les identifiants `GR-045`, `GR-046` et `GR-047` étaient déjà affectés à d’autres exigences historiques et ne peuvent pas être réutilisés. Les exigences de placement reçoivent les identifiants `GR-048`, `GR-049` et `GR-050`. `VAL-029` reste le contrôle automatique associé.
+
+
+## Décisions du 2 août 2026 — sujets, métadonnées et mise à niveau
+
+1. `sujet-complet` et `complete-topic` commencent normalement par une minuscule dans les deux langues.
+2. `sujet` et `topic` privilégient un nom conceptuel ou doctrinal conventionnel.
+3. Les règles de non-redondance auteur/site/page s’appliquent également aux pages Argument et aux sources vidéographiques ; auteur=site impose une nouvelle recherche puis l’omission si aucun auteur distinct n’est identifié.
+4. Le résumé de modification distant par défaut est « Corrections ».
+5. La livraison complète reste un seul ZIP directement accepté par la mise à niveau.

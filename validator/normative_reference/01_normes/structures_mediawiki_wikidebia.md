@@ -535,3 +535,8 @@ Une reprise compare obligatoirement le dernier état publié signé, l’état d
 Les mises à jour et suppressions vérifient la révision ou l’empreinte attendue et utilisent le contrôle de concurrence MediaWiki. Toute modification humaine ou provenance indéterminée est classée `manual_review`. Les déplacements et fusions sont déclarés explicitement. Les suppressions sont exécutées seulement après vérification du nouveau graphe publié. Les opérations sont idempotentes et donnent lieu à un reçu final et à un nouvel état publié signé.
 
 Le validateur contrôle localement les structures et la cohérence des plans, mais toutes les lectures et écritures MediaWiki restent dans le kit.
+
+
+## Contraintes MediaWiki 1.2.23
+
+Dans `{{Débat}}` et `{{Debate}}`, `sujet-complet` et `complete-topic` commencent normalement par une minuscule. Dans les modèles sitographiques de toute page, `page=site` est interdit et `auteurs/authors=site` est interdit après la seconde vérification d’attribution. Les mêmes contraintes sont contrôlées dans le registre pour la vidéographie.

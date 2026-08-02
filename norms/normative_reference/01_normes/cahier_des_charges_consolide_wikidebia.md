@@ -515,3 +515,12 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 ### Renforcement 1.2.22 — concision des titres affichés
 
 Pour chaque langue, le registre individuel contient `displayed_title_concision_reviewed_fr` ou `displayed_title_concision_reviewed_en` à `true`. Lorsqu’un titre affiché est exactement identique au titre canonique, le champ `displayed_title_identity_justification_fr` ou `displayed_title_identity_justification_en` fournit une justification spécifique, substantielle et non générique. Le taux global d’identités exactes ne dépasse pas 10 % des arguments actifs par langue. La concision ne dispense jamais des exigences de proposition complète, de prédicat explicite et d’intelligibilité autonome.
+
+
+## Décisions du 2 août 2026 — révision 1.2.23
+
+- Le sujet court est un libellé nominal conventionnel quand un tel concept existe.
+- Le complément de sujet commence normalement par une minuscule en français et en anglais.
+- Le nettoyage auteur/site/page s’applique aux références des pages Argument et à la vidéographie. Une égalité auteur-site impose une nouvelle vérification d’attribution puis l’omission de l’auteur si aucune responsabilité distincte n’est trouvée.
+- Le résumé de reprise par défaut est « Corrections ».
+- Une archive de livraison unique contient directement les trois composants et reste installable par les gestionnaires antérieurs.

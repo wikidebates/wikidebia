@@ -16,7 +16,7 @@ spec.loader.exec_module(module)
 
 
 def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = False) -> None:
-    versions = {"norm": "1.2.20", "validator": "0.4.24", "kit": "2.2.8"}
+    versions = {"norm": "1.2.20", "validator": "0.4.25", "kit": "2.2.9"}
     payloads = {
         "VERSIONS.json": (json.dumps(versions, ensure_ascii=False, indent=2) + "\n").encode("utf-8"),
         "README.md": f"# {artifact}\n".encode("utf-8"),
@@ -25,7 +25,7 @@ def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = F
         {"path": name, "size_bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
         for name, raw in sorted(payloads.items())
     ]
-    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.24", "wikidebia-kit": "2.2.8"}[artifact]
+    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.25", "wikidebia-kit": "2.2.9"}[artifact]
     manifest = {
         "artifact": artifact,
         "version": version,
@@ -59,7 +59,7 @@ def test_component_inspector_accepts_and_verifies_optional_receipt(tmp_path: Pat
     _write_component_zip(archive, "wikidebia-kit", include_receipt=True)
     metadata = module.inspect_component_zip(archive)
     assert metadata["artifact"] == "wikidebia-kit"
-    assert metadata["versions"]["kit"] == "2.2.8"
+    assert metadata["versions"]["kit"] == "2.2.9"
 
 
 def test_single_complete_bundle_is_collected_from_updates(tmp_path: Path):
@@ -82,6 +82,36 @@ def test_single_complete_bundle_is_collected_from_updates(tmp_path: Path):
     components, sources, workspace = module.collect_update_payload(tmp_path)
     assert set(components) == set(names)
     assert sources == [outer]
+    assert workspace.is_dir()
+
+
+def test_delivery_prefers_root_components_over_historical_corpus_inputs(tmp_path: Path):
+    updates = tmp_path / "updates"
+    updates.mkdir()
+    active = tmp_path / "active"
+    active.mkdir()
+    historical = tmp_path / "historical"
+    historical.mkdir()
+    artifacts = ("wikidebia-normes", "wikidebia-validator", "wikidebia-kit")
+    for artifact in artifacts:
+        _write_component_zip(active / f"{artifact}.zip", artifact)
+        _write_component_zip(historical / f"{artifact}.zip", artifact)
+        # Make the historical copy bytewise divergent but still internally valid.
+        with zipfile.ZipFile(historical / f"{artifact}.zip", "a") as bundle:
+            bundle.comment = b"historical"
+    corpus = tmp_path / "corpus.zip"
+    with zipfile.ZipFile(corpus, "w") as bundle:
+        for artifact in artifacts:
+            bundle.write(historical / f"{artifact}.zip", f"technical_inputs/{artifact}.zip")
+    delivery = updates / "WIKIDEBIA_LIVRAISON.zip"
+    with zipfile.ZipFile(delivery, "w") as bundle:
+        for artifact in artifacts:
+            bundle.write(active / f"{artifact}.zip", f"{artifact}.zip")
+        bundle.write(corpus, "debate-corpus.zip")
+    components, sources, workspace = module.collect_update_payload(tmp_path)
+    assert set(components) == set(artifacts)
+    assert all(components[artifact].parent.name.startswith("wrapper-") for artifact in artifacts)
+    assert sources == [delivery]
     assert workspace.is_dir()
 
 
@@ -125,7 +155,7 @@ def test_generated_config_is_relative_and_debate_first(tmp_path: Path):
     assert config["pywikibot_dir"] == "private/pywikibot"
     assert config["corpus_root"] == "corpus/demo"
     assert config["operation"]["page_type_order"] == ["debate", "argument"]
-    assert config["validator"]["required_version"] == "0.4.24"
+    assert config["validator"]["required_version"] == "0.4.25"
     assert config["manifest_requirements"] == {}
     assert str(tmp_path) not in path.read_text(encoding="utf-8")
 
@@ -404,3 +434,23 @@ def test_publish_command_has_no_interactive_prompt(monkeypatch, tmp_path: Path):
     monkeypatch.setattr(module, "run", fake_run)
     result = module.publish_debate(tmp_path, None, "all", False, True)
     assert result == {"created": 0, "updated": 0, "skipped": 0}
+
+
+def test_nested_complete_delivery_is_collected_from_one_zip(tmp_path: Path):
+    updates=tmp_path/"updates"; updates.mkdir()
+    component_dir=tmp_path/"components"; component_dir.mkdir()
+    names=[]
+    for artifact in module.COMPONENTS:
+        name=artifact+".zip"; names.append(name)
+        _write_component_zip(component_dir/name,artifact)
+    inner=tmp_path/"WIKIDEBIA_SOURCES_COMPLETES.zip"
+    with zipfile.ZipFile(inner,"w") as bundle:
+        for name in names: bundle.write(component_dir/name,name)
+    outer=updates/"WIKIDEBIA_LIVRAISON_COMPLETE.zip"
+    with zipfile.ZipFile(outer,"w") as bundle:
+        bundle.write(inner,"delivery/WIKIDEBIA_SOURCES_COMPLETES.zip")
+        bundle.writestr("delivery/AUDIT.txt","ok")
+    components,sources,workspace=module.collect_update_payload(tmp_path)
+    assert set(components)==set(module.COMPONENTS)
+    assert sources==[outer]
+    assert workspace.is_dir()

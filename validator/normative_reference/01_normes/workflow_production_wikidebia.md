@@ -174,3 +174,8 @@ Le cas « les bouleversements de l’histoire des sciences » sert de test de r�
 ### Renforcement 1.2.22 — concision des titres affichés
 
 Pour chaque langue, le registre individuel contient `displayed_title_concision_reviewed_fr` ou `displayed_title_concision_reviewed_en` à `true`. Lorsqu’un titre affiché est exactement identique au titre canonique, le champ `displayed_title_identity_justification_fr` ou `displayed_title_identity_justification_en` fournit une justification spécifique, substantielle et non générique. Le taux global d’identités exactes ne dépasse pas 10 % des arguments actifs par langue. La concision ne dispense jamais des exigences de proposition complète, de prédicat explicite et d’intelligibilité autonome.
+
+
+## Workflow 1.2.23
+
+Avant validation, la revue choisit un sujet nominal conventionnel, contrôle la minuscule du complément, puis effectue une seconde recherche d’auteur chaque fois qu’une attribution provisoire reproduit le nom du site. Les reprises distantes utilisent « Corrections ». Le ZIP de livraison unique expose les trois composants à sa racine ; le gestionnaire courant sait également les découvrir dans un bundle imbriqué.

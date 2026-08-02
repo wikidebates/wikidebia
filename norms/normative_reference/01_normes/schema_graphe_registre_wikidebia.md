@@ -1756,3 +1756,8 @@ Le validateur compare ce registre aux occurrences et relations actives. Une couv
 ### Renforcement 1.2.22 — concision des titres affichés
 
 Pour chaque langue, le registre individuel contient `displayed_title_concision_reviewed_fr` ou `displayed_title_concision_reviewed_en` à `true`. Lorsqu’un titre affiché est exactement identique au titre canonique, le champ `displayed_title_identity_justification_fr` ou `displayed_title_identity_justification_en` fournit une justification spécifique, substantielle et non générique. Le taux global d’identités exactes ne dépasse pas 10 % des arguments actifs par langue. La concision ne dispense jamais des exigences de proposition complète, de prédicat explicite et d’intelligibilité autonome.
+
+
+## Attestations de revue ajoutées en 1.2.23
+
+Chaque entrée linguistique du registre de revue d’introduction atteste `topic_is_nominal_label`, `conventional_topic_label_used_or_not_applicable`, `topic_label_rationale` et `complete_topic_lowercase_initial_or_justified`. Une justification distincte est fournie lorsqu’un nom propre ou un acronyme impose exceptionnellement une majuscule initiale.

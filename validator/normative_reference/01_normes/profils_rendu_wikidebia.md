@@ -950,3 +950,8 @@ Le fichier `graph_placement_review_path` couvre chaque occurrence active. Il enr
 ### Renforcement 1.2.22 — concision des titres affichés
 
 Pour chaque langue, le registre individuel contient `displayed_title_concision_reviewed_fr` ou `displayed_title_concision_reviewed_en` à `true`. Lorsqu’un titre affiché est exactement identique au titre canonique, le champ `displayed_title_identity_justification_fr` ou `displayed_title_identity_justification_en` fournit une justification spécifique, substantielle et non générique. Le taux global d’identités exactes ne dépasse pas 10 % des arguments actifs par langue. La concision ne dispense jamais des exigences de proposition complète, de prédicat explicite et d’intelligibilité autonome.
+
+
+## Profil de rendu 1.2.23 — sujet du débat et métadonnées
+
+`|sujet=Réalisme philosophique` / `|topic=Philosophical realism` illustrent la préférence pour un nom conceptuel. Les compléments correspondants sont `|sujet-complet=le réalisme philosophique` et `|complete-topic=philosophical realism`. Les mêmes règles de déduplication auteur/site/page sont appliquées dans toutes les pages Argument et aux sources vidéographiques du registre.

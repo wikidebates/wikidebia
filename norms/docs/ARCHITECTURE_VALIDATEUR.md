@@ -1,7 +1,3 @@
 # Architecture normative et validation
 
-Le paquet normatif 1.2.22 recommande le validateur 0.4.24 et le kit 2.2.8. Le pipeline sépare les contraintes de schéma, les invariants structurels, les contrôles documentaires et les revues humaines.
-
-Les contrôles historiques de titres, résumés, documentation, wikicode, bilinguisme, publication et reprise restent actifs. La norme 1.2.20, conservée par 1.2.22, ajoute une revue sémantique occurrence par occurrence : le niveau 1 est réservé aux réponses directes, autonomes et structurantes, tandis que les objections ciblées, exemples, interprétations particulières et spécialisations sont rattachés à leur meilleure cible immédiate.
-
-Le validateur vérifie la présence et la cohérence de `graph_placement_review_path`, sans prétendre remplacer l’appréciation humaine du raisonnement. Les rapports restent portables et aucune écriture distante n’est effectuée par le validateur.
+Le paquet normatif 1.2.23 recommande le validateur 0.4.25 et le kit 2.2.9. Les contrôles historiques restent actifs. La nouvelle révision ajoute une validation de la forme du sujet, une revue d’attribution documentaire applicable aux pages Débat et Argument, et des garanties de conditionnement du ZIP unique.

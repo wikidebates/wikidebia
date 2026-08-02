@@ -400,6 +400,11 @@ def _first_alpha_is_upper(value: str) -> bool:
     return bool(first and first.isupper())
 
 
+def _first_alpha_is_lower(value: str) -> bool:
+    first = next((c for c in value.strip() if c.isalpha()), "")
+    return bool(first and first.islower())
+
+
 def _complete_topic_looks_interrogative(value: str, lang: str) -> bool:
     clean = value.strip()
     if not clean or "?" in clean:
@@ -469,6 +474,13 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
             complete = tmpl.one(complete_param) or ""
             if _complete_topic_looks_interrogative(complete, lang):
                 ctx.report.error("WDV-EDT-018", f"{complete_param} doit compléter l’en-tête de la page sous une forme non interrogative", path=rel, details={"actual": complete})
+            if _norm_at_least(ctx, "1.2.23") and not _first_alpha_is_lower(complete):
+                ctx.report.error(
+                    "WDV-EDT-018",
+                    f"{complete_param} doit normalement commencer par une minuscule dans les deux langues",
+                    path=rel,
+                    details={"actual": complete, "exception_policy": "reformuler avec un déterminant ou justifier un nom propre/acronyme inévitable dans la revue"},
+                )
             declared_acronym = explicit_parenthetical_acronym(topic)
             if _norm_at_least(ctx, "1.2.9") and declared_acronym and not re.search(rf"(?<![\w.-]){re.escape(declared_acronym)}(?![\w.-])", complete):
                 ctx.report.error("WDV-EDT-018", f"{complete_param} doit employer l’acronyme courant déclaré dans {topic_param}", path=rel, details={"acronym": declared_acronym, "actual": complete})
@@ -580,9 +592,16 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
                 site_value = (sub.one("site") or "").strip().casefold()
                 author_value = (sub.one("auteurs") or sub.one("authors") or "").strip().casefold()
                 if page_value and site_value and page_value == site_value:
-                    ctx.report.error("WDV-DOC-004", "Le titre de page sitographique duplique le nom du site et doit être omis", path=rel, details={"template": sub.name, "value": sub.one("page")})
+                    ctx.report.error("WDV-DOC-004", "Le titre de page sitographique duplique le nom du site et doit être omis", path=rel, details={"template": sub.name, "value": sub.one("page"), "page_type": page_type})
+                if _norm_at_least(ctx, "1.2.23") and author_value and site_value and author_value == site_value:
+                    ctx.report.error(
+                        "WDV-DOC-004",
+                        "Le champ auteur reproduit le nom du site : rechercher de nouveau la signature ou les crédits, puis omettre l’auteur si aucune responsabilité distincte n’est trouvée",
+                        path=rel,
+                        details={"template": sub.name, "value": sub.one("site"), "page_type": page_type, "applies_to_argument_pages": True},
+                    )
                 if author_value and page_value and site_value and author_value == page_value == site_value:
-                    ctx.report.error("WDV-DOC-004", "Les champs auteur, page et site sont remplis mécaniquement avec la même valeur", path=rel, details={"template": sub.name, "value": sub.one("site")})
+                    ctx.report.error("WDV-DOC-004", "Les champs auteur, page et site sont remplis mécaniquement avec la même valeur", path=rel, details={"template": sub.name, "value": sub.one("site"), "page_type": page_type})
 
             if sub.name in {"Justification", "Objection"}:
                 expected_display = "titre-affiché" if lang == "fr" else "displayed-title"
@@ -729,7 +748,7 @@ PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
 
 
 def _validate_french_parenthetical_dashes(ctx: PackageContext, tmpl: Template, rel: str, page_type: str) -> None:
-    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22"}:
+    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
         return
     values: list[tuple[str, str]] = []
     if page_type == "argument":

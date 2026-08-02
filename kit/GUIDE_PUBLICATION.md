@@ -1,41 +1,13 @@
-# Guide de publication et de reprise Wikidéb’IA 2.2.8
+# Guide de publication et de reprise Wikidéb’IA 2.2.9
 
 ## Nouveau débat
 
-1. Déposer l’archive dans `incoming/`.
-2. Exécuter `./wikidebia publish [SÉLECTEUR] --scope all`.
-3. Conserver les reçus et états écrits sous `.state/`.
+Déposer le ZIP du corpus dans `incoming/`, puis lancer `./wikidebia publish [SÉLECTEUR] --scope all`.
 
 ## Débat déjà publié
 
-1. Installer le nouveau corpus sous `corpus/<debate_id>` ou déposer son ZIP dans `incoming/`.
-2. Exécuter `./wikidebia update <debate_id> --dry-run`.
-3. Examiner `manual_review` et `blocked`.
-4. Vérifier l’empreinte du plan.
-5. Exécuter `./wikidebia update <debate_id>` et confirmer exactement cette empreinte.
-6. Contrôler le reçu final et les nouveaux états publiés signés.
+Installer le corpus puis lancer `./wikidebia update <debate_id> --dry-run`, examiner le plan et exécuter la reprise. Le résumé MediaWiki par défaut est « Corrections ».
 
 ## Mise à niveau des composants
 
-Le mode recommandé utilise un seul fichier :
-
-```bash
-rm -f updates/*.zip
-cp WIKIDEBIA_*.zip updates/
-./wikidebia upgrade
-```
-
-Le ZIP complet doit contenir `wikidebia-normes.zip`, `wikidebia-validator.zip` et `wikidebia-kit.zip`. Le mode trois ZIP séparés reste accepté.
-
-Lors de la transition depuis un ancien lanceur où la commande de composants s’appelle encore `update`, lancer une seule fois :
-
-```bash
-./wikidebia update --no-git
-```
-
-Après cette installation, employer `upgrade` pour les composants et réserver `update IDENTIFIANT` à la reprise d’un débat publié.
-
-
-## Exemples versionnés
-
-Le suffixe `1.2.x` des fichiers de `kit/configs/` désigne la norme attendue du corpus. Les champs `kit_version` et `validator.required_version` restent ceux des composants installés. Chaque exemple impose la norme correspondante dans `manifest_requirements`.
+Un seul fichier suffit. Vider `updates/`, y copier soit le bundle `WIKIDEBIA_SOURCES_COMPLETES_*.zip`, soit la livraison complète `WIKIDEBIA_LIVRAISON_*.zip`, puis lancer `./wikidebia upgrade`. Les livraisons complètes contiennent les trois composants à leur racine pour les anciens gestionnaires ; le gestionnaire courant sait aussi les retrouver dans un bundle interne.

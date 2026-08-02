@@ -27,8 +27,8 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.2.8"
-REQUIRED_VALIDATOR_VERSION = "0.4.24"
+KIT_VERSION = "2.2.9"
+REQUIRED_VALIDATOR_VERSION = "0.4.25"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
 RECEIPT_VERSION = "wikidebia-remote-update-receipt-1.0"
@@ -967,9 +967,7 @@ class PlanExecutor:
         configured = (self.config.get("edit_summaries") or {}).get(language)
         if configured:
             return str(configured).format(debate_id=self.debate_id, corpus_version=plan.get("corpus_version"), operation=operation)
-        if language == "fr":
-            return f"Mise à jour du corpus Wikidéb’IA {self.debate_id}, version {plan.get('corpus_version')}"
-        return f"Update of Wikidéb’IA corpus {self.debate_id}, version {plan.get('corpus_version')}"
+        return "Corrections"
 
     def _source_text(self, row: dict[str, Any]) -> str:
         path = self._resolve(row["source_path"])

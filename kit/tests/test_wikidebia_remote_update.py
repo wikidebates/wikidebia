@@ -124,11 +124,11 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(state), encoding="utf-8")
     validator = root / "validator.py"
-    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.24','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.25','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     config = {
-        "kit_version":"2.2.8","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
+        "kit_version":"2.2.9","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
         "family":"wikidebates","pywikibot_dir":"private/pywikibot","sites":{lang:{"code":lang,"expected_user":"ChatGPT"} for lang in languages},
-        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.24","scopes":[]},
+        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.25","scopes":[]},
         "published_state_dir":".state/published","receipts_dir":".state/receipts","logs_dir":"logs",
     }
     config_path = root / "config.json"
@@ -291,3 +291,10 @@ def test_signed_read_only_remote_inventory_is_last_resort(tmp_path):
     plan_data = planner.build_plan()
     assert plan_data["state_source"]["kind"] == "remote_inventory"
     assert plan_data["counts"]["skip"] == 1
+
+
+def test_default_update_summary_is_concise(tmp_path):
+    config, config_path = make_fixture(tmp_path, old_pages=[], new_pages=[])
+    executor = module.PlanExecutor(config, FakeAdapter(), config_path)
+    assert executor._summary("fr", "update", {"corpus_version":"manifest-deadbeef"}) == "Corrections"
+    assert executor._summary("en", "update", {"corpus_version":"manifest-deadbeef"}) == "Corrections"

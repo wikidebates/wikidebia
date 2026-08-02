@@ -15,9 +15,9 @@ import zipfile
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
-NORM_VERSION = "1.2.22"
-VALIDATOR_VERSION = "0.4.24"
-KIT_VERSION = "2.2.8"
+NORM_VERSION = "1.2.23"
+VALIDATOR_VERSION = "0.4.25"
+KIT_VERSION = "2.2.9"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",
@@ -177,6 +177,74 @@ def _iter_input_zips(updates: Path, explicit: Path | None) -> list[Path]:
     return sorted(path for path in updates.iterdir() if path.is_file() and path.suffix.casefold() == ".zip")
 
 
+def _discover_component_archives(workspace: Path, initial_archives: list[Path], max_depth: int = 2) -> list[Path]:
+    """Discover component ZIPs directly or through a small number of safe wrapper ZIPs."""
+    discovered: list[Path] = []
+    pending: list[tuple[Path, int]] = [(path, 0) for path in initial_archives]
+    seen: set[tuple[str, str]] = set()
+    extracted_index = 0
+    while pending:
+        archive, depth = pending.pop(0)
+        try:
+            metadata = inspect_component_zip(archive)
+        except ManagementError:
+            metadata = None
+        if metadata is not None:
+            marker = (metadata["artifact"], hashlib.sha256(archive.read_bytes()).hexdigest())
+            if marker not in seen:
+                seen.add(marker)
+                discovered.append(archive)
+            continue
+        if depth >= max_depth:
+            continue
+        try:
+            with zipfile.ZipFile(archive) as bundle:
+                nested_names = [PurePosixPath(info.filename).as_posix() for info in bundle.infolist() if not info.is_dir() and info.filename.casefold().endswith(".zip")]
+        except zipfile.BadZipFile:
+            continue
+        if not nested_names:
+            continue
+        extracted_index += 1
+        destination = workspace / f"wrapper-{extracted_index}"
+        safe_extract(archive, destination)
+        nested = sorted(path for path in destination.rglob("*.zip") if path.is_file())
+        if len(nested) > 32:
+            raise ManagementError(f"Archive enveloppante trop complexe : {archive.name}")
+
+        # Prefer the shallowest directory that already contains a complete,
+        # coherent set of the three component ZIPs. A project delivery may
+        # also contain corpus archives with historical technical inputs; those
+        # must never compete with the active root-level components.
+        groups: dict[Path, dict[str, Path]] = {}
+        divergent_groups: set[Path] = set()
+        for nested_archive in nested:
+            try:
+                nested_metadata = inspect_component_zip(nested_archive)
+            except ManagementError:
+                continue
+            parent = nested_archive.parent
+            artifact = nested_metadata["artifact"]
+            current = groups.setdefault(parent, {}).get(artifact)
+            if current is not None and hashlib.sha256(current.read_bytes()).hexdigest() != hashlib.sha256(nested_archive.read_bytes()).hexdigest():
+                divergent_groups.add(parent)
+                continue
+            groups[parent][artifact] = nested_archive
+        complete_groups = [
+            (parent, components)
+            for parent, components in groups.items()
+            if parent not in divergent_groups and set(components) == set(COMPONENTS)
+        ]
+        if complete_groups:
+            parent, components = min(
+                complete_groups,
+                key=lambda item: (len(item[0].relative_to(destination).parts), item[0].as_posix()),
+            )
+            pending.extend((components[artifact], depth + 1) for artifact in sorted(COMPONENTS))
+            continue
+        pending.extend((path, depth + 1) for path in nested)
+    return discovered
+
+
 def collect_update_payload(root: Path, explicit: Path | None = None) -> tuple[dict[str, Path], list[Path], Path]:
     updates = root / "updates"
     updates.mkdir(parents=True, exist_ok=True)
@@ -188,23 +256,18 @@ def collect_update_payload(root: Path, explicit: Path | None = None) -> tuple[di
     state_dir.mkdir(parents=True, exist_ok=True)
     workspace = Path(tempfile.mkdtemp(prefix="wikidebia-update-", dir=state_dir))
     source_files = list(candidates)
-    component_candidates = candidates
-    if len(candidates) == 1:
-        with zipfile.ZipFile(candidates[0]) as bundle:
-            names = {PurePosixPath(info.filename).name for info in bundle.infolist() if not info.is_dir()}
-        if {"wikidebia-normes.zip", "wikidebia-validator.zip", "wikidebia-kit.zip"}.issubset(names):
-            safe_extract(candidates[0], workspace / "bundle")
-            component_candidates = sorted((workspace / "bundle").rglob("*.zip"))
+    component_candidates = _discover_component_archives(workspace, candidates)
 
     components: dict[str, Path] = {}
     for candidate in component_candidates:
-        try:
-            metadata = inspect_component_zip(candidate)
-        except ManagementError:
-            continue
+        metadata = inspect_component_zip(candidate)
         artifact = metadata["artifact"]
         if artifact in components:
-            raise ManagementError(f"Plusieurs archives candidates pour {artifact}")
+            previous_hash = hashlib.sha256(components[artifact].read_bytes()).hexdigest()
+            candidate_hash = hashlib.sha256(candidate.read_bytes()).hexdigest()
+            if previous_hash != candidate_hash:
+                raise ManagementError(f"Plusieurs archives candidates divergentes pour {artifact}")
+            continue
         components[artifact] = candidate
     missing = sorted(set(COMPONENTS) - set(components))
     if missing:
@@ -990,8 +1053,8 @@ def remote_update_config(root: Path, debate_id: str, scope: str, run_dir: Path) 
             "scopes": ["schema", "coherence", "graph", "files", "batches", "sources", "wikicode", "bilingual", "editorial", "workflow"],
         },
         "edit_summaries": {
-            "fr": "Mise à jour du corpus Wikidéb’IA {debate_id}, version {corpus_version}",
-            "en": "Update of Wikidéb’IA corpus {debate_id}, version {corpus_version}",
+            "fr": "Corrections",
+            "en": "Corrections",
         },
     }
     path = run_dir / "config.json"

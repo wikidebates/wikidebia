@@ -1,8 +1,7 @@
-Wikidéb’IA Validator 0.4.24
-Norme implémentée : 1.2.22
-Tests pytest : 184 réussis, 0 échec
-Contrôle nouveau : WDV-EDT-001 bloque un taux de copie exacte supérieur à 10 % par langue
-Registre nouveau : attestations de concision et justification individuelle des identités exactes
-Compatibilité : validation positive du corpus réel 1.2.21 et validation positive du corpus migré 1.2.22
-Test négatif réel : corpus à 16,95 % de copies refusé en français et en anglais
+Wikidéb’IA Validator 0.4.25
+Norme implémentée : 1.2.23
+Tests pytest : 188 réussis, 0 échec
+Contrôles nouveaux : minuscule initiale de sujet-complet/complete-topic, sujet nominal conventionnel, collisions auteur-site et page-site sur toutes les pages et en vidéographie
+Compatibilité : normes 1.1.0 à 1.2.23
+Validation du corpus réel migré : 118 arguments, 121 occurrences, 0 erreur, 0 avertissement
 Résultat : RÉUSSI

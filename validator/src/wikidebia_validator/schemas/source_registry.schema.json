@@ -127,6 +127,15 @@
               },
               "authorship_verified": {
                 "type": "boolean"
+              },
+              "authorship_rechecked_after_site_match": {
+                "type": "boolean"
+              },
+              "authorship_recheck_notes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             },
             "additionalProperties": false,

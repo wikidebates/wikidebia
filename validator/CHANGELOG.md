@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.25 — 2 août 2026
+
+- alignement sur la norme 1.2.23 ;
+- contrôle de la minuscule initiale de `sujet-complet` et `complete-topic` ;
+- attestations obligatoires sur le choix d’un sujet nominal conventionnel ;
+- extension de `WDV-DOC-004` aux pages Argument et à la vidéographie, avec refus de `auteur=site` après seconde vérification ;
+- compatibilité conservée avec les normes antérieures.
+
+
 ## 0.4.24 — 1er août 2026
 
 - alignement sur la norme 1.2.22 ;

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.2.9 — 2 août 2026
+
+- alignement sur la norme 1.2.23 et le validateur 0.4.25 ;
+- résumé de reprise par défaut remplacé par « Corrections » ;
+- découverte sûre des composants dans un bundle direct ou une archive de livraison enveloppante ;
+- test de compatibilité avec un unique ZIP de livraison et avec le gestionnaire antérieur ;
+- aucune modification des protections de concurrence et de suppression.
+
+
 ## 2.2.8 — 1er août 2026
 
 - alignement sur la norme 1.2.22 et le validateur 0.4.24 ;
