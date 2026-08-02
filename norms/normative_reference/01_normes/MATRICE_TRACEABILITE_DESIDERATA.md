@@ -318,7 +318,7 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 | Placement sémantique des arguments principaux et subordonnés | GR-048, GR-049, GR-050, VAL-029 | Norme 1.2.21, workflow, profil, registre de placement et WDV-EDT-022 |
 
 
-## Trace 1.2.23
+## Trace 1.2.24
 
 | Décision du 2 août 2026 | Exigences | Contrôle |
 |---|---|---|
@@ -326,3 +326,7 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 | Métadonnées Argument et vidéographie | REF-033, VAL-031 | WDV-DOC-004 |
 | Résumé « Corrections » | PUB-036 | tests du kit |
 | Mise à niveau avec un seul ZIP | IMP-019 | tests du gestionnaire et du bundle |
+
+| Liens Wikipédia explicatifs dans les résumés | ARG-035, PRM-018 | `WDV-MWK-020` + revue humaine | première occurrence utile, sans valeur documentaire |
+| Liens Wikipédia explicatifs dans les introductions | DFR-047, DEN-008, MW-027 | `WDV-MWK-020` + `WDV-EDT-017` | modèles et paramètres localisés |
+| Syntaxe et non-redondance des paramètres d’affichage | MW-027, VAL-032 | `WDV-MWK-020` | `texte-affiché` / `displayed-text` seulement si nécessaire |

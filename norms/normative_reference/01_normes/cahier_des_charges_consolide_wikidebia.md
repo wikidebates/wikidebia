@@ -517,10 +517,20 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 Pour chaque langue, le registre individuel contient `displayed_title_concision_reviewed_fr` ou `displayed_title_concision_reviewed_en` à `true`. Lorsqu’un titre affiché est exactement identique au titre canonique, le champ `displayed_title_identity_justification_fr` ou `displayed_title_identity_justification_en` fournit une justification spécifique, substantielle et non générique. Le taux global d’identités exactes ne dépasse pas 10 % des arguments actifs par langue. La concision ne dispense jamais des exigences de proposition complète, de prédicat explicite et d’intelligibilité autonome.
 
 
-## Décisions du 2 août 2026 — révision 1.2.23
+## Décisions du 2 août 2026 — révision 1.2.24
 
 - Le sujet court est un libellé nominal conventionnel quand un tel concept existe.
 - Le complément de sujet commence normalement par une minuscule en français et en anglais.
 - Le nettoyage auteur/site/page s’applique aux références des pages Argument et à la vidéographie. Une égalité auteur-site impose une nouvelle vérification d’attribution puis l’omission de l’auteur si aucune responsabilité distincte n’est trouvée.
 - Le résumé de reprise par défaut est « Corrections ».
 - Une archive de livraison unique contient directement les trois composants et reste installable par les gestionnaires antérieurs.
+
+
+## Ajout 1.2.24 — modèles de définition Wikipédia au survol
+
+- **ARG-035 — ACTIVE — human+automatic syntax** : les résumés expliquent les notions spécialisées par une définition intégrée ou par le modèle Wikipédia localisé lorsque son premier paragraphe suffit.
+- **DFR-047 — ACTIVE — human+automatic syntax** : les introductions françaises utilisent `{{Lien Wikipédia}}` avec `article` et, seulement si nécessaire, `texte-affiché`.
+- **DEN-008 — ACTIVE — human+automatic syntax** : les introductions anglaises utilisent `{{Wikipedia link}}` avec `article` et, seulement si nécessaire, `displayed-text`.
+- **MW-027 — ACTIVE — automatic** : les noms, paramètres, langues, emplacements et interdictions dans les notes sont contrôlés.
+- **PRM-018 — ACTIVE — prompt+human** : la première occurrence utile est liée sans surliaison et sans substitution aux explications centrales.
+- **VAL-032 — ACTIVE — automatic+human ledger** : le validateur contrôle la syntaxe et les attestations de revue pour les corpus 1.2.24 et ultérieurs.

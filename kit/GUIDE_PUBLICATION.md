@@ -1,4 +1,4 @@
-# Guide de publication et de reprise Wikidéb’IA 2.2.10
+# Guide de publication et de reprise Wikidéb’IA 2.2.11
 
 ## Nouveau débat
 

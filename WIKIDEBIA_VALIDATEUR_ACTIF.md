@@ -1,15 +1,24 @@
-# Wikidéb’IA — Validateur actif 0.4.25
+# Wikidéb’IA — Validateur actif 0.4.26
 
-**Norme active :** 1.2.23  
-**Validateur :** 0.4.25  
-**Kit :** 2.2.10
+**Norme active :** 1.2.24  
+**Validateur :** 0.4.26  
+**Kit :** 2.2.11
 
 # Source incorporée : `CHANGELOG.md`
 
-**SHA-256 :** `1f870609b9b047c638284009cc15b034276fdad81f71e53962eae8a073b16631`
+**SHA-256 :** `e111f1689e483f2d63bec9790b7cdbccabc833b45a8a0591bb39c2c75392744d`
 
 ```
 # Changelog
+
+## 0.4.26 — 2 août 2026
+
+- alignement sur la norme 1.2.24 ;
+- ajout de `WDV-MWK-020` pour les modèles `{{Lien Wikipédia}}` et `{{Wikipedia link}}` ;
+- contrôle des noms, paramètres, langues, articles non vides, paramètres d’affichage redondants et emploi interdit dans les notes `<ref>` ;
+- attestations nouvelles dans les revues d’introduction et de résumés ;
+- aucune requête réseau et compatibilité conservée avec les normes antérieures.
+
 
 ## 0.4.25 — 2 août 2026
 
@@ -159,13 +168,13 @@
 
 # Source incorporée : `COMPATIBILITY.json`
 
-**SHA-256 :** `ad9eb5aba6db38e15fbaab7ebc62f726fca603d6cfa8b3179168eadc58b6bc55`
+**SHA-256 :** `2daa4528ef03e9104baabcbbbafa4ac1ff1c76551456b0e2fa6d2d519d28f930`
 
 ```json
 {
   "package": "wikidebia-validator",
-  "validator_version": "0.4.25",
-  "implemented_normative_revision": "1.2.23",
+  "validator_version": "0.4.26",
+  "implemented_normative_revision": "1.2.24",
   "compatible_normative_revisions": [
     "1.1.0",
     "1.1.1",
@@ -200,7 +209,8 @@
     "1.2.20",
     "1.2.21",
     "1.2.22",
-    "1.2.23"
+    "1.2.23",
+    "1.2.24"
   ],
   "recommended_normative_archive": "wikidebia-normes.zip",
   "independent_update_policy": {
@@ -242,38 +252,38 @@ SOFTWARE.
 
 # Source incorporée : `README.md`
 
-**SHA-256 :** `1bdf441bf3ce35eb4fbce9622077939bcf137d9d26cb33ed9263250df8ff7ae1`
+**SHA-256 :** `11dd1daa97ac1f167b04d7db62e50eff3077e171f0fecf474ce669794fee03ad`
 
 ```
-# Validateur stable Wikidéb’IA 0.4.25
+# Validateur stable Wikidéb’IA 0.4.26
 
-Validateur local Python 3 aligné sur la norme 1.2.23 et rétrocompatible avec les paquets 1.1.0 à 1.2.22. La validation ordinaire reste strictement en lecture seule.
+Validateur local Python 3 aligné sur la norme 1.2.24 et rétrocompatible avec les paquets antérieurs. La validation ordinaire reste strictement en lecture seule.
 
-La version 0.4.25 contrôle la minuscule de `sujet-complet`/`complete-topic`, les attestations de sujet nominal, et les collisions auteur-site ou page-site dans les références de toutes les pages et dans la vidéographie. Les contrôles de titres affichés et de placement restent inchangés.
+La version 0.4.26 contrôle la syntaxe bilingue des modèles `{{Lien Wikipédia}}` et `{{Wikipedia link}}` dans les introductions et résumés, ainsi que les attestations de revue correspondantes. Aucun accès réseau à Wikipédia n’est effectué par le validateur.
 
-La source active unique embarquée est `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md`.
+La source active unique embarquée est `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md`.
 ```
 
 # Source incorporée : `VERSIONS.json`
 
-**SHA-256 :** `65ddabb90c33300b14d31bb38adf0eaedd4b64f7d350ab471eb4fad422c2a698`
+**SHA-256 :** `cec519cb23221213904e94d44fdc5a9e726ce230c7d455ed6026147a0723854b`
 
 ```json
 {
-  "norm": "1.2.23",
-  "validator": "0.4.25",
-  "kit": "2.2.10"
+  "norm": "1.2.24",
+  "validator": "0.4.26",
+  "kit": "2.2.11"
 }
 ```
 
 # Source incorporée : `docs/ARCHITECTURE.md`
 
-**SHA-256 :** `8a58c71faf7865cb90a9dc734f9360bbe749f1f99a1c8303ef428547deb75d05`
+**SHA-256 :** `8781bd2665fbe64694b1b881697a639bec23731a381a6d7e8c4fa045763cfa9b`
 
 ```
-# Architecture du validateur 0.4.25
+# Architecture du validateur 0.4.26
 
-Le validateur reste séparé en schémas, cohérence, graphe, sources, wikicode, bilinguisme, éditorial et workflow. Sous 1.2.23, `WDV-EDT-018` contrôle la forme des sujets et `WDV-DOC-004` contrôle les redondances documentaires dans toutes les pages et dans le registre des sources.
+Le validateur sépare schémas, cohérence, graphe, sources, wikicode, bilinguisme, éditorial et workflow. Pour la norme 1.2.24, le module wikicode inspecte localement les modèles Wikipédia explicatifs dans les introductions et résumés. Il vérifie leur syntaxe sans accéder au réseau ; l’existence et la pertinence de l’article restent attestées par la revue humaine.
 ```
 
 # Source incorporée : `docs/AUDIT_NON_REGRESSION_0.4.0.md`
@@ -515,6 +525,16 @@ Les contrôles normatifs et éditoriaux 0.4.15 sont conservés sans modification
 Les tests couvrent la minuscule des compléments de sujet dans les deux langues, les attestations de sujet nominal, les collisions documentaires sur pages Débat et Argument, et la non-rétroactivité pour 1.2.22.
 ```
 
+# Source incorporée : `docs/AUDIT_NON_REGRESSION_0.4.26.md`
+
+**SHA-256 :** `95a5d3feae7060ced63a96ac80235808901ad48ee46b4ab227f00235f8e4757d`
+
+```
+# Audit de non-régression 0.4.26
+
+Les contrôles historiques restent inchangés. Les tests couvrent les syntaxes française et anglaise, les paramètres localisés, la redondance d’affichage, les notes `<ref>` et la non-rétroactivité.
+```
+
 # Source incorporée : `docs/AUDIT_NON_REGRESSION_0.4.5.md`
 
 **SHA-256 :** `a1a88ae3900b879f7af9b14aebdb91793c173e718ff7c0222aa3763c155a34ec`
@@ -580,7 +600,7 @@ Les tests couvrent la minuscule des compléments de sujet dans les deux langues,
 
 # Source incorporée : `docs/CONTROL_CATALOG.md`
 
-**SHA-256 :** `d9898baed1c160681d46c3155ee3d86b19f573fd9f544a87a7b8638acf735c03`
+**SHA-256 :** `4c6db896784f26b20e4522c53735d4bfb25991bc86f653f4ad3f4a4c83b69cf3`
 
 ```
 # Catalogue des codes de contrôle — 0.4.24
@@ -637,6 +657,7 @@ Les tests couvrent la minuscule des compléments de sujet dans les deux langues,
 | `WDV-MWK-017` | Majuscule initiale de sujet ou topic incorrecte |
 | `WDV-MWK-018` | Saut de ligne ou espace entre deux modèles MediaWiki adjacents |
 | `WDV-MWK-019` | Article Wikipédia obligatoire absent ou invalide |
+| `WDV-MWK-020` | Lien Wikipédia explicatif inline non conforme |
 | `WDV-BIL-001` | Identifiants ou pages bilingues divergents |
 | `WDV-BIL-002` | Relations bilingues divergentes |
 | `WDV-BIL-003` | Occurrence primaire ou réutilisation bilingue divergente |
@@ -1011,6 +1032,16 @@ La migration corrige les sujets de débat, les métadonnées documentaires et le
 Le contenu argumentatif et le graphe ne sont pas modifiés par cette seule migration.
 ```
 
+# Source incorporée : `docs/MIGRATION_1.2.24.md`
+
+**SHA-256 :** `9f45606a5f355c13740ec163389c14324bc00b1b8eccc56a0c4d4f6a94d44193`
+
+```
+# Migration vers 1.2.24
+
+Le validateur 0.4.26 active les contrôles de syntaxe et de revue des liens Wikipédia explicatifs uniquement pour les corpus déclarant 1.2.24 ou une révision ultérieure.
+```
+
 # Source incorporée : `docs/MIGRATION_1.2.5.md`
 
 **SHA-256 :** `df6404b2bfcf684bed0ad192f499aa57aff1fcab014564687ff5f0c12c9ca960`
@@ -1063,17 +1094,16 @@ Remplacer le validateur 0.4.6, déclarer la norme 1.2.7, régénérer les emprei
 
 # Source incorporée : `docs/NORMATIVE_AUDIT.md`
 
-**SHA-256 :** `8a28552e173e7169a0e8daa92e7e8b961a1db8cff50cabea8b409920b92c7583`
+**SHA-256 :** `6fccbc9cab76b84392556a777dfd7187f06fe3a63699af67b66c7cac08d01df5`
 
 ```
 # Audit de la source normative embarquée
 
-- source active unique : `WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md` ;
-- norme 1.2.22 archivée ;
-- catalogue d’exigences sans identifiant dupliqué ;
-- `TTL-015`, `TTL-016`, `REF-033`, `PUB-036`, `IMP-019` et `VAL-031` présents et tracés ;
-- validateur 0.4.25 aligné sur la norme 1.2.23 ;
-- compatibilité des normes 1.1.0 à 1.2.22 conservée.
+- source active unique : `WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md` ;
+- norme 1.2.23 archivée ;
+- exigences ARG-035, DFR-047, DEN-008, MW-027, PRM-018 et VAL-032 présentes ;
+- validateur 0.4.26 aligné sur la norme 1.2.24 ;
+- compatibilité des normes antérieures conservée.
 
 **AUDIT NORMATIF : RÉUSSI**
 ```
@@ -1086,6 +1116,16 @@ Remplacer le validateur 0.4.6, déclarer la norme 1.2.7, régénérer les emprei
 # Audit normatif 1.2.23
 
 La révision ajoute uniquement les règles explicites décidées le 2 août 2026. La norme 1.2.22 est conservée en historique sans modification. Les nouvelles contraintes sont non rétroactives et activées pour les corpus déclarant 1.2.23 ou une révision ultérieure.
+```
+
+# Source incorporée : `docs/NORMATIVE_AUDIT_1.2.24.md`
+
+**SHA-256 :** `46ec9b7247c78c04c6f8fcd923ed7e2bc01f6a9828a961bcc682a08c118c6afa`
+
+```
+# Audit normatif 1.2.24
+
+La source active unique est `WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md`; la norme 1.2.23 est archivée. Les nouvelles exigences sont ARG-035, DFR-047, DEN-008, MW-027, PRM-018 et VAL-032.
 ```
 
 # Source incorporée : `docs/NORMATIVE_CORRECTION_2026-07-23.md`
@@ -1105,37 +1145,37 @@ Décisions actives ajoutées après la livraison 1.0.6 :
 
 # Source incorporée : `docs/NORMATIVE_SOURCE_AUDIT.txt`
 
-**SHA-256 :** `e55b142abf8d017c6a96d8bc7e2d746d30b5040f5bd361a29c8757323f38d88f`
+**SHA-256 :** `9dc7f747cfe18a5044b60dcbac221b2499885eb871f34042516bcf3aa1e3f507`
 
 ```
-Source active unique : WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md
-Source précédente archivée : WIKIDEBIA_NORME_CONSOLIDEE_1.2.22.md
-Exigences nouvelles : TTL-015, TTL-016, REF-033, PUB-036, IMP-019, VAL-031
+Source active unique : WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md
+Source précédente archivée : WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md
+Exigences nouvelles : ARG-035, DFR-047, DEN-008, MW-027, PRM-018, VAL-032
 Identifiants dupliqués : 0
 Résultat : RÉUSSI
 ```
 
 # Source incorporée : `docs/SELF_AUDIT_REPORT.txt`
 
-**SHA-256 :** `19c22d875e4ab2f69cfadeca142dda01c08681f4091c97be2feff3b2d758fd62`
+**SHA-256 :** `5b599089451c09f22995534af8b96583cc61253dae6f3d59fead77778e6e43f9`
 
 ```
-Wikidéb’IA Validator 0.4.25 — auto-audit
+Wikidéb’IA Validator 0.4.26 — auto-audit
 Encodage UTF-8, fins de ligne, syntaxe Python, JSON, versions, manifeste, provenance et chemins normatifs contrôlés.
-Tests pytest : 188 réussis, 0 échec.
+Tests pytest : 195 réussis, 0 échec.
 Résultat : RÉUSSI
 ```
 
 # Source incorporée : `docs/TEST_REPORT.txt`
 
-**SHA-256 :** `6ba8426b735f2f4681ab2a3b13a7aea14a19f97c53480b292d3db711099b3264`
+**SHA-256 :** `53ae2118862370634c28c603c0cbc25612f88abb03a3e0a774e67e2c643429d8`
 
 ```
-Wikidéb’IA Validator 0.4.25
-Norme implémentée : 1.2.23
-Tests pytest : 188 réussis, 0 échec
-Contrôles nouveaux : minuscule initiale de sujet-complet/complete-topic, sujet nominal conventionnel, collisions auteur-site et page-site sur toutes les pages et en vidéographie
-Compatibilité : normes 1.1.0 à 1.2.23
+Wikidéb’IA Validator 0.4.26
+Norme implémentée : 1.2.24
+Tests pytest : 195 réussis, 0 échec
+Contrôles nouveaux : syntaxe localisée de {{Lien Wikipédia}}/{{Wikipedia link}}, article obligatoire, paramètre d’affichage non redondant, interdiction dans les notes <ref>, attestations de revue d’introduction et de résumé
+Compatibilité : normes 1.1.0 à 1.2.24
 Validation du corpus réel migré : 118 arguments, 121 occurrences, 0 erreur, 0 avertissement
 Résultat : RÉUSSI
 ```
@@ -3543,12 +3583,12 @@ Déclarer les versions 1.2.3 et 0.4.3, régénérer les manifestes, puis exécut
 
 # Source incorporée : `examples/graph_placement_review.example.json`
 
-**SHA-256 :** `0a087dcbc2dbf4edb9e4dfdfa9713b1e815e437f9f2135d0eb2e43c0a69ca5d6`
+**SHA-256 :** `3a9e014cb8e6b9d7340dd2f63d104ecb129b0220ed210ce1a72e79b91500e620`
 
 ```json
 {
   "schema_version": "1.0",
-  "normative_revision": "1.2.23",
+  "normative_revision": "1.2.24",
   "debate_id": "exemple_debat",
   "entries": [
     {
@@ -3589,12 +3629,12 @@ Déclarer les versions 1.2.3 et 0.4.3, régénérer les manifestes, puis exécut
 
 # Source incorporée : `examples/introduction_review.example.json`
 
-**SHA-256 :** `2062b7b55049bf456042da6cbb70a5bf020587c61ed9c16ada4cff2fc116c482`
+**SHA-256 :** `db55d413612458708f44698fd4c22a1c861db3db0611c1b305502b636395ce8d`
 
 ```json
 {
   "review_version": "1.0",
-  "normative_revision": "1.2.23",
+  "normative_revision": "1.2.24",
   "debate_id": "exemple_debat",
   "entries": [
     {
@@ -3641,7 +3681,9 @@ Déclarer les versions 1.2.3 et 0.4.3, régénérer les manifestes, puis exécut
         "videography": "Couverture audiovisuelle examinée et retenue ou omise selon sa valeur propre."
       },
       "common_acronym": null,
-      "common_acronym_used_or_not_applicable": true
+      "common_acronym_used_or_not_applicable": true,
+      "wikipedia_hover_links_reviewed": true,
+      "specialized_terms_linked_or_explained": true
     },
     {
       "language": "en",
@@ -3687,7 +3729,9 @@ Déclarer les versions 1.2.3 et 0.4.3, régénérer les manifestes, puis exécut
         "videography": "Audiovisual coverage was reviewed and retained or omitted according to its own documentary value."
       },
       "common_acronym": null,
-      "common_acronym_used_or_not_applicable": true
+      "common_acronym_used_or_not_applicable": true,
+      "wikipedia_hover_links_reviewed": true,
+      "specialized_terms_linked_or_explained": true
     }
   ]
 }
@@ -3808,12 +3852,12 @@ Déclarer les versions 1.2.3 et 0.4.3, régénérer les manifestes, puis exécut
 
 # Source incorporée : `examples/summary_style_review.example.json`
 
-**SHA-256 :** `54c4692cf4947d4b35c4d48296c201a2362a4ec72c4a53c31adb4f020bc801ef`
+**SHA-256 :** `e495dec8043d6c0cd31b63ac7435a484acb9849e817825119fcb51f02b40858d`
 
 ```json
 {
   "schema_version": "1.1",
-  "normative_revision": "1.2.23",
+  "normative_revision": "1.2.24",
   "entries": [
     {
       "id": "A0001",
@@ -3833,7 +3877,9 @@ Déclarer les versions 1.2.3 et 0.4.3, régénérer les manifestes, puis exécut
           "quantitative_claims_note": "Le pourcentage cité a été vérifié dans la source documentaire de la page avec sa population et sa période.",
           "note": "L’ouverture expose le mécanisme, l’exemple est utile et le ton reste ferme sans devenir polémique.",
           "conviction_visible": true,
-          "forceful_expression": "Une formulation exacte et saillante présente dans le résumé."
+          "forceful_expression": "Une formulation exacte et saillante présente dans le résumé.",
+          "wikipedia_hover_links_reviewed": true,
+          "specialized_terms_linked_or_explained": true
         },
         "en": {
           "status": "approved",
@@ -3850,7 +3896,9 @@ Déclarer les versions 1.2.3 et 0.4.3, régénérer les manifestes, puis exécut
           "quantitative_claims_note": "Aucune donnée chiffrée n’est présente dans ce résumé.",
           "note": "The opening develops the mechanism, and the wording is firm without becoming polemical.",
           "conviction_visible": true,
-          "forceful_expression": "An exact forceful expression that appears in the summary."
+          "forceful_expression": "An exact forceful expression that appears in the summary.",
+          "wikipedia_hover_links_reviewed": true,
+          "specialized_terms_linked_or_explained": true
         }
       }
     }
@@ -5910,7 +5958,7 @@ VALIDATION GLOBALE : RÉUSSIE
 
 # Source incorporée : `normative_reference/00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`
 
-**SHA-256 :** `766a40511e4708e548f34992ce3fd8812f3a750f7a0d8c414e0176b9270a9642`
+**SHA-256 :** `476f16f2a957f7181f8275554d87060fd256caea796a8205555739e8a05bc950`
 
 ```
 # Registre consolidé des décisions prises après les prompts d'origine
@@ -6105,6 +6153,11 @@ Les critères de placement adoptés en 1.2.20 sont conservés sans changement. L
 3. Les règles de non-redondance auteur/site/page s’appliquent également aux pages Argument et aux sources vidéographiques ; auteur=site impose une nouvelle recherche puis l’omission si aucun auteur distinct n’est identifié.
 4. Le résumé de modification distant par défaut est « Corrections ».
 5. La livraison complète reste un seul ZIP directement accepté par la mise à niveau.
+
+
+## Décision du 2 août 2026 — liens Wikipédia explicatifs dans les introductions et résumés
+
+Les introductions et les résumés d’arguments peuvent employer `{{Lien Wikipédia|article=…}}` en français et `{{Wikipedia link|article=…}}` en anglais afin d’afficher au survol le premier paragraphe de l’article correspondant. Le paramètre d’affichage n’est utilisé que lorsque le texte visible diffère réellement du titre : `texte-affiché` en français, `displayed-text` en anglais. Pour une simple minuscule initiale imposée par la phrase, le titre passé à `article` est écrit avec cette minuscule. Le lien est réservé à la première occurrence utile d’une notion spécialisée, après vérification de la page dans la langue correspondante. Il ne remplace ni une explication indispensable au raisonnement ni une référence documentaire.
 ```
 
 # Source incorporée : `normative_reference/00_sources_reference/PROVENANCE_DOCUMENTAIRE.md`
@@ -6129,10 +6182,21 @@ Chaque étiquette de provenance utilisée dans le catalogue doit être déclaré
 
 # Source incorporée : `normative_reference/01_normes/CHANGELOG_NORMATIF.md`
 
-**SHA-256 :** `14cfc855d56c9b90aa2cbb98c51d850a9ea11c2dd0bb27afcd916973f5e94d85`
+**SHA-256 :** `82a071f8764e862d2d8aa7060b98af60d44547e538db388187d384dbfa5a7c09`
 
 ```
 # Changelog normatif
+
+## 1.2.24 — 2 août 2026
+
+- autorisation encadrée de `{{Lien Wikipédia}}` dans les introductions et résumés français ;
+- équivalent anglais `{{Wikipedia link}}` ;
+- paramètres localisés `texte-affiché` et `displayed-text`, omis pour une simple adaptation de casse initiale ;
+- vérification de la page dans la langue correspondante, usage à la première occurrence utile et interdiction dans les notes de référence ;
+- distinction explicite entre aide au survol et source documentaire ;
+- ajout des exigences `ARG-035`, `DFR-047`, `DEN-008`, `MW-027`, `PRM-018` et `VAL-032` ;
+- alignement recommandé : validateur 0.4.26 et kit 2.2.11.
+
 
 ## 1.2.22 — 1er août 2026
 
@@ -6386,7 +6450,7 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 
 # Source incorporée : `normative_reference/01_normes/MATRICE_TRACEABILITE_DESIDERATA.md`
 
-**SHA-256 :** `1a823363ce349764dace51c68e32f28e8da2e81984a13a590b80929a2f3eca78`
+**SHA-256 :** `9d09738026323dcddbc898c07dd8f957226f98ef95285cdc89580ddc229c5e97`
 
 ```
 # Matrice de traçabilité des desiderata d'origine
@@ -6709,7 +6773,7 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 | Placement sémantique des arguments principaux et subordonnés | GR-048, GR-049, GR-050, VAL-029 | Norme 1.2.21, workflow, profil, registre de placement et WDV-EDT-022 |
 
 
-## Trace 1.2.23
+## Trace 1.2.24
 
 | Décision du 2 août 2026 | Exigences | Contrôle |
 |---|---|---|
@@ -6717,11 +6781,15 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 | Métadonnées Argument et vidéographie | REF-033, VAL-031 | WDV-DOC-004 |
 | Résumé « Corrections » | PUB-036 | tests du kit |
 | Mise à niveau avec un seul ZIP | IMP-019 | tests du gestionnaire et du bundle |
+
+| Liens Wikipédia explicatifs dans les résumés | ARG-035, PRM-018 | `WDV-MWK-020` + revue humaine | première occurrence utile, sans valeur documentaire |
+| Liens Wikipédia explicatifs dans les introductions | DFR-047, DEN-008, MW-027 | `WDV-MWK-020` + `WDV-EDT-017` | modèles et paramètres localisés |
+| Syntaxe et non-redondance des paramètres d’affichage | MW-027, VAL-032 | `WDV-MWK-020` | `texte-affiché` / `displayed-text` seulement si nécessaire |
 ```
 
-# Source incorporée : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md`
+# Source incorporée : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md`
 
-**SHA-256 :** `048e6beb1886370c3f8e79ec106e2665feab163159c0011923bcd5ae573e89c7`
+**SHA-256 :** `2a518fadc08aec8db021bba68886a77f1e51f929151b1b304181fe23b87d78c7`
 
 ```
 # Norme consolidée Wikidéb’IA 1.2.23
@@ -6732,7 +6800,7 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 **Remplace comme sources actives séparées :** révision 1.0.6, correctif du 23 juillet 2026 et décisions correctives du 25 juillet 2026. Ces documents restent conservés dans `history/` à titre de provenance.
 
 
-> **Révision 1.2.23.** Cette révision précise la forme des sujets de débat, étend le nettoyage des métadonnées sitographiques et vidéographiques à toutes les pages Argument, simplifie les résumés de modification distants et rétablit sans ambiguïté la mise à niveau depuis une seule archive. `sujet-complet` et `complete-topic` commencent par une minuscule, sauf nom propre ou acronyme inévitable et explicitement justifié ; `sujet` et `topic` privilégient un substantif, un syntagme nominal ou le nom conventionnel d’une doctrine. Les règles antérieures de titres affichés et de placement sont intégralement conservées.
+> **Révision 1.2.24.** Cette révision introduit les modèles inline `{{Lien Wikipédia}}` et `{{Wikipedia link}}` dans les introductions et les résumés d’arguments. Ils fournissent au survol une définition issue du premier paragraphe de la page Wikipédia correspondante, sans transformer Wikipédia en source documentaire. Leur syntaxe, leur usage parcimonieux, leur adaptation grammaticale et leur revue bilingue sont désormais normés. Toutes les règles 1.2.23 restent actives.
 
 ## 1. Autorité et priorité
 
@@ -6858,7 +6926,11 @@ Une revue humaine bilingue est obligatoire avant `release_ready`. Les heuristiqu
 
 Le résumé adopte un style encyclopédique destiné à un lectorat non spécialiste. Il présente l'idée centrale dès l'ouverture, puis explique le mécanisme utile à sa compréhension. Il privilégie des phrases courtes ou moyennes, de longueur variée, et évite les enchaînements de propositions longues qui donnent au texte l'allure d'un article universitaire.
 
-Tout terme scientifique, technique, juridique ou philosophique indispensable est défini brièvement lors de sa première occurrence significative dans la page. La définition est intégrée au raisonnement, par exemple : « Un essai randomisé répartit les participants par tirage au sort... » ou « Le contrôle de constitutionnalité désigne... ». Un terme de langue courante n'a pas à être défini artificiellement, et le résumé ne doit pas devenir un glossaire.
+Tout terme scientifique, technique, juridique ou philosophique indispensable est rendu compréhensible lors de sa première occurrence significative. Deux moyens sont admis : une brève explication intégrée au raisonnement, ou, lorsque le premier paragraphe de Wikipédia fournit une définition suffisante, un lien explicatif au survol avec `{{Lien Wikipédia}}` en français ou `{{Wikipedia link}}` en anglais. Le lien au survol évite de répéter dans la phrase une définition déjà disponible, mais il ne remplace jamais l’explication du mécanisme propre à l’argument. Un terme de langue courante n’a pas à être lié ou défini artificiellement, et le résumé ne doit devenir ni un glossaire ni une succession de liens.
+
+Dans un résumé français, la forme canonique est `{{Lien Wikipédia|article=Titre de la page}}`. Le paramètre facultatif `|texte-affiché=…` n’est utilisé que lorsque le texte visible souhaité diffère réellement du titre de la page. Une simple adaptation de la majuscule initiale ne justifie pas ce paramètre : dans le corps d’une phrase, `L'{{Lien Wikipédia|article=effet placebo}}` est préféré à un paramètre d’affichage redondant. En anglais, les formes correspondantes sont `{{Wikipedia link|article=Page title}}` et `|displayed-text=…`.
+
+Le titre de l’article est vérifié dans l’édition linguistique de la page produite. Le modèle est placé sur la première occurrence utile de la notion, puis normalement omis lors des répétitions. Il n’est pas employé dans les titres, les citations, les métadonnées documentaires ni le corps des notes `<ref>…</ref>`. Si le premier paragraphe de Wikipédia est trop général, ambigu ou insuffisant pour le raisonnement, une explication concise reste obligatoire dans la prose.
 
 La rédaction suit normalement cet ordre :
 
@@ -6969,6 +7041,27 @@ D’autres sous-parties peuvent être ajoutées lorsqu’elles apportent un él�
 Les sous-parties suivent une progression compréhensible pour un lecteur qui découvre le sujet. Chacune répond à une question identifiable et son utilité pour la compréhension du débat apparaît dès ses premières phrases. Une sous-partie technique, consacrée par exemple à une méthode, un indicateur, un cadre juridique ou un mécanisme spécialisé, n’est introduite que si le texte explique pourquoi cet élément est déterminant pour la question débattue.
 
 Les titres de sous-parties privilégient les formulations accessibles et informatives. Ils évitent les intitulés spécialisés ou abstraits dont le rapport avec le débat n’est pas immédiatement compréhensible.
+
+Dans le contenu des sous-parties, une notion spécialisée dont la définition est utile mais secondaire peut être rendue explicite au survol avec `{{Lien Wikipédia}}` en français ou `{{Wikipedia link}}` en anglais. Le modèle est réservé aux notions qui risqueraient réellement d’arrêter un lecteur non spécialiste. Il ne sert ni à lier chaque nom propre, chaque institution ou chaque terme courant, ni à remplacer les explications nécessaires au sens de la question débattue.
+
+Exemples français conformes :
+
+```mediawiki
+L'Alaska a mis en place l'{{Lien Wikipédia|article=Alaska Permanent Fund}}, une forme particulière de revenu de base.
+{{Lien Wikipédia|article=Basic Income Earth Network}}
+{{Lien Wikipédia|article=Monnaie locale|texte-affiché=monnaie locale complémentaire}}
+L'{{Lien Wikipédia|article=effet placebo}} est étudié dans certains protocoles expérimentaux.
+```
+
+Le paramètre `|texte-affiché=` est réservé à une différence lexicale ou grammaticale réelle. Pour la seule minuscule initiale exigée par la phrase, le nom passé à `|article=` peut commencer par une minuscule. L’anglais suit la même règle avec `{{Wikipedia link|article=…}}` et `|displayed-text=…`. Le lien au survol est un outil d’explication et de navigation, non une référence : toute affirmation factuelle qui exige une attribution conserve son appel `<ref>…</ref>`.
+
+Le rendu français repose sur le modèle MediaWiki suivant, fourni par le propriétaire du projet :
+
+```mediawiki
+<span class="hover-wikipedia">[https://fr.wikipedia.org/wiki/{{{article}}} {{{texte-affiché|{{{article}}}}}}]</span>
+```
+
+Cette implémentation confirme que le paramètre `article` détermine à la fois la cible Wikipédia et, par défaut, le texte visible. Le modèle anglais `Wikipedia link` suit la convention fonctionnelle correspondante avec `article` et `displayed-text`; son code interne n’est pas imposé par la norme tant que ce comportement est respecté.
 
 Le nombre de sous-parties et le volume documentaire dépendent de la complexité, de l’étendue du sujet et de l’abondance de la littérature disponible. Il n’existe pas de minimum universel de cinq sous-parties ni de vingt références. Le profil local peut déclarer des minima adaptés, accompagnés d’une justification non vide ; ces minima ne doivent jamais conduire à fragmenter artificiellement l’introduction ou à ajouter des sources sans apport réel. Inversement, une page portant sur une controverse abondamment documentée ne doit pas s’arrêter à une sélection symbolique ou minimale. Chaque famille applicable (bibliographie, sitographie et vidéographie) fait l’objet d’un examen séparé. Pour une page Débat ou Debate, les neuf paramètres documentaires sont tous présents et chacun contient au moins deux références distinctes ; une référence unique dans un paramètre est insuffisante. Au-delà de ce plancher structurel, le volume total reste proportionné à l’abondance et à la qualité de la littérature, sans remplissage artificiel.
 
@@ -7533,11 +7626,16 @@ La révision 1.2.19 corrige l’interprétation trop permissive des titres affic
 3. Les contrôles de redondance documentaire portent sur toutes les occurrences de références, y compris dans les pages Argument. Une égalité auteur-site déclenche obligatoirement une seconde recherche d’attribution ; elle ne peut subsister dans la sortie finale.
 4. Les reprises distantes emploient par défaut le résumé de modification court `Corrections`, sans identifiant technique ni empreinte de manifeste.
 5. Une livraison complète reste directement utilisable comme unique fichier de mise à niveau et contient donc les trois ZIP de composants à sa racine.
+
+
+## Addendum 1.2.24 — liens Wikipédia explicatifs au survol
+
+La révision 1.2.24 autorise et encadre `{{Lien Wikipédia}}` dans les contenus d’introduction et les résumés français, ainsi que `{{Wikipedia link}}` dans leurs équivalents anglais. Le modèle porte un paramètre obligatoire `article`; le paramètre d’affichage est `texte-affiché` en français et `displayed-text` en anglais. Une simple différence de majuscule initiale se traite dans `article` sans paramètre d’affichage. L’usage est limité à la première occurrence utile d’une notion réellement spécialisée, après vérification de la page dans la langue correspondante. Ces liens n’ont aucune valeur de citation et ne remplacent ni les références factuelles ni l’explication du raisonnement.
 ```
 
 # Source incorporée : `normative_reference/01_normes/cahier_des_charges_consolide_wikidebia.md`
 
-**SHA-256 :** `bc29558bebf5ab92c1ae4b9b9f9c9f415139c908f42785d6adce3dbf771c6f7e`
+**SHA-256 :** `c2f8383c8e3f1e3bb41fab0dfe55302f6a59d0e0859b3fc20d8a7ddfee9ae00b`
 
 ```
 # Cahier des charges consolidé de Wikidéb'IA
@@ -8059,13 +8157,23 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 Pour chaque langue, le registre individuel contient `displayed_title_concision_reviewed_fr` ou `displayed_title_concision_reviewed_en` à `true`. Lorsqu’un titre affiché est exactement identique au titre canonique, le champ `displayed_title_identity_justification_fr` ou `displayed_title_identity_justification_en` fournit une justification spécifique, substantielle et non générique. Le taux global d’identités exactes ne dépasse pas 10 % des arguments actifs par langue. La concision ne dispense jamais des exigences de proposition complète, de prédicat explicite et d’intelligibilité autonome.
 
 
-## Décisions du 2 août 2026 — révision 1.2.23
+## Décisions du 2 août 2026 — révision 1.2.24
 
 - Le sujet court est un libellé nominal conventionnel quand un tel concept existe.
 - Le complément de sujet commence normalement par une minuscule en français et en anglais.
 - Le nettoyage auteur/site/page s’applique aux références des pages Argument et à la vidéographie. Une égalité auteur-site impose une nouvelle vérification d’attribution puis l’omission de l’auteur si aucune responsabilité distincte n’est trouvée.
 - Le résumé de reprise par défaut est « Corrections ».
 - Une archive de livraison unique contient directement les trois composants et reste installable par les gestionnaires antérieurs.
+
+
+## Ajout 1.2.24 — modèles de définition Wikipédia au survol
+
+- **ARG-035 — ACTIVE — human+automatic syntax** : les résumés expliquent les notions spécialisées par une définition intégrée ou par le modèle Wikipédia localisé lorsque son premier paragraphe suffit.
+- **DFR-047 — ACTIVE — human+automatic syntax** : les introductions françaises utilisent `{{Lien Wikipédia}}` avec `article` et, seulement si nécessaire, `texte-affiché`.
+- **DEN-008 — ACTIVE — human+automatic syntax** : les introductions anglaises utilisent `{{Wikipedia link}}` avec `article` et, seulement si nécessaire, `displayed-text`.
+- **MW-027 — ACTIVE — automatic** : les noms, paramètres, langues, emplacements et interdictions dans les notes sont contrôlés.
+- **PRM-018 — ACTIVE — prompt+human** : la première occurrence utile est liée sans surliaison et sans substitution aux explications centrales.
+- **VAL-032 — ACTIVE — automatic+human ledger** : le validateur contrôle la syntaxe et les attestations de revue pour les corpus 1.2.24 et ultérieurs.
 ```
 
 # Source incorporée : `normative_reference/01_normes/history/CORRECTIONS_A_APPLIQUER_2026-07-25.md`
@@ -23286,6 +23394,822 @@ La conversion d’un tableau JSON d’auteurs vers le wikicode emploie la virgul
 La révision 1.2.19 corrige l’interprétation trop permissive des titres affichés. Un `titre-affiché` / `displayed-title` doit désormais être une proposition argumentative complète, et non un simple groupe nominal ou un thème abrégé. Le contexte peut raccourcir le cadrage, mais ne peut supprimer ni le prédicat ni la conclusion qui rendent l’argument intelligible. La revue individuelle atteste cette complétude dans les deux langues et le validateur 0.4.21 bloque les libellés manifestement non propositionnels sous cette seule révision.
 ```
 
+# Source incorporée : `normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md`
+
+**SHA-256 :** `048e6beb1886370c3f8e79ec106e2665feab163159c0011923bcd5ae573e89c7`
+
+```
+# Norme consolidée Wikidéb’IA 1.2.23
+
+**Statut :** source normative active unique  
+**Date d’effet :** 1er août 2026  
+**Domaine :** production, validation et préparation à la publication de débats bilingues français–anglais sous MediaWiki  
+**Remplace comme sources actives séparées :** révision 1.0.6, correctif du 23 juillet 2026 et décisions correctives du 25 juillet 2026. Ces documents restent conservés dans `history/` à titre de provenance.
+
+
+> **Révision 1.2.23.** Cette révision précise la forme des sujets de débat, étend le nettoyage des métadonnées sitographiques et vidéographiques à toutes les pages Argument, simplifie les résumés de modification distants et rétablit sans ambiguïté la mise à niveau depuis une seule archive. `sujet-complet` et `complete-topic` commencent par une minuscule, sauf nom propre ou acronyme inévitable et explicitement justifié ; `sujet` et `topic` privilégient un substantif, un syntagme nominal ou le nom conventionnel d’une doctrine. Les règles antérieures de titres affichés et de placement sont intégralement conservées.
+
+## 1. Autorité et priorité
+
+En cas de contradiction, l’ordre suivant s’applique :
+
+1. décision explicite ultérieure du propriétaire du projet ;
+2. présente norme consolidée ;
+3. structures et schémas portant la même version ;
+4. profils de rendu et workflow portant la même version ;
+5. documents historiques et prompts, uniquement comme provenance.
+
+Un audit décrit un état constaté ; il ne crée pas une règle supérieure à une décision normative. Aucune migration vers une version nouvelle ne peut être silencieuse.
+
+## 2. Principes de production
+
+Chaque débat et chaque argument possède une page dédiée. Les relations sont matérialisées par les titres canoniques des pages liées. Le registre maître JSON est la source de vérité des identifiants, titres, relations, occurrences, propriétaires de lots et états de génération.
+
+Les productions française et anglaise doivent être fonctionnellement équivalentes : mêmes nœuds, mêmes relations, mêmes occurrences et même orientation argumentative. Elles peuvent employer une rédaction et une documentation adaptées à chaque langue.
+
+Les sorties générées doivent être prêtes à être relues et importées, sans métadiscours, sans paramètres d’avertissement vides, sans texte extérieur au modèle principal et sans normalisation silencieuse par le validateur.
+
+## 3. Invariants du graphe
+
+Sont verrouillés après validation du graphe :
+
+- `debate_id` ;
+- identifiants des nœuds, relations et occurrences ;
+- titres canoniques français et anglais ;
+- orientation, parenté, ordre et profondeur des relations ;
+- occurrence primaire et réutilisations ;
+- propriétaires et composition des lots.
+
+Les titres affichés, rubriques, sections, mots-clés, résumés et métadonnées documentaires peuvent être corrigés lorsque le workflow l’autorise. Toute modification d’un champ inclus dans l’objet canonique de l’empreinte structurelle impose un recalcul explicite et la documentation de l’ancienne et de la nouvelle empreinte.
+
+### 3.1 Fonction argumentative des niveaux
+
+La profondeur n’est pas un indice d’importance, de prestige disciplinaire ou de richesse documentaire. Elle exprime la fonction logique de chaque occurrence dans le graphe.
+
+Une occurrence de **niveau 1** est un argument principal. Elle doit simultanément :
+
+1. répondre directement à la proposition du débat, en faveur ou en défaveur de celle-ci ;
+2. rester intelligible et défendable sans qu’un autre argument serve de parent implicite ;
+3. ouvrir une famille argumentative distincte pouvant organiser des justifications, objections et réponses ;
+4. ne pas avoir de parent plus général, non redondant, qui exprimerait mieux la raison principale ;
+5. ne pas avoir pour fonction première de soutenir, d’attaquer, d’illustrer, de spécialiser ou de nuancer un argument déterminé.
+
+Un argument important n’est donc pas nécessairement principal. Une objection visant spécialement une preuve, un exemple historique, un résultat expérimental, une interprétation scientifique, une doctrine particulière, un mécanisme technique ou une application sectorielle appartient à un niveau supérieur lorsqu’un argument plus général peut l’accueillir sans perte substantielle.
+
+Le test décisif est le suivant : si l’énoncé conserve essentiellement la même fonction après suppression de la branche qu’il vise, il peut être candidat au niveau 1 ; s’il perd sa cible, sa portée ou sa raison d’être, il doit être subordonné à cette cible. Ainsi, « Le remplacement de théories autrefois fécondes affaiblit l’inférence du succès scientifique au réalisme » est une objection à l’argument tiré du succès des sciences, et non une branche principale parallèle. De même, une interprétation quantique relative à la mesure relève normalement d’un argument plus général sur la dépendance des propriétés au contexte de mesure.
+
+Une formulation propre à une école philosophique peut être de niveau 1 seulement si cette formulation constitue elle-même une réponse autonome au débat. Lorsqu’elle instancie une thèse plus générale, la thèse générale devient le parent et la doctrine en fournit une justification, une précision ou un développement.
+
+Toute occurrence de profondeur supérieure à 1 doit viser directement son parent immédiat. Elle ne doit pas être placée sous un parent seulement voisin par thème. Une page réutilisée peut apparaître à plusieurs endroits, mais chaque occurrence reçoit séparément une justification de placement.
+
+Avant le verrouillage du graphe, une revue sémantique couvre toutes les occurrences actives. Pour chaque niveau 1, elle atteste la réponse directe au débat, l’autonomie, la capacité à structurer une famille et l’absence de parent général préférable. Pour chaque niveau supérieur, elle atteste que le parent est la meilleure cible immédiate et que la relation déclarée correspond au raisonnement. Cette revue est enregistrée dans le fichier déclaré par `editorial_controls.graph_placement_review_path`.
+
+## 4. Titres canoniques et titres affichés
+
+Le titre canonique est le nom de page et la cible de relation. Il est complet, explicite, autonome et non ambigu. Il mentionne le sujet lorsque cela évite une collision avec d’autres débats.
+
+Le titre affiché est une formulation de lecture plus concise que le titre canonique lorsque cette concision améliore réellement le rendu. Il reste cependant une proposition argumentative complète et immédiatement intelligible : le lecteur doit pouvoir identifier ce qui est affirmé, et non seulement le thème auquel l’argument se rapporte. Un simple groupe nominal, une étiquette doctrinale ou l’intitulé d’un phénomène ne suffit pas. Le titre affiché comporte au minimum un sujet et un prédicat explicites, sans point final, et conserve le lien logique décisif de l’argument. Le contexte d’affichage peut permettre d’omettre un cadrage déjà évident, mais il ne peut jamais remplacer le verbe, la conclusion ou la relation argumentative qui rendent la phrase compréhensible.
+
+### 4.1 Autonomie référentielle du titre canonique
+
+Le titre canonique constitue le nom permanent de la page et la cible de ses liens. Il doit être compréhensible lorsqu’il est présenté isolément, notamment dans un résultat de recherche, une liste de pages, un historique, une catégorie ou un lien dépourvu de contexte explicatif.
+
+Il ne doit pas dépendre d’un élément extérieur au titre pour identifier son sujet. Une formulation anaphorique ou déictique est donc non conforme lorsque son antécédent n’est pas exprimé dans le titre lui-même. Sont notamment concernés les déterminants et pronoms tels que « ce », « cet », « cette », « ces », « celui-ci », « celle-ci », « il », « elle », « ils » ou « elles » lorsqu’ils renvoient seulement au parent, à la branche ou au paragraphe environnant.
+
+Le titre canonique remplace alors l’expression contextuelle par le nom ou la désignation explicite du référent. Cette règle porte sur l’autonomie du nom de page, non sur une catégorie particulière d’objets : elle s’applique de la même manière à une méthode, une institution, une théorie, un événement, une mesure, une personne, un résultat ou tout autre sujet.
+
+Exemple :
+
+- non conforme : `La répétition des défaillances de cette méthode réduit sa fiabilité` ;
+- conforme : `La répétition des défaillances de la méthode de contrôle croisé réduit sa fiabilité`.
+
+Les démonstratifs et pronoms ne sont pas interdits lorsqu’ils possèdent un antécédent explicite et non ambigu dans le titre lui-même. Ainsi, un possessif comme « sa fiabilité » peut reprendre la `méthode de contrôle croisé` déjà nommée dans la même proposition.
+
+Le titre affiché peut employer une expression contextuelle plus courte si son référent est immédiatement identifiable dans l’emplacement d’affichage, si aucune autre entité ne peut être visée et si le raisonnement reste strictement identique au titre canonique. Cette souplesse ne dispense jamais d’une phrase propositionnelle complète : « La convergence entre observateurs » est un thème, tandis que « La convergence entre observateurs indique l’existence d’objets publics » expose un argument. De même, « Les renversements de l’histoire des sciences » doit devenir une proposition telle que « Les renversements scientifiques montrent que le succès d’une théorie ne garantit pas sa vérité ».
+
+Un titre affiché ne peut jamais être obtenu par une troncature aveugle ni réduit à un intitulé nominal. Sont notamment interdits :
+
+- les ellipses `...` ou `…` ;
+- la suppression d’un article, déterminant ou mot initial nécessaire à la grammaire ;
+- un début de titre constitué d’une lettre résiduelle telle que `S ` ou `E ` ;
+- une fin sur une préposition, une conjonction ou un connecteur incomplet ;
+- les remplacements lexicaux qui créent un doublon, une construction hybride ou un énoncé non idiomatique ;
+- la présence accidentelle de mots d’une autre langue, hors noms propres et dénominations officielles ;
+- un groupe nominal qui nomme seulement un thème, un phénomène, une école ou une objection sans exprimer ce que cet élément établit ;
+- une formulation dépourvue de prédicat explicite ou dont le lecteur ne peut comprendre la portée argumentative sans ouvrir la page.
+
+Lorsqu’une substitution contextuelle est employée pour distinguer titre canonique et titre affiché, elle doit être relue dans la phrase entière. Le titre validé dans le registre doit être reproduit à l’identique dans toutes les relations, pages Débat/Debate, agrégats, projections et fichiers canoniques, agrégats et manifestes.
+
+### 4.2 Guillemets dans les noms de pages et titres affichés
+
+Le critère est l’accessibilité sur un clavier d’ordinateur ordinaire, sans saisie d’un code Unicode ou d’une combinaison spécialisée. Les deux sites utilisent donc les **guillemets droits doubles ASCII** `"..."` dans les titres canoniques et les titres affichés :
+
+- français : `Le terme "effet de seuil" est défini...` ;
+- anglais : `The term "threshold effect" is defined...`.
+
+Les guillemets typographiques ou chevrons `« »`, `“ ”`, `„ ”`, `‹ ›` sont interdits dans les noms de pages et titres affichés. L’apostrophe droite ASCII `'` reste utilisée pour les élisions françaises et les contractions ou possessifs anglais ; elle ne remplace pas les guillemets d’une citation principale. Les guillemets droits doivent être équilibrés.
+
+La copie mécanique sans revue est interdite. Chaque titre affiché fait l'objet d'une décision éditoriale page par page, consignée dans un registre de revue. Pour chaque langue, cette revue atteste explicitement que le titre forme une proposition complète, que l’argument qu’il exprime est compréhensible à la lecture du seul libellé et que la concision a été effectivement recherchée.
+
+À compter de la norme 1.2.22, l'identité exacte avec le titre canonique est une exception. Toute identité doit être accompagnée, dans le registre individuel, d'une justification propre au nœud et à la langue expliquant pourquoi aucune formulation plus courte ne préserverait aussi bien la thèse. Les identités ne peuvent dépasser 10 % des arguments actifs dans une langue. Le seuil porte sur l’égalité normalisée après retrait des espaces périphériques et mise en minuscules ; il n’autorise ni les troncatures, ni les paraphrases artificielles. Le validateur bloque les corpus dépassant ce seuil et contrôle la présence des attestations de concision et des justifications individuelles.
+
+## 5. Résumés d’arguments
+
+Le résumé expose la version la plus forte du raisonnement porté par le nœud : prémisses, mécanisme, conclusion et portée documentée. Il ne modifie ni l’identité logique, ni l’orientation, ni la force soutenue par les sources.
+
+Le résumé ne doit pas :
+
+- anticiper une objection ;
+- se conclure par sa propre réfutation ;
+- ajouter une concession destinée seulement à équilibrer le texte ;
+- diminuer artificiellement la portée de la proposition ;
+- parler de « l’argument », de « la page » ou du « raisonnement présenté ».
+
+Les limites opposables sont portées par les pages d’objections reliées. Une délimitation nécessaire à l’identité de la proposition peut être conservée lorsqu’elle est formulée positivement.
+
+Une revue humaine bilingue est obligatoire avant `release_ready`. Les heuristiques automatiques détectent notamment les concessions finales et le métadiscours, mais ne remplacent pas cette revue.
+
+### 5.1 Style encyclopédique grand public
+
+Le résumé adopte un style encyclopédique destiné à un lectorat non spécialiste. Il présente l'idée centrale dès l'ouverture, puis explique le mécanisme utile à sa compréhension. Il privilégie des phrases courtes ou moyennes, de longueur variée, et évite les enchaînements de propositions longues qui donnent au texte l'allure d'un article universitaire.
+
+Tout terme scientifique, technique, juridique ou philosophique indispensable est défini brièvement lors de sa première occurrence significative dans la page. La définition est intégrée au raisonnement, par exemple : « Un essai randomisé répartit les participants par tirage au sort... » ou « Le contrôle de constitutionnalité désigne... ». Un terme de langue courante n'a pas à être défini artificiellement, et le résumé ne doit pas devenir un glossaire.
+
+La rédaction suit normalement cet ordre :
+
+1. thèse ou idée principale ;
+2. explication concrète du mécanisme ;
+3. exemple, donnée ou distinction réellement utile ;
+4. délimitation indispensable, seulement si elle appartient à l'identité de la proposition.
+
+Les noms d'auteurs, d'études et de méthodes ne précèdent pas l'explication qu'ils doivent éclairer. Ils sont mentionnés uniquement lorsqu'ils ajoutent une information nécessaire. Le résumé n'explique pas tout le dossier : il développe un seul nœud logique avec assez de précision pour être compris seul.
+
+Une revue page par page atteste, pour chaque langue produite : l'annonce directe de la thèse, l'accessibilité au grand public, le rythme des phrases et l'explication des termes techniques nécessaires. Le validateur peut signaler une accumulation de phrases longues, mais ce signal est heuristique et ne mesure ni la qualité logique ni la suffisance des définitions.
+
+Les résumés français et anglais d’un même nœud doivent être substantiellement équivalents : mêmes prémisses principales, mêmes éléments probants décisifs, même conclusion et même portée. Une différence de longueur n’est pas en soi une faute, mais un ratio anglais/français inférieur à 0,60 ou supérieur à 1,45 déclenche un blocage automatique et une reprise humaine.
+
+### 5.2 Ouverture, concrétisation et force expressive
+
+La première phrase du résumé ne répète pas mécaniquement le titre canonique ou le titre affiché. Elle développe immédiatement l’argument en présentant un phénomène concret, une prémisse décisive, un mécanisme causal, une conséquence ou une distinction utile. La thèse doit rester identifiable dès l’ouverture, mais sa simple reformulation ne constitue pas un développement suffisant.
+
+Un exemple concret, un ordre de grandeur ou une donnée chiffrée est ajouté lorsqu’il améliore réellement la compréhension ou renforce la démonstration. Son emploi n’est jamais obligatoire. Un chiffre doit être soutenu par une source documentaire de la page et présenté avec la portée, la population et le contexte nécessaires. Aucun exemple ou chiffre ne doit être ajouté pour donner artificiellement une impression de précision, de variété ou d’autorité.
+
+Le résumé adopte normalement une formulation ferme, imagée et légèrement mordante qui fait apparaître la force du raisonnement et la conviction de la voix qui le défend. Une rédaction uniformément lisse, distante ou neutralisée n’est pas conforme lorsque le nœud permet une expression plus saillante. Cette fermeté ne doit pas devenir un ton militant, sarcastique ou méprisant. Le texte ne ridiculise pas l’argument adverse, ne prête pas d’intentions aux personnes ou aux institutions et ne transforme pas une proposition discutée en vérité éditoriale incontestable. La revue page par page relève une expression réellement présente dans le résumé qui rend cette force perceptible.
+
+Les images explicatives, oppositions de formulation et phrases saillantes sont admises lorsqu’elles clarifient le mécanisme. Elles ne doivent pas devenir des slogans, être répétées mécaniquement d’une page à l’autre ou dépasser ce que permettent le titre, le graphe et les sources.
+
+La revue humaine page par page atteste en outre que l’ouverture développe le titre, que la pertinence d’un exemple ou d’une donnée a été examinée, que tout chiffre a fait l’objet d’une vérification documentaire explicite, et que le ton reste ferme sans devenir polémique.
+
+## 6. Rubriques, sections et mots-clés
+
+Les rubriques françaises autorisées sont : Aménagement, Culture, Droit, Écologie, Économie, Éducation, Éthique, Géopolitique, Histoire, Philosophie, Politique, Psychologie, Religion et spiritualité, Santé, Science, Société, Sport et loisirs, Technologie.
+
+Chaque nœud est classé individuellement. Une à trois rubriques réellement centrales sont normalement utilisées ; une quatrième est exceptionnelle et motivée. Une rubrique peut légitimement être présente sur tous les arguments d'un débat lorsque sa pertinence est démontrée page par page ; sa fréquence locale ne constitue ni une preuve de pertinence ni une anomalie automatique. Les décisions sont consignées dans un registre de revue. Dans chaque valeur MediaWiki et dans le registre correspondant, les rubriques françaises sont rangées par ordre alphabétique français et les sections anglaises par ordre alphabétique anglais. Les sections anglaises constituent le même ensemble conceptuel que les rubriques françaises, mais leur ordre est recalculé indépendamment dans la langue anglaise.
+
+Chaque page d’argument reçoit normalement **deux à quatre mots-clés thématiques**. Leur fonction principale est la navigation à l’échelle de l’ensemble du wiki : un clic doit pouvoir rapprocher des arguments relevant de débats différents autour d’un même phénomène, d’une même méthode, d’une même question épistémologique ou d’un même contexte institutionnel.
+
+Un mot-clé doit donc être :
+
+- simple et immédiatement compréhensible ;
+- central pour le raisonnement de la page ;
+- assez général pour pouvoir être réutilisé dans d’autres débats du wiki ;
+- assez précis pour former un regroupement utile ;
+- formulé comme un nom, un groupe nominal court, un nom propre ou un acronyme reconnu.
+
+Sont interdits :
+
+- les verbes, adjectifs ou adverbes isolés ;
+- les fragments de phrase ;
+- les formulations qui résument presque toute la proposition de la page ;
+- les détails propres à une étude, une date, un seuil ou un résultat lorsqu’un concept encyclopédique plus stable existe ;
+- les synonymes artificiels créés pour rendre les jeux de mots-clés différents.
+
+Un mot-clé thématique comporte normalement au plus quatre mots lexicaux et quarante caractères. Un vocabulaire contrôlé bilingue consigne chaque paire français–anglais, sa définition et, à titre informatif, ses usages dans le corpus courant.
+
+**La fréquence dans un débat particulier n’est jamais un critère d’admissibilité.** Un mot-clé peut n’apparaître que sur un seul argument du débat courant lorsque le concept est suffisamment général pour concerner d’autres arguments du wiki ou d’autres débats. Il n’existe donc ni minimum d’occurrences locales, ni plafond de taille du vocabulaire calculé en proportion du nombre d’arguments du débat.
+
+La réutilisation effective à l’intérieur du débat reste une information utile pour la revue, mais elle ne doit pas conduire à supprimer un thème central ou à le remplacer par un terme artificiellement plus vague. Un même jeu exact dominant plus de 25 % du corpus demeure bloquant, car il signalerait une attribution mécanique et rendrait la navigation peu discriminante.
+
+Les keywords anglais sont des équivalents idiomatiques, dans le même ordre conceptuel. Pour les rubriques et sections des pages Débat/Debate, la précision prime sur l’exhaustivité : seules les catégories qui caractérisent le débat dans son ensemble sont retenues, sans ajouter une catégorie parce qu’un argument secondaire, une méthode particulière ou une sous-partie de l’introduction la mentionne. Les pages Débat/Debate utilisent normalement cinq à huit mots-clés généraux.
+
+## 7. Documentation et références
+
+### 7.1 Principes communs
+
+Une source possède un identifiant documentaire unique, une notice vérifiable et des usages réciproques cohérents. Les doublons par DOI, ISBN, URL canonique ou clé normalisée sont interdits.
+
+La bibliographie est généralement prioritaire. La sitographie et la vidéographie sont complémentaires. La sélection documentaire s’adapte au domaine de l’argument : publications scientifiques et synthèses pour les questions empiriques, textes officiels et doctrine pour le droit, sources primaires et travaux historiques pour l’histoire, œuvres et commentaires académiques pour la philosophie, données et rapports institutionnels pour les politiques publiques, ou toute autre source de référence adaptée au sujet. Les pages Argument ne remplissent pas de quotas : chaque famille documentaire peut contenir zéro, une ou plusieurs références selon son apport réel. Les pages Débat et Debate suivent toutefois une règle de couverture propre : chacun de leurs neuf paramètres documentaires (trois positions pour chacune des familles bibliographie, sitographie/webliography et vidéographie) contient au moins deux références distinctes. Cette pluralité garantit qu’aucune position n’est représentée par une notice symbolique isolée.
+
+### 7.2 Pagination bibliographique
+
+Une page ou plage de pages utilise :
+
+```mediawiki
+|page=36-37
+```
+
+La valeur ne contient ni `page`, ni `pages`, ni `p.`, ni `pp.`. `localisation=` et `location=` sont réservés aux repères non strictement paginaires : chapitre, section, annexe, numéro ou identifiant d’article.
+
+Une incompatibilité entre la norme et un modèle public est un blocage de publication. Elle ne doit jamais être contournée silencieusement dans le corpus ou le kit.
+
+### 7.3 Dates sitographiques
+
+`date=` contient la date de publication ou de mise à jour substantielle. Lorsqu’une date complète est connue, elle est écrite en langage naturel dans la langue de la page (`25 juin 2012` en français, `25 June 2012` en anglais), jamais au format machine `2012-06-25`. Une année seule, par exemple `2012`, reste admise lorsqu’elle est la seule précision documentaire disponible. Une date de consultation n’est jamais placée dans `date=`. Lorsque la date documentaire n’est pas vérifiable, le paramètre est omis. Aucune date ne peut être inventée. Cette règle ne concerne pas `date-création` ni `creation-date`, qui restent obligatoirement au format `AAAA-MM-JJ`.
+
+### 7.4 Langue des sources et éditions linguistiques
+
+La langue enregistrée dans le registre documentaire est la langue réelle du contenu cité, et non la langue de la page qui l’utilise. Chaque usage indique séparément la langue de la page. La vérification de langue est explicite.
+
+Les pages Débat et Debate utilisent exclusivement des ressources intégralement disponibles dans leur propre langue, y compris les appels de référence de l’introduction et les listes documentaires structurées. Une page française de débat ne cite donc aucune ressource anglaise ; une édition, traduction, page, version doublée ou sous-titrée officiellement en français constitue une notice française distincte.
+
+Sur une page Argument française, une édition ou traduction française pertinente et vérifiable est toujours préférée lorsqu’elle existe. Une source primaire ou académique peut rester dans sa langue originale uniquement lorsqu’aucun équivalent français officiel et pertinent n’existe, ou lorsque la ressource étrangère est elle-même l’objet analysé. Cette décision est consignée dans l’usage documentaire. Les titres publiés ne sont jamais traduits artificiellement. La règle symétrique s’applique aux pages anglaises.
+
+Les éditions ou traductions d’une même œuvre partagent un identifiant d’équivalence documentaire. Le validateur bloque l’emploi d’une source étrangère sur une page Argument lorsqu’un équivalent vérifié dans la langue de la page est disponible dans le registre.
+
+### 7.5 Finalité et organisation des introductions Débat / Debate
+
+L’introduction apporte de manière synthétique les éléments nécessaires pour comprendre le débat avant la lecture des arguments. Elle permet au lecteur d’identifier le sujet, le sens exact de la question, son contexte et ses principaux enjeux. Elle ne constitue ni une revue exhaustive de la littérature, ni un résumé successif des arguments pour et contre, ni une reproduction des branches du graphe argumentatif.
+
+Elle traite normalement, dans un ordre adapté au sujet :
+
+1. de la définition du ou des sujets et de la délimitation du périmètre ;
+2. du sens précis de la question débattue, de ses principales interprétations et des distinctions nécessaires pour éviter les confusions ;
+3. des repères historiques permettant de comprendre l’apparition et l’évolution du débat ;
+4. de l’état actuel du débat lorsqu’il demeure contemporain, notamment ses principaux acteurs, institutions, évolutions ou cadres applicables ;
+5. des concepts, mécanismes, méthodes, données ou contextes indispensables à la compréhension du désaccord ;
+6. des enjeux intellectuels, sociaux, éthiques, politiques, juridiques, économiques, scientifiques ou pratiques du débat.
+
+D’autres sous-parties peuvent être ajoutées lorsqu’elles apportent un élément réellement nécessaire à la compréhension du sujet. Aucune liste thématique propre à un débat particulier ne devient une structure universelle applicable mécaniquement aux autres débats.
+
+Les sous-parties suivent une progression compréhensible pour un lecteur qui découvre le sujet. Chacune répond à une question identifiable et son utilité pour la compréhension du débat apparaît dès ses premières phrases. Une sous-partie technique, consacrée par exemple à une méthode, un indicateur, un cadre juridique ou un mécanisme spécialisé, n’est introduite que si le texte explique pourquoi cet élément est déterminant pour la question débattue.
+
+Les titres de sous-parties privilégient les formulations accessibles et informatives. Ils évitent les intitulés spécialisés ou abstraits dont le rapport avec le débat n’est pas immédiatement compréhensible.
+
+Le nombre de sous-parties et le volume documentaire dépendent de la complexité, de l’étendue du sujet et de l’abondance de la littérature disponible. Il n’existe pas de minimum universel de cinq sous-parties ni de vingt références. Le profil local peut déclarer des minima adaptés, accompagnés d’une justification non vide ; ces minima ne doivent jamais conduire à fragmenter artificiellement l’introduction ou à ajouter des sources sans apport réel. Inversement, une page portant sur une controverse abondamment documentée ne doit pas s’arrêter à une sélection symbolique ou minimale. Chaque famille applicable (bibliographie, sitographie et vidéographie) fait l’objet d’un examen séparé. Pour une page Débat ou Debate, les neuf paramètres documentaires sont tous présents et chacun contient au moins deux références distinctes ; une référence unique dans un paramètre est insuffisante. Au-delà de ce plancher structurel, le volume total reste proportionné à l’abondance et à la qualité de la littérature, sans remplissage artificiel.
+
+Chaque sous-partie substantielle contient les appels de référence inline nécessaires pour soutenir les affirmations factuelles qui exigent une attribution. Dans les introductions française et anglaise, chaque appel développé est rédigé directement en wikicode lisible à l’intérieur de `<ref>…</ref>`, sans passer par un modèle MediaWiki. Les modèles `{{Référence}}`, `{{Reference}}`, les modèles bibliographiques, sitographiques ou vidéographiques spécialisés et tout autre modèle de citation sont interdits dans le corps d’une note d’introduction. La note indique directement les éléments utiles à l’identification de la source — auteur, titre, publication ou site, date en langage naturel, pagination et lien selon le cas. Une référence nommée peut être définie sous la forme `<ref name="…">contenu rédigé directement</ref>` puis réutilisée avec `<ref name="…" />`. Les appels français sont placés avant la ponctuation finale ; les appels anglais suivent la convention anglaise. Les balises `<references />` et `<references>` ne sont jamais ajoutées : l’affichage des notes est géré par le wiki. Les mêmes sources peuvent également figurer dans les listes documentaires structurées de la page lorsque l’appel inline attribue une affirmation précise.
+
+Aucun nombre minimal d’appels `<ref>` n’est imposé à l’introduction dans son ensemble ni à une sous-partie particulière. Une introduction principalement définitionnelle, conceptuelle ou argumentative peut donc ne contenir aucun appel inline lorsqu’elle ne formule aucune affirmation factuelle externe nécessitant une attribution. Le contrôle porte sur l’adéquation entre les affirmations présentes et leurs sources, non sur la présence mécanique d’au moins une référence.
+
+Avant `release_ready`, une revue humaine bilingue consigne pour chaque langue que le sujet et le périmètre sont définis, que le sens de la question est expliqué, que l’histoire et l’actualité sont traitées lorsqu’elles sont pertinentes, que les enjeux sont explicites, que chaque sous-partie est nécessaire, que la progression est logique, qu’une section technique est contextualisée et que l’introduction ne reproduit ni le graphe ni une checklist propre à un corpus pilote.
+
+### 7.6 Sélection de la bibliographie des pages de débat
+
+La bibliographie d’une page Débat ou Debate constitue une sélection de référence sur l’ensemble de la controverse. Elle privilégie les livres incontournables, monographies, manuels, volumes collectifs, rapports de synthèse et articles de revue réellement panoramiques. Les articles scientifiques consacrés à une expérience, un protocole ou un résultat étroit appartiennent aux pages Argument concernées et ne sont pas accumulés dans la bibliographie générale du débat.
+
+Chaque usage bibliographique du débat indique s’il s’agit d’une œuvre fondatrice ou d’une synthèse large, ainsi qu’une justification de sélection. Une source étroite ou dépourvue de justification est bloquante.
+
+### 7.7 Métadonnées sitographiques et conversion des auteurs
+
+`auteurs=` ou `authors=` n’est émis que lorsqu’une personne ou une organisation est explicitement responsable du contenu. À défaut, le paramètre est omis ; le nom du site n’est jamais recopié mécaniquement comme auteur. La vérification de l’attribution est enregistrée.
+
+Le registre JSON conserve `authors` sous forme de liste, mais cette liste ne doit jamais être sérialisée littéralement dans le wikicode. La conversion vers MediaWiki est obligatoire : une liste d’un élément devient le texte brut de cet élément (`["L'Encyclopédie philosophique"]` devient `|auteurs=L'Encyclopédie philosophique`) ; plusieurs éléments sont séparés par une virgule suivie d’une espace (`Auteur 1, Auteur 2`) ; une liste vide entraîne l’omission du paramètre. Les crochets, guillemets et virgules syntaxiques du JSON ne sont jamais publiés.
+
+Lorsque le titre de la page et le nom du site sont identiques, seul `site=` est conservé. Les triples identiques `page`, `auteurs` et `site` sont interdits.
+
+### 7.8 Incises parenthétiques dans la prose française
+
+Dans la prose française générée, une incise explicative, une apposition ou une énumération insérée à l’intérieur d’une phrase est délimitée par des parenthèses, et non par une paire de tirets cadratins.
+
+Exemple non conforme :
+
+`La mesure concerne plusieurs services essentiels — l’eau, l’énergie, les transports et la santé — sans s’appliquer aux activités de loisir.`
+
+Exemple conforme :
+
+`La mesure concerne plusieurs services essentiels (l’eau, l’énergie, les transports et la santé) sans s’appliquer aux activités de loisir.`
+
+Cette règle vise les tirets cadratins appariés employés comme signes de parenthèse dans les introductions, résumés et autres passages rédactionnels français. Elle n’interdit pas les traits d’union, les plages numériques, les listes MediaWiki, les titres d’œuvres cités fidèlement ni les tirets présents dans une citation reproduite comme telle.
+
+## 8. Structures MediaWiki actives
+
+### 7.9 Articles Wikipédia obligatoires et absence de débats connexes générés
+
+Toute page `Débat` française contient un paramètre `articles-Wikipédia` non vide avec au moins un sous-modèle `{{Article Wikipédia|page=…}}`. Toute page `Debate` anglaise contient de même `wikipedia-articles` avec au moins un `{{Wikipedia article|page=…}}`. Les titres exacts sont recherchés et vérifiés dans l’édition linguistique correspondante ; l’absence de résultat ne peut pas être déclarée sans recherche. Un article directement centré sur le sujet est privilégié, mais des articles de cadrage étroitement liés sont admis lorsque le titre exact du débat n’a pas de page dédiée.
+
+Les sorties générées ne contiennent jamais `débats-connexes` ni `related-debates`. Les relations entre débats peuvent rester décrites dans les données internes ou dans un registre éditorial, mais elles ne sont pas rendues dans les pages MediaWiki.
+
+### 8.1 Page Débat française
+
+```mediawiki
+{{Débat
+|sujet=
+|sujet-complet=
+|avancement=Débat construit
+|avertissements-débat=Débat généré par IA
+|introduction={{Sous-partie
+|titre=
+|contenu=
+}}
+|articles-Wikipédia={{Article Wikipédia
+|page=Article vérifié directement lié au sujet
+}}
+|arguments-pour={{Argument pour
+|page=Titre canonique complet
+|titre-affiché=Titre affiché
+}}
+|arguments-contre={{Argument contre
+|page=Titre canonique complet
+|titre-affiché=Titre affiché
+}}
+|bibliographie-pour=
+|bibliographie-contre=
+|bibliographie-ni-pour-ni-contre=
+|sitographie-pour=
+|sitographie-contre=
+|sitographie-ni-pour-ni-contre=
+|vidéographie-pour=
+|vidéographie-contre=
+|vidéographie-ni-pour-ni-contre=
+|rubriques=
+|mots-clés=
+|interlangue={{Lien interlangue
+|langue=en
+|page=Titre canonique anglais
+}}
+|date-création=AAAA-MM-JJ
+}}
+```
+
+Le paramètre `interlangue` est obligatoire dans le fichier français canonique dès sa première génération valide. Il utilise toujours `{{Lien interlangue}}` et vise le titre canonique anglais verrouillé, même si la page anglaise sera créée dans une phase ultérieure. La page anglaise peut donc être momentanément absente du wiki.
+
+Lorsque le sujet possède un acronyme courant et non ambigu, `sujet-complet` ou `complete-topic` l’emploie de préférence à la répétition de la forme développée. Exemple : `|sujet=Gestation pour autrui` et `|sujet-complet=l’autorisation de la GPA`. Le registre de revue indique, pour chaque langue, l’acronyme retenu ou atteste qu’aucun acronyme courant n’est applicable.
+
+La présence des pages anglaises dans le manifeste de pages n’est pas une condition de publication des pages françaises. Il suffit que leurs titres anglais futurs soient verrouillés dans le registre maître et repris exactement dans `{{Lien interlangue}}`. Les pages anglaises peuvent être générées, validées et publiées ultérieurement.
+
+### 8.2 Page Argument française
+
+```mediawiki
+{{Argument
+|avertissements-argument=Argument généré par IA
+|résumé=
+|références-bibliographiques={{Référence bibliographique
+|auteurs=
+|article=
+|ouvrage=
+|volume=
+|numéro=
+|localisation=
+|page=36-37
+|édition=
+|lieu=
+|date=
+|lien=
+}}
+|références-sitographiques=
+|références-vidéographiques=
+|justifications={{Justification
+|page=Titre canonique complet
+|titre-affiché=Titre affiché
+}}
+|objections={{Objection
+|page=Titre canonique complet
+|titre-affiché=Titre affiché
+}}
+|rubriques=
+|mots-clés=
+|interlangue={{Lien interlangue
+|langue=en
+|page=Titre canonique anglais
+}}
+|date-création=AAAA-MM-JJ
+}}
+```
+
+### 8.3 English Debate page
+
+```mediawiki
+{{Debate
+|topic=
+|complete-topic=
+|progress=Constructed debate
+|debate-warnings=Debate generated by AI
+|introduction={{Subsection
+|title=
+|content=
+}}
+|wikipedia-articles={{Wikipedia article
+|page=Verified article directly related to the topic
+}}
+|pro-arguments={{Pro argument
+|page=Full canonical title
+|displayed-title=Displayed title
+}}
+|con-arguments={{Con argument
+|page=Full canonical title
+|displayed-title=Displayed title
+}}
+|pro-bibliography=
+|con-bibliography=
+|bibliography=
+|pro-webliography=
+|con-webliography=
+|webliography=
+|pro-videography=
+|con-videography=
+|videography=
+|sections=
+|keywords=
+|creation-date=YYYY-MM-DD
+}}
+```
+
+### 8.4 English Argument page
+
+```mediawiki
+{{Argument
+|argument-warnings=Argument generated by AI
+|summary=
+|bibliography={{Bibliographical reference
+|authors=
+|article=
+|work=
+|volume=
+|issue=
+|location=
+|page=36-37
+|publisher=
+|place=
+|date=
+|link=
+}}
+|webliography=
+|videography=
+|justifications={{Justification
+|page=Full canonical title
+|displayed-title=Displayed title
+}}
+|objections={{Objection
+|page=Full canonical title
+|displayed-title=Displayed title
+}}
+|sections=
+|keywords=
+|creation-date=YYYY-MM-DD
+}}
+```
+
+Les pages anglaises ne contiennent pas de lien interlangue.
+
+## 9. Dates de création
+
+La date de création est une décision de production distincte de la date des sources. Elle seule utilise systématiquement le format machine `AAAA-MM-JJ` dans `date-création` et `creation-date`; les dates documentaires complètes utilisent le langage naturel. Chaque paquet déclare la date attendue pour chaque langue dans son manifeste ou son profil local. Le validateur compare cette valeur au wikicode, au registre et aux manifestes de pages. Le moteur générique ne contient aucune date propre à un corpus.
+
+La date devient immuable dès la première validation du fichier de la page. Elle ne change ni lors d’une correction, ni lors d’un enrichissement, ni lors d’une nouvelle tentative d’import. Comme le lien interlangue appartient dès l’origine au fichier français conforme aux normes 1.2.x, il ne donne lieu à aucune date secondaire.
+
+Les décisions propres à un corpus, y compris une date corrective historique, sont conservées dans son profil local ou ses rapports de migration, jamais dans la norme universelle.
+
+## 10. Workflow correctif et non-régression
+
+Le cycle correctif autorisé est :
+
+```text
+release_ready
+  → corrective_in_progress
+  → corrective_blocked (si une anomalie subsiste)
+  → corrective_in_progress (après reprise)
+  → release_ready (validation complète uniquement)
+```
+
+Le Work porte le type `corrective_prepublication`. Il crée un instantané initial, des handoffs correctifs nouveaux et une matrice de couverture. Les handoffs historiques ne sont jamais réécrits ; leurs empreintes décrivent l’état d’entrée de leur Work original. Chaque nouvelle reprise ajoute un handoff final propre à sa révision vers W11.
+
+Une seule norme consolidée est active à la racine du dossier `normative/`. Toute version consolidée antérieure est déplacée dans `normative/history/`. Les documents spécialisés — structures, profils, workflow, catalogue d’exigences et matrice de traçabilité — doivent pointer vers la même révision active et ne peuvent conserver une règle remplacée comme règle active.
+
+Le retour à `release_ready` exige :
+
+- zéro erreur bloquante ;
+- zéro avertissement non résolu ;
+- revue éditoriale humaine enregistrée ;
+- cohérence bilingue ;
+- manifeste de libération cohérent ;
+- preuve de l’absence d’écriture distante ;
+- audit de non-régression comparant la norme, le kit, les pages, les invariants, les fichiers et les exigences cumulées ;
+- kit de publication produit séparément, inclus dans la livraison complète et non exécuté.
+
+Aucune reprise corrective ne peut supprimer silencieusement une fonction, un contrôle, un test, un rapport, un fichier normatif ou une étape du kit. Une suppression intentionnelle exige une décision explicite, une justification et une trace dans le changelog.
+
+## 11. Validateur
+
+`validate` est strictement en lecture seule. Toute écriture locale dérivée passe par une commande distincte, explicitement demandée, telle que `recalc --write`. Le validateur n’effectue aucune connexion au wiki.
+
+Les contrôles sont répartis entre schémas JSON, cohérence et fichiers, graphe, lots, sources, wikicode, bilinguisme, workflow, contrôles éditoriaux automatisables et revue humaine obligatoire.
+
+Le validateur recommandé 0.4.13 conserve les contrôles antérieurs, applique les règles 1.2.6 à 1.2.9 aux paquets qui les déclarent et maintient la compatibilité explicite avec les révisions historiques annoncées. Chaque règle binaire nouvelle possède au moins un test positif et un test négatif. Les nombres de tests, exigences et fichiers déclarés dans les reçus doivent correspondre aux éléments réellement livrés.
+
+Les longueurs indicatives des résumés restent des guides éditoriaux et non des quotas. Une distribution systématiquement courte déclenche une information de revue humaine, sans provoquer de remplissage artificiel. La revue doit confirmer que chaque page demeure autonome, informative et fidèle à un seul nœud.
+
+## 12. Publication W11
+
+Aucune écriture distante n’est autorisée pendant une reprise W10 corrective. Le kit W11 est livré sans exécution et sans secret.
+
+Avant toute publication, W11 doit :
+
+1. exécuter une simulation globale déterministe et signer le plan par SHA-256 ;
+2. vérifier en lecture seule la compatibilité réelle des modèles publics ;
+3. refuser de poursuivre si un paramètre normatif requis n’est pas accepté ;
+4. effectuer comme première écriture distante un test sur l’unique page Débat française canonique du plan ;
+5. exiger que cette page soit absente lors de la simulation, la créer avec `createonly`, relire la révision exacte et produire un reçu machine signé ;
+6. avant toute autre écriture, recharger le même plan et le reçu, vérifier leurs empreintes, puis confirmer que la page Débat est toujours à la révision attestée avec le même contenu, le même résumé et la même balise ;
+7. après ce test, créer les autres pages françaises, puis les pages anglaises, les pages Argument précédant la page Debate dans la phase anglaise ;
+8. réauthentifier et vérifier l’identité à chaque phase et avant chaque écriture ;
+9. utiliser `assert=user` et `assertuser` ;
+10. classifier chaque titre distant comme `absent`, `equivalent_existing`, `collision` ou `manual_review` ;
+11. ne jamais écraser une page existante par défaut : une page équivalente est ignorée et une collision bloque le plan ; la page Débat française préexistante bloque spécifiquement le test ;
+12. comparer les contenus local et distant par SHA-256 et enregistrer les identifiants de révision ;
+13. utiliser `createonly` pour chaque création canonique ; aucune mise à jour interlangue distincte n’est prévue pour un paquet 1.2.x ;
+14. relire chaque page après écriture, vérifier son contenu et enregistrer la nouvelle révision ;
+15. s’arrêter sur perte de session, collision, divergence, droits insuffisants ou révision concurrente ;
+16. ne créer aucune sous-page utilisateur pour le test de publication ;
+17. écrire des journaux JSONL privés de simulation, test et import ;
+18. reprendre uniquement à partir du couple titre + SHA-256 de contenu et de révisions réelles vérifiées ;
+19. refuser l’exécution si le corpus, le validateur, la norme ou le plan ont changé depuis la simulation ;
+20. charger pour le test et la publication le fichier de plan signé produit par la simulation, sans le reconstruire silencieusement ;
+21. incorporer au plan les empreintes du manifeste, du manifeste de libération et du validateur, puis les revérifier avant toute écriture ;
+22. reconnaître comme état de reprise valide la page Débat française créée par le test seulement si son reçu reste valide et sa révision courante inchangée ;
+23. exiger pour la suite de la publication le reçu machine du test de la page Débat canonique, lié au plan signé et revérifié à distance immédiatement avant toute autre écriture.
+
+Les fichiers d’authentification, cookies, secrets et identifiants privés ne sont jamais inclus dans une archive publique.
+
+## 13. Profils locaux et invariants propres à un corpus
+
+Les nombres de nœuds, relations, occurrences, lots et pages, les dates correctives, les chemins de rapports et les Work particuliers sont des données locales. Ils sont déclarés dans le manifeste, le profil de contrôle ou les rapports du corpus concerné. Ils ne deviennent jamais des constantes de la norme, du validateur ou du kit génériques.
+
+Une reprise corrective conserve les invariants déclarés par son paquet et documente toute migration autorisée. Le statut local `release_ready` n’implique pas l’autorisation de publier : le champ de publication reste fermé jusqu’à la validation complète, au préflight et au test canonique de la page Débat W11.
+
+## 14. Renforcement éditorial cumulatif
+
+Avant `release_ready`, le corpus doit présenter :
+
+1. zéro titre canonique ou affiché contenant une ellipse, une troncature grammaticale ou des guillemets non conformes ;
+2. zéro lettre initiale résiduelle issue d’une suppression d’article ;
+3. concordance exacte de tous les titres affichés entre registre, relations, agrégats et fichiers canoniques ;
+4. deux à quatre mots-clés nominaux par page, issus du vocabulaire contrôlé bilingue ;
+5. zéro mot-clé français non traduit dans la liste anglaise ;
+6. vocabulaire thématique évalué à l’échelle du wiki, sans exigence de répétition dans le débat courant ;
+7. revue page par page de la pertinence des mots-clés ;
+8. équivalence substantielle des résumés bilingues ;
+9. appels de référence inline placés sur les affirmations factuelles qui nécessitent une attribution, sans quota mécanique par sous-partie ;
+10. maintien de tous les invariants verrouillés du graphe ;
+11. recalcul explicite de toutes les empreintes de fichiers et, si nécessaire, de l’empreinte structurelle ;
+12. absence totale d’écriture distante ;
+13. audit de non-régression des normes, du validateur et du kit W11.
+
+Le paquet déclare dans son manifeste les chemins du vocabulaire contrôlé, du registre individuel, des rapports requis et du handoff correctif courant. Le validateur ne déduit jamais ces chemins d’un sujet, d’un numéro de Work ou d’une rubrique particulière. Il ne peut jamais bloquer un mot-clé au seul motif qu’il n’apparaît qu’une fois dans le débat courant.
+
+## 15. Cohérence des livrables et garde-fous de publication
+
+Les archives de normes, du validateur et du kit comportent un manifeste SHA-256 exhaustif. Tout fichier livré, y compris un manifeste historique placé dans un sous-dossier, est soit déclaré avec sa taille et son empreinte, soit explicitement exclu par un chemin précis. Le reçu externe indique des nombres exacts et reproductibles.
+
+La configuration de publication d’un paquet 1.2.x exécute toutes les portées applicables du validateur, notamment `wikicode` et `editorial` lorsque des pages sont publiées. Le kit refuse une configuration qui omet une portée obligatoire du profil actif.
+
+La première écriture canonique de W11 est le test de l’unique page Débat française. La page doit être absente dans le plan et est créée avec `createonly`. Son reçu machine est lié au plan signé, au titre canonique, au fichier local, au contenu relu, à la révision distante, à l’identité vérifiée, au résumé et à la balise de modification. Avant toute autre écriture, le kit recharge ce reçu, en vérifie l’empreinte et confirme que la page courante reste exactement à la révision attestée. Aucune sous-page utilisateur n’est créée.
+
+Les exemples, guides et listes de contrôle livrés avec la norme doivent eux-mêmes respecter la règle active : toute page française d’exemple contient son unique `{{Lien interlangue}}`, et aucun exemple actif ne décrit une phase tardive d’ajout interlangue.
+
+## 16. Livrables minimaux d’une reprise prépublication
+
+La livraison complète contient au minimum :
+
+- le corpus bilingue `release_ready` et son reçu ;
+- la norme consolidée active et son changelog ;
+- le validateur aligné et sa suite de tests ;
+- le kit W11 aligné, non exécuté, et ses tests ;
+- un paquet de revue des pages ;
+- l’audit de non-régression ;
+- les reçus SHA-256 de chaque archive.
+
+La présence de ces éléments est vérifiée avant livraison. Leur absence constitue une régression bloquante.
+
+
+## Addendum 1.1.5 — ancienne preuve de test, remplacée par 1.2.3
+
+Cette ancienne disposition imposait un test dans l’espace utilisateur. Elle est conservée uniquement comme provenance et n’est plus applicable. La règle active est le test direct de la page Débat française canonique défini par la révision 1.2.3.
+
+## Addendum 1.1.5 — revue individuelle
+
+La conformité des titres affichés et des rubriques ne se déduit pas d'un seuil statistique global. Le paquet `release_ready` contient un registre couvrant chaque nœud actif et indiquant la décision sur le titre ainsi qu'une justification non vide pour chacune des rubriques retenues. Aucune rubrique n'est obligatoire, présumée pertinente ou soumise à un traitement spécial.
+
+
+## Addendum 1.1.7 — généralité des contrôles
+
+Les contrôles éditoriaux sont formulés sur les propriétés choisies par l’IA, et non sur une valeur particulière. Pour chaque nœud actif, le registre de revue contient une justification distincte pour chaque rubrique retenue. Le validateur exige une correspondance exacte entre les clés de justification et les rubriques de la page ; une justification d’une rubrique absente ou l’absence de justification d’une rubrique présente est bloquante.
+
+Les décisions locales — date de création, chemins des rapports, seuils documentaires du profil, Work courant et handoff — sont déclarées dans le manifeste du paquet. Elles ne sont jamais codées en dur dans le moteur générique. Les invariants propres à un corpus peuvent figurer dans une annexe ou un profil local, sans devenir une règle universelle.
+
+
+## Addendum 1.1.7 — avertissements et publication traçable
+
+Les valeurs actives d’avertissement sont exactement `Débat généré par IA`, `Argument généré par IA`, `Debate generated by AI` et `Argument generated by AI`. Les formulations avec `avec IA` ou `with AI` sont interdites dans les pages actives.
+
+Toute écriture distante produite par le kit W11 emploie un résumé localisé : `Contenu généré par ChatGPT 5.6` en français et `Content generated by ChatGPT 5.6` en anglais. La balise de modification `chatgpt` est obligatoire et doit être déclarée active par le wiki avant toute écriture. Après une écriture, le kit relit la révision exacte renvoyée par l’API et vérifie son contenu normalisé, son résumé et sa balise ; il ne se fie pas uniquement à la dernière révision visible.
+
+## Addendum 1.1.8 — lisibilité des résumés
+
+La norme 1.1.8 rend obligatoire le style encyclopédique grand public des résumés : idée principale annoncée dès l'ouverture, phrases de longueur variée, explication immédiate des termes techniques nécessaires et suppression des développements universitaires qui n'aident pas à comprendre le nœud. Le validateur 0.3.0 ajoute `WDV-EDT-013`, un avertissement heuristique sur l'accumulation de phrases longues, ainsi qu'un contrôle bloquant de la revue humaine page par page. Toutes les exigences 1.1.7 restent actives sauf contradiction explicite.
+
+## Addendum 1.1.9 — ouverture développée, exemples probants et force expressive
+
+La norme 1.1.9 interdit qu’une première phrase se contente de répéter ou de paraphraser étroitement le titre. Elle autorise les exemples et données uniquement lorsqu’ils éclairent réellement le mécanisme et exige une vérification documentaire explicite de toute donnée chiffrée. Elle autorise un style ferme, imagé et légèrement mordant, mais exclut le sarcasme, la caricature, le militantisme et les slogans mécaniques.
+
+Le validateur 0.3.1 ajoute `WDV-EDT-014`, avertissement heuristique sur la proximité excessive entre le titre et la première phrase, et `WDV-EDT-015`, contrôle de l’attestation humaine des affirmations chiffrées. La pertinence d’un exemple et la justesse du ton restent des contrôles humains. Toutes les exigences 1.1.8 restent actives sauf contradiction explicite.
+
+
+## Addendum 1.2.0 — interlangues directs, documentation localisée et titres autonomes
+
+La révision 1.2.0 remplace toute disposition antérieure qui imposait `{{Interlangue}}` à la page Débat, différait l’insertion des liens français, exigeait `<references />`, utilisait `|type=` dans la page Debate anglaise, autorisait des références étrangères sur une page de débat malgré une version locale, ou permettait des titres canoniques à référent implicite. Les pages françaises utilisent toutes `{{Lien interlangue}}` dès leur création ; les titres anglais sont verrouillés avant cette création, mais les pages anglaises restent produites ensuite.
+
+
+## Addendum 1.2.2 — cohérence intégrée et publication vérifiable
+
+La révision 1.2.2 intègre directement les règles 1.2.x dans les structures, profils, schéma du registre et workflow au lieu de les laisser seulement dans un addendum correctif. Elle supprime des documents actifs les exemples sans lien interlangue, les états de staging tardif et les constantes propres à un corpus. Elle exige des manifestes d’archive exhaustifs, des compteurs documentaires exacts, l’exécution des portées `wikicode` et `editorial` avant publication et un reçu de test alors effectué dans l’espace utilisateur ; ce mécanisme est remplacé par le test canonique de la page Débat en 1.2.3.
+
+
+## Addendum 1.2.3 — test canonique de la page Débat
+
+Le test de publication ne s’effectue plus dans l’espace utilisateur. Il consiste à créer en premier la page Débat française canonique prévue par le plan signé. Cette page doit être distante absente au moment de la simulation et au moment de l’écriture. Toute page préexistante bloque le test ; elle n’est ni écrasée ni assimilée à une preuve de bon fonctionnement.
+
+Le reçu du test identifie le débat, l’opération, le titre canonique, le chemin et l’empreinte du fichier local, le contenu attendu, la révision créée, l’utilisateur, le résumé et la balise. Avant la publication des autres pages, la révision courante de la page Débat doit être exactement celle du reçu. Une nouvelle révision, même proche ou équivalente, impose une nouvelle simulation et une revue explicite.
+
+
+## Addendum 1.2.4 — introduction orientée vers la compréhension et généralité des composants
+
+La révision 1.2.4 remplace toute checklist d’introduction issue d’un corpus particulier par une règle fonctionnelle applicable à tous les débats : définir le sujet et le périmètre, expliquer le sens de la question, donner les repères historiques et actuels pertinents, fournir les connaissances préalables nécessaires et exposer les enjeux. Le nombre de sous-parties et de références est déterminé par la complexité du sujet et justifié dans le profil local, sans minimum universel mécanique.
+
+Une revue bilingue de l’introduction est obligatoire. Elle relie chaque sous-partie réelle à une fonction explicite, atteste la progression, la contextualisation des sections techniques, l’absence de duplication du graphe et l’absence de checklist propre à un débat pilote. Les configurations, identifiants, titres, exemples et seuils propres à un corpus ne figurent pas dans les composants génériques actifs ; ils restent uniquement dans le paquet du corpus concerné ou dans des archives de provenance clairement historiques.
+
+
+## Addendum 1.2.5 — références d’introduction guidées par les affirmations
+
+La présence d’appels `<ref>` dans une introduction dépend exclusivement des affirmations factuelles qui exigent une attribution. Aucun minimum global ou par sous-partie n’est normatif. Le validateur contrôle l’interdiction des balises `<references />`, l’activation du contrôle documentaire et la revue humaine des affirmations, sans exiger qu’une introduction contienne au moins un appel inline. Toutes les exigences 1.2.4 restent actives sauf cette clarification corrective.
+
+## Addendum 1.2.6 — métadonnées de débat, classement, documentation et force expressive
+
+La révision 1.2.6 impose l’ordre alphabétique des rubriques françaises et des sections anglaises, chacune selon sa propre langue. L’équivalence bilingue porte sur l’ensemble conceptuel, non sur une position identique dans les listes.
+
+Les valeurs `sujet=` et `topic=` commencent par une majuscule et désignent le débat sous la forme la plus nominale et conventionnelle possible : substantif, syntagme nominal, nom d’une doctrine, d’un courant ou d’un « -isme » lorsque cette désignation résume correctement la controverse. Une périphrase descriptive n’est conservée que lorsqu’aucun nom conceptuel suffisamment précis n’existe. Les valeurs `sujet-complet=` et `complete-topic=` en découlent et complètent naturellement les en-têtes « Arguments pour et contre… » et « Pros and cons of… ». Leur premier caractère alphabétique est une minuscule dans les deux langues. Une majuscule initiale n’est admise que si un nom propre ou un acronyme ne peut grammaticalement être précédé d’un déterminant ou d’un autre cadrage nominal ; cette exception est justifiée dans le registre de revue. Elles ne recopient pas la question sous la forme `si`, `whether`, `faut-il`, `should` ou équivalente.
+
+Pour les rubriques et sections d’une page Débat/Debate, la précision prime sur l’exhaustivité. Une catégorie n’est retenue que si elle caractérise la controverse dans son ensemble. La revue de la page atteste également que la profondeur documentaire est proportionnée à l’abondance de la littérature et examine séparément bibliographie, sitographie et vidéographie sans imposer de quota universel.
+
+La force expressive des résumés n’est plus une simple permission abstraite. Chaque revue linguistique identifie une expression réellement présente dans le résumé qui rend la conviction et la fermeté du raisonnement perceptibles, tout en confirmant l’absence de sarcasme, de caricature et de militantisme.
+
+## Addendum 1.2.7 — cohérence de provenance et auto-audit
+
+La révision 1.2.7 ne modifie aucune règle éditoriale introduite en 1.2.6. Elle corrige la livraison générique : tous les alias et chemins du catalogue d’exigences désignent désormais des fichiers réellement présents ; les sources d’origine non distribuées séparément sont signalées comme telles au lieu d’être déclarées conservées ; la matrice de traçabilité est nettoyée ; et l’auto-audit vérifie le champ réel `declared_file_count` du manifeste et du reçu.
+
+Une archive ne peut être déclarée autonome lorsque son catalogue renvoie à un chemin absent. Toute source historique non livrée séparément doit être remplacée par une provenance consolidée explicite, sans inventer ni prétendre reproduire le document d’origine.
+
+
+## Addendum 1.2.8 — traçabilité exhaustive et cohérence des exemples
+
+La révision 1.2.8 ne modifie aucune exigence éditoriale de 1.2.6. Elle exige que chaque étiquette de provenance effectivement utilisée par le catalogue soit déclarée dans `source_aliases` et résolve vers au moins un fichier livré. Elle aligne les exemples actifs sur la révision courante, corrige leur langue, et étend les conditions de schéma applicables aux paquets 1.2.7 et 1.2.8. Les contrôles d’auto-audit doivent vérifier ces trois propriétés.
+
+
+## Addendum 1.2.9 — références, acronymes et publication française indépendante
+
+La révision 1.2.9 corrige cinq défauts observés lors d’une production réelle :
+
+1. les dates documentaires complètes sont rendues en langage naturel, tandis que les dates de création restent au format machine ;
+2. les appels inline des introductions sont rédigés directement dans `<ref>…</ref>` sans modèle de citation ;
+3. chacun des neuf paramètres documentaires d’une page Débat ou Debate contient au moins deux références ;
+4. un acronyme courant est employé dans `sujet-complet` ou `complete-topic` et déclaré dans le registre de revue ;
+5. le kit peut publier les pages françaises avant la création des pages anglaises, à condition que les titres anglais soient verrouillés dans le registre maître et correspondent aux liens interlangues français.
+
+
+## Addendum 1.2.10 — notes d’introduction rédigées directement
+
+La règle 1.2.9 qui imposait le modèle générique `Référence`/`Reference` est remplacée. Pour tout paquet déclarant la norme 1.2.10, le corps d’une note développée d’introduction contient directement une référence bibliographique ou web lisible, sans aucun appel de modèle MediaWiki. Les références nommées restent admises, à condition que leur première définition soit rédigée directement. Le validateur refuse tout `{{…}}` dans le corps d’une note d’introduction et continue de refuser les dates documentaires au format machine.
+
+Exemple français conforme :
+
+```mediawiki
+Une affirmation documentée<ref>Jean Dupont, « Titre de l’article », ''Nom de la revue'', 25 juin 2012, p. 36-37, [https://example.org texte intégral].</ref>.
+```
+
+Exemple anglais conforme :
+
+```mediawiki
+A documented claim.<ref>Jane Smith, “Article title”, ''Journal Name'', 25 June 2012, pp. 36–37, [https://example.org full text].</ref>
+```
+
+
+## Addendum 1.2.11 — compaction des modèles MediaWiki adjacents
+
+Dans tout wikicode de page produit sous la norme 1.2.11, deux modèles immédiatement successifs sont accolés sans saut de ligne, espace ni tabulation entre la fermeture du premier et l’ouverture du second. La forme `}}` suivie d’un retour à la ligne puis de `{{` est interdite ; elle est remplacée par `}}{{`. Cette règle vaut en français et en anglais, dans les pages individuelles comme dans les agrégats. Elle ne change ni le contenu des modèles ni l’ordre des paramètres : elle impose seulement une jonction compacte et déterministe entre sous-modèles adjacents.
+
+Le validateur 0.4.13 signale cette anomalie avec `WDV-MWK-018`. Le kit 2.1.13 l’intercepte également avant la construction d’un plan de publication. Les paquets déclarant une norme antérieure conservent leur comportement historique jusqu’à migration explicite.
+
+## 12. Installation portable, publication intégrée et sauvegarde des sources
+
+### 12.1 Publication d’un débat en une commande
+
+L’installation fournit un lanceur racine portable nommé `wikidebia`. Le ZIP d’un débat est déposé directement dans `incoming/`, sans suffixe de nom imposé. S’il est le seul ZIP du dossier, `wikidebia publish` le sélectionne automatiquement. Si plusieurs ZIP sont présents, la commande exige un identifiant et sélectionne exactement `incoming/<identifiant>.zip`. Le nom de base de l’archive sert uniquement à sélectionner le fichier ; le champ `debate_id` du manifeste détermine l’identité du corpus. Une seule invocation exécute l’extraction sûre, l’installation locale du corpus, toutes les portées de validation requises, la construction du plan signé, le test canonique français lorsqu’une page Débat doit être créée, la publication et l’archivage du ZIP après succès.
+
+Les portées canoniques sont `all`, `fr`, `en`, `fr-debate` et `en-debate`. `fr-debate` et `en-debate` ne créent que la page principale de la langue choisie ; `fr` et `en` créent la page principale puis toutes les pages Argument de cette langue ; `all` applique la même séquence au français puis à l’anglais.
+
+Dans chaque langue, la page Débat ou Debate est toujours traitée avant les pages Argument. En français, lorsqu’elle est absente, sa création `createonly` et sa revérification restent la première écriture distante du plan. En anglais, la page Debate est également publiée avant les arguments anglais. Une configuration qui demande l’ordre inverse est refusée.
+
+### 12.2 Mise à jour atomique en une commande
+
+Les nouvelles archives de normes, de validateur et de kit sont déposées dans `updates/`, de préférence dans une seule archive ZIP. Cette archive unique peut être le bundle contenant directement `wikidebia-normes.zip`, `wikidebia-validator.zip` et `wikidebia-kit.zip`, ou une archive de livraison qui contient ces trois composants à sa racine et éventuellement un bundle interne supplémentaire. Le gestionnaire courant sait aussi retrouver les composants dans un unique niveau d’archive enveloppante. La commande `wikidebia upgrade` vérifie les inventaires et SHA-256, contrôle la cohérence des versions, extrait dans une zone temporaire, compare la copie normative, exécute l’auto-audit et toutes les suites de tests, puis remplace atomiquement `norms/`, `validator/` et `kit/`. Lors de la transition depuis un gestionnaire antérieur où cette opération s’appelait encore `update`, l’archive de livraison conserve les trois ZIP de composants à sa racine afin de rester installable en un seul fichier.
+
+Avant remplacement, les composants actifs et les fichiers entrants sont déplacés dans un sous-dossier horodaté de `archives/updates/`. Après succès, `updates/` est vide. Une mise à jour incomplète, divergente ou dont les tests échouent ne remplace aucun composant actif.
+
+### 12.3 Dépôt Git et périmètre sauvegardé
+
+Le dépôt Git, destiné notamment à un dépôt GitHub dont le nom contient normalement `wikidebia`, versionne uniquement les sources nécessaires et portables : `norms/`, `validator/`, `kit/`, le lanceur, les documents actifs, les exemples de configuration, la documentation et les contrôles d’intégration continue. Après une mise à jour réussie, ces modifications sont commitées et poussées automatiquement lorsque le remote `origin` est configuré.
+
+Ne sont jamais versionnés : `private/`, `corpus/`, `archives/`, `updates/`, `incoming/`, `logs/`, `plans/`, `.state/`, l’environnement virtuel et la configuration locale. Le fichier `.gitignore` actif exprime explicitement ces exclusions.
+
+### 12.4 Secrets et portabilité des chemins
+
+`user-config.py` et `user-password.cfg` résident dans `private/pywikibot/`, avec des permissions restrictives, et ne sont jamais placés à la racine ni suivis par Git. Lors de la première mise à jour, les fichiers historiques présents à la racine sont déplacés automatiquement vers ce dossier privé sans écrasement silencieux.
+
+Aucun fichier persistant situé dans l’installation ne conserve le chemin absolu du répertoire racine. Les configurations, plans, journaux, rapports, manifestes et scripts utilisent des chemins relatifs ou des identifiants portables. Les chemins absolus ne peuvent exister qu’en mémoire pendant l’exécution. L’installation reste donc déplaçable et renommable sans réécriture manuelle des sources.
+
+## Addendum 1.2.13 — sélection sûre des archives de débat
+
+Le dossier d’entrée des débats est le dossier unique `incoming/`; aucun sous-dossier `incoming/debates/` n’est utilisé et aucun autre type d’entrée n’y est prévu. Le nom d’une archive est `<debate_id>.zip`. Le suffixe éditorial `release_ready` n’est ni exigé ni interprété comme un identifiant.
+
+Lorsque `incoming/` contient exactement un ZIP, `./wikidebia publish` utilise ce fichier. Lorsqu’il en contient plusieurs, la commande sans identifiant est bloquée et affiche les identifiants disponibles ; `./wikidebia publish IDENTIFIANT` sélectionne uniquement `incoming/IDENTIFIANT.zip`. L’extension `.zip` ne fait pas partie de l’identifiant. Avant extraction durable ou publication, le kit vérifie que le nom du fichier et le champ `debate_id` du manifeste sont identiques.
+
+
+Les ZIP encore présents dans l’ancien dossier `incoming/debates/` sont migrés automatiquement vers `incoming/` pendant la mise à jour. Toute collision de noms avec un contenu différent bloque l’opération sans écrasement.
+
+
+## Addendum 1.2.15 — séparation entre le nom du ZIP et l’identité du débat
+
+La révision 1.2.15 corrige le contrôle trop strict introduit en 1.2.13. Le nom du ZIP est un sélecteur de fichier, pas l’identité normative du débat. Lorsque `incoming/` contient un seul ZIP, ce fichier est utilisé quel que soit son nom. Lorsqu’il en contient plusieurs, l’argument de `./wikidebia publish` correspond exactement au nom du ZIP sans l’extension `.zip`.
+
+Après extraction sûre, le champ `manifest.debate_id` devient l’identité autoritative : il détermine le dossier `corpus/<debate_id>`, les plans, les journaux et la configuration de publication. Il peut différer du nom du ZIP. Cette règle rend directement compatibles les archives historiques telles que `education_sexualite_ecole_fr_en_release_ready_repaired_2026-07-31.zip`, sans renommage et sans affaiblir la validation du manifeste ou du corpus.
+
+
+## Addendum 1.2.16 — reprise distante contrôlée d’un corpus publié
+
+### 1. Nature d’une reprise
+
+La reprise d’un débat déjà publié est une opération distincte d’une publication initiale. Elle compare trois états : la dernière version effectivement publiée par Wikidéb’IA, l’état distant courant et le nouveau corpus validé. Le plan classe chaque page dans une et une seule catégorie : `create`, `skip`, `update`, `move`, `redirect`, `delete`, `manual_review` ou `blocked`.
+
+Le nouveau manifeste ne constitue jamais, à lui seul, une preuve d’appartenance historique. Une page absente du nouveau corpus ne peut être retirée que si un état publié antérieur signé atteste qu’elle appartenait au même `debate_id` et à la même langue.
+
+### 2. État publié et source de vérité
+
+Après chaque publication ou reprise réussie, le kit conserve un état publié signé par débat et par langue. Cet état contient au minimum : `debate_id`, langue, version du corpus, date de publication, titre canonique, identifiant logique, type de page, empreinte SHA-256 du contenu, identifiant de révision MediaWiki, statut et référence du reçu final. Le dernier reçu local et cet état sont prioritaires. À défaut, le kit peut utiliser le dernier manifeste installé ou archivé, ou un inventaire distant en lecture seule explicitement rattaché au débat. Il refuse toute suppression si aucune de ces preuves n’est disponible.
+
+Les pages retirées sont calculées par différence entre les pages attestées de la dernière version publiée et les pages du nouveau corpus. Chaque retrait conserve l’ancien identifiant, l’ancienne empreinte, la dernière révision connue, le motif (`suppression`, `fusion`, `renommage` ou `remplacement`), la cible éventuelle et le résultat de la vérification distante.
+
+### 3. Mises à jour et modifications humaines
+
+Une mise à jour automatique est autorisée uniquement lorsque la page appartient au même débat dans les deux versions, que son identité logique est conservée ou explicitement migrée, que l’état distant courant correspond à la dernière empreinte ou révision publiée par Wikidéb’IA, que le nouveau corpus a été validé et que le plan signé est verrouillé. L’écriture MediaWiki utilise un contrôle de concurrence tel que `baserevid` ou un horodatage de base. Toute modification intervenue après la préparation du plan bloque l’écriture.
+
+Le kit distingue un état distant inchangé, une publication automatisée ultérieure connue, une modification humaine et une provenance indéterminée. Une modification humaine ou indéterminée est classée `manual_review`. Le rapport fournit l’ancienne version publiée, la version distante courante et la nouvelle version proposée. Aucun écrasement n’est effectué par défaut.
+
+### 4. Retraits, renommages et fusions
+
+Avant une suppression, le kit vérifie cumulativement l’appartenance historique, l’absence du nouveau corpus, l’absence de réutilisation connue par un autre débat, l’absence de déplacement ou d’autonomisation, la concordance de la révision et de l’empreinte distantes avec l’état publié attendu, la présence des marqueurs Wikidéb’IA et le droit MediaWiki `delete`. Une divergence postérieure classe la page `manual_review`. Le kit ne remplace jamais une suppression par un bandeau de demande de suppression.
+
+Un changement de titre conservant l’identité logique produit une opération `move`. Une fusion déclare sa cible et une politique explicite `redirect` ou `delete`; les liens entrants sont relevés dans le plan. Une ancienne page ne reste pas active sans relation déclarée avec le nouveau graphe.
+
+### 5. Plan, ordre et reprise
+
+Le plan distant contient les huit listes d’opérations, leurs préconditions, les empreintes anciennes et nouvelles, la révision distante attendue, la justification et le résultat. Sa sérialisation est déterministe, son empreinte SHA-256 est enregistrée et l’exécution réelle exige la confirmation de cette empreinte ou un mécanisme automatisé équivalent explicitement sécurisé.
+
+L’ordre normal est : validation complète; comparaison distante en lecture seule; signature du plan; création ou mise à jour de la page Débat/Debate; création des arguments; mise à jour des arguments conservés; déplacements et redirections; vérification du graphe publié; suppressions finales; reçu final et nouvel état publié. Une erreur avant la vérification du graphe interdit les suppressions finales.
+
+Toutes les opérations sont idempotentes. Une nouvelle exécution reconnaît les créations, mises à jour, déplacements et suppressions déjà achevés, et bloque les pages modifiées entre-temps. Les commandes canoniques sont `./wikidebia update IDENTIFIANT`, avec les portées `--scope fr`, `--scope en`, `--no-delete`, `--only-delete` et `--dry-run`. La mise à niveau des composants est exposée séparément par `./wikidebia upgrade`.
+
+### 6. Droits, authentification et séparation des responsabilités
+
+Les droits requis sont contrôlés avant la première écriture : `edit` et `createpage` pour créer ou modifier, `move` pour déplacer, `delete` pour supprimer, et, lorsque nécessaire, `browsearchive` ou `deletedhistory` pour consulter l’historique supprimé. Aucun groupe administrateur n’est exigé si les droits effectifs sont attribués à un groupe plus limité ou au compte bot. L’absence de `delete` arrête une portée comportant des suppressions avant toute écriture et sans invite Pywikibot interactive.
+
+La reprise réutilise la famille `wikidebates`, la configuration privée `private/pywikibot/`, les BotPasswords et le traitement séquentiel des langues. Les erreurs de connexion sont journalisées proprement. Le validateur reste strictement local et en lecture seule : il contrôle les schémas et la cohérence d’un plan, d’un état ou d’un reçu, mais ne compare ni ne modifie le wiki.
+
+### 7. Sécurité et généralité
+
+Aucune constante active ne dépend d’un débat pilote, d’un titre, d’un nombre de pages ou d’une date de migration particulière. Aucun secret n’est incorporé aux archives. Les plans, journaux, reçus et états publiés conservent les résultats de chaque opération. Le cas `education_sexualite_ecole` peut servir de test d’intégration externe, mais ne constitue ni une règle ni une configuration embarquée.
+
+## Addendum 1.2.17 — Wikipédia, débats connexes, auteurs et publication non interactive
+
+La révision 1.2.17 rend bloquante l’absence d’article Wikipédia dans les pages Débat/Debate, interdit l’émission des paramètres de débats connexes, impose la conversion des listes JSON d’auteurs en texte MediaWiki et supprime l’invite interactive de la commande `./wikidebia publish`. Le plan SHA-256 reste calculé, verrouillé et transmis automatiquement au moteur d’exécution ; la suppression de l’invite ne supprime donc ni le plan signé ni les contrôles de concurrence.
+
+
+## Correction 1.2.18 — séparateur canonique des auteurs
+
+La conversion d’un tableau JSON d’auteurs vers le wikicode emploie la virgule suivie d’une espace comme séparateur canonique : `Auteur 1, Auteur 2`. Le point-virgule, la virgule sans espace, la virgule précédée d’une espace et la virgule pleine chasse sont interdits dans les sorties générées. Une liste d’un seul élément reste une valeur scalaire et une liste vide entraîne l’omission du paramètre. Cette correction ne réinterprète pas rétroactivement les paquets qui demeurent déclarés sous la norme 1.2.17 ; leur provenance est conservée, mais toute nouvelle production ou migration vers 1.2.18 doit appliquer la forme canonique.
+
+## 1.2.19 — 1er août 2026
+
+La révision 1.2.19 corrige l’interprétation trop permissive des titres affichés. Un `titre-affiché` / `displayed-title` doit désormais être une proposition argumentative complète, et non un simple groupe nominal ou un thème abrégé. Le contexte peut raccourcir le cadrage, mais ne peut supprimer ni le prédicat ni la conclusion qui rendent l’argument intelligible. La revue individuelle atteste cette complétude dans les deux langues et le validateur 0.4.21 bloque les libellés manifestement non propositionnels sous cette seule révision.
+
+
+## Compléments normatifs de la révision 1.2.23
+
+1. Il n’existe pas de règle de capitalisation différente entre le français et l’anglais pour le complément du sujet : `sujet-complet` et `complete-topic` sont tous deux insérés après un en-tête déjà commencé et prennent donc normalement une minuscule initiale.
+2. Le libellé court `sujet`/`topic` est conceptuel et nominal. Par exemple, `Réalité indépendante des perceptions` devient `Réalisme philosophique`, puis `sujet-complet=le réalisme philosophique`; l’anglais correspondant est `topic=Philosophical realism` et `complete-topic=philosophical realism`.
+3. Les contrôles de redondance documentaire portent sur toutes les occurrences de références, y compris dans les pages Argument. Une égalité auteur-site déclenche obligatoirement une seconde recherche d’attribution ; elle ne peut subsister dans la sortie finale.
+4. Les reprises distantes emploient par défaut le résumé de modification court `Corrections`, sans identifiant technique ni empreinte de manifeste.
+5. Une livraison complète reste directement utilisable comme unique fichier de mise à niveau et contient donc les trois ZIP de composants à sa racine.
+```
+
 # Source incorporée : `normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.3.md`
 
 **SHA-256 :** `3e8450bd0cf5fd48e27974cec1a675b2813401f22ceb7136c570a5a7290d5865`
@@ -29165,7 +30089,7 @@ Avant verrouillage du graphe, contrôler que chaque titre canonique reste intell
 
 # Source incorporée : `normative_reference/01_normes/profils_rendu_wikidebia.md`
 
-**SHA-256 :** `230b91cf02036249a01ccde9c9e85a14f318150c6f41286c48e6e445e0c0a996`
+**SHA-256 :** `ac515efc99ec95ffb929cdf68bfa81b6164413b781b63359167f97f744e36aae`
 
 ```
 # Profils de rendu MediaWiki de Wikidéb'IA
@@ -29402,6 +30326,11 @@ Les affirmations factuelles importantes sont accompagnées de références en li
 
 Une revue bilingue de l'introduction relie chaque titre réel à une fonction explicite et atteste la définition du sujet, l'explication de la question, les repères historiques et actuels pertinents, les enjeux, la progression, la contextualisation des sections techniques et l'absence de reproduction mécanique du graphe ou d'une checklist de corpus.
 
+### Liens Wikipédia explicatifs dans l’introduction
+
+Dans `contenu=` et `content=`, une notion spécialisée peut recevoir un lien explicatif au survol. Le français emploie `{{Lien Wikipédia|article=…}}` et, seulement si le libellé visible diffère réellement, `|texte-affiché=…`. L’anglais emploie `{{Wikipedia link|article=…}}` et `|displayed-text=…`. Une simple minuscule initiale se porte directement dans `article`. La page correspondante est vérifiée dans la langue de la page Débat/Debate. Le modèle est normalement limité à la première occurrence utile et n’est jamais traité comme une source documentaire.
+
+
 ### Wikipédia
 
 `articles-Wikipédia` est obligatoire, non vide et contient uniquement des pages de Wikipédia en français dont l'existence et le titre exact ont été vérifiés, accents, capitalisation, parenthèses et nombre compris. Les articles doivent être directement utiles ; une page précise est préférée à une page trop générale.
@@ -29633,7 +30562,7 @@ Le résumé :
 12. annonce l'idée principale dès la première phrase ou, lorsque la définition du sujet est indispensable, immédiatement après cette définition ;
 13. emploie un style encyclopédique grand public plutôt qu'un style de dissertation ou d'article universitaire ;
 14. alterne phrases courtes et moyennes et évite l'accumulation de phrases longues ;
-15. définit brièvement, à leur première occurrence utile, les termes scientifiques, techniques, juridiques ou philosophiques qu'un lecteur non spécialiste ne peut pas raisonnablement connaître ;
+15. rend compréhensibles, à leur première occurrence utile, les termes scientifiques, techniques, juridiques ou philosophiques qu'un lecteur non spécialiste ne peut pas raisonnablement connaître, soit par une brève explication, soit par `{{Lien Wikipédia}}` / `{{Wikipedia link}}` lorsque le premier paragraphe de l’article suffit ;
 16. place les noms d'études, d'auteurs ou de méthodes après l'explication de l'idée qu'ils documentent, sauf nécessité rédactionnelle ;
 17. n'accumule pas les précautions : seules les délimitations nécessaires à l'identité du nœud restent dans le résumé.
 18. développe le titre dès la première phrase au lieu de le répéter ou de le paraphraser étroitement ;
@@ -29642,6 +30571,9 @@ Le résumé :
 21. emploie normalement une formulation ferme, imagée et légèrement mordante pour rendre la force du raisonnement et la conviction de la voix perceptibles ;
 22. évite le sarcasme, la caricature de l’adversaire, les slogans et les formules mordantes répétées mécaniquement ;
 23. fournit dans le registre de revue une expression exacte tirée du résumé qui atteste cette force expressive.
+
+Le lien explicatif au survol est parcimonieux. Il n’est utilisé que lorsque la notion mérite une définition secondaire et que le premier paragraphe de Wikipédia est suffisamment précis. Il ne remplace pas l’explication du raisonnement, ne figure pas dans les notes `<ref>`, et n’est pas répété à chaque occurrence. Les paramètres sont strictement localisés : `texte-affiché` en français, `displayed-text` en anglais.
+
 
 Longueurs indicatives, sans remplissage artificiel :
 
@@ -30129,13 +31061,13 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
 
 # Source incorporée : `normative_reference/01_normes/requirements_catalog_wikidebia.json`
 
-**SHA-256 :** `e2f5b94f8f6148eba6ac19214601136cd33187beb13205776f64e593a51c27c6`
+**SHA-256 :** `383705a6d2af09f3e0e615f178063021fc8b175d9dfd1fd299b5c0451eca9476`
 
 ```json
 {
   "requirements_catalog_version": "1.2.23",
   "generated_date": "2026-08-02",
-  "active_package_revision": "1.2.23",
+  "active_package_revision": "1.2.24",
   "precedence": [
     "later explicit user decisions",
     "WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
@@ -30600,7 +31532,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "argument prompt"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
@@ -32325,7 +33257,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "workflow correction"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -33191,7 +34123,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "debate prompt"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
@@ -33891,7 +34823,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "decision 2026-07-25"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
       "note": "Corpus-specific historical decisions remain only in archived provenance documents and in the corpus packages concerned."
@@ -34300,7 +35232,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner clarification 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34314,7 +35246,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34328,7 +35260,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34342,7 +35274,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34356,7 +35288,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34370,7 +35302,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34384,7 +35316,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34398,7 +35330,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34412,7 +35344,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34426,7 +35358,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "delivery audit 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34440,7 +35372,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -34455,7 +35387,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "delivery audit 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -34470,7 +35402,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "delivery audit 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -34485,7 +35417,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -34500,7 +35432,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -34515,7 +35447,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -34530,7 +35462,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34544,7 +35476,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -34559,7 +35491,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -34574,7 +35506,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34588,7 +35520,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34617,7 +35549,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34631,7 +35563,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34645,7 +35577,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-28"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34659,7 +35591,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -34674,7 +35606,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -34689,7 +35621,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -34704,7 +35636,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -34719,7 +35651,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -34734,7 +35666,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -34749,7 +35681,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34763,7 +35695,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-29"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
       ],
       "note": null
     },
@@ -34777,7 +35709,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/structures_mediawiki_wikidebia.md"
       ],
       "note": "Bare years remain valid when only the year is known."
@@ -34792,7 +35724,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner correction 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/structures_mediawiki_wikidebia.md"
       ],
       "note": "Named references are permitted when their first definition contains direct textual wikicode; self-closing reuse remains allowed."
@@ -34807,7 +35739,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -34822,7 +35754,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": "The ledger records null when no common acronym applies."
@@ -34837,7 +35769,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/structures_mediawiki_wikidebia.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
@@ -34853,7 +35785,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -34868,7 +35800,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -34883,7 +35815,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -34898,7 +35830,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -34913,7 +35845,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -34928,7 +35860,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -34943,7 +35875,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -34958,7 +35890,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -34973,7 +35905,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-07-30"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -34988,7 +35920,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner correction 2026-07-31"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -35003,7 +35935,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
       "note": null
@@ -35018,7 +35950,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -35033,7 +35965,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -35048,7 +35980,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -35063,7 +35995,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -35078,7 +36010,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -35093,7 +36025,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/structures_mediawiki_wikidebia.md"
       ],
       "note": null
@@ -35108,7 +36040,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
       "note": null
@@ -35123,7 +36055,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
       "note": null
@@ -35138,7 +36070,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -35153,7 +36085,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -35168,7 +36100,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -35183,7 +36115,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -35198,7 +36130,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -35213,7 +36145,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -35228,7 +36160,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
       "note": null
@@ -35243,7 +36175,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner specification 2026-07-31 — published corpus reprise"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/cahier_des_charges_consolide_wikidebia.md"
       ],
       "note": null
@@ -35258,7 +36190,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-01"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -35273,7 +36205,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-01"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/structures_mediawiki_wikidebia.md"
       ],
       "note": null
@@ -35288,7 +36220,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-01"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -35303,7 +36235,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-01"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -35318,7 +36250,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-01"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/structures_mediawiki_wikidebia.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
@@ -35334,7 +36266,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-01 — displayed-title intelligibility"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
@@ -35350,7 +36282,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-01 — displayed-title concision"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ],
@@ -35366,7 +36298,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-01 — displayed-title intelligibility"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": "Implemented by WDV-EDT-021 in validator 0.4.21."
@@ -35381,7 +36313,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-01 — graph placement"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ]
     },
@@ -35395,7 +36327,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-01 — displayed-title concision"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": "Implemented by WDV-EDT-001 and WDV-EDT-012 in validator 0.4.24."
@@ -35410,7 +36342,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-01 — graph placement"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ]
@@ -35425,7 +36357,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-01 — graph placement"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md",
         "01_normes/workflow_production_wikidebia.md"
       ]
@@ -35440,7 +36372,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-01 — graph placement"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/schema_graphe_registre_wikidebia.md"
       ]
     },
@@ -35454,7 +36386,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-02 — debate subject labels"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md"
       ],
       "note": null
@@ -35469,7 +36401,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-02 — complete-topic capitalization"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/structures_mediawiki_wikidebia.md"
       ],
       "note": null
@@ -35484,7 +36416,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-02 — documentary metadata"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/profils_rendu_wikidebia.md",
         "01_normes/structures_mediawiki_wikidebia.md"
       ],
@@ -35500,7 +36432,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-02 — edit summaries"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -35515,7 +36447,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-02 — one-file upgrade regression"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": null
@@ -35530,10 +36462,102 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
         "owner decision 2026-08-02"
       ],
       "normative_files": [
-        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         "01_normes/workflow_production_wikidebia.md"
       ],
       "note": "Uses WDV-EDT-018 and WDV-DOC-004."
+    },
+    {
+      "id": "ARG-035",
+      "domain": "argument content",
+      "statement": "In argument summaries, a specialized notion is made understandable at its first useful occurrence either by a concise in-prose explanation or by the localized Wikipedia hover template when the corresponding article lead is sufficient; the template never replaces the argument mechanism or documentary support.",
+      "disposition": "active",
+      "enforcement": "human+automatic syntax",
+      "sources": [
+        "owner decision 2026-08-02 — Wikipedia hover links"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DFR-047",
+      "domain": "French Debate Work",
+      "statement": "French introduction prose may use {{Lien Wikipédia|article=…}} at the first useful occurrence of a genuinely specialized notion; texte-affiché is used only for a real wording difference, while initial lowercase adaptation is made directly in article.",
+      "disposition": "active",
+      "enforcement": "human+automatic syntax",
+      "sources": [
+        "owner decision 2026-08-02 — Wikipedia hover links"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
+        "01_normes/profils_rendu_wikidebia.md",
+        "01_normes/structures_mediawiki_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DEN-008",
+      "domain": "English Debate Work",
+      "statement": "English introduction prose uses {{Wikipedia link|article=…}} and the optional displayed-text parameter under the same first-occurrence, language-verification and non-documentary rules as French.",
+      "disposition": "active",
+      "enforcement": "human+automatic syntax",
+      "sources": [
+        "owner decision 2026-08-02 — Wikipedia hover links"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
+        "01_normes/profils_rendu_wikidebia.md",
+        "01_normes/structures_mediawiki_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "MW-027",
+      "domain": "MediaWiki",
+      "statement": "For norm 1.2.24 or later, inline explanatory templates are restricted to Lien Wikipédia(article, optional texte-affiché) in French and Wikipedia link(article, optional displayed-text) in English, within introduction content and argument summaries only; article is required and the templates are forbidden inside ref notes.",
+      "disposition": "active",
+      "enforcement": "automatic",
+      "sources": [
+        "owner decision 2026-08-02 — Wikipedia hover links"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
+        "01_normes/structures_mediawiki_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "PRM-018",
+      "domain": "prompt",
+      "statement": "Drafting instructions identify only notions whose explanation would materially help a non-specialist, link the first useful occurrence, avoid repeated or decorative linking, and retain a prose explanation whenever the Wikipedia lead is insufficient or the concept is central to the reasoning.",
+      "disposition": "active",
+      "enforcement": "prompt+human review",
+      "sources": [
+        "owner decision 2026-08-02 — Wikipedia hover links"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "VAL-032",
+      "domain": "validator",
+      "statement": "For norm 1.2.24 or later, the validator checks localized Wikipedia hover template names and parameters, requires a non-empty article, rejects redundant display parameters and links inside ref notes, and requires introduction and summary review attestations for link-or-definition treatment.",
+      "disposition": "active",
+      "enforcement": "automatic+human ledger",
+      "sources": [
+        "owner decision 2026-08-02 — Wikipedia hover links"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
+        "01_normes/workflow_production_wikidebia.md"
+      ],
+      "note": "Implemented by WDV-MWK-020 and WDV-EDT-013/017 in validator 0.4.26."
     }
   ],
   "source_aliases": {
@@ -35731,6 +36755,9 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
     ],
     "owner decision 2026-08-02 — one-file upgrade regression": [
       "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "owner decision 2026-08-02 — Wikipedia hover links": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
     ]
   }
 }
@@ -35738,7 +36765,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
 
 # Source incorporée : `normative_reference/01_normes/schema_graphe_registre_wikidebia.md`
 
-**SHA-256 :** `67211c74ada563cf4adfd4be1eed4b91d9b403bf48e2bdcc07f8960bee12a931`
+**SHA-256 :** `0ff6e150d5c8fe3f212ff51b04436f878768367ee137bc26cbc9a54fd3302cce`
 
 ```
 # Schéma du graphe et du registre maître de Wikidéb'IA
@@ -37501,14 +38528,14 @@ Le validateur compare ce registre aux occurrences et relations actives. Une couv
 Pour chaque langue, le registre individuel contient `displayed_title_concision_reviewed_fr` ou `displayed_title_concision_reviewed_en` à `true`. Lorsqu’un titre affiché est exactement identique au titre canonique, le champ `displayed_title_identity_justification_fr` ou `displayed_title_identity_justification_en` fournit une justification spécifique, substantielle et non générique. Le taux global d’identités exactes ne dépasse pas 10 % des arguments actifs par langue. La concision ne dispense jamais des exigences de proposition complète, de prédicat explicite et d’intelligibilité autonome.
 
 
-## Attestations de revue ajoutées en 1.2.23
+## Attestations de revue ajoutées en 1.2.24
 
 Chaque entrée linguistique du registre de revue d’introduction atteste `topic_is_nominal_label`, `conventional_topic_label_used_or_not_applicable`, `topic_label_rationale` et `complete_topic_lowercase_initial_or_justified`. Une justification distincte est fournie lorsqu’un nom propre ou un acronyme impose exceptionnellement une majuscule initiale.
 ```
 
 # Source incorporée : `normative_reference/01_normes/structures_mediawiki_wikidebia.md`
 
-**SHA-256 :** `ab9c791a0ed05b4b5fcd92bf984eda25d6187c0c2ab6fd78c7a635f2cbdba74f`
+**SHA-256 :** `69fde34d63f1c22ef58348033a14b946ca4a23e4cec6633abcf3d734d22da7c2`
 
 ```
 # Structures MediaWiki autorisées de Wikidéb'IA
@@ -38006,6 +39033,29 @@ Les structures MediaWiki sont inchangées par rapport à 1.2.6. La révision 1.2
 
 ## Correctif 1.2.10
 
+
+
+### Liens Wikipédia inline dans les introductions et résumés
+
+Les modèles suivants sont admis dans `Sous-partie.contenu`, `Subsection.content`, `Argument.résumé` et `Argument.summary` :
+
+```mediawiki
+{{Lien Wikipédia|article=Titre de la page}}
+{{Lien Wikipédia|article=Titre de la page|texte-affiché=texte visible}}
+{{Wikipedia link|article=Page title}}
+{{Wikipedia link|article=Page title|displayed-text=visible text}}
+```
+
+`article` est obligatoire et non vide. Les paramètres d’affichage sont facultatifs, non vides et propres à la langue. Ils sont omis lorsque la seule différence est la majuscule initiale : `L'{{Lien Wikipédia|article=effet placebo}}` est conforme. Aucun autre paramètre n’est admis. Ces modèles sont interdits dans les titres, les champs documentaires et le corps des notes `<ref>…</ref>`.
+
+Implémentation de référence du modèle français :
+
+```mediawiki
+<span class="hover-wikipedia">[https://fr.wikipedia.org/wiki/{{{article}}} {{{texte-affiché|{{{article}}}}}}]</span>
+```
+
+Le modèle anglais conserve la même fonction de lien explicatif au survol avec les paramètres `article` et `displayed-text`.
+
 ### Appels inline dans les introductions
 
 ```mediawiki
@@ -38057,7 +39107,7 @@ Dans `{{Débat}}` et `{{Debate}}`, `sujet-complet` et `complete-topic` commencen
 
 # Source incorporée : `normative_reference/01_normes/workflow_production_wikidebia.md`
 
-**SHA-256 :** `f07ce6458986fc8bfb5163f7effef303eb841124ca1a48b698d7c50d630c221a`
+**SHA-256 :** `018e9a947301ed9693c91f353f56cf3026d32db3b470476021aee5960d599d5f`
 
 ```
 # Workflow de production Wikidéb’IA — norme 1.2.7
@@ -38109,7 +39159,7 @@ Contrôles obligatoires : DAG, absence de doublons, autonomie référentielle, t
 
 ## 5. Work 02 — Page Débat française
 
-Créer la page française avec `{{Lien interlangue}}` vers le titre canonique anglais verrouillé. Concevoir l’introduction à partir des connaissances nécessaires au lecteur : définition et périmètre, sens de la question, histoire, actualité lorsqu’elle est pertinente, connaissances préalables et enjeux. Chaque sous-partie répond à une question identifiable ; une section technique explique pourquoi elle compte pour le débat. L’introduction ne reproduit ni le graphe ni une checklist issue d’un corpus pilote. Produire le registre bilingue de revue des introductions. Les appels `<ref>…</ref>` sont ajoutés lorsque nécessaire ; leur contenu bibliographique ou web est rédigé directement en wikicode, sans aucun modèle MediaWiki et sans balise `<references />`. Les dates documentaires complètes sont écrites en langage naturel. Aucun minimum global ou par sous-partie n’est recherché. Toutes les références de la page Débat sont disponibles en français. La bibliographie privilégie les ouvrages fondamentaux et synthèses larges. Chacun des neuf paramètres documentaires de la page Débat contient au moins deux références distinctes.
+Créer la page française avec `{{Lien interlangue}}` vers le titre canonique anglais verrouillé. Concevoir l’introduction à partir des connaissances nécessaires au lecteur : définition et périmètre, sens de la question, histoire, actualité lorsqu’elle est pertinente, connaissances préalables et enjeux. Lors de la rédaction, repérer les notions spécialisées dont une définition secondaire aiderait le lecteur : utiliser à leur première occurrence `{{Lien Wikipédia|article=…}}` en français ou `{{Wikipedia link|article=…}}` en anglais lorsque le premier paragraphe de Wikipédia suffit ; sinon conserver une explication intégrée. Vérifier la page dans la langue correspondante, réserver le paramètre d’affichage aux différences réelles de libellé et ne jamais considérer ce lien comme une référence. Chaque sous-partie répond à une question identifiable ; une section technique explique pourquoi elle compte pour le débat. L’introduction ne reproduit ni le graphe ni une checklist issue d’un corpus pilote. Produire le registre bilingue de revue des introductions. Les appels `<ref>…</ref>` sont ajoutés lorsque nécessaire ; leur contenu bibliographique ou web est rédigé directement en wikicode, sans aucun modèle MediaWiki et sans balise `<references />`. Les dates documentaires complètes sont écrites en langage naturel. Aucun minimum global ou par sous-partie n’est recherché. Toutes les références de la page Débat sont disponibles en français. La bibliographie privilégie les ouvrages fondamentaux et synthèses larges. Chacun des neuf paramètres documentaires de la page Débat contient au moins deux références distinctes.
 
 ## 6. Work 03 — Arguments français
 
@@ -38245,7 +39295,7 @@ Avant validation, la revue choisit un sujet nominal conventionnel, contrôle la 
 
 # Source incorporée : `pyproject.toml`
 
-**SHA-256 :** `4652afc2e430c371d10e75adb2151fc8c2eaac2c9022ba3a02981cbed065a5d9`
+**SHA-256 :** `9aebf5f01bd096d6016cb6333255f0a6b38d8a76cda9d9244e506fa9ca85aee8`
 
 ```toml
 [build-system]
@@ -38254,7 +39304,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wikidebia-validator"
-version = "0.4.25"
+version = "0.4.26"
 description = "Validateur local stable des paquets Wikidéb'IA"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -38730,12 +39780,12 @@ raise SystemExit(main())
 
 # Source incorporée : `src/wikidebia_validator/__init__.py`
 
-**SHA-256 :** `d325111a9a48a923cfab417614eb6095722496b28c6fbe2b9fb172a24b2d5562`
+**SHA-256 :** `12c5d76e5acec8041220d276a2ac599015bce3ee46a37ba173899d8302e187c9`
 
 ```python
 __all__ = ["__version__"]
 
-__version__ = "0.4.25"
+__version__ = "0.4.26"
 ```
 
 # Source incorporée : `src/wikidebia_validator/__main__.py`
@@ -38750,7 +39800,7 @@ raise SystemExit(main())
 
 # Source incorporée : `src/wikidebia_validator/batches.py`
 
-**SHA-256 :** `a2f3789027d94da8e59b87caff70141577062e87aeed56f6ae20632300a8db84`
+**SHA-256 :** `7d8b20c3281a1b4d27e79ee70f541c2ceae7b6e9b653bfb20c293c755e5de5b0`
 
 ```python
 from __future__ import annotations
@@ -38830,7 +39880,7 @@ def validate_batches(ctx: PackageContext) -> None:
                 candidates = [x.get("sha256") for x in handoff.get("required_files", []) if x.get("path") == ctx.core_paths()["registry"]]
                 if candidates and candidates[0] != input_registry_hash:
                     ctx.report.error("WDV-BAT-005", f"Empreinte d'entrée du registre incohérente entre le lot et le handoff {bid}", details={"batch": input_registry_hash, "handoff": candidates[0]})
-        corrective = ((manifest.get("normative_versions") or {}).get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"})
+        corrective = ((manifest.get("normative_versions") or {}).get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"})
         if inputs.get("structural_sha256") and inputs["structural_sha256"] != structure_hash and not corrective:
             level = "ERROR" if b.get("status") in {"generated", "validated", "released"} else "WARNING"
             ctx.report.add("WDV-BAT-005", level, f"Empreinte structurelle obsolète pour le lot {bid}", details={"declared": inputs["structural_sha256"], "computed": structure_hash})
@@ -38864,7 +39914,7 @@ def validate_batches(ctx: PackageContext) -> None:
 
 # Source incorporée : `src/wikidebia_validator/bilingual.py`
 
-**SHA-256 :** `aa3ee4f2995b9eaab3e70f086d1e60809680391eab114b7dc49d748792e1a37f`
+**SHA-256 :** `03a9ce34c2a6ed7e83e8aa8e4e9060526ad135251aaa48ab647d8806754717f5`
 
 ```python
 from __future__ import annotations
@@ -38904,7 +39954,7 @@ def validate_bilingual(ctx: PackageContext) -> None:
                 ctx.report.error("WDV-BIL-001", f"Paire de pages bilingues incomplète pour {nid}", path="manifest.json")
         expected_sections = [SECTION_MAP[x] for x in fr.get("rubriques", []) if x in SECTION_MAP]
         norm = ((ctx.manifest().get("normative_versions") or {}).get("consolidated_norm"))
-        if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+        if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
             expected_sections = alphabetically_sorted(expected_sections)
         if en.get("sections") and en.get("sections") != expected_sections:
             ctx.report.warning("WDV-BIL-004", f"Sections anglaises divergentes pour {nid}; une justification éditoriale est requise", path=ctx.core_paths()["registry"], details={"expected": expected_sections, "actual": en.get("sections")})
@@ -39036,7 +40086,7 @@ if __name__ == "__main__":
 
 # Source incorporée : `src/wikidebia_validator/codes.py`
 
-**SHA-256 :** `9bd8af0689136e6211369c37bfd149336a7fa54549819bff262d203744ec8548`
+**SHA-256 :** `b10e78024f505feff75f10fe92a62bf130a9812e75b429fbf16d12edfccd0e31`
 
 ```python
 """Catalogue stable des codes de contrôle."""
@@ -39091,6 +40141,7 @@ CODES = {
     "WDV-MWK-017": "Majuscule initiale de sujet ou topic incorrecte",
     "WDV-MWK-018": "Saut de ligne ou espace entre deux modèles MediaWiki adjacents",
     "WDV-MWK-019": "Article Wikipédia obligatoire absent ou invalide",
+    "WDV-MWK-020": "Lien Wikipédia explicatif inline non conforme",
     "WDV-MWK-014": "Langue ou typographie documentaire non conforme",
     "WDV-BIL-001": "Identifiants ou pages bilingues divergents",
     "WDV-BIL-002": "Relations bilingues divergentes",
@@ -39149,7 +40200,7 @@ CODES = {
 
 # Source incorporée : `src/wikidebia_validator/coherence.py`
 
-**SHA-256 :** `fa5123f74b2643df43c1b28e514c19222a960023cfd500498f567ff8a437b46a`
+**SHA-256 :** `570394406c1f933c3fdc9deaca3cd2a4121b0bb5d8b2a40249ebea0b128385e0`
 
 ```python
 from __future__ import annotations
@@ -39246,7 +40297,7 @@ def validate_coherence(ctx: PackageContext) -> None:
 
 def validate_interlanguage_patch(ctx: PackageContext, manifest: dict[str, Any], registry: dict[str, Any]) -> None:
     norm = (manifest.get("normative_versions") or {}).get("consolidated_norm")
-    if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+    if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
         # New packages carry their links in the canonical French files; no patch is required.
         return
     rel = "patches/interlanguage_fr.validated.json" if ctx.exists("patches/interlanguage_fr.validated.json") else "patches/interlanguage_fr.json"
@@ -39336,7 +40387,7 @@ def validate_operation_logs(ctx: PackageContext, manifest: dict[str, Any]) -> No
 
 # Source incorporée : `src/wikidebia_validator/editorial.py`
 
-**SHA-256 :** `3515de5046af5ee3b4de7ee590f396ac056818836a989c8f0d8bcf679b157be8`
+**SHA-256 :** `80bd78bc531922b324e5405e1fd53fc981369b2707045626d8e2a80f301ced94`
 
 ```python
 from __future__ import annotations
@@ -39624,7 +40675,7 @@ def keyword_form_issues(keywords: list[str]) -> list[str]:
 
 def _active(ctx: PackageContext) -> bool:
     manifest = ctx.manifest() or {}
-    return (manifest.get("normative_versions") or {}).get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}
+    return (manifest.get("normative_versions") or {}).get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}
 
 
 def summary_has_auto_objection(text: str, language: str) -> bool:
@@ -39711,10 +40762,10 @@ def _validate_documentary_registry(ctx: PackageContext) -> tuple[int, int]:
         if isinstance(date, str) and ACCESS_DATE.search(date):
             date_errors += 1
             ctx.report.error("WDV-DOC-003", "Date de simple consultation conservée comme date documentaire", path=ctx.core_paths()["sources"], details={"source_id": source.get("id"), "value": date})
-        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} and isinstance(date, str) and re.fullmatch(r"\d{4}-\d{2}(?:-\d{2})?(?:[T ].*)?", date.strip()):
+        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} and isinstance(date, str) and re.fullmatch(r"\d{4}-\d{2}(?:-\d{2})?(?:[T ].*)?", date.strip()):
             date_errors += 1
             ctx.report.error("WDV-DOC-005", "Date documentaire au format machine dans le registre des sources", path=ctx.core_paths()["sources"], details={"source_id": source.get("id"), "value": date})
-        if norm == "1.2.23" and source.get("type") in {"webliography", "videography"}:
+        if norm in {"1.2.23", "1.2.24"} and source.get("type") in {"webliography", "videography"}:
             verification = source.get("verification") or {}
             site = str(metadata.get("site") or "").strip().casefold()
             page_or_title = str(metadata.get("page") or metadata.get("title") or "").strip().casefold()
@@ -39742,7 +40793,7 @@ def _validate_debate_docs(ctx: PackageContext, manifest: dict[str, Any], control
     min_references = int(cfg.get("min_references", 0))
     reject_singleton = cfg.get("reject_singleton_bucket_pattern") is True
     profile_rationale = cfg.get("profile_rationale")
-    if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} and (not isinstance(profile_rationale, str) or not profile_rationale.strip()):
+    if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} and (not isinstance(profile_rationale, str) or not profile_rationale.strip()):
         ctx.report.error("WDV-EDT-004", "Justification des minima documentaires locaux absente", path="manifest.json")
     debate_pages = [p for p in manifest.get("pages", []) if p.get("page_type") == "debate"]
     doc_params = {
@@ -39765,7 +40816,7 @@ def _validate_debate_docs(ctx: PackageContext, manifest: dict[str, Any], control
         metrics[lang] = {"introduction_subsections": intro_count, "documentary_references": total, "bucket_counts": counts, "distinct_bucket_counts": distinct_counts, "profile_minima": {"subsections": min_subsections, "references": min_references}, "profile_rationale": profile_rationale}
         if intro_count < min_subsections or total < min_references:
             ctx.report.error("WDV-EDT-004", "Page de débat insuffisamment développée ou documentée selon le profil déclaré", path=page.get("file_path"), details=metrics[lang])
-        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
             insufficient = {
                 param: {"total": count, "distinct": distinct}
                 for param, count, distinct in zip(doc_params[lang], counts, distinct_counts)
@@ -39881,7 +40932,7 @@ def _validate_intro_references(ctx: PackageContext, manifest: dict[str, Any], co
         for index, block in enumerate(blocks):
             has_inline = bool(re.search(r"<ref\b", block, flags=re.I))
             has_references_tag = bool(re.search(r"<references\b", block, flags=re.I))
-            if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+            if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
                 if has_references_tag:
                     invalid.append(index + 1)
             elif norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3"}:
@@ -39889,7 +40940,7 @@ def _validate_intro_references(ctx: PackageContext, manifest: dict[str, Any], co
                     invalid.append(index + 1)
             elif not has_inline or block.count("<references />") != 1 or not block.rstrip().endswith("<references />"):
                 invalid.append(index + 1)
-            if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+            if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
                 for match in ref_pair_re.finditer(block):
                     body = match.group("body").strip()
                     attrs = match.group("attrs") or ""
@@ -39926,7 +40977,7 @@ def _validate_intro_references(ctx: PackageContext, manifest: dict[str, Any], co
                             invalid_direct_notes.append({"subsection": index + 1, "reason": "self_closing_unnamed_reference"})
         missing_named = [{"subsection": idx, "name": name} for idx, name in referenced_names if name not in defined_names]
         ref_calls = len(re.findall(r"<ref\b", intro, flags=re.I))
-        claim_driven_policy = norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}
+        claim_driven_policy = norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}
         metrics[lang] = {
             "subsections": len(blocks),
             "ref_calls": ref_calls,
@@ -39935,7 +40986,7 @@ def _validate_intro_references(ctx: PackageContext, manifest: dict[str, Any], co
             "minimum": min_subsections,
             "claim_driven_policy": claim_driven_policy,
             "expected_inline_reference_model": expected_model if norm == "1.2.9" else None,
-            "inline_reference_body_mode": "direct_wikicode_without_templates" if norm in {"1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} else None,
+            "inline_reference_body_mode": "direct_wikicode_without_templates" if norm in {"1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} else None,
             "invalid_inline_reference_models": invalid_models,
             "invalid_direct_reference_notes": invalid_direct_notes,
             "undefined_named_references": missing_named,
@@ -39952,9 +41003,9 @@ def _validate_intro_references(ctx: PackageContext, manifest: dict[str, Any], co
             ctx.report.error("WDV-EDT-010", message, path=page.get("file_path"), details=metrics[lang])
         if norm == "1.2.9" and (invalid_models or missing_named):
             ctx.report.error("WDV-EDT-010", f"Les appels inline de l’introduction doivent employer exclusivement le modèle {expected_model}", path=page.get("file_path"), details=metrics[lang])
-        if norm in {"1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} and (invalid_direct_notes or missing_named):
+        if norm in {"1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} and (invalid_direct_notes or missing_named):
             ctx.report.error("WDV-EDT-010", "Les appels inline de l’introduction doivent contenir une référence rédigée directement, sans modèle MediaWiki", path=page.get("file_path"), details=metrics[lang])
-        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} and machine_dates:
+        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} and machine_dates:
             ctx.report.error("WDV-DOC-005", "Date documentaire au format machine dans un appel de référence inline", path=page.get("file_path"), details={"dates": machine_dates, "creation_date_parameters_unchanged": ["date-création", "creation-date"]})
     return metrics
 
@@ -39983,7 +41034,7 @@ def validate_introduction_review_data(
     issues: list[dict[str, Any]] = []
     if not isinstance(review, dict):
         return [{"reason": "missing_or_invalid_document"}]
-    if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} and review.get("normative_revision") != norm:
+    if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} and review.get("normative_revision") != norm:
         issues.append({"reason": "wrong_normative_revision", "expected": norm, "actual": review.get("normative_revision")})
     entries = review.get("entries")
     if not isinstance(entries, list):
@@ -40006,7 +41057,7 @@ def validate_introduction_review_data(
         for field in INTRO_REVIEW_TRUE_FIELDS:
             if entry.get(field) is not True:
                 issues.append({"reason": "attestation_false_or_missing", "language": lang, "field": field})
-        if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+        if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
             for field in ("complete_topic_fits_heading", "debate_sections_precise", "documentation_proportionate_to_literature"):
                 if entry.get(field) is not True:
                     issues.append({"reason": field, "language": lang})
@@ -40018,7 +41069,11 @@ def validate_introduction_review_data(
                 for family, note in family_notes.items():
                     if not isinstance(note, str) or len(note.strip()) < 20:
                         issues.append({"reason": "documentation_family_note", "language": lang, "family": family})
-        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+        if norm == "1.2.24":
+            for field in ("wikipedia_hover_links_reviewed", "specialized_terms_linked_or_explained"):
+                if entry.get(field) is not True:
+                    issues.append({"reason": field, "language": lang})
+        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
             acronym = entry.get("common_acronym")
             if acronym is not None and (not isinstance(acronym, str) or not acronym.strip()):
                 issues.append({"reason": "invalid_common_acronym", "language": lang})
@@ -40028,7 +41083,7 @@ def validate_introduction_review_data(
                 complete = complete_topics.get(lang, "")
                 if not re.search(rf"(?<![\w.-]){re.escape(acronym.strip())}(?![\w.-])", complete):
                     issues.append({"reason": "common_acronym_missing_from_complete_topic", "language": lang, "acronym": acronym.strip(), "complete_topic": complete})
-        if norm == "1.2.23":
+        if norm in {"1.2.23", "1.2.24"}:
             for field in ("topic_is_nominal_label", "conventional_topic_label_used_or_not_applicable", "complete_topic_lowercase_initial_or_justified"):
                 if entry.get(field) is not True:
                     issues.append({"reason": field, "language": lang})
@@ -40150,12 +41205,12 @@ def validate_individual_review_data(review: Any, nodes: list[dict[str, Any]], no
         en = node.get("en") or {}
         if entry.get("title_decision") not in {"reformulated", "retained_after_review"}:
             issues.append({"reason": "title_decision", "node_id": node_id})
-        if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+        if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
             if entry.get("canonical_referents_explicit_fr") is not True or entry.get("canonical_referents_explicit_en") is not True:
                 issues.append({"reason": "canonical_referents_explicit", "node_id": node_id})
             if entry.get("displayed_referents_explicit_fr") is not True or entry.get("displayed_referents_explicit_en") is not True:
                 issues.append({"reason": "displayed_referents_explicit", "node_id": node_id})
-        if norm in {"1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+        if norm in {"1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
             required_title_attestations = (
                 "displayed_title_complete_proposition_fr",
                 "displayed_title_argument_intelligible_fr",
@@ -40165,7 +41220,7 @@ def validate_individual_review_data(review: Any, nodes: list[dict[str, Any]], no
             for field in required_title_attestations:
                 if entry.get(field) is not True:
                     issues.append({"reason": field, "node_id": node_id})
-        if norm in {"1.2.22", "1.2.23"}:
+        if norm in {"1.2.22", "1.2.23", "1.2.24"}:
             for field in ("displayed_title_concision_reviewed_fr", "displayed_title_concision_reviewed_en"):
                 if entry.get(field) is not True:
                     issues.append({"reason": field, "node_id": node_id})
@@ -40205,7 +41260,7 @@ def validate_graph_placement_review_data(review: Any, registry: dict[str, Any], 
     issues: list[dict[str, Any]] = []
     if not isinstance(review, dict):
         return [{"reason": "missing_or_invalid_document"}]
-    if norm in {"1.2.20", "1.2.21", "1.2.22", "1.2.23"} and review.get("normative_revision") != norm:
+    if norm in {"1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} and review.get("normative_revision") != norm:
         issues.append({"reason": "normative_revision", "expected": norm, "actual": review.get("normative_revision")})
     if review.get("debate_id") != (registry.get("debate") or {}).get("id"):
         issues.append({"reason": "debate_id", "expected": (registry.get("debate") or {}).get("id"), "actual": review.get("debate_id")})
@@ -40340,7 +41395,7 @@ def validate_summary_style_review_data(
     summary_map = summaries or {}
     if not isinstance(review, dict):
         return [{"reason": "missing_or_invalid_document"}]
-    if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} and review.get("normative_revision") != norm:
+    if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} and review.get("normative_revision") != norm:
         issues.append({"reason": "normative_revision", "expected": norm, "actual": review.get("normative_revision")})
     entries = review.get("entries")
     if not isinstance(entries, list):
@@ -40359,7 +41414,7 @@ def validate_summary_style_review_data(
     if set(by_id) != expected:
         issues.append({"reason": "coverage", "missing": sorted(expected-set(by_id)), "extra": sorted(set(by_id)-expected)})
     required_true = ["thesis_first", "general_public_style", "sentence_rhythm_reviewed", "technical_terms_reviewed"]
-    if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+    if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
         required_true += [
             "opening_develops_title",
             "example_or_data_reviewed",
@@ -40367,8 +41422,10 @@ def validate_summary_style_review_data(
             "no_artificial_example_or_number",
             "no_polemical_overstatement",
         ]
-    if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+    if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
         required_true += ["conviction_visible"]
+    if norm == "1.2.24":
+        required_true += ["wikipedia_hover_links_reviewed", "specialized_terms_linked_or_explained"]
     for node_id in expected:
         entry = by_id.get(node_id)
         if not entry:
@@ -40390,7 +41447,7 @@ def validate_summary_style_review_data(
             for key in required_true:
                 if decision.get(key) is not True:
                     issues.append({"reason": key, "node_id": node_id, "language": lang})
-            if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+            if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
                 expression = str(decision.get("forceful_expression") or "").strip()
                 summary_text = summary_map.get((node_id, lang), "")
                 normalized_expression = re.sub(r"\s+", " ", expression).casefold()
@@ -40449,7 +41506,7 @@ def _validate_summary_style(
                     path=page.get("file_path"),
                     details={"node_id": node_id, "language": lang, **metrics},
                 )
-        if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} and cfg.get("opening_title_similarity_enabled", True) is True:
+        if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} and cfg.get("opening_title_similarity_enabled", True) is True:
             data = (node_map.get(node_id) or {}).get(lang) or {}
             titles = [data.get("canonical_title") or "", data.get("displayed_title") or "", page.get("canonical_title") or ""]
             opening_metrics = opening_title_similarity(summary, titles, lang, cfg)
@@ -40461,7 +41518,7 @@ def _validate_summary_style(
                     path=page.get("file_path"),
                     details={"node_id": node_id, "language": lang, **opening_metrics},
                 )
-        claims = summary_quantitative_claims(summary) if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} else []
+        claims = summary_quantitative_claims(summary) if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} else []
         if claims:
             quantitative_pages.add((node_id, lang))
             quantitative_summaries += 1
@@ -40522,11 +41579,11 @@ def validate_editorial(ctx: PackageContext) -> None:
     registry = ctx.registry() or {}
     editorial_controls = manifest.get("editorial_controls") or {}
     trace_controls = manifest.get("traceability_controls") or {}
-    if norm in {"1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} and (not editorial_controls or not trace_controls):
+    if norm in {"1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} and (not editorial_controls or not trace_controls):
         ctx.report.error("WDV-EDT-011", "Profils de contrôle déclaratifs absents du manifeste", path="manifest.json")
-    if norm in {"1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} and (not editorial_controls.get("summary_style") or not editorial_controls.get("summary_style_review_path")):
+    if norm in {"1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} and (not editorial_controls.get("summary_style") or not editorial_controls.get("summary_style_review_path")):
         ctx.report.error("WDV-EDT-013", "Contrôles de style des résumés absents du manifeste", path="manifest.json")
-    if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+    if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
         summary_cfg = editorial_controls.get("summary_style") or {}
         required_119 = {
             "opening_title_similarity_enabled",
@@ -40554,22 +41611,22 @@ def validate_editorial(ctx: PackageContext) -> None:
     title_quality_counts = {"fr": 0, "en": 0}
     keyword_quality_counts = {"fr": 0, "en": 0}
     page_map = {(p.get("page_id"), p.get("language")): p for p in manifest.get("pages", [])}
-    vocab_fr, vocab_en = _load_keyword_vocabulary(ctx, editorial_controls) if norm in {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} else ({}, {})
+    vocab_fr, vocab_en = _load_keyword_vocabulary(ctx, editorial_controls) if norm in {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} else ({}, {})
 
     for lang in ("fr", "en"):
         ratio = title_copy_ratio(nodes, lang)
         title_metrics[lang] = ratio
-        if norm in {"1.2.22", "1.2.23"} and ratio > 0.10:
+        if norm in {"1.2.22", "1.2.23", "1.2.24"} and ratio > 0.10:
             ctx.report.error("WDV-EDT-001", "Les titres affichés sont copiés mécaniquement depuis les titres canoniques", path=ctx.core_paths()["registry"], details={"language": lang, "ratio": ratio, "threshold": 0.10})
         cratio = dominant_classification_ratio(nodes, lang)
         classification_metrics[lang] = cratio
-        if norm not in {"1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} and cratio > 0.90:
+        if norm not in {"1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} and cratio > 0.90:
             ctx.report.error("WDV-EDT-002", "Une classification unique domine mécaniquement le corpus", path=ctx.core_paths()["registry"], details={"language": lang, "ratio": cratio})
 
         keyword_sets = [tuple((node.get(lang) or {}).get("keywords") or []) for node in nodes]
         dominant_keyword_set_ratio = Counter(keyword_sets).most_common(1)[0][1] / len(keyword_sets) if keyword_sets else 1.0
-        threshold = 0.25 if norm in {"1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} else 0.15
-        if norm in {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} and dominant_keyword_set_ratio > threshold:
+        threshold = 0.25 if norm in {"1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} else 0.15
+        if norm in {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} and dominant_keyword_set_ratio > threshold:
             ctx.report.error("WDV-EDT-008", "Un même jeu de mots-clés domine mécaniquement le corpus", path=ctx.core_paths()["registry"], details={"language": lang, "ratio": dominant_keyword_set_ratio, "threshold": threshold})
 
         bad_summary = 0
@@ -40588,13 +41645,13 @@ def validate_editorial(ctx: PackageContext) -> None:
             if reasons:
                 title_quality_counts[lang] += 1
                 ctx.report.error("WDV-EDT-007", "Titre affiché tronqué, mal formé ou grammaticalement incomplet", path=ctx.core_paths()["registry"], details={"node_id": node_id, "language": lang, "title": title, "reasons": reasons})
-            if norm in {"1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+            if norm in {"1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
                 argument_reasons = displayed_title_argument_issues(title, lang)
                 if argument_reasons:
                     title_quality_counts[lang] += 1
                     ctx.report.error("WDV-EDT-021", "Titre affiché non propositionnel ou argument incompréhensible", path=ctx.core_paths()["registry"], details={"node_id": node_id, "language": lang, "title": title, "reasons": argument_reasons})
 
-            if norm in {"1.2.22", "1.2.23"}:
+            if norm in {"1.2.22", "1.2.23", "1.2.24"}:
                 concision_reasons = [reason for reason in displayed_title_concision_issues(canonical_title, title) if reason != "exact_copy"]
                 if concision_reasons:
                     title_quality_counts[lang] += 1
@@ -40652,7 +41709,7 @@ def validate_editorial(ctx: PackageContext) -> None:
                 ctx.report.error("WDV-EDT-008", "Fréquence descriptive du vocabulaire divergente du registre", path=vocab_path, details={"keyword": keyword, "declared": entry.get("usage_count_in_debate"), "actual": count})
 
     summary_ratio_errors = 0
-    if norm in {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+    if norm in {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
         for node in nodes:
             node_id = node.get("id")
             fr_page = page_map.get((node_id, "fr"))
@@ -40672,12 +41729,12 @@ def validate_editorial(ctx: PackageContext) -> None:
 
     pagination_errors, date_errors = _validate_documentary_registry(ctx)
     docs = _validate_debate_docs(ctx, manifest, editorial_controls, norm)
-    intro_refs = _validate_intro_references(ctx, manifest, editorial_controls) if norm in {"1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} else {}
-    normative_non_regression = _validate_normative_non_regression(ctx, manifest, trace_controls) if norm in {"1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} else {}
-    individual_review = _validate_individual_editorial_review(ctx, nodes, editorial_controls) if norm in {"1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} else {}
-    summary_style = _validate_summary_style(ctx, nodes, manifest, editorial_controls, norm) if norm in {"1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} else {}
-    graph_placement_review = _validate_graph_placement_review(ctx, registry, editorial_controls, norm) if norm in {"1.2.20", "1.2.21", "1.2.22", "1.2.23"} else {}
-    introduction_review = _validate_introduction_review(ctx, manifest, editorial_controls, norm) if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} else {}
+    intro_refs = _validate_intro_references(ctx, manifest, editorial_controls) if norm in {"1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} else {}
+    normative_non_regression = _validate_normative_non_regression(ctx, manifest, trace_controls) if norm in {"1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} else {}
+    individual_review = _validate_individual_editorial_review(ctx, nodes, editorial_controls) if norm in {"1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} else {}
+    summary_style = _validate_summary_style(ctx, nodes, manifest, editorial_controls, norm) if norm in {"1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} else {}
+    graph_placement_review = _validate_graph_placement_review(ctx, registry, editorial_controls, norm) if norm in {"1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} else {}
+    introduction_review = _validate_introduction_review(ctx, manifest, editorial_controls, norm) if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} else {}
     date_migration_errors = _validate_dates(ctx, manifest, editorial_controls.get("creation_date"))
     trace = _validate_traceability(ctx, manifest, editorial_controls, trace_controls)
 
@@ -40711,7 +41768,7 @@ def validate_editorial(ctx: PackageContext) -> None:
 
 # Source incorporée : `src/wikidebia_validator/files.py`
 
-**SHA-256 :** `e6847ac4c5c6090880d70d48e77b246951f3fecabd02b825047ef371a13614c2`
+**SHA-256 :** `f39e644af6da72c714236ebda53470f95b1efd4d482d36033a25ef6992728335`
 
 ```python
 from __future__ import annotations
@@ -40823,7 +41880,7 @@ def validate_files(ctx: PackageContext) -> None:
 
     # Historical handoffs remain immutable traces during a 1.1 corrective reprise.
     # Their hashes describe the input state of their original Work, not the current files.
-    corrective = (manifest.get("normative_versions") or {}).get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}
+    corrective = (manifest.get("normative_versions") or {}).get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}
     if not corrective:
         for path in sorted(ctx.iter_files("handoff/*.json")):
             rel = ctx.relative(path)
@@ -40839,7 +41896,7 @@ def validate_files(ctx: PackageContext) -> None:
 
 # Source incorporée : `src/wikidebia_validator/graph.py`
 
-**SHA-256 :** `e8d638083ebe551d11c1243a339a01766598d9bababf7c3efd5b292fede0d2ae`
+**SHA-256 :** `d5f1cb963be0a802f7a341a29a14f95b19771b9dd29b21aeffad5fd0dc3c77f7`
 
 ```python
 from __future__ import annotations
@@ -41031,7 +42088,7 @@ def validate_graph(ctx: PackageContext) -> None:
                 continue
             if title.endswith(".") or "’" in title:
                 ctx.report.error("WDV-GRA-016", f"Titre {lang} non conforme : {title}", path=ctx.core_paths()["registry"], pointer=f"/graph/nodes/{node.get('id')}/{lang}/canonical_title")
-            if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+            if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
                 contextual = contextual_title_issues(title, lang, norm)
                 details = {"node_id": node.get("id"), "language": lang, "issues": contextual}
                 if "implicit_referent" in contextual or "initial_contextual_referent" in contextual:
@@ -44974,7 +46031,7 @@ def validate_all_schemas(ctx: PackageContext, store: SchemaStore) -> None:
 
 # Source incorporée : `src/wikidebia_validator/schemas/debate_package.schema.json`
 
-**SHA-256 :** `59eec51f9503d3ac6050250d54968a110a0fb8b16243fc0485bcd26c85b4c0e5`
+**SHA-256 :** `fa19e1595d73902114f949fe4acea7f02779d332e685bed8e8abd6b3f7826dc9`
 
 ```json
 {
@@ -45508,7 +46565,8 @@ def validate_all_schemas(ctx: PackageContext, store: SchemaStore) -> None:
                   "1.2.20",
                   "1.2.21",
                   "1.2.22",
-                  "1.2.23"
+                  "1.2.23",
+                  "1.2.24"
                 ]
               }
             },
@@ -45551,7 +46609,8 @@ def validate_all_schemas(ctx: PackageContext, store: SchemaStore) -> None:
                   "1.2.20",
                   "1.2.21",
                   "1.2.22",
-                  "1.2.23"
+                  "1.2.23",
+                  "1.2.24"
                 ]
               }
             },
@@ -47198,12 +48257,12 @@ def validate_all_schemas(ctx: PackageContext, store: SchemaStore) -> None:
 
 # Source incorporée : `src/wikidebia_validator/schemas/schema_catalog.json`
 
-**SHA-256 :** `e26ae5b1ea058a3c2ff211dfdcf24a27a853978d6aa1dd3be91ad4ae43b8a2dd`
+**SHA-256 :** `53d773d70717fe1966d2c320008dab45455398d7f1004a808cfddadb48e20c8e`
 
 ```json
 {
   "catalog_version": "1.1.0",
-  "package_revision": "1.2.23",
+  "package_revision": "1.2.24",
   "draft": "https://json-schema.org/draft/2020-12/schema",
   "schema_count": 19,
   "schemas": [
@@ -47925,7 +48984,7 @@ def validate_all_schemas(ctx: PackageContext, store: SchemaStore) -> None:
 
 # Source incorporée : `src/wikidebia_validator/sources.py`
 
-**SHA-256 :** `cc94ae3ca0ac6b605709d46cf636ee4bed99a70f1a58b189afcceafd2c673e8f`
+**SHA-256 :** `abd6aee1832b7a476bf5c65f2602c401938eb068e3811b5fccf1b609653e9bcb`
 
 ```python
 from __future__ import annotations
@@ -47951,7 +49010,7 @@ def validate_sources(ctx: PackageContext) -> None:
     if not registry or not sources_doc:
         return
     norm = _norm(ctx)
-    is_120 = norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}
+    is_120 = norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}
     sources = sources_doc.get("sources", [])
     ids = [s.get("id") for s in sources]
     for sid, count in Counter(ids).items():
@@ -47977,7 +49036,7 @@ def validate_sources(ctx: PackageContext) -> None:
         usage = source.get("usage", [])
         verification = source.get("verification") or {}
         metadata = source.get("metadata") or {}
-        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
             documentary_date = metadata.get("date")
             if isinstance(documentary_date, str) and documentary_date_is_machine(documentary_date):
                 ctx.report.error("WDV-DOC-005", f"La date documentaire de la source {sid} est au format machine; utiliser le langage naturel", path=ctx.core_paths()["sources"], details={"source_id": sid, "value": documentary_date})
@@ -48048,7 +49107,7 @@ def validate_sources(ctx: PackageContext) -> None:
 
 # Source incorporée : `src/wikidebia_validator/validator.py`
 
-**SHA-256 :** `8767f012a6f0bfb45efca64b503ae86c343ecd8a2f4865ae47a7a19620eaaae8`
+**SHA-256 :** `081c344322aaf7599d8b7c9070956eee82a69b7e8e27232aec217bcffaf361f4`
 
 ```python
 from __future__ import annotations
@@ -48102,7 +49161,7 @@ def validate_package(root: str | Path, scopes: list[str] | None = None, previous
         if "workflow" in selected:
             validate_workflow(ctx, previous_status=previous_status)
         consolidated = ((ctx.manifest() or {}).get("normative_versions") or {}).get("consolidated_norm")
-        if consolidated not in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} or "editorial" not in selected:
+        if consolidated not in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} or "editorial" not in selected:
             report.info("WDV-DOC-001", "Les contrôles de qualité argumentative, d'équilibre, de quasi-doublons sémantiques et de fidélité documentaire restent soumis à une revue humaine.")
     except Exception as exc:  # defensive boundary: stable report instead of traceback by default
         report.error("WDV-INT-001", f"Erreur interne : {type(exc).__name__}: {exc}")
@@ -48111,7 +49170,7 @@ def validate_package(root: str | Path, scopes: list[str] | None = None, previous
 
 # Source incorporée : `src/wikidebia_validator/wikicode.py`
 
-**SHA-256 :** `9516dfb5907d0d151a4b3c04b5122835eed64928f5b2414f753770896c44cca0`
+**SHA-256 :** `7897a96006143c7186ff71c51b306c411ae7bc73b76c345a757c4e2c539f44f4`
 
 ```python
 from __future__ import annotations
@@ -48864,7 +49923,7 @@ PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
 
 
 def _validate_french_parenthetical_dashes(ctx: PackageContext, tmpl: Template, rel: str, page_type: str) -> None:
-    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
         return
     values: list[tuple[str, str]] = []
     if page_type == "argument":
@@ -48888,6 +49947,102 @@ def _validate_french_parenthetical_dashes(ctx: PackageContext, tmpl: Template, r
                 details={"excerpt": excerpt},
             )
 
+
+REF_BLOCK_RE = re.compile(r"<ref\b[^>]*>.*?</ref>", flags=re.IGNORECASE | re.DOTALL)
+SELF_CLOSING_REF_RE = re.compile(r"<ref\b[^>]*/\s*>", flags=re.IGNORECASE)
+
+
+def _inline_template_spans(text: str) -> list[str]:
+    """Extract balanced top-level inline templates from free prose."""
+    out: list[str] = []
+    i = 0
+    while i < len(text) - 1:
+        if text[i:i+2] != "{{":
+            i += 1
+            continue
+        start = i
+        depth = 0
+        while i < len(text) - 1:
+            pair = text[i:i+2]
+            if pair == "{{":
+                depth += 1
+                i += 2
+                continue
+            if pair == "}}":
+                depth -= 1
+                i += 2
+                if depth == 0:
+                    out.append(text[start:i])
+                    break
+                continue
+            i += 1
+        else:
+            break
+    return out
+
+
+def _display_parameter_redundant(article: str, displayed: str) -> bool:
+    def norm(value: str) -> str:
+        return " ".join(value.replace("_", " ").split()).casefold()
+    return norm(article) == norm(displayed)
+
+
+def _validate_wikipedia_hover_links(ctx: PackageContext, tmpl: Template, rel: str, lang: str, page_type: str) -> None:
+    if not _norm_at_least(ctx, "1.2.24"):
+        return
+    fields: list[tuple[str, str]] = []
+    if page_type == "argument":
+        key = "résumé" if lang == "fr" else "summary"
+        fields.append((key, tmpl.one(key) or ""))
+    else:
+        content_key = "contenu" if lang == "fr" else "content"
+        for index, subsection in enumerate(get_subs(tmpl, "introduction"), start=1):
+            fields.append((f"introduction/{index}/{content_key}", subsection.one(content_key) or ""))
+
+    expected_name = "Lien Wikipédia" if lang == "fr" else "Wikipedia link"
+    other_name = "Wikipedia link" if lang == "fr" else "Lien Wikipédia"
+    display_param = "texte-affiché" if lang == "fr" else "displayed-text"
+    wrong_display_param = "displayed-text" if lang == "fr" else "texte-affiché"
+    allowed = {"article", display_param}
+
+    for pointer, value in fields:
+        for ref_body in REF_BLOCK_RE.findall(value):
+            if "{{Lien Wikipédia" in ref_body or "{{Wikipedia link" in ref_body:
+                ctx.report.error("WDV-MWK-020", "Un lien Wikipédia explicatif est interdit dans le corps d’une note <ref>", path=rel, pointer=pointer)
+        prose = REF_BLOCK_RE.sub("", value)
+        prose = SELF_CLOSING_REF_RE.sub("", prose)
+        for raw in _inline_template_spans(prose):
+            try:
+                sub = parse_template(raw)
+            except WikiParseError as exc:
+                ctx.report.error("WDV-MWK-020", f"Modèle inline mal formé : {exc}", path=rel, pointer=pointer)
+                continue
+            if sub.name == other_name:
+                ctx.report.error("WDV-MWK-020", f"Le modèle {sub.name} ne correspond pas à la langue de la page", path=rel, pointer=pointer, details={"expected": expected_name})
+                continue
+            if sub.name != expected_name:
+                ctx.report.error("WDV-MWK-020", f"Modèle inline non autorisé dans ce champ : {sub.name}", path=rel, pointer=pointer, details={"allowed": expected_name})
+                continue
+            keys = [key for key, _ in sub.params]
+            if len(keys) != len(set(keys)):
+                ctx.report.error("WDV-MWK-020", f"Paramètre dupliqué dans {expected_name}", path=rel, pointer=pointer)
+            unknown = [key for key in keys if key not in allowed]
+            if unknown:
+                ctx.report.error("WDV-MWK-020", f"Paramètre inconnu dans {expected_name}", path=rel, pointer=pointer, details={"unknown": unknown, "allowed": sorted(allowed)})
+            if wrong_display_param in keys:
+                ctx.report.error("WDV-MWK-020", f"Paramètre d’affichage de l’autre langue interdit : {wrong_display_param}", path=rel, pointer=pointer)
+            article = (sub.one("article") or "").strip()
+            if not article:
+                ctx.report.error("WDV-MWK-020", f"{expected_name} exige un paramètre article non vide", path=rel, pointer=pointer)
+            elif re.match(r"https?://", article, flags=re.I):
+                ctx.report.error("WDV-MWK-020", "Le paramètre article doit contenir un titre de page, non une URL", path=rel, pointer=pointer, details={"article": article})
+            displayed = sub.one(display_param)
+            if displayed is not None:
+                if not displayed.strip():
+                    ctx.report.error("WDV-MWK-020", f"Le paramètre {display_param} ne peut pas être vide", path=rel, pointer=pointer)
+                elif article and _display_parameter_redundant(article, displayed):
+                    ctx.report.error("WDV-MWK-020", f"Le paramètre {display_param} est redondant ; adapter simplement la casse dans article", path=rel, pointer=pointer, details={"article": article, "displayed": displayed})
+
 def validate_page(ctx: PackageContext, page_manifest: dict[str, Any], *, override_path: str | None = None, staging: bool = False) -> Template | None:
     rel = override_path or page_manifest.get("file_path")
     if not rel:
@@ -48906,6 +50061,7 @@ def validate_page(ctx: PackageContext, page_manifest: dict[str, Any], *, overrid
         return tmpl
     validate_template_shape(ctx, tmpl, lang, page_type, rel)
     _check_reference_language_and_typography(ctx, tmpl, rel, lang)
+    _validate_wikipedia_hover_links(ctx, tmpl, rel, lang, page_type)
     if lang == "fr":
         _validate_french_parenthetical_dashes(ctx, tmpl, rel, page_type)
     registry = ctx.registry() or {}
@@ -48996,7 +50152,7 @@ def validate_aggregates(ctx: PackageContext, pages: list[dict[str, Any]]) -> Non
 
 # Source incorporée : `src/wikidebia_validator/workflow.py`
 
-**SHA-256 :** `7225709ebb297409d17fc0e5b2d6012ee9616c2279ea6797eeb23abb67aefc41`
+**SHA-256 :** `b3fc60f76f3f9a6890b7072eb03443a96b4f26138685ee7151d16041d4894597`
 
 ```python
 from __future__ import annotations
@@ -49063,7 +50219,7 @@ def validate_workflow(ctx: PackageContext, previous_status: str | None = None) -
         return
     status = manifest.get("global_status")
     norm_versions = manifest.get("normative_versions") or {}
-    corrective_mode = status in {"corrective_in_progress", "corrective_blocked"} or norm_versions.get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}
+    corrective_mode = status in {"corrective_in_progress", "corrective_blocked"} or norm_versions.get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}
     if previous_status and not allowed_transition(previous_status, status):
         ctx.report.error("WDV-WF-002", f"Transition interdite : {previous_status} -> {status}", path="manifest.json")
     try:
@@ -49112,7 +50268,7 @@ def validate_workflow(ctx: PackageContext, previous_status: str | None = None) -
                 if page and page.get("status") not in {"validated", "published"}:
                     ctx.report.error("WDV-WF-001", f"Page {pid}/{lang} non validée à l'état {status}")
 
-    if norm_versions.get("consolidated_norm") in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"} and state_at_least(status, "fr_debate_validated"):
+    if norm_versions.get("consolidated_norm") in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"} and state_at_least(status, "fr_debate_validated"):
         debate_en = ((((registry.get("debate") or {}).get("pages") or {}).get("en") or {}))
         if debate_en.get("title_status") != "locked" or not debate_en.get("canonical_title"):
             ctx.report.error("WDV-WF-005", "Le titre anglais du débat doit être verrouillé avant la création des pages françaises", path=ctx.core_paths()["registry"])
@@ -49122,7 +50278,7 @@ def validate_workflow(ctx: PackageContext, previous_status: str | None = None) -
                 ctx.report.error("WDV-WF-005", f"Titre anglais non verrouillé avant production française : {n.get('id')}", path=ctx.core_paths()["registry"])
 
     patch_rel = "patches/interlanguage_fr.validated.json"
-    if norm_versions.get("consolidated_norm") not in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+    if norm_versions.get("consolidated_norm") not in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
         if state_at_least(status, "interlanguage_prepared"):
             patch = ctx.load_json(patch_rel, required=True)
             if isinstance(patch, dict) and patch.get("status") not in {"validated", "partially_applied", "applied"}:
@@ -49675,7 +50831,7 @@ def test_site_keyword_still_rejects_sentence_like_phrase():
 
 # Source incorporée : `tests/test_corrective_114.py`
 
-**SHA-256 :** `03702501169a9517efb08b643e7c1dba47006478380e5ef492a295a028d59fd6`
+**SHA-256 :** `ca3ae10dba1e173539320751661082473c6e889dcdd0dc662f66c3833b8a1c93`
 
 ```python
 from pathlib import Path
@@ -49687,11 +50843,11 @@ def test_singleton_keyword_remains_allowed_114():
 def test_active_norm_is_single_in_reference_tree():
     root=Path(__file__).parents[1]/"normative_reference"/"01_normes"
     active=sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md"))
-    assert active == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"]
+    assert active == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"]
 
 def test_norm_contains_w11_non_overwrite_and_order():
     root=Path(__file__).parents[1]/"normative_reference"/"01_normes"
-    text=(root/"WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md").read_text(encoding="utf-8")
+    text=(root/"WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md").read_text(encoding="utf-8")
     assert "ne jamais écraser une page existante par défaut" in text
     assert "première écriture distante un test sur l’unique page Débat française canonique" in text
     assert "ne créer aucune sous-page utilisateur" in text
@@ -49706,7 +50862,7 @@ def test_current_handoff_is_declared_by_manifest_not_stage_name():
 
 # Source incorporée : `tests/test_corrective_115.py`
 
-**SHA-256 :** `84b836ccd69bb9686c8d753cd49cd8ae7c305b254e9dabe0564aee1d1d75b0fc`
+**SHA-256 :** `73aa8d36af4ea2a4a975cd9ca878b3bb73180024dc7e888ac059433b21a6b5cf`
 
 ```python
 from pathlib import Path
@@ -49739,12 +50895,12 @@ def test_selected_rubric_requires_page_specific_rationale():
 
 def test_active_norm_is_115():
     root=Path(__file__).parents[1]/"normative_reference"/"01_normes"
-    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md"))==["WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"]
+    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md"))==["WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"]
 ```
 
 # Source incorporée : `tests/test_corrective_116.py`
 
-**SHA-256 :** `b81e1b49752bfd8d758953479c92765fcbafc46f0505778974813853442e6f87`
+**SHA-256 :** `86bd512d31f065a7506f53905f66dde777d4188cad3944ddc92e7780bb42b3c3`
 
 ```python
 from pathlib import Path
@@ -49792,12 +50948,12 @@ def test_runtime_has_no_corpus_specific_constants():
 
 def test_active_norm_is_116():
     root=Path(__file__).parents[1]/"normative_reference"/"01_normes"
-    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md"))==["WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"]
+    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md"))==["WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"]
 ```
 
 # Source incorporée : `tests/test_corrective_117.py`
 
-**SHA-256 :** `fe978866a51840ef3f34c876e81d7c22dfc03b8bbc9499271ad69327c3e2203e`
+**SHA-256 :** `6b498457777f2df206921b5185eff36cb280345a42d61430b33fc11942107c6d`
 
 ```python
 from pathlib import Path
@@ -49805,7 +50961,7 @@ from wikidebia_validator.wikicode import TOP
 
 def test_active_norm_is_117():
     root=Path(__file__).parents[1]/"normative_reference"/"01_normes"
-    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md"))==["WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"]
+    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md"))==["WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"]
 
 def test_fixed_warning_values_use_by_par():
     assert TOP[("fr","debate")]["fixed"]["avertissements-débat"]=="Débat généré par IA"
@@ -49822,7 +50978,7 @@ def test_active_runtime_rejects_old_warning_wording():
 
 # Source incorporée : `tests/test_corrective_118.py`
 
-**SHA-256 :** `4d43efdad07319f37e24420cd3b381a39166bd43626756e7a033150a6b228762`
+**SHA-256 :** `2a6fd471fd0d876da458a6ff815c44776480e1640c2bfc083adec5c46fd149b2`
 
 ```python
 from pathlib import Path
@@ -49851,12 +51007,12 @@ def test_summary_style_review_requires_all_human_attestations():
 
 def test_active_norm_is_current():
     root = Path(__file__).parents[1] / "normative_reference" / "01_normes"
-    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"]
+    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"]
 ```
 
 # Source incorporée : `tests/test_corrective_119.py`
 
-**SHA-256 :** `386a42c08384aa343ec5671b984e00b0c6ca5994db977608b3d968e11c451ad8`
+**SHA-256 :** `c10dbc4f8412df14c7fee2bd195fd7f3927656bbb98e5c56d32a0996b0a74b05`
 
 ```python
 from pathlib import Path
@@ -49968,7 +51124,7 @@ def test_118_review_remains_backward_compatible():
 
 def test_active_norm_is_119():
     root = Path(__file__).parents[1] / "normative_reference" / "01_normes"
-    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"]
+    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"]
 ```
 
 # Source incorporée : `tests/test_files_batches_workflow.py`
@@ -50456,7 +51612,7 @@ def test_validator_metadata_reports_0413():
 
 # Source incorporée : `tests/test_norm_1214.py`
 
-**SHA-256 :** `9d59cdecb9c0c7ba34fe6d7b1d95c8b22fa79df578ad624c42fd9090dc4fd0e2`
+**SHA-256 :** `76076e867f0a10319b02ab9256e1706231f217f9264759edc123e5274940a8b7`
 
 ```python
 from pathlib import Path
@@ -50465,13 +51621,13 @@ from wikidebia_validator import __version__
 
 
 def test_validator_metadata_reports_0414():
-    assert __version__ == "0.4.25"
+    assert __version__ == "0.4.26"
 
 
 def test_norm_1214_is_declared_compatible():
     root = Path(__file__).resolve().parents[1]
     text = (root / "COMPATIBILITY.json").read_text(encoding="utf-8")
-    assert '"implemented_normative_revision": "1.2.23"' in text
+    assert '"implemented_normative_revision": "1.2.24"' in text
     assert '"1.2.18"' in text
 ```
 
@@ -50569,7 +51725,7 @@ def test_rules_are_not_retroactive_to_1216():
 
 # Source incorporée : `tests/test_norm_1218.py`
 
-**SHA-256 :** `bb4f74c87fe760e867cec001edb98fd87747a192d6da15604bb9ee9466de4d15`
+**SHA-256 :** `d73cd1363c88457fa5790e91e09209d72151365dbb0a6957f95f4d39bf7f8b0a`
 
 ```python
 from __future__ import annotations
@@ -50610,7 +51766,7 @@ def test_separator_rule_is_not_retroactive_to_1217():
 
 def test_active_norm_debate_skeletons_have_nonempty_wikipedia_articles():
     from pathlib import Path
-    source = Path(__file__).resolve().parents[1] / "normative_reference" / "01_normes" / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+    source = Path(__file__).resolve().parents[1] / "normative_reference" / "01_normes" / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
     norm = source.read_text(encoding="utf-8")
     assert "|articles-Wikipédia={{Article Wikipédia" in norm
     assert "|wikipedia-articles={{Wikipedia article" in norm
@@ -50620,7 +51776,7 @@ def test_active_norm_debate_skeletons_have_nonempty_wikipedia_articles():
 
 def test_active_norm_skeletons_do_not_render_related_debates():
     from pathlib import Path
-    source = Path(__file__).resolve().parents[1] / "normative_reference" / "01_normes" / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md"
+    source = Path(__file__).resolve().parents[1] / "normative_reference" / "01_normes" / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"
     norm = source.read_text(encoding="utf-8")
     # The terms may appear in prose explaining the prohibition, but never as rendered parameters.
     assert "\n|débats-connexes=" not in norm
@@ -51079,7 +52235,7 @@ def test_1222_exact_identity_accepts_substantial_justifications():
 
 # Source incorporée : `tests/test_norm_1223.py`
 
-**SHA-256 :** `e4f6e0422c65778266652226fa1f285bb454a779cc1ccf40443a2f6ffe52d806`
+**SHA-256 :** `651049c162797b5bd6cc9b013765381e8893c9fc3809d46e1db4d0cd7328c284`
 
 ```python
 from pathlib import Path
@@ -51135,7 +52291,7 @@ def test_1223_wikicode_rejects_uppercase_complete_topic(tmp_path: Path):
     (root/"manifest.json").write_text('{"normative_versions":{"consolidated_norm":"1.2.23"}}',encoding="utf-8")
     page=root/"debate.wiki"
     page.write_text("{{Débat\n|sujet=Réalisme philosophique\n|sujet-complet=Le réalisme philosophique\n|avancement=Débat construit\n|avertissements-débat=Débat généré par IA\n|introduction={{Sous-partie\n|titre=Définition\n|contenu=Texte\n}}\n|arguments-pour={{Argument pour\n|page=Argument A\n|titre-affiché=Une thèse existe\n}}\n|arguments-contre={{Argument contre\n|page=Argument B\n|titre-affiché=Une objection existe\n}}\n|rubriques=Philosophie\n|mots-clés=réalisme\n|date-création=2026-08-02\n}}\n",encoding="utf-8")
-    report=Report("0.4.25",str(root),["wikicode"]); ctx=PackageContext(root,report)
+    report=Report("0.4.26",str(root),["wikicode"]); ctx=PackageContext(root,report)
     validate_page(ctx,{"page_id":"demo","page_type":"debate","language":"fr","file_path":"debate.wiki"})
     assert any(i.code=="WDV-EDT-018" and "minuscule" in i.message for i in report.findings)
 
@@ -51145,14 +52301,109 @@ def test_1223_argument_web_reference_rejects_author_equal_site(tmp_path: Path):
     (root/"manifest.json").write_text('{"normative_versions":{"consolidated_norm":"1.2.23"}}',encoding="utf-8")
     page=root/"argument.wiki"
     page.write_text("{{Argument\n|titre-affiché=Le monde résiste à nos attentes\n|avertissements-argument=Argument généré par IA\n|résumé=Résumé suffisamment développé pour le test.\n|citations=\n|références-sitographiques={{Référence sitographique\n|lien=https://example.org/article\n|page=Un article\n|auteurs=Example\n|site=Example\n|date=2 août 2026\n}}\n|justifications=\n|objections=\n|rubriques=Philosophie\n|mots-clés=réalisme\n|interlangue={{Lien interlangue\n|langue=en\n|page=Argument\n}}\n|date-création=2026-08-02\n}}\n",encoding="utf-8")
-    report=Report("0.4.25",str(root),["wikicode"]); ctx=PackageContext(root,report)
+    report=Report("0.4.26",str(root),["wikicode"]); ctx=PackageContext(root,report)
     validate_page(ctx,{"page_id":"A0001","page_type":"argument","language":"fr","file_path":"argument.wiki"})
     assert any(i.code=="WDV-DOC-004" and i.details.get("applies_to_argument_pages") is True for i in report.findings)
 ```
 
+# Source incorporée : `tests/test_norm_1224.py`
+
+**SHA-256 :** `4d3b10ad9a7c04bf3fe5aa56e8e2548792f9ae1c927ebd0c84897d8855098461`
+
+```python
+from pathlib import Path
+
+from wikidebia_validator.editorial import validate_introduction_review_data, validate_summary_style_review_data
+from wikidebia_validator.package import PackageContext
+from wikidebia_validator.report import Report
+from wikidebia_validator.wikicode import validate_page
+
+
+def _manifest(root: Path):
+    (root / "manifest.json").write_text('{"normative_versions":{"consolidated_norm":"1.2.24"}}', encoding="utf-8")
+
+
+def _argument(root: Path, summary: str, lang: str = "fr") -> Report:
+    _manifest(root)
+    page = root / "argument.wiki"
+    if lang == "fr":
+        text = f"""{{{{Argument
+|avertissements-argument=Argument généré par IA
+|résumé={summary}
+|rubriques=Philosophie
+|mots-clés=réalisme
+|date-création=2026-08-02
+}}}}
+"""
+    else:
+        text = f"""{{{{Argument
+|argument-warnings=Argument generated by AI
+|summary={summary}
+|sections=Philosophy
+|keywords=realism
+|creation-date=2026-08-02
+}}}}
+"""
+    page.write_text(text, encoding="utf-8")
+    report = Report("0.4.26", str(root), ["wikicode"])
+    validate_page(PackageContext(root, report), {"page_id":"A0001","page_type":"argument","language":lang,"file_path":"argument.wiki"})
+    return report
+
+
+def test_french_hover_link_is_accepted(tmp_path: Path):
+    report = _argument(tmp_path, "L'{{Lien Wikipédia|article=effet Ganzfeld}} désigne une condition perceptive étudiée.")
+    assert not any(f.code == "WDV-MWK-020" for f in report.findings)
+
+
+def test_english_hover_link_is_accepted(tmp_path: Path):
+    report = _argument(tmp_path, "The {{Wikipedia link|article=Ganzfeld effect}} describes a perceptual condition.", lang="en")
+    assert not any(f.code == "WDV-MWK-020" for f in report.findings)
+
+
+def test_wrong_language_parameter_is_rejected(tmp_path: Path):
+    report = _argument(tmp_path, "Une {{Lien Wikipédia|article=Monnaie locale|displayed-text=monnaie locale}} circule.")
+    assert any(f.code == "WDV-MWK-020" for f in report.findings)
+
+
+def test_redundant_displayed_text_is_rejected(tmp_path: Path):
+    report = _argument(tmp_path, "L'{{Lien Wikipédia|article=Effet Ganzfeld|texte-affiché=effet Ganzfeld}} est étudié.")
+    assert any(f.code == "WDV-MWK-020" and "redondant" in f.message for f in report.findings)
+
+
+def test_hover_link_inside_ref_is_rejected(tmp_path: Path):
+    report = _argument(tmp_path, "Une notion est citée.<ref>{{Lien Wikipédia|article=Réalisme}}</ref>")
+    assert any(f.code == "WDV-MWK-020" and "note" in f.message for f in report.findings)
+
+
+def test_1224_introduction_review_requires_hover_attestations():
+    entry = {
+        "language":"fr","subject_and_scope_defined":True,"debate_question_explained":True,
+        "history_and_evolution_addressed":True,"current_state_addressed_or_not_applicable":True,
+        "stakes_explained":True,"factual_claims_referenced":True,"progression_coherent":True,
+        "no_argument_tree_mirroring":True,"no_topic_specific_checklist":True,
+        "complete_topic_fits_heading":True,"debate_sections_precise":True,
+        "documentation_proportionate_to_literature":True,
+        "documentation_family_notes":{"bibliography":"Une note suffisamment longue pour le test.","webliography":"Une note suffisamment longue pour le test.","videography":"Une note suffisamment longue pour le test."},
+        "common_acronym":None,"common_acronym_used_or_not_applicable":True,
+        "topic_is_nominal_label":True,"conventional_topic_label_used_or_not_applicable":True,
+        "complete_topic_lowercase_initial_or_justified":True,"topic_label_rationale":"Un libellé nominal conventionnel.",
+        "subsections":[{"title":"Définition","purpose":"Définir le sujet.","necessary_for_understanding":True,"technical_or_specialized":False,"relevance_to_debate_explained":True}],
+    }
+    review={"normative_revision":"1.2.24","entries":[entry]}
+    issues=validate_introduction_review_data(review,{"fr":["Définition"]},norm="1.2.24",complete_topics={"fr":"le réalisme"},topics={"fr":"Réalisme"})
+    assert any(i["reason"]=="wikipedia_hover_links_reviewed" for i in issues)
+
+
+def test_1224_summary_review_requires_hover_attestations():
+    decision={"status":"approved","thesis_first":True,"general_public_style":True,"sentence_rhythm_reviewed":True,"technical_terms_reviewed":True,"opening_develops_title":True,"example_or_data_reviewed":True,"assertive_tone_reviewed":True,"no_artificial_example_or_number":True,"no_polemical_overstatement":True,"conviction_visible":True,"forceful_expression":"Une expression ferme présente.","note":"Résumé relu selon la norme."}
+    review={"normative_revision":"1.2.24","entries":[{"id":"A0001","languages":{"fr":decision}}]}
+    issues=validate_summary_style_review_data(review,[{"id":"A0001"}],{"A0001":{"fr"}},norm="1.2.24",summaries={("A0001","fr"):"Une expression ferme présente dans le résumé."})
+    assert any(i["reason"]=="wikipedia_hover_links_reviewed" for i in issues)
+```
+
 # Source incorporée : `tests/test_norm_123.py`
 
-**SHA-256 :** `445ce6a6efa5663d0ce0971a8cfda9f8ccd327199d7f4e76c936aaf037c92b6e`
+**SHA-256 :** `8b9dc2105ade501b7e159ff828aa3aaebe7c6105188372de5566dab5b2799d17`
 
 ```python
 from pathlib import Path
@@ -51160,7 +52411,7 @@ from pathlib import Path
 
 def test_norm_123_declares_canonical_debate_test():
     root = Path(__file__).parents[1] / "normative_reference" / "01_normes"
-    text = (root / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md").read_text(encoding="utf-8")
+    text = (root / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md").read_text(encoding="utf-8")
     assert "page Débat française canonique" in text
     assert "créée avec `createonly`" in text
     assert "Aucune sous-page utilisateur n’est créée" in text
@@ -51178,7 +52429,7 @@ def test_norm_123_catalog_replaces_user_space_test():
 
 # Source incorporée : `tests/test_norm_124.py`
 
-**SHA-256 :** `07b6ecb0d28664afb604500dbd399436d603a23bc5d22920c60047931630c15d`
+**SHA-256 :** `f39237d600af2b6b5605622138d123ae7fc8af865e89c89340a3a6353a6ceff7`
 
 ```python
 from pathlib import Path
@@ -51289,7 +52540,7 @@ def test_norm_124_rejects_unexplained_technical_subsection():
 def test_norm_124_active_rules_are_corpus_generic():
     root = Path(__file__).parents[1] / "normative_reference" / "01_normes"
     active_files = [
-        root / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+        root / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
         root / "profils_rendu_wikidebia.md",
         root / "workflow_production_wikidebia.md",
         root / "schema_graphe_registre_wikidebia.md",
@@ -51703,7 +52954,7 @@ def test_norm_127_forceful_expression_must_occur_in_summary():
 
 # Source incorporée : `tests/test_norm_128.py`
 
-**SHA-256 :** `b9406215b3054403be293794a120da917dcbc0b2c413df7712410424e1c5548c`
+**SHA-256 :** `11bb1088b503d6e57dfbbf21b079d4f00a76fdfb6b0d139aff96188012bd62b3`
 
 ```python
 import json
@@ -51746,8 +52997,8 @@ def test_active_examples_use_current_revision_and_language():
     package_root = Path(__file__).resolve().parents[1]
     intro = json.loads((package_root / "examples/introduction_review.example.json").read_text(encoding="utf-8"))
     style = json.loads((package_root / "examples/summary_style_review.example.json").read_text(encoding="utf-8"))
-    assert intro["normative_revision"] == "1.2.23"
-    assert style["normative_revision"] == "1.2.23"
+    assert intro["normative_revision"] == "1.2.24"
+    assert style["normative_revision"] == "1.2.24"
     en = next(entry for entry in intro["entries"] if entry["language"] == "en")
     assert en["documentation_family_notes"]["bibliography"].startswith("Broad syntheses")
     root = package_root / "normative_reference"
@@ -52364,7 +53615,7 @@ def test_self_audit_rejects_duplicate_requirement_ids(tmp_path):
 
 # Source incorporée : `tests/test_version_range_non_regression.py`
 
-**SHA-256 :** `ae823755ebfe395a391155476c41795b4a8cbe0045e0bc2726246ea4e8c95127`
+**SHA-256 :** `1239a3e85c3a1fd582f224f8c7ae85eafd327cb90191ab5604863ebeeb1e4b54`
 
 ```python
 from pathlib import Path
@@ -52382,12 +53633,12 @@ def test_active_rule_sets_include_current_revision():
     for name in files:
         text = (root / name).read_text(encoding="utf-8")
         assert "1.2.21" in text, name
-        assert "1.2.23" in text, name
+        assert "1.2.24" in text, name
 ```
 
 # Source incorporée : `tests/test_versions_file.py`
 
-**SHA-256 :** `132657cc969d6a7545ff30c4143ac16a0afbc82cd43741847f53efed85cd363a`
+**SHA-256 :** `6f70cec7ab9c609b127fd4caed86edf81ce6a6ff578d3aebc15df5c00a3ca39e`
 
 ```python
 from __future__ import annotations
@@ -52402,7 +53653,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_versions_file_has_only_the_three_functional_versions():
     versions = json.loads((ROOT / "VERSIONS.json").read_text(encoding="utf-8"))
-    assert versions == {"norm": "1.2.23", "validator": "0.4.25", "kit": "2.2.10"}
+    assert versions == {"norm": "1.2.24", "validator": "0.4.26", "kit": "2.2.11"}
 
 
 def test_versions_file_matches_validator_metadata():
@@ -52419,7 +53670,7 @@ def test_compatibility_keeps_historical_corpus_revisions():
     supported = compatibility["compatible_normative_revisions"]
     assert "1.2.10" in supported
     assert "1.2.14" in supported
-    assert supported[-1] == "1.2.23"
+    assert supported[-1] == "1.2.24"
 
 
 def test_schema_accepts_historical_and_current_norm_revisions():

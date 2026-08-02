@@ -50,6 +50,7 @@ CODES = {
     "WDV-MWK-017": "Majuscule initiale de sujet ou topic incorrecte",
     "WDV-MWK-018": "Saut de ligne ou espace entre deux modèles MediaWiki adjacents",
     "WDV-MWK-019": "Article Wikipédia obligatoire absent ou invalide",
+    "WDV-MWK-020": "Lien Wikipédia explicatif inline non conforme",
     "WDV-MWK-014": "Langue ou typographie documentaire non conforme",
     "WDV-BIL-001": "Identifiants ou pages bilingues divergents",
     "WDV-BIL-002": "Relations bilingues divergentes",

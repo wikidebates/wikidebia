@@ -1,10 +1,9 @@
 # Audit de la source normative embarquée
 
-- source active unique : `WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md` ;
-- norme 1.2.22 archivée ;
-- catalogue d’exigences sans identifiant dupliqué ;
-- `TTL-015`, `TTL-016`, `REF-033`, `PUB-036`, `IMP-019` et `VAL-031` présents et tracés ;
-- validateur 0.4.25 aligné sur la norme 1.2.23 ;
-- compatibilité des normes 1.1.0 à 1.2.22 conservée.
+- source active unique : `WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md` ;
+- norme 1.2.23 archivée ;
+- exigences ARG-035, DFR-047, DEN-008, MW-027, PRM-018 et VAL-032 présentes ;
+- validateur 0.4.26 aligné sur la norme 1.2.24 ;
+- compatibilité des normes antérieures conservée.
 
 **AUDIT NORMATIF : RÉUSSI**

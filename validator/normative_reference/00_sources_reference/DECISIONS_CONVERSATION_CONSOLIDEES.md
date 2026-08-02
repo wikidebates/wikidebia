@@ -190,3 +190,8 @@ Les critères de placement adoptés en 1.2.20 sont conservés sans changement. L
 3. Les règles de non-redondance auteur/site/page s’appliquent également aux pages Argument et aux sources vidéographiques ; auteur=site impose une nouvelle recherche puis l’omission si aucun auteur distinct n’est identifié.
 4. Le résumé de modification distant par défaut est « Corrections ».
 5. La livraison complète reste un seul ZIP directement accepté par la mise à niveau.
+
+
+## Décision du 2 août 2026 — liens Wikipédia explicatifs dans les introductions et résumés
+
+Les introductions et les résumés d’arguments peuvent employer `{{Lien Wikipédia|article=…}}` en français et `{{Wikipedia link|article=…}}` en anglais afin d’afficher au survol le premier paragraphe de l’article correspondant. Le paramètre d’affichage n’est utilisé que lorsque le texte visible diffère réellement du titre : `texte-affiché` en français, `displayed-text` en anglais. Pour une simple minuscule initiale imposée par la phrase, le titre passé à `article` est écrit avec cette minuscule. Le lien est réservé à la première occurrence utile d’une notion spécialisée, après vérification de la page dans la langue correspondante. Il ne remplace ni une explication indispensable au raisonnement ni une référence documentaire.

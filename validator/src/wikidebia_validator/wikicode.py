@@ -748,7 +748,7 @@ PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
 
 
 def _validate_french_parenthetical_dashes(ctx: PackageContext, tmpl: Template, rel: str, page_type: str) -> None:
-    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23"}:
+    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24"}:
         return
     values: list[tuple[str, str]] = []
     if page_type == "argument":
@@ -772,6 +772,102 @@ def _validate_french_parenthetical_dashes(ctx: PackageContext, tmpl: Template, r
                 details={"excerpt": excerpt},
             )
 
+
+REF_BLOCK_RE = re.compile(r"<ref\b[^>]*>.*?</ref>", flags=re.IGNORECASE | re.DOTALL)
+SELF_CLOSING_REF_RE = re.compile(r"<ref\b[^>]*/\s*>", flags=re.IGNORECASE)
+
+
+def _inline_template_spans(text: str) -> list[str]:
+    """Extract balanced top-level inline templates from free prose."""
+    out: list[str] = []
+    i = 0
+    while i < len(text) - 1:
+        if text[i:i+2] != "{{":
+            i += 1
+            continue
+        start = i
+        depth = 0
+        while i < len(text) - 1:
+            pair = text[i:i+2]
+            if pair == "{{":
+                depth += 1
+                i += 2
+                continue
+            if pair == "}}":
+                depth -= 1
+                i += 2
+                if depth == 0:
+                    out.append(text[start:i])
+                    break
+                continue
+            i += 1
+        else:
+            break
+    return out
+
+
+def _display_parameter_redundant(article: str, displayed: str) -> bool:
+    def norm(value: str) -> str:
+        return " ".join(value.replace("_", " ").split()).casefold()
+    return norm(article) == norm(displayed)
+
+
+def _validate_wikipedia_hover_links(ctx: PackageContext, tmpl: Template, rel: str, lang: str, page_type: str) -> None:
+    if not _norm_at_least(ctx, "1.2.24"):
+        return
+    fields: list[tuple[str, str]] = []
+    if page_type == "argument":
+        key = "résumé" if lang == "fr" else "summary"
+        fields.append((key, tmpl.one(key) or ""))
+    else:
+        content_key = "contenu" if lang == "fr" else "content"
+        for index, subsection in enumerate(get_subs(tmpl, "introduction"), start=1):
+            fields.append((f"introduction/{index}/{content_key}", subsection.one(content_key) or ""))
+
+    expected_name = "Lien Wikipédia" if lang == "fr" else "Wikipedia link"
+    other_name = "Wikipedia link" if lang == "fr" else "Lien Wikipédia"
+    display_param = "texte-affiché" if lang == "fr" else "displayed-text"
+    wrong_display_param = "displayed-text" if lang == "fr" else "texte-affiché"
+    allowed = {"article", display_param}
+
+    for pointer, value in fields:
+        for ref_body in REF_BLOCK_RE.findall(value):
+            if "{{Lien Wikipédia" in ref_body or "{{Wikipedia link" in ref_body:
+                ctx.report.error("WDV-MWK-020", "Un lien Wikipédia explicatif est interdit dans le corps d’une note <ref>", path=rel, pointer=pointer)
+        prose = REF_BLOCK_RE.sub("", value)
+        prose = SELF_CLOSING_REF_RE.sub("", prose)
+        for raw in _inline_template_spans(prose):
+            try:
+                sub = parse_template(raw)
+            except WikiParseError as exc:
+                ctx.report.error("WDV-MWK-020", f"Modèle inline mal formé : {exc}", path=rel, pointer=pointer)
+                continue
+            if sub.name == other_name:
+                ctx.report.error("WDV-MWK-020", f"Le modèle {sub.name} ne correspond pas à la langue de la page", path=rel, pointer=pointer, details={"expected": expected_name})
+                continue
+            if sub.name != expected_name:
+                ctx.report.error("WDV-MWK-020", f"Modèle inline non autorisé dans ce champ : {sub.name}", path=rel, pointer=pointer, details={"allowed": expected_name})
+                continue
+            keys = [key for key, _ in sub.params]
+            if len(keys) != len(set(keys)):
+                ctx.report.error("WDV-MWK-020", f"Paramètre dupliqué dans {expected_name}", path=rel, pointer=pointer)
+            unknown = [key for key in keys if key not in allowed]
+            if unknown:
+                ctx.report.error("WDV-MWK-020", f"Paramètre inconnu dans {expected_name}", path=rel, pointer=pointer, details={"unknown": unknown, "allowed": sorted(allowed)})
+            if wrong_display_param in keys:
+                ctx.report.error("WDV-MWK-020", f"Paramètre d’affichage de l’autre langue interdit : {wrong_display_param}", path=rel, pointer=pointer)
+            article = (sub.one("article") or "").strip()
+            if not article:
+                ctx.report.error("WDV-MWK-020", f"{expected_name} exige un paramètre article non vide", path=rel, pointer=pointer)
+            elif re.match(r"https?://", article, flags=re.I):
+                ctx.report.error("WDV-MWK-020", "Le paramètre article doit contenir un titre de page, non une URL", path=rel, pointer=pointer, details={"article": article})
+            displayed = sub.one(display_param)
+            if displayed is not None:
+                if not displayed.strip():
+                    ctx.report.error("WDV-MWK-020", f"Le paramètre {display_param} ne peut pas être vide", path=rel, pointer=pointer)
+                elif article and _display_parameter_redundant(article, displayed):
+                    ctx.report.error("WDV-MWK-020", f"Le paramètre {display_param} est redondant ; adapter simplement la casse dans article", path=rel, pointer=pointer, details={"article": article, "displayed": displayed})
+
 def validate_page(ctx: PackageContext, page_manifest: dict[str, Any], *, override_path: str | None = None, staging: bool = False) -> Template | None:
     rel = override_path or page_manifest.get("file_path")
     if not rel:
@@ -790,6 +886,7 @@ def validate_page(ctx: PackageContext, page_manifest: dict[str, Any], *, overrid
         return tmpl
     validate_template_shape(ctx, tmpl, lang, page_type, rel)
     _check_reference_language_and_typography(ctx, tmpl, rel, lang)
+    _validate_wikipedia_hover_links(ctx, tmpl, rel, lang, page_type)
     if lang == "fr":
         _validate_french_parenthetical_dashes(ctx, tmpl, rel, page_type)
     registry = ctx.registry() or {}

@@ -1,5 +1,16 @@
 # Changelog normatif
 
+## 1.2.24 — 2 août 2026
+
+- autorisation encadrée de `{{Lien Wikipédia}}` dans les introductions et résumés français ;
+- équivalent anglais `{{Wikipedia link}}` ;
+- paramètres localisés `texte-affiché` et `displayed-text`, omis pour une simple adaptation de casse initiale ;
+- vérification de la page dans la langue correspondante, usage à la première occurrence utile et interdiction dans les notes de référence ;
+- distinction explicite entre aide au survol et source documentaire ;
+- ajout des exigences `ARG-035`, `DFR-047`, `DEN-008`, `MW-027`, `PRM-018` et `VAL-032` ;
+- alignement recommandé : validateur 0.4.26 et kit 2.2.11.
+
+
 ## 1.2.22 — 1er août 2026
 
 - le titre affiché doit désormais remplir une fonction de lecture réellement distincte du titre canonique ;

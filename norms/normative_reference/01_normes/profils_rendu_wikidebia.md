@@ -232,6 +232,11 @@ Les affirmations factuelles importantes sont accompagnées de références en li
 
 Une revue bilingue de l'introduction relie chaque titre réel à une fonction explicite et atteste la définition du sujet, l'explication de la question, les repères historiques et actuels pertinents, les enjeux, la progression, la contextualisation des sections techniques et l'absence de reproduction mécanique du graphe ou d'une checklist de corpus.
 
+### Liens Wikipédia explicatifs dans l’introduction
+
+Dans `contenu=` et `content=`, une notion spécialisée peut recevoir un lien explicatif au survol. Le français emploie `{{Lien Wikipédia|article=…}}` et, seulement si le libellé visible diffère réellement, `|texte-affiché=…`. L’anglais emploie `{{Wikipedia link|article=…}}` et `|displayed-text=…`. Une simple minuscule initiale se porte directement dans `article`. La page correspondante est vérifiée dans la langue de la page Débat/Debate. Le modèle est normalement limité à la première occurrence utile et n’est jamais traité comme une source documentaire.
+
+
 ### Wikipédia
 
 `articles-Wikipédia` est obligatoire, non vide et contient uniquement des pages de Wikipédia en français dont l'existence et le titre exact ont été vérifiés, accents, capitalisation, parenthèses et nombre compris. Les articles doivent être directement utiles ; une page précise est préférée à une page trop générale.
@@ -463,7 +468,7 @@ Le résumé :
 12. annonce l'idée principale dès la première phrase ou, lorsque la définition du sujet est indispensable, immédiatement après cette définition ;
 13. emploie un style encyclopédique grand public plutôt qu'un style de dissertation ou d'article universitaire ;
 14. alterne phrases courtes et moyennes et évite l'accumulation de phrases longues ;
-15. définit brièvement, à leur première occurrence utile, les termes scientifiques, techniques, juridiques ou philosophiques qu'un lecteur non spécialiste ne peut pas raisonnablement connaître ;
+15. rend compréhensibles, à leur première occurrence utile, les termes scientifiques, techniques, juridiques ou philosophiques qu'un lecteur non spécialiste ne peut pas raisonnablement connaître, soit par une brève explication, soit par `{{Lien Wikipédia}}` / `{{Wikipedia link}}` lorsque le premier paragraphe de l’article suffit ;
 16. place les noms d'études, d'auteurs ou de méthodes après l'explication de l'idée qu'ils documentent, sauf nécessité rédactionnelle ;
 17. n'accumule pas les précautions : seules les délimitations nécessaires à l'identité du nœud restent dans le résumé.
 18. développe le titre dès la première phrase au lieu de le répéter ou de le paraphraser étroitement ;
@@ -472,6 +477,9 @@ Le résumé :
 21. emploie normalement une formulation ferme, imagée et légèrement mordante pour rendre la force du raisonnement et la conviction de la voix perceptibles ;
 22. évite le sarcasme, la caricature de l’adversaire, les slogans et les formules mordantes répétées mécaniquement ;
 23. fournit dans le registre de revue une expression exacte tirée du résumé qui atteste cette force expressive.
+
+Le lien explicatif au survol est parcimonieux. Il n’est utilisé que lorsque la notion mérite une définition secondaire et que le premier paragraphe de Wikipédia est suffisamment précis. Il ne remplace pas l’explication du raisonnement, ne figure pas dans les notes `<ref>`, et n’est pas répété à chaque occurrence. Les paramètres sont strictement localisés : `texte-affiché` en français, `displayed-text` en anglais.
+
 
 Longueurs indicatives, sans remplissage artificiel :
 

@@ -4,11 +4,11 @@ from wikidebia_validator import __version__
 
 
 def test_validator_metadata_reports_0414():
-    assert __version__ == "0.4.25"
+    assert __version__ == "0.4.26"
 
 
 def test_norm_1214_is_declared_compatible():
     root = Path(__file__).resolve().parents[1]
     text = (root / "COMPATIBILITY.json").read_text(encoding="utf-8")
-    assert '"implemented_normative_revision": "1.2.23"' in text
+    assert '"implemented_normative_revision": "1.2.24"' in text
     assert '"1.2.18"' in text

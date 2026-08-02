@@ -493,6 +493,29 @@ Les structures MediaWiki sont inchangées par rapport à 1.2.6. La révision 1.2
 
 ## Correctif 1.2.10
 
+
+
+### Liens Wikipédia inline dans les introductions et résumés
+
+Les modèles suivants sont admis dans `Sous-partie.contenu`, `Subsection.content`, `Argument.résumé` et `Argument.summary` :
+
+```mediawiki
+{{Lien Wikipédia|article=Titre de la page}}
+{{Lien Wikipédia|article=Titre de la page|texte-affiché=texte visible}}
+{{Wikipedia link|article=Page title}}
+{{Wikipedia link|article=Page title|displayed-text=visible text}}
+```
+
+`article` est obligatoire et non vide. Les paramètres d’affichage sont facultatifs, non vides et propres à la langue. Ils sont omis lorsque la seule différence est la majuscule initiale : `L'{{Lien Wikipédia|article=effet placebo}}` est conforme. Aucun autre paramètre n’est admis. Ces modèles sont interdits dans les titres, les champs documentaires et le corps des notes `<ref>…</ref>`.
+
+Implémentation de référence du modèle français :
+
+```mediawiki
+<span class="hover-wikipedia">[https://fr.wikipedia.org/wiki/{{{article}}} {{{texte-affiché|{{{article}}}}}}]</span>
+```
+
+Le modèle anglais conserve la même fonction de lien explicatif au survol avec les paramètres `article` et `displayed-text`.
+
 ### Appels inline dans les introductions
 
 ```mediawiki

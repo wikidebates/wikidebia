@@ -1,5 +1,5 @@
-Source active unique : WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md
-Source précédente archivée : WIKIDEBIA_NORME_CONSOLIDEE_1.2.22.md
-Exigences nouvelles : TTL-015, TTL-016, REF-033, PUB-036, IMP-019, VAL-031
+Source active unique : WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md
+Source précédente archivée : WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md
+Exigences nouvelles : ARG-035, DFR-047, DEN-008, MW-027, PRM-018, VAL-032
 Identifiants dupliqués : 0
 Résultat : RÉUSSI

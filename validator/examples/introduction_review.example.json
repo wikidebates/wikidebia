@@ -1,6 +1,6 @@
 {
   "review_version": "1.0",
-  "normative_revision": "1.2.23",
+  "normative_revision": "1.2.24",
   "debate_id": "exemple_debat",
   "entries": [
     {
@@ -47,7 +47,9 @@
         "videography": "Couverture audiovisuelle examinée et retenue ou omise selon sa valeur propre."
       },
       "common_acronym": null,
-      "common_acronym_used_or_not_applicable": true
+      "common_acronym_used_or_not_applicable": true,
+      "wikipedia_hover_links_reviewed": true,
+      "specialized_terms_linked_or_explained": true
     },
     {
       "language": "en",
@@ -93,7 +95,9 @@
         "videography": "Audiovisual coverage was reviewed and retained or omitted according to its own documentary value."
       },
       "common_acronym": null,
-      "common_acronym_used_or_not_applicable": true
+      "common_acronym_used_or_not_applicable": true,
+      "wikipedia_hover_links_reviewed": true,
+      "specialized_terms_linked_or_explained": true
     }
   ]
 }

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.26 — 2 août 2026
+
+- alignement sur la norme 1.2.24 ;
+- ajout de `WDV-MWK-020` pour les modèles `{{Lien Wikipédia}}` et `{{Wikipedia link}}` ;
+- contrôle des noms, paramètres, langues, articles non vides, paramètres d’affichage redondants et emploi interdit dans les notes `<ref>` ;
+- attestations nouvelles dans les revues d’introduction et de résumés ;
+- aucune requête réseau et compatibilité conservée avec les normes antérieures.
+
+
 ## 0.4.25 — 2 août 2026
 
 - alignement sur la norme 1.2.23 ;

@@ -51,7 +51,7 @@ def test_1223_wikicode_rejects_uppercase_complete_topic(tmp_path: Path):
     (root/"manifest.json").write_text('{"normative_versions":{"consolidated_norm":"1.2.23"}}',encoding="utf-8")
     page=root/"debate.wiki"
     page.write_text("{{Débat\n|sujet=Réalisme philosophique\n|sujet-complet=Le réalisme philosophique\n|avancement=Débat construit\n|avertissements-débat=Débat généré par IA\n|introduction={{Sous-partie\n|titre=Définition\n|contenu=Texte\n}}\n|arguments-pour={{Argument pour\n|page=Argument A\n|titre-affiché=Une thèse existe\n}}\n|arguments-contre={{Argument contre\n|page=Argument B\n|titre-affiché=Une objection existe\n}}\n|rubriques=Philosophie\n|mots-clés=réalisme\n|date-création=2026-08-02\n}}\n",encoding="utf-8")
-    report=Report("0.4.25",str(root),["wikicode"]); ctx=PackageContext(root,report)
+    report=Report("0.4.26",str(root),["wikicode"]); ctx=PackageContext(root,report)
     validate_page(ctx,{"page_id":"demo","page_type":"debate","language":"fr","file_path":"debate.wiki"})
     assert any(i.code=="WDV-EDT-018" and "minuscule" in i.message for i in report.findings)
 
@@ -61,6 +61,6 @@ def test_1223_argument_web_reference_rejects_author_equal_site(tmp_path: Path):
     (root/"manifest.json").write_text('{"normative_versions":{"consolidated_norm":"1.2.23"}}',encoding="utf-8")
     page=root/"argument.wiki"
     page.write_text("{{Argument\n|titre-affiché=Le monde résiste à nos attentes\n|avertissements-argument=Argument généré par IA\n|résumé=Résumé suffisamment développé pour le test.\n|citations=\n|références-sitographiques={{Référence sitographique\n|lien=https://example.org/article\n|page=Un article\n|auteurs=Example\n|site=Example\n|date=2 août 2026\n}}\n|justifications=\n|objections=\n|rubriques=Philosophie\n|mots-clés=réalisme\n|interlangue={{Lien interlangue\n|langue=en\n|page=Argument\n}}\n|date-création=2026-08-02\n}}\n",encoding="utf-8")
-    report=Report("0.4.25",str(root),["wikicode"]); ctx=PackageContext(root,report)
+    report=Report("0.4.26",str(root),["wikicode"]); ctx=PackageContext(root,report)
     validate_page(ctx,{"page_id":"A0001","page_type":"argument","language":"fr","file_path":"argument.wiki"})
     assert any(i.code=="WDV-DOC-004" and i.details.get("applies_to_argument_pages") is True for i in report.findings)

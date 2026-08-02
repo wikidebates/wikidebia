@@ -1,3 +1,3 @@
-# Architecture du validateur 0.4.25
+# Architecture du validateur 0.4.26
 
-Le validateur reste séparé en schémas, cohérence, graphe, sources, wikicode, bilinguisme, éditorial et workflow. Sous 1.2.23, `WDV-EDT-018` contrôle la forme des sujets et `WDV-DOC-004` contrôle les redondances documentaires dans toutes les pages et dans le registre des sources.
+Le validateur sépare schémas, cohérence, graphe, sources, wikicode, bilinguisme, éditorial et workflow. Pour la norme 1.2.24, le module wikicode inspecte localement les modèles Wikipédia explicatifs dans les introductions et résumés. Il vérifie leur syntaxe sans accéder au réseau ; l’existence et la pertinence de l’article restent attestées par la revue humaine.

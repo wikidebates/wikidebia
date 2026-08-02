@@ -13,4 +13,4 @@ def test_active_rule_sets_include_current_revision():
     for name in files:
         text = (root / name).read_text(encoding="utf-8")
         assert "1.2.21" in text, name
-        assert "1.2.23" in text, name
+        assert "1.2.24" in text, name

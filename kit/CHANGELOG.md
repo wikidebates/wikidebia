@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.11 — 2 août 2026
+
+- alignement sur la norme 1.2.24 et le validateur 0.4.26 ;
+- activation de la barrière de validation des liens Wikipédia explicatifs dans les introductions et résumés ;
+- ajout des configurations de création 1.2.24 ;
+- conservation de la reprise non interactive, du résumé « Corrections », du bundle unique et des contrôles de sûreté.
+
+
 ## 2.2.10 — 2 août 2026
 
 - suppression de la confirmation interactive de `./wikidebia update IDENTIFIANT` ;
