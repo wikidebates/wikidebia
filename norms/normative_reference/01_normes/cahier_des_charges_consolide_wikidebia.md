@@ -534,3 +534,12 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
 - **MW-027 — ACTIVE — automatic** : les noms, paramètres, langues, emplacements et interdictions dans les notes sont contrôlés.
 - **PRM-018 — ACTIVE — prompt+human** : la première occurrence utile est liée sans surliaison et sans substitution aux explications centrales.
 - **VAL-032 — ACTIVE — automatic+human ledger** : le validateur contrôle la syntaxe et les attestations de revue pour les corpus 1.2.24 et ultérieurs.
+
+## Décision du 2 août 2026 — révision 1.2.25
+
+La reprise distante ne peut annoncer un succès lorsque des opérations `manual_review` subsistent ou lorsqu’aucune opération exécutable n’a été appliquée. Le dry-run est localement non destructif, les archives sont isolées en staging et la sélection d’une archive est explicite. Les bundles génériques ne contiennent pas de corpus de débat.
+
+## Décision corrective du 2 août 2026 — révision 1.2.26
+
+La reprise sans changement renouvelle l’état publié uniquement après une attestation distante complète et signée, sans édition du wiki. Les archives sont toujours sélectionnées explicitement, les zones de staging sont nettoyées et les portées partielles conservent les preuves nécessaires aux opérations différées, notamment les suppressions.
+

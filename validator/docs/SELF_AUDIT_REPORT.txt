@@ -1,4 +1,6 @@
-Wikidéb’IA Validator 0.4.26 — auto-audit
-Encodage UTF-8, fins de ligne, syntaxe Python, JSON, versions, manifeste, provenance et chemins normatifs contrôlés.
-Tests pytest : 195 réussis, 0 échec.
-Résultat : RÉUSSI
+Wikidéb’IA Validator 0.4.28 — auto-audit
+Source normative active : 1.2.26
+Versions fonctionnelles : norme 1.2.26, validateur 0.4.28, kit 2.2.13
+Tests déclarés : 201
+Contrôles : encodage, fins de ligne, Python, JSON, versions, provenance, chemins normatifs, inventaire et empreintes
+Résultat attendu après génération du manifeste : RÉUSSI

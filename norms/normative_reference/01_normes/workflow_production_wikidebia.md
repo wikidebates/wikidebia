@@ -179,3 +179,12 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
 ## Workflow 1.2.23
 
 Avant validation, la revue choisit un sujet nominal conventionnel, contrôle la minuscule du complément, puis effectue une seconde recherche d’auteur chaque fois qu’une attribution provisoire reproduit le nom du site. Les reprises distantes utilisent « Corrections ». Le ZIP de livraison unique expose les trois composants à sa racine ; le gestionnaire courant sait également les découvrir dans un bundle imbriqué.
+
+## Reprise sûre depuis la révision 1.2.25
+
+Le planificateur peut produire `manual_review`, mais le gestionnaire et l’exécuteur refusent tous deux de l’exécuter. Aucun reçu final ni état publié n’est écrit dans ce cas. Un plan sans opération mutante renvoie `no_changes`. Une archive demandée par `--archive` est validée depuis une zone de staging ; `--dry-run` ne modifie pas le corpus installé. La promotion vers `corpus/<debate_id>/` intervient seulement après une exécution réelle sans opération non résolue.
+
+## Attestation et portées différées depuis la révision 1.2.26
+
+Un plan entièrement `skip` est attesté par une commande dédiée qui recharge le plan signé, relit toutes les pages et renouvelle l’état publié sans écrire sur MediaWiki. Toute archive de reprise requiert `--archive`; le staging est supprimé à chaque sortie. Si la portée demandée ne contient aucune opération mutante, la commande renvoie `no_changes_in_scope`. Avec `--no-delete`, les pages retirées mais non supprimées restent dans l’état signé sous le statut `pending_delete` jusqu’à une reprise `--only-delete`.
+

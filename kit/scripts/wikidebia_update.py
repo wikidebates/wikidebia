@@ -27,8 +27,8 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.2.11"
-REQUIRED_VALIDATOR_VERSION = "0.4.26"
+KIT_VERSION = "2.2.13"
+REQUIRED_VALIDATOR_VERSION = "0.4.28"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
 RECEIPT_VERSION = "wikidebia-remote-update-receipt-1.0"
@@ -516,7 +516,7 @@ class RemoteUpdatePlanner:
             if not owner or owner == self.debate_id or data.get("language") != language:
                 continue
             for row in data.get("pages") or []:
-                if row.get("status") == "published" and row.get("canonical_title") == title:
+                if row.get("status") in {"published", "pending_delete"} and row.get("canonical_title") == title:
                     return owner
         return None
 
@@ -866,8 +866,11 @@ class PlanExecutor:
         for field, expected in checks.items():
             if plan.get(field) != expected:
                 raise PlanConflict(f"Plan divergent : {field}")
-        if (plan.get("operations") or {}).get("blocked"):
+        operations = plan.get("operations") or {}
+        if operations.get("blocked"):
             raise PlanConflict("Le plan contient des opérations bloquées")
+        if operations.get("manual_review"):
+            raise PlanConflict("Le plan contient des opérations nécessitant une révision manuelle")
 
     def _selected_operations(self, plan: dict[str, Any], *, only_delete: bool, no_delete: bool) -> list[dict[str, Any]]:
         operations = plan.get("operations") or {}
@@ -919,6 +922,8 @@ class PlanExecutor:
             raise UpdateError("--only-delete et --no-delete sont incompatibles")
         self.verify_plan(plan, confirmation)
         selected = self._selected_operations(plan, only_delete=only_delete, no_delete=no_delete)
+        if not selected:
+            raise PlanConflict("Le plan ne contient aucune opération exécutable")
         self._preflight_rights(selected)
         lock = self._acquire_lock()
         results: list[dict[str, Any]] = []
@@ -944,13 +949,52 @@ class PlanExecutor:
                     self.adapter.close_language()
             receipt = self._final_receipt(plan, results, only_delete=only_delete, no_delete=no_delete)
             self._write_receipt(receipt)
-            self._write_published_states(plan, receipt)
+            self._write_published_states(plan, receipt, preserve_pending_deletes=no_delete)
             return receipt
         finally:
             try:
                 lock.unlink()
             except FileNotFoundError:
                 pass
+
+    def attest_no_changes(self, plan: dict[str, Any], confirmation: str) -> dict[str, Any]:
+        self.verify_plan(plan, confirmation)
+        operations = plan.get("operations") or {}
+        if any(operations.get(name) for name in ("create", "update", "move", "redirect", "delete")):
+            raise PlanConflict("L’attestation no_changes exige un plan sans opération mutante")
+        results: list[dict[str, Any]] = []
+        for language in self.languages:
+            user = str(self.config["sites"][language]["expected_user"])
+            self.adapter.open_language(language, user)
+            try:
+                self.adapter.assert_identity(user)
+                for row in self.manifest.get("pages") or []:
+                    if row.get("language") != language:
+                        continue
+                    page_id = str(row.get("page_id"))
+                    title = str(row.get("canonical_title"))
+                    source = self.corpus_root / str(row.get("file_path") or row.get("source_path") or "")
+                    if not source.is_file():
+                        raise PlanConflict(f"Fichier local absent pendant l’attestation : {language}/{page_id}")
+                    desired_sha = sha_text(source.read_text(encoding="utf-8"))
+                    exists, revision_id, remote_text = self.adapter.read_page(title)
+                    if not exists or revision_id is None or sha_text(remote_text) != desired_sha:
+                        raise PlanConflict(f"État distant modifié depuis le plan : {language}/{page_id}")
+                    results.append({
+                        "operation": "skip",
+                        "language": language,
+                        "page_id": page_id,
+                        "title": title,
+                        "status": "verified_unchanged",
+                        "revision_id": revision_id,
+                        "content_sha256": desired_sha,
+                    })
+            finally:
+                self.adapter.close_language()
+        receipt = self._final_receipt(plan, results, execution_mode="no_changes")
+        self._write_receipt(receipt)
+        self._write_published_states(plan, receipt, allow_no_changes=True)
+        return receipt
 
     def _acquire_lock(self) -> Path:
         path = self.project_root / ".state" / "locks" / f"{self.debate_id}.lock"
@@ -1071,7 +1115,16 @@ class PlanExecutor:
                     f"pour {language}/{row.get('page_id')}"
                 )
 
-    def _final_receipt(self, plan: dict[str, Any], results: list[dict[str, Any]], *, only_delete: bool, no_delete: bool) -> dict[str, Any]:
+    def _final_receipt(
+        self,
+        plan: dict[str, Any],
+        results: list[dict[str, Any]],
+        *,
+        only_delete: bool = False,
+        no_delete: bool = False,
+        execution_mode: str | None = None,
+    ) -> dict[str, Any]:
+        mode = execution_mode or ("only_delete" if only_delete else ("no_delete" if no_delete else "full_update"))
         receipt: dict[str, Any] = {
             "receipt_version": RECEIPT_VERSION,
             "kit_version": KIT_VERSION,
@@ -1079,7 +1132,8 @@ class PlanExecutor:
             "corpus_version": plan.get("corpus_version"),
             "plan_sha256": plan["plan_sha256"],
             "executed_at": utc_now(),
-            "execution_mode": "only_delete" if only_delete else ("no_delete" if no_delete else "full_update"),
+            "execution_mode": mode,
+            "status": "no_changes" if mode == "no_changes" else "executed",
             "results": results,
             "counts": {},
         }
@@ -1094,28 +1148,78 @@ class PlanExecutor:
         write_json(directory / f"{stamp}.json", receipt)
         write_json(directory / "latest.json", receipt)
 
-    def _write_published_states(self, plan: dict[str, Any], receipt: dict[str, Any]) -> None:
-        # Read the final remote state sequentially. This captures revision IDs for future safe updates.
+    def _write_published_states(
+        self,
+        plan: dict[str, Any],
+        receipt: dict[str, Any],
+        *,
+        allow_no_changes: bool = False,
+        preserve_pending_deletes: bool = False,
+    ) -> None:
+        operations = plan.get("operations") or {}
+        if operations.get("blocked") or operations.get("manual_review"):
+            raise PlanConflict("Écriture de l’état publié interdite : le plan contient des opérations non résolues")
+        has_mutation = any(operations.get(name) for name in ("create", "update", "move", "redirect", "delete"))
+        if not has_mutation and not allow_no_changes:
+            raise PlanConflict("Écriture de l’état publié interdite : aucune opération exécutable n’a été appliquée")
+
+        previous_state: dict[tuple[str, str], StatePage] = {}
+        if preserve_pending_deletes:
+            previous_state, _ = StateResolver(self.project_root, self.debate_id, self.corpus_root).resolve(self.languages)
+        pending_delete_ids = {
+            (str(row.get("language")), str(row.get("page_id")))
+            for row in operations.get("delete") or []
+        }
+
+        # Read and verify the final remote state sequentially. This captures exact
+        # revision IDs and prevents a stale or partial wiki state from being attested.
         for language in self.languages:
             user = str(self.config["sites"][language]["expected_user"])
             self.adapter.open_language(language, user)
             try:
+                self.adapter.assert_identity(user)
                 pages: list[dict[str, Any]] = []
+                active_ids: set[str] = set()
                 for row in self.manifest.get("pages") or []:
                     if row.get("language") != language:
                         continue
+                    page_id = str(row.get("page_id"))
+                    active_ids.add(page_id)
                     title = str(row.get("canonical_title"))
+                    source = self.corpus_root / str(row.get("file_path") or row.get("source_path") or "")
+                    if not source.is_file():
+                        raise PlanConflict(f"Fichier local absent pendant l’attestation : {language}/{page_id}")
+                    desired_sha = sha_text(source.read_text(encoding="utf-8"))
                     exists, revision_id, remote_text = self.adapter.read_page(title)
-                    if not exists or revision_id is None:
-                        continue
+                    if not exists or revision_id is None or sha_text(remote_text) != desired_sha:
+                        raise PlanConflict(f"État distant non équivalent au corpus pendant l’attestation : {language}/{page_id}")
                     pages.append({
-                        "page_id": str(row.get("page_id")),
+                        "page_id": page_id,
                         "page_type": str(row.get("page_type") or "unknown"),
                         "canonical_title": title,
-                        "content_sha256": sha_text(remote_text),
+                        "content_sha256": desired_sha,
                         "revision_id": revision_id,
                         "status": "published",
                     })
+
+                if preserve_pending_deletes:
+                    for (prior_language, page_id), prior in previous_state.items():
+                        if prior_language != language or page_id in active_ids:
+                            continue
+                        if (language, page_id) not in pending_delete_ids:
+                            continue
+                        exists, revision_id, remote_text = self.adapter.read_page(prior.title)
+                        if not exists or revision_id is None or sha_text(remote_text) != prior.content_sha256:
+                            raise PlanConflict(f"Page en attente de suppression modifiée : {language}/{page_id}")
+                        pages.append({
+                            "page_id": page_id,
+                            "page_type": prior.page_type,
+                            "canonical_title": prior.title,
+                            "content_sha256": prior.content_sha256,
+                            "revision_id": revision_id,
+                            "status": "pending_delete",
+                        })
+
                 state: dict[str, Any] = {
                     "state_version": STATE_VERSION,
                     "debate_id": self.debate_id,
@@ -1153,7 +1257,7 @@ def build_adapter(config: dict[str, Any], project_root: Path) -> Any:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Reprise distante contrôlée d’un corpus Wikidéb’IA déjà publié")
     parser.add_argument("--config", required=True)
-    parser.add_argument("--mode", choices=("plan", "execute"), default="plan")
+    parser.add_argument("--mode", choices=("plan", "execute", "attest"), default="plan")
     parser.add_argument("--plan-output", default="wikidebia_update_plan.json")
     parser.add_argument("--plan-input")
     parser.add_argument("--confirm-plan-sha256")
@@ -1171,12 +1275,17 @@ def main(argv: list[str] | None = None) -> int:
         write_json(Path(args.plan_output), plan)
         print(plan["plan_sha256"])
         print(json.dumps(plan["counts"], ensure_ascii=False, sort_keys=True))
-        return 3 if plan["operations"]["blocked"] else 0
+        return 3 if (plan["operations"]["blocked"] or plan["operations"]["manual_review"]) else 0
     if not args.plan_input or not args.confirm_plan_sha256:
         raise UpdateError("execute exige --plan-input et --confirm-plan-sha256")
     plan = load_json(Path(args.plan_input))
     executor = PlanExecutor(config, adapter, config_path)
-    receipt = executor.execute(plan, args.confirm_plan_sha256, only_delete=args.only_delete, no_delete=args.no_delete)
+    if args.mode == "attest":
+        if args.only_delete or args.no_delete:
+            raise UpdateError("attest est incompatible avec --only-delete et --no-delete")
+        receipt = executor.attest_no_changes(plan, args.confirm_plan_sha256)
+    else:
+        receipt = executor.execute(plan, args.confirm_plan_sha256, only_delete=args.only_delete, no_delete=args.no_delete)
     print(json.dumps(receipt["counts"], ensure_ascii=False, sort_keys=True))
     return 0
 

@@ -24,4 +24,4 @@ def test_summary_style_review_requires_all_human_attestations():
 
 def test_active_norm_is_current():
     root = Path(__file__).parents[1] / "normative_reference" / "01_normes"
-    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md"]
+    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.26.md"]

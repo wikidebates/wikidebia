@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.2.11",
-  "validator_version": "0.4.26",
+  "version": "2.2.13",
+  "validator_version": "0.4.28",
   "scope": [
     "publish_archive",
     "github_init",
@@ -74,7 +74,16 @@
     "legacy_single_bundle_bootstrap_compatibility",
     "graph_placement_review_validator_gate",
     "displayed_title_concision_validator_gate",
-    "wikipedia_hover_link_validator_gate"
+    "wikipedia_hover_link_validator_gate",
+    "manual_review_blocks_execution",
+    "dry_run_never_replaces_active_corpus",
+    "explicit_update_archive_selection",
+    "staged_update_archive_promotion",
+    "signed_no_changes_remote_attestation",
+    "strict_explicit_update_archive_selection",
+    "update_staging_always_cleaned",
+    "pending_delete_state_preservation",
+    "scope_aware_no_changes"
   ],
   "publication_profiles": [
     "norm_1_2_direct_interlanguage",
@@ -121,9 +130,16 @@
     "concise_remote_edit_summary",
     "nested_single_delivery_upgrade",
     "noninteractive_remote_debate_update",
-    "localized_wikipedia_hover_link_validation"
+    "localized_wikipedia_hover_link_validation",
+    "installed_corpus_priority_for_update",
+    "explicit_update_archive_option",
+    "update_archive_staging",
+    "signed_no_changes_state_refresh",
+    "no_implicit_update_archive_fallback",
+    "update_no_changes_in_scope",
+    "deferred_delete_continuity"
   ],
-  "normative_revision": "1.2.24",
+  "normative_revision": "1.2.26",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -132,6 +148,13 @@
     "displayed_title_noncopy_ratio",
     "single_delivery_zip_legacy_and_current_manager",
     "argument_reference_metadata_nonredundancy",
-    "remote_update_never_prompts"
+    "remote_update_never_prompts",
+    "manual_review_is_execution_blocker",
+    "update_dry_run_preserves_active_corpus",
+    "no_changes_attestation_refreshes_state",
+    "strict_archive_selection_regression",
+    "staging_cleanup_regression",
+    "deferred_delete_resume_regression",
+    "scope_aware_update_regression"
   ]
 }

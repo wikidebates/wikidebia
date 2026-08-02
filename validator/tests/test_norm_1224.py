@@ -32,7 +32,7 @@ def _argument(root: Path, summary: str, lang: str = "fr") -> Report:
 }}}}
 """
     page.write_text(text, encoding="utf-8")
-    report = Report("0.4.26", str(root), ["wikicode"])
+    report = Report("0.4.28", str(root), ["wikicode"])
     validate_page(PackageContext(root, report), {"page_id":"A0001","page_type":"argument","language":lang,"file_path":"argument.wiki"})
     return report
 

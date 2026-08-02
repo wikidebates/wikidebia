@@ -330,3 +330,24 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 | Liens Wikipédia explicatifs dans les résumés | ARG-035, PRM-018 | `WDV-MWK-020` + revue humaine | première occurrence utile, sans valeur documentaire |
 | Liens Wikipédia explicatifs dans les introductions | DFR-047, DEN-008, MW-027 | `WDV-MWK-020` + `WDV-EDT-017` | modèles et paramètres localisés |
 | Syntaxe et non-redondance des paramètres d’affichage | MW-027, VAL-032 | `WDV-MWK-020` | `texte-affiché` / `displayed-text` seulement si nécessaire |
+
+## Trace 1.2.25
+
+| Décision | Exigences | Preuve attendue |
+|---|---|---|
+| `manual_review` bloque réellement l’exécution | PUB-037, GOV-008 | tests du gestionnaire et de l’exécuteur ; absence de reçu et d’état modifié |
+| Un plan entièrement `skip` n’est pas un succès d’exécution | PUB-038 | statut `no_changes`, aucun exécuteur appelé |
+| Le dry-run ne remplace pas le corpus | PUB-039 | archive en staging, empreinte du corpus actif inchangée |
+| Le corpus installé est prioritaire | PUB-040 | test avec archive homonyme et option `--archive` explicite |
+| Les composants génériques ne contiennent aucun corpus | FIL-019 | inventaire récursif des archives et de la livraison |
+
+## Trace 1.2.26
+
+| Décision | Exigences | Preuve attendue |
+|---|---|---|
+| Le plan entièrement `skip` renouvelle l’état par attestation, sans écriture MediaWiki | GOV-009, PUB-038 | relecture exacte de toutes les pages, reçu `no_changes`, état signé |
+| Aucune archive n’est sélectionnée implicitement | PUB-041 | tests d’identifiant absent, ZIP unique et `--archive` explicite |
+| Le staging est toujours nettoyé | PUB-042 | tests dry-run, erreur, manual_review et succès |
+| Une portée vide ne déclenche ni exécution ni promotion | PUB-043 | statut `no_changes_in_scope` |
+| Les suppressions différées restent traçables | PUB-044 | état `pending_delete`, puis réussite de `--only-delete` |
+

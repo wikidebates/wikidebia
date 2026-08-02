@@ -1,5 +1,26 @@
 # Changelog normatif
 
+## 1.2.26 — 2 août 2026
+
+- remplacement de l’absence d’état pour un plan entièrement `skip` par une attestation signée `no_changes` après relecture distante complète, sans écriture MediaWiki ;
+- sélection d’une archive uniquement avec `--archive`, sans repli implicite depuis un identifiant ou un ZIP unique ;
+- nettoyage systématique des zones de staging sur toutes les sorties ;
+- statut `no_changes_in_scope` lorsqu’aucune opération mutante n’appartient à la portée demandée ;
+- conservation signée des pages `pending_delete` après `--no-delete`, afin de permettre une reprise sûre avec `--only-delete` ;
+- ajout des exigences `GOV-009`, `PUB-041` à `PUB-044` et `VAL-034` ;
+- alignement recommandé : validateur 0.4.28 et kit 2.2.13.
+
+## 1.2.25 — 2 août 2026
+
+- `manual_review` devient un blocage effectif de l’exécution, au même titre que `blocked` ;
+- interdiction d’écrire un reçu de succès ou un état publié lorsqu’un plan reste non résolu ;
+- statut `no_changes` et absence de faux reçu pour un plan composé uniquement de `skip` ;
+- staging obligatoire des archives de reprise et garantie qu’un dry-run ne modifie jamais `corpus/` ;
+- priorité au corpus installé pour `update IDENTIFIANT` et sélection explicite des archives par `--archive` ;
+- exclusion des corpus de débat des archives génériques et du bundle de composants ;
+- ajout des exigences `GOV-008`, `FIL-019`, `PUB-037` à `PUB-040` et `VAL-033` ;
+- alignement recommandé : validateur 0.4.27 et kit 2.2.12.
+
 ## 1.2.24 — 2 août 2026
 
 - autorisation encadrée de `{{Lien Wikipédia}}` dans les introductions et résumés français ;

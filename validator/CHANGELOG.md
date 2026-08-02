@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.4.28 — 2 août 2026
+
+- alignement sur la norme 1.2.26 ;
+- prise en charge des paquets déclarant 1.2.26 sans modification des contrôles éditoriaux ;
+- copie normative resynchronisée avec les exigences d’attestation `no_changes`, de sélection stricte, de staging et de suppressions différées ;
+- ajout de tests de version, de schéma et d’unicité de la source normative active ;
+- compatibilité conservée avec les normes 1.1.0 à 1.2.25.
+
+## 0.4.27 — 2 août 2026
+
+- alignement sur la norme 1.2.25 ;
+- prise en charge des paquets déclarant 1.2.25 sans modification des contrôles éditoriaux 1.2.24 ;
+- conservation de `manual_review` comme catégorie valide de plan, avec comparaison obligatoire, tandis que son exécution est bloquée par le kit ;
+- ajout de tests de version, de schéma et de non-régression sur la sûreté des reprises ;
+- copie normative resynchronisée avec la source 1.2.25.
+
 ## 0.4.26 — 2 août 2026
 
 - alignement sur la norme 1.2.24 ;

@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.2.13 — 2 août 2026
+
+- sélection d’archive strictement explicite avec `--archive`, sans repli silencieux depuis un identifiant de corpus ;
+- attestation signée des plans entièrement `skip`, avec renouvellement sûr de l’état publié et statut `no_changes` ;
+- nettoyage systématique du staging après simulation, blocage, révision manuelle, succès ou erreur ;
+- traitement des portées sans opération par `no_changes_in_scope` ;
+- conservation des pages en attente de suppression après `--no-delete` ;
+- tests d’enchaînement `no_changes`, mise à jour suivante et reprise différée des suppressions.
+
+## 2.2.12 — 2 août 2026
+
+- blocage effectif des plans contenant `manual_review`, dans le gestionnaire comme dans l’exécuteur ;
+- interdiction de produire un reçu ou un nouvel état publié lorsqu’aucune opération exécutable n’a été appliquée ;
+- statut explicite `no_changes` pour les plans composés uniquement de `skip` ;
+- priorité au corpus installé pour `./wikidebia update IDENTIFIANT` ;
+- ajout de `--archive SÉLECTEUR` pour sélectionner explicitement une archive ;
+- staging des archives de reprise et garantie qu’un `--dry-run` ne modifie jamais `corpus/` ;
+- alignement sur la norme 1.2.25 et le validateur 0.4.27.
+
 ## 2.2.11 — 2 août 2026
 
 - alignement sur la norme 1.2.24 et le validateur 0.4.26 ;

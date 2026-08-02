@@ -1,7 +1,9 @@
-Wikidéb’IA Validator 0.4.26
-Norme implémentée : 1.2.24
-Tests pytest : 195 réussis, 0 échec
-Contrôles nouveaux : syntaxe localisée de {{Lien Wikipédia}}/{{Wikipedia link}}, article obligatoire, paramètre d’affichage non redondant, interdiction dans les notes <ref>, attestations de revue d’introduction et de résumé
-Compatibilité : normes 1.1.0 à 1.2.24
-Validation du corpus réel migré : 118 arguments, 121 occurrences, 0 erreur, 0 avertissement
+Wikidéb’IA Validator 0.4.28
+Norme implémentée : 1.2.26
+Tests pytest : 201 réussis, 0 échec
+Contrôles : tous les contrôles 0.4.27 conservés ; prise en charge explicite de 1.2.26
+Plans distants : huit catégories validées, comparaison obligatoire pour manual_review
+Protocole de reprise : attestation no_changes, sélection stricte, staging et suppressions différées documentés
+Compatibilité : normes 1.1.0 à 1.2.26
+Validation ordinaire : strictement locale et en lecture seule
 Résultat : RÉUSSI

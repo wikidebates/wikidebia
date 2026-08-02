@@ -124,11 +124,11 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(state), encoding="utf-8")
     validator = root / "validator.py"
-    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.26','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.28','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     config = {
-        "kit_version":"2.2.11","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
+        "kit_version":"2.2.13","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
         "family":"wikidebates","pywikibot_dir":"private/pywikibot","sites":{lang:{"code":lang,"expected_user":"ChatGPT"} for lang in languages},
-        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.26","scopes":[]},
+        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.28","scopes":[]},
         "published_state_dir":".state/published","receipts_dir":".state/receipts","logs_dir":"logs",
     }
     config_path = root / "config.json"
@@ -298,3 +298,124 @@ def test_default_update_summary_is_concise(tmp_path):
     executor = module.PlanExecutor(config, FakeAdapter(), config_path)
     assert executor._summary("fr", "update", {"corpus_version":"manifest-deadbeef"}) == "Corrections"
     assert executor._summary("en", "update", {"corpus_version":"manifest-deadbeef"}) == "Corrections"
+
+
+def test_16_manual_review_plan_cannot_be_executed_or_rewrite_state(tmp_path):
+    old, human, new = argument("Ancien"), argument("Modification humaine"), argument("Nouveau")
+    p, config, path, adapter = plan(
+        tmp_path,
+        old_pages=[("fr", "A1", "Titre", old)],
+        new_pages=[("fr", "A1", "Titre", new)],
+        remote_pages={("fr", "Titre"): (11, human)},
+    )
+    assert p["counts"]["manual_review"] == 1
+    executor = module.PlanExecutor(config, adapter, path)
+    try:
+        executor.execute(p, p["plan_sha256"])
+    except module.PlanConflict as exc:
+        assert "révision manuelle" in str(exc)
+    else:
+        raise AssertionError("un plan manual_review a été exécuté")
+    assert not (tmp_path / ".state" / "receipts").exists()
+    latest = tmp_path / ".state" / "published" / "demo" / "fr" / "latest.json"
+    state = json.loads(latest.read_text(encoding="utf-8"))
+    assert state["pages"][0]["content_sha256"] == module.sha_text(old)
+
+
+def test_17_all_skip_plan_cannot_create_false_success_receipt(tmp_path):
+    text = argument("Même")
+    p, config, path, adapter = plan(
+        tmp_path,
+        old_pages=[("fr", "A1", "Titre", text)],
+        new_pages=[("fr", "A1", "Titre", text)],
+        remote_pages={("fr", "Titre"): (10, text)},
+    )
+    executor = module.PlanExecutor(config, adapter, path)
+    try:
+        executor.execute(p, p["plan_sha256"])
+    except module.PlanConflict as exc:
+        assert "aucune opération exécutable" in str(exc)
+    else:
+        raise AssertionError("un plan entièrement skip a créé un faux succès")
+    assert not (tmp_path / ".state" / "receipts").exists()
+
+
+def test_18_no_changes_attestation_refreshes_state_for_next_update(tmp_path):
+    old = argument("Ancien état")
+    current = argument("Déjà présent à distance")
+    p, config, path, adapter = plan(
+        tmp_path,
+        old_pages=[("fr", "A1", "Titre", old)],
+        new_pages=[("fr", "A1", "Titre", current)],
+        remote_pages={("fr", "Titre"): (20, current)},
+    )
+    assert p["counts"]["skip"] == 1
+    receipt = module.PlanExecutor(config, adapter, path).attest_no_changes(p, p["plan_sha256"])
+    assert receipt["status"] == "no_changes"
+    assert receipt["counts"] == {"verified_unchanged": 1}
+    state_path = tmp_path / ".state" / "published" / "demo" / "fr" / "latest.json"
+    state = json.loads(state_path.read_text(encoding="utf-8"))
+    assert state["pages"][0]["content_sha256"] == module.sha_text(current)
+    assert state["pages"][0]["revision_id"] == 20
+
+    proposed = argument("Modification suivante")
+    (tmp_path / "corpus" / "demo" / "output" / "fr" / "A1.wiki").write_text(proposed, encoding="utf-8")
+    next_plan = module.RemoteUpdatePlanner(config, adapter, path).build_plan()
+    assert next_plan["counts"]["update"] == 1
+    assert next_plan["counts"]["manual_review"] == 0
+
+
+def test_19_no_changes_attestation_detects_remote_change_after_plan(tmp_path):
+    text = argument("Même contenu")
+    p, config, path, adapter = plan(
+        tmp_path,
+        old_pages=[("fr", "A1", "Titre", text)],
+        new_pages=[("fr", "A1", "Titre", text)],
+        remote_pages={("fr", "Titre"): (10, text)},
+    )
+    adapter.pages[("fr", "Titre")] = (11, argument("Changement concurrent"))
+    try:
+        module.PlanExecutor(config, adapter, path).attest_no_changes(p, p["plan_sha256"])
+    except module.PlanConflict as exc:
+        assert "modifié depuis le plan" in str(exc)
+    else:
+        raise AssertionError("une attestation obsolète a été acceptée")
+    assert not (tmp_path / ".state" / "receipts").exists()
+
+
+def test_20_no_delete_preserves_pending_pages_for_later_only_delete(tmp_path):
+    retired = argument("Retiré")
+    old_kept = argument("Ancienne version")
+    new_kept = argument("Nouvelle version")
+    p, config, path, adapter = plan(
+        tmp_path,
+        old_pages=[
+            ("fr", "A1", "Retiré", retired),
+            ("fr", "A2", "Conservé", old_kept),
+        ],
+        new_pages=[("fr", "A2", "Conservé", new_kept)],
+        remote_pages={
+            ("fr", "Retiré"): (10, retired),
+            ("fr", "Conservé"): (20, old_kept),
+        },
+    )
+    receipt = module.PlanExecutor(config, adapter, path).execute(p, p["plan_sha256"], no_delete=True)
+    assert receipt["counts"]["updated"] == 1
+    assert ("fr", "Retiré") in adapter.pages
+    state_path = tmp_path / ".state" / "published" / "demo" / "fr" / "latest.json"
+    state = json.loads(state_path.read_text(encoding="utf-8"))
+    statuses = {row["page_id"]: row["status"] for row in state["pages"]}
+    assert statuses == {"A1": "pending_delete", "A2": "published"}
+
+    delete_plan = module.RemoteUpdatePlanner(config, adapter, path).build_plan()
+    assert delete_plan["counts"]["delete"] == 1
+    assert delete_plan["counts"]["manual_review"] == 0
+    delete_receipt = module.PlanExecutor(config, adapter, path).execute(
+        delete_plan,
+        delete_plan["plan_sha256"],
+        only_delete=True,
+    )
+    assert delete_receipt["counts"]["deleted"] == 1
+    assert ("fr", "Retiré") not in adapter.pages
+    final_state = json.loads(state_path.read_text(encoding="utf-8"))
+    assert [row["page_id"] for row in final_state["pages"]] == ["A2"]

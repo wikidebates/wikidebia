@@ -1,7 +1,7 @@
 {
   "package": "wikidebia-validator",
-  "validator_version": "0.4.26",
-  "implemented_normative_revision": "1.2.24",
+  "validator_version": "0.4.28",
+  "implemented_normative_revision": "1.2.26",
   "compatible_normative_revisions": [
     "1.1.0",
     "1.1.1",
@@ -37,7 +37,9 @@
     "1.2.21",
     "1.2.22",
     "1.2.23",
-    "1.2.24"
+    "1.2.24",
+    "1.2.25",
+    "1.2.26"
   ],
   "recommended_normative_archive": "wikidebia-normes.zip",
   "independent_update_policy": {
@@ -45,5 +47,7 @@
     "new_norm_without_validator_change": "Allowed only when no automatic control, schema, or validator behavior must change."
   },
   "stable_archive_name": "wikidebia-validator.zip",
-  "version_source": "VERSIONS.json"
+  "version_source": "VERSIONS.json",
+  "normative_revision": "1.2.26",
+  "kit_version": "2.2.13"
 }

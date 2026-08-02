@@ -195,3 +195,13 @@ Les critères de placement adoptés en 1.2.20 sont conservés sans changement. L
 ## Décision du 2 août 2026 — liens Wikipédia explicatifs dans les introductions et résumés
 
 Les introductions et les résumés d’arguments peuvent employer `{{Lien Wikipédia|article=…}}` en français et `{{Wikipedia link|article=…}}` en anglais afin d’afficher au survol le premier paragraphe de l’article correspondant. Le paramètre d’affichage n’est utilisé que lorsque le texte visible diffère réellement du titre : `texte-affiché` en français, `displayed-text` en anglais. Pour une simple minuscule initiale imposée par la phrase, le titre passé à `article` est écrit avec cette minuscule. Le lien est réservé à la première occurrence utile d’une notion spécialisée, après vérification de la page dans la langue correspondante. Il ne remplace ni une explication indispensable au raisonnement ni une référence documentaire.
+
+
+## Décision du 2 août 2026 — exécution sûre des reprises
+
+À la suite d’un plan contenant 78 opérations `manual_review` qui a été annoncé comme exécuté sans modifier le wiki, la reprise doit bloquer avant l’exécuteur, ne produire aucun reçu de succès et ne jamais réécrire l’état publié. Un plan entièrement `skip` doit être signalé comme sans changement. Les archives de reprise sont préparées en staging et un dry-run ne remplace pas le corpus actif. Le corpus installé est prioritaire ; l’usage d’une archive est explicite. Les livraisons génériques demandées ne doivent contenir aucun corpus de débat.
+
+
+## Décision corrective du 2 août 2026 — attestation sans changement et portées différées
+
+Une vérification supplémentaire a montré qu’un plan entièrement `skip` doit actualiser l’état publié après relecture distante signée, faute de quoi une modification suivante peut être classée à tort en `manual_review`. La sélection d’une archive doit toujours exiger `--archive`; aucun repli sur un ZIP homonyme ou unique n’est admis. Les zones de staging sont nettoyées dans tous les cas. Enfin, `--no-delete` doit conserver dans l’état signé les pages dont la suppression est différée, afin que `--only-delete` puisse les traiter ensuite sans perdre leur preuve d’appartenance.

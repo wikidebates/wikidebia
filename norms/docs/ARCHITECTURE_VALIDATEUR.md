@@ -1,3 +1,3 @@
-# Architecture normative et validation
+# Architecture normative et validation — 1.2.26
 
-Le paquet normatif 1.2.24 recommande le validateur 0.4.26 et le kit 2.2.11. Les contrôles historiques restent actifs. La nouvelle révision ajoute une revue et un contrôle de syntaxe des liens Wikipédia explicatifs dans les introductions et résumés, sans requête réseau du validateur.
+Le paquet normatif 1.2.26 recommande le validateur 0.4.28 et le kit 2.2.13. Les contrôles historiques et les règles éditoriales 1.2.24 restent actifs. La révision courante ajoute des garanties de reprise distante : blocage de `manual_review`, absence de faux succès pour les plans sans mutation, staging des archives et dry-run non destructif.

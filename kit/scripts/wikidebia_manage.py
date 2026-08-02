@@ -15,9 +15,9 @@ import zipfile
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
-NORM_VERSION = "1.2.24"
-VALIDATOR_VERSION = "0.4.26"
-KIT_VERSION = "2.2.11"
+NORM_VERSION = "1.2.26"
+VALIDATOR_VERSION = "0.4.28"
+KIT_VERSION = "2.2.13"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",
@@ -91,6 +91,13 @@ def json_load(path: Path) -> dict[str, Any]:
 def write_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+
+
+def portable_path(path: Path, root: Path) -> str:
+    try:
+        return path.resolve().relative_to(root.resolve()).as_posix()
+    except ValueError as exc:
+        raise ManagementError(f"Chemin extérieur au projet interdit : {path}") from exc
 
 
 def _safe_member(name: str) -> bool:
@@ -868,29 +875,39 @@ def locate_package_root(extracted: Path) -> Path:
     return manifests[0].parent
 
 
-def install_debate_corpus(root: Path, archive: Path) -> tuple[str, Path]:
-    stage = root / ".state" / "debates" / f"{timestamp()}-{sha256_file(archive)[:12]}"
-    stage.mkdir(parents=True, exist_ok=True)
+def stage_debate_corpus(root: Path, archive: Path, *, purpose: str = "debates") -> tuple[str, Path, Path]:
+    staging_parent = root / ".state" / purpose
+    staging_parent.mkdir(parents=True, exist_ok=True)
+    stage = Path(tempfile.mkdtemp(prefix=f"{timestamp()}-{sha256_file(archive)[:12]}-", dir=staging_parent))
     safe_extract(archive, stage)
     package_root = locate_package_root(stage)
     manifest = json_load(package_root / "manifest.json")
     debate_id = str(manifest.get("debate_id") or "").strip()
     if not debate_id or not re.fullmatch(r"[A-Za-z0-9_.-]+", debate_id):
+        shutil.rmtree(stage, ignore_errors=True)
         raise ManagementError("debate_id absent ou impropre à un nom de dossier")
-    # Le nom du ZIP sert uniquement à sélectionner l’archive. Le manifeste reste
-    # l’autorité pour l’identité du débat, notamment pour les anciennes archives
-    # dont le nom contient des suffixes descriptifs ou une date.
+    return debate_id, package_root, stage
+
+
+def promote_debate_corpus(root: Path, debate_id: str, package_root: Path) -> Path:
     target = root / "corpus" / debate_id
     if target.is_dir() and sha256_tree(target) == sha256_tree(package_root):
-        shutil.rmtree(stage, ignore_errors=True)
-        return debate_id, target
+        return target
     if target.exists():
         backup = root / "archives" / "debates" / f"{timestamp()}-{debate_id}" / "previous-corpus"
         backup.parent.mkdir(parents=True, exist_ok=True)
         shutil.move(str(target), backup)
     target.parent.mkdir(parents=True, exist_ok=True)
     shutil.copytree(package_root, target)
-    shutil.rmtree(stage, ignore_errors=True)
+    return target
+
+
+def install_debate_corpus(root: Path, archive: Path) -> tuple[str, Path]:
+    debate_id, package_root, stage = stage_debate_corpus(root, archive)
+    try:
+        target = promote_debate_corpus(root, debate_id, package_root)
+    finally:
+        shutil.rmtree(stage, ignore_errors=True)
     return debate_id, target
 
 
@@ -1029,7 +1046,7 @@ def publish_debate(root: Path, debate_identifier: str | None, scope: str, assume
 
 
 
-def remote_update_config(root: Path, debate_id: str, scope: str, run_dir: Path) -> Path:
+def remote_update_config(root: Path, debate_id: str, scope: str, run_dir: Path, corpus_root: Path | None = None) -> Path:
     settings = load_local_settings(root)
     languages = ["fr", "en"] if scope == "all" else [scope]
     users = settings.get("expected_users") or {"fr": "ChatGPT", "en": "ChatGPT"}
@@ -1043,7 +1060,7 @@ def remote_update_config(root: Path, debate_id: str, scope: str, run_dir: Path) 
         "sites": sites,
         "languages": languages,
         "debate_id": debate_id,
-        "corpus_root": f"corpus/{debate_id}",
+        "corpus_root": portable_path(corpus_root or (root / "corpus" / debate_id), root),
         "logs_dir": f"logs/{debate_id}/{run_dir.name}",
         "published_state_dir": ".state/published",
         "receipts_dir": ".state/receipts",
@@ -1066,65 +1083,169 @@ def remote_update_command(root: Path, config: Path, *args: str) -> list[str]:
     return [python_command(root), "kit/scripts/wikidebia_update.py", "--config", str(config.relative_to(root)), *args]
 
 
-def _prepare_update_corpus(root: Path, debate_identifier: str | None) -> tuple[str, Path | None]:
-    incoming = root / "incoming"
-    archive: Path | None = None
+def _prepare_update_corpus(
+    root: Path,
+    debate_identifier: str | None,
+    archive_selector: str | None = None,
+) -> tuple[str, Path | None, Path, Path | None]:
+    if archive_selector and debate_identifier:
+        raise ManagementError("Utilisez soit l’identifiant du corpus installé, soit --archive, pas les deux")
+
+    if archive_selector:
+        archive = find_debate_archive(root, archive_selector)
+        debate_id, package_root, stage = stage_debate_corpus(root, archive, purpose="update-staging")
+        return debate_id, archive, package_root, stage
+
     if debate_identifier:
-        exact = incoming / f"{debate_identifier}.zip"
-        if exact.is_file():
-            archive = exact
-        elif (root / "corpus" / debate_identifier / "manifest.json").is_file():
-            return debate_identifier, None
-        else:
-            try:
-                archive = find_debate_archive(root, debate_identifier)
-            except ManagementError:
-                raise ManagementError(f"Corpus installé ou archive introuvable pour {debate_identifier}")
-    else:
-        zips = sorted(incoming.glob("*.zip")) if incoming.is_dir() else []
-        if len(zips) == 1:
-            archive = zips[0]
-        else:
-            raise ManagementError("Indiquez l’identifiant du débat à reprendre")
-    debate_id, _ = install_debate_corpus(root, archive)
-    return debate_id, archive
+        installed = root / "corpus" / debate_identifier
+        if (installed / "manifest.json").is_file():
+            return debate_identifier, None, installed, None
+        raise ManagementError(
+            f"Corpus installé introuvable pour {debate_identifier}. "
+            "Pour utiliser une archive de incoming/, relancez avec --archive SÉLECTEUR."
+        )
+
+    installed = sorted(
+        path for path in (root / "corpus").glob("*")
+        if path.is_dir() and (path / "manifest.json").is_file()
+    ) if (root / "corpus").is_dir() else []
+    if len(installed) == 1:
+        return installed[0].name, None, installed[0], None
+    if not installed:
+        raise ManagementError("Aucun corpus installé. Utilisez --archive SÉLECTEUR pour une archive de incoming/.")
+    available = ", ".join(path.name for path in installed)
+    raise ManagementError(
+        "Plusieurs corpus sont installés. Indiquez leur identifiant. "
+        f"Identifiants disponibles : {available}"
+    )
 
 
-def update_debate(root: Path, debate_identifier: str | None, scope: str, assume_yes: bool, no_delete: bool, only_delete: bool, dry_run: bool, keep_zip: bool) -> dict[str, Any]:
+def _archive_after_update(root: Path, archive: Path, debate_id: str, keep_zip: bool) -> None:
+    if keep_zip:
+        return
+    destination = root / "archives" / "debates" / f"{timestamp()}-{debate_id}" / archive.name
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    shutil.move(str(archive), destination)
+
+
+def update_debate(
+    root: Path,
+    debate_identifier: str | None,
+    scope: str,
+    assume_yes: bool,
+    no_delete: bool,
+    only_delete: bool,
+    dry_run: bool,
+    keep_zip: bool,
+    archive_selector: str | None = None,
+) -> dict[str, Any]:
     ensure_credentials(root)
     if no_delete and only_delete:
         raise ManagementError("--no-delete et --only-delete sont incompatibles")
-    debate_id, archive = _prepare_update_corpus(root, debate_identifier)
-    run_dir = root / "plans" / debate_id / timestamp()
-    run_dir.mkdir(parents=True, exist_ok=True)
-    config = remote_update_config(root, debate_id, scope, run_dir)
-    plan_path = run_dir / "update-plan.json"
-    flags: list[str] = []
-    if no_delete:
-        flags.append("--no-delete")
-    if only_delete:
-        flags.append("--only-delete")
-    result = run(remote_update_command(root, config, "--mode", "plan", "--plan-output", str(plan_path.relative_to(root)), *flags), cwd=root, capture=True, check=False)
-    if result.returncode not in {0, 3}:
-        raise ManagementError((result.stderr or result.stdout or "Plan de reprise impossible").strip())
-    plan = json_load(plan_path)
-    print(json.dumps(plan.get("counts") or {}, ensure_ascii=False, indent=2))
-    if dry_run:
-        return {"status": "dry_run", "plan": str(plan_path.relative_to(root)), "plan_sha256": plan["plan_sha256"], "counts": plan.get("counts") or {}}
-    if (plan.get("operations") or {}).get("blocked"):
-        raise ManagementError(f"Le plan contient {len(plan['operations']['blocked'])} opération(s) bloquée(s); voir {plan_path.relative_to(root)}")
-    # The signed plan hash is transmitted directly to the executor.  The legacy
-    # --yes option remains accepted as a no-op, but update is deliberately
-    # non-interactive so unattended and ordinary runs behave identically.
-    _ = assume_yes
-    execute = run(remote_update_command(root, config, "--mode", "execute", "--plan-input", str(plan_path.relative_to(root)), "--confirm-plan-sha256", str(plan["plan_sha256"]), *flags), cwd=root, capture=True)
-    lines = (execute.stdout or "").strip().splitlines()
-    counts = json.loads(lines[-1]) if lines else {}
-    if archive is not None and not keep_zip:
-        destination = root / "archives" / "debates" / f"{timestamp()}-{debate_id}" / archive.name
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.move(str(archive), destination)
-    return {"status": "executed", "plan": str(plan_path.relative_to(root)), "plan_sha256": plan["plan_sha256"], "counts": counts}
+    staging_root: Path | None = None
+    archive: Path | None = None
+    try:
+        debate_id, archive, corpus_root, staging_root = _prepare_update_corpus(root, debate_identifier, archive_selector)
+        if archive is None:
+            print(f"Corpus installé sélectionné : {portable_path(corpus_root, root)}")
+        else:
+            print(f"Archive sélectionnée pour staging : {portable_path(archive, root)}")
+        print(f"Identifiant interne du débat : {debate_id}")
+        run_dir = root / "plans" / debate_id / timestamp()
+        run_dir.mkdir(parents=True, exist_ok=True)
+        config = remote_update_config(root, debate_id, scope, run_dir, corpus_root)
+        plan_path = run_dir / "update-plan.json"
+        flags: list[str] = []
+        if no_delete:
+            flags.append("--no-delete")
+        if only_delete:
+            flags.append("--only-delete")
+        result = run(remote_update_command(root, config, "--mode", "plan", "--plan-output", str(plan_path.relative_to(root)), *flags), cwd=root, capture=True, check=False)
+        if result.returncode not in {0, 3}:
+            raise ManagementError((result.stderr or result.stdout or "Plan de reprise impossible").strip())
+        plan = json_load(plan_path)
+        counts = plan.get("counts") or {}
+        print(json.dumps(counts, ensure_ascii=False, indent=2))
+        operations = plan.get("operations") or {}
+        blocked = operations.get("blocked") or []
+        manual_review = operations.get("manual_review") or []
+        if dry_run:
+            status = "blocked" if blocked else ("manual_review_required" if manual_review else "dry_run")
+            return {"status": status, "plan": str(plan_path.relative_to(root)), "plan_sha256": plan["plan_sha256"], "counts": counts}
+        if blocked:
+            raise ManagementError(f"Le plan contient {len(blocked)} opération(s) bloquée(s); voir {plan_path.relative_to(root)}")
+        if manual_review:
+            raise ManagementError(
+                f"Le plan contient {len(manual_review)} opération(s) nécessitant une révision manuelle; "
+                f"aucune écriture ni mise à jour de l’état n’a été effectuée. Voir {plan_path.relative_to(root)}"
+            )
+
+        mutable_names = ("create", "update", "move", "redirect", "delete")
+        if only_delete:
+            selected_names = ("redirect", "delete")
+        elif no_delete:
+            selected_names = ("create", "update", "move", "redirect")
+        else:
+            selected_names = mutable_names
+        mutable_count = sum(len(operations.get(name) or []) for name in mutable_names)
+        selected_count = sum(len(operations.get(name) or []) for name in selected_names)
+
+        if mutable_count == 0:
+            attest = run(
+                remote_update_command(
+                    root,
+                    config,
+                    "--mode", "attest",
+                    "--plan-input", str(plan_path.relative_to(root)),
+                    "--confirm-plan-sha256", str(plan["plan_sha256"]),
+                ),
+                cwd=root,
+                capture=True,
+            )
+            lines = (attest.stdout or "").strip().splitlines()
+            attestation_counts = json.loads(lines[-1]) if lines else {}
+            if staging_root is not None:
+                promote_debate_corpus(root, debate_id, corpus_root)
+            if archive is not None:
+                _archive_after_update(root, archive, debate_id, keep_zip)
+            return {
+                "status": "no_changes",
+                "plan": str(plan_path.relative_to(root)),
+                "plan_sha256": plan["plan_sha256"],
+                "counts": attestation_counts or counts,
+            }
+
+        if selected_count == 0:
+            return {
+                "status": "no_changes_in_scope",
+                "plan": str(plan_path.relative_to(root)),
+                "plan_sha256": plan["plan_sha256"],
+                "counts": counts,
+            }
+
+        _ = assume_yes
+        execute = run(
+            remote_update_command(
+                root,
+                config,
+                "--mode", "execute",
+                "--plan-input", str(plan_path.relative_to(root)),
+                "--confirm-plan-sha256", str(plan["plan_sha256"]),
+                *flags,
+            ),
+            cwd=root,
+            capture=True,
+        )
+        lines = (execute.stdout or "").strip().splitlines()
+        execution_counts = json.loads(lines[-1]) if lines else {}
+        if staging_root is not None:
+            promote_debate_corpus(root, debate_id, corpus_root)
+        if archive is not None:
+            _archive_after_update(root, archive, debate_id, keep_zip)
+        return {"status": "executed", "plan": str(plan_path.relative_to(root)), "plan_sha256": plan["plan_sha256"], "counts": execution_counts}
+    finally:
+        if staging_root is not None:
+            shutil.rmtree(staging_root, ignore_errors=True)
 
 def github_init(root: Path, remote: str, private: bool) -> None:
     if not git_is_repo(root):
@@ -1201,7 +1322,8 @@ def build_parser() -> argparse.ArgumentParser:
     publish.add_argument("--keep-zip", action="store_true", help="Ne pas archiver le ZIP après succès")
 
     update = sub.add_parser("update", help="Reprendre un débat déjà publié avec créations, mises à jour et retraits contrôlés")
-    update.add_argument("debate_identifier", nargs="?", help="Identifiant du débat installé ou nom du ZIP sans .zip")
+    update.add_argument("debate_identifier", nargs="?", help="Identifiant du corpus déjà installé")
+    update.add_argument("--archive", metavar="SÉLECTEUR", help="Utiliser explicitement incoming/SÉLECTEUR.zip dans une zone de staging")
     update.add_argument("--scope", choices=("all", "fr", "en"), default="all")
     update.add_argument("--yes", action="store_true", help=argparse.SUPPRESS)
     update.add_argument("--no-delete", action="store_true", help="Exécuter la reprise sans suppressions finales")
@@ -1232,7 +1354,7 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(result, ensure_ascii=False, sort_keys=True))
         return 0
     if args.command == "update":
-        result = update_debate(root, args.debate_identifier, args.scope, args.yes, args.no_delete, args.only_delete, args.dry_run, args.keep_zip)
+        result = update_debate(root, args.debate_identifier, args.scope, args.yes, args.no_delete, args.only_delete, args.dry_run, args.keep_zip, args.archive)
         print(json.dumps(result, ensure_ascii=False, sort_keys=True))
         return 0
     if args.command == "upgrade":

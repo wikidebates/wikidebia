@@ -1,12 +1,12 @@
-Wikidéb’IA Kit 2.2.11
-Norme : 1.2.24
-Validateur requis : 0.4.26
-Tests pytest : 94 réussis, 0 échec
-Scénarios obligatoires de reprise distante : 15/15, plus inventaire distant signé
-Reprise de débat : non interactive, empreinte du plan signée transmise automatiquement
-Compatibilité CLI : --yes reste accepté comme option silencieuse
-Résumé de modification par défaut : Corrections
-Mise à niveau : bundle direct et archive de livraison enveloppante acceptés depuis un seul ZIP
-Validation éditoriale : barrière sur les liens Wikipédia explicatifs localisés dans les introductions et résumés
-Compatibilité : protection de concurrence, reprise idempotente, déplacements et suppressions sûres conservés
+Wikidéb’IA Kit 2.2.13
+Norme : 1.2.26
+Validateur requis : 0.4.28
+Tests pytest : 108 réussis, 0 échec
+Reprise distante : manual_review et blocked bloquent avant exécution et ne modifient jamais l’état publié
+Attestation sans changement : relecture distante complète, reçu signé no_changes, état publié actualisé sans écriture MediaWiki
+Sélection du corpus : le corpus installé est utilisé sans repli ; toute archive exige --archive
+Dry-run et erreurs : staging temporaire nettoyé, corpus/ inchangé
+Portées partielles : no_changes_in_scope sans exécution ni promotion
+Suppressions différées : --no-delete conserve pending_delete et --only-delete peut reprendre ensuite
+Compatibilité : --yes reste accepté silencieusement, bundle unique et protections de concurrence conservés
 Résultat : RÉUSSI

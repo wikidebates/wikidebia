@@ -16,7 +16,7 @@ spec.loader.exec_module(module)
 
 
 def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = False) -> None:
-    versions = {"norm": "1.2.20", "validator": "0.4.26", "kit": "2.2.11"}
+    versions = {"norm": "1.2.20", "validator": "0.4.28", "kit": "2.2.13"}
     payloads = {
         "VERSIONS.json": (json.dumps(versions, ensure_ascii=False, indent=2) + "\n").encode("utf-8"),
         "README.md": f"# {artifact}\n".encode("utf-8"),
@@ -25,7 +25,7 @@ def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = F
         {"path": name, "size_bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
         for name, raw in sorted(payloads.items())
     ]
-    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.26", "wikidebia-kit": "2.2.11"}[artifact]
+    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.28", "wikidebia-kit": "2.2.13"}[artifact]
     manifest = {
         "artifact": artifact,
         "version": version,
@@ -59,7 +59,7 @@ def test_component_inspector_accepts_and_verifies_optional_receipt(tmp_path: Pat
     _write_component_zip(archive, "wikidebia-kit", include_receipt=True)
     metadata = module.inspect_component_zip(archive)
     assert metadata["artifact"] == "wikidebia-kit"
-    assert metadata["versions"]["kit"] == "2.2.11"
+    assert metadata["versions"]["kit"] == "2.2.13"
 
 
 def test_single_complete_bundle_is_collected_from_updates(tmp_path: Path):
@@ -155,7 +155,7 @@ def test_generated_config_is_relative_and_debate_first(tmp_path: Path):
     assert config["pywikibot_dir"] == "private/pywikibot"
     assert config["corpus_root"] == "corpus/demo"
     assert config["operation"]["page_type_order"] == ["debate", "argument"]
-    assert config["validator"]["required_version"] == "0.4.26"
+    assert config["validator"]["required_version"] == "0.4.28"
     assert config["manifest_requirements"] == {}
     assert str(tmp_path) not in path.read_text(encoding="utf-8")
 
@@ -461,11 +461,11 @@ def test_update_command_has_no_interactive_prompt(monkeypatch, tmp_path: Path):
         raise AssertionError("input() ne doit jamais être appelé par update")
     monkeypatch.setattr("builtins.input", forbidden_input)
     monkeypatch.setattr(module, "ensure_credentials", lambda root: None)
-    monkeypatch.setattr(module, "_prepare_update_corpus", lambda root, identifier: ("demo", None))
-    monkeypatch.setattr(module, "remote_update_config", lambda root, debate_id, scope, run_dir: run_dir / "config.json")
+    monkeypatch.setattr(module, "_prepare_update_corpus", lambda root, identifier, archive_selector=None: ("demo", None, root / "corpus" / "demo", None))
+    monkeypatch.setattr(module, "remote_update_config", lambda root, debate_id, scope, run_dir, corpus_root=None: run_dir / "config.json")
     plan = {
         "counts": {"update": 1},
-        "operations": {"blocked": []},
+        "operations": {"update": [{"page_id": "A1"}], "manual_review": [], "blocked": []},
         "plan_sha256": "b" * 64,
     }
     calls = []
@@ -494,3 +494,204 @@ def test_update_yes_remains_a_hidden_compatibility_option():
     assert args.command == "update"
     assert args.yes is True
     assert "--yes" not in parser.format_help()
+
+
+def _write_debate_archive(path: Path, debate_id: str, payload: str) -> None:
+    with zipfile.ZipFile(path, "w") as bundle:
+        bundle.writestr("manifest.json", json.dumps({"debate_id": debate_id}))
+        bundle.writestr("payload.txt", payload)
+
+
+def test_update_prefers_installed_corpus_over_homonymous_archive(tmp_path: Path):
+    installed = tmp_path / "corpus" / "demo"
+    installed.mkdir(parents=True)
+    (installed / "manifest.json").write_text(json.dumps({"debate_id": "demo"}), encoding="utf-8")
+    (installed / "payload.txt").write_text("installed", encoding="utf-8")
+    incoming = tmp_path / "incoming"
+    incoming.mkdir()
+    _write_debate_archive(incoming / "demo.zip", "demo", "archive")
+
+    debate_id, archive, corpus_root, staging_root = module._prepare_update_corpus(tmp_path, "demo")
+    assert debate_id == "demo"
+    assert archive is None
+    assert corpus_root == installed
+    assert staging_root is None
+    assert (installed / "payload.txt").read_text(encoding="utf-8") == "installed"
+
+
+def test_explicit_update_archive_is_staged_without_replacing_active_corpus(tmp_path: Path):
+    installed = tmp_path / "corpus" / "demo"
+    installed.mkdir(parents=True)
+    (installed / "manifest.json").write_text(json.dumps({"debate_id": "demo"}), encoding="utf-8")
+    (installed / "payload.txt").write_text("installed", encoding="utf-8")
+    incoming = tmp_path / "incoming"
+    incoming.mkdir()
+    _write_debate_archive(incoming / "revised.zip", "demo", "revised")
+
+    debate_id, archive, corpus_root, staging_root = module._prepare_update_corpus(tmp_path, None, "revised")
+    assert debate_id == "demo"
+    assert archive == incoming / "revised.zip"
+    assert staging_root is not None and staging_root.is_dir()
+    assert (corpus_root / "payload.txt").read_text(encoding="utf-8") == "revised"
+    assert (installed / "payload.txt").read_text(encoding="utf-8") == "installed"
+
+
+def test_update_dry_run_with_archive_does_not_replace_active_corpus(monkeypatch, tmp_path: Path):
+    installed = tmp_path / "corpus" / "demo"
+    installed.mkdir(parents=True)
+    (installed / "manifest.json").write_text(json.dumps({"debate_id": "demo"}), encoding="utf-8")
+    (installed / "payload.txt").write_text("installed", encoding="utf-8")
+    incoming = tmp_path / "incoming"
+    incoming.mkdir()
+    _write_debate_archive(incoming / "revised.zip", "demo", "revised")
+    monkeypatch.setattr(module, "ensure_credentials", lambda root: None)
+    monkeypatch.setattr(module, "remote_update_config", lambda root, debate_id, scope, run_dir, corpus_root=None: run_dir / "config.json")
+
+    operations = {name: [] for name in ("create", "update", "move", "redirect", "delete", "skip", "manual_review", "blocked")}
+    operations["update"] = [{"page_id": "A1"}]
+    plan = {"counts": {name: len(rows) for name, rows in operations.items()}, "operations": operations, "plan_sha256": "a" * 64}
+
+    def fake_run(command, *, cwd, capture=False, check=True, env=None):
+        class Result:
+            stdout = ""
+            stderr = ""
+            returncode = 0
+        output = Path(cwd) / command[command.index("--plan-output") + 1]
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(plan), encoding="utf-8")
+        return Result()
+
+    monkeypatch.setattr(module, "run", fake_run)
+    result = module.update_debate(tmp_path, None, "all", False, False, False, True, True, "revised")
+    assert result["status"] == "dry_run"
+    assert (installed / "payload.txt").read_text(encoding="utf-8") == "installed"
+    staging = tmp_path / ".state" / "update-staging"
+    assert not staging.exists() or not any(staging.iterdir())
+
+
+def test_manual_review_blocks_manager_before_execute(monkeypatch, tmp_path: Path):
+    corpus = tmp_path / "corpus" / "demo"
+    corpus.mkdir(parents=True)
+    (corpus / "manifest.json").write_text(json.dumps({"debate_id": "demo"}), encoding="utf-8")
+    monkeypatch.setattr(module, "ensure_credentials", lambda root: None)
+    monkeypatch.setattr(module, "remote_update_config", lambda root, debate_id, scope, run_dir, corpus_root=None: run_dir / "config.json")
+    operations = {name: [] for name in ("create", "update", "move", "redirect", "delete", "skip", "manual_review", "blocked")}
+    operations["manual_review"] = [{"page_id": "A1"}]
+    plan = {"counts": {name: len(rows) for name, rows in operations.items()}, "operations": operations, "plan_sha256": "c" * 64}
+    modes = []
+
+    def fake_run(command, *, cwd, capture=False, check=True, env=None):
+        mode = command[command.index("--mode") + 1]
+        modes.append(mode)
+        if mode == "execute":
+            raise AssertionError("l’exécuteur ne doit pas être appelé")
+        class Result:
+            stdout = ""
+            stderr = ""
+            returncode = 3
+        output = Path(cwd) / command[command.index("--plan-output") + 1]
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(plan), encoding="utf-8")
+        return Result()
+
+    monkeypatch.setattr(module, "run", fake_run)
+    try:
+        module.update_debate(tmp_path, "demo", "all", False, False, False, False, True)
+    except module.ManagementError as exc:
+        assert "révision manuelle" in str(exc)
+    else:
+        raise AssertionError("manual_review n’a pas bloqué la reprise")
+    assert modes == ["plan"]
+
+
+def test_all_skip_returns_no_changes_after_signed_attestation(monkeypatch, tmp_path: Path):
+    corpus = tmp_path / "corpus" / "demo"
+    corpus.mkdir(parents=True)
+    (corpus / "manifest.json").write_text(json.dumps({"debate_id": "demo"}), encoding="utf-8")
+    monkeypatch.setattr(module, "ensure_credentials", lambda root: None)
+    monkeypatch.setattr(module, "remote_update_config", lambda root, debate_id, scope, run_dir, corpus_root=None: run_dir / "config.json")
+    operations = {name: [] for name in ("create", "update", "move", "redirect", "delete", "skip", "manual_review", "blocked")}
+    operations["skip"] = [{"page_id": "A1"}]
+    plan = {"counts": {name: len(rows) for name, rows in operations.items()}, "operations": operations, "plan_sha256": "d" * 64}
+    modes = []
+
+    def fake_run(command, *, cwd, capture=False, check=True, env=None):
+        mode = command[command.index("--mode") + 1]
+        modes.append(mode)
+        class Result:
+            stdout = '{"verified_unchanged": 1}\n' if mode == "attest" else ""
+            stderr = ""
+            returncode = 0
+        if mode == "plan":
+            output = Path(cwd) / command[command.index("--plan-output") + 1]
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_text(json.dumps(plan), encoding="utf-8")
+        return Result()
+
+    monkeypatch.setattr(module, "run", fake_run)
+    result = module.update_debate(tmp_path, "demo", "all", False, False, False, False, True)
+    assert result["status"] == "no_changes"
+    assert result["counts"] == {"verified_unchanged": 1}
+    assert modes == ["plan", "attest"]
+
+
+def test_update_identifier_never_falls_back_to_incoming_archive(tmp_path: Path):
+    incoming = tmp_path / "incoming"
+    incoming.mkdir()
+    _write_debate_archive(incoming / "demo.zip", "demo", "archive")
+    try:
+        module._prepare_update_corpus(tmp_path, "demo")
+    except module.ManagementError as exc:
+        assert "--archive" in str(exc)
+    else:
+        raise AssertionError("une archive a été sélectionnée sans --archive")
+
+
+def test_update_without_installed_corpus_requires_archive_option(tmp_path: Path):
+    incoming = tmp_path / "incoming"
+    incoming.mkdir()
+    _write_debate_archive(incoming / "demo.zip", "demo", "archive")
+    try:
+        module._prepare_update_corpus(tmp_path, None)
+    except module.ManagementError as exc:
+        assert "--archive" in str(exc)
+    else:
+        raise AssertionError("l’archive unique a été sélectionnée implicitement")
+
+
+def test_update_without_identifier_prefers_single_installed_corpus_even_with_incoming_zip(tmp_path: Path):
+    installed = tmp_path / "corpus" / "demo"
+    installed.mkdir(parents=True)
+    (installed / "manifest.json").write_text(json.dumps({"debate_id": "demo"}), encoding="utf-8")
+    incoming = tmp_path / "incoming"
+    incoming.mkdir()
+    _write_debate_archive(incoming / "revised.zip", "demo", "archive")
+    debate_id, archive, corpus_root, staging_root = module._prepare_update_corpus(tmp_path, None)
+    assert (debate_id, archive, corpus_root, staging_root) == ("demo", None, installed, None)
+
+
+def test_scope_without_selected_mutation_returns_no_changes_in_scope(monkeypatch, tmp_path: Path):
+    corpus = tmp_path / "corpus" / "demo"
+    corpus.mkdir(parents=True)
+    (corpus / "manifest.json").write_text(json.dumps({"debate_id": "demo"}), encoding="utf-8")
+    monkeypatch.setattr(module, "ensure_credentials", lambda root: None)
+    monkeypatch.setattr(module, "remote_update_config", lambda root, debate_id, scope, run_dir, corpus_root=None: run_dir / "config.json")
+    operations = {name: [] for name in ("create", "update", "move", "redirect", "delete", "skip", "manual_review", "blocked")}
+    operations["update"] = [{"page_id": "A1"}]
+    plan = {"counts": {name: len(rows) for name, rows in operations.items()}, "operations": operations, "plan_sha256": "e" * 64}
+    modes = []
+    def fake_run(command, *, cwd, capture=False, check=True, env=None):
+        mode = command[command.index("--mode") + 1]
+        modes.append(mode)
+        class Result:
+            stdout = ""
+            stderr = ""
+            returncode = 0
+        output = Path(cwd) / command[command.index("--plan-output") + 1]
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(plan), encoding="utf-8")
+        return Result()
+    monkeypatch.setattr(module, "run", fake_run)
+    result = module.update_debate(tmp_path, "demo", "all", False, False, True, False, True)
+    assert result["status"] == "no_changes_in_scope"
+    assert modes == ["plan"]
