@@ -2,18 +2,18 @@
 
 **Norme active :** 1.2.23  
 **Validateur :** 0.4.25  
-**Kit :** 2.2.9
+**Kit :** 2.2.10
 
 # Source incorporée : `COMPATIBILITY.json`
 
-**SHA-256 :** `28a942c77a143c16c7ad33ac883009208356daa432c5a71e624aa81b4fce9c6d`
+**SHA-256 :** `dbb5da82afc3bdaed89363955fdd5cfa70b4a6c59db968d11176a7c0bf9b70b2`
 
 ```json
 {
   "package": "wikidebia-normes",
   "normative_revision": "1.2.23",
   "recommended_validator_version": "0.4.25",
-  "recommended_kit_version": "2.2.9",
+  "recommended_kit_version": "2.2.10",
   "migration_required_for_existing_packages": true,
   "compatible_prior_normative_revisions": [
     "1.1.0",
@@ -58,7 +58,7 @@
 
 # Source incorporée : `README.md`
 
-**SHA-256 :** `3e49a2fb7eb258e31bc8084631b227a03bd6f3439ec049bbb613239735eeb504`
+**SHA-256 :** `7b94ffc6d32b2d3a35688c859bc8bdcfac9d04777514a36250e7d21c5d0a1ac0`
 
 ```
 # Wikidéb’IA — Normes 1.2.23
@@ -67,30 +67,30 @@ Source normative active générique pour la production et la publication frança
 
 - norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md` ;
 - validateur recommandé : 0.4.25 ;
-- kit recommandé : 2.2.9 ;
+- kit recommandé : 2.2.10 ;
 - les corpus 1.2.22 restent compatibles sans activation rétroactive.
 ```
 
 # Source incorporée : `VERSIONS.json`
 
-**SHA-256 :** `85797898e68dadbf19f5bc84a8ebb12f72df7297da6db77be9ad444220a6299c`
+**SHA-256 :** `65ddabb90c33300b14d31bb38adf0eaedd4b64f7d350ab471eb4fad422c2a698`
 
 ```json
 {
   "norm": "1.2.23",
   "validator": "0.4.25",
-  "kit": "2.2.9"
+  "kit": "2.2.10"
 }
 ```
 
 # Source incorporée : `docs/ARCHITECTURE_VALIDATEUR.md`
 
-**SHA-256 :** `dc3bf5f64989ae6e08950783f25004accb3f71b08fb3b7092e2cee18aa80d7bd`
+**SHA-256 :** `b4834d519d0abdb65b4cdbb58d5cb7d0c6e4f6d8b815ffdb75a2d6b275dc7069`
 
 ```
 # Architecture normative et validation
 
-Le paquet normatif 1.2.23 recommande le validateur 0.4.25 et le kit 2.2.9. Les contrôles historiques restent actifs. La nouvelle révision ajoute une validation de la forme du sujet, une revue d’attribution documentaire applicable aux pages Débat et Argument, et des garanties de conditionnement du ZIP unique.
+Le paquet normatif 1.2.23 recommande le validateur 0.4.25 et le kit 2.2.10. Les contrôles historiques restent actifs. La nouvelle révision ajoute une validation de la forme du sujet, une revue d’attribution documentaire applicable aux pages Débat et Argument, et des garanties de conditionnement du ZIP unique.
 ```
 
 # Source incorporée : `docs/AUDIT_COMPLETUDE_1.2.10.md`
@@ -305,7 +305,7 @@ Le paquet normatif 1.2.23 recommande le validateur 0.4.25 et le kit 2.2.9. Les c
 
 # Source incorporée : `docs/AUDIT_COMPLETUDE_1.2.23.md`
 
-**SHA-256 :** `aa5304169961464253d650827b9cb9578835d330dcf17c835e4cf8078b39b538`
+**SHA-256 :** `db7840a7b7a63d1ea68d33936b58c007434d00a68e753a4f876c5ab317c5f74e`
 
 ```
 # Audit de complétude 1.2.23
@@ -314,7 +314,7 @@ Le paquet normatif 1.2.23 recommande le validateur 0.4.25 et le kit 2.2.9. Les c
 - décisions du 2 août 2026 tracées ;
 - exigences TTL-015, TTL-016, REF-033, PUB-036, IMP-019 et VAL-031 ajoutées ;
 - profils, structures, workflow, catalogue et matrice alignés ;
-- validateur recommandé 0.4.25 et kit recommandé 2.2.9.
+- validateur recommandé 0.4.25 et kit recommandé 2.2.10.
 ```
 
 # Source incorporée : `docs/AUDIT_COMPLETUDE_1.2.8.md`

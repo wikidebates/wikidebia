@@ -4,5 +4,5 @@ Source normative active générique pour la production et la publication frança
 
 - norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md` ;
 - validateur recommandé : 0.4.25 ;
-- kit recommandé : 2.2.9 ;
+- kit recommandé : 2.2.10 ;
 - les corpus 1.2.22 restent compatibles sans activation rétroactive.

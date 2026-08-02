@@ -1,8 +1,10 @@
-Wikidéb’IA Kit 2.2.9
+Wikidéb’IA Kit 2.2.10
 Norme : 1.2.23
 Validateur requis : 0.4.25
-Tests pytest : 92 réussis, 0 échec
+Tests pytest : 94 réussis, 0 échec
 Scénarios obligatoires de reprise distante : 15/15, plus inventaire distant signé
+Reprise de débat : non interactive, empreinte du plan signée transmise automatiquement
+Compatibilité CLI : --yes reste accepté comme option silencieuse
 Résumé de modification par défaut : Corrections
 Mise à niveau : bundle direct et archive de livraison enveloppante acceptés depuis un seul ZIP
 Compatibilité : protection de concurrence, reprise idempotente, déplacements et suppressions sûres conservés

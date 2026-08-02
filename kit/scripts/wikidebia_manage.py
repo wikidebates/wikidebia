@@ -17,7 +17,7 @@ from typing import Any, Iterable
 
 NORM_VERSION = "1.2.23"
 VALIDATOR_VERSION = "0.4.25"
-KIT_VERSION = "2.2.9"
+KIT_VERSION = "2.2.10"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",
@@ -1113,10 +1113,10 @@ def update_debate(root: Path, debate_identifier: str | None, scope: str, assume_
         return {"status": "dry_run", "plan": str(plan_path.relative_to(root)), "plan_sha256": plan["plan_sha256"], "counts": plan.get("counts") or {}}
     if (plan.get("operations") or {}).get("blocked"):
         raise ManagementError(f"Le plan contient {len(plan['operations']['blocked'])} opération(s) bloquée(s); voir {plan_path.relative_to(root)}")
-    if not assume_yes:
-        answer = input(f"Confirmer le plan {plan['plan_sha256']} pour la reprise de {debate_id} ? [o/N] ").strip().casefold()
-        if answer not in {"o", "oui", "y", "yes"}:
-            raise ManagementError("Mise à jour annulée")
+    # The signed plan hash is transmitted directly to the executor.  The legacy
+    # --yes option remains accepted as a no-op, but update is deliberately
+    # non-interactive so unattended and ordinary runs behave identically.
+    _ = assume_yes
     execute = run(remote_update_command(root, config, "--mode", "execute", "--plan-input", str(plan_path.relative_to(root)), "--confirm-plan-sha256", str(plan["plan_sha256"]), *flags), cwd=root, capture=True)
     lines = (execute.stdout or "").strip().splitlines()
     counts = json.loads(lines[-1]) if lines else {}
@@ -1203,7 +1203,7 @@ def build_parser() -> argparse.ArgumentParser:
     update = sub.add_parser("update", help="Reprendre un débat déjà publié avec créations, mises à jour et retraits contrôlés")
     update.add_argument("debate_identifier", nargs="?", help="Identifiant du débat installé ou nom du ZIP sans .zip")
     update.add_argument("--scope", choices=("all", "fr", "en"), default="all")
-    update.add_argument("--yes", action="store_true", help="Confirmer automatiquement l’empreinte du plan")
+    update.add_argument("--yes", action="store_true", help=argparse.SUPPRESS)
     update.add_argument("--no-delete", action="store_true", help="Exécuter la reprise sans suppressions finales")
     update.add_argument("--only-delete", action="store_true", help="N’exécuter que les retraits sûrs et redirections de fusion")
     update.add_argument("--dry-run", action="store_true", help="Produire seulement le plan signé")

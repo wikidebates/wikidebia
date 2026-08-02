@@ -4,33 +4,33 @@
   "versions": {
     "norm": "1.2.23",
     "validator": "0.4.25",
-    "kit": "2.2.9"
+    "kit": "2.2.10"
   },
   "artifacts": [
     {
       "path": "wikidebia-normes.zip",
-      "size_bytes": 750207,
-      "sha256": "c3270a1d820f8b58ea7943662731cc098ee1efcb6dd0538f7c4a388721d0f00d"
+      "size_bytes": 750202,
+      "sha256": "04db4b1c67487b9f4546b909357654c7be8db52795cb9416b2e6ab26076a4dc1"
     },
     {
       "path": "wikidebia-validator.zip",
-      "size_bytes": 952072,
-      "sha256": "58084f61bff2de04e6816ec26034361baa87e32fa7241b09065d07194f151f90"
+      "size_bytes": 952073,
+      "sha256": "52a6d4dbd735f2792fd75f05eaa9299edb48248ee26e1e5042f4f0a0bc36c84a"
     },
     {
       "path": "wikidebia-kit.zip",
-      "size_bytes": 91888,
-      "sha256": "ef1dafe0a243583688741e0a04542e63f5cda17f8bbc66272292c2e526f16317"
+      "size_bytes": 93131,
+      "sha256": "62fdf3ba5bddfb3064b64ae9becc1fa0d3a5d3a275bab2f5f248da404c5ed99d"
     },
     {
       "path": "WIKIDEBIA_NORMES_ACTIVES.md",
-      "size_bytes": 2252621,
-      "sha256": "a380f002aa74ff7a3fa8b33b130776ed343c3b9f55b979d4e990c8c3634edd7f"
+      "size_bytes": 2252627,
+      "sha256": "16d55e3cf0912b4a87ef6fed9d507b857cbf154dcf9d1f885eed6b4253efcc28"
     },
     {
       "path": "WIKIDEBIA_VALIDATEUR_ACTIF.md",
-      "size_bytes": 2966671,
-      "sha256": "b7df5bf1f997b5d68602206c6b0fc1ba28fd0e3049bd6b1bb0b07c3d9afb02c8"
+      "size_bytes": 2966674,
+      "sha256": "1d34a3092b93149a2ba7f50c4892b90fd46d4d845769c302dff46a782239572f"
     }
   ]
 }

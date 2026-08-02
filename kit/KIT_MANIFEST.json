@@ -1,6 +1,6 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.2.9",
+  "version": "2.2.10",
   "validator_version": "0.4.25",
   "scope": [
     "publish_archive",
@@ -118,7 +118,8 @@
     "explicit_merge_and_rename_migrations",
     "single_complete_bundle_component_upgrade",
     "concise_remote_edit_summary",
-    "nested_single_delivery_upgrade"
+    "nested_single_delivery_upgrade",
+    "noninteractive_remote_debate_update"
   ],
   "normative_revision": "1.2.23",
   "stable_archive_name": "wikidebia-kit.zip",
@@ -128,6 +129,7 @@
     "graph_placement_traceability_noncollision",
     "displayed_title_noncopy_ratio",
     "single_delivery_zip_legacy_and_current_manager",
-    "argument_reference_metadata_nonredundancy"
+    "argument_reference_metadata_nonredundancy",
+    "remote_update_never_prompts"
   ]
 }

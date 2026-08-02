@@ -33,8 +33,8 @@
     },
     {
       "path": "VERSIONS.json",
-      "size_bytes": 66,
-      "sha256": "85797898e68dadbf19f5bc84a8ebb12f72df7297da6db77be9ad444220a6299c"
+      "size_bytes": 67,
+      "sha256": "65ddabb90c33300b14d31bb38adf0eaedd4b64f7d350ab471eb4fad422c2a698"
     },
     {
       "path": "docs/ARCHITECTURE.md",
@@ -1303,8 +1303,8 @@
     },
     {
       "path": "tests/test_versions_file.py",
-      "size_bytes": 1556,
-      "sha256": "a3e30b749a36062797d8feab2c8f26fd9ae451b1e3c5b8c41cad7d5f96f045b3"
+      "size_bytes": 1557,
+      "sha256": "132657cc969d6a7545ff30c4143ac16a0afbc82cd43741847f53efed85cd363a"
     },
     {
       "path": "tests/test_wikicode.py",

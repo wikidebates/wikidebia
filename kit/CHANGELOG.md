@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.10 — 2 août 2026
+
+- suppression de la confirmation interactive de `./wikidebia update IDENTIFIANT` ;
+- transmission automatique de l’empreinte du plan signé au moteur d’exécution ;
+- conservation de `--yes` comme option de compatibilité silencieuse ;
+- maintien intégral des contrôles de signature, de révision distante, de droits, de modifications humaines et de suppression sûre ;
+- aucune modification de la norme 1.2.23 ni du validateur 0.4.25.
+
 ## 2.2.9 — 2 août 2026
 
 - alignement sur la norme 1.2.23 et le validateur 0.4.25 ;

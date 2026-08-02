@@ -1,4 +1,4 @@
-# Guide de publication et de reprise Wikidéb’IA 2.2.9
+# Guide de publication et de reprise Wikidéb’IA 2.2.10
 
 ## Nouveau débat
 
@@ -11,3 +11,7 @@ Installer le corpus puis lancer `./wikidebia update <debate_id> --dry-run`, exam
 ## Mise à niveau des composants
 
 Un seul fichier suffit. Vider `updates/`, y copier soit le bundle `WIKIDEBIA_SOURCES_COMPLETES_*.zip`, soit la livraison complète `WIKIDEBIA_LIVRAISON_*.zip`, puis lancer `./wikidebia upgrade`. Les livraisons complètes contiennent les trois composants à leur racine pour les anciens gestionnaires ; le gestionnaire courant sait aussi les retrouver dans un bundle interne.
+
+## Reprise non interactive
+
+`./wikidebia update IDENTIFIANT` ne demande aucune confirmation. Le plan reste signé et son empreinte est transmise automatiquement au moteur d’exécution.

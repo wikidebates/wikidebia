@@ -2,7 +2,7 @@
 
 **Norme active :** 1.2.23  
 **Validateur :** 0.4.25  
-**Kit :** 2.2.9
+**Kit :** 2.2.10
 
 # Source incorporée : `CHANGELOG.md`
 
@@ -256,13 +256,13 @@ La source active unique embarquée est `normative_reference/01_normes/WIKIDEBIA_
 
 # Source incorporée : `VERSIONS.json`
 
-**SHA-256 :** `85797898e68dadbf19f5bc84a8ebb12f72df7297da6db77be9ad444220a6299c`
+**SHA-256 :** `65ddabb90c33300b14d31bb38adf0eaedd4b64f7d350ab471eb4fad422c2a698`
 
 ```json
 {
   "norm": "1.2.23",
   "validator": "0.4.25",
-  "kit": "2.2.9"
+  "kit": "2.2.10"
 }
 ```
 
@@ -52387,7 +52387,7 @@ def test_active_rule_sets_include_current_revision():
 
 # Source incorporée : `tests/test_versions_file.py`
 
-**SHA-256 :** `a3e30b749a36062797d8feab2c8f26fd9ae451b1e3c5b8c41cad7d5f96f045b3`
+**SHA-256 :** `132657cc969d6a7545ff30c4143ac16a0afbc82cd43741847f53efed85cd363a`
 
 ```python
 from __future__ import annotations
@@ -52402,7 +52402,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_versions_file_has_only_the_three_functional_versions():
     versions = json.loads((ROOT / "VERSIONS.json").read_text(encoding="utf-8"))
-    assert versions == {"norm": "1.2.23", "validator": "0.4.25", "kit": "2.2.9"}
+    assert versions == {"norm": "1.2.23", "validator": "0.4.25", "kit": "2.2.10"}
 
 
 def test_versions_file_matches_validator_metadata():

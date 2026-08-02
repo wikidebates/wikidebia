@@ -16,7 +16,7 @@ spec.loader.exec_module(module)
 
 
 def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = False) -> None:
-    versions = {"norm": "1.2.20", "validator": "0.4.25", "kit": "2.2.9"}
+    versions = {"norm": "1.2.20", "validator": "0.4.25", "kit": "2.2.10"}
     payloads = {
         "VERSIONS.json": (json.dumps(versions, ensure_ascii=False, indent=2) + "\n").encode("utf-8"),
         "README.md": f"# {artifact}\n".encode("utf-8"),
@@ -25,7 +25,7 @@ def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = F
         {"path": name, "size_bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
         for name, raw in sorted(payloads.items())
     ]
-    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.25", "wikidebia-kit": "2.2.9"}[artifact]
+    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.25", "wikidebia-kit": "2.2.10"}[artifact]
     manifest = {
         "artifact": artifact,
         "version": version,
@@ -59,7 +59,7 @@ def test_component_inspector_accepts_and_verifies_optional_receipt(tmp_path: Pat
     _write_component_zip(archive, "wikidebia-kit", include_receipt=True)
     metadata = module.inspect_component_zip(archive)
     assert metadata["artifact"] == "wikidebia-kit"
-    assert metadata["versions"]["kit"] == "2.2.9"
+    assert metadata["versions"]["kit"] == "2.2.10"
 
 
 def test_single_complete_bundle_is_collected_from_updates(tmp_path: Path):
@@ -454,3 +454,43 @@ def test_nested_complete_delivery_is_collected_from_one_zip(tmp_path: Path):
     assert set(components)==set(module.COMPONENTS)
     assert sources==[outer]
     assert workspace.is_dir()
+
+
+def test_update_command_has_no_interactive_prompt(monkeypatch, tmp_path: Path):
+    def forbidden_input(*args, **kwargs):
+        raise AssertionError("input() ne doit jamais être appelé par update")
+    monkeypatch.setattr("builtins.input", forbidden_input)
+    monkeypatch.setattr(module, "ensure_credentials", lambda root: None)
+    monkeypatch.setattr(module, "_prepare_update_corpus", lambda root, identifier: ("demo", None))
+    monkeypatch.setattr(module, "remote_update_config", lambda root, debate_id, scope, run_dir: run_dir / "config.json")
+    plan = {
+        "counts": {"update": 1},
+        "operations": {"blocked": []},
+        "plan_sha256": "b" * 64,
+    }
+    calls = []
+    def fake_run(command, *, cwd, capture=False, check=True, env=None):
+        calls.append(command)
+        class Result:
+            stdout = '{"updated":1}\n'
+            stderr = ""
+            returncode = 0
+        if "--mode" in command and command[command.index("--mode") + 1] == "plan":
+            output = Path(cwd) / command[command.index("--plan-output") + 1]
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_text(json.dumps(plan), encoding="utf-8")
+        return Result()
+    monkeypatch.setattr(module, "run", fake_run)
+    result = module.update_debate(tmp_path, "demo", "all", False, False, False, False, True)
+    assert result["status"] == "executed"
+    assert result["counts"] == {"updated": 1}
+    execute = next(call for call in calls if "--mode" in call and call[call.index("--mode") + 1] == "execute")
+    assert execute[execute.index("--confirm-plan-sha256") + 1] == "b" * 64
+
+
+def test_update_yes_remains_a_hidden_compatibility_option():
+    parser = module.build_parser()
+    args = parser.parse_args(["update", "demo", "--yes"])
+    assert args.command == "update"
+    assert args.yes is True
+    assert "--yes" not in parser.format_help()
