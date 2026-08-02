@@ -36,6 +36,14 @@
 5. Aucun staging interlangue tardif n’est utilisé pour les paquets 1.2.x ; la cible anglaise peut être créée ensuite.
 6. Le lien interlangue vise toujours le titre canonique anglais, jamais le titre affiché.
 
+### Décision du 1er août 2026 — concision effective des titres affichés
+
+1. Le titre affiché ne doit pas servir de seconde copie du nom de page.
+2. La copie exacte du titre canonique est exceptionnelle, justifiée page par page et langue par langue.
+3. Un corpus ne peut conserver plus de 10 % de titres affichés identiques aux titres canoniques dans une langue.
+4. Le registre individuel atteste la recherche de concision et motive chaque identité conservée.
+5. Les titres restent des propositions complètes et intelligibles ; la concision ne justifie jamais un groupe nominal elliptique.
+
 ## 4. Graphe
 
 1. Le modèle logique est un graphe orienté acyclique composé de nœuds, relations et occurrences.

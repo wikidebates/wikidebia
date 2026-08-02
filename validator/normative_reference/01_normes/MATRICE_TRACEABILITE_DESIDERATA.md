@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.18
+- **Révision :** 1.2.22
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -313,5 +313,6 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 | Conserver les protections précédentes | DFR-046, MW-026, REF-031, IMP-018 | non-régression complète | suites validateur et kit |
 
 | Titres affichés propositionnels et intelligibles | TTL-004, TTL-013, DFR-028, EDT-012, VAL-028 | Norme 1.2.19, profil de rendu, registre de revue et WDV-EDT-021 |
+| Concision effective et absence de copie mécanique des titres affichés | TTL-014, EDT-012, VAL-030 | Norme 1.2.22, registre individuel, WDV-EDT-001 et WDV-EDT-012 |
 
 | Placement sémantique des arguments principaux et subordonnés | GR-048, GR-049, GR-050, VAL-029 | Norme 1.2.21, workflow, profil, registre de placement et WDV-EDT-022 |

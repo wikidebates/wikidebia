@@ -946,3 +946,7 @@ Les listes `arguments-pour` et `arguments-contre` ne sont ni un inventaire de to
 Une objection qui ne prend sens qu’en visant une preuve déterminée est rendue sous cette preuve. Un exemple, une étude, une théorie scientifique, une doctrine ou un cas d’application est rendu sous l’argument général qu’il établit, conteste ou précise, sauf attestation explicite qu’il constitue lui-même une réponse autonome au débat.
 
 Le fichier `graph_placement_review_path` couvre chaque occurrence active. Il enregistre la cible sémantique, la fonction déclarée, la décision finale et une justification brève. Les arguments principaux possèdent en outre six attestations : réponse directe au débat, autonomie, tête de famille, absence de parent général préférable, absence de ciblage principal d’un argument déterminé et absence de simple fonction d’exemple ou de spécialisation.
+
+### Renforcement 1.2.22 — concision des titres affichés
+
+Pour chaque langue, le registre individuel contient `displayed_title_concision_reviewed_fr` ou `displayed_title_concision_reviewed_en` à `true`. Lorsqu’un titre affiché est exactement identique au titre canonique, le champ `displayed_title_identity_justification_fr` ou `displayed_title_identity_justification_en` fournit une justification spécifique, substantielle et non générique. Le taux global d’identités exactes ne dépasse pas 10 % des arguments actifs par langue. La concision ne dispense jamais des exigences de proposition complète, de prédicat explicite et d’intelligibilité autonome.

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.24 — 1er août 2026
+
+- alignement sur la norme 1.2.22 ;
+- réactivation bloquante de `WDV-EDT-001` lorsque plus de 10 % des titres affichés copient exactement les titres canoniques dans une langue ;
+- attestations de concision obligatoires dans le registre individuel ;
+- justification spécifique obligatoire pour chaque identité exacte conservée ;
+- maintien de `WDV-EDT-021`, `WDV-EDT-022` et de la compatibilité 1.1.0–1.2.21.
+
 ## 0.4.23 — 1er août 2026
 
 - alignement sur la norme 1.2.21 ;

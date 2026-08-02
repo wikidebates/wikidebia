@@ -1,7 +1,5 @@
-# Kit Wikidéb’IA 2.2.7
+# Wikidéb’IA — Kit 2.2.8
 
-Kit générique de publication et de reprise aligné sur la norme 1.2.21 et le validateur 0.4.23.
+Kit générique de publication et de reprise, aligné sur la norme 1.2.22 et le validateur 0.4.24. Avant toute écriture, le validateur contrôle désormais que les titres affichés remplissent une fonction de concision réelle et ne copient pas mécaniquement les noms de pages.
 
-Pour une mise à niveau, déposer de préférence le seul bundle complet dans `updates/`, puis lancer `./wikidebia upgrade`. Le mode trois ZIP reste accepté pour compatibilité.
-
-Les fichiers `configs/creation_*_<norme>.example.json` sont des exemples pour la norme de corpus indiquée dans leur nom. Ils utilisent toujours le kit et le validateur courants et vérifient la norme du corpus avec `manifest_requirements`.
+Le bundle complet unique, la reprise distante sûre, les plans signés, la protection des modifications humaines et les suppressions contrôlées sont conservés.

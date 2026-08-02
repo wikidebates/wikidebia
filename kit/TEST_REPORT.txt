@@ -1,7 +1,8 @@
-Wikidéb’IA Kit 2.2.7
-Norme : 1.2.21
-Validateur requis : 0.4.23
+Wikidéb’IA Kit 2.2.8
+Norme : 1.2.22
+Validateur requis : 0.4.24
 Tests pytest : 89 réussis, 0 échec
 Scénarios obligatoires de reprise distante : 15/15, plus inventaire distant signé
-Test nouveau : tous les exemples versionnés sont valides contre le schéma actif et exigent la norme indiquée dans leur nom
+Test de non-régression : tous les exemples versionnés restent valides contre le schéma actif et exigent la norme indiquée dans leur nom
+Nouveau profil : exemples de création 1.2.22 présents
 Résultat : RÉUSSI

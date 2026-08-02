@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.8 — 1er août 2026
+
+- alignement sur la norme 1.2.22 et le validateur 0.4.24 ;
+- activation du contrôle de concision effective des titres affichés avant publication et reprise ;
+- ajout des exemples de création 1.2.22 ;
+- conservation intégrale des protections de publication, reprise, déplacement et suppression sûre ;
+- aucune modification des opérations distantes hors validation préalable.
+
 ## 2.2.7 — 1er août 2026
 
 - alignement sur la norme 1.2.21 et le validateur 0.4.23 ;

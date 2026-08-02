@@ -3,11 +3,66 @@
   "$id": "remote_migrations.schema.json",
   "title": "Wikidéb'IA — Migrations de titres et fusions",
   "type": "object",
-  "required": ["version", "debate_id", "entries"],
+  "required": [
+    "version",
+    "debate_id",
+    "entries"
+  ],
   "properties": {
-    "version": {"const": "1.0"},
-    "debate_id": {"type": "string", "minLength": 1},
-    "entries": {"type": "array", "items": {"type": "object", "required": ["language", "old_page_id", "kind"], "properties": {"language": {"enum": ["fr", "en"]}, "old_page_id": {"type": "string"}, "kind": {"enum": ["rename", "merge", "replace", "delete"]}, "new_page_id": {"type": "string"}, "target_page_id": {"type": "string"}, "policy": {"enum": ["move", "redirect", "delete"]}, "reason": {"type": "string"}}, "additionalProperties": false}}
+    "version": {
+      "const": "1.0"
+    },
+    "debate_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "language",
+          "old_page_id",
+          "kind"
+        ],
+        "properties": {
+          "language": {
+            "enum": [
+              "fr",
+              "en"
+            ]
+          },
+          "old_page_id": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "rename",
+              "merge",
+              "replace",
+              "delete"
+            ]
+          },
+          "new_page_id": {
+            "type": "string"
+          },
+          "target_page_id": {
+            "type": "string"
+          },
+          "policy": {
+            "enum": [
+              "move",
+              "redirect",
+              "delete"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
   },
   "additionalProperties": false
 }

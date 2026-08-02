@@ -1,4 +1,4 @@
-# Catalogue des codes de contrôle — 0.4.23
+# Catalogue des codes de contrôle — 0.4.24
 
 | Code | Signification |
 |---|---|

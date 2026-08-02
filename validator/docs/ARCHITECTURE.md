@@ -1,7 +1,5 @@
-# Architecture du validateur 0.4.23
+# Architecture du validateur 0.4.24
 
 Le validateur sépare schémas, cohérence, graphe, lots, sources, fichiers, wikicode, bilinguisme, éditorial et workflow. La commande `validate` demeure strictement en lecture seule ; `recalc --write` reste la seule commande d’écriture locale.
 
-Sous la norme 1.2.21, le module éditorial charge le registre déclaré par `editorial_controls.graph_placement_review_path`. Il contrôle la couverture exacte des occurrences actives, la concordance des identifiants et profondeurs, la cible sémantique, la fonction `main_argument` / `justification` / `objection`, ainsi que les attestations propres aux niveaux 1 et aux niveaux subordonnés.
-
-La qualité réelle du classement demeure une décision humaine, mais elle n’est plus implicite : les critères et décisions sont enregistrés et les incohérences déclaratives sont bloquantes par `WDV-EDT-022`. Tous les contrôles 0.4.22 sont conservés.
+Sous la norme 1.2.22, le module éditorial calcule le taux d’identité exacte entre titre canonique et titre affiché pour chaque langue. `WDV-EDT-001` bloque au-delà de 10 %. Le registre individuel atteste la recherche de concision et fournit une justification spécifique pour chaque identité conservée. Les contrôles propositionnels et de placement restent respectivement assurés par `WDV-EDT-021` et `WDV-EDT-022`.

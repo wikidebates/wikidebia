@@ -1,6 +1,8 @@
-Wikidéb’IA Validator 0.4.23
-Norme implémentée : 1.2.21
-Tests pytest : 179 réussis, 0 échec
-Contrôles maintenus : WDV-EDT-022 pour les normes 1.2.20 et 1.2.21
-Tests nouveaux : identifiants GR-048 à GR-050 non conflictuels, structure réelle des arêtes et non-rétroactivité 1.2.19
+Wikidéb’IA Validator 0.4.24
+Norme implémentée : 1.2.22
+Tests pytest : 184 réussis, 0 échec
+Contrôle nouveau : WDV-EDT-001 bloque un taux de copie exacte supérieur à 10 % par langue
+Registre nouveau : attestations de concision et justification individuelle des identités exactes
+Compatibilité : validation positive du corpus réel 1.2.21 et validation positive du corpus migré 1.2.22
+Test négatif réel : corpus à 16,95 % de copies refusé en français et en anglais
 Résultat : RÉUSSI

@@ -1,7 +1,7 @@
 {
   "package": "wikidebia-validator",
-  "validator_version": "0.4.23",
-  "implemented_normative_revision": "1.2.21",
+  "validator_version": "0.4.24",
+  "implemented_normative_revision": "1.2.22",
   "compatible_normative_revisions": [
     "1.1.0",
     "1.1.1",
@@ -34,7 +34,8 @@
     "1.2.18",
     "1.2.19",
     "1.2.20",
-    "1.2.21"
+    "1.2.21",
+    "1.2.22"
   ],
   "recommended_normative_archive": "wikidebia-normes.zip",
   "independent_update_policy": {

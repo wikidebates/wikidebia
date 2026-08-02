@@ -1,5 +1,15 @@
 # Changelog normatif
 
+## 1.2.22 — 1er août 2026
+
+- le titre affiché doit désormais remplir une fonction de lecture réellement distincte du titre canonique ;
+- toute identité exacte devient exceptionnelle et doit être justifiée individuellement dans chaque langue ;
+- le taux d'identité est plafonné à 10 % des arguments actifs par langue ;
+- ajout des exigences `TTL-014` et `VAL-030` ;
+- réactivation bloquante de `WDV-EDT-001` pour les corpus 1.2.22 ;
+- conservation de `WDV-EDT-021` et `WDV-EDT-022` ;
+- alignement recommandé : validateur 0.4.24 et kit 2.2.8.
+
 ## 1.2.21 — 1er août 2026
 
 - correction de la collision de traçabilité qui réutilisait à tort `GR-045`, `GR-046` et `GR-047` ;

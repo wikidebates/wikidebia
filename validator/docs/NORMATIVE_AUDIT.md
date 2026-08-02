@@ -1,3 +1,10 @@
-# Audit normatif du validateur 0.4.23
+# Audit de la source normative embarquée
 
-Le validateur 0.4.23 embarque une copie synchronisée de la norme 1.2.21. Le comportement de placement reste celui de 0.4.22 ; la correction porte sur la traçabilité non ambiguë et la couverture de tests. Les corpus 1.2.20 restent pris en charge sans réécriture de leur manifeste.
+- source active unique : `WIKIDEBIA_NORME_CONSOLIDEE_1.2.22.md` ;
+- norme 1.2.21 archivée ;
+- catalogue d’exigences sans identifiant dupliqué ;
+- `TTL-014` et `VAL-030` présents et tracés ;
+- validateur 0.4.24 aligné sur la norme 1.2.22 ;
+- compatibilité des normes 1.1.0 à 1.2.21 conservée.
+
+**AUDIT NORMATIF : RÉUSSI**

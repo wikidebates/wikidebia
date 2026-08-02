@@ -3,18 +3,60 @@
   "$id": "remote_update_receipt.schema.json",
   "title": "Wikidéb'IA — Reçu de reprise distante",
   "type": "object",
-  "required": ["receipt_version", "kit_version", "debate_id", "corpus_version", "plan_sha256", "executed_at", "execution_mode", "results", "counts", "receipt_sha256"],
+  "required": [
+    "receipt_version",
+    "kit_version",
+    "debate_id",
+    "corpus_version",
+    "plan_sha256",
+    "executed_at",
+    "execution_mode",
+    "results",
+    "counts",
+    "receipt_sha256"
+  ],
   "properties": {
-    "receipt_version": {"const": "wikidebia-remote-update-receipt-1.0"},
-    "kit_version": {"type": "string"},
-    "debate_id": {"type": "string"},
-    "corpus_version": {"type": "string"},
-    "plan_sha256": {"$ref": "common.schema.json#/$defs/sha256"},
-    "executed_at": {"type": "string"},
-    "execution_mode": {"enum": ["full_update", "no_delete", "only_delete"]},
-    "results": {"type": "array", "items": {"type": "object"}},
-    "counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
-    "receipt_sha256": {"$ref": "common.schema.json#/$defs/sha256"}
+    "receipt_version": {
+      "const": "wikidebia-remote-update-receipt-1.0"
+    },
+    "kit_version": {
+      "type": "string"
+    },
+    "debate_id": {
+      "type": "string"
+    },
+    "corpus_version": {
+      "type": "string"
+    },
+    "plan_sha256": {
+      "$ref": "common.schema.json#/$defs/sha256"
+    },
+    "executed_at": {
+      "type": "string"
+    },
+    "execution_mode": {
+      "enum": [
+        "full_update",
+        "no_delete",
+        "only_delete"
+      ]
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "receipt_sha256": {
+      "$ref": "common.schema.json#/$defs/sha256"
+    }
   },
   "additionalProperties": false
 }

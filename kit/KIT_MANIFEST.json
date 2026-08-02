@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.2.7",
-  "validator_version": "0.4.23",
+  "version": "2.2.8",
+  "validator_version": "0.4.24",
   "scope": [
     "publish_archive",
     "github_init",
@@ -72,7 +72,8 @@
     "json_author_array_preflight",
     "noninteractive_publish_with_signed_plan",
     "legacy_single_bundle_bootstrap_compatibility",
-    "graph_placement_review_validator_gate"
+    "graph_placement_review_validator_gate",
+    "displayed_title_concision_validator_gate"
   ],
   "publication_profiles": [
     "norm_1_2_direct_interlanguage",
@@ -117,11 +118,12 @@
     "explicit_merge_and_rename_migrations",
     "single_complete_bundle_component_upgrade"
   ],
-  "normative_revision": "1.2.21",
+  "normative_revision": "1.2.22",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
     "versioned_config_examples_schema_valid",
-    "graph_placement_traceability_noncollision"
+    "graph_placement_traceability_noncollision",
+    "displayed_title_noncopy_ratio"
   ]
 }
