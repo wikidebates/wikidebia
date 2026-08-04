@@ -1,6 +1,6 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.4",
+  "version": "2.15.5",
   "validator_version": "0.4.32",
   "scope": [
     "publish_archive",
@@ -41,7 +41,8 @@
     "end_to_end_work_closure_receipt",
     "formal_english_translation_review",
     "atomically_visible_translated_copy",
-    "unambiguous_graph_metric_reporting"
+    "unambiguous_graph_metric_reporting",
+    "legacy_graph_metric_alias_compatibility"
   ],
   "debate_specific_code": false,
   "change_tag": "chatgpt",
@@ -213,7 +214,8 @@
     "localized_quote_template_preservation",
     "source_2_4_0_feature_inventory_non_regression",
     "graph_metric_backward_compatible_aliases",
-    "graph_frontier_information_not_misclassified_as_warning"
+    "graph_frontier_information_not_misclassified_as_warning",
+    "legacy_graph_metric_values_preserved"
   ],
   "publication_profiles": [
     "norm_1_2_direct_interlanguage",

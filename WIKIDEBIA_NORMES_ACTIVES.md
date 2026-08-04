@@ -2,18 +2,18 @@
 
 **Norme active :** 1.2.30  
 **Validateur :** 0.4.32  
-**Kit :** 2.15.4
+**Kit :** 2.15.5
 
 # Source incorporée : `COMPATIBILITY.json`
 
-**SHA-256 :** `6dae0e0e5db0eb4eee7860b5e68fe9a95dedcc6632abf748fb399b279f761a92`
+**SHA-256 :** `0d152b41dfa539440fe905fe93032e006045ab5daea56375492352ed050193b2`
 
 ```json
 {
   "package": "wikidebia-normes",
   "normative_revision": "1.2.30",
   "recommended_validator_version": "0.4.32",
-  "recommended_kit_version": "2.15.4",
+  "recommended_kit_version": "2.15.5",
   "migration_required_for_existing_packages": true,
   "compatible_prior_normative_revisions": [
     "1.1.0",
@@ -65,7 +65,7 @@
 
 # Source incorporée : `README.md`
 
-**SHA-256 :** `b942106fb534a61b27759af4dcb6988b504d6a739628f2c72242b84c38c2bacd`
+**SHA-256 :** `52d4b57d9377300dada52034e92253a4d25e8efeb91fc75b5a8c070ee145f3a4`
 
 ```
 # Wikidéb’IA — Normes 1.2.30
@@ -74,19 +74,19 @@ Source normative active générique pour la production et la publication frança
 
 - norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.30.md` ;
 - validateur recommandé : 0.4.32 ;
-- kit recommandé : 2.15.4 ;
+- kit recommandé : 2.15.5 ;
 - toutes les autres règles 1.2.29 restent actives.
 ```
 
 # Source incorporée : `VERSIONS.json`
 
-**SHA-256 :** `d56f4653d49938612cd55beb95775907d3d061079b8c32900654c6d7473d6b12`
+**SHA-256 :** `dc000e7196a4fb771a241c6b49902314d25ccd0b9a1ec93735b2f8b51ae3a97a`
 
 ```json
 {
   "norm": "1.2.30",
   "validator": "0.4.32",
-  "kit": "2.15.4"
+  "kit": "2.15.5"
 }
 ```
 
@@ -2366,7 +2366,7 @@ Chaque étiquette de provenance utilisée dans le catalogue doit être déclaré
 
 # Source incorporée : `normative_reference/01_normes/CHANGELOG_NORMATIF.md`
 
-**SHA-256 :** `d391f6e2666b09848041f6a11d3fb9d7fbfa13cd3d976bf3de32269ecddb6cf2`
+**SHA-256 :** `fdf5b7007f17694a1fdf4a5d346d8d643fba0613969bdbc062a150430b830ae8`
 
 ```
 # 1.2.30 — 4 août 2026
@@ -2375,7 +2375,7 @@ Chaque étiquette de provenance utilisée dans le catalogue doit être déclaré
 - correspondances canoniques `citation→quote`, `auteurs→authors`, `ouvrage→work`, `numéro→issue`, `localisation→location`, `édition→publisher`, `lieu→place`, `lien→link` et `avertissements-citation→warnings` ;
 - traduction limitée aux valeurs de `quote` et de `date` ;
 - blocage de tout paramètre français ou sans équivalent déclaré dans une page anglaise ;
-- alignement recommandé : validateur 0.4.32 et kit 2.15.4.
+- alignement recommandé : validateur 0.4.32 et kit 2.15.5.
 
 # 1.2.29 — 4 août 2026
 

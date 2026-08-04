@@ -15,3 +15,7 @@ Les nouveaux champs distinguent :
 - `relations_locales_ignorees_aux_frontières`.
 
 Les anciens alias `profondeur_maximale`, `occurrences_argumentatives` et `occurrences` restent présents pour compatibilité, mais les libellés explicites doivent être privilégiés.
+
+## Correctif ultérieur
+
+La version 2.15.4 a conservé les noms des anciens champs, mais a modifié par erreur la valeur de certains alias historiques. Cette régression de compatibilité est corrigée par le kit 2.15.5 et l’extracteur 1.0.2.

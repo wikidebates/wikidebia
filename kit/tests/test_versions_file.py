@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_versions_file_has_only_the_three_functional_versions():
     versions = json.loads((ROOT / "VERSIONS.json").read_text(encoding="utf-8"))
-    assert versions == {"norm": "1.2.30", "validator": "0.4.32", "kit": "2.15.4"}
+    assert versions == {"norm": "1.2.30", "validator": "0.4.32", "kit": "2.15.5"}
 
 
 def test_versions_file_matches_kit_metadata_and_script():
@@ -28,7 +28,7 @@ def test_graph_extractor_versions_match_kit():
     versions = json.loads((ROOT / "VERSIONS.json").read_text(encoding="utf-8"))
     script = (ROOT / "scripts/wikidebia_graph_extract.py").read_text(encoding="utf-8")
     assert re.search(r'^KIT_VERSION\s*=\s*"' + re.escape(versions["kit"]) + r'"', script, re.M)
-    assert re.search(r'^GRAPH_EXTRACT_VERSION\s*=\s*"1\.0\.1"', script, re.M)
+    assert re.search(r'^GRAPH_EXTRACT_VERSION\s*=\s*"1\.0\.2"', script, re.M)
 
 
 def test_editorial_workspace_versions_match_kit():

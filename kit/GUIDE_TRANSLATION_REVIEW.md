@@ -1,4 +1,4 @@
-# Guide de traduction anglaise contrôlée — Kit 2.15.4
+# Guide de traduction anglaise contrôlée — Kit 2.15.5
 
 La traduction anglaise commence uniquement après le verrouillage complet des métadonnées et du contenu français. Elle travaille dans le même workspace éditorial et ne modifie ni le corpus promu, ni `working-copy/`, ni `reviewed-copy/`, ni `content-reviewed-copy/`.
 

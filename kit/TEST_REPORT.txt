@@ -1,8 +1,8 @@
-Wikidéb’IA Kit 2.15.4
+Wikidéb’IA Kit 2.15.5
 Norme : 1.2.30
 Validateur requis : 0.4.32
-Extracteur de graphe : 1.0.1
-Tests pytest du kit : 222 réussis, 0 échec
+Extracteur de graphe : 1.0.2
+Tests pytest du kit : 223 réussis, 0 échec
 Tests pytest du validateur : 220 réussis, 0 échec
 Rejeu des tests du kit source 2.4.0 : conservé par la baseline fonctionnelle automatisée
 Rejeu des tests du validateur source 0.4.28 : conservé par la baseline fonctionnelle automatisée
@@ -14,7 +14,7 @@ Correctif des métriques révélé par le test réel « Dieu existe-t-il ? » :
 - pages sans sortie, feuilles réelles et frontières de débat détaillé séparées ;
 - relations locales non suivies aux frontières classées comme informations de périmètre ;
 - contrôles d’audit supplémentaires sur les sommes, profondeurs, feuilles et frontières ;
-- compatibilité des snapshots graph-extract 1.0.0 maintenue.
+- compatibilité des snapshots graph-extract 1.0.0 et des champs historiques 1.0.0/1.0.1 maintenue.
 
 Toutes les protections distantes, la localisation complète du wikicode anglais et les fonctions historiques du bundle source 2.4.0 restent conservées.
 Résultat : RÉUSSI

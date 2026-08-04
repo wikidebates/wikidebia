@@ -19,7 +19,7 @@
     {
       "path": "COMPATIBILITY.json",
       "size_bytes": 1175,
-      "sha256": "4d5e44b5281c5db316197a9c28c21ba2bf7dbc6654595cfa50b04e0c20df0fe8"
+      "sha256": "1867cdd71ae1b8baff0e4aacbfea975ba59f97000f09c3526967ac7ee594de48"
     },
     {
       "path": "LICENSE",
@@ -29,12 +29,12 @@
     {
       "path": "README.md",
       "size_bytes": 501,
-      "sha256": "7ce353f53c140a194b73c80516a5600d42e065f5ebe20f00a3610cd9fa9b0554"
+      "sha256": "905ea5fab23a2889ba23c644e4352a34fe9025b489bf17656e2ca1dd27267760"
     },
     {
       "path": "VERSIONS.json",
       "size_bytes": 67,
-      "sha256": "d56f4653d49938612cd55beb95775907d3d061079b8c32900654c6d7473d6b12"
+      "sha256": "dc000e7196a4fb771a241c6b49902314d25ccd0b9a1ec93735b2f8b51ae3a97a"
     },
     {
       "path": "docs/ARCHITECTURE.md",
@@ -739,7 +739,7 @@
     {
       "path": "normative_reference/01_normes/CHANGELOG_NORMATIF.md",
       "size_bytes": 18548,
-      "sha256": "d391f6e2666b09848041f6a11d3fb9d7fbfa13cd3d976bf3de32269ecddb6cf2"
+      "sha256": "fdf5b7007f17694a1fdf4a5d346d8d643fba0613969bdbc062a150430b830ae8"
     },
     {
       "path": "normative_reference/01_normes/MATRICE_TRACEABILITE_DESIDERATA.md",
@@ -1464,7 +1464,7 @@
     {
       "path": "tests/test_versions_file.py",
       "size_bytes": 1557,
-      "sha256": "c5060f0093031bbaaa4e1a2e413f7fbc053580778e0b82a5e1664046cf667ca9"
+      "sha256": "79d0a57f6a52de03c9465dd07d0a57fcc0a0a55a0f3ce25e798beeb6734c9b26"
     },
     {
       "path": "tests/test_wikicode.py",

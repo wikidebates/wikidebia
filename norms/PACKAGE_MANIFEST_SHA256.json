@@ -14,17 +14,17 @@
     {
       "path": "COMPATIBILITY.json",
       "size_bytes": 944,
-      "sha256": "6dae0e0e5db0eb4eee7860b5e68fe9a95dedcc6632abf748fb399b279f761a92"
+      "sha256": "0d152b41dfa539440fe905fe93032e006045ab5daea56375492352ed050193b2"
     },
     {
       "path": "README.md",
       "size_bytes": 619,
-      "sha256": "b942106fb534a61b27759af4dcb6988b504d6a739628f2c72242b84c38c2bacd"
+      "sha256": "52d4b57d9377300dada52034e92253a4d25e8efeb91fc75b5a8c070ee145f3a4"
     },
     {
       "path": "VERSIONS.json",
       "size_bytes": 67,
-      "sha256": "d56f4653d49938612cd55beb95775907d3d061079b8c32900654c6d7473d6b12"
+      "sha256": "dc000e7196a4fb771a241c6b49902314d25ccd0b9a1ec93735b2f8b51ae3a97a"
     },
     {
       "path": "docs/ARCHITECTURE_VALIDATEUR.md",
@@ -559,7 +559,7 @@
     {
       "path": "normative_reference/01_normes/CHANGELOG_NORMATIF.md",
       "size_bytes": 18548,
-      "sha256": "d391f6e2666b09848041f6a11d3fb9d7fbfa13cd3d976bf3de32269ecddb6cf2"
+      "sha256": "fdf5b7007f17694a1fdf4a5d346d8d643fba0613969bdbc062a150430b830ae8"
     },
     {
       "path": "normative_reference/01_normes/MATRICE_TRACEABILITE_DESIDERATA.md",

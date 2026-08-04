@@ -86,7 +86,7 @@ Les fichiers sont des données d'extraction et de provenance, non un corpus `rel
 
 ## Niveaux, profondeurs et occurrences
 
-L’extracteur 1.0.1 distingue explicitement :
+L’extracteur 1.0.2 distingue explicitement :
 
 - le **niveau**, numéroté à partir de 1 pour un argument principal ;
 - la **profondeur en nombre d’arêtes**, égale au niveau moins un ;
@@ -119,3 +119,7 @@ Les relations ignorées aux frontières sont des informations de périmètre, no
 ## Régénérer les rapports sans relire le wiki
 
 Après une mise à niveau du kit, relancer la commande initiale sans `--force-refresh`. Le cache `.cache_pages/` est réutilisé et seuls le graphe analytique, les rapports, l’audit et le paquet local sont reconstruits.
+
+## Compatibilité des champs historiques
+
+L’extracteur 1.0.2 conserve les champs historiques avec leur valeur 1.0.0 afin de ne pas casser les scripts existants. Ces champs sont dépréciés parce que leur nom employait « profondeur » pour un niveau commençant à 1. Les nouveaux développements doivent utiliser uniquement les champs explicites `niveau_*` et `*_en_aretes`.

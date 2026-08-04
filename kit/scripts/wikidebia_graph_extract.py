@@ -31,8 +31,8 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping, Protocol, Sequence
 
 
-KIT_VERSION = "2.15.4"
-GRAPH_EXTRACT_VERSION = "1.0.1"
+KIT_VERSION = "2.15.5"
+GRAPH_EXTRACT_VERSION = "1.0.2"
 
 
 # ---------------------------------------------------------------------------
@@ -825,11 +825,11 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
                 "titre": title,
                 "niveau_minimal": level,
                 "profondeur_minimale_en_aretes": edge_depth,
-                "profondeur_minimale": edge_depth,
+                "profondeur_minimale": level,
                 "occurrences_totales": sum(occurrence_levels.values()) if not cycle_nodes else None,
                 "occurrences_par_niveau": dict(sorted(occurrence_levels.items())),
                 "occurrences_par_profondeur_en_aretes": occurrences_by_edge_depth,
-                "occurrences_par_profondeur": occurrences_by_edge_depth,
+                "occurrences_par_profondeur": dict(sorted(occurrence_levels.items())),
                 "orientations_racines": orientation_set,
                 "arguments_racines": sorted(root_set, key=str.casefold),
                 "nombre_parents": len({parent for parent, _ in reverse[title]}),
@@ -866,8 +866,8 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
                 "niveau_cible_minimal": target_level,
                 "profondeur_source_minimale_en_aretes": source_depth,
                 "profondeur_cible_minimale_en_aretes": target_depth,
-                "profondeur_source_minimale": source_depth,
-                "profondeur_cible_minimale": target_depth,
+                "profondeur_source_minimale": source_level,
+                "profondeur_cible_minimale": target_level,
             }
         )
 
@@ -937,7 +937,7 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
                     "occurrences_branche_racine_incluse": total_occ,
                     "niveau_maximal_occurrences": max_level,
                     "profondeur_maximale_en_aretes": max_depth,
-                    "profondeur_maximale": max_depth,
+                    "profondeur_maximale": max_level,
                 }
             )
 
@@ -970,7 +970,7 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
         "niveau_minimal_maximal_pages_uniques": maximum_minimum_level,
         "niveau_maximal_occurrences": maximum_occurrence_level,
         "profondeur_maximale_en_aretes": maximum_edge_depth,
-        "profondeur_maximale": maximum_edge_depth,
+        "profondeur_maximale": maximum_minimum_level,
         "pages_uniques_par_niveau_minimal": dict(sorted(pages_by_minimum_level.items())),
         "occurrences_depliees_par_niveau": dict(sorted(occurrences_by_level.items())),
         "occurrences_par_niveau": dict(sorted(occurrences_by_level.items())),
@@ -979,7 +979,7 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
         "pages_avec_relations_sortantes": sum(row["nombre_enfants"] > 0 for row in node_rows),
         "pages_sans_sortie_dans_graphe_extrait": pages_without_outgoing,
         "pages_terminales_reelles": actual_terminals,
-        "pages_terminales": actual_terminals,
+        "pages_terminales": pages_without_outgoing,
         "pages_réutilisées_plusieurs_fois": reused if not cycle_nodes else None,
         "frontières_débat_détaillé": boundaries,
         "nombre_frontières_débat_détaillé": len(boundaries),

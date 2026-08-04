@@ -1,3 +1,11 @@
+## 2.15.5 — 4 août 2026
+
+- correction d’une régression de compatibilité introduite dans les alias métriques de l’extracteur 1.0.1 ;
+- conservation exacte des anciennes valeurs de `profondeur_minimale`, `profondeur_maximale`, `occurrences_par_profondeur` et `pages_terminales` pour les consommateurs historiques ;
+- maintien parallèle des nouveaux champs explicites en niveaux et profondeurs en arêtes ;
+- ajout d’un test permanent comparant les alias 1.0.0 aux métriques explicites 1.0.2 ;
+- extracteur porté à la version 1.0.2 ; norme 1.2.30 et validateur 0.4.32 inchangés.
+
 ## 2.15.4 — 4 août 2026
 
 - clarification des métriques du graphe : niveau des occurrences et profondeur en nombre d’arêtes sont désormais distincts ;

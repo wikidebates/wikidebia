@@ -118,6 +118,40 @@ class CrawlTests(unittest.TestCase):
         self.assertEqual(c["profondeur_minimale_en_aretes"], 2)
         self.assertTrue(all(check["ok"] for check in mod.audit_graph(graph)))
 
+    def test_legacy_metric_aliases_keep_100_semantics(self):
+        pages = {
+            "Débat test": "{{Débat|arguments-pour={{Argument pour|page=A}}|arguments-contre=}}",
+            "A": "{{Argument|justifications={{Justification|page=B}}|objections=}}",
+            "B": "{{Argument|débat détaillé=Débat spécialisé|justifications={{Justification|page=C}}|objections=}}",
+        }
+        graph = mod.analyze_graph(
+            mod.crawl_graph(FakeClient(pages), debate_title="Débat test", progress_every=0)
+        )
+        meta = graph["metadata"]
+        # Nouveaux champs : profondeur réelle en arêtes.
+        self.assertEqual(meta["niveau_minimal_maximal_pages_uniques"], 2)
+        self.assertEqual(meta["niveau_maximal_occurrences"], 2)
+        self.assertEqual(meta["profondeur_maximale_en_aretes"], 1)
+        self.assertEqual(meta["pages_terminales_reelles"], 0)
+        self.assertEqual(meta["pages_sans_sortie_dans_graphe_extrait"], 1)
+        # Alias historiques 1.0.0 : anciens niveaux et pages sans sortie.
+        self.assertEqual(meta["profondeur_maximale"], 2)
+        self.assertEqual(meta["pages_terminales"], 1)
+        a = next(row for row in graph["noeuds"] if row["titre"] == "A")
+        b = next(row for row in graph["noeuds"] if row["titre"] == "B")
+        self.assertEqual(a["profondeur_minimale"], 1)
+        self.assertEqual(a["profondeur_minimale_en_aretes"], 0)
+        self.assertEqual(b["profondeur_minimale"], 2)
+        self.assertEqual(b["profondeur_minimale_en_aretes"], 1)
+        self.assertEqual(b["occurrences_par_profondeur"], {2: 1})
+        self.assertEqual(b["occurrences_par_profondeur_en_aretes"], {1: 1})
+        relation = graph["relations"][0]
+        self.assertEqual(relation["profondeur_source_minimale"], 1)
+        self.assertEqual(relation["profondeur_source_minimale_en_aretes"], 0)
+        branch = graph["branches_niveau_1"][0]
+        self.assertEqual(branch["profondeur_maximale"], 2)
+        self.assertEqual(branch["profondeur_maximale_en_aretes"], 1)
+
     def test_snapshot_and_package_are_complete(self):
         pages = {
             "Débat test": "{{Débat|arguments-pour={{Argument pour|page=A}}|arguments-contre=}}",
