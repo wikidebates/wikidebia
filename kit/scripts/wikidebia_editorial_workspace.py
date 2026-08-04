@@ -49,7 +49,7 @@ from wikidebia_graph_extract import (
     normalize_key,
 )
 
-KIT_VERSION = "2.15.2"
+KIT_VERSION = "2.15.3"
 WORKSPACE_SCHEMA = "wikidebia-editorial-workspace-1.0"
 AUDIT_SCHEMA = "wikidebia-editorial-audit-1.0"
 TASK_SCHEMA = "wikidebia-editorial-task-ledger-1.0"

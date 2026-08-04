@@ -565,7 +565,7 @@ Bibliography is the normal documentary category, but source priority follows the
 
 No scientific-source hierarchy is imposed on an argument for which it is not suitable. Webliography and videography remain complementary and must provide substantive value that cannot be represented more appropriately by a written publication.
 
-Under revisions earlier than 1.2.27, quotes were not generated. Since 1.2.27, only imported, reviewed and locked citations are rendered in `quotes=` using the `Quote` model; no quote may be invented during rendering. The English page preserves the same logical node and a comparable level of development, but it is written idiomatically and may use different English-language references.
+Under revisions earlier than 1.2.27, quotes were not generated. Since 1.2.27, only imported, reviewed and locked citations are rendered in `quotes=` using the `Quote` model; no quote may be invented during rendering. From 1.2.30 onward, every nested parameter uses its declared English name (`quote`, `authors`, `work`, `issue`, `location`, `publisher`, `place`, `link`, `warnings`), while only the values of `quote` and `date` are translated. The English page preserves the same logical node and a comparable level of development, but it is written idiomatically and may use different English-language references.
 
 ---
 

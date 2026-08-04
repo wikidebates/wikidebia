@@ -1,5 +1,5 @@
-Source normative active : WIKIDEBIA_NORME_CONSOLIDEE_1.2.29.md
-Ancienne source 1.2.27 : history uniquement
-Structures Citation : cohérentes français/anglais
+Source normative active : WIKIDEBIA_NORME_CONSOLIDEE_1.2.30.md
+Sources consolidées antérieures à 1.2.30 : history uniquement
+Structures : {{Citation}} en français, {{Quote}} et paramètres anglais en anglais
 MW-009 : superseded
 Résultat : RÉUSSI

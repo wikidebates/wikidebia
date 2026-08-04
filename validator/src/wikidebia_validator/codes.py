@@ -52,6 +52,7 @@ CODES = {
     "WDV-MWK-019": "Article Wikipédia obligatoire absent ou invalide",
     "WDV-MWK-020": "Lien Wikipédia explicatif inline non conforme",
     "WDV-MWK-021": "Citation rendue divergente du verrou bilingue",
+    "WDV-MWK-022": "Modèle ou paramètre non localisé dans la langue de la page",
     "WDV-MWK-014": "Langue ou typographie documentaire non conforme",
     "WDV-BIL-001": "Identifiants ou pages bilingues divergents",
     "WDV-BIL-002": "Relations bilingues divergentes",

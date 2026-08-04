@@ -1,4 +1,4 @@
-# Guide de traduction anglaise contrôlée — Kit 2.15.2
+# Guide de traduction anglaise contrôlée — Kit 2.15.3
 
 La traduction anglaise commence uniquement après le verrouillage complet des métadonnées et du contenu français. Elle travaille dans le même workspace éditorial et ne modifie ni le corpus promu, ni `working-copy/`, ni `reviewed-copy/`, ni `content-reviewed-copy/`.
 
@@ -27,9 +27,9 @@ Les relations, occurrences, orientations et profondeurs sont linguistiquement ne
 
 ### Citations importées
 
-Chaque modèle `{{Citation}}` français importé est inventorié avec un identifiant stable. La traduction conserve exactement tous les paramètres documentaires et leurs valeurs (`auteurs`, `ouvrage`, `article`, `volume`, `numéro`, `page`, `localisation`, `édition`, `lieu`, `lien` et tout autre paramètre non linguistique). Seuls le texte de `citation` et la forme linguistique de `date` peuvent être traduits.
+Chaque modèle `{{Citation}}` français importé est inventorié avec un identifiant stable. La projection anglaise utilise `{{Quote}}` et traduit obligatoirement tous les noms de paramètres selon le contrat du wiki anglais : `citation→quote`, `auteurs→authors`, `ouvrage→work`, `numéro→issue`, `localisation→location`, `édition→publisher`, `lieu→place`, `lien→link` et `avertissements-citation→warnings`; les noms `article`, `volume`, `page` et `date` sont identiques dans les deux langues.
 
-Le verrou anglais ajoute toujours `Citation traduite par IA` dans le paramètre canonique `avertissements-citation`. Lorsque ce paramètre comporte déjà un avertissement, la valeur finale est construite avec le séparateur exact `, `, par exemple `Texte abrégé, Citation traduite par IA`. La mention n'est jamais dupliquée. La date traduite doit désigner la même date ; une année seule reste inchangée.
+Seules les valeurs de `quote` et de `date` peuvent être traduites. Les valeurs de `authors`, `article`, `work`, `volume`, `issue`, `page`, `location`, `publisher`, `place` et `link` sont reprises exactement. `warnings` reçoit toujours `Citation traduite par IA`, après un avertissement préexistant avec le séparateur exact `, `. La date traduite doit désigner la même date ; une année seule reste inchangée. Un paramètre français sans équivalent anglais déclaré bloque la finalisation.
 
 ## 3. Finalisation
 

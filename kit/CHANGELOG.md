@@ -1,3 +1,12 @@
+## 2.15.3 — 4 août 2026
+
+- localisation complète des paramètres du modèle anglais `Quote` ;
+- correspondance canonique des noms français vers `quote`, `authors`, `work`, `issue`, `location`, `publisher`, `place`, `link` et `warnings` ;
+- conservation exacte des valeurs documentaires autres que `quote` et `date` ;
+- blocage des paramètres français ou sans équivalent anglais dans le rendu anglais ;
+- tests de non-régression garantissant l’absence de modèles et paramètres français sur le wiki anglais ;
+- alignement sur la norme 1.2.30 et le validateur 0.4.32.
+
 # Changelog
 
 ## 2.15.2 — 4 août 2026

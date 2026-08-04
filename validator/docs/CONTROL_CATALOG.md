@@ -1,4 +1,4 @@
-# Catalogue des codes de contrôle — 0.4.27
+# Catalogue des codes de contrôle — 0.4.32
 
 | Code | Signification |
 |---|---|
@@ -53,6 +53,8 @@
 | `WDV-MWK-018` | Saut de ligne ou espace entre deux modèles MediaWiki adjacents |
 | `WDV-MWK-019` | Article Wikipédia obligatoire absent ou invalide |
 | `WDV-MWK-020` | Lien Wikipédia explicatif inline non conforme |
+| `WDV-MWK-021` | Citation rendue divergente du verrou bilingue |
+| `WDV-MWK-022` | Modèle ou paramètre non localisé dans la langue de la page |
 | `WDV-BIL-001` | Identifiants ou pages bilingues divergents |
 | `WDV-BIL-002` | Relations bilingues divergentes |
 | `WDV-BIL-003` | Occurrence primaire ou réutilisation bilingue divergente |

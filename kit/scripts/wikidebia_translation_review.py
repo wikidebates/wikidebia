@@ -46,7 +46,7 @@ from wikidebia_content_review import (
     META_DISCOURSE,
 )
 
-KIT_VERSION = "2.15.2"
+KIT_VERSION = "2.15.3"
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.0"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
@@ -80,6 +80,35 @@ BAD_ELLIPSIS = re.compile(r"\.\.\.|…")
 VERB_HINT = re.compile(r"\b(?:is|are|was|were|has|have|does|do|can|could|may|might|must|should|would|will|shows?|demonstrates?|proves?|supports?|challenges?|undermines?|refutes?|implies?|indicates?|prevents?|allows?|requires?|depends?|makes?|causes?|explains?|confirms?|weakens?|strengthens?)\b", re.I)
 QUESTION_TOPIC = re.compile(r"^(?:whether\b|should\b|must\b|is\b|are\b|does\b|do\b|can\b)", re.I)
 
+FRENCH_TEMPLATE_NAMES = {
+    "Sous-partie", "Article Wikipédia", "Argument pour", "Argument contre",
+    "Référence bibliographique", "Référence bibliographique pour", "Référence bibliographique contre",
+    "Référence sitographique", "Référence sitographique pour", "Référence sitographique contre",
+    "Référence vidéographique", "Référence vidéographique pour", "Référence vidéographique contre",
+    "Lien Wikipédia", "Lien interlangue", "Débat connexe", "Citation",
+}
+FRENCH_TEMPLATE_RE = re.compile(
+    r"\{\{\s*(" + "|".join(re.escape(name) for name in sorted(FRENCH_TEMPLATE_NAMES, key=len, reverse=True)) + r")(?:\s*[|}])",
+    re.I,
+)
+FRENCH_PARAMETER_NAMES = {
+    "titre", "contenu", "texte-affiché", "auteurs", "ouvrage", "numéro", "localisation",
+    "édition", "lieu", "lien", "avertissements", "titre-affiché", "langue", "citation",
+    "avertissements-citation", "résumé", "rubriques", "mots-clés", "date-création",
+}
+FRENCH_PARAMETER_RE = re.compile(
+    r"\|\s*(" + "|".join(re.escape(name) for name in sorted(FRENCH_PARAMETER_NAMES, key=len, reverse=True)) + r")\s*=",
+    re.I,
+)
+
+def _assert_english_wikicode_localized(value: str, label: str) -> None:
+    template = FRENCH_TEMPLATE_RE.search(value)
+    if template:
+        raise TranslationReviewError(f"Modèle français interdit dans {label} : {template.group(1)}")
+    parameter = FRENCH_PARAMETER_RE.search(value)
+    if parameter:
+        raise TranslationReviewError(f"Paramètre français interdit dans {label} : {parameter.group(1)}")
+
 TRANSLATED_CITATION_WARNING = "Citation traduite par IA"
 FR_MONTHS = {
     "janvier": 1, "février": 2, "fevrier": 2, "mars": 3, "avril": 4, "mai": 5, "juin": 6,
@@ -90,6 +119,24 @@ EN_MONTHS = {
     "july": 7, "august": 8, "september": 9, "october": 10, "november": 11, "december": 12,
 }
 CITATION_CONTROLLED_NAMES = {"citation", "date", "avertissements-citation", "avertissements citation", "avertissements"}
+CITATION_PARAMETER_MAP = {
+    "citation": "quote",
+    "auteurs": "authors",
+    "article": "article",
+    "ouvrage": "work",
+    "volume": "volume",
+    "numéro": "issue",
+    "numero": "issue",
+    "page": "page",
+    "localisation": "location",
+    "édition": "publisher",
+    "edition": "publisher",
+    "lieu": "place",
+    "date": "date",
+    "lien": "link",
+    "avertissements citation": "warnings",
+    "avertissements": "warnings",
+}
 
 
 def _citation_warning(existing: Any) -> str:
@@ -172,27 +219,43 @@ def _validate_citations(rows: Any, french_rows: Sequence[Mapping[str, Any]], nod
         output_parameters: list[dict[str, str]] = []
         warning_inserted = False
         for parameter in source.get("source_parameters") or []:
-            name = str(parameter.get("name") or "")
-            normalized = re.sub(r"[ _-]+", " ", name.strip().casefold())
-            if normalized == "citation":
-                output_parameters.append({"name": name, "value": translated})
-            elif normalized == "date":
-                output_parameters.append({"name": name, "value": translated_date})
-            elif normalized in {"avertissements citation", "avertissements"}:
-                if not warning_inserted:
-                    output_parameters.append({"name": "avertissements-citation", "value": warning})
-                    warning_inserted = True
+            source_name = str(parameter.get("name") or "").strip()
+            normalized = re.sub(r"[ _-]+", " ", source_name.casefold())
+            output_name = CITATION_PARAMETER_MAP.get(normalized)
+            if output_name is None:
+                raise TranslationReviewError(
+                    f"Paramètre français de citation sans équivalent anglais déclaré pour {citation_id} : {source_name}"
+                )
+            if output_name == "quote":
+                output_value = translated
+            elif output_name == "date":
+                output_value = translated_date
+            elif output_name == "warnings":
+                if warning_inserted:
+                    continue
+                output_value = warning
+                warning_inserted = True
             else:
-                output_parameters.append({"name": name, "value": str(parameter.get("value") or "")})
+                output_value = str(parameter.get("value") or "")
+            output_parameters.append({
+                "name": output_name,
+                "value": output_value,
+                "source_name": source_name,
+            })
         if not warning_inserted:
-            output_parameters.append({"name": "avertissements-citation", "value": warning})
+            output_parameters.append({
+                "name": "warnings",
+                "value": warning,
+                "source_name": "avertissements-citation",
+            })
         final.append({
             "id": citation_id,
             "source_template": source.get("source_template") or "Citation",
-            "output_template": "Citation",
-            "citation": translated,
+            "output_template": "Quote",
+            "quote": translated,
             "date": translated_date,
-            "avertissements-citation": warning,
+            "warnings": warning,
+            "parameter_name_mapping": copy.deepcopy(CITATION_PARAMETER_MAP),
             "preserved_parameters": copy.deepcopy(source.get("preserved_parameters") or []),
             "parameters": output_parameters,
             "source": copy.deepcopy(source),
@@ -550,6 +613,7 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
     if keywords != expected_keywords or row.get("keywords_exactly_mapped") is not True or not 5 <= len(keywords) <= 8:
         raise TranslationReviewError("Les keywords de Debate ne correspondent pas au vocabulaire contrôlé")
     introduction = _text(row.get("introduction"), "introduction anglaise", 40)
+    _assert_english_wikicode_localized(introduction, "l’introduction anglaise")
     subsections = row.get("subsections")
     if not isinstance(subsections, list) or not subsections:
         raise TranslationReviewError("L’introduction anglaise doit comporter des sous-parties")
@@ -611,6 +675,7 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
     if keywords != _expected_keywords(fr_meta.get("keywords") or [], mapping) or row.get("keywords_exactly_mapped") is not True or not 2 <= len(keywords) <= 4:
         raise TranslationReviewError(f"Keywords anglais divergents pour {node_id}")
     summary = _text(row.get("summary"), f"summary de {node_id}", 40)
+    _assert_english_wikicode_localized(summary, f"le summary de {node_id}")
     if META_DISCOURSE.search(_plain(summary)):
         raise TranslationReviewError(f"Métadiscours interdit dans le summary de {node_id}")
     fr_summary = _text(fr_content.get("summary"), f"résumé français verrouillé de {node_id}", 40)
@@ -814,9 +879,11 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
         "vocabulary_count": len(final["vocabulary"]), "source_count": len(final["sources"]),
         "citation_count": sum(len(arg.get("citations") or []) for arg in final["arguments"]),
         "citation_translation_policy": {
-            "translated_fields": ["citation", "date"],
-            "preserved_fields": "all_other_source_parameters",
-            "warning_parameter": "avertissements-citation",
+            "translated_value_fields": ["citation->quote", "date->date"],
+            "parameter_names": "all_french_parameter_names_are_mapped_to_declared_english_names",
+            "preserved_values": "all_values_except_quote_and_date",
+            "parameter_mapping": copy.deepcopy(CITATION_PARAMETER_MAP),
+            "warning_parameter": "warnings",
             "warning_value": TRANSLATED_CITATION_WARNING,
             "warning_separator": ", ",
         },

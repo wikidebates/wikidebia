@@ -360,3 +360,12 @@ La correction 1.2.28 avait retiré le statut actif de MW-009 et tenté de resync
 ## Trace 1.2.29
 
 La correction 1.2.29 conserve `{{Citation}}` en français et restaure `{{Quote}}` en anglais. Elle préserve séparément le contrat historique de `Quote` pour les anciennes normes et le contrat de projection verrouillée applicable à partir de 1.2.27.
+
+
+## Correction 1.2.30 — localisation intégrale du wikicode anglais
+
+La décision du propriétaire du 4 août 2026 impose que les pages anglaises n’emploient aucun modèle ni paramètre français. RND-003 et RND-004 sont appliquées par le registre de traduction, le rendu et WDV-MWK-021. La structure active `Quote` reprend les paramètres anglais historiques du bundle source 2.4.0.
+
+## Localisation complète du wikicode anglais — 4 août 2026
+
+RND-005 interdit tout modèle ou paramètre français dans une page anglaise rendue. Le registre de traduction bloque ces formes avant scellement et le validateur applique `WDV-MWK-022` aux sous-modèles et relations.

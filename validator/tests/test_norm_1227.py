@@ -22,7 +22,7 @@ def context(tmp_path: Path, lang: str, citation: dict) -> PackageContext:
     )
     return PackageContext(
         root=tmp_path,
-        report=Report("0.4.31", tmp_path.name, ["wikicode"]),
+        report=Report("0.4.32", tmp_path.name, ["wikicode"]),
         cache={"manifest.json": {"normative_versions": {"consolidated_norm": "1.2.27"}}},
     )
 
@@ -75,9 +75,9 @@ def argument(quote: str, *, lang: str = "en") -> str:
 
 
 def test_validator_version_and_active_norm_1227():
-    assert __version__ == "0.4.31"
+    assert __version__ == "0.4.32"
     root = Path(__file__).resolve().parents[1] / "normative_reference/01_normes"
-    assert [path.name for path in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")] == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.29.md"]
+    assert [path.name for path in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")] == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.30.md"]
 
 
 def test_english_citation_matching_lock_is_accepted(tmp_path: Path):
@@ -130,7 +130,7 @@ def test_english_citation_rejects_missing_translation_warning(tmp_path: Path):
 def test_citations_remain_forbidden_before_norm_1227(tmp_path: Path):
     ctx = PackageContext(
         root=tmp_path,
-        report=Report("0.4.31", tmp_path.name, ["wikicode"]),
+        report=Report("0.4.32", tmp_path.name, ["wikicode"]),
         cache={"manifest.json": {"normative_versions": {"consolidated_norm": "1.2.26"}}},
     )
     raw = "{{Citation\n|citation=Texte.\n}}"
@@ -158,7 +158,7 @@ def test_english_citation_model_name_must_be_quote(tmp_path: Path):
 def test_historical_quote_parameters_remain_recognized(tmp_path: Path):
     ctx = PackageContext(
         root=tmp_path,
-        report=Report("0.4.31", tmp_path.name, ["wikicode"]),
+        report=Report("0.4.32", tmp_path.name, ["wikicode"]),
         cache={"manifest.json": {"normative_versions": {"consolidated_norm": "1.2.26"}}},
     )
     raw = """{{Quote

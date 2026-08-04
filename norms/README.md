@@ -1,8 +1,8 @@
-# Wikidéb’IA — Normes 1.2.29
+# Wikidéb’IA — Normes 1.2.30
 
-Source normative active générique pour la production et la publication français–anglais. La révision 1.2.29 corrige uniquement le nom du modèle anglais des citations : `{{Citation}}` reste utilisé en français et `{{Quote}}` en anglais. Les paramètres documentaires verrouillés conservent leurs noms, leur ordre et leurs valeurs ; seules les valeurs de `citation` et de `date` sont traduites.
+Source normative active générique pour la production et la publication français–anglais. La révision 1.2.30 impose la localisation complète du wikicode anglais. `{{Citation}}` devient `{{Quote}}`, tous les paramètres prennent leur nom anglais déclaré, seules les valeurs de `quote` et de `date` sont traduites, et les autres valeurs documentaires restent inchangées.
 
-- norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.29.md` ;
-- validateur recommandé : 0.4.31 ;
-- kit recommandé : 2.15.2 ;
-- toutes les autres règles 1.2.28 restent actives.
+- norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.30.md` ;
+- validateur recommandé : 0.4.32 ;
+- kit recommandé : 2.15.3 ;
+- toutes les autres règles 1.2.29 restent actives.

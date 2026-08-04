@@ -1,3 +1,11 @@
+## 0.4.32 — 4 août 2026
+
+- alignement sur la norme 1.2.30 ;
+- WDV-MWK-021 exige le modèle `Quote` et les paramètres anglais `quote`, `authors`, `work`, `issue`, `location`, `publisher`, `place`, `link` et `warnings` ;
+- conservation exacte des valeurs documentaires autres que `quote` et `date` ;
+- rejet des paramètres français dans les pages anglaises 1.2.30 ;
+- rétrocompatibilité maintenue avec les verrous 1.2.27 à 1.2.29.
+
 # Changelog
 
 ## 0.4.31 — 4 août 2026

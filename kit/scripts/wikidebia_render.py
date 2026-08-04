@@ -45,9 +45,9 @@ from wikidebia_corpus_init import extract_page_metadata
 from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
 from wikidebia_editorial_review import EditorialReviewError, _assert_source_unchanged, _run_validator
 
-KIT_VERSION = "2.15.2"
-PREVIOUS_NORM_VERSION = "1.2.28"
-COMPATIBLE_PREVIOUS_NORM_VERSIONS = {"1.2.27", PREVIOUS_NORM_VERSION}
+KIT_VERSION = "2.15.3"
+PREVIOUS_NORM_VERSION = "1.2.30"
+COMPATIBLE_PREVIOUS_NORM_VERSIONS = {"1.2.27", "1.2.28", PREVIOUS_NORM_VERSION}
 RENDER_LOCK_SCHEMA = "wikidebia-bilingual-render-lock-1.0"
 RENDER_CHANGESET_SCHEMA = "wikidebia-bilingual-render-changeset-1.0"
 

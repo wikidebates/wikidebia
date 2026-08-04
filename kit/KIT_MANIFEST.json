@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.2",
-  "validator_version": "0.4.31",
+  "version": "2.15.3",
+  "validator_version": "0.4.32",
   "scope": [
     "publish_archive",
     "github_init",
@@ -324,9 +324,10 @@
     "signed_execution_authorization",
     "remote_execution_event_log",
     "published_state_refresh_after_workspace_execution",
-    "english_quote_model_with_locked_french_parameter_names"
+    "english_quote_model_with_locked_french_parameter_names",
+    "english_pages_localize_all_templates_and_parameters_including_quote_parameter_mapping"
   ],
-  "normative_revision": "1.2.29",
+  "normative_revision": "1.2.30",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -394,6 +395,7 @@
     "remote_execution_post_preflight_change_regression",
     "remote_execution_no_changes_attestation_regression",
     "source_2_4_0_feature_baseline_gate",
-    "english_quote_template_regression"
+    "english_quote_template_regression",
+    "english_wikicode_contains_no_french_template_or_parameter_names"
   ]
 }

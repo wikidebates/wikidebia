@@ -125,12 +125,14 @@ def test_render_emits_translated_citations_without_mutating_source_metadata(tmp_
     en = (target / "output/en/arguments/A0001.wiki").read_text(encoding="utf-8")
     assert "|citation=La liberté consiste à vouloir ce que l'on veut." in fr
     assert "|date=25 juin 2012" in fr
-    assert "|citation=Freedom consists in wanting what one wants." in en
+    assert "|quote=Freedom consists in wanting what one wants." in en
     assert "|date=25 June 2012" in en
-    assert "|auteurs=Harry G. Frankfurt" in en
+    assert "|authors=Harry G. Frankfurt" in en
     assert "|article=Freedom of the Will and the Concept of a Person" in en
-    assert "|ouvrage=The Importance of What We Care About" in en
-    assert "|avertissements-citation=Texte abrégé, Citation traduite par IA" in en
+    assert "|work=The Importance of What We Care About" in en
+    assert "|warnings=Texte abrégé, Citation traduite par IA" in en
+    for forbidden in ("|citation=", "|auteurs=", "|ouvrage=", "|numéro=", "|localisation=", "|édition=", "|lieu=", "|lien=", "|avertissements-citation="):
+        assert forbidden not in en
     assert "|quotes={{Quote" in en
     assert "|quotes={{Citation" not in en
     assert "|citations={{Citation" in fr

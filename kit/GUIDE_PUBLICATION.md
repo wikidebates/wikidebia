@@ -1,4 +1,4 @@
-# Guide de publication et de reprise Wikidéb’IA 2.15.2
+# Guide de publication et de reprise Wikidéb’IA 2.15.3
 
 ## Extraire le graphe d'un débat existant
 

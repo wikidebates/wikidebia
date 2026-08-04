@@ -232,11 +232,14 @@ SUB = {
     "Video reference": (["title", "authors", "link", "warnings"], ["title", "link"]),
     "Pro video reference": (["title", "authors", "link", "warnings"], ["title", "link"]),
     "Con video reference": (["title", "authors", "link", "warnings"], ["title", "link"]),
-    # Citation parameters are intentionally dynamic: the source model may carry
-    # documentary fields not known to the generic validator.  1.2.27 validates
-    # them against the sealed French/English content locks instead.
+    # Citation parameters are checked against the sealed bilingual locks.  Quote
+    # accepts the historical French aliases for backward validation only; from
+    # norm 1.2.30 onward WDV-MWK-021 requires the English parameter contract.
     "Citation": ([], ["citation"]),
-    "Quote": (["quote", "authors", "article", "work", "volume", "issue", "page", "location", "publisher", "place", "date", "link", "warnings"], ["quote"]),
+    "Quote": ([
+        "quote", "authors", "article", "work", "volume", "issue", "page", "location", "publisher", "place", "date", "link", "warnings",
+        "citation", "auteurs", "ouvrage", "numéro", "localisation", "édition", "lieu", "lien", "avertissements-citation", "avertissements",
+    ], []),
 }
 
 SEQUENCE_PARAMS = {
@@ -526,6 +529,26 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
             expected_models = PARAM_TEMPLATE_ALLOWED.get(key)
             if expected_models and sub.name not in expected_models:
                 ctx.report.error("WDV-MWK-012", f"Sous-modèle {sub.name} interdit dans le paramètre {key}", path=rel, details={"expected": sorted(expected_models)})
+            if _norm_at_least(ctx, "1.2.30"):
+                if key == "introduction":
+                    localized_model = "Sous-partie" if lang == "fr" else "Subsection"
+                    if sub.name != localized_model:
+                        ctx.report.error(
+                            "WDV-MWK-022",
+                            f"Le modèle {sub.name} ne correspond pas à la langue de la page",
+                            path=rel,
+                            details={"expected": localized_model},
+                        )
+                if sub.name in {"Justification", "Objection"}:
+                    wrong_names = ({"displayed-title", "warnings"} if lang == "fr" else {"titre-affiché", "avertissements"})
+                    found_wrong = sorted({name for name, _value in sub.params} & wrong_names)
+                    if found_wrong:
+                        ctx.report.error(
+                            "WDV-MWK-022",
+                            f"Paramètres de l’autre langue interdits dans {sub.name}",
+                            path=rel,
+                            details={"forbidden": found_wrong},
+                        )
             order, required = SUB[sub.name]
             subkeys = [k for k, _ in sub.params]
             if len(subkeys) != len(set(subkeys)):
@@ -545,7 +568,9 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
                 if not sval.strip():
                     ctx.report.error("WDV-MWK-005", f"Sous-paramètre vide interdit : {sub.name}.{skey}", path=rel)
                 if skey in {"avertissements", "warnings"}:
-                    ctx.report.error("WDV-MWK-003", f"Sous-paramètre d'avertissement interdit dans une sortie générée : {sub.name}.{skey}", path=rel)
+                    allowed_quote_warning = sub.name == "Quote" and skey == "warnings" and _norm_at_least(ctx, "1.2.30")
+                    if not allowed_quote_warning:
+                        ctx.report.error("WDV-MWK-003", f"Sous-paramètre d'avertissement interdit dans une sortie générée : {sub.name}.{skey}", path=rel)
                 if _is_norm_1217(ctx) and skey in {"auteurs", "authors"}:
                     candidate = sval.strip()
                     parsed_json = None
@@ -658,6 +683,31 @@ def relation_pairs(subs: list[Template], lang: str) -> list[tuple[str | None, st
     return [(s.one("page"), s.one(display)) for s in subs]
 
 
+QUOTE_PARAMETER_MAP = {
+    "citation": "quote",
+    "auteurs": "authors",
+    "article": "article",
+    "ouvrage": "work",
+    "volume": "volume",
+    "numéro": "issue",
+    "numero": "issue",
+    "page": "page",
+    "localisation": "location",
+    "édition": "publisher",
+    "edition": "publisher",
+    "lieu": "place",
+    "date": "date",
+    "lien": "link",
+    "avertissements citation": "warnings",
+    "avertissements": "warnings",
+}
+
+
+def _quote_parameter_name(name: str) -> str | None:
+    normalized = re.sub(r"[ _-]+", " ", str(name).strip().casefold())
+    return QUOTE_PARAMETER_MAP.get(normalized)
+
+
 def _parameter_pairs(rows: Any) -> list[tuple[str, str]]:
     if not isinstance(rows, list):
         return []
@@ -702,31 +752,58 @@ def _validate_citations_against_locks(
         if actual_params != expected_params:
             ctx.report.error(
                 "WDV-MWK-021",
-                "Les paramètres de la citation divergent du verrou ; seuls citation et date peuvent être traduits",
+                "Les paramètres de la citation divergent du verrou bilingue ; les noms doivent être anglais et seules les valeurs de quote et date peuvent être traduites",
                 path=rel, pointer=f"{parameter}/{index}",
                 details={"expected": expected_params, "actual": actual_params, "citation_id": expected.get("id")},
             )
         if lang == "en":
-            warning_values = [value for name, value in actual_params if name == "avertissements-citation"]
-            expected_warning = str(expected.get("avertissements-citation") or "").strip()
+            current_contract = _norm_at_least(ctx, "1.2.30")
+            warning_name = "warnings" if current_contract else "avertissements-citation"
+            warning_values = [value for name, value in actual_params if name == warning_name]
+            expected_warning = str(expected.get(warning_name) or "").strip()
             if warning_values != [expected_warning] or expected_warning.count("Citation traduite par IA") != 1:
                 ctx.report.error(
                     "WDV-MWK-021",
                     "La citation anglaise doit contenir une unique mention 'Citation traduite par IA', ajoutée avec le séparateur ', ' après tout avertissement existant",
                     path=rel, pointer=f"{parameter}/{index}",
-                    details={"expected": expected_warning, "actual": warning_values},
+                    details={"expected": expected_warning, "actual": warning_values, "parameter": warning_name},
                 )
             source = expected.get("source") or {}
             source_params = _parameter_pairs(source.get("source_parameters"))
-            preserved_source = [(name, value) for name, value in source_params if name not in {"citation", "date", "avertissements-citation"}]
-            preserved_actual = [(name, value) for name, value in actual_params if name not in {"citation", "date", "avertissements-citation"}]
-            if preserved_actual != preserved_source:
-                ctx.report.error(
-                    "WDV-MWK-021",
-                    "Un paramètre documentaire de la citation a été traduit ou modifié",
-                    path=rel, pointer=f"{parameter}/{index}",
-                    details={"expected_preserved": preserved_source, "actual_preserved": preserved_actual},
-                )
+            if current_contract:
+                mapped_source: list[tuple[str, str]] = []
+                unmapped: list[str] = []
+                for source_name, source_value in source_params:
+                    mapped_name = _quote_parameter_name(source_name)
+                    if mapped_name is None:
+                        unmapped.append(source_name)
+                        continue
+                    if mapped_name not in {"quote", "date", "warnings"}:
+                        mapped_source.append((mapped_name, source_value))
+                if unmapped:
+                    ctx.report.error(
+                        "WDV-MWK-021",
+                        "Un paramètre français de Citation ne possède pas d’équivalent anglais déclaré",
+                        path=rel, pointer=f"{parameter}/{index}", details={"unmapped": unmapped},
+                    )
+                preserved_actual = [(name, value) for name, value in actual_params if name not in {"quote", "date", "warnings"}]
+                if preserved_actual != mapped_source:
+                    ctx.report.error(
+                        "WDV-MWK-021",
+                        "La valeur d’un paramètre documentaire de Quote a été modifiée ou son nom n’a pas été traduit en anglais",
+                        path=rel, pointer=f"{parameter}/{index}",
+                        details={"expected_preserved": mapped_source, "actual_preserved": preserved_actual},
+                    )
+            else:
+                preserved_source = [(name, value) for name, value in source_params if name not in {"citation", "date", "avertissements-citation"}]
+                preserved_actual = [(name, value) for name, value in actual_params if name not in {"citation", "date", "avertissements-citation"}]
+                if preserved_actual != preserved_source:
+                    ctx.report.error(
+                        "WDV-MWK-021",
+                        "Un paramètre documentaire de la citation a été traduit ou modifié",
+                        path=rel, pointer=f"{parameter}/{index}",
+                        details={"expected_preserved": preserved_source, "actual_preserved": preserved_actual},
+                    )
 
 
 def _validate_argument_content(ctx: PackageContext, tmpl: Template, rel: str, lang: str, page_id: str, registry: dict[str, Any], page_manifest: dict[str, Any]) -> None:
@@ -833,7 +910,7 @@ PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
 
 
 def _validate_french_parenthetical_dashes(ctx: PackageContext, tmpl: Template, rel: str, page_type: str) -> None:
-    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29"}:
+    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
         return
     values: list[tuple[str, str]] = []
     if page_type == "argument":

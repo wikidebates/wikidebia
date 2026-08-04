@@ -299,15 +299,17 @@ def test_finalize_translation_preserves_citation_metadata_and_appends_warning(tm
     source_preserved = {row["name"]: row["value"] for row in a["source"]["preserved_parameters"]}
     output = {row["name"]: row["value"] for row in a["parameters"]}
     assert source_preserved["auteurs"] == "Harry G. Frankfurt"
-    assert output["auteurs"] == "Harry G. Frankfurt"
-    assert output["ouvrage"] == "The Importance of What We Care About"
+    assert output["authors"] == "Harry G. Frankfurt"
+    assert output["work"] == "The Importance of What We Care About"
     assert output["article"] == "Freedom of the Will and the Concept of a Person"
-    assert output["citation"] == "Freedom consists in wanting what one wants."
+    assert output["quote"] == "Freedom consists in wanting what one wants."
     assert output["date"] == "25 June 2012"
-    assert output["avertissements-citation"] == "Texte abrégé, Citation traduite par IA"
+    assert output["warnings"] == "Texte abrégé, Citation traduite par IA"
+    assert a["output_template"] == "Quote"
+    assert all(row["name"] not in {"citation", "auteurs", "ouvrage", "numéro", "localisation", "édition", "lieu", "lien", "avertissements-citation"} for row in a["parameters"])
     b = by_id["A0002"]["citations"][0]
     output_b = {row["name"]: row["value"] for row in b["parameters"]}
-    assert output_b["avertissements-citation"] == "Citation traduite par IA"
+    assert output_b["warnings"] == "Citation traduite par IA"
     assert by_id["A0004"]["citations"][0]["date"] == "1971"
 
 
@@ -367,3 +369,36 @@ def test_finalize_rejects_french_copy_changed_after_prepare(tmp_path: Path):
         assert "content-reviewed-copy" in str(exc)
     else:
         raise AssertionError("Base française altérée acceptée")
+
+
+def test_finalize_translation_rejects_french_template_in_english_introduction(tmp_path: Path):
+    project, workspace, work_id = make_french_locked(tmp_path)
+    translation.prepare_review(project, "debat_test", work_id)
+    complete_translation_review(workspace)
+    path = workspace / "reviews/en/translation_review.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data["debate"]["introduction"] = "{{Sous-partie|titre=Definition|contenu=This English paragraph explains the debate in sufficient detail for a general reader.}}"
+    common.write_json(path, data)
+    try:
+        translation.finalize_review(project, "debat_test", work_id)
+    except translation.TranslationReviewError as exc:
+        assert "Modèle français interdit" in str(exc)
+    else:
+        raise AssertionError("Un modèle français a été accepté dans l’introduction anglaise")
+
+
+def test_finalize_translation_rejects_french_parameter_in_english_summary(tmp_path: Path):
+    project, workspace, work_id = make_french_locked(tmp_path)
+    translation.prepare_review(project, "debat_test", work_id)
+    complete_translation_review(workspace)
+    path = workspace / "reviews/en/translation_review.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    summary = data["arguments"][0]["translation"]["summary"]
+    data["arguments"][0]["translation"]["summary"] = summary + " {{Wikipedia link|article=Free will|texte-affiché=free will}}"
+    common.write_json(path, data)
+    try:
+        translation.finalize_review(project, "debat_test", work_id)
+    except translation.TranslationReviewError as exc:
+        assert "Paramètre français interdit" in str(exc)
+    else:
+        raise AssertionError("Un paramètre français a été accepté dans le summary anglais")
