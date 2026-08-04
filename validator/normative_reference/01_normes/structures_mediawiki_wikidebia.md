@@ -365,7 +365,7 @@ Ce document **ne détermine pas** quels paramètres doivent effectivement appara
 |argument-warnings=
 |summary-warnings=
 |summary=
-|quotes={{Citation
+|quotes={{Quote
 |citation=
 |auteurs=
 |article=

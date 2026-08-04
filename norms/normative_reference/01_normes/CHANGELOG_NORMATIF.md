@@ -1,3 +1,10 @@
+# 1.2.29 — 4 août 2026
+
+- restauration du nom anglais `{{Quote}}` dans `quotes=` ;
+- conservation des noms français de paramètres verrouillés à l’intérieur du modèle anglais ;
+- traduction limitée aux valeurs de `citation` et de `date` ;
+- aucune suppression ni modification des fonctions introduites avant cette correction.
+
 # 1.2.27 — 3 août 2026
 
 - rendu déterministe des pages françaises et anglaises depuis les verrous éditoriaux ;

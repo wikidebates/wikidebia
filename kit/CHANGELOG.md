@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.15.2 — 4 août 2026
+
+- alignement sur la norme 1.2.29 et le validateur 0.4.31 ;
+- restauration du modèle anglais `{{Quote}}` dans `quotes=` ;
+- paramètres documentaires français conservés à l’identique dans le modèle anglais ;
+- ajout d’un inventaire permanent des fonctions du bundle source 2.4.0 ;
+- aucune suppression des commandes, protections, profils ou tests historiques.
+
+
 ## 2.15.1 — 4 août 2026
 
 - alignement sur la norme 1.2.28 et le validateur 0.4.30 ;

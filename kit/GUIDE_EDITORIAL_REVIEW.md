@@ -1,6 +1,6 @@
 # Revue française des titres, rubriques et mots-clés
 
-Le kit 2.15.1 transforme les décisions consignées dans un workspace éditorial en métadonnées françaises validées et verrouillées pour la future génération des pages.
+Le kit 2.15.2 transforme les décisions consignées dans un workspace éditorial en métadonnées françaises validées et verrouillées pour la future génération des pages.
 
 ## 1. Compléter les registres
 

@@ -1,0 +1,4567 @@
+{
+  "baseline": "WIKIDEBIA_SOURCES_COMPLETES_1.2.26_0.4.28_2.4.0.zip",
+  "component": "validator",
+  "version": "0.4.28",
+  "required_files": [
+    "CHANGELOG.md",
+    "COMPATIBILITY.json",
+    "LICENSE",
+    "README.md",
+    "VERSIONS.json",
+    "docs/ARCHITECTURE.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.0.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.10.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.11.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.12.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.13.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.14.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.15.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.16.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.17.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.18.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.19.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.20.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.21.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.22.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.23.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.24.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.25.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.26.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.27.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.28.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.5.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.7.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.8.md",
+    "docs/AUDIT_NON_REGRESSION_0.4.9.md",
+    "docs/CONTROL_CATALOG.md",
+    "docs/MIGRATION_1.1.8.md",
+    "docs/MIGRATION_1.1.9.md",
+    "docs/MIGRATION_1.2.0.md",
+    "docs/MIGRATION_1.2.10.md",
+    "docs/MIGRATION_1.2.11.md",
+    "docs/MIGRATION_1.2.12.md",
+    "docs/MIGRATION_1.2.13.md",
+    "docs/MIGRATION_1.2.14.md",
+    "docs/MIGRATION_1.2.15.md",
+    "docs/MIGRATION_1.2.16.md",
+    "docs/MIGRATION_1.2.17.md",
+    "docs/MIGRATION_1.2.18.md",
+    "docs/MIGRATION_1.2.19.md",
+    "docs/MIGRATION_1.2.20.md",
+    "docs/MIGRATION_1.2.21.md",
+    "docs/MIGRATION_1.2.22.md",
+    "docs/MIGRATION_1.2.23.md",
+    "docs/MIGRATION_1.2.24.md",
+    "docs/MIGRATION_1.2.25.md",
+    "docs/MIGRATION_1.2.26.md",
+    "docs/MIGRATION_1.2.5.md",
+    "docs/MIGRATION_1.2.7.md",
+    "docs/MIGRATION_1.2.8.md",
+    "docs/MIGRATION_1.2.9.md",
+    "docs/NORMATIVE_AUDIT.md",
+    "docs/NORMATIVE_AUDIT_1.2.23.md",
+    "docs/NORMATIVE_AUDIT_1.2.24.md",
+    "docs/NORMATIVE_AUDIT_1.2.25.md",
+    "docs/NORMATIVE_AUDIT_1.2.26.md",
+    "docs/NORMATIVE_CORRECTION_2026-07-23.md",
+    "docs/NORMATIVE_SOURCE_AUDIT.txt",
+    "docs/SELF_AUDIT_REPORT.txt",
+    "docs/TEST_REPORT.txt",
+    "docs/history/README.md",
+    "docs/history/project-sources-before-0.3.1/ARCHITECTURE.md",
+    "docs/history/project-sources-before-0.3.1/CONTROL_CATALOG.md",
+    "docs/history/project-sources-before-0.3.1/NORMATIVE_CORRECTION_2026-07-23.md",
+    "docs/history/project-sources-before-0.3.1/README_VALIDATOR_0.2.1.md",
+    "docs/history/validator-0.3.0/CHANGELOG.md",
+    "docs/history/validator-0.3.0/README.md",
+    "docs/history/validator-0.3.0/docs/ARCHITECTURE.md",
+    "docs/history/validator-0.3.0/docs/CONTROL_CATALOG.md",
+    "docs/history/validator-0.3.0/docs/NORMATIVE_AUDIT.md",
+    "docs/history/validator-0.3.0/docs/NORMATIVE_SOURCE_AUDIT.txt",
+    "docs/history/validator-0.3.0/docs/SELF_AUDIT_REPORT.txt",
+    "docs/history/validator-0.3.0/docs/TEST_REPORT.txt",
+    "docs/history/validator-0.3.0/examples/summary_style_review.example.json",
+    "docs/history/validator-0.3.0/wikidebia-validator-0.3.0-receipt.json",
+    "docs/history/validator-0.3.1/ARCHITECTURE.md",
+    "docs/history/validator-0.3.1/AUDIT_NON_REGRESSION_0.3.1.md",
+    "docs/history/validator-0.3.1/CHANGELOG.md",
+    "docs/history/validator-0.3.1/COMPATIBILITY.json",
+    "docs/history/validator-0.3.1/CONTROL_CATALOG.md",
+    "docs/history/validator-0.3.1/MIGRATION_1.1.9.md",
+    "docs/history/validator-0.3.1/NORMATIVE_AUDIT.md",
+    "docs/history/validator-0.3.1/NORMATIVE_SOURCE_AUDIT.txt",
+    "docs/history/validator-0.3.1/README.md",
+    "docs/history/validator-0.3.1/SELF_AUDIT_REPORT.txt",
+    "docs/history/validator-0.3.1/TEST_REPORT.txt",
+    "docs/history/validator-0.4.1/AUDIT_NON_REGRESSION_0.4.1.md",
+    "docs/history/validator-0.4.1/MIGRATION_1.2.1.md",
+    "docs/history/validator-0.4.3/AUDIT_NON_REGRESSION_0.4.3.md",
+    "docs/history/validator-0.4.3/MIGRATION_1.2.3.md",
+    "docs/history/validator-0.4.4/AUDIT_NON_REGRESSION_0.4.4.md",
+    "docs/history/validator-0.4.4/MIGRATION_1.2.4.md",
+    "docs/validation_report.schema.json",
+    "examples/graph_placement_review.example.json",
+    "examples/introduction_review.example.json",
+    "examples/published_state.example.json",
+    "examples/remote_migrations.example.json",
+    "examples/remote_update_plan.example.json",
+    "examples/summary_style_review.example.json",
+    "examples/valid_fr_package/data/lots_fr.json",
+    "examples/valid_fr_package/data/registre_debat.json",
+    "examples/valid_fr_package/data/sources.json",
+    "examples/valid_fr_package/graph/graphe_argumentatif.json",
+    "examples/valid_fr_package/graph/graphe_argumentatif.md",
+    "examples/valid_fr_package/manifest.json",
+    "examples/valid_fr_package/output/fr/aggregates/arguments_batch_001.wiki",
+    "examples/valid_fr_package/output/fr/arguments/A0001.wiki",
+    "examples/valid_fr_package/output/fr/arguments/A0002.wiki",
+    "examples/valid_fr_package/output/fr/debate/debate.wiki",
+    "examples/valid_fr_package/reports/A0001_fr.txt",
+    "examples/valid_fr_package/reports/A0002_fr.txt",
+    "examples/valid_fr_package/reports/exemple_fr.txt",
+    "examples/valid_fr_package/reports/fr_batch_001.txt",
+    "examples/valid_fr_package/reports/fr_debate.txt",
+    "examples/valid_fr_package/reports/fr_global.txt",
+    "examples/valid_fr_package/reports/graph.txt",
+    "examples/valid_fr_package/reports/validator.json",
+    "examples/valid_fr_package/reports/validator.txt",
+    "examples/valid_fr_package/scope.json",
+    "examples/valid_graph_package/data/registre_debat.json",
+    "examples/valid_graph_package/data/sources.json",
+    "examples/valid_graph_package/graph/graphe_argumentatif.json",
+    "examples/valid_graph_package/graph/graphe_argumentatif.md",
+    "examples/valid_graph_package/graph/validation_report.txt",
+    "examples/valid_graph_package/manifest.json",
+    "examples/valid_graph_package/reports/graph.txt",
+    "examples/valid_graph_package/reports/validator.json",
+    "examples/valid_graph_package/reports/validator.txt",
+    "examples/valid_graph_package/scope.json",
+    "normative_reference/00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md",
+    "normative_reference/00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
+    "normative_reference/01_normes/CHANGELOG_NORMATIF.md",
+    "normative_reference/01_normes/MATRICE_TRACEABILITE_DESIDERATA.md",
+    "normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.26.md",
+    "normative_reference/01_normes/cahier_des_charges_consolide_wikidebia.md",
+    "normative_reference/01_normes/history/CORRECTIONS_A_APPLIQUER_2026-07-25.md",
+    "normative_reference/01_normes/history/NORMATIVE_CORRECTION_2026-07-23.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.0.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.1.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.2.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.3.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.4.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.5.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.6.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.8.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.1.9.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.0.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.1.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.10.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.11.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.12.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.13.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.14.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.15.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.16.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.17.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.18.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.19.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.2.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.20.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.21.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.22.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.23.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.24.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.25.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.3.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.4.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.5.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.6.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.7.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.8.md",
+    "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.9.md",
+    "normative_reference/01_normes/history/WORKFLOW_PRODUCTION_WIKIDEBIA_1.2.1.md",
+    "normative_reference/01_normes/profils_rendu_wikidebia.md",
+    "normative_reference/01_normes/requirements_catalog_wikidebia.json",
+    "normative_reference/01_normes/schema_graphe_registre_wikidebia.md",
+    "normative_reference/01_normes/structures_mediawiki_wikidebia.md",
+    "normative_reference/01_normes/workflow_production_wikidebia.md",
+    "pyproject.toml",
+    "requirements-dev.txt",
+    "requirements.txt",
+    "scripts/run_tests.sh",
+    "scripts/self_audit.py",
+    "scripts/wikidebia_remote_compare.py",
+    "scripts/wikidebia_validate.py",
+    "src/wikidebia_validator/__init__.py",
+    "src/wikidebia_validator/__main__.py",
+    "src/wikidebia_validator/batches.py",
+    "src/wikidebia_validator/bilingual.py",
+    "src/wikidebia_validator/cli.py",
+    "src/wikidebia_validator/codes.py",
+    "src/wikidebia_validator/coherence.py",
+    "src/wikidebia_validator/editorial.py",
+    "src/wikidebia_validator/files.py",
+    "src/wikidebia_validator/graph.py",
+    "src/wikidebia_validator/package.py",
+    "src/wikidebia_validator/recalc.py",
+    "src/wikidebia_validator/remote_plan.py",
+    "src/wikidebia_validator/report.py",
+    "src/wikidebia_validator/schema_validation.py",
+    "src/wikidebia_validator/schemas/archive_receipt.schema.json",
+    "src/wikidebia_validator/schemas/argument_graph.schema.json",
+    "src/wikidebia_validator/schemas/argument_registry.schema.json",
+    "src/wikidebia_validator/schemas/batch_collection.schema.json",
+    "src/wikidebia_validator/schemas/batch_manifest.schema.json",
+    "src/wikidebia_validator/schemas/common.schema.json",
+    "src/wikidebia_validator/schemas/debate_package.schema.json",
+    "src/wikidebia_validator/schemas/handoff.schema.json",
+    "src/wikidebia_validator/schemas/interlanguage_patch.schema.json",
+    "src/wikidebia_validator/schemas/operation_log_entry.schema.json",
+    "src/wikidebia_validator/schemas/page_manifest.schema.json",
+    "src/wikidebia_validator/schemas/published_state.schema.json",
+    "src/wikidebia_validator/schemas/release_manifest.schema.json",
+    "src/wikidebia_validator/schemas/remote_migrations.schema.json",
+    "src/wikidebia_validator/schemas/remote_update_plan.schema.json",
+    "src/wikidebia_validator/schemas/remote_update_receipt.schema.json",
+    "src/wikidebia_validator/schemas/requirements_catalog.schema.json",
+    "src/wikidebia_validator/schemas/schema_catalog.json",
+    "src/wikidebia_validator/schemas/scope.schema.json",
+    "src/wikidebia_validator/schemas/source_registry.schema.json",
+    "src/wikidebia_validator/sources.py",
+    "src/wikidebia_validator/validator.py",
+    "src/wikidebia_validator/wikicode.py",
+    "src/wikidebia_validator/workflow.py",
+    "tests/__init__.py",
+    "tests/helpers.py",
+    "tests/test_corrective_110.py",
+    "tests/test_corrective_111.py",
+    "tests/test_corrective_112.py",
+    "tests/test_corrective_113.py",
+    "tests/test_corrective_114.py",
+    "tests/test_corrective_115.py",
+    "tests/test_corrective_116.py",
+    "tests/test_corrective_117.py",
+    "tests/test_corrective_118.py",
+    "tests/test_corrective_119.py",
+    "tests/test_files_batches_workflow.py",
+    "tests/test_graph.py",
+    "tests/test_norm_120.py",
+    "tests/test_norm_1210.py",
+    "tests/test_norm_1211.py",
+    "tests/test_norm_1213.py",
+    "tests/test_norm_1214.py",
+    "tests/test_norm_1217.py",
+    "tests/test_norm_1218.py",
+    "tests/test_norm_1219.py",
+    "tests/test_norm_122.py",
+    "tests/test_norm_1220.py",
+    "tests/test_norm_1221.py",
+    "tests/test_norm_1222.py",
+    "tests/test_norm_1223.py",
+    "tests/test_norm_1224.py",
+    "tests/test_norm_1225.py",
+    "tests/test_norm_1226.py",
+    "tests/test_norm_123.py",
+    "tests/test_norm_124.py",
+    "tests/test_norm_125.py",
+    "tests/test_norm_126.py",
+    "tests/test_norm_127.py",
+    "tests/test_norm_128.py",
+    "tests/test_norm_129.py",
+    "tests/test_portable_paths.py",
+    "tests/test_recalc.py",
+    "tests/test_remote_compare.py",
+    "tests/test_remote_update_plan.py",
+    "tests/test_schema_cli.py",
+    "tests/test_self_audit_counts.py",
+    "tests/test_version_range_non_regression.py",
+    "tests/test_versions_file.py",
+    "tests/test_wikicode.py"
+  ],
+  "python_symbols": {
+    "tests/test_norm_1210.py": {
+      "functions": [
+        "test_norm_1210_accepts_direct_reference_text_in_french_and_english",
+        "test_norm_1210_allows_named_direct_reference_and_reuse",
+        "test_norm_1210_rejects_generic_and_specialized_templates",
+        "test_norm_1210_rejects_machine_date_in_direct_text_but_not_creation_date",
+        "validate"
+      ],
+      "classes": {
+        "Context": [
+          "__init__",
+          "_page",
+          "exists",
+          "manifest",
+          "read_text"
+        ]
+      },
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_corrective_114.py": {
+      "functions": [
+        "test_active_norm_is_single_in_reference_tree",
+        "test_current_handoff_is_declared_by_manifest_not_stage_name",
+        "test_norm_contains_w11_non_overwrite_and_order",
+        "test_singleton_keyword_remains_allowed_114"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_128.py": {
+      "functions": [
+        "test_active_examples_use_current_revision_and_language",
+        "test_norm_128_catalog_all_source_labels_resolve",
+        "test_norm_128_introduction_review_requires_current_revision",
+        "test_norm_128_schema_condition_includes_127_and_128"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_122.py": {
+      "functions": [
+        "_activate_122",
+        "test_norm_122_ignores_em_dash_inside_inline_reference",
+        "test_norm_122_initial_contextual_title_is_strong_issue",
+        "test_norm_122_internal_contextual_title_is_review_signal",
+        "test_norm_122_requires_direct_interlanguage"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_recalc.py": {
+      "functions": [
+        "test_recalc_graph_repairs_derived_data",
+        "test_recalc_requires_write"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_1211.py": {
+      "functions": [
+        "findings",
+        "page",
+        "test_norm_1210_remains_backward_compatible_for_existing_packages",
+        "test_norm_1211_accepts_exact_compact_boundary",
+        "test_norm_1211_rejects_crlf_and_multiple_blank_lines_between_templates",
+        "test_norm_1211_rejects_lf_and_horizontal_whitespace_between_templates"
+      ],
+      "classes": {
+        "Context": [
+          "__init__",
+          "manifest"
+        ]
+      },
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_1219.py": {
+      "functions": [
+        "node",
+        "review",
+        "test_1218_review_does_not_require_new_attestations",
+        "test_1219_review_requires_complete_proposition_attestations",
+        "test_complete_french_argument_title_is_accepted",
+        "test_nominal_english_displayed_title_is_rejected",
+        "test_nominal_french_displayed_titles_are_rejected"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_corrective_117.py": {
+      "functions": [
+        "test_active_norm_is_117",
+        "test_active_runtime_rejects_old_warning_wording",
+        "test_fixed_warning_values_use_by_par"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_1221.py": {
+      "functions": [
+        "test_1221_graph_placement_requirement_ids_are_unique_and_correct"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_files_batches_workflow.py": {
+      "functions": [
+        "test_batch_overlap_and_gap_detected",
+        "test_forbidden_transition_detected",
+        "test_hash_mismatch_detected"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_version_range_non_regression.py": {
+      "functions": [
+        "test_active_rule_sets_include_current_revision",
+        "test_active_sources_do_not_skip_1215_1216_before_1217"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_corrective_118.py": {
+      "functions": [
+        "test_accumulated_long_sentences_trigger_heuristic_warning",
+        "test_active_norm_is_current",
+        "test_short_varied_sentences_do_not_trigger_style_warning",
+        "test_summary_style_review_requires_all_human_attestations"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_wikicode.py": {
+      "functions": [
+        "test_fr_package_valid",
+        "test_french_debate_constructed_value_is_active",
+        "test_french_reference_typography_and_date_language_detected",
+        "test_premature_interlanguage_detected",
+        "test_unknown_empty_and_wrong_relation_detected",
+        "test_video_author_may_be_omitted_in_wikicode"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_1222.py": {
+      "functions": [
+        "_node",
+        "_review",
+        "test_1222_copy_ratio_reports_mechanical_copy",
+        "test_1222_detects_exact_copy_and_longer_displayed_title",
+        "test_1222_exact_identity_accepts_substantial_justifications",
+        "test_1222_exact_identity_requires_specific_justification_but_1221_does_not",
+        "test_1222_review_requires_concision_attestations"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_127.py": {
+      "functions": [
+        "_english_debate",
+        "_intro_review",
+        "test_norm_127_accepts_alphabetized_sections_and_heading_fragment",
+        "test_norm_127_forceful_expression_must_occur_in_summary",
+        "test_norm_127_introduction_review_requires_precision_and_documentary_notes",
+        "test_norm_127_rejects_unsorted_sections_lowercase_topic_and_question_fragment"
+      ],
+      "classes": {
+        "FakeContext": [
+          "__init__",
+          "manifest"
+        ]
+      },
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_schema_cli.py": {
+      "functions": [
+        "_editorial_controls_124",
+        "test_cli_json_output",
+        "test_norm_1219_schema_does_not_require_graph_placement_review_path",
+        "test_norm_1220_schema_accepts_graph_placement_review_path",
+        "test_norm_1220_schema_requires_graph_placement_review_path",
+        "test_norm_1221_schema_requires_graph_placement_review_path",
+        "test_norm_124_schema_accepts_declared_introduction_review_and_rationale",
+        "test_norm_124_schema_requires_introduction_review_and_profile_rationale",
+        "test_schema_violation",
+        "test_video_source_without_author_requires_verification_note"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_1218.py": {
+      "functions": [
+        "issues",
+        "test_active_norm_debate_skeletons_have_nonempty_wikipedia_articles",
+        "test_active_norm_skeletons_do_not_render_related_debates",
+        "test_comma_space_author_separator_is_accepted",
+        "test_comma_without_space_is_rejected",
+        "test_fullwidth_comma_is_rejected",
+        "test_json_author_arrays_are_rejected_in_every_reference_family",
+        "test_json_author_rule_is_generic_not_name_specific",
+        "test_semicolon_author_separator_is_rejected",
+        "test_separator_rule_is_not_retroactive_to_1217",
+        "test_space_before_comma_is_rejected",
+        "with_authors"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_versions_file.py": {
+      "functions": [
+        "test_compatibility_keeps_historical_corpus_revisions",
+        "test_schema_accepts_historical_and_current_norm_revisions",
+        "test_versions_file_has_only_the_three_functional_versions",
+        "test_versions_file_matches_validator_metadata"
+      ],
+      "classes": {},
+      "constants": [
+        "ROOT"
+      ],
+      "literal_constants": {}
+    },
+    "tests/test_norm_125.py": {
+      "functions": [
+        "_page",
+        "test_norm_125_accepts_conceptual_introduction_without_inline_reference",
+        "test_norm_125_control_must_still_be_activated",
+        "test_norm_125_rejects_references_tag_even_without_inline_quota",
+        "test_norm_125_schema_accepts_control_without_legacy_minimum",
+        "test_norm_125_schema_still_requires_introduction_review"
+      ],
+      "classes": {
+        "FakeContext": [
+          "__init__",
+          "exists",
+          "manifest",
+          "read_text"
+        ]
+      },
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_1217.py": {
+      "functions": [
+        "context",
+        "debate",
+        "test_json_author_array_is_rejected",
+        "test_related_debates_parameter_is_forbidden",
+        "test_rules_are_not_retroactive_to_1216",
+        "test_valid_wikipedia_article_passes_specific_gate",
+        "test_wikipedia_parameter_is_required_and_nonempty"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_124.py": {
+      "functions": [
+        "_review",
+        "test_norm_124_accepts_complete_bilingual_introduction_review",
+        "test_norm_124_active_rules_are_corpus_generic",
+        "test_norm_124_rejects_missing_stakes_and_title_mismatch",
+        "test_norm_124_rejects_unexplained_technical_subsection"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_remote_compare.py": {
+      "functions": [
+        "load_module",
+        "test_remote_compare_is_read_only_and_fixture_mode"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_corrective_113.py": {
+      "functions": [
+        "test_singleton_site_keyword_is_formally_valid",
+        "test_site_keyword_still_rejects_sentence_like_phrase"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_corrective_111.py": {
+      "functions": [
+        "test_displayed_title_accepts_complete_french_sentence",
+        "test_displayed_title_rejects_dangling_connector",
+        "test_displayed_title_rejects_ellipsis",
+        "test_displayed_title_rejects_truncated_article",
+        "test_keyword_form_accepts_two_to_four_unique_terms",
+        "test_summary_word_ratio_detects_large_asymmetry"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_129.py": {
+      "functions": [
+        "_english_debate_documentation",
+        "_english_reference_model",
+        "_fr_debate_documentation",
+        "_fr_debate_with_intro",
+        "_reference_model",
+        "test_common_acronym_must_appear_in_complete_topic",
+        "test_documentary_machine_dates_are_distinguished_from_years",
+        "test_norm_128_does_not_retroactively_reject_iso_documentary_date",
+        "test_norm_129_documentary_machine_date_rejected_but_creation_date_kept_machine",
+        "test_norm_129_each_debate_documentary_bucket_needs_two_distinct_references",
+        "test_norm_129_english_debate_buckets_have_same_plurality_rule",
+        "test_norm_129_intro_requires_generic_reference_model"
+      ],
+      "classes": {
+        "EditorialFakeContext": [
+          "__init__",
+          "exists",
+          "manifest",
+          "read_text"
+        ]
+      },
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_1223.py": {
+      "functions": [
+        "_review",
+        "test_1223_argument_web_reference_rejects_author_equal_site",
+        "test_1223_intro_review_accepts_nominal_topics_and_lowercase_complements",
+        "test_1223_intro_review_rejects_missing_nominal_attestation",
+        "test_1223_wikicode_rejects_uppercase_complete_topic"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_corrective_116.py": {
+      "functions": [
+        "entry",
+        "node",
+        "test_active_norm_is_116",
+        "test_every_selected_rubric_requires_a_rationale",
+        "test_no_rubric_is_treated_specially",
+        "test_rationale_for_absent_rubric_is_blocking",
+        "test_runtime_has_no_corpus_specific_constants"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_remote_update_plan.py": {
+      "functions": [
+        "test_plan_hash_tampering_is_blocked",
+        "test_unsafe_delete_is_blocked",
+        "test_valid_remote_update_plan",
+        "valid_plan"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_1226.py": {
+      "functions": [
+        "test_active_normative_source_is_uniquely_1226",
+        "test_package_schema_accepts_norm_1226",
+        "test_validator_version_is_0428_for_norm_1226"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_123.py": {
+      "functions": [
+        "test_norm_123_catalog_replaces_user_space_test",
+        "test_norm_123_declares_canonical_debate_test"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_1224.py": {
+      "functions": [
+        "_argument",
+        "_manifest",
+        "test_1224_introduction_review_requires_hover_attestations",
+        "test_1224_summary_review_requires_hover_attestations",
+        "test_english_hover_link_is_accepted",
+        "test_french_hover_link_is_accepted",
+        "test_hover_link_inside_ref_is_rejected",
+        "test_redundant_displayed_text_is_rejected",
+        "test_wrong_language_parameter_is_rejected"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_1213.py": {
+      "functions": [
+        "findings",
+        "page",
+        "test_norm_1213_keeps_compact_template_boundary_rule",
+        "test_validator_metadata_reports_0413"
+      ],
+      "classes": {
+        "Context": [
+          "__init__",
+          "manifest"
+        ]
+      },
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_120.py": {
+      "functions": [
+        "_activate_120",
+        "_insert_link",
+        "test_active_english_debate_shape_uses_topic_and_complete_topic",
+        "test_context_dependent_canonical_titles_are_detected",
+        "test_explicit_antecedent_with_possessive_is_allowed",
+        "test_norm_120_prefers_verified_french_equivalent_for_french_argument",
+        "test_norm_120_rejects_foreign_debate_source_and_narrow_article",
+        "test_norm_120_rejects_redundant_web_metadata",
+        "test_norm_120_rejects_references_tag",
+        "test_norm_120_requires_direct_french_interlanguage_links",
+        "test_norm_120_uses_lien_interlangue_for_debate_and_arguments",
+        "test_norm_121_accepts_parentheses_in_french_intro",
+        "test_norm_121_generic_referential_autonomy",
+        "test_norm_121_rejects_parenthetical_em_dashes_in_french_intro"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_corrective_115.py": {
+      "functions": [
+        "entry",
+        "node",
+        "test_active_norm_is_115",
+        "test_complete_page_level_review_accepts_ubiquitous_science_and_identical_title",
+        "test_missing_review_entry_is_blocking",
+        "test_selected_rubric_requires_page_specific_rationale",
+        "test_wrong_rubric_record_is_blocking"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_graph.py": {
+      "functions": [
+        "test_bad_derived_counts_detected",
+        "test_duplicate_title_and_cycle_detected",
+        "test_graph_package_valid"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_1220.py": {
+      "functions": [
+        "main_entry",
+        "registry_with_science_objection",
+        "subordinate_entry",
+        "test_1220_accepts_scientific_overturns_as_objection_to_scientific_success",
+        "test_1220_rejects_level_one_without_distinct_family",
+        "test_1220_rejects_targeted_objection_promoted_to_level_one",
+        "test_1220_rejects_wrong_parent_target_or_relation",
+        "test_1220_requires_exact_occurrence_coverage",
+        "test_1221_accepts_same_placement_ledger_contract"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_corrective_119.py": {
+      "functions": [
+        "_decision",
+        "test_118_review_remains_backward_compatible",
+        "test_119_review_requires_new_human_attestations",
+        "test_active_norm_is_119",
+        "test_close_paraphrase_with_only_small_addition_triggers",
+        "test_developed_opening_does_not_trigger_title_warning",
+        "test_exact_title_repetition_triggers_opening_warning",
+        "test_quantitative_claim_detector_ignores_reference_body",
+        "test_quantitative_summary_requires_explicit_verification"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_self_audit_counts.py": {
+      "functions": [
+        "_build_minimal_package",
+        "test_self_audit_accepts_matching_declared_file_count",
+        "test_self_audit_ignores_runtime_cache_files",
+        "test_self_audit_rejects_duplicate_requirement_ids",
+        "test_self_audit_rejects_wrong_receipt_declared_file_count"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_portable_paths.py": {
+      "functions": [
+        "test_absolute_package_path_is_not_persisted",
+        "test_absolute_package_path_is_stable_from_an_unrelated_cwd",
+        "test_relative_package_path_is_preserved"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/helpers.py": {
+      "functions": [
+        "arg_page_record",
+        "base_manifest",
+        "create_fr_package",
+        "create_graph_package",
+        "debate_page_record",
+        "dump",
+        "en_interlanguage",
+        "file_record",
+        "fr_interlanguage",
+        "generation",
+        "graph_projection",
+        "make_registry",
+        "page_manifest",
+        "scope_doc",
+        "sha",
+        "text",
+        "validation",
+        "wiki_record"
+      ],
+      "classes": {},
+      "constants": [
+        "DATE",
+        "NOW",
+        "ZERO"
+      ],
+      "literal_constants": {
+        "NOW": "2026-07-23T18:00:00+02:00",
+        "DATE": "2026-07-23"
+      }
+    },
+    "tests/test_corrective_112.py": {
+      "functions": [
+        "test_complex_french_quotes_are_rejected",
+        "test_keyword_complexity_is_bounded",
+        "test_straight_ascii_quotes_are_accepted",
+        "test_two_to_four_thematic_keywords_are_accepted",
+        "test_unbalanced_ascii_quotes_are_rejected"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_corrective_110.py": {
+      "functions": [
+        "test_access_date_is_rejected",
+        "test_bibliographic_page_parameter_is_accepted",
+        "test_classification_ratio_detects_uniformity",
+        "test_pagination_in_location_is_rejected",
+        "test_summary_auto_objection_positive_and_negative",
+        "test_title_copy_ratio_detects_mechanical_copy",
+        "test_validate_is_read_only",
+        "tree_hash"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_1225.py": {
+      "functions": [
+        "test_active_normative_source_is_1226",
+        "test_package_schema_accepts_norm_1225",
+        "test_validator_version_is_0428"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/__init__.py": {
+      "functions": [],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_126.py": {
+      "functions": [
+        "_english_debate",
+        "_intro_review",
+        "test_norm_126_accepts_alphabetized_sections_and_heading_fragment",
+        "test_norm_126_forceful_expression_must_occur_in_summary",
+        "test_norm_126_introduction_review_requires_precision_and_documentary_notes",
+        "test_norm_126_rejects_unsorted_sections_lowercase_topic_and_question_fragment"
+      ],
+      "classes": {
+        "FakeContext": [
+          "__init__",
+          "manifest"
+        ]
+      },
+      "constants": [],
+      "literal_constants": {}
+    },
+    "tests/test_norm_1214.py": {
+      "functions": [
+        "test_norm_1214_is_declared_compatible",
+        "test_validator_metadata_reports_0414"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "scripts/self_audit.py": {
+      "functions": [
+        "audit_normative_provenance",
+        "is_runtime_artifact"
+      ],
+      "classes": {},
+      "constants": [
+        "ROOT",
+        "RUNTIME_DIRS",
+        "RUNTIME_SUFFIXES"
+      ],
+      "literal_constants": {
+        "RUNTIME_DIRS": [
+          ".mypy_cache",
+          ".pytest_cache",
+          ".ruff_cache",
+          "__pycache__"
+        ],
+        "RUNTIME_SUFFIXES": [
+          ".pyc",
+          ".pyo"
+        ]
+      }
+    },
+    "scripts/wikidebia_validate.py": {
+      "functions": [],
+      "classes": {},
+      "constants": [
+        "ROOT"
+      ],
+      "literal_constants": {}
+    },
+    "scripts/wikidebia_remote_compare.py": {
+      "functions": [
+        "compact_wikitext",
+        "compare",
+        "load_fixture",
+        "load_manifest",
+        "main",
+        "parser",
+        "remote_fetch",
+        "sha256_text",
+        "write_reports"
+      ],
+      "classes": {
+        "Result": []
+      },
+      "constants": [],
+      "literal_constants": {}
+    },
+    "src/wikidebia_validator/sources.py": {
+      "functions": [
+        "_fold",
+        "_norm",
+        "validate_sources"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "src/wikidebia_validator/recalc.py": {
+      "functions": [
+        "recalc_aggregates",
+        "recalc_graph",
+        "recalc_hashes",
+        "recalculate",
+        "write_json"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "src/wikidebia_validator/cli.py": {
+      "functions": [
+        "build_parser",
+        "main"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "src/wikidebia_validator/remote_plan.py": {
+      "functions": [
+        "sha_object",
+        "validate_remote_plan"
+      ],
+      "classes": {},
+      "constants": [
+        "MUTATING",
+        "OPERATIONS"
+      ],
+      "literal_constants": {
+        "OPERATIONS": [
+          "create",
+          "update",
+          "move",
+          "redirect",
+          "delete",
+          "skip",
+          "manual_review",
+          "blocked"
+        ],
+        "MUTATING": [
+          "create",
+          "delete",
+          "move",
+          "redirect",
+          "update"
+        ]
+      }
+    },
+    "src/wikidebia_validator/batches.py": {
+      "functions": [
+        "collect_batches",
+        "validate_batches"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "src/wikidebia_validator/wikicode.py": {
+      "functions": [
+        "_alphabetical_key",
+        "_check_reference_language_and_typography",
+        "_complete_topic_looks_interrogative",
+        "_consolidated_norm",
+        "_display_parameter_redundant",
+        "_extract_outer",
+        "_first_alpha_is_lower",
+        "_first_alpha_is_upper",
+        "_inline_template_spans",
+        "_is_norm_120",
+        "_is_norm_1217",
+        "_is_norm_1218",
+        "_is_norm_126",
+        "_norm_at_least",
+        "_norm_tuple",
+        "_split_top_level",
+        "_validate_argument_content",
+        "_validate_debate_content",
+        "_validate_french_parenthetical_dashes",
+        "_validate_interlanguage",
+        "_validate_wikipedia_hover_links",
+        "alphabetically_sorted",
+        "documentary_date_is_machine",
+        "expected_relations",
+        "explicit_parenthetical_acronym",
+        "get_subs",
+        "parse_template",
+        "parse_template_sequence",
+        "relation_pairs",
+        "split_adjacent_templates",
+        "split_list",
+        "validate_aggregates",
+        "validate_page",
+        "validate_template_shape",
+        "validate_wikicode"
+      ],
+      "classes": {
+        "Template": [
+          "one",
+          "values"
+        ],
+        "WikiParseError": []
+      },
+      "constants": [
+        "EN_MONTHS",
+        "EN_PLACES_EXPECTED_FR",
+        "EN_SECTIONS",
+        "FR_MONTHS",
+        "FR_PLACES_EXPECTED_EN",
+        "FR_SECTIONS",
+        "MACHINE_DOCUMENTARY_DATE_RE",
+        "PAIRED_EM_DASH_RE",
+        "PARAM_TEMPLATE_ALLOWED",
+        "REF_BLOCK_RE",
+        "SELF_CLOSING_REF_RE",
+        "SEQUENCE_PARAMS",
+        "SPLIT_ADJACENT_TEMPLATES_RE",
+        "SUB",
+        "TOP",
+        "TOP_LEGACY"
+      ],
+      "literal_constants": {
+        "TOP_LEGACY": {
+          "('fr', 'debate')": {
+            "model": "Débat",
+            "order": [
+              "sujet",
+              "sujet-complet",
+              "avancement",
+              "avertissements-titre",
+              "avertissements-débat",
+              "introduction",
+              "articles-Wikipédia",
+              "arguments-pour",
+              "arguments-contre",
+              "avertissements-bibliographie",
+              "bibliographie-pour",
+              "bibliographie-contre",
+              "bibliographie-ni-pour-ni-contre",
+              "avertissements-sitographie",
+              "sitographie-pour",
+              "sitographie-contre",
+              "sitographie-ni-pour-ni-contre",
+              "avertissements-vidéographie",
+              "vidéographie-pour",
+              "vidéographie-contre",
+              "vidéographie-ni-pour-ni-contre",
+              "débats-connexes",
+              "rubriques",
+              "mots-clés",
+              "interlangue",
+              "date-création"
+            ],
+            "required": [
+              "sujet",
+              "sujet-complet",
+              "avancement",
+              "avertissements-débat",
+              "introduction",
+              "arguments-pour",
+              "arguments-contre",
+              "rubriques",
+              "mots-clés",
+              "date-création"
+            ],
+            "fixed": {
+              "avancement": "Débat construit",
+              "avertissements-débat": "Débat généré par IA"
+            },
+            "forbidden_generated": [
+              "avertissements-titre",
+              "avertissements-bibliographie",
+              "avertissements-sitographie",
+              "avertissements-vidéographie"
+            ]
+          },
+          "('en', 'debate')": {
+            "model": "Debate",
+            "order": [
+              "type",
+              "topic",
+              "progress",
+              "title-warnings",
+              "debate-warnings",
+              "introduction",
+              "wikipedia-articles",
+              "pro-arguments",
+              "con-arguments",
+              "pro-bibliography",
+              "con-bibliography",
+              "bibliography",
+              "pro-webliography",
+              "con-webliography",
+              "webliography",
+              "pro-videography",
+              "con-videography",
+              "videography",
+              "related-debates",
+              "sections",
+              "keywords",
+              "creation-date"
+            ],
+            "required": [
+              "type",
+              "topic",
+              "progress",
+              "debate-warnings",
+              "introduction",
+              "pro-arguments",
+              "con-arguments",
+              "sections",
+              "keywords",
+              "creation-date"
+            ],
+            "fixed": {
+              "progress": "Constructed debate",
+              "debate-warnings": "Debate generated by AI"
+            },
+            "forbidden_generated": [
+              "title-warnings"
+            ]
+          },
+          "('fr', 'argument')": {
+            "model": "Argument",
+            "order": [
+              "initialisation",
+              "nom",
+              "avertissements-titre",
+              "avertissements-argument",
+              "avertissements-résumé",
+              "résumé",
+              "citations",
+              "avertissements-références",
+              "références-bibliographiques",
+              "références-sitographiques",
+              "références-vidéographiques",
+              "avertissements-justifications",
+              "justifications",
+              "avertissements-objections",
+              "objections",
+              "débat-détaillé",
+              "rubriques",
+              "mots-clés",
+              "interlangue",
+              "date-création"
+            ],
+            "required": [
+              "avertissements-argument",
+              "résumé",
+              "rubriques",
+              "mots-clés",
+              "date-création"
+            ],
+            "fixed": {
+              "avertissements-argument": "Argument généré par IA"
+            },
+            "forbidden_generated": [
+              "initialisation",
+              "nom",
+              "avertissements-titre",
+              "avertissements-résumé",
+              "citations",
+              "avertissements-références",
+              "avertissements-justifications",
+              "avertissements-objections",
+              "débat-détaillé"
+            ]
+          },
+          "('en', 'argument')": {
+            "model": "Argument",
+            "order": [
+              "initialization",
+              "name",
+              "title-warnings",
+              "argument-warnings",
+              "summary-warnings",
+              "summary",
+              "quotes",
+              "reference-warnings",
+              "bibliography",
+              "webliography",
+              "videography",
+              "justification-warnings",
+              "justifications",
+              "objection-warnings",
+              "objections",
+              "detailed-debate",
+              "sections",
+              "keywords",
+              "creation-date"
+            ],
+            "required": [
+              "argument-warnings",
+              "summary",
+              "sections",
+              "keywords",
+              "creation-date"
+            ],
+            "fixed": {
+              "argument-warnings": "Argument generated by AI"
+            },
+            "forbidden_generated": [
+              "initialization",
+              "name",
+              "title-warnings",
+              "summary-warnings",
+              "quotes",
+              "reference-warnings",
+              "justification-warnings",
+              "objection-warnings",
+              "detailed-debate"
+            ]
+          }
+        },
+        "TOP": {
+          "('fr', 'debate')": {
+            "model": "Débat",
+            "order": [
+              "sujet",
+              "sujet-complet",
+              "avancement",
+              "avertissements-titre",
+              "avertissements-débat",
+              "introduction",
+              "articles-Wikipédia",
+              "arguments-pour",
+              "arguments-contre",
+              "avertissements-bibliographie",
+              "bibliographie-pour",
+              "bibliographie-contre",
+              "bibliographie-ni-pour-ni-contre",
+              "avertissements-sitographie",
+              "sitographie-pour",
+              "sitographie-contre",
+              "sitographie-ni-pour-ni-contre",
+              "avertissements-vidéographie",
+              "vidéographie-pour",
+              "vidéographie-contre",
+              "vidéographie-ni-pour-ni-contre",
+              "débats-connexes",
+              "rubriques",
+              "mots-clés",
+              "interlangue",
+              "date-création"
+            ],
+            "required": [
+              "sujet",
+              "sujet-complet",
+              "avancement",
+              "avertissements-débat",
+              "introduction",
+              "arguments-pour",
+              "arguments-contre",
+              "rubriques",
+              "mots-clés",
+              "date-création"
+            ],
+            "fixed": {
+              "avancement": "Débat construit",
+              "avertissements-débat": "Débat généré par IA"
+            },
+            "forbidden_generated": [
+              "avertissements-titre",
+              "avertissements-bibliographie",
+              "avertissements-sitographie",
+              "avertissements-vidéographie"
+            ]
+          },
+          "('en', 'debate')": {
+            "model": "Debate",
+            "order": [
+              "topic",
+              "complete-topic",
+              "progress",
+              "title-warnings",
+              "debate-warnings",
+              "introduction",
+              "wikipedia-articles",
+              "pro-arguments",
+              "con-arguments",
+              "pro-bibliography",
+              "con-bibliography",
+              "bibliography",
+              "pro-webliography",
+              "con-webliography",
+              "webliography",
+              "pro-videography",
+              "con-videography",
+              "videography",
+              "related-debates",
+              "sections",
+              "keywords",
+              "creation-date"
+            ],
+            "required": [
+              "topic",
+              "complete-topic",
+              "progress",
+              "debate-warnings",
+              "introduction",
+              "pro-arguments",
+              "con-arguments",
+              "sections",
+              "keywords",
+              "creation-date"
+            ],
+            "fixed": {
+              "progress": "Constructed debate",
+              "debate-warnings": "Debate generated by AI"
+            },
+            "forbidden_generated": [
+              "title-warnings"
+            ]
+          },
+          "('fr', 'argument')": {
+            "model": "Argument",
+            "order": [
+              "initialisation",
+              "nom",
+              "avertissements-titre",
+              "avertissements-argument",
+              "avertissements-résumé",
+              "résumé",
+              "citations",
+              "avertissements-références",
+              "références-bibliographiques",
+              "références-sitographiques",
+              "références-vidéographiques",
+              "avertissements-justifications",
+              "justifications",
+              "avertissements-objections",
+              "objections",
+              "débat-détaillé",
+              "rubriques",
+              "mots-clés",
+              "interlangue",
+              "date-création"
+            ],
+            "required": [
+              "avertissements-argument",
+              "résumé",
+              "rubriques",
+              "mots-clés",
+              "date-création"
+            ],
+            "fixed": {
+              "avertissements-argument": "Argument généré par IA"
+            },
+            "forbidden_generated": [
+              "initialisation",
+              "nom",
+              "avertissements-titre",
+              "avertissements-résumé",
+              "citations",
+              "avertissements-références",
+              "avertissements-justifications",
+              "avertissements-objections",
+              "débat-détaillé"
+            ]
+          },
+          "('en', 'argument')": {
+            "model": "Argument",
+            "order": [
+              "initialization",
+              "name",
+              "title-warnings",
+              "argument-warnings",
+              "summary-warnings",
+              "summary",
+              "quotes",
+              "reference-warnings",
+              "bibliography",
+              "webliography",
+              "videography",
+              "justification-warnings",
+              "justifications",
+              "objection-warnings",
+              "objections",
+              "detailed-debate",
+              "sections",
+              "keywords",
+              "creation-date"
+            ],
+            "required": [
+              "argument-warnings",
+              "summary",
+              "sections",
+              "keywords",
+              "creation-date"
+            ],
+            "fixed": {
+              "argument-warnings": "Argument generated by AI"
+            },
+            "forbidden_generated": [
+              "initialization",
+              "name",
+              "title-warnings",
+              "summary-warnings",
+              "quotes",
+              "reference-warnings",
+              "justification-warnings",
+              "objection-warnings",
+              "detailed-debate"
+            ]
+          }
+        },
+        "SUB": {
+          "Sous-partie": [
+            [
+              "titre",
+              "contenu",
+              "avertissements"
+            ],
+            [
+              "titre",
+              "contenu"
+            ]
+          ],
+          "Subsection": [
+            [
+              "title",
+              "content",
+              "warnings"
+            ],
+            [
+              "title",
+              "content"
+            ]
+          ],
+          "Article Wikipédia": [
+            [
+              "page"
+            ],
+            [
+              "page"
+            ]
+          ],
+          "Wikipedia article": [
+            [
+              "page"
+            ],
+            [
+              "page"
+            ]
+          ],
+          "Argument pour": [
+            [
+              "page",
+              "titre-affiché",
+              "avertissements"
+            ],
+            [
+              "page",
+              "titre-affiché"
+            ]
+          ],
+          "Argument contre": [
+            [
+              "page",
+              "titre-affiché",
+              "avertissements"
+            ],
+            [
+              "page",
+              "titre-affiché"
+            ]
+          ],
+          "Pro argument": [
+            [
+              "page",
+              "displayed-title",
+              "warnings"
+            ],
+            [
+              "page",
+              "displayed-title"
+            ]
+          ],
+          "Con argument": [
+            [
+              "page",
+              "displayed-title",
+              "warnings"
+            ],
+            [
+              "page",
+              "displayed-title"
+            ]
+          ],
+          "Justification": [
+            [
+              "page",
+              "titre-affiché",
+              "displayed-title",
+              "avertissements",
+              "warnings"
+            ],
+            [
+              "page"
+            ]
+          ],
+          "Objection": [
+            [
+              "page",
+              "titre-affiché",
+              "displayed-title",
+              "avertissements",
+              "warnings"
+            ],
+            [
+              "page"
+            ]
+          ],
+          "Interlangue": [
+            [
+              "langue",
+              "page"
+            ],
+            [
+              "langue",
+              "page"
+            ]
+          ],
+          "Lien interlangue": [
+            [
+              "langue",
+              "page"
+            ],
+            [
+              "langue",
+              "page"
+            ]
+          ],
+          "Débat connexe": [
+            [
+              "page"
+            ],
+            [
+              "page"
+            ]
+          ],
+          "Related debate": [
+            [
+              "page"
+            ],
+            [
+              "page"
+            ]
+          ],
+          "Référence bibliographique": [
+            [
+              "auteurs",
+              "article",
+              "ouvrage",
+              "volume",
+              "numéro",
+              "localisation",
+              "page",
+              "édition",
+              "lieu",
+              "date",
+              "lien",
+              "avertissements"
+            ],
+            [
+              "auteurs"
+            ]
+          ],
+          "Référence bibliographique pour": [
+            [
+              "auteurs",
+              "article",
+              "ouvrage",
+              "volume",
+              "numéro",
+              "localisation",
+              "page",
+              "édition",
+              "lieu",
+              "date",
+              "lien",
+              "avertissements"
+            ],
+            [
+              "auteurs"
+            ]
+          ],
+          "Référence bibliographique contre": [
+            [
+              "auteurs",
+              "article",
+              "ouvrage",
+              "volume",
+              "numéro",
+              "localisation",
+              "page",
+              "édition",
+              "lieu",
+              "date",
+              "lien",
+              "avertissements"
+            ],
+            [
+              "auteurs"
+            ]
+          ],
+          "Bibliographical reference": [
+            [
+              "authors",
+              "article",
+              "work",
+              "volume",
+              "issue",
+              "location",
+              "page",
+              "publisher",
+              "place",
+              "date",
+              "link",
+              "warnings"
+            ],
+            [
+              "authors"
+            ]
+          ],
+          "Pro bibliographical reference": [
+            [
+              "authors",
+              "article",
+              "work",
+              "volume",
+              "issue",
+              "location",
+              "page",
+              "publisher",
+              "place",
+              "date",
+              "link",
+              "warnings"
+            ],
+            [
+              "authors"
+            ]
+          ],
+          "Con bibliographical reference": [
+            [
+              "authors",
+              "article",
+              "work",
+              "volume",
+              "issue",
+              "location",
+              "page",
+              "publisher",
+              "place",
+              "date",
+              "link",
+              "warnings"
+            ],
+            [
+              "authors"
+            ]
+          ],
+          "Référence sitographique": [
+            [
+              "lien",
+              "page",
+              "auteurs",
+              "site",
+              "date",
+              "avertissements"
+            ],
+            [
+              "lien",
+              "site"
+            ]
+          ],
+          "Référence sitographique pour": [
+            [
+              "lien",
+              "page",
+              "auteurs",
+              "site",
+              "date",
+              "avertissements"
+            ],
+            [
+              "lien",
+              "site"
+            ]
+          ],
+          "Référence sitographique contre": [
+            [
+              "lien",
+              "page",
+              "auteurs",
+              "site",
+              "date",
+              "avertissements"
+            ],
+            [
+              "lien",
+              "site"
+            ]
+          ],
+          "Web reference": [
+            [
+              "link",
+              "page",
+              "authors",
+              "site",
+              "date",
+              "warnings"
+            ],
+            [
+              "link",
+              "site"
+            ]
+          ],
+          "Pro web reference": [
+            [
+              "link",
+              "page",
+              "authors",
+              "site",
+              "date",
+              "warnings"
+            ],
+            [
+              "link",
+              "site"
+            ]
+          ],
+          "Con web reference": [
+            [
+              "link",
+              "page",
+              "authors",
+              "site",
+              "date",
+              "warnings"
+            ],
+            [
+              "link",
+              "site"
+            ]
+          ],
+          "Référence vidéographique": [
+            [
+              "titre",
+              "auteurs",
+              "lien",
+              "avertissements"
+            ],
+            [
+              "titre",
+              "lien"
+            ]
+          ],
+          "Référence vidéographique pour": [
+            [
+              "titre",
+              "auteurs",
+              "lien",
+              "avertissements"
+            ],
+            [
+              "titre",
+              "lien"
+            ]
+          ],
+          "Référence vidéographique contre": [
+            [
+              "titre",
+              "auteurs",
+              "lien",
+              "avertissements"
+            ],
+            [
+              "titre",
+              "lien"
+            ]
+          ],
+          "Video reference": [
+            [
+              "title",
+              "authors",
+              "link",
+              "warnings"
+            ],
+            [
+              "title",
+              "link"
+            ]
+          ],
+          "Pro video reference": [
+            [
+              "title",
+              "authors",
+              "link",
+              "warnings"
+            ],
+            [
+              "title",
+              "link"
+            ]
+          ],
+          "Con video reference": [
+            [
+              "title",
+              "authors",
+              "link",
+              "warnings"
+            ],
+            [
+              "title",
+              "link"
+            ]
+          ]
+        },
+        "SEQUENCE_PARAMS": [
+          "arguments-contre",
+          "arguments-pour",
+          "articles-Wikipédia",
+          "bibliographie-contre",
+          "bibliographie-ni-pour-ni-contre",
+          "bibliographie-pour",
+          "bibliography",
+          "con-arguments",
+          "con-bibliography",
+          "con-videography",
+          "con-webliography",
+          "débats-connexes",
+          "interlangue",
+          "introduction",
+          "justifications",
+          "objections",
+          "pro-arguments",
+          "pro-bibliography",
+          "pro-videography",
+          "pro-webliography",
+          "related-debates",
+          "références-bibliographiques",
+          "références-sitographiques",
+          "références-vidéographiques",
+          "sitographie-contre",
+          "sitographie-ni-pour-ni-contre",
+          "sitographie-pour",
+          "videography",
+          "vidéographie-contre",
+          "vidéographie-ni-pour-ni-contre",
+          "vidéographie-pour",
+          "webliography",
+          "wikipedia-articles"
+        ],
+        "PARAM_TEMPLATE_ALLOWED": {
+          "introduction": [
+            "Sous-partie",
+            "Subsection"
+          ],
+          "articles-Wikipédia": [
+            "Article Wikipédia"
+          ],
+          "wikipedia-articles": [
+            "Wikipedia article"
+          ],
+          "arguments-pour": [
+            "Argument pour"
+          ],
+          "arguments-contre": [
+            "Argument contre"
+          ],
+          "pro-arguments": [
+            "Pro argument"
+          ],
+          "con-arguments": [
+            "Con argument"
+          ],
+          "bibliographie-pour": [
+            "Référence bibliographique pour"
+          ],
+          "bibliographie-contre": [
+            "Référence bibliographique contre"
+          ],
+          "bibliographie-ni-pour-ni-contre": [
+            "Référence bibliographique"
+          ],
+          "pro-bibliography": [
+            "Pro bibliographical reference"
+          ],
+          "con-bibliography": [
+            "Con bibliographical reference"
+          ],
+          "bibliography": [
+            "Bibliographical reference"
+          ],
+          "sitographie-pour": [
+            "Référence sitographique pour"
+          ],
+          "sitographie-contre": [
+            "Référence sitographique contre"
+          ],
+          "sitographie-ni-pour-ni-contre": [
+            "Référence sitographique"
+          ],
+          "pro-webliography": [
+            "Pro web reference"
+          ],
+          "con-webliography": [
+            "Con web reference"
+          ],
+          "webliography": [
+            "Web reference"
+          ],
+          "vidéographie-pour": [
+            "Référence vidéographique pour"
+          ],
+          "vidéographie-contre": [
+            "Référence vidéographique contre"
+          ],
+          "vidéographie-ni-pour-ni-contre": [
+            "Référence vidéographique"
+          ],
+          "pro-videography": [
+            "Pro video reference"
+          ],
+          "con-videography": [
+            "Con video reference"
+          ],
+          "videography": [
+            "Video reference"
+          ],
+          "débats-connexes": [
+            "Débat connexe"
+          ],
+          "related-debates": [
+            "Related debate"
+          ],
+          "références-bibliographiques": [
+            "Référence bibliographique"
+          ],
+          "références-sitographiques": [
+            "Référence sitographique"
+          ],
+          "références-vidéographiques": [
+            "Référence vidéographique"
+          ],
+          "justifications": [
+            "Justification"
+          ],
+          "objections": [
+            "Objection"
+          ],
+          "interlangue": [
+            "Interlangue",
+            "Lien interlangue"
+          ]
+        },
+        "FR_SECTIONS": [
+          "Aménagement",
+          "Culture",
+          "Droit",
+          "Écologie",
+          "Économie",
+          "Éducation",
+          "Éthique",
+          "Géopolitique",
+          "Histoire",
+          "Philosophie",
+          "Politique",
+          "Psychologie",
+          "Religion et spiritualité",
+          "Santé",
+          "Science",
+          "Société",
+          "Sport et loisirs",
+          "Technologie"
+        ],
+        "EN_SECTIONS": [
+          "Planning",
+          "Culture",
+          "Law",
+          "Ecology",
+          "Economy",
+          "Education",
+          "Ethics",
+          "Geopolitics",
+          "History",
+          "Philosophy",
+          "Politics",
+          "Psychology",
+          "Religion and spirituality",
+          "Health",
+          "Science",
+          "Society",
+          "Sport and leisure",
+          "Technology"
+        ],
+        "EN_MONTHS": [
+          "April",
+          "August",
+          "December",
+          "February",
+          "January",
+          "July",
+          "June",
+          "March",
+          "May",
+          "November",
+          "October",
+          "September"
+        ],
+        "FR_MONTHS": [
+          "août",
+          "avril",
+          "décembre",
+          "février",
+          "janvier",
+          "juillet",
+          "juin",
+          "mai",
+          "mars",
+          "novembre",
+          "octobre",
+          "septembre"
+        ],
+        "EN_PLACES_EXPECTED_FR": {
+          "London": "Londres",
+          "Brussels": "Bruxelles",
+          "Geneva": "Genève",
+          "Copenhagen": "Copenhague",
+          "The Hague": "La Haye"
+        }
+      }
+    },
+    "src/wikidebia_validator/coherence.py": {
+      "functions": [
+        "compare_patch_only",
+        "validate_coherence",
+        "validate_interlanguage_patch",
+        "validate_operation_logs"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "src/wikidebia_validator/graph.py": {
+      "functions": [
+        "_duplicates",
+        "active_graph",
+        "compute_derived",
+        "contextual_title_issues",
+        "normalized_title",
+        "state_at_least",
+        "structural_payload",
+        "structural_sha256",
+        "validate_graph"
+      ],
+      "classes": {},
+      "constants": [
+        "CONTEXTUAL_TITLE_PATTERNS_120",
+        "CONTEXTUAL_TITLE_PATTERNS_121",
+        "STATE_ORDER"
+      ],
+      "literal_constants": {
+        "STATE_ORDER": [
+          "initialized",
+          "graph_draft",
+          "graph_validated",
+          "graph_locked",
+          "fr_debate_validated",
+          "fr_arguments_in_progress",
+          "fr_content_complete",
+          "fr_validated",
+          "en_titles_locked",
+          "en_debate_validated",
+          "en_arguments_in_progress",
+          "en_content_complete",
+          "en_validated",
+          "bilingual_validated",
+          "interlanguage_prepared",
+          "release_ready",
+          "published",
+          "interlanguage_applied",
+          "released",
+          "archived"
+        ]
+      }
+    },
+    "src/wikidebia_validator/editorial.py": {
+      "functions": [
+        "_active",
+        "_consolidated_norm_from_manifest",
+        "_fold_token",
+        "_load_keyword_vocabulary",
+        "_parse_page",
+        "_plain_text",
+        "_similarity_tokens",
+        "_summary",
+        "_validate_dates",
+        "_validate_debate_docs",
+        "_validate_documentary_registry",
+        "_validate_graph_placement_review",
+        "_validate_individual_editorial_review",
+        "_validate_intro_references",
+        "_validate_introduction_review",
+        "_validate_normative_non_regression",
+        "_validate_summary_style",
+        "_validate_traceability",
+        "displayed_title_argument_issues",
+        "displayed_title_concision_issues",
+        "displayed_title_issues",
+        "dominant_classification_ratio",
+        "keyword_form_issues",
+        "opening_title_similarity",
+        "summary_first_sentence",
+        "summary_has_auto_objection",
+        "summary_quantitative_claims",
+        "summary_sentence_word_counts",
+        "summary_style_issues",
+        "summary_word_ratio",
+        "title_copy_ratio",
+        "validate_editorial",
+        "validate_graph_placement_review_data",
+        "validate_individual_review_data",
+        "validate_introduction_review_data",
+        "validate_summary_style_review_data"
+      ],
+      "classes": {},
+      "constants": [
+        "ACCESS_DATE",
+        "ALLOWED_KEYWORD_KINDS",
+        "AUTO_OBJECTION_EN",
+        "AUTO_OBJECTION_FR",
+        "COMPLEX_QUOTES",
+        "DANGLING_EN",
+        "DANGLING_FR",
+        "DISPLAYED_TITLE_PREDICATES_EN",
+        "DISPLAYED_TITLE_PREDICATES_FR",
+        "DOUBLE_WORD",
+        "ELLIPSIS",
+        "INTRO_REVIEW_TRUE_FIELDS",
+        "MALFORMED_FR_INITIAL",
+        "NUMERIC_CLAIM",
+        "PAGE_ONLY",
+        "PAGE_VALUE",
+        "REF_BLOCK",
+        "SENTENCE_SPLIT",
+        "SIMILARITY_STOPWORDS",
+        "WIKI_MARKUP",
+        "WORD_TOKEN"
+      ],
+      "literal_constants": {
+        "ALLOWED_KEYWORD_KINDS": [
+          "acronym",
+          "noun",
+          "noun_phrase",
+          "proper_name"
+        ],
+        "SIMILARITY_STOPWORDS": {
+          "fr": [
+            "a",
+            "au",
+            "aux",
+            "avec",
+            "ce",
+            "ces",
+            "cet",
+            "cette",
+            "d",
+            "dans",
+            "de",
+            "des",
+            "du",
+            "elle",
+            "elles",
+            "en",
+            "est",
+            "et",
+            "il",
+            "ils",
+            "l",
+            "la",
+            "le",
+            "les",
+            "leur",
+            "leurs",
+            "mais",
+            "ne",
+            "ou",
+            "par",
+            "pas",
+            "peut",
+            "peuvent",
+            "plus",
+            "pour",
+            "que",
+            "qui",
+            "sa",
+            "se",
+            "ses",
+            "son",
+            "sont",
+            "sur",
+            "un",
+            "une",
+            "vers"
+          ],
+          "en": [
+            "a",
+            "an",
+            "and",
+            "are",
+            "as",
+            "at",
+            "be",
+            "by",
+            "can",
+            "could",
+            "for",
+            "from",
+            "in",
+            "is",
+            "it",
+            "may",
+            "of",
+            "on",
+            "or",
+            "that",
+            "the",
+            "their",
+            "these",
+            "this",
+            "to",
+            "toward",
+            "towards",
+            "with",
+            "would"
+          ]
+        },
+        "INTRO_REVIEW_TRUE_FIELDS": [
+          "subject_and_scope_defined",
+          "debate_question_explained",
+          "history_and_evolution_addressed",
+          "current_state_addressed_or_not_applicable",
+          "stakes_explained",
+          "factual_claims_referenced",
+          "progression_coherent",
+          "no_argument_tree_mirroring",
+          "no_topic_specific_checklist"
+        ]
+      }
+    },
+    "src/wikidebia_validator/schema_validation.py": {
+      "functions": [
+        "pointer",
+        "validate_all_schemas",
+        "validate_instance"
+      ],
+      "classes": {
+        "SchemaStore": [
+          "__init__",
+          "validate"
+        ]
+      },
+      "constants": [
+        "SCHEMA_BY_PATH"
+      ],
+      "literal_constants": {
+        "SCHEMA_BY_PATH": {
+          "manifest.json": "debate_package.schema.json",
+          "scope.json": "scope.schema.json",
+          "data/registre_debat.json": "argument_registry.schema.json",
+          "data/sources.json": "source_registry.schema.json",
+          "data/lots_fr.json": "batch_collection.schema.json",
+          "data/lots_en.json": "batch_collection.schema.json",
+          "graph/graphe_argumentatif.json": "argument_graph.schema.json",
+          "patches/interlanguage_fr.json": "interlanguage_patch.schema.json",
+          "patches/interlanguage_fr.validated.json": "interlanguage_patch.schema.json",
+          "release_manifest.json": "release_manifest.schema.json",
+          "normative/requirements_catalog_wikidebia.json": "requirements_catalog.schema.json",
+          "data/remote_migrations.json": "remote_migrations.schema.json"
+        }
+      }
+    },
+    "src/wikidebia_validator/bilingual.py": {
+      "functions": [
+        "validate_bilingual"
+      ],
+      "classes": {},
+      "constants": [
+        "SECTION_MAP"
+      ],
+      "literal_constants": {
+        "SECTION_MAP": {
+          "Aménagement": "Planning",
+          "Culture": "Culture",
+          "Droit": "Law",
+          "Écologie": "Ecology",
+          "Économie": "Economy",
+          "Éducation": "Education",
+          "Éthique": "Ethics",
+          "Géopolitique": "Geopolitics",
+          "Histoire": "History",
+          "Philosophie": "Philosophy",
+          "Politique": "Politics",
+          "Psychologie": "Psychology",
+          "Religion et spiritualité": "Religion and spirituality",
+          "Santé": "Health",
+          "Science": "Science",
+          "Société": "Society",
+          "Sport et loisirs": "Sport and leisure",
+          "Technologie": "Technology"
+        }
+      }
+    },
+    "src/wikidebia_validator/validator.py": {
+      "functions": [
+        "validate_package"
+      ],
+      "classes": {},
+      "constants": [
+        "ALL_SCOPES"
+      ],
+      "literal_constants": {
+        "ALL_SCOPES": [
+          "schema",
+          "coherence",
+          "graph",
+          "batches",
+          "sources",
+          "files",
+          "wikicode",
+          "bilingual",
+          "editorial",
+          "workflow"
+        ]
+      }
+    },
+    "src/wikidebia_validator/report.py": {
+      "functions": [
+        "portable_display_path"
+      ],
+      "classes": {
+        "Finding": [
+          "to_dict"
+        ],
+        "Report": [
+          "__init__",
+          "add",
+          "error",
+          "errors",
+          "info",
+          "infos",
+          "to_dict",
+          "to_text",
+          "warning",
+          "warnings"
+        ]
+      },
+      "constants": [],
+      "literal_constants": {}
+    },
+    "src/wikidebia_validator/__main__.py": {
+      "functions": [],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "src/wikidebia_validator/files.py": {
+      "functions": [
+        "validate_files",
+        "validate_hash"
+      ],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    },
+    "src/wikidebia_validator/package.py": {
+      "functions": [],
+      "classes": {
+        "PackageContext": [
+          "core_paths",
+          "exists",
+          "graph_projection",
+          "iter_files",
+          "load_json",
+          "load_jsonl",
+          "manifest",
+          "read_bytes",
+          "read_text",
+          "registry",
+          "relative",
+          "safe_path",
+          "sha256",
+          "sources"
+        ]
+      },
+      "constants": [],
+      "literal_constants": {}
+    },
+    "src/wikidebia_validator/codes.py": {
+      "functions": [],
+      "classes": {},
+      "constants": [
+        "CODES"
+      ],
+      "literal_constants": {
+        "CODES": {
+          "WDV-SCH-001": "Fichier JSON illisible",
+          "WDV-SCH-002": "Schéma JSON introuvable ou non applicable",
+          "WDV-SCH-003": "Violation de JSON Schema",
+          "WDV-FS-001": "Fichier obligatoire manquant",
+          "WDV-FS-002": "Chemin non sûr ou extérieur au paquet",
+          "WDV-FS-003": "Empreinte SHA-256 incorrecte",
+          "WDV-FS-004": "Fichier déclaré mais absent",
+          "WDV-FS-005": "Normalisation textuelle non conforme",
+          "WDV-FS-006": "Fichier orphelin ou dupliqué",
+          "WDV-GRA-001": "Identifiant dupliqué",
+          "WDV-GRA-002": "Titre canonique dupliqué ou collision normalisée",
+          "WDV-GRA-003": "Référence à un nœud inexistant",
+          "WDV-GRA-004": "Référence à une relation ou occurrence inexistante",
+          "WDV-GRA-005": "Cycle détecté",
+          "WDV-GRA-006": "Autojustification ou auto-objection",
+          "WDV-GRA-007": "Relation directe dupliquée",
+          "WDV-GRA-008": "Occurrence incohérente avec sa relation",
+          "WDV-GRA-009": "Profondeur ou branche incorrecte",
+          "WDV-GRA-010": "Occurrence primaire absente ou multiple",
+          "WDV-GRA-011": "Occurrence secondaire développée",
+          "WDV-GRA-012": "Nœud ou occurrence orphelin",
+          "WDV-GRA-013": "Compteur dérivé incorrect",
+          "WDV-GRA-014": "Projection JSON divergente du registre maître",
+          "WDV-GRA-015": "Empreinte structurelle incorrecte",
+          "WDV-GRA-016": "Titre non conforme",
+          "WDV-GRA-017": "Branches principales incomplètes",
+          "WDV-BAT-001": "Lot inconnu ou identifiant de nœud inexistant",
+          "WDV-BAT-002": "Chevauchement entre lots",
+          "WDV-BAT-003": "Lacune de couverture des lots",
+          "WDV-BAT-004": "Dépendance de lot incohérente",
+          "WDV-BAT-005": "Lot obsolète ou empreinte d'entrée incohérente",
+          "WDV-MWK-001": "Wikicode mal formé",
+          "WDV-MWK-002": "Modèle principal incorrect",
+          "WDV-MWK-003": "Paramètre inconnu ou interdit",
+          "WDV-MWK-004": "Paramètre obligatoire absent",
+          "WDV-MWK-005": "Paramètre vide interdit",
+          "WDV-MWK-006": "Ordre des paramètres incorrect",
+          "WDV-MWK-007": "Valeur fixe incorrecte",
+          "WDV-MWK-008": "Relation MediaWiki absente, supplémentaire ou erronée",
+          "WDV-MWK-009": "Rubrique, section ou mot-clé non conforme",
+          "WDV-MWK-010": "Date de création incorrecte",
+          "WDV-MWK-011": "Lien interlangue prématuré, absent ou erroné",
+          "WDV-MWK-012": "Sous-modèle ou paramètre documentaire incorrect",
+          "WDV-MWK-013": "Agrégat incohérent avec les fichiers individuels",
+          "WDV-MWK-015": "Tiret cadratin employé comme parenthèse dans la prose française",
+          "WDV-MWK-016": "Ordre alphabétique des rubriques ou sections incorrect",
+          "WDV-MWK-017": "Majuscule initiale de sujet ou topic incorrecte",
+          "WDV-MWK-018": "Saut de ligne ou espace entre deux modèles MediaWiki adjacents",
+          "WDV-MWK-019": "Article Wikipédia obligatoire absent ou invalide",
+          "WDV-MWK-020": "Lien Wikipédia explicatif inline non conforme",
+          "WDV-MWK-014": "Langue ou typographie documentaire non conforme",
+          "WDV-BIL-001": "Identifiants ou pages bilingues divergents",
+          "WDV-BIL-002": "Relations bilingues divergentes",
+          "WDV-BIL-003": "Occurrence primaire ou réutilisation bilingue divergente",
+          "WDV-BIL-004": "Correspondance rubriques-sections divergente",
+          "WDV-BIL-005": "Titre interlangue divergent",
+          "WDV-BIL-006": "Asymétrie éditoriale bilingue substantielle",
+          "WDV-WF-001": "État global incompatible avec les fichiers présents",
+          "WDV-WF-002": "Transition d'état interdite",
+          "WDV-WF-003": "Validation préalable absente ou échouée",
+          "WDV-WF-004": "Transmission incompatible avec le paquet",
+          "WDV-WF-005": "Champ verrouillé ou version normative incohérente",
+          "WDV-SRC-001": "Source dupliquée ou identifiant documentaire dupliqué",
+          "WDV-SRC-002": "Usage de source vers une page inexistante",
+          "WDV-SRC-003": "Source rejetée encore utilisée ou source vérifiée inutilisée",
+          "WDV-SRC-004": "Langue documentaire non préférée ou équivalent local ignoré",
+          "WDV-SRC-005": "Sélection bibliographique de la page de débat inadéquate",
+          "WDV-DOC-001": "Contrôle éditorial humain requis",
+          "WDV-DOC-002": "Pagination bibliographique incorrecte",
+          "WDV-DOC-003": "Date sitographique non documentaire",
+          "WDV-DOC-004": "Métadonnées sitographiques redondantes ou attribution non vérifiée",
+          "WDV-DOC-005": "Date documentaire au format machine",
+          "WDV-DOC-006": "Champ auteur sérialisé comme tableau JSON",
+          "WDV-DOC-007": "Séparateur d’auteurs non canonique",
+          "WDV-EDT-001": "Titres affichés copiés mécaniquement",
+          "WDV-EDT-002": "Classification ou mots-clés mécaniques",
+          "WDV-EDT-003": "Résumé contenant une auto-objection ou du métadiscours",
+          "WDV-EDT-004": "Documentation de la page de débat insuffisante ou mécanique",
+          "WDV-EDT-005": "Migration corrective des dates incomplète",
+          "WDV-EDT-006": "Traçabilité corrective ou revue humaine absente",
+          "WDV-EDT-007": "Titre affiché tronqué ou mal formé",
+          "WDV-EDT-008": "Mot-clé non nominal, non pertinent ou hors vocabulaire contrôlé",
+          "WDV-EDT-009": "Guillemets canoniques non conformes",
+          "WDV-EDT-010": "Références d’introduction non conformes",
+          "WDV-EDT-011": "Régression normative ou handoff courant incohérent",
+          "WDV-EDT-012": "Revue individuelle des titres et rubriques absente ou incohérente",
+          "WDV-EDT-013": "Style du résumé trop lourd ou revue des termes techniques absente",
+          "WDV-EDT-014": "Première phrase du résumé trop proche du titre",
+          "WDV-EDT-015": "Donnée chiffrée sans attestation documentaire conforme",
+          "WDV-EDT-016": "Titre canonique non autonome en raison d’un référent contextuel",
+          "WDV-EDT-017": "Revue structurelle de l’introduction absente ou incohérente",
+          "WDV-EDT-018": "Forme de sujet-complet ou complete-topic incorrecte",
+          "WDV-EDT-019": "Revue de précision et de profondeur documentaire du débat absente",
+          "WDV-EDT-020": "Force expressive du résumé non ancrée dans le texte",
+          "WDV-EDT-021": "Titre affiché non propositionnel ou argument incompréhensible",
+          "WDV-EDT-022": "Revue du placement des arguments absente ou incohérente",
+          "WDV-RMT-001": "Empreinte du plan de reprise divergente",
+          "WDV-RMT-002": "Compteurs du plan de reprise incohérents",
+          "WDV-RMT-003": "Opérations distantes mutantes contradictoires",
+          "WDV-RMT-004": "Suppression distante insuffisamment attestée",
+          "WDV-RMT-005": "Mise à jour distante insuffisamment attestée",
+          "WDV-RMT-006": "Revue manuelle sans comparaison correspondante",
+          "WDV-INT-001": "Erreur interne du validateur"
+        }
+      }
+    },
+    "src/wikidebia_validator/workflow.py": {
+      "functions": [
+        "allowed_transition",
+        "passed_scopes",
+        "validate_workflow"
+      ],
+      "classes": {},
+      "constants": [
+        "VALIDATION_FOR_STATE",
+        "WORK_MIN_STATE"
+      ],
+      "literal_constants": {
+        "VALIDATION_FOR_STATE": {
+          "graph_validated": "graph",
+          "graph_locked": "graph",
+          "fr_debate_validated": "fr_debate",
+          "fr_validated": "fr_global",
+          "en_titles_locked": "en_titles",
+          "en_debate_validated": "en_debate",
+          "en_validated": "en_global",
+          "bilingual_validated": "bilingual",
+          "interlanguage_prepared": "interlanguage",
+          "release_ready": "interlanguage",
+          "released": "release"
+        },
+        "WORK_MIN_STATE": {
+          "initialization": "initialized",
+          "graph": "graph_locked",
+          "fr_debate_page": "fr_debate_validated",
+          "fr_argument_batch": "fr_arguments_in_progress",
+          "fr_global_validation": "fr_validated",
+          "en_titles": "en_titles_locked",
+          "en_debate_page": "en_debate_validated",
+          "en_argument_batch": "en_arguments_in_progress",
+          "en_global_validation": "en_validated",
+          "bilingual_validation": "bilingual_validated",
+          "interlanguage": "interlanguage_prepared",
+          "release_archive": "published",
+          "corrective_prepublication": "release_ready"
+        }
+      }
+    },
+    "src/wikidebia_validator/__init__.py": {
+      "functions": [],
+      "classes": {},
+      "constants": [],
+      "literal_constants": {}
+    }
+  },
+  "schemas": {
+    "archive_receipt.schema.json": {
+      "properties": [
+        "archive_path",
+        "archive_project",
+        "archive_receipt_version",
+        "archive_sha256",
+        "archive_size_bytes",
+        "archived_at",
+        "created_at",
+        "debate_id",
+        "release_manifest_path",
+        "release_manifest_sha256",
+        "zip_integrity_test"
+      ],
+      "required": [
+        "archive_path",
+        "archive_project",
+        "archive_receipt_version",
+        "archive_sha256",
+        "archive_size_bytes",
+        "archived_at",
+        "created_at",
+        "debate_id",
+        "release_manifest_path",
+        "release_manifest_sha256",
+        "zip_integrity_test"
+      ],
+      "enums": {}
+    },
+    "argument_graph.schema.json": {
+      "properties": [
+        "debate",
+        "debate.id",
+        "debate.labels",
+        "debate.labels.en",
+        "debate.labels.en.con",
+        "debate.labels.en.pro",
+        "debate.labels.fr",
+        "debate.labels.fr.con",
+        "debate.labels.fr.pro",
+        "debate.title_fr",
+        "depth_policy",
+        "depth_policy.declared_maximum",
+        "depth_policy.exception_reason",
+        "depth_policy.maximum_observed",
+        "depth_policy.normal_target",
+        "derived_counts",
+        "derived_counts.additional_reuses",
+        "derived_counts.developed_nodes",
+        "derived_counts.distinct_nodes",
+        "derived_counts.justifications_by_depth",
+        "derived_counts.leaf_nodes",
+        "derived_counts.main_con",
+        "derived_counts.main_pro",
+        "derived_counts.maximum_depth",
+        "derived_counts.objections_by_depth",
+        "derived_counts.reused_nodes",
+        "derived_counts.total_occurrences",
+        "edges",
+        "edges.child_node_id",
+        "edges.id",
+        "edges.introduced_in_pass",
+        "edges.order",
+        "edges.parent_node_id",
+        "edges.relation",
+        "edges.status",
+        "graph_schema_version",
+        "lifecycle",
+        "lifecycle.locked_at",
+        "lifecycle.locked_by_stage",
+        "lifecycle.status",
+        "lifecycle.structural_sha256",
+        "lifecycle.validated_at",
+        "nodes",
+        "nodes.derived",
+        "nodes.derived.is_main_argument_anywhere",
+        "nodes.derived.is_reused",
+        "nodes.derived.maximum_depth",
+        "nodes.derived.minimum_depth",
+        "nodes.derived.occurrence_count",
+        "nodes.derived.primary_occurrence_id",
+        "nodes.en",
+        "nodes.en.canonical_title",
+        "nodes.en.displayed_title",
+        "nodes.en.keywords",
+        "nodes.en.sections",
+        "nodes.en.title_status",
+        "nodes.fr",
+        "nodes.fr.canonical_title",
+        "nodes.fr.displayed_title",
+        "nodes.fr.keywords",
+        "nodes.fr.rubriques",
+        "nodes.fr.title_status",
+        "nodes.id",
+        "nodes.pages",
+        "nodes.pages.en",
+        "nodes.pages.fr",
+        "nodes.sources",
+        "nodes.sources.en",
+        "nodes.sources.en.bibliography",
+        "nodes.sources.en.videography",
+        "nodes.sources.en.webliography",
+        "nodes.sources.fr",
+        "nodes.sources.fr.bibliography",
+        "nodes.sources.fr.videography",
+        "nodes.sources.fr.webliography",
+        "nodes.status",
+        "occurrences",
+        "occurrences.branch",
+        "occurrences.depth",
+        "occurrences.edge_id",
+        "occurrences.id",
+        "occurrences.node_id",
+        "occurrences.occurrence_role",
+        "occurrences.order",
+        "occurrences.parent_occurrence_id",
+        "occurrences.render_children"
+      ],
+      "required": [
+        "debate",
+        "debate.id",
+        "debate.labels",
+        "debate.labels.en",
+        "debate.labels.en.con",
+        "debate.labels.en.pro",
+        "debate.labels.fr",
+        "debate.labels.fr.con",
+        "debate.labels.fr.pro",
+        "debate.title_fr",
+        "depth_policy",
+        "depth_policy.declared_maximum",
+        "depth_policy.exception_reason",
+        "depth_policy.maximum_observed",
+        "depth_policy.normal_target",
+        "derived_counts",
+        "derived_counts.additional_reuses",
+        "derived_counts.developed_nodes",
+        "derived_counts.distinct_nodes",
+        "derived_counts.justifications_by_depth",
+        "derived_counts.leaf_nodes",
+        "derived_counts.main_con",
+        "derived_counts.main_pro",
+        "derived_counts.maximum_depth",
+        "derived_counts.objections_by_depth",
+        "derived_counts.reused_nodes",
+        "derived_counts.total_occurrences",
+        "edges",
+        "edges.child_node_id",
+        "edges.id",
+        "edges.order",
+        "edges.parent_node_id",
+        "edges.relation",
+        "edges.status",
+        "graph_schema_version",
+        "lifecycle",
+        "lifecycle.locked_at",
+        "lifecycle.locked_by_stage",
+        "lifecycle.status",
+        "lifecycle.structural_sha256",
+        "lifecycle.validated_at",
+        "nodes",
+        "nodes.derived.is_main_argument_anywhere",
+        "nodes.derived.is_reused",
+        "nodes.derived.maximum_depth",
+        "nodes.derived.minimum_depth",
+        "nodes.derived.occurrence_count",
+        "nodes.derived.primary_occurrence_id",
+        "nodes.en",
+        "nodes.en.canonical_title",
+        "nodes.en.displayed_title",
+        "nodes.en.keywords",
+        "nodes.en.sections",
+        "nodes.en.title_status",
+        "nodes.fr",
+        "nodes.fr.canonical_title",
+        "nodes.fr.displayed_title",
+        "nodes.fr.keywords",
+        "nodes.fr.rubriques",
+        "nodes.fr.title_status",
+        "nodes.id",
+        "nodes.pages",
+        "nodes.pages.en",
+        "nodes.pages.fr",
+        "nodes.sources",
+        "nodes.sources.en",
+        "nodes.sources.en.bibliography",
+        "nodes.sources.en.videography",
+        "nodes.sources.en.webliography",
+        "nodes.sources.fr",
+        "nodes.sources.fr.bibliography",
+        "nodes.sources.fr.videography",
+        "nodes.sources.fr.webliography",
+        "nodes.status",
+        "occurrences",
+        "occurrences.branch",
+        "occurrences.depth",
+        "occurrences.edge_id",
+        "occurrences.id",
+        "occurrences.node_id",
+        "occurrences.occurrence_role",
+        "occurrences.order",
+        "occurrences.parent_occurrence_id",
+        "occurrences.render_children"
+      ],
+      "enums": {
+        "lifecycle.status": [
+          "draft",
+          "locked",
+          "migration_required",
+          "validated"
+        ],
+        "nodes.status": [
+          "active",
+          "retired"
+        ],
+        "nodes.fr.title_status": [
+          "draft",
+          "locked",
+          "normalized",
+          "validated"
+        ],
+        "nodes.fr.rubriques": [
+          "Aménagement",
+          "Culture",
+          "Droit",
+          "Géopolitique",
+          "Histoire",
+          "Philosophie",
+          "Politique",
+          "Psychologie",
+          "Religion et spiritualité",
+          "Santé",
+          "Science",
+          "Société",
+          "Sport et loisirs",
+          "Technologie",
+          "Écologie",
+          "Économie",
+          "Éducation",
+          "Éthique"
+        ],
+        "nodes.en.title_status": [
+          "locked",
+          "validated"
+        ],
+        "nodes.en.sections": [
+          "Culture",
+          "Ecology",
+          "Economy",
+          "Education",
+          "Ethics",
+          "Geopolitics",
+          "Health",
+          "History",
+          "Law",
+          "Philosophy",
+          "Planning",
+          "Politics",
+          "Psychology",
+          "Religion and spirituality",
+          "Science",
+          "Society",
+          "Sport and leisure",
+          "Technology"
+        ],
+        "edges.relation": [
+          "justification",
+          "objection"
+        ],
+        "edges.status": [
+          "active",
+          "retired"
+        ],
+        "occurrences.branch": [
+          "con",
+          "pro"
+        ],
+        "occurrences.occurrence_role": [
+          "primary",
+          "secondary"
+        ]
+      }
+    },
+    "source_registry.schema.json": {
+      "properties": [
+        "debate_id",
+        "source_registry_version",
+        "sources",
+        "sources.deduplication_key",
+        "sources.document_kind",
+        "sources.equivalence_group",
+        "sources.id",
+        "sources.language",
+        "sources.metadata",
+        "sources.metadata.article",
+        "sources.metadata.authors",
+        "sources.metadata.date",
+        "sources.metadata.issue",
+        "sources.metadata.link",
+        "sources.metadata.location",
+        "sources.metadata.page",
+        "sources.metadata.place",
+        "sources.metadata.publisher",
+        "sources.metadata.site",
+        "sources.metadata.title",
+        "sources.metadata.volume",
+        "sources.metadata.work",
+        "sources.type",
+        "sources.usage",
+        "sources.usage.documentary_scope",
+        "sources.usage.language",
+        "sources.usage.language_fit",
+        "sources.usage.page_id",
+        "sources.usage.preferred_equivalent_source_id",
+        "sources.usage.role",
+        "sources.usage.selection_reason",
+        "sources.verification",
+        "sources.verification.authorship_checked",
+        "sources.verification.authorship_recheck_notes",
+        "sources.verification.authorship_rechecked_after_site_match",
+        "sources.verification.authorship_verified",
+        "sources.verification.language_verified",
+        "sources.verification.notes",
+        "sources.verification.primary_source",
+        "sources.verification.status",
+        "sources.verification.verified_at"
+      ],
+      "required": [
+        "debate_id",
+        "source_registry_version",
+        "sources",
+        "sources.deduplication_key",
+        "sources.id",
+        "sources.language",
+        "sources.metadata",
+        "sources.metadata.article",
+        "sources.metadata.authors",
+        "sources.metadata.date",
+        "sources.metadata.issue",
+        "sources.metadata.link",
+        "sources.metadata.location",
+        "sources.metadata.page",
+        "sources.metadata.place",
+        "sources.metadata.publisher",
+        "sources.metadata.site",
+        "sources.metadata.title",
+        "sources.metadata.volume",
+        "sources.metadata.work",
+        "sources.type",
+        "sources.usage",
+        "sources.usage.language",
+        "sources.usage.page_id",
+        "sources.usage.role",
+        "sources.verification",
+        "sources.verification.notes",
+        "sources.verification.primary_source",
+        "sources.verification.status",
+        "sources.verification.verified_at"
+      ],
+      "enums": {
+        "sources.type": [
+          "bibliography",
+          "videography",
+          "webliography"
+        ],
+        "sources.verification.status": [
+          "rejected",
+          "unverified",
+          "verified"
+        ],
+        "sources.usage.role": [
+          "con_reference",
+          "context",
+          "neutral_reference",
+          "pro_reference",
+          "supports_introduction",
+          "supports_summary"
+        ],
+        "sources.usage.language_fit": [
+          "native",
+          "object_of_analysis",
+          "official_translation",
+          "original_no_equivalent"
+        ],
+        "sources.usage.documentary_scope": [
+          "broad_synthesis",
+          "context",
+          "foundational_work",
+          "introduction_fact",
+          "narrow_argument"
+        ],
+        "sources.document_kind": [
+          "book",
+          "book_chapter",
+          "conference_paper",
+          "edited_volume",
+          "handbook",
+          "journal_article",
+          "legal_text",
+          "monograph",
+          "other",
+          "review_article",
+          "synthesis_report",
+          "thesis"
+        ]
+      }
+    },
+    "batch_collection.schema.json": {
+      "properties": [
+        "batch_collection_version",
+        "batches",
+        "debate_id",
+        "language"
+      ],
+      "required": [
+        "batch_collection_version",
+        "batches",
+        "debate_id",
+        "language"
+      ],
+      "enums": {}
+    },
+    "common.schema.json": {
+      "properties": [
+        "$defs.argumentPageRecordEn.file",
+        "$defs.argumentPageRecordEn.generation",
+        "$defs.argumentPageRecordEn.interlanguage",
+        "$defs.argumentPageRecordEn.wiki",
+        "$defs.argumentPageRecordFr.file",
+        "$defs.argumentPageRecordFr.generation",
+        "$defs.argumentPageRecordFr.interlanguage",
+        "$defs.argumentPageRecordFr.wiki",
+        "$defs.debatePageRecordEn.canonical_title",
+        "$defs.debatePageRecordEn.file",
+        "$defs.debatePageRecordEn.generation",
+        "$defs.debatePageRecordEn.interlanguage",
+        "$defs.debatePageRecordEn.title_status",
+        "$defs.debatePageRecordEn.wiki",
+        "$defs.debatePageRecordFr.canonical_title",
+        "$defs.debatePageRecordFr.file",
+        "$defs.debatePageRecordFr.generation",
+        "$defs.debatePageRecordFr.interlanguage",
+        "$defs.debatePageRecordFr.title_status",
+        "$defs.debatePageRecordFr.wiki",
+        "$defs.fileRecord.path",
+        "$defs.fileRecord.sha256",
+        "$defs.fileRecord.status",
+        "$defs.generationRecord.assigned_batch_id",
+        "$defs.generationRecord.creation_date",
+        "$defs.generationRecord.generated_at",
+        "$defs.generationRecord.status",
+        "$defs.generationRecord.validated_at",
+        "$defs.interlanguageEnRecord.status",
+        "$defs.interlanguageFrRecord.inserted_at",
+        "$defs.interlanguageFrRecord.status",
+        "$defs.interlanguageFrRecord.target_language",
+        "$defs.interlanguageFrRecord.target_title",
+        "$defs.interlanguageFrRecord.verified_at",
+        "$defs.normativeVersions.consolidated_norm",
+        "$defs.normativeVersions.graph",
+        "$defs.normativeVersions.mediawiki_structure",
+        "$defs.normativeVersions.registry",
+        "$defs.normativeVersions.render_profile",
+        "$defs.normativeVersions.validator",
+        "$defs.normativeVersions.workflow",
+        "$defs.wikiRecord.check_status",
+        "$defs.wikiRecord.checked_at",
+        "$defs.wikiRecord.decision",
+        "$defs.wikiRecord.published_at",
+        "$defs.wikiRecord.remote_revision_id",
+        "$defs.wikiRecord.remote_sha256",
+        "$defs.wikiRecord.remote_title"
+      ],
+      "required": [
+        "$defs.argumentPageRecordEn.file",
+        "$defs.argumentPageRecordEn.generation",
+        "$defs.argumentPageRecordEn.interlanguage",
+        "$defs.argumentPageRecordEn.wiki",
+        "$defs.argumentPageRecordFr.file",
+        "$defs.argumentPageRecordFr.generation",
+        "$defs.argumentPageRecordFr.interlanguage",
+        "$defs.argumentPageRecordFr.wiki",
+        "$defs.debatePageRecordEn.canonical_title",
+        "$defs.debatePageRecordEn.file",
+        "$defs.debatePageRecordEn.generation",
+        "$defs.debatePageRecordEn.interlanguage",
+        "$defs.debatePageRecordEn.title_status",
+        "$defs.debatePageRecordEn.wiki",
+        "$defs.debatePageRecordFr.canonical_title",
+        "$defs.debatePageRecordFr.file",
+        "$defs.debatePageRecordFr.generation",
+        "$defs.debatePageRecordFr.interlanguage",
+        "$defs.debatePageRecordFr.title_status",
+        "$defs.debatePageRecordFr.wiki",
+        "$defs.fileRecord.path",
+        "$defs.fileRecord.sha256",
+        "$defs.fileRecord.status",
+        "$defs.generationRecord.assigned_batch_id",
+        "$defs.generationRecord.creation_date",
+        "$defs.generationRecord.generated_at",
+        "$defs.generationRecord.status",
+        "$defs.generationRecord.validated_at",
+        "$defs.interlanguageEnRecord.status",
+        "$defs.interlanguageFrRecord.inserted_at",
+        "$defs.interlanguageFrRecord.status",
+        "$defs.interlanguageFrRecord.target_language",
+        "$defs.interlanguageFrRecord.target_title",
+        "$defs.interlanguageFrRecord.verified_at",
+        "$defs.normativeVersions.graph",
+        "$defs.normativeVersions.mediawiki_structure",
+        "$defs.normativeVersions.registry",
+        "$defs.normativeVersions.render_profile",
+        "$defs.normativeVersions.validator",
+        "$defs.normativeVersions.workflow",
+        "$defs.wikiRecord.check_status",
+        "$defs.wikiRecord.checked_at",
+        "$defs.wikiRecord.decision",
+        "$defs.wikiRecord.published_at",
+        "$defs.wikiRecord.remote_revision_id",
+        "$defs.wikiRecord.remote_sha256",
+        "$defs.wikiRecord.remote_title"
+      ],
+      "enums": {
+        "$defs.language": [
+          "en",
+          "fr"
+        ],
+        "$defs.globalStatus": [
+          "archived",
+          "bilingual_validated",
+          "blocked",
+          "corrective_blocked",
+          "corrective_in_progress",
+          "en_arguments_in_progress",
+          "en_content_complete",
+          "en_debate_validated",
+          "en_titles_locked",
+          "en_validated",
+          "fr_arguments_in_progress",
+          "fr_content_complete",
+          "fr_debate_validated",
+          "fr_validated",
+          "graph_draft",
+          "graph_locked",
+          "graph_validated",
+          "initialized",
+          "interlanguage_applied",
+          "interlanguage_prepared",
+          "migration_required",
+          "published",
+          "release_ready",
+          "released"
+        ],
+        "$defs.workType": [
+          "bilingual_validation",
+          "corrective_prepublication",
+          "en_argument_batch",
+          "en_debate_page",
+          "en_global_validation",
+          "en_titles",
+          "fr_argument_batch",
+          "fr_debate_page",
+          "fr_global_validation",
+          "graph",
+          "initialization",
+          "interlanguage",
+          "migration",
+          "release_archive"
+        ],
+        "$defs.generationStatus": [
+          "assigned",
+          "failed",
+          "generated",
+          "in_progress",
+          "obsolete",
+          "pending",
+          "validated"
+        ],
+        "$defs.fileStatus": [
+          "absent",
+          "obsolete",
+          "present",
+          "validated"
+        ],
+        "$defs.wikiCheckStatus": [
+          "absent",
+          "collision",
+          "created",
+          "equivalent_existing",
+          "manual_review",
+          "unchecked"
+        ],
+        "$defs.wikiDecision": [
+          "None",
+          "create",
+          "manual_review",
+          "none",
+          "rename_local",
+          "reuse_existing"
+        ],
+        "$defs.interlanguageStatusFr": [
+          "blocked",
+          "inserted",
+          "pending",
+          "ready",
+          "verified"
+        ],
+        "$defs.validationResult": [
+          "failed",
+          "passed",
+          "passed_with_warnings"
+        ],
+        "$defs.validationScope": [
+          "bilingual",
+          "corrective_editorial_review",
+          "corrective_full",
+          "en_batch",
+          "en_debate",
+          "en_global",
+          "en_titles",
+          "fr_batch",
+          "fr_debate",
+          "fr_global",
+          "graph",
+          "interlanguage",
+          "release"
+        ],
+        "$defs.pageType": [
+          "argument",
+          "debate"
+        ],
+        "$defs.pageStatus": [
+          "assigned",
+          "failed",
+          "generated",
+          "obsolete",
+          "planned",
+          "published",
+          "validated"
+        ],
+        "$defs.generationRecord.status": [
+          "generated",
+          "validated"
+        ],
+        "$defs.fileRecord.status": [
+          "present",
+          "validated"
+        ],
+        "$defs.wikiRecord.check_status": [
+          "created",
+          "equivalent_existing"
+        ],
+        "$defs.interlanguageFrRecord.status": [
+          "inserted",
+          "verified"
+        ],
+        "$defs.debatePageRecordFr.title_status": [
+          "draft",
+          "locked",
+          "normalized",
+          "validated"
+        ],
+        "$defs.debatePageRecordEn.title_status": [
+          "draft",
+          "locked",
+          "unassigned",
+          "validated"
+        ]
+      }
+    },
+    "operation_log_entry.schema.json": {
+      "properties": [
+        "debate_id",
+        "error_code",
+        "language",
+        "local_sha256",
+        "log_schema_version",
+        "message",
+        "operation",
+        "page_id",
+        "remote_revision_id",
+        "remote_sha256",
+        "source_path",
+        "status",
+        "timestamp",
+        "title"
+      ],
+      "required": [
+        "debate_id",
+        "error_code",
+        "language",
+        "local_sha256",
+        "log_schema_version",
+        "message",
+        "operation",
+        "page_id",
+        "remote_revision_id",
+        "remote_sha256",
+        "source_path",
+        "status",
+        "timestamp",
+        "title"
+      ],
+      "enums": {
+        "operation": [
+          "import",
+          "interlanguage_local",
+          "interlanguage_remote",
+          "migration"
+        ],
+        "status": [
+          "applied",
+          "blocked",
+          "collision",
+          "created",
+          "equivalent_existing",
+          "error",
+          "exists_different",
+          "exists_same",
+          "migration_applied",
+          "prepared",
+          "resume_skip",
+          "skipped",
+          "updated",
+          "validated",
+          "would_create",
+          "would_update"
+        ]
+      }
+    },
+    "remote_update_receipt.schema.json": {
+      "properties": [
+        "corpus_version",
+        "counts",
+        "debate_id",
+        "executed_at",
+        "execution_mode",
+        "kit_version",
+        "plan_sha256",
+        "receipt_sha256",
+        "receipt_version",
+        "results"
+      ],
+      "required": [
+        "corpus_version",
+        "counts",
+        "debate_id",
+        "executed_at",
+        "execution_mode",
+        "kit_version",
+        "plan_sha256",
+        "receipt_sha256",
+        "receipt_version",
+        "results"
+      ],
+      "enums": {
+        "execution_mode": [
+          "full_update",
+          "no_delete",
+          "only_delete"
+        ]
+      }
+    },
+    "schema_catalog.json": {
+      "properties": [],
+      "required": [],
+      "enums": {}
+    },
+    "handoff.schema.json": {
+      "properties": [
+        "authorized_output_paths",
+        "authorized_registry_updates",
+        "debate_id",
+        "destination",
+        "destination.required_global_status",
+        "destination.work_id",
+        "destination.work_type",
+        "forbidden_actions",
+        "handoff_id",
+        "handoff_schema_version",
+        "locked_fields",
+        "normative_versions",
+        "notes",
+        "origin",
+        "origin.completed_at",
+        "origin.result",
+        "origin.work_id",
+        "origin.work_type",
+        "required_files",
+        "required_files.path",
+        "required_files.required",
+        "required_files.sha256",
+        "required_validations",
+        "required_validations.report_path",
+        "required_validations.status",
+        "required_validations.validation_type",
+        "template_mode"
+      ],
+      "required": [
+        "authorized_output_paths",
+        "authorized_registry_updates",
+        "debate_id",
+        "destination",
+        "destination.required_global_status",
+        "destination.work_id",
+        "destination.work_type",
+        "forbidden_actions",
+        "handoff_id",
+        "handoff_schema_version",
+        "locked_fields",
+        "normative_versions",
+        "notes",
+        "origin",
+        "origin.completed_at",
+        "origin.result",
+        "origin.work_id",
+        "origin.work_type",
+        "required_files",
+        "required_files.path",
+        "required_files.required",
+        "required_files.sha256",
+        "required_validations",
+        "required_validations.report_path",
+        "required_validations.status",
+        "required_validations.validation_type",
+        "template_mode"
+      ],
+      "enums": {
+        "origin.result": [
+          "blocked",
+          "failed",
+          "success"
+        ],
+        "required_validations.status": [
+          "passed",
+          "passed_with_warnings"
+        ]
+      }
+    },
+    "page_manifest.schema.json": {
+      "properties": [
+        "batch_id",
+        "canonical_title",
+        "creation_date",
+        "debate_id",
+        "file_path",
+        "language",
+        "page_id",
+        "page_manifest_version",
+        "page_type",
+        "render_profile_version",
+        "sha256",
+        "status",
+        "structure_version",
+        "validation",
+        "validation.report_path",
+        "validation.status",
+        "validation.validated_at",
+        "wiki",
+        "wiki.check_status"
+      ],
+      "required": [
+        "batch_id",
+        "canonical_title",
+        "creation_date",
+        "debate_id",
+        "file_path",
+        "language",
+        "page_id",
+        "page_manifest_version",
+        "page_type",
+        "render_profile_version",
+        "sha256",
+        "status",
+        "structure_version",
+        "validation",
+        "validation.report_path",
+        "validation.status",
+        "validation.validated_at",
+        "wiki"
+      ],
+      "enums": {
+        "validation.status": [
+          "passed",
+          "passed_with_warnings"
+        ],
+        "status": [
+          "published",
+          "validated"
+        ],
+        "wiki.check_status": [
+          "created",
+          "equivalent_existing"
+        ]
+      }
+    },
+    "debate_package.schema.json": {
+      "properties": [
+        "batches",
+        "core_files",
+        "core_files.graph_json",
+        "core_files.graph_markdown",
+        "core_files.registry",
+        "core_files.scope",
+        "core_files.sources",
+        "created_at",
+        "debate_id",
+        "editorial_controls",
+        "editorial_controls.creation_date",
+        "editorial_controls.debate_documentation",
+        "editorial_controls.debate_documentation.min_references",
+        "editorial_controls.debate_documentation.min_subsections",
+        "editorial_controls.debate_documentation.profile_rationale",
+        "editorial_controls.debate_documentation.reject_singleton_bucket_pattern",
+        "editorial_controls.graph_placement_review_path",
+        "editorial_controls.individual_review_path",
+        "editorial_controls.individual_review_report_path",
+        "editorial_controls.introduction_references",
+        "editorial_controls.introduction_references.min_subsections",
+        "editorial_controls.introduction_references.required",
+        "editorial_controls.introduction_review_path",
+        "editorial_controls.keyword_vocabulary_path",
+        "editorial_controls.required_reports",
+        "editorial_controls.summary_style",
+        "editorial_controls.summary_style.enabled",
+        "editorial_controls.summary_style.long_sentence_words",
+        "editorial_controls.summary_style.max_average_sentence_words",
+        "editorial_controls.summary_style.max_long_sentence_ratio",
+        "editorial_controls.summary_style.max_sentence_words",
+        "editorial_controls.summary_style.min_sentences",
+        "editorial_controls.summary_style.opening_max_extra_significant_words",
+        "editorial_controls.summary_style.opening_similarity_threshold",
+        "editorial_controls.summary_style.opening_title_similarity_enabled",
+        "editorial_controls.summary_style.quantitative_claim_review_required",
+        "editorial_controls.summary_style_review_path",
+        "global_status",
+        "normative_versions",
+        "normative_versions.consolidated_norm",
+        "package_schema_version",
+        "pages",
+        "publication_gate",
+        "publication_gate.blocking_reason",
+        "publication_gate.checked_at",
+        "publication_gate.local_release_status",
+        "publication_gate.remote_template_compatibility",
+        "publication_gate.remote_write_authorized",
+        "release",
+        "release.archived_at",
+        "release.release_manifest_path",
+        "release.release_receipt_path",
+        "release.release_zip_path",
+        "release.released_at",
+        "short_code",
+        "traceability_controls",
+        "traceability_controls.current_corrective_work_id",
+        "traceability_controls.current_handoff_path",
+        "traceability_controls.remote_write_must_be_false",
+        "traceability_controls.required_corrective_handoffs",
+        "updated_at",
+        "validations",
+        "validations.blocking_errors",
+        "validations.executed_at",
+        "validations.id",
+        "validations.input_sha256",
+        "validations.language",
+        "validations.report_path",
+        "validations.result",
+        "validations.scope",
+        "validations.validator_version",
+        "validations.warnings",
+        "works",
+        "works.completed_at",
+        "works.conversation_name",
+        "works.input_handoff",
+        "works.output_handoff",
+        "works.started_at",
+        "works.status",
+        "works.work_id",
+        "works.work_type"
+      ],
+      "required": [
+        "batches",
+        "core_files",
+        "core_files.graph_json",
+        "core_files.graph_markdown",
+        "core_files.registry",
+        "core_files.scope",
+        "core_files.sources",
+        "created_at",
+        "debate_id",
+        "editorial_controls",
+        "editorial_controls.creation_date",
+        "editorial_controls.debate_documentation",
+        "editorial_controls.debate_documentation.min_references",
+        "editorial_controls.debate_documentation.min_subsections",
+        "editorial_controls.debate_documentation.profile_rationale",
+        "editorial_controls.debate_documentation.reject_singleton_bucket_pattern",
+        "editorial_controls.graph_placement_review_path",
+        "editorial_controls.individual_review_path",
+        "editorial_controls.individual_review_report_path",
+        "editorial_controls.introduction_references",
+        "editorial_controls.introduction_references.required",
+        "editorial_controls.introduction_review_path",
+        "editorial_controls.keyword_vocabulary_path",
+        "editorial_controls.required_reports",
+        "editorial_controls.summary_style.enabled",
+        "editorial_controls.summary_style.long_sentence_words",
+        "editorial_controls.summary_style.max_average_sentence_words",
+        "editorial_controls.summary_style.max_long_sentence_ratio",
+        "editorial_controls.summary_style.max_sentence_words",
+        "editorial_controls.summary_style.min_sentences",
+        "global_status",
+        "normative_versions",
+        "normative_versions.consolidated_norm",
+        "package_schema_version",
+        "pages",
+        "publication_gate.blocking_reason",
+        "publication_gate.checked_at",
+        "publication_gate.local_release_status",
+        "publication_gate.remote_template_compatibility",
+        "publication_gate.remote_write_authorized",
+        "release",
+        "release.archived_at",
+        "release.release_manifest_path",
+        "release.release_receipt_path",
+        "release.release_zip_path",
+        "release.released_at",
+        "short_code",
+        "traceability_controls.current_corrective_work_id",
+        "traceability_controls.current_handoff_path",
+        "traceability_controls.remote_write_must_be_false",
+        "traceability_controls.required_corrective_handoffs",
+        "updated_at",
+        "validations",
+        "validations.blocking_errors",
+        "validations.executed_at",
+        "validations.id",
+        "validations.input_sha256",
+        "validations.language",
+        "validations.report_path",
+        "validations.result",
+        "validations.scope",
+        "validations.validator_version",
+        "validations.warnings",
+        "works",
+        "works.completed_at",
+        "works.conversation_name",
+        "works.input_handoff",
+        "works.output_handoff",
+        "works.started_at",
+        "works.status",
+        "works.work_id",
+        "works.work_type"
+      ],
+      "enums": {
+        "works.status": [
+          "blocked",
+          "completed",
+          "in_progress",
+          "obsolete",
+          "planned"
+        ],
+        "validations.result": [
+          "passed",
+          "passed_with_warnings"
+        ],
+        "publication_gate.local_release_status": [
+          "corrective_blocked",
+          "corrective_in_progress",
+          "release_ready"
+        ],
+        "publication_gate.remote_template_compatibility": [
+          "blocked",
+          "not_checked",
+          "passed"
+        ],
+        "normative_versions.consolidated_norm": [
+          "1.2.20",
+          "1.2.21",
+          "1.2.22",
+          "1.2.23",
+          "1.2.24",
+          "1.2.25",
+          "1.2.26"
+        ]
+      }
+    },
+    "remote_update_plan.schema.json": {
+      "properties": [
+        "$defs.comparison.comparison_id",
+        "$defs.comparison.diffs",
+        "$defs.comparison.language",
+        "$defs.comparison.page_id",
+        "$defs.comparison.proposed_sha256",
+        "$defs.comparison.published_sha256",
+        "$defs.comparison.remote_sha256",
+        "$defs.comparison.title",
+        "$defs.operation.comparison_id",
+        "$defs.operation.expected_revision_id",
+        "$defs.operation.justification",
+        "$defs.operation.language",
+        "$defs.operation.new_sha256",
+        "$defs.operation.observed_revision_id",
+        "$defs.operation.old_sha256",
+        "$defs.operation.page_id",
+        "$defs.operation.page_type",
+        "$defs.operation.phase",
+        "$defs.operation.preconditions",
+        "$defs.operation.result",
+        "$defs.operation.title",
+        "$defs.operation.wiki",
+        "comparisons",
+        "config_sha256",
+        "corpus_version",
+        "counts",
+        "debate_id",
+        "kit_version",
+        "languages",
+        "new_manifest_sha256",
+        "operations",
+        "operations.blocked",
+        "operations.create",
+        "operations.delete",
+        "operations.manual_review",
+        "operations.move",
+        "operations.redirect",
+        "operations.skip",
+        "operations.update",
+        "plan_sha256",
+        "plan_version",
+        "preconditions",
+        "required_validator_version",
+        "scope_mode",
+        "state_source",
+        "state_source.kind",
+        "validator_report_sha256"
+      ],
+      "required": [
+        "$defs.comparison.comparison_id",
+        "$defs.comparison.diffs",
+        "$defs.comparison.language",
+        "$defs.comparison.page_id",
+        "$defs.comparison.proposed_sha256",
+        "$defs.comparison.published_sha256",
+        "$defs.comparison.remote_sha256",
+        "$defs.comparison.title",
+        "$defs.operation.expected_revision_id",
+        "$defs.operation.justification",
+        "$defs.operation.language",
+        "$defs.operation.new_sha256",
+        "$defs.operation.observed_revision_id",
+        "$defs.operation.old_sha256",
+        "$defs.operation.page_id",
+        "$defs.operation.page_type",
+        "$defs.operation.phase",
+        "$defs.operation.preconditions",
+        "$defs.operation.result",
+        "$defs.operation.title",
+        "$defs.operation.wiki",
+        "comparisons",
+        "config_sha256",
+        "corpus_version",
+        "counts",
+        "debate_id",
+        "kit_version",
+        "languages",
+        "new_manifest_sha256",
+        "operations",
+        "operations.blocked",
+        "operations.create",
+        "operations.delete",
+        "operations.manual_review",
+        "operations.move",
+        "operations.redirect",
+        "operations.skip",
+        "operations.update",
+        "plan_sha256",
+        "plan_version",
+        "preconditions",
+        "required_validator_version",
+        "state_source",
+        "state_source.kind",
+        "validator_report_sha256"
+      ],
+      "enums": {
+        "languages": [
+          "en",
+          "fr"
+        ],
+        "scope_mode": [
+          "all",
+          "no_delete",
+          "only_delete"
+        ],
+        "state_source.kind": [
+          "previous_installed_manifest",
+          "published_state_receipt",
+          "remote_inventory"
+        ],
+        "$defs.operation.language": [
+          "en",
+          "fr"
+        ],
+        "$defs.comparison.language": [
+          "en",
+          "fr"
+        ]
+      }
+    },
+    "interlanguage_patch.schema.json": {
+      "properties": [
+        "created_at",
+        "debate_id",
+        "entries",
+        "entries.creation_date",
+        "entries.page_id",
+        "entries.page_type",
+        "entries.source_path",
+        "entries.source_sha256",
+        "entries.staged_path",
+        "entries.staged_sha256",
+        "entries.status",
+        "entries.target_language",
+        "entries.target_title",
+        "interlanguage_patch_version",
+        "status",
+        "structural_sha256",
+        "validated_at"
+      ],
+      "required": [
+        "created_at",
+        "debate_id",
+        "entries",
+        "entries.creation_date",
+        "entries.page_id",
+        "entries.page_type",
+        "entries.source_path",
+        "entries.source_sha256",
+        "entries.staged_path",
+        "entries.staged_sha256",
+        "entries.status",
+        "entries.target_language",
+        "entries.target_title",
+        "interlanguage_patch_version",
+        "status",
+        "structural_sha256",
+        "validated_at"
+      ],
+      "enums": {
+        "status": [
+          "applied",
+          "partially_applied",
+          "validated"
+        ],
+        "entries.status": [
+          "applied",
+          "blocked",
+          "prepared",
+          "validated"
+        ]
+      }
+    },
+    "argument_registry.schema.json": {
+      "properties": [
+        "batches",
+        "debate",
+        "debate.id",
+        "debate.labels",
+        "debate.labels.en",
+        "debate.labels.en.con",
+        "debate.labels.en.pro",
+        "debate.labels.fr",
+        "debate.labels.fr.con",
+        "debate.labels.fr.pro",
+        "debate.pages",
+        "debate.pages.en",
+        "debate.pages.fr",
+        "debate.scope",
+        "debate.scope.excluded_topics",
+        "debate.scope.included_topics",
+        "debate.scope.jurisdiction",
+        "debate.scope.proposition_fr",
+        "debate.scope.residual_ambiguities",
+        "debate.scope.scope_summary_fr",
+        "debate.scope.timeframe",
+        "graph",
+        "graph.depth_policy",
+        "graph.depth_policy.declared_maximum",
+        "graph.depth_policy.exception_reason",
+        "graph.depth_policy.maximum_observed",
+        "graph.depth_policy.normal_target",
+        "graph.derived_counts",
+        "graph.derived_counts.additional_reuses",
+        "graph.derived_counts.developed_nodes",
+        "graph.derived_counts.distinct_nodes",
+        "graph.derived_counts.justifications_by_depth",
+        "graph.derived_counts.leaf_nodes",
+        "graph.derived_counts.main_con",
+        "graph.derived_counts.main_pro",
+        "graph.derived_counts.maximum_depth",
+        "graph.derived_counts.objections_by_depth",
+        "graph.derived_counts.reused_nodes",
+        "graph.derived_counts.total_occurrences",
+        "graph.edges",
+        "graph.edges.child_node_id",
+        "graph.edges.id",
+        "graph.edges.introduced_in_pass",
+        "graph.edges.order",
+        "graph.edges.parent_node_id",
+        "graph.edges.relation",
+        "graph.edges.status",
+        "graph.lifecycle",
+        "graph.lifecycle.locked_at",
+        "graph.lifecycle.locked_by_stage",
+        "graph.lifecycle.status",
+        "graph.lifecycle.structural_sha256",
+        "graph.lifecycle.validated_at",
+        "graph.nodes",
+        "graph.nodes.derived",
+        "graph.nodes.derived.is_main_argument_anywhere",
+        "graph.nodes.derived.is_reused",
+        "graph.nodes.derived.maximum_depth",
+        "graph.nodes.derived.minimum_depth",
+        "graph.nodes.derived.occurrence_count",
+        "graph.nodes.derived.primary_occurrence_id",
+        "graph.nodes.en",
+        "graph.nodes.en.canonical_title",
+        "graph.nodes.en.displayed_title",
+        "graph.nodes.en.keywords",
+        "graph.nodes.en.sections",
+        "graph.nodes.en.title_status",
+        "graph.nodes.fr",
+        "graph.nodes.fr.canonical_title",
+        "graph.nodes.fr.displayed_title",
+        "graph.nodes.fr.keywords",
+        "graph.nodes.fr.rubriques",
+        "graph.nodes.fr.title_status",
+        "graph.nodes.id",
+        "graph.nodes.pages",
+        "graph.nodes.pages.en",
+        "graph.nodes.pages.fr",
+        "graph.nodes.sources",
+        "graph.nodes.sources.en",
+        "graph.nodes.sources.en.bibliography",
+        "graph.nodes.sources.en.videography",
+        "graph.nodes.sources.en.webliography",
+        "graph.nodes.sources.fr",
+        "graph.nodes.sources.fr.bibliography",
+        "graph.nodes.sources.fr.videography",
+        "graph.nodes.sources.fr.webliography",
+        "graph.nodes.status",
+        "graph.occurrences",
+        "graph.occurrences.branch",
+        "graph.occurrences.depth",
+        "graph.occurrences.edge_id",
+        "graph.occurrences.id",
+        "graph.occurrences.node_id",
+        "graph.occurrences.occurrence_role",
+        "graph.occurrences.order",
+        "graph.occurrences.parent_occurrence_id",
+        "graph.occurrences.render_children",
+        "migrations",
+        "migrations.affected_batches",
+        "migrations.affected_node_ids",
+        "migrations.id",
+        "migrations.operations",
+        "migrations.operations.details",
+        "migrations.operations.edge_id",
+        "migrations.operations.node_id",
+        "migrations.operations.occurrence_id",
+        "migrations.operations.type",
+        "migrations.reason",
+        "migrations.requested_at",
+        "migrations.required_regeneration",
+        "migrations.required_regeneration.debate_pages",
+        "migrations.required_regeneration.en_pages",
+        "migrations.required_regeneration.fr_pages",
+        "migrations.required_regeneration.graph",
+        "migrations.required_regeneration.interlanguage_patches",
+        "migrations.status",
+        "schema",
+        "schema.graph_version",
+        "schema.mediawiki_structure_version",
+        "schema.registry_version",
+        "schema.render_profile_version",
+        "schema.validator_version",
+        "validations",
+        "validations.blocking_errors",
+        "validations.executed_at",
+        "validations.id",
+        "validations.input_sha256",
+        "validations.language",
+        "validations.report_path",
+        "validations.result",
+        "validations.scope",
+        "validations.validator_version",
+        "validations.warnings"
+      ],
+      "required": [
+        "batches",
+        "debate",
+        "debate.id",
+        "debate.labels",
+        "debate.labels.en",
+        "debate.labels.en.con",
+        "debate.labels.en.pro",
+        "debate.labels.fr",
+        "debate.labels.fr.con",
+        "debate.labels.fr.pro",
+        "debate.pages",
+        "debate.pages.en",
+        "debate.pages.fr",
+        "debate.scope",
+        "debate.scope.excluded_topics",
+        "debate.scope.included_topics",
+        "debate.scope.jurisdiction",
+        "debate.scope.proposition_fr",
+        "debate.scope.residual_ambiguities",
+        "debate.scope.scope_summary_fr",
+        "debate.scope.timeframe",
+        "graph",
+        "graph.depth_policy",
+        "graph.depth_policy.declared_maximum",
+        "graph.depth_policy.exception_reason",
+        "graph.depth_policy.maximum_observed",
+        "graph.depth_policy.normal_target",
+        "graph.derived_counts",
+        "graph.derived_counts.additional_reuses",
+        "graph.derived_counts.developed_nodes",
+        "graph.derived_counts.distinct_nodes",
+        "graph.derived_counts.justifications_by_depth",
+        "graph.derived_counts.leaf_nodes",
+        "graph.derived_counts.main_con",
+        "graph.derived_counts.main_pro",
+        "graph.derived_counts.maximum_depth",
+        "graph.derived_counts.objections_by_depth",
+        "graph.derived_counts.reused_nodes",
+        "graph.derived_counts.total_occurrences",
+        "graph.edges",
+        "graph.edges.child_node_id",
+        "graph.edges.id",
+        "graph.edges.order",
+        "graph.edges.parent_node_id",
+        "graph.edges.relation",
+        "graph.edges.status",
+        "graph.lifecycle",
+        "graph.lifecycle.locked_at",
+        "graph.lifecycle.locked_by_stage",
+        "graph.lifecycle.status",
+        "graph.lifecycle.structural_sha256",
+        "graph.lifecycle.validated_at",
+        "graph.nodes",
+        "graph.nodes.derived.is_main_argument_anywhere",
+        "graph.nodes.derived.is_reused",
+        "graph.nodes.derived.maximum_depth",
+        "graph.nodes.derived.minimum_depth",
+        "graph.nodes.derived.occurrence_count",
+        "graph.nodes.derived.primary_occurrence_id",
+        "graph.nodes.en",
+        "graph.nodes.en.canonical_title",
+        "graph.nodes.en.displayed_title",
+        "graph.nodes.en.keywords",
+        "graph.nodes.en.sections",
+        "graph.nodes.en.title_status",
+        "graph.nodes.fr",
+        "graph.nodes.fr.canonical_title",
+        "graph.nodes.fr.displayed_title",
+        "graph.nodes.fr.keywords",
+        "graph.nodes.fr.rubriques",
+        "graph.nodes.fr.title_status",
+        "graph.nodes.id",
+        "graph.nodes.pages",
+        "graph.nodes.pages.en",
+        "graph.nodes.pages.fr",
+        "graph.nodes.sources",
+        "graph.nodes.sources.en",
+        "graph.nodes.sources.en.bibliography",
+        "graph.nodes.sources.en.videography",
+        "graph.nodes.sources.en.webliography",
+        "graph.nodes.sources.fr",
+        "graph.nodes.sources.fr.bibliography",
+        "graph.nodes.sources.fr.videography",
+        "graph.nodes.sources.fr.webliography",
+        "graph.nodes.status",
+        "graph.occurrences",
+        "graph.occurrences.branch",
+        "graph.occurrences.depth",
+        "graph.occurrences.edge_id",
+        "graph.occurrences.id",
+        "graph.occurrences.node_id",
+        "graph.occurrences.occurrence_role",
+        "graph.occurrences.order",
+        "graph.occurrences.parent_occurrence_id",
+        "graph.occurrences.render_children",
+        "migrations",
+        "migrations.affected_batches",
+        "migrations.affected_node_ids",
+        "migrations.id",
+        "migrations.operations",
+        "migrations.operations.type",
+        "migrations.reason",
+        "migrations.requested_at",
+        "migrations.required_regeneration",
+        "migrations.required_regeneration.debate_pages",
+        "migrations.required_regeneration.en_pages",
+        "migrations.required_regeneration.fr_pages",
+        "migrations.required_regeneration.graph",
+        "migrations.required_regeneration.interlanguage_patches",
+        "migrations.status",
+        "schema",
+        "schema.graph_version",
+        "schema.mediawiki_structure_version",
+        "schema.registry_version",
+        "schema.render_profile_version",
+        "schema.validator_version",
+        "validations",
+        "validations.blocking_errors",
+        "validations.executed_at",
+        "validations.id",
+        "validations.input_sha256",
+        "validations.language",
+        "validations.report_path",
+        "validations.result",
+        "validations.scope",
+        "validations.validator_version",
+        "validations.warnings"
+      ],
+      "enums": {
+        "graph.lifecycle.status": [
+          "draft",
+          "locked",
+          "migration_required",
+          "validated"
+        ],
+        "graph.nodes.status": [
+          "active",
+          "retired"
+        ],
+        "graph.nodes.fr.title_status": [
+          "draft",
+          "locked",
+          "normalized",
+          "validated"
+        ],
+        "graph.nodes.fr.rubriques": [
+          "Aménagement",
+          "Culture",
+          "Droit",
+          "Géopolitique",
+          "Histoire",
+          "Philosophie",
+          "Politique",
+          "Psychologie",
+          "Religion et spiritualité",
+          "Santé",
+          "Science",
+          "Société",
+          "Sport et loisirs",
+          "Technologie",
+          "Écologie",
+          "Économie",
+          "Éducation",
+          "Éthique"
+        ],
+        "graph.nodes.en.title_status": [
+          "locked",
+          "validated"
+        ],
+        "graph.nodes.en.sections": [
+          "Culture",
+          "Ecology",
+          "Economy",
+          "Education",
+          "Ethics",
+          "Geopolitics",
+          "Health",
+          "History",
+          "Law",
+          "Philosophy",
+          "Planning",
+          "Politics",
+          "Psychology",
+          "Religion and spirituality",
+          "Science",
+          "Society",
+          "Sport and leisure",
+          "Technology"
+        ],
+        "graph.edges.relation": [
+          "justification",
+          "objection"
+        ],
+        "graph.edges.status": [
+          "active",
+          "retired"
+        ],
+        "graph.occurrences.branch": [
+          "con",
+          "pro"
+        ],
+        "graph.occurrences.occurrence_role": [
+          "primary",
+          "secondary"
+        ],
+        "validations.result": [
+          "passed",
+          "passed_with_warnings"
+        ],
+        "migrations.status": [
+          "applied",
+          "approved",
+          "proposed",
+          "rejected",
+          "validated"
+        ],
+        "migrations.operations.type": [
+          "add_edge",
+          "add_node",
+          "change_bilingual_mapping",
+          "change_primary_occurrence",
+          "change_relation",
+          "merge_nodes",
+          "move_occurrence",
+          "remove_edge",
+          "rename_title",
+          "retire_node"
+        ]
+      }
+    },
+    "requirements_catalog.schema.json": {
+      "properties": [
+        "active_package_revision",
+        "generated_date",
+        "precedence",
+        "requirements",
+        "requirements.disposition",
+        "requirements.domain",
+        "requirements.enforcement",
+        "requirements.id",
+        "requirements.normative_files",
+        "requirements.note",
+        "requirements.sources",
+        "requirements.statement",
+        "requirements_catalog_version",
+        "source_aliases"
+      ],
+      "required": [
+        "active_package_revision",
+        "generated_date",
+        "precedence",
+        "requirements",
+        "requirements.disposition",
+        "requirements.domain",
+        "requirements.enforcement",
+        "requirements.id",
+        "requirements.normative_files",
+        "requirements.note",
+        "requirements.sources",
+        "requirements.statement",
+        "requirements_catalog_version",
+        "source_aliases"
+      ],
+      "enums": {
+        "requirements.disposition": [
+          "active",
+          "deferred",
+          "modified",
+          "superseded"
+        ]
+      }
+    },
+    "release_manifest.schema.json": {
+      "properties": [
+        "counts",
+        "created_at",
+        "debate_id",
+        "files",
+        "files.path",
+        "files.sha256",
+        "files.size_bytes",
+        "finalized_at",
+        "global_status",
+        "normative_versions",
+        "publication_gate",
+        "publication_gate.blocking_reason",
+        "publication_gate.checked_at",
+        "publication_gate.local_release_status",
+        "publication_gate.remote_template_compatibility",
+        "publication_gate.remote_write_authorized",
+        "publication_logs",
+        "release_manifest_version",
+        "self_excluded",
+        "structural_sha256",
+        "validation_reports"
+      ],
+      "required": [
+        "created_at",
+        "debate_id",
+        "files",
+        "files.path",
+        "files.sha256",
+        "files.size_bytes",
+        "finalized_at",
+        "global_status",
+        "normative_versions",
+        "publication_gate.blocking_reason",
+        "publication_gate.checked_at",
+        "publication_gate.local_release_status",
+        "publication_gate.remote_template_compatibility",
+        "publication_gate.remote_write_authorized",
+        "publication_logs",
+        "release_manifest_version",
+        "self_excluded",
+        "structural_sha256",
+        "validation_reports"
+      ],
+      "enums": {
+        "global_status": [
+          "released"
+        ],
+        "publication_gate.local_release_status": [
+          "corrective_blocked",
+          "corrective_in_progress",
+          "release_ready"
+        ],
+        "publication_gate.remote_template_compatibility": [
+          "blocked",
+          "not_checked",
+          "passed"
+        ]
+      }
+    },
+    "batch_manifest.schema.json": {
+      "properties": [
+        "batch_schema_version",
+        "debate_id",
+        "dependency_node_ids",
+        "id",
+        "inputs",
+        "inputs.handoff_path",
+        "inputs.registry_sha256",
+        "inputs.render_profile_version",
+        "inputs.structural_sha256",
+        "language",
+        "node_ids",
+        "outputs",
+        "outputs.aggregate_path",
+        "outputs.aggregate_sha256",
+        "outputs.individual_directory",
+        "outputs.report_path",
+        "page_type",
+        "root_node_ids",
+        "status",
+        "strategy",
+        "work",
+        "work.completed_at",
+        "work.conversation_name",
+        "work.started_at",
+        "work.work_id"
+      ],
+      "required": [
+        "batch_schema_version",
+        "debate_id",
+        "dependency_node_ids",
+        "id",
+        "inputs",
+        "inputs.handoff_path",
+        "inputs.registry_sha256",
+        "inputs.render_profile_version",
+        "inputs.structural_sha256",
+        "language",
+        "node_ids",
+        "outputs",
+        "outputs.aggregate_path",
+        "outputs.aggregate_sha256",
+        "outputs.individual_directory",
+        "outputs.report_path",
+        "page_type",
+        "root_node_ids",
+        "status",
+        "strategy",
+        "work",
+        "work.completed_at",
+        "work.conversation_name",
+        "work.started_at",
+        "work.work_id"
+      ],
+      "enums": {
+        "strategy": [
+          "manual_editorial",
+          "size_balanced",
+          "subtree"
+        ],
+        "status": [
+          "generated",
+          "released",
+          "validated"
+        ]
+      }
+    },
+    "published_state.schema.json": {
+      "properties": [
+        "corpus_version",
+        "debate_id",
+        "language",
+        "pages",
+        "pages.canonical_title",
+        "pages.content_sha256",
+        "pages.page_id",
+        "pages.page_type",
+        "pages.revision_id",
+        "pages.status",
+        "plan_sha256",
+        "publication_date",
+        "receipt_path",
+        "receipt_sha256",
+        "source_manifest_sha256",
+        "state_sha256",
+        "state_version"
+      ],
+      "required": [
+        "corpus_version",
+        "debate_id",
+        "language",
+        "pages",
+        "pages.canonical_title",
+        "pages.content_sha256",
+        "pages.page_id",
+        "pages.page_type",
+        "pages.revision_id",
+        "pages.status",
+        "plan_sha256",
+        "publication_date",
+        "receipt_path",
+        "receipt_sha256",
+        "source_manifest_sha256",
+        "state_sha256",
+        "state_version"
+      ],
+      "enums": {
+        "language": [
+          "en",
+          "fr"
+        ],
+        "pages.status": [
+          "deleted",
+          "published",
+          "redirected",
+          "retired"
+        ]
+      }
+    },
+    "remote_migrations.schema.json": {
+      "properties": [
+        "debate_id",
+        "entries",
+        "entries.kind",
+        "entries.language",
+        "entries.new_page_id",
+        "entries.old_page_id",
+        "entries.policy",
+        "entries.reason",
+        "entries.target_page_id",
+        "version"
+      ],
+      "required": [
+        "debate_id",
+        "entries",
+        "entries.kind",
+        "entries.language",
+        "entries.old_page_id",
+        "version"
+      ],
+      "enums": {
+        "entries.language": [
+          "en",
+          "fr"
+        ],
+        "entries.kind": [
+          "delete",
+          "merge",
+          "rename",
+          "replace"
+        ],
+        "entries.policy": [
+          "delete",
+          "move",
+          "redirect"
+        ]
+      }
+    },
+    "scope.schema.json": {
+      "properties": [
+        "canonical_title_fr",
+        "debate_id",
+        "editorial_constraints",
+        "excluded_topics",
+        "included_topics",
+        "jurisdiction",
+        "proposition_fr",
+        "related_debates",
+        "residual_ambiguities",
+        "scope_schema_version",
+        "scope_summary_fr",
+        "source_documents",
+        "source_documents.path",
+        "source_documents.sha256",
+        "timeframe"
+      ],
+      "required": [
+        "canonical_title_fr",
+        "debate_id",
+        "editorial_constraints",
+        "excluded_topics",
+        "included_topics",
+        "jurisdiction",
+        "proposition_fr",
+        "related_debates",
+        "residual_ambiguities",
+        "scope_schema_version",
+        "scope_summary_fr",
+        "source_documents",
+        "source_documents.path",
+        "source_documents.sha256",
+        "timeframe"
+      ],
+      "enums": {}
+    }
+  }
+}

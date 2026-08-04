@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.1",
-  "validator_version": "0.4.30",
+  "version": "2.15.2",
+  "validator_version": "0.4.31",
   "scope": [
     "publish_archive",
     "github_init",
@@ -208,7 +208,9 @@
     "work_closure_idempotence",
     "active_normative_document_coherence_audit",
     "complete_doctor_pipeline_inventory",
-    "historical_executable_mode_preservation"
+    "historical_executable_mode_preservation",
+    "localized_quote_template_preservation",
+    "source_2_4_0_feature_inventory_non_regression"
   ],
   "publication_profiles": [
     "norm_1_2_direct_interlanguage",
@@ -321,9 +323,10 @@
     "signed_remote_execution_preflight",
     "signed_execution_authorization",
     "remote_execution_event_log",
-    "published_state_refresh_after_workspace_execution"
+    "published_state_refresh_after_workspace_execution",
+    "english_quote_model_with_locked_french_parameter_names"
   ],
-  "normative_revision": "1.2.28",
+  "normative_revision": "1.2.29",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -389,6 +392,8 @@
     "remote_execution_acceptance_hash_regression",
     "remote_execution_preflight_no_write_regression",
     "remote_execution_post_preflight_change_regression",
-    "remote_execution_no_changes_attestation_regression"
+    "remote_execution_no_changes_attestation_regression",
+    "source_2_4_0_feature_baseline_gate",
+    "english_quote_template_regression"
   ]
 }

@@ -1,4 +1,4 @@
-Source normative active : WIKIDEBIA_NORME_CONSOLIDEE_1.2.28.md
+Source normative active : WIKIDEBIA_NORME_CONSOLIDEE_1.2.29.md
 Ancienne source 1.2.27 : history uniquement
 Structures Citation : cohérentes français/anglais
 MW-009 : superseded

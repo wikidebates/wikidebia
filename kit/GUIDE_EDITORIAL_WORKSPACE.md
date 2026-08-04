@@ -1,6 +1,6 @@
 # Workspace éditorial d’un corpus promu
 
-Le kit 2.15.1 ouvre un espace de travail éditorial à partir d’un corpus déjà promu au statut `graph_validated`.
+Le kit 2.15.2 ouvre un espace de travail éditorial à partir d’un corpus déjà promu au statut `graph_validated`.
 
 ```bash
 ./wikidebia corpus-workspace-init dieu_existe

@@ -15,7 +15,7 @@ spec.loader.exec_module(module)
 
 
 def test_historical_direct_entrypoints_remain_executable():
-    # Managers prior to 2.15.1 extracted ZIP contents with Python zipfile, which
+    # Managers prior to 2.15.2 extracted ZIP contents with Python zipfile, which
     # discarded Unix modes.  The staged test run repairs that migration case
     # before the component is atomically installed.
     module.restore_historical_entrypoint_modes(ROOT)

@@ -1,15 +1,17 @@
-Wikidéb’IA Kit 2.15.1
-Norme : 1.2.28
-Validateur requis : 0.4.30
-Tests pytest du kit : 213 réussis, 0 échec
-Tests pytest du validateur : 210 réussis, 0 échec
+Wikidéb’IA Kit 2.15.2
+Norme : 1.2.29
+Validateur requis : 0.4.31
+Tests pytest du kit : 218 réussis, 0 échec
+Tests pytest du validateur : 215 réussis, 0 échec
+Rejeu des tests du kit source 2.4.0 : 131 réussis, 0 échec
+Rejeu des tests du validateur source 0.4.28 : 197 réussis, 0 échec (ancien test de compteur exact exclu)
 
-Révision corrective de non-régression :
-- structures de citations française et anglaise resynchronisées ;
-- règle historique MW-009 explicitement remplacée à partir de 1.2.27 ;
-- diagnostic doctor étendu à toutes les commandes du pipeline ;
-- modes exécutables historiques de graph-extract et corpus-init-from-snapshot restaurés ;
-- inventaires et reçus reconstruits depuis les fichiers réels ;
+Révision corrective de compatibilité et de non-régression :
+- modèle français {{Citation}} et modèle anglais {{Quote}} restaurés ;
+- paramètres historiques anglais de Quote préservés pour les normes anciennes ;
+- paramètres français verrouillés conservés dans la projection anglaise à partir de 1.2.27 ;
+- compatibilité des workspaces 1.2.27 et 1.2.28 maintenue ;
+- baseline fonctionnelle 2.4.0 vérifiée sur fichiers, symboles, constantes, schémas, commandes et manifestes ;
 - fonctions distantes 2.15.0 conservées sans affaiblissement.
 
 Résultat : RÉUSSI

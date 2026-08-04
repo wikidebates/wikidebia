@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.31 — 4 août 2026
+
+- alignement sur la norme corrective 1.2.29 ;
+- validation du modèle français `Citation` et du modèle anglais `Quote` ;
+- maintien de la comparaison ordonnée de tous les paramètres verrouillés ;
+- inventaire permanent des fonctions du validateur source 0.4.30 ;
+- compatibilité conservée avec toutes les révisions antérieures.
+
+
 ## 0.4.30 — 4 août 2026
 
 - alignement sur la norme corrective 1.2.28 ;

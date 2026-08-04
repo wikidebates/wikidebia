@@ -1,4 +1,4 @@
-# Guide de scellement local du corpus — Kit 2.15.1
+# Guide de scellement local du corpus — Kit 2.15.2
 
 ## Commande
 

@@ -1,6 +1,6 @@
 # Revue et promotion d’un build de graphe
 
-Le kit 2.15.1 transforme un build local `graph_draft` en corpus actif `graph_validated`, sans produire ni publier les pages finales.
+Le kit 2.15.2 transforme un build local `graph_draft` en corpus actif `graph_validated`, sans produire ni publier les pages finales.
 
 ## 1. Préparer la revue
 

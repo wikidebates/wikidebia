@@ -173,9 +173,9 @@ def audit_normative_provenance(root: Path, errors: list[str]) -> None:
         structures = root / "normative_reference/01_normes/structures_mediawiki_wikidebia.md"
         profiles = root / "normative_reference/01_normes/profils_rendu_wikidebia.md"
         cahier = root / "normative_reference/01_normes/cahier_des_charges_consolide_wikidebia.md"
-        if implemented == "1.2.28":
+        if implemented == "1.2.29":
             structures_text = structures.read_text(encoding="utf-8") if structures.is_file() else ""
-            if "|quotes={{Citation" not in structures_text or "|quotes={{Quote" in structures_text:
+            if "|quotes={{Quote" not in structures_text or "|quotes={{Citation" in structures_text:
                 errors.append("structure anglaise des citations non conforme")
             if "|avertissements-citation=" not in structures_text:
                 errors.append("paramètre avertissements-citation absent des structures")

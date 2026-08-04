@@ -1,8 +1,8 @@
-# Wikidéb’IA — Normes 1.2.28
+# Wikidéb’IA — Normes 1.2.29
 
-Source normative active générique pour la production et la publication français–anglais. La révision 1.2.28 corrige la cohérence documentaire de 1.2.27 sans changer son comportement : les citations verrouillées sont rendues avec `{{Citation}}`, leurs paramètres documentaires restent inchangés et chaque page française conserve son lien interlangue direct.
+Source normative active générique pour la production et la publication français–anglais. La révision 1.2.29 corrige uniquement le nom du modèle anglais des citations : `{{Citation}}` reste utilisé en français et `{{Quote}}` en anglais. Les paramètres documentaires verrouillés conservent leurs noms, leur ordre et leurs valeurs ; seules les valeurs de `citation` et de `date` sont traduites.
 
-- norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.28.md` ;
-- validateur recommandé : 0.4.30 ;
-- kit recommandé : 2.15.1 ;
-- toutes les règles 1.2.27 restent actives.
+- norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.29.md` ;
+- validateur recommandé : 0.4.31 ;
+- kit recommandé : 2.15.2 ;
+- toutes les autres règles 1.2.28 restent actives.

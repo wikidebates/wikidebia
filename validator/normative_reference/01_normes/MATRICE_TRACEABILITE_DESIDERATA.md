@@ -355,4 +355,8 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 
 ## Trace 1.2.28
 
-La correction 1.2.28 resynchronise les documents actifs avec RND-003 et RND-004, retire le statut actif de MW-009 et aligne la structure anglaise sur le modèle `Citation`.
+La correction 1.2.28 avait retiré le statut actif de MW-009 et tenté de resynchroniser RND-003 et RND-004, mais elle avait nommé à tort le modèle anglais `Citation`. Cette désignation est remplacée par la révision 1.2.29.
+
+## Trace 1.2.29
+
+La correction 1.2.29 conserve `{{Citation}}` en français et restaure `{{Quote}}` en anglais. Elle préserve séparément le contrat historique de `Quote` pour les anciennes normes et le contrat de projection verrouillée applicable à partir de 1.2.27.

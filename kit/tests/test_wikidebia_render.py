@@ -131,6 +131,9 @@ def test_render_emits_translated_citations_without_mutating_source_metadata(tmp_
     assert "|article=Freedom of the Will and the Concept of a Person" in en
     assert "|ouvrage=The Importance of What We Care About" in en
     assert "|avertissements-citation=Texte abrégé, Citation traduite par IA" in en
+    assert "|quotes={{Quote" in en
+    assert "|quotes={{Citation" not in en
+    assert "|citations={{Citation" in fr
 
 
 def test_render_requires_exact_translation_hash(tmp_path: Path):

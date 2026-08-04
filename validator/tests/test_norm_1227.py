@@ -22,7 +22,7 @@ def context(tmp_path: Path, lang: str, citation: dict) -> PackageContext:
     )
     return PackageContext(
         root=tmp_path,
-        report=Report("0.4.30", tmp_path.name, ["wikicode"]),
+        report=Report("0.4.31", tmp_path.name, ["wikicode"]),
         cache={"manifest.json": {"normative_versions": {"consolidated_norm": "1.2.27"}}},
     )
 
@@ -75,14 +75,14 @@ def argument(quote: str, *, lang: str = "en") -> str:
 
 
 def test_validator_version_and_active_norm_1227():
-    assert __version__ == "0.4.30"
+    assert __version__ == "0.4.31"
     root = Path(__file__).resolve().parents[1] / "normative_reference/01_normes"
-    assert [path.name for path in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")] == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.28.md"]
+    assert [path.name for path in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")] == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.29.md"]
 
 
 def test_english_citation_matching_lock_is_accepted(tmp_path: Path):
     expected = english_expected()
-    raw = """{{Citation
+    raw = """{{Quote
 |citation=Translated text.
 |auteurs=Auteur inchangé
 |ouvrage=Original Work
@@ -99,7 +99,7 @@ def test_english_citation_matching_lock_is_accepted(tmp_path: Path):
 
 def test_english_citation_rejects_changed_documentary_parameter(tmp_path: Path):
     expected = english_expected()
-    raw = """{{Citation
+    raw = """{{Quote
 |citation=Translated text.
 |auteurs=Translated author
 |ouvrage=Original Work
@@ -114,7 +114,7 @@ def test_english_citation_rejects_changed_documentary_parameter(tmp_path: Path):
 
 def test_english_citation_rejects_missing_translation_warning(tmp_path: Path):
     expected = english_expected()
-    raw = """{{Citation
+    raw = """{{Quote
 |citation=Translated text.
 |auteurs=Auteur inchangé
 |ouvrage=Original Work
@@ -130,10 +130,46 @@ def test_english_citation_rejects_missing_translation_warning(tmp_path: Path):
 def test_citations_remain_forbidden_before_norm_1227(tmp_path: Path):
     ctx = PackageContext(
         root=tmp_path,
-        report=Report("0.4.30", tmp_path.name, ["wikicode"]),
+        report=Report("0.4.31", tmp_path.name, ["wikicode"]),
         cache={"manifest.json": {"normative_versions": {"consolidated_norm": "1.2.26"}}},
     )
     raw = "{{Citation\n|citation=Texte.\n}}"
     tmpl = parse_template(argument(raw, lang="fr"))
     validate_template_shape(ctx, tmpl, "fr", "argument", "argument.wiki")
     assert any(item.code == "WDV-MWK-003" and "citations" in item.message for item in ctx.report.findings)
+
+
+def test_english_citation_model_name_must_be_quote(tmp_path: Path):
+    expected = english_expected()
+    raw = """{{Citation
+|citation=Translated text.
+|auteurs=Auteur inchangé
+|ouvrage=Original Work
+|date=25 June 2012
+|avertissements-citation=Texte abrégé, Citation traduite par IA
+}}"""
+    ctx = context(tmp_path, "en", expected)
+    tmpl = parse_template(argument(raw))
+    validate_template_shape(ctx, tmpl, "en", "argument", "output/en/arguments/A0001.wiki")
+    _validate_citations_against_locks(ctx, tmpl, "output/en/arguments/A0001.wiki", "en", "A0001")
+    assert any(item.code in {"WDV-MWK-012", "WDV-MWK-021"} for item in ctx.report.findings)
+
+
+def test_historical_quote_parameters_remain_recognized(tmp_path: Path):
+    ctx = PackageContext(
+        root=tmp_path,
+        report=Report("0.4.31", tmp_path.name, ["wikicode"]),
+        cache={"manifest.json": {"normative_versions": {"consolidated_norm": "1.2.26"}}},
+    )
+    raw = """{{Quote
+|quote=Original English quotation.
+|authors=Original Author
+|work=Original Work
+|date=1971
+}}"""
+    tmpl = parse_template(argument(raw, lang="en"))
+    validate_template_shape(ctx, tmpl, "en", "argument", "argument.wiki")
+    assert not any(
+        item.code == "WDV-MWK-012" and ("Sous-modèle" in item.message or "Paramètre inconnu" in item.message)
+        for item in ctx.report.findings
+    )

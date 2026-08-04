@@ -236,6 +236,7 @@ SUB = {
     # documentary fields not known to the generic validator.  1.2.27 validates
     # them against the sealed French/English content locks instead.
     "Citation": ([], ["citation"]),
+    "Quote": (["quote", "authors", "article", "work", "volume", "issue", "page", "location", "publisher", "place", "date", "link", "warnings"], ["quote"]),
 }
 
 SEQUENCE_PARAMS = {
@@ -264,7 +265,7 @@ PARAM_TEMPLATE_ALLOWED = {
     "références-sitographiques": {"Référence sitographique"},
     "références-vidéographiques": {"Référence vidéographique"},
     "justifications": {"Justification"}, "objections": {"Objection"},
-    "citations": {"Citation"}, "quotes": {"Citation"},
+    "citations": {"Citation"}, "quotes": {"Quote"},
     "interlangue": {"Interlangue", "Lien interlangue"},
 }
 
@@ -529,7 +530,7 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
             subkeys = [k for k, _ in sub.params]
             if len(subkeys) != len(set(subkeys)):
                 ctx.report.error("WDV-MWK-012", f"Paramètre dupliqué dans {sub.name}", path=rel)
-            dynamic_citation = sub.name == "Citation" and _norm_at_least(ctx, "1.2.27")
+            dynamic_citation = sub.name in {"Citation", "Quote"} and _norm_at_least(ctx, "1.2.27")
             if not dynamic_citation:
                 for skey in subkeys:
                     if skey not in order:
@@ -537,7 +538,7 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
                 indexes = [order.index(x) for x in subkeys if x in order]
                 if indexes != sorted(indexes):
                     ctx.report.error("WDV-MWK-006", f"Ordre incorrect dans {sub.name}", path=rel)
-            for req in required:
+            for req in ([] if dynamic_citation else required):
                 if req not in subkeys or not (sub.one(req) or "").strip():
                     ctx.report.error("WDV-MWK-012", f"Paramètre obligatoire {req} absent ou vide dans {sub.name}", path=rel)
             for skey, sval in sub.params:
@@ -692,8 +693,9 @@ def _validate_citations_against_locks(
         ctx.report.error("WDV-MWK-021", "Nombre de citations divergent du verrou éditorial", path=rel, details={"expected": len(expected_rows), "actual": len(actual_templates), "parameter": parameter})
         return
     for index, (actual, expected) in enumerate(zip(actual_templates, expected_rows), start=1):
-        if actual.name != "Citation":
-            ctx.report.error("WDV-MWK-021", "Le modèle Citation est obligatoire", path=rel, pointer=f"{parameter}/{index}")
+        expected_model = "Citation" if lang == "fr" else "Quote"
+        if actual.name != expected_model:
+            ctx.report.error("WDV-MWK-021", f"Le modèle {expected_model} est obligatoire dans {parameter}", path=rel, pointer=f"{parameter}/{index}")
             continue
         expected_params = _parameter_pairs(expected.get("source_parameters") if lang == "fr" else expected.get("parameters"))
         actual_params = [(str(name).strip(), str(value).strip()) for name, value in actual.params]
@@ -831,7 +833,7 @@ PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
 
 
 def _validate_french_parenthetical_dashes(ctx: PackageContext, tmpl: Template, rel: str, page_type: str) -> None:
-    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28"}:
+    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29"}:
         return
     values: list[tuple[str, str]] = []
     if page_type == "argument":

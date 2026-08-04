@@ -45,8 +45,9 @@ from wikidebia_corpus_init import extract_page_metadata
 from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
 from wikidebia_editorial_review import EditorialReviewError, _assert_source_unchanged, _run_validator
 
-KIT_VERSION = "2.15.1"
-PREVIOUS_NORM_VERSION = "1.2.27"
+KIT_VERSION = "2.15.2"
+PREVIOUS_NORM_VERSION = "1.2.28"
+COMPATIBLE_PREVIOUS_NORM_VERSIONS = {"1.2.27", PREVIOUS_NORM_VERSION}
 RENDER_LOCK_SCHEMA = "wikidebia-bilingual-render-lock-1.0"
 RENDER_CHANGESET_SCHEMA = "wikidebia-bilingual-render-changeset-1.0"
 
@@ -78,7 +79,7 @@ def _load_workspace(project_root: Path, debate_id: str, work_id: str) -> tuple[P
         raise RenderError("Schéma de workspace non pris en charge")
     if meta.get("debate_id") != debate_id or meta.get("work_id") != work_id:
         raise RenderError("Identité du workspace divergente")
-    if meta.get("normative_revision") not in {PREVIOUS_NORM_VERSION, NORM_VERSION}:
+    if meta.get("normative_revision") not in (COMPATIBLE_PREVIOUS_NORM_VERSIONS | {NORM_VERSION}):
         raise RenderError(f"Révision normative du workspace non migrable : {meta.get('normative_revision')}")
     if meta.get("workspace_sha256") != workspace_receipt_hash(meta):
         raise RenderError("Empreinte de workspace.json invalide")
@@ -236,7 +237,7 @@ def _citation_template(citation: Mapping[str, Any], *, lang: str) -> str:
         if not name or not value:
             raise RenderError(f"Paramètre de citation vide : {citation.get('id')}")
         rows.append((name, value))
-    return _template("Citation", rows)
+    return _template("Citation" if lang == "fr" else "Quote", rows)
 
 
 def _relations(registry: Mapping[str, Any], node_id: str, relation: str, lang: str) -> str:
