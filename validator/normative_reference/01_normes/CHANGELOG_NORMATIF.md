@@ -4,7 +4,7 @@
 - correspondances canoniques `citation→quote`, `auteurs→authors`, `ouvrage→work`, `numéro→issue`, `localisation→location`, `édition→publisher`, `lieu→place`, `lien→link` et `avertissements-citation→warnings` ;
 - traduction limitée aux valeurs de `quote` et de `date` ;
 - blocage de tout paramètre français ou sans équivalent déclaré dans une page anglaise ;
-- alignement recommandé : validateur 0.4.32 et kit 2.15.3.
+- alignement recommandé : validateur 0.4.32 et kit 2.15.4.
 
 # 1.2.29 — 4 août 2026
 

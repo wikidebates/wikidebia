@@ -2,7 +2,7 @@
 
 **Norme active :** 1.2.30  
 **Validateur :** 0.4.32  
-**Kit :** 2.15.3
+**Kit :** 2.15.4
 
 # Source incorporée : `CHANGELOG.md`
 
@@ -217,7 +217,7 @@
 
 # Source incorporée : `COMPATIBILITY.json`
 
-**SHA-256 :** `98619a5ba7fef99e836cd2ad2546af0fb76fde39c4945af0a5bbc531cf9f881b`
+**SHA-256 :** `4d5e44b5281c5db316197a9c28c21ba2bf7dbc6654595cfa50b04e0c20df0fe8`
 
 ```json
 {
@@ -275,8 +275,8 @@
   "stable_archive_name": "wikidebia-validator.zip",
   "version_source": "VERSIONS.json",
   "normative_revision": "1.2.30",
-  "kit_version": "2.15.3",
-  "recommended_kit_version": "2.15.3"
+  "kit_version": "2.15.4",
+  "recommended_kit_version": "2.15.4"
 }
 ```
 
@@ -310,7 +310,7 @@ SOFTWARE.
 
 # Source incorporée : `README.md`
 
-**SHA-256 :** `76da159f1469347a1dd3f0beabfb8057682afae73af3cba193969650232b6181`
+**SHA-256 :** `7ce353f53c140a194b73c80516a5600d42e065f5ebe20f00a3610cd9fa9b0554`
 
 ```
 # Wikidéb’IA Validator 0.4.32
@@ -318,19 +318,19 @@ SOFTWARE.
 Validateur local Python 3 aligné sur la norme 1.2.30 et rétrocompatible avec les révisions antérieures. Le contrôle WDV-MWK-021 impose désormais que les pages anglaises utilisent `{{Quote}}` avec les paramètres anglais déclarés. Les valeurs documentaires autres que `quote` et `date` doivent rester identiques à la citation française.
 
 Norme implémentée : 1.2.30  
-Kit recommandé : 2.15.3  
+Kit recommandé : 2.15.4  
 Validation ordinaire : strictement locale et en lecture seule
 ```
 
 # Source incorporée : `VERSIONS.json`
 
-**SHA-256 :** `7d7ccd4fc65946be8e16d8bb12752282f36c477aaf25fb06fcd71439c8b91fed`
+**SHA-256 :** `d56f4653d49938612cd55beb95775907d3d061079b8c32900654c6d7473d6b12`
 
 ```json
 {
   "norm": "1.2.30",
   "validator": "0.4.32",
-  "kit": "2.15.3"
+  "kit": "2.15.4"
 }
 ```
 
@@ -10995,7 +10995,7 @@ Chaque étiquette de provenance utilisée dans le catalogue doit être déclaré
 
 # Source incorporée : `normative_reference/01_normes/CHANGELOG_NORMATIF.md`
 
-**SHA-256 :** `86f6756e6354817dfe37d3a5d9317e1b91cfe8ef4b2053d23aed9c05a5ed4bc2`
+**SHA-256 :** `d391f6e2666b09848041f6a11d3fb9d7fbfa13cd3d976bf3de32269ecddb6cf2`
 
 ```
 # 1.2.30 — 4 août 2026
@@ -11004,7 +11004,7 @@ Chaque étiquette de provenance utilisée dans le catalogue doit être déclaré
 - correspondances canoniques `citation→quote`, `auteurs→authors`, `ouvrage→work`, `numéro→issue`, `localisation→location`, `édition→publisher`, `lieu→place`, `lien→link` et `avertissements-citation→warnings` ;
 - traduction limitée aux valeurs de `quote` et de `date` ;
 - blocage de tout paramètre français ou sans équivalent déclaré dans une page anglaise ;
-- alignement recommandé : validateur 0.4.32 et kit 2.15.3.
+- alignement recommandé : validateur 0.4.32 et kit 2.15.4.
 
 # 1.2.29 — 4 août 2026
 
@@ -65100,7 +65100,7 @@ def test_active_rule_sets_include_current_revision():
 
 # Source incorporée : `tests/test_versions_file.py`
 
-**SHA-256 :** `d3f8052b27fe61f3f8c631443dc77e1e564db12c765a993b879da87513fa3ccf`
+**SHA-256 :** `c5060f0093031bbaaa4e1a2e413f7fbc053580778e0b82a5e1664046cf667ca9`
 
 ```python
 from __future__ import annotations
@@ -65115,7 +65115,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_versions_file_has_only_the_three_functional_versions():
     versions = json.loads((ROOT / "VERSIONS.json").read_text(encoding="utf-8"))
-    assert versions == {"norm": "1.2.30", "validator": "0.4.32", "kit": "2.15.3"}
+    assert versions == {"norm": "1.2.30", "validator": "0.4.32", "kit": "2.15.4"}
 
 
 def test_versions_file_matches_validator_metadata():

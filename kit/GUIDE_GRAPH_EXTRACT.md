@@ -83,3 +83,39 @@ La lecture d'un wiki public peut fonctionner sans fichier d'identification. `--l
 ## Statut des données produites
 
 Les fichiers sont des données d'extraction et de provenance, non un corpus `release_ready`. Ils ne remplacent ni la revue sémantique du graphe, ni la génération bilingue, ni le validateur, ni le kit de publication.
+
+## Niveaux, profondeurs et occurrences
+
+L’extracteur 1.0.1 distingue explicitement :
+
+- le **niveau**, numéroté à partir de 1 pour un argument principal ;
+- la **profondeur en nombre d’arêtes**, égale au niveau moins un ;
+- le niveau minimal d’une page unique ;
+- le niveau maximal atteint par une occurrence réutilisée ;
+- les occurrences dépliées par chemins, qui peuvent être plus nombreuses que les pages et les relations.
+
+Les champs principaux sont :
+
+```text
+niveau_minimal_maximal_pages_uniques
+niveau_maximal_occurrences
+profondeur_maximale_en_aretes
+occurrences_argumentatives_depliees_par_chemins
+occurrences_depliees_par_niveau
+```
+
+Une ligne de niveau contenant des occurrences mais aucune page unique est normale lorsque toutes ces occurrences réutilisent des pages déjà rencontrées à un niveau inférieur.
+
+## Feuilles et frontières
+
+Le rapport distingue :
+
+- `pages_sans_sortie_dans_graphe_extrait` : toutes les pages sans relation conservée ;
+- `pages_terminales_reelles` : les feuilles ordinaires ;
+- les frontières `débat détaillé`, dont les relations locales sont volontairement non suivies.
+
+Les relations ignorées aux frontières sont des informations de périmètre, non des avertissements. Les vrais avertissements restent réservés aux fallbacks, pages manquantes autorisées ou structures inhabituelles.
+
+## Régénérer les rapports sans relire le wiki
+
+Après une mise à niveau du kit, relancer la commande initiale sans `--force-refresh`. Le cache `.cache_pages/` est réutilisé et seuls le graphe analytique, les rapports, l’audit et le paquet local sont reconstruits.

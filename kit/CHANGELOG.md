@@ -1,3 +1,13 @@
+## 2.15.4 — 4 août 2026
+
+- clarification des métriques du graphe : niveau des occurrences et profondeur en nombre d’arêtes sont désormais distincts ;
+- distinction entre niveau minimal maximal des pages uniques et niveau maximal des occurrences réutilisées ;
+- séparation des feuilles réelles, des pages sans sortie dans le graphe extrait et des frontières vers un débat détaillé ;
+- reclassement des relations ignorées aux frontières comme informations de périmètre, et non comme avertissements ;
+- ajout de contrôles d’audit sur les sommes par niveau, les profondeurs, les feuilles et les frontières ;
+- clarification du résultat de `corpus-init-from-snapshot` entre occurrences dépliées par chemins et occurrences normatives ;
+- extracteur porté à la version 1.0.1 ; norme 1.2.30 et validateur 0.4.32 inchangés.
+
 ## 2.15.3 — 4 août 2026
 
 - localisation complète des paramètres du modèle anglais `Quote` ;

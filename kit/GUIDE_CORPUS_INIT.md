@@ -1,6 +1,6 @@
 # Initialisation d’un corpus depuis un snapshot
 
-Le kit 2.15.2 transforme un paquet produit par `graph-extract` en corpus local au statut `graph_draft`.
+Le kit 2.15.4 transforme un paquet produit par `graph-extract` en corpus local au statut `graph_draft`.
 
 ```bash
 ./wikidebia corpus-init-from-snapshot \
@@ -47,7 +47,7 @@ Les identifiants sont déterministes pour un même snapshot :
 - relations : `E00001`, `E00002`, etc. ;
 - occurrences : `O00001`, `O00002`, etc.
 
-Une occurrence principale est créée pour chaque nœud. Une réutilisation crée une occurrence secondaire sans redéploiement de ses enfants, conformément au modèle normatif du registre. Le nombre d’occurrences normatives peut donc être inférieur au nombre de chemins du graphe entièrement déplié indiqué par l’extracteur.
+Une occurrence principale est créée pour chaque nœud. Une réutilisation crée une occurrence secondaire sans redéploiement de ses enfants, conformément au modèle normatif du registre. Le nombre d’occurrences normatives peut donc être inférieur au nombre de chemins du graphe entièrement déplié indiqué par l’extracteur. La sortie machine distingue désormais `source_unfolded_occurrences` et `normative_occurrences`; l’ancien champ `occurrences` reste un alias des occurrences normatives.
 
 ## Validation initiale
 
@@ -70,7 +70,7 @@ Elle n’exécute pas encore les contrôles `wikicode` ou `editorial`, car les p
 --skip-validation
 ```
 
-`--output-dir`, lorsqu’il est utilisé, doit rester sous `.state/corpus-builds/`. `--overwrite` ne concerne que le build local sélectionné dans cette zone. Le manifeste complet du paquet d’extraction, le graphe, le snapshot et chaque page importée sont revérifiés avant toute écriture locale. Aucune écriture MediaWiki et aucune promotion vers `corpus/` ne sont effectuées.
+`--output-dir`, lorsqu’il est utilisé, doit rester sous `.state/corpus-builds/`. `--overwrite` ne concerne que le build local sélectionné dans cette zone. L’argument positionnel doit désigner la racine complète du paquet `graph-extract` ou son ZIP audité, et non le seul sous-dossier `snapshot/`, car le graphe JSON et le manifeste SHA-256 sont également requis. Le manifeste complet du paquet d’extraction, le graphe, le snapshot et chaque page importée sont revérifiés avant toute écriture locale. Aucune écriture MediaWiki et aucune promotion vers `corpus/` ne sont effectuées.
 ## Étape suivante
 
 Le build reste volontairement sous `.state/corpus-builds/`. Sa revue et sa promotion utilisent ensuite :

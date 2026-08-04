@@ -54,6 +54,7 @@ class ParserTests(unittest.TestCase):
         self.assertEqual(parsed.justifications, [])
         self.assertEqual(parsed.objections, [])
         self.assertEqual(parsed.ignored_relations_at_frontier, 2)
+        self.assertFalse(parsed.warnings)
 
 
 class CrawlTests(unittest.TestCase):
@@ -83,8 +84,39 @@ class CrawlTests(unittest.TestCase):
         self.assertEqual(meta["pages_uniques_par_niveau_minimal"], {1: 2, 2: 1})
         self.assertEqual(meta["occurrences_par_niveau"], {1: 2, 2: 2})
         self.assertEqual(meta["frontières_débat_détaillé"], {"C": "Débat C"})
+        self.assertEqual(meta["niveau_minimal_maximal_pages_uniques"], 2)
+        self.assertEqual(meta["niveau_maximal_occurrences"], 2)
+        self.assertEqual(meta["profondeur_maximale_en_aretes"], 1)
+        self.assertEqual(meta["occurrences_reutilisees_par_niveau"], {2: 1})
+        self.assertEqual(meta["pages_sans_sortie_dans_graphe_extrait"], 2)
+        self.assertEqual(meta["pages_terminales_reelles"], 1)
+        self.assertEqual(meta["relations_locales_ignorees_aux_frontières"], 1)
+        self.assertEqual(meta["avertissements"], 0)
+        self.assertEqual(meta["informations_frontières"], 1)
         b = next(row for row in graph["noeuds"] if row["titre"] == "B")
         self.assertEqual(b["occurrences_totales"], 2)
+        self.assertEqual(b["niveau_minimal"], 1)
+        self.assertEqual(b["profondeur_minimale_en_aretes"], 0)
+
+
+    def test_levels_and_edge_depth_are_not_confused(self):
+        pages = {
+            "Débat test": "{{Débat|arguments-pour={{Argument pour|page=A}}|arguments-contre=}}",
+            "A": "{{Argument|justifications={{Justification|page=B}}|objections=}}",
+            "B": "{{Argument|justifications={{Justification|page=C}}|objections=}}",
+            "C": "{{Argument|justifications=|objections=}}",
+        }
+        graph = mod.analyze_graph(
+            mod.crawl_graph(FakeClient(pages), debate_title="Débat test", progress_every=0)
+        )
+        meta = graph["metadata"]
+        self.assertEqual(meta["niveau_minimal_maximal_pages_uniques"], 3)
+        self.assertEqual(meta["niveau_maximal_occurrences"], 3)
+        self.assertEqual(meta["profondeur_maximale_en_aretes"], 2)
+        c = next(row for row in graph["noeuds"] if row["titre"] == "C")
+        self.assertEqual(c["niveau_minimal"], 3)
+        self.assertEqual(c["profondeur_minimale_en_aretes"], 2)
+        self.assertTrue(all(check["ok"] for check in mod.audit_graph(graph)))
 
     def test_snapshot_and_package_are_complete(self):
         pages = {
@@ -109,6 +141,29 @@ class CrawlTests(unittest.TestCase):
                 names = set(archive.namelist())
             self.assertIn("snapshot/snapshot_manifest.json", names)
             self.assertIn("snapshot/pages/debate.wiki", names)
+
+    def test_report_separates_depth_levels_and_frontier_information(self):
+        pages = {
+            "Débat test": "{{Débat|arguments-pour={{Argument pour|page=A}}|arguments-contre=}}",
+            "A": "{{Argument|débat détaillé=Débat spécialisé|justifications={{Justification|page=B}}|objections=}}",
+        }
+        result = mod.crawl_graph(FakeClient(pages), debate_title="Débat test", progress_every=0)
+        graph = mod.analyze_graph(result)
+        with tempfile.TemporaryDirectory() as directory:
+            paths = mod.write_outputs(
+                graph,
+                result,
+                output_dir=Path(directory),
+                slug="debat_test",
+                extraction_date="2026-08-04",
+            )
+            report = paths["report"].read_text(encoding="utf-8")
+        self.assertIn("Niveau maximal d’une occurrence", report)
+        self.assertIn("Profondeur maximale en nombre d’arêtes", report)
+        self.assertIn("## Informations sur les frontières", report)
+        self.assertIn("1 relation(s) locale(s) non suivie(s)", report)
+        self.assertIn("## Avertissements réels", report)
+        self.assertNotIn("Frontière débat détaillé", report)
 
     def test_cache_is_reusable(self):
         with tempfile.TemporaryDirectory() as directory:

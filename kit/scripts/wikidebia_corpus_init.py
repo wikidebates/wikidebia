@@ -35,7 +35,7 @@ from wikidebia_graph_extract import (
     normalize_key,
 )
 
-KIT_VERSION = "2.15.3"
+KIT_VERSION = "2.15.4"
 CORPUS_INIT_VERSION = "1.0.0"
 NORM_VERSION = "1.2.30"
 VALIDATOR_VERSION = "0.4.32"
@@ -692,7 +692,10 @@ def build_corpus(
         provenance["debate_id"] = debate_id
         provenance["normalizations"] = ([{"source_title": debate_title_source, "registry_title": debate_title, "changes": debate_title_changes}] if debate_title_changes else []) + normalizations
         provenance["normative_occurrence_note"] = {
-            "source_unfolded_occurrences": graph.get("metadata", {}).get("occurrences_argumentatives"),
+            "source_unfolded_occurrences": (
+                graph.get("metadata", {}).get("occurrences_argumentatives_depliees_par_chemins")
+                or graph.get("metadata", {}).get("occurrences_argumentatives")
+            ),
             "normative_occurrences": counts["total_occurrences"],
             "explanation": "Le registre normatif crée une occurrence racine ou une occurrence par relation active; une occurrence secondaire ne développe pas ses enfants.",
         }
@@ -797,7 +800,13 @@ def build_corpus(
             "output_dir": str(output_dir),
             "nodes": counts["distinct_nodes"],
             "edges": len(edges),
+            "source_unfolded_occurrences": provenance["normative_occurrence_note"]["source_unfolded_occurrences"],
+            "normative_occurrences": counts["total_occurrences"],
             "occurrences": counts["total_occurrences"],
+            "occurrence_semantics": (
+                "Les occurrences normatives comptent une racine ou une relation active; "
+                "les occurrences dépliées de l'extracteur comptent tous les chemins."
+            ),
             "imports": len(provenance["pages"]),
         }
     finally:

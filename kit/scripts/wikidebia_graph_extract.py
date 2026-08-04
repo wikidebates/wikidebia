@@ -31,8 +31,8 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping, Protocol, Sequence
 
 
-KIT_VERSION = "2.15.3"
-GRAPH_EXTRACT_VERSION = "1.0.0"
+KIT_VERSION = "2.15.4"
+GRAPH_EXTRACT_VERSION = "1.0.1"
 
 
 # ---------------------------------------------------------------------------
@@ -349,10 +349,9 @@ def parse_argument_wikitext(text: str, *, stop_on_detailed_debate: bool = True) 
     ignored = 0
     if detailed and stop_on_detailed_debate:
         ignored = len(justifications) + len(objections)
-        if ignored:
-            warnings.append(
-                f"Frontière débat détaillé: {ignored} relation(s) locale(s) ignorée(s)"
-            )
+        # Une frontière est une décision normale de périmètre, pas un avertissement.
+        # Le nombre de relations locales écartées est exporté séparément afin de
+        # rester visible sans être confondu avec une anomalie de parsing.
         justifications = []
         objections = []
 
@@ -564,6 +563,7 @@ class CrawlResult:
     relations: list[RelationDraft]
     aliases: dict[str, str]
     warnings: list[str]
+    frontier_information: list[str]
     missing_pages: list[str]
     crawl_options: dict[str, Any]
 
@@ -596,6 +596,7 @@ def crawl_graph(
     debate_record = client.fetch(debate_title)
     parsed_debate = parse_debate_wikitext(debate_record.text)
     warnings = [f"Débat: {warning}" for warning in parsed_debate.warnings]
+    frontier_information: list[str] = []
     if not parsed_debate.pro and not parsed_debate.con:
         raise RuntimeError("Aucun argument principal n'a été trouvé dans la page Débat")
 
@@ -651,6 +652,11 @@ def crawl_graph(
         )
         parsed_arguments[record.canonical_title] = parsed
         warnings.extend(f"{record.canonical_title}: {warning}" for warning in parsed.warnings)
+        if parsed.detailed_debate and parsed.ignored_relations_at_frontier:
+            frontier_information.append(
+                f"{record.canonical_title}: frontière vers {parsed.detailed_debate}; "
+                f"{parsed.ignored_relations_at_frontier} relation(s) locale(s) non suivie(s)"
+            )
 
         relation_order = Counter()
         for relation_type, entries in (
@@ -712,6 +718,7 @@ def crawl_graph(
         ),
         aliases=dict(sorted(client.aliases.items())),
         warnings=warnings,
+        frontier_information=frontier_information,
         missing_pages=sorted(set(missing)),
         crawl_options={
             "stop_on_detailed_debate": stop_on_detailed_debate,
@@ -753,30 +760,34 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
         adjacency[edge.source].append((edge.target, edge.relation))
         reverse[edge.target].append((edge.source, edge.relation))
 
-    depth = {node: 10**9 for node in nodes}
+    # Le niveau commence à 1 pour une racine. La profondeur en arêtes vaut
+    # donc toujours niveau - 1. Les deux métriques sont exportées séparément.
+    minimum_level = {node: 10**9 for node in nodes}
     queue: deque[str] = deque()
     for root in roots:
-        depth[root] = 1
+        minimum_level[root] = 1
         queue.append(root)
     while queue:
         source = queue.popleft()
         for target, _ in adjacency[source]:
-            if depth[target] > depth[source] + 1:
-                depth[target] = depth[source] + 1
+            if minimum_level[target] > minimum_level[source] + 1:
+                minimum_level[target] = minimum_level[source] + 1
                 queue.append(target)
 
     topo, cycle_nodes = _topological_order(nodes, result.relations)
-    occurrences_by_depth: dict[str, Counter[int]] = {node: Counter() for node in nodes}
+    occurrences_by_level_for_node: dict[str, Counter[int]] = {
+        node: Counter() for node in nodes
+    }
     roots_reaching: dict[str, set[str]] = {node: set() for node in nodes}
     if not cycle_nodes:
         for root in roots:
-            occurrences_by_depth[root][1] += 1
+            occurrences_by_level_for_node[root][1] += 1
             roots_reaching[root].add(root)
         for source in topo:
             for target, _ in adjacency[source]:
                 roots_reaching[target].update(roots_reaching[source])
-                for source_depth, count in occurrences_by_depth[source].items():
-                    occurrences_by_depth[target][source_depth + 1] += count
+                for source_level, count in occurrences_by_level_for_node[source].items():
+                    occurrences_by_level_for_node[target][source_level + 1] += count
 
     orientation = {root: "pour" for root in result.roots_pro}
     orientation.update({root: "contre" for root in result.roots_con})
@@ -790,6 +801,7 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
     for title in sorted(nodes, key=str.casefold):
         parsed = result.parsed_arguments.get(title)
         detailed = parsed.detailed_debate if parsed else ""
+        ignored_at_frontier = parsed.ignored_relations_at_frontier if parsed else 0
         out_count = len({target for target, _ in adjacency[title]})
         if detailed:
             status = "frontière_débat_détaillé"
@@ -801,17 +813,28 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
             status = "terminal"
         root_set = roots_reaching.get(title, set())
         orientation_set = sorted({orientation[root] for root in root_set})
-        occurrence_depth = occurrences_by_depth.get(title, Counter())
+        occurrence_levels = occurrences_by_level_for_node.get(title, Counter())
+        level = None if minimum_level[title] >= 10**9 else minimum_level[title]
+        edge_depth = None if level is None else level - 1
+        occurrences_by_edge_depth = {
+            occurrence_level - 1: count
+            for occurrence_level, count in sorted(occurrence_levels.items())
+        }
         node_rows.append(
             {
                 "titre": title,
-                "profondeur_minimale": None if depth[title] >= 10**9 else depth[title],
-                "occurrences_totales": sum(occurrence_depth.values()) if not cycle_nodes else None,
-                "occurrences_par_profondeur": dict(sorted(occurrence_depth.items())),
+                "niveau_minimal": level,
+                "profondeur_minimale_en_aretes": edge_depth,
+                "profondeur_minimale": edge_depth,
+                "occurrences_totales": sum(occurrence_levels.values()) if not cycle_nodes else None,
+                "occurrences_par_niveau": dict(sorted(occurrence_levels.items())),
+                "occurrences_par_profondeur_en_aretes": occurrences_by_edge_depth,
+                "occurrences_par_profondeur": occurrences_by_edge_depth,
                 "orientations_racines": orientation_set,
                 "arguments_racines": sorted(root_set, key=str.casefold),
                 "nombre_parents": len({parent for parent, _ in reverse[title]}),
                 "nombre_enfants": out_count,
+                "relations_locales_ignorees_frontiere": ignored_at_frontier,
                 "statut": status,
                 "débat_détaillé": detailed,
                 "titres_affichés_observés": sorted(displayed_by_node[title], key=str.casefold),
@@ -824,6 +847,14 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
 
     relation_rows: list[dict[str, Any]] = []
     for edge in result.relations:
+        source_level = (
+            None if minimum_level.get(edge.source, 10**9) >= 10**9 else minimum_level[edge.source]
+        )
+        target_level = (
+            None if minimum_level.get(edge.target, 10**9) >= 10**9 else minimum_level[edge.target]
+        )
+        source_depth = None if source_level is None else source_level - 1
+        target_depth = None if target_level is None else target_level - 1
         relation_rows.append(
             {
                 "source": edge.source,
@@ -831,24 +862,48 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
                 "cible": edge.target,
                 "ordre": edge.order,
                 "titres_affichés_observés": sorted(edge.displayed_titles, key=str.casefold),
-                "profondeur_source_minimale": (
-                    None if depth.get(edge.source, 10**9) >= 10**9 else depth[edge.source]
-                ),
-                "profondeur_cible_minimale": (
-                    None if depth.get(edge.target, 10**9) >= 10**9 else depth[edge.target]
-                ),
+                "niveau_source_minimal": source_level,
+                "niveau_cible_minimal": target_level,
+                "profondeur_source_minimale_en_aretes": source_depth,
+                "profondeur_cible_minimale_en_aretes": target_depth,
+                "profondeur_source_minimale": source_depth,
+                "profondeur_cible_minimale": target_depth,
             }
         )
 
-    pages_by_level = Counter(
-        row["profondeur_minimale"]
+    pages_by_minimum_level = Counter(
+        row["niveau_minimal"]
         for row in node_rows
-        if row["profondeur_minimale"] is not None
+        if row["niveau_minimal"] is not None
     )
     occurrences_by_level: Counter[int] = Counter()
     if not cycle_nodes:
-        for counter in occurrences_by_depth.values():
+        for counter in occurrences_by_level_for_node.values():
             occurrences_by_level.update(counter)
+
+    maximum_occurrence_level = max(occurrences_by_level, default=0)
+    maximum_minimum_level = max(pages_by_minimum_level, default=0)
+    maximum_edge_depth = maximum_occurrence_level - 1 if maximum_occurrence_level else 0
+
+    reused_occurrences_by_level: dict[int, int] = {}
+    reused_pages_by_level: dict[int, list[str]] = {}
+    if not cycle_nodes:
+        for level in sorted(occurrences_by_level):
+            reused_count = occurrences_by_level[level] - pages_by_minimum_level.get(level, 0)
+            if reused_count:
+                reused_occurrences_by_level[level] = reused_count
+                reused_pages_by_level[level] = sorted(
+                    [
+                        title
+                        for title, counter in occurrences_by_level_for_node.items()
+                        if counter.get(level, 0)
+                        and (
+                            minimum_level.get(title, 10**9) < level
+                            or counter.get(level, 0) > 1
+                        )
+                    ],
+                    key=str.casefold,
+                )
 
     branch_rows: list[dict[str, Any]] = []
     if not cycle_nodes:
@@ -865,13 +920,14 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
             branch_occ[root][1] = 1
             for source in topo:
                 for target, _ in adjacency[source]:
-                    for source_depth, count in branch_occ[source].items():
-                        branch_occ[target][source_depth + 1] += count
+                    for source_level, count in branch_occ[source].items():
+                        branch_occ[target][source_level + 1] += count
             total_occ = sum(sum(counter.values()) for counter in branch_occ.values())
-            max_depth = max(
+            max_level = max(
                 (level for counter in branch_occ.values() for level in counter),
                 default=1,
             )
+            max_depth = max_level - 1
             branch_rows.append(
                 {
                     "orientation": orientation[root],
@@ -879,6 +935,8 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
                     "enfants_directs": len(adjacency[root]),
                     "pages_uniques_branche_racine_incluse": len(reachable),
                     "occurrences_branche_racine_incluse": total_occ,
+                    "niveau_maximal_occurrences": max_level,
+                    "profondeur_maximale_en_aretes": max_depth,
                     "profondeur_maximale": max_depth,
                 }
             )
@@ -888,7 +946,13 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
         for row in node_rows
         if row["débat_détaillé"]
     }
+    ignored_frontier_relations = sum(
+        row["relations_locales_ignorees_frontiere"] for row in node_rows
+    )
     reused = sum((row["occurrences_totales"] or 0) > 1 for row in node_rows)
+    pages_without_outgoing = sum(row["nombre_enfants"] == 0 for row in node_rows)
+    actual_terminals = sum(row["statut"] == "terminal" for row in node_rows)
+    unfolded_occurrences = sum(occurrences_by_level.values()) if not cycle_nodes else None
     metadata = {
         "kit_version": KIT_VERSION,
         "extracteur_version": GRAPH_EXTRACT_VERSION,
@@ -898,23 +962,33 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
         "arguments_niveau_1_contre": len(result.roots_con),
         "arguments_niveau_1_total": len(roots),
         "pages_arguments_uniques": len(nodes),
-        "occurrences_argumentatives": (
-            sum(occurrences_by_level.values()) if not cycle_nodes else None
-        ),
+        "occurrences_argumentatives_depliees_par_chemins": unfolded_occurrences,
+        "occurrences_argumentatives": unfolded_occurrences,
         "relations_uniques": len(result.relations),
         "justifications": sum(edge.relation == "justification" for edge in result.relations),
         "objections": sum(edge.relation == "objection" for edge in result.relations),
-        "profondeur_maximale": max(pages_by_level, default=0),
-        "pages_uniques_par_niveau_minimal": dict(sorted(pages_by_level.items())),
+        "niveau_minimal_maximal_pages_uniques": maximum_minimum_level,
+        "niveau_maximal_occurrences": maximum_occurrence_level,
+        "profondeur_maximale_en_aretes": maximum_edge_depth,
+        "profondeur_maximale": maximum_edge_depth,
+        "pages_uniques_par_niveau_minimal": dict(sorted(pages_by_minimum_level.items())),
+        "occurrences_depliees_par_niveau": dict(sorted(occurrences_by_level.items())),
         "occurrences_par_niveau": dict(sorted(occurrences_by_level.items())),
+        "occurrences_reutilisees_par_niveau": reused_occurrences_by_level,
+        "pages_concernees_par_reutilisation_au_niveau": reused_pages_by_level,
         "pages_avec_relations_sortantes": sum(row["nombre_enfants"] > 0 for row in node_rows),
-        "pages_terminales": sum(row["nombre_enfants"] == 0 for row in node_rows),
+        "pages_sans_sortie_dans_graphe_extrait": pages_without_outgoing,
+        "pages_terminales_reelles": actual_terminals,
+        "pages_terminales": actual_terminals,
         "pages_réutilisées_plusieurs_fois": reused if not cycle_nodes else None,
         "frontières_débat_détaillé": boundaries,
+        "nombre_frontières_débat_détaillé": len(boundaries),
+        "relations_locales_ignorees_aux_frontières": ignored_frontier_relations,
         "graphe_sans_cycle": not cycle_nodes,
         "nœuds_dans_cycles": cycle_nodes,
         "pages_manquantes": result.missing_pages,
         "avertissements": len(result.warnings),
+        "informations_frontières": len(result.frontier_information),
     }
     return {
         "metadata": metadata,
@@ -928,9 +1002,9 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
         "noeuds": node_rows,
         "relations": relation_rows,
         "branches_niveau_1": branch_rows,
+        "informations_frontières": result.frontier_information,
         "warnings": result.warnings,
     }
-
 
 # ---------------------------------------------------------------------------
 # Export and independent checks
@@ -995,6 +1069,52 @@ def audit_graph(graph: Mapping[str, Any]) -> list[dict[str, Any]]:
     check(
         "compteurs justification/objection",
         metadata["justifications"] + metadata["objections"] == len(relations),
+    )
+    pages_by_level = metadata["pages_uniques_par_niveau_minimal"]
+    occurrences_by_level = metadata["occurrences_depliees_par_niveau"]
+    check(
+        "somme des pages par niveau minimal",
+        sum(pages_by_level.values()) == len(nodes),
+        f"{sum(pages_by_level.values())}/{len(nodes)}",
+    )
+    unfolded = metadata["occurrences_argumentatives_depliees_par_chemins"]
+    check(
+        "somme des occurrences dépliées par niveau",
+        sum(occurrences_by_level.values()) == unfolded,
+        f"{sum(occurrences_by_level.values())}/{unfolded}",
+    )
+    max_occurrence_level = metadata["niveau_maximal_occurrences"]
+    max_edge_depth = metadata["profondeur_maximale_en_aretes"]
+    check(
+        "cohérence niveau maximal et profondeur en arêtes",
+        max_edge_depth == max(max_occurrence_level - 1, 0),
+        f"niveau={max_occurrence_level}; profondeur={max_edge_depth}",
+    )
+    check(
+        "niveau minimal maximal inférieur ou égal au niveau maximal des occurrences",
+        metadata["niveau_minimal_maximal_pages_uniques"] <= max_occurrence_level,
+        (
+            metadata["niveau_minimal_maximal_pages_uniques"],
+            max_occurrence_level,
+        ),
+    )
+    check(
+        "compteur des pages sans sortie",
+        metadata["pages_sans_sortie_dans_graphe_extrait"]
+        == sum(row["nombre_enfants"] == 0 for row in graph["noeuds"]),
+        metadata["pages_sans_sortie_dans_graphe_extrait"],
+    )
+    check(
+        "compteur des feuilles réelles",
+        metadata["pages_terminales_reelles"]
+        == sum(row["statut"] == "terminal" for row in graph["noeuds"]),
+        metadata["pages_terminales_reelles"],
+    )
+    check(
+        "relations locales ignorées aux frontières",
+        metadata["relations_locales_ignorees_aux_frontières"]
+        == sum(row["relations_locales_ignorees_frontiere"] for row in graph["noeuds"]),
+        metadata["relations_locales_ignorees_aux_frontières"],
     )
     check("aucune page manquante", not metadata["pages_manquantes"], metadata["pages_manquantes"])
     return checks
@@ -1153,13 +1273,55 @@ def write_outputs(
         [
             "",
             f"- Pages uniques : **{m['pages_arguments_uniques']}**",
-            f"- Occurrences : **{m['occurrences_argumentatives']}**",
-            f"- Relations : **{m['relations_uniques']}**",
+            (
+                "- Occurrences dépliées par chemins : "
+                f"**{m['occurrences_argumentatives_depliees_par_chemins']}**"
+            ),
+            f"- Relations uniques : **{m['relations_uniques']}**",
             f"- Justifications : **{m['justifications']}**",
             f"- Objections : **{m['objections']}**",
-            f"- Profondeur maximale : **{m['profondeur_maximale']}**",
+            (
+                "- Niveau minimal maximal d’une page unique : "
+                f"**{m['niveau_minimal_maximal_pages_uniques']}**"
+            ),
+            f"- Niveau maximal d’une occurrence : **{m['niveau_maximal_occurrences']}**",
+            (
+                "- Profondeur maximale en nombre d’arêtes : "
+                f"**{m['profondeur_maximale_en_aretes']}**"
+            ),
+            (
+                "- Pages sans sortie dans le graphe extrait : "
+                f"**{m['pages_sans_sortie_dans_graphe_extrait']}**"
+            ),
+            f"- Feuilles réelles : **{m['pages_terminales_reelles']}**",
             f"- Pages réutilisées : **{m['pages_réutilisées_plusieurs_fois']}**",
             f"- Graphe sans cycle : **{'oui' if m['graphe_sans_cycle'] else 'non'}**",
+            "",
+            (
+                "Une occurrence dépliée correspond à un chemin depuis un argument de niveau 1. "
+                "Une même page peut donc produire plusieurs occurrences et apparaître à un niveau "
+                "supérieur à son niveau minimal. La profondeur compte les arêtes : une occurrence "
+                "de niveau 8 se trouve à une profondeur de 7."
+            ),
+            "",
+            "## Réutilisations sans nouvelle page au niveau considéré",
+            "",
+        ]
+    )
+    reused_by_level = m["occurrences_reutilisees_par_niveau"]
+    if reused_by_level:
+        for level, count in reused_by_level.items():
+            pages = m["pages_concernees_par_reutilisation_au_niveau"].get(level, [])
+            sample = "; ".join(pages[:8])
+            suffix = "" if len(pages) <= 8 else f"; … ({len(pages)} pages concernées)"
+            report_lines.append(
+                f"- Niveau {level} : **{count}** occurrence(s) réutilisée(s)"
+                + (f" — {sample}{suffix}" if sample else "")
+            )
+    else:
+        report_lines.append("Aucune réutilisation supplémentaire.")
+    report_lines.extend(
+        [
             "",
             "## Snapshot de provenance",
             "",
@@ -1172,10 +1334,27 @@ def write_outputs(
     )
     if m["frontières_débat_détaillé"]:
         for page, debate in m["frontières_débat_détaillé"].items():
-            report_lines.append(f"- **{page}** → {debate}")
+            ignored = next(
+                row["relations_locales_ignorees_frontiere"]
+                for row in graph["noeuds"]
+                if row["titre"] == page
+            )
+            detail = f" — {ignored} relation(s) locale(s) non suivie(s)" if ignored else ""
+            report_lines.append(f"- **{page}** → {debate}{detail}")
+        report_lines.append("")
+        report_lines.append(
+            "Total des relations locales non suivies aux frontières : "
+            f"**{m['relations_locales_ignorees_aux_frontières']}**."
+        )
     else:
         report_lines.append("Aucune.")
-    report_lines.extend(["", "## Avertissements", ""])
+    report_lines.extend(["", "## Informations sur les frontières", ""])
+    frontier_information = graph.get("informations_frontières", [])
+    if frontier_information:
+        report_lines.extend(f"- {info}" for info in frontier_information)
+    else:
+        report_lines.append("Aucune.")
+    report_lines.extend(["", "## Avertissements réels", ""])
     warnings = graph.get("warnings", [])
     if warnings:
         report_lines.extend(f"- {warning}" for warning in warnings)

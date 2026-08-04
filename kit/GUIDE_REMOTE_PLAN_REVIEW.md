@@ -1,4 +1,4 @@
-# Guide de revue formelle du plan distant — Kit 2.15.3
+# Guide de revue formelle du plan distant — Kit 2.15.4
 
 ## Principe
 

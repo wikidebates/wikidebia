@@ -13,7 +13,7 @@ import stat
 from pathlib import Path
 from typing import Any, Iterable, Iterator, Mapping
 
-KIT_VERSION = "2.15.3"
+KIT_VERSION = "2.15.4"
 NORM_VERSION = "1.2.30"
 VALIDATOR_VERSION = "0.4.32"
 

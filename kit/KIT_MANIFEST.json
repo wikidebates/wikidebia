@@ -1,6 +1,6 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.3",
+  "version": "2.15.4",
   "validator_version": "0.4.32",
   "scope": [
     "publish_archive",
@@ -40,7 +40,8 @@
     "deterministic_work_evidence_archive",
     "end_to_end_work_closure_receipt",
     "formal_english_translation_review",
-    "atomically_visible_translated_copy"
+    "atomically_visible_translated_copy",
+    "unambiguous_graph_metric_reporting"
   ],
   "debate_specific_code": false,
   "change_tag": "chatgpt",
@@ -210,7 +211,9 @@
     "complete_doctor_pipeline_inventory",
     "historical_executable_mode_preservation",
     "localized_quote_template_preservation",
-    "source_2_4_0_feature_inventory_non_regression"
+    "source_2_4_0_feature_inventory_non_regression",
+    "graph_metric_backward_compatible_aliases",
+    "graph_frontier_information_not_misclassified_as_warning"
   ],
   "publication_profiles": [
     "norm_1_2_direct_interlanguage",
@@ -324,8 +327,11 @@
     "signed_execution_authorization",
     "remote_execution_event_log",
     "published_state_refresh_after_workspace_execution",
-    "english_quote_model_with_locked_french_parameter_names",
-    "english_pages_localize_all_templates_and_parameters_including_quote_parameter_mapping"
+    "english_pages_localize_all_templates_and_parameters_including_quote_parameter_mapping",
+    "graph_metrics_distinguish_levels_and_edge_depth",
+    "graph_reports_distinguish_unfolded_and_normative_occurrences",
+    "graph_frontier_information_separated_from_warnings",
+    "graph_terminal_and_frontier_counts_separated"
   ],
   "normative_revision": "1.2.30",
   "stable_archive_name": "wikidebia-kit.zip",
@@ -396,6 +402,9 @@
     "remote_execution_no_changes_attestation_regression",
     "source_2_4_0_feature_baseline_gate",
     "english_quote_template_regression",
-    "english_wikicode_contains_no_french_template_or_parameter_names"
+    "english_wikicode_contains_no_french_template_or_parameter_names",
+    "graph_level_depth_semantics_regression",
+    "graph_frontier_terminal_count_regression",
+    "graph_occurrence_semantics_regression"
   ]
 }

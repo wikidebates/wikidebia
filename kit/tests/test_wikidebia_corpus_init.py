@@ -52,7 +52,7 @@ def make_extraction(root: Path) -> Path:
         (args / name).write_text(text, encoding="utf-8")
     manifest = {
         "schema": "wikidebia-graph-snapshot-1.0",
-        "kit_version": "2.15.3",
+        "kit_version": "2.15.4",
         "extractor_version": "1.0.0",
         "extraction_date": "2026-08-03",
         "debate": _row(snapshot, "Débat test", "pages/debate.wiki", 1),
@@ -91,7 +91,7 @@ def make_extraction(root: Path) -> Path:
         })
     package_manifest = {
         "schema": "wikidebia-graph-extraction-package-1.0",
-        "kit_version": "2.15.3",
+        "kit_version": "2.15.4",
         "extractor_version": "1.0.0",
         "debate": "Débat test",
         "extraction_date": "2026-08-03",
@@ -110,6 +110,10 @@ def test_builds_graph_draft_and_preserves_imports(tmp_path: Path):
     output = tmp_path / "build"
     result = mod.build_corpus(source, output, debate_id="debat_test", short_code="TEST", scope_summary=None, overwrite=False)
     assert result["status"] == "created"
+    assert result["source_unfolded_occurrences"] == 5
+    assert result["normative_occurrences"] == 4
+    assert result["occurrences"] == 4
+    assert "chemins" in result["occurrence_semantics"]
     manifest = json.loads((output / "manifest.json").read_text(encoding="utf-8"))
     registry = json.loads((output / "data/registre_debat.json").read_text(encoding="utf-8"))
     assert manifest["global_status"] == "graph_draft"

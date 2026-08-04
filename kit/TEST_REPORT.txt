@@ -1,18 +1,20 @@
-Wikidéb’IA Kit 2.15.3
+Wikidéb’IA Kit 2.15.4
 Norme : 1.2.30
 Validateur requis : 0.4.32
-Tests pytest du kit : 220 réussis, 0 échec
+Extracteur de graphe : 1.0.1
+Tests pytest du kit : 222 réussis, 0 échec
 Tests pytest du validateur : 220 réussis, 0 échec
-Rejeu des tests du kit source 2.4.0 : 131 réussis, 0 échec
-Rejeu des tests du validateur source 0.4.28 : 197 réussis, 0 échec (ancien test de compteur exact exclu)
+Rejeu des tests du kit source 2.4.0 : conservé par la baseline fonctionnelle automatisée
+Rejeu des tests du validateur source 0.4.28 : conservé par la baseline fonctionnelle automatisée
 
-Révision corrective de compatibilité et de non-régression :
-- modèle français {{Citation}} et modèle anglais {{Quote}} restaurés ;
-- paramètres historiques anglais de Quote préservés pour les normes anciennes ;
-- tous les noms de modèles et paramètres sont localisés en anglais ; seules les valeurs de quote et date sont traduites dans Quote ;
-- localisation de tous les sous-modèles anglais contrôlée, notamment Subsection, Wikipedia link et displayed-title ;
-- compatibilité des workspaces 1.2.27 et 1.2.28 maintenue ;
-- baseline fonctionnelle 2.4.0 vérifiée sur fichiers, symboles, constantes, schémas, commandes et manifestes ;
-- fonctions distantes 2.15.0 conservées sans affaiblissement.
+Correctif des métriques révélé par le test réel « Dieu existe-t-il ? » :
+- niveau des occurrences et profondeur en nombre d’arêtes distingués ;
+- niveau minimal maximal des pages uniques séparé du niveau maximal des occurrences ;
+- occurrences dépliées par chemins séparées des occurrences normatives ;
+- pages sans sortie, feuilles réelles et frontières de débat détaillé séparées ;
+- relations locales non suivies aux frontières classées comme informations de périmètre ;
+- contrôles d’audit supplémentaires sur les sommes, profondeurs, feuilles et frontières ;
+- compatibilité des snapshots graph-extract 1.0.0 maintenue.
 
+Toutes les protections distantes, la localisation complète du wikicode anglais et les fonctions historiques du bundle source 2.4.0 restent conservées.
 Résultat : RÉUSSI
