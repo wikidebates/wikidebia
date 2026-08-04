@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.4.30 — 4 août 2026
+
+- alignement sur la norme corrective 1.2.28 ;
+- auto-audit des structures et profils actifs relatifs aux citations ;
+- contrôle de l’unicité de la source normative 1.2.28 ;
+- conservation de tous les contrôles 0.4.29 et de la compatibilité historique.
+
+## 0.4.29 — 3 août 2026
+
+- alignement sur la norme 1.2.27 et le kit 2.15.0 ;
+- validation de la présence exacte d’un lien interlangue dans chaque page française rendue et de son absence dans les pages anglaises ;
+- ajout de `WDV-MWK-021` pour comparer chaque modèle `Citation` rendu aux verrous français et anglais ;
+- conservation obligatoire de tous les paramètres documentaires des citations, traduction limitée à `citation` et `date`, et contrôle de l’avertissement canonique ;
+- correction des heuristiques de prédicat et des identifiants alphanumériques dans la détection des données chiffrées ;
+- compatibilité conservée avec les normes 1.1.0 à 1.2.26.
+
 ## 0.4.28 — 2 août 2026
 
 - alignement sur la norme 1.2.26 ;

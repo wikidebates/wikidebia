@@ -1,13 +1,174 @@
 # Changelog
 
+## 2.15.1 — 4 août 2026
+
+- alignement sur la norme 1.2.28 et le validateur 0.4.30 ;
+- correction des contradictions actives relatives aux citations ;
+- inventaire `doctor` complété pour toutes les commandes du pipeline ;
+- restauration des modes exécutables de `wikidebia_graph_extract.py` et `wikidebia_corpus_init.py` ;
+- restauration explicite des permissions Unix après extraction ZIP et réparation du staging produit par les gestionnaires antérieurs ;
+- ajout de tests permanents de cohérence normative et de non-régression des fichiers historiques.
+
+## 2.15.0 — 4 août 2026
+
+- ajout de `corpus-workspace-close` pour clôturer formellement un Work après exécution distante réussie ;
+- vérification de la chaîne signée plan, acceptation, préflight, autorisation, reçu d’exécution et états publiés ;
+- refus de clôturer tant qu’une page `pending_delete` ou un état publié incomplet subsiste ;
+- validation locale fraîche de `release-copy/` sans nouvelle connexion au wiki ;
+- archivage déterministe des preuves de comparaison, revue, exécution, états publiés et libération ;
+- échange atomique du corpus actif avec le corpus effectivement publié, avec conservation intégrale du corpus précédent ;
+- reçu final de bout en bout et index local des Works terminés ;
+- clôture idempotente pour les exécutions mutantes comme pour les attestations `no_changes`.
+
+## 2.14.0 — 4 août 2026
+
+- ajout de `corpus-workspace-plan-execute` avec phases séparées `--prepare` et `--execute` ;
+- préflight distant renouvelé, strictement en lecture seule, lié au plan et à l’acceptation signés ;
+- contrôle des droits effectifs et relecture de toutes les opérations et pages `skip` avant autorisation ;
+- seconde revalidation immédiate avant armement des méthodes d’écriture ;
+- autorisation locale signée distincte du plan, de la revue et du préflight ;
+- exécution par le moteur existant avec `createonly`, `baserevid`, relecture, états publiés et reçus signés ;
+- journalisation explicite des interruptions et des écritures partielles ;
+- prise en charge des modes `all`, `no-delete`, `only-delete` et de l’attestation `no_changes`.
+
+## 2.13.0 — 3 août 2026
+
+- ajout de `corpus-workspace-plan-review` pour préparer et finaliser la revue humaine du plan distant ;
+- liaison immuable de la revue au plan, à l’inventaire distant, au reçu de comparaison et à `release-copy/` ;
+- décision opération par opération, avec note obligatoire pour les déplacements, redirections et suppressions ;
+- refus d’approuver tout plan contenant `manual_review` ou `blocked` ;
+- production d’un handoff d’acceptation signé sans autoriser ni commencer l’exécution ;
+- conservation explicite de `remote_write_authorized=false` et absence totale d’accès distant pendant la revue.
+
+## 2.12.0 — 3 août 2026
+
+- ajout de `corpus-workspace-remote-compare`, strictement en lecture seule ;
+- comparaison de `release-copy/` au wiki avec plan signé `create/update/move/redirect/delete/skip/manual_review/blocked` ;
+- priorité aux états publiés signés et repli contrôlé sur le snapshot d’extraction français ;
+- inventaire distant observé, journal des lectures, validation locale du plan et reçu scellé ;
+- aucune vérification de droits d’écriture et aucune mutation MediaWiki pendant cette phase.
+
+## 2.11.0 — 3 août 2026
+
+- ajout de `corpus-workspace-release` pour sceller `rendered-copy/` en corpus local installable ;
+- création atomique d’une `release-copy/` distincte et d’un ZIP déterministe sous `.state/corpus-releases/` ;
+- manifeste de libération exhaustif, reçu SHA-256 externe et validation postérieure au manifeste ;
+- préparation locale de la future comparaison distante sans inventaire réseau ni plan de reprise ;
+- maintien explicite de `remote_write_authorized=false` et absence de toute écriture MediaWiki.
+
+## 2.10.0 — 3 août 2026
+
+- ajout de `corpus-workspace-render` pour le rendu déterministe bilingue ;
+- création atomique de `rendered-copy/` sans modifier les verrous précédents ;
+- ajout direct et unique de `{{Lien interlangue}}` dans chaque page française ;
+- absence garantie de lien interlangue dans les pages anglaises ;
+- rendu des citations françaises et anglaises depuis les verrous ;
+- conservation exacte des paramètres documentaires et contrôle de `Citation traduite par IA` ;
+- verrouillage du graphe, génération des manifestes, lots et agrégats, puis validation bilingue complète.
+
+
+## 2.9.1 — 3 août 2026
+
+- inventaire stable des modèles `{{Citation}}` présents dans le wikicode français importé ;
+- conservation exacte de tous les paramètres documentaires et de leur ordre ;
+- traduction contrôlée limitée au texte de `citation` et à la forme linguistique de `date` ;
+- vérification que la date anglaise désigne exactement la même date que la date française ;
+- ajout déterministe de `Citation traduite par IA` dans `avertissements-citation` ;
+- concaténation canonique `, Citation traduite par IA` après tout avertissement préexistant, sans doublon ;
+- scellement des citations traduites dans `en_content_lock.json` et du contrat de rendu dans `en_translation_lock.json` ;
+- aucune génération de page finale et aucune modification des paramètres source.
+
+
+## 2.9.0 — 3 août 2026
+
+- ajout de `./wikidebia corpus-workspace-translation --prepare|--finalize|--apply` ;
+- préparation d’un registre anglais couvrant la page Debate, tous les arguments actifs, le vocabulaire contrôlé et les sources ;
+- vérification de l’équivalence des titres, sections, keywords, introductions, résumés et sélections documentaires ;
+- contrôle du ratio anglais/français des résumés entre 0,60 et 1,45 ;
+- contrôle des limites de 10 % pour les displayed titles identiques et de 25 % pour les jeux exacts de keywords dominants ;
+- exigence de deux références anglaises distinctes dans chacun des neuf paramètres documentaires de Debate ;
+- scellement SHA-256 de la traduction et confirmation obligatoire avant application ;
+- création atomique de `translated-copy/`, sans mutation des verrous français ni du graphe logique ;
+- production des verrous anglais, du vocabulaire bilingue et du changeset de traduction ;
+- aucune génération de pages MediaWiki finales, aucun accès distant et aucune publication.
+
+
+## 2.8.0 — 3 août 2026
+
+- ajout de `./wikidebia corpus-workspace-content-review --prepare|--finalize|--apply` ;
+- inventaire du sujet, de l’introduction, des articles Wikipédia, des résumés et de la documentation française depuis le wikicode importé ;
+- revue formelle des neuf paramètres documentaires de la page Débat, avec au moins deux références distinctes dans chacun ;
+- absence de quota documentaire pour les pages Argument, mais cohérence obligatoire entre les sources retenues, leur type et leurs usages ;
+- registre documentaire de travail avec vérification de langue, attribution, dédoublonnage et portée ;
+- contrôle des résumés : fidélité au nœud, lisibilité grand public, ouverture développée, absence d’auto-objection, force expressive réellement présente et vérification des chiffres ;
+- scellement conjoint de la revue et des sources par SHA-256 ;
+- conservation de `working-copy/` et `reviewed-copy/`, puis création atomique de `content-reviewed-copy/` ;
+- production de `fr_content_lock.json`, des registres compatibles avec les futurs contrôles éditoriaux et d’un changeset de contenu ;
+- aucune page finale, aucune traduction, aucun plan distant et aucun accès MediaWiki.
+
+## 2.7.0 — 3 août 2026
+
+- ajout de `./wikidebia corpus-workspace-review --finalize|--apply` ;
+- revue formelle page par page des titres canoniques, titres affichés, rubriques et mots-clés français ;
+- blocage des collisions de titres, des titres affichés trop copiés et des jeux exacts de mots-clés trop dominants ;
+- contrôle d’un vocabulaire français couvrant exactement les usages et attestant la portée inter-débat ;
+- scellement SHA-256 de la revue et confirmation obligatoire avant application ;
+- conservation intégrale de `working-copy/` et création séparée de `reviewed-copy/` ;
+- recalcul explicite de l’empreinte structurelle après correction des titres ;
+- production d’un verrou de métadonnées françaises et d’un changeset exhaustif ;
+- imports de provenance inchangés, aucune page finale, aucune traduction et aucun accès MediaWiki.
+
+## 2.6.0 — 3 août 2026
+
+- ajout de `./wikidebia corpus-workspace-init <debate_id>` ;
+- création atomique d'une copie éditoriale complète sous `.state/editorial-workspaces/<debate_id>/<work_id>/` ;
+- conservation stricte et vérification SHA-256 du corpus promu source ;
+- inventaire automatique, non correctif, des titres, rubriques et mots-clés français ;
+- registres page par page, liste de tâches, vocabulaire de travail et changeset vide ;
+- préparation explicite de la traduction anglaise, bloquée jusqu'à validation des métadonnées françaises ;
+- aucune génération de wikicode final, aucune traduction et aucun accès MediaWiki dans cette phase.
+
+## 2.5.0 — 3 août 2026
+
+- ajout de `./wikidebia corpus-review-graph --prepare|--finalize` ;
+- génération d’une revue globale et d’un registre de placement couvrant chaque occurrence active ;
+- empreinte du build préparé et refus de toute modification non revue ;
+- validation locale avant et après passage à `graph_validated` ;
+- scellement SHA-256 de la décision de revue et de l’empreinte structurelle ;
+- ajout de `./wikidebia corpus-promote` avec confirmation explicite de l’empreinte de revue ;
+- promotion par renommage atomique, sans repli vers une copie non atomique ;
+- refus des cibles préexistantes, liens symboliques, systèmes de fichiers différents et builds contenant des pages finales ;
+- reçu externe de promotion sous `.state/corpus-promotions/` et empreinte vérifiée avant/après ;
+- aucune génération de pages, aucun verrouillage du graphe et aucune écriture MediaWiki.
+
+## 2.4.0 — 3 août 2026
+
+- ajout de `./wikidebia corpus-init-from-snapshot` ;
+- construction déterministe d’un corpus local `graph_draft` depuis un snapshot audité ;
+- génération du registre maître, du graphe canonique, des identifiants de nœuds, relations et occurrences ;
+- conservation du wikicode source sous `imports/fr/`, sans le déclarer comme sortie normative ;
+- provenance par révision, URL, chaîne de redirection et SHA-256 ;
+- initialisation des pages françaises et anglaises futures à l’état `pending` ;
+- validation automatique des portées structurelles `schema`, `coherence`, `graph`, `files` et `workflow` ;
+- vérification intégrale du manifeste SHA-256 du paquet d’extraction, y compris le graphe et le manifeste de snapshot ;
+- blocage des collisions de titres après normalisation et des liens symboliques dans les ZIP ;
+- confinement de toutes les sorties sous `.state/corpus-builds/` ;
+- aucune promotion automatique vers `corpus/` et aucune écriture distante.
+
+## 2.3.0 — 3 août 2026
+
+- ajout de la commande native et strictement en lecture seule `./wikidebia graph-extract` ;
+- parcours récursif Débat → arguments principaux → justifications et objections ;
+- résolution des redirections, déduplication des pages, calcul des profondeurs, occurrences, réutilisations et cycles ;
+- arrêt par défaut aux frontières `débat détaillé` ;
+- cache persistant et snapshot complet du wikicode avec provenance SHA-256.
+
 ## 2.2.13 — 2 août 2026
 
-- sélection d’archive strictement explicite avec `--archive`, sans repli silencieux depuis un identifiant de corpus ;
-- attestation signée des plans entièrement `skip`, avec renouvellement sûr de l’état publié et statut `no_changes` ;
-- nettoyage systématique du staging après simulation, blocage, révision manuelle, succès ou erreur ;
-- traitement des portées sans opération par `no_changes_in_scope` ;
-- conservation des pages en attente de suppression après `--no-delete` ;
-- tests d’enchaînement `no_changes`, mise à jour suivante et reprise différée des suppressions.
+- sélection d’archive strictement explicite avec `--archive` ;
+- attestation signée des plans entièrement `skip` ;
+- nettoyage systématique du staging ;
+- conservation des suppressions différées et prise en charge de `no_changes_in_scope`.
 
 ## 2.2.12 — 2 août 2026
 

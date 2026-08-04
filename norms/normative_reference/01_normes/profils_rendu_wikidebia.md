@@ -444,7 +444,7 @@ La sitographie reste complémentaire et peut représenter un texte officiel évo
 
 La vidéographie est réservée à un contenu audiovisuel ayant une valeur argumentative ou documentaire propre qui ne peut pas être remplacée avantageusement par une source écrite.
 
-Les citations textuelles ne sont jamais générées. Une référence n'est ajoutée que si elle soutient réellement le résumé ; les listes générales de lectures sont interdites.
+Sous les révisions antérieures à 1.2.27, les citations textuelles n’étaient pas générées. Depuis 1.2.27, seules les citations importées, revues et verrouillées sont rendues dans `citations=` ; aucune citation ne peut être inventée lors du rendu. Une référence n'est ajoutée que si elle soutient réellement le résumé ; les listes générales de lectures sont interdites.
 
 Une page française peut citer une source dans sa langue originale lorsqu'aucun équivalent français officiel et pertinent n'existe. Le titre original, les auteurs et les noms propres officiels sont conservés ; les dates, lieux et formulations descriptives variables sont adaptés au français.
 
@@ -565,7 +565,7 @@ Bibliography is the normal documentary category, but source priority follows the
 
 No scientific-source hierarchy is imposed on an argument for which it is not suitable. Webliography and videography remain complementary and must provide substantive value that cannot be represented more appropriately by a written publication.
 
-Quotes are never generated. The English page preserves the same logical node and a comparable level of development, but it is written idiomatically and may use different English-language references.
+Under revisions earlier than 1.2.27, quotes were not generated. Since 1.2.27, only imported, reviewed and locked citations are rendered in `quotes=` using the `Citation` model; no quote may be invented during rendering. The English page preserves the same logical node and a comparable level of development, but it is written idiomatically and may use different English-language references.
 
 ---
 

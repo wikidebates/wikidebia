@@ -15,9 +15,9 @@ import zipfile
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
-NORM_VERSION = "1.2.26"
-VALIDATOR_VERSION = "0.4.28"
-KIT_VERSION = "2.2.13"
+NORM_VERSION = "1.2.28"
+VALIDATOR_VERSION = "0.4.30"
+KIT_VERSION = "2.15.1"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",
@@ -124,8 +124,37 @@ def safe_extract(archive: Path, destination: Path) -> None:
                 if mode == stat.S_IFLNK:
                     raise ManagementError(f"Lien symbolique interdit dans {archive.name}")
             bundle.extractall(destination)
+            # Python's zipfile does not restore Unix permission bits.  Restore
+            # ordinary file modes explicitly after the symlink/path checks so
+            # direct historical entry points keep their executable contract.
+            for info in bundle.infolist():
+                if info.is_dir():
+                    continue
+                file_type = (info.external_attr >> 16) & 0o170000
+                if file_type not in {0, stat.S_IFREG}:
+                    continue
+                permissions = (info.external_attr >> 16) & 0o777
+                if permissions:
+                    target = destination / PurePosixPath(info.filename)
+                    target.chmod(permissions)
     except zipfile.BadZipFile as exc:
         raise ManagementError(f"Archive ZIP invalide : {archive.name}") from exc
+
+
+
+def restore_historical_entrypoint_modes(kit_root: Path) -> None:
+    """Restore the executable contract of the two direct legacy entry points.
+
+    This also repairs staging produced by managers older than 2.15.1, whose
+    ZIP extractor validated Unix modes but did not reapply them.
+    """
+    for relative in (
+        "scripts/wikidebia_graph_extract.py",
+        "scripts/wikidebia_corpus_init.py",
+    ):
+        target = kit_root / relative
+        if target.is_file():
+            target.chmod(target.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 
 
 def inspect_component_zip(archive: Path) -> dict[str, Any]:
@@ -788,6 +817,7 @@ def update_sources(root: Path, archive: Path | None, *, allow_downgrade: bool, n
                 if previous.exists():
                     shutil.move(str(previous), current)
             raise
+        restore_historical_entrypoint_modes(root / "kit")
         install_root_template(root, root / "kit")
         write_runtime_marker_if_ready(root)
         for name, source in generated.items():
@@ -1247,6 +1277,388 @@ def update_debate(
         if staging_root is not None:
             shutil.rmtree(staging_root, ignore_errors=True)
 
+
+def graph_output_slug(value: str) -> str:
+    import unicodedata
+
+    normalized = unicodedata.normalize("NFKD", value)
+    normalized = "".join(ch for ch in normalized if not unicodedata.combining(ch))
+    normalized = re.sub(r"[^A-Za-z0-9]+", "_", normalized).strip("_").lower()
+    return normalized or "debat"
+
+
+def graph_extract_debate(
+    root: Path,
+    debate_title: str,
+    *,
+    lang: str,
+    family: str,
+    output_dir: Path | None,
+    cache_dir: Path | None,
+    slug: str | None,
+    extraction_date: str | None,
+    login: bool,
+    force_refresh: bool,
+    allow_missing: bool,
+    max_pages: int,
+    retries: int,
+    retry_delay: float,
+    progress_every: int,
+    follow_local_relations_at_detailed_debate: bool,
+) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_graph_extract.py"
+    family_file = root / "kit" / "families" / "wikidebates_family.py"
+    pywikibot_dir = root / "private" / "pywikibot"
+    if not script.is_file():
+        raise ManagementError("Extracteur de graphe absent du kit")
+    if family == "wikidebates" and not family_file.is_file():
+        raise ManagementError("Fichier de famille Pywikibot Wikidébates absent")
+    if max_pages < 1:
+        raise ManagementError("--max-pages doit être supérieur à zéro")
+    if retries < 0 or retry_delay < 0 or progress_every < 0:
+        raise ManagementError("Les options de reprise et de progression ne peuvent pas être négatives")
+
+    selected_slug = slug or graph_output_slug(debate_title)
+    selected_output = output_dir or (root / ".state" / "graph-extract" / selected_slug)
+    if not selected_output.is_absolute():
+        selected_output = root / selected_output
+    selected_output = selected_output.resolve()
+    portable_path(selected_output, root)
+    selected_output.mkdir(parents=True, exist_ok=True)
+
+    selected_cache = cache_dir
+    if selected_cache is not None:
+        if not selected_cache.is_absolute():
+            selected_cache = root / selected_cache
+        selected_cache = selected_cache.resolve()
+        portable_path(selected_cache, root)
+
+    command = [
+        python_command(root),
+        str(script),
+        "--debate", debate_title,
+        "--family", family,
+        "--lang", lang,
+        "--pywikibot-dir", str(pywikibot_dir),
+        "--output-dir", str(selected_output),
+        "--slug", selected_slug,
+        "--max-pages", str(max_pages),
+        "--retries", str(retries),
+        "--retry-delay", str(retry_delay),
+        "--progress-every", str(progress_every),
+        "--machine-readable",
+    ]
+    if family == "wikidebates":
+        command.extend(["--family-file", str(family_file)])
+    if selected_cache is not None:
+        command.extend(["--cache-dir", str(selected_cache)])
+    if extraction_date:
+        command.extend(["--date", extraction_date])
+    if login:
+        command.append("--login")
+    if force_refresh:
+        command.append("--force-refresh")
+    if allow_missing:
+        command.append("--allow-missing")
+    if follow_local_relations_at_detailed_debate:
+        command.append("--follow-local-relations-at-detailed-debate")
+
+    result = run(command, cwd=root, check=False)
+    return result.returncode
+
+
+def corpus_init_from_snapshot(
+    root: Path,
+    snapshot: Path,
+    *,
+    debate_id: str,
+    short_code: str | None,
+    output_dir: Path | None,
+    scope_summary: str | None,
+    overwrite: bool,
+    skip_validation: bool,
+) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_corpus_init.py"
+    if not script.is_file():
+        raise ManagementError("Constructeur de corpus depuis snapshot absent du kit")
+    selected_snapshot = snapshot if snapshot.is_absolute() else (root / snapshot)
+    selected_snapshot = selected_snapshot.resolve()
+    if not selected_snapshot.exists():
+        raise ManagementError(f"Snapshot introuvable : {snapshot}")
+    selected_output = output_dir or (root / ".state" / "corpus-builds" / debate_id)
+    if not selected_output.is_absolute():
+        selected_output = root / selected_output
+    selected_output = selected_output.resolve()
+    portable_path(selected_output, root)
+    allowed_output_root = (root / ".state" / "corpus-builds").resolve()
+    try:
+        selected_output.relative_to(allowed_output_root)
+    except ValueError as exc:
+        raise ManagementError(
+            f"La sortie corpus-init doit rester sous {allowed_output_root}: {selected_output}"
+        ) from exc
+    if selected_output == allowed_output_root:
+        raise ManagementError("Le dossier .state/corpus-builds ne peut pas être utilisé directement comme build")
+    command = [
+        python_command(root), str(script), str(selected_snapshot),
+        "--output-dir", str(selected_output),
+        "--debate-id", debate_id,
+        "--project-root", str(root),
+        "--machine-readable",
+    ]
+    if short_code:
+        command.extend(["--short-code", short_code])
+    if scope_summary:
+        command.extend(["--scope-summary", scope_summary])
+    if overwrite:
+        command.append("--overwrite")
+    if skip_validation:
+        command.append("--skip-validation")
+    result = run(command, cwd=root, check=False)
+    return result.returncode
+
+def corpus_review_graph(
+    root: Path,
+    debate_id: str,
+    *,
+    prepare: bool,
+    finalize: bool,
+    overwrite_review: bool,
+) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_corpus_review.py"
+    if not script.is_file():
+        raise ManagementError("Outil de revue formelle du graphe absent du kit")
+    command = [
+        python_command(root), str(script), debate_id,
+        "--project-root", str(root), "--machine-readable",
+    ]
+    if prepare:
+        command.append("--prepare")
+    if finalize:
+        command.append("--finalize")
+    if overwrite_review:
+        command.append("--overwrite-review")
+    result = run(command, cwd=root, check=False)
+    return result.returncode
+
+
+def corpus_workspace_init(root: Path, debate_id: str, *, work_id: str | None) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_editorial_workspace.py"
+    if not script.is_file():
+        raise ManagementError("Outil d'initialisation du workspace éditorial absent du kit")
+    command = [
+        python_command(root), str(script), debate_id,
+        "--project-root", str(root), "--machine-readable",
+    ]
+    if work_id:
+        command.extend(["--work-id", work_id])
+    result = run(command, cwd=root, check=False)
+    return result.returncode
+
+
+def corpus_workspace_review(
+    root: Path, debate_id: str, *, work_id: str, finalize: bool, apply: bool,
+    confirm_review_sha256: str | None,
+) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_editorial_review.py"
+    if not script.is_file():
+        raise ManagementError("Outil de revue éditoriale française absent du kit")
+    command = [
+        python_command(root), str(script), debate_id,
+        "--work-id", work_id,
+        "--project-root", str(root), "--machine-readable",
+        "--finalize" if finalize else "--apply",
+    ]
+    if apply:
+        if not confirm_review_sha256:
+            raise ManagementError("--confirm-review-sha256 est obligatoire avec --apply")
+        command.extend(["--confirm-review-sha256", confirm_review_sha256])
+    result = run(command, cwd=root, check=False)
+    return result.returncode
+
+
+
+def corpus_workspace_content_review(
+    root: Path, debate_id: str, *, work_id: str, prepare: bool, finalize: bool, apply: bool,
+    overwrite_review: bool, confirm_review_sha256: str | None,
+) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_content_review.py"
+    if not script.is_file():
+        raise ManagementError("Outil de revue du contenu français absent du kit")
+    command = [
+        python_command(root), str(script), debate_id,
+        "--work-id", work_id,
+        "--project-root", str(root), "--machine-readable",
+    ]
+    if prepare:
+        command.append("--prepare")
+    elif finalize:
+        command.append("--finalize")
+    else:
+        command.append("--apply")
+    if overwrite_review:
+        command.append("--overwrite-review")
+    if apply:
+        if not confirm_review_sha256:
+            raise ManagementError("--confirm-review-sha256 est obligatoire avec --apply")
+        command.extend(["--confirm-review-sha256", confirm_review_sha256])
+    result = run(command, cwd=root, check=False)
+    return result.returncode
+
+def corpus_workspace_translation_review(
+    root: Path, debate_id: str, *, work_id: str, prepare: bool, finalize: bool, apply: bool,
+    overwrite_review: bool, confirm_review_sha256: str | None,
+) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_translation_review.py"
+    if not script.is_file():
+        raise ManagementError("Outil de traduction anglaise contrôlée absent du kit")
+    command = [
+        python_command(root), str(script), debate_id,
+        "--work-id", work_id,
+        "--project-root", str(root), "--machine-readable",
+    ]
+    if prepare:
+        command.append("--prepare")
+    elif finalize:
+        command.append("--finalize")
+    else:
+        command.append("--apply")
+    if overwrite_review:
+        command.append("--overwrite-review")
+    if apply:
+        if not confirm_review_sha256:
+            raise ManagementError("--confirm-review-sha256 est obligatoire avec --apply")
+        command.extend(["--confirm-review-sha256", confirm_review_sha256])
+    result = run(command, cwd=root, check=False)
+    return result.returncode
+
+
+def corpus_workspace_render(
+    root: Path, debate_id: str, *, work_id: str, confirm_translation_sha256: str,
+) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_render.py"
+    if not script.is_file():
+        raise ManagementError("Outil de rendu bilingue déterministe absent du kit")
+    command = [
+        python_command(root), str(script), debate_id,
+        "--work-id", work_id,
+        "--confirm-translation-sha256", confirm_translation_sha256,
+        "--project-root", str(root), "--machine-readable",
+    ]
+    result = run(command, cwd=root, check=False)
+    return result.returncode
+
+
+def corpus_workspace_release(
+    root: Path, debate_id: str, *, work_id: str, confirm_render_sha256: str,
+) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_release.py"
+    if not script.is_file():
+        raise ManagementError("Outil de scellement local du corpus absent du kit")
+    command = [
+        python_command(root), str(script), debate_id,
+        "--work-id", work_id,
+        "--confirm-render-sha256", confirm_render_sha256,
+        "--project-root", str(root), "--machine-readable",
+    ]
+    result = run(command, cwd=root, check=False)
+    return result.returncode
+
+
+
+def corpus_workspace_remote_compare(
+    root: Path, debate_id: str, *, work_id: str, confirm_release_sha256: str,
+    scope: str, comparison_id: str | None,
+) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_remote_compare.py"
+    if not script.is_file():
+        raise ManagementError("Outil de comparaison distante en lecture seule absent du kit")
+    command = [
+        python_command(root), str(script), debate_id,
+        "--work-id", work_id,
+        "--confirm-release-sha256", confirm_release_sha256,
+        "--scope", scope,
+        "--project-root", str(root), "--machine-readable",
+    ]
+    if comparison_id:
+        command.extend(["--comparison-id", comparison_id])
+    result = run(command, cwd=root, check=False)
+    return result.returncode
+
+def corpus_workspace_remote_plan_review(
+    root: Path, debate_id: str, *, work_id: str, comparison_id: str,
+    prepare: bool, finalize: bool, overwrite_review: bool,
+) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_remote_plan_review.py"
+    if not script.is_file():
+        raise ManagementError("Outil de revue formelle du plan distant absent du kit")
+    command = [
+        python_command(root), str(script), debate_id,
+        "--work-id", work_id, "--comparison-id", comparison_id,
+        "--project-root", str(root), "--machine-readable",
+    ]
+    command.append("--prepare" if prepare else "--finalize")
+    if overwrite_review:
+        command.append("--overwrite-review")
+    result = run(command, cwd=root, check=False)
+    return result.returncode
+
+
+
+def corpus_workspace_remote_execute(
+    root: Path, debate_id: str, *, work_id: str, comparison_id: str,
+    prepare: bool, execute: bool, mode: str,
+    confirm_acceptance_sha256: str | None, confirm_preflight_sha256: str | None,
+) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_remote_execute.py"
+    if not script.is_file():
+        raise ManagementError("Outil d’exécution distante contrôlée absent du kit")
+    command = [
+        python_command(root), str(script), debate_id,
+        "--work-id", work_id, "--comparison-id", comparison_id,
+        "--project-root", str(root), "--machine-readable",
+    ]
+    if prepare:
+        if not confirm_acceptance_sha256:
+            raise ManagementError("--confirm-acceptance-sha256 est obligatoire avec --prepare")
+        command.extend(["--prepare", "--mode", mode, "--confirm-acceptance-sha256", confirm_acceptance_sha256])
+    else:
+        if not confirm_preflight_sha256:
+            raise ManagementError("--confirm-preflight-sha256 est obligatoire avec --execute")
+        command.extend(["--execute", "--confirm-preflight-sha256", confirm_preflight_sha256])
+    result = run(command, cwd=root, check=False)
+    return result.returncode
+
+
+def corpus_workspace_close(
+    root: Path, debate_id: str, *, work_id: str, comparison_id: str,
+    confirm_execution_sha256: str,
+) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_work_close.py"
+    if not script.is_file():
+        raise ManagementError("Outil de clôture formelle du Work absent du kit")
+    command = [
+        python_command(root), str(script), debate_id,
+        "--work-id", work_id, "--comparison-id", comparison_id,
+        "--confirm-execution-sha256", confirm_execution_sha256,
+        "--project-root", str(root), "--machine-readable",
+    ]
+    result = run(command, cwd=root, check=False)
+    return result.returncode
+
+def corpus_promote_graph(root: Path, debate_id: str, *, confirm_review_sha256: str) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_corpus_promote.py"
+    if not script.is_file():
+        raise ManagementError("Outil de promotion atomique du corpus absent du kit")
+    command = [
+        python_command(root), str(script), debate_id,
+        "--confirm-review-sha256", confirm_review_sha256,
+        "--project-root", str(root), "--machine-readable",
+    ]
+    result = run(command, cwd=root, check=False)
+    return result.returncode
+
+
 def github_init(root: Path, remote: str, private: bool) -> None:
     if not git_is_repo(root):
         run(["git", "init", "-b", "main"], cwd=root)
@@ -1282,6 +1694,19 @@ def doctor(root: Path) -> dict[str, Any]:
         issues.append("Secrets Pywikibot encore présents à la racine")
     if not (root / "private" / "pywikibot" / "user-config.py").is_file():
         issues.append("private/pywikibot/user-config.py absent")
+    required_scripts = (
+        "wikidebia_publish.py", "wikidebia_update.py",
+        "wikidebia_graph_extract.py", "wikidebia_corpus_init.py",
+        "wikidebia_corpus_review.py", "wikidebia_corpus_promote.py",
+        "wikidebia_editorial_workspace.py", "wikidebia_editorial_review.py",
+        "wikidebia_content_review.py", "wikidebia_translation_review.py",
+        "wikidebia_render.py", "wikidebia_release.py",
+        "wikidebia_remote_compare.py", "wikidebia_remote_plan_review.py",
+        "wikidebia_remote_execute.py", "wikidebia_work_close.py",
+    )
+    for script_name in required_scripts:
+        if not (root / "kit" / "scripts" / script_name).is_file():
+            issues.append(f"kit/scripts/{script_name} absent")
     runtime = runtime_environment_report(root)
     if not runtime.get("requirements_sha256"):
         issues.append("requirements-runtime.txt absent")
@@ -1337,6 +1762,176 @@ def build_parser() -> argparse.ArgumentParser:
     upgrade.add_argument("--no-push", action="store_true", help="Créer le commit sans pousser vers origin")
     upgrade.add_argument("--no-git", action="store_true", help="Ne pas créer de commit Git")
 
+    graph = sub.add_parser(
+        "graph-extract",
+        help="Extraire récursivement un graphe argumentatif depuis le wiki, en lecture seule",
+    )
+    graph.add_argument("debate_title", help="Titre exact de la page Débat")
+    graph.add_argument("--lang", default="fr", help="Code linguistique Pywikibot (défaut : fr)")
+    graph.add_argument("--family", default="wikidebates", help="Famille Pywikibot (défaut : wikidebates)")
+    graph.add_argument("--output-dir", type=Path, help="Dossier de sortie, par défaut .state/graph-extract/<slug>")
+    graph.add_argument("--cache-dir", type=Path, help="Dossier de cache distinct du dossier de sortie")
+    graph.add_argument("--slug", help="Préfixe stable des fichiers de sortie")
+    graph.add_argument("--date", dest="extraction_date", help="Date d’extraction AAAA-MM-JJ")
+    graph.add_argument("--login", action="store_true", help="Ouvrir une session Pywikibot avant les lectures")
+    graph.add_argument("--force-refresh", action="store_true", help="Ignorer le cache et relire toutes les pages")
+    graph.add_argument("--allow-missing", action="store_true", help="Exporter même si certaines pages liées sont absentes")
+    graph.add_argument("--max-pages", type=int, default=5000, help="Limite de sécurité du nombre de pages Argument")
+    graph.add_argument("--retries", type=int, default=4, help="Nombre de nouvelles tentatives après erreur réseau")
+    graph.add_argument("--retry-delay", type=float, default=2.0, help="Délai initial entre les tentatives")
+    graph.add_argument("--progress-every", type=int, default=25, help="Fréquence des messages de progression")
+    graph.add_argument(
+        "--follow-local-relations-at-detailed-debate",
+        action="store_true",
+        help="Suivre les relations locales d’une page frontière sans ouvrir le débat sous-jacent",
+    )
+
+    corpus_init = sub.add_parser(
+        "corpus-init-from-snapshot",
+        help="Construire un corpus graph_draft local depuis un snapshot graph-extract",
+    )
+    corpus_init.add_argument("snapshot", type=Path, help="Dossier ou ZIP produit par graph-extract")
+    corpus_init.add_argument("--debate-id", required=True, help="Identifiant stable du corpus")
+    corpus_init.add_argument("--short-code", help="Code court du débat (2 à 12 caractères)")
+    corpus_init.add_argument("--output-dir", type=Path, help="Défaut : .state/corpus-builds/<debate_id>")
+    corpus_init.add_argument("--scope-summary", help="Résumé provisoire du périmètre")
+    corpus_init.add_argument("--overwrite", action="store_true", help="Remplacer un build local existant")
+    corpus_init.add_argument("--skip-validation", action="store_true", help="Ne pas lancer la validation structurelle initiale")
+
+    corpus_review = sub.add_parser(
+        "corpus-review-graph",
+        help="Préparer ou finaliser la revue formelle d'un build graph_draft",
+    )
+    corpus_review.add_argument("debate_id", help="Identifiant du build sous .state/corpus-builds/")
+    review_action = corpus_review.add_mutually_exclusive_group(required=True)
+    review_action.add_argument("--prepare", action="store_true", help="Créer les registres de revue à compléter")
+    review_action.add_argument("--finalize", action="store_true", help="Sceller une revue complétée et valider le graphe")
+    corpus_review.add_argument("--overwrite-review", action="store_true", help="Régénérer les registres préparatoires")
+
+    corpus_promote = sub.add_parser(
+        "corpus-promote",
+        help="Promouvoir atomiquement un build graph_validated vers corpus/",
+    )
+    corpus_promote.add_argument("debate_id", help="Identifiant du build approuvé")
+    corpus_promote.add_argument("--confirm-review-sha256", required=True, help="Empreinte exacte de la revue approuvée")
+
+    corpus_workspace = sub.add_parser(
+        "corpus-workspace-init",
+        help="Créer un workspace éditorial audité depuis un corpus graph_validated promu",
+    )
+    corpus_workspace.add_argument("debate_id", help="Identifiant du corpus sous corpus/")
+    corpus_workspace.add_argument("--work-id", help="Identifiant explicite du Work; défaut : EDIT-AAAAMMJJ-NNN")
+
+    corpus_workspace_review_parser = sub.add_parser(
+        "corpus-workspace-review",
+        help="Finaliser puis appliquer la revue française des titres, rubriques et mots-clés",
+    )
+    corpus_workspace_review_parser.add_argument("debate_id", help="Identifiant du corpus sous corpus/")
+    corpus_workspace_review_parser.add_argument("--work-id", required=True, help="Identifiant du workspace éditorial")
+    workspace_review_action = corpus_workspace_review_parser.add_mutually_exclusive_group(required=True)
+    workspace_review_action.add_argument("--finalize", action="store_true", help="Sceller la revue complétée sans modifier working-copy")
+    workspace_review_action.add_argument("--apply", action="store_true", help="Créer reviewed-copy à partir de la revue scellée")
+    corpus_workspace_review_parser.add_argument("--confirm-review-sha256", help="Empreinte obligatoire avec --apply")
+
+    corpus_content_review_parser = sub.add_parser(
+        "corpus-workspace-content-review",
+        help="Préparer, finaliser puis appliquer la revue du contenu français",
+    )
+    corpus_content_review_parser.add_argument("debate_id", help="Identifiant du corpus sous corpus/")
+    corpus_content_review_parser.add_argument("--work-id", required=True, help="Identifiant du workspace éditorial")
+    content_review_action = corpus_content_review_parser.add_mutually_exclusive_group(required=True)
+    content_review_action.add_argument("--prepare", action="store_true", help="Préparer les registres depuis le wikicode importé")
+    content_review_action.add_argument("--finalize", action="store_true", help="Sceller la revue du contenu sans modifier reviewed-copy")
+    content_review_action.add_argument("--apply", action="store_true", help="Créer content-reviewed-copy depuis la revue scellée")
+    corpus_content_review_parser.add_argument("--overwrite-review", action="store_true", help="Régénérer les registres préparatoires non appliqués")
+    corpus_content_review_parser.add_argument("--confirm-review-sha256", help="Empreinte obligatoire avec --apply")
+
+    corpus_translation_review_parser = sub.add_parser(
+        "corpus-workspace-translation",
+        help="Préparer, finaliser puis appliquer la traduction anglaise contrôlée",
+    )
+    corpus_translation_review_parser.add_argument("debate_id", help="Identifiant du corpus sous corpus/")
+    corpus_translation_review_parser.add_argument("--work-id", required=True, help="Identifiant du workspace éditorial")
+    translation_review_action = corpus_translation_review_parser.add_mutually_exclusive_group(required=True)
+    translation_review_action.add_argument("--prepare", action="store_true", help="Préparer le registre bilingue depuis les verrous français")
+    translation_review_action.add_argument("--finalize", action="store_true", help="Sceller la traduction anglaise sans modifier content-reviewed-copy")
+    translation_review_action.add_argument("--apply", action="store_true", help="Créer translated-copy depuis la revue scellée")
+    corpus_translation_review_parser.add_argument("--overwrite-review", action="store_true", help="Régénérer les registres préparatoires non appliqués")
+    corpus_translation_review_parser.add_argument("--confirm-review-sha256", help="Empreinte obligatoire avec --apply")
+
+    corpus_render_parser = sub.add_parser(
+        "corpus-workspace-render",
+        help="Rendre et valider les pages MediaWiki bilingues depuis la traduction verrouillée",
+    )
+    corpus_render_parser.add_argument("debate_id", help="Identifiant du corpus sous corpus/")
+    corpus_render_parser.add_argument("--work-id", required=True, help="Identifiant du workspace éditorial")
+    corpus_render_parser.add_argument(
+        "--confirm-translation-sha256", required=True,
+        help="Empreinte exacte de la revue de traduction verrouillée",
+    )
+
+    corpus_release_parser = sub.add_parser(
+        "corpus-workspace-release",
+        help="Sceller le rendu bilingue en corpus local installable sans accès distant",
+    )
+    corpus_release_parser.add_argument("debate_id", help="Identifiant du corpus sous corpus/")
+    corpus_release_parser.add_argument("--work-id", required=True, help="Identifiant du workspace éditorial")
+    corpus_release_parser.add_argument(
+        "--confirm-render-sha256", required=True,
+        help="Empreinte exacte de rendered-copy",
+    )
+
+    corpus_remote_compare_parser = sub.add_parser(
+        "corpus-workspace-remote-compare",
+        help="Comparer release-copy au wiki en lecture seule et produire un plan signé",
+    )
+    corpus_remote_compare_parser.add_argument("debate_id", help="Identifiant du corpus sous corpus/")
+    corpus_remote_compare_parser.add_argument("--work-id", required=True, help="Identifiant du workspace éditorial")
+    corpus_remote_compare_parser.add_argument(
+        "--confirm-release-sha256", required=True,
+        help="Empreinte exacte de release-copy",
+    )
+    corpus_remote_compare_parser.add_argument("--scope", choices=("all", "fr", "en"), default="all")
+    corpus_remote_compare_parser.add_argument("--comparison-id", help="Identifiant REMOTE-AAAAMMJJ-NNN facultatif")
+
+    corpus_remote_plan_review_parser = sub.add_parser(
+        "corpus-workspace-plan-review",
+        help="Préparer ou finaliser la revue formelle d’un plan distant signé",
+    )
+    corpus_remote_plan_review_parser.add_argument("debate_id", help="Identifiant du corpus sous corpus/")
+    corpus_remote_plan_review_parser.add_argument("--work-id", required=True, help="Identifiant du workspace éditorial")
+    corpus_remote_plan_review_parser.add_argument("--comparison-id", required=True, help="Identifiant REMOTE-AAAAMMJJ-NNN")
+    remote_plan_review_action = corpus_remote_plan_review_parser.add_mutually_exclusive_group(required=True)
+    remote_plan_review_action.add_argument("--prepare", action="store_true", help="Créer le registre de revue à compléter")
+    remote_plan_review_action.add_argument("--finalize", action="store_true", help="Sceller la décision et produire le handoff d’acceptation")
+    corpus_remote_plan_review_parser.add_argument("--overwrite-review", action="store_true", help="Régénérer une revue préparatoire non finalisée")
+
+    corpus_remote_execute_parser = sub.add_parser(
+        "corpus-workspace-plan-execute",
+        help="Préparer puis exécuter de façon contrôlée un plan distant accepté",
+    )
+    corpus_remote_execute_parser.add_argument("debate_id", help="Identifiant du corpus sous corpus/")
+    corpus_remote_execute_parser.add_argument("--work-id", required=True, help="Identifiant du workspace éditorial")
+    corpus_remote_execute_parser.add_argument("--comparison-id", required=True, help="Identifiant REMOTE-AAAAMMJJ-NNN")
+    remote_execute_action = corpus_remote_execute_parser.add_mutually_exclusive_group(required=True)
+    remote_execute_action.add_argument("--prepare", action="store_true", help="Relire le wiki, vérifier les droits et sceller le préflight")
+    remote_execute_action.add_argument("--execute", action="store_true", help="Exécuter le plan après confirmation du préflight")
+    corpus_remote_execute_parser.add_argument("--mode", choices=("all", "no-delete", "only-delete"), default="all")
+    corpus_remote_execute_parser.add_argument("--confirm-acceptance-sha256")
+    corpus_remote_execute_parser.add_argument("--confirm-preflight-sha256")
+
+    corpus_close_parser = sub.add_parser(
+        "corpus-workspace-close",
+        help="Clôturer un Work après exécution distante vérifiée et promouvoir le corpus publié",
+    )
+    corpus_close_parser.add_argument("debate_id", help="Identifiant du corpus sous corpus/")
+    corpus_close_parser.add_argument("--work-id", required=True, help="Identifiant du workspace éditorial")
+    corpus_close_parser.add_argument("--comparison-id", required=True, help="Identifiant REMOTE-AAAAMMJJ-NNN")
+    corpus_close_parser.add_argument(
+        "--confirm-execution-sha256", required=True,
+        help="Empreinte exacte du reçu d’exécution distante",
+    )
+
     github = sub.add_parser("github-init", help="Initialiser le dépôt et pousser vers GitHub")
     github.add_argument("remote", help="URL Git du dépôt, par exemple git@github.com:COMPTE/wikidebia.git")
     github.add_argument("--private", action="store_true", help="Documentation uniquement; la visibilité se règle sur GitHub")
@@ -1367,6 +1962,110 @@ def main(argv: list[str] | None = None) -> int:
         )
         print(json.dumps(versions, ensure_ascii=False, sort_keys=True))
         return 0
+    if args.command == "graph-extract":
+        return graph_extract_debate(
+            root,
+            args.debate_title,
+            lang=args.lang,
+            family=args.family,
+            output_dir=args.output_dir,
+            cache_dir=args.cache_dir,
+            slug=args.slug,
+            extraction_date=args.extraction_date,
+            login=args.login,
+            force_refresh=args.force_refresh,
+            allow_missing=args.allow_missing,
+            max_pages=args.max_pages,
+            retries=args.retries,
+            retry_delay=args.retry_delay,
+            progress_every=args.progress_every,
+            follow_local_relations_at_detailed_debate=args.follow_local_relations_at_detailed_debate,
+        )
+    if args.command == "corpus-init-from-snapshot":
+        return corpus_init_from_snapshot(
+            root,
+            args.snapshot,
+            debate_id=args.debate_id,
+            short_code=args.short_code,
+            output_dir=args.output_dir,
+            scope_summary=args.scope_summary,
+            overwrite=args.overwrite,
+            skip_validation=args.skip_validation,
+        )
+    if args.command == "corpus-review-graph":
+        return corpus_review_graph(
+            root,
+            args.debate_id,
+            prepare=args.prepare,
+            finalize=args.finalize,
+            overwrite_review=args.overwrite_review,
+        )
+    if args.command == "corpus-promote":
+        return corpus_promote_graph(
+            root,
+            args.debate_id,
+            confirm_review_sha256=args.confirm_review_sha256,
+        )
+    if args.command == "corpus-workspace-init":
+        return corpus_workspace_init(root, args.debate_id, work_id=args.work_id)
+    if args.command == "corpus-workspace-review":
+        return corpus_workspace_review(
+            root, args.debate_id, work_id=args.work_id, finalize=args.finalize, apply=args.apply,
+            confirm_review_sha256=args.confirm_review_sha256,
+        )
+    if args.command == "corpus-workspace-content-review":
+        return corpus_workspace_content_review(
+            root, args.debate_id, work_id=args.work_id, prepare=args.prepare, finalize=args.finalize,
+            apply=args.apply, overwrite_review=args.overwrite_review,
+            confirm_review_sha256=args.confirm_review_sha256,
+        )
+
+    if args.command == "corpus-workspace-translation":
+        return corpus_workspace_translation_review(
+            root, args.debate_id, work_id=args.work_id, prepare=args.prepare, finalize=args.finalize,
+            apply=args.apply, overwrite_review=args.overwrite_review,
+            confirm_review_sha256=args.confirm_review_sha256,
+        )
+
+    if args.command == "corpus-workspace-render":
+        return corpus_workspace_render(
+            root, args.debate_id, work_id=args.work_id,
+            confirm_translation_sha256=args.confirm_translation_sha256,
+        )
+
+    if args.command == "corpus-workspace-release":
+        return corpus_workspace_release(
+            root, args.debate_id, work_id=args.work_id,
+            confirm_render_sha256=args.confirm_render_sha256,
+        )
+
+    if args.command == "corpus-workspace-remote-compare":
+        return corpus_workspace_remote_compare(
+            root, args.debate_id, work_id=args.work_id,
+            confirm_release_sha256=args.confirm_release_sha256,
+            scope=args.scope, comparison_id=args.comparison_id,
+        )
+
+    if args.command == "corpus-workspace-plan-review":
+        return corpus_workspace_remote_plan_review(
+            root, args.debate_id, work_id=args.work_id, comparison_id=args.comparison_id,
+            prepare=args.prepare, finalize=args.finalize, overwrite_review=args.overwrite_review,
+        )
+
+    if args.command == "corpus-workspace-plan-execute":
+        return corpus_workspace_remote_execute(
+            root, args.debate_id, work_id=args.work_id, comparison_id=args.comparison_id,
+            prepare=args.prepare, execute=args.execute, mode=args.mode,
+            confirm_acceptance_sha256=args.confirm_acceptance_sha256,
+            confirm_preflight_sha256=args.confirm_preflight_sha256,
+        )
+
+    if args.command == "corpus-workspace-close":
+        return corpus_workspace_close(
+            root, args.debate_id, work_id=args.work_id, comparison_id=args.comparison_id,
+            confirm_execution_sha256=args.confirm_execution_sha256,
+        )
+
     if args.command == "github-init":
         github_init(root, args.remote, args.private)
         print("Dépôt GitHub initialisé et synchronisé.")

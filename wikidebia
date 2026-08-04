@@ -2,19 +2,6 @@
 set -euo pipefail
 
 ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-
-# Configuration Git privée portable Wikidéb'IA
-GIT_PRIVATE_DIR="$ROOT/private/git"
-GIT_PRIVATE_CONFIG="$GIT_PRIVATE_DIR/.gitconfig-wikidebia"
-
-mkdir -p -- "$GIT_PRIVATE_DIR"
-chmod 700 -- "$ROOT/private" "$GIT_PRIVATE_DIR" 2>/dev/null || true
-touch -- "$GIT_PRIVATE_CONFIG"
-chmod 600 -- "$GIT_PRIVATE_CONFIG"
-
-export GIT_CONFIG_GLOBAL="$GIT_PRIVATE_CONFIG"
-unset GIT_CONFIG_SYSTEM
-
 VENV="$ROOT/.venv"
 VENV_PYTHON="$VENV/bin/python"
 REQUIREMENTS="$ROOT/requirements-runtime.txt"

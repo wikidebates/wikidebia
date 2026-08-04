@@ -1,7 +1,6 @@
-# Audit normatif actif
+# Audit de la source normative embarquée
 
-- source active unique : `WIKIDEBIA_NORME_CONSOLIDEE_1.2.26.md` ;
-- révision 1.2.25 archivée ;
-- catalogue et documents actifs synchronisés ;
-- validateur 0.4.28 aligné sur la norme 1.2.26 ;
-- aucune règle éditoriale 1.2.25 supprimée.
+- source active unique : 1.2.28 ;
+- sources 1.2.27 et antérieures conservées uniquement dans `history/` ;
+- structures, profils, catalogue et cahier des charges cohérents avec RND-003 et RND-004 ;
+- copie normative identique à l’archive de normes.

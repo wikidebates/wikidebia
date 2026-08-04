@@ -27,8 +27,8 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.2.13"
-REQUIRED_VALIDATOR_VERSION = "0.4.28"
+KIT_VERSION = "2.15.1"
+REQUIRED_VALIDATOR_VERSION = "0.4.30"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
 RECEIPT_VERSION = "wikidebia-remote-update-receipt-1.0"
@@ -170,10 +170,11 @@ class StatePage:
 class StateResolver:
     """Resolve the last attested published state without trusting the new manifest alone."""
 
-    def __init__(self, project_root: Path, debate_id: str, corpus_root: Path) -> None:
+    def __init__(self, project_root: Path, debate_id: str, corpus_root: Path, inventory_root: Path | None = None) -> None:
         self.project_root = project_root.resolve()
         self.debate_id = debate_id
         self.corpus_root = corpus_root.resolve()
+        self.inventory_root = inventory_root.resolve() if inventory_root is not None else None
 
     def resolve(self, languages: Iterable[str]) -> tuple[dict[tuple[str, str], StatePage], dict[str, Any]]:
         wanted = set(languages)
@@ -228,7 +229,7 @@ class StateResolver:
         page shape as a published state and is never inferred from all wiki pages.
         """
         result: dict[tuple[str, str], StatePage] = {}
-        base = self.project_root / ".state" / "inventories" / self.debate_id
+        base = self.inventory_root or (self.project_root / ".state" / "inventories" / self.debate_id)
         for language in sorted(languages):
             path = base / f"{language}.json"
             if not path.is_file():
@@ -388,7 +389,11 @@ class RemoteUpdatePlanner:
         self.extra_markers = tuple(config.get("generated_markers") or ())
         self.migrations = self._load_migrations()
         self._validate_config()
-        self.state, self.state_source = StateResolver(self.project_root, self.debate_id, self.corpus_root).resolve(self.languages)
+        inventory_root = self.config.get("state_inventory_root")
+        resolved_inventory_root = self._resolve(inventory_root) if inventory_root else None
+        self.state, self.state_source = StateResolver(
+            self.project_root, self.debate_id, self.corpus_root, resolved_inventory_root
+        ).resolve(self.languages)
         self.new_pages = self._new_pages()
 
     def _resolve(self, value: str | Path) -> Path:
@@ -1165,7 +1170,11 @@ class PlanExecutor:
 
         previous_state: dict[tuple[str, str], StatePage] = {}
         if preserve_pending_deletes:
-            previous_state, _ = StateResolver(self.project_root, self.debate_id, self.corpus_root).resolve(self.languages)
+            inventory_root = self.config.get("state_inventory_root")
+            resolved_inventory_root = self._resolve(inventory_root) if inventory_root else None
+            previous_state, _ = StateResolver(
+                self.project_root, self.debate_id, self.corpus_root, resolved_inventory_root
+            ).resolve(self.languages)
         pending_delete_ids = {
             (str(row.get("language")), str(row.get("page_id")))
             for row in operations.get("delete") or []

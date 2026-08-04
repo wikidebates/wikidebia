@@ -1,9 +1,9 @@
-Wikidéb’IA Validator 0.4.28
-Norme implémentée : 1.2.26
-Tests pytest : 201 réussis, 0 échec
-Contrôles : tous les contrôles 0.4.27 conservés ; prise en charge explicite de 1.2.26
-Plans distants : huit catégories validées, comparaison obligatoire pour manual_review
-Protocole de reprise : attestation no_changes, sélection stricte, staging et suppressions différées documentés
-Compatibilité : normes 1.1.0 à 1.2.26
+Wikidéb’IA Validator 0.4.30
+Norme implémentée : 1.2.28
+Tests pytest : 210 réussis, 0 échec
+Contrôles : tous les contrôles 0.4.29 conservés ; auto-audit renforcé sur la cohérence des structures, profils et exigences de citations
+Citations : modèle Citation unique en français et en anglais, paramètres documentaires conservés, traduction limitée à citation/date, avertissement canonique exigé
+Liens interlangues : cible anglaise exacte sur chaque page française, aucun lien inverse sur les pages anglaises
+Compatibilité : normes 1.1.0 à 1.2.28
 Validation ordinaire : strictement locale et en lecture seule
 Résultat : RÉUSSI

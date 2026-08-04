@@ -16,7 +16,7 @@ spec.loader.exec_module(module)
 
 
 def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = False) -> None:
-    versions = {"norm": "1.2.20", "validator": "0.4.28", "kit": "2.2.13"}
+    versions = {"norm": "1.2.20", "validator": "0.4.30", "kit": "2.15.1"}
     payloads = {
         "VERSIONS.json": (json.dumps(versions, ensure_ascii=False, indent=2) + "\n").encode("utf-8"),
         "README.md": f"# {artifact}\n".encode("utf-8"),
@@ -25,7 +25,7 @@ def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = F
         {"path": name, "size_bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
         for name, raw in sorted(payloads.items())
     ]
-    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.28", "wikidebia-kit": "2.2.13"}[artifact]
+    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.30", "wikidebia-kit": "2.15.1"}[artifact]
     manifest = {
         "artifact": artifact,
         "version": version,
@@ -59,7 +59,7 @@ def test_component_inspector_accepts_and_verifies_optional_receipt(tmp_path: Pat
     _write_component_zip(archive, "wikidebia-kit", include_receipt=True)
     metadata = module.inspect_component_zip(archive)
     assert metadata["artifact"] == "wikidebia-kit"
-    assert metadata["versions"]["kit"] == "2.2.13"
+    assert metadata["versions"]["kit"] == "2.15.1"
 
 
 def test_single_complete_bundle_is_collected_from_updates(tmp_path: Path):
@@ -155,7 +155,7 @@ def test_generated_config_is_relative_and_debate_first(tmp_path: Path):
     assert config["pywikibot_dir"] == "private/pywikibot"
     assert config["corpus_root"] == "corpus/demo"
     assert config["operation"]["page_type_order"] == ["debate", "argument"]
-    assert config["validator"]["required_version"] == "0.4.28"
+    assert config["validator"]["required_version"] == "0.4.30"
     assert config["manifest_requirements"] == {}
     assert str(tmp_path) not in path.read_text(encoding="utf-8")
 
@@ -695,3 +695,237 @@ def test_scope_without_selected_mutation_returns_no_changes_in_scope(monkeypatch
     result = module.update_debate(tmp_path, "demo", "all", False, False, True, False, True)
     assert result["status"] == "no_changes_in_scope"
     assert modes == ["plan"]
+
+
+def test_graph_extract_command_is_routed_read_only(monkeypatch, tmp_path: Path):
+    script = tmp_path / "kit" / "scripts" / "wikidebia_graph_extract.py"
+    family = tmp_path / "kit" / "families" / "wikidebates_family.py"
+    script.parent.mkdir(parents=True)
+    family.parent.mkdir(parents=True)
+    script.write_text("print('ok')\n", encoding="utf-8")
+    family.write_text("# family\n", encoding="utf-8")
+    commands = []
+
+    def fake_run(command, *, cwd, capture=False, check=True, env=None):
+        commands.append(command)
+        class Result:
+            returncode = 0
+            stdout = ""
+            stderr = ""
+        return Result()
+
+    monkeypatch.setattr(module, "run", fake_run)
+    code = module.graph_extract_debate(
+        tmp_path,
+        "Dieu existe-t-il ?",
+        lang="fr",
+        family="wikidebates",
+        output_dir=None,
+        cache_dir=None,
+        slug=None,
+        extraction_date="2026-08-03",
+        login=False,
+        force_refresh=False,
+        allow_missing=False,
+        max_pages=1000,
+        retries=3,
+        retry_delay=1.5,
+        progress_every=10,
+        follow_local_relations_at_detailed_debate=False,
+    )
+    assert code == 0
+    assert len(commands) == 1
+    command = commands[0]
+    assert command[1].endswith("kit/scripts/wikidebia_graph_extract.py")
+    assert command[command.index("--debate") + 1] == "Dieu existe-t-il ?"
+    assert command[command.index("--output-dir") + 1].endswith(".state/graph-extract/dieu_existe_t_il")
+    assert "--machine-readable" in command
+    assert "--force-refresh" not in command
+    assert "--follow-local-relations-at-detailed-debate" not in command
+
+
+def test_graph_extract_parser_exposes_native_command():
+    args = module.build_parser().parse_args(["graph-extract", "Débat test", "--max-pages", "50"])
+    assert args.command == "graph-extract"
+    assert args.debate_title == "Débat test"
+    assert args.max_pages == 50
+
+
+def test_graph_extract_rejects_output_outside_project(tmp_path: Path):
+    script = tmp_path / "kit" / "scripts" / "wikidebia_graph_extract.py"
+    family = tmp_path / "kit" / "families" / "wikidebates_family.py"
+    script.parent.mkdir(parents=True)
+    family.parent.mkdir(parents=True)
+    script.write_text("# graph\n", encoding="utf-8")
+    family.write_text("# family\n", encoding="utf-8")
+    outside = tmp_path.parent / "outside-graph-output"
+    try:
+        module.graph_extract_debate(
+            tmp_path,
+            "Débat test",
+            lang="fr",
+            family="wikidebates",
+            output_dir=outside,
+            cache_dir=None,
+            slug=None,
+            extraction_date=None,
+            login=False,
+            force_refresh=False,
+            allow_missing=False,
+            max_pages=10,
+            retries=0,
+            retry_delay=0,
+            progress_every=0,
+            follow_local_relations_at_detailed_debate=False,
+        )
+    except module.ManagementError as exc:
+        assert "extérieur au projet" in str(exc)
+    else:
+        raise AssertionError("un dossier extérieur au projet a été accepté")
+
+
+def test_corpus_init_command_defaults_to_state_build_directory(tmp_path: Path, monkeypatch):
+    (tmp_path / "kit" / "scripts").mkdir(parents=True)
+    (tmp_path / "kit" / "scripts" / "wikidebia_corpus_init.py").write_text("print('ok')\n", encoding="utf-8")
+    snapshot = tmp_path / ".state" / "graph-extract" / "demo"
+    snapshot.mkdir(parents=True)
+    captured = {}
+
+    class Result:
+        returncode = 0
+
+    def fake_run(command, **kwargs):
+        captured["command"] = command
+        captured["cwd"] = kwargs.get("cwd")
+        return Result()
+
+    monkeypatch.setattr(module, "run", fake_run)
+    monkeypatch.setattr(module, "python_command", lambda root: "python")
+    rc = module.corpus_init_from_snapshot(
+        tmp_path,
+        snapshot,
+        debate_id="demo",
+        short_code="DEMO",
+        output_dir=None,
+        scope_summary=None,
+        overwrite=False,
+        skip_validation=False,
+    )
+    assert rc == 0
+    command = captured["command"]
+    assert "--output-dir" in command
+    assert str(tmp_path / ".state" / "corpus-builds" / "demo") in command
+    assert "--project-root" in command
+
+
+def test_corpus_init_rejects_output_outside_state_builds(tmp_path: Path):
+    (tmp_path / "kit/scripts").mkdir(parents=True)
+    (tmp_path / "kit/scripts/wikidebia_corpus_init.py").write_text("# test\n", encoding="utf-8")
+    snapshot = tmp_path / "snapshot"
+    snapshot.mkdir()
+    try:
+        module.corpus_init_from_snapshot(
+            tmp_path,
+            snapshot,
+            debate_id="debat_test",
+            short_code="TEST",
+            output_dir=tmp_path / "corpus/debat_test",
+            scope_summary=None,
+            overwrite=False,
+            skip_validation=True,
+        )
+    except module.ManagementError as exc:
+        assert "doit rester sous" in str(exc)
+    else:
+        raise AssertionError("sortie corpus/ acceptée par le gestionnaire")
+
+
+def test_corpus_review_command_routes_prepare(tmp_path: Path, monkeypatch):
+    (tmp_path / "kit/scripts").mkdir(parents=True)
+    (tmp_path / "kit/scripts/wikidebia_corpus_review.py").write_text("# test\n", encoding="utf-8")
+    captured = {}
+
+    class Result:
+        returncode = 0
+
+    def fake_run(command, **kwargs):
+        captured["command"] = command
+        return Result()
+
+    monkeypatch.setattr(module, "run", fake_run)
+    monkeypatch.setattr(module, "python_command", lambda root: "python")
+    rc = module.corpus_review_graph(tmp_path, "demo", prepare=True, finalize=False, overwrite_review=False)
+    assert rc == 0
+    assert "--prepare" in captured["command"]
+    assert "--project-root" in captured["command"]
+
+
+def test_corpus_promote_command_requires_review_hash_in_route(tmp_path: Path, monkeypatch):
+    (tmp_path / "kit/scripts").mkdir(parents=True)
+    (tmp_path / "kit/scripts/wikidebia_corpus_promote.py").write_text("# test\n", encoding="utf-8")
+    captured = {}
+
+    class Result:
+        returncode = 0
+
+    def fake_run(command, **kwargs):
+        captured["command"] = command
+        return Result()
+
+    monkeypatch.setattr(module, "run", fake_run)
+    monkeypatch.setattr(module, "python_command", lambda root: "python")
+    digest = "a" * 64
+    rc = module.corpus_promote_graph(tmp_path, "demo", confirm_review_sha256=digest)
+    assert rc == 0
+    command = captured["command"]
+    assert command[command.index("--confirm-review-sha256") + 1] == digest
+
+
+def test_parser_exposes_corpus_review_and_promote_commands():
+    review_args = module.build_parser().parse_args(["corpus-review-graph", "demo", "--prepare"])
+    assert review_args.command == "corpus-review-graph"
+    assert review_args.prepare is True
+    promote_args = module.build_parser().parse_args(["corpus-promote", "demo", "--confirm-review-sha256", "a" * 64])
+    assert promote_args.command == "corpus-promote"
+
+
+def test_editorial_workspace_command_is_exposed_by_manager():
+    args = module.build_parser().parse_args([
+        "corpus-workspace-init", "debat_test", "--work-id", "EDIT-TEST-001"
+    ])
+    assert args.command == "corpus-workspace-init"
+    assert args.debate_id == "debat_test"
+    assert args.work_id == "EDIT-TEST-001"
+
+
+def test_doctor_checks_every_pipeline_script(tmp_path: Path, monkeypatch):
+    (tmp_path / "private/pywikibot").mkdir(parents=True)
+    (tmp_path / "private/pywikibot/user-config.py").write_text("# test\n", encoding="utf-8")
+    (tmp_path / "kit/scripts").mkdir(parents=True)
+    expected = {
+        "wikidebia_publish.py", "wikidebia_update.py", "wikidebia_graph_extract.py",
+        "wikidebia_corpus_init.py", "wikidebia_corpus_review.py", "wikidebia_corpus_promote.py",
+        "wikidebia_editorial_workspace.py", "wikidebia_editorial_review.py",
+        "wikidebia_content_review.py", "wikidebia_translation_review.py", "wikidebia_render.py",
+        "wikidebia_release.py", "wikidebia_remote_compare.py", "wikidebia_remote_plan_review.py",
+        "wikidebia_remote_execute.py", "wikidebia_work_close.py",
+    }
+    monkeypatch.setattr(module, "runtime_environment_report", lambda root: {"requirements_sha256":"x","python_available":True,"missing_modules":[],"probe_error":None})
+    monkeypatch.setattr(module, "assert_portable_sources", lambda root: None)
+    monkeypatch.setattr(module, "git_security_issues", lambda root: [])
+    report = module.doctor(tmp_path)
+    missing = {item.removeprefix("kit/scripts/").removesuffix(" absent") for item in report["issues"] if item.startswith("kit/scripts/")}
+    assert missing == expected
+
+
+def test_safe_extract_restores_regular_file_modes(tmp_path: Path):
+    archive = tmp_path / "modes.zip"
+    info = zipfile.ZipInfo("scripts/direct.py")
+    info.create_system = 3
+    info.external_attr = 0o100755 << 16
+    with zipfile.ZipFile(archive, "w") as bundle:
+        bundle.writestr(info, b"#!/usr/bin/env python3\n")
+    destination = tmp_path / "out"
+    destination.mkdir()
+    module.safe_extract(archive, destination)
+    assert (destination / "scripts/direct.py").stat().st_mode & 0o111

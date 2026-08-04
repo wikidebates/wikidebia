@@ -1,0 +1,1969 @@
+================================================================
+fr | interdiction_licenciements | Faut-il interdire les licenciements ?
+comparison_id: 4f3f3691118e2ded433d
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -4,23 +4,23 @@
+ |avancement=Débat construit
+ |avertissements-débat=Débat généré par IA
+ |introduction={{Sous-partie
+-|titre=Ce que recouvre l'interdiction
+-|contenu=Le licenciement est la rupture du contrat de travail à l'initiative de l'employeur. Le débat ne porte donc ni sur la démission, ni sur la retraite, ni sur l'arrivée à terme d'un contrat temporaire. Il oppose une interdiction de principe, éventuellement assortie d'exceptions étroites pour faute grave ou disparition de l'employeur, aux systèmes qui autorisent la rupture sous conditions. En France, le licenciement pour motif personnel doit déjà reposer sur une cause réelle et sérieuse<ref>Code du travail, art. L. 1232-1, version en vigueur depuis le 27 juin 2008, [https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000006177858/ Légifrance].</ref>, tandis que le licenciement économique répond à des motifs non inhérents à la personne du salarié<ref>Code du travail, art. L. 1233-3, version en vigueur depuis le 1er avril 2018, [https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036762081 Légifrance].</ref>. Interdire ne signifie donc pas partir d'un vide juridique : cela signifie déplacer la frontière entre contrôle de la rupture et impossibilité de rompre.
++|titre=La question porte sur tous les licenciements
++|contenu=Le licenciement est la rupture du contrat de travail décidée par l'employeur. Une interdiction générale viserait donc les licenciements pour motif personnel (insuffisance, inaptitude ou faute) comme les licenciements économiques, individuels ou collectifs. Elle se distingue nettement d'une interdiction des seuls licenciements dits boursiers, limitée aux entreprises rentables, aux dividendes ou aux aides publiques. Ces cas particuliers éclairent le débat, mais ils n'en fixent pas le périmètre. La question centrale est de savoir si l'employeur doit perdre, en principe, le pouvoir de rompre un contrat de travail.
+ }}{{Sous-partie
+-|titre=Pourquoi le sujet dépasse le droit du travail
+-|contenu=Un emploi est à la fois un contrat, un revenu, un lieu d'apprentissage et une position sociale. Sa perte peut laisser des effets durables sur la rémunération et la santé<ref>Jennie E. Brand, « The Far-Reaching Impact of Job Loss and Unemployment », ''Annual Review of Sociology'', août 2015, p. 359-375, [https://pmc.ncbi.nlm.nih.gov/articles/PMC4553243/ texte intégral].</ref>. Pour l'entreprise, conserver un poste représente pourtant un coût et peut empêcher un ajustement à une baisse durable de la demande. Le Conseil de l'emploi, des revenus et de la cohésion sociale distingue ainsi la stabilité dans une entreprise de la sécurité de rester employé, même en changeant d'employeur<ref>Conseil de l'emploi, des revenus et de la cohésion sociale, ''La sécurité de l'emploi face aux défis des transformations économiques'', La Documentation française, Paris, 2005, [https://www.vie-publique.fr/files/rapport/pdf/054000141.pdf rapport].</ref>. Cette distinction est décisive : protéger la personne et figer chaque poste ne sont pas forcément la même politique.
++|titre=Une mesure plus radicale que la protection contre les abus
++|contenu=Les droits contemporains encadrent généralement le licenciement sans le supprimer. En France, le licenciement pour motif personnel doit reposer sur une cause réelle et sérieuse<ref>Code du travail, art. L. 1232-1, version en vigueur depuis le 27 juin 2008, [https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000006177858/ Légifrance].</ref> et le licenciement économique répond à des motifs non inhérents à la personne du salarié<ref>Code du travail, art. L. 1233-3, version en vigueur depuis le 1er avril 2018, [https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036762081 Légifrance].</ref>. La convention n° 158 de l'Organisation internationale du Travail exige un motif valable lié à l'aptitude, à la conduite ou aux nécessités de fonctionnement<ref>Organisation internationale du Travail, convention n° 158 sur le licenciement, 22 juin 1982, art. 4, [https://normlex.ilo.org/dyn/nrmlx_fr/f?p=NORMLEXPUB:12100:0::NO::P12100_ILO_CODE:C158 NORMLEX].</ref>. Interdire tous les licenciements franchirait une étape supplémentaire : le motif ne rendrait plus la rupture licite, sauf exceptions expressément prévues.
+ }}{{Sous-partie
+-|titre=Des protections contre l'arbitraire à l'idée d'interdiction
+-|contenu=La convention n° 158 de l'Organisation internationale du Travail pose qu'un emploi ne doit pas être rompu sans motif valable lié à l'aptitude, à la conduite ou aux nécessités de fonctionnement<ref>Organisation internationale du Travail, convention n° 158 sur le licenciement, 22 juin 1982, art. 4, [https://normlex.ilo.org/dyn/nrmlx_fr/f?p=NORMLEXPUB:12100:0::NO::P12100_ILO_CODE:C158 NORMLEX].</ref>. La Charte des droits fondamentaux de l'Union européenne protège, elle, contre le licenciement injustifié<ref>Union européenne, ''Charte des droits fondamentaux de l'Union européenne'', 26 octobre 2012, art. 30, [https://eur-lex.europa.eu/legal-content/FR/TXT/HTML/?uri=CELEX:12012P/TXT EUR-Lex].</ref>. Ces textes bâtissent un plancher de justification, pas une garantie absolue du même poste. Les propositions d'interdiction vont plus loin, notamment lorsqu'elles visent les licenciements décidés par des entreprises rentables qui distribuent des dividendes ou rachètent leurs actions.
++|titre=Les exceptions déterminent la portée réelle de l'interdiction
++|contenu=Une règle générale doit répondre aux cas difficiles : faute grave, violence, inaptitude durable, disparition du poste, baisse durable de la demande, fermeture de l'entreprise ou décès d'un employeur particulier. Si ces exceptions sont larges, l'interdiction redevient un contrôle renforcé des motifs. Si elles sont très étroites, l'entreprise peut être tenue de poursuivre une relation devenue impossible ou de maintenir des emplois sans activité. Le débat porte donc autant sur la règle de principe que sur la frontière entre maintien obligatoire, reclassement, suspension du contrat et cessation véritable de l'activité.
+ }}{{Sous-partie
+-|titre=L'expérience française des licenciements dits boursiers
+-|contenu=Le Parlement français a plusieurs fois débattu d'une interdiction ciblée des licenciements économiques dans les entreprises profitables. Une proposition examinée au Sénat en 2012 voulait empêcher les entreprises ayant distribué des dividendes de procéder à certains licenciements économiques<ref>Dominique Watrin, ''Proposition de loi tendant à interdire les licenciements boursiers'', rapport n° 345, Sénat, 8 février 2012, [https://www.senat.fr/rap/l11-345/l11-345_mono.html rapport].</ref>. Un texte de 2025 a repris l'idée pour les grandes entreprises ayant distribué des dividendes, attribué des actions gratuites ou racheté leurs propres actions<ref>Monique Lubin, ''Proposition de loi visant à limiter le recours au licenciement économique dans les entreprises d'au moins 250 salariés'', rapport n° 582, Sénat, 7 mai 2025, [https://www.senat.fr/rap/l24-582/l24-582_mono.html rapport].</ref>. Ces projets montrent à la fois l'attrait moral de la formule et sa difficulté pratique : profit de quelle entité, sur quelle période, et avec quels risques de contournement ?
++|titre=Ce que la perte d'emploi fait supporter au salarié
++|contenu=Un emploi fournit un revenu, mais aussi de l'ancienneté, des compétences, des relations et une place dans un territoire. Les trajectoires des licenciés économiques montrent que le retour à l'emploi ne restitue pas toujours le salaire, la qualification ou la stabilité antérieurs<ref>France Teyssier, « La trajectoire des licenciés économiques », ''Premières Synthèses'', DARES, 1994, [https://dares.travail-emploi.gouv.fr/sites/default/files/ca1891aa176df2d300ebe689e334b8a7/87_1479.pdf étude].</ref>. Une interdiction entend empêcher que ce risque soit imposé unilatéralement à un ménage. Ses adversaires répondent que la protection de la personne peut passer par l'indemnisation, l'assurance chômage, la formation et la garantie d'un nouvel emploi, sans figer chaque contrat existant.
+ }}{{Sous-partie
+-|titre=Les effets économiques ne suivent pas une règle simple
+-|contenu=La protection de l'emploi réduit généralement les destructions de postes, mais elle peut aussi réduire les créations et ralentir les passages d'une entreprise à l'autre. L'OCDE souligne simultanément son rôle contre les ruptures arbitraires, son effet sur l'investissement en compétences et les risques d'une réglementation mal conçue pour l'adaptation des entreprises<ref>Organisation de coopération et de développement économiques, « Recent trends in employment protection legislation », ''OECD Employment Outlook 2026'', 7 juillet 2026, [https://www.oecd.org/en/publications/oecd-employment-outlook-2026_7e710f54-en/full-report/recent-trends-in-employment-protection-legislation-tackling-dualism-by-harmonising-and-strengthening-regulations_4e8d82f9.html chapitre].</ref>. Les comparaisons internationales ne livrent donc pas un bouton unique « plus de protection, plus d'emploi » ou son inverse. Elles décrivent des effets différents sur la stabilité, l'embauche, les contrats temporaires, la productivité et la répartition des revenus.
++|titre=Ce que l'interdiction ferait supporter à l'entreprise
++|contenu=La masse salariale est aussi un coût durable. Lorsqu'une activité disparaît ou qu'une organisation change, l'impossibilité de réduire les effectifs peut menacer la trésorerie, décourager l'embauche ou déplacer l'ajustement vers les contrats temporaires, les heures, les salaires, la sous-traitance et l'automatisation. L'OCDE présente la réglementation du licenciement comme un équilibre : elle protège contre l'arbitraire et fait supporter aux entreprises une partie du coût social des ruptures, mais une protection trop stricte peut ralentir les réallocations et favoriser la dualité entre salariés très protégés et travailleurs précaires<ref>Organisation de coopération et de développement économiques, « Évolutions récentes de la législation sur la protection de l'emploi », ''Perspectives de l'emploi de l'OCDE 2026'', 7 juillet 2026, [https://www.oecd.org/fr/publications/perspectives-de-l-emploi-de-l-ocde-2026_f8a23d95-fr/full-report/component-10.html chapitre].</ref>.
+ }}{{Sous-partie
+-|titre=Le vrai choix politique
+-|contenu=La question est finalement de savoir qui doit porter le risque lorsque l'activité, la technologie ou l'organisation change. Une interdiction le place d'abord sur l'entreprise et ses propriétaires ; un régime plus flexible en transfère une part vers le salarié et l'assurance chômage. Entre les deux se trouvent le contrôle du motif, le préavis, la consultation, l'indemnisation, la réintégration, le chômage partiel, la formation et le reclassement. Le débat ne se résume donc pas à choisir entre patrons libres et salariés intouchables. Il demande quelle combinaison protège le mieux les personnes sans transformer l'embauche en pari irréversible ni le licenciement en geste de gestion banal.
++|titre=Le choix politique entre continuité du poste et sécurité du parcours
++|contenu=Une interdiction générale place d'abord le risque économique sur l'entreprise et ses propriétaires. Un régime autorisant le licenciement en transfère une part vers le salarié, l'assurance chômage et le territoire. Entre ces deux pôles se trouvent le contrôle du motif, le préavis, l'indemnisation, la réintégration, le chômage partiel, la réduction du temps de travail, le reclassement et la garantie publique d'emploi. Le désaccord ne porte donc pas seulement sur la sévérité du droit : il oppose la sécurité de conserver son poste à la sécurité de disposer durablement d'un revenu et d'un emploi, même lorsque l'activité change.
+ }}
+ |articles-Wikipédia={{Article Wikipédia
+ |page=Licenciement
+@@ -57,12 +57,6 @@
+ }}{{Argument pour
+ |page=Interdire les licenciements renforcerait la démocratie dans l'entreprise et la confiance collective
+ |titre-affiché=Renforcer la démocratie dans l'entreprise
+-}}{{Argument pour
+-|page=Interdire les licenciements empêcherait que des entreprises viables sacrifient l'emploi à des objectifs financiers de court terme
+-|titre-affiché=Empêcher le court-termisme financier de sacrifier l'emploi
+-}}{{Argument pour
+-|page=Interdire certains licenciements préserverait des compétences et des capacités industrielles stratégiques difficiles à reconstituer
+-|titre-affiché=Préserver les capacités industrielles stratégiques
+ }}
+ |arguments-contre={{Argument contre
+ |page=Une entreprise doit pouvoir réduire ses effectifs pour survivre à une baisse durable d'activité
+@@ -102,135 +96,401 @@
+ |titre-affiché=Éviter une interdiction que la justice ne peut appliquer
+ }}
+ |bibliographie-pour={{Référence bibliographique pour
+-|auteurs=Jean-Marc Boulanger, Bertrand Deumie, Michel Laroque
+-|ouvrage=L'anticipation des restructurations, la gestion et l'accompagnement des plans de sauvegarde de l'emploi, la mise en œuvre des conventions de revitalisation
+-|édition=Inspection générale des affaires sociales
+-|lieu=Paris
+-|date=septembre 2009
+-|lien=https://www.vie-publique.fr/files/rapport/pdf/104000606.pdf
++|auteurs=Laurent Garrouste, Michel Husson, Claude Jacquin, Henri Wilno
++|ouvrage=Supprimer les licenciements
++|édition=Syllepse
++|lieu=Paris
++|date=22 mars 2006
++|lien=https://www.syllepse.net/supprimer-les-licenciements-_r_100_i_286.html
+ }}{{Référence bibliographique pour
+-|auteurs=Tristan Boyer
+-|ouvrage=Marchés financiers et licenciements
+-|édition=Centre d'études de l'emploi
+-|lieu=Noisy-le-Grand
+-|date=septembre 2002
+-|lien=https://www.vie-publique.fr/files/rapport/pdf/074000654.pdf
++|auteurs=Lutte ouvrière
++|article=France - Interdiction des licenciements sous peine de réquisition !
++|ouvrage=Lutte de classe
++|lien=https://www.lutte-ouvriere.org/mensuel/article/documents-archives-la-revue-lutte-de-classe-serie-actuelle-1993-france-interdiction-des.html
+ }}{{Référence bibliographique pour
++|auteurs=Nouveau Parti anticapitaliste
++|ouvrage=Nos vies valent plus que leurs profits : programme de Philippe Poutou pour l’élection présidentielle de 2022
++|édition=Nouveau Parti anticapitaliste
++|lieu=Montreuil
++|date=24 février 2022
++|lien=https://npa-lanticapitaliste.org/sites/default/files/brochure-programme-poutou-2022_2.pdf
++}}{{Référence bibliographique pour
++|auteurs=Nathalie Arthaud
++|article=Conférence de presse de Nathalie Arthaud
++|ouvrage=Lutte de classe
++|date=19 décembre 2011
++|lien=https://www.lutte-ouvriere.org/mensuel/article/documents-archives-la-revue-lutte-de-classe-serie-actuelle-1993-article-conference-de-presse-de-nathalie-19780.html
++}}{{Référence bibliographique pour
++|auteurs=Nathalie Arthaud
++|article=Allocution de Nathalie Arthaud à la fête de Lutte Ouvrière (dimanche 27 mai 2012)
++|ouvrage=Lutte de classe
++|date=9 juillet 2012
++|lien=https://www.lutte-ouvriere.org/mensuel/article/documents-archives-la-revue-lutte-de-classe-serie-actuelle-1993-article-allocution-de-nathalie-arthaud-a-25154.html
++}}{{Référence bibliographique pour
++|auteurs=Lutte ouvrière
++|ouvrage=Contre le grand capital, le camp des travailleurs
++|édition=Cercle Léon Trotsky
++|date=17 mai 2019
++|lien=https://www.lutte-ouvriere.org/clt/publications-brochures-contre-le-grand-capital-le-camp-des-travailleurs-151932.html
++}}
++|bibliographie-contre={{Référence bibliographique contre
++|auteurs=Conseil d'orientation pour l'emploi
++|ouvrage=Rapport d'étape sur la sécurisation et la dynamisation des parcours professionnels
++|date=mai 2007
++|lien=https://www.vie-publique.fr/files/rapport/pdf/094000031.pdf
++}}{{Référence bibliographique contre
++|auteurs=Pierre Cahuc, Francis Kramarz
++|ouvrage=De la précarité à la mobilité : vers une sécurité sociale professionnelle
++|édition=La Documentation française
++|lieu=Paris
++|date=2004
++|lien=https://www.vie-publique.fr/files/rapport/pdf/054000092.pdf
++}}{{Référence bibliographique contre
++|auteurs=Olivier Blanchard, Jean Tirole
++|ouvrage=Protection de l'emploi et procédures de licenciement
++|numéro=44
++|édition=Conseil d'analyse économique
++|lieu=Paris
++|date=2003
++|lien=https://cae-eco.fr/static/pdf/044.pdf
++}}{{Référence bibliographique contre
++|auteurs=Pierre Cahuc
++|ouvrage=Pour une meilleure protection de l'emploi
++|édition=Centre d'observation économique de la Chambre de commerce et d'industrie de Paris
++|lieu=Paris
++|date=2003
++|lien=https://www.econbiz.de/Record/pour-une-meilleure-protection-de-l-emploi-cahuc-pierre/10001905478
++}}{{Référence bibliographique contre
++|auteurs=Organisation de coopération et de développement économiques
++|article=Réglementation relative à la protection de l'emploi et performance du marché du travail
++|ouvrage=Perspectives de l'emploi de l'OCDE 2004
++|édition=OCDE
++|lieu=Paris
++|date=2004
++|lien=https://www.oecd.org/content/dam/oecd/fr/publications/reports/2004/07/oecd-employment-outlook-2004_g1gh4498/empl_outlook-2004-fr.pdf
++}}{{Référence bibliographique contre
++|auteurs=Gordon Betcherman
++|ouvrage=Réglementations de protection de l’emploi : règles d’embauche et de licenciement
++|édition=Banque mondiale
++|lieu=Washington, DC
++|date=décembre 2002
++|lien=https://documents1.worldbank.org/curated/en/589401468779650678/pdf/301300FRENCH0E1mployment0regulation.pdf
++}}
++|bibliographie-ni-pour-ni-contre={{Référence bibliographique
++|auteurs=Conseil de l'emploi, des revenus et de la cohésion sociale
++|ouvrage=La sécurité de l'emploi face aux défis des transformations économiques
++|édition=La Documentation française
++|lieu=Paris
++|date=2005
++|lien=https://www.vie-publique.fr/files/rapport/pdf/054000141.pdf
++}}{{Référence bibliographique
+ |auteurs=Bureau international du Travail
+ |ouvrage=Note sur la convention n° 158 et la recommandation n° 166 sur le licenciement
+ |édition=Bureau international du Travail
+ |lieu=Genève
+ |date=9 mars 2009
+ |lien=https://www.ilo.org/fr/media/137206/download
+-}}
+-|bibliographie-contre={{Référence bibliographique contre
+-|auteurs=Conseil d'orientation pour l'emploi
+-|ouvrage=Rapport d'étape sur la sécurisation et la dynamisation des parcours professionnels
+-|date=mai 2007
+-|lien=https://www.vie-publique.fr/files/rapport/pdf/094000031.pdf
+-}}{{Référence bibliographique contre
+-|auteurs=Marie-Laure Morin, Christine Vicens
+-|article=Licenciement économique, flexibilité des entreprises et sécurité des travailleurs : les enseignements d'une comparaison européenne
+-|ouvrage=Revue internationale du Travail
+-|volume=140
+-|numéro=1
+-|date=2001
+-|lien=https://researchrepository.ilo.org/view/pdfCoverPage?download=true&filePid=13100781070002676&instCode=41ILO_INST
+-}}{{Référence bibliographique contre
+-|auteurs=Pierre Cahuc, Francis Kramarz
+-|ouvrage=De la précarité à la mobilité : vers une sécurité sociale professionnelle
+-|édition=La Documentation française
+-|lieu=Paris
+-|date=2005
+-|lien=https://www.vie-publique.fr/files/rapport/pdf/054000092.pdf
+-}}
+-|bibliographie-ni-pour-ni-contre={{Référence bibliographique
+-|auteurs=Conseil de l'emploi, des revenus et de la cohésion sociale
+-|ouvrage=La sécurité de l'emploi face aux défis des transformations économiques
+-|édition=La Documentation française
+-|lieu=Paris
+-|date=2005
+-|lien=https://www.vie-publique.fr/files/rapport/pdf/054000141.pdf
+-}}{{Référence bibliographique
+-|auteurs=Henri Rouilleault
+-|ouvrage=Anticiper et concerter les mutations : l'obligation triennale de négocier le dispositif de gestion prévisionnelle des emplois et des compétences
+-|édition=La Documentation française
+-|lieu=Paris
+-|date=octobre 2007
+-|lien=https://www.vie-publique.fr/files/rapport/pdf/074000505.pdf
++}}{{Référence bibliographique
++|auteurs=Alain Supiot
++|ouvrage=Critique du droit du travail
++|édition=Presses universitaires de France
++|lieu=Paris
++|date=2015
++|lien=https://www.puf.com/critique-du-droit-du-travail
++}}{{Référence bibliographique
++|auteurs=Alain Supiot
++|ouvrage=Au-delà de l'emploi : transformations du travail et devenir du droit du travail en Europe
++|édition=Flammarion
++|lieu=Paris
++|date=1999
++|lien=https://editions.flammarion.com/au-dela-de-lemploi/9782081382862
++}}{{Référence bibliographique
++|auteurs=Bureau international du Travail
++|ouvrage=Protection contre le licenciement injustifié : étude d’ensemble sur la convention n° 158 et la recommandation n° 166
++|édition=Bureau international du Travail
++|lieu=Genève
++|date=1995
++|lien=https://www.ilo.org/fr/media/156686/download
++}}{{Référence bibliographique
++|auteurs=Michèle Bonnechère
++|article=Travail décent et modernisation du droit du travail
++|ouvrage=Travail et emploi
++|numéro=113
++|page=91-101
++|date=janvier-mars 2008
++|lien=https://journals.openedition.org/travailemploi/pdf/2324
+ }}{{Référence bibliographique
+ |auteurs=Organisation de coopération et de développement économiques
+ |ouvrage=Perspectives de l'emploi de l'OCDE 2026 : Disparités géographiques en matière d'emploi et de revenus
+-|édition=Éditions OCDE
++|édition=OCDE
+ |lieu=Paris
+ |date=7 juillet 2026
+ |lien=https://www.oecd.org/fr/publications/perspectives-de-l-emploi-de-l-ocde-2026_f8a23d95-fr.html
++}}{{Référence bibliographique
++|auteurs=Xavier Berjot
++|ouvrage=Le licenciement : le guide pratique
++|édition=AFNOR
++|lieu=Saint-Denis
++|date=2 novembre 2012
++|lien=https://www.lgdj.fr/le-licenciement-9782124653836.html
++}}{{Référence bibliographique
++|auteurs=Michel Miné
++|ouvrage=Le grand livre du droit du travail
++|édition=Eyrolles
++|lieu=Paris
++|date=11 septembre 2025
++|lien=https://www.editions-eyrolles.com/livre/le-grand-livre-du-droit-du-travail
++}}{{Référence bibliographique
++|auteurs=Thierry Kirat, Évelyne Serverin, Julie Valentin, Damien Sauze, Raphaël Dalmasso
++|article=Évaluer le droit du licenciement : comparaison des droits et des procédures, mesure des actions
++|ouvrage=Revue de l'OFCE
++|numéro=107
++|page=29-64
++|date=2008
++|lien=https://shs.hal.science/halshs-00365518/document
++}}{{Référence bibliographique
++|auteurs=Alain Supiot
++|ouvrage=Le droit du travail
++|édition=Presses universitaires de France
++|lieu=Paris
++|date=2019
++|lien=https://www.quesaisje.com/le-droit-du-travail
++}}{{Référence bibliographique
++|auteurs=Camille Signoretto
++|article=Les pratiques des employeurs en matière de rupture du CDI : un nouveau regard sur les règles de protection de l’emploi
++|ouvrage=Travail et emploi
++|numéro=142
++|page=69-83
++|date=avril-juin 2015
++|lien=https://dares.travail-emploi.gouv.fr/sites/default/files/pdf/142_travail_et_emploi_signoretto.pdf
+ }}
+ |sitographie-pour={{Référence sitographique pour
+-|lien=https://www.senat.fr/rap/l11-345/l11-345_mono.html
+-|page=Proposition de loi tendant à interdire les licenciements boursiers
+-|auteurs=Sénat
+-|site=Sénat
+-|date=8 février 2012
+-}}{{Référence sitographique pour
+-|lien=https://www.senat.fr/rap/l24-582/l24-582_mono.html
+-|page=Proposition de loi visant à limiter le recours au licenciement économique dans les entreprises d'au moins 250 salariés
+-|auteurs=Monique Lubin
+-|site=Sénat
+-|date=7 mai 2025
+-}}{{Référence sitographique pour
+-|lien=https://www.ilo.org/fr/protection-de-lemploi
+-|page=Protection de l'emploi
+-|auteurs=Organisation internationale du Travail
+-|site=Organisation internationale du Travail
+-|date=27 mars 2026
++|lien=https://www.politis.fr/articles/2009/05/omar-slaouti-npa-interdire-tous-les-licenciements-7151/
++|page=Omar Slaouti (NPA) : "Interdire tous les licenciements"
++|auteurs=Michel Soudais
++|site=Politis
++|date=28 mai 2009
++}}{{Référence sitographique pour
++|lien=https://lanticapitaliste.org/actualite/economie/tout-licenciement-est-de-la-responsabilite-du-patronat
++|page=Tout licenciement est de la responsabilité du patronat
++|site=L’Anticapitaliste
++|date=27 mai 2020
++}}{{Référence sitographique pour
++|lien=https://lanticapitaliste.org/agir/entreprises/nos-emplois-pas-leurs-profits-une-campagne-du-npa
++|page=Nos emplois, pas leurs profits… une campagne du NPA
++|auteurs=Christine Poupin
++|site=L’Anticapitaliste
++}}{{Référence sitographique pour
++|lien=https://www.vie-publique.fr/discours/208208-declarations-de-mme-arlette-laguiller-porte-parole-de-lutte-ouvriere-et
++|page=Déclarations de Mme Arlette Laguiller sur l’interdiction des licenciements
++|auteurs=Arlette Laguiller
++|site=Vie publique
++|date=20 novembre 2001
++}}{{Référence sitographique pour
++|lien=https://www.vie-publique.fr/discours/130299-declarations-de-mme-arlette-laguiller-porte-parole-de-lutte-ouvriere-et
++|page=Déclarations de Mme Arlette Laguiller sur l’emploi et les licenciements
++|auteurs=Arlette Laguiller
++|site=Vie publique
++|date=3 mars 2002
++}}{{Référence sitographique pour
++|lien=https://www.vie-publique.fr/discours/165387-declaration-de-mme-arlette-laguiller-porte-parole-de-lutte-ouvriere-et
++|page=Déclaration de Mme Arlette Laguiller sur le chômage et les licenciements
++|auteurs=Arlette Laguiller
++|site=Vie publique
++|date=9 février 2007
++}}{{Référence sitographique pour
++|lien=https://npa-lanticapitaliste.org/actualite/politique/le-candidat-inconnu-de-lextreme-gauche-veut-sortir-de-lombre-la-croix
++|page=Le candidat "inconnu" de l’extrême gauche veut sortir de l’ombre
++|auteurs=Pierre Bienvault
++|site=NPA / La Croix
++}}{{Référence sitographique pour
++|lien=https://www.lutte-ouvriere.org/mensuel/article/2017-01-22-election-presidentielle-voter-nathalie-arthaud-pour-faire-entendre-le-camp-des-travailleurs_75201.html
++|page=Élection présidentielle : voter Nathalie Arthaud, pour faire entendre le camp des travailleurs
++|auteurs=Lutte ouvrière
++|site=Lutte ouvrière
++|date=22 janvier 2017
++}}{{Référence sitographique pour
++|lien=https://www.revolutionpermanente.fr/CDI-pour-tous-temps-de-travail-a-32h-1-millions-d-embauche-dans-le-public-le-programme-de-Poutou
++|page=CDI pour tous, temps de travail à 32 h, un million d’embauches dans le public : le programme de Poutou
++|site=Révolution Permanente
++}}{{Référence sitographique pour
++|lien=https://www.lutte-ouvriere.org/journal/article/2012-03-29-en-votant-pour-nathalie-arthaud-apporter-son-soutien-un-programme-de-lutte_26972.html
++|page=En votant pour Nathalie Arthaud, apporter son soutien à un programme de lutte
++|auteurs=Lutte ouvrière
++|site=Lutte ouvrière
++|date=29 mars 2012
++}}{{Référence sitographique pour
++|lien=https://www.lutte-ouvriere.org/journal/article/2012-10-31-pour-mettre-un-frein-au-chomage-interdiction-des-licenciements_28443.html
++|page=Pour mettre un frein au chômage : Interdiction des licenciements !
++|auteurs=Lutte ouvrière
++|site=Lutte ouvrière
++|date=31 octobre 2012
++}}{{Référence sitographique pour
++|lien=https://www.lutte-ouvriere.org/portail/editoriaux/avec-nathalie-arthaud-faisons-entendre-le-camp-des-travailleurs-83826.html
++|page=Avec Nathalie Arthaud, faisons entendre le camp des travailleurs
++|auteurs=Lutte ouvrière
++|site=Lutte ouvrière
++|date=20 mars 2017
++}}{{Référence sitographique pour
++|lien=https://www.lutte-ouvriere.org/portail/editoriaux/interdiction-licenciements-sous-peine-requisition-184019.html
++|page=Interdiction des licenciements sous peine de réquisition !
++|auteurs=Lutte ouvrière
++|site=Lutte ouvrière
++|date=5 mai 2025
++}}{{Référence sitographique pour
++|lien=https://lutte-ouvriere.org/portail/breves/contre-licenciements-strategie-lutte-188211.html
++|page=Contre les licenciements, la stratégie de la lutte
++|auteurs=Lutte ouvrière
++|site=Lutte ouvrière
++|date=3 novembre 2025
++}}{{Référence sitographique pour
++|lien=https://www.lutte-ouvriere.org/journal/article/linterdiction-licenciements-190484.html
++|page=Pour l’interdiction des licenciements !
++|auteurs=Nadia Cantale
++|site=Lutte ouvrière
++|date=14 janvier 2026
+ }}
+ |sitographie-contre={{Référence sitographique contre
+-|lien=https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036762081
+-|page=Licenciement pour motif économique
+-|auteurs=République française
+-|site=Légifrance
+-|date=1er avril 2018
+-}}{{Référence sitographique contre
+ |lien=https://www.conseil-constitutionnel.fr/publications/titre-vii/la-constitutionnalisation-du-droit-du-travail-etude-d-une-dynamique-contemporaine
+-|page=La constitutionnalisation du droit du travail
+ |auteurs=Conseil constitutionnel
+ |site=Conseil constitutionnel
+ |date=septembre 2018
+ }}{{Référence sitographique contre
+ |lien=https://www.oecd.org/fr/publications/perspectives-de-l-emploi-de-l-ocde-2026_f8a23d95-fr/full-report/component-10.html
+-|page=Évolutions récentes de la législation sur la protection de l'emploi
+ |auteurs=Organisation de coopération et de développement économiques
+ |site=OCDE
+ |date=7 juillet 2026
++}}{{Référence sitographique contre
++|lien=https://www.oecd.org/fr/data/datasets/oecd-indicators-of-employment-protection.html
++|auteurs=Organisation de coopération et de développement économiques
++|site=OCDE
++}}{{Référence sitographique contre
++|lien=https://www.oecd.org/fr/publications/perspectives-de-l-emploi-de-l-ocde-2020_b1547de3-fr.html
++|auteurs=Organisation de coopération et de développement économiques
++|site=OCDE
++|date=7 juillet 2020
++}}{{Référence sitographique contre
++|lien=https://www.oecd.org/fr/publications/des-emplois-de-qualite-pour-tous-dans-un-monde-du-travail-en-mutation_4e6a92fa-fr/full-report/component-11.html
++|auteurs=Organisation de coopération et de développement économiques
++|site=OCDE
++|date=2019
++}}{{Référence sitographique contre
++|lien=https://www.oecd.org/fr/social/marchedutravailcapitalhumainetinegalites/33942945.pdf
++|auteurs=Organisation de coopération et de développement économiques
++|site=OCDE
++}}{{Référence sitographique contre
++|lien=https://www.vie-publique.fr/rapport/30923-refondation-du-droit-social-concilier-protection-des-travailleurs-et-e
++|auteurs=Jacques Barthélémy, Gilbert Cette
++|site=Vie publique
++|date=19 janvier 2010
++}}{{Référence sitographique contre
++|lien=https://www.oecd.org/fr/themes/protection-de-l-emploi-et-salaires-minimums.html
++|auteurs=Organisation de coopération et de développement économiques
++|site=OCDE
++}}{{Référence sitographique contre
++|lien=https://blogs.worldbank.org/fr/voices/reglementation-du-marche-du-travail-les-difficultes-propres-aux-pays-en-developpement
++|auteurs=Banque mondiale
++|site=Banque mondiale
++|date=26 août 2021
+ }}
+ |sitographie-ni-pour-ni-contre={{Référence sitographique
+-|lien=https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000006177858/
+-|page=Licenciement pour motif personnel
+-|auteurs=République française
+-|site=Légifrance
+-|date=27 juin 2008
+-}}{{Référence sitographique
+ |lien=https://eur-lex.europa.eu/legal-content/FR/TXT/HTML/?uri=CELEX:12012P/TXT
+-|page=Charte des droits fondamentaux de l'Union européenne
+ |auteurs=Union européenne
+ |site=EUR-Lex
+ |date=26 octobre 2012
+ }}{{Référence sitographique
++|lien=https://www.ilo.org/fr/protection-de-lemploi
++|auteurs=Organisation internationale du Travail
++|site=Organisation internationale du Travail
++|date=27 mars 2026
++}}{{Référence sitographique
+ |lien=https://normlex.ilo.org/dyn/nrmlx_fr/f?p=NORMLEXPUB:12100:0::NO::P12100_ILO_CODE:C158
+-|page=Convention (n° 158) sur le licenciement, 1982
+ |auteurs=Organisation internationale du Travail
+ |site=NORMLEX
+ |date=22 juin 1982
++}}{{Référence sitographique
++|lien=https://normlex.ilo.org/dyn/nrmlx_fr/f?p=NORMLEXPUB:12100:0::NO::P12100_ILO_CODE:R166
++|auteurs=Organisation internationale du Travail
++|site=NORMLEX
++|date=22 juin 1982
++}}{{Référence sitographique
++|lien=https://rm.coe.int/168007cf94
++|auteurs=Conseil de l'Europe
++|site=Conseil de l'Europe
++|date=3 mai 1996
++}}{{Référence sitographique
++|lien=https://digitallibrary.un.org/record/566942/files/E_C.12_GC_18-FR.pdf
++|auteurs=Comité des droits économiques, sociaux et culturels des Nations unies
++|site=Bibliothèque numérique des Nations unies
++|date=24 novembre 2005
++}}{{Référence sitographique
++|lien=https://eplex.ilo.org/fr/valid-and-prohibited-grounds-for-dismissal
++|auteurs=Organisation internationale du Travail
++|site=EPLex
++}}{{Référence sitographique
++|lien=https://fra.europa.eu/fr/eu-charter/article/30-protection-en-cas-de-licenciement-injustifie
++|auteurs=Agence des droits fondamentaux de l’Union européenne
++|site=Agence des droits fondamentaux de l’Union européenne
++}}{{Référence sitographique
++|lien=https://www.ilo.org/fr/helpdesk-du-bit-questionsreponses-sur-les-entreprises-et-la-securite-de
++|auteurs=Organisation internationale du Travail
++|site=Organisation internationale du Travail
++}}{{Référence sitographique
++|lien=https://travail-emploi.gouv.fr/la-rupture-du-contrat-de-travail
++|auteurs=Ministère du Travail
++|site=Ministère du Travail
++}}{{Référence sitographique
++|lien=https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006145396/
++|auteurs=République française
++|site=Légifrance
++}}{{Référence sitographique
++|lien=https://travail-emploi.gouv.fr/sites/travail-emploi/files/files-spip/pdf/questions-reponses_rupture_contrat_travail.pdf
++|auteurs=Direction générale du travail
++|site=Ministère du Travail
++}}{{Référence sitographique
++|lien=https://eplex.ilo.org/fr/node/73250
++|auteurs=Organisation internationale du Travail
++|site=EPLex
++}}{{Référence sitographique
++|lien=https://eplex.ilo.org/fr/redress
++|auteurs=Organisation internationale du Travail
++|site=EPLex
++}}{{Référence sitographique
++|lien=https://eplex.ilo.org/fr/about-us
++|auteurs=Organisation internationale du Travail
++|site=EPLex
++}}{{Référence sitographique
++|lien=https://normlex.ilo.org/dyn/nrmlx_fr/f?p=NORMLEXPUB:11300:0::NO::P11300_INSTRUMENT_ID:312303
++|auteurs=Organisation internationale du Travail
++|site=NORMLEX
++}}{{Référence sitographique
++|lien=https://code.travail.gouv.fr/droit-du-travail
++|auteurs=Ministère du Travail
++|site=Code du travail numérique
++}}{{Référence sitographique
++|lien=https://dares.travail-emploi.gouv.fr/enquete-source/gestion-des-ruptures-et-analyse-des-fins-de-cdi
++|auteurs=Direction de l’animation de la recherche, des études et des statistiques
++|site=DARES
+ }}
+ |vidéographie-pour={{Référence vidéographique pour
+-|titre=La France insoumise exige l'interdiction des licenciements boursiers
+-|auteurs=Canal FI
+-|lien=https://www.youtube.com/watch?v=ntzdK28BfsI
++|titre=Nathalie Arthaud (LO) : "Interdire tous les licenciements"
++|auteurs=Agence France-Presse
++|lien=https://www.youtube.com/watch?v=nV57Z2ZSpuY
+ }}{{Référence vidéographique pour
+-|titre=URGENCE INDUSTRIE : 300 000 emplois menacés [Le Local #15]
+-|auteurs=La CGT
+-|lien=https://www.youtube.com/watch?v=_-CU-Rs2VNI
++|titre=Mr Capital contre Philippe Poutou - L’interdiction des licenciements
++|lien=https://www.youtube.com/watch?v=wjlYc_QJ7DA
++}}{{Référence vidéographique pour
++|titre=Julien Cynober : Il faut interdire les licenciements
++|auteurs=Lutte ouvrière
++|lien=https://lutte-ouvriere.org/portail/multimedia/julien-cynober-la-chapelle-saint-luc-faut-interdire-licenciements-192215.html
++}}{{Référence vidéographique pour
++|titre=L’éditorial en vidéo : Interdiction des licenciements sous peine de réquisition !
++|auteurs=Lutte ouvrière
++|lien=https://www.lutte-ouvriere.org/portail/multimedia/leditorial-video-interdiction-licenciements-sous-peine-requisition-184025.html
++}}{{Référence vidéographique pour
++|titre=Contre les fermetures et les licenciements : ce combat doit devenir celui de tous !
++|auteurs=Lutte ouvrière
++|lien=https://www.lutte-ouvriere.org/portail/multimedia/ledito-video-contre-fermetures-licenciements-combat-doit-devenir-celui-179905.html
+ }}
+ |vidéographie-contre={{Référence vidéographique contre
+ |titre=Le Medef propose de créer un CDI pouvant être rompu sans motif
+@@ -240,20 +500,31 @@
+ |titre=Réforme du Code du travail : les nouvelles règles des licenciements
+ |auteurs=Franceinfo
+ |lien=https://www.dailymotion.com/video/x5z094f
++}}{{Référence vidéographique contre
++|titre=Barème « Macron » de licenciement et résiliation judiciaire du contrat
++|lien=https://www.youtube.com/watch?v=S-kJ0wuaYag
+ }}
+ |vidéographie-ni-pour-ni-contre={{Référence vidéographique
+-|titre=Licenciements collectifs : comment ne pas se faire abuser par l'employeur ?
+-|auteurs=Mon CSE et moi
+-|lien=https://www.youtube.com/watch?v=oJlCoymtC4E
++|titre=Réparation du licenciement sans cause réelle et sérieuse
++|auteurs=Canal-Droits de Droits et perspectives du droit
++|lien=https://www.youtube.com/watch?v=0qb4QYxcgoA
+ }}{{Référence vidéographique
+-|titre=Les après-midi de la protection sociale « Les transitions collectives »
+-|auteurs=CERCRID
+-|lien=https://www.youtube.com/watch?v=YJZLYeRYzAA
+-}}
+-|débats-connexes={{Débat connexe
+-|page=Faut-il garantir un emploi à chacun ?
+-}}{{Débat connexe
+-|page=Faut-il instaurer un revenu universel ?
++|titre=Présentation de la recherche contentieuse sur les indemnités de licenciement sans cause réelle et sérieuse
++|auteurs=Canal-Droits de Droits et perspectives du droit
++|lien=https://www.youtube.com/watch?v=VlKnQ8NKP2A
++}}{{Référence vidéographique
++|titre=Combien obtenir en cas de licenciement abusif ?
++|lien=https://www.youtube.com/watch?v=GGp0lxwxqjY
++}}{{Référence vidéographique
++|titre=Tout savoir sur le licenciement en 6 étapes et cas pratiques
++|auteurs=Victor Leclaire - LégiPilot
++|lien=https://www.youtube.com/watch?v=t-chY5lKbh8
++}}{{Référence vidéographique
++|titre=Le licenciement pour motif personnel : la procédure
++|lien=https://www.youtube.com/watch?v=stIKqlpaAvc
++}}{{Référence vidéographique
++|titre=Le conseil de prud'hommes : comment cela fonctionne ?
++|lien=https://www.youtube.com/watch?v=NPO2xsABVpA
+ }}
+ |rubriques=Droit, Économie, Politique, Société
+ |mots-clés=licenciement, sécurité de l'emploi, droit du travail, chômage, protection des salariés, liberté d'entreprendre
+
+
+================================================================
+fr | A0004 | La sécurité de l'emploi encouragerait l'investissement dans les compétences et l'innovation
+comparison_id: 562b4ae6a40cd6629b64
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Une compétence propre à une entreprise ne s'acquiert pas en un après-midi, et son rendement disparaît si la relation de travail s'interrompt trop vite. La garantie de rester en poste donne au salarié une raison d'apprendre et à l'employeur une raison de financer cet apprentissage. Elle peut aussi libérer les idées risquées. On innove mieux quand une proposition qui dérange n'est pas un billet de sortie.
++|résumé=Une interdiction générale des licenciements donnerait à la relation de travail une stabilité maximale. Une compétence propre à une entreprise ne s'acquiert pas en un après-midi, et son rendement disparaît si la relation de travail s'interrompt trop vite. La garantie de rester en poste donne au salarié une raison d'apprendre et à l'employeur une raison de financer cet apprentissage. Elle peut aussi libérer les idées risquées. On innove mieux quand une proposition qui dérange n'est pas un billet de sortie.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=Conseil de l'emploi, des revenus et de la cohésion sociale
+ |ouvrage=La sécurité de l'emploi face aux défis des transformations économiques
+
+
+================================================================
+fr | A0006 | Interdire les licenciements obligerait les entreprises à chercher des solutions moins destructrices
+comparison_id: 201aa18475c8831280e6
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -26,6 +26,9 @@
+ }}{{Justification
+ |page=La reprise par les salariés ou la transformation en coopérative peut sauver une activité viable
+ |titre-affiché=Donner l'entreprise à ceux qui la font vivre
++}}{{Justification
++|page=Interdire les licenciements empêcherait que des entreprises viables sacrifient l'emploi à des objectifs financiers de court terme
++|titre-affiché=Empêcher le court-termisme financier de sacrifier l'emploi
+ }}
+ |objections={{Objection
+ |page=La reconversion interne ne peut pas créer une demande disparue ni sauver toute activité
+
+
+================================================================
+fr | A0018 | Interdire les suppressions d'emplois rentables empêcherait que les dividendes priment automatiquement sur l'emploi
+comparison_id: ec150d63e1b1231e5d8e
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Un dividende resterait un choix après investissement et maintien des équipes, non un péage prélevé avant eux. Une entreprise bénéficiaire peut supprimer des postes pour relever plus vite sa marge ou satisfaire un objectif de rendement, sans que sa survie soit menacée. Interdire ces licenciements retirerait à l'emploi son statut de première variable d'ajustement au profit de l'actionnaire.
++|résumé=Dans le cas particulier d'une entreprise bénéficiaire, un dividende resterait un choix effectué après l'investissement et le maintien des équipes, non un prélèvement servi avant eux. Supprimer des postes pour relever plus vite une marge ne répond pas à une impossibilité d'employer. L'interdiction générale aurait ici pour effet de retirer à l'emploi son statut de première variable d'ajustement au profit de l'actionnaire.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=Tristan Boyer
+ |ouvrage=Marchés financiers et licenciements
+
+
+================================================================
+fr | A0040 | Interdire les licenciements préserverait les territoires dépendants d'un grand employeur
+comparison_id: 1aa42cd34f2412772769
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -22,6 +22,9 @@
+ }}{{Justification
+ |page=Les entreprises peuvent déplacer leur capital plus facilement que les travailleurs leur vie
+ |titre-affiché=Un capital mobile face à des vies enracinées
++}}{{Justification
++|page=Interdire certains licenciements préserverait des compétences et des capacités industrielles stratégiques difficiles à reconstituer
++|titre-affiché=Préserver les capacités industrielles stratégiques
+ }}
+ |objections={{Objection
+ |page=Préserver chaque site peut enfermer un territoire dans une activité condamnée
+
+
+================================================================
+fr | A0041 | Une interdiction générale des licenciements serait impossible à définir sans arbitraire
+comparison_id: 0c3ac07acd952749c003
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Être bénéficiaire sur l'année n'empêche pas une entreprise de manquer de trésorerie le mois suivant, tandis qu'un groupe rentable peut abriter un établissement condamné. Il faudrait décider quel périmètre, quelle période, quel niveau de marge et quelles exceptions rendent un licenciement licite. À force de tracer une frontière dans des comptes mouvants, la règle risquerait de devenir un concours de montages et de contentieux.
++|résumé=Une interdiction générale devrait décider quelles ruptures restent permises en cas de faute grave, d'inaptitude durable, de disparition du poste ou de cessation réelle de l'entreprise. Être bénéficiaire sur l'année n'empêche pas une entreprise de manquer de trésorerie le mois suivant, tandis qu'un groupe rentable peut abriter un établissement condamné. Il faudrait aussi choisir le périmètre, la période et le niveau de marge qui rendent un licenciement licite. À force de tracer une frontière entre des motifs et des comptes mouvants, la règle risquerait de devenir un concours de montages et de contentieux.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=Tristan Boyer
+ |ouvrage=Marchés financiers et licenciements
+
+
+================================================================
+fr | A0049 | Des politiques territoriales de transition protègent mieux les habitants que le gel de chaque usine
+comparison_id: 53d8d67a6641079e933f
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Le véritable objectif est que les personnes retrouvent un revenu et une perspective dans leur territoire, pas que chaque enseigne demeure éternellement au même endroit. Formation, reconversion, soutien aux fournisseurs et investissement local peuvent préparer plusieurs portes de sortie ; une politique qui sauve les habitants vaut mieux qu'une politique qui momifie les murs.
++|résumé=Cette objection soutient que les dommages territoriaux des licenciements peuvent être combattus sans geler chaque emploi dans chaque usine. Le véritable objectif est que les personnes retrouvent un revenu et une perspective dans leur territoire, pas que chaque enseigne demeure éternellement au même endroit. Formation, reconversion, soutien aux fournisseurs et investissement local peuvent préparer plusieurs portes de sortie ; une politique qui sauve les habitants vaut mieux qu'une politique qui momifie les murs.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=Conseil d'orientation pour l'emploi
+ |ouvrage=Rapport d'étape sur la sécurisation et la dynamisation des parcours professionnels
+
+
+================================================================
+fr | A0101 | Un veto ciblé sur les licenciements massifs ou profitables peut compléter la codétermination
+comparison_id: fc9b6ce6dd3af6bcc9b0
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Le pouvoir des salariés peut être réservé aux suppressions d’emplois qui menacent un territoire ou paraissent contredites par les résultats et les distributions financières du groupe. Il faut donc déterminer qui peut imposer la décision et sous quelles garanties ; un veto ciblé sur les licenciements massifs ou profitables peut compléter la codétermination.
++|résumé=Une solution moins large que l'interdiction générale consisterait à réserver un veto aux suppressions d'emplois massives ou décidées par un groupe profitable. Ce compromis renforcerait la codétermination lorsque le choc territorial est majeur ou que les résultats financiers contredisent l'urgence invoquée. Il laisserait cependant subsister un droit de licencier dans les autres situations.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=Marie-Laure Morin, Christine Vicens
+ |article=Licenciement économique, flexibilité des entreprises et sécurité des travailleurs : les enseignements d'une comparaison européenne
+
+
+================================================================
+fr | A0109 | Une interdiction permanente ne peut pas dépendre d'une subvention publique permanente
+comparison_id: 5accc2bf927191246f23
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Une aide conçue pour une crise brève devient insoutenable si elle doit compenser indéfiniment toute baisse de productivité ou de demande : la question devient alors la qualité des ajustements de remplacement, pas leur disparition. À défaut, le budget public soutient sans terme des structures que la demande ne porte plus.
++|résumé=Appliquée à tous les licenciements, une interdiction permanente ne peut pas reposer sur une compensation publique sans fin. Une aide conçue pour une crise brève devient insoutenable si elle doit compenser indéfiniment toute baisse de productivité ou de demande : la question devient alors la qualité des ajustements de remplacement, pas leur disparition. À défaut, le budget public soutient sans terme des structures que la demande ne porte plus.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=Conseil d'orientation pour l'emploi
+ |ouvrage=Rapport d'étape sur la sécurisation et la dynamisation des parcours professionnels
+
+
+================================================================
+fr | A0116 | La coordination internationale reste incomplète et trop lente face aux décisions d'investissement
+comparison_id: 85e0535cb8b6c6782ba8
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Les capitaux peuvent changer de destination en quelques mois, alors que l’adoption et le contrôle de standards communs demandent souvent des années. L’arbitrage territorial se fait au moment d’engager le capital, avec le coût de sortie parmi d’autres facteurs.
++|résumé=Coordonner entre plusieurs pays une interdiction générale des licenciements pourrait limiter les déplacements d'investissement, mais cette réponse arrive difficilement au même rythme que les décisions privées. Les capitaux peuvent changer de destination en quelques mois, alors que l'adoption et le contrôle de standards communs demandent souvent des années. L'arbitrage territorial se fait au moment d'engager le capital, avec le coût futur d'un licenciement parmi d'autres facteurs.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=David Alzate, Eliana Carranza, Joana Duran-Franch, Truman Packard, Celina Proffen
+ |ouvrage=How Regulations Impact the Labor Market: A Review of the Literatures on Product and Labor Market Regulations
+
+
+================================================================
+fr | A0130 | La sécurité psychologique et des objectifs clairs peuvent préserver l'initiative sans supprimer l'exigence
+comparison_id: e7b7cec9199002258efe
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Expérimenter sans craindre la sanction arbitraire reste possible lorsque les résultats, la coopération et les progrès sont discutés régulièrement. La protection ne produit donc de l'innovation que si elle demeure compatible avec l'apprentissage et la responsabilité.
++|résumé=Interdire les licenciements ne condamne pas l'entreprise à renoncer à toute exigence professionnelle. Expérimenter sans craindre la sanction arbitraire reste possible lorsque les résultats, la coopération et les progrès sont discutés régulièrement. La protection ne produit donc de l'innovation que si elle demeure compatible avec l'apprentissage et la responsabilité.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=Conseil de l'emploi, des revenus et de la cohésion sociale
+ |ouvrage=La sécurité de l'emploi face aux défis des transformations économiques
+
+
+================================================================
+fr | A0138 | Des obligations d'alerte précoce peuvent ouvrir la recherche de solutions avant l'insolvabilité
+comparison_id: 2a60da179f9b18406e7d
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=La direction peut être tenue d’informer les représentants, les créanciers ou une autorité dès l’apparition d’indicateurs sérieux plutôt qu’au jour du plan social. La solution doit donc être activée avant l’épuisement de la trésorerie et produire des obligations concrètes.
++|résumé=Pour éviter que le contrôle de chaque licenciement n'arrive au bord de l'insolvabilité, la recherche d'alternatives peut commencer bien avant l'annonce de la rupture. La direction peut être tenue d'informer les représentants, les créanciers ou une autorité dès l'apparition d'indicateurs sérieux plutôt qu'au jour du plan social. La solution doit donc être activée avant l'épuisement de la trésorerie et produire des obligations concrètes.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=Conseil d'orientation pour l'emploi
+ |ouvrage=Rapport d'étape sur la sécurisation et la dynamisation des parcours professionnels
+
+
+================================================================
+fr | A0140 | Une alerte confidentielle et un régime de protection peuvent réduire l'incitation à dissimuler
+comparison_id: dcedd26cfb5e3d0b90c5
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Un canal protégé vers les représentants, le juge ou une administration peut déclencher l’aide et suspendre certaines sanctions sans annoncer immédiatement la détresse au marché. L’efficacité exige un déclenchement précoce, des moyens et un responsable clairement identifié : une alerte confidentielle et un régime de protection peuvent réduire l’incitation à dissimuler.
++|résumé=Si une interdiction générale des licenciements pousse une entreprise en difficulté à cacher sa situation, une alerte confidentielle peut réduire cet effet pervers. Un canal protégé vers les représentants, le juge ou une administration peut déclencher l'aide et suspendre certaines sanctions sans annoncer immédiatement la détresse au marché. L'efficacité exige un déclenchement précoce, des moyens et un responsable clairement identifié : une alerte confidentielle et un régime de protection peuvent réduire l'incitation à dissimuler.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=Conseil d'orientation pour l'emploi
+ |ouvrage=Rapport d'étape sur la sécurisation et la dynamisation des parcours professionnels
+
+
+================================================================
+fr | A0143 | Les actions collectives, la charge de preuve aménagée et la réintégration provisoire peuvent rendre le droit ciblé effectif
+comparison_id: d003de5ed8128badf0fd
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Des statistiques, des documents internes et une mesure provisoire peuvent déplacer le rapport de force avant que l’affaire ne soit irréparable. Une règle spécialisée n’est efficace que si la preuve est accessible, la réintégration possible et la sanction réellement dissuasive.
++|résumé=Cette solution affirme qu'un droit ciblé contre les licenciements discriminatoires ou de représailles peut constituer une alternative réelle à l'interdiction générale. Des statistiques, des documents internes et une mesure provisoire peuvent déplacer le rapport de force avant que l'affaire ne soit irréparable. Une règle spécialisée n'est efficace que si la preuve est accessible, la réintégration possible et la sanction réellement dissuasive.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=Marie-Laure Morin, Christine Vicens
+ |article=Licenciement économique, flexibilité des entreprises et sécurité des travailleurs : les enseignements d'une comparaison européenne
+
+
+================================================================
+fr | A0144 | Les réorganisations permettent encore de cacher une sélection discriminatoire parmi plusieurs critères plausibles
+comparison_id: 23f6db247dbcace0946c
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=L’âge, la santé, l’activité syndicale ou la grossesse peuvent être masqués derrière des évaluations de polyvalence, de mobilité ou de coût apparemment neutres. Le droit ciblé doit pouvoir percer le motif de façade sans laisser la victime attendre des années.
++|résumé=Même lorsque le droit cible les licenciements discriminatoires, une réorganisation peut encore cacher la sélection des salariés évincés. L'âge, la santé, l'activité syndicale ou la grossesse peuvent être masqués derrière des évaluations de polyvalence, de mobilité ou de coût apparemment neutres. Le droit ciblé doit pouvoir percer le motif de façade sans laisser la victime attendre des années.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=Marie-Laure Morin, Christine Vicens
+ |article=Licenciement économique, flexibilité des entreprises et sécurité des travailleurs : les enseignements d'une comparaison européenne
+
+
+================================================================
+fr | A0167 | Un diagnostic contradictoire et des mesures de soutien peuvent distinguer l'incapacité réelle du contexte
+comparison_id: 38a416ca89ab299280a8
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Des objectifs précis, des observations partagées, une formation et un délai raisonnable permettent de voir si le problème persiste après correction de l’environnement. La procédure doit chercher la cause sans transformer les collègues en otages d’un problème persistant.
++|résumé=Lorsqu'une interdiction générale des licenciements prévoit une exception pour incapacité ou insuffisance durable, un diagnostic contradictoire doit empêcher que cette exception devienne une porte de sortie facile. Des objectifs précis, des observations partagées, une formation et un délai raisonnable permettent de voir si le problème persiste après correction de l'environnement. La procédure doit chercher la cause sans transformer les collègues en otages d'un problème persistant.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=Marie-Laure Morin, Christine Vicens
+ |article=Licenciement économique, flexibilité des entreprises et sécurité des travailleurs : les enseignements d'une comparaison européenne
+
+
+================================================================
+fr | A0170 | Toute limitation de la liberté d'entreprendre doit néanmoins rester proportionnée
+comparison_id: 78c1a3df99d340866e33
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Un objectif social légitime ne suffit pas à justifier la mesure la plus rigide si une procédure, une indemnité ou une interdiction ciblée protège presque aussi bien. Le contrôle de proportionnalité oblige précisément à comparer l’interdiction avec des moyens moins restrictifs ; toute limitation de la liberté d’entreprendre doit néanmoins rester proportionnée.
++|résumé=Un objectif social légitime ne suffit pas à justifier une interdiction générale des licenciements si une procédure, une indemnité ou une interdiction ciblée protège presque aussi bien. Le contrôle de proportionnalité oblige précisément à comparer l'interdiction avec des moyens moins restrictifs ; toute limitation de la liberté d'entreprendre doit néanmoins rester proportionnée.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=Marie-Laure Morin, Christine Vicens
+ |article=Licenciement économique, flexibilité des entreprises et sécurité des travailleurs : les enseignements d'une comparaison européenne
+
+
+================================================================
+fr | A0189 | La loi peut exempter la fermeture véritable tout en empêchant la fermeture stratégique suivie d'une reprise
+comparison_id: 2ce8e3db232a410f291a
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Une présomption de continuité peut s’appliquer lorsque les mêmes actifs, clients, dirigeants ou activités réapparaissent rapidement dans une autre structure. Le droit doit donc distinguer la contrainte subie du choix de gestion présenté comme inévitable ; la loi peut exempter la fermeture véritable tout en empêchant la fermeture stratégique suivie d’une reprise.
++|résumé=Une interdiction générale peut réserver une exception à la cessation véritable de l'employeur sans autoriser une fausse fermeture destinée à licencier puis recommencer ailleurs. Une présomption de continuité peut s'appliquer lorsque les mêmes actifs, clients, dirigeants ou activités réapparaissent rapidement dans une autre structure. Le droit doit donc distinguer la contrainte subie du choix de gestion présenté comme inévitable ; la loi peut exempter la fermeture véritable tout en empêchant la fermeture stratégique suivie d'une reprise.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=David Alzate, Eliana Carranza, Joana Duran-Franch, Truman Packard, Celina Proffen
+ |ouvrage=How Regulations Impact the Labor Market: A Review of the Literatures on Product and Labor Market Regulations
+
+
+================================================================
+fr | A0201 | Interdire les licenciements empêcherait que des entreprises viables sacrifient l'emploi à des objectifs financiers de court terme
+comparison_id: 26bc8ad6c979008fe5e5
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Fermer un service rentable peut répondre non à sa disparition, mais au désir d'améliorer rapidement un indicateur financier ou de financer une distribution aux actionnaires. Une interdiction retirerait au licenciement son rôle de bouton facile pour embellir les comptes du trimestre. Elle obligerait les dirigeants à prouver que l'emploi est réellement devenu insoutenable, et non simplement moins rémunérateur que l'objectif annoncé.
++|résumé=Une interdiction générale concernerait aussi les entreprises viables qui suppriment des postes pour relever rapidement une marge, financer une distribution ou atteindre un objectif de rendement. Dans ce cas particulier, le licenciement ne répond pas à la disparition de l'activité : il sert de bouton facile pour améliorer un indicateur financier. Retirer ce bouton obligerait les dirigeants à conserver l'emploi ou à démontrer qu'il est réellement devenu impossible à maintenir.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=Tristan Boyer
+ |ouvrage=Marchés financiers et licenciements
+
+
+================================================================
+fr | A0203 | Interdire certains licenciements préserverait des compétences et des capacités industrielles stratégiques difficiles à reconstituer
+comparison_id: 41ab94e3943fff9e3ad8
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Dans la défense, l'énergie, la santé ou certaines technologies, une équipe dispersée ne se reconstitue pas par un simple recrutement lorsque survient une crise. Les savoir-faire, les fournisseurs qualifiés et les autorisations forment une capacité collective qui peut disparaître longtemps après la dernière fiche de paie. Une interdiction ciblée peut donc protéger non seulement les salariés, mais une faculté de production dont dépend la sécurité de tous.
++|résumé=Une interdiction générale pourrait aussi empêcher la dispersion d'équipes dont la valeur dépasse le poste immédiatement supprimé. Dans la défense, l'énergie, la santé ou certaines technologies, les savoir-faire, les fournisseurs qualifiés et les autorisations forment une capacité collective qui ne se rachète pas au moment d'une crise. Le maintien des emplois préserverait alors une faculté de production utile à l'ensemble de la société.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=European Commission
+ |ouvrage=Supporting Households in Regional Transformations: A Toolkit for a Just Transition
+
+
+================================================================
+fr | A0208 | Des restrictions liées aux dividendes, aux aides publiques ou à l'endettement cibleraient mieux les licenciements opportunistes qu'une interdiction générale
+comparison_id: 7815c858ecaf9fa99f05
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Le problème du court-termisme ne concerne pas chaque entreprise qui perd durablement ses débouchés. La loi peut donc suspendre les licenciements après une distribution exceptionnelle, une aide publique ou un endettement organisé au profit des actionnaires. Une règle ciblée frappe le montage contesté sans transformer toute baisse d'activité en obligation de maintenir indéfiniment les postes.
++|résumé=Lorsque l'abus vient d'une distribution exceptionnelle, d'une aide publique ou d'un endettement organisé au profit des actionnaires, une règle ciblée peut suspendre les licenciements liés à ce montage. Elle frappe alors la pratique contestée sans imposer le maintien de tous les postes dans chaque entreprise qui perd durablement ses débouchés. Cette solution constitue donc une objection à l'interdiction générale, non une autre manière de la nommer.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=Tristan Boyer
+ |ouvrage=Marchés financiers et licenciements
+
+
+================================================================
+fr | A0253 | Une administration indépendante et des projets locaux activés automatiquement peuvent réduire le clientélisme
+comparison_id: 8aa25a9f2817db1a5539
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Les collectivités peuvent tenir une réserve publique de travaux sociaux, environnementaux et culturels évalués avant leur activation. L'accès repose sur des règles générales et la gestion sur des organismes distincts du pouvoir électoral immédiat. Le programme n'est pas à l'abri du gaspillage. Des règles préalables le soustraient au moins à l'improvisation et à la faveur personnelle.
++|résumé=Présentée comme alternative à l'interdiction des licenciements, une garantie publique d'emploi doit éviter de devenir un réservoir de faveurs politiques. Les collectivités peuvent tenir une réserve publique de travaux sociaux, environnementaux et culturels évalués avant leur activation. L'accès repose sur des règles générales et la gestion sur des organismes distincts du pouvoir électoral immédiat. Le programme n'est pas à l'abri du gaspillage. Des règles préalables le soustraient au moins à l'improvisation et à la faveur personnelle.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=L. Randall Wray
+ |ouvrage=The Employer of Last Resort Programme: Could It Work for Developing Countries?
+
+
+================================================================
+fr | A0269 | Des critères multiples et audités peuvent équilibrer vulnérabilité, compétences et égalité de traitement
+comparison_id: 37892446aeeadd1cb3fe
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=La décision peut combiner l'ancienneté, la transférabilité des compétences, la situation sociale et l'absence de discrimination, avec une pondération connue avant le conflit. Un audit collectif recherche les effets disproportionnés sur l'âge, le sexe, le handicap ou l'origine. Aucun classement n'est neutre. Un choix explicite et contrôlé vaut mieux qu'une liste fabriquée dans le bureau de la direction.
++|résumé=Lorsque certains licenciements restent permis comme exceptions à l'interdiction générale, des critères multiples et audités peuvent encadrer le choix des salariés concernés. La décision peut combiner l'ancienneté, la transférabilité des compétences, la situation sociale et l'absence de discrimination, avec une pondération connue avant le conflit. Un audit collectif recherche les effets disproportionnés sur l'âge, le sexe, le handicap ou l'origine. Aucun classement n'est neutre. Un choix explicite et contrôlé vaut mieux qu'une liste fabriquée dans le bureau de la direction.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=David Alzate, Eliana Carranza, Joana Duran-Franch, Truman Packard, Celina Proffen
+ |ouvrage=How Regulations Impact the Labor Market: A Review of the Literatures on Product and Labor Market Regulations
+
+
+================================================================
+fr | A0270 | La pondération des critères reste un choix politique contestable que l'audit ne peut rendre neutre
+comparison_id: 07e0069d2d746f7adbd8
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |avertissements-argument=Argument généré par IA
+-|résumé=Attribuer plus de poids à l'ancienneté, aux charges familiales ou aux compétences décide implicitement qui doit porter le risque économique. Un tableur transparent n'efface pas cette hiérarchie de valeurs. Le contrôle peut empêcher la fraude et la discrimination. La transparence rend la hiérarchie discutable sans la transformer en vérité technique.
++|résumé=Lorsque l'interdiction générale admet certains licenciements, pondérer les critères de sélection décide implicitement qui doit porter le risque économique. Attribuer plus de poids à l'ancienneté, aux charges familiales ou aux compétences reste donc un choix politique. Un tableur transparent n'efface pas cette hiérarchie de valeurs. Le contrôle peut empêcher la fraude et la discrimination. La transparence rend la hiérarchie discutable sans la transformer en vérité technique.
+ |références-bibliographiques={{Référence bibliographique
+ |auteurs=David Alzate, Eliana Carranza, Joana Duran-Franch, Truman Packard, Celina Proffen
+ |ouvrage=How Regulations Impact the Labor Market: A Review of the Literatures on Product and Labor Market Regulations
+
+
+================================================================
+en | interdiction_licenciements | Should employers be prohibited from dismissing workers?
+comparison_id: 620f3023f757f0d9612a
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -4,23 +4,23 @@
+ |progress=Constructed debate
+ |debate-warnings=Debate generated by AI
+ |introduction={{Subsection
+-|title=What a ban would cover
+-|content=Dismissal is an employer-initiated termination of employment. This debate therefore excludes resignation, retirement and the ordinary expiry of a fixed-term contract. It compares a prohibition in principle, perhaps with narrow exceptions for gross misconduct or the employer's disappearance, with systems that permit termination subject to valid reasons and remedies. The distinction matters because most legal systems already regulate dismissal; a ban would move the boundary from scrutiny to legal impossibility.
++|title=The question concerns every employer-initiated dismissal
++|content=Dismissal is the termination of employment at the employer's initiative. A general prohibition would therefore cover conduct, capability and incapacity cases as well as economic dismissals, whether individual or collective. It is much broader than proposals aimed only at profitable firms, shareholder payouts or subsidised companies. Those narrower cases remain useful examples, but the central question is whether an employer should in principle lose the power to end an employment contract.
+ }}{{Subsection
+-|title=Why the issue reaches beyond employment law
+-|content=A job is a contract, an income, a place to accumulate knowledge and a source of social standing. Displacement can leave long-lasting effects on earnings and health.<ref>Jennie E. Brand, “The Far-Reaching Impact of Job Loss and Unemployment”, ''Annual Review of Sociology'', August 2015, pp. 359–375, [https://pmc.ncbi.nlm.nih.gov/articles/PMC4553243/ full text].</ref> For a firm, however, retaining a position remains a cost and may obstruct adaptation to a lasting fall in demand. The crucial distinction is therefore between securing a person's livelihood and freezing one particular job.
++|title=A ban goes beyond protection from unfair dismissal
++|content=Most legal systems regulate dismissal rather than abolish it. ILO Convention No. 158 permits termination for a valid reason connected with the worker's capacity or conduct or with the operational requirements of the undertaking<ref>International Labour Organization, ''Termination of Employment Convention, 1982 (No. 158)'', 22 June 1982, art. 4, [https://normlex.ilo.org/dyn/nrmlx_en/f?p=NORMLEXPUB:12100:0::NO::P12100_ILO_CODE:C158 NORMLEX].</ref> The EU Charter likewise protects workers against unjustified dismissal<ref>European Union, ''Charter of Fundamental Rights of the European Union'', 26 October 2012, art. 30, [https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:12012P/TXT EUR-Lex].</ref> A general ban would take a further step: a valid reason would no longer make dismissal lawful unless it fell within an express exception.
+ }}{{Subsection
+-|title=From protection against arbitrariness to prohibition
+-|content=The International Labour Organization's Convention No. 158 requires a valid reason connected with a worker's capacity or conduct or with operational requirements.<ref>International Labour Organization, ''Termination of Employment Convention, 1982 (No. 158)'', 22 June 1982, art. 4, [https://normlex.ilo.org/dyn/nrmlx_en/f?p=NORMLEXPUB:12100:0::NO::P12100_ILO_CODE:C158 NORMLEX].</ref> The European Union Charter protects workers against unjustified dismissal.<ref>European Union, ''Charter of Fundamental Rights of the European Union'', 26 October 2012, art. 30, [https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:12012P/TXT EUR-Lex].</ref> These standards establish justification and review rather than an unconditional right to the same post.
++|title=Exceptions determine what the prohibition really means
++|content=A general rule must answer hard cases involving gross misconduct, violence, lasting incapacity, vanished work, a permanent fall in demand, closure or the death of an individual employer. Broad exceptions turn prohibition back into strict review of reasons. Very narrow exceptions can require a firm to continue a relationship that has become unworkable or to retain posts for which no activity remains. The real scope therefore depends on the boundary between compulsory retention, redeployment, suspension and genuine cessation of the undertaking.
+ }}{{Subsection
+-|title=Different national starting points
+-|content=The practical meaning of a ban depends heavily on the baseline. At-will employment in every U.S. state except Montana generally allows either party to end employment at any time, provided the reason is not unlawful.<ref>USAGov, “Termination guidance for employers”, updated 24 March 2025, [https://www.usa.gov/termination-for-employers official guidance].</ref> Many European systems instead demand justification, notice, consultation or severance. The OECD indicators compare individual and collective dismissal rules as well as temporary-contract regulation.<ref>Organisation for Economic Co-operation and Development, “OECD Indicators of Employment Protection”, 2025, [https://www.oecd.org/en/data/datasets/oecd-indicators-of-employment-protection.html dataset and methodology].</ref> A proposal described with the same word can therefore be a revolution in one country and an extra layer on a dense legal structure in another.
++|title=What job loss places on the worker
++|content=A job provides income, but also tenure, skills, relationships and a place in a community. Research links involuntary job loss with persistent losses in earnings, health and family stability<ref>Jennie E. Brand, “The Far-Reaching Impact of Job Loss and Unemployment”, ''Annual Review of Sociology'', August 2015, pp. 359-375, [https://pmc.ncbi.nlm.nih.gov/articles/PMC4553243/ full text].</ref> A ban seeks to prevent one household from bearing that shock through a unilateral decision. Opponents answer that income insurance, compensation, training and a guarantee of another job may protect the person without freezing every existing contract.
+ }}{{Subsection
+-|title=Evidence points in more than one direction
+-|content=Employment protection usually reduces job destruction but can also reduce job creation and movement between firms. The latest OECD synthesis stresses both its role in preventing arbitrary separations and sharing social costs, and the risk that poor design will obstruct adjustment.<ref>Organisation for Economic Co-operation and Development, “Recent trends in employment protection legislation”, ''OECD Employment Outlook 2026'', 7 July 2026, [https://www.oecd.org/en/publications/oecd-employment-outlook-2026_7e710f54-en/full-report/recent-trends-in-employment-protection-legislation-tackling-dualism-by-harmonising-and-strengthening-regulations_4e8d82f9.html chapter].</ref> Research also links protection to both stronger investment and weaker reallocation, depending on design and context. The evidence does not support a single mechanical slogan.
++|title=What a prohibition places on the firm and future workers
++|content=Payroll is also a continuing cost. When an activity disappears or an organisation changes, an inability to reduce staff can threaten cash flow, discourage open-ended hiring or shift adjustment into temporary contracts, hours, wages, outsourcing and automation. The OECD describes dismissal regulation as a balance: it protects workers from arbitrariness and makes firms bear part of the social cost, while excessive strictness can slow reallocation and deepen the divide between protected insiders and precarious outsiders<ref>Organisation for Economic Co-operation and Development, “Recent trends in employment protection legislation”, ''OECD Employment Outlook 2026'', 7 July 2026, [https://www.oecd.org/en/publications/oecd-employment-outlook-2026_7e710f54-en/full-report/component-10.html chapter].</ref>
+ }}{{Subsection
+-|title=The underlying political choice
+-|content=The deepest disagreement concerns who should bear the risk of changes in demand, technology and organisation. A ban initially places that risk on the firm and its owners; a more flexible system transfers more of it to workers and unemployment insurance. Between the poles lie valid-reason rules, notice, consultation, compensation, reinstatement, short-time work, training and redeployment. The choice is not simply between managerial freedom and untouchable workers, but between different packages of security, adaptation and power.
++|title=The political choice between job continuity and career security
++|content=A general ban initially places economic risk on the firm and its owners. A regime allowing dismissal transfers more of that risk to the worker, unemployment insurance and the surrounding community. Between the two poles lie valid-reason rules, notice, compensation, reinstatement, short-time work, work sharing, redeployment and public job guarantees. The disagreement is therefore not only about legal severity; it pits security in the same post against security of income and employment across changes in activity.
+ }}
+ |wikipedia-articles={{Wikipedia article
+ |page=Dismissal (employment)
+@@ -57,12 +57,6 @@
+ }}{{Pro argument
+ |page=Banning dismissals would strengthen workplace democracy and collective trust
+ |displayed-title=Strengthening democracy inside the workplace
+-}}{{Pro argument
+-|page=Banning dismissals would stop viable companies sacrificing jobs to short-term financial targets
+-|displayed-title=Stopping short-term finance from sacrificing jobs
+-}}{{Pro argument
+-|page=A targeted dismissal ban would preserve hard-to-rebuild strategic skills and industrial capacity
+-|displayed-title=Preserving strategic industrial capacity
+ }}
+ |con-arguments={{Con argument
+ |page=A firm must be able to reduce staff to survive a lasting fall in activity
+@@ -102,28 +96,23 @@
+ |displayed-title=Avoiding a ban that the justice system cannot enforce
+ }}
+ |pro-bibliography={{Pro bibliographical reference
+-|authors=Organisation for Economic Co-operation and Development
+-|work=Preparing ERTE for the Future
+-|publisher=OECD Publishing
+-|place=Paris
+-|date=October 2024
+-|link=https://www.oecd.org/content/dam/oecd/en/publications/reports/2024/10/preparing-erte-for-the-future_e672ed00/a70bf8ec-en.pdf
++|authors=Socialist Alternative
++|article=A Program to Stop the Layoffs and Create Jobs — What Socialists Say
++|work=Socialist Alternative
++|date=1 June 2003
++|link=https://www.socialistalternative.org/2003/06/01/a-program-to-stop-the-layoffs-and-create-jobs-what-socialists-say/
+ }}{{Pro bibliographical reference
+-|authors=Jennie E. Brand
+-|article=The Far-Reaching Impact of Job Loss and Unemployment
+-|work=Annual Review of Sociology
+-|volume=41
+-|page=359-375
+-|date=August 2015
+-|link=https://pmc.ncbi.nlm.nih.gov/articles/PMC4553243/
++|authors=Platform A
++|article=The Left of the New Anticapitalist Party (NPA) Unites to Form Platform A
++|work=Left Voice
++|date=18 February 2016
++|link=https://www.leftvoice.org/the-left-of-the-new-anticapitalist-party-npa-unites-to-form-platform-a/
+ }}{{Pro bibliographical reference
+-|authors=Guy Mundlak
+-|article=The right to work: Linking human rights and employment policy
+-|work=International Labour Review
+-|volume=146
+-|location=Nos. 3-4
+-|date=2007
+-|link=https://researchrepository.ilo.org/view/pdfCoverPage?download=true&filePid=13100788810002676&instCode=41ILO_INST
++|authors=Jesse Lessinger
++|article=What We Stand For – Demands and Strategy to Fight the Crisis
++|work=Socialist Alternative
++|date=7 January 2010
++|link=https://www.socialistalternative.org/2010/01/07/what-we-stand-for-demands-and-strategy-to-fight-the-crisis/
+ }}
+ |con-bibliography={{Con bibliographical reference
+ |authors=John T. Addison, Paulino Teixeira
+@@ -134,7 +123,7 @@
+ |link=https://docs.iza.org/dp381.pdf
+ }}{{Con bibliographical reference
+ |authors=World Bank, International Labour Organization
+-|work=Balancing Regulations to Promote Jobs
++|work=Balancing Regulations to Promote Jobs: From Employment Contracts to Unemployment Benefits
+ |publisher=World Bank
+ |place=Washington, DC
+ |date=2012
+@@ -146,6 +135,33 @@
+ |place=Bonn
+ |date=December 2024
+ |link=https://docs.iza.org/dp17536.pdf
++}}{{Con bibliographical reference
++|authors=Richard A. Epstein
++|article=In Defense of the Contract at Will
++|work=University of Chicago Law Review
++|volume=51
++|issue=4
++|page=947-982
++|date=1984
++|link=https://chicagounbound.uchicago.edu/cgi/viewcontent.cgi?article=2290&context=journal_articles
++}}{{Con bibliographical reference
++|authors=Edward P. Lazear
++|article=Job Security Provisions and Employment
++|work=Quarterly Journal of Economics
++|volume=105
++|issue=3
++|page=699-726
++|date=August 1990
++|link=https://www.nber.org/papers/w1177
++}}{{Con bibliographical reference
++|authors=Juan C. Botero, Simeon Djankov, Rafael La Porta, Florencio López-de-Silanes, Andrei Shleifer
++|article=The Regulation of Labor
++|work=Quarterly Journal of Economics
++|volume=119
++|issue=4
++|page=1339-1382
++|date=November 2004
++|link=https://shleifer.scholars.harvard.edu/publications/regulation-labor
+ }}
+ |bibliography={{Bibliographical reference
+ |authors=Organisation for Economic Co-operation and Development
+@@ -162,89 +178,286 @@
+ |date=2011
+ |link=https://www.ilo.org/media/137211/download
+ }}{{Bibliographical reference
++|authors=Jennie E. Brand
++|article=The Far-Reaching Impact of Job Loss and Unemployment
++|work=Annual Review of Sociology
++|volume=41
++|page=359-375
++|date=August 2015
++|link=https://pmc.ncbi.nlm.nih.gov/articles/PMC4553243/
++}}{{Bibliographical reference
+ |authors=Alexander Muravyev
+ |work=Employment protection legislation in transition and emerging markets
+ |publisher=IZA World of Labor
+ |place=Bonn
+ |date=September 2014
+ |link=https://wol.iza.org/uploads/articles/63/pdfs/employment-protection-legislation-and-labor-market-outcomes-in-transition-and-emerging-market-economies.pdf
++}}{{Bibliographical reference
++|authors=Guy Mundlak
++|article=The right to work: Linking human rights and employment policy
++|work=International Labour Review
++|volume=146
++|location=Nos. 3-4
++|date=2007
++|link=https://researchrepository.ilo.org/view/pdfCoverPage?download=true&filePid=13100788810002676&instCode=41ILO_INST
++}}{{Bibliographical reference
++|authors=Kate Andrias, Alexander Hertel-Fernandez
++|work=Ending At-Will Employment: A Guide for Just Cause Reform
++|publisher=Roosevelt Institute
++|place=New York
++|date=January 2021
++|link=https://rooseveltinstitute.org/wp-content/uploads/2021/01/RI_AtWill_Report_202101.pdf
++}}{{Bibliographical reference
++|authors=Janice R. Bellace
++|article=A Right of Fair Dismissal: Enforcing a Statutory Guarantee
++|work=University of Michigan Journal of Law Reform
++|volume=16
++|issue=2
++|page=207-247
++|date=1983
++|link=https://core.ac.uk/download/pdf/232713179.pdf
++}}{{Bibliographical reference
++|authors=Clyde W. Summers
++|article=Employment at Will in the United States: The Divine Right of Employers
++|work=University of Pennsylvania Journal of Labor and Employment Law
++|volume=3
++|page=65-86
++|date=2000
++|link=https://scholarship.law.upenn.edu/cgi/viewcontent.cgi?article=1000&context=jbl
++}}{{Bibliographical reference
++|authors=Hugh Collins
++|work=Justice in Dismissal: The Law of Termination of Employment
++|publisher=Clarendon Press
++|place=Oxford
++|date=1992
++|link=https://academic.oup.com/book/7530
++}}{{Bibliographical reference
++|authors=International Labour Organization
++|work=Employment protection legislation: Summary indicators in the area of terminating regular contracts
++|publisher=International Labour Organization
++|place=Geneva
++|date=2015
++|link=https://eplex.ilo.org/sites/default/files/2023-11/wcms_357390.pdf
++}}{{Bibliographical reference
++|authors=Stewart J. Schwab
++|article=Life-Cycle Justice: Accommodating Just Cause and Employment at Will
++|work=Michigan Law Review
++|volume=92
++|issue=1
++|page=8-62
++|date=October 1993
++|link=https://scholarship.law.cornell.edu/facpub/522/
++}}{{Bibliographical reference
++|authors=David Cabrelli
++|work=Employment Law: A Very Short Introduction
++|publisher=Oxford University Press
++|place=Oxford
++|date=24 March 2022
++|link=https://academic.oup.com/book/40199
+ }}
+ |pro-webliography={{Pro web reference
+-|link=https://normlex.ilo.org/dyn/nrmlx_en/f?p=NORMLEXPUB:12100:0::NO::P12100_ILO_CODE:C158
+-|page=Termination of Employment Convention, 1982 (No. 158)
+-|authors=International Labour Organization
+-|site=NORMLEX
+-|date=22 June 1982
+-}}{{Pro web reference
+-|link=https://digitallibrary.un.org/record/566942/files/E_C.12_GC_18-EN.pdf
+-|page=General Comment No. 18: The Right to Work
+-|authors=United Nations Committee on Economic, Social and Cultural Rights
+-|site=United Nations Digital Library
+-|date=6 February 2006
+-}}{{Pro web reference
+-|link=https://www.ilo.org/resource/statement/minimizing-adverse-effects-restructuring-employee-health-and-wellbeing
+-|page=Minimizing the adverse effects of restructuring on employee health and wellbeing
+-|authors=International Labour Organization
+-|site=International Labour Organization
+-|date=14 March 2019
++|link=https://www.communist-union.org/el/2019-05/vote-for-lutte-ouvriere-lets-hear-the-workers-not-the-capitalists-5415
++|page=Vote for Lutte ouvriere: let's hear the workers, not the capitalists!
++|authors=Lutte Ouvrière workplace newsletter
++|site=Communist Union
++|date=13 May 2019
++}}{{Pro web reference
++|link=https://independentsocialistgroup.org/what-we-stand-for/
++|page=What We Stand For
++|authors=Independent Socialist Group
++|site=Independent Socialist Group
++}}{{Pro web reference
++|link=https://www.solidarity.ie/about-us-2/
++|page=About us
++|authors=Solidarity
++|site=Solidarity (Ireland)
++}}{{Pro web reference
++|link=https://www.foxnews.com/world/whos-running-for-french-president
++|page=Who’s running for French president
++|authors=Associated Press
++|site=Fox News
++|date=20 April 2012
++}}{{Pro web reference
++|link=https://www.workers.org/2008/us/a_job_is_a_right_0417/
++|page=Why we say A JOB IS A RIGHT
++|site=Workers World
++|date=12 April 2008
++}}{{Pro web reference
++|link=https://www.ft-ci.org/Argentina-April-10th-National-Active-Strike?lang=en
++|page=Argentina: April 10th. National Active Strike
++|site=Trotskyist Fraction – Fourth International
++}}{{Pro web reference
++|link=https://internationalist.org/brazilnotoimpeachment1604.html
++|page=Brazil: No to Impeachment
++|site=The Internationalist
++|date=April 2016
++}}{{Pro web reference
++|link=https://www.communist-union.org/el/2019-04/macron-once-serving-the-rich-forever-serving-the-rich-5399
++|page=Macron: once serving the rich, forever serving the rich
++|authors=Lutte Ouvrière workplace newsletter
++|site=Communist Union
++|date=29 April 2018
++}}{{Pro web reference
++|link=https://www.communist-union.org/el/2019-05/in-the-european-elections-vote-for-lutte-ouvriere-5413
++|page=In the European elections, vote for Lutte Ouvrière!
++|authors=Lutte Ouvrière workplace newsletter
++|site=Communist Union
++|date=6 May 2019
+ }}
+ |con-webliography={{Con web reference
+ |link=https://www.oecd.org/en/data/datasets/oecd-indicators-of-employment-protection.html
+-|page=OECD Indicators of Employment Protection
+ |authors=Organisation for Economic Co-operation and Development
+ |site=OECD
+ |date=2025
+ }}{{Con web reference
+-|link=https://www.oecd.org/en/publications/recent-trends-in-employment-protection-legislation_9be9d121-en.html
+-|page=Recent trends in employment protection legislation
++|link=https://www.oecd.org/en/publications/oecd-employment-outlook-2026_7e710f54-en/full-report/component-10.html
+ |authors=Organisation for Economic Co-operation and Development
+ |site=OECD
+-|date=30 June 2026
+-}}{{Con web reference
+-|link=https://www.ilo.org/employment-protection
+-|page=Employment protection
+-|authors=International Labour Organization
+-|site=International Labour Organization
+-|date=21 October 2025
++|date=7 July 2026
++}}{{Con web reference
++|link=https://openknowledge.worldbank.org/entities/publication/cfa5c2dd-9dd6-5ceb-b14d-acfef347cdf2
++|authors=World Bank
++|site=Open Knowledge Repository
++}}{{Con web reference
++|link=https://www.oecd.org/en/publications/good-jobs-for-all-in-a-changing-world-of-work_9789264308817-en/full-report/component-11.html
++|authors=Organisation for Economic Co-operation and Development
++|site=OECD
++|date=2019
++}}{{Con web reference
++|link=https://www.cato.org/cato-handbook-policymakers/cato-handbook-policymakers-9th-edition-2022/labor-employment-law
++|authors=Cato Institute
++|site=Cato Institute
++|date=2022
++}}{{Con web reference
++|link=https://www.cato.org/publications/facilitating-personal-improvement-private-sector-labor-regulation
++|authors=Cato Institute
++|site=Cato Institute
++|date=2022
++}}{{Con web reference
++|link=https://www.econlib.org/econlog/the-high-cost-of-just-cause
++|site=Econlib
++|date=2026
++}}{{Con web reference
++|link=https://www.oecd.org/en/topics/sub-issues/employment-protection-and-minimum-wages.html
++|authors=Organisation for Economic Co-operation and Development
++|site=OECD
++}}{{Con web reference
++|link=https://blogs.worldbank.org/en/jobs/getting-labor-market-regulations-right
++|authors=World Bank
++|site=World Bank Blogs
+ }}
+ |webliography={{Web reference
++|link=https://normlex.ilo.org/dyn/nrmlx_en/f?p=NORMLEXPUB:12100:0::NO::P12100_ILO_CODE:C158
++|authors=International Labour Organization
++|site=NORMLEX
++|date=22 June 1982
++}}{{Web reference
+ |link=https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:12012P/TXT
+-|page=Charter of Fundamental Rights of the European Union
+ |authors=European Union
+ |site=EUR-Lex
+ |date=26 October 2012
+ }}{{Web reference
+ |link=https://rm.coe.int/168007cf93
+-|page=European Social Charter (Revised)
+ |authors=Council of Europe
+ |site=Council of Europe
+ |date=3 May 1996
+ }}{{Web reference
++|link=https://www.ilo.org/employment-protection
++|authors=International Labour Organization
++|site=International Labour Organization
++|date=21 October 2025
++}}{{Web reference
+ |link=https://normlex.ilo.org/dyn/nrmlx_en/f?p=NORMLEXPUB:12100:0::NO::P12100_ILO_CODE:R166
+-|page=Termination of Employment Recommendation, 1982 (No. 166)
+ |authors=International Labour Organization
+ |site=NORMLEX
+ |date=22 June 1982
++}}{{Web reference
++|link=https://digitallibrary.un.org/record/566942/files/E_C.12_GC_18-EN.pdf
++|authors=United Nations Committee on Economic, Social and Cultural Rights
++|site=United Nations Digital Library
++|date=24 November 2005
++}}{{Web reference
++|link=https://eplex.ilo.org/en/valid-and-prohibited-grounds-for-dismissal
++|authors=International Labour Organization
++|site=EPLex
++}}{{Web reference
++|link=https://fra.europa.eu/en/eu-charter/article/30-protection-event-unjustified-dismissal
++|authors=European Union Agency for Fundamental Rights
++|site=European Union Agency for Fundamental Rights
++}}{{Web reference
++|link=https://www.ilo.org/ilo-helpdesk-questions-and-answers-business-and-employment-security
++|authors=International Labour Organization
++|site=International Labour Organization
++}}{{Web reference
++|link=https://www.acas.org.uk/dismissals
++|site=Acas
++|date=2026
++}}{{Web reference
++|link=https://www.gov.uk/dismissal
++|authors=Government of the United Kingdom
++|site=GOV.UK
++}}{{Web reference
++|link=https://www.fairwork.gov.au/ending-employment
++|authors=Fair Work Ombudsman
++|site=Fair Work Ombudsman
++|date=2025
++}}{{Web reference
++|link=https://www.fairwork.gov.au/ending-employment/dismissal
++|authors=Fair Work Ombudsman
++|site=Fair Work Ombudsman
++|date=2026
++}}{{Web reference
++|link=https://www.law.cornell.edu/wex/at-will_employment
++|site=Legal Information Institute
++|date=May 2021
++}}{{Web reference
++|link=https://eplex.ilo.org/en/node/73250
++|authors=International Labour Organization
++|site=EPLex
++}}{{Web reference
++|link=https://eplex.ilo.org/en/redress
++|authors=International Labour Organization
++|site=EPLex
++}}{{Web reference
++|link=https://www.eurofound.europa.eu/en/countries/france/individual-employment-relations
++|authors=Eurofound
++|site=Eurofound
++}}{{Web reference
++|link=https://www.ilo.org/sites/default/files/wcmsp5/groups/public/%40ed_norm/%40normes/documents/meetingdocument/wcms_153602.pdf
++|authors=International Labour Organization
++|site=International Labour Organization
+ }}
+ |pro-videography={{Pro video reference
++|title=ANTARSYA - ANTICAPITALIST LEFT IN GREECE
++|link=https://www.youtube.com/watch?v=GQeWl3vtwBU
++}}{{Pro video reference
++|title=Raúl Godoy: "An Ambitious and Thrilling Historical Responsibility"
++|authors=Left Voice
++|link=https://www.leftvoice.org/raul-godoy-an-ambitious-and-thrilling-historical-responsibility/
++}}
++|con-videography={{Con video reference
++|title=Just (Be)cause: Terminations for Just Cause Dismissal
++|authors=MacDonald & Associates
++|link=https://www.youtube.com/watch?v=PPBC-4piA1Y
++}}{{Con video reference
++|title=Everything You Need to Know About Termination
++|link=https://www.youtube.com/watch?v=Kp8D9o6IWP0
++}}{{Con video reference
++|title=You're Fired! The Webinar
++|link=https://www.youtube.com/watch?v=hdRFjpI-NJM
++}}
++|videography={{Video reference
++|title=Robert M. Schwartz: An Introduction to Just Cause
++|authors=Labor Notes
++|link=https://www.youtube.com/watch?v=Nj5nqDkO9Jg
++}}{{Video reference
++|title=Just Cause and Due Process
++|link=https://www.youtube.com/watch?v=6m-8DZsQLtA
++}}{{Video reference
+ |title=At-Will Employment Explained by a Lawyer
+ |authors=Branigan Robertson
+ |link=https://www.youtube.com/watch?v=8C_eFrBNp2E
+-}}{{Pro video reference
+-|title=It's Not Just You. There Are a Lot of Layoffs Happening
+-|authors=Bloomberg News
+-|link=https://www.youtube.com/watch?v=5Fo4MKQMTmY
+-}}
+-|con-videography={{Con video reference
+-|title=Why Companies Are Making Layoffs in 2025
+-|authors=Knowledge at Wharton
+-|link=https://www.youtube.com/watch?v=ST2QPUQjB5A
+-}}{{Con video reference
+-|title=Layoffs: Union, Plant Closing and Discrimination Considerations
+-|authors=Thompson Coburn LLP
+-|link=https://www.youtube.com/watch?v=9RrNZ6tnAW0
+-}}
+-|videography={{Video reference
++}}{{Video reference
+ |title=Unfair dismissal
+ |authors=Fair Work Commission
+ |link=https://www.youtube.com/playlist?list=PLmGoVTOii6BFTcoWl_u0slaT5yH8uPL_v
+@@ -252,11 +465,9 @@
+ |title=The Employment Rights Act explained: Understanding every major change
+ |authors=VinciWorks
+ |link=https://www.youtube.com/watch?v=V2JBSbDThf0
+-}}
+-|related-debates={{Related debate
+-|page=Should everyone be guaranteed a job?
+-}}{{Related debate
+-|page=Should a universal basic income be introduced?
++}}{{Video reference
++|title=Termination Notice and Termination Pay Mini-Overview
++|link=https://www.youtube.com/watch?v=qnnOA0fPBBs
+ }}
+ |sections=Economy, Law, Politics, Society
+ |keywords=dismissal, job security, employment law, unemployment, worker protection, freedom to conduct a business
+
+
+================================================================
+en | A0004 | Job security would encourage investment in skills and innovation
+comparison_id: 6bf36355e34015310e60
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=Firm-specific knowledge is not learned in an afternoon, and its return vanishes when employment ends too quickly. A secure relationship gives workers a reason to learn and employers a reason to finance that learning. It can also free risky ideas. Innovation is easier when a challenging proposal is not a ticket out of the door.
++|summary=A general ban on dismissals would give the employment relationship maximum stability. Firm-specific knowledge is not learned in an afternoon, and its return vanishes when employment ends too quickly. A secure relationship gives workers a reason to learn and employers a reason to finance that learning. It can also free risky ideas. Innovation is easier when a challenging proposal is not a ticket out of the door.
+ |bibliography={{Bibliographical reference
+ |authors=Viral V. Acharya, Ramin P. Baghai, Krishnamurthy V. Subramanian
+ |article=Wrongful Discharge Laws and Innovation
+
+
+================================================================
+en | A0006 | Banning dismissals would force firms to seek less destructive solutions
+comparison_id: dc12c5b144f962df2125
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -28,6 +28,9 @@
+ }}{{Justification
+ |page=Worker buyouts or conversion into a cooperative can save a viable activity
+ |displayed-title=Giving the business to those who keep it running
++}}{{Justification
++|page=Banning dismissals would stop viable companies sacrificing jobs to short-term financial targets
++|displayed-title=Stopping short-term finance from sacrificing jobs
+ }}
+ |objections={{Objection
+ |page=Internal retraining cannot recreate vanished demand or save every activity
+
+
+================================================================
+en | A0018 | Banning job cuts at profitable firms would stop dividends automatically taking priority over employment
+comparison_id: 1dbef271c18741006cda
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=A dividend would remain a choice after investment and workforce retention, not a toll collected before them. A profitable firm can cut jobs to raise margins faster or meet a return target without facing any threat to its survival. Banning those dismissals would stop employment being the first adjustment made for shareholders.
++|summary=In the particular case of a profitable firm, a dividend would remain a choice made after investment and workforce retention, not a claim served before them. Cutting jobs merely to raise margins faster does not answer an inability to employ. A general ban would here stop employment being the first adjustment made for shareholders.
+ |bibliography={{Bibliographical reference
+ |authors=Gabriele Ciminelli, Romain Duval, Davide Furceri
+ |article=Employment Protection Deregulation and Labor Shares in Advanced Economies
+
+
+================================================================
+en | A0040 | Banning dismissals would protect places dependent on a major employer
+comparison_id: 59c60223430b4b60a5e0
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -22,6 +22,9 @@
+ }}{{Justification
+ |page=Firms can move capital more easily than workers can move their lives
+ |displayed-title=Mobile capital facing rooted lives
++}}{{Justification
++|page=A targeted dismissal ban would preserve hard-to-rebuild strategic skills and industrial capacity
++|displayed-title=Preserving strategic industrial capacity
+ }}
+ |objections={{Objection
+ |page=Preserving every site can trap a region in a doomed activity
+
+
+================================================================
+en | A0041 | A general dismissal ban would be impossible to define without arbitrariness
+comparison_id: 45393a1ed285065cee19
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=Profit over a full year does not prevent a company from running out of cash the following month, while a profitable group may contain a doomed establishment. The law would have to choose the relevant perimeter, period, margin and exceptions that make a dismissal lawful. Drawing a border through moving accounts could turn the rule into a contest of restructuring devices and litigation.
++|summary=A general ban would have to decide which terminations remain lawful in cases of serious misconduct, lasting incapacity, disappearance of the position or genuine closure of the employer. Profit over a full year does not prevent a company from running out of cash the following month, while a profitable group may contain a doomed establishment. The law would also have to choose the relevant perimeter, period and margin that make a dismissal lawful. Drawing a border through shifting reasons and accounts could turn the rule into a contest of restructuring devices and litigation.
+ |bibliography={{Bibliographical reference
+ |authors=John T. Addison, Paulino Teixeira
+ |work=The Economy of Employment Protection
+
+
+================================================================
+en | A0049 | Place-based transition policies protect residents better than freezing every plant
+comparison_id: 5ddb465cdc7d12d7f0b3
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=The real objective is for people to recover income and prospects in their area, not for every corporate sign to remain forever in the same place. Training, supplier support and local investment can prepare several exits; a policy that saves residents is better than one that mummifies buildings.
++|summary=This objection argues that the local damage caused by dismissals can be addressed without freezing every job in every plant. The real objective is for people to recover income and prospects in their area, not for every corporate sign to remain forever in the same place. Training, supplier support and local investment can prepare several exits; a policy that saves residents is better than one that mummifies buildings.
+ |bibliography={{Bibliographical reference
+ |authors=Organisation for Economic Co-operation and Development
+ |work=OECD Employment Outlook 2026
+
+
+================================================================
+en | A0101 | A targeted veto over mass or profitable layoffs can complement codetermination
+comparison_id: 3e3873a3b8f0466f30b9
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=Worker power can be reserved for job cuts that threaten a region or appear inconsistent with the group’s results and shareholder distributions. The issue is therefore who may impose the decision and under what safeguards; a targeted veto over mass or profitable layoffs can complement codetermination.
++|summary=A narrower alternative to a general ban would reserve a veto for mass job cuts or dismissals decided by a profitable group. This compromise would strengthen codetermination when the territorial shock is severe or the financial results contradict the claimed urgency. It would nevertheless preserve a right to dismiss in other situations.
+ |bibliography={{Bibliographical reference
+ |authors=International Labour Office
+ |work=Note on Convention No. 158 and Recommendation No. 166 concerning termination of employment
+
+
+================================================================
+en | A0109 | A permanent dismissal ban cannot depend on permanent public subsidy
+comparison_id: 4e7db4ae9f6adc03882f
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=Support designed for a short crisis becomes unsustainable if it must indefinitely offset every fall in productivity or demand; the question then becomes the quality of substitute adjustments, not their disappearance. Otherwise public money indefinitely supports structures that demand no longer sustains.
++|summary=Applied to all dismissals, a permanent ban cannot rest on endless public compensation. Support designed for a short crisis becomes unsustainable if it must indefinitely offset every fall in productivity or demand; the question then becomes the quality of substitute adjustments, not their disappearance. Otherwise public money indefinitely supports structures that demand no longer sustains.
+ |bibliography={{Bibliographical reference
+ |authors=Organisation for Economic Co-operation and Development
+ |work=Preparing ERTE for the Future
+
+
+================================================================
+en | A0116 | International coordination remains incomplete and too slow for investment decisions
+comparison_id: 2da69b02c6e81e1f0e88
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=Capital can change destination within months, while adopting and enforcing common standards often takes years. Territorial choices are made when capital is committed, with exit costs among several factors.
++|summary=Coordinating a general dismissal ban across countries could limit investment relocation, but that response rarely moves at the same speed as private decisions. Capital can change destination within months, while adopting and enforcing common standards often takes years. Territorial choices are made when capital is committed, with the future cost of dismissal among several factors.
+ |bibliography={{Bibliographical reference
+ |authors=David Alzate, Eliana Carranza, Joana Duran-Franch, Truman Packard, Celina Proffen
+ |work=How Regulations Impact the Labor Market: A Review of the Literatures on Product and Labor Market Regulations
+
+
+================================================================
+en | A0130 | Psychological safety and clear goals can preserve initiative without removing standards
+comparison_id: 50f08261dc3523d04e63
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=Experimentation without fear of arbitrary punishment remains possible when results, cooperation and progress are reviewed regularly. Protection therefore supports innovation only when it remains compatible with learning and accountability.
++|summary=Banning dismissals does not require a company to abandon all professional standards. Experimentation without fear of arbitrary punishment remains possible when results, cooperation and progress are reviewed regularly. Protection therefore supports innovation only when it remains compatible with learning and accountability.
+ |bibliography={{Bibliographical reference
+ |authors=Viral V. Acharya, Ramin P. Baghai, Krishnamurthy V. Subramanian
+ |article=Wrongful Discharge Laws and Innovation
+
+
+================================================================
+en | A0138 | Early-warning duties can open the search for solutions before insolvency
+comparison_id: fcf18022b1e0968b7c72
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=Management can be required to alert representatives, creditors or an authority when serious indicators first appear rather than on the day redundancies are announced. The solution must therefore be activated before cash is exhausted and create concrete obligations.
++|summary=To keep the review of each proposed dismissal from beginning only on the brink of insolvency, the search for alternatives can start well before termination is announced. Management can be required to alert representatives, creditors or an authority when serious indicators first appear rather than on the day redundancies are announced. The solution must therefore be activated before cash is exhausted and create concrete obligations.
+ |bibliography={{Bibliographical reference
+ |authors=Organisation for Economic Co-operation and Development
+ |work=Preparing ERTE for the Future
+
+
+================================================================
+en | A0140 | Confidential warning and safe-harbour rules can reduce the incentive to conceal
+comparison_id: 9e04faef20c17ef9d0c3
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=A protected channel to representatives, a court or an agency can trigger support and suspend some sanctions without immediately broadcasting distress to the market. Effectiveness requires early activation, resources and a clearly identified responsible actor; confidential warning and safe-harbour rules can reduce the incentive to conceal.
++|summary=If a general dismissal ban encourages a distressed company to conceal its condition, confidential warning can reduce that perverse incentive. A protected channel to representatives, a court or an agency can trigger support and suspend some sanctions without immediately broadcasting distress to the market. Effectiveness requires early activation, resources and a clearly identified responsible actor; confidential warning and safe-harbour rules can reduce the incentive to conceal.
+ |bibliography={{Bibliographical reference
+ |authors=Organisation for Economic Co-operation and Development
+ |work=Preparing ERTE for the Future
+
+
+================================================================
+en | A0143 | Collective actions, burden shifting and interim reinstatement can make targeted law effective
+comparison_id: e6d48c24a3c3d0ae97e7
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=Statistics, internal documents and interim relief can shift the balance before the case becomes irreparable. A specialised rule is effective only if evidence is accessible, reinstatement is possible and the sanction genuinely deters.
++|summary=This solution argues that targeted law against discriminatory or retaliatory dismissal can provide a genuine alternative to a general ban. Statistics, internal documents and interim relief can shift the balance before the case becomes irreparable. A specialised rule is effective only if evidence is accessible, reinstatement is possible and the sanction genuinely deters.
+ |bibliography={{Bibliographical reference
+ |authors=International Labour Office
+ |work=Note on Convention No. 158 and Recommendation No. 166 concerning termination of employment
+
+
+================================================================
+en | A0144 | Reorganisations can still hide discriminatory selection among several plausible criteria
+comparison_id: fea6c7db5b8393677e56
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=Age, health, union activity or pregnancy can be hidden behind apparently neutral assessments of versatility, mobility or cost. Targeted law must be able to pierce the stated pretext without making the victim wait for years.
++|summary=Even when the law targets discriminatory dismissal, a reorganisation can still conceal the selection of workers to be removed. Age, health, union activity or pregnancy can be hidden behind apparently neutral assessments of versatility, mobility or cost. Targeted law must be able to pierce the stated pretext without making the victim wait for years.
+ |bibliography={{Bibliographical reference
+ |authors=International Labour Office
+ |work=Note on Convention No. 158 and Recommendation No. 166 concerning termination of employment
+
+
+================================================================
+en | A0167 | Adversarial assessment and support can distinguish genuine incapacity from context
+comparison_id: bb0da8dd782098d64115
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=Clear goals, shared observations, training and a reasonable period show whether the problem remains after the environment is corrected. The procedure must investigate the cause without turning colleagues into hostages of a persistent problem.
++|summary=When a general ban on dismissals contains an exception for lasting incapacity or poor performance, an adversarial assessment must keep that exception from becoming an easy exit. Clear goals, shared observations, training and a reasonable period show whether the problem remains after the environment is corrected. The procedure must investigate the cause without turning colleagues into hostages of a persistent problem.
+ |bibliography={{Bibliographical reference
+ |authors=International Labour Office
+ |work=Note on Convention No. 158 and Recommendation No. 166 concerning termination of employment
+
+
+================================================================
+en | A0170 | Any restriction on freedom to conduct a business must nevertheless remain proportionate
+comparison_id: 349d3e440c254f9736c2
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=A legitimate social goal does not justify the most rigid measure if procedure, compensation or a targeted ban protects almost as well. Proportionality review specifically requires comparing the ban with less restrictive means: any restriction on freedom to conduct a business must nevertheless remain proportionate.
++|summary=A legitimate social goal does not justify a general dismissal ban if procedure, compensation or a targeted ban protects almost as well. Proportionality review specifically requires comparing the ban with less restrictive means: any restriction on freedom to conduct a business must nevertheless remain proportionate.
+ |bibliography={{Bibliographical reference
+ |authors=International Labour Office
+ |work=Note on Convention No. 158 and Recommendation No. 166 concerning termination of employment
+
+
+================================================================
+en | A0189 | The law can exempt genuine closure while preventing strategic closure followed by reopening
+comparison_id: ffccf4ba339cfe3757d2
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=A presumption of continuity can apply when the same assets, customers, managers or activities quickly reappear in another entity. The law must therefore distinguish a constraint suffered from a management choice presented as inevitable; the law can exempt genuine closure while preventing strategic closure followed by reopening.
++|summary=A general ban can exempt genuine closure of the employer without permitting a sham closure used to dismiss workers and restart elsewhere. A presumption of continuity can apply when the same assets, customers, managers or activities quickly reappear in another entity. The law must therefore distinguish a constraint suffered from a management choice presented as inevitable; the law can exempt genuine closure while preventing strategic closure followed by reopening.
+ |bibliography={{Bibliographical reference
+ |authors=John T. Addison, Paulino Teixeira
+ |work=The Economy of Employment Protection
+
+
+================================================================
+en | A0201 | Banning dismissals would stop viable companies sacrificing jobs to short-term financial targets
+comparison_id: 4fedf33e9025342c253a
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=Closing a profitable unit may reflect not its disappearance but a desire to improve a financial metric quickly or fund a payout to shareholders. A ban would remove dismissal as the easy button for polishing the next quarter's accounts. Managers would have to show that the jobs had genuinely become unsustainable rather than merely less profitable than a promised target.
++|summary=A general ban would also cover viable firms that cut jobs to raise margins quickly, fund a payout or meet a return target. In this particular case, dismissal does not answer the disappearance of the activity; it becomes an easy button for improving a financial indicator. Removing that button would require managers to preserve the jobs or show that retaining them had genuinely become impossible.
+ |bibliography={{Bibliographical reference
+ |authors=Viral V. Acharya, Ramin P. Baghai, Krishnamurthy V. Subramanian
+ |article=Wrongful Discharge Laws and Innovation
+
+
+================================================================
+en | A0203 | A targeted dismissal ban would preserve hard-to-rebuild strategic skills and industrial capacity
+comparison_id: 2f3bd9539a96f4ba8180
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=In defence, energy, health or certain technologies, a dispersed team cannot simply be rehired when a crisis arrives. Know-how, qualified suppliers and authorisations form a collective capability that may remain lost long after the final payslip. A targeted ban can therefore protect not only workers but a productive capacity on which public security depends.
++|summary=A general ban could also prevent the dispersal of teams whose value extends beyond the post being removed. In defence, energy, health or certain technologies, know-how, qualified suppliers and authorisations form a collective capability that cannot simply be bought back when a crisis arrives. Retaining the jobs would therefore preserve a productive capacity useful to society as a whole.
+ |bibliography={{Bibliographical reference
+ |authors=European Commission
+ |work=Supporting Households in Regional Transformations: A Toolkit for a Just Transition
+
+
+================================================================
+en | A0208 | Restrictions tied to dividends, public aid or debt would target opportunistic dismissals better than a general ban
+comparison_id: db6b2fa583ea0e310b8b
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=Short-termism is not the problem in every firm that permanently loses its market. The law can therefore suspend dismissals after an exceptional payout, public aid or debt arranged for shareholders' benefit. A targeted rule attacks the disputed arrangement without turning every fall in demand into an indefinite duty to preserve posts.
++|summary=When the abuse arises from an exceptional payout, public aid or debt arranged for shareholders' benefit, a targeted rule can suspend dismissals connected with that arrangement. It attacks the disputed practice without requiring every firm that permanently loses its market to retain every post. This is therefore an objection to a general ban, not another name for one.
+ |bibliography={{Bibliographical reference
+ |authors=Viral V. Acharya, Ramin P. Baghai, Krishnamurthy V. Subramanian
+ |article=Wrongful Discharge Laws and Innovation
+
+
+================================================================
+en | A0253 | Independent administration and automatically activated local projects can reduce patronage
+comparison_id: 5e66a671db042b0887ce
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=Local authorities can maintain a public shelf of social, environmental and cultural projects assessed before activation. Access follows general rules and management sits with bodies separated from immediate electoral power. The programme is not immune to waste. Prior rules at least remove it from improvisation and personal favour.
++|summary=Presented as an alternative to banning dismissals, a public job guarantee must avoid becoming a reservoir of political favours. Local authorities can maintain a public shelf of social, environmental and cultural projects assessed before activation. Access follows general rules and management sits with bodies separated from immediate electoral power. The programme is not immune to waste. Prior rules at least remove it from improvisation and personal favour.
+ |bibliography={{Bibliographical reference
+ |authors=L. Randall Wray
+ |work=The Employer of Last Resort Programme: Could It Work for Developing Countries?
+
+
+================================================================
+en | A0269 | Multiple audited criteria can balance vulnerability, skills and equal treatment
+comparison_id: 00f0fa04a5ca51622ee8
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=A decision can combine seniority, transferable skills, social circumstances and non-discrimination using weights known before the dispute. A collective audit tests disproportionate effects by age, sex, disability or origin. No ranking is neutral. An explicit and reviewed choice is better than a list made behind management's door.
++|summary=When some dismissals remain lawful as exceptions to a general ban, multiple audited criteria can govern the selection of affected workers. A decision can combine seniority, transferable skills, social circumstances and non-discrimination using weights known before the dispute. A collective audit tests disproportionate effects by age, sex, disability or origin. No ranking is neutral. An explicit and reviewed choice is better than a list made behind management's door.
+ |bibliography={{Bibliographical reference
+ |authors=David Alzate, Eliana Carranza, Joana Duran-Franch, Truman Packard, Celina Proffen
+ |work=How Regulations Impact the Labor Market: A Review of the Literatures on Product and Labor Market Regulations
+
+
+================================================================
+en | A0270 | Weighting dismissal-selection criteria remains a contestable political choice beyond neutralisation by procedural review
+comparison_id: 179d9b69572a11b8cf1f
+
+### Ancienne archive -> Wiki actuel
+
+### Wiki actuel -> Nouvelle archive
+--- remote
++++ proposed
+@@ -1,6 +1,6 @@
+ {{Argument
+ |argument-warnings=Argument generated by AI
+-|summary=Giving more weight to seniority, family responsibilities or skills implicitly decides who should bear economic risk. A transparent spreadsheet does not erase that hierarchy of values. Review can prevent fraud and discrimination. Transparency makes the hierarchy open to challenge without turning it into a technical truth.
++|summary=When a general ban still permits some dismissals, weighting selection criteria implicitly decides who should bear economic risk. Giving more weight to seniority, family responsibilities or skills therefore remains a political choice. A transparent spreadsheet does not erase that hierarchy of values. Review can prevent fraud and discrimination. Transparency makes the hierarchy open to challenge without turning it into a technical truth.
+ |bibliography={{Bibliographical reference
+ |authors=David Alzate, Eliana Carranza, Joana Duran-Franch, Truman Packard, Celina Proffen
+ |work=How Regulations Impact the Labor Market: A Review of the Literatures on Product and Labor Market Regulations
+
+

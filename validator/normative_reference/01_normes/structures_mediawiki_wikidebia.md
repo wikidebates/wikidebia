@@ -184,7 +184,7 @@ Ce document **ne détermine pas** quels paramètres doivent effectivement appara
 |lieu=
 |date=
 |lien=
-|avertissements=
+|avertissements-citation=
 }}
 |avertissements-références=
 |références-bibliographiques={{Référence bibliographique
@@ -365,20 +365,20 @@ Ce document **ne détermine pas** quels paramètres doivent effectivement appara
 |argument-warnings=
 |summary-warnings=
 |summary=
-|quotes={{Quote
-|quote=
-|authors=
+|quotes={{Citation
+|citation=
+|auteurs=
 |article=
-|work=
+|ouvrage=
 |volume=
-|issue=
+|numéro=
 |page=
-|location=
-|publisher=
-|place=
+|localisation=
+|édition=
+|lieu=
 |date=
-|link=
-|warnings=
+|lien=
+|avertissements-citation=
 }}
 |reference-warnings=
 |bibliography={{Bibliographical reference
@@ -450,7 +450,7 @@ La source normative active est désormais `WIKIDEBIA_NORME_CONSOLIDEE_1.1.0.md`.
 Les statuts correctifs et la date spécifique de W10.R1 sont définis par la norme consolidée. Les anciennes dispositions incompatibles de ce fichier sont historiques.
 # Addendum intégré 1.1.4 — structure historique
 
-La source normative active unique était `WIKIDEBIA_NORME_CONSOLIDEE_1.1.4.md` ; cet addendum est remplacé par l’addendum 1.1.5 ci-dessous. `page=` reste autorisé dans les références bibliographiques. L’ancienne révision autorisait `<references />`; la norme 1.2.0 conserve uniquement les appels `<ref>…</ref>` dans `contenu=`/`content=`. Les pages Argument générées n’emploient pas `nom`, `name`, `initialisation`, `initialization`, `citations`, `quotes`, `débat-détaillé` ni `detailed-debate`. Les dispositions incompatibles antérieures sont de provenance seulement.
+La source normative active unique était `WIKIDEBIA_NORME_CONSOLIDEE_1.1.4.md` ; cet addendum est remplacé par l’addendum 1.1.5 ci-dessous. `page=` reste autorisé dans les références bibliographiques. L’ancienne révision autorisait `<references />`; la norme 1.2.0 conserve uniquement les appels `<ref>…</ref>` dans `contenu=`/`content=`. Jusqu’à la révision 1.2.26, les pages Argument générées n’employaient pas `nom`, `name`, `initialisation`, `initialization`, `citations`, `quotes`, `débat-détaillé` ni `detailed-debate`. Depuis 1.2.27, `citations` et `quotes` sont rendus uniquement à partir des verrous éditoriaux ; les autres paramètres de cette liste restent non générés. Les dispositions incompatibles antérieures sont de provenance seulement.
 
 
 # Addendum 1.1.5 — historique, remplacé par 1.1.7

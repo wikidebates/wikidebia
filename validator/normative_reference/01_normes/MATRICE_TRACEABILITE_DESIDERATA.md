@@ -351,3 +351,8 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 | Une portée vide ne déclenche ni exécution ni promotion | PUB-043 | statut `no_changes_in_scope` |
 | Les suppressions différées restent traçables | PUB-044 | état `pending_delete`, puis réussite de `--only-delete` |
 
+
+
+## Trace 1.2.28
+
+La correction 1.2.28 resynchronise les documents actifs avec RND-003 et RND-004, retire le statut actif de MW-009 et aligne la structure anglaise sur le modèle `Citation`.

@@ -1,4 +1,49 @@
-# Guide de publication et de reprise Wikidéb’IA 2.2.13
+# Guide de publication et de reprise Wikidéb’IA 2.15.1
+
+## Extraire le graphe d'un débat existant
+
+```bash
+./wikidebia graph-extract "Dieu existe-t-il ?"
+```
+
+L'extraction est en lecture seule et écrit par défaut dans `.state/graph-extract/dieu_existe_t_il/`. Relancer la même commande réutilise le cache par page. `--force-refresh` force une nouvelle lecture distante. Le ZIP audité contient le graphe, les inventaires CSV, les rapports et le snapshot du wikicode.
+
+
+## Comparer un corpus final sans l’exécuter
+
+```bash
+./wikidebia corpus-workspace-remote-compare <debate_id> \
+  --work-id <work_id> \
+  --confirm-release-sha256 <empreinte_de_release-copy> \
+  --scope all
+```
+
+Cette commande est distincte de `update --dry-run` : elle part du workspace et de sa `release-copy/`, conserve un dossier de comparaison immuable et n’offre aucune voie d’exécution. Le plan produit doit être repris explicitement par une phase ultérieure.
+
+
+## Revoir puis exécuter un plan du workspace
+
+Après la comparaison et la revue formelle, préparer le préflight :
+
+```bash
+./wikidebia corpus-workspace-plan-execute <debate_id> \
+  --work-id <work_id> \
+  --comparison-id <comparison_id> \
+  --prepare \
+  --confirm-acceptance-sha256 <empreinte>
+```
+
+Puis exécuter uniquement après examen de ce préflight :
+
+```bash
+./wikidebia corpus-workspace-plan-execute <debate_id> \
+  --work-id <work_id> \
+  --comparison-id <comparison_id> \
+  --execute \
+  --confirm-preflight-sha256 <empreinte>
+```
+
+La deuxième commande effectue réellement les écritures distantes. Toute divergence observée juste avant l’exécution bloque le plan.
 
 ## Nouveau débat
 

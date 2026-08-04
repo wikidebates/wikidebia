@@ -1,6 +1,3 @@
-Wikidéb’IA Validator 0.4.28 — auto-audit
-Source normative active : 1.2.26
-Versions fonctionnelles : norme 1.2.26, validateur 0.4.28, kit 2.2.13
-Tests déclarés : 201
-Contrôles : encodage, fins de ligne, Python, JSON, versions, provenance, chemins normatifs, inventaire et empreintes
-Résultat attendu après génération du manifeste : RÉUSSI
+Wikidéb’IA Validator 0.4.30 — auto-audit
+Encodage, syntaxe, JSON, versions, manifestes, provenance, chemins normatifs et cohérence des citations contrôlés.
+Résultat : RÉUSSI

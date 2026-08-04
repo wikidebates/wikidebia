@@ -166,6 +166,28 @@ def audit_normative_provenance(root: Path, errors: list[str]) -> None:
     compatibility_path = root / "COMPATIBILITY.json"
     if compatibility_path.is_file():
         implemented = json.loads(compatibility_path.read_text(encoding="utf-8")).get("implemented_normative_revision")
+        active_norms = sorted((root / "normative_reference/01_normes").glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md"))
+        expected_active = f"WIKIDEBIA_NORME_CONSOLIDEE_{implemented}.md"
+        if [path.name for path in active_norms] != [expected_active]:
+            errors.append("source normative active absente, multiple ou sur une mauvaise révision")
+        structures = root / "normative_reference/01_normes/structures_mediawiki_wikidebia.md"
+        profiles = root / "normative_reference/01_normes/profils_rendu_wikidebia.md"
+        cahier = root / "normative_reference/01_normes/cahier_des_charges_consolide_wikidebia.md"
+        if implemented == "1.2.28":
+            structures_text = structures.read_text(encoding="utf-8") if structures.is_file() else ""
+            if "|quotes={{Citation" not in structures_text or "|quotes={{Quote" in structures_text:
+                errors.append("structure anglaise des citations non conforme")
+            if "|avertissements-citation=" not in structures_text:
+                errors.append("paramètre avertissements-citation absent des structures")
+            profiles_text = profiles.read_text(encoding="utf-8") if profiles.is_file() else ""
+            if "Les citations textuelles ne sont jamais générées" in profiles_text or "Quotes are never generated" in profiles_text:
+                errors.append("ancienne interdiction des citations encore active dans les profils")
+            cahier_text = cahier.read_text(encoding="utf-8") if cahier.is_file() else ""
+            if "MW-009 — ACTIVE" in cahier_text:
+                errors.append("MW-009 reste active dans le cahier des charges")
+            mw009 = next((req for req in requirements if req.get("id") == "MW-009"), {})
+            if mw009.get("disposition") != "superseded":
+                errors.append("MW-009 n'est pas classée comme remplacée dans le catalogue")
         for example in sorted((root / "examples").glob("*review.example.json")):
             try:
                 data = json.loads(example.read_text(encoding="utf-8"))

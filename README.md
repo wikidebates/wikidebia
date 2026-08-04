@@ -1,5 +1,11 @@
 # Installation Wikidéb’IA
 
+- `./wikidebia graph-extract "TITRE DU DÉBAT"` : extraction récursive en lecture seule ;
+- `./wikidebia corpus-init-from-snapshot SNAPSHOT --debate-id IDENTIFIANT` : construction d’un corpus local `graph_draft` ;
+- `./wikidebia corpus-review-graph IDENTIFIANT --prepare|--finalize` : revue formelle du graphe ;
+- `./wikidebia corpus-promote IDENTIFIANT --confirm-review-sha256 EMPREINTE` : promotion atomique vers `corpus/` ;
+- `./wikidebia corpus-workspace-init IDENTIFIANT` : ouverture du workspace éditorial ;
+- `./wikidebia corpus-workspace-review IDENTIFIANT --work-id WORK --finalize|--apply` : validation et application contrôlée des métadonnées françaises ;
 - `./wikidebia publish [SÉLECTEUR]` : publication initiale ;
 - `./wikidebia update IDENTIFIANT [--dry-run|--no-delete|--only-delete]` : reprise distante contrôlée ;
 - `./wikidebia upgrade` : mise à niveau des composants depuis un ZIP complet unique de préférence ;

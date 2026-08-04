@@ -232,12 +232,17 @@ SUB = {
     "Video reference": (["title", "authors", "link", "warnings"], ["title", "link"]),
     "Pro video reference": (["title", "authors", "link", "warnings"], ["title", "link"]),
     "Con video reference": (["title", "authors", "link", "warnings"], ["title", "link"]),
+    # Citation parameters are intentionally dynamic: the source model may carry
+    # documentary fields not known to the generic validator.  1.2.27 validates
+    # them against the sealed French/English content locks instead.
+    "Citation": ([], ["citation"]),
 }
 
 SEQUENCE_PARAMS = {
     "introduction", "articles-Wikipédia", "arguments-pour", "arguments-contre", "bibliographie-pour", "bibliographie-contre", "bibliographie-ni-pour-ni-contre", "sitographie-pour", "sitographie-contre", "sitographie-ni-pour-ni-contre", "vidéographie-pour", "vidéographie-contre", "vidéographie-ni-pour-ni-contre", "débats-connexes",
     "wikipedia-articles", "pro-arguments", "con-arguments", "pro-bibliography", "con-bibliography", "bibliography", "pro-webliography", "con-webliography", "webliography", "pro-videography", "con-videography", "videography", "related-debates",
     "références-bibliographiques", "références-sitographiques", "références-vidéographiques", "justifications", "objections", "interlangue",
+    "citations", "quotes",
 }
 
 PARAM_TEMPLATE_ALLOWED = {
@@ -259,6 +264,7 @@ PARAM_TEMPLATE_ALLOWED = {
     "références-sitographiques": {"Référence sitographique"},
     "références-vidéographiques": {"Référence vidéographique"},
     "justifications": {"Justification"}, "objections": {"Objection"},
+    "citations": {"Citation"}, "quotes": {"Citation"},
     "interlangue": {"Interlangue", "Lien interlangue"},
 }
 
@@ -425,6 +431,10 @@ def split_adjacent_templates(text: str) -> list[re.Match[str]]:
 def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page_type: str, rel: str) -> None:
     base_spec = TOP[(lang, page_type)] if _is_norm_120(ctx) else TOP_LEGACY[(lang, page_type)]
     spec = {**base_spec, "order": list(base_spec["order"]), "required": list(base_spec["required"]), "forbidden_generated": list(base_spec["forbidden_generated"])}
+    if _norm_at_least(ctx, "1.2.27") and page_type == "argument":
+        citation_parameter = "citations" if lang == "fr" else "quotes"
+        if citation_parameter in spec["forbidden_generated"]:
+            spec["forbidden_generated"].remove(citation_parameter)
     if _is_norm_1217(ctx) and page_type == "debate":
         wikipedia_parameter = "articles-Wikipédia" if lang == "fr" else "wikipedia-articles"
         related_parameter = "débats-connexes" if lang == "fr" else "related-debates"
@@ -519,12 +529,14 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
             subkeys = [k for k, _ in sub.params]
             if len(subkeys) != len(set(subkeys)):
                 ctx.report.error("WDV-MWK-012", f"Paramètre dupliqué dans {sub.name}", path=rel)
-            for skey in subkeys:
-                if skey not in order:
-                    ctx.report.error("WDV-MWK-012", f"Paramètre inconnu {skey} dans {sub.name}", path=rel)
-            indexes = [order.index(x) for x in subkeys if x in order]
-            if indexes != sorted(indexes):
-                ctx.report.error("WDV-MWK-006", f"Ordre incorrect dans {sub.name}", path=rel)
+            dynamic_citation = sub.name == "Citation" and _norm_at_least(ctx, "1.2.27")
+            if not dynamic_citation:
+                for skey in subkeys:
+                    if skey not in order:
+                        ctx.report.error("WDV-MWK-012", f"Paramètre inconnu {skey} dans {sub.name}", path=rel)
+                indexes = [order.index(x) for x in subkeys if x in order]
+                if indexes != sorted(indexes):
+                    ctx.report.error("WDV-MWK-006", f"Ordre incorrect dans {sub.name}", path=rel)
             for req in required:
                 if req not in subkeys or not (sub.one(req) or "").strip():
                     ctx.report.error("WDV-MWK-012", f"Paramètre obligatoire {req} absent ou vide dans {sub.name}", path=rel)
@@ -645,6 +657,76 @@ def relation_pairs(subs: list[Template], lang: str) -> list[tuple[str | None, st
     return [(s.one("page"), s.one(display)) for s in subs]
 
 
+def _parameter_pairs(rows: Any) -> list[tuple[str, str]]:
+    if not isinstance(rows, list):
+        return []
+    out: list[tuple[str, str]] = []
+    for row in rows:
+        if not isinstance(row, dict):
+            return []
+        name = str(row.get("name") or "").strip()
+        value = str(row.get("value") or "").strip()
+        if not name or not value:
+            return []
+        out.append((name, value))
+    return out
+
+
+def _validate_citations_against_locks(
+    ctx: PackageContext, tmpl: Template, rel: str, lang: str, page_id: str,
+) -> None:
+    if not _norm_at_least(ctx, "1.2.27"):
+        return
+    lock_path = "data/fr_content_lock.json" if lang == "fr" else "data/en_content_lock.json"
+    lock = ctx.load_json(lock_path, required=True)
+    if not isinstance(lock, dict):
+        return
+    argument = next((row for row in lock.get("arguments", []) if isinstance(row, dict) and row.get("id") == page_id), None)
+    if argument is None:
+        ctx.report.error("WDV-MWK-021", "Le verrou de contenu ne couvre pas cette page Argument", path=rel, details={"page_id": page_id, "lock": lock_path})
+        return
+    expected_rows = argument.get("citations") or []
+    parameter = "citations" if lang == "fr" else "quotes"
+    actual_templates = get_subs(tmpl, parameter)
+    if len(actual_templates) != len(expected_rows):
+        ctx.report.error("WDV-MWK-021", "Nombre de citations divergent du verrou éditorial", path=rel, details={"expected": len(expected_rows), "actual": len(actual_templates), "parameter": parameter})
+        return
+    for index, (actual, expected) in enumerate(zip(actual_templates, expected_rows), start=1):
+        if actual.name != "Citation":
+            ctx.report.error("WDV-MWK-021", "Le modèle Citation est obligatoire", path=rel, pointer=f"{parameter}/{index}")
+            continue
+        expected_params = _parameter_pairs(expected.get("source_parameters") if lang == "fr" else expected.get("parameters"))
+        actual_params = [(str(name).strip(), str(value).strip()) for name, value in actual.params]
+        if actual_params != expected_params:
+            ctx.report.error(
+                "WDV-MWK-021",
+                "Les paramètres de la citation divergent du verrou ; seuls citation et date peuvent être traduits",
+                path=rel, pointer=f"{parameter}/{index}",
+                details={"expected": expected_params, "actual": actual_params, "citation_id": expected.get("id")},
+            )
+        if lang == "en":
+            warning_values = [value for name, value in actual_params if name == "avertissements-citation"]
+            expected_warning = str(expected.get("avertissements-citation") or "").strip()
+            if warning_values != [expected_warning] or expected_warning.count("Citation traduite par IA") != 1:
+                ctx.report.error(
+                    "WDV-MWK-021",
+                    "La citation anglaise doit contenir une unique mention 'Citation traduite par IA', ajoutée avec le séparateur ', ' après tout avertissement existant",
+                    path=rel, pointer=f"{parameter}/{index}",
+                    details={"expected": expected_warning, "actual": warning_values},
+                )
+            source = expected.get("source") or {}
+            source_params = _parameter_pairs(source.get("source_parameters"))
+            preserved_source = [(name, value) for name, value in source_params if name not in {"citation", "date", "avertissements-citation"}]
+            preserved_actual = [(name, value) for name, value in actual_params if name not in {"citation", "date", "avertissements-citation"}]
+            if preserved_actual != preserved_source:
+                ctx.report.error(
+                    "WDV-MWK-021",
+                    "Un paramètre documentaire de la citation a été traduit ou modifié",
+                    path=rel, pointer=f"{parameter}/{index}",
+                    details={"expected_preserved": preserved_source, "actual_preserved": preserved_actual},
+                )
+
+
 def _validate_argument_content(ctx: PackageContext, tmpl: Template, rel: str, lang: str, page_id: str, registry: dict[str, Any], page_manifest: dict[str, Any]) -> None:
     node = next((n for n in registry.get("graph", {}).get("nodes", []) if n.get("id") == page_id), None)
     if not node:
@@ -674,6 +756,7 @@ def _validate_argument_content(ctx: PackageContext, tmpl: Template, rel: str, la
     actual_kw = split_list(tmpl.one(kw_param) or "")
     if actual_kw != expected_kw:
         ctx.report.error("WDV-MWK-009", f"{kw_param} divergents du registre", path=rel, details={"expected": expected_kw, "actual": actual_kw})
+    _validate_citations_against_locks(ctx, tmpl, rel, lang, page_id)
     date_param = "date-création" if lang == "fr" else "creation-date"
     expected_date = page_manifest.get("creation_date") or (((node.get("pages") or {}).get(lang) or {}).get("generation") or {}).get("creation_date")
     actual_date = tmpl.one(date_param)
@@ -748,7 +831,7 @@ PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
 
 
 def _validate_french_parenthetical_dashes(ctx: PackageContext, tmpl: Template, rel: str, page_type: str) -> None:
-    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26"}:
+    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28"}:
         return
     values: list[tuple[str, str]] = []
     if page_type == "argument":

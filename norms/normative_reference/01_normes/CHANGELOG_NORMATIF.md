@@ -1,4 +1,18 @@
+# 1.2.27 — 3 août 2026
+
+- rendu déterministe des pages françaises et anglaises depuis les verrous éditoriaux ;
+- ajout obligatoire du lien interlangue direct dans chaque page française ;
+- rendu des citations et traduction limitée à `citation` et `date` ;
+- conservation exacte des paramètres documentaires et ajout canonique de `Citation traduite par IA`.
+
 # Changelog normatif
+
+## 1.2.27 — 3 août 2026
+
+- rendu déterministe bilingue depuis les verrous ;
+- lien interlangue direct obligatoire dans chaque page française ;
+- traduction sélective des citations et avertissement canonique ;
+- alignement recommandé : validateur 0.4.29 et kit 2.15.0.
 
 ## 1.2.26 — 2 août 2026
 
@@ -163,6 +177,13 @@
 - aucune modification des exigences éditoriales 1.2.6.
 
 # Changelog normatif
+
+## 1.2.27 — 3 août 2026
+
+- rendu déterministe bilingue depuis les verrous ;
+- lien interlangue direct obligatoire dans chaque page française ;
+- traduction sélective des citations et avertissement canonique ;
+- alignement recommandé : validateur 0.4.29 et kit 2.10.0.
 
 ## 1.2.7 — 29 juillet 2026
 
