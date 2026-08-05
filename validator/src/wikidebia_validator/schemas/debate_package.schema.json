@@ -454,6 +454,13 @@
             "reason",
             "review_path"
           ]
+        },
+        "quality_policy_revision": {
+          "type": "string",
+          "enum": [
+            "1.2.38"
+          ],
+          "description": "Active les contrôles éditoriaux renforcés 1.2.38 sans migrer rétroactivement les autres invariants de la révision normative du corpus."
         }
       },
       "required": [

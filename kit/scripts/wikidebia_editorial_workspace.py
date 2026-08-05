@@ -49,7 +49,7 @@ from wikidebia_graph_extract import (
     normalize_key,
 )
 
-KIT_VERSION = "2.15.12"
+KIT_VERSION = "2.15.13"
 WORKSPACE_SCHEMA = "wikidebia-editorial-workspace-1.0"
 AUDIT_SCHEMA = "wikidebia-editorial-audit-1.0"
 TASK_SCHEMA = "wikidebia-editorial-task-ledger-1.0"
@@ -410,13 +410,24 @@ def keyword_vocabulary_working(items: Sequence[Mapping[str, Any]], debate_id: st
             })
     entries = []
     for normalized in sorted(usage):
+        term = original_forms[normalized]
+        lexical_words = token_words(term)
+        has_connector = bool(re.search(r"(?:\b(?:de|du|des|et|of|and)\b|d['’])", term, flags=re.IGNORECASE))
+        multiword_exception = len(lexical_words) > 1
         entries.append({
-            "fr": original_forms[normalized],
+            "fr": term,
             "en": None,
             "definition": "",
             "kind": None,
             "capitalization_policy": None,
             "capitalization_rationale": "",
+            "atomic_concept": True,
+            "compositional_intersection": False,
+            "multiword_exception": multiword_exception,
+            "multiword_exception_rationale": (
+                f"Locution thématique conventionnelle « {term} » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants."
+                if multiword_exception else ""
+            ),
             "status": "pending_review",
             "usages": usage[normalized],
             "decision": "pending",
@@ -424,6 +435,7 @@ def keyword_vocabulary_working(items: Sequence[Mapping[str, Any]], debate_id: st
         })
     return {
         "schema": "wikidebia-keyword-vocabulary-working-1.0",
+        "quality_policy_revision": "1.2.38",
         "debate_id": debate_id,
         "work_id": work_id,
         "status": "draft",

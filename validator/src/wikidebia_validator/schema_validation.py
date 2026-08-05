@@ -81,6 +81,17 @@ def validate_all_schemas(ctx: PackageContext, store: SchemaStore) -> None:
     for rel, schema in mapping.items():
         if ctx.exists(rel):
             validate_instance(ctx, store, rel, schema)
+    norm = ((manifest or {}).get("normative_versions") or {}).get("consolidated_norm")
+    controls = (manifest or {}).get("editorial_controls") or {}
+    quality_policy = controls.get("quality_policy_revision")
+    if norm == "1.2.38" or quality_policy == "1.2.38":
+        editorial_schemas = {
+            controls.get("keyword_vocabulary_path"): "keyword_vocabulary.schema.json",
+            controls.get("summary_style_review_path"): "summary_style_review.schema.json",
+        }
+        for rel, schema in editorial_schemas.items():
+            if rel and ctx.exists(rel):
+                validate_instance(ctx, store, rel, schema)
     if manifest:
         for i, page in enumerate(manifest.get("pages", [])):
             validate_instance(ctx, store, "manifest.json", "page_manifest.schema.json", page)

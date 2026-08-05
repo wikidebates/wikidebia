@@ -1,3 +1,13 @@
+## 0.4.40 — 6 août 2026
+
+- alignement sur la norme 1.2.38 et le kit 2.15.13 ;
+- distinction entre intersections compositionnelles et locutions atomiques ;
+- rejet bilingue de `psychologie religieuse`, `religious psychology`, `science et religion` et constructions analogues ;
+- maintien explicite de `argument d'autorité` comme catégorie atomique ;
+- ajout des schémas `keyword_vocabulary` et `summary_style_review` ;
+- tests d’intégration des codes éditoriaux et du périmètre `schema` ;
+- correction de la détection de `le dieu unique`.
+
 ## 0.4.39 — 5 août 2026
 
 - alignement sur la norme 1.2.37 et le kit 2.15.12 ;

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "summary_style_review.schema.json",
+  "title": "Wikidéb'IA — Revue individuelle des résumés",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "normative_revision",
+    "debate_id",
+    "entries",
+    "quality_policy_revision"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "normative_revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "debate_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "languages"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "languages": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": false,
+            "patternProperties": {
+              "^(fr|en)$": {
+                "type": "object",
+                "required": [
+                  "originality_reviewed",
+                  "mechanism_statement"
+                ],
+                "properties": {
+                  "originality_reviewed": {
+                    "const": true
+                  },
+                  "mechanism_statement": {
+                    "type": "string",
+                    "minLength": 30
+                  }
+                },
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "quality_policy_revision": {
+      "const": "1.2.38"
+    }
+  }
+}

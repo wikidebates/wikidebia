@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "normative_revision": "1.2.37",
+  "normative_revision": "1.2.38",
   "entries": [
     {
       "id": "A0001",
@@ -49,5 +49,7 @@
         }
       }
     }
-  ]
+  ],
+  "debate_id": "exemple_debat",
+  "quality_policy_revision": "1.2.38"
 }

@@ -1,3 +1,9 @@
+## 2.15.13 — 6 août 2026
+
+- alignement sur la norme 1.2.38 et le validateur 0.4.40 ;
+- activation de la validation schématique des revues éditoriales 1.2.38 ;
+- conservation intégrale des mécanismes de publication et de reprise 2.15.12.
+
 ## 2.15.12 — 5 août 2026
 
 - alignement sur la norme 1.2.37 et le validateur 0.4.39 ;

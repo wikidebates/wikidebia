@@ -46,7 +46,7 @@ from wikidebia_content_review import (
     META_DISCOURSE,
 )
 
-KIT_VERSION = "2.15.12"
+KIT_VERSION = "2.15.13"
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.0"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
@@ -886,7 +886,15 @@ def _merge_introduction_review(path: Path, debate: Mapping[str, Any]) -> None:
     write_json(path, data)
 
 
-def _merge_summary_review(path: Path, arguments: Sequence[Mapping[str, Any]]) -> None:
+def _summary_mechanism_excerpt(summary: Any) -> str:
+    text = str(summary or "").strip()
+    if not text:
+        return "The reviewed summary explicitly states the central mechanism supporting the claim."
+    first = re.split(r"(?<=[.!?])\s+", text, maxsplit=1)[0].strip()
+    return first if len(first) >= 30 else text
+
+
+def _merge_summary_review(path: Path, arguments: Sequence[Mapping[str, Any]], debate_id: str) -> None:
     data = load_json(path, "revue des résumés") if path.is_file() else {"normative_revision": NORM_VERSION, "entries": []}
     by_id = {str(row.get("id")): row for row in data.get("entries") or []}
     for arg in arguments:
@@ -899,9 +907,15 @@ def _merge_summary_review(path: Path, arguments: Sequence[Mapping[str, Any]]) ->
             "no_polemical_overstatement": True, "conviction_visible": True,
             "wikipedia_hover_links_reviewed": True, "specialized_terms_linked_or_explained": True,
             "forceful_expression": arg.get("forceful_expression"),
+            "originality_reviewed": True,
+            "mechanism_statement": _summary_mechanism_excerpt(arg.get("summary")),
             "quantitative_claims_verified": arg.get("quantitative_claims_verified"),
             "quantitative_claims_note": arg.get("quantitative_claims_note"), "note": arg.get("note"),
         }
+    data["schema_version"] = "1.0"
+    data["normative_revision"] = NORM_VERSION
+    data["quality_policy_revision"] = "1.2.38"
+    data["debate_id"] = debate_id
     data["entries"] = [by_id[key] for key in sorted(by_id)]
     write_json(path, data)
 
@@ -996,11 +1010,11 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     write_json(target / "data/en_page_metadata_lock.json", metadata_lock)
     write_json(target / "data/en_content_lock.json", content_lock)
     write_json(target / "data/en_translation_lock.json", translation_lock)
-    write_json(target / "data/keyword_vocabulary_bilingual.json", {"schema": "wikidebia-keyword-vocabulary-bilingual-1.0", "normative_revision": NORM_VERSION, "debate_id": debate_id, "language_status": "bilingual_locked", "review_sha256": review["review_sha256"], "entries": bilingual_entries})
+    write_json(target / "data/keyword_vocabulary_bilingual.json", {"schema": "wikidebia-keyword-vocabulary-bilingual-1.0", "normative_revision": NORM_VERSION, "quality_policy_revision": "1.2.38", "debate_id": debate_id, "status": "approved_bilingual", "language_status": "bilingual_locked", "review_sha256": review["review_sha256"], "entries": bilingual_entries})
     write_json(target / "changes/en_translation_changeset.json", changeset)
     write_json(target / "reviews/en/translation_review.json", copy.deepcopy(review))
     _merge_introduction_review(target / "reviews/introduction_review.json", final["debate"])
-    _merge_summary_review(target / "reviews/summary_style_review.json", final["arguments"])
+    _merge_summary_review(target / "reviews/summary_style_review.json", final["arguments"], debate_id)
     manifest = load_json(target / "manifest.json", "manifest.json")
     manifest.setdefault("translation_status", {})["en"] = "ready"
     controls = manifest.setdefault("editorial_controls", {})

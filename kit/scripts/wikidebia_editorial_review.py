@@ -59,11 +59,20 @@ from wikidebia_editorial_workspace import (
     workspace_receipt_hash,
 )
 
-KIT_VERSION = "2.15.12"
+KIT_VERSION = "2.15.13"
 REVIEW_SCHEMA = "wikidebia-fr-page-metadata-review-1.1"
 METADATA_LOCK_SCHEMA = "wikidebia-fr-page-metadata-lock-1.0"
 CHANGESET_SCHEMA = "wikidebia-editorial-changeset-1.1"
 ALLOWED_KEYWORD_KINDS = {"noun", "noun_phrase", "proper_name", "acronym"}
+COMPOSITIONAL_KEYWORD_FR = re.compile(
+    r"^(?:(?:psychologie|sociologie|histoire|géographie|généalogie)\s+religieuse?s?|science\s+et\s+religion)$",
+    flags=re.IGNORECASE,
+)
+
+
+def _is_compositional_keyword_fr(term: str) -> bool:
+    """Return True for a domain intersection that must be split into base keywords."""
+    return bool(COMPOSITIONAL_KEYWORD_FR.fullmatch(normalized_text(term)))
 
 
 class EditorialReviewError(WorkspaceError):
@@ -398,6 +407,19 @@ def _validate_vocabulary(vocabulary: Mapping[str, Any], final_items: Sequence[Ma
             raise EditorialReviewError(f"Justification de capitalisation insuffisante pour le mot-clé : {term}")
         if kind in {"noun", "noun_phrase"} and str(entry.get("capitalization_rationale") or "").strip():
             raise EditorialReviewError(f"Justification de majuscule inattendue pour le nom commun : {term}")
+        if _is_compositional_keyword_fr(term):
+            raise EditorialReviewError(
+                f"Mot-clé composé à décomposer en unités de base : {term}. "
+                "Exemple : psychologie religieuse → psychologie + religion."
+            )
+        if entry.get("atomic_concept") is not True:
+            raise EditorialReviewError(f"Atomicité sémantique non attestée pour le mot-clé : {term}")
+        if entry.get("compositional_intersection") is not False:
+            raise EditorialReviewError(f"Intersection compositionnelle non exclue pour le mot-clé : {term}")
+        if not isinstance(entry.get("multiword_exception"), bool):
+            raise EditorialReviewError(f"Décision sur la locution polylexicale absente pour le mot-clé : {term}")
+        if entry.get("multiword_exception") is True and not _text_ok(entry.get("multiword_exception_rationale"), 20):
+            raise EditorialReviewError(f"Justification d'atomicité insuffisante pour la locution : {term}")
         if entry.get("scope") != "site_navigation":
             raise EditorialReviewError(f"Portée incorrecte pour le mot-clé : {term}")
         if entry.get("cross_debate_reusable") is not True:
@@ -414,6 +436,10 @@ def _validate_vocabulary(vocabulary: Mapping[str, Any], final_items: Sequence[Ma
             "kind": entry.get("kind"),
             "capitalization_policy": entry.get("capitalization_policy"),
             "capitalization_rationale": str(entry.get("capitalization_rationale") or "").strip(),
+            "atomic_concept": True,
+            "compositional_intersection": False,
+            "multiword_exception": entry.get("multiword_exception"),
+            **({"multiword_exception_rationale": str(entry.get("multiword_exception_rationale") or "").strip()} if entry.get("multiword_exception") else {}),
             "scope": "site_navigation",
             "cross_debate_reusable": True,
             "local_frequency_is_validity_criterion": False,
@@ -553,7 +579,12 @@ def _run_validator(
         raise EditorialReviewError(f"Le validateur n’a pas produit son rapport : {completed.stderr[-1000:]}")
     report = load_json(json_output, "rapport du validateur")
     if completed.returncode != 0 or report.get("result") == "failed":
-        raise EditorialReviewError(f"Validation structurelle échouée; consulter {json_output.relative_to(package).as_posix()}")
+        errors = [item for item in (report.get("findings") or report.get("issues") or []) if str(item.get("level") or item.get("severity") or "").upper() == "ERROR"]
+        detail = "; ".join(f"{item.get('code')} [{item.get('path')} {item.get('pointer')}]: {item.get('message')}" for item in errors[:4])
+        raise EditorialReviewError(
+            f"Validation structurelle échouée; consulter {json_output.relative_to(package).as_posix()}"
+            + (f"; {detail}" if detail else "")
+        )
     if str(report.get("validator_version")) != VALIDATOR_VERSION:
         raise EditorialReviewError(f"Version du validateur inattendue : {report.get('validator_version')}")
     return report
@@ -629,7 +660,9 @@ def _build_reviewed_copy(project_root: Path, source: Path, target: Path, review:
     vocabulary = {
         "schema": "wikidebia-keyword-vocabulary-1.0",
         "normative_revision": NORM_VERSION,
+        "quality_policy_revision": "1.2.38",
         "debate_id": debate_id,
+        "status": "approved_fr",
         "language_status": "fr_locked_en_pending",
         "review_sha256": review.get("review_sha256"),
         "entries": copy.deepcopy(review.get("finalized_vocabulary") or []),

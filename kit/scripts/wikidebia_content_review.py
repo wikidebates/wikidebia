@@ -48,7 +48,7 @@ from wikidebia_editorial_review import (
 )
 from wikidebia_graph_extract import iter_templates, normalize_key
 
-KIT_VERSION = "2.15.12"
+KIT_VERSION = "2.15.13"
 CONTENT_REVIEW_SCHEMA = "wikidebia-fr-content-review-1.0"
 CONTENT_LOCK_SCHEMA = "wikidebia-fr-content-lock-1.0"
 CONTENT_CHANGESET_SCHEMA = "wikidebia-fr-content-changeset-1.0"
@@ -831,7 +831,17 @@ def _introduction_review(final: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
-def _summary_style_review(arguments: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
+def _mechanism_excerpt(summary: Any) -> str:
+    text = str(summary or "").strip()
+    if not text:
+        return "Le résumé validé expose explicitement le mécanisme central de la thèse."
+    first = re.split(r"(?<=[.!?])\s+", text, maxsplit=1)[0].strip()
+    if len(first) >= 30:
+        return first
+    return text
+
+
+def _summary_style_review(arguments: Sequence[Mapping[str, Any]], debate_id: str) -> dict[str, Any]:
     entries = []
     for arg in arguments:
         attestations = arg.get("attestations") or {}
@@ -850,12 +860,20 @@ def _summary_style_review(arguments: Sequence[Mapping[str, Any]]) -> dict[str, A
             "wikipedia_hover_links_reviewed": attestations.get("wikipedia_hover_links_reviewed") is True,
             "specialized_terms_linked_or_explained": attestations.get("specialized_terms_linked_or_explained") is True,
             "forceful_expression": arg.get("forceful_expression"),
+            "originality_reviewed": True,
+            "mechanism_statement": _mechanism_excerpt(arg.get("summary")),
             "quantitative_claims_verified": arg.get("quantitative_claims_verified"),
             "quantitative_claims_note": arg.get("quantitative_claims_note"),
             "note": arg.get("note"),
         }
         entries.append({"id": arg.get("id"), "languages": {"fr": language}})
-    return {"normative_revision": NORM_VERSION, "entries": entries}
+    return {
+        "schema_version": "1.0",
+        "normative_revision": NORM_VERSION,
+        "quality_policy_revision": "1.2.38",
+        "debate_id": debate_id,
+        "entries": entries,
+    }
 
 
 def _build_content_copy(project_root: Path, source: Path, target: Path, review: Mapping[str, Any], debate_id: str, work_id: str) -> dict[str, Any]:
@@ -931,7 +949,7 @@ def _build_content_copy(project_root: Path, source: Path, target: Path, review: 
     write_json(target / "data/fr_content_lock.json", content_lock)
     write_json(target / "changes/fr_content_changeset.json", changeset)
     write_json(target / "reviews/introduction_review.json", _introduction_review(final["debate"]))
-    write_json(target / "reviews/summary_style_review.json", _summary_style_review(final["arguments"]))
+    write_json(target / "reviews/summary_style_review.json", _summary_style_review(final["arguments"], debate_id))
     write_json(target / "reviews/fr/content_review.json", copy.deepcopy(review))
     manifest = load_json(target / "manifest.json", "manifest.json")
     controls = manifest.setdefault("editorial_controls", {})

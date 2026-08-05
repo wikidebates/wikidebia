@@ -67,3 +67,14 @@ def test_sentence_normalization_supports_corpus_wide_repetition_detection():
         "fr",
     )
     assert first and first == second
+
+
+def test_argument_d_authorite_remains_an_atomic_keyword():
+    assert keyword_atomicity_issues(
+        "argument d'autorité",
+        {
+            "atomic_concept": True,
+            "multiword_exception": True,
+            "multiword_exception_rationale": "Locution encyclopédique stabilisée désignant un type d'argument.",
+        },
+    ) == []

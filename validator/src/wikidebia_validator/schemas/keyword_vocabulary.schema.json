@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "keyword_vocabulary.schema.json",
+  "title": "Wikidéb'IA — Vocabulaire contrôlé des mots-clés",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "entries",
+    "status",
+    "quality_policy_revision"
+  ],
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "fr",
+          "en",
+          "kind",
+          "scope",
+          "cross_debate_reusable",
+          "local_frequency_is_validity_criterion",
+          "usage_count_in_debate",
+          "atomic_concept",
+          "compositional_intersection",
+          "multiword_exception"
+        ],
+        "properties": {
+          "fr": {
+            "type": "string",
+            "minLength": 1
+          },
+          "en": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "kind": {
+            "enum": [
+              "noun",
+              "noun_phrase",
+              "proper_name",
+              "acronym"
+            ]
+          },
+          "scope": {
+            "const": "site_navigation"
+          },
+          "cross_debate_reusable": {
+            "const": true
+          },
+          "local_frequency_is_validity_criterion": {
+            "const": false
+          },
+          "usage_count_in_debate": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "atomic_concept": {
+            "const": true
+          },
+          "compositional_intersection": {
+            "const": false
+          },
+          "multiword_exception": {
+            "type": "boolean"
+          },
+          "multiword_exception_rationale": {
+            "type": "string",
+            "minLength": 20
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "multiword_exception": {
+                  "const": true
+                }
+              },
+              "required": [
+                "multiword_exception"
+              ]
+            },
+            "then": {
+              "required": [
+                "multiword_exception_rationale"
+              ]
+            },
+            "else": {
+              "not": {
+                "required": [
+                  "multiword_exception_rationale"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "quality_policy_revision": {
+      "const": "1.2.38"
+    }
+  }
+}

@@ -14,8 +14,8 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Protocol
 
-KIT_VERSION = "2.15.12"
-REQUIRED_VALIDATOR_VERSION = "0.4.39"
+KIT_VERSION = "2.15.13"
+REQUIRED_VALIDATOR_VERSION = "0.4.40"
 DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
 DEFERRED_TRANSLATION_PROFILE = "norm_1_2_deferred_translation"
 DIRECT_PROFILES = {DIRECT_INTERLANGUAGE_PROFILE, DEFERRED_TRANSLATION_PROFILE}
@@ -1072,7 +1072,7 @@ class GenericPublisher:
             }
             counts[language]["total"] = len(language_actions)
         plan: dict[str, Any] = {
-            "plan_version": "wikidebia-publication-plan-2.15.12",
+            "plan_version": "wikidebia-publication-plan-2.15.13",
             "publication_profile": self.publication_profile,
             "kit_version": KIT_VERSION,
             "debate_id": self.config["debate_id"],

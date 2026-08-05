@@ -45,7 +45,7 @@ from wikidebia_corpus_init import extract_page_metadata
 from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
 from wikidebia_editorial_review import EditorialReviewError, _assert_source_unchanged, _run_validator
 
-KIT_VERSION = "2.15.12"
+KIT_VERSION = "2.15.13"
 PREVIOUS_NORM_VERSION = "1.2.33"
 COMPATIBLE_PREVIOUS_NORM_VERSIONS = {"1.2.27", "1.2.28", "1.2.30", PREVIOUS_NORM_VERSION}
 RENDER_LOCK_SCHEMA = "wikidebia-bilingual-render-lock-1.0"
@@ -643,14 +643,17 @@ def _finalize_graph_placement_review(target: Path, registry: Mapping[str, Any]) 
     write_json(path, review)
 
 
-def _finalize_summary_review(target: Path) -> None:
+def _finalize_summary_review(target: Path, debate_id: str) -> None:
     path = target / "reviews/summary_style_review.json"
     review = load_json(path, "revue du style des résumés")
     entries = review.get("entries")
     if not isinstance(entries, list):
         raise RenderError("Revue du style des résumés absente")
     review = copy.deepcopy(review)
+    review["schema_version"] = "1.0"
     review["normative_revision"] = NORM_VERSION
+    review["quality_policy_revision"] = "1.2.38"
+    review["debate_id"] = debate_id
     for entry in review["entries"]:
         for decision in (entry.get("languages") or {}).values():
             if isinstance(decision, dict) and decision.get("status") == "translated_and_reviewed":
@@ -673,7 +676,7 @@ def _prepare_final_controls(
     _copy_active_norm(project_root, target)
     _finalize_individual_review(target, registry, fr_meta, en_meta)
     _finalize_graph_placement_review(target, registry)
-    _finalize_summary_review(target)
+    _finalize_summary_review(target, debate_id)
 
     controls = manifest.setdefault("editorial_controls", {})
     controls["keyword_vocabulary_path"] = "data/keyword_vocabulary_bilingual.json"

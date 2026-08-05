@@ -1,3 +1,13 @@
+## 1.2.38 — 6 août 2026
+
+- distinction explicite entre locution atomique et intersection compositionnelle de domaines ;
+- obligation de décomposer `psychologie de la religion` ou `psychologie religieuse` en `psychologie` et `religion` ;
+- maintien des catégories irréductibles telles que `argument d'autorité` ;
+- ajout de l’attestation `compositional_intersection=false` dans le vocabulaire contrôlé ;
+- contrôle symétrique des constructions françaises et anglaises ;
+- schémas dédiés au vocabulaire de mots-clés et à la revue des résumés ;
+- activation complète des barrières éditoriales sur les corpus migrant vers 1.2.38.
+
 ## 1.2.37 — 5 août 2026
 
 - remplacement du critère purement quantitatif des mots-clés par une exigence de concept atomique ;
