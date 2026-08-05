@@ -1,3 +1,11 @@
+## 2.15.10 — 5 août 2026
+
+- alignement sur la norme 1.2.35 et le validateur 0.4.37 ;
+- sélection du profil français différé pour les corpus historiques 1.2.x sans migration éditoriale ;
+- blocage inchangé de toutes les portées anglaises tant que le statut reste `deferred` ;
+- prise en charge des dates de création conservées page par page ;
+- maintien de l'absence de titres anglais synthétiques et de liens interlangues fictifs.
+
 # Changelog
 
 ## 2.15.9 — 5 août 2026

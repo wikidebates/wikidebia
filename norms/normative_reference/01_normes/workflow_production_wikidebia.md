@@ -198,3 +198,7 @@ Avant rendu, chaque page est classée `new` ou `preexisting`. Toute page préexi
 
 Le manifeste peut déclarer `translation_status.en=deferred`. Dans ce cas, les Works français, la validation et `./wikidebia update --archive <archive> --scope fr` n'exigent ni titre anglais, ni page anglaise, ni lien interlangue. Les étapes anglaises et les contrôles bilingues sont suspendus. `--scope en` est bloqué. Après traduction, le statut passe à `ready` ou `published`; les titres anglais sont verrouillés, les pages anglaises sont ajoutées, puis une reprise française distincte ajoute les liens interlangues sans changer les dates de création. Cette section remplace toute instruction antérieure imposant le verrouillage anglais avant la génération française.
 
+## Correctif 1.2.35 — traduction différée sur corpus historique
+
+`translation_status.en=deferred` est lu comme un état opérationnel explicite, indépendamment de la révision éditoriale 1.2.x déclarée. `--scope fr` reste autonome ; `--scope en` est bloqué jusqu'au passage à `ready` ou `published`.
+

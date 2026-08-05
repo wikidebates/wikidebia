@@ -23,7 +23,13 @@ def english_translation_status(manifest: dict[str, Any] | None) -> str:
 
 
 def english_translation_deferred(manifest: dict[str, Any] | None) -> bool:
+    """Return whether English production is explicitly deferred.
+
+    The status is an operational workflow declaration, not a migration of the
+    corpus' editorial norm.  It therefore applies to legacy 1.2.x corpora when
+    explicitly present; absence of the field remains strict for backwards
+    compatibility.
+    """
     if not isinstance(manifest, dict):
         return False
-    norm = ((manifest.get("normative_versions") or {}).get("consolidated_norm"))
-    return _version_tuple(norm) >= (1, 2, 34) and english_translation_status(manifest) == "deferred"
+    return english_translation_status(manifest) == "deferred"

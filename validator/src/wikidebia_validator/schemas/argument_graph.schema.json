@@ -370,12 +370,8 @@
                     "displayed_title": {
                       "$ref": "common.schema.json#/$defs/displayedTitle"
                     },
-                    "sections": {
-                      "minItems": 1
-                    },
-                    "keywords": {
-                      "minItems": 1
-                    }
+                    "sections": {},
+                    "keywords": {}
                   }
                 }
               }

@@ -74,7 +74,7 @@ Lorsque la portée demandée ne contient aucune opération mutante, la commande 
 
 Un seul fichier suffit. Vider `updates/`, y copier soit le bundle `WIKIDEBIA_SOURCES_COMPLETES_*.zip`, soit la livraison complète `WIKIDEBIA_LIVRAISON_*.zip`, puis lancer `./wikidebia upgrade`.
 
-## Publication française avec anglais différé (1.2.34)
+## Publication française avec anglais différé (1.2.35, compatible avec les corpus historiques 1.2.x)
 
 Le corpus déclare `translation_status.en=deferred`, ne manifeste que les pages françaises et omet `interlangue`. Utiliser `./wikidebia publish --scope fr` ou `./wikidebia update --archive <archive> --scope fr`. Toute portée anglaise est refusée jusqu'au passage à `ready` ou `published`.
 

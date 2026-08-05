@@ -13,7 +13,7 @@ from .helpers import create_graph_package, dump
 def context() -> PackageContext:
     return PackageContext(
         root=Path('.'),
-        report=Report('0.4.36', '.', ['wikicode']),
+        report=Report('0.4.37', '.', ['wikicode']),
         cache={'manifest.json': {'normative_versions': {'consolidated_norm': '1.2.33'}}},
     )
 

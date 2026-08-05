@@ -1,17 +1,16 @@
-Wikidéb’IA Kit 2.15.9
-Norme : 1.2.34
-Validateur requis : 0.4.36
+Wikidéb’IA Kit 2.15.10
+Norme : 1.2.35
+Validateur requis : 0.4.37
 Extracteur de graphe : 1.0.2
 Tests pytest du kit : 243 réussis, 0 échec
-Tests pytest du validateur : 239 réussis, 0 échec
+Tests pytest du validateur : 241 réussis, 0 échec
 
-Décision 1.2.34 :
+Décision 1.2.35 :
 - le profil norm_1_2_deferred_translation publie le français sans titre anglais ni lien interlangue ;
-- les portées anglaises sont bloquées lorsque translation_status.en vaut deferred ;
+- la déclaration deferred est reconnue sur les corpus historiques 1.2.x sans migration éditoriale forcée ;
+- les portées anglaises sont bloquées tant que translation_status.en vaut deferred ;
+- les dates historiques peuvent être conservées page par page ;
 - aucun titre anglais provisoire et aucun lien fictif ne sont générés ;
-- un lien interlangue déjà présent reste strictement contrôlé et n’est pas supprimé automatiquement ;
-- après passage à ready ou published, une reprise française peut ajouter les liens exacts.
-
-Règles antérieures conservées : protection des pages préexistantes, capitalisation canonique, mots-clés classés par pertinence, profondeur non limitée, localisation complète des pages anglaises et sûreté des opérations distantes.
+- un lien interlangue déjà présent reste strictement contrôlé et n’est pas supprimé automatiquement.
 
 Résultat : RÉUSSI

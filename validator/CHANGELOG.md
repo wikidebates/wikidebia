@@ -1,3 +1,12 @@
+## 0.4.37 — 5 août 2026
+
+- alignement sur la norme 1.2.35 et le kit 2.15.10 ;
+- application explicite de `translation_status.en=deferred` aux corpus historiques 1.2.x sans migration éditoriale ;
+- conservation des dates de création page par page avec `creation_date_policy=per_page_preserved` ;
+- contrôle fermé des exceptions propriétaire de titres affichés hérités ;
+- correction des faux positifs sur les constructions impersonnelles françaises et les profondeurs déjà explicitement justifiées ;
+- maintien strict de WDV-WF-005 hors mode différé et pour tout titre anglais déclaré verrouillé.
+
 ## 0.4.36 — 5 août 2026
 
 - alignement sur la norme 1.2.34 et le kit 2.15.9 ;

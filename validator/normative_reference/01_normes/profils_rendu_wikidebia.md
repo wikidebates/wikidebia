@@ -982,3 +982,7 @@ Une référence d’Argument est retenue d’abord parce qu’elle développe, e
 
 Sous `translation_status.en=deferred`, une page française est rendue sans paramètre `interlangue`. Aucune valeur anglaise n'est synthétisée. Les squelettes antérieurs montrant un lien immédiat décrivent uniquement le profil bilingue `ready`/`published`. Dès que l'anglais est prêt, le lien français devient obligatoire, unique et exactement égal au titre canonique anglais verrouillé. Une portée anglaise est interdite tant que le statut reste `deferred`; un lien valide déjà présent est conservé et contrôlé.
 
+## Profil correctif 1.2.35 — français historique différé
+
+Le profil français différé n'invente aucun titre anglais et n'émet aucun lien interlangue. Une exception héritée sur les titres affichés doit être explicitement verrouillée par le propriétaire et documentée dans un fichier de revue exhaustif.
+

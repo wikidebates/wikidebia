@@ -1766,3 +1766,7 @@ Chaque entrée de mot-clé contient `kind`, `capitalization_policy` et `capitali
 
 Le manifeste porte `translation_status.en` avec les valeurs `pending`, `deferred`, `ready` ou `published`. En `deferred`, les champs de titre anglais peuvent rester absents, nuls ou `unassigned`, les fiches interlangues peuvent avoir une cible nulle et aucun lien français n'est rendu. Un titre déclaré `locked`, une page anglaise manifestée ou un statut `ready`/`published` réactive l'obligation d'un titre canonique anglais valide et les contrôles de cohérence correspondants.
 
+## Correctif 1.2.35 — données importées
+
+Le manifeste peut déclarer `editorial_controls.creation_date_policy=per_page_preserved`. Chaque entrée de page porte alors sa date immuable, reproduite à l'identique dans le registre et le wikicode. Le statut anglais différé n'exige pas de métadonnées anglaises avant traduction.
+

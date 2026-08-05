@@ -14,8 +14,8 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Protocol
 
-KIT_VERSION = "2.15.9"
-REQUIRED_VALIDATOR_VERSION = "0.4.36"
+KIT_VERSION = "2.15.10"
+REQUIRED_VALIDATOR_VERSION = "0.4.37"
 DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
 DEFERRED_TRANSLATION_PROFILE = "norm_1_2_deferred_translation"
 DIRECT_PROFILES = {DIRECT_INTERLANGUAGE_PROFILE, DEFERRED_TRANSLATION_PROFILE}
@@ -631,7 +631,7 @@ class GenericPublisher:
                     version = ()
                 if version < (1, 2, 34) or self._english_translation_deferred():
                     raise PublicationError(
-                        "La mise à jour séparée de |interlangue= n'est autorisée qu'après sortie du mode deferred sous la norme 1.2.34 ou ultérieure."
+                        "La mise à jour séparée de |interlangue= n'est autorisée qu'après sortie du mode deferred sous la norme 1.2.35 ou ultérieure."
                     )
         requirements = self.config.get("manifest_requirements") or {}
         for field, expected in requirements.items():
@@ -1072,7 +1072,7 @@ class GenericPublisher:
             }
             counts[language]["total"] = len(language_actions)
         plan: dict[str, Any] = {
-            "plan_version": "wikidebia-publication-plan-2.15.9",
+            "plan_version": "wikidebia-publication-plan-2.15.10",
             "publication_profile": self.publication_profile,
             "kit_version": KIT_VERSION,
             "debate_id": self.config["debate_id"],

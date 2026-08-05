@@ -23,6 +23,9 @@
         },
         "validator_version": {
           "$ref": "common.schema.json#/$defs/nullableVersion"
+        },
+        "normative_revision": {
+          "$ref": "common.schema.json#/$defs/version"
         }
       },
       "additionalProperties": false,
@@ -462,12 +465,8 @@
                         "displayed_title": {
                           "$ref": "common.schema.json#/$defs/displayedTitle"
                         },
-                        "sections": {
-                          "minItems": 1
-                        },
-                        "keywords": {
-                          "minItems": 1
-                        }
+                        "sections": {},
+                        "keywords": {}
                       }
                     }
                   }

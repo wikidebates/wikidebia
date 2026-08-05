@@ -573,3 +573,7 @@ Les structures présentant `avancement=Débat construit`, `progress=Constructed 
 
 Dans les structures françaises, `interlangue` est absent lorsque `translation_status.en=deferred`. Il devient obligatoire uniquement lorsque l'anglais est `ready` ou `published`, sous la forme unique `{{Lien interlangue|langue=en|page=Titre canonique anglais verrouillé}}`. Les structures anglaises ne comportent jamais ce paramètre. Les exemples plus anciens avec lien immédiat sont des exemples du profil bilingue prêt et ne s'appliquent pas au profil français différé.
 
+## Correctif 1.2.35 — absence d'interlangue pendant la traduction différée
+
+Pour une page française sous `translation_status.en=deferred`, le paramètre `interlangue` est absent. Dès la sortie de cet état, sa présence et sa cible sont de nouveau contrôlées strictement.
+

@@ -1,7 +1,7 @@
 {
-  "normative_revision": "1.2.34",
-  "recommended_validator_version": "0.4.36",
-  "recommended_kit_version": "2.15.9",
+  "normative_revision": "1.2.35",
+  "recommended_validator_version": "0.4.37",
+  "recommended_kit_version": "2.15.10",
   "compatible_from": "1.1.0",
   "translation_modes": [
     "pending",
@@ -10,7 +10,8 @@
     "published"
   ],
   "notes": [
-    "Le mode deferred est explicite et non rétroactif.",
-    "Les corpus antérieurs restent soumis à leurs règles historiques."
+    "Le mode deferred est une déclaration opérationnelle explicite applicable aux corpus historiques 1.2.x sans migration de leur norme éditoriale.",
+    "L'absence de translation_status.en=deferred conserve le contrat bilingue strict de la révision déclarée.",
+    "Les dates de création importées peuvent être conservées page par page avec creation_date_policy=per_page_preserved."
   ]
 }

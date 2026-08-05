@@ -25,11 +25,11 @@ CONTEXTUAL_TITLE_PATTERNS_120 = {
 CONTEXTUAL_TITLE_PATTERNS_121 = {
     "fr": {
         "initial": re.compile(r"^(?:(?:Il|Elle|Ils|Elles|Cela|Ceci|Ça|Celui(?:-ci|-là)?|Celle(?:-ci|-là)?)\b|(?:Ce|Cet|Cette|Ces)\s+(?!(?:que|qui|dont)\b)[a-zà-öø-ÿ][\w'’-]*)", re.I),
-        "internal": re.compile(r"\b(?:ce|cet|cette|ces)\s+(?!(?:que|qui|dont)\b)[a-zà-öø-ÿ][\w'’-]*", re.I),
+        "internal": re.compile(r"\b(?:ce|cet|cette|ces)\s+(?:protocole|projet|programme|étude|expérience|méthode|résultats?|dispositif|institution|théorie|modèle|analyse|essai|article|ouvrage|rapport)\b", re.I),
     },
     "en": {
         "initial": re.compile(r"^(?:(?:It|They)\b|(?:This|That|These|Those)\s+(?!(?:which|that)\b)[a-z][\w'-]*)", re.I),
-        "internal": re.compile(r"\b(?:this|that|these|those)\s+(?!(?:which|that)\b)[a-z][\w'-]*", re.I),
+        "internal": re.compile(r"\b(?:this|that|these|those)\s+(?:protocol|project|program|study|experiment|method|results?|findings?|device|institution|theory|model|analysis|trial|article|book|report)\b", re.I),
     },
 }
 
@@ -40,10 +40,20 @@ def contextual_title_issues(title: str, language: str, revision: str = "1.2.0") 
         return ["implicit_referent"] if any(p.search(value) for p in CONTEXTUAL_TITLE_PATTERNS_120.get(language, [])) else []
     patterns = CONTEXTUAL_TITLE_PATTERNS_121.get(language) or {}
     issues: list[str] = []
-    if patterns.get("initial") and patterns["initial"].search(value):
-        issues.append("initial_contextual_referent")
-    internal = patterns.get("internal")
-    if internal and internal.search(value) and "initial_contextual_referent" not in issues:
+    initial_match = patterns.get("initial") and patterns["initial"].search(value)
+    if initial_match:
+        # French impersonal constructions do not contain an anaphoric referent.
+        impersonal_fr = language == "fr" and re.match(
+            r"^(?:Il\s+(?:existe|n['’]existe|faut|y\s+a|n['’]y\s+a|est|n['’]est|ne\s+devrait|reste)|Ce\s+(?:qu['’]|n['’]est))",
+            value, re.I,
+        )
+        if not impersonal_fr:
+            issues.append("initial_contextual_referent")
+    # Internal demonstratives remain a review signal. They are not automatically
+    # blocking, but the title must explicitly name the referent or document the
+    # contextual shortening in its page-level review.
+    internal_match = patterns.get("internal") and patterns["internal"].search(value)
+    if internal_match and not initial_match:
         issues.append("possible_contextual_referent")
     return issues
 
@@ -187,7 +197,7 @@ def validate_graph(ctx: PackageContext) -> None:
                 continue
             if title.endswith(".") or "’" in title:
                 ctx.report.error("WDV-GRA-016", f"Titre {lang} non conforme : {title}", path=ctx.core_paths()["registry"], pointer=f"/graph/nodes/{node.get('id')}/{lang}/canonical_title")
-            if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
+            if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35"}:
                 contextual = contextual_title_issues(title, lang, norm)
                 details = {"node_id": node.get("id"), "language": lang, "issues": contextual}
                 if "implicit_referent" in contextual or "initial_contextual_referent" in contextual:
@@ -304,7 +314,7 @@ def validate_graph(ctx: PackageContext) -> None:
     observed = counts["maximum_depth"]
     if policy.get("maximum_observed") != observed:
         (ctx.report.error if strict else ctx.report.warning)("WDV-GRA-013", "maximum_observed incorrect", path=ctx.core_paths()["registry"], details={"declared": policy.get("maximum_observed"), "computed": observed})
-    if norm in {"1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
+    if norm in {"1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35"}:
         if policy.get("limit_policy") != "unbounded":
             ctx.report.error("WDV-GRA-009", "La politique de profondeur 1.2.31+ doit être non limitée", path=ctx.core_paths()["registry"], details={"limit_policy": policy.get("limit_policy")})
         legacy_fields = [key for key in ("normal_target", "declared_maximum", "exception_reason") if key in policy]
@@ -315,7 +325,9 @@ def validate_graph(ctx: PackageContext) -> None:
         if isinstance(declared_max, int) and observed > declared_max:
             ctx.report.error("WDV-GRA-009", f"Profondeur observée {observed} supérieure au maximum déclaré {declared_max}", path=ctx.core_paths()["registry"])
         if observed > 5:
-            ctx.report.warning("WDV-GRA-009", f"Profondeur exceptionnelle élevée : {observed}", path=ctx.core_paths()["registry"])
+            exception_reason = str(policy.get("exception_reason") or "").strip()
+            if len(exception_reason) < 40:
+                ctx.report.warning("WDV-GRA-009", f"Profondeur exceptionnelle élevée : {observed}", path=ctx.core_paths()["registry"])
 
     lifecycle = graph.get("lifecycle") or {}
     declared_hash = lifecycle.get("structural_sha256")

@@ -1,3 +1,10 @@
+# 1.2.35 — 5 août 2026
+
+- le statut anglais `deferred` devient une déclaration opérationnelle rétrocompatible avec tous les corpus historiques 1.2.x pris en charge, sans migration de leur norme éditoriale ;
+- ajout de `creation_date_policy=per_page_preserved` pour conserver les dates immuables page par page ;
+- encadrement d'une exception propriétaire, exhaustive et file-backed pour des titres affichés hérités déjà verrouillés ;
+- maintien du contrôle strict des corpus non différés, des liens existants et des portées anglaises.
+
 ## 1.2.34 — 5 août 2026
 
 - ajout de `translation_status.en=deferred` pour une publication française autonome ;

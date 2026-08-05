@@ -1,4 +1,4 @@
-# Guide de comparaison distante en lecture seule — Kit 2.15.9
+# Guide de comparaison distante en lecture seule — Kit 2.15.10
 
 ## Commande
 
@@ -30,5 +30,5 @@ Un plan contenant `manual_review` ou `blocked` reste un résultat de comparaison
 
 ## Portée française différée
 
-La comparaison distante ignore les pages anglaises absentes lorsque le manifeste 1.2.34 déclare `deferred`. Elle ne doit ni créer d'opération anglaise ni interpréter l'absence de lien français comme un retrait.
+La comparaison distante ignore les pages anglaises absentes lorsqu’un manifeste 1.2.x pris en charge déclare explicitement `translation_status.en=deferred`. Elle ne doit ni créer d'opération anglaise ni interpréter l'absence de lien français comme un retrait.
 

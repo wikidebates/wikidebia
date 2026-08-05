@@ -407,6 +407,53 @@
         },
         "graph_placement_review_path": {
           "$ref": "common.schema.json#/$defs/relativePath"
+        },
+        "creation_date_policy": {
+          "type": "string",
+          "enum": [
+            "single_active_date",
+            "per_page_preserved"
+          ]
+        },
+        "displayed_title_identity_exception": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "language": {
+              "type": "string",
+              "enum": [
+                "fr",
+                "en"
+              ]
+            },
+            "scope": {
+              "type": "string",
+              "enum": [
+                "legacy_owner_locked_import"
+              ]
+            },
+            "owner_decision": {
+              "type": "boolean"
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 40
+            },
+            "review_path": {
+              "$ref": "common.schema.json#/$defs/relativePath"
+            }
+          },
+          "required": [
+            "enabled",
+            "language",
+            "scope",
+            "owner_decision",
+            "reason",
+            "review_path"
+          ]
         }
       },
       "required": [
@@ -450,7 +497,7 @@
     },
     "translation_status": {
       "type": "object",
-      "description": "État explicite de la traduction anglaise. Le statut deferred autorise une publication française autonome sous la norme 1.2.34 et ultérieure.",
+      "description": "État explicite de la traduction anglaise. Le statut deferred est une capacité de workflow rétrocompatible : il autorise une publication française autonome lorsqu'il est déclaré explicitement, sans migrer le corpus vers une norme éditoriale plus récente.",
       "additionalProperties": false,
       "properties": {
         "en": {
