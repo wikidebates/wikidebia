@@ -13,7 +13,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
 
-from wikidebia_graph_extract import iter_templates, normalize_key
+from wikidebia_graph_extract import iter_templates, normalize_key, parse_template
 
 # Import the publication adapter without requiring installation as a package.
 _PUBLISH_PATH = Path(__file__).resolve().with_name("wikidebia_publish.py")
@@ -29,8 +29,8 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.15.10"
-REQUIRED_VALIDATOR_VERSION = "0.4.37"
+KIT_VERSION = "2.15.11"
+REQUIRED_VALIDATOR_VERSION = "0.4.38"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
 RECEIPT_VERSION = "wikidebia-remote-update-receipt-1.0"
@@ -46,10 +46,10 @@ GENERATED_MARKERS = (
 
 
 PROTECTED_LIFECYCLE_PARAMETERS = {
-    ("fr", "debate"): ("avancement", "avertissements-débat", "débats-connexes"),
-    ("en", "debate"): ("progress", "debate-warnings", "related-debates"),
-    ("fr", "argument"): ("avertissements-argument",),
-    ("en", "argument"): ("argument-warnings",),
+    ("fr", "debate"): ("avancement", "avertissements-débat", "débats-connexes", "date-création"),
+    ("en", "debate"): ("progress", "debate-warnings", "related-debates", "creation-date"),
+    ("fr", "argument"): ("avertissements-argument", "date-création"),
+    ("en", "argument"): ("argument-warnings", "creation-date"),
 }
 
 
@@ -66,6 +66,81 @@ def lifecycle_parameters_unchanged(remote_text: str, proposed_text: str, languag
     before = protected_lifecycle_snapshot(remote_text, language, page_type)
     after = protected_lifecycle_snapshot(proposed_text, language, page_type)
     return before == after, {"remote": before, "proposed": after}
+
+
+def preserve_remote_lifecycle_parameters(
+    remote_text: str,
+    proposed_text: str,
+    language: str,
+    page_type: str,
+) -> tuple[str, dict[str, Any]]:
+    """Overlay immutable page-lifecycle parameters from the attested remote page.
+
+    The operation is intentionally limited to pages whose current remote revision
+    has already been proven identical to the previous published state.  It never
+    imports arbitrary human changes: only the small, enumerated lifecycle set is
+    copied into a derived publication file.
+    """
+    expected = {
+        ("fr", "debate"): "debat",
+        ("en", "debate"): "debate",
+        ("fr", "argument"): "argument",
+        ("en", "argument"): "argument",
+    }[(language, page_type)]
+    remote_snapshot = protected_lifecycle_snapshot(remote_text, language, page_type)
+    proposed_calls = [call for call in iter_templates(proposed_text or "") if normalize_key(call.name) == expected]
+    if not proposed_calls:
+        raise UpdateError(f"Modèle principal introuvable pour la préservation des paramètres ({language}/{page_type})")
+    proposed_call = max(proposed_calls, key=lambda item: len(item.raw))
+    parsed = parse_template(proposed_call.raw)
+    if parsed is None:
+        raise UpdateError(f"Modèle principal illisible pour la préservation des paramètres ({language}/{page_type})")
+
+    protected_by_normalized = {
+        normalize_key(name): name for name in PROTECTED_LIFECYCLE_PARAMETERS[(language, page_type)]
+    }
+    preserved: list[tuple[str, str]] = []
+    seen: set[str] = set()
+    changes: dict[str, dict[str, Any]] = {}
+    for key, value in parsed.params.items():
+        canonical = protected_by_normalized.get(normalize_key(key))
+        if canonical is None:
+            preserved.append((key, value))
+            continue
+        seen.add(canonical)
+        present, remote_value = remote_snapshot[canonical]
+        if present:
+            assert remote_value is not None
+            preserved.append((key, remote_value))
+            if value != remote_value:
+                changes[canonical] = {"proposed": [True, value], "preserved": [True, remote_value]}
+        else:
+            changes[canonical] = {"proposed": [True, value], "preserved": [False, None]}
+
+    for canonical in PROTECTED_LIFECYCLE_PARAMETERS[(language, page_type)]:
+        if canonical in seen:
+            continue
+        present, remote_value = remote_snapshot[canonical]
+        if present:
+            assert remote_value is not None
+            preserved.append((canonical, remote_value))
+            changes[canonical] = {"proposed": [False, None], "preserved": [True, remote_value]}
+
+    rows = [f"{{{{{parsed.name}"]
+    rows.extend(f"|{value}" for value in parsed.positional)
+    rows.extend(f"|{key}={value}" for key, value in preserved)
+    rows.append("}}")
+    effective_template = "\n".join(rows)
+    effective_text = proposed_text.replace(proposed_call.raw, effective_template, 1)
+    effective_snapshot = protected_lifecycle_snapshot(effective_text, language, page_type)
+    if effective_snapshot != remote_snapshot:
+        raise UpdateError(f"Échec de préservation des paramètres protégés ({language}/{page_type})")
+    return effective_text, {
+        "remote": remote_snapshot,
+        "original_proposed": protected_lifecycle_snapshot(proposed_text, language, page_type),
+        "effective": effective_snapshot,
+        "changes": changes,
+    }
 
 
 class UpdateError(RuntimeError):
@@ -495,6 +570,46 @@ class RemoteUpdatePlanner:
         row = (self.config.get("sites") or {}).get(language) or {}
         return str(row.get("code") or language), str(row.get("expected_user") or "")
 
+    def _effective_proposed(
+        self,
+        prior: StatePage,
+        proposed: dict[str, Any],
+        remote_text: str,
+    ) -> tuple[dict[str, Any], dict[str, Any] | None]:
+        effective_text, preservation = preserve_remote_lifecycle_parameters(
+            remote_text,
+            proposed["content"],
+            prior.language,
+            prior.page_type,
+        )
+        if effective_text == proposed["content"]:
+            return proposed, None
+        digest = sha_text(effective_text)
+        target = (
+            self.project_root
+            / ".state"
+            / "update-effective"
+            / self.debate_id
+            / prior.language
+            / f"{prior.page_id}-{digest[:16]}.wiki"
+        )
+        target.parent.mkdir(parents=True, exist_ok=True)
+        temporary = target.with_suffix(target.suffix + ".tmp")
+        temporary.write_text(effective_text, encoding="utf-8", newline="\n")
+        os.replace(temporary, target)
+        effective = dict(proposed)
+        effective.update({
+            "content": effective_text,
+            "content_sha256": digest,
+            "source_path": portable(target, self.project_root),
+            "file_sha256": sha_file(target),
+            "original_source_path": proposed["source_path"],
+            "original_content_sha256": proposed["content_sha256"],
+            "original_file_sha256": proposed["file_sha256"],
+        })
+        preservation["effective_source_path"] = effective["source_path"]
+        return effective, preservation
+
     def _validate_new_corpus(self) -> dict[str, Any]:
         validator = self.config.get("validator") or {}
         command = [str(item) for item in validator.get("command") or []]
@@ -638,25 +753,36 @@ class RemoteUpdatePlanner:
                 handled_old.add(key)
                 continue
             exists, revision_id, remote_text = self.adapter.read_page(proposed["title"])
+            effective = proposed
+            lifecycle_preservation = None
+            if exists and prior is not None and self._remote_matches_prior(prior, revision_id, remote_text):
+                effective, lifecycle_preservation = self._effective_proposed(prior, proposed, remote_text)
             op = self._base_operation(
                 language=language,
-                page_id=proposed["page_id"],
-                page_type=proposed["page_type"],
-                title=proposed["title"],
+                page_id=effective["page_id"],
+                page_type=effective["page_type"],
+                title=effective["title"],
                 justification="Page du nouveau corpus",
             )
             op.update({
-                "source_path": proposed["source_path"],
-                "local_file_sha256": proposed["file_sha256"],
-                "new_sha256": proposed["content_sha256"],
+                "source_path": effective["source_path"],
+                "local_file_sha256": effective["file_sha256"],
+                "new_sha256": effective["content_sha256"],
                 "observed_revision_id": revision_id,
                 "remote_sha256": sha_text(remote_text) if exists else None,
-                "phase": 1 if proposed["page_type"] == "debate" else 2,
+                "phase": 1 if effective["page_type"] == "debate" else 2,
             })
+            if lifecycle_preservation is not None:
+                op.update({
+                    "lifecycle_preservation": lifecycle_preservation,
+                    "original_source_path": effective["original_source_path"],
+                    "original_local_file_sha256": effective["original_file_sha256"],
+                    "original_new_sha256": effective["original_content_sha256"],
+                })
             if not exists:
                 op["preconditions"] = ["title_absent_at_execution"]
                 buckets["create"].append(op)
-            elif sha_text(remote_text) == proposed["content_sha256"]:
+            elif sha_text(remote_text) == effective["content_sha256"]:
                 op["justification"] = "Contenu distant déjà équivalent"
                 op["phase"] = 0
                 buckets["skip"].append(op)
@@ -666,23 +792,17 @@ class RemoteUpdatePlanner:
                 op["remote_excerpt"] = remote_text[:500]
                 buckets["blocked"].append(op)
             elif self._remote_matches_prior(prior, revision_id, remote_text):
-                unchanged, lifecycle = lifecycle_parameters_unchanged(remote_text, proposed["content"], language, proposed["page_type"])
-                if not unchanged:
-                    op.update({
-                        "old_sha256": prior.content_sha256,
-                        "expected_revision_id": revision_id,
-                        "justification": "Modification interdite d’un paramètre protégé d’une page existante",
-                        "protected_lifecycle_parameters": lifecycle,
-                        "phase": 0,
-                    })
-                    buckets["blocked"].append(op)
-                    continue
                 op.update({
                     "old_sha256": prior.content_sha256,
                     "expected_revision_id": revision_id,
-                    "justification": "Page inchangée depuis la dernière publication automatisée; remplacement contrôlé autorisé",
-                    "preconditions": ["same_debate_id", "remote_matches_published_state", "protected_lifecycle_parameters_unchanged", "baserevid_unchanged"],
-                    "phase": 1 if proposed["page_type"] == "debate" else 3,
+                    "justification": (
+                        "Page inchangée depuis la dernière publication; remplacement contrôlé autorisé "
+                        "avec préservation des paramètres historiques"
+                        if lifecycle_preservation is not None
+                        else "Page inchangée depuis la dernière publication automatisée; remplacement contrôlé autorisé"
+                    ),
+                    "preconditions": ["same_debate_id", "remote_matches_published_state", "remote_lifecycle_parameters_preserved", "baserevid_unchanged"],
+                    "phase": 1 if effective["page_type"] == "debate" else 3,
                 })
                 buckets["update"].append(op)
             else:
@@ -728,6 +848,10 @@ class RemoteUpdatePlanner:
     def _plan_move(self, prior: StatePage, proposed: dict[str, Any], buckets: dict[str, list[dict[str, Any]]], comparisons: list[dict[str, Any]]) -> None:
         source_exists, source_rev, source_text = self.adapter.read_page(prior.title)
         target_exists, target_rev, target_text = self.adapter.read_page(proposed["title"])
+        effective = proposed
+        lifecycle_preservation = None
+        if source_exists and self._remote_matches_prior(prior, source_rev, source_text):
+            effective, lifecycle_preservation = self._effective_proposed(prior, proposed, source_text)
         op = self._base_operation(
             language=prior.language,
             page_id=prior.page_id,
@@ -737,11 +861,11 @@ class RemoteUpdatePlanner:
         )
         op.update({
             "old_title": prior.title,
-            "new_title": proposed["title"],
+            "new_title": effective["title"],
             "old_sha256": prior.content_sha256,
-            "new_sha256": proposed["content_sha256"],
-            "source_path": proposed["source_path"],
-            "local_file_sha256": proposed["file_sha256"],
+            "new_sha256": effective["content_sha256"],
+            "source_path": effective["source_path"],
+            "local_file_sha256": effective["file_sha256"],
             "expected_revision_id": source_rev,
             "observed_revision_id": source_rev,
             "target_revision_id": target_rev,
@@ -750,9 +874,16 @@ class RemoteUpdatePlanner:
             "phase": 4,
             "preconditions": ["source_matches_published_state", "target_absent", "move_right"],
         })
+        if lifecycle_preservation is not None:
+            op.update({
+                "lifecycle_preservation": lifecycle_preservation,
+                "original_source_path": effective["original_source_path"],
+                "original_local_file_sha256": effective["original_file_sha256"],
+                "original_new_sha256": effective["original_content_sha256"],
+            })
         if not source_exists:
-            if target_exists and sha_text(target_text) == proposed["content_sha256"]:
-                op["title"] = proposed["title"]
+            if target_exists and sha_text(target_text) == effective["content_sha256"]:
+                op["title"] = effective["title"]
                 op["justification"] = "Déplacement déjà effectué et cible équivalente"
                 op["phase"] = 0
                 buckets["skip"].append(op)
@@ -774,16 +905,9 @@ class RemoteUpdatePlanner:
             op["phase"] = 0
             buckets["manual_review"].append(op)
             return
-        unchanged, lifecycle = lifecycle_parameters_unchanged(source_text, proposed["content"], prior.language, prior.page_type)
-        if not unchanged:
-            op.update({
-                "justification": "Déplacement bloqué : un paramètre protégé de la page existante serait modifié",
-                "protected_lifecycle_parameters": lifecycle,
-                "phase": 0,
-            })
-            buckets["blocked"].append(op)
-            return
-        op["preconditions"].append("protected_lifecycle_parameters_unchanged")
+        op["preconditions"].append("remote_lifecycle_parameters_preserved")
+        if lifecycle_preservation is not None:
+            op["justification"] = "Titre modifié avec préservation automatique des paramètres historiques"
         buckets["move"].append(op)
 
     def _plan_merge(self, prior: StatePage, migration: dict[str, Any], buckets: dict[str, list[dict[str, Any]]], comparisons: list[dict[str, Any]]) -> None:
@@ -880,10 +1004,18 @@ class RemoteUpdatePlanner:
             buckets["manual_review"].append(op)
             return
         if not is_generated(remote_text, self.extra_markers):
-            op["justification"] = "Marqueur Wikidéb’IA attendu absent"
-            op["phase"] = 0
-            buckets["blocked"].append(op)
-            return
+            explicit_retirement = bool(migration and str(migration.get("reason") or migration.get("kind") or "").strip())
+            if not explicit_retirement:
+                op["justification"] = "Marqueur Wikidéb’IA attendu absent et retrait non explicitement documenté"
+                op["phase"] = 0
+                buckets["blocked"].append(op)
+                return
+            op["historical_page_without_generated_marker"] = True
+            op["justification"] = "Page historique non marquée retirée par migration explicite et état distant exactement attesté"
+            op["preconditions"] = [
+                condition for condition in op["preconditions"] if condition != "generated_marker_present"
+            ]
+            op["preconditions"].append("explicit_historical_retirement_migration")
         try:
             op["backlinks"] = self.adapter.backlinks(prior.title)
         except Exception:
@@ -1001,7 +1133,7 @@ class PlanExecutor:
                     # Verify the complete new graph before the first destructive deletion.
                     delete_rows = [item for item in ordered if item["operation"] == "delete"]
                     if delete_rows:
-                        self._verify_new_pages(language)
+                        self._verify_new_pages(language, plan)
                     for row in delete_rows:
                         results.append(self._execute_one(row, user, plan))
                 finally:
@@ -1032,10 +1164,7 @@ class PlanExecutor:
                         continue
                     page_id = str(row.get("page_id"))
                     title = str(row.get("canonical_title"))
-                    source = self.corpus_root / str(row.get("file_path") or row.get("source_path") or "")
-                    if not source.is_file():
-                        raise PlanConflict(f"Fichier local absent pendant l’attestation : {language}/{page_id}")
-                    desired_sha = sha_text(source.read_text(encoding="utf-8"))
+                    source, desired_sha = self._planned_page_source(plan, language, page_id, row)
                     exists, revision_id, remote_text = self.adapter.read_page(title)
                     if not exists or revision_id is None or sha_text(remote_text) != desired_sha:
                         raise PlanConflict(f"État distant modifié depuis le plan : {language}/{page_id}")
@@ -1151,7 +1280,8 @@ class PlanExecutor:
                 return result
             if revision_id != row.get("observed_revision_id") or sha_text(remote_text) != row.get("old_sha256"):
                 raise PlanConflict(f"Page à supprimer modifiée depuis le plan : {title}")
-            if not is_generated(remote_text, self.config.get("generated_markers") or ()):
+            historical_authorized = bool(row.get("historical_page_without_generated_marker"))
+            if not historical_authorized and not is_generated(remote_text, self.config.get("generated_markers") or ()):
                 raise PlanConflict(f"Marqueur Wikidéb’IA absent avant suppression : {title}")
             self.adapter.delete_page(title=title, reason=summary, expected_user=user)
             after_exists, _, _ = self.adapter.read_page(title)
@@ -1161,12 +1291,37 @@ class PlanExecutor:
             return result
         raise UpdateError(f"Opération inconnue : {operation}")
 
-    def _verify_new_pages(self, language: str) -> None:
+    def _planned_page_source(
+        self,
+        plan: dict[str, Any],
+        language: str,
+        page_id: str,
+        manifest_row: dict[str, Any],
+    ) -> tuple[Path, str]:
+        for name in ("create", "update", "move", "skip"):
+            for operation in (plan.get("operations") or {}).get(name) or []:
+                if operation.get("language") == language and str(operation.get("page_id")) == page_id:
+                    source_path = operation.get("source_path")
+                    desired_sha = operation.get("new_sha256")
+                    if source_path and desired_sha:
+                        source = self._resolve(str(source_path))
+                        if not source.is_file():
+                            raise PlanConflict(f"Fichier local effectif absent : {language}/{page_id}")
+                        if sha_file(source) != operation.get("local_file_sha256"):
+                            raise PlanConflict(f"Fichier local effectif modifié : {language}/{page_id}")
+                        if sha_text(source.read_text(encoding="utf-8")) != desired_sha:
+                            raise PlanConflict(f"Contenu local effectif divergent : {language}/{page_id}")
+                        return source, str(desired_sha)
+        source = self.corpus_root / str(manifest_row.get("file_path") or manifest_row.get("source_path") or "")
+        if not source.is_file():
+            raise PlanConflict(f"Fichier local absent : {language}/{page_id}")
+        return source, sha_text(source.read_text(encoding="utf-8"))
+
+    def _verify_new_pages(self, language: str, plan: dict[str, Any]) -> None:
         for row in self.manifest.get("pages") or []:
             if row.get("language") != language:
                 continue
-            source = self.corpus_root / str(row.get("file_path") or row.get("source_path") or "")
-            desired_sha = sha_text(source.read_text(encoding="utf-8"))
+            _, desired_sha = self._planned_page_source(plan, language, str(row.get("page_id")), row)
             exists, _, remote_text = self.adapter.read_page(str(row.get("canonical_title")))
             if not exists or sha_text(remote_text) != desired_sha:
                 raise PlanConflict(
@@ -1249,10 +1404,7 @@ class PlanExecutor:
                     page_id = str(row.get("page_id"))
                     active_ids.add(page_id)
                     title = str(row.get("canonical_title"))
-                    source = self.corpus_root / str(row.get("file_path") or row.get("source_path") or "")
-                    if not source.is_file():
-                        raise PlanConflict(f"Fichier local absent pendant l’attestation : {language}/{page_id}")
-                    desired_sha = sha_text(source.read_text(encoding="utf-8"))
+                    _, desired_sha = self._planned_page_source(plan, language, page_id, row)
                     exists, revision_id, remote_text = self.adapter.read_page(title)
                     if not exists or revision_id is None or sha_text(remote_text) != desired_sha:
                         raise PlanConflict(f"État distant non équivalent au corpus pendant l’attestation : {language}/{page_id}")

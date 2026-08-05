@@ -1,3 +1,11 @@
+## 1.2.36 — 5 août 2026
+
+- politique `per_page_preserved` appliquée par défaut : les pages existantes conservent leur date historique sans exigence de date du corpus ou du jour ;
+- réconciliation automatique et traçable des paramètres de cycle de vie protégés pour les pages distantes exactement attestées ;
+- absence d’ajout rétroactif des avertissements IA aux pages historiques ;
+- suppression d’une page historique non marquée autorisée seulement par migration explicite, état distant exact et absence d’autre propriétaire connu ;
+- maintien de la traduction anglaise différée et de toutes les protections contre les modifications humaines.
+
 # 1.2.35 — 5 août 2026
 
 - le statut anglais `deferred` devient une déclaration opérationnelle rétrocompatible avec tous les corpus historiques 1.2.x pris en charge, sans migration de leur norme éditoriale ;

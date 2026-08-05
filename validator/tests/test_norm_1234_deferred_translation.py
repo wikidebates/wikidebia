@@ -33,7 +33,7 @@ def _context(tmp_path: Path, *, norm: str = "1.2.30", deferred: bool = True, nod
         })
         pages.append({"page_id": node_id, "page_type": "argument", "language": "fr", "canonical_title": f"Argument français {index}", "status": "validated"})
     registry = {
-        "schema": {"mediawiki_structure_version": "1.0", "render_profile_version": "1.0", "registry_version": "1.0", "graph_version": "1.0", "validator_version": "0.4.37"},
+        "schema": {"mediawiki_structure_version": "1.0", "render_profile_version": "1.0", "registry_version": "1.0", "graph_version": "1.0", "validator_version": "0.4.38"},
         "debate": {
             "id": debate_id,
             "pages": {
@@ -52,7 +52,7 @@ def _context(tmp_path: Path, *, norm: str = "1.2.30", deferred: bool = True, nod
         "global_status": "release_ready",
         "created_at": "2026-08-05T12:00:00+02:00",
         "updated_at": "2026-08-05T12:00:00+02:00",
-        "normative_versions": {"consolidated_norm": norm, "mediawiki_structure": "1.0", "render_profile": "1.0", "registry": "1.0", "graph": "1.0", "validator": "0.4.37"},
+        "normative_versions": {"consolidated_norm": norm, "mediawiki_structure": "1.0", "render_profile": "1.0", "registry": "1.0", "graph": "1.0", "validator": "0.4.38"},
         "translation_status": {"en": "deferred" if deferred else "ready"},
         "core_files": {"registry": "data/registre_debat.json", "scope": "scope.json", "graph_json": "graph/graphe_argumentatif.json", "sources": "data/sources.json"},
         "pages": pages,
@@ -65,7 +65,7 @@ def _context(tmp_path: Path, *, norm: str = "1.2.30", deferred: bool = True, nod
     _write(tmp_path / "scope.json", {"debate_id": debate_id})
     _write(tmp_path / "data/sources.json", {"debate_id": debate_id, "sources": []})
     _write(tmp_path / "graph/graphe_argumentatif.json", {"debate": {"title_fr": "Débat français", "labels": None}})
-    report = Report("0.4.37", str(tmp_path), ["workflow"])
+    report = Report("0.4.38", str(tmp_path), ["workflow"])
     return PackageContext(tmp_path, report), manifest, registry
 
 

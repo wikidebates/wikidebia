@@ -1,12 +1,12 @@
-## 2.15.10 — 5 août 2026
+## 2.15.11 — 5 août 2026
 
-- alignement sur la norme 1.2.35 et le validateur 0.4.37 ;
-- sélection du profil français différé pour les corpus historiques 1.2.x sans migration éditoriale ;
-- blocage inchangé de toutes les portées anglaises tant que le statut reste `deferred` ;
-- prise en charge des dates de création conservées page par page ;
-- maintien de l'absence de titres anglais synthétiques et de liens interlangues fictifs.
-
-# Changelog
+- alignement sur la norme 1.2.36 et le validateur 0.4.38 ;
+- préservation automatique des avertissements, de l’avancement, des débats connexes historiques et des dates de création des pages distantes exactement attestées ;
+- génération d’un fichier effectif dérivé et signé, sans modifier le corpus source ni importer d’autres changements distants ;
+- suppression des blocages massifs causés par l’ajout rétroactif de `Argument généré par IA` sur des pages historiques ;
+- conservation de la date historique des pages existantes, sans exigence de date du corpus ou de date du jour ;
+- suppression contrôlée d’une page historique non marquée uniquement lorsqu’une migration explicite documente son retrait et que l’état distant est exact ;
+- maintien du blocage des modifications humaines et de la traduction anglaise différée.
 
 ## 2.15.9 — 5 août 2026
 

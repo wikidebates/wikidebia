@@ -1,4 +1,4 @@
-# Catalogue des codes de contrôle — 0.4.37
+# Catalogue des codes de contrôle — 0.4.38
 
 | Code | Signification |
 |---|---|

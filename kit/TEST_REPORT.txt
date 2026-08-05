@@ -1,16 +1,16 @@
-Wikidéb’IA Kit 2.15.10
-Norme : 1.2.35
-Validateur requis : 0.4.37
+Wikidéb’IA Kit 2.15.11
+Norme : 1.2.36
+Validateur requis : 0.4.38
 Extracteur de graphe : 1.0.2
-Tests pytest du kit : 243 réussis, 0 échec
-Tests pytest du validateur : 241 réussis, 0 échec
+Tests pytest du kit : 246 réussis, 0 échec
+Tests pytest du validateur : 242 réussis, 0 échec
 
-Décision 1.2.35 :
-- le profil norm_1_2_deferred_translation publie le français sans titre anglais ni lien interlangue ;
-- la déclaration deferred est reconnue sur les corpus historiques 1.2.x sans migration éditoriale forcée ;
-- les portées anglaises sont bloquées tant que translation_status.en vaut deferred ;
-- les dates historiques peuvent être conservées page par page ;
-- aucun titre anglais provisoire et aucun lien fictif ne sont générés ;
-- un lien interlangue déjà présent reste strictement contrôlé et n’est pas supprimé automatiquement.
+Décision 1.2.36 :
+- les pages distantes exactement attestées conservent automatiquement leurs dates de création et leurs autres paramètres historiques de cycle de vie ;
+- aucune page déjà existante n’est contrainte d’adopter la date du corpus ou la date du jour ;
+- l’absence historique d’avertissement IA est préservée au lieu de provoquer un blocage ou un ajout rétroactif ;
+- les déplacements appliquent la même préservation non destructive ;
+- une suppression historique sans marqueur IA reste autorisée uniquement par une migration explicite, après concordance exacte de l’état distant ;
+- la traduction anglaise différée et les protections contre les modifications humaines restent actives.
 
 Résultat : RÉUSSI

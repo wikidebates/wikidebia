@@ -1,10 +1,10 @@
-Wikidéb’IA Validator 0.4.37
-Norme implémentée : 1.2.35
-Tests pytest : 241 réussis, 0 échec
-Traduction différée rétrocompatible : translation_status.en=deferred autorise les corpus historiques 1.2.x à publier le français sans titre anglais, page anglaise ni lien interlangue
-Contrôle WDV-WF-005 : suspendu uniquement pour les titres anglais non assignés explicitement différés ; maintenu pour locked, ready ou published sans titre
-Dates importées : creation_date_policy=per_page_preserved contrôle la cohérence page par page sans réécrire les dates historiques
-Liens existants : cible anglaise verrouillée et concordance exacte toujours exigées
-Portée anglaise : bloquée tant que le statut reste deferred
+Wikidéb’IA Validator 0.4.38
+Norme implémentée : 1.2.36
+Tests pytest : 242 réussis, 0 échec
+Politique de date par défaut : per_page_preserved
+Pages existantes : cohérence page par page sans exigence de date globale, de date du corpus ou de date du jour
+Plans de reprise : prise en charge des fichiers effectifs dérivés qui préservent les paramètres historiques attestés
+Traduction différée : translation_status.en=deferred autorise la publication française sans titre anglais, page anglaise ni lien interlangue
+Contrôle WDV-WF-005 : suspendu uniquement pour les titres anglais explicitement différés ; maintenu dans les autres états
 Validation ordinaire : strictement locale et en lecture seule
 Résultat : RÉUSSI

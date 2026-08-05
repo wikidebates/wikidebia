@@ -124,11 +124,11 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(state), encoding="utf-8")
     validator = root / "validator.py"
-    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.37','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.38','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     config = {
-        "kit_version":"2.15.10","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
+        "kit_version":"2.15.11","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
         "family":"wikidebates","pywikibot_dir":"private/pywikibot","sites":{lang:{"code":lang,"expected_user":"ChatGPT"} for lang in languages},
-        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.37","scopes":[]},
+        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.38","scopes":[]},
         "published_state_dir":".state/published","receipts_dir":".state/receipts","logs_dir":"logs",
     }
     config_path = root / "config.json"
@@ -421,7 +421,7 @@ def test_20_no_delete_preserves_pending_pages_for_later_only_delete(tmp_path):
     assert [row["page_id"] for row in final_state["pages"]] == ["A2"]
 
 
-def test_move_is_blocked_if_protected_warning_would_change(tmp_path):
+def test_move_preserves_protected_warning_instead_of_blocking(tmp_path):
     old = argument('Ancien')
     new = argument('Nouveau').replace(MARKER, '')
     p, *_ = plan(
@@ -430,9 +430,64 @@ def test_move_is_blocked_if_protected_warning_would_change(tmp_path):
         new_pages=[('fr','A1','Nouveau titre',new)],
         remote_pages={('fr','Ancien titre'):(10,old)},
     )
-    assert p['counts']['move'] == 0
-    assert p['counts']['blocked'] == 1
-    assert 'protégé' in p['operations']['blocked'][0]['justification']
+    assert p['counts']['move'] == 1
+    assert p['counts']['blocked'] == 0
+    operation = p['operations']['move'][0]
+    assert operation['lifecycle_preservation']['effective']['avertissements-argument'] == (True, 'Argument généré par IA')
+    effective = tmp_path / operation['source_path']
+    assert MARKER.strip() in effective.read_text(encoding='utf-8')
+
+
+def test_update_preserves_absent_ai_warning_on_historical_page(tmp_path):
+    old = argument('Ancien').replace(MARKER, '')
+    new = argument('Nouveau')
+    p, *_ = plan(
+        tmp_path,
+        old_pages=[('fr','A1','Titre',old)],
+        new_pages=[('fr','A1','Titre',new)],
+        remote_pages={('fr','Titre'):(10,old)},
+    )
+    assert p['counts']['update'] == 1
+    assert p['counts']['blocked'] == 0
+    operation = p['operations']['update'][0]
+    effective = tmp_path / operation['source_path']
+    text = effective.read_text(encoding='utf-8')
+    assert 'Argument généré par IA' not in text
+    assert '|résumé=Nouveau' in text
+
+
+def test_update_preserves_remote_creation_date_instead_of_current_corpus_date(tmp_path):
+    old = argument('Ancien').replace('|rubriques=Société', '|date-création=2017-04-09\n|rubriques=Société')
+    new = argument('Nouveau').replace('|rubriques=Société', '|date-création=2026-08-05\n|rubriques=Société')
+    p, *_ = plan(
+        tmp_path,
+        old_pages=[('fr','A1','Titre',old)],
+        new_pages=[('fr','A1','Titre',new)],
+        remote_pages={('fr','Titre'):(10,old)},
+    )
+    assert p['counts']['update'] == 1
+    operation = p['operations']['update'][0]
+    text = (tmp_path / operation['source_path']).read_text(encoding='utf-8')
+    assert '|date-création=2017-04-09' in text
+    assert '|date-création=2026-08-05' not in text
+
+
+def test_explicit_retirement_can_delete_attested_historical_page_without_ai_marker(tmp_path):
+    old = argument('Ancien').replace(MARKER, '')
+    kept = argument('Conservé')
+    migrations=[{'language':'fr','old_page_id':'A1','kind':'remove','reason':'Retrait éditorial explicite'}]
+    p, config, path, adapter = plan(
+        tmp_path,
+        old_pages=[('fr','A1','Retiré',old),('fr','A2','Conservé',kept)],
+        new_pages=[('fr','A2','Conservé',kept)],
+        migrations=migrations,
+        remote_pages={('fr','Retiré'):(10,old),('fr','Conservé'):(20,kept)},
+    )
+    assert p['counts']['delete'] == 1
+    assert p['counts']['blocked'] == 0
+    assert p['operations']['delete'][0]['historical_page_without_generated_marker'] is True
+    receipt = module.PlanExecutor(config, adapter, path).execute(p, p['plan_sha256'], only_delete=True)
+    assert receipt['counts']['deleted'] == 1
 
 
 def test_deferred_translation_blocks_english_remote_update_scope(tmp_path):

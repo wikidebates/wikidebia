@@ -1,5 +1,5 @@
 {
-  "kit_version": "2.15.10",
+  "kit_version": "2.15.11",
   "project_root": ".",
   "family": "wikidebates",
   "family_file": "kit/families/wikidebates_family.py",
@@ -29,7 +29,7 @@
       "validator/scripts/wikidebia_validate.py",
       "validate"
     ],
-    "required_version": "0.4.37",
+    "required_version": "0.4.38",
     "scopes": [
       "schema",
       "coherence",

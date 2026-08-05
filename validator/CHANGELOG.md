@@ -1,11 +1,10 @@
-## 0.4.37 — 5 août 2026
+## 0.4.38 — 5 août 2026
 
-- alignement sur la norme 1.2.35 et le kit 2.15.10 ;
-- application explicite de `translation_status.en=deferred` aux corpus historiques 1.2.x sans migration éditoriale ;
-- conservation des dates de création page par page avec `creation_date_policy=per_page_preserved` ;
-- contrôle fermé des exceptions propriétaire de titres affichés hérités ;
-- correction des faux positifs sur les constructions impersonnelles françaises et les profondeurs déjà explicitement justifiées ;
-- maintien strict de WDV-WF-005 hors mode différé et pour tout titre anglais déclaré verrouillé.
+- alignement sur la norme 1.2.36 et le kit 2.15.11 ;
+- `per_page_preserved` devient la politique de date par défaut lorsque le manifeste n’en déclare aucune ;
+- conservation de la cohérence page par page entre manifeste, registre et wikicode sans exiger une date globale ou la date du jour ;
+- prise en charge des plans documentant la préservation automatique des paramètres historiques et les suppressions historiques explicitement autorisées ;
+- maintien de la traduction anglaise différée, des contrôles éditoriaux 1.2.35 et de toutes les protections contre les modifications humaines.
 
 ## 0.4.36 — 5 août 2026
 
