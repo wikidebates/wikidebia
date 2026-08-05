@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "normative_revision": "1.2.36",
+  "normative_revision": "1.2.37",
   "entries": [
     {
       "id": "A0001",
@@ -22,7 +22,9 @@
           "conviction_visible": true,
           "forceful_expression": "Une formulation exacte et saillante présente dans le résumé.",
           "wikipedia_hover_links_reviewed": true,
-          "specialized_terms_linked_or_explained": true
+          "specialized_terms_linked_or_explained": true,
+          "originality_reviewed": true,
+          "mechanism_statement": "L’ouverture expose le mécanisme, l’exemple est utile et le ton reste ferme sans devenir polémique."
         },
         "en": {
           "status": "approved",
@@ -41,7 +43,9 @@
           "conviction_visible": true,
           "forceful_expression": "An exact forceful expression that appears in the summary.",
           "wikipedia_hover_links_reviewed": true,
-          "specialized_terms_linked_or_explained": true
+          "specialized_terms_linked_or_explained": true,
+          "originality_reviewed": true,
+          "mechanism_statement": "The opening develops the mechanism, and the wording is firm without becoming polemical."
         }
       }
     }

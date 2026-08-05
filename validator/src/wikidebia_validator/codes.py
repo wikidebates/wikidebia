@@ -101,6 +101,10 @@ CODES = {
     "WDV-EDT-020": "Force expressive du résumé non ancrée dans le texte",
     "WDV-EDT-021": "Titre affiché non propositionnel ou argument incompréhensible",
     "WDV-EDT-022": "Revue du placement des arguments absente ou incohérente",
+    "WDV-EDT-023": "Capitalisation canonique des mots-clés incohérente",
+    "WDV-EDT-024": "Résumé construit par gabarit répétitif ou énumération des pages filles",
+    "WDV-EDT-025": "Mot-clé non atomique ou exception multi-mots non justifiée",
+    "WDV-EDT-026": "Capitalisation incorrecte du nom propre Dieu",
     "WDV-RMT-001": "Empreinte du plan de reprise divergente",
     "WDV-RMT-002": "Compteurs du plan de reprise incohérents",
     "WDV-RMT-003": "Opérations distantes mutantes contradictoires",
@@ -110,4 +114,3 @@ CODES = {
     "WDV-INT-001": "Erreur interne du validateur",
 }
 
-# WDV-EDT-023: canonical keyword capitalization and case-only duplicate control (norm 1.2.32).

@@ -1,3 +1,12 @@
+## 0.4.39 — 5 août 2026
+
+- alignement sur la norme 1.2.37 et le kit 2.15.12 ;
+- ajout de `WDV-EDT-024` contre les résumés à gabarit, les énumérations de pages filles et les phrases répétées à l’échelle du corpus ;
+- ajout de `WDV-EDT-025` pour l’atomicité des mots-clés et les exceptions multi-mots motivées ;
+- ajout de `WDV-EDT-026` pour la capitalisation du nom propre `Dieu` ;
+- revue des résumés renforcée par `originality_reviewed` et `mechanism_statement` ;
+- compatibilité explicite conservée avec la norme 1.2.36 et toutes les révisions antérieures annoncées.
+
 ## 0.4.38 — 5 août 2026
 
 - alignement sur la norme 1.2.36 et le kit 2.15.11 ;

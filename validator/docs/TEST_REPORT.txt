@@ -1,10 +1,9 @@
-Wikidéb’IA Validator 0.4.38
-Norme implémentée : 1.2.36
-Tests pytest : 242 réussis, 0 échec
-Politique de date par défaut : per_page_preserved
-Pages existantes : cohérence page par page sans exigence de date globale, de date du corpus ou de date du jour
-Plans de reprise : prise en charge des fichiers effectifs dérivés qui préservent les paramètres historiques attestés
-Traduction différée : translation_status.en=deferred autorise la publication française sans titre anglais, page anglaise ni lien interlangue
-Contrôle WDV-WF-005 : suspendu uniquement pour les titres anglais explicitement différés ; maintenu dans les autres états
+Wikidéb’IA Validator 0.4.39
+Norme implémentée : 1.2.37
+Tests pytest : 249 réussis, 0 échec
+Contrôles nouveaux : WDV-EDT-024, WDV-EDT-025 et WDV-EDT-026
+Résumés : gabarits connus, énumération de pages filles, phrases répétées et attestations d’originalité contrôlés
+Mots-clés : concepts atomiques et exceptions multi-mots motivées
+Compatibilité : normes 1.1.0 à 1.2.37, y compris 1.2.36
 Validation ordinaire : strictement locale et en lecture seule
 Résultat : RÉUSSI

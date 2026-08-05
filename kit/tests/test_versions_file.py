@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_versions_file_has_only_the_three_functional_versions():
     versions = json.loads((ROOT / "VERSIONS.json").read_text(encoding="utf-8"))
-    assert versions == {"norm": "1.2.36", "validator": "0.4.38", "kit": "2.15.11"}
+    assert versions == {"norm": "1.2.37", "validator": "0.4.39", "kit": "2.15.12"}
 
 
 def test_versions_file_matches_kit_metadata_and_script():

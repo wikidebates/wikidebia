@@ -1,3 +1,10 @@
+## 2.15.12 — 5 août 2026
+
+- alignement sur la norme 1.2.37 et le validateur 0.4.39 ;
+- activation des barrières éditoriales sur les résumés répétitifs, les mots-clés non atomiques et la capitalisation de `Dieu` avant toute publication ou reprise ;
+- absence de réécriture automatique silencieuse : le kit bloque et renvoie au corpus source ;
+- maintien intégral des reprises historiques non destructives de 2.15.11, de la traduction différée et des protections contre les modifications humaines.
+
 ## 2.15.11 — 5 août 2026
 
 - alignement sur la norme 1.2.36 et le validateur 0.4.38 ;

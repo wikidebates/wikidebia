@@ -1,7 +1,5 @@
-# Wikidéb’IA — Kit 2.15.11
+# Wikidéb’IA — Kit 2.15.12
 
-Kit générique aligné sur la norme 1.2.36 et le validateur 0.4.38. Le profil `norm_1_2_deferred_translation` publie et met à jour les pages françaises sans titre anglais, sans page anglaise et sans lien interlangue lorsque `translation_status.en=deferred`. Les portées anglaises sont alors bloquées.
+Kit générique de publication et de reprise, aligné sur la norme 1.2.37 et le validateur 0.4.39. Il bloque avant toute écriture les corpus contenant des résumés à gabarit ou répétitifs, des mots-clés non atomiques ou une minuscule fautive au nom propre `Dieu`.
 
-Après traduction, le passage à `ready` ou `published` réactive le profil bilingue strict et permet une reprise française ciblée pour ajouter les liens interlangues exacts. Aucun titre anglais provisoire n'est inventé et aucun lien valide existant n'est supprimé automatiquement.
-Lors d’une reprise, les pages distantes exactement attestées conservent automatiquement leur date de création, leurs avertissements et les autres paramètres historiques protégés. Une page existante n’est jamais forcée à prendre la date du corpus ou la date du jour.
-
+Le kit ne réécrit pas silencieusement ces contenus : les corrections sont effectuées dans le corpus, puis validées. Toutes les protections de reprise non destructive, de traduction anglaise différée et de concurrence distante de la version 2.15.11 sont conservées.

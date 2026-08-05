@@ -1,3 +1,12 @@
+## 1.2.37 — 5 août 2026
+
+- remplacement du critère purement quantitatif des mots-clés par une exigence de concept atomique ;
+- blocage des mini-rubriques productives telles que `limites de la science`, `histoire des religions` et `construction des lois scientifiques` ;
+- maintien des locutions lexicalisées telles que `lois de la nature`, avec exception multi-mots motivée ;
+- blocage des résumés construits par charpente générique, métadiscours, copie de titres enfants ou répétition d’une même phrase dans quatre pages ou davantage ;
+- attestation obligatoire d’originalité et d’un extrait formulant le mécanisme propre au nœud ;
+- contrôle de la majuscule de `Dieu` lorsqu’il s’agit du nom propre.
+
 ## 1.2.36 — 5 août 2026
 
 - politique `per_page_preserved` appliquée par défaut : les pages existantes conservent leur date historique sans exigence de date du corpus ou du jour ;

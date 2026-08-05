@@ -1,16 +1,13 @@
-Wikidéb’IA Kit 2.15.11
-Norme : 1.2.36
-Validateur requis : 0.4.38
+Wikidéb’IA Kit 2.15.12
+Norme : 1.2.37
+Validateur requis : 0.4.39
 Extracteur de graphe : 1.0.2
 Tests pytest du kit : 246 réussis, 0 échec
-Tests pytest du validateur : 242 réussis, 0 échec
+Tests pytest du validateur : 249 réussis, 0 échec
 
-Décision 1.2.36 :
-- les pages distantes exactement attestées conservent automatiquement leurs dates de création et leurs autres paramètres historiques de cycle de vie ;
-- aucune page déjà existante n’est contrainte d’adopter la date du corpus ou la date du jour ;
-- l’absence historique d’avertissement IA est préservée au lieu de provoquer un blocage ou un ajout rétroactif ;
-- les déplacements appliquent la même préservation non destructive ;
-- une suppression historique sans marqueur IA reste autorisée uniquement par une migration explicite, après concordance exacte de l’état distant ;
-- la traduction anglaise différée et les protections contre les modifications humaines restent actives.
+Décision 1.2.37 :
+- les contrôles éditoriaux WDV-EDT-024 à WDV-EDT-026 sont bloquants avant publication ou reprise ;
+- aucune correction de prose ou de mots-clés n’est appliquée silencieusement par le kit ;
+- les protections de reprise historique non destructive de 2.15.11 restent actives.
 
 Résultat : RÉUSSI

@@ -59,7 +59,7 @@ def _context(tmp_path: Path) -> PackageContext:
     )
     return PackageContext(
         root=tmp_path,
-        report=Report("0.4.38", tmp_path.name, ["wikicode"]),
+        report=Report("0.4.39", tmp_path.name, ["wikicode"]),
         cache={"manifest.json": {"normative_versions": {"consolidated_norm": "1.2.30"}}},
     )
 
