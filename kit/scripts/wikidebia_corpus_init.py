@@ -35,10 +35,10 @@ from wikidebia_graph_extract import (
     normalize_key,
 )
 
-KIT_VERSION = "2.15.5"
+KIT_VERSION = "2.15.9"
 CORPUS_INIT_VERSION = "1.0.0"
-NORM_VERSION = "1.2.30"
-VALIDATOR_VERSION = "0.4.32"
+NORM_VERSION = "1.2.34"
+VALIDATOR_VERSION = "0.4.36"
 
 RUBRIQUES = {
     "Aménagement", "Culture", "Droit", "Écologie", "Économie", "Éducation",
@@ -618,9 +618,8 @@ def build_corpus(
 
         timestamp = now_iso()
         depth_max = counts["maximum_depth"]
-        exception_reason = None if depth_max <= 3 else f"Profondeur {depth_max} importée du graphe distant; placement à revoir avant verrouillage."
         lifecycle = {"status": "draft", "validated_at": None, "locked_at": None, "locked_by_stage": None, "structural_sha256": None}
-        depth_policy = {"normal_target": 3, "declared_maximum": max(3, depth_max), "exception_reason": exception_reason, "maximum_observed": depth_max}
+        depth_policy = {"limit_policy": "unbounded", "maximum_observed": depth_max}
         labels = {"fr": {"pro": "Arguments pour", "con": "Arguments contre"}, "en": {"pro": None, "con": None}}
         graph_block = {"lifecycle": lifecycle, "depth_policy": depth_policy, "nodes": nodes, "edges": edges, "occurrences": occurrences, "derived_counts": counts}
 
@@ -748,6 +747,7 @@ def build_corpus(
                 "workflow": "1.0",
                 "validator": VALIDATOR_VERSION,
             },
+            "translation_status": {"en": "deferred"},
             "core_files": {
                 "scope": "scope.json",
                 "registry": "data/registre_debat.json",

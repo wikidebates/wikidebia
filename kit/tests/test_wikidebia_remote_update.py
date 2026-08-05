@@ -81,7 +81,7 @@ class FakeAdapter:
 
 
 def argument(text: str) -> str:
-    return "{{Argument\n" + MARKER + f"|résumé={text}\n|rubriques=Société\n}}\n"
+    return "{{Argument\n" + MARKER + f"|résumé={text}\n|rubriques=Société\n}}}}\n"
 
 
 def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages=None, migrations=None):
@@ -124,11 +124,11 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(state), encoding="utf-8")
     validator = root / "validator.py"
-    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.32','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.36','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     config = {
-        "kit_version":"2.15.5","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
+        "kit_version":"2.15.9","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
         "family":"wikidebates","pywikibot_dir":"private/pywikibot","sites":{lang:{"code":lang,"expected_user":"ChatGPT"} for lang in languages},
-        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.32","scopes":[]},
+        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.36","scopes":[]},
         "published_state_dir":".state/published","receipts_dir":".state/receipts","logs_dir":"logs",
     }
     config_path = root / "config.json"
@@ -419,3 +419,37 @@ def test_20_no_delete_preserves_pending_pages_for_later_only_delete(tmp_path):
     assert ("fr", "Retiré") not in adapter.pages
     final_state = json.loads(state_path.read_text(encoding="utf-8"))
     assert [row["page_id"] for row in final_state["pages"]] == ["A2"]
+
+
+def test_move_is_blocked_if_protected_warning_would_change(tmp_path):
+    old = argument('Ancien')
+    new = argument('Nouveau').replace(MARKER, '')
+    p, *_ = plan(
+        tmp_path,
+        old_pages=[('fr','A1','Ancien titre',old)],
+        new_pages=[('fr','A1','Nouveau titre',new)],
+        remote_pages={('fr','Ancien titre'):(10,old)},
+    )
+    assert p['counts']['move'] == 0
+    assert p['counts']['blocked'] == 1
+    assert 'protégé' in p['operations']['blocked'][0]['justification']
+
+
+def test_deferred_translation_blocks_english_remote_update_scope(tmp_path):
+    config, path = make_fixture(
+        tmp_path,
+        languages=("en",),
+        old_pages=[],
+        new_pages=[("en", "A1", "English title", argument("English"))],
+    )
+    manifest_path = tmp_path / "corpus" / "demo" / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["normative_versions"] = {"consolidated_norm": "1.2.34"}
+    manifest["translation_status"] = {"en": "deferred"}
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    try:
+        module.RemoteUpdatePlanner(config, FakeAdapter(), path)
+    except module.UpdateError as exc:
+        assert "deferred" in str(exc)
+    else:
+        raise AssertionError("reprise anglaise acceptée pendant la traduction différée")

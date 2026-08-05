@@ -1,7 +1,6 @@
-# Wikidéb’IA Validator 0.4.32
+# Wikidéb’IA Validator 0.4.36
 
-Validateur local Python 3 aligné sur la norme 1.2.30 et rétrocompatible avec les révisions antérieures. Le contrôle WDV-MWK-021 impose désormais que les pages anglaises utilisent `{{Quote}}` avec les paramètres anglais déclarés. Les valeurs documentaires autres que `quote` et `date` doivent rester identiques à la citation française.
+Validateur local Python 3 aligné sur la norme 1.2.34 et rétrocompatible avec les révisions antérieures. Le statut explicite `translation_status.en=deferred` autorise la validation française sans titres, pages ni contenus anglais et sans lien interlangue. Les titres anglais verrouillés, les liens existants, les pages anglaises manifestées et les états `ready` ou `published` restent strictement contrôlés.
 
-Norme implémentée : 1.2.30  
-Kit recommandé : 2.15.5  
-Validation ordinaire : strictement locale et en lecture seule
+Norme implémentée : 1.2.34  
+Kit recommandé : 2.15.9  

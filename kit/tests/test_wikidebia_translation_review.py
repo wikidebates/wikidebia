@@ -76,6 +76,8 @@ def complete_translation_review(workspace: Path) -> None:
         row.update({
             "en": translations[row["fr"]],
             "definition_en": f"Controlled editorial concept corresponding to {translations[row['fr']]}",
+            "capitalization_verified": True,
+            "capitalization_rationale_en": "",
             "status": "approved", "idiomatic_equivalent": True, "same_concept": True,
             "reviewer": "English reviewer", "reviewed_at": "2026-08-03T21:30:00+02:00",
             "note": "The English term is idiomatic and preserves the French navigation concept.",
@@ -99,6 +101,7 @@ def complete_translation_review(workspace: Path) -> None:
         "topic_label_rationale": "The nominal label identifies the controversy without restating it as a question.",
         "metadata_equivalent_to_french": True, "content_equivalent_to_french": True,
         "sections_exactly_mapped": True, "keywords_exactly_mapped": True,
+        "keywords_order_preserved_by_relevance": True,
         "introduction_functionally_equivalent": True, "wikipedia_articles_verified": True,
         "all_debate_sources_english": True, "reviewer": "English reviewer",
         "reviewed_at": "2026-08-03T21:40:00+02:00",
@@ -135,6 +138,7 @@ def complete_translation_review(workspace: Path) -> None:
             "sources": {"bibliography": ["S10001"], "webliography": [], "videography": []},
             "metadata_equivalent_to_french": True, "summary_equivalent_to_french": True,
             "sections_exactly_mapped": True, "keywords_exactly_mapped": True,
+        "keywords_order_preserved_by_relevance": True,
             "title_is_idiomatic": True, "displayed_title_is_complete_proposition": True,
             "displayed_title_concision_reviewed": True, "summary_ratio_reviewed": True,
             "forceful_expression": expressions[nid], "quantitative_claims_verified": False,
@@ -179,7 +183,7 @@ def complete_translation_review(workspace: Path) -> None:
     for sid, stype in (("S10001", "bibliography"), ("S10002", "bibliography"), ("S10003", "webliography"), ("S10004", "webliography"), ("S10005", "videography"), ("S10006", "videography")):
         usages = [{"page_id": "debat_test", "language": "en", "role": role, "language_fit": "native", "preferred_equivalent_source_id": None, "documentary_scope": "broad_synthesis", "selection_reason": "This verified English source documents the relevant position or broad synthesis."} for role in roles]
         if sid == "S10001":
-            usages.extend({"page_id": nid, "language": "en", "role": "supports_summary", "language_fit": "native", "preferred_equivalent_source_id": None, "documentary_scope": "narrow_argument", "selection_reason": "This English source directly supports the mechanism stated in the argument summary."} for nid in titles)
+            usages.extend({"page_id": nid, "language": "en", "role": "supports_summary", "argument_development_verified": True, "also_develops_objections": False, "objection_coverage_note": None, "language_fit": "native", "preferred_equivalent_source_id": None, "documentary_scope": "narrow_argument", "selection_reason": "This English source directly supports the mechanism stated in the argument summary."} for nid in titles)
         sources.append(en_source(sid, stype, usages))
     common.write_json(workspace / "data/sources_en_working.json", {"schema": translation.EN_SOURCES_WORKING_SCHEMA, "source_registry_version": "1.0", "debate_id": "debat_test", "work_id": review["work_id"], "status": "draft", "prepared_at": review["prepared_at"], "sources": sources})
 
@@ -402,3 +406,29 @@ def test_finalize_translation_rejects_french_parameter_in_english_summary(tmp_pa
         assert "Paramètre français interdit" in str(exc)
     else:
         raise AssertionError("Un paramètre français a été accepté dans le summary anglais")
+
+
+def test_vocabulary_accepts_justified_english_proper_name_and_rejects_common_capital():
+    french = [{
+        "fr": "Dieu", "kind": "proper_name",
+        "capitalization_policy": "canonical_proper_name",
+    }]
+    rows = [{
+        "fr": "Dieu", "en": "God", "definition_en": "The proper name used for the deity.",
+        "kind": "proper_name", "capitalization_policy": "canonical_proper_name",
+        "capitalization_verified": True,
+        "capitalization_rationale_en": "Canonical English proper name for the deity.",
+        "status": "approved", "idiomatic_equivalent": True, "same_concept": True,
+        "reviewer": "English reviewer", "reviewed_at": "2026-08-04T14:00:00+02:00",
+        "note": "The term preserves the same concept and canonical spelling.",
+    }]
+    result, mapping = translation._validate_vocabulary(rows, french)
+    assert mapping == {"Dieu": "God"}
+    bad_french = [{"fr": "revenu", "kind": "noun", "capitalization_policy": "lowercase_common"}]
+    bad_rows = [dict(rows[0], fr="revenu", en="Income", kind="noun", capitalization_policy="lowercase_common", capitalization_rationale_en="")]
+    try:
+        translation._validate_vocabulary(bad_rows, bad_french)
+    except translation.TranslationReviewError as exc:
+        assert "Capitalisation anglaise non canonique" in str(exc)
+    else:
+        raise AssertionError("Capitalized English common noun accepted")

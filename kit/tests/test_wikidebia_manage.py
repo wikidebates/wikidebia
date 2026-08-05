@@ -16,7 +16,7 @@ spec.loader.exec_module(module)
 
 
 def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = False) -> None:
-    versions = {"norm": "1.2.20", "validator": "0.4.32", "kit": "2.15.5"}
+    versions = {"norm": "1.2.20", "validator": "0.4.36", "kit": "2.15.9"}
     payloads = {
         "VERSIONS.json": (json.dumps(versions, ensure_ascii=False, indent=2) + "\n").encode("utf-8"),
         "README.md": f"# {artifact}\n".encode("utf-8"),
@@ -25,7 +25,7 @@ def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = F
         {"path": name, "size_bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
         for name, raw in sorted(payloads.items())
     ]
-    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.32", "wikidebia-kit": "2.15.5"}[artifact]
+    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.36", "wikidebia-kit": "2.15.9"}[artifact]
     manifest = {
         "artifact": artifact,
         "version": version,
@@ -59,7 +59,7 @@ def test_component_inspector_accepts_and_verifies_optional_receipt(tmp_path: Pat
     _write_component_zip(archive, "wikidebia-kit", include_receipt=True)
     metadata = module.inspect_component_zip(archive)
     assert metadata["artifact"] == "wikidebia-kit"
-    assert metadata["versions"]["kit"] == "2.15.5"
+    assert metadata["versions"]["kit"] == "2.15.9"
 
 
 def test_single_complete_bundle_is_collected_from_updates(tmp_path: Path):
@@ -155,7 +155,7 @@ def test_generated_config_is_relative_and_debate_first(tmp_path: Path):
     assert config["pywikibot_dir"] == "private/pywikibot"
     assert config["corpus_root"] == "corpus/demo"
     assert config["operation"]["page_type_order"] == ["debate", "argument"]
-    assert config["validator"]["required_version"] == "0.4.32"
+    assert config["validator"]["required_version"] == "0.4.36"
     assert config["manifest_requirements"] == {}
     assert str(tmp_path) not in path.read_text(encoding="utf-8")
 
@@ -929,3 +929,32 @@ def test_safe_extract_restores_regular_file_modes(tmp_path: Path):
     destination.mkdir()
     module.safe_extract(archive, destination)
     assert (destination / "scripts/direct.py").stat().st_mode & 0o111
+
+
+def test_staged_component_tests_disable_external_pytest_plugins(tmp_path, monkeypatch):
+    module_under_test = module
+    staged = {name: tmp_path / name for name in ("norms", "validator", "kit")}
+    for path in staged.values():
+        path.mkdir()
+    monkeypatch.setattr(module_under_test, "python_command", lambda root: "python")
+    monkeypatch.setattr(module_under_test, "compare_normative_trees", lambda norms, validator: None)
+    calls = []
+    monkeypatch.setattr(module_under_test, "run", lambda command, **kwargs: calls.append((command, kwargs)))
+    module_under_test.test_staged_components(tmp_path, staged)
+    pytest_calls = [(command, kwargs) for command, kwargs in calls if "pytest" in command]
+    assert len(pytest_calls) == 2
+    assert pytest_calls[0][1]["env"]["PYTEST_DISABLE_PLUGIN_AUTOLOAD"] == "1"
+    assert pytest_calls[0][1]["env"]["PYTHONPATH"] == "src"
+    assert pytest_calls[1][1]["env"]["PYTEST_DISABLE_PLUGIN_AUTOLOAD"] == "1"
+
+def test_generated_config_selects_deferred_profile_from_manifest(tmp_path: Path):
+    (tmp_path / "config").mkdir()
+    corpus = tmp_path / "corpus" / "demo"
+    corpus.mkdir(parents=True)
+    (corpus / "manifest.json").write_text(json.dumps({"translation_status": {"en": "deferred"}}), encoding="utf-8")
+    run_dir = tmp_path / "plans" / "demo" / "run"
+    run_dir.mkdir(parents=True)
+    path = module.publication_config(tmp_path, "demo", "fr", run_dir)
+    config = json.loads(path.read_text(encoding="utf-8"))
+    assert config["publication_profile"] == "norm_1_2_deferred_translation"
+

@@ -1,4 +1,4 @@
-# Catalogue des codes de contrôle — 0.4.32
+# Catalogue des codes de contrôle — 0.4.36
 
 | Code | Signification |
 |---|---|
@@ -55,6 +55,7 @@
 | `WDV-MWK-020` | Lien Wikipédia explicatif inline non conforme |
 | `WDV-MWK-021` | Citation rendue divergente du verrou bilingue |
 | `WDV-MWK-022` | Modèle ou paramètre non localisé dans la langue de la page |
+| `WDV-MWK-023` | Paramètre de cycle de vie ajouté, supprimé ou modifié à tort |
 | `WDV-BIL-001` | Identifiants ou pages bilingues divergents |
 | `WDV-BIL-002` | Relations bilingues divergentes |
 | `WDV-BIL-003` | Occurrence primaire ou réutilisation bilingue divergente |
@@ -71,6 +72,7 @@
 | `WDV-SRC-003` | Source rejetée encore utilisée ou source vérifiée inutilisée |
 | `WDV-SRC-004` | Langue documentaire non préférée ou équivalent local ignoré |
 | `WDV-SRC-005` | Sélection bibliographique de la page de débat inadéquate |
+| `WDV-SRC-006` | Référence d’argument non attestée comme développant l’argument |
 | `WDV-DOC-001` | Contrôle éditorial humain requis |
 | `WDV-DOC-002` | Pagination bibliographique incorrecte |
 | `WDV-DOC-003` | Date sitographique non documentaire |
@@ -107,3 +109,12 @@
 | `WDV-RMT-004` | Suppression sans préconditions de sûreté complètes |
 | `WDV-RMT-005` | Mise à jour sans état antérieur ou nouvelle empreinte |
 | `WDV-RMT-006` | Rapport de comparaison absent pour manual_review |
+
+- `WDV-EDT-023` — capitalisation canonique des mots-clés et unicité indépendante de la casse (norme 1.2.32).
+
+## Contrôles 1.2.34
+
+- `WDV-WF-005` : non émis pour un titre anglais `unassigned` sous `translation_status.en=deferred`; toujours bloquant pour un statut `locked` sans titre.
+- contrôles interlangues : absence admise en mode différé, présence strictement validée.
+- contrôles bilingues et éditoriaux anglais : différés jusqu’au passage à `ready` ou `published`.
+- page anglaise manifestée : titre canonique anglais verrouillé obligatoire.

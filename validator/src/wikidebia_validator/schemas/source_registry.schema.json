@@ -220,6 +220,15 @@
                 },
                 "selection_reason": {
                   "$ref": "common.schema.json#/$defs/nullableString"
+                },
+                "argument_development_verified": {
+                  "type": "boolean"
+                },
+                "also_develops_objections": {
+                  "type": "boolean"
+                },
+                "objection_coverage_note": {
+                  "$ref": "common.schema.json#/$defs/nullableString"
                 }
               },
               "additionalProperties": false,

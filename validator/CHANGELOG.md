@@ -1,3 +1,39 @@
+## 0.4.36 — 5 août 2026
+
+- alignement sur la norme 1.2.34 et le kit 2.15.9 ;
+- ajout du statut explicite `translation_status.en=deferred` ;
+- suppression ciblée de WDV-WF-005 pour les titres anglais absents uniquement dans ce mode ;
+- suspension des contrôles anglais et bilingues pendant la publication française différée ;
+- contrôle strict de tout lien interlangue déjà présent et de toute page anglaise manifestée ;
+- blocage des titres anglais `locked` sans titre canonique ;
+- maintien intégral des exigences bilingues pour les corpus antérieurs et les états `ready` ou `published` ;
+- ajout des scénarios de publication française seule et de transition ultérieure vers l’anglais.
+
+## 0.4.35 — 5 août 2026
+
+- alignement sur la norme 1.2.33 ;
+- ajout de `WDV-SRC-006` pour exiger qu’une référence sélectionnée sur une page Argument développe effectivement l’argument ;
+- acceptation explicite d’une référence qui développe l’argument tout en traitant aussi d’objections ;
+- ajout de `WDV-MWK-023` pour préserver exactement les paramètres protégés des pages préexistantes ;
+- distinction entre valeurs de création et valeurs préservées lors d’une modification ;
+- compatibilité des corpus 1.2.32 et antérieurs conservée.
+
+## 0.4.34 — 4 août 2026
+
+- alignement sur la norme 1.2.32 ;
+- ajout de WDV-EDT-023 pour la capitalisation canonique des mots-clés ;
+- blocage des doublons ne différant que par la casse ;
+- compatibilité des corpus 1.2.31 et antérieurs conservée.
+
+## 0.4.33 — 4 août 2026
+
+- alignement sur la norme 1.2.31 ;
+- prise en charge de `depth_policy.limit_policy=unbounded` ;
+- suppression de l’avertissement de profondeur élevée sous 1.2.31 ;
+- maintien des contrôles de cohérence parent-enfant et de branche ;
+- ajout des contrôles de revue sur l’ordre de pertinence des mots-clés ;
+- compatibilité conservée avec les normes 1.1.0 à 1.2.30.
+
 ## 0.4.32 — 4 août 2026
 
 - alignement sur la norme 1.2.30 ;

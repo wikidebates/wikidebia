@@ -76,3 +76,7 @@ L’application crée :
 Les fichiers de `imports/fr/` restent octet pour octet identiques. Aucun fichier final n’est créé sous `output/`.
 
 Après application, le registre de préparation anglaise passe de `blocked_by_french_review` à `ready_for_translation`. Cela autorise seulement la phase suivante ; aucune traduction n’est encore produite.
+
+## Ordre des mots-clés
+
+Chaque liste `proposed_keywords` est classée du mot-clé le plus directement pertinent au moins direct. La chronologie de création, l’ordre d’import et l’ordre alphabétique ne sont pas utilisés. La revue exige `keywords_ordered_by_relevance=true` et une `keyword_order_rationale` propre à la page.

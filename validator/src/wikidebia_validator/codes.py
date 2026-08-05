@@ -53,6 +53,7 @@ CODES = {
     "WDV-MWK-020": "Lien Wikipédia explicatif inline non conforme",
     "WDV-MWK-021": "Citation rendue divergente du verrou bilingue",
     "WDV-MWK-022": "Modèle ou paramètre non localisé dans la langue de la page",
+    "WDV-MWK-023": "Paramètre de cycle de vie ajouté, supprimé ou modifié à tort",
     "WDV-MWK-014": "Langue ou typographie documentaire non conforme",
     "WDV-BIL-001": "Identifiants ou pages bilingues divergents",
     "WDV-BIL-002": "Relations bilingues divergentes",
@@ -70,6 +71,7 @@ CODES = {
     "WDV-SRC-003": "Source rejetée encore utilisée ou source vérifiée inutilisée",
     "WDV-SRC-004": "Langue documentaire non préférée ou équivalent local ignoré",
     "WDV-SRC-005": "Sélection bibliographique de la page de débat inadéquate",
+    "WDV-SRC-006": "Référence d’argument non attestée comme développant l’argument",
     "WDV-DOC-001": "Contrôle éditorial humain requis",
     "WDV-DOC-002": "Pagination bibliographique incorrecte",
     "WDV-DOC-003": "Date sitographique non documentaire",
@@ -107,3 +109,5 @@ CODES = {
     "WDV-RMT-006": "Revue manuelle sans comparaison correspondante",
     "WDV-INT-001": "Erreur interne du validateur",
 }
+
+# WDV-EDT-023: canonical keyword capitalization and case-only duplicate control (norm 1.2.32).

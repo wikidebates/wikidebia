@@ -1,6 +1,6 @@
 [project]
 name = "wikidebia-generic-publisher"
-version = "2.15.5"
+version = "2.15.9"
 requires-python = ">=3.10"
 
 [tool.pytest.ini_options]

@@ -1,11 +1,10 @@
-Wikidéb’IA Validator 0.4.32
-Norme implémentée : 1.2.30
-Tests pytest : 220 réussis, 0 échec
-Rejeu des tests du validateur source 0.4.28 : 197 réussis, 0 échec (ancien test de compteur exact exclu)
-Contrôles : tous les contrôles 0.4.29 conservés ; auto-audit renforcé sur la cohérence des structures, profils, exigences et fonctionnalités historiques
-Citations : modèle Citation en français et modèle Quote en anglais ; noms de paramètres localisés en anglais, valeurs documentaires conservées sauf quote/date, avertissement canonique exigé dans warnings
-Localisation : WDV-MWK-022 bloque tout modèle ou paramètre français dans les pages anglaises, y compris les introductions et relations
-Compatibilité historique : paramètres anglais du modèle Quote reconnus pour les anciennes normes ; normes 1.1.0 à 1.2.30 prises en charge
-Liens interlangues : cible anglaise exacte sur chaque page française, aucun lien inverse sur les pages anglaises
+Wikidéb’IA Validator 0.4.36
+Norme implémentée : 1.2.34
+Tests pytest : 239 réussis, 0 échec
+Traduction différée : translation_status.en=deferred autorise les pages françaises sans titre anglais ni lien interlangue
+Contrôle WDV-WF-005 : suspendu seulement pour les titres anglais non assignés explicitement différés ; maintenu pour locked sans titre
+Liens existants : cible anglaise verrouillée et concordance exacte toujours exigées
+Pages anglaises : titre valide exigé dès leur présence dans le manifeste
+Compatibilité historique : normes 1.1.0 à 1.2.33 conservées selon leur contrat déclaré
 Validation ordinaire : strictement locale et en lecture seule
 Résultat : RÉUSSI

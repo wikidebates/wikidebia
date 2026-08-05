@@ -4,6 +4,7 @@ from typing import Any
 
 from .graph import state_at_least
 from .package import PackageContext
+from .translation import english_translation_deferred, english_translation_status
 from .wikicode import alphabetically_sorted
 
 
@@ -21,7 +22,8 @@ def validate_bilingual(ctx: PackageContext) -> None:
     manifest = ctx.manifest()
     if not registry or not manifest:
         return
-    strict = state_at_least(manifest.get("global_status"), "bilingual_validated")
+    english_deferred = english_translation_deferred(manifest)
+    strict = state_at_least(manifest.get("global_status"), "bilingual_validated") and not english_deferred
     nodes = [n for n in registry.get("graph", {}).get("nodes", []) if n.get("status") == "active"]
     pages = {(p.get("page_id"), p.get("language")): p for p in manifest.get("pages", [])}
     for node in nodes:
@@ -33,9 +35,11 @@ def validate_bilingual(ctx: PackageContext) -> None:
                 ctx.report.error("WDV-BIL-001", f"Titre anglais non verrouillé pour {nid}", path=ctx.core_paths()["registry"])
             if (nid, "fr") not in pages or (nid, "en") not in pages:
                 ctx.report.error("WDV-BIL-001", f"Paire de pages bilingues incomplète pour {nid}", path="manifest.json")
+        if english_deferred:
+            continue
         expected_sections = [SECTION_MAP[x] for x in fr.get("rubriques", []) if x in SECTION_MAP]
         norm = ((ctx.manifest().get("normative_versions") or {}).get("consolidated_norm"))
-        if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+        if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
             expected_sections = alphabetically_sorted(expected_sections)
         if en.get("sections") and en.get("sections") != expected_sections:
             ctx.report.warning("WDV-BIL-004", f"Sections anglaises divergentes pour {nid}; une justification éditoriale est requise", path=ctx.core_paths()["registry"], details={"expected": expected_sections, "actual": en.get("sections")})
@@ -54,4 +58,4 @@ def validate_bilingual(ctx: PackageContext) -> None:
         en_debate = ((debate.get("pages") or {}).get("en") or {})
         if en_debate.get("title_status") != "locked" or not en_debate.get("canonical_title"):
             ctx.report.error("WDV-BIL-001", "Titre canonique anglais de la page Debate non verrouillé")
-    ctx.report.metrics["bilingual"] = {"active_nodes": len(nodes), "strict": strict}
+    ctx.report.metrics["bilingual"] = {"active_nodes": len(nodes), "strict": strict, "english_translation_status": english_translation_status(manifest), "skipped_for_deferred_translation": english_deferred}

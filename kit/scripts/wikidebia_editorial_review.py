@@ -48,6 +48,8 @@ from wikidebia_editorial_workspace import (
     WorkspaceError,
     fsync_directory,
     keyword_diagnostics,
+    capitalization_policy_for_kind,
+    keyword_capitalization_issues,
     normalized_identity,
     normalized_text,
     rubrique_diagnostics,
@@ -57,7 +59,7 @@ from wikidebia_editorial_workspace import (
     workspace_receipt_hash,
 )
 
-KIT_VERSION = "2.15.5"
+KIT_VERSION = "2.15.9"
 REVIEW_SCHEMA = "wikidebia-fr-page-metadata-review-1.1"
 METADATA_LOCK_SCHEMA = "wikidebia-fr-page-metadata-lock-1.0"
 CHANGESET_SCHEMA = "wikidebia-editorial-changeset-1.1"
@@ -254,7 +256,7 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
     minimum, maximum = (5, 8) if entity_type == "debate" else (2, 4)
     if not minimum <= len(keywords) <= maximum:
         raise EditorialReviewError(f"Nombre de mots-clés non conforme pour {entity_id}: {len(keywords)} (attendu {minimum}-{maximum})")
-    generic_kw_issues = [row for row in keyword_diagnostics(keywords, False) if row.get("code") not in {"KEYWORDS_TOO_FEW", "KEYWORDS_TOO_MANY"}]
+    generic_kw_issues = [row for row in keyword_diagnostics(keywords, False) if row.get("code") not in {"KEYWORDS_TOO_FEW", "KEYWORDS_TOO_MANY", "KEYWORDS_CAPITALIZATION_REVIEW"}]
     if generic_kw_issues:
         raise EditorialReviewError(f"Mots-clés non conformes pour {entity_id} : {[row.get('code') for row in generic_kw_issues]}")
     kw_rationales = decision.get("keywords_rationales")
@@ -263,6 +265,10 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
     for keyword, rationale in kw_rationales.items():
         if not _text_ok(rationale, 12):
             raise EditorialReviewError(f"Justification insuffisante pour le mot-clé {keyword!r} : {entity_id}")
+    if decision.get("keywords_ordered_by_relevance") is not True:
+        raise EditorialReviewError(f"Classement des mots-clés par pertinence non attesté : {entity_id}")
+    if not _text_ok(decision.get("keyword_order_rationale"), 20):
+        raise EditorialReviewError(f"Justification de l’ordre des mots-clés insuffisante : {entity_id}")
 
     return {
         "entity_type": entity_type,
@@ -285,6 +291,7 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
             "displayed_title": decision.get("displayed_title_rationale") or "",
             "rubriques": copy.deepcopy(rub_rationales),
             "keywords": copy.deepcopy(kw_rationales),
+            "keyword_order": decision.get("keyword_order_rationale") or "",
             "displayed_title_identity": decision.get("displayed_title_identity_justification") or "",
             "fourth_rubrique_exception": decision.get("fourth_rubrique_exception_rationale") or "",
         },
@@ -293,6 +300,7 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
             "displayed_title_complete_proposition": decision.get("displayed_title_complete_proposition") if entity_type == "argument" else None,
             "displayed_title_argument_intelligible": decision.get("displayed_title_argument_intelligible") if entity_type == "argument" else None,
             "displayed_title_concision_reviewed": decision.get("displayed_title_concision_reviewed") if entity_type == "argument" else None,
+            "keywords_ordered_by_relevance": True,
         },
     }
 
@@ -356,6 +364,10 @@ def _validate_vocabulary(vocabulary: Mapping[str, Any], final_items: Sequence[Ma
         term = entry["fr"]
         if term in by_fr:
             raise EditorialReviewError(f"Mot-clé dupliqué dans le vocabulaire : {term}")
+        folded = term.casefold()
+        prior = next((existing for existing in by_fr if existing.casefold() == folded), None)
+        if prior is not None:
+            raise EditorialReviewError(f"Mots-clés différant seulement par la casse : {prior} / {term}")
         by_fr[term] = entry
     missing = sorted(set(expected) - set(by_fr))
     extra = sorted(set(by_fr) - set(expected))
@@ -373,8 +385,19 @@ def _validate_vocabulary(vocabulary: Mapping[str, Any], final_items: Sequence[Ma
             raise EditorialReviewError(f"Définition insuffisante pour le mot-clé : {term}")
         if not _text_ok(entry.get("rationale"), 12):
             raise EditorialReviewError(f"Justification insuffisante pour le mot-clé : {term}")
-        if entry.get("kind") not in ALLOWED_KEYWORD_KINDS:
+        kind = entry.get("kind")
+        if kind not in ALLOWED_KEYWORD_KINDS:
             raise EditorialReviewError(f"Nature grammaticale invalide pour le mot-clé : {term}")
+        expected_policy = capitalization_policy_for_kind(str(kind))
+        if entry.get("capitalization_policy") != expected_policy:
+            raise EditorialReviewError(f"Politique de capitalisation invalide pour le mot-clé : {term}")
+        capitalization_issues = keyword_capitalization_issues(term, str(kind))
+        if capitalization_issues:
+            raise EditorialReviewError(f"Capitalisation non canonique pour le mot-clé {term} : {capitalization_issues}")
+        if kind in {"proper_name", "acronym"} and not _text_ok(entry.get("capitalization_rationale"), 12):
+            raise EditorialReviewError(f"Justification de capitalisation insuffisante pour le mot-clé : {term}")
+        if kind in {"noun", "noun_phrase"} and str(entry.get("capitalization_rationale") or "").strip():
+            raise EditorialReviewError(f"Justification de majuscule inattendue pour le nom commun : {term}")
         if entry.get("scope") != "site_navigation":
             raise EditorialReviewError(f"Portée incorrecte pour le mot-clé : {term}")
         if entry.get("cross_debate_reusable") is not True:
@@ -389,6 +412,8 @@ def _validate_vocabulary(vocabulary: Mapping[str, Any], final_items: Sequence[Ma
             "en": entry.get("en") if isinstance(entry.get("en"), str) and entry.get("en").strip() else None,
             "definition": entry.get("definition").strip(),
             "kind": entry.get("kind"),
+            "capitalization_policy": entry.get("capitalization_policy"),
+            "capitalization_rationale": str(entry.get("capitalization_rationale") or "").strip(),
             "scope": "site_navigation",
             "cross_debate_reusable": True,
             "local_frequency_is_validity_criterion": False,

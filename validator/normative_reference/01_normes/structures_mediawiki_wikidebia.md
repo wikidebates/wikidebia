@@ -563,3 +563,13 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 ## Contraintes MediaWiki 1.2.23
 
 Dans `{{Débat}}` et `{{Debate}}`, `sujet-complet` et `complete-topic` commencent normalement par une minuscule. Dans les modèles sitographiques de toute page, `page=site` est interdit et `auteurs/authors=site` est interdit après la seconde vérification d’attribution. Les mêmes contraintes sont contrôlées dans le registre pour la vidéographie.
+
+
+## Paramètres protégés des pages préexistantes — révision 1.2.33
+
+Les structures présentant `avancement=Débat construit`, `progress=Constructed debate` et les avertissements IA décrivent une page nouvellement créée. Une modification conserve exactement l’état antérieur de ces paramètres. Le manifeste de page porte `page_origin` et un instantané `preserved_parameters`; le validateur refuse toute suppression, addition ou réécriture non autorisée.
+
+# Addendum actif 1.2.34 — paramètre interlangue conditionnel
+
+Dans les structures françaises, `interlangue` est absent lorsque `translation_status.en=deferred`. Il devient obligatoire uniquement lorsque l'anglais est `ready` ou `published`, sous la forme unique `{{Lien interlangue|langue=en|page=Titre canonique anglais verrouillé}}`. Les structures anglaises ne comportent jamais ce paramètre. Les exemples plus anciens avec lien immédiat sont des exemples du profil bilingue prêt et ne s'appliquent pas au profil français différé.
+

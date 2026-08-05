@@ -49,7 +49,7 @@ from wikidebia_graph_extract import (
     normalize_key,
 )
 
-KIT_VERSION = "2.15.5"
+KIT_VERSION = "2.15.9"
 WORKSPACE_SCHEMA = "wikidebia-editorial-workspace-1.0"
 AUDIT_SCHEMA = "wikidebia-editorial-audit-1.0"
 TASK_SCHEMA = "wikidebia-editorial-task-ledger-1.0"
@@ -162,6 +162,30 @@ def rubrique_diagnostics(values: Iterable[str], fallback: bool) -> list[dict[str
     return issues
 
 
+def first_alphabetic(value: str) -> str:
+    return next((char for char in str(value) if char.isalpha()), "")
+
+
+def capitalization_policy_for_kind(kind: str) -> str | None:
+    return {
+        "noun": "lowercase_common",
+        "noun_phrase": "lowercase_common",
+        "proper_name": "canonical_proper_name",
+        "acronym": "canonical_acronym",
+    }.get(kind)
+
+
+def keyword_capitalization_issues(value: str, kind: str) -> list[str]:
+    first = first_alphabetic(value)
+    if kind in {"noun", "noun_phrase"} and first and first.isupper():
+        return ["common_keyword_initial_uppercase"]
+    if kind == "acronym":
+        letters = [char for char in value if char.isalpha()]
+        if not letters or any(char.islower() for char in letters):
+            return ["acronym_not_uppercase"]
+    return []
+
+
 def keyword_diagnostics(values: Iterable[str], fallback: bool, entity_type: str = "argument") -> list[dict[str, Any]]:
     rows = [normalized_text(value) for value in values if normalized_text(value)]
     issues: list[dict[str, Any]] = []
@@ -181,6 +205,9 @@ def keyword_diagnostics(values: Iterable[str], fallback: bool, entity_type: str 
     sentence_values = [value for value in rows if value.endswith((".", "!", "?", ";", ":"))]
     if sentence_values:
         issues.append({"code": "KEYWORDS_SENTENCE_LIKE", "severity": "correction", "field": "keywords", "values": sentence_values})
+    uppercase_values = [value for value in rows if first_alphabetic(value) and first_alphabetic(value).isupper()]
+    if uppercase_values:
+        issues.append({"code": "KEYWORDS_CAPITALIZATION_REVIEW", "severity": "review", "field": "keywords", "values": uppercase_values})
     if fallback:
         issues.append({"code": "KEYWORDS_IMPORTED_FALLBACK", "severity": "review", "field": "keywords"})
     return issues
@@ -285,6 +312,8 @@ def page_review_item(
             "keywords_decision": "pending",
             "proposed_keywords": [],
             "keywords_rationales": {},
+            "keywords_ordered_by_relevance": False,
+            "keyword_order_rationale": "",
             "canonical_referents_explicit": False if entity_type == "argument" else None,
             "displayed_title_complete_proposition": False if entity_type == "argument" else None,
             "displayed_title_argument_intelligible": False if entity_type == "argument" else None,
@@ -385,6 +414,9 @@ def keyword_vocabulary_working(items: Sequence[Mapping[str, Any]], debate_id: st
             "fr": original_forms[normalized],
             "en": None,
             "definition": "",
+            "kind": None,
+            "capitalization_policy": None,
+            "capitalization_rationale": "",
             "status": "pending_review",
             "usages": usage[normalized],
             "decision": "pending",

@@ -1,20 +1,17 @@
-Wikidéb’IA Kit 2.15.5
-Norme : 1.2.30
-Validateur requis : 0.4.32
+Wikidéb’IA Kit 2.15.9
+Norme : 1.2.34
+Validateur requis : 0.4.36
 Extracteur de graphe : 1.0.2
-Tests pytest du kit : 223 réussis, 0 échec
-Tests pytest du validateur : 220 réussis, 0 échec
-Rejeu des tests du kit source 2.4.0 : conservé par la baseline fonctionnelle automatisée
-Rejeu des tests du validateur source 0.4.28 : conservé par la baseline fonctionnelle automatisée
+Tests pytest du kit : 243 réussis, 0 échec
+Tests pytest du validateur : 239 réussis, 0 échec
 
-Correctif des métriques révélé par le test réel « Dieu existe-t-il ? » :
-- niveau des occurrences et profondeur en nombre d’arêtes distingués ;
-- niveau minimal maximal des pages uniques séparé du niveau maximal des occurrences ;
-- occurrences dépliées par chemins séparées des occurrences normatives ;
-- pages sans sortie, feuilles réelles et frontières de débat détaillé séparées ;
-- relations locales non suivies aux frontières classées comme informations de périmètre ;
-- contrôles d’audit supplémentaires sur les sommes, profondeurs, feuilles et frontières ;
-- compatibilité des snapshots graph-extract 1.0.0 et des champs historiques 1.0.0/1.0.1 maintenue.
+Décision 1.2.34 :
+- le profil norm_1_2_deferred_translation publie le français sans titre anglais ni lien interlangue ;
+- les portées anglaises sont bloquées lorsque translation_status.en vaut deferred ;
+- aucun titre anglais provisoire et aucun lien fictif ne sont générés ;
+- un lien interlangue déjà présent reste strictement contrôlé et n’est pas supprimé automatiquement ;
+- après passage à ready ou published, une reprise française peut ajouter les liens exacts.
 
-Toutes les protections distantes, la localisation complète du wikicode anglais et les fonctions historiques du bundle source 2.4.0 restent conservées.
+Règles antérieures conservées : protection des pages préexistantes, capitalisation canonique, mots-clés classés par pertinence, profondeur non limitée, localisation complète des pages anglaises et sûreté des opérations distantes.
+
 Résultat : RÉUSSI

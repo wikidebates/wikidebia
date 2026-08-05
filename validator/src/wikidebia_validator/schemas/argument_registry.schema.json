@@ -247,32 +247,29 @@
             "maximum_observed": {
               "type": "integer",
               "minimum": 0
+            },
+            "limit_policy": {
+              "type": "string",
+              "enum": [
+                "unbounded"
+              ]
             }
           },
           "additionalProperties": false,
-          "required": [
-            "normal_target",
-            "declared_maximum",
-            "exception_reason",
-            "maximum_observed"
-          ],
-          "allOf": [
+          "anyOf": [
             {
-              "if": {
-                "properties": {
-                  "declared_maximum": {
-                    "minimum": 4
-                  }
-                }
-              },
-              "then": {
-                "properties": {
-                  "exception_reason": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                }
-              }
+              "required": [
+                "limit_policy",
+                "maximum_observed"
+              ]
+            },
+            {
+              "required": [
+                "normal_target",
+                "declared_maximum",
+                "exception_reason",
+                "maximum_observed"
+              ]
             }
           ]
         },

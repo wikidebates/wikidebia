@@ -281,6 +281,7 @@
       "type": "string",
       "enum": [
         "pending",
+        "deferred",
         "ready",
         "inserted",
         "verified",
@@ -688,7 +689,10 @@
           "if": {
             "properties": {
               "status": {
-                "const": "pending"
+                "enum": [
+                  "pending",
+                  "deferred"
+                ]
               }
             }
           },

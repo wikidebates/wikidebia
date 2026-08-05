@@ -104,7 +104,7 @@ def make_registry(full_fr=False):
         },
         "graph": {
             "lifecycle": {"status": "locked", "validated_at": NOW, "locked_at": NOW, "locked_by_stage": "graph_finalization", "structural_sha256": None},
-            "depth_policy": {"normal_target": 3, "declared_maximum": 3, "exception_reason": None, "maximum_observed": 1},
+            "depth_policy": {"limit_policy": "unbounded", "maximum_observed": 1},
             "nodes": nodes,
             "edges": [],
             "occurrences": occurrences,
@@ -175,6 +175,8 @@ def page_manifest(page_id, page_type, lang, title, file_path, hash_value, batch_
         "language": lang, "canonical_title": title, "file_path": file_path, "sha256": hash_value, "creation_date": DATE,
         "batch_id": batch_id, "status": "validated", "structure_version": "1.0", "render_profile_version": "1.0",
         "validation": {"status": "passed", "report_path": f"reports/{page_id}_{lang}.txt", "validated_at": NOW},
+        "page_origin": "new",
+        "preserved_parameters": {},
         "wiki": wiki_record(),
     }
 

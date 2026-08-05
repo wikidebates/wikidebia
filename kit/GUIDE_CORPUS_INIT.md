@@ -1,6 +1,6 @@
 # Initialisation d’un corpus depuis un snapshot
 
-Le kit 2.15.5 transforme un paquet produit par `graph-extract` en corpus local au statut `graph_draft`.
+Le kit 2.15.9 transforme un paquet produit par `graph-extract` en corpus local au statut `graph_draft`.
 
 ```bash
 ./wikidebia corpus-init-from-snapshot \
@@ -83,3 +83,7 @@ Le build reste volontairement sous `.state/corpus-builds/`. Sa revue et sa promo
 
 Ces commandes ne génèrent pas encore de pages. Voir `GUIDE_CORPUS_REVIEW.md`.
 
+
+## Profondeur
+
+Sous les normes 1.2.31 et suivantes, le build utilise `depth_policy.limit_policy=unbounded`. La profondeur maximale observée est descriptive ; aucune limite, cible normale, justification d’exception ou alerte numérique n’est générée.

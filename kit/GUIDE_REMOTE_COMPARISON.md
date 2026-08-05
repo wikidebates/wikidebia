@@ -1,4 +1,4 @@
-# Guide de comparaison distante en lecture seule — Kit 2.15.5
+# Guide de comparaison distante en lecture seule — Kit 2.15.9
 
 ## Commande
 
@@ -27,3 +27,8 @@ Les fichiers sont écrits sous `.state/remote-comparisons/<debate_id>/<work_id>/
 - `comparison-receipt.json`.
 
 Un plan contenant `manual_review` ou `blocked` reste un résultat de comparaison valable mais n’est pas exécutable.
+
+## Portée française différée
+
+La comparaison distante ignore les pages anglaises absentes lorsque le manifeste 1.2.34 déclare `deferred`. Elle ne doit ni créer d'opération anglaise ni interpréter l'absence de lien français comme un retrait.
+

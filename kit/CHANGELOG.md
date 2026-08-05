@@ -1,3 +1,43 @@
+# Changelog
+
+## 2.15.9 — 5 août 2026
+
+- alignement sur la norme 1.2.34 et le validateur 0.4.36 ;
+- ajout du profil `norm_1_2_deferred_translation` ;
+- autorisation de `publish` et `update --scope fr` sans titre anglais ni lien interlangue lorsque `translation_status.en=deferred` ;
+- blocage explicite des portées anglaises dans cet état ;
+- absence totale de génération de titres anglais provisoires ou de liens fictifs ;
+- validation stricte de tout lien déjà présent et préservation des liens valides existants ;
+- autorisation d'une reprise française ultérieure pour ajouter `interlangue` après passage à `ready` ou `published` ;
+- ajout des exemples de création française différée, création bilingue prête et reprise interlangue.
+
+## 2.15.8 — 5 août 2026
+
+- alignement sur la norme 1.2.33 et le validateur 0.4.36 ;
+- distinction explicite entre page nouvelle et page préexistante dans les verrous et manifestes ;
+- ajout de `Débat construit`, des avertissements IA et de leurs équivalents anglais uniquement lors de la création d’une page absente du wiki ;
+- conservation exacte de l’avancement, des avertissements et des débats connexes lors de la modification d’une page existante ;
+- blocage des mises à jour et déplacements distants qui modifieraient un paramètre protégé ;
+- sélection d’une référence d’Argument uniquement lorsqu’elle développe l’argument, sans rejet lorsqu’elle traite aussi d’objections ;
+- conservation intégrale des fonctions et contrats historiques.
+
+## 2.15.7 — 4 août 2026
+
+- contrôle canonique de la capitalisation des mots-clés français et anglais ;
+- justification obligatoire des majuscules de noms propres et acronymes ;
+- blocage des doublons de vocabulaire ne différant que par la casse ;
+- neutralisation des greffons pytest externes pendant les tests de mise à niveau ;
+- conservation des fonctions et protections 2.15.6.
+
+## 2.15.6 — 4 août 2026
+
+- alignement sur la norme 1.2.31 et le validateur 0.4.33 ;
+- mots-clés français ordonnés par pertinence décroissante avec attestation page par page ;
+- conservation exacte de cet ordre dans les keywords anglais ;
+- politique de profondeur non limitée dans les nouveaux corpus ;
+- suppression des limites, justifications d’exception et alertes de seuil de profondeur ;
+- conservation des contrats historiques pour les corpus antérieurs.
+
 ## 2.15.5 — 4 août 2026
 
 - correction d’une régression de compatibilité introduite dans les alias métriques de l’extracteur 1.0.1 ;
@@ -23,7 +63,7 @@
 - conservation exacte des valeurs documentaires autres que `quote` et `date` ;
 - blocage des paramètres français ou sans équivalent anglais dans le rendu anglais ;
 - tests de non-régression garantissant l’absence de modèles et paramètres français sur le wiki anglais ;
-- alignement sur la norme 1.2.30 et le validateur 0.4.32.
+- alignement sur la norme 1.2.33 et le validateur 0.4.36.
 
 # Changelog
 

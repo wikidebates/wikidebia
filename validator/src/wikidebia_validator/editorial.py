@@ -8,6 +8,7 @@ import unicodedata
 from typing import Any
 
 from .package import PackageContext
+from .translation import english_translation_deferred, english_translation_status
 from .wikicode import WikiParseError, get_subs, parse_template
 
 AUTO_OBJECTION_FR = re.compile(
@@ -260,6 +261,18 @@ def summary_word_ratio(fr_text: str, en_text: str) -> float:
     return (len(en_words) / len(fr_words)) if fr_words else 0.0
 
 
+def keyword_capitalization_issues(keyword: str, kind: str) -> list[str]:
+    value = str(keyword or "")
+    first = next((char for char in value if char.isalpha()), "")
+    if kind in {"noun", "noun_phrase"} and first and first.isupper():
+        return ["common_keyword_initial_uppercase"]
+    if kind == "acronym":
+        letters = [char for char in value if char.isalpha()]
+        if not letters or any(char.islower() for char in letters):
+            return ["acronym_not_uppercase"]
+    return []
+
+
 def keyword_form_issues(keywords: list[str]) -> list[str]:
     issues: list[str] = []
     if not 2 <= len(keywords) <= 4:
@@ -283,7 +296,7 @@ def keyword_form_issues(keywords: list[str]) -> list[str]:
 
 def _active(ctx: PackageContext) -> bool:
     manifest = ctx.manifest() or {}
-    return (manifest.get("normative_versions") or {}).get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}
+    return (manifest.get("normative_versions") or {}).get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}
 
 
 def summary_has_auto_objection(text: str, language: str) -> bool:
@@ -370,10 +383,10 @@ def _validate_documentary_registry(ctx: PackageContext) -> tuple[int, int]:
         if isinstance(date, str) and ACCESS_DATE.search(date):
             date_errors += 1
             ctx.report.error("WDV-DOC-003", "Date de simple consultation conservée comme date documentaire", path=ctx.core_paths()["sources"], details={"source_id": source.get("id"), "value": date})
-        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} and isinstance(date, str) and re.fullmatch(r"\d{4}-\d{2}(?:-\d{2})?(?:[T ].*)?", date.strip()):
+        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} and isinstance(date, str) and re.fullmatch(r"\d{4}-\d{2}(?:-\d{2})?(?:[T ].*)?", date.strip()):
             date_errors += 1
             ctx.report.error("WDV-DOC-005", "Date documentaire au format machine dans le registre des sources", path=ctx.core_paths()["sources"], details={"source_id": source.get("id"), "value": date})
-        if norm in {"1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} and source.get("type") in {"webliography", "videography"}:
+        if norm in {"1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} and source.get("type") in {"webliography", "videography"}:
             verification = source.get("verification") or {}
             site = str(metadata.get("site") or "").strip().casefold()
             page_or_title = str(metadata.get("page") or metadata.get("title") or "").strip().casefold()
@@ -401,7 +414,7 @@ def _validate_debate_docs(ctx: PackageContext, manifest: dict[str, Any], control
     min_references = int(cfg.get("min_references", 0))
     reject_singleton = cfg.get("reject_singleton_bucket_pattern") is True
     profile_rationale = cfg.get("profile_rationale")
-    if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} and (not isinstance(profile_rationale, str) or not profile_rationale.strip()):
+    if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} and (not isinstance(profile_rationale, str) or not profile_rationale.strip()):
         ctx.report.error("WDV-EDT-004", "Justification des minima documentaires locaux absente", path="manifest.json")
     debate_pages = [p for p in manifest.get("pages", []) if p.get("page_type") == "debate"]
     doc_params = {
@@ -424,7 +437,7 @@ def _validate_debate_docs(ctx: PackageContext, manifest: dict[str, Any], control
         metrics[lang] = {"introduction_subsections": intro_count, "documentary_references": total, "bucket_counts": counts, "distinct_bucket_counts": distinct_counts, "profile_minima": {"subsections": min_subsections, "references": min_references}, "profile_rationale": profile_rationale}
         if intro_count < min_subsections or total < min_references:
             ctx.report.error("WDV-EDT-004", "Page de débat insuffisamment développée ou documentée selon le profil déclaré", path=page.get("file_path"), details=metrics[lang])
-        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
             insufficient = {
                 param: {"total": count, "distinct": distinct}
                 for param, count, distinct in zip(doc_params[lang], counts, distinct_counts)
@@ -540,7 +553,7 @@ def _validate_intro_references(ctx: PackageContext, manifest: dict[str, Any], co
         for index, block in enumerate(blocks):
             has_inline = bool(re.search(r"<ref\b", block, flags=re.I))
             has_references_tag = bool(re.search(r"<references\b", block, flags=re.I))
-            if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+            if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
                 if has_references_tag:
                     invalid.append(index + 1)
             elif norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3"}:
@@ -548,7 +561,7 @@ def _validate_intro_references(ctx: PackageContext, manifest: dict[str, Any], co
                     invalid.append(index + 1)
             elif not has_inline or block.count("<references />") != 1 or not block.rstrip().endswith("<references />"):
                 invalid.append(index + 1)
-            if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+            if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
                 for match in ref_pair_re.finditer(block):
                     body = match.group("body").strip()
                     attrs = match.group("attrs") or ""
@@ -585,7 +598,7 @@ def _validate_intro_references(ctx: PackageContext, manifest: dict[str, Any], co
                             invalid_direct_notes.append({"subsection": index + 1, "reason": "self_closing_unnamed_reference"})
         missing_named = [{"subsection": idx, "name": name} for idx, name in referenced_names if name not in defined_names]
         ref_calls = len(re.findall(r"<ref\b", intro, flags=re.I))
-        claim_driven_policy = norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}
+        claim_driven_policy = norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}
         metrics[lang] = {
             "subsections": len(blocks),
             "ref_calls": ref_calls,
@@ -594,7 +607,7 @@ def _validate_intro_references(ctx: PackageContext, manifest: dict[str, Any], co
             "minimum": min_subsections,
             "claim_driven_policy": claim_driven_policy,
             "expected_inline_reference_model": expected_model if norm == "1.2.9" else None,
-            "inline_reference_body_mode": "direct_wikicode_without_templates" if norm in {"1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} else None,
+            "inline_reference_body_mode": "direct_wikicode_without_templates" if norm in {"1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} else None,
             "invalid_inline_reference_models": invalid_models,
             "invalid_direct_reference_notes": invalid_direct_notes,
             "undefined_named_references": missing_named,
@@ -611,9 +624,9 @@ def _validate_intro_references(ctx: PackageContext, manifest: dict[str, Any], co
             ctx.report.error("WDV-EDT-010", message, path=page.get("file_path"), details=metrics[lang])
         if norm == "1.2.9" and (invalid_models or missing_named):
             ctx.report.error("WDV-EDT-010", f"Les appels inline de l’introduction doivent employer exclusivement le modèle {expected_model}", path=page.get("file_path"), details=metrics[lang])
-        if norm in {"1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} and (invalid_direct_notes or missing_named):
+        if norm in {"1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} and (invalid_direct_notes or missing_named):
             ctx.report.error("WDV-EDT-010", "Les appels inline de l’introduction doivent contenir une référence rédigée directement, sans modèle MediaWiki", path=page.get("file_path"), details=metrics[lang])
-        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} and machine_dates:
+        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} and machine_dates:
             ctx.report.error("WDV-DOC-005", "Date documentaire au format machine dans un appel de référence inline", path=page.get("file_path"), details={"dates": machine_dates, "creation_date_parameters_unchanged": ["date-création", "creation-date"]})
     return metrics
 
@@ -642,7 +655,7 @@ def validate_introduction_review_data(
     issues: list[dict[str, Any]] = []
     if not isinstance(review, dict):
         return [{"reason": "missing_or_invalid_document"}]
-    if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} and review.get("normative_revision") != norm:
+    if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} and review.get("normative_revision") != norm:
         issues.append({"reason": "wrong_normative_revision", "expected": norm, "actual": review.get("normative_revision")})
     entries = review.get("entries")
     if not isinstance(entries, list):
@@ -665,7 +678,7 @@ def validate_introduction_review_data(
         for field in INTRO_REVIEW_TRUE_FIELDS:
             if entry.get(field) is not True:
                 issues.append({"reason": "attestation_false_or_missing", "language": lang, "field": field})
-        if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+        if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
             for field in ("complete_topic_fits_heading", "debate_sections_precise", "documentation_proportionate_to_literature"):
                 if entry.get(field) is not True:
                     issues.append({"reason": field, "language": lang})
@@ -677,11 +690,11 @@ def validate_introduction_review_data(
                 for family, note in family_notes.items():
                     if not isinstance(note, str) or len(note.strip()) < 20:
                         issues.append({"reason": "documentation_family_note", "language": lang, "family": family})
-        if norm in {"1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+        if norm in {"1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
             for field in ("wikipedia_hover_links_reviewed", "specialized_terms_linked_or_explained"):
                 if entry.get(field) is not True:
                     issues.append({"reason": field, "language": lang})
-        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
             acronym = entry.get("common_acronym")
             if acronym is not None and (not isinstance(acronym, str) or not acronym.strip()):
                 issues.append({"reason": "invalid_common_acronym", "language": lang})
@@ -691,7 +704,7 @@ def validate_introduction_review_data(
                 complete = complete_topics.get(lang, "")
                 if not re.search(rf"(?<![\w.-]){re.escape(acronym.strip())}(?![\w.-])", complete):
                     issues.append({"reason": "common_acronym_missing_from_complete_topic", "language": lang, "acronym": acronym.strip(), "complete_topic": complete})
-        if norm in {"1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+        if norm in {"1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
             for field in ("topic_is_nominal_label", "conventional_topic_label_used_or_not_applicable", "complete_topic_lowercase_initial_or_justified"):
                 if entry.get(field) is not True:
                     issues.append({"reason": field, "language": lang})
@@ -736,6 +749,9 @@ def _validate_introduction_review(ctx: PackageContext, manifest: dict[str, Any],
         ctx.report.error("WDV-EDT-017", "Registre bilingue de revue des introductions absent", path="manifest.json")
         return {"path": rel, "issues": [{"reason": "missing_path"}]}
     review = ctx.load_json(rel) if ctx.exists(rel) else None
+    if english_translation_deferred(manifest) and isinstance(review, dict) and isinstance(review.get("entries"), list):
+        review = dict(review)
+        review["entries"] = [entry for entry in review["entries"] if isinstance(entry, dict) and entry.get("language") == "fr"]
     actual_titles: dict[str, list[str]] = {}
     complete_topics: dict[str, str] = {}
     topics: dict[str, str] = {}
@@ -785,7 +801,7 @@ def _validate_normative_non_regression(ctx: PackageContext, manifest: dict[str, 
             ctx.report.error("WDV-EDT-011", "Handoff correctif courant incohérent", path=handoff_rel, details={"work_id": handoff.get("work_id"), "normative_versions": nv, "remote_operations_performed": handoff.get("remote_operations_performed"), "expected_work": expected_work, "expected_norm": norm, "expected_validator": expected_validator})
     return {"active_norms": names, "current_handoff": handoff_rel if isinstance(handoff, dict) else None}
 
-def validate_individual_review_data(review: Any, nodes: list[dict[str, Any]], norm: str | None = None) -> list[dict[str, Any]]:
+def validate_individual_review_data(review: Any, nodes: list[dict[str, Any]], norm: str | None = None, english_deferred: bool = False) -> list[dict[str, Any]]:
     """Return stable inconsistencies in a generic page-by-page editorial ledger."""
     issues: list[dict[str, Any]] = []
     if not isinstance(review, dict):
@@ -813,26 +829,33 @@ def validate_individual_review_data(review: Any, nodes: list[dict[str, Any]], no
         en = node.get("en") or {}
         if entry.get("title_decision") not in {"reformulated", "retained_after_review"}:
             issues.append({"reason": "title_decision", "node_id": node_id})
-        if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
-            if entry.get("canonical_referents_explicit_fr") is not True or entry.get("canonical_referents_explicit_en") is not True:
+        if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
+            if entry.get("canonical_referents_explicit_fr") is not True or (not english_deferred and entry.get("canonical_referents_explicit_en") is not True):
                 issues.append({"reason": "canonical_referents_explicit", "node_id": node_id})
-            if entry.get("displayed_referents_explicit_fr") is not True or entry.get("displayed_referents_explicit_en") is not True:
+            if entry.get("displayed_referents_explicit_fr") is not True or (not english_deferred and entry.get("displayed_referents_explicit_en") is not True):
                 issues.append({"reason": "displayed_referents_explicit", "node_id": node_id})
-        if norm in {"1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
-            required_title_attestations = (
+        if norm in {"1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
+            required_title_attestations = [
                 "displayed_title_complete_proposition_fr",
                 "displayed_title_argument_intelligible_fr",
-                "displayed_title_complete_proposition_en",
-                "displayed_title_argument_intelligible_en",
-            )
+            ]
+            if not english_deferred:
+                required_title_attestations += [
+                    "displayed_title_complete_proposition_en",
+                    "displayed_title_argument_intelligible_en",
+                ]
             for field in required_title_attestations:
                 if entry.get(field) is not True:
                     issues.append({"reason": field, "node_id": node_id})
-        if norm in {"1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
-            for field in ("displayed_title_concision_reviewed_fr", "displayed_title_concision_reviewed_en"):
+        if norm in {"1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
+            concision_fields = ["displayed_title_concision_reviewed_fr"]
+            if not english_deferred:
+                concision_fields.append("displayed_title_concision_reviewed_en")
+            for field in concision_fields:
                 if entry.get(field) is not True:
                     issues.append({"reason": field, "node_id": node_id})
-            for lang, data in (("fr", fr), ("en", en)):
+            reviewed_languages = (("fr", fr),) if english_deferred else (("fr", fr), ("en", en))
+            for lang, data in reviewed_languages:
                 canonical = (data.get("canonical_title") or "").strip().casefold()
                 displayed = (data.get("displayed_title") or "").strip().casefold()
                 justification = str(entry.get(f"displayed_title_identity_justification_{lang}") or "").strip()
@@ -845,10 +868,22 @@ def validate_individual_review_data(review: Any, nodes: list[dict[str, Any]], no
         selected = fr.get("rubriques") or []
         if entry.get("new_rubriques") != selected:
             issues.append({"reason": "rubriques", "node_id": node_id})
-        if entry.get("new_displayed_title_en") != en.get("displayed_title"):
-            issues.append({"reason": "displayed_title_en", "node_id": node_id})
-        if entry.get("new_sections_en") != (en.get("sections") or []):
-            issues.append({"reason": "sections_en", "node_id": node_id})
+        if not english_deferred:
+            if entry.get("new_displayed_title_en") != en.get("displayed_title"):
+                issues.append({"reason": "displayed_title_en", "node_id": node_id})
+            if entry.get("new_sections_en") != (en.get("sections") or []):
+                issues.append({"reason": "sections_en", "node_id": node_id})
+        if norm in {"1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
+            if entry.get("new_keywords_fr") != (fr.get("keywords") or []):
+                issues.append({"reason": "keywords_fr", "node_id": node_id})
+            if not english_deferred and entry.get("new_keywords_en") != (en.get("keywords") or []):
+                issues.append({"reason": "keywords_en", "node_id": node_id})
+            for lang in (("fr",) if english_deferred else ("fr", "en")):
+                if entry.get(f"keywords_ordered_by_relevance_{lang}") is not True:
+                    issues.append({"reason": f"keywords_ordered_by_relevance_{lang}", "node_id": node_id})
+                rationale = str(entry.get(f"keyword_order_rationale_{lang}") or "").strip()
+                if len(rationale) < 20:
+                    issues.append({"reason": f"keyword_order_rationale_{lang}", "node_id": node_id})
         if entry.get("rubric_decision") not in {"adjusted", "retained_after_review"}:
             issues.append({"reason": "rubric_decision", "node_id": node_id})
         rationales = entry.get("rubric_rationales")
@@ -868,7 +903,7 @@ def validate_graph_placement_review_data(review: Any, registry: dict[str, Any], 
     issues: list[dict[str, Any]] = []
     if not isinstance(review, dict):
         return [{"reason": "missing_or_invalid_document"}]
-    if norm in {"1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} and review.get("normative_revision") != norm:
+    if norm in {"1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} and review.get("normative_revision") != norm:
         issues.append({"reason": "normative_revision", "expected": norm, "actual": review.get("normative_revision")})
     if review.get("debate_id") != (registry.get("debate") or {}).get("id"):
         issues.append({"reason": "debate_id", "expected": (registry.get("debate") or {}).get("id"), "actual": review.get("debate_id")})
@@ -976,7 +1011,8 @@ def _validate_individual_editorial_review(ctx: PackageContext, nodes: list[dict[
     rel = controls.get("individual_review_path")
     review = ctx.load_json(rel) if isinstance(rel,str) and ctx.exists(rel) else None
     norm = (((ctx.manifest() or {}).get("normative_versions") or {}).get("consolidated_norm"))
-    issues = validate_individual_review_data(review, nodes, norm=norm)
+    deferred = english_translation_deferred(ctx.manifest() or {})
+    issues = validate_individual_review_data(review, nodes, norm=norm, english_deferred=deferred)
     if issues:
         ctx.report.error("WDV-EDT-012", "Revue individuelle des titres affichés et rubriques absente ou incohérente", path=rel or "manifest.json", details={"issue_count": len(issues), "issues": issues[:25]})
     entries = review.get("entries", []) if isinstance(review, dict) else []
@@ -1003,7 +1039,7 @@ def validate_summary_style_review_data(
     summary_map = summaries or {}
     if not isinstance(review, dict):
         return [{"reason": "missing_or_invalid_document"}]
-    if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} and review.get("normative_revision") != norm:
+    if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} and review.get("normative_revision") != norm:
         issues.append({"reason": "normative_revision", "expected": norm, "actual": review.get("normative_revision")})
     entries = review.get("entries")
     if not isinstance(entries, list):
@@ -1022,7 +1058,7 @@ def validate_summary_style_review_data(
     if set(by_id) != expected:
         issues.append({"reason": "coverage", "missing": sorted(expected-set(by_id)), "extra": sorted(set(by_id)-expected)})
     required_true = ["thesis_first", "general_public_style", "sentence_rhythm_reviewed", "technical_terms_reviewed"]
-    if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+    if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
         required_true += [
             "opening_develops_title",
             "example_or_data_reviewed",
@@ -1030,9 +1066,9 @@ def validate_summary_style_review_data(
             "no_artificial_example_or_number",
             "no_polemical_overstatement",
         ]
-    if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+    if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
         required_true += ["conviction_visible"]
-    if norm in {"1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+    if norm in {"1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
         required_true += ["wikipedia_hover_links_reviewed", "specialized_terms_linked_or_explained"]
     for node_id in expected:
         entry = by_id.get(node_id)
@@ -1055,7 +1091,7 @@ def validate_summary_style_review_data(
             for key in required_true:
                 if decision.get(key) is not True:
                     issues.append({"reason": key, "node_id": node_id, "language": lang})
-            if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+            if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
                 expression = str(decision.get("forceful_expression") or "").strip()
                 summary_text = summary_map.get((node_id, lang), "")
                 normalized_expression = re.sub(r"\s+", " ", expression).casefold()
@@ -1114,7 +1150,7 @@ def _validate_summary_style(
                     path=page.get("file_path"),
                     details={"node_id": node_id, "language": lang, **metrics},
                 )
-        if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} and cfg.get("opening_title_similarity_enabled", True) is True:
+        if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} and cfg.get("opening_title_similarity_enabled", True) is True:
             data = (node_map.get(node_id) or {}).get(lang) or {}
             titles = [data.get("canonical_title") or "", data.get("displayed_title") or "", page.get("canonical_title") or ""]
             opening_metrics = opening_title_similarity(summary, titles, lang, cfg)
@@ -1126,7 +1162,7 @@ def _validate_summary_style(
                     path=page.get("file_path"),
                     details={"node_id": node_id, "language": lang, **opening_metrics},
                 )
-        claims = summary_quantitative_claims(summary) if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} else []
+        claims = summary_quantitative_claims(summary) if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} else []
         if claims:
             quantitative_pages.add((node_id, lang))
             quantitative_summaries += 1
@@ -1184,14 +1220,15 @@ def validate_editorial(ctx: PackageContext) -> None:
         return
     manifest = ctx.manifest() or {}
     norm = (manifest.get("normative_versions") or {}).get("consolidated_norm")
+    english_deferred = english_translation_deferred(manifest)
     registry = ctx.registry() or {}
     editorial_controls = manifest.get("editorial_controls") or {}
     trace_controls = manifest.get("traceability_controls") or {}
-    if norm in {"1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} and (not editorial_controls or not trace_controls):
+    if norm in {"1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} and (not editorial_controls or not trace_controls):
         ctx.report.error("WDV-EDT-011", "Profils de contrôle déclaratifs absents du manifeste", path="manifest.json")
-    if norm in {"1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} and (not editorial_controls.get("summary_style") or not editorial_controls.get("summary_style_review_path")):
+    if norm in {"1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} and (not editorial_controls.get("summary_style") or not editorial_controls.get("summary_style_review_path")):
         ctx.report.error("WDV-EDT-013", "Contrôles de style des résumés absents du manifeste", path="manifest.json")
-    if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+    if norm in {"1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
         summary_cfg = editorial_controls.get("summary_style") or {}
         required_119 = {
             "opening_title_similarity_enabled",
@@ -1219,22 +1256,45 @@ def validate_editorial(ctx: PackageContext) -> None:
     title_quality_counts = {"fr": 0, "en": 0}
     keyword_quality_counts = {"fr": 0, "en": 0}
     page_map = {(p.get("page_id"), p.get("language")): p for p in manifest.get("pages", [])}
-    vocab_fr, vocab_en = _load_keyword_vocabulary(ctx, editorial_controls) if norm in {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} else ({}, {})
+    vocab_fr, vocab_en = _load_keyword_vocabulary(ctx, editorial_controls) if norm in {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} else ({}, {})
+    if norm in {"1.2.32", "1.2.33", "1.2.34"}:
+        capitalization_vocabularies = (("fr", vocab_fr),) if english_deferred else (("fr", vocab_fr), ("en", vocab_en))
+        for language, vocabulary in capitalization_vocabularies:
+            folded: dict[str, str] = {}
+            for term, entry in vocabulary.items():
+                previous = folded.get(term.casefold())
+                if previous is not None and previous != term:
+                    ctx.report.error("WDV-EDT-023", "Entrées de vocabulaire ne différant que par la casse", path=editorial_controls.get("keyword_vocabulary_path"), details={"language": language, "first": previous, "second": term})
+                folded[term.casefold()] = term
+                kind = str(entry.get("kind") or "")
+                expected_policy = {"noun": "lowercase_common", "noun_phrase": "lowercase_common", "proper_name": "canonical_proper_name", "acronym": "canonical_acronym"}.get(kind)
+                if entry.get("capitalization_policy") != expected_policy:
+                    ctx.report.error("WDV-EDT-023", "Politique de capitalisation du mot-clé absente ou incohérente", path=editorial_controls.get("keyword_vocabulary_path"), details={"language": language, "keyword": term, "kind": kind, "expected_policy": expected_policy, "actual_policy": entry.get("capitalization_policy")})
+                reasons = keyword_capitalization_issues(term, kind)
+                if reasons:
+                    ctx.report.error("WDV-EDT-023", "Capitalisation non canonique du mot-clé", path=editorial_controls.get("keyword_vocabulary_path"), details={"language": language, "keyword": term, "kind": kind, "reasons": reasons})
+                rationale_field = "capitalization_rationale" if language == "fr" else "capitalization_rationale_en"
+                rationale = str(entry.get(rationale_field) or "").strip()
+                if kind in {"proper_name", "acronym"} and len(rationale) < 12:
+                    ctx.report.error("WDV-EDT-023", "Majuscule canonique insuffisamment justifiée", path=editorial_controls.get("keyword_vocabulary_path"), details={"language": language, "keyword": term, "kind": kind})
+                if kind in {"noun", "noun_phrase"} and rationale:
+                    ctx.report.error("WDV-EDT-023", "Justification de majuscule inattendue pour un nom commun", path=editorial_controls.get("keyword_vocabulary_path"), details={"language": language, "keyword": term})
 
-    for lang in ("fr", "en"):
+    editorial_languages = ("fr",) if english_deferred else ("fr", "en")
+    for lang in editorial_languages:
         ratio = title_copy_ratio(nodes, lang)
         title_metrics[lang] = ratio
-        if norm in {"1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} and ratio > 0.10:
+        if norm in {"1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} and ratio > 0.10:
             ctx.report.error("WDV-EDT-001", "Les titres affichés sont copiés mécaniquement depuis les titres canoniques", path=ctx.core_paths()["registry"], details={"language": lang, "ratio": ratio, "threshold": 0.10})
         cratio = dominant_classification_ratio(nodes, lang)
         classification_metrics[lang] = cratio
-        if norm not in {"1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} and cratio > 0.90:
+        if norm not in {"1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} and cratio > 0.90:
             ctx.report.error("WDV-EDT-002", "Une classification unique domine mécaniquement le corpus", path=ctx.core_paths()["registry"], details={"language": lang, "ratio": cratio})
 
         keyword_sets = [tuple((node.get(lang) or {}).get("keywords") or []) for node in nodes]
         dominant_keyword_set_ratio = Counter(keyword_sets).most_common(1)[0][1] / len(keyword_sets) if keyword_sets else 1.0
-        threshold = 0.25 if norm in {"1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} else 0.15
-        if norm in {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} and dominant_keyword_set_ratio > threshold:
+        threshold = 0.25 if norm in {"1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} else 0.15
+        if norm in {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} and dominant_keyword_set_ratio > threshold:
             ctx.report.error("WDV-EDT-008", "Un même jeu de mots-clés domine mécaniquement le corpus", path=ctx.core_paths()["registry"], details={"language": lang, "ratio": dominant_keyword_set_ratio, "threshold": threshold})
 
         bad_summary = 0
@@ -1253,13 +1313,13 @@ def validate_editorial(ctx: PackageContext) -> None:
             if reasons:
                 title_quality_counts[lang] += 1
                 ctx.report.error("WDV-EDT-007", "Titre affiché tronqué, mal formé ou grammaticalement incomplet", path=ctx.core_paths()["registry"], details={"node_id": node_id, "language": lang, "title": title, "reasons": reasons})
-            if norm in {"1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+            if norm in {"1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
                 argument_reasons = displayed_title_argument_issues(title, lang)
                 if argument_reasons:
                     title_quality_counts[lang] += 1
                     ctx.report.error("WDV-EDT-021", "Titre affiché non propositionnel ou argument incompréhensible", path=ctx.core_paths()["registry"], details={"node_id": node_id, "language": lang, "title": title, "reasons": argument_reasons})
 
-            if norm in {"1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+            if norm in {"1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
                 concision_reasons = [reason for reason in displayed_title_concision_issues(canonical_title, title) if reason != "exact_copy"]
                 if concision_reasons:
                     title_quality_counts[lang] += 1
@@ -1280,7 +1340,7 @@ def validate_editorial(ctx: PackageContext) -> None:
                     elif entry.get("kind") not in ALLOWED_KEYWORD_KINDS:
                         keyword_quality_counts[lang] += 1
                         ctx.report.error("WDV-EDT-008", "Mot-clé qui n'est ni un nom ni un groupe nominal", path=editorial_controls.get("keyword_vocabulary_path"), details={"node_id": node_id, "language": lang, "keyword": keyword, "kind": entry.get("kind")})
-                if lang == "fr":
+                if lang == "fr" and not english_deferred:
                     en_keywords = (node.get("en") or {}).get("keywords") or []
                     if len(keywords) == len(en_keywords):
                         for fr_keyword, en_keyword in zip(keywords, en_keywords):
@@ -1317,7 +1377,7 @@ def validate_editorial(ctx: PackageContext) -> None:
                 ctx.report.error("WDV-EDT-008", "Fréquence descriptive du vocabulaire divergente du registre", path=vocab_path, details={"keyword": keyword, "declared": entry.get("usage_count_in_debate"), "actual": count})
 
     summary_ratio_errors = 0
-    if norm in {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+    if not english_deferred and norm in {"1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
         for node in nodes:
             node_id = node.get("id")
             fr_page = page_map.get((node_id, "fr"))
@@ -1337,19 +1397,19 @@ def validate_editorial(ctx: PackageContext) -> None:
 
     pagination_errors, date_errors = _validate_documentary_registry(ctx)
     docs = _validate_debate_docs(ctx, manifest, editorial_controls, norm)
-    intro_refs = _validate_intro_references(ctx, manifest, editorial_controls) if norm in {"1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} else {}
-    normative_non_regression = _validate_normative_non_regression(ctx, manifest, trace_controls) if norm in {"1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} else {}
-    individual_review = _validate_individual_editorial_review(ctx, nodes, editorial_controls) if norm in {"1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} else {}
-    summary_style = _validate_summary_style(ctx, nodes, manifest, editorial_controls, norm) if norm in {"1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} else {}
-    graph_placement_review = _validate_graph_placement_review(ctx, registry, editorial_controls, norm) if norm in {"1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} else {}
-    introduction_review = _validate_introduction_review(ctx, manifest, editorial_controls, norm) if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} else {}
+    intro_refs = _validate_intro_references(ctx, manifest, editorial_controls) if norm in {"1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} else {}
+    normative_non_regression = _validate_normative_non_regression(ctx, manifest, trace_controls) if norm in {"1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} else {}
+    individual_review = _validate_individual_editorial_review(ctx, nodes, editorial_controls) if norm in {"1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} else {}
+    summary_style = _validate_summary_style(ctx, nodes, manifest, editorial_controls, norm) if norm in {"1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} else {}
+    graph_placement_review = _validate_graph_placement_review(ctx, registry, editorial_controls, norm) if norm in {"1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} else {}
+    introduction_review = _validate_introduction_review(ctx, manifest, editorial_controls, norm) if norm in {"1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} else {}
     date_migration_errors = _validate_dates(ctx, manifest, editorial_controls.get("creation_date"))
     trace = _validate_traceability(ctx, manifest, editorial_controls, trace_controls)
 
     ctx.report.metrics["editorial"] = {
         "active_nodes": len(nodes),
         "canonical_display_copy_ratio": {k: v for k, v in title_metrics.items() if not k.endswith("dominant_keyword_set_ratio")},
-        "dominant_keyword_set_ratio": {lang: title_metrics.get(f"{lang}_dominant_keyword_set_ratio") for lang in ("fr", "en")},
+        "dominant_keyword_set_ratio": {lang: title_metrics.get(f"{lang}_dominant_keyword_set_ratio") for lang in editorial_languages},
         "displayed_title_quality_errors": title_quality_counts,
         "keyword_quality_errors": keyword_quality_counts,
         "dominant_classification_ratio": classification_metrics,
@@ -1366,6 +1426,8 @@ def validate_editorial(ctx: PackageContext) -> None:
         "introduction_review": introduction_review,
         "creation_date_errors": date_migration_errors,
         "traceability": trace,
+        "english_translation_status": english_translation_status(manifest),
+        "english_translation_deferred": english_deferred,
     }
     editorial_errors = any(f.level in {"ERROR", "WARNING"} and (f.code.startswith("WDV-EDT-") or f.code == "WDV-BIL-006") for f in ctx.report.findings)
     if not editorial_errors:

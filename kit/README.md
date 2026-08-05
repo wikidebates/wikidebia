@@ -1,9 +1,5 @@
-# Wikidéb’IA — Kit 2.15.5
+# Wikidéb’IA — Kit 2.15.9
 
-Kit générique complet aligné sur la norme 1.2.30 et le validateur 0.4.32. La projection anglaise localise désormais tous les modèles et tous les paramètres. Pour les citations, `{{Citation}}` devient `{{Quote}}`; les noms deviennent `quote`, `authors`, `work`, `issue`, `location`, `publisher`, `place`, `link` et `warnings`, tandis que seules les valeurs de `quote` et de `date` sont traduites.
+Kit générique aligné sur la norme 1.2.34 et le validateur 0.4.36. Le profil `norm_1_2_deferred_translation` publie et met à jour les pages françaises sans titre anglais, sans page anglaise et sans lien interlangue lorsque `translation_status.en=deferred`. Les portées anglaises sont alors bloquées.
 
-Toutes les commandes, protections distantes et fonctionnalités du bundle source 2.4.0 restent conservées.
-
-## Correctif 2.15.5 — métriques du graphe
-
-`graph-extract` 1.0.2 sépare désormais les niveaux (racine = 1), les profondeurs en nombre d’arêtes (racine = 0), les occurrences dépliées par chemins, les pages uniques, les feuilles réelles et les frontières vers un débat détaillé. `corpus-init-from-snapshot` distingue également les occurrences dépliées de l’extracteur des occurrences normatives du registre.
+Après traduction, le passage à `ready` ou `published` réactive le profil bilingue strict et permet une reprise française ciblée pour ajouter les liens interlangues exacts. Aucun titre anglais provisoire n'est inventé et aucun lien valide existant n'est supprimé automatiquement.

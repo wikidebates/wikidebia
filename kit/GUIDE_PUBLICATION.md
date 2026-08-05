@@ -1,4 +1,4 @@
-# Guide de publication et de reprise Wikidéb’IA 2.15.5
+# Guide de publication et de reprise Wikidéb’IA 2.15.9
 
 ## Extraire le graphe d'un débat existant
 
@@ -73,3 +73,8 @@ Lorsque la portée demandée ne contient aucune opération mutante, la commande 
 ## Mise à niveau des composants
 
 Un seul fichier suffit. Vider `updates/`, y copier soit le bundle `WIKIDEBIA_SOURCES_COMPLETES_*.zip`, soit la livraison complète `WIKIDEBIA_LIVRAISON_*.zip`, puis lancer `./wikidebia upgrade`.
+
+## Publication française avec anglais différé (1.2.34)
+
+Le corpus déclare `translation_status.en=deferred`, ne manifeste que les pages françaises et omet `interlangue`. Utiliser `./wikidebia publish --scope fr` ou `./wikidebia update --archive <archive> --scope fr`. Toute portée anglaise est refusée jusqu'au passage à `ready` ou `published`.
+

@@ -149,7 +149,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 
 ## Correctif 1.2.17 — contrôles avant publication
 
-Avant la signature du plan, le validateur et le kit vérifient que chaque page Débat/Debate contient au moins un article Wikipédia vérifié, qu’aucun paramètre `débats-connexes` ou `related-debates` n’est rendu et qu’aucun champ `auteurs`/`authors` ne contient un tableau JSON littéral.
+Avant la signature du plan, le validateur et le kit vérifient que chaque page Débat/Debate contient au moins un article Wikipédia vérifié, que les pages nouvelles n’ajoutent aucun `débats-connexes` ou `related-debates` et que les pages préexistantes en préservent exactement l’état et qu’aucun champ `auteurs`/`authors` ne contient un tableau JSON littéral.
 
 La commande `./wikidebia publish` est entièrement non interactive : après validation positive et génération du plan, l’orchestrateur transmet lui-même l’empreinte SHA-256 du plan au moteur. L’option historique `--yes` reste tolérée pour compatibilité mais n’est plus nécessaire et aucune question `[o/N]` n’est affichée. La commande `update`, qui peut inclure des suppressions, conserve sa confirmation d’empreinte ou son équivalent automatisé explicite.
 
@@ -187,4 +187,14 @@ Le planificateur peut produire `manual_review`, mais le gestionnaire et l’exé
 ## Attestation et portées différées depuis la révision 1.2.26
 
 Un plan entièrement `skip` est attesté par une commande dédiée qui recharge le plan signé, relit toutes les pages et renouvelle l’état publié sans écrire sur MediaWiki. Toute archive de reprise requiert `--archive`; le staging est supprimé à chaque sortie. Si la portée demandée ne contient aucune opération mutante, la commande renvoie `no_changes_in_scope`. Avec `--no-delete`, les pages retirées mais non supprimées restent dans l’état signé sous le statut `pending_delete` jusqu’à une reprise `--only-delete`.
+
+
+
+## Contrôle création/modification — révision 1.2.33
+
+Avant rendu, chaque page est classée `new` ou `preexisting`. Toute page préexistante possède un instantané des paramètres protégés importés. Le rendu et le plan de mise à jour comparent cet instantané au wikicode proposé et bloquent toute mutation de `avancement`, `progress`, des avertissements IA et des débats connexes.
+
+## Traduction anglaise différée — révision 1.2.34
+
+Le manifeste peut déclarer `translation_status.en=deferred`. Dans ce cas, les Works français, la validation et `./wikidebia update --archive <archive> --scope fr` n'exigent ni titre anglais, ni page anglaise, ni lien interlangue. Les étapes anglaises et les contrôles bilingues sont suspendus. `--scope en` est bloqué. Après traduction, le statut passe à `ready` ou `published`; les titres anglais sont verrouillés, les pages anglaises sont ajoutées, puis une reprise française distincte ajoute les liens interlangues sans changer les dates de création. Cette section remplace toute instruction antérieure imposant le verrouillage anglais avant la génération française.
 

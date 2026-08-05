@@ -48,11 +48,25 @@ from wikidebia_editorial_review import (
 )
 from wikidebia_graph_extract import iter_templates, normalize_key
 
-KIT_VERSION = "2.15.5"
+KIT_VERSION = "2.15.9"
 CONTENT_REVIEW_SCHEMA = "wikidebia-fr-content-review-1.0"
 CONTENT_LOCK_SCHEMA = "wikidebia-fr-content-lock-1.0"
 CONTENT_CHANGESET_SCHEMA = "wikidebia-fr-content-changeset-1.0"
 SOURCES_WORKING_SCHEMA = "wikidebia-source-registry-working-1.0"
+
+PAGE_LIFECYCLE_PARAMETERS = {
+    "debate": ("avancement", "avertissements-débat", "débats-connexes"),
+    "argument": ("avertissements-argument",),
+}
+
+
+def _page_lifecycle_snapshot(template: Any, page_type: str) -> dict[str, Any]:
+    """Capture exact presence/value of protected parameters on an imported page."""
+    names = PAGE_LIFECYCLE_PARAMETERS[page_type]
+    return {
+        name: {"present": name in template.params, "value": template.get(name) if name in template.params else None}
+        for name in names
+    }
 
 DEBATE_BUCKETS: dict[str, tuple[str, str]] = {
     "bibliographie-pour": ("bibliography", "pro_reference"),
@@ -248,6 +262,8 @@ def _source_imports(reviewed: Path) -> tuple[dict[str, Any], dict[str, Any], lis
         "subsections": _subsections(debate.get("introduction")),
         "wikipedia_articles": _wikipedia_articles(debate.get("articles-Wikipédia")),
         "documentation_raw": {bucket: debate.get(bucket).strip() for bucket in DEBATE_BUCKETS},
+        "page_origin": "preexisting",
+        "preserved_parameters": _page_lifecycle_snapshot(debate, "debate"),
     }
     nodes = {
         str(node.get("id")): node
@@ -275,6 +291,8 @@ def _source_imports(reviewed: Path) -> tuple[dict[str, Any], dict[str, Any], lis
                 "webliography": tmpl.get("références-sitographiques").strip(),
                 "videography": tmpl.get("références-vidéographiques").strip(),
             },
+            "page_origin": "preexisting",
+            "preserved_parameters": _page_lifecycle_snapshot(tmpl, "argument"),
         })
     return registry, debate_source, arguments
 
@@ -535,6 +553,11 @@ def _validate_source_registry(data: Mapping[str, Any], debate_id: str) -> tuple[
                 raise ContentReviewError(f"Usage documentaire invalide pour {source_id}")
             if use.get("role") not in {"supports_summary", "supports_introduction", "pro_reference", "con_reference", "neutral_reference", "context"}:
                 raise ContentReviewError(f"Rôle documentaire invalide pour {source_id}")
+            if use.get("role") == "supports_summary":
+                if use.get("argument_development_verified") is not True:
+                    raise ContentReviewError(f"Le développement de l’argument n’est pas vérifié pour {source_id}")
+                if not isinstance(use.get("also_develops_objections"), bool):
+                    raise ContentReviewError(f"La couverture éventuelle d’objections doit être attestée pour {source_id}")
             if len(str(use.get("selection_reason") or "").strip()) < 12:
                 raise ContentReviewError(f"Justification de sélection insuffisante pour {source_id}")
         key = _text(source.get("deduplication_key"), f"clé de dédoublonnage de {source_id}")
@@ -631,6 +654,8 @@ def _validate_debate(review: Mapping[str, Any], source: Mapping[str, Any], sourc
         "reviewed_at": review.get("reviewed_at"),
         "note": review.get("note"),
         "attestations": {field: True for field in INTRO_TRUE_FIELDS},
+        "page_origin": source.get("page_origin", "preexisting"),
+        "preserved_parameters": copy.deepcopy(source.get("preserved_parameters") or {}),
     }
 
 
@@ -666,8 +691,8 @@ def _validate_argument(item: Mapping[str, Any], sources: Mapping[str, Mapping[st
             source_row = sources.get(source_id)
             if not source_row or source_row.get("type") != source_type:
                 raise ContentReviewError(f"Type de source incompatible pour {node_id} : {source_id}")
-            if not _has_usage(source_row, node_id, {"supports_summary", "context"}):
-                raise ContentReviewError(f"Usage supports_summary/context absent pour {node_id} : {source_id}")
+            if not _has_usage(source_row, node_id, {"supports_summary"}):
+                raise ContentReviewError(f"Usage supports_summary absent pour {node_id} : {source_id}")
         selected_by_type[bucket] = selected
     _text(review.get("summary_rationale"), f"justification du résumé de {node_id}", 12)
     _text(review.get("documentation_rationale"), f"justification documentaire de {node_id}", 12)
@@ -690,6 +715,8 @@ def _validate_argument(item: Mapping[str, Any], sources: Mapping[str, Mapping[st
         "reviewed_at": review.get("reviewed_at"),
         "note": review.get("note"),
         "attestations": {field: True for field in SUMMARY_TRUE_FIELDS},
+        "page_origin": source.get("page_origin", "preexisting"),
+        "preserved_parameters": copy.deepcopy(source.get("preserved_parameters") or {}),
     }
 
 

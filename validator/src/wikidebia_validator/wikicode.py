@@ -10,6 +10,7 @@ from typing import Any
 
 from .graph import state_at_least
 from .package import PackageContext
+from .translation import english_translation_deferred
 
 
 @dataclass
@@ -432,20 +433,73 @@ def split_adjacent_templates(text: str) -> list[re.Match[str]]:
     return list(SPLIT_ADJACENT_TEMPLATES_RE.finditer(text))
 
 
-def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page_type: str, rel: str) -> None:
+PROTECTED_PAGE_PARAMETERS = {
+    ("fr", "debate"): ("avancement", "avertissements-débat", "débats-connexes"),
+    ("en", "debate"): ("progress", "debate-warnings", "related-debates"),
+    ("fr", "argument"): ("avertissements-argument",),
+    ("en", "argument"): ("argument-warnings",),
+}
+
+
+def _apply_page_lifecycle_contract(ctx: PackageContext, spec: dict[str, Any], tmpl: Template, lang: str, page_type: str, rel: str, page_manifest: dict[str, Any] | None) -> None:
+    if not _norm_at_least(ctx, "1.2.33"):
+        return
+    if not isinstance(page_manifest, dict):
+        ctx.report.error("WDV-MWK-023", "Manifeste de page absent pour le contrôle création/modification", path=rel)
+        return
+    origin = page_manifest.get("page_origin")
+    preserved = page_manifest.get("preserved_parameters")
+    protected = PROTECTED_PAGE_PARAMETERS[(lang, page_type)]
+    if origin not in {"new", "preexisting"} or not isinstance(preserved, dict):
+        ctx.report.error("WDV-MWK-023", "Origine ou paramètres préservés absents du manifeste de page", path=rel)
+        return
+    if origin == "new":
+        if preserved:
+            ctx.report.error("WDV-MWK-023", "Une page nouvelle ne doit pas déclarer de paramètres préservés", path=rel)
+        if page_type == "debate":
+            related = "débats-connexes" if lang == "fr" else "related-debates"
+            if related not in spec["forbidden_generated"]:
+                spec["forbidden_generated"].append(related)
+        return
+    for name in protected:
+        if name in spec["required"]:
+            spec["required"].remove(name)
+        spec["fixed"].pop(name, None)
+        if name in spec["forbidden_generated"]:
+            spec["forbidden_generated"].remove(name)
+    if set(preserved) != set(protected):
+        ctx.report.error("WDV-MWK-023", "L’état antérieur des paramètres protégés est incomplet", path=rel, details={"expected": list(protected), "actual": sorted(preserved)})
+        return
+    for name in protected:
+        state = preserved.get(name)
+        if not isinstance(state, dict) or not isinstance(state.get("present"), bool):
+            ctx.report.error("WDV-MWK-023", f"État antérieur invalide pour {name}", path=rel)
+            continue
+        actual = tmpl.one(name)
+        if state["present"]:
+            expected = state.get("value")
+            if not isinstance(expected, str) or not expected.strip() or actual != expected:
+                ctx.report.error("WDV-MWK-023", f"Le paramètre existant {name} n’a pas été préservé exactement", path=rel, details={"expected": expected, "actual": actual})
+        elif actual is not None:
+            ctx.report.error("WDV-MWK-023", f"Le paramètre {name} a été ajouté à une page existante alors qu’il était absent", path=rel, details={"actual": actual})
+
+
+def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page_type: str, rel: str, page_manifest: dict[str, Any] | None = None) -> None:
     base_spec = TOP[(lang, page_type)] if _is_norm_120(ctx) else TOP_LEGACY[(lang, page_type)]
     spec = {**base_spec, "order": list(base_spec["order"]), "required": list(base_spec["required"]), "forbidden_generated": list(base_spec["forbidden_generated"])}
+    spec["fixed"] = dict(base_spec["fixed"])
     if _norm_at_least(ctx, "1.2.27") and page_type == "argument":
         citation_parameter = "citations" if lang == "fr" else "quotes"
         if citation_parameter in spec["forbidden_generated"]:
             spec["forbidden_generated"].remove(citation_parameter)
-    if _is_norm_1217(ctx) and page_type == "debate":
+    if _is_norm_1217(ctx) and not _norm_at_least(ctx, "1.2.33") and page_type == "debate":
         wikipedia_parameter = "articles-Wikipédia" if lang == "fr" else "wikipedia-articles"
         related_parameter = "débats-connexes" if lang == "fr" else "related-debates"
         if wikipedia_parameter not in spec["required"]:
             spec["required"].append(wikipedia_parameter)
         if related_parameter not in spec["forbidden_generated"]:
             spec["forbidden_generated"].append(related_parameter)
+    _apply_page_lifecycle_contract(ctx, spec, tmpl, lang, page_type, rel, page_manifest)
     if tmpl.name != spec["model"]:
         ctx.report.error("WDV-MWK-002", f"Modèle principal attendu {spec['model']}, trouvé {tmpl.name}", path=rel)
     keys = [k for k, _ in tmpl.params]
@@ -875,18 +929,25 @@ def _validate_interlanguage(ctx: PackageContext, tmpl: Template, rel: str, lang:
     manifest = ctx.manifest() or {}
     status = manifest.get("global_status")
     links = get_subs(tmpl, "interlangue")
+    raw_parameter_present = tmpl.one("interlangue") is not None
     if lang == "en":
-        if links or tmpl.one("interlangue"):
+        if links or raw_parameter_present:
             ctx.report.error("WDV-MWK-011", "Une page anglaise ne doit jamais contenir de lien interlangue", path=rel)
         return
 
     norm_120 = _is_norm_120(ctx)
-    expected_present = True if norm_120 else (staging or state_at_least(status, "interlanguage_applied"))
+    deferred = english_translation_deferred(manifest)
+    expected_present = False if deferred else (True if norm_120 else (staging or state_at_least(status, "interlanguage_applied")))
     if expected_present and len(links) != 1:
         message = "Un lien interlangue français unique est requis dès la création" if norm_120 else "Un lien interlangue français unique est requis à cette étape"
         ctx.report.error("WDV-MWK-011", message, path=rel)
-    if not expected_present and links:
+    if deferred and raw_parameter_present and not links:
+        ctx.report.error("WDV-MWK-011", "Le paramètre interlangue doit être absent, et non vide, tant que la traduction anglaise est différée", path=rel)
+    if not expected_present and not deferred and links:
         ctx.report.error("WDV-MWK-011", "Lien interlangue français prématuré", path=rel)
+    if deferred and len(links) > 1:
+        ctx.report.error("WDV-MWK-011", "Une page française ne peut contenir qu'un seul lien interlangue", path=rel)
+
     if links:
         link = links[0]
         expected_model = "Lien interlangue" if norm_120 or page_type == "argument" else "Interlangue"
@@ -895,14 +956,18 @@ def _validate_interlanguage(ctx: PackageContext, tmpl: Template, rel: str, lang:
         if link.one("langue") != "en":
             ctx.report.error("WDV-MWK-011", "La langue cible doit être en", path=rel)
         if page_type == "debate":
-            expected_title = (((registry.get("debate") or {}).get("pages") or {}).get("en") or {}).get("canonical_title")
+            english_record = (((registry.get("debate") or {}).get("pages") or {}).get("en") or {})
         else:
             node = next((n for n in registry.get("graph", {}).get("nodes", []) if n.get("id") == page_id), {})
-            expected_title = (node.get("en") or {}).get("canonical_title")
-        if not expected_title and norm_120:
-            ctx.report.error("WDV-MWK-011", "Le titre canonique anglais doit être verrouillé avant la création française", path=rel)
-        if link.one("page") != expected_title:
-            ctx.report.error("WDV-MWK-011", "Cible interlangue incorrecte", path=rel, details={"expected": expected_title, "actual": link.one("page")})
+            english_record = node.get("en") or {}
+        expected_title = english_record.get("canonical_title")
+        if english_record.get("title_status") != "locked" or not expected_title:
+            ctx.report.error("WDV-MWK-011", "Un lien interlangue exige un titre canonique anglais verrouillé", path=rel)
+        actual_title = link.one("page")
+        if not actual_title:
+            ctx.report.error("WDV-MWK-011", "La cible du lien interlangue ne peut pas être vide", path=rel)
+        elif actual_title != expected_title:
+            ctx.report.error("WDV-MWK-011", "Cible interlangue incorrecte", path=rel, details={"expected": expected_title, "actual": actual_title})
 
 
 
@@ -910,7 +975,7 @@ PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
 
 
 def _validate_french_parenthetical_dashes(ctx: PackageContext, tmpl: Template, rel: str, page_type: str) -> None:
-    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
         return
     values: list[tuple[str, str]] = []
     if page_type == "argument":
@@ -1046,7 +1111,7 @@ def validate_page(ctx: PackageContext, page_manifest: dict[str, Any], *, overrid
     page_type = page_manifest.get("page_type")
     if (lang, page_type) not in TOP:
         return tmpl
-    validate_template_shape(ctx, tmpl, lang, page_type, rel)
+    validate_template_shape(ctx, tmpl, lang, page_type, rel, page_manifest)
     _check_reference_language_and_typography(ctx, tmpl, rel, lang)
     _validate_wikipedia_hover_links(ctx, tmpl, rel, lang, page_type)
     if lang == "fr":

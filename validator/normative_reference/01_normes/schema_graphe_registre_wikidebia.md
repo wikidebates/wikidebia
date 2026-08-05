@@ -427,35 +427,33 @@ Une modification structurelle a été demandée après verrouillage. Aucun nouve
 
 # 9. Politique de profondeur
 
-La profondeur n'est pas fixée universellement de manière rigide.
+La profondeur ne possède aucune limite normative, aucune cible normale et aucun seuil d’avertissement. Elle découle uniquement de la structure logique du graphe : chaque occurrence non principale doit viser le meilleur parent immédiat et sa relation doit être explicitement une justification ou une objection de ce parent.
 
 ## 9.1 Règle générale
 
-- la profondeur normale visée est 3 ;
-- une profondeur 4 ou 5 peut être utilisée lorsque la branche est centrale et que sa compréhension l'exige ;
-- une profondeur supérieure reste possible uniquement sur instruction explicite et avec justification éditoriale ;
-- le validateur vérifie la profondeur déclarée par le paquet, non une limite universelle cachée.
+- aucun niveau maximal n’est retenu ;
+- aucune profondeur n’exige à elle seule une justification d’exception ;
+- aucune alerte n’est produite parce qu’un seuil numérique serait franchi ;
+- la profondeur maximale observée reste calculée à titre descriptif et pour contrôler la cohérence des compteurs ;
+- une branche profonde reste soumise aux mêmes contrôles sémantiques occurrence par occurrence que toute autre branche.
 
 ## 9.2 Objet `depth_policy`
 
 ```json
 {
   "depth_policy": {
-    "normal_target": 3,
-    "declared_maximum": 4,
-    "exception_reason": "Deux branches juridiques centrales nécessitent des contre-objections de niveau 4.",
-    "maximum_observed": 4
+    "limit_policy": "unbounded",
+    "maximum_observed": 7
   }
 }
 ```
 
 Règles :
 
-- `normal_target` vaut normalement `3` ;
-- si `declared_maximum` est supérieur à `3`, `exception_reason` est obligatoire ;
-- `maximum_observed` est calculé automatiquement ;
-- `maximum_observed` ne peut pas dépasser `declared_maximum` ;
-- une profondeur supérieure à `5` produit au minimum un avertissement renforcé du validateur.
+- `limit_policy` vaut exactement `unbounded` ;
+- `maximum_observed` est recalculé automatiquement ;
+- `maximum_observed` est une mesure descriptive, non une limite ;
+- les anciens champs `normal_target`, `declared_maximum` et `exception_reason` restent lisibles uniquement pour la compatibilité des corpus déclarant une norme antérieure à 1.2.32 ; ils ne sont pas générés dans un corpus 1.2.32.
 
 ---
 
@@ -1606,9 +1604,7 @@ L'exemple suivant correspond à la sortie du Work 00. Son graphe est encore vide
       "structural_sha256": null
     },
     "depth_policy": {
-      "normal_target": 3,
-      "declared_maximum": 3,
-      "exception_reason": null,
+      "limit_policy": "unbounded",
       "maximum_observed": 0
     },
     "nodes": [],
@@ -1761,3 +1757,12 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
 ## Attestations de revue ajoutées en 1.2.24
 
 Chaque entrée linguistique du registre de revue d’introduction atteste `topic_is_nominal_label`, `conventional_topic_label_used_or_not_applicable`, `topic_label_rationale` et `complete_topic_lowercase_initial_or_justified`. Une justification distincte est fournie lorsqu’un nom propre ou un acronyme impose exceptionnellement une majuscule initiale.
+
+## Capitalisation du vocabulaire contrôlé (1.2.32)
+
+Chaque entrée de mot-clé contient `kind`, `capitalization_policy` et `capitalization_rationale`. Les politiques autorisées sont `lowercase_common`, `canonical_proper_name` et `canonical_acronym`. La justification est obligatoire pour les deux politiques canoniques conservant une majuscule.
+
+## État de traduction anglaise — révision 1.2.34
+
+Le manifeste porte `translation_status.en` avec les valeurs `pending`, `deferred`, `ready` ou `published`. En `deferred`, les champs de titre anglais peuvent rester absents, nuls ou `unassigned`, les fiches interlangues peuvent avoir une cible nulle et aucun lien français n'est rendu. Un titre déclaré `locked`, une page anglaise manifestée ou un statut `ready`/`published` réactive l'obligation d'un titre canonique anglais valide et les contrôles de cohérence correspondants.
+

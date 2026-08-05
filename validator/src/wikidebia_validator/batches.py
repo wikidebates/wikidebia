@@ -5,6 +5,7 @@ from typing import Any
 
 from .graph import state_at_least, structural_sha256
 from .package import PackageContext
+from .translation import english_translation_deferred
 
 
 def collect_batches(ctx: PackageContext) -> dict[str, dict[str, Any]]:
@@ -75,7 +76,7 @@ def validate_batches(ctx: PackageContext) -> None:
                 candidates = [x.get("sha256") for x in handoff.get("required_files", []) if x.get("path") == ctx.core_paths()["registry"]]
                 if candidates and candidates[0] != input_registry_hash:
                     ctx.report.error("WDV-BAT-005", f"Empreinte d'entrée du registre incohérente entre le lot et le handoff {bid}", details={"batch": input_registry_hash, "handoff": candidates[0]})
-        corrective = ((manifest.get("normative_versions") or {}).get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"})
+        corrective = ((manifest.get("normative_versions") or {}).get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"})
         if inputs.get("structural_sha256") and inputs["structural_sha256"] != structure_hash and not corrective:
             level = "ERROR" if b.get("status") in {"generated", "validated", "released"} else "WARNING"
             ctx.report.add("WDV-BAT-005", level, f"Empreinte structurelle obsolète pour le lot {bid}", details={"declared": inputs["structural_sha256"], "computed": structure_hash})
@@ -86,7 +87,10 @@ def validate_batches(ctx: PackageContext) -> None:
             if actual != aggregate_hash:
                 ctx.report.error("WDV-FS-003", f"Empreinte de l'agrégat incorrecte pour {bid}", path=aggregate, details={"declared": aggregate_hash, "computed": actual})
 
+    english_deferred = english_translation_deferred(manifest)
     for lang in ("fr", "en"):
+        if lang == "en" and english_deferred:
+            continue
         for nid, owners in ownership[lang].items():
             if len(owners) > 1:
                 ctx.report.error("WDV-BAT-002", f"Le nœud {nid} appartient à plusieurs lots {lang}", details={"batches": owners})
@@ -104,4 +108,4 @@ def validate_batches(ctx: PackageContext) -> None:
             page = by_key.get((nid, lang))
             if page and owners and page.get("batch_id") != owners[0]:
                 ctx.report.error("WDV-BAT-004", f"Le manifeste de page {nid}/{lang} indique un autre lot", details={"page_batch": page.get("batch_id"), "owner": owners[0]})
-    ctx.report.metrics["batches"] = {"count": len(batches), "fr_owned": len(ownership["fr"]), "en_owned": len(ownership["en"])}
+    ctx.report.metrics["batches"] = {"count": len(batches), "fr_owned": len(ownership["fr"]), "en_owned": len(ownership["en"]), "english_translation_deferred": english_deferred}

@@ -1,3 +1,7 @@
-Wikidéb’IA Validator 0.4.32 — auto-audit
-Encodage, syntaxe, JSON, versions, manifestes, provenance, chemins normatifs et cohérence des citations contrôlés.
+Wikidéb’IA Validator 0.4.36 — auto-audit
+Norme active unique : 1.2.34
+Copie normative : synchronisée avec le composant normes
+Schémas : translation_status.en et état interlangue deferred disponibles
+Contrôles : français autonome, anglais différé, lien existant strict, transition ready couverts
+Compatibilité : 1.2.33 et révisions antérieures conservées
 Résultat : RÉUSSI

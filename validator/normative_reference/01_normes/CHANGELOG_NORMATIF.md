@@ -1,10 +1,43 @@
+## 1.2.34 — 5 août 2026
+
+- ajout de `translation_status.en=deferred` pour une publication française autonome ;
+- titres anglais, pages anglaises et liens interlangues non requis dans cet état ;
+- blocage des portées anglaises tant que la traduction est différée ;
+- maintien des contrôles stricts pour les titres verrouillés, liens existants et états `ready`/`published` ;
+- ajout ultérieur des liens interlangues par reprise française sans modification de la date de création ;
+- remplacement explicite des anciennes obligations de verrouillage et de lien immédiats.
+
+## 1.2.33 — 5 août 2026
+
+- sélection des références d’Argument fondée sur le développement de l’argument ; la couverture simultanée d’objections reste admise ;
+- distinction explicite entre page nouvelle et page préexistante ;
+- préservation exacte de l’avancement, des avertissements et des débats connexes sur les pages existantes ;
+- ajout des valeurs IA et de `Débat construit` uniquement lors de la création ;
+- instantané de paramètres protégés dans les manifestes de page et garde-fou du plan de mise à jour.
+
+## 1.2.32 — 4 août 2026
+
+- minuscule initiale obligatoire pour les mots-clés communs ;
+- conservation justifiée de la graphie canonique des noms propres, dénominations officielles, marques, sigles et acronymes ;
+- interdiction des doublons ne différant que par la casse ;
+- contrôle symétrique des keywords anglais ;
+- compatibilité des normes 1.2.31 et antérieures conservée.
+
+## 1.2.31 — 4 août 2026
+
+- classement des mots-clés par pertinence décroissante, du plus direct au moins direct ;
+- interdiction de l’ordre chronologique ou alphabétique comme principe de classement ;
+- conservation exacte du classement conceptuel dans les keywords anglais ;
+- suppression de toute cible, limite et alerte numérique de profondeur ;
+- `maximum_observed` maintenu comme métrique descriptive.
+
 # 1.2.30 — 4 août 2026
 
 - localisation complète du modèle anglais `{{Quote}}` et de tous ses paramètres ;
 - correspondances canoniques `citation→quote`, `auteurs→authors`, `ouvrage→work`, `numéro→issue`, `localisation→location`, `édition→publisher`, `lieu→place`, `lien→link` et `avertissements-citation→warnings` ;
 - traduction limitée aux valeurs de `quote` et de `date` ;
 - blocage de tout paramètre français ou sans équivalent déclaré dans une page anglaise ;
-- alignement recommandé : validateur 0.4.32 et kit 2.15.5.
+- alignement recommandé : validateur 0.4.32 et kit 2.15.3.
 
 # 1.2.29 — 4 août 2026
 

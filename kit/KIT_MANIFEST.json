@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.5",
-  "validator_version": "0.4.32",
+  "version": "2.15.9",
+  "validator_version": "0.4.36",
   "scope": [
     "publish_archive",
     "github_init",
@@ -42,7 +42,14 @@
     "formal_english_translation_review",
     "atomically_visible_translated_copy",
     "unambiguous_graph_metric_reporting",
-    "legacy_graph_metric_alias_compatibility"
+    "legacy_graph_metric_alias_compatibility",
+    "keyword_relevance_ordering",
+    "unbounded_graph_depth_policy",
+    "canonical_keyword_capitalization",
+    "case_insensitive_keyword_vocabulary_uniqueness",
+    "deferred_english_translation",
+    "french_first_publication",
+    "later_interlanguage_enrichment"
   ],
   "debate_specific_code": false,
   "change_tag": "chatgpt",
@@ -215,7 +222,13 @@
     "source_2_4_0_feature_inventory_non_regression",
     "graph_metric_backward_compatible_aliases",
     "graph_frontier_information_not_misclassified_as_warning",
-    "legacy_graph_metric_values_preserved"
+    "legacy_graph_metric_values_preserved",
+    "keyword_relevance_order_review_gate",
+    "no_depth_threshold_warning",
+    "unbounded_depth_policy",
+    "block_english_scope_while_deferred",
+    "no_synthetic_english_titles",
+    "preserve_valid_existing_interlanguage"
   ],
   "publication_profiles": [
     "norm_1_2_direct_interlanguage",
@@ -335,7 +348,7 @@
     "graph_frontier_information_separated_from_warnings",
     "graph_terminal_and_frontier_counts_separated"
   ],
-  "normative_revision": "1.2.30",
+  "normative_revision": "1.2.34",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -407,6 +420,20 @@
     "english_wikicode_contains_no_french_template_or_parameter_names",
     "graph_level_depth_semantics_regression",
     "graph_frontier_terminal_count_regression",
-    "graph_occurrence_semantics_regression"
+    "graph_occurrence_semantics_regression",
+    "deferred_translation_profile",
+    "english_scope_deferred_block",
+    "strict_existing_interlanguage_validation",
+    "deferred_to_ready_transition"
+  ],
+  "regression_gates": [
+    "argument_reference_develops_argument_regression",
+    "argument_reference_may_cover_objections_regression",
+    "preexisting_debate_lifecycle_preservation_regression",
+    "preexisting_argument_warning_preservation_regression",
+    "remote_move_lifecycle_protection_regression",
+    "french_deferred_without_synthetic_title_regression",
+    "english_deferred_scope_block_regression",
+    "later_interlanguage_update_regression"
   ]
 }

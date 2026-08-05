@@ -1,4 +1,4 @@
-# Guide de traduction anglaise contrôlée — Kit 2.15.5
+# Guide de traduction anglaise contrôlée — Kit 2.15.9
 
 La traduction anglaise commence uniquement après le verrouillage complet des métadonnées et du contenu français. Elle travaille dans le même workspace éditorial et ne modifie ni le corpus promu, ni `working-copy/`, ni `reviewed-copy/`, ni `content-reviewed-copy/`.
 
@@ -71,3 +71,12 @@ L’application crée atomiquement `translated-copy/`. Cette copie contient nota
 - les rapports de validation de la traduction.
 
 Les verrous français et les imports de provenance doivent rester identiques octet par octet. Aucune page sous `output/` n’est créée.
+
+## Ordre des keywords
+
+La traduction conserve terme à terme l’ordre français de pertinence décroissante. Chaque entrée Debate et Argument atteste `keywords_order_preserved_by_relevance=true`.
+
+## Sortie du mode différé
+
+Une revue de traduction validée remplace `translation_status.en=deferred` par `ready`. Elle verrouille les titres anglais, prépare les pages anglaises et réactive les contrôles bilingues. Les liens français sont ajoutés ensuite par une reprise explicite ; ils ne sont jamais anticipés.
+

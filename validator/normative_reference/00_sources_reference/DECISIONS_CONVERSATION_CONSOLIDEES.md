@@ -49,9 +49,9 @@
 1. Le modèle logique est un graphe orienté acyclique composé de nœuds, relations et occurrences.
 2. Le camp et la profondeur appartiennent aux occurrences, non à l'identité du nœud.
 3. Une page réutilisée possède un seul nœud et une seule occurrence primaire ; les occurrences secondaires restent des feuilles dans le rendu.
-4. La profondeur 3 est une cible normale, pas une limite rigide.
-5. Des niveaux 4 ou 5 peuvent être utilisés pour les discussions centrales ou cruciales ; au-delà, une consigne et une justification explicites sont nécessaires.
-6. Les titres et la structure du graphe sont verrouillés avant la rédaction des pages françaises.
+4. **Disposition historique remplacée le 4 août 2026.** Aucune profondeur cible ou maximale n’est retenue.
+5. Aucun niveau ne déclenche d’avertissement, de consigne d’exception ou de justification du seul fait de sa valeur numérique ; seul le placement logique sous le meilleur parent immédiat est contrôlé.
+6. La profondeur maximale observée reste une métrique descriptive. Les titres et la structure du graphe sont verrouillés avant la rédaction des pages françaises.
 
 ## 5. Documentation
 
@@ -205,3 +205,11 @@ Les introductions et les résumés d’arguments peuvent employer `{{Lien Wikip�
 ## Décision corrective du 2 août 2026 — attestation sans changement et portées différées
 
 Une vérification supplémentaire a montré qu’un plan entièrement `skip` doit actualiser l’état publié après relecture distante signée, faute de quoi une modification suivante peut être classée à tort en `manual_review`. La sélection d’une archive doit toujours exiger `--archive`; aucun repli sur un ZIP homonyme ou unique n’est admis. Les zones de staging sont nettoyées dans tous les cas. Enfin, `--no-delete` doit conserver dans l’état signé les pages dont la suppression est différée, afin que `--only-delete` puisse les traiter ensuite sans perdre leur preuve d’appartenance.
+
+
+## Décisions du 5 août 2026 — références d’argument et distinction création/modification
+
+1. Une référence est placée sur une page Argument parce qu’elle développe ou étaye l’argument. Le fait qu’elle traite aussi d’objections ne constitue pas un motif de retrait.
+2. Une page Débat préexistante conserve exactement `débats-connexes` s’il existe ; le paramètre n’est pas ajouté s’il est absent.
+3. `Débat généré par IA` et `Débat construit` sont ajoutés seulement à une page Débat nouvellement créée par Wikidéb’IA. Une page existante conserve l’état antérieur.
+4. `Argument généré par IA` est ajouté seulement à une page Argument nouvellement créée. Une page existante conserve l’état antérieur.

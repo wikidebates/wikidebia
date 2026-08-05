@@ -19,4 +19,10 @@ def test_all_versioned_config_examples_match_active_schema_and_named_norm():
         assert not errors, f"{path.name}: {[e.message for e in errors]}"
         match = re.search(r"_(1\.2\.\d+)\.example\.json$", path.name)
         assert match, path.name
-        assert data["manifest_requirements"] == {"normative_versions.consolidated_norm": match.group(1)}
+        requirements = data["manifest_requirements"]
+        assert requirements["normative_versions.consolidated_norm"] == match.group(1)
+        extra = set(requirements) - {"normative_versions.consolidated_norm"}
+        if match.group(1) == "1.2.34":
+            assert extra <= {"translation_status.en"}
+        else:
+            assert not extra

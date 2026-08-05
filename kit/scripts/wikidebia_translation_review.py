@@ -46,13 +46,51 @@ from wikidebia_content_review import (
     META_DISCOURSE,
 )
 
-KIT_VERSION = "2.15.5"
+KIT_VERSION = "2.15.9"
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.0"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
 EN_CONTENT_LOCK_SCHEMA = "wikidebia-en-content-lock-1.0"
 TRANSLATION_CHANGESET_SCHEMA = "wikidebia-en-translation-changeset-1.0"
 EN_SOURCES_WORKING_SCHEMA = "wikidebia-en-source-registry-working-1.0"
+
+EN_PAGE_LIFECYCLE_PARAMETERS = {
+    "debate": ("progress", "debate-warnings", "related-debates"),
+    "argument": ("argument-warnings",),
+}
+
+
+def _validate_page_lifecycle(row: Mapping[str, Any], page_type: str, label: str) -> dict[str, Any]:
+    origin = row.get("page_origin", "new")
+    if origin not in {"new", "preexisting"}:
+        raise TranslationReviewError(f"Origine de page invalide pour {label}")
+    raw = row.get("preserved_parameters") or {}
+    if not isinstance(raw, dict):
+        raise TranslationReviewError(f"Paramètres préservés invalides pour {label}")
+    allowed = EN_PAGE_LIFECYCLE_PARAMETERS[page_type]
+    if set(raw) - set(allowed):
+        raise TranslationReviewError(f"Paramètre préservé inconnu pour {label}")
+    if origin == "new":
+        if raw:
+            raise TranslationReviewError(f"Une page nouvelle ne peut pas déclarer de paramètres préservés : {label}")
+        return {"page_origin": "new", "preserved_parameters": {}}
+    if set(raw) != set(allowed):
+        raise TranslationReviewError(f"L’état antérieur des paramètres doit être complet pour {label}")
+    clean: dict[str, dict[str, Any]] = {}
+    for name in allowed:
+        state = raw.get(name)
+        if not isinstance(state, dict) or not isinstance(state.get("present"), bool):
+            raise TranslationReviewError(f"État antérieur invalide pour {label}/{name}")
+        value = state.get("value")
+        if state["present"]:
+            if not isinstance(value, str) or not value.strip():
+                raise TranslationReviewError(f"Valeur antérieure absente pour {label}/{name}")
+            clean[name] = {"present": True, "value": value}
+        else:
+            if value is not None:
+                raise TranslationReviewError(f"Une valeur ne peut être fournie pour un paramètre absent : {label}/{name}")
+            clean[name] = {"present": False, "value": None}
+    return {"page_origin": "preexisting", "preserved_parameters": clean}
 
 SECTION_MAP = {
     "Aménagement": "Planning", "Culture": "Culture", "Droit": "Law", "Écologie": "Ecology",
@@ -329,6 +367,8 @@ def _source_snapshot(source: Path) -> tuple[dict[str, Any], dict[str, Any], dict
 def _blank_debate(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -> dict[str, Any]:
     return {
         "status": "pending",
+        "page_origin": "new",
+        "preserved_parameters": {},
         "canonical_title": "",
         "topic": "",
         "complete_topic": "",
@@ -345,6 +385,7 @@ def _blank_debate(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -> 
         "content_equivalent_to_french": False,
         "sections_exactly_mapped": False,
         "keywords_exactly_mapped": False,
+        "keywords_order_preserved_by_relevance": False,
         "introduction_functionally_equivalent": False,
         "wikipedia_articles_verified": False,
         "all_debate_sources_english": False,
@@ -359,6 +400,8 @@ def _blank_debate(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -> 
 def _blank_argument(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -> dict[str, Any]:
     return {
         "status": "pending",
+        "page_origin": "new",
+        "preserved_parameters": {},
         "canonical_title": "",
         "displayed_title": "",
         "sections": [],
@@ -370,6 +413,7 @@ def _blank_argument(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -
         "summary_equivalent_to_french": False,
         "sections_exactly_mapped": False,
         "keywords_exactly_mapped": False,
+        "keywords_order_preserved_by_relevance": False,
         "title_is_idiomatic": False,
         "displayed_title_is_complete_proposition": False,
         "displayed_title_concision_reviewed": False,
@@ -427,6 +471,8 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
         "vocabulary": [
             {
                 "fr": row.get("fr"), "en": row.get("en") or "", "definition_en": "",
+                "kind": row.get("kind"), "capitalization_policy": row.get("capitalization_policy"),
+                "capitalization_verified": False, "capitalization_rationale_en": "",
                 "status": "pending", "idiomatic_equivalent": False, "same_concept": False,
                 "reviewer": "", "reviewed_at": None, "note": "",
                 "usages": copy.deepcopy(row.get("usages") or []),
@@ -528,6 +574,13 @@ def _validate_sources(data: Mapping[str, Any], debate_id: str, french_ids: set[s
         for usage in usages:
             if not isinstance(usage, dict) or usage.get("language") != "en" or not usage.get("page_id") or not usage.get("role"):
                 raise TranslationReviewError(f"Usage anglais invalide pour {sid}")
+            if usage.get("role") == "supports_summary":
+                if usage.get("argument_development_verified") is not True:
+                    raise TranslationReviewError(f"Le développement de l’argument n’est pas vérifié pour {sid}")
+                if not isinstance(usage.get("also_develops_objections"), bool):
+                    raise TranslationReviewError(f"La couverture éventuelle d’objections doit être attestée pour {sid}")
+            if len(str(usage.get("selection_reason") or "").strip()) < 12:
+                raise TranslationReviewError(f"Justification de sélection anglaise insuffisante pour {sid}")
         key = _text(row.get("deduplication_key"), f"clé de dédoublonnage de {sid}")
         if key in dedup:
             raise TranslationReviewError(f"Clé documentaire anglaise dupliquée : {key}")
@@ -550,6 +603,21 @@ def _validate_title(value: Any, label: str, *, displayed: bool = False) -> str:
     return text
 
 
+def _first_alphabetic(value: str) -> str:
+    return next((char for char in value if char.isalpha()), "")
+
+
+def _english_capitalization_issues(value: str, kind: str) -> list[str]:
+    first = _first_alphabetic(value)
+    if kind in {"noun", "noun_phrase"} and first and first.isupper():
+        return ["common_keyword_initial_uppercase"]
+    if kind == "acronym":
+        letters = [char for char in value if char.isalpha()]
+        if not letters or any(char.islower() for char in letters):
+            return ["acronym_not_uppercase"]
+    return []
+
+
 def _validate_vocabulary(rows: Any, french_entries: Sequence[Mapping[str, Any]]) -> tuple[list[dict[str, Any]], dict[str, str]]:
     if not isinstance(rows, list) or len(rows) != len(french_entries):
         raise TranslationReviewError("Le vocabulaire anglais ne couvre pas exactement le vocabulaire français")
@@ -565,6 +633,18 @@ def _validate_vocabulary(rows: Any, french_entries: Sequence[Mapping[str, Any]])
         if en.casefold() in english_seen:
             raise TranslationReviewError(f"Équivalent anglais dupliqué : {en}")
         english_seen.add(en.casefold())
+        kind = str(expected[fr].get("kind") or "")
+        if row.get("kind") != kind or row.get("capitalization_policy") != expected[fr].get("capitalization_policy"):
+            raise TranslationReviewError(f"Nature ou politique de capitalisation divergente : {fr}")
+        capitalization_issues = _english_capitalization_issues(en, kind)
+        if capitalization_issues:
+            raise TranslationReviewError(f"Capitalisation anglaise non canonique pour {fr} : {capitalization_issues}")
+        if row.get("capitalization_verified") is not True:
+            raise TranslationReviewError(f"Capitalisation anglaise non attestée : {fr}")
+        if kind in {"proper_name", "acronym"} and len(str(row.get("capitalization_rationale_en") or "").strip()) < 12:
+            raise TranslationReviewError(f"Justification de capitalisation anglaise insuffisante : {fr}")
+        if kind in {"noun", "noun_phrase"} and str(row.get("capitalization_rationale_en") or "").strip():
+            raise TranslationReviewError(f"Justification de majuscule anglaise inattendue pour le nom commun : {fr}")
         if row.get("status") != "approved" or row.get("idiomatic_equivalent") is not True or row.get("same_concept") is not True:
             raise TranslationReviewError(f"Équivalence lexicale non approuvée : {fr}")
         _text(row.get("definition_en"), f"définition anglaise de {fr}", 8)
@@ -612,6 +692,8 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
     expected_keywords = _expected_keywords(fr_meta.get("keywords") or [], mapping)
     if keywords != expected_keywords or row.get("keywords_exactly_mapped") is not True or not 5 <= len(keywords) <= 8:
         raise TranslationReviewError("Les keywords de Debate ne correspondent pas au vocabulaire contrôlé")
+    if row.get("keywords_order_preserved_by_relevance") is not True:
+        raise TranslationReviewError("L’ordre de pertinence des keywords de Debate n’est pas attesté")
     introduction = _text(row.get("introduction"), "introduction anglaise", 40)
     _assert_english_wikicode_localized(introduction, "l’introduction anglaise")
     subsections = row.get("subsections")
@@ -656,6 +738,7 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
         "complete_topic_initial_capital_justification": row.get("complete_topic_initial_capital_justification"),
         "reviewer": row.get("reviewer"), "reviewed_at": row.get("reviewed_at"), "note": row.get("note"),
         "french_subject": fr_content.get("subject"), "french_complete_topic": fr_content.get("complete_topic"),
+        **_validate_page_lifecycle(row, "debate", "Debate"),
     }
 
 
@@ -674,6 +757,8 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
     keywords = _strings(row.get("keywords"), f"keywords de {node_id}")
     if keywords != _expected_keywords(fr_meta.get("keywords") or [], mapping) or row.get("keywords_exactly_mapped") is not True or not 2 <= len(keywords) <= 4:
         raise TranslationReviewError(f"Keywords anglais divergents pour {node_id}")
+    if row.get("keywords_order_preserved_by_relevance") is not True:
+        raise TranslationReviewError(f"Ordre de pertinence des keywords non attesté pour {node_id}")
     summary = _text(row.get("summary"), f"summary de {node_id}", 40)
     _assert_english_wikicode_localized(summary, f"le summary de {node_id}")
     if META_DISCOURSE.search(_plain(summary)):
@@ -700,7 +785,7 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         ids = _strings(selected.get(bucket), f"sources anglaises {bucket} de {node_id}")
         for sid in ids:
             source = sources.get(sid)
-            if not source or source.get("type") != stype or not _has_usage(source, node_id, {"supports_summary", "context"}):
+            if not source or source.get("type") != stype or not _has_usage(source, node_id, {"supports_summary"}):
                 raise TranslationReviewError(f"Source anglaise incompatible pour {node_id} : {sid}")
         final_sources[bucket] = ids
     _text(row.get("documentation_rationale"), f"justification documentaire anglaise de {node_id}", 12)
@@ -714,6 +799,7 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         "quantitative_claims": numbers, "quantitative_claims_verified": bool(row.get("quantitative_claims_verified")),
         "quantitative_claims_note": row.get("quantitative_claims_note"),
         "reviewer": row.get("reviewer"), "reviewed_at": row.get("reviewed_at"), "note": row.get("note"),
+        **_validate_page_lifecycle(row, "argument", node_id),
     }
 
 
@@ -894,7 +980,7 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     for row in vocabulary.get("entries") or []:
         merged = copy.deepcopy(row)
         translated = by_fr[str(row.get("fr"))]
-        merged.update({"en": translated["en"], "definition_en": translated["definition_en"], "status": "approved_bilingual", "english_review": {"reviewer": translated["reviewer"], "reviewed_at": translated["reviewed_at"], "note": translated["note"]}})
+        merged.update({"en": translated["en"], "definition_en": translated["definition_en"], "capitalization_rationale_en": translated.get("capitalization_rationale_en", ""), "status": "approved_bilingual", "english_review": {"reviewer": translated["reviewer"], "reviewed_at": translated["reviewed_at"], "note": translated["note"]}})
         bilingual_entries.append(merged)
     changeset = {
         "schema": TRANSLATION_CHANGESET_SCHEMA, "schema_version": "1.0", "debate_id": debate_id,
@@ -916,6 +1002,7 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     _merge_introduction_review(target / "reviews/introduction_review.json", final["debate"])
     _merge_summary_review(target / "reviews/summary_style_review.json", final["arguments"])
     manifest = load_json(target / "manifest.json", "manifest.json")
+    manifest.setdefault("translation_status", {})["en"] = "ready"
     controls = manifest.setdefault("editorial_controls", {})
     required_reports = controls.setdefault("required_reports", [])
     for rel in ("reports/en_translation_preflight.json", "reports/en_translation_validation.json"):

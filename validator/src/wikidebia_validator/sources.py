@@ -15,13 +15,22 @@ def _fold(value: Any) -> str:
     return " ".join(str(value or "").split()).casefold()
 
 
+def _norm_at_least(norm: str | None, minimum: str) -> bool:
+    def parts(value: str | None) -> tuple[int, ...]:
+        try:
+            return tuple(int(piece) for piece in str(value or "").split("."))
+        except ValueError:
+            return ()
+    return parts(norm) >= parts(minimum)
+
+
 def validate_sources(ctx: PackageContext) -> None:
     registry = ctx.registry()
     sources_doc = ctx.sources()
     if not registry or not sources_doc:
         return
     norm = _norm(ctx)
-    is_120 = norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}
+    is_120 = norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}
     sources = sources_doc.get("sources", [])
     ids = [s.get("id") for s in sources]
     for sid, count in Counter(ids).items():
@@ -47,7 +56,7 @@ def validate_sources(ctx: PackageContext) -> None:
         usage = source.get("usage", [])
         verification = source.get("verification") or {}
         metadata = source.get("metadata") or {}
-        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+        if norm in {"1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
             documentary_date = metadata.get("date")
             if isinstance(documentary_date, str) and documentary_date_is_machine(documentary_date):
                 ctx.report.error("WDV-DOC-005", f"La date documentaire de la source {sid} est au format machine; utiliser le langage naturel", path=ctx.core_paths()["sources"], details={"source_id": sid, "value": documentary_date})
@@ -69,6 +78,11 @@ def validate_sources(ctx: PackageContext) -> None:
             page_lang = use.get("language")
             if page_id not in valid_pages:
                 ctx.report.error("WDV-SRC-002", f"La source {sid} est utilisée par une page inexistante : {page_id}", path=ctx.core_paths()["sources"])
+            if _norm_at_least(norm, "1.2.33") and page_id != debate_id and use.get("role") == "supports_summary":
+                if use.get("argument_development_verified") is not True:
+                    ctx.report.error("WDV-SRC-006", f"La source {sid} n’est pas attestée comme développant l’argument {page_id}", path=ctx.core_paths()["sources"], details={"page_id": page_id})
+                if not isinstance(use.get("also_develops_objections"), bool):
+                    ctx.report.error("WDV-SRC-006", f"La couverture éventuelle d’objections n’est pas renseignée pour {sid}/{page_id}", path=ctx.core_paths()["sources"], details={"page_id": page_id})
             if not is_120 and page_lang != source.get("language"):
                 ctx.report.error("WDV-SRC-002", f"Langue d'usage incohérente pour la source {sid}", path=ctx.core_paths()["sources"])
             if is_120:
@@ -111,6 +125,13 @@ def validate_sources(ctx: PackageContext) -> None:
                         continue
                     if src.get("type") != expected_type or (not is_120 and src.get("language") != lang):
                         ctx.report.error("WDV-SRC-002", f"Type ou langue incohérents pour la source {sid} du nœud {node.get('id')}", path=ctx.core_paths()["registry"])
-                    if not any(u.get("page_id") == node.get("id") and u.get("language") == lang for u in src.get("usage", [])):
+                    matching_usage = [u for u in src.get("usage", []) if u.get("page_id") == node.get("id") and u.get("language") == lang]
+                    if not matching_usage:
                         ctx.report.error("WDV-SRC-002", f"Usage réciproque absent pour la source {sid} et le nœud {node.get('id')}/{lang}", path=ctx.core_paths()["sources"])
+                    elif _norm_at_least(norm, "1.2.33"):
+                        supporting = [u for u in matching_usage if u.get("role") == "supports_summary"]
+                        if not supporting:
+                            ctx.report.error("WDV-SRC-006", f"La source {sid} est sélectionnée pour {node.get('id')}/{lang} sans développer l’argument", path=ctx.core_paths()["sources"])
+                        elif not any(u.get("argument_development_verified") is True for u in supporting):
+                            ctx.report.error("WDV-SRC-006", f"Le développement de l’argument n’est pas vérifié pour {sid} et {node.get('id')}/{lang}", path=ctx.core_paths()["sources"])
     ctx.report.metrics["sources"] = {"count": len(sources), "verified": sum((s.get("verification") or {}).get("status") == "verified" for s in sources)}

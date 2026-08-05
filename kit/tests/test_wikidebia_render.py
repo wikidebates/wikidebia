@@ -162,3 +162,44 @@ def test_render_is_idempotent_and_locks_graph(tmp_path: Path):
     assert registry["graph"]["lifecycle"]["status"] == "locked"
     assert all(page["status"] == "validated" for page in manifest["pages"])
     assert not any(path.name.endswith(".wiki") for path in (workspace / "translated-copy").rglob("*.wiki") if "imports" not in path.parts)
+
+
+def test_render_lifecycle_fields_depend_on_page_origin():
+    registry={
+        'debate': {'pages': {'en': {'canonical_title':'Topic'}}},
+        'graph': {'occurrences': [], 'nodes': [], 'edges': []},
+    }
+    metadata={'debate': {'rubriques':['Société'], 'keywords':['sujet']}}
+    existing={
+        'debate': {
+            'subject':'Sujet','complete_topic':'la question du sujet','introduction':'Texte.',
+            'wikipedia_articles':[],'documentation':{},
+            'page_origin':'preexisting',
+            'preserved_parameters':{
+                'avancement':{'present':True,'value':'Débat en construction'},
+                'avertissements-débat':{'present':False,'value':None},
+                'débats-connexes':{'present':True,'value':'{{Débat connexe|page=Autre débat}}'},
+            },
+        }
+    }
+    text=render._render_debate(lang='fr',registry=registry,metadata_lock=metadata,content_lock=existing,sources={},creation_date='2026-08-05')
+    assert '|avancement=Débat en construction' in text
+    assert '|avertissements-débat=' not in text
+    assert '|débats-connexes={{Débat connexe|page=Autre débat}}' in text
+    new={'debate': {**existing['debate'],'page_origin':'new','preserved_parameters':{}}}
+    text=render._render_debate(lang='fr',registry=registry,metadata_lock=metadata,content_lock=new,sources={},creation_date='2026-08-05')
+    assert '|avancement=Débat construit' in text
+    assert '|avertissements-débat=Débat généré par IA' in text
+    assert '|débats-connexes=' not in text
+
+
+def test_render_existing_argument_preserves_absent_ai_warning():
+    node={'id':'A0001','fr':{'rubriques':['Société'],'keywords':['sujet']},'en':{'canonical_title':'Argument topic'}}
+    registry={'graph':{'edges':[],'occurrences':[],'nodes':[node]}}
+    content={
+        'summary':'Le raisonnement est développé sans modifier les paramètres historiques.',
+        'citations':[],'sources':{},'page_origin':'preexisting',
+        'preserved_parameters':{'avertissements-argument':{'present':False,'value':None}},
+    }
+    text=render._render_argument(lang='fr',node=node,content=content,registry=registry,sources={},creation_date='2026-08-05')
+    assert '|avertissements-argument=' not in text

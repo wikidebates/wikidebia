@@ -5,6 +5,7 @@ from typing import Any
 
 from .graph import state_at_least, structural_sha256
 from .package import PackageContext
+from .translation import english_translation_deferred
 from .wikicode import WikiParseError, parse_template
 
 
@@ -68,11 +69,21 @@ def validate_coherence(ctx: PackageContext) -> None:
     for node in (registry.get("graph") or {}).get("nodes", []):
         for lang in ("fr", "en"):
             title_by_key[(node.get("id"), lang)] = (node.get(lang) or {}).get("canonical_title")
+    deferred = english_translation_deferred(manifest)
+    registry_nodes = {n.get("id"): n for n in (registry.get("graph") or {}).get("nodes", [])}
     for page in manifest.get("pages", []):
         key = (page.get("page_id"), page.get("language"))
         if key not in title_by_key:
             ctx.report.error("WDV-FS-006", f"Manifeste de page sans objet correspondant dans le registre : {key}")
-        elif title_by_key[key] and page.get("canonical_title") != title_by_key[key]:
+            continue
+        if page.get("language") == "en" and deferred:
+            if page.get("page_id") == debate_id:
+                english_record = (((debate.get("pages") or {}).get("en") or {}))
+            else:
+                english_record = (registry_nodes.get(page.get("page_id"), {}).get("en") or {})
+            if english_record.get("title_status") != "locked" or not english_record.get("canonical_title"):
+                ctx.report.error("WDV-WF-005", f"Page anglaise présente sans titre anglais verrouillé : {page.get('page_id')}", path="manifest.json")
+        if title_by_key[key] and page.get("canonical_title") != title_by_key[key]:
             ctx.report.error("WDV-FS-006", f"Titre de page divergent pour {key}", details={"manifest": page.get("canonical_title"), "registry": title_by_key[key]})
 
     validate_interlanguage_patch(ctx, manifest, registry)
@@ -87,12 +98,12 @@ def validate_coherence(ctx: PackageContext) -> None:
                 ctx.report.error("WDV-GRA-015", "Empreinte structurelle divergente dans le manifeste de libération", path=release_path, details={"release": release.get("structural_sha256"), "computed": current})
             if release.get("debate_id") != debate_id:
                 ctx.report.error("WDV-WF-004", "Manifeste de libération rattaché à un autre débat", path=release_path)
-    ctx.report.metrics["coherence"] = {"debate_id": debate_id}
+    ctx.report.metrics["coherence"] = {"debate_id": debate_id, "english_translation_deferred": deferred}
 
 
 def validate_interlanguage_patch(ctx: PackageContext, manifest: dict[str, Any], registry: dict[str, Any]) -> None:
     norm = (manifest.get("normative_versions") or {}).get("consolidated_norm")
-    if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+    if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
         # New packages carry their links in the canonical French files; no patch is required.
         return
     rel = "patches/interlanguage_fr.validated.json" if ctx.exists("patches/interlanguage_fr.validated.json") else "patches/interlanguage_fr.json"

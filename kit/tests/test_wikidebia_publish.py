@@ -56,7 +56,7 @@ def write_fixture(tmp_path: Path, kind: str):
     (corpus / "output" / "en" / "debate.wiki").write_text(en_debate, encoding="utf-8")
     manifest = {
       "debate_id":"demo",
-      "normative_versions":{"validator":"0.4.32"},
+      "normative_versions":{"validator":"0.4.36"},
       "core_files":{"registry":"data/registre_debat.json"},
       "pages":[
         {"language":"fr","page_id":"A1","page_type":"argument","canonical_title":"Titre FR","file_path":"output/fr/A1.wiki","sha256":module.sha_file(corpus / "output/fr/A1.wiki")},
@@ -74,7 +74,7 @@ def write_fixture(tmp_path: Path, kind: str):
     validator = tmp_path / "validator"
     validator.mkdir()
     validator_script = validator / "validate.py"
-    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.32','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.36','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     operation = {
       "id":"test",
       "kind":kind,
@@ -87,8 +87,8 @@ def write_fixture(tmp_path: Path, kind: str):
     }
     if kind == "parameter_update": operation["parameters"]={"fr":"résumé","en":"summary"}
     config = {
-      "kit_version":"2.15.5","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
-      "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.32","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
+      "kit_version":"2.15.9","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
+      "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.36","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
       "family":"wikidebates","family_file":str(Path(__file__)),"pywikibot_dir":str(tmp_path),
       "sites":{"fr":{"code":"fr","expected_user":"ChatGPT"},"en":{"code":"en","expected_user":"ChatGPT"}},
       "logs_dir":"logs","change_tags":["chatgpt"],"verification_attempts":1,"verification_delay_seconds":0,"write_delay_seconds":0,
@@ -658,12 +658,12 @@ def test_historical_manifest_versions_do_not_block_current_validation(tmp_path):
     publisher = module.GenericPublisher(config, FakeAdapter(), path)
     plan = publisher.build_plan()
     assert not plan["blockers"]
-    assert plan["required_validator_version"] == "0.4.32"
+    assert plan["required_validator_version"] == "0.4.36"
 
 
 def test_explicit_custom_manifest_requirement_is_still_enforced(tmp_path):
     config, path, _, _ = write_fixture(tmp_path, "full_page")
-    config["manifest_requirements"] = {"normative_versions.validator": "0.4.32"}
+    config["manifest_requirements"] = {"normative_versions.validator": "0.4.36"}
     path.write_text(json.dumps(config), encoding="utf-8")
     corpus = tmp_path / "corpus" / "demo"
     manifest_path = corpus / "manifest.json"
@@ -811,3 +811,78 @@ def test_direct_profile_rejects_json_author_array_in_english_reference(tmp_path)
         assert "tableau JSON" in str(exc)
     else:
         raise AssertionError("tableau JSON authors anglais accepté")
+
+
+def _make_deferred_direct_profile(tmp_path):
+    config, path, _, _ = write_fixture(tmp_path, "full_page")
+    config["publication_profile"] = module.DEFERRED_TRANSLATION_PROFILE
+    config["validator"]["scopes"] = sorted(module.REQUIRED_DIRECT_SCOPES)
+    config["operation"].update({"languages": ["fr"], "language_order": ["fr"], "page_types": ["argument"], "edit_summaries": {"fr": "Résumé FR"}})
+    corpus = tmp_path / "corpus" / "demo"
+    manifest_path = corpus / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest.setdefault("normative_versions", {})["consolidated_norm"] = "1.2.34"
+    manifest["translation_status"] = {"en": "deferred"}
+    manifest["pages"] = [row for row in manifest["pages"] if row["language"] == "fr"]
+    source = corpus / "output" / "fr" / "A1.wiki"
+    source.write_text("{{Argument\n|résumé=Texte français.\n|rubriques=Société\n}}\n", encoding="utf-8")
+    for row in manifest["pages"]:
+        if row["page_id"] == "A1":
+            row["sha256"] = module.sha_file(source)
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    path.write_text(json.dumps(config), encoding="utf-8")
+    return config, path, corpus, manifest_path
+
+
+def test_direct_profile_1234_accepts_french_deferred_without_interlanguage(tmp_path):
+    config, path, _, _ = _make_deferred_direct_profile(tmp_path)
+    plan = module.GenericPublisher(config, FakeAdapter(), path).build_plan()
+    assert plan["counts"]["fr"]["create"] == 1
+    assert not plan["blockers"]
+
+
+def test_direct_profile_1234_blocks_english_scope_while_deferred(tmp_path):
+    config, path, _, _ = _make_deferred_direct_profile(tmp_path)
+    config["operation"]["languages"] = ["fr", "en"]
+    config["operation"]["edit_summaries"]["en"] = "English summary"
+    path.write_text(json.dumps(config), encoding="utf-8")
+    try:
+        module.GenericPublisher(config, FakeAdapter(), path)
+    except module.PublicationError as exc:
+        assert "deferred" in str(exc)
+    else:
+        raise AssertionError("portée anglaise acceptée pendant la traduction différée")
+
+
+def test_direct_profile_1234_rejects_existing_link_without_locked_title(tmp_path):
+    config, path, corpus, manifest_path = _make_deferred_direct_profile(tmp_path)
+    registry_path = corpus / "data" / "registre_debat.json"
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    registry["graph"]["nodes"][0]["en"] = {"canonical_title": None, "title_status": "unassigned"}
+    registry_path.write_text(json.dumps(registry), encoding="utf-8")
+    source = corpus / "output" / "fr" / "A1.wiki"
+    source.write_text("{{Argument\n|résumé=Texte.\n|interlangue={{Lien interlangue\n|langue=en\n|page=Invented\n}}\n|rubriques=Société\n}}\n", encoding="utf-8")
+    update_hash(manifest_path, "fr", "A1", source)
+    try:
+        module.GenericPublisher(config, FakeAdapter(), path).build_plan()
+    except module.PublicationError as exc:
+        assert "non verrouillé" in str(exc)
+    else:
+        raise AssertionError("lien interlangue fictif accepté")
+
+
+def test_direct_profile_1234_allows_later_interlanguage_parameter_update_when_ready(tmp_path):
+    config, path, _, manifest_path = _make_deferred_direct_profile(tmp_path)
+    config["operation"].update({
+        "kind": "parameter_update",
+        "languages": ["fr"],
+        "parameters": {"fr": "interlangue"},
+        "create_missing": False,
+        "update_existing": True,
+        "insert_missing_parameter": True,
+    })
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["translation_status"]["en"] = "ready"
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    path.write_text(json.dumps(config), encoding="utf-8")
+    module.GenericPublisher(config, FakeAdapter(), path)

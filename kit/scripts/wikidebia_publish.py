@@ -14,9 +14,11 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Protocol
 
-KIT_VERSION = "2.15.5"
-REQUIRED_VALIDATOR_VERSION = "0.4.32"
+KIT_VERSION = "2.15.9"
+REQUIRED_VALIDATOR_VERSION = "0.4.36"
 DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
+DEFERRED_TRANSLATION_PROFILE = "norm_1_2_deferred_translation"
+DIRECT_PROFILES = {DIRECT_INTERLANGUAGE_PROFILE, DEFERRED_TRANSLATION_PROFILE}
 REQUIRED_DIRECT_SCOPES = {"schema", "coherence", "graph", "files", "batches", "sources", "wikicode", "bilingual", "editorial", "workflow"}
 PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
 SPLIT_ADJACENT_TEMPLATES_RE = re.compile(r"}}[ \t\r\n]+\{\{")
@@ -553,6 +555,17 @@ class GenericPublisher:
         path = Path(value).expanduser()
         return path.resolve() if path.is_absolute() else (self.project_root / path).resolve()
 
+    def _english_translation_status(self) -> str:
+        return str(((self.manifest.get("translation_status") or {}).get("en") or "pending"))
+
+    def _english_translation_deferred(self) -> bool:
+        norm = str(((self.manifest.get("normative_versions") or {}).get("consolidated_norm") or ""))
+        try:
+            version = tuple(int(part) for part in norm.split("."))
+        except ValueError:
+            version = ()
+        return version >= (1, 2, 34) and self._english_translation_status() == "deferred"
+
     def _validate_configuration(self) -> None:
         if str(self.config.get("kit_version") or "") not in {KIT_VERSION, "2"}:
             raise PublicationError(f"kit_version doit être {KIT_VERSION}")
@@ -563,7 +576,7 @@ class GenericPublisher:
             raise PublicationError(
                 f"Le validateur requis doit être exactement {REQUIRED_VALIDATOR_VERSION}"
             )
-        if self.publication_profile == DIRECT_INTERLANGUAGE_PROFILE:
+        if self.publication_profile in DIRECT_PROFILES:
             scopes = {str(value) for value in (validator.get("scopes") or [])}
             missing_scopes = sorted(REQUIRED_DIRECT_SCOPES - scopes)
             if missing_scopes:
@@ -574,6 +587,8 @@ class GenericPublisher:
             raise PublicationError("La balise obligatoire doit être exactement : chatgpt")
         if not self.languages:
             raise PublicationError("Aucune langue sélectionnée")
+        if self._english_translation_deferred() and "en" in self.languages:
+            raise PublicationError("La portée anglaise est interdite tant que translation_status.en vaut deferred")
         sites = self.config.get("sites") or {}
         summaries = self.operation.get("edit_summaries") or {}
         for language in self.languages:
@@ -584,9 +599,9 @@ class GenericPublisher:
                 raise PublicationError(f"expected_user absent pour {language}")
             if not str(summaries.get(language) or "").strip():
                 raise PublicationError(f"Résumé de modification absent pour {language}")
-        if self.publication_profile not in {DIRECT_INTERLANGUAGE_PROFILE, LEGACY_PROFILE}:
+        if self.publication_profile not in {*DIRECT_PROFILES, LEGACY_PROFILE}:
             raise PublicationError(
-                "publication_profile doit être norm_1_2_direct_interlanguage ou legacy"
+                "publication_profile doit être norm_1_2_direct_interlanguage, norm_1_2_deferred_translation ou legacy"
             )
         kind = self.operation.get("kind")
         if kind not in {"full_page", "parameter_update"}:
@@ -606,13 +621,18 @@ class GenericPublisher:
             if self.operation.get("create_missing") is True:
                 raise PublicationError("parameter_update ne peut pas créer une page absente")
             if (
-                self.publication_profile == DIRECT_INTERLANGUAGE_PROFILE
+                self.publication_profile in DIRECT_PROFILES
                 and any(str(parameters.get(language) or "") == "interlangue" for language in self.languages)
             ):
-                raise PublicationError(
-                    "Le profil 1.2.20 intègre interlangue dans la création complète; "
-                    "une opération parameter_update interlangue est interdite."
-                )
+                norm = str(((self.manifest.get("normative_versions") or {}).get("consolidated_norm") or ""))
+                try:
+                    version = tuple(int(part) for part in norm.split("."))
+                except ValueError:
+                    version = ()
+                if version < (1, 2, 34) or self._english_translation_deferred():
+                    raise PublicationError(
+                        "La mise à jour séparée de |interlangue= n'est autorisée qu'après sortie du mode deferred sous la norme 1.2.34 ou ultérieure."
+                    )
         requirements = self.config.get("manifest_requirements") or {}
         for field, expected in requirements.items():
             actual = dotted_get(self.manifest, field)
@@ -747,16 +767,7 @@ class GenericPublisher:
         return data
 
     def _locked_english_title(self, page_id: str, page_type: str) -> str:
-        """Résout la cible anglaise sans exiger que la page anglaise soit dans le manifeste."""
-        english = self._manifest_page("en", page_id)
-        if english is not None:
-            title = str(english.get("canonical_title") or "").strip()
-            if not title:
-                raise PublicationError(
-                    f"Titre canonique anglais absent du manifeste : {page_id}"
-                )
-            return title
-
+        """Résout une cible anglaise verrouillée et cohérente avec le manifeste."""
         registry = self._registry()
         record: dict[str, Any] | None = None
         if registry is not None and page_type == "debate":
@@ -772,18 +783,21 @@ class GenericPublisher:
                     if isinstance(candidate, dict):
                         record = candidate
                     break
-
         if record is None:
-            raise PublicationError(
-                "Cible anglaise introuvable : aucune page anglaise dans le manifeste "
-                f"et aucune entrée correspondante dans le registre maître pour {page_id}"
-            )
+            english = self._manifest_page("en", page_id)
+            manifest_title = str((english or {}).get("canonical_title") or "").strip()
+            if english is not None and manifest_title and not self._english_translation_deferred():
+                return manifest_title
+            raise PublicationError(f"Entrée anglaise introuvable dans le registre maître : {page_id}")
         status = str(record.get("title_status") or "").strip()
         title = str(record.get("canonical_title") or "").strip()
         if status != "locked" or not title:
-            raise PublicationError(
-                f"Titre canonique anglais non verrouillé dans le registre maître : {page_id}"
-            )
+            raise PublicationError(f"Titre canonique anglais non verrouillé dans le registre maître : {page_id}")
+        english = self._manifest_page("en", page_id)
+        if english is not None:
+            manifest_title = str(english.get("canonical_title") or "").strip()
+            if not manifest_title or manifest_title != title:
+                raise PublicationError(f"Titre anglais du manifeste divergent du registre maître : {page_id}")
         return title
 
     def _validate_norm_120_page(self, row: dict[str, Any], text: str) -> None:
@@ -882,22 +896,25 @@ class GenericPublisher:
             raise PublicationError(
                 f"Incise française entre tirets cadratins interdite; utiliser des parenthèses : {page_id}"
             )
-        if names.count("interlangue") != 1:
-            raise PublicationError(
-                f"La page française doit contenir exactement un |interlangue= : {page_id}"
-            )
+        interlanguage_count = names.count("interlangue")
+        if self._english_translation_deferred():
+            if interlanguage_count == 0:
+                return
+            if interlanguage_count != 1:
+                raise PublicationError(f"La page française ne peut contenir qu'un seul |interlangue= : {page_id}")
+        elif interlanguage_count != 1:
+            raise PublicationError(f"La page française doit contenir exactement un |interlangue= : {page_id}")
         value = extract_parameter(text, "interlangue")
+        if not value.strip():
+            raise PublicationError(f"Le paramètre |interlangue= ne peut pas être vide : {page_id}")
         if not re.search(r"\{\{\s*Lien interlangue\b", value):
-            raise PublicationError(
-                f"Le lien français doit utiliser {{{{Lien interlangue}}}} : {page_id}"
-            )
+            raise PublicationError(f"Le lien français doit utiliser {{{{Lien interlangue}}}} : {page_id}")
         target = self._locked_english_title(page_id, page_type)
         target_value = extract_parameter(value, "page")
         language_value = extract_parameter(value, "langue")
         if language_value.strip() != "en" or target_value.strip() != target:
-            raise PublicationError(
-                f"Cible interlangue divergente pour {page_id} : {target_value!r} au lieu de {target!r}"
-            )
+            raise PublicationError(f"Cible interlangue divergente pour {page_id} : {target_value!r} au lieu de {target!r}")
+
 
     def _validate_local_files(self) -> None:
         parameter_kind = self.operation["kind"] == "parameter_update"
@@ -909,7 +926,7 @@ class GenericPublisher:
             if declared and sha_file(path) != declared and not self.operation.get("allow_source_sha_mismatch", False):
                 raise PublicationError(f"Empreinte locale divergente : {path}")
             text = path.read_text(encoding="utf-8")
-            if self.publication_profile == DIRECT_INTERLANGUAGE_PROFILE:
+            if self.publication_profile in DIRECT_PROFILES:
                 self._validate_norm_120_page(row, text)
             if parameter_kind:
                 value = extract_parameter(text, str(self._parameter(row["language"])))
@@ -1055,7 +1072,7 @@ class GenericPublisher:
             }
             counts[language]["total"] = len(language_actions)
         plan: dict[str, Any] = {
-            "plan_version": "wikidebia-publication-plan-2.15.5",
+            "plan_version": "wikidebia-publication-plan-2.15.9",
             "publication_profile": self.publication_profile,
             "kit_version": KIT_VERSION,
             "debate_id": self.config["debate_id"],
@@ -1277,7 +1294,7 @@ class GenericPublisher:
         self._verify_plan(plan, confirmation)
         self._validate_local()
         self._prepare_logging()
-        if self.publication_profile != DIRECT_INTERLANGUAGE_PROFILE:
+        if self.publication_profile not in DIRECT_PROFILES:
             raise PublicationError("Le test de la page Débat est réservé au profil 1.2.20")
         if self.operation.get("kind") != "full_page":
             raise PublicationError("Le test de la page Débat exige une opération full_page")
@@ -1347,7 +1364,7 @@ class GenericPublisher:
 
     def _verify_debate_test_receipt(self, plan: dict[str, Any], receipt: dict[str, Any] | None) -> None:
         if (
-            self.publication_profile != DIRECT_INTERLANGUAGE_PROFILE
+            self.publication_profile not in DIRECT_PROFILES
             or self.operation.get("kind") != "full_page"
         ):
             return

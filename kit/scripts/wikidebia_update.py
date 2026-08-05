@@ -13,6 +13,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
 
+from wikidebia_graph_extract import iter_templates, normalize_key
+
 # Import the publication adapter without requiring installation as a package.
 _PUBLISH_PATH = Path(__file__).resolve().with_name("wikidebia_publish.py")
 _spec = importlib.util.spec_from_file_location("wikidebia_publish_runtime", _PUBLISH_PATH)
@@ -27,8 +29,8 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.15.5"
-REQUIRED_VALIDATOR_VERSION = "0.4.32"
+KIT_VERSION = "2.15.9"
+REQUIRED_VALIDATOR_VERSION = "0.4.36"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
 RECEIPT_VERSION = "wikidebia-remote-update-receipt-1.0"
@@ -41,6 +43,29 @@ GENERATED_MARKERS = (
     "avertissements-argument=Généré par ChatGPT",
     "avertissements-débat=Généré par ChatGPT",
 )
+
+
+PROTECTED_LIFECYCLE_PARAMETERS = {
+    ("fr", "debate"): ("avancement", "avertissements-débat", "débats-connexes"),
+    ("en", "debate"): ("progress", "debate-warnings", "related-debates"),
+    ("fr", "argument"): ("avertissements-argument",),
+    ("en", "argument"): ("argument-warnings",),
+}
+
+
+def protected_lifecycle_snapshot(text: str, language: str, page_type: str) -> dict[str, tuple[bool, str | None]]:
+    expected = {("fr", "debate"): "debat", ("en", "debate"): "debate", ("fr", "argument"): "argument", ("en", "argument"): "argument"}[(language, page_type)]
+    calls = [call for call in iter_templates(text or "") if normalize_key(call.name) == expected]
+    if not calls:
+        raise UpdateError(f"Modèle principal introuvable pour le contrôle des paramètres protégés ({language}/{page_type})")
+    call = max(calls, key=lambda item: len(item.raw))
+    return {name: (name in call.params, call.get(name) if name in call.params else None) for name in PROTECTED_LIFECYCLE_PARAMETERS[(language, page_type)]}
+
+
+def lifecycle_parameters_unchanged(remote_text: str, proposed_text: str, language: str, page_type: str) -> tuple[bool, dict[str, Any]]:
+    before = protected_lifecycle_snapshot(remote_text, language, page_type)
+    after = protected_lifecycle_snapshot(proposed_text, language, page_type)
+    return before == after, {"remote": before, "proposed": after}
 
 
 class UpdateError(RuntimeError):
@@ -410,6 +435,14 @@ class RemoteUpdatePlanner:
             raise UpdateError(f"Le validateur requis doit être {REQUIRED_VALIDATOR_VERSION}")
         if not self.languages:
             raise UpdateError("Aucune langue sélectionnée")
+        norm = str(((self.manifest.get("normative_versions") or {}).get("consolidated_norm") or ""))
+        try:
+            norm_version = tuple(int(part) for part in norm.split("."))
+        except ValueError:
+            norm_version = ()
+        translation_status = str(((self.manifest.get("translation_status") or {}).get("en") or "pending"))
+        if norm_version >= (1, 2, 34) and translation_status == "deferred" and "en" in self.languages:
+            raise UpdateError("La portée anglaise est interdite tant que translation_status.en vaut deferred")
 
     def _load_migrations(self) -> list[dict[str, Any]]:
         rel = self.config.get("migrations_file")
@@ -633,11 +666,22 @@ class RemoteUpdatePlanner:
                 op["remote_excerpt"] = remote_text[:500]
                 buckets["blocked"].append(op)
             elif self._remote_matches_prior(prior, revision_id, remote_text):
+                unchanged, lifecycle = lifecycle_parameters_unchanged(remote_text, proposed["content"], language, proposed["page_type"])
+                if not unchanged:
+                    op.update({
+                        "old_sha256": prior.content_sha256,
+                        "expected_revision_id": revision_id,
+                        "justification": "Modification interdite d’un paramètre protégé d’une page existante",
+                        "protected_lifecycle_parameters": lifecycle,
+                        "phase": 0,
+                    })
+                    buckets["blocked"].append(op)
+                    continue
                 op.update({
                     "old_sha256": prior.content_sha256,
                     "expected_revision_id": revision_id,
                     "justification": "Page inchangée depuis la dernière publication automatisée; remplacement contrôlé autorisé",
-                    "preconditions": ["same_debate_id", "remote_matches_published_state", "baserevid_unchanged"],
+                    "preconditions": ["same_debate_id", "remote_matches_published_state", "protected_lifecycle_parameters_unchanged", "baserevid_unchanged"],
                     "phase": 1 if proposed["page_type"] == "debate" else 3,
                 })
                 buckets["update"].append(op)
@@ -730,6 +774,16 @@ class RemoteUpdatePlanner:
             op["phase"] = 0
             buckets["manual_review"].append(op)
             return
+        unchanged, lifecycle = lifecycle_parameters_unchanged(source_text, proposed["content"], prior.language, prior.page_type)
+        if not unchanged:
+            op.update({
+                "justification": "Déplacement bloqué : un paramètre protégé de la page existante serait modifié",
+                "protected_lifecycle_parameters": lifecycle,
+                "phase": 0,
+            })
+            buckets["blocked"].append(op)
+            return
+        op["preconditions"].append("protected_lifecycle_parameters_unchanged")
         buckets["move"].append(op)
 
     def _plan_merge(self, prior: StatePage, migration: dict[str, Any], buckets: dict[str, list[dict[str, Any]]], comparisons: list[dict[str, Any]]) -> None:

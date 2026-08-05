@@ -151,6 +151,8 @@ def complete_review(workspace: Path) -> None:
             keyword: "Ce terme est central, nominal et utile à la navigation entre plusieurs débats."
             for keyword in keyword_sets[entity_id]
         }
+        decision["keywords_ordered_by_relevance"] = True
+        decision["keyword_order_rationale"] = "La liste commence par le concept le plus directement lié à la page, puis élargit progressivement le contexte."
         if entity_id == "debate":
             decision["canonical_title_decision"] = "not_applicable"
             decision["displayed_title_decision"] = "not_applicable"
@@ -187,6 +189,8 @@ def complete_review(workspace: Path) -> None:
                 "en": None,
                 "definition": f"Concept éditorial contrôlé correspondant au terme {keyword}.",
                 "kind": "noun" if " " not in keyword else "noun_phrase",
+                "capitalization_policy": "lowercase_common",
+                "capitalization_rationale": "",
                 "scope": "site_navigation",
                 "cross_debate_reusable": True,
                 "local_frequency_is_validity_criterion": False,
@@ -254,6 +258,8 @@ def test_finalize_rejects_dominant_exact_keyword_set(tmp_path: Path):
         if item["entity_type"] == "argument":
             item["review"]["proposed_keywords"] = common_set
             item["review"]["keywords_rationales"] = {k: "Ce terme reste central et réutilisable dans plusieurs débats distincts." for k in common_set}
+            item["review"]["keywords_ordered_by_relevance"] = True
+            item["review"]["keyword_order_rationale"] = "Les concepts sont classés du plus directement pertinent au moins direct pour cette page."
     common.write_json(workspace / "reviews/fr/page_metadata_review.json", data)
     # Align vocabulary so the corpus-level dominance check is the actual blocker.
     usages = []
@@ -331,3 +337,73 @@ def test_apply_is_idempotent_after_success(tmp_path: Path):
     second = review_tool.apply_review(project, "debat_test", work_id, finalized["review_sha256"])
     assert second["idempotent"] is True
     assert second["reviewed_copy_tree_sha256"] == first["reviewed_copy_tree_sha256"]
+
+
+def _rename_keyword_in_review_and_vocabulary(workspace: Path, old: str, new: str) -> None:
+    review_path = workspace / "reviews/fr/page_metadata_review.json"
+    review = json.loads(review_path.read_text(encoding="utf-8"))
+    for item in review["items"]:
+        values = item["review"]["proposed_keywords"]
+        item["review"]["proposed_keywords"] = [new if value == old else value for value in values]
+        rationales = item["review"]["keywords_rationales"]
+        if old in rationales:
+            rationales[new] = rationales.pop(old)
+    common.write_json(review_path, review)
+    vocabulary_path = workspace / "data/keyword_vocabulary_working.json"
+    vocabulary = json.loads(vocabulary_path.read_text(encoding="utf-8"))
+    for entry in vocabulary["entries"]:
+        if entry["fr"] == old:
+            entry["fr"] = new
+    common.write_json(vocabulary_path, vocabulary)
+
+
+def test_finalize_rejects_uppercase_common_keyword(tmp_path: Path):
+    project, workspace, work_id = make_workspace(tmp_path)
+    complete_review(workspace)
+    _rename_keyword_in_review_and_vocabulary(workspace, "argumentation", "Argumentation")
+    vocabulary_path = workspace / "data/keyword_vocabulary_working.json"
+    vocabulary = json.loads(vocabulary_path.read_text(encoding="utf-8"))
+    entry = next(row for row in vocabulary["entries"] if row["fr"] == "Argumentation")
+    entry["kind"] = "noun"
+    entry["capitalization_policy"] = "lowercase_common"
+    common.write_json(vocabulary_path, vocabulary)
+    try:
+        review_tool.finalize_review(project, "debat_test", work_id)
+    except review_tool.EditorialReviewError as exc:
+        assert "Capitalisation non canonique" in str(exc)
+    else:
+        raise AssertionError("Majuscule décorative acceptée pour un nom commun")
+
+
+def test_finalize_accepts_justified_proper_name_keyword(tmp_path: Path):
+    project, workspace, work_id = make_workspace(tmp_path)
+    complete_review(workspace)
+    _rename_keyword_in_review_and_vocabulary(workspace, "argumentation", "Dieu")
+    vocabulary_path = workspace / "data/keyword_vocabulary_working.json"
+    vocabulary = json.loads(vocabulary_path.read_text(encoding="utf-8"))
+    entry = next(row for row in vocabulary["entries"] if row["fr"] == "Dieu")
+    entry["kind"] = "proper_name"
+    entry["capitalization_policy"] = "canonical_proper_name"
+    entry["capitalization_rationale"] = "Nom propre canonique de la divinité désignée dans ce thème."
+    common.write_json(vocabulary_path, vocabulary)
+    result = review_tool.finalize_review(project, "debat_test", work_id)
+    assert result["status"] == "fr_review_finalized"
+
+
+def test_finalize_rejects_case_only_keyword_duplicates(tmp_path: Path):
+    project, workspace, work_id = make_workspace(tmp_path)
+    complete_review(workspace)
+    _rename_keyword_in_review_and_vocabulary(workspace, "argumentation", "Preuve")
+    vocabulary_path = workspace / "data/keyword_vocabulary_working.json"
+    vocabulary = json.loads(vocabulary_path.read_text(encoding="utf-8"))
+    entry = next(row for row in vocabulary["entries"] if row["fr"] == "Preuve")
+    entry["kind"] = "proper_name"
+    entry["capitalization_policy"] = "canonical_proper_name"
+    entry["capitalization_rationale"] = "Graphie volontairement fautive pour tester le doublon de casse."
+    common.write_json(vocabulary_path, vocabulary)
+    try:
+        review_tool.finalize_review(project, "debat_test", work_id)
+    except review_tool.EditorialReviewError as exc:
+        assert "différant seulement par la casse" in str(exc)
+    else:
+        raise AssertionError("Doublon preuve/Preuve accepté")

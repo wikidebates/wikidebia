@@ -5,6 +5,7 @@ from typing import Any
 
 from .graph import STATE_ORDER, state_at_least
 from .package import PackageContext
+from .translation import english_translation_deferred, english_translation_status
 
 
 VALIDATION_FOR_STATE = {
@@ -61,8 +62,9 @@ def validate_workflow(ctx: PackageContext, previous_status: str | None = None) -
     if not manifest or not registry:
         return
     status = manifest.get("global_status")
+    english_deferred = english_translation_deferred(manifest)
     norm_versions = manifest.get("normative_versions") or {}
-    corrective_mode = status in {"corrective_in_progress", "corrective_blocked"} or norm_versions.get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}
+    corrective_mode = status in {"corrective_in_progress", "corrective_blocked"} or norm_versions.get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}
     if previous_status and not allowed_transition(previous_status, status):
         ctx.report.error("WDV-WF-002", f"Transition interdite : {previous_status} -> {status}", path="manifest.json")
     try:
@@ -74,7 +76,10 @@ def validate_workflow(ctx: PackageContext, previous_status: str | None = None) -
         pass
 
     scopes = passed_scopes(manifest)
+    deferred_scopes = {"en_titles", "en_debate", "en_global", "bilingual", "interlanguage"}
     for milestone, required_scope in VALIDATION_FOR_STATE.items():
+        if english_deferred and required_scope in deferred_scopes:
+            continue
         if state_at_least(status, milestone) and required_scope not in scopes:
             ctx.report.error("WDV-WF-003", f"L'état {status} exige une validation réussie de portée {required_scope}", path="manifest.json")
 
@@ -89,13 +94,15 @@ def validate_workflow(ctx: PackageContext, previous_status: str | None = None) -
         for n in nodes:
             if (n.get("fr") or {}).get("title_status") != "locked":
                 ctx.report.error("WDV-WF-005", f"Titre français non verrouillé à l'état {status} : {n.get('id')}")
-    if state_at_least(status, "en_titles_locked"):
+    if state_at_least(status, "en_titles_locked") and not english_deferred:
         for n in nodes:
             if (n.get("en") or {}).get("title_status") != "locked":
                 ctx.report.error("WDV-WF-005", f"Titre anglais non verrouillé à l'état {status} : {n.get('id')}")
 
     pages = manifest.get("pages", [])
     for lang, content_state, validated_state in (("fr", "fr_content_complete", "fr_validated"), ("en", "en_content_complete", "en_validated")):
+        if lang == "en" and english_deferred:
+            continue
         expected_ids = {(registry.get("debate") or {}).get("id")} | {n.get("id") for n in nodes}
         lang_pages = {p.get("page_id"): p for p in pages if p.get("language") == lang}
         if state_at_least(status, content_state):
@@ -111,7 +118,7 @@ def validate_workflow(ctx: PackageContext, previous_status: str | None = None) -
                 if page and page.get("status") not in {"validated", "published"}:
                     ctx.report.error("WDV-WF-001", f"Page {pid}/{lang} non validée à l'état {status}")
 
-    if norm_versions.get("consolidated_norm") in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"} and state_at_least(status, "fr_debate_validated"):
+    if norm_versions.get("consolidated_norm") in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"} and state_at_least(status, "fr_debate_validated") and not english_deferred:
         debate_en = ((((registry.get("debate") or {}).get("pages") or {}).get("en") or {}))
         if debate_en.get("title_status") != "locked" or not debate_en.get("canonical_title"):
             ctx.report.error("WDV-WF-005", "Le titre anglais du débat doit être verrouillé avant la création des pages françaises", path=ctx.core_paths()["registry"])
@@ -120,8 +127,15 @@ def validate_workflow(ctx: PackageContext, previous_status: str | None = None) -
             if en.get("title_status") != "locked" or not en.get("canonical_title"):
                 ctx.report.error("WDV-WF-005", f"Titre anglais non verrouillé avant production française : {n.get('id')}", path=ctx.core_paths()["registry"])
 
+    if english_deferred:
+        english_records = [((((registry.get("debate") or {}).get("pages") or {}).get("en") or {}), "debate")]
+        english_records.extend(((n.get("en") or {}), str(n.get("id"))) for n in nodes)
+        for record, identifier in english_records:
+            if record.get("title_status") == "locked" and not record.get("canonical_title"):
+                ctx.report.error("WDV-WF-005", f"Titre anglais déclaré verrouillé mais absent : {identifier}", path=ctx.core_paths()["registry"])
+
     patch_rel = "patches/interlanguage_fr.validated.json"
-    if norm_versions.get("consolidated_norm") not in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30"}:
+    if norm_versions.get("consolidated_norm") not in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34"}:
         if state_at_least(status, "interlanguage_prepared"):
             patch = ctx.load_json(patch_rel, required=True)
             if isinstance(patch, dict) and patch.get("status") not in {"validated", "partially_applied", "applied"}:
@@ -181,4 +195,4 @@ def validate_workflow(ctx: PackageContext, previous_status: str | None = None) -
         if (handoff.get("origin") or {}).get("result") in {"blocked", "failed"} and not corrective_mode and status not in {"blocked", "migration_required"}:
             ctx.report.error("WDV-WF-004", "Le paquet a progressé malgré une transmission d'origine bloquée ou échouée", path=rel)
 
-    ctx.report.metrics["workflow"] = {"global_status": status, "passed_validation_scopes": sorted(scopes)}
+    ctx.report.metrics["workflow"] = {"global_status": status, "passed_validation_scopes": sorted(scopes), "english_translation_status": english_translation_status(manifest), "english_translation_deferred": english_deferred}
