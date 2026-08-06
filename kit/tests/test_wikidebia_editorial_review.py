@@ -168,6 +168,8 @@ def complete_review(workspace: Path) -> None:
             decision["displayed_title_complete_proposition"] = True
             decision["displayed_title_argument_intelligible"] = True
             decision["displayed_title_concision_reviewed"] = True
+            decision["displayed_title_semantically_equivalent"] = True
+            decision["displayed_title_improves_readability_when_distinct"] = True
     common.write_json(path, data)
 
     usages: dict[str, list[dict[str, str]]] = {}
@@ -411,3 +413,39 @@ def test_finalize_rejects_case_only_keyword_duplicates(tmp_path: Path):
         assert "différant seulement par la casse" in str(exc)
     else:
         raise AssertionError("Doublon preuve/Preuve accepté")
+
+
+def test_finalize_accepts_canonical_titles_as_displayed_titles(tmp_path: Path):
+    project, workspace, work_id = make_workspace(tmp_path)
+    complete_review(workspace)
+    path = workspace / "reviews/fr/page_metadata_review.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    for item in data["items"]:
+        if item["entity_type"] != "argument":
+            continue
+        review = item["review"]
+        review["proposed_displayed_title"] = review["proposed_canonical_title"]
+        review["displayed_title_rationale"] = "Le titre canonique est déjà clair, autonome et immédiatement intelligible; aucune reformulation ne l'améliore."
+        review["displayed_title_semantically_equivalent"] = True
+        review["displayed_title_improves_readability_when_distinct"] = False
+    common.write_json(path, data)
+    result = review_tool.finalize_review(project, "debat_test", work_id)
+    assert result["status"] == "fr_review_finalized"
+    sealed = json.loads(path.read_text(encoding="utf-8"))
+    assert sealed["summary"]["displayed_title_identity_ratio"] == 1.0
+
+
+def test_finalize_rejects_distinct_displayed_title_without_readability_gain(tmp_path: Path):
+    project, workspace, work_id = make_workspace(tmp_path)
+    complete_review(workspace)
+    path = workspace / "reviews/fr/page_metadata_review.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    first = next(item for item in data["items"] if item["entity_type"] == "argument")
+    first["review"]["displayed_title_improves_readability_when_distinct"] = False
+    common.write_json(path, data)
+    try:
+        review_tool.finalize_review(project, "debat_test", work_id)
+    except review_tool.EditorialReviewError as exc:
+        assert "n’améliore pas explicitement la lisibilité" in str(exc)
+    else:
+        raise AssertionError("Titre affiché distinct sans gain de lisibilité accepté")

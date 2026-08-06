@@ -46,7 +46,7 @@ from wikidebia_content_review import (
     META_DISCOURSE,
 )
 
-KIT_VERSION = "2.15.17"
+KIT_VERSION = "2.15.19"
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.0"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
@@ -417,6 +417,8 @@ def _blank_argument(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -
         "title_is_idiomatic": False,
         "displayed_title_is_complete_proposition": False,
         "displayed_title_concision_reviewed": False,
+        "displayed_title_semantically_equivalent": False,
+        "displayed_title_improves_readability_when_distinct": False,
         "summary_ratio_reviewed": False,
         "forceful_expression": "",
         "quantitative_claims_verified": False,
@@ -563,6 +565,8 @@ def _validate_sources(data: Mapping[str, Any], debate_id: str, french_ids: set[s
             raise TranslationReviewError(f"Référence bibliographique anglaise incomplète : {sid}")
         if stype in {"webliography", "videography"} and not HTTP_URL.match(str(metadata.get("link") or "")):
             raise TranslationReviewError(f"Lien HTTP(S) obligatoire pour {sid}")
+        if stype == "videography" and re.search(r"(?:youtube\.com/(?:watch|live)|youtu\.be/)", str(metadata.get("link") or ""), re.I) and not authors:
+            raise TranslationReviewError(f"Une vidéo YouTube anglaise doit indiquer le créateur ou la chaîne : {sid}")
         verification = row.get("verification")
         if not isinstance(verification, dict) or verification.get("status") != "verified" or verification.get("language_verified") is not True:
             raise TranslationReviewError(f"Source anglaise non vérifiée : {sid}")
@@ -699,13 +703,29 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
     subsections = row.get("subsections")
     if not isinstance(subsections, list) or not subsections:
         raise TranslationReviewError("L’introduction anglaise doit comporter des sous-parties")
+    stakes_rows = []
     for sub in subsections:
         if not isinstance(sub, dict):
             raise TranslationReviewError("Sous-partie anglaise invalide")
-        _text(sub.get("title"), "titre de sous-partie anglaise", 3)
+        subtitle = _text(sub.get("title"), "titre de sous-partie anglaise", 3)
         _text(sub.get("purpose"), "fonction de sous-partie anglaise", 12)
         if sub.get("necessary_for_understanding") is not True or sub.get("relevance_to_debate_explained") is not True:
             raise TranslationReviewError("Chaque sous-partie anglaise doit être nécessaire et contextualisée")
+        if subtitle == "Stakes of the debate":
+            stakes_rows.append(sub)
+    if len(stakes_rows) != 1:
+        raise TranslationReviewError('The English introduction must contain exactly one subsection titled "Stakes of the debate"')
+    stakes_row = stakes_rows[0]
+    if stakes_row.get("stakes_section") is not True:
+        raise TranslationReviewError("The review must explicitly identify the Stakes of the debate subsection")
+    concrete_stakes = stakes_row.get("concrete_stakes")
+    normalized_stakes = [str(item).strip() for item in concrete_stakes or [] if str(item).strip()]
+    if len(normalized_stakes) < 2 or len({item.casefold() for item in normalized_stakes}) < 2 or any(len(item) < 20 for item in normalized_stakes):
+        raise TranslationReviewError("The Stakes of the debate subsection must record at least two distinct concrete consequences")
+    stake_content_match = re.search(r"\{\{Subsection\|title=Stakes of the debate\|content=(.*?)\}\}", introduction, re.S)
+    stake_content = stake_content_match.group(1).strip() if stake_content_match else ""
+    if len(re.findall(r"\b[\w'-]+\b", stake_content)) < 45 or len(re.findall(r"[.!?](?:\s|$)", stake_content)) < 3:
+        raise TranslationReviewError("The Stakes of the debate subsection is too brief or merely symbolic")
     wikipedia = _strings(row.get("wikipedia_articles"), "articles Wikipédia anglais")
     if not wikipedia or row.get("wikipedia_articles_verified") is not True:
         raise TranslationReviewError("Au moins un article Wikipédia anglais vérifié est obligatoire")
@@ -713,15 +733,21 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
     if not isinstance(documentation, dict) or set(documentation) != set(DEBATE_BUCKETS):
         raise TranslationReviewError("Neuf paramètres documentaires anglais requis")
     final_doc: dict[str, list[str]] = {}
+    selected_roles: dict[str, set[str]] = {}
     for bucket, (stype, role) in DEBATE_BUCKETS.items():
         ids = _strings(documentation.get(bucket), bucket)
-        if len(ids) < 2:
-            raise TranslationReviewError(f"Le bucket anglais {bucket} doit contenir au moins deux références")
         for sid in ids:
             source = sources.get(sid)
             if not source or source.get("type") != stype or source.get("language") != "en" or not _has_usage(source, debate_id, {role}):
                 raise TranslationReviewError(f"Source anglaise incompatible dans {bucket} : {sid}")
+            selected_roles.setdefault(sid, set()).add(role)
         final_doc[bucket] = ids
+    conflicts = {sid: sorted(roles) for sid, roles in selected_roles.items() if len(roles) > 1}
+    if conflicts:
+        raise TranslationReviewError(
+            "Une même source anglaise ne peut figurer dans plusieurs orientations; une source couvrant les deux camps doit être neutral: "
+            + repr(conflicts)
+        )
     for field in ("metadata_equivalent_to_french", "content_equivalent_to_french", "introduction_functionally_equivalent", "all_debate_sources_english", *INTRO_TRUE_FIELDS):
         if row.get(field) is not True:
             raise TranslationReviewError(f"Attestation anglaise manquante pour Debate : {field}")
@@ -767,9 +793,11 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
     ratio = len(_plain(summary)) / max(1, len(_plain(fr_summary)))
     if not 0.60 <= ratio <= 1.45 or row.get("summary_ratio_reviewed") is not True:
         raise TranslationReviewError(f"Ratio anglais/français hors limites pour {node_id} : {ratio:.2f}")
-    for field in ("metadata_equivalent_to_french", "summary_equivalent_to_french", "title_is_idiomatic", "displayed_title_is_complete_proposition", "displayed_title_concision_reviewed", *SUMMARY_TRUE_FIELDS):
+    for field in ("metadata_equivalent_to_french", "summary_equivalent_to_french", "title_is_idiomatic", "displayed_title_is_complete_proposition", "displayed_title_concision_reviewed", "displayed_title_semantically_equivalent", *SUMMARY_TRUE_FIELDS):
         if row.get(field) is not True:
             raise TranslationReviewError(f"Attestation anglaise manquante pour {node_id} : {field}")
+    if canonical.casefold() != displayed.casefold() and row.get("displayed_title_improves_readability_when_distinct") is not True:
+        raise TranslationReviewError(f"Le displayed title distinct n’améliore pas explicitement la lisibilité pour {node_id}")
     expression = _text(row.get("forceful_expression"), f"expression de force anglaise de {node_id}", 8)
     if _plain(expression).casefold() not in _plain(summary).casefold():
         raise TranslationReviewError(f"L’expression de force anglaise est absente du summary de {node_id}")
@@ -838,8 +866,6 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
     if len(set(canonical_titles)) != len(canonical_titles) or final_debate["canonical_title"].casefold() in canonical_titles:
         raise TranslationReviewError("Collision de titres canoniques anglais")
     exact = sum(row["canonical_title"].casefold() == row["displayed_title"].casefold() for row in final_arguments)
-    if final_arguments and exact / len(final_arguments) > 0.10:
-        raise TranslationReviewError("Plus de 10 % des displayed titles anglais sont identiques aux titres canoniques")
     keyword_sets = collections.Counter(tuple(row["keywords"]) for row in final_arguments)
     if final_arguments and max(keyword_sets.values(), default=0) / len(final_arguments) > 0.25:
         raise TranslationReviewError("Un même jeu exact de keywords anglais domine plus de 25 % des arguments")

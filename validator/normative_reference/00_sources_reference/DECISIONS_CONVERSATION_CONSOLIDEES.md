@@ -213,3 +213,12 @@ Une vérification supplémentaire a montré qu’un plan entièrement `skip` doi
 2. Une page Débat préexistante conserve exactement `débats-connexes` s’il existe ; le paramètre n’est pas ajouté s’il est absent.
 3. `Débat généré par IA` et `Débat construit` sont ajoutés seulement à une page Débat nouvellement créée par Wikidéb’IA. Une page existante conserve l’état antérieur.
 4. `Argument généré par IA` est ajouté seulement à une page Argument nouvellement créée. Une page existante conserve l’état antérieur.
+
+
+## Décision du 6 août 2026 — rubrique obligatoire sur les enjeux du débat
+
+1. Toute introduction comporte une sous-partie explicitement consacrée aux enjeux du débat.
+2. La suppression de cette rubrique au nom de la densité informative est interdite.
+3. La rubrique expose des conséquences concrètes des principales réponses possibles et ce que celles-ci changent pour la compréhension ou la pratique du sujet.
+4. Elle ne se réduit ni à une liste abstraite de domaines, ni à un catalogue des arguments pour et contre, ni à une répétition des autres sous-parties.
+5. La revue consigne au moins deux enjeux concrets et atteste la présence, la pertinence et la non-redondance de la rubrique.

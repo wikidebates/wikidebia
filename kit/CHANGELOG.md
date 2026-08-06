@@ -1,3 +1,21 @@
+## 2.15.19 — 6 août 2026
+
+- alignement sur la norme 1.2.43 et le validateur 0.4.46 ;
+- rétablissement obligatoire de la sous-partie `Enjeux du débat` dans les introductions françaises ;
+- contrôle d’au moins deux conséquences concrètes, de la densité minimale et de l’absence de catalogue argumentatif ;
+- génération des champs de revue propres à cette sous-partie et tests négatifs dédiés.
+
+## 2.15.18 — 6 août 2026
+
+- alignement sur la norme 1.2.42 et le validateur 0.4.45 ;
+- suppression des quotas documentaires par orientation dans les revues française et anglaise ;
+- blocage des références utilisées dans plusieurs orientations ;
+- auteur ou chaîne obligatoire pour les vidéos YouTube ;
+- nouvelles attestations de densité informative des introductions ;
+- suppression du plafond de 10 % d’identités entre titres canoniques et affichés ;
+- titre affiché distinct accepté seulement avec équivalence sémantique et gain réel de lisibilité ;
+- sélection automatique de l’unique archive et portée automatique conservées.
+
 ## 2.15.17 — 6 août 2026
 
 - alignement sur le validateur 0.4.44 et la norme 1.2.41 ;

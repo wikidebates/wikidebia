@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.17",
-  "validator_version": "0.4.44",
+  "version": "2.15.19",
+  "validator_version": "0.4.46",
   "scope": [
     "publish_archive",
     "github_init",
@@ -57,7 +57,8 @@
     "preserved_initialisation",
     "split_editorial_policy_profiles",
     "source_inventory_lock_verification",
-    "historical_summary_absence"
+    "historical_summary_absence",
+    "mandatory_stakes_subsection_review"
   ],
   "debate_specific_code": false,
   "change_tag": "chatgpt",
@@ -356,15 +357,19 @@
     "graph_reports_distinguish_unfolded_and_normative_occurrences",
     "graph_frontier_information_separated_from_warnings",
     "graph_terminal_and_frontier_counts_separated",
-    "historical_summary_absence"
+    "historical_summary_absence",
+    "debate_reference_orientation_exclusivity",
+    "youtube_creator_required",
+    "introduction_information_density_gate",
+    "displayed_title_identity_allowed"
   ],
-  "normative_revision": "1.2.41",
+  "normative_revision": "1.2.43",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
     "versioned_config_examples_schema_valid",
     "graph_placement_traceability_noncollision",
-    "displayed_title_noncopy_ratio",
+    "displayed_title_semantic_equivalence_and_readability",
     "single_delivery_zip_legacy_and_current_manager",
     "argument_reference_metadata_nonredundancy",
     "remote_update_never_prompts",
@@ -399,7 +404,7 @@
     "editorial_workspace_metadata_diagnostic_regression",
     "editorial_workspace_translation_gate_regression",
     "content_review_source_copy_immutability_regression",
-    "content_review_nine_documentary_bucket_regression",
+    "content_review_orientation_exclusivity_and_no_quota",
     "content_review_forceful_expression_regression",
     "content_review_source_verification_regression",
     "content_review_confirmation_hash_regression",
@@ -434,7 +439,12 @@
     "deferred_translation_profile",
     "english_scope_deferred_block",
     "strict_existing_interlanguage_validation",
-    "deferred_to_ready_transition"
+    "deferred_to_ready_transition",
+    "content_review_youtube_creator_regression",
+    "content_review_intro_density_regression",
+    "displayed_title_identity_allowed_regression",
+    "displayed_title_noncopy_ratio",
+    "content_review_nine_documentary_bucket_regression"
   ],
   "regression_gates": [
     "argument_reference_develops_argument_regression",
@@ -444,6 +454,8 @@
     "remote_move_lifecycle_protection_regression",
     "french_deferred_without_synthetic_title_regression",
     "english_deferred_scope_block_regression",
-    "later_interlanguage_update_regression"
+    "later_interlanguage_update_regression",
+    "mandatory_stakes_subsection_regression",
+    "concrete_stakes_density_regression"
   ]
 }

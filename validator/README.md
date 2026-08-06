@@ -1,9 +1,9 @@
-# Wikidéb’IA Validator 0.4.44
+# Wikidéb’IA Validator 0.4.46
 
-Validateur local Python 3 aligné sur la norme 1.2.41 et rétrocompatible avec les révisions antérieures, notamment 1.2.36. La validation ordinaire reste strictement en lecture seule.
+Validateur local aligné sur la norme 1.2.43 et rétrocompatible avec les paquets antérieurs.
 
-La version 0.4.44 distingue désormais trois provenances de résumé : `historical_existing`, `historical_absent` et `generated_after_import`. Lorsqu’un corpus active `historical_summary_absence_revision=1.2.40`, l’omission du paramètre est autorisée seulement si l’inventaire source attesté prouve son absence. Les pages nouvelles et les contenus réellement ajoutés après import conservent un résumé obligatoire. Les paramètres `initialisation` historiques restent également confrontés à l’inventaire source.
+La version 0.4.46 exige, pour la politique d’introduction 1.2.43, une sous-partie dédiée `Enjeux du débat` ou `Stakes of the debate`. Elle contrôle le titre, un développement minimal, les attestations de non-redondance et la présence d’au moins deux enjeux concrets dans le registre de revue.
 
-Les contrôles éditoriaux 0.4.41 (`WDV-EDT-024` à `WDV-EDT-027`) et toutes les protections antérieures sont conservés.
+Les contrôles 0.4.45 sur les orientations documentaires, l’attribution YouTube et les titres affichés restent inchangés.
 
-La source normative active unique embarquée est `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.41.md`.
+Norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.43.md`.

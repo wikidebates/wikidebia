@@ -89,13 +89,13 @@ def complete_translation_review(workspace: Path) -> None:
         "complete_topic": "the proposition of the test debate",
         "sections": sorted([translation.SECTION_MAP[x] for x in fr_meta["rubriques"]], key=str.casefold),
         "keywords": [translations[x] for x in fr_meta["keywords"]],
-        "introduction": "{{Subsection|title=Definition and scope|content=The test debate contrasts two clearly delimited answers and explains why their disagreement matters.}}",
-        "subsections": [{"title": "Definition and scope", "purpose": "Define the proposition and the exact scope required to understand the disagreement.", "necessary_for_understanding": True, "technical_or_specialized": False, "relevance_to_debate_explained": True}],
+        "introduction": "{{Subsection|title=Definition and scope|content=The test debate contrasts two clearly delimited answers and specifies what is actually at issue.}}{{Subsection|title=Stakes of the debate|content=The answer adopted changes how the phenomenon is explained and which standards are used to accept a conclusion. It may also shape collective decisions, institutional practices, and individual choices beyond the theoretical disagreement itself. Suspending judgment shifts attention toward the limits of the available evidence and toward the degree of confidence that can reasonably be placed in each position.}}",
+        "subsections": [{"title": "Definition and scope", "purpose": "Define the proposition and the exact scope required to understand the disagreement.", "necessary_for_understanding": True, "technical_or_specialized": False, "relevance_to_debate_explained": True, "stakes_section": False, "concrete_stakes": []}, {"title": "Stakes of the debate", "purpose": "Explain the intellectual, institutional, and practical consequences of the possible answers.", "necessary_for_understanding": True, "technical_or_specialized": False, "relevance_to_debate_explained": True, "stakes_section": True, "concrete_stakes": ["Changes to explanatory frameworks and standards of rational belief", "Consequences for collective decisions and institutional practices"]}],
         "wikipedia_articles": ["Argumentation theory"],
         "documentation": {
-            "pro-bibliography": ["S10001", "S10002"], "con-bibliography": ["S10001", "S10002"], "bibliography": ["S10001", "S10002"],
-            "pro-webliography": ["S10003", "S10004"], "con-webliography": ["S10003", "S10004"], "webliography": ["S10003", "S10004"],
-            "pro-videography": ["S10005", "S10006"], "con-videography": ["S10005", "S10006"], "videography": ["S10005", "S10006"],
+            "pro-bibliography": ["S10001"], "con-bibliography": ["S10002"], "bibliography": [],
+            "pro-webliography": ["S10003"], "con-webliography": ["S10004"], "webliography": [],
+            "pro-videography": ["S10005"], "con-videography": ["S10006"], "videography": [],
         },
         "documentation_family_notes": {"bibliography": "Broad English-language works cover the debate.", "webliography": "Verified English-language web sources complement the books.", "videography": "Verified English-language videos cover each position."},
         "topic_label_rationale": "The nominal label identifies the controversy without restating it as a question.",
@@ -140,7 +140,10 @@ def complete_translation_review(workspace: Path) -> None:
             "sections_exactly_mapped": True, "keywords_exactly_mapped": True,
         "keywords_order_preserved_by_relevance": True,
             "title_is_idiomatic": True, "displayed_title_is_complete_proposition": True,
-            "displayed_title_concision_reviewed": True, "summary_ratio_reviewed": True,
+            "displayed_title_concision_reviewed": True,
+            "displayed_title_semantically_equivalent": True,
+            "displayed_title_improves_readability_when_distinct": True,
+            "summary_ratio_reviewed": True,
             "forceful_expression": expressions[nid], "quantitative_claims_verified": False,
             "quantitative_claims_note": "No quantitative claim appears in this English summary.",
             "documentation_rationale": "The selected English source supports the central mechanism without imposing an artificial quota.",
@@ -178,10 +181,14 @@ def complete_translation_review(workspace: Path) -> None:
     }
     common.write_json(path, review)
 
-    roles = ["pro_reference", "con_reference", "neutral_reference"]
+    source_roles = {
+        "S10001": "pro_reference", "S10002": "con_reference",
+        "S10003": "pro_reference", "S10004": "con_reference",
+        "S10005": "pro_reference", "S10006": "con_reference",
+    }
     sources = []
     for sid, stype in (("S10001", "bibliography"), ("S10002", "bibliography"), ("S10003", "webliography"), ("S10004", "webliography"), ("S10005", "videography"), ("S10006", "videography")):
-        usages = [{"page_id": "debat_test", "language": "en", "role": role, "language_fit": "native", "preferred_equivalent_source_id": None, "documentary_scope": "broad_synthesis", "selection_reason": "This verified English source documents the relevant position or broad synthesis."} for role in roles]
+        usages = [{"page_id": "debat_test", "language": "en", "role": source_roles[sid], "language_fit": "native", "preferred_equivalent_source_id": None, "documentary_scope": "broad_synthesis", "selection_reason": "This verified English source documents the orientation assigned to it."}]
         if sid == "S10001":
             usages.extend({"page_id": nid, "language": "en", "role": "supports_summary", "argument_development_verified": True, "also_develops_objections": False, "objection_coverage_note": None, "language_fit": "native", "preferred_equivalent_source_id": None, "documentary_scope": "narrow_argument", "selection_reason": "This English source directly supports the mechanism stated in the argument summary."} for nid in titles)
         sources.append(en_source(sid, stype, usages))
@@ -432,3 +439,21 @@ def test_vocabulary_accepts_justified_english_proper_name_and_rejects_common_cap
         assert "Capitalisation anglaise non canonique" in str(exc)
     else:
         raise AssertionError("Capitalized English common noun accepted")
+
+
+def test_finalize_translation_rejects_missing_stakes_subsection(tmp_path: Path):
+    project, workspace, work_id = make_french_locked(tmp_path)
+    translation.prepare_review(project, "debat_test", work_id)
+    complete_translation_review(workspace)
+    review_path = workspace / "reviews/en/translation_review.json"
+    review = json.loads(review_path.read_text(encoding="utf-8"))
+    debate = review["debate"]
+    debate["introduction"] = "{{Subsection|title=Definition and scope|content=This introduction defines the scope but deliberately omits the mandatory subsection devoted to the consequences of the debate.}}"
+    debate["subsections"] = [debate["subsections"][0]]
+    common.write_json(review_path, review)
+    try:
+        translation.finalize_review(project, "debat_test", work_id)
+    except translation.TranslationReviewError as exc:
+        assert "Stakes of the debate" in str(exc)
+    else:
+        raise AssertionError("A missing Stakes of the debate subsection should have been rejected")

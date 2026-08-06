@@ -1,6 +1,6 @@
 {
   "review_version": "1.0",
-  "normative_revision": "1.2.38",
+  "normative_revision": "1.2.43",
   "debate_id": "exemple_debat",
   "entries": [
     {
@@ -29,11 +29,16 @@
           "relevance_to_debate_explained": true
         },
         {
-          "title": "Enjeux contemporains",
-          "purpose": "Présenter les conséquences principales de la réponse apportée.",
+          "title": "Enjeux du débat",
+          "purpose": "Expliquer ce que les principales réponses changent concrètement pour la compréhension et la pratique du sujet.",
           "necessary_for_understanding": true,
           "technical_or_specialized": false,
-          "relevance_to_debate_explained": true
+          "relevance_to_debate_explained": true,
+          "stakes_section": true,
+          "concrete_stakes": [
+            "La première conséquence concrète propre au sujet est explicitement développée.",
+            "La seconde conséquence concrète propre au sujet est distinguée du catalogue des arguments."
+          ]
         }
       ],
       "notes": "Exemple générique à adapter au sujet.",
@@ -49,7 +54,19 @@
       "common_acronym": null,
       "common_acronym_used_or_not_applicable": true,
       "wikipedia_hover_links_reviewed": true,
-      "specialized_terms_linked_or_explained": true
+      "specialized_terms_linked_or_explained": true,
+      "dedicated_stakes_subsection_present": true,
+      "stakes_consequences_concrete": true,
+      "stakes_not_argument_catalogue": true,
+      "information_density_reviewed": true,
+      "subsections_non_redundant": true,
+      "no_generic_stakes_filler": true,
+      "documentation_orientation_reviewed": true,
+      "youtube_authorship_reviewed": true,
+      "topic_is_nominal_label": true,
+      "conventional_topic_label_used_or_not_applicable": true,
+      "complete_topic_lowercase_initial_or_justified": true,
+      "topic_label_rationale": "Le libellé nominal retenu est conventionnel, précis et adapté à l’en-tête du débat."
     },
     {
       "language": "en",
@@ -77,11 +94,16 @@
           "relevance_to_debate_explained": true
         },
         {
-          "title": "Current stakes",
-          "purpose": "Explain the main consequences of the answer to the debate.",
+          "title": "Stakes of the debate",
+          "purpose": "Explain what the main possible answers concretely change for understanding and acting on the subject.",
           "necessary_for_understanding": true,
           "technical_or_specialized": false,
-          "relevance_to_debate_explained": true
+          "relevance_to_debate_explained": true,
+          "stakes_section": true,
+          "concrete_stakes": [
+            "The first concrete consequence specific to the topic is explicitly developed.",
+            "The second concrete consequence is kept distinct from the catalogue of arguments."
+          ]
         }
       ],
       "notes": "Generic example to adapt to the subject.",
@@ -97,7 +119,19 @@
       "common_acronym": null,
       "common_acronym_used_or_not_applicable": true,
       "wikipedia_hover_links_reviewed": true,
-      "specialized_terms_linked_or_explained": true
+      "specialized_terms_linked_or_explained": true,
+      "dedicated_stakes_subsection_present": true,
+      "stakes_consequences_concrete": true,
+      "stakes_not_argument_catalogue": true,
+      "information_density_reviewed": true,
+      "subsections_non_redundant": true,
+      "no_generic_stakes_filler": true,
+      "documentation_orientation_reviewed": true,
+      "youtube_authorship_reviewed": true,
+      "topic_is_nominal_label": true,
+      "conventional_topic_label_used_or_not_applicable": true,
+      "complete_topic_lowercase_initial_or_justified": true,
+      "topic_label_rationale": "The selected nominal label is conventional, precise and fits the debate heading."
     }
   ]
 }

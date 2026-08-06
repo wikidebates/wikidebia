@@ -1,6 +1,6 @@
 # Revue française des titres, rubriques et mots-clés
 
-Le kit 2.15.2 transforme les décisions consignées dans un workspace éditorial en métadonnées françaises validées et verrouillées pour la future génération des pages.
+Le kit 2.15.19 transforme les décisions consignées dans un workspace éditorial en métadonnées françaises validées et verrouillées pour la future génération des pages.
 
 ## 1. Compléter les registres
 
@@ -22,7 +22,8 @@ Chaque page reçoit une décision explicite sur :
 - le titre canonique et le titre affiché, pour les arguments ;
 - les rubriques ;
 - les mots-clés ;
-- les attestations de propositionnalité, d’intelligibilité, d’autonomie et de concision ;
+- les attestations de propositionnalité, d’intelligibilité, d’autonomie et d’équivalence sémantique ;
+- lorsque le titre affiché diffère, l’attestation que cette différence améliore réellement la lisibilité ;
 - les justifications propres à chaque rubrique et à chaque mot-clé.
 
 Le vocabulaire de travail couvre exactement les mots-clés finalement retenus. Chaque terme français possède une définition, une nature grammaticale, une justification de portée inter-débat et la liste exacte de ses usages. La traduction anglaise peut rester vide à ce stade.
@@ -39,8 +40,9 @@ La commande vérifie notamment :
 
 - la couverture de la page Débat et de tous les nœuds actifs ;
 - l’absence de collision entre titres canoniques ;
-- la conformité formelle et la concision des titres affichés ;
-- le maximum de 10 % de titres affichés identiques aux titres canoniques ;
+- la conformité formelle et l’intelligibilité des titres affichés ;
+- l’acceptation sans quota du titre canonique comme titre affiché lorsqu’il est déjà le plus clair ;
+- la justification d’un titre distinct par un gain réel de lisibilité et une équivalence sémantique stricte ;
 - une à quatre rubriques, avec justification individuelle ;
 - cinq à huit mots-clés pour la page Débat et deux à quatre pour chaque argument ;
 - le maximum de 25 % pour un même jeu exact de mots-clés parmi les arguments ;

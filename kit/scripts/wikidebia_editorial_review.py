@@ -59,7 +59,7 @@ from wikidebia_editorial_workspace import (
     workspace_receipt_hash,
 )
 
-KIT_VERSION = "2.15.17"
+KIT_VERSION = "2.15.19"
 REVIEW_SCHEMA = "wikidebia-fr-page-metadata-review-1.1"
 METADATA_LOCK_SCHEMA = "wikidebia-fr-page-metadata-lock-1.0"
 CHANGESET_SCHEMA = "wikidebia-editorial-changeset-1.1"
@@ -228,7 +228,7 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
             "TITLE_CANONICAL_MISSING", "TITLE_CANONICAL_SPACING", "TITLE_CANONICAL_TRAILING_PERIOD",
             "TITLE_CANONICAL_NON_ASCII_QUOTES", "TITLE_CANONICAL_ELLIPSIS", "TITLE_DISPLAYED_MISSING",
             "TITLE_DISPLAYED_SPACING", "TITLE_DISPLAYED_TRAILING_PERIOD", "TITLE_DISPLAYED_NON_ASCII_QUOTES",
-            "TITLE_DISPLAYED_ELLIPSIS", "TITLE_DISPLAYED_TRAILING_CONNECTOR", "TITLE_DISPLAYED_NOT_SHORTER",
+            "TITLE_DISPLAYED_ELLIPSIS", "TITLE_DISPLAYED_TRAILING_CONNECTOR",
         }
         remaining = [row for row in title_diagnostics(canonical, displayed) if row.get("code") in blocking_codes]
         if remaining:
@@ -242,12 +242,15 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
             "displayed_title_complete_proposition",
             "displayed_title_argument_intelligible",
             "displayed_title_concision_reviewed",
+            "displayed_title_semantically_equivalent",
         ):
             if decision.get(attestation) is not True:
                 raise EditorialReviewError(f"Attestation manquante ({attestation}) : {entity_id}")
-        if normalized_identity(canonical) == normalized_identity(displayed):
-            if not _text_ok(decision.get("displayed_title_identity_justification"), 40):
-                raise EditorialReviewError(f"Identité titre canonique/affiché non justifiée : {entity_id}")
+        if normalized_identity(canonical) != normalized_identity(displayed):
+            if decision.get("displayed_title_improves_readability_when_distinct") is not True:
+                raise EditorialReviewError(f"Le titre affiché distinct n’améliore pas explicitement la lisibilité : {entity_id}")
+            if not _text_ok(decision.get("displayed_title_rationale"), 40):
+                raise EditorialReviewError(f"Le raccourcissement du titre affiché n’est pas suffisamment justifié : {entity_id}")
 
     rub_issues = rubrique_diagnostics(rubriques, False)
     if rub_issues:
@@ -309,6 +312,8 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
             "displayed_title_complete_proposition": decision.get("displayed_title_complete_proposition") if entity_type == "argument" else None,
             "displayed_title_argument_intelligible": decision.get("displayed_title_argument_intelligible") if entity_type == "argument" else None,
             "displayed_title_concision_reviewed": decision.get("displayed_title_concision_reviewed") if entity_type == "argument" else None,
+            "displayed_title_semantically_equivalent": decision.get("displayed_title_semantically_equivalent") if entity_type == "argument" else None,
+            "displayed_title_improves_readability_when_distinct": decision.get("displayed_title_improves_readability_when_distinct") if entity_type == "argument" else None,
             "keywords_ordered_by_relevance": True,
         },
     }
@@ -333,8 +338,6 @@ def _validate_corpus_rules(final_items: Sequence[Mapping[str, Any]]) -> dict[str
         title_map[key] = title
     identical = sum(normalized_identity(item.get("canonical_title")) == normalized_identity(item.get("displayed_title")) for item in arguments)
     identity_ratio = identical / len(arguments)
-    if identity_ratio > 0.10:
-        raise EditorialReviewError(f"Trop de titres affichés identiques aux titres canoniques : {identity_ratio:.2%} > 10 %")
     sets = collections.Counter(tuple(item.get("keywords") or []) for item in arguments)
     dominant_count = sets.most_common(1)[0][1]
     dominant_ratio = dominant_count / len(arguments)

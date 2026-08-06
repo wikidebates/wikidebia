@@ -49,7 +49,7 @@ from wikidebia_graph_extract import (
     normalize_key,
 )
 
-KIT_VERSION = "2.15.17"
+KIT_VERSION = "2.15.19"
 WORKSPACE_SCHEMA = "wikidebia-editorial-workspace-1.0"
 AUDIT_SCHEMA = "wikidebia-editorial-audit-1.0"
 TASK_SCHEMA = "wikidebia-editorial-task-ledger-1.0"
@@ -134,10 +134,6 @@ def title_diagnostics(canonical: str, displayed: str) -> list[dict[str, Any]]:
                 "field": "displayed_title",
                 "heuristic": True,
             })
-        if canonical and normalized_identity(canonical) == normalized_identity(displayed):
-            issues.append({"code": "TITLE_DISPLAYED_IDENTICAL_REQUIRES_JUSTIFICATION", "severity": "review", "field": "displayed_title"})
-        if canonical and len(displayed) > len(canonical):
-            issues.append({"code": "TITLE_DISPLAYED_NOT_SHORTER", "severity": "review", "field": "displayed_title"})
     return issues
 
 
@@ -318,6 +314,8 @@ def page_review_item(
             "displayed_title_complete_proposition": False if entity_type == "argument" else None,
             "displayed_title_argument_intelligible": False if entity_type == "argument" else None,
             "displayed_title_concision_reviewed": False if entity_type == "argument" else None,
+            "displayed_title_semantically_equivalent": False if entity_type == "argument" else None,
+            "displayed_title_improves_readability_when_distinct": False if entity_type == "argument" else None,
             "displayed_title_identity_justification": "",
             "fourth_rubrique_exception_rationale": "",
             "reviewer": "",
@@ -537,14 +535,6 @@ def build_audit(working_copy: Path, debate_id: str, work_id: str) -> tuple[dict[
     dominant_set_count = max(exact_keyword_sets.values(), default=0)
     corpus_issues: list[dict[str, Any]] = []
     identity_ratio = (identical / len(argument_items)) if argument_items else 0.0
-    if identity_ratio > 0.10:
-        corpus_issues.append({
-            "code": "DISPLAYED_TITLE_IDENTITY_RATIO_OVER_10_PERCENT",
-            "severity": "blocking",
-            "count": identical,
-            "total": len(argument_items),
-            "ratio": round(identity_ratio, 6),
-        })
     dominant_ratio = (dominant_set_count / len(argument_items)) if argument_items else 0.0
     if dominant_ratio > 0.25:
         corpus_issues.append({

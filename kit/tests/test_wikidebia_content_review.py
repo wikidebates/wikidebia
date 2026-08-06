@@ -110,14 +110,27 @@ def complete_content_review(workspace: Path) -> None:
         "common_acronym": None,
         "complete_topic_initial_capital_justification": None,
         "introduction_decision": "change",
-        "proposed_introduction": "{{Sous-partie|titre=Définition et périmètre|contenu=La proposition du débat test oppose deux réponses clairement délimitées et expose leurs principaux enjeux.}}",
-        "introduction_rationale": "Cette introduction définit le sujet, le périmètre et les enjeux sans recopier le graphe.",
+        "proposed_introduction": "{{Sous-partie|titre=Définition et périmètre|contenu=La proposition du débat test oppose deux réponses clairement délimitées et précise ce qui est effectivement discuté.}}{{Sous-partie|titre=Enjeux du débat|contenu=La réponse retenue modifie la manière d’expliquer le phénomène étudié et les critères utilisés pour accepter une conclusion. Elle peut aussi orienter des décisions collectives, des pratiques institutionnelles et des choix individuels qui dépassent la seule formulation théorique. Une suspension du jugement déplace enfin l’attention vers les limites des preuves disponibles et vers le degré de confiance raisonnablement accordé à chaque position.}}",
+        "introduction_rationale": "Cette introduction définit le sujet et développe des conséquences concrètes sans recopier le graphe argumentatif.",
         "subsections": [{
             "title": "Définition et périmètre",
             "purpose": "Définir la proposition et préciser le périmètre nécessaire à la compréhension du désaccord.",
             "necessary_for_understanding": True,
             "technical_or_specialized": False,
             "relevance_to_debate_explained": True,
+            "stakes_section": False,
+            "concrete_stakes": [],
+        }, {
+            "title": "Enjeux du débat",
+            "purpose": "Expliquer les conséquences intellectuelles, institutionnelles et pratiques des réponses possibles.",
+            "necessary_for_understanding": True,
+            "technical_or_specialized": False,
+            "relevance_to_debate_explained": True,
+            "stakes_section": True,
+            "concrete_stakes": [
+                "Modification des cadres explicatifs et des critères de rationalité", 
+                "Conséquences sur les décisions collectives et les pratiques institutionnelles"
+            ],
         }],
         "wikipedia_articles_decision": "change",
         "proposed_wikipedia_articles": ["Argumentation"],
@@ -136,15 +149,15 @@ def complete_content_review(workspace: Path) -> None:
     for field in content.INTRO_TRUE_FIELDS:
         debate[field] = True
     debate["proposed_documentation"] = {
-        "bibliographie-pour": ["S00001", "S00002"],
-        "bibliographie-contre": ["S00001", "S00002"],
-        "bibliographie-ni-pour-ni-contre": ["S00001", "S00002"],
-        "sitographie-pour": ["S00003", "S00004"],
-        "sitographie-contre": ["S00003", "S00004"],
-        "sitographie-ni-pour-ni-contre": ["S00003", "S00004"],
-        "vidéographie-pour": ["S00005", "S00006"],
-        "vidéographie-contre": ["S00005", "S00006"],
-        "vidéographie-ni-pour-ni-contre": ["S00005", "S00006"],
+        "bibliographie-pour": ["S00001"],
+        "bibliographie-contre": ["S00002"],
+        "bibliographie-ni-pour-ni-contre": [],
+        "sitographie-pour": ["S00003"],
+        "sitographie-contre": ["S00004"],
+        "sitographie-ni-pour-ni-contre": [],
+        "vidéographie-pour": ["S00005"],
+        "vidéographie-contre": ["S00006"],
+        "vidéographie-ni-pour-ni-contre": [],
     }
     for index, item in enumerate(review["arguments"], start=1):
         node_id = item["id"]
@@ -184,21 +197,22 @@ def complete_content_review(workspace: Path) -> None:
     }
     common.write_json(review_path, review)
 
-    debate_roles = ["pro_reference", "con_reference", "neutral_reference"]
+    source_roles = {
+        "S00001": "pro_reference", "S00002": "con_reference",
+        "S00003": "pro_reference", "S00004": "con_reference",
+        "S00005": "pro_reference", "S00006": "con_reference",
+    }
     sources = []
     for source_id, source_type in (("S00001", "bibliography"), ("S00002", "bibliography"), ("S00003", "webliography"), ("S00004", "webliography"), ("S00005", "videography"), ("S00006", "videography")):
-        usages = [
-            {
-                "page_id": "debat_test",
-                "language": "fr",
-                "role": role,
-                "language_fit": "native",
-                "preferred_equivalent_source_id": None,
-                "documentary_scope": "broad_synthesis",
-                "selection_reason": "Cette source française documente la position ou la synthèse de manière suffisamment large.",
-            }
-            for role in debate_roles
-        ]
+        usages = [{
+            "page_id": "debat_test",
+            "language": "fr",
+            "role": source_roles[source_id],
+            "language_fit": "native",
+            "preferred_equivalent_source_id": None,
+            "documentary_scope": "broad_synthesis",
+            "selection_reason": "Cette source française documente précisément l’orientation qui lui est attribuée.",
+        }]
         if source_id == "S00001":
             usages.extend({
                 "page_id": item["id"],
@@ -255,24 +269,42 @@ def test_finalize_content_review_seals_sources_and_content(tmp_path: Path):
     assert common.full_tree_sha256(workspace / "reviewed-copy") == before
     sealed = json.loads((workspace / "reviews/fr/content_review.json").read_text(encoding="utf-8"))
     assert sealed["review_sha256"] == content.content_review_sha256(sealed)
-    assert sealed["summary"]["debate_documentary_references"] == 18
+    assert sealed["summary"]["debate_documentary_references"] == 6
     assert sealed["summary"]["citations"] == 4
 
 
-def test_finalize_rejects_debate_bucket_with_single_reference(tmp_path: Path):
+def test_finalize_accepts_single_reference_in_a_debate_bucket(tmp_path: Path):
     project, workspace, work_id = make_metadata_applied(tmp_path)
     content.prepare_review(project, "debat_test", work_id)
     complete_content_review(workspace)
-    path = workspace / "reviews/fr/content_review.json"
-    data = json.loads(path.read_text(encoding="utf-8"))
-    data["debate"]["review"]["proposed_documentation"]["bibliographie-pour"] = ["S00001"]
-    common.write_json(path, data)
+    result = content.finalize_review(project, "debat_test", work_id)
+    assert result["status"] == "fr_content_review_finalized"
+
+
+def test_finalize_rejects_same_reference_in_pro_and_con_buckets(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    content.prepare_review(project, "debat_test", work_id)
+    complete_content_review(workspace)
+    review_path = workspace / "reviews/fr/content_review.json"
+    review = json.loads(review_path.read_text(encoding="utf-8"))
+    review["debate"]["review"]["proposed_documentation"]["bibliographie-contre"] = ["S00001"]
+    common.write_json(review_path, review)
+    sources_path = workspace / "data/sources_working.json"
+    sources = json.loads(sources_path.read_text(encoding="utf-8"))
+    source = next(row for row in sources["sources"] if row["id"] == "S00001")
+    source["usage"].append({
+        "page_id": "debat_test", "language": "fr", "role": "con_reference",
+        "language_fit": "native", "preferred_equivalent_source_id": None,
+        "documentary_scope": "broad_synthesis",
+        "selection_reason": "Cette attribution contradictoire sert uniquement à vérifier le blocage automatique.",
+    })
+    common.write_json(sources_path, sources)
     try:
         content.finalize_review(project, "debat_test", work_id)
     except content.ContentReviewError as exc:
-        assert "au moins deux" in str(exc)
+        assert "ni pour ni contre" in str(exc) or "plusieurs orientations" in str(exc)
     else:
-        raise AssertionError("Bucket documentaire insuffisant accepté")
+        raise AssertionError("Référence dupliquée entre pour et contre acceptée")
 
 
 def test_finalize_rejects_forceful_expression_not_in_summary(tmp_path: Path):
@@ -359,3 +391,56 @@ def test_finalize_rejects_reviewed_copy_changed_after_prepare(tmp_path: Path):
         assert "reviewed-copy" in str(exc)
     else:
         raise AssertionError("Copie révisée altérée acceptée")
+
+
+def test_finalize_rejects_youtube_video_without_creator(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    content.prepare_review(project, "debat_test", work_id)
+    complete_content_review(workspace)
+    sources_path = workspace / "data/sources_working.json"
+    data = json.loads(sources_path.read_text(encoding="utf-8"))
+    video = next(row for row in data["sources"] if row["id"] == "S00005")
+    video["metadata"]["link"] = "https://www.youtube.com/watch?v=example"
+    video["metadata"]["authors"] = []
+    common.write_json(sources_path, data)
+    try:
+        content.finalize_review(project, "debat_test", work_id)
+    except content.ContentReviewError as exc:
+        assert "créateur ou la chaîne" in str(exc)
+    else:
+        raise AssertionError("Vidéo YouTube sans créateur acceptée")
+
+
+def test_finalize_rejects_missing_mandatory_stakes_subsection(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    content.prepare_review(project, "debat_test", work_id)
+    complete_content_review(workspace)
+    review_path = workspace / "reviews/fr/content_review.json"
+    review = json.loads(review_path.read_text(encoding="utf-8"))
+    debate = review["debate"]["review"]
+    debate["proposed_introduction"] = "{{Sous-partie|titre=Définition et périmètre|contenu=Une introduction suffisamment développée mais privée de la rubrique obligatoire consacrée aux conséquences du désaccord.}}"
+    debate["subsections"] = [debate["subsections"][0]]
+    common.write_json(review_path, review)
+    try:
+        content.finalize_review(project, "debat_test", work_id)
+    except content.ContentReviewError as exc:
+        assert "Enjeux du débat" in str(exc)
+    else:
+        raise AssertionError("La rubrique Enjeux du débat manquante aurait dû être refusée")
+
+
+def test_finalize_rejects_symbolic_stakes_subsection(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    content.prepare_review(project, "debat_test", work_id)
+    complete_content_review(workspace)
+    review_path = workspace / "reviews/fr/content_review.json"
+    review = json.loads(review_path.read_text(encoding="utf-8"))
+    debate = review["debate"]["review"]
+    debate["proposed_introduction"] = "{{Sous-partie|titre=Définition et périmètre|contenu=Le périmètre du débat est défini.}}{{Sous-partie|titre=Enjeux du débat|contenu=Ce débat présente des enjeux philosophiques, sociaux et politiques importants.}}"
+    common.write_json(review_path, review)
+    try:
+        content.finalize_review(project, "debat_test", work_id)
+    except content.ContentReviewError as exc:
+        assert "trop brève ou symbolique" in str(exc)
+    else:
+        raise AssertionError("Une rubrique d’enjeux purement symbolique aurait dû être refusée")

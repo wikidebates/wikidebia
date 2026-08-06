@@ -1,3 +1,20 @@
+## 0.4.46 — 6 août 2026
+
+- alignement sur la norme 1.2.43 ;
+- sous-partie dédiée aux enjeux obligatoire sous la politique 1.2.43 ;
+- contrôle du titre français ou anglais, du volume minimal et de la ligne de revue correspondante ;
+- au moins deux enjeux concrets distincts requis dans le registre ;
+- compatibilité 1.2.42 conservée sans rétroactivité silencieuse.
+
+## 0.4.45 — 6 août 2026
+
+- alignement sur la norme 1.2.42 ;
+- suppression du plafond statistique imposant des titres affichés distincts ;
+- contrôle des références dupliquées entre orientations documentaires ;
+- contrôle du créateur ou de la chaîne pour les vidéos YouTube des pages Débat ;
+- revue renforcée de la densité informative des introductions ;
+- compatibilité conservée avec les normes antérieures.
+
 ## 0.4.44 — 6 août 2026
 
 - alignement sur la norme 1.2.41 ;

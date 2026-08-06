@@ -45,7 +45,7 @@ from wikidebia_corpus_init import extract_page_metadata
 from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
 from wikidebia_editorial_review import EditorialReviewError, _assert_source_unchanged, _run_validator
 
-KIT_VERSION = "2.15.17"
+KIT_VERSION = "2.15.19"
 PREVIOUS_NORM_VERSION = "1.2.33"
 COMPATIBLE_PREVIOUS_NORM_VERSIONS = {"1.2.27", "1.2.28", "1.2.30", PREVIOUS_NORM_VERSION}
 RENDER_LOCK_SCHEMA = "wikidebia-bilingual-render-lock-1.0"
@@ -604,14 +604,12 @@ def _finalize_individual_review(
             "displayed_title_argument_intelligible_en": True,
             "displayed_title_concision_reviewed_fr": True,
             "displayed_title_concision_reviewed_en": True,
-            "displayed_title_identity_justification_fr": (
-                "Le titre complet a été conservé après revue car aucune réduction ne préserve aussi exactement la thèse."
-                if fr_canonical.casefold() == fr_displayed.casefold() else ""
-            ),
-            "displayed_title_identity_justification_en": (
-                "The full title was retained after review because no shorter wording preserves the claim as precisely."
-                if en_canonical.casefold() == en_displayed.casefold() else ""
-            ),
+            "displayed_title_semantically_equivalent_fr": True,
+            "displayed_title_semantically_equivalent_en": True,
+            "displayed_title_improves_readability_when_distinct_fr": fr_canonical.casefold() != fr_displayed.casefold(),
+            "displayed_title_improves_readability_when_distinct_en": en_canonical.casefold() != en_displayed.casefold(),
+            "displayed_title_identity_justification_fr": "",
+            "displayed_title_identity_justification_en": "",
             "new_rubriques": list(fr.get("rubriques") or []),
             "new_sections_en": list(en.get("sections") or []),
             "new_keywords_fr": list(fr.get("keywords") or []),

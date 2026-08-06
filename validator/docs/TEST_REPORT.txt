@@ -1,10 +1,8 @@
-Wikidéb’IA Validator 0.4.44
-Norme implémentée : 1.2.41
-Tests pytest : 270 réussis, 0 échec
-Contrôles nouveaux de la révision : absence historique attestée des résumés, sans dérogation pour les pages nouvelles
-Résumés : provenance du champ vérifiée contre la présence réelle du paramètre dans la source
-Initialisation : présence et valeur vérifiées contre l’inventaire source
-Mots-clés : intersections de domaines décomposées ; locutions atomiques conventionnelles conservées
-Compatibilité : normes 1.1.0 à 1.2.41, sans rétroactivité silencieuse
+Wikidéb’IA Validator 0.4.46
+Norme implémentée : 1.2.43
+Tests pytest : 281 réussis, 0 échec
+Contrôles 1.2.43 : sous-partie obligatoire « Enjeux du débat », au moins deux conséquences concrètes, densité minimale et absence de catalogue argumentatif
+Contrôles 1.2.42 conservés : orientations documentaires exclusives, attribution YouTube et titres affichés non mécaniques
+Compatibilité : normes 1.1.0 à 1.2.43, sans rétroactivité silencieuse
 Validation ordinaire : strictement locale et en lecture seule
 Résultat : RÉUSSI

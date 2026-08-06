@@ -1,4 +1,4 @@
-# Guide de traduction anglaise contrôlée — Kit 2.15.17
+# Guide de traduction anglaise contrôlée — Kit 2.15.19
 
 La traduction anglaise commence uniquement après le verrouillage complet des métadonnées et du contenu français. Elle travaille dans le même workspace éditorial et ne modifie ni le corpus promu, ni `working-copy/`, ni `reviewed-copy/`, ni `content-reviewed-copy/`.
 
@@ -19,7 +19,7 @@ Le registre couvre la page Debate, chaque argument actif, le vocabulaire contrô
 
 ## 2. Revue à compléter
 
-La page Debate reçoit un titre canonique, `topic`, `complete-topic`, des sections, des keywords, une introduction structurée, des articles Wikipédia anglais vérifiés et neuf paramètres documentaires comportant chacun au moins deux références anglaises distinctes.
+La page Debate reçoit un titre canonique, `topic`, `complete-topic`, des sections, des keywords, une introduction structurée, des articles Wikipédia anglais vérifiés et une documentation classée selon sa contribution réelle, sans quota par paramètre. Une source couvrant les deux positions est placée dans la rubrique neutre.
 
 Chaque argument reçoit un titre canonique et un displayed title idiomatiques, des sections exactement équivalentes aux rubriques françaises, des keywords issus du vocabulaire bilingue, un summary substantiellement équivalent et une documentation anglaise adaptée. Le ratio de longueur anglais/français doit rester compris entre 0,60 et 1,45.
 
@@ -42,13 +42,15 @@ La finalisation vérifie notamment :
 - la couverture exacte de tous les arguments actifs ;
 - l’unicité et l’autonomie des titres canoniques anglais ;
 - le caractère propositionnel des displayed titles ;
-- la limite de 10 % d’identités exactes entre titres canoniques et affichés ;
+- la possibilité de conserver le titre canonique comme displayed title lorsqu’il est déjà le plus clair ;
+- pour tout displayed title distinct, l’équivalence sémantique et le gain réel de lisibilité ;
 - la correspondance des sections avec les rubriques françaises ;
 - la correspondance des keywords avec le vocabulaire contrôlé ;
 - la limite de 25 % pour un même jeu exact de keywords ;
 - l’équivalence substantielle des introductions et summaries ;
 - la couverture exacte des citations françaises, la préservation de leurs paramètres, l’équivalence des dates et l’avertissement de traduction ;
 - la langue et la vérification des sources anglaises ;
+- l’absence de doublon documentaire entre orientations et l’attribution des vidéos YouTube ;
 - la présence des attestations éditoriales requises ;
 - l’absence de page finale et d’accès distant.
 

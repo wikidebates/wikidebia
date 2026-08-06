@@ -987,7 +987,7 @@ PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
 
 
 def _validate_french_parenthetical_dashes(ctx: PackageContext, tmpl: Template, rel: str, page_type: str) -> None:
-    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41"}:
+    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43"}:
         return
     values: list[tuple[str, str]] = []
     if page_type == "argument":
@@ -1203,7 +1203,7 @@ def _validate_legacy_content_preservation(ctx: PackageContext, parsed_by_key: di
 
     source_templates: dict[tuple[str, str], Template] = {}
     verification_revision = cfg.get("verification_revision")
-    if verification_revision in {"0.4.42", "0.4.43", "0.4.44"}:
+    if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46"}:
         inventory_rel = cfg.get("source_inventory_path")
         inventory_sha = cfg.get("source_inventory_sha256")
         if not isinstance(inventory_rel, str) or not ctx.exists(inventory_rel):
@@ -1259,11 +1259,11 @@ def _validate_legacy_content_preservation(ctx: PackageContext, parsed_by_key: di
             source_summary = source_tmpl.one(field) if source_tmpl is not None else None
             if provenance not in {"historical_existing", "generated_after_import", "historical_absent"}:
                 ctx.report.error("WDV-EDT-027", "Provenance du résumé historique invalide", path=lock_rel, details={"page_id":key[0],"provenance":provenance})
-            elif verification_revision in {"0.4.42", "0.4.43", "0.4.44"} and source_tmpl is None:
+            elif verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46"} and source_tmpl is None:
                 ctx.report.error("WDV-EDT-027", "Page historique absente de l’inventaire source", path=lock_rel, details={"page_id": key[0], "language": lang})
-            elif verification_revision in {"0.4.42", "0.4.43", "0.4.44"} and provenance == "historical_existing" and source_summary is None:
+            elif verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46"} and provenance == "historical_existing" and source_summary is None:
                 ctx.report.error("WDV-EDT-027", "Résumé déclaré historique mais absent de l’inventaire source", path=lock_rel, details={"page_id": key[0]})
-            elif verification_revision in {"0.4.42", "0.4.43", "0.4.44"} and provenance in {"generated_after_import", "historical_absent"} and source_summary is not None:
+            elif verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46"} and provenance in {"generated_after_import", "historical_absent"} and source_summary is not None:
                 ctx.report.error("WDV-EDT-027", "Résumé historique présent dans l’inventaire mais classé comme absent ou généré", path=lock_rel, details={"page_id": key[0], "provenance": provenance})
             elif provenance == "historical_absent":
                 if cfg.get("historical_summary_absence_revision") != "1.2.40":
@@ -1280,7 +1280,7 @@ def _validate_legacy_content_preservation(ctx: PackageContext, parsed_by_key: di
                 actual_sha=hashlib.sha256((actual or "").encode("utf-8")).hexdigest()
                 expected_sha = entry.get("summary_sha256")
                 expected_length = entry.get("summary_length")
-                if verification_revision in {"0.4.42", "0.4.43", "0.4.44"} and source_summary is not None:
+                if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46"} and source_summary is not None:
                     source_sha = hashlib.sha256(source_summary.encode("utf-8")).hexdigest()
                     if expected_sha != source_sha or expected_length != len(source_summary):
                         ctx.report.error("WDV-EDT-027", "Verrou du résumé historique incohérent avec l’inventaire source", path=lock_rel, details={"page_id": key[0], "expected_sha256": source_sha, "lock_sha256": expected_sha})
@@ -1292,7 +1292,7 @@ def _validate_legacy_content_preservation(ctx: PackageContext, parsed_by_key: di
             actual=tmpl.one(init_field)
             source_tmpl = source_templates.get(key)
             source_initialisation = source_tmpl.one(init_field) if source_tmpl is not None else None
-            if verification_revision in {"0.4.42", "0.4.43", "0.4.44"} and source_tmpl is not None:
+            if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46"} and source_tmpl is not None:
                 expected_present = source_initialisation is not None
                 lock_present = isinstance(state, dict) and state.get("present") is True
                 lock_value = state.get("value") if isinstance(state, dict) else None
@@ -1305,7 +1305,7 @@ def _validate_legacy_content_preservation(ctx: PackageContext, parsed_by_key: di
                     ctx.report.error("WDV-EDT-027", "Paramètre initialisation historique modifié ou supprimé", path=next((p.get("file_path") for p in manifest.get("pages",[]) if p.get("page_id")==key[0] and p.get("language")==lang), lock_rel), details={"page_id":key[0],"expected":state.get("value"),"actual":actual})
             elif actual is not None:
                 ctx.report.error("WDV-EDT-027", "Paramètre initialisation ajouté sans provenance historique", path=next((p.get("file_path") for p in manifest.get("pages",[]) if p.get("page_id")==key[0] and p.get("language")==lang), lock_rel), details={"page_id":key[0],"actual":actual})
-    if verification_revision in {"0.4.42", "0.4.43", "0.4.44"}:
+    if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46"}:
         for key in parsed_by_key:
             if key in source_templates and key not in by_key:
                 ctx.report.error("WDV-EDT-027", "Page importée active absente du verrou historique", path=lock_rel, details={"page_id": key[0], "language": key[1]})

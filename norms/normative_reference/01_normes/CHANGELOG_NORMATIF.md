@@ -1,3 +1,20 @@
+## 1.2.43 — 6 août 2026
+
+- sous-partie `Enjeux du débat` obligatoire dans toute introduction française ;
+- sous-partie `Stakes of the debate` obligatoire dans toute introduction anglaise ;
+- au moins deux conséquences concrètes consignées dans la revue ;
+- interdiction des listes génériques de domaines et de la reproduction du graphe argumentatif ;
+- activation rétrocompatible par `introduction_policy_revision=1.2.43`.
+
+## 1.2.42 — 6 août 2026
+
+- classement neutre obligatoire des sources présentant plusieurs positions et interdiction des doublons entre orientations ;
+- suppression des quotas documentaires par paramètre de débat ;
+- auteur ou chaîne obligatoire pour toute référence YouTube lorsque l'attribution est visible ;
+- introduction fondée sur la densité informative, sans rubrique générique de remplissage ;
+- identité titre canonique / titre affiché admise sans plafond ;
+- reformulation d'un titre affiché autorisée seulement avec amélioration réelle et équivalence sémantique attestée.
+
 ## 1.2.41 — 6 août 2026
 
 - simplification des mots-clés contextuels des pages nouvelles ;

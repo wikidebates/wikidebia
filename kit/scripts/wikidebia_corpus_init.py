@@ -35,10 +35,10 @@ from wikidebia_graph_extract import (
     normalize_key,
 )
 
-KIT_VERSION = "2.15.17"
+KIT_VERSION = "2.15.19"
 CORPUS_INIT_VERSION = "1.0.0"
-NORM_VERSION = "1.2.41"
-VALIDATOR_VERSION = "0.4.44"
+NORM_VERSION = "1.2.43"
+VALIDATOR_VERSION = "0.4.46"
 
 RUBRIQUES = {
     "Aménagement", "Culture", "Droit", "Écologie", "Économie", "Éducation",
@@ -779,6 +779,10 @@ def build_corpus(
                 "keyword_policy_revision": "1.2.39",
                 "summary_policy_revision": "1.2.39",
                 "capitalization_policy_revision": "1.2.39",
+                "displayed_title_policy_revision": "1.2.43",
+                "debate_documentation_policy_revision": "1.2.43",
+                "introduction_policy_revision": "1.2.43",
+                "video_authorship_policy_revision": "1.2.43",
                 "creation_date": dt.date.today().isoformat(),
                 "individual_review_path": "reviews/individual_review.json",
                 "individual_review_report_path": "reports/import_report.md",
@@ -787,8 +791,8 @@ def build_corpus(
                 "debate_documentation": {
                     "min_subsections": 1,
                     "min_references": 0,
-                    "reject_singleton_bucket_pattern": True,
-                    "profile_rationale": "Profil provisoire d'un corpus importé; la profondeur documentaire sera fixée lors du Work éditorial.",
+                    "reject_singleton_bucket_pattern": False,
+                    "profile_rationale": "Profil provisoire sans quota par orientation; la revue éditoriale retiendra uniquement les sous-parties et sources réellement informatives.",
                 },
                 "introduction_references": {"required": True},
                 "introduction_review_path": "reviews/introduction_review.json",

@@ -137,7 +137,7 @@ Le catalogue machine-readable complet est `requirements_catalog_wikidebia.json` 
 - **DFR-001 — ACTIVE — human+automatic heuristics** : sujet is the simplest general theme and is not the full interrogative debate proposition.
 - **DFR-002 — ACTIVE — human+heuristic** : sujet-complet expresses the exact object, integrates naturally in a sentence, and uses the common acronym when one exists.
 - **DFR-003 — ACTIVE — human** : The introduction gives a non-specialist reader the information needed to understand the debate before reading the arguments; it is encyclopedic, neutral, precise, synthetic and structured according to the subject.
-- **DFR-004 — ACTIVE — human+prompt** : The introduction normally defines the subject and scope, explains the exact meaning of the question, gives relevant historical and current context, supplies necessary background and explicitly presents the stakes; these functions are adapted to the debate rather than copied as fixed subsection titles.
+- **DFR-004 — ACTIVE — human+prompt** : The introduction defines the subject and scope, explains the exact meaning of the question, gives relevant historical and current context, supplies necessary background and contains a dedicated stakes subsection. The stakes subsection presents concrete consequences rather than a generic list or a copy of the argument graph.
 - **DFR-005 — ACTIVE — human** : The introduction presents established facts, uncertainty, interpretive disagreement and relevant evolution without advocating a camp; every subsection has an identifiable purpose in the reader’s understanding.
 - **DFR-006 — ACTIVE — human** : Do not turn the introduction into a detailed pro/con list, a literature-review outline, a mirror of the graph or a topic-specific checklist inherited from another debate.
 - **DFR-007 — ACTIVE — automatic+human** : Important factual claims in the introduction receive inline references; generated pages never add <references /> tags.
@@ -175,7 +175,7 @@ Le catalogue machine-readable complet est `requirements_catalog_wikidebia.json` 
 - **DFR-038 — ACTIVE — human** : The introduction follows a coherent progression for a reader discovering the subject; titles and opening sentences make each subsection's role clear.
 - **DFR-039 — ACTIVE — human+profile** : No universal minimum of five subsections or twenty references applies; any local minimum is justified by the breadth and complexity of the debate.
 - **DFR-040 — ACTIVE — automatic+human** : The introduction review confirms that no topic-specific checklist, corpus identifier or pilot-debate constant has been imported into the generic production rules.
-- **DFR-041 — ACTIVE — human** : The stakes of the debate are stated explicitly rather than left implicit in the later argument tree.
+- **DFR-041 — ACTIVE — human** : The stakes of the debate are developed in a dedicated subsection titled « Enjeux du débat » in French or « Stakes of the debate » in English; at least two concrete consequences are recorded and the subsection does not reproduce the argument tree.
 
 ## 9. Page Debate anglaise
 

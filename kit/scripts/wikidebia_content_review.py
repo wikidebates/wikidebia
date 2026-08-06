@@ -48,7 +48,7 @@ from wikidebia_editorial_review import (
 )
 from wikidebia_graph_extract import iter_templates, normalize_key
 
-KIT_VERSION = "2.15.17"
+KIT_VERSION = "2.15.19"
 CONTENT_REVIEW_SCHEMA = "wikidebia-fr-content-review-1.0"
 CONTENT_LOCK_SCHEMA = "wikidebia-fr-content-lock-1.0"
 CONTENT_CHANGESET_SCHEMA = "wikidebia-fr-content-changeset-1.0"
@@ -107,10 +107,13 @@ SUMMARY_TRUE_FIELDS = (
 )
 INTRO_TRUE_FIELDS = (
     "subject_and_scope_defined",
+    "stakes_explained",
+    "dedicated_stakes_subsection_present",
+    "stakes_consequences_concrete",
+    "stakes_not_argument_catalogue",
     "debate_question_explained",
     "history_and_evolution_addressed",
     "current_state_addressed_or_not_applicable",
-    "stakes_explained",
     "factual_claims_referenced",
     "progression_coherent",
     "no_argument_tree_mirroring",
@@ -124,6 +127,11 @@ INTRO_TRUE_FIELDS = (
     "topic_is_nominal_label",
     "conventional_topic_label_used_or_not_applicable",
     "complete_topic_lowercase_initial_or_justified",
+    "information_density_reviewed",
+    "subsections_non_redundant",
+    "no_generic_stakes_filler",
+    "documentation_orientation_reviewed",
+    "youtube_authorship_reviewed",
 )
 NUMBER = re.compile(r"(?<![\wÀ-ÿ])\d+(?:[.,]\d+)?(?:\s*%)?(?![\wÀ-ÿ])")
 META_DISCOURSE = re.compile(r"\b(?:cet argument|l'argument|la page|le raisonnement présenté)\b", re.I)
@@ -317,6 +325,8 @@ def _blank_intro_review(source: Mapping[str, Any]) -> dict[str, Any]:
                 "necessary_for_understanding": False,
                 "technical_or_specialized": False,
                 "relevance_to_debate_explained": False,
+                "stakes_section": False,
+                "concrete_stakes": [],
             }
             for row in source.get("subsections") or []
         ],
@@ -532,6 +542,8 @@ def _validate_source_registry(data: Mapping[str, Any], debate_id: str) -> tuple[
             raise ContentReviewError(f"Référence bibliographique incomplète : {source_id}")
         if source_type in {"webliography", "videography"} and not HTTP_URL.match(str(metadata.get("link") or "")):
             raise ContentReviewError(f"Lien HTTP(S) obligatoire pour {source_id}")
+        if source_type == "videography" and re.search(r"(?:youtube\.com/(?:watch|live)|youtu\.be/)", str(metadata.get("link") or ""), re.I) and not authors:
+            raise ContentReviewError(f"Une vidéo YouTube doit indiquer le créateur ou la chaîne : {source_id}")
         date = metadata.get("date")
         if isinstance(date, str) and re.fullmatch(r"\d{4}-\d{2}(?:-\d{2})?", date.strip()):
             raise ContentReviewError(f"Date documentaire au format machine interdite : {source_id}")
@@ -595,11 +607,31 @@ def _validate_debate(review: Mapping[str, Any], source: Mapping[str, Any], sourc
     ledger = review.get("subsections")
     if not isinstance(ledger, list) or [row.get("title") for row in ledger if isinstance(row, dict)] != [row["title"] for row in subsection_values]:
         raise ContentReviewError("La revue des sous-parties ne correspond pas à l’introduction retenue")
-    for index, row in enumerate(ledger, start=1):
+    stakes_title = "Enjeux du débat"
+    stakes_rows = []
+    stakes_contents = []
+    for index, (row, subsection) in enumerate(zip(ledger, subsection_values), start=1):
         if len(str(row.get("purpose") or "").strip()) < 12 or row.get("necessary_for_understanding") is not True:
             raise ContentReviewError(f"Sous-partie #{index} insuffisamment justifiée")
         if row.get("technical_or_specialized") is True and row.get("relevance_to_debate_explained") is not True:
             raise ContentReviewError(f"Pertinence technique non attestée pour la sous-partie #{index}")
+        if subsection["title"] == stakes_title:
+            stakes_rows.append(row)
+            stakes_contents.append(subsection["content"])
+    if len(stakes_rows) != 1:
+        raise ContentReviewError('L’introduction française doit contenir exactement une sous-partie intitulée "Enjeux du débat"')
+    stakes_row = stakes_rows[0]
+    if stakes_row.get("stakes_section") is not True:
+        raise ContentReviewError("La revue doit identifier explicitement la sous-partie Enjeux du débat")
+    concrete_stakes = stakes_row.get("concrete_stakes")
+    if not isinstance(concrete_stakes, list):
+        raise ContentReviewError("Les conséquences concrètes de la sous-partie Enjeux du débat sont absentes")
+    normalized_stakes = [str(item).strip() for item in concrete_stakes if str(item).strip()]
+    if len(normalized_stakes) < 2 or len({item.casefold() for item in normalized_stakes}) < 2 or any(len(item) < 20 for item in normalized_stakes):
+        raise ContentReviewError("La sous-partie Enjeux du débat doit consigner au moins deux conséquences concrètes distinctes")
+    stakes_content = stakes_contents[0]
+    if len(re.findall(r"\b[\wÀ-ÿ'-]+\b", stakes_content)) < 45 or len(re.findall(r"[.!?](?:\s|$)", stakes_content)) < 3:
+        raise ContentReviewError("La sous-partie Enjeux du débat est trop brève ou symbolique")
     for field in INTRO_TRUE_FIELDS:
         if review.get(field) is not True:
             raise ContentReviewError(f"Attestation d’introduction manquante : {field}")
@@ -620,12 +652,11 @@ def _validate_debate(review: Mapping[str, Any], source: Mapping[str, Any], sourc
     rationales = review.get("documentation_rationales")
     if not isinstance(raw_decisions, dict) or not isinstance(proposed, dict) or not isinstance(rationales, dict):
         raise ContentReviewError("Décisions documentaires de la page Débat absentes")
+    selected_roles: dict[str, set[str]] = {}
     for bucket, (source_type, role) in DEBATE_BUCKETS.items():
         if raw_decisions.get(bucket) != "change":
             raise ContentReviewError(f"Le bucket {bucket} doit être reconstruit sous forme de sources contrôlées")
         selected = _list_strings(proposed.get(bucket), bucket)
-        if len(selected) < 2:
-            raise ContentReviewError(f"Le bucket {bucket} doit contenir au moins deux références distinctes")
         if len(str(rationales.get(bucket) or "").strip()) < 12:
             raise ContentReviewError(f"Justification documentaire absente pour {bucket}")
         for source_id in selected:
@@ -636,7 +667,24 @@ def _validate_debate(review: Mapping[str, Any], source: Mapping[str, Any], sourc
                 raise ContentReviewError(f"Une page Débat française ne peut utiliser une source non française : {source_id}")
             if not _has_usage(source_row, debate_id, {role}):
                 raise ContentReviewError(f"Usage documentaire manquant pour {source_id} dans {bucket}")
+            selected_roles.setdefault(source_id, set()).add(role)
         documentation[bucket] = selected
+    conflicts = {sid: sorted(roles) for sid, roles in selected_roles.items() if len(roles) > 1}
+    if conflicts:
+        raise ContentReviewError(
+            "Une même référence ne peut figurer dans plusieurs orientations; une source couvrant les deux camps doit être classée ni pour ni contre : "
+            + repr(conflicts)
+        )
+    for source_id, source_row in sources.items():
+        roles = {
+            use.get("role") for use in source_row.get("usage") or []
+            if isinstance(use, dict) and use.get("page_id") == debate_id and use.get("language") == "fr"
+            and use.get("role") in {"pro_reference", "con_reference", "neutral_reference"}
+        }
+        if "pro_reference" in roles and "con_reference" in roles:
+            raise ContentReviewError(
+                f"La référence {source_id} est déclarée à la fois pour et contre; elle doit recevoir uniquement le rôle neutral_reference"
+            )
     if review.get("reviewer") is None or len(str(review.get("reviewer") or "").strip()) < 3:
         raise ContentReviewError("Relecteur de l’introduction absent")
     _text(review.get("reviewed_at"), "date de revue de l’introduction", 10)

@@ -523,7 +523,9 @@
               "enum": [
                 "0.4.42",
                 "0.4.43",
-                "0.4.44"
+                "0.4.44",
+                "0.4.45",
+                "0.4.46"
               ],
               "description": "Active la confrontation du verrou historique à l’inventaire source attesté."
             },
@@ -551,7 +553,9 @@
                     "enum": [
                       "0.4.42",
                       "0.4.43",
-                      "0.4.44"
+                      "0.4.44",
+                      "0.4.45",
+                      "0.4.46"
                     ]
                   }
                 },
@@ -567,6 +571,43 @@
               }
             }
           ]
+        },
+        "displayed_title_policy_revision": {
+          "type": "string",
+          "enum": [
+            "1.2.42"
+          ],
+          "description": "Active la règle 1.2.42 : identité autorisée et reformulation uniquement si elle améliore réellement la lisibilité sans perte de sens."
+        },
+        "debate_documentation_policy_revision": {
+          "type": "string",
+          "enum": [
+            "1.2.42"
+          ],
+          "description": "Active la règle 1.2.42 : absence de quota par orientation et interdiction des doublons entre orientations."
+        },
+        "introduction_policy_revision": {
+          "type": "string",
+          "enum": [
+            "1.2.42",
+            "1.2.43"
+          ],
+          "description": "Active la règle 1.2.42 de densité informative ou sa correction 1.2.43, qui exige une sous-partie dédiée et concrète sur les enjeux du débat."
+        },
+        "video_authorship_policy_revision": {
+          "type": "string",
+          "enum": [
+            "1.2.42"
+          ],
+          "description": "Active la règle 1.2.42 : créateur ou chaîne obligatoire pour les références YouTube de la page Débat."
+        },
+        "displayed_title_policy_scope": {
+          "type": "string",
+          "enum": [
+            "all_active_nodes",
+            "generated_pages_only"
+          ],
+          "description": "Limite la nouvelle revue sémantique aux pages générées lorsqu’un verrou historique atteste les pages importées."
         }
       },
       "required": [
