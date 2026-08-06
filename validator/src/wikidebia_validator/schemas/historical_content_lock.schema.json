@@ -14,7 +14,10 @@
   ],
   "properties": {
     "schema_version": {
-      "const": "1.0"
+      "enum": [
+        "1.0",
+        "1.1"
+      ]
     },
     "debate_id": {
       "type": "string",
@@ -113,7 +116,10 @@
           "summary_provenance": {
             "enum": [
               "historical_existing",
-              "generated_after_import"
+              "generated_after_import",
+              "absent_at_import",
+              "new_page_unwritten",
+              "authored_after_import"
             ]
           }
         },
@@ -151,6 +157,12 @@
           }
         ]
       }
+    },
+    "summary_policy_revision": {
+      "type": "string",
+      "enum": [
+        "1.2.40"
+      ]
     }
   }
 }

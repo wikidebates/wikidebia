@@ -10,7 +10,7 @@ def test_graph_validator_has_unbounded_policy_without_current_threshold_warning(
     assert 'Profondeur exceptionnelle élevée' not in current
 
 def test_active_norm_orders_keywords_by_relevance():
-    text=(ROOT/'normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.39.md').read_text(encoding='utf-8')
+    text=(ROOT/'normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.40.md').read_text(encoding='utf-8')
     assert 'du plus directement pertinent au moins directement pertinent' in text
     assert 'L’ordre chronologique' in text
 

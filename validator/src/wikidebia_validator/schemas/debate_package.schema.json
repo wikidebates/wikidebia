@@ -472,9 +472,10 @@
         "summary_policy_revision": {
           "type": "string",
           "enum": [
-            "1.2.39"
+            "1.2.39",
+            "1.2.40"
           ],
-          "description": "Active les contrôles renforcés d’originalité des résumés."
+          "description": "Active les contrôles renforcés des résumés; 1.2.40 autorise et exige l’absence explicite plutôt qu’un résumé mécanique non substantiel."
         },
         "capitalization_policy_revision": {
           "type": "string",
@@ -520,7 +521,8 @@
             "verification_revision": {
               "type": "string",
               "enum": [
-                "0.4.42"
+                "0.4.42",
+                "0.4.43"
               ],
               "description": "Active la confrontation du verrou historique à l’inventaire source attesté."
             },
@@ -531,6 +533,12 @@
             "source_inventory_sha256": {
               "type": "string",
               "pattern": "^[0-9a-f]{64}$"
+            },
+            "summary_policy_revision": {
+              "type": "string",
+              "enum": [
+                "1.2.40"
+              ]
             }
           },
           "allOf": [
@@ -538,7 +546,10 @@
               "if": {
                 "properties": {
                   "verification_revision": {
-                    "const": "0.4.42"
+                    "enum": [
+                      "0.4.42",
+                      "0.4.43"
+                    ]
                   }
                 },
                 "required": [

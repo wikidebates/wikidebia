@@ -1,3 +1,10 @@
+## 2.15.16 — 6 août 2026
+
+- alignement sur la norme 1.2.40 et le validateur 0.4.43 ;
+- prise en charge explicite des résumés laissés absents lorsqu’ils étaient absents de la source ;
+- interdiction de supprimer silencieusement un résumé existant sous couvert de cette politique ;
+- ajout des profils de configuration 1.2.40 et conservation des protections de publication et de reprise.
+
 ## 2.15.15 — 6 août 2026
 
 - alignement sur le validateur 0.4.42 et la norme 1.2.39 ;

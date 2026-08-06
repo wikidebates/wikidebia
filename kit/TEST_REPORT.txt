@@ -1,14 +1,8 @@
-Wikidéb’IA Kit 2.15.15
-Norme : 1.2.39
-Validateur requis : 0.4.42
-Extracteur de graphe : 1.0.2
-Tests pytest du kit : 250 réussis, 0 échec
-Tests pytest du validateur : 266 réussis, 0 échec
-
-Correction :
-- confrontation du verrou historique à l’inventaire source attesté ;
-- refus des faux résumés historiques ;
-- refus des valeurs `initialisation` manquantes ou divergentes ;
-- conservation des protections de publication et de reprise existantes.
-
+Wikidéb’IA Kit 2.15.16
+Norme : 1.2.40
+Validateur requis : 0.4.43
+Tests pytest : 252 réussis, 0 échec
+Résumés absents : prise en charge explicite de summary_decision=leave_absent quand la source ne contient aucun résumé
+Protection : un résumé préexistant ne peut pas être supprimé silencieusement par cette décision
+Publication et reprise : toutes les protections 2.15.15 sont conservées
 Résultat : RÉUSSI

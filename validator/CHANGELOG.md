@@ -1,3 +1,13 @@
+## 0.4.43 — 6 août 2026
+
+- alignement sur la norme 1.2.40 et le kit 2.15.16 ;
+- ajout de `WDV-EDT-028` contre les résumés présents sous un état non rédigé ;
+- nouveaux états `absent_at_import`, `new_page_unwritten` et `authored_after_import` ;
+- couverture obligatoire de toutes les pages Argument par le registre de provenance sous `verification_revision=0.4.43` ;
+- exemption cohérente des pages sans résumé dans les contrôles stylistiques ;
+- conservation exacte des résumés historiques et des paramètres `initialisation` ;
+- ajout de trois tests d’intégration et conservation de tous les tests antérieurs.
+
 ## 0.4.42 — 6 août 2026
 
 - correction du verrou historique : confrontation obligatoire à l’inventaire source lorsque `verification_revision=0.4.42` ;

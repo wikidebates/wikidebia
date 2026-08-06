@@ -42,10 +42,6 @@
             "patternProperties": {
               "^(fr|en)$": {
                 "type": "object",
-                "required": [
-                  "originality_reviewed",
-                  "mechanism_statement"
-                ],
                 "properties": {
                   "originality_reviewed": {
                     "const": true
@@ -67,7 +63,10 @@
       "const": "1.2.38"
     },
     "summary_policy_revision": {
-      "const": "1.2.39"
+      "enum": [
+        "1.2.39",
+        "1.2.40"
+      ]
     }
   },
   "anyOf": [

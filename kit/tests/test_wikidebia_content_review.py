@@ -359,3 +359,58 @@ def test_finalize_rejects_reviewed_copy_changed_after_prepare(tmp_path: Path):
         assert "reviewed-copy" in str(exc)
     else:
         raise AssertionError("Copie révisée altérée acceptée")
+
+
+def test_validate_argument_can_preserve_attested_summary_absence():
+    item = {
+        "id": "A0001",
+        "source": {
+            "canonical_title": "Un argument sans résumé historique",
+            "displayed_title": "Un argument reste sans résumé",
+            "summary": None,
+            "citations": [],
+            "page_origin": "preexisting",
+            "preserved_parameters": {},
+        },
+        "review": {
+            "status": "approved",
+            "summary_decision": "leave_absent",
+            "proposed_summary": None,
+            "reviewer": "Relecteur Wikidéb'IA",
+            "reviewed_at": "2026-08-06T11:00:00+02:00",
+            "note": "L'absence historique est conservée afin d'éviter tout résumé de remplissage.",
+        },
+    }
+    result = content._validate_argument(item, {})
+    assert result["summary"] is None
+    assert result["status"] == "not_written"
+    assert result["summary_provenance"] == "absent_at_import"
+    assert result["substantive_redrafting_required"] is True
+
+
+def test_validate_argument_cannot_delete_existing_summary_with_leave_absent():
+    item = {
+        "id": "A0001",
+        "source": {
+            "canonical_title": "Un argument avec résumé historique",
+            "displayed_title": "Le résumé historique subsiste",
+            "summary": "Ce résumé existait déjà dans la source attestée et ne peut pas être supprimé silencieusement.",
+            "citations": [],
+            "page_origin": "preexisting",
+            "preserved_parameters": {},
+        },
+        "review": {
+            "status": "approved",
+            "summary_decision": "leave_absent",
+            "proposed_summary": None,
+            "reviewer": "Relecteur Wikidéb'IA",
+            "reviewed_at": "2026-08-06T11:00:00+02:00",
+            "note": "Tentative de suppression qui doit être refusée par le workflow de contenu.",
+        },
+    }
+    try:
+        content._validate_argument(item, {})
+    except content.ContentReviewError as exc:
+        assert "ne peut pas être supprimé" in str(exc)
+    else:
+        raise AssertionError("La suppression silencieuse d'un résumé existant a été acceptée")

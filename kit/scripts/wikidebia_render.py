@@ -45,7 +45,7 @@ from wikidebia_corpus_init import extract_page_metadata
 from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
 from wikidebia_editorial_review import EditorialReviewError, _assert_source_unchanged, _run_validator
 
-KIT_VERSION = "2.15.15"
+KIT_VERSION = "2.15.16"
 PREVIOUS_NORM_VERSION = "1.2.33"
 COMPATIBLE_PREVIOUS_NORM_VERSIONS = {"1.2.27", "1.2.28", "1.2.30", PREVIOUS_NORM_VERSION}
 RENDER_LOCK_SCHEMA = "wikidebia-bilingual-render-lock-1.0"
@@ -652,7 +652,7 @@ def _finalize_summary_review(target: Path, debate_id: str) -> None:
     review = copy.deepcopy(review)
     review["schema_version"] = "1.0"
     review["normative_revision"] = NORM_VERSION
-    review["summary_policy_revision"] = "1.2.39"
+    review["summary_policy_revision"] = "1.2.40"
     review.pop("quality_policy_revision", None)
     review["debate_id"] = debate_id
     for entry in review["entries"]:

@@ -46,7 +46,7 @@ from wikidebia_content_review import (
     META_DISCOURSE,
 )
 
-KIT_VERSION = "2.15.15"
+KIT_VERSION = "2.15.16"
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.0"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
@@ -914,7 +914,7 @@ def _merge_summary_review(path: Path, arguments: Sequence[Mapping[str, Any]], de
         }
     data["schema_version"] = "1.0"
     data["normative_revision"] = NORM_VERSION
-    data["summary_policy_revision"] = "1.2.39"
+    data["summary_policy_revision"] = "1.2.40"
     data.pop("quality_policy_revision", None)
     data["debate_id"] = debate_id
     data["entries"] = [by_id[key] for key in sorted(by_id)]

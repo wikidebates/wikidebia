@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.15",
-  "validator_version": "0.4.42",
+  "version": "2.15.16",
+  "validator_version": "0.4.43",
   "scope": [
     "publish_archive",
     "github_init",
@@ -356,7 +356,7 @@
     "graph_frontier_information_separated_from_warnings",
     "graph_terminal_and_frontier_counts_separated"
   ],
-  "normative_revision": "1.2.39",
+  "normative_revision": "1.2.40",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [

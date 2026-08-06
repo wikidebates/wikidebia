@@ -1,3 +1,11 @@
+## 1.2.40 — 6 août 2026
+
+- suppression des résumés générés mécaniquement lorsque la source n’en contenait pas ;
+- absence explicite du paramètre préférable à une paraphrase sans apport ;
+- nouveaux états `absent_at_import`, `new_page_unwritten` et `authored_after_import` ;
+- réintroduction d’un résumé soumise à une rédaction et une revue individuelles ;
+- conservation exacte des résumés historiques et des paramètres `initialisation`.
+
 ## 1.2.39 — 6 août 2026
 
 - interdiction de réécrire un champ historique lors d'une correction ciblée non autorisée ;
