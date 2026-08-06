@@ -1,3 +1,11 @@
+## 0.4.50 — 6 août 2026
+
+- préservation contrôlée de `débat-détaillé` / `detailed-debate` sur les pages historiques ;
+- comparaison exacte avec l’inventaire source et le verrou de contenu historique ;
+- omission admise des relations locales uniquement lorsqu’elle est déclarée et que le propriétaire a été prévenu ;
+- suppression des faux écarts `WDV-MWK-008` pour ces frontières attestées ;
+- compatibilité conservée avec les corpus antérieurs.
+
 ## 0.4.49 — 6 août 2026
 
 - alignement sur la norme 1.2.46 ;

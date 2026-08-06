@@ -17,7 +17,7 @@
 4. La page Débat française utilise `avancement=Débat construit`.
 5. La page Debate anglaise utilise `progress=Constructed debate`.
 6. Les pages Argument générées n'utilisent pas `nom`, `name`, `initialisation` ou `initialization`.
-7. Les pages Argument générées n'utilisent pas `citations`, `quotes`, `débat-détaillé` ou `detailed-debate`.
+7. Les pages Argument rendent `citations` et `quotes` selon les verrous éditoriaux. Un paramètre historique `débat-détaillé` ou `detailed-debate` est conservé exactement ; les relations locales peuvent être omises à cette frontière après information explicite du propriétaire.
 8. `date-création` et `creation-date` sont autorisés et obligatoires dans les quatre profils.
 
 ## 2. Date de création

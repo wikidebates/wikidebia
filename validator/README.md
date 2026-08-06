@@ -1,11 +1,9 @@
-# Wikidéb’IA Validator 0.4.49
+# Wikidéb’IA Validator 0.4.50
 
-La version 0.4.49 ajoute `WDV-EDT-029`, qui vérifie l’inventaire exhaustif des notions spécialisées de chaque sous-partie, tous les liens rendus, les explications intégrées et les renvois à un traitement antérieur.
+La version 0.4.50 protège `débat-détaillé` / `detailed-debate` dans les pages historiques. Elle compare la cible au verrou source et accepte l’omission des justifications et objections seulement lorsque cette décision et l’information du propriétaire sont attestées.
 
-Validateur local aligné sur la norme 1.2.46 et rétrocompatible avec les paquets antérieurs.
+Les contrôles 0.4.49 sur l’inventaire exhaustif des notions spécialisées restent actifs.
 
-La version 0.4.48 contrôle la cohérence locale des liens Wikipédia explicatifs. Lorsqu’une sous-partie présente une série de notions spécialisées de même rang, le registre de revue doit inventorier le groupe, et toute notion comparable laissée sans lien doit recevoir une justification explicite. Le validateur vérifie également que chaque article déclaré comme lié apparaît réellement dans la sous-partie.
+Validateur local aligné sur la norme 1.2.47 et rétrocompatible avec les paquets antérieurs.
 
-Le contrôle 0.4.47 sur la ponctuation terminale des notes `<ref>` reste actif.
-
-Norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.46.md`.
+Norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.47.md`.

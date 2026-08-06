@@ -1,7 +1,1 @@
-Wikidéb’IA Kit 2.15.23 — rapport de tests
-
-- norme active : 1.2.46
-- validateur associé : 0.4.49
-- tests collectés : 272
-- résultat : 272 réussis
-- contrôle ajouté : génération d’une source active unifiée et retrait des anciens fichiers textuels séparés lors de `upgrade`.
+Kit 2.15.24 — 273 tests réussis le 6 août 2026.

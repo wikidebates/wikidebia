@@ -46,7 +46,7 @@ from wikidebia_content_review import (
     META_DISCOURSE,
 )
 
-KIT_VERSION = "2.15.23"
+KIT_VERSION = "2.15.24"
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.0"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
@@ -56,7 +56,7 @@ EN_SOURCES_WORKING_SCHEMA = "wikidebia-en-source-registry-working-1.0"
 
 EN_PAGE_LIFECYCLE_PARAMETERS = {
     "debate": ("progress", "debate-warnings", "related-debates"),
-    "argument": ("argument-warnings",),
+    "argument": ("argument-warnings", "detailed-debate"),
 }
 
 

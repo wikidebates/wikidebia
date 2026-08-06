@@ -86,11 +86,11 @@ def validate_all_schemas(ctx: PackageContext, store: SchemaStore) -> None:
     quality_policy = controls.get("quality_policy_revision")
     keyword_policy = controls.get("keyword_policy_revision")
     summary_policy = controls.get("summary_policy_revision")
-    if norm in {"1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46"} or quality_policy == "1.2.38" or keyword_policy == "1.2.39":
+    if norm in {"1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47"} or quality_policy == "1.2.38" or keyword_policy == "1.2.39":
         rel = controls.get("keyword_vocabulary_path")
         if rel and ctx.exists(rel):
             validate_instance(ctx, store, rel, "keyword_vocabulary.schema.json")
-    if norm in {"1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46"} or quality_policy == "1.2.38" or summary_policy in {"1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46"}:
+    if norm in {"1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47"} or quality_policy == "1.2.38" or summary_policy in {"1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47"}:
         rel = controls.get("summary_style_review_path")
         if rel and ctx.exists(rel):
             validate_instance(ctx, store, rel, "summary_style_review.schema.json")

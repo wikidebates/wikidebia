@@ -149,3 +149,67 @@ def test_inventory_source_accepts_exact_historical_fields(tmp_path: Path):
     _enable_inventory_verification(tmp_path, manifest, page, path.read_text())
     report = validate_package(tmp_path, scopes=["wikicode", "schema"])
     assert not any(f.code == "WDV-EDT-027" for f in report.findings)
+
+
+def _detailed_debate_package(root: Path):
+    manifest, page, path = _package(root)
+    manifest = json.loads((root / "manifest.json").read_text())
+    manifest.setdefault("normative_versions", {})["consolidated_norm"] = "1.2.30"
+    cfg = manifest["editorial_controls"]["legacy_content_preservation"]
+    cfg["protected_fields"].append("débat-détaillé")
+    cfg["verification_revision"] = "0.4.50"
+    cfg["source_inventory_path"] = "data/initial_remote_inventory_fr.json"
+    text = path.read_text().replace("|rubriques=", "|débat-détaillé=Débat sous-jacent\n|rubriques=", 1)
+    path.write_text(text)
+    registry = json.loads((root / "data/registre_debat.json").read_text())
+    registry["graph"]["edges"] = [{
+        "id": "E00001", "parent_node_id": page["page_id"], "child_node_id": "A0002",
+        "relation": "justification", "order": 1, "status": "active"
+    }]
+    dump(root / "data/registre_debat.json", registry)
+    lock = json.loads((root / "data/historical_content_lock.json").read_text())
+    lock["schema_version"] = "1.2"
+    lock["protected_fields"].append("débat-détaillé")
+    lock["arguments"][0]["detailed_debate"] = {
+        "present": True, "value": "Débat sous-jacent",
+        "relations_omitted": True, "owner_notified": True,
+    }
+    dump(root / "data/historical_content_lock.json", lock)
+    inventory = {
+        "inventory_version": "1.0", "inventory_mode": "explicit_debate_pages_read_only",
+        "debate_id": manifest["debate_id"], "language": "fr",
+        "generated_at": "2026-08-06T00:00:00+00:00",
+        "pages": [{
+            "page_id": page["page_id"], "page_type": "argument",
+            "canonical_title": page["canonical_title"],
+            "content_sha256": hashlib.sha256(text.encode()).hexdigest(),
+            "revision_id": 42, "status": "published", "content": text,
+        }],
+        "inventory_sha256": "0" * 64,
+    }
+    dump(root / "data/initial_remote_inventory_fr.json", inventory)
+    cfg["source_inventory_sha256"] = hashlib.sha256((root / "data/initial_remote_inventory_fr.json").read_bytes()).hexdigest()
+    dump(root / "manifest.json", manifest)
+    return page, path
+
+
+def test_historical_detailed_debate_is_preserved_and_relations_may_be_omitted(tmp_path: Path):
+    page, path = _detailed_debate_package(tmp_path)
+    report = validate_package(tmp_path, scopes=["schema", "wikicode"])
+    assert not any(f.code in {"WDV-MWK-003", "WDV-MWK-008", "WDV-EDT-027"} and f.path == page["file_path"] for f in report.findings)
+
+
+def test_historical_detailed_debate_removal_is_blocked(tmp_path: Path):
+    page, path = _detailed_debate_package(tmp_path)
+    path.write_text(path.read_text().replace("|débat-détaillé=Débat sous-jacent\n", ""))
+    report = validate_package(tmp_path, scopes=["wikicode"])
+    assert any(f.code == "WDV-EDT-027" and "débat-détaillé" in f.message for f in report.findings)
+
+
+def test_detailed_debate_relation_omission_requires_owner_notification(tmp_path: Path):
+    _detailed_debate_package(tmp_path)
+    lock = json.loads((tmp_path / "data/historical_content_lock.json").read_text())
+    lock["arguments"][0]["detailed_debate"]["owner_notified"] = False
+    dump(tmp_path / "data/historical_content_lock.json", lock)
+    report = validate_package(tmp_path, scopes=["wikicode"])
+    assert any(f.code == "WDV-EDT-027" and "propriétaire" in f.message for f in report.findings)

@@ -16,7 +16,8 @@
     "schema_version": {
       "enum": [
         "1.0",
-        "1.1"
+        "1.1",
+        "1.2"
       ]
     },
     "debate_id": {
@@ -40,7 +41,9 @@
           "résumé",
           "summary",
           "initialisation",
-          "initialization"
+          "initialization",
+          "débat-détaillé",
+          "detailed-debate"
         ]
       }
     },
@@ -118,6 +121,74 @@
               "historical_existing",
               "generated_after_import",
               "historical_absent"
+            ]
+          },
+          "detailed_debate": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "present"
+            ],
+            "properties": {
+              "present": {
+                "type": "boolean"
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              },
+              "relations_omitted": {
+                "type": "boolean"
+              },
+              "owner_notified": {
+                "type": "boolean"
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "present": {
+                      "const": true
+                    }
+                  }
+                },
+                "then": {
+                  "required": [
+                    "value",
+                    "relations_omitted"
+                  ]
+                },
+                "else": {
+                  "not": {
+                    "required": [
+                      "value"
+                    ]
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "relations_omitted": {
+                      "const": true
+                    }
+                  },
+                  "required": [
+                    "relations_omitted"
+                  ]
+                },
+                "then": {
+                  "required": [
+                    "owner_notified"
+                  ],
+                  "properties": {
+                    "owner_notified": {
+                      "const": true
+                    }
+                  }
+                }
+              }
             ]
           }
         },

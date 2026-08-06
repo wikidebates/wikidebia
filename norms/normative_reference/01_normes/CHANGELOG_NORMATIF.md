@@ -1,3 +1,12 @@
+## 1.2.47 — 6 août 2026
+
+- préservation obligatoire de `débat-détaillé` / `detailed-debate` sur les pages historiques ;
+- distinction entre arrêt du parcours du graphe et suppression du paramètre MediaWiki ;
+- omission autorisée de `justifications` et `objections` aux frontières uniquement après attestation page par page ;
+- verrouillage de la cible par comparaison avec l’inventaire source ;
+- attestation obligatoire que le propriétaire a été informé de l’omission des relations locales ;
+- alignement recommandé : validateur 0.4.50 et kit 2.15.24.
+
 ## 1.2.46 — 6 août 2026
 
 - remplacement du contrôle limité aux groupes de notions voisines par une revue exhaustive de toutes les notions spécialisées de chaque sous-partie ;

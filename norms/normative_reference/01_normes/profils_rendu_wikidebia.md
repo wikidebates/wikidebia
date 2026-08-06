@@ -428,7 +428,6 @@ La valeur de `page` provient exclusivement du champ canonique anglais du registr
 - `avertissements-références`
 - `avertissements-justifications`
 - `avertissements-objections`
-- `débat-détaillé`
 - tous les `avertissements=` des sous-modèles
 
 ## 5.5 Profil documentaire adapté au domaine
@@ -560,7 +559,6 @@ An objection uses:
 - `reference-warnings`
 - `justification-warnings`
 - `objection-warnings`
-- `detailed-debate`
 - all nested `warnings=` parameters
 
 English Argument pages never contain an interlanguage parameter.
@@ -793,12 +791,13 @@ Avant qu'une page soit déclarée conforme au profil, le validateur doit confirm
 12. que les pages anglaises ne contiennent aucun lien interlangue ;
 13. que chaque page française contient exactement un lien interlangue dès sa première génération valide ;
 14. que ce lien utilise `{{Lien interlangue}}` et vise le titre anglais canonique exact ;
-15. que les paramètres déclarés « autorisés mais non générés » sont absents des sorties automatiques ;
+15. que les paramètres déclarés « autorisés mais non générés » sont absents des sorties automatiques, hors paramètres historiques explicitement verrouillés ;
 16. que les références mentionnées dans le résumé sont représentées dans les paramètres documentaires ;
 17. qu'aucune catégorie documentaire vide n'est émise ;
 18. qu'aucune citation ou quote n'est produite dans les pages Argument ;
-19. que `nom`, `name`, `débat-détaillé` et `detailed-debate` sont absents des pages Argument générées, et que `initialisation` / `initialization` est absent des pages nouvelles mais préservé exactement sur les pages historiques verrouillées ;
-20. que la date de création n'a pas été modifiée par une correction, un enrichissement ou une nouvelle tentative d'import.
+19. que `nom` et `name` sont absents des pages Argument générées, que `initialisation` / `initialization` est absent des pages nouvelles mais préservé exactement sur les pages historiques verrouillées, et que `débat-détaillé` / `detailed-debate` est réémis exactement lorsqu’il est attesté ;
+20. que l’omission des `justifications` et `objections` sur une frontière vers un débat détaillé est déclarée et que l’information du propriétaire est attestée ;
+21. que la date de création n'a pas été modifiée par une correction, un enrichissement ou une nouvelle tentative d'import.
 
 ---
 

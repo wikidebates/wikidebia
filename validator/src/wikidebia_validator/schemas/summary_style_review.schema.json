@@ -96,7 +96,8 @@
                       "status": {
                         "enum": [
                           "approved",
-                          "revised"
+                          "revised",
+                          "translated_and_reviewed"
                         ]
                       },
                       "originality_reviewed": {

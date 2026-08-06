@@ -60,7 +60,7 @@ Le catalogue machine-readable complet est `requirements_catalog_wikidebia.json` 
 - **MW-007 — ACTIVE — automatic** : Add exact AI warnings only to pages newly created by Wikidéb’IA; existing Debate and Argument pages preserve their prior warning presence and value.
 - **MW-008 — ACTIVE — automatic** : Do not invent nom/name or initialisation/initialization on new Argument pages; preserve attested historical initialisation/initialization exactly.
 - **MW-009 — SUPERSEDED — automatic** : Do not generate citations/quotes in Argument pages. Replaced by the locked-citation rendering rules RND-003 and RND-004 from revision 1.2.27.
-- **MW-010 — ACTIVE — automatic** : Do not generate débat-détaillé/detailed-debate in Argument pages.
+- **MW-010 — ACTIVE — automatic** : Preserve an attested historical `débat-détaillé` / `detailed-debate` parameter exactly. Local justifications and objections may be omitted only when the omission and owner notification are locked.
 - **MW-011 — ACTIVE — automatic** : date-création/creation-date is mandatory for all four page types.
 - **MW-012 — ACTIVE — automatic** : Creation date is the date on which the page file in that language first becomes valid; it is immutable through corrections, enrichment, import and interlanguage insertion.
 - **MW-013 — ACTIVE — automatic** : Publication date is stored separately in import logs.

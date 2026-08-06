@@ -1,7 +1,1 @@
-Wikidéb’IA Validator 0.4.49 — rapport de tests
-
-Tests pytest : 292 réussis
-
-- norme active : 1.2.46
-- contrôle ajouté : WDV-EDT-029, inventaire exhaustif des notions spécialisées de chaque sous-partie d’introduction ;
-- rétrocompatibilité : politique 1.2.45 conservée pour les corpus qui la déclarent.
+Tests pytest : 295 réussis, 0 échec.

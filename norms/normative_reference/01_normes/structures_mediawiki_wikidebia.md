@@ -237,6 +237,8 @@ Ce document **ne détermine pas** quels paramètres doivent effectivement appara
 }}
 ```
 
+Le paramètre `débat-détaillé` est conservé lorsqu’il existe dans une page historique importée. Sa valeur est verrouillée. Sur une telle frontière, les paramètres `justifications` et `objections` peuvent être omis lorsque cette décision et l’information du propriétaire sont attestées. L’équivalent anglais est `detailed-debate`.
+
 ---
 
 # 5. English Debate page

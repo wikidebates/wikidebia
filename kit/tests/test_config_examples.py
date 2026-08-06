@@ -22,7 +22,7 @@ def test_all_versioned_config_examples_match_active_schema_and_named_norm():
         requirements = data["manifest_requirements"]
         assert requirements["normative_versions.consolidated_norm"] == match.group(1)
         extra = set(requirements) - {"normative_versions.consolidated_norm"}
-        if match.group(1) in {"1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46"}:
+        if match.group(1) in {"1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47"}:
             assert extra <= {"translation_status.en"}
         else:
             assert not extra

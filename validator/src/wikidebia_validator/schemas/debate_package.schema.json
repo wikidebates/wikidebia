@@ -341,7 +341,8 @@
               "enum": [
                 "1.2.44",
                 "1.2.45",
-                "1.2.46"
+                "1.2.46",
+                "1.2.47"
               ],
               "description": "Politique de ponctuation terminale des notes inline."
             }
@@ -519,7 +520,9 @@
                   "résumé",
                   "summary",
                   "initialisation",
-                  "initialization"
+                  "initialization",
+                  "débat-détaillé",
+                  "detailed-debate"
                 ]
               }
             },
@@ -537,7 +540,8 @@
                 "0.4.46",
                 "0.4.47",
                 "0.4.48",
-                "0.4.49"
+                "0.4.49",
+                "0.4.50"
               ],
               "description": "Active la confrontation du verrou historique à l’inventaire source attesté."
             },
@@ -627,7 +631,8 @@
           "enum": [
             "1.2.44",
             "1.2.45",
-            "1.2.46"
+            "1.2.46",
+            "1.2.47"
           ],
           "description": "Active la règle 1.2.44 : pas de point final dans une simple notice <ref>; exceptions de phrases attestées."
         },
@@ -635,14 +640,16 @@
           "type": "string",
           "enum": [
             "1.2.45",
-            "1.2.46"
+            "1.2.46",
+            "1.2.47"
           ],
           "description": "Active la revue détaillée de la cohérence locale des liens Wikipédia explicatifs."
         },
         "specialized_term_explanation_policy_revision": {
           "type": "string",
           "enum": [
-            "1.2.46"
+            "1.2.46",
+            "1.2.47"
           ],
           "description": "Active l’inventaire exhaustif, sous-partie par sous-partie, des notions spécialisées à expliquer ou à lier."
         }

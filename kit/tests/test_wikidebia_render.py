@@ -203,3 +203,21 @@ def test_render_existing_argument_preserves_absent_ai_warning():
     }
     text=render._render_argument(lang='fr',node=node,content=content,registry=registry,sources={},creation_date='2026-08-05')
     assert '|avertissements-argument=' not in text
+
+
+def test_render_preserves_detailed_debate_and_omits_local_relations():
+    child={'id':'A0002','fr':{'canonical_title':'Argument enfant','displayed_title':'Argument enfant','rubriques':['Société'],'keywords':['sujet']}}
+    node={'id':'A0001','fr':{'rubriques':['Société'],'keywords':['sujet']},'en':{'canonical_title':'Argument topic'}}
+    registry={'graph':{'edges':[{'id':'E00001','parent_node_id':'A0001','child_node_id':'A0002','relation':'justification','order':1,'status':'active'}],'occurrences':[],'nodes':[node,child]}}
+    content={
+        'summary':'Le raisonnement renvoie vers un débat autonome qui porte le développement détaillé.',
+        'citations':[],'sources':{},'page_origin':'preexisting',
+        'preserved_parameters':{
+            'avertissements-argument':{'present':False,'value':None},
+            'débat-détaillé':{'present':True,'value':'Débat sous-jacent'},
+        },
+    }
+    text=render._render_argument(lang='fr',node=node,content=content,registry=registry,sources={},creation_date='2026-08-05')
+    assert '|débat-détaillé=Débat sous-jacent' in text
+    assert '|justifications=' not in text
+    assert '|objections=' not in text

@@ -1,3 +1,11 @@
+## 2.15.24 — 6 août 2026
+
+- alignement sur la norme 1.2.47 et le validateur 0.4.50 ;
+- conservation exacte de `débat-détaillé` / `detailed-debate` pendant la revue et le rendu ;
+- arrêt du parcours aux frontières sans suppression du paramètre historique ;
+- omission des justifications et objections locales uniquement sous attestation explicite ;
+- tests permanents de non-régression.
+
 ## 2.15.23 — 6 août 2026
 
 - alignement sur la norme 1.2.46 et le validateur 0.4.49 ;

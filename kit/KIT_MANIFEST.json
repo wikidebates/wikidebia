@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.23",
-  "validator_version": "0.4.49",
+  "version": "2.15.24",
+  "validator_version": "0.4.50",
   "scope": [
     "publish_archive",
     "github_init",
@@ -362,9 +362,11 @@
     "debate_reference_orientation_exclusivity",
     "youtube_creator_required",
     "introduction_information_density_gate",
-    "displayed_title_identity_allowed"
+    "displayed_title_identity_allowed",
+    "historical_detailed_debate_preservation",
+    "detailed_debate_relations_omission_acknowledgement"
   ],
-  "normative_revision": "1.2.46",
+  "normative_revision": "1.2.47",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
