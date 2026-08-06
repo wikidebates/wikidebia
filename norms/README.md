@@ -1,10 +1,9 @@
-# Wikidéb’IA — Normes 1.2.40
+# Wikidéb’IA — Normes 1.2.41
 
-La révision 1.2.40 interdit de remplir mécaniquement les résumés. Lorsqu’aucun développement argumentatif substantiel n’a été rédigé, le paramètre reste absent. Les résumés historiques sont conservés exactement et les mots-clés atomiques de 1.2.39 restent actifs.
+La révision 1.2.41 impose des mots-clés simples sur les pages nouvelles et conserve les locutions réellement autonomes, notamment `croyance fondamentale`. Elle permet aussi à `./wikidebia update` de sélectionner automatiquement l’unique ZIP de `incoming/`; la portée est choisie automatiquement parmi les langues publiables lorsque `--scope` est omis.
 
-- norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.40.md` ;
-- validateur recommandé : 0.4.43 ;
-- kit recommandé : 2.15.16 ;
-- compatibilité historique : toutes les révisions prises en charge jusqu’à 1.2.39 restent reconnues.
+- norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.41.md` ;
+- validateur recommandé : 0.4.44 ;
+- kit recommandé : 2.15.17.
 
-Principale exigence nouvelle : un résumé absent est préférable à une paraphrase du titre ou du contexte immédiat. Les états `absent_at_import` et `new_page_unwritten` imposent l’absence du paramètre; une réintroduction exige une rédaction et une revue individuelles.
+Les protections 1.2.40 sur les résumés historiquement absents restent intégralement actives.

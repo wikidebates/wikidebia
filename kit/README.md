@@ -1,7 +1,7 @@
-# Wikidéb’IA — Kit 2.15.16
+# Wikidéb’IA — Kit 2.15.17
 
-Kit générique de publication et de reprise, aligné sur la norme 1.2.40 et le validateur 0.4.43. Il conserve toutes les protections de publication et de reprise de 2.15.14.
+Kit de publication et de reprise aligné sur la norme 1.2.41 et le validateur 0.4.44.
 
-Aucun résumé de remplissage ne doit être généré : une absence attestée reste une absence tant qu’une rédaction substantielle n’a pas été approuvée page par page.
+Pour mettre à jour un débat, déposez son ZIP dans `incoming/` puis lancez `./wikidebia update`. Si ce ZIP est unique, il est sélectionné automatiquement et la portée `all` est utilisée. En présence de plusieurs ZIP, utilisez `./wikidebia update IDENTIFIANT`. `--archive` et `--scope` restent disponibles pour les cas explicitement particuliers.
 
-La révision 2.15.16 exige le validateur corrigé avant de publier un corpus qui protège des contenus historiques par un verrou confronté à un inventaire source attesté. Le kit n’altère ni les résumés historiques ni les paramètres `initialisation`.
+La commande `./wikidebia update` sélectionne désormais automatiquement l’unique ZIP présent dans `incoming/`. En présence de plusieurs ZIP, elle exige un identifiant. `--archive` reste accepté à titre de compatibilité. Lorsque `--scope` est omis, la portée est déduite des langues réellement validées et non différées.

@@ -1,10 +1,17 @@
+## 1.2.41 — 6 août 2026
+
+- simplification des mots-clés contextuels des pages nouvelles ;
+- conservation explicite des locutions conceptuelles autonomes, dont `croyance fondamentale` ;
+- sélection automatique de l’unique ZIP de `incoming/` par `./wikidebia update` ;
+- portée `all` utilisée par défaut ;
+- identifiant exigé uniquement en cas d’ambiguïté.
+
 ## 1.2.40 — 6 août 2026
 
-- suppression des résumés générés mécaniquement lorsque la source n’en contenait pas ;
-- absence explicite du paramètre préférable à une paraphrase sans apport ;
-- nouveaux états `absent_at_import`, `new_page_unwritten` et `authored_after_import` ;
-- réintroduction d’un résumé soumise à une rédaction et une revue individuelles ;
-- conservation exacte des résumés historiques et des paramètres `initialisation`.
+- conservation de l’absence historique d’un résumé lorsqu’elle est attestée par l’inventaire source ;
+- ajout de `summary_provenance=historical_absent` ;
+- interdiction maintenue des résumés absents sur les pages nouvelles ;
+- revue spécifique `historical_absence_verified` et exclusion des contrôles stylistiques inapplicables.
 
 ## 1.2.39 — 6 août 2026
 

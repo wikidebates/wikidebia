@@ -1,8 +1,16 @@
-Wikidéb’IA Kit 2.15.16
-Norme : 1.2.40
-Validateur requis : 0.4.43
-Tests pytest : 252 réussis, 0 échec
-Résumés absents : prise en charge explicite de summary_decision=leave_absent quand la source ne contient aucun résumé
-Protection : un résumé préexistant ne peut pas être supprimé silencieusement par cette décision
-Publication et reprise : toutes les protections 2.15.15 sont conservées
+Wikidéb’IA Kit 2.15.17
+Norme : 1.2.41
+Validateur requis : 0.4.44
+Extracteur de graphe : 1.0.2
+Tests pytest du kit : 259 réussis, 0 échec
+Tests pytest du validateur : 270 réussis, 0 échec
+
+Corrections :
+- sélection automatique de l’unique ZIP de incoming/ ;
+- exigence d’un identifiant seulement en cas d’ambiguïté ;
+- portée automatique selon les langues validées et non différées ;
+- préservation stricte des résumés historiquement absents ;
+- résumé toujours obligatoire pour les pages nouvelles ;
+- conservation des protections de publication et de reprise existantes.
+
 Résultat : RÉUSSI

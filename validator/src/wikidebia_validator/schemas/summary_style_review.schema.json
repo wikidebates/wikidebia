@@ -51,7 +51,69 @@
                     "minLength": 30
                   }
                 },
-                "additionalProperties": true
+                "additionalProperties": true,
+                "oneOf": [
+                  {
+                    "properties": {
+                      "status": {
+                        "const": "historical_absent"
+                      },
+                      "historical_absence_verified": {
+                        "const": true
+                      },
+                      "note": {
+                        "type": "string",
+                        "minLength": 12
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "historical_absence_verified",
+                      "note"
+                    ]
+                  },
+                  {
+                    "properties": {
+                      "status": {
+                        "const": "historical_existing"
+                      },
+                      "historical_content_preserved": {
+                        "const": true
+                      },
+                      "note": {
+                        "type": "string",
+                        "minLength": 12
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "historical_content_preserved",
+                      "note"
+                    ]
+                  },
+                  {
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "approved",
+                          "revised"
+                        ]
+                      },
+                      "originality_reviewed": {
+                        "const": true
+                      },
+                      "mechanism_statement": {
+                        "type": "string",
+                        "minLength": 30
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "originality_reviewed",
+                      "mechanism_statement"
+                    ]
+                  }
+                ]
               }
             }
           }

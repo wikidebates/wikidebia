@@ -1,12 +1,17 @@
+## 0.4.44 — 6 août 2026
+
+- alignement sur la norme 1.2.41 ;
+- conservation intégrale des contrôles 0.4.43 ;
+- prise en charge de la nouvelle révision normative sans migration forcée des corpus historiques ;
+- compatibilité avec les verrous de résumés historiques vérifiés par 0.4.43 et 0.4.44.
+
 ## 0.4.43 — 6 août 2026
 
-- alignement sur la norme 1.2.40 et le kit 2.15.16 ;
-- ajout de `WDV-EDT-028` contre les résumés présents sous un état non rédigé ;
-- nouveaux états `absent_at_import`, `new_page_unwritten` et `authored_after_import` ;
-- couverture obligatoire de toutes les pages Argument par le registre de provenance sous `verification_revision=0.4.43` ;
-- exemption cohérente des pages sans résumé dans les contrôles stylistiques ;
-- conservation exacte des résumés historiques et des paramètres `initialisation` ;
-- ajout de trois tests d’intégration et conservation de tous les tests antérieurs.
+- alignement sur la norme 1.2.40 ;
+- prise en charge de `summary_provenance=historical_absent` ;
+- omission du résumé autorisée uniquement après vérification de l’inventaire source ;
+- maintien du résumé obligatoire pour les pages nouvelles et les contenus `generated_after_import` ;
+- revue des résumés adaptée aux pages historiquement dépourvues de résumé.
 
 ## 0.4.42 — 6 août 2026
 

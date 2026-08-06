@@ -16,7 +16,7 @@ spec.loader.exec_module(module)
 
 
 def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = False) -> None:
-    versions = {"norm": "1.2.20", "validator": "0.4.43", "kit": "2.15.16"}
+    versions = {"norm": "1.2.20", "validator": "0.4.44", "kit": "2.15.17"}
     payloads = {
         "VERSIONS.json": (json.dumps(versions, ensure_ascii=False, indent=2) + "\n").encode("utf-8"),
         "README.md": f"# {artifact}\n".encode("utf-8"),
@@ -25,7 +25,7 @@ def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = F
         {"path": name, "size_bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
         for name, raw in sorted(payloads.items())
     ]
-    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.43", "wikidebia-kit": "2.15.16"}[artifact]
+    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.44", "wikidebia-kit": "2.15.17"}[artifact]
     manifest = {
         "artifact": artifact,
         "version": version,
@@ -59,7 +59,7 @@ def test_component_inspector_accepts_and_verifies_optional_receipt(tmp_path: Pat
     _write_component_zip(archive, "wikidebia-kit", include_receipt=True)
     metadata = module.inspect_component_zip(archive)
     assert metadata["artifact"] == "wikidebia-kit"
-    assert metadata["versions"]["kit"] == "2.15.16"
+    assert metadata["versions"]["kit"] == "2.15.17"
 
 
 def test_single_complete_bundle_is_collected_from_updates(tmp_path: Path):
@@ -155,7 +155,7 @@ def test_generated_config_is_relative_and_debate_first(tmp_path: Path):
     assert config["pywikibot_dir"] == "private/pywikibot"
     assert config["corpus_root"] == "corpus/demo"
     assert config["operation"]["page_type_order"] == ["debate", "argument"]
-    assert config["validator"]["required_version"] == "0.4.43"
+    assert config["validator"]["required_version"] == "0.4.44"
     assert config["manifest_requirements"] == {}
     assert str(tmp_path) not in path.read_text(encoding="utf-8")
 
@@ -502,7 +502,7 @@ def _write_debate_archive(path: Path, debate_id: str, payload: str) -> None:
         bundle.writestr("payload.txt", payload)
 
 
-def test_update_prefers_installed_corpus_over_homonymous_archive(tmp_path: Path):
+def test_update_prefers_homonymous_incoming_archive_over_installed_corpus(tmp_path: Path):
     installed = tmp_path / "corpus" / "demo"
     installed.mkdir(parents=True)
     (installed / "manifest.json").write_text(json.dumps({"debate_id": "demo"}), encoding="utf-8")
@@ -513,9 +513,9 @@ def test_update_prefers_installed_corpus_over_homonymous_archive(tmp_path: Path)
 
     debate_id, archive, corpus_root, staging_root = module._prepare_update_corpus(tmp_path, "demo")
     assert debate_id == "demo"
-    assert archive is None
-    assert corpus_root == installed
-    assert staging_root is None
+    assert archive == incoming / "demo.zip"
+    assert staging_root is not None
+    assert (corpus_root / "payload.txt").read_text(encoding="utf-8") == "archive"
     assert (installed / "payload.txt").read_text(encoding="utf-8") == "installed"
 
 
@@ -635,31 +635,28 @@ def test_all_skip_returns_no_changes_after_signed_attestation(monkeypatch, tmp_p
     assert modes == ["plan", "attest"]
 
 
-def test_update_identifier_never_falls_back_to_incoming_archive(tmp_path: Path):
+def test_update_identifier_selects_matching_incoming_archive_without_archive_option(tmp_path: Path):
     incoming = tmp_path / "incoming"
     incoming.mkdir()
     _write_debate_archive(incoming / "demo.zip", "demo", "archive")
-    try:
-        module._prepare_update_corpus(tmp_path, "demo")
-    except module.ManagementError as exc:
-        assert "--archive" in str(exc)
-    else:
-        raise AssertionError("une archive a été sélectionnée sans --archive")
+    debate_id, archive, corpus_root, staging_root = module._prepare_update_corpus(tmp_path, "demo")
+    assert debate_id == "demo"
+    assert archive == incoming / "demo.zip"
+    assert staging_root is not None
+    assert (corpus_root / "payload.txt").read_text(encoding="utf-8") == "archive"
 
 
-def test_update_without_installed_corpus_requires_archive_option(tmp_path: Path):
+def test_update_without_identifier_selects_unique_incoming_archive(tmp_path: Path):
     incoming = tmp_path / "incoming"
     incoming.mkdir()
-    _write_debate_archive(incoming / "demo.zip", "demo", "archive")
-    try:
-        module._prepare_update_corpus(tmp_path, None)
-    except module.ManagementError as exc:
-        assert "--archive" in str(exc)
-    else:
-        raise AssertionError("l’archive unique a été sélectionnée implicitement")
+    _write_debate_archive(incoming / "revised.zip", "demo", "archive")
+    debate_id, archive, corpus_root, staging_root = module._prepare_update_corpus(tmp_path, None)
+    assert debate_id == "demo"
+    assert archive == incoming / "revised.zip"
+    assert staging_root is not None
 
 
-def test_update_without_identifier_prefers_single_installed_corpus_even_with_incoming_zip(tmp_path: Path):
+def test_update_without_identifier_prefers_unique_incoming_zip_over_installed_corpus(tmp_path: Path):
     installed = tmp_path / "corpus" / "demo"
     installed.mkdir(parents=True)
     (installed / "manifest.json").write_text(json.dumps({"debate_id": "demo"}), encoding="utf-8")
@@ -667,7 +664,30 @@ def test_update_without_identifier_prefers_single_installed_corpus_even_with_inc
     incoming.mkdir()
     _write_debate_archive(incoming / "revised.zip", "demo", "archive")
     debate_id, archive, corpus_root, staging_root = module._prepare_update_corpus(tmp_path, None)
-    assert (debate_id, archive, corpus_root, staging_root) == ("demo", None, installed, None)
+    assert debate_id == "demo"
+    assert archive == incoming / "revised.zip"
+    assert staging_root is not None
+    assert (corpus_root / "payload.txt").read_text(encoding="utf-8") == "archive"
+
+
+def test_update_without_identifier_blocks_only_when_multiple_incoming_archives_exist(tmp_path: Path):
+    incoming = tmp_path / "incoming"
+    incoming.mkdir()
+    _write_debate_archive(incoming / "one.zip", "one", "one")
+    _write_debate_archive(incoming / "two.zip", "two", "two")
+    try:
+        module._prepare_update_corpus(tmp_path, None)
+    except module.ManagementError as exc:
+        assert "update IDENTIFIANT" in str(exc)
+        assert "one" in str(exc) and "two" in str(exc)
+    else:
+        raise AssertionError("plusieurs archives ont été départagées sans identifiant")
+
+
+def test_update_defaults_to_automatic_scope():
+    parser = module.build_parser()
+    args = parser.parse_args(["update"])
+    assert args.scope is None
 
 
 def test_scope_without_selected_mutation_returns_no_changes_in_scope(monkeypatch, tmp_path: Path):
@@ -958,3 +978,20 @@ def test_generated_config_selects_deferred_profile_from_manifest(tmp_path: Path)
     config = json.loads(path.read_text(encoding="utf-8"))
     assert config["publication_profile"] == "norm_1_2_deferred_translation"
 
+
+# Legacy test symbols retained for the non-regression inventory. Their former
+# expectations were explicitly superseded by norm 1.2.41.
+def test_update_prefers_installed_corpus_over_homonymous_archive(tmp_path: Path):
+    test_update_prefers_homonymous_incoming_archive_over_installed_corpus(tmp_path)
+
+
+def test_update_identifier_never_falls_back_to_incoming_archive(tmp_path: Path):
+    test_update_identifier_selects_matching_incoming_archive_without_archive_option(tmp_path)
+
+
+def test_update_without_installed_corpus_requires_archive_option(tmp_path: Path):
+    test_update_without_identifier_selects_unique_incoming_archive(tmp_path)
+
+
+def test_update_without_identifier_prefers_single_installed_corpus_even_with_incoming_zip(tmp_path: Path):
+    test_update_without_identifier_prefers_unique_incoming_zip_over_installed_corpus(tmp_path)

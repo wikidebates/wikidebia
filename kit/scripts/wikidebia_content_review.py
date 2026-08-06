@@ -48,7 +48,7 @@ from wikidebia_editorial_review import (
 )
 from wikidebia_graph_extract import iter_templates, normalize_key
 
-KIT_VERSION = "2.15.16"
+KIT_VERSION = "2.15.17"
 CONTENT_REVIEW_SCHEMA = "wikidebia-fr-content-review-1.0"
 CONTENT_LOCK_SCHEMA = "wikidebia-fr-content-lock-1.0"
 CONTENT_CHANGESET_SCHEMA = "wikidebia-fr-content-changeset-1.0"
@@ -335,11 +335,10 @@ def _blank_intro_review(source: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def _blank_summary_review(source: Mapping[str, Any]) -> dict[str, Any]:
-    source_summary = source.get("summary")
     return {
         "status": "pending",
-        "summary_decision": "pending" if source_summary else "leave_absent",
-        "proposed_summary": source_summary,
+        "summary_decision": "pending",
+        "proposed_summary": source.get("summary"),
         "summary_rationale": "",
         "documentation_decisions": {bucket: "pending" for bucket in ARGUMENT_BUCKETS},
         "proposed_sources": {bucket: [] for bucket in ARGUMENT_BUCKETS},
@@ -666,34 +665,6 @@ def _validate_argument(item: Mapping[str, Any], sources: Mapping[str, Mapping[st
     review = item.get("review") or {}
     if review.get("status") != "approved":
         raise ContentReviewError(f"Revue non approuvée pour {node_id}")
-    summary_decision = review.get("summary_decision")
-    if summary_decision == "leave_absent":
-        if str(source.get("summary") or "").strip() or str(review.get("proposed_summary") or "").strip():
-            raise ContentReviewError(f"Un résumé existant ne peut pas être supprimé silencieusement pour {node_id}")
-        _text(review.get("reviewer"), f"relecteur de {node_id}", 3)
-        _text(review.get("reviewed_at"), f"date de revue de {node_id}", 10)
-        _text(review.get("note"), f"note de revue de {node_id}", 12)
-        return {
-            "id": node_id,
-            "canonical_title": source.get("canonical_title"),
-            "displayed_title": source.get("displayed_title"),
-            "summary": None,
-            "citations": copy.deepcopy(source.get("citations") or []),
-            "sources": {bucket: [] for bucket in ARGUMENT_BUCKETS},
-            "status": "not_written",
-            "summary_provenance": "absent_at_import",
-            "substantive_redrafting_required": True,
-            "forceful_expression": None,
-            "quantitative_claims": [],
-            "quantitative_claims_verified": False,
-            "quantitative_claims_note": None,
-            "reviewer": review.get("reviewer"),
-            "reviewed_at": review.get("reviewed_at"),
-            "note": review.get("note"),
-            "attestations": {},
-            "page_origin": source.get("page_origin", "preexisting"),
-            "preserved_parameters": copy.deepcopy(source.get("preserved_parameters") or {}),
-        }
     summary = _text(_select(review, "summary_decision", source.get("summary"), "proposed_summary"), f"résumé de {node_id}", 40)
     if META_DISCOURSE.search(_plain(summary)):
         raise ContentReviewError(f"Métadiscours interdit dans le résumé de {node_id}")
@@ -899,7 +870,7 @@ def _summary_style_review(arguments: Sequence[Mapping[str, Any]], debate_id: str
     return {
         "schema_version": "1.0",
         "normative_revision": NORM_VERSION,
-        "summary_policy_revision": "1.2.40",
+        "summary_policy_revision": "1.2.39",
         "debate_id": debate_id,
         "entries": entries,
     }

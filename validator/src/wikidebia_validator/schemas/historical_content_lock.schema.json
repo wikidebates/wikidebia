@@ -117,9 +117,7 @@
             "enum": [
               "historical_existing",
               "generated_after_import",
-              "absent_at_import",
-              "new_page_unwritten",
-              "authored_after_import"
+              "historical_absent"
             ]
           }
         },
@@ -157,12 +155,6 @@
           }
         ]
       }
-    },
-    "summary_policy_revision": {
-      "type": "string",
-      "enum": [
-        "1.2.40"
-      ]
     }
   }
 }

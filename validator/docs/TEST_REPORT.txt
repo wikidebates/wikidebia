@@ -1,9 +1,10 @@
-Wikidéb’IA Validator 0.4.43
-Norme implémentée : 1.2.40
+Wikidéb’IA Validator 0.4.44
+Norme implémentée : 1.2.41
 Tests pytest : 270 réussis, 0 échec
-Contrôles nouveaux : WDV-EDT-028 impose l’absence du paramètre résumé pour absent_at_import et new_page_unwritten
-Préservation historique : WDV-EDT-027 confronte résumés et initialisation à l’inventaire source sous verification_revision 0.4.43
-Résumé mécanique : aucun remplissage structurel n’est accepté à la place d’un développement substantiel
-Compatibilité : normes 1.1.0 à 1.2.40, sans rétroactivité silencieuse
+Contrôles nouveaux de la révision : absence historique attestée des résumés, sans dérogation pour les pages nouvelles
+Résumés : provenance du champ vérifiée contre la présence réelle du paramètre dans la source
+Initialisation : présence et valeur vérifiées contre l’inventaire source
+Mots-clés : intersections de domaines décomposées ; locutions atomiques conventionnelles conservées
+Compatibilité : normes 1.1.0 à 1.2.41, sans rétroactivité silencieuse
 Validation ordinaire : strictement locale et en lecture seule
 Résultat : RÉUSSI

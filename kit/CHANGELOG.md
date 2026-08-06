@@ -1,16 +1,11 @@
-## 2.15.16 — 6 août 2026
+## 2.15.17 — 6 août 2026
 
-- alignement sur la norme 1.2.40 et le validateur 0.4.43 ;
-- prise en charge explicite des résumés laissés absents lorsqu’ils étaient absents de la source ;
-- interdiction de supprimer silencieusement un résumé existant sous couvert de cette politique ;
-- ajout des profils de configuration 1.2.40 et conservation des protections de publication et de reprise.
-
-## 2.15.15 — 6 août 2026
-
-- alignement sur le validateur 0.4.42 et la norme 1.2.39 ;
-- contrôle préalable des corpus utilisant un verrou historique confronté à un inventaire source attesté ;
-- conservation de toutes les protections de publication et de reprise 2.15.14.
-
+- alignement sur le validateur 0.4.44 et la norme 1.2.41 ;
+- sélection automatique de l’unique ZIP de `incoming/` sans `--archive` ;
+- blocage avec liste des sélecteurs lorsque plusieurs ZIP sont présents ;
+- détection automatique de la portée lorsque `--scope` est omis ;
+- conservation des résumés obligatoires pour les pages nouvelles et de l’absence attestée pour les pages historiques ;
+- conservation de toutes les protections de plan signé, concurrence, staging et modification humaine.
 ## 2.15.14 — 6 août 2026
 
 - alignement sur la norme 1.2.39 et le validateur 0.4.41 ;
@@ -491,3 +486,6 @@
 - alignement sur la norme 1.2.2 et le validateur 0.4.2 ;
 - portées `wikicode` et `editorial` obligatoires ;
 - ancien mode de test sur sous-page utilisateur, remplacé par 2.1.4.
+
+- sélection automatique de l’unique ZIP présent dans `incoming/`, sans exiger `--archive` ;
+- sélection automatique de la portée publiable lorsque `--scope` est omis : `fr` pour un corpus anglais différé, `all` pour un corpus bilingue prêt ;

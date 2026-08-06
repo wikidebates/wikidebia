@@ -35,10 +35,10 @@ from wikidebia_graph_extract import (
     normalize_key,
 )
 
-KIT_VERSION = "2.15.16"
+KIT_VERSION = "2.15.17"
 CORPUS_INIT_VERSION = "1.0.0"
-NORM_VERSION = "1.2.40"
-VALIDATOR_VERSION = "0.4.43"
+NORM_VERSION = "1.2.41"
+VALIDATOR_VERSION = "0.4.44"
 
 RUBRIQUES = {
     "Aménagement", "Culture", "Droit", "Écologie", "Économie", "Éducation",
@@ -777,7 +777,7 @@ def build_corpus(
             },
             "editorial_controls": {
                 "keyword_policy_revision": "1.2.39",
-                "summary_policy_revision": "1.2.40",
+                "summary_policy_revision": "1.2.39",
                 "capitalization_policy_revision": "1.2.39",
                 "creation_date": dt.date.today().isoformat(),
                 "individual_review_path": "reviews/individual_review.json",

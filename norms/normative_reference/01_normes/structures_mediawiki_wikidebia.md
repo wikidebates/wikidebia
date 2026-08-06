@@ -577,7 +577,3 @@ Dans les structures françaises, `interlangue` est absent lorsque `translation_s
 
 Pour une page française sous `translation_status.en=deferred`, le paramètre `interlangue` est absent. Dès la sortie de cet état, sa présence et sa cible sont de nouveau contrôlées strictement.
 
-## Politique 1.2.40 des résumés absents
-
-Dans les squelettes ci-dessus, `résumé` / `summary` n’est émis que lorsqu’un contenu substantiel est disponible. Pour les états `absent_at_import` et `new_page_unwritten`, le paramètre est entièrement omis. Un paramètre vide et un texte de remplissage sont tous deux non conformes.
-

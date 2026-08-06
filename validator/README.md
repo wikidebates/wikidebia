@@ -1,7 +1,9 @@
-# Wikidéb’IA Validator 0.4.43
+# Wikidéb’IA Validator 0.4.44
 
-Validateur local Python 3 aligné sur la norme 1.2.40 et rétrocompatible avec les révisions antérieures.
+Validateur local Python 3 aligné sur la norme 1.2.41 et rétrocompatible avec les révisions antérieures, notamment 1.2.36. La validation ordinaire reste strictement en lecture seule.
 
-La version 0.4.43 ajoute `WDV-EDT-028` et contrôle l’état réel de rédaction des résumés. Lorsqu’un registre déclare `absent_at_import` ou `new_page_unwritten`, le paramètre `résumé` / `summary` doit être absent. Une paraphrase mécanique ne peut plus être utilisée pour satisfaire artificiellement la structure. Les résumés historiques et les paramètres `initialisation` restent protégés exactement par `WDV-EDT-027`.
+La version 0.4.44 distingue désormais trois provenances de résumé : `historical_existing`, `historical_absent` et `generated_after_import`. Lorsqu’un corpus active `historical_summary_absence_revision=1.2.40`, l’omission du paramètre est autorisée seulement si l’inventaire source attesté prouve son absence. Les pages nouvelles et les contenus réellement ajoutés après import conservent un résumé obligatoire. Les paramètres `initialisation` historiques restent également confrontés à l’inventaire source.
 
-La source normative active unique embarquée est `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.40.md`.
+Les contrôles éditoriaux 0.4.41 (`WDV-EDT-024` à `WDV-EDT-027`) et toutes les protections antérieures sont conservés.
+
+La source normative active unique embarquée est `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.41.md`.

@@ -15,9 +15,9 @@ import zipfile
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
-NORM_VERSION = "1.2.40"
-VALIDATOR_VERSION = "0.4.43"
-KIT_VERSION = "2.15.16"
+NORM_VERSION = "1.2.41"
+VALIDATOR_VERSION = "0.4.44"
+KIT_VERSION = "2.15.17"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",
@@ -1084,6 +1084,42 @@ def publish_debate(root: Path, debate_identifier: str | None, scope: str, assume
 
 
 
+def resolve_update_scope(corpus_root: Path, requested_scope: str | None) -> str:
+    """Choose all publishable languages when --scope is omitted.
+
+    Explicit scopes are preserved. In automatic mode, only languages represented by
+    validated page entries and not marked deferred are selected.
+    """
+    if requested_scope is not None:
+        return requested_scope
+    manifest = json_load(corpus_root / "manifest.json")
+    page_languages = {
+        str(row.get("language"))
+        for row in (manifest.get("pages") or [])
+        if isinstance(row, dict)
+        and row.get("language") in {"fr", "en"}
+        and row.get("status") in {"validated", "release_ready", "published"}
+        and row.get("file_path")
+    }
+    translation_status = manifest.get("translation_status") or {}
+    publishable = [
+        language for language in ("fr", "en")
+        if language in page_languages and str(translation_status.get(language) or "ready") != "deferred"
+    ]
+    if publishable == ["fr", "en"]:
+        return "all"
+    if len(publishable) == 1:
+        return publishable[0]
+    if page_languages == {"fr"}:
+        return "fr"
+    if page_languages == {"en"}:
+        return "en"
+    raise ManagementError(
+        "Impossible de déterminer automatiquement la portée de mise à jour; "
+        "utilisez --scope fr, --scope en ou --scope all."
+    )
+
+
 def remote_update_config(root: Path, debate_id: str, scope: str, run_dir: Path, corpus_root: Path | None = None) -> Path:
     settings = load_local_settings(root)
     languages = ["fr", "en"] if scope == "all" else [scope]
@@ -1127,20 +1163,48 @@ def _prepare_update_corpus(
     archive_selector: str | None = None,
 ) -> tuple[str, Path | None, Path, Path | None]:
     if archive_selector and debate_identifier:
-        raise ManagementError("Utilisez soit l’identifiant du corpus installé, soit --archive, pas les deux")
+        raise ManagementError("Utilisez soit l’identifiant positionnel, soit --archive, pas les deux")
 
+    incoming = root / "incoming"
+    incoming.mkdir(parents=True, exist_ok=True)
+    candidates = sorted(path for path in incoming.iterdir() if path.is_file() and path.suffix.casefold() == ".zip")
+
+    # Compatibility path: --archive remains valid, but is no longer required.
     if archive_selector:
         archive = find_debate_archive(root, archive_selector)
         debate_id, package_root, stage = stage_debate_corpus(root, archive, purpose="update-staging")
         return debate_id, archive, package_root, stage
 
     if debate_identifier:
-        installed = root / "corpus" / debate_identifier
+        identifier = debate_identifier.strip()
+        if identifier.casefold().endswith(".zip"):
+            raise ManagementError("Indiquez l’identifiant sans l’extension .zip")
+        if not re.fullmatch(r"[A-Za-z0-9_.-]+", identifier):
+            raise ManagementError("Identifiant invalide; caractères admis : lettres, chiffres, _, - et .")
+        incoming_match = incoming / f"{identifier}.zip"
+        if incoming_match.is_file():
+            debate_id, package_root, stage = stage_debate_corpus(root, incoming_match, purpose="update-staging")
+            return debate_id, incoming_match, package_root, stage
+        installed = root / "corpus" / identifier
         if (installed / "manifest.json").is_file():
-            return debate_identifier, None, installed, None
+            return identifier, None, installed, None
+        incoming_ids = ", ".join(path.stem for path in candidates) or "aucun"
+        installed_ids = ", ".join(sorted(path.name for path in (root / "corpus").glob("*") if (path / "manifest.json").is_file())) if (root / "corpus").is_dir() else "aucun"
         raise ManagementError(
-            f"Corpus installé introuvable pour {debate_identifier}. "
-            "Pour utiliser une archive de incoming/, relancez avec --archive SÉLECTEUR."
+            f"Aucune archive ni aucun corpus installé ne correspond à {identifier}. "
+            f"ZIP disponibles : {incoming_ids}; corpus installés : {installed_ids or 'aucun'}"
+        )
+
+    # A unique incoming archive is the unambiguous new version and takes priority.
+    if len(candidates) == 1:
+        archive = candidates[0]
+        debate_id, package_root, stage = stage_debate_corpus(root, archive, purpose="update-staging")
+        return debate_id, archive, package_root, stage
+    if len(candidates) > 1:
+        available = ", ".join(path.stem for path in candidates)
+        raise ManagementError(
+            "Plusieurs archives ZIP sont présentes dans incoming/. "
+            f"Relancez avec ./wikidebia update IDENTIFIANT. Identifiants disponibles : {available}"
         )
 
     installed = sorted(
@@ -1150,10 +1214,10 @@ def _prepare_update_corpus(
     if len(installed) == 1:
         return installed[0].name, None, installed[0], None
     if not installed:
-        raise ManagementError("Aucun corpus installé. Utilisez --archive SÉLECTEUR pour une archive de incoming/.")
+        raise ManagementError("Aucune archive ZIP dans incoming/ et aucun corpus installé.")
     available = ", ".join(path.name for path in installed)
     raise ManagementError(
-        "Plusieurs corpus sont installés. Indiquez leur identifiant. "
+        "Plusieurs corpus sont installés et aucune archive n’est présente. Indiquez leur identifiant. "
         f"Identifiants disponibles : {available}"
     )
 
@@ -1169,7 +1233,7 @@ def _archive_after_update(root: Path, archive: Path, debate_id: str, keep_zip: b
 def update_debate(
     root: Path,
     debate_identifier: str | None,
-    scope: str,
+    scope: str | None,
     assume_yes: bool,
     no_delete: bool,
     only_delete: bool,
@@ -1184,6 +1248,9 @@ def update_debate(
     archive: Path | None = None
     try:
         debate_id, archive, corpus_root, staging_root = _prepare_update_corpus(root, debate_identifier, archive_selector)
+        effective_scope = resolve_update_scope(corpus_root, scope)
+        if scope is None:
+            print(f"Portée sélectionnée automatiquement : {effective_scope}")
         if archive is None:
             print(f"Corpus installé sélectionné : {portable_path(corpus_root, root)}")
         else:
@@ -1191,7 +1258,7 @@ def update_debate(
         print(f"Identifiant interne du débat : {debate_id}")
         run_dir = root / "plans" / debate_id / timestamp()
         run_dir.mkdir(parents=True, exist_ok=True)
-        config = remote_update_config(root, debate_id, scope, run_dir, corpus_root)
+        config = remote_update_config(root, debate_id, effective_scope, run_dir, corpus_root)
         plan_path = run_dir / "update-plan.json"
         flags: list[str] = []
         if no_delete:
@@ -1755,9 +1822,9 @@ def build_parser() -> argparse.ArgumentParser:
     publish.add_argument("--keep-zip", action="store_true", help="Ne pas archiver le ZIP après succès")
 
     update = sub.add_parser("update", help="Reprendre un débat déjà publié avec créations, mises à jour et retraits contrôlés")
-    update.add_argument("debate_identifier", nargs="?", help="Identifiant du corpus déjà installé")
-    update.add_argument("--archive", metavar="SÉLECTEUR", help="Utiliser explicitement incoming/SÉLECTEUR.zip dans une zone de staging")
-    update.add_argument("--scope", choices=("all", "fr", "en"), default="all")
+    update.add_argument("debate_identifier", nargs="?", help="Nom du ZIP entrant sans .zip, ou identifiant du corpus installé si incoming/ est vide")
+    update.add_argument("--archive", metavar="SÉLECTEUR", help="Option de compatibilité pour sélectionner explicitement incoming/SÉLECTEUR.zip")
+    update.add_argument("--scope", choices=("all", "fr", "en"), default=None, help="Portée explicite; par défaut, détection automatique des langues publiables")
     update.add_argument("--yes", action="store_true", help=argparse.SUPPRESS)
     update.add_argument("--no-delete", action="store_true", help="Exécuter la reprise sans suppressions finales")
     update.add_argument("--only-delete", action="store_true", help="N’exécuter que les retraits sûrs et redirections de fusion")

@@ -1,3 +1,5 @@
-# Migration 1.2.40 — résumés absents plutôt que mécaniques
+# Migration du validateur 0.4.43 / norme 1.2.40
 
-Le registre de provenance couvre chaque page Argument. Les états `absent_at_import` et `new_page_unwritten` imposent l’absence du paramètre `résumé` / `summary`. `authored_after_import` exige un contenu non vide et une revue individuelle. Les résumés `historical_existing` restent verrouillés sur l’inventaire source.
+Le validateur accepte l’omission du paramètre de résumé uniquement pour les pages importées classées `historical_absent`, vérifiées contre l’inventaire source. Toute omission sur une page nouvelle ou un résumé `generated_after_import` reste bloquante.
+
+Le registre de revue distingue `historical_existing`, `historical_absent` et les résumés nouveaux. Le validateur refuse toute absence non prouvée et toute réintroduction silencieuse sur une page verrouillée comme historiquement vide.

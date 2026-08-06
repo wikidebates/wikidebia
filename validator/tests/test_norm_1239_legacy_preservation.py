@@ -117,7 +117,7 @@ def _enable_inventory_verification(root: Path, manifest: dict, page: dict, sourc
     dump(inventory_path, inventory)
     manifest = json.loads((root / "manifest.json").read_text())
     cfg = manifest["editorial_controls"]["legacy_content_preservation"]
-    cfg["verification_revision"] = "0.4.42"
+    cfg["verification_revision"] = "0.4.43"
     cfg["source_inventory_path"] = "data/initial_remote_inventory_fr.json"
     cfg["source_inventory_sha256"] = hashlib.sha256(inventory_path.read_bytes()).hexdigest()
     dump(root / "manifest.json", manifest)

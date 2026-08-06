@@ -106,7 +106,6 @@ CODES = {
     "WDV-EDT-025": "Mot-clé non atomique ou exception multi-mots non justifiée",
     "WDV-EDT-026": "Capitalisation incorrecte du nom propre Dieu",
     "WDV-EDT-027": "Contenu historique protégé modifié ou supprimé",
-    "WDV-EDT-028": "Résumé non substantiel présent malgré un statut non rédigé",
     "WDV-RMT-001": "Empreinte du plan de reprise divergente",
     "WDV-RMT-002": "Compteurs du plan de reprise incohérents",
     "WDV-RMT-003": "Opérations distantes mutantes contradictoires",

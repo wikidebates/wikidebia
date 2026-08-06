@@ -1,4 +1,4 @@
-# Norme consolidée Wikidéb’IA 1.2.40
+# Norme consolidée Wikidéb’IA 1.2.41
 
 **Statut :** source normative active unique  
 **Date d’effet :** 6 août 2026  
@@ -6,7 +6,11 @@
 **Remplace comme sources actives séparées :** révision 1.0.6, correctif du 23 juillet 2026 et décisions correctives du 25 juillet 2026. Ces documents restent conservés dans `history/` à titre de provenance.
 
 
-> **Révision 1.2.40.** Cette révision corrige la politique des résumés après le constat de textes générés mécaniquement sur des pages qui n’en possédaient pas dans la source. Un résumé absent est préférable à une paraphrase du titre, de la relation au parent ou des mots-clés. Les résumés historiques restent conservés exactement; les résumés non substantiels ajoutés après import ou sur des pages nouvelles sont retirés et ne peuvent être réintroduits qu’après une rédaction et une revue individuelles. Toutes les règles 1.2.39 restent actives sauf contradiction explicite.
+> **Révision 1.2.41.** Cette révision applique deux décisions du propriétaire. Premièrement, les mots-clés des pages nouvelles doivent employer les concepts de navigation les plus simples : un qualificatif qui ne fait que rappeler le contexte de la page est supprimé (`liberté divine` devient `liberté` à côté de `Dieu`; `épistémologie réformée` devient `épistémologie`). Les locutions qui désignent réellement un concept autonome, telles que `croyance fondamentale`, restent intactes. Deuxièmement, `./wikidebia update` sélectionne automatiquement l’unique ZIP présent dans `incoming/` et utilise par défaut la portée `all`; un identifiant n’est exigé qu’en cas d’ambiguïté.
+
+> **Révision 1.2.40.** Cette révision restaure l’absence historique des résumés qui n’existaient pas dans les pages importées. Un résumé ne peut être omis que si un inventaire source attesté prouve cette absence et si le verrou de provenance classe le champ comme `historical_absent`. Les pages nouvelles et les résumés effectivement ajoutés après import restent soumis à toutes les exigences de contenu et de style.
+
+> **Révision 1.2.39.** Cette révision conserve les protections de reprise historique non destructive introduites en 1.2.36 et ferme trois failles éditoriales constatées sur un corpus réel : les mots-clés doivent désigner des concepts atomiques plutôt que des mini-rubriques, les résumés produits par gabarit répétitif, métadiscours ou énumération de pages filles sont bloqués à l’échelle du corpus, et le nom propre « Dieu » reçoit la majuscule attendue. Toutes les règles 1.2.36 restent actives sauf contradiction explicite.
 
 ## 1. Autorité et priorité
 
@@ -1065,21 +1069,43 @@ Les contrôles éditoriaux renforcés sont désormais activables séparément su
 
 L'ancien champ combiné `quality_policy_revision=1.2.38` reste accepté pour compatibilité et conserve son comportement historique. Il ne doit plus être employé lorsqu'une correction ne porte que sur une partie de ces contrôles. Pour un nouveau corpus déclarant directement la norme 1.2.39, les trois politiques sont actives par défaut.
 
-## Addendum 1.2.40 — absence préférable à un résumé mécanique
 
-Le paramètre `résumé` ou `summary` n’est pas un emplacement à remplir pour satisfaire une structure. Sa présence n’est justifiée que par un développement argumentatif substantiel qui apporte au lecteur au moins une prémisse, un mécanisme, une distinction ou une conséquence qui ne se déduit pas déjà du titre et de la relation immédiate dans le graphe.
+## Addendum 1.2.40 — absence historique attestée des résumés
 
-Sont notamment interdits comme substituts de résumé :
+L’absence d’un résumé dans une page Argument historique est un état de contenu qui peut être conservé lorsqu’elle est prouvée par l’inventaire source en lecture seule. Elle ne doit pas être comblée par un texte générique uniquement pour satisfaire une structure de sortie.
 
-- la reformulation du titre suivie d’une conclusion qui le répète ;
-- les phrases de transition telles que « le rapport entre X et Y se comprend à partir du mécanisme suivant » lorsqu’aucun mécanisme propre n’est expliqué ;
-- les formulations métadiscursives sur « le lien logique », « cette analyse », « la portée de ce constat » ou « la conclusion » ;
-- l’énumération des mots-clés, des justifications, des objections ou des titres voisins ;
-- tout texte produit en série dont le contenu informatif ne dépasse pas le titre et le contexte d’affichage.
+Le verrou de contenu emploie alors `summary_provenance=historical_absent`. Cette valeur n’est recevable que si toutes les conditions suivantes sont réunies :
 
-Lorsqu’une page importée ne contenait aucun résumé, le registre indique `summary_provenance=absent_at_import`. Lorsqu’une page nouvelle n’a pas encore reçu de rédaction substantielle, il indique `summary_provenance=new_page_unwritten`. Dans ces deux états, le paramètre `résumé` ou `summary` est **absent**, et non vide. L’absence est un état éditorial explicite, non une anomalie à combler automatiquement.
+1. la page est présente dans l’inventaire historique attesté ;
+2. le paramètre `résumé` ou `summary` y est réellement absent ;
+3. le manifeste active `legacy_content_preservation` et la politique `historical_summary_absence_revision=1.2.40` ;
+4. la page produite omet entièrement le paramètre, sans valeur vide ni texte provisoire ;
+5. la revue individuelle consigne `status=historical_absent` et `historical_absence_verified=true`.
 
-Un résumé peut être ajouté ultérieurement en passant à `summary_provenance=authored_after_import`. Cette transition exige une rédaction page par page, une revue individuelle et une attestation que le texte apporte un développement propre au nœud. Les résumés préexistants restent classés `historical_existing` et verrouillés exactement selon la révision 1.2.39.
+Cette dérogation est fermée. Elle ne s’applique jamais à une page nouvelle, à une page absente de l’inventaire, ni à un résumé déjà présent dans la source. Un résumé ajouté ultérieurement après un véritable travail éditorial reçoit la provenance `generated_after_import` et redevient obligatoire, contrôlé et révisable comme tout contenu généré.
 
-Un corpus historique peut activer cette règle sans migration globale avec `editorial_controls.summary_policy_revision=1.2.40`. Le registre de provenance couvre alors toutes les pages Argument actives. Le validateur bloque tout résumé présent sous les états `absent_at_import` ou `new_page_unwritten`, toute page active dépourvue d’état et toute fausse classification contraire à l’inventaire source attesté.
+Les résumés historiques réellement présents restent classés `historical_existing` et demeurent verrouillés à l’identique. Les contrôles de gabarit, d’originalité et de style ne servent ni à créer un résumé fictif sur une page historiquement vide, ni à réécrire rétroactivement un résumé historique protégé.
 
+
+## Addendum 1.2.41 — mots-clés simples et sélection implicite non ambiguë des reprises
+
+### Mots-clés des pages nouvelles
+
+Pour une page nouvellement produite, le mot-clé retient le concept de navigation le plus simple qui conserve le sens utile. Un adjectif ou complément qui rappelle seulement le sujet du débat ne crée pas une catégorie autonome. Lorsque `Dieu` figure déjà parmi les mots-clés, `liberté divine`, `justice divine`, `attributs divins` ou `révélation divine` deviennent normalement `liberté`, `justice`, `attributs` ou `révélation`. De même, une doctrine employée seulement comme cadrage d’une question plus générale peut être ramenée à son domaine : `épistémologie réformée` devient `épistémologie`.
+
+Cette simplification ne détruit pas les dénominations lexicalisées. Une locution reste entière lorsqu’elle désigne un concept reconnu qui ne se reconstitue pas sans perte par la juxtaposition de termes plus généraux. `Croyance fondamentale`, `dilemme d’Euthyphron`, `pari de Pascal`, `problème du mal`, `simplicité divine` et `effondrement modal` peuvent ainsi être conservés.
+
+Une correction ciblée des pages nouvelles ne modifie pas les mots-clés des pages historiques, sauf décision séparée du propriétaire.
+
+### Sélection d’une archive pour `update`
+
+La sélection strictement explicite imposée en 1.2.26 est remplacée par la règle suivante :
+
+1. si `incoming/` contient exactement un ZIP, `./wikidebia update` sélectionne ce ZIP, l’extrait en staging et utilise le `debate_id` de son manifeste ;
+2. si plusieurs ZIP sont présents, la commande sans identifiant refuse de choisir et affiche leurs sélecteurs ; `./wikidebia update IDENTIFIANT` sélectionne exactement `incoming/IDENTIFIANT.zip` ;
+3. si aucun ZIP n’est présent, la commande revient au corpus installé : elle sélectionne l’unique corpus disponible ou exige son identifiant lorsqu’il y en a plusieurs ;
+4. lorsqu’un identifiant correspond à la fois à un ZIP entrant et à un corpus installé, le ZIP entrant est prioritaire, puisqu’il représente la nouvelle version demandée ;
+5. `--archive` reste accepté pour compatibilité, mais n’est plus nécessaire dans le cas non ambigu ;
+6. lorsque `--scope` est omis, la portée est déduite des langues validées et non différées du corpus : `fr` pour un corpus français dont l’anglais est différé, `all` lorsque les deux langues sont publiables ; une portée explicite n’est requise que pour imposer volontairement un autre choix.
+
+Le staging, le dry-run, les plans signés, les contrôles de concurrence et les protections contre les modifications humaines restent inchangés.

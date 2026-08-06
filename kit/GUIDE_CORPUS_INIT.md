@@ -1,6 +1,6 @@
 # Initialisation d’un corpus depuis un snapshot
 
-Le kit 2.15.16 transforme un paquet produit par `graph-extract` en corpus local au statut `graph_draft`.
+Le kit 2.15.17 transforme un paquet produit par `graph-extract` en corpus local au statut `graph_draft`.
 
 ```bash
 ./wikidebia corpus-init-from-snapshot \

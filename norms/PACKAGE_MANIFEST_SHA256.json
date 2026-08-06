@@ -1,30 +1,30 @@
 {
   "artifact": "wikidebia-normes",
-  "version": "1.2.40",
-  "normative_revision": "1.2.40",
+  "version": "1.2.41",
+  "normative_revision": "1.2.41",
   "stable_archive_name": "wikidebia-normes.zip",
   "version_source": "VERSIONS.json",
   "self_excluded": [
     "PACKAGE_MANIFEST_SHA256.json",
     "PACKAGE_RECEIPT.json"
   ],
-  "declared_file_count": 185,
+  "declared_file_count": 187,
   "declared_test_count": 0,
   "files": [
     {
       "path": "COMPATIBILITY.json",
       "size_bytes": 654,
-      "sha256": "daa6a7c597ca9213f450329339a6834cc674118d6ade88c1760220644ce1d6e2"
+      "sha256": "51eb2240f20c086d8c41e87e14473ff1750a0408dec6836ae8c476ff0b94bb81"
     },
     {
       "path": "README.md",
-      "size_bytes": 858,
-      "sha256": "b269fce673679f363b4f89336fa36ff395a72071dee58974e897ceb093728698"
+      "size_bytes": 646,
+      "sha256": "dca71dd3b71a643a4ddafc0d047b00082b7410bf0d5a2e68e17fde8f6eb6a83f"
     },
     {
       "path": "VERSIONS.json",
       "size_bytes": 68,
-      "sha256": "7b4695a30ed38658d2faeed2013673a7fe46a13fb841d957924153b673d5b299"
+      "sha256": "faacbd5cf7cfa9f33d1caba20ce9915c02af59f73eecaf84a8dba1d211455f0f"
     },
     {
       "path": "docs/ARCHITECTURE_VALIDATEUR.md",
@@ -373,8 +373,13 @@
     },
     {
       "path": "docs/MIGRATION_1.2.40.md",
-      "size_bytes": 498,
-      "sha256": "d17ca5cc0dbeaf3065e4bb32989729a45f6aa83b409bcf7a2915ee9e0b67565d"
+      "size_bytes": 360,
+      "sha256": "412a7e0ba02227d4331222d044682e1f1735b87e8c0817217fc967d73d899cd8"
+    },
+    {
+      "path": "docs/MIGRATION_1.2.41.md",
+      "size_bytes": 533,
+      "sha256": "e4112fb68153b4b315e3ee574b29e20cf601310844fd3736067d10aab0f13e75"
     },
     {
       "path": "docs/MIGRATION_1.2.8.md",
@@ -594,12 +599,12 @@
     {
       "path": "examples/graph_placement_review.example.json",
       "size_bytes": 1336,
-      "sha256": "be783d6547bfb01b8845d0f050479a61d61f3005cdea996fbbd263c3eafa6924"
+      "sha256": "439157dcc2db20b0356cc004c1f33209c0f08d49533b6212082db04741771e44"
     },
     {
       "path": "examples/introduction_review.example.json",
       "size_bytes": 4214,
-      "sha256": "bd4a39193f0d7b1896bf6d51d6f890162e302703b6e7ea9ccaca076762658546"
+      "sha256": "fe1bc23e39c0782ebf10a97db01757830c2a535556f945fe50ad4fa0c1288251"
     },
     {
       "path": "examples/published_state.example.json",
@@ -618,8 +623,8 @@
     },
     {
       "path": "examples/summary_style_review.example.json",
-      "size_bytes": 2559,
-      "sha256": "679d4bb55bbd08d0999fd00965d661279242d414626a6983a6edaed033000d54"
+      "size_bytes": 2520,
+      "sha256": "b5a78578de064d3821af17161e9b8ea56a538b492907985dfe1279d8fc9ba32e"
     },
     {
       "path": "normative_reference/00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md",
@@ -633,8 +638,8 @@
     },
     {
       "path": "normative_reference/01_normes/CHANGELOG_NORMATIF.md",
-      "size_bytes": 24026,
-      "sha256": "f2dfe953236291bb412a03939728653d1401df343ea35974760fa36db3c008fc"
+      "size_bytes": 24305,
+      "sha256": "18496d73e2883070c2d581a77d35e4690b2d5061003f7b9faf5b17e827d8dd3b"
     },
     {
       "path": "normative_reference/01_normes/MATRICE_TRACEABILITE_DESIDERATA.md",
@@ -642,9 +647,9 @@
       "sha256": "87600e4d2f0a9732c15851f9be6222912eb4ca1b831251be3da80514076a437d"
     },
     {
-      "path": "normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.40.md",
-      "size_bytes": 119067,
-      "sha256": "3a7d8205d2a6a358459f427d8dff7aac8b85edb6ded7e8e9aeac0c0525299a57"
+      "path": "normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.41.md",
+      "size_bytes": 122221,
+      "sha256": "d80a9e0cb55cf4d1dc326212372016febdd32a05823515fd5f8a14e1bd6d3718"
     },
     {
       "path": "normative_reference/01_normes/cahier_des_charges_consolide_wikidebia.md",
@@ -882,6 +887,11 @@
       "sha256": "8b599c8eb1a787b39d5f6ea9052f92ce2eece6429443435f71f02e81c034e33a"
     },
     {
+      "path": "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.40.md",
+      "size_bytes": 118802,
+      "sha256": "e4dd82d35999353f4b0063aae90f3564059adda546a36aafe60ea0214cc3ce3a"
+    },
+    {
       "path": "normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.5.md",
       "size_bytes": 47721,
       "sha256": "60f1f83e8cd31528506369e5076e450b1e8dbd464f04caab521848736d487d89"
@@ -918,8 +928,8 @@
     },
     {
       "path": "normative_reference/01_normes/requirements_catalog_wikidebia.json",
-      "size_bytes": 225084,
-      "sha256": "146bec889a7f8e5ca964c8caf417d3b19d45ee86ed0a15ac3f6d33f211516838"
+      "size_bytes": 223406,
+      "sha256": "a88592454cdbef5af7362beb14e422d2facfa49f9e8fb27a57ca633da2aae4d3"
     },
     {
       "path": "normative_reference/01_normes/schema_graphe_registre_wikidebia.md",
@@ -928,8 +938,8 @@
     },
     {
       "path": "normative_reference/01_normes/structures_mediawiki_wikidebia.md",
-      "size_bytes": 19199,
-      "sha256": "937369d88e97c04ddf685f962df81af9db736f17346fe331d5a70198ae6418ba"
+      "size_bytes": 18862,
+      "sha256": "2ac18db5b29e271cbb194cf53857a293a872d3903425427f652d4e3444a13f27"
     },
     {
       "path": "normative_reference/01_normes/workflow_production_wikidebia.md",
