@@ -16,7 +16,7 @@ spec.loader.exec_module(module)
 
 
 def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = False) -> None:
-    versions = {"norm": "1.2.20", "validator": "0.4.46", "kit": "2.15.19"}
+    versions = {"norm": "1.2.20", "validator": "0.4.49", "kit": "2.15.23"}
     payloads = {
         "VERSIONS.json": (json.dumps(versions, ensure_ascii=False, indent=2) + "\n").encode("utf-8"),
         "README.md": f"# {artifact}\n".encode("utf-8"),
@@ -25,7 +25,7 @@ def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = F
         {"path": name, "size_bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
         for name, raw in sorted(payloads.items())
     ]
-    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.46", "wikidebia-kit": "2.15.19"}[artifact]
+    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.49", "wikidebia-kit": "2.15.23"}[artifact]
     manifest = {
         "artifact": artifact,
         "version": version,
@@ -59,7 +59,7 @@ def test_component_inspector_accepts_and_verifies_optional_receipt(tmp_path: Pat
     _write_component_zip(archive, "wikidebia-kit", include_receipt=True)
     metadata = module.inspect_component_zip(archive)
     assert metadata["artifact"] == "wikidebia-kit"
-    assert metadata["versions"]["kit"] == "2.15.19"
+    assert metadata["versions"]["kit"] == "2.15.23"
 
 
 def test_single_complete_bundle_is_collected_from_updates(tmp_path: Path):
@@ -155,7 +155,7 @@ def test_generated_config_is_relative_and_debate_first(tmp_path: Path):
     assert config["pywikibot_dir"] == "private/pywikibot"
     assert config["corpus_root"] == "corpus/demo"
     assert config["operation"]["page_type_order"] == ["debate", "argument"]
-    assert config["validator"]["required_version"] == "0.4.46"
+    assert config["validator"]["required_version"] == "0.4.49"
     assert config["manifest_requirements"] == {}
     assert str(tmp_path) not in path.read_text(encoding="utf-8")
 
@@ -995,3 +995,39 @@ def test_update_without_installed_corpus_requires_archive_option(tmp_path: Path)
 
 def test_update_without_identifier_prefers_single_installed_corpus_even_with_incoming_zip(tmp_path: Path):
     test_update_without_identifier_prefers_unique_incoming_zip_over_installed_corpus(tmp_path)
+
+
+def test_generated_sources_are_unified_and_legacy_names_are_obsolete(tmp_path: Path):
+    staged = {
+        "norms": tmp_path / "norms",
+        "validator": tmp_path / "validator",
+        "kit": tmp_path / "kit",
+    }
+    norm_dir = staged["norms"] / "normative_reference" / "01_normes"
+    norm_dir.mkdir(parents=True)
+    (norm_dir / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.46.md").write_text("# Norme\n", encoding="utf-8")
+    (norm_dir / "CHANGELOG_NORMATIF.md").write_text("# Changelog norme\n", encoding="utf-8")
+    for name in ("validator", "kit"):
+        staged[name].mkdir(parents=True)
+        (staged[name] / "README.md").write_text(f"# {name}\n", encoding="utf-8")
+        (staged[name] / "CHANGELOG.md").write_text(f"# changelog {name}\n", encoding="utf-8")
+        (staged[name] / "TEST_REPORT.txt").write_text(f"tests {name}\n", encoding="utf-8")
+    (staged["kit"] / "GUIDE_PUBLICATION.md").write_text("# publication\n", encoding="utf-8")
+    (staged["kit"] / "GUIDE_CONTENT_REVIEW.md").write_text("# content\n", encoding="utf-8")
+    archives = {}
+    for artifact in module.COMPONENTS:
+        path = tmp_path / f"{artifact}.zip"
+        path.write_bytes(artifact.encode("utf-8"))
+        archives[artifact] = path
+    generated = module.generate_readable_sources(
+        tmp_path, staged, {"norm": "1.2.46", "validator": "0.4.49", "kit": "2.15.23"}, archives
+    )
+    assert set(generated) == {"WIKIDEBIA_SOURCE_ACTIVE.md", "WIKIDEBIA_SOURCE_PACKAGE_RECEIPT.json"}
+    source = generated["WIKIDEBIA_SOURCE_ACTIVE.md"].read_text(encoding="utf-8")
+    assert "Source active unifiée" in source
+    assert "WIKIDEBIA_NORMES_ACTIVES.md" not in source
+    assert set(module.OBSOLETE_ROOT_SOURCE_FILES) == {
+        "WIKIDEBIA_NORMES_ACTIVES.md",
+        "WIKIDEBIA_VALIDATEUR_ACTIF.md",
+        "WIKIDEBIA_RECUS_ARCHIVES.json",
+    }

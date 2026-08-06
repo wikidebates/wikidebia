@@ -222,3 +222,11 @@ Une vérification supplémentaire a montré qu’un plan entièrement `skip` doi
 3. La rubrique expose des conséquences concrètes des principales réponses possibles et ce que celles-ci changent pour la compréhension ou la pratique du sujet.
 4. Elle ne se réduit ni à une liste abstraite de domaines, ni à un catalogue des arguments pour et contre, ni à une répétition des autres sous-parties.
 5. La revue consigne au moins deux enjeux concrets et atteste la présence, la pertinence et la non-redondance de la rubrique.
+
+## Décision du 6 août 2026 — ponctuation terminale des notes `<ref>`
+
+1. Une simple référence bibliographique, sitographique ou vidéographique placée dans `<ref>…</ref>` ne reçoit pas de point final avant `</ref>`.
+2. Le point de la phrase principale est placé après la fermeture de la balise.
+3. Un point final à l'intérieur de la note est admis seulement lorsque le contenu de la note constitue une phrase explicative complète.
+4. Toute exception est attestée explicitement dans le registre de revue afin d'éviter qu'une ponctuation automatique soit réintroduite.
+

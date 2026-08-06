@@ -550,3 +550,16 @@ La reprise sans changement renouvelle l’état publié uniquement après une at
 
 Un corpus déclarant `translation_status.en=deferred` est publiable avec une portée française sans titre ni page anglaise et sans lien interlangue. La portée anglaise est bloquée. La dérogation cesse dès que l'anglais est déclaré `ready` ou `published`, ou qu'une page anglaise est inscrite au manifeste. Aucun titre ou lien provisoire n'est généré.
 
+## Ponctuation des notes de référence (1.2.44)
+
+Une simple notice documentaire placée dans `<ref>…</ref>` ne se termine pas par un point avant `</ref>`. Le point de la phrase principale vient après l’appel de note. Un point terminal interne est réservé à une phrase explicative complète et doit être attesté dans la revue par l’empreinte du corps exact de la note.
+
+## Cohérence locale des liens Wikipédia explicatifs (1.2.45)
+
+Les notions spécialisées de même rang énumérées ou comparées dans un même passage sont revues comme un groupe. Lier une seule notion alors que les notions voisines disposent d’articles pertinents et présentent le même besoin explicatif est interdit sans justification explicite. Le registre `wikipedia_link_groups` consigne la sous-partie, les termes, les articles, la décision et toute exception.
+
+
+
+## Inventaire général des notions spécialisées (1.2.46)
+
+La revue ne se limite pas aux séries de notions comparables. Chaque sous-partie est examinée intégralement et reçoit une entrée dans `specialized_term_inventory`. Toute notion susceptible d’arrêter un lecteur est liée, expliquée, rattachée à un traitement antérieur ou déclarée intelligible en contexte avec une justification spécifique. Tous les liens Wikipédia réellement présents sont recensés. Le registre `wikipedia_link_groups` de 1.2.45 est remplacé comme mécanisme actif par cet inventaire général.

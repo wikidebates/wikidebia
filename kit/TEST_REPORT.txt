@@ -1,8 +1,7 @@
-Wikidéb’IA Kit 2.15.19
-Norme : 1.2.43
-Validateur requis : 0.4.46
-Tests pytest : 266 réussis, 0 échec
-Garde-fous 1.2.43 : sous-partie obligatoire « Enjeux du débat », conséquences concrètes et refus du remplissage symbolique
-Garde-fous 1.2.42 conservés : orientations documentaires exclusives, attribution YouTube, introduction dense et titres affichés non mécaniques
-Reprise distante : protections, sélection automatique non ambiguë et portée automatique conservées
-Résultat : RÉUSSI
+Wikidéb’IA Kit 2.15.23 — rapport de tests
+
+- norme active : 1.2.46
+- validateur associé : 0.4.49
+- tests collectés : 272
+- résultat : 272 réussis
+- contrôle ajouté : génération d’une source active unifiée et retrait des anciens fichiers textuels séparés lors de `upgrade`.

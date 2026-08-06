@@ -1,6 +1,6 @@
 # Revue française des introductions, résumés et références
 
-Le kit 2.15.19 applique une phase de contenu après le verrouillage des titres, rubriques et mots-clés. Elle part de `reviewed-copy/`, conserve toutes les copies antérieures et ne génère toujours aucune page MediaWiki finale.
+Le kit 2.15.20 applique une phase de contenu après le verrouillage des titres, rubriques et mots-clés. Elle part de `reviewed-copy/`, conserve toutes les copies antérieures et ne génère toujours aucune page MediaWiki finale.
 
 ## 1. Préparer la revue
 
@@ -43,6 +43,8 @@ Après avoir complété le registre de contenu et le registre documentaire :
 
 La finalisation vérifie notamment :
 
+- l’inventaire exhaustif, sous-partie par sous-partie, des notions spécialisées, avec vérification de chaque lien, explication intégrée, traitement antérieur ou justification contextuelle ;
+
 - la couverture exacte de tous les arguments actifs ;
 - l’existence d’une introduction structurée en sous-parties ;
 - la présence d’au moins un article Wikipédia français vérifié ;
@@ -56,6 +58,7 @@ La finalisation vérifie notamment :
 - la présence du créateur ou de la chaîne pour toute vidéo YouTube ;
 - la densité informative et la non-redondance des sous-parties ;
 - l’présence obligatoire d’une rubrique « Enjeux du débat » qui expose au moins deux conséquences concrètes sans recopier le graphe ;
+- l’absence de point final dans une simple notice `<ref>` ; toute note conservant un point doit être une phrase complète attestée par SHA-256 ;
 - l’absence de métadiscours et d’auto-objection dans les résumés ;
 - la présence réelle de l’expression attestant la force du résumé ;
 - la vérification explicite des affirmations chiffrées lorsqu’elles existent.

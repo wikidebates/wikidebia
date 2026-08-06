@@ -46,7 +46,7 @@ from wikidebia_content_review import (
     META_DISCOURSE,
 )
 
-KIT_VERSION = "2.15.19"
+KIT_VERSION = "2.15.23"
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.0"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
@@ -376,6 +376,7 @@ def _blank_debate(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -> 
         "keywords": [],
         "introduction": "",
         "subsections": [],
+        "specialized_term_inventory": [],
         "wikipedia_articles": [],
         "documentation": {bucket: [] for bucket in DEBATE_BUCKETS},
         "documentation_family_notes": {"bibliography": "", "webliography": "", "videography": ""},
@@ -907,7 +908,7 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
 def _merge_introduction_review(path: Path, debate: Mapping[str, Any]) -> None:
     data = load_json(path, "revue des introductions") if path.is_file() else {"normative_revision": NORM_VERSION, "entries": []}
     entries = [row for row in data.get("entries") or [] if row.get("language") != "en"]
-    entries.append({"language": "en", **{field: True for field in INTRO_TRUE_FIELDS}, "documentation_family_notes": copy.deepcopy(debate.get("documentation_family_notes") or {}), "common_acronym": None, "topic_label_rationale": debate.get("topic_label_rationale"), "complete_topic_initial_capital_justification": debate.get("complete_topic_initial_capital_justification"), "subsections": copy.deepcopy(debate.get("subsections") or [])})
+    entries.append({"language": "en", **{field: True for field in INTRO_TRUE_FIELDS}, "documentation_family_notes": copy.deepcopy(debate.get("documentation_family_notes") or {}), "common_acronym": None, "topic_label_rationale": debate.get("topic_label_rationale"), "complete_topic_initial_capital_justification": debate.get("complete_topic_initial_capital_justification"), "subsections": copy.deepcopy(debate.get("subsections") or []), "specialized_term_inventory": copy.deepcopy(debate.get("specialized_term_inventory") or [])})
     data["entries"] = entries
     write_json(path, data)
 

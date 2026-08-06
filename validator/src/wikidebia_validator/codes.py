@@ -77,6 +77,7 @@ CODES = {
     "WDV-DOC-003": "Date sitographique non documentaire",
     "WDV-DOC-004": "Métadonnées sitographiques redondantes ou attribution non vérifiée",
     "WDV-DOC-005": "Date documentaire au format machine",
+    "WDV-DOC-008": "Ponctuation terminale incorrecte dans une note de référence",
     "WDV-DOC-006": "Champ auteur sérialisé comme tableau JSON",
     "WDV-DOC-007": "Séparateur d’auteurs non canonique",
     "WDV-EDT-001": "Titres affichés copiés mécaniquement",

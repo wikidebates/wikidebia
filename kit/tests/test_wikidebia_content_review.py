@@ -132,6 +132,20 @@ def complete_content_review(workspace: Path) -> None:
                 "Conséquences sur les décisions collectives et les pratiques institutionnelles"
             ],
         }],
+        "specialized_term_inventory": [
+            {
+                "subsection_title": "Définition et périmètre",
+                "scan_complete": True,
+                "scan_note": "La sous-partie a été relue intégralement et ne contient aucune notion spécialisée exigeant un lien ou une définition supplémentaire.",
+                "terms": [],
+            },
+            {
+                "subsection_title": "Enjeux du débat",
+                "scan_complete": True,
+                "scan_note": "La sous-partie a été relue intégralement et son vocabulaire reste suffisamment explicite pour un lecteur non spécialiste.",
+                "terms": [],
+            },
+        ],
         "wikipedia_articles_decision": "change",
         "proposed_wikipedia_articles": ["Argumentation"],
         "wikipedia_articles_verified": True,
@@ -444,3 +458,24 @@ def test_finalize_rejects_symbolic_stakes_subsection(tmp_path: Path):
         assert "trop brève ou symbolique" in str(exc)
     else:
         raise AssertionError("Une rubrique d’enjeux purement symbolique aurait dû être refusée")
+
+
+
+def test_specialized_term_inventory_covers_links_and_prior_treatment():
+    from wikidebia_content_review import _validated_specialized_term_inventory
+    intro = "{{Sous-partie|titre=Définition|contenu=Un {{Lien Wikipédia|article=Nécessité|texte-affiché=principe nécessaire}} est distingué.}}{{Sous-partie|titre=Suite|contenu=Le principe nécessaire est repris.}}"
+    ledger=[{"title":"Définition","technical_or_specialized":True},{"title":"Suite","technical_or_specialized":True}]
+    inventory=[{"subsection_title":"Définition","scan_complete":True,"scan_note":"La sous-partie entière a été relue pour identifier toutes les notions spécialisées.","terms":[{"term":"principe nécessaire","treatment":"wikipedia_link","article":"Nécessité"}]},{"subsection_title":"Suite","scan_complete":True,"scan_note":"La sous-partie entière a été relue et la répétition renvoie au premier traitement.","terms":[{"term":"principe nécessaire","treatment":"prior_treatment","prior_subsection_title":"Définition","prior_term":"principe nécessaire"}]}]
+    assert _validated_specialized_term_inventory(intro,inventory,ledger)[1]['terms'][0]['treatment']=='prior_treatment'
+
+
+def test_specialized_term_inventory_rejects_undeclared_link():
+    from wikidebia_content_review import _validated_specialized_term_inventory, ContentReviewError
+    intro = "{{Sous-partie|titre=Définition|contenu=Un {{Lien Wikipédia|article=Nécessité|texte-affiché=principe nécessaire}} est distingué.}}"
+    ledger=[{"title":"Définition","technical_or_specialized":True}]
+    inventory=[{"subsection_title":"Définition","scan_complete":True,"scan_note":"La sous-partie entière a été relue pour identifier toutes les notions spécialisées.","terms":[{"term":"principe nécessaire","treatment":"context_sufficient","justification":"Le contexte donne une définition complète de cette notion dans la phrase."}]}]
+    try:
+        _validated_specialized_term_inventory(intro,inventory,ledger)
+    except ContentReviewError:
+        return
+    raise AssertionError('le lien non déclaré devait être refusé')

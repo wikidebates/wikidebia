@@ -1,3 +1,28 @@
+## 1.2.46 — 6 août 2026
+
+- remplacement du contrôle limité aux groupes de notions voisines par une revue exhaustive de toutes les notions spécialisées de chaque sous-partie ;
+- ajout de `specialized_term_inventory_reviewed` et `specialized_term_inventory` ;
+- quatre traitements vérifiables : lien Wikipédia, explication intégrée, traitement antérieur et contexte suffisant ;
+- correspondance obligatoire entre l’inventaire, les textes visibles et tous les liens Wikipédia réellement rendus ;
+- inventaire non vide pour toute sous-partie déclarée technique ou spécialisée ;
+- nouveau contrôle `WDV-EDT-029`.
+
+## 1.2.45 — 6 août 2026
+
+- cohérence locale obligatoire des liens Wikipédia explicatifs ;
+- examen conjoint des notions spécialisées de même rang dans une énumération ou une comparaison ;
+- traitement uniforme lorsque les articles existent et que le besoin explicatif est comparable ;
+- justification notion par notion de toute asymétrie ;
+- nouveau registre `wikipedia_link_groups` et contrôle `WDV-EDT-028`.
+
+## 1.2.44 — 6 août 2026
+
+- suppression du point final dans les simples notices placées à l’intérieur de `<ref>…</ref>` ;
+- maintien du point uniquement lorsque le corps de la note constitue une phrase explicative complète ;
+- ponctuation de la phrase principale placée après l’appel de note ;
+- exceptions liées par SHA-256 et attestées dans la revue de l’introduction ;
+- activation rétrocompatible par `inline_reference_punctuation_policy_revision=1.2.44`.
+
 ## 1.2.43 — 6 août 2026
 
 - sous-partie `Enjeux du débat` obligatoire dans toute introduction française ;

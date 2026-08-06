@@ -386,4 +386,21 @@ RND-005 interdit tout modèle ou paramètre français dans une page anglaise ren
 | Publication française sans traduction anglaise | Addendum 1.2.34 | `translation_status.en=deferred` | exclusion ciblée de WDV-WF-005 et des contrôles bilingues | portée `fr` autorisée | cas français seul de dix pages |
 | Blocage anglais différé | Addendum 1.2.34 | enum de statut | titre/page anglais stricts dès présence | `--scope en` bloqué | test négatif |
 | Ajout ultérieur des liens | Addendum 1.2.34 | passage à `ready`/`published` | cible exacte verrouillée | reprise française `parameter_update` | test de transition |
+| Point final absent des simples notices `<ref>` et exceptions de phrases attestées | REF-037 | norme 1.2.44, validateur 0.4.47, kit 2.15.20 |
+
+## Extension 1.2.45
+
+| Décision | Exigence | Contrôle |
+|---|---|---|
+| Les notions spécialisées voisines de même rang reçoivent un traitement cohérent | MW-031, VAL-039 | `wikipedia_link_groups`, `WDV-EDT-028`, tests positifs et négatifs |
+| Une asymétrie reste possible uniquement si elle est justifiée | MW-031 | justification obligatoire pour chaque terme non lié d’un groupe partiellement lié |
+
+## Extension 1.2.46
+
+| Décision | Exigence | Contrôle |
+|---|---|---|
+| Rechercher toutes les notions complexes non définies dans chaque sous-partie | MW-032, VAL-040 | `specialized_term_inventory`, `WDV-EDT-029` |
+| Ne pas se limiter aux notions voisines ou aux énumérations | MW-032 | une entrée d’inventaire obligatoire par sous-partie |
+| Éviter les liens répétés | MW-032 | traitement `prior_treatment` vérifié vers une sous-partie antérieure |
+| Empêcher les cases globales sans preuve | VAL-040 | concordance entre termes, texte, extraits et modèles réellement présents |
 

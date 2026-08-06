@@ -1,3 +1,27 @@
+## 0.4.49 — 6 août 2026
+
+- alignement sur la norme 1.2.46 ;
+- ajout de `WDV-EDT-029` pour l’inventaire exhaustif des notions spécialisées de chaque sous-partie ;
+- vérification des termes visibles, des liens réellement rendus, des extraits explicatifs et des traitements antérieurs ;
+- blocage des liens Wikipédia non déclarés dans l’inventaire ;
+- remplacement du mécanisme principal de 1.2.45 sans rétroactivité sur les corpus historiques.
+
+## 0.4.48 — 6 août 2026
+
+- alignement sur la norme 1.2.45 ;
+- ajout de `WDV-EDT-028` pour la cohérence locale des liens Wikipédia explicatifs ;
+- vérification des groupes de notions, des articles déclarés et des liens réellement présents ;
+- justification obligatoire des notions laissées sans lien dans un groupe partiellement lié ;
+- compatibilité 1.2.44 conservée.
+
+## 0.4.47 — 6 août 2026
+
+- alignement sur la norme 1.2.44 ;
+- ajout de `WDV-DOC-008` pour les points terminaux placés dans de simples notices `<ref>` ;
+- exception réservée aux phrases complètes attestées par SHA-256 dans la revue de l’introduction ;
+- contrôle du registre `reference_note_punctuation_reviewed` et des exceptions ;
+- compatibilité avec les normes antérieures conservée.
+
 ## 0.4.46 — 6 août 2026
 
 - alignement sur la norme 1.2.43 ;

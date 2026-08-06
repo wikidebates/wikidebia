@@ -1,6 +1,30 @@
-## 2.15.19 — 6 août 2026
+## 2.15.23 — 6 août 2026
 
-- alignement sur la norme 1.2.43 et le validateur 0.4.46 ;
+- alignement sur la norme 1.2.46 et le validateur 0.4.49 ;
+- remplacement de `wikipedia_link_groups` par `specialized_term_inventory` comme mécanisme principal ;
+- inventaire obligatoire de chaque sous-partie et vérification de tous les liens rendus ;
+- traitements `wikipedia_link`, `explained_inline`, `prior_treatment` et `context_sufficient` ;
+- blocage des sous-parties techniques dont l’inventaire est vide.
+
+## 2.15.21 — 6 août 2026
+
+- alignement sur la norme 1.2.45 et le validateur 0.4.48 ;
+- ajout de `wikipedia_link_consistency_reviewed` et `wikipedia_link_groups` ;
+- vérification des liens déclarés dans chaque sous-partie ;
+- justification obligatoire d’une asymétrie entre notions spécialisées de même rang ;
+- tests de non-régression dédiés.
+
+## 2.15.20 — 6 août 2026
+
+- alignement sur la norme 1.2.44 et le validateur 0.4.47 ;
+- revue obligatoire de la ponctuation terminale des notes `<ref>` ;
+- absence de point par défaut dans une simple notice documentaire ;
+- exceptions de phrases complètes attestées par SHA-256 ;
+- tests de refus des notices ponctuées et d’acceptation des phrases attestées.
+
+## 2.15.20 — 6 août 2026
+
+- alignement sur la norme 1.2.44 et le validateur 0.4.47 ;
 - rétablissement obligatoire de la sous-partie `Enjeux du débat` dans les introductions françaises ;
 - contrôle d’au moins deux conséquences concrètes, de la densité minimale et de l’absence de catalogue argumentatif ;
 - génération des champs de revue propres à cette sous-partie et tests négatifs dédiés.

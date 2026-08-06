@@ -1,9 +1,12 @@
-# Wikidéb’IA — Kit 2.15.19
+# Wikidéb’IA — Kit 2.15.23
 
-Kit de production, publication et reprise aligné sur la norme 1.2.43 et le validateur 0.4.46.
+La mise à niveau génère désormais un seul document textuel racine, `WIKIDEBIA_SOURCE_ACTIVE.md`, accompagné de son reçu JSON. Les anciens fichiers `WIKIDEBIA_NORMES_ACTIVES.md`, `WIKIDEBIA_VALIDATEUR_ACTIF.md` et `WIKIDEBIA_RECUS_ARCHIVES.json` sont archivés puis retirés lors de l’upgrade.
+La revue de contenu inventorie désormais toutes les notions spécialisées de chaque sous-partie, au lieu de se limiter aux séries de notions voisines. Chaque lien, explication ou renvoi antérieur est vérifié.
 
-La revue de contenu ne force plus deux références dans chacun des neuf paramètres documentaires : une source est retenue uniquement là où elle apporte quelque chose, et une source couvrant les deux positions est classée dans `ni pour ni contre`. Les vidéos YouTube doivent indiquer leur créateur ou leur chaîne.
+La revue de contenu exige désormais un traitement cohérent des séries de notions spécialisées liées à Wikipédia et consigne chaque groupe dans `wikipedia_link_groups`.
 
-La revue d’introduction exige une progression dense et non redondante, ainsi qu’une sous-partie obligatoire `Enjeux du débat` exposant au moins deux conséquences concrètes sans remplissage générique. La revue des titres affichés conserve le titre canonique lorsqu’il est déjà le plus clair ; une formulation distincte doit améliorer réellement la lisibilité et rester sémantiquement équivalente.
+Kit de production, publication et reprise aligné sur la norme 1.2.46 et le validateur 0.4.49.
 
-Pour mettre à jour un débat, déposez son ZIP dans `incoming/` puis lancez `./wikidebia update`. L’unique ZIP est sélectionné automatiquement et la portée est déduite des langues publiables. Un identifiant n’est exigé qu’en cas d’ambiguïté.
+La revue du contenu distingue désormais une simple notice documentaire d’une phrase explicative dans les balises `<ref>`. Les notices sont rendues sans point final avant `</ref>` ; une phrase complète peut conserver son point uniquement si son empreinte est attestée dans le registre de revue.
+
+Pour mettre à jour un débat, déposez son ZIP dans `incoming/` puis lancez `./wikidebia update`.

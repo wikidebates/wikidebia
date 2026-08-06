@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import hashlib
 import json
 import os
 import re
@@ -48,7 +49,7 @@ from wikidebia_editorial_review import (
 )
 from wikidebia_graph_extract import iter_templates, normalize_key
 
-KIT_VERSION = "2.15.19"
+KIT_VERSION = "2.15.23"
 CONTENT_REVIEW_SCHEMA = "wikidebia-fr-content-review-1.0"
 CONTENT_LOCK_SCHEMA = "wikidebia-fr-content-lock-1.0"
 CONTENT_CHANGESET_SCHEMA = "wikidebia-fr-content-changeset-1.0"
@@ -132,6 +133,8 @@ INTRO_TRUE_FIELDS = (
     "no_generic_stakes_filler",
     "documentation_orientation_reviewed",
     "youtube_authorship_reviewed",
+    "reference_note_punctuation_reviewed",
+    "specialized_term_inventory_reviewed",
 )
 NUMBER = re.compile(r"(?<![\wÀ-ÿ])\d+(?:[.,]\d+)?(?:\s*%)?(?![\wÀ-ÿ])")
 META_DISCOURSE = re.compile(r"\b(?:cet argument|l'argument|la page|le raisonnement présenté)\b", re.I)
@@ -338,6 +341,8 @@ def _blank_intro_review(source: Mapping[str, Any]) -> dict[str, Any]:
         "documentation_rationales": {bucket: "" for bucket in DEBATE_BUCKETS},
         "documentation_family_notes": {"bibliography": "", "webliography": "", "videography": ""},
         **{field: False for field in INTRO_TRUE_FIELDS},
+        "terminal_period_sentence_exceptions": [],
+        "specialized_term_inventory": [],
         "reviewer": "",
         "reviewed_at": None,
         "note": "",
@@ -590,6 +595,118 @@ def _has_usage(source: Mapping[str, Any], page_id: str, roles: set[str]) -> bool
     )
 
 
+REF_PAIR_RE = re.compile(r"<ref\b[^>]*>(.*?)</ref\s*>", re.I | re.S)
+
+
+def _validated_terminal_period_exceptions(introduction: str, raw_exceptions: Any) -> list[dict[str, Any]]:
+    if not isinstance(raw_exceptions, list):
+        raise ContentReviewError("La liste terminal_period_sentence_exceptions est absente")
+    period_bodies = {hashlib.sha256(body.strip().encode("utf-8")).hexdigest(): body.strip() for body in REF_PAIR_RE.findall(introduction) if body.strip().endswith(".")}
+    validated: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for item in raw_exceptions:
+        if not isinstance(item, dict):
+            raise ContentReviewError("Exception de ponctuation de note invalide")
+        body_sha = str(item.get("body_sha256") or "")
+        evidence = str(item.get("sentence_evidence") or "").strip()
+        body = period_bodies.get(body_sha)
+        if not re.fullmatch(r"[0-9a-f]{64}", body_sha) or body_sha in seen or item.get("complete_sentence") is not True or len(evidence) < 12 or body is None or evidence not in body:
+            raise ContentReviewError("Toute note terminée par un point doit être une phrase complète attestée par son empreinte et un extrait réel")
+        seen.add(body_sha)
+        validated.append({"body_sha256": body_sha, "complete_sentence": True, "sentence_evidence": evidence})
+    missing = sorted(set(period_bodies) - seen)
+    if missing:
+        raise ContentReviewError("Une simple notice de référence se termine par un point; retirez-le ou attestez une véritable phrase complète")
+    return validated
+
+
+def _normalize_hover_article(value: Any) -> str:
+    return re.sub(r"[_\s]+", " ", str(value or "")).strip().casefold()
+
+
+def _normalize_visible(value: Any) -> str:
+    return re.sub(r"\s+", " ", str(value or "").replace("’", "'")).strip().casefold()
+
+
+def _hover_entries(content: str, lang: str = "fr") -> list[dict[str, str]]:
+    model = r"Lien\s+Wikipédia" if lang == "fr" else r"Wikipedia\s+link"
+    display_key = "texte-affiché" if lang == "fr" else "displayed-text"
+    pattern = re.compile(r"\{\{\s*" + model + r"\s*\|(?P<body>.*?)\}\}", re.I | re.S)
+    result=[]
+    for match in pattern.finditer(content or ""):
+        params={}
+        for chunk in match.group("body").split("|"):
+            if "=" in chunk:
+                k,v=chunk.split("=",1); params[k.strip().casefold()]=v.strip()
+        article=params.get("article","")
+        display=params.get(display_key.casefold()) or article
+        if article: result.append({"article":_normalize_hover_article(article),"display":_normalize_visible(display)})
+    return result
+
+
+def _visible_text(content: str, lang: str = "fr") -> str:
+    model = r"Lien\s+Wikipédia" if lang == "fr" else r"Wikipedia\s+link"
+    display_key = "texte-affiché" if lang == "fr" else "displayed-text"
+    pattern = re.compile(r"\{\{\s*" + model + r"\s*\|(?P<body>.*?)\}\}", re.I | re.S)
+    def repl(m):
+        params={}
+        for chunk in m.group("body").split("|"):
+            if "=" in chunk:
+                k,v=chunk.split("=",1); params[k.strip().casefold()]=v.strip()
+        return params.get(display_key.casefold()) or params.get("article","")
+    text=pattern.sub(repl,content or "")
+    text=re.sub(r"<ref(?:\s[^>]*)?>.*?</ref>|<ref(?:\s[^>]*)?\s*/>"," ",text,flags=re.I|re.S)
+    text=re.sub(r"\{\{.*?\}\}"," ",text,flags=re.S)
+    return _normalize_visible(text)
+
+
+def _validated_specialized_term_inventory(introduction: str, raw_inventory: Any, subsection_ledger: Any, lang: str = "fr") -> list[dict[str, Any]]:
+    if not isinstance(raw_inventory, list):
+        raise ContentReviewError("L’inventaire des notions spécialisées est absent")
+    subsections=_subsections(introduction)
+    titles=[row["title"] for row in subsections]
+    if [str(x.get("subsection_title") or "").strip() for x in raw_inventory if isinstance(x,dict)] != titles or len(raw_inventory)!=len(titles):
+        raise ContentReviewError("L’inventaire des notions spécialisées ne couvre pas exactement les sous-parties")
+    ledger={str(x.get("title") or "").strip():x for x in (subsection_ledger or []) if isinstance(x,dict)}
+    by_title={x["title"]:x["content"] for x in subsections}
+    prior={}
+    clean=[]
+    for index,inv in enumerate(raw_inventory,start=1):
+        title=titles[index-1]
+        if not isinstance(inv,dict) or inv.get("scan_complete") is not True or len(str(inv.get("scan_note") or "").strip())<30 or not isinstance(inv.get("terms"),list):
+            raise ContentReviewError(f"Inventaire spécialisé incomplet pour {title}")
+        terms=inv["terms"]
+        if (ledger.get(title) or {}).get("technical_or_specialized") is True and not terms:
+            raise ContentReviewError(f"La sous-partie technique {title} ne peut avoir un inventaire vide")
+        visible=_visible_text(by_title[title],lang); hover=_hover_entries(by_title[title],lang); actual={(x['article'],x['display']) for x in hover}; declared=set(); seen=set(); rows=[]
+        for term_index,row in enumerate(terms,start=1):
+            if not isinstance(row,dict): raise ContentReviewError(f"Notion #{term_index} invalide dans {title}")
+            term=str(row.get('term') or '').strip(); nt=_normalize_visible(term); treatment=row.get('treatment')
+            if not term or nt in seen or treatment not in {'wikipedia_link','explained_inline','prior_treatment','context_sufficient'}: raise ContentReviewError(f"Notion #{term_index} invalide dans {title}")
+            seen.add(nt)
+            if nt not in visible: raise ContentReviewError(f"La notion {term} est absente de {title}")
+            out={'term':term,'treatment':treatment}
+            if treatment=='wikipedia_link':
+                article=str(row.get('article') or '').strip(); key=(_normalize_hover_article(article),nt)
+                if not article or key not in actual: raise ContentReviewError(f"Le lien déclaré pour {term} est absent de {title}")
+                out['article']=article; declared.add(key); prior[(title,nt)]='wikipedia_link'
+            elif treatment=='explained_inline':
+                excerpt=str(row.get('explanation_excerpt') or '').strip()
+                if len(excerpt)<20 or _normalize_visible(excerpt) not in visible: raise ContentReviewError(f"L’explication de {term} est absente de {title}")
+                out['explanation_excerpt']=excerpt; prior[(title,nt)]='explained_inline'
+            elif treatment=='prior_treatment':
+                pt=str(row.get('prior_subsection_title') or '').strip(); pterm=str(row.get('prior_term') or '').strip(); np=_normalize_visible(pterm)
+                if pt not in titles[:index-1] or prior.get((pt,np)) not in {'wikipedia_link','explained_inline'}: raise ContentReviewError(f"Le traitement antérieur de {term} est invalide")
+                out.update({'prior_subsection_title':pt,'prior_term':pterm})
+            else:
+                justification=str(row.get('justification') or '').strip()
+                if len(justification)<30: raise ContentReviewError(f"Le contexte suffisant pour {term} n’est pas justifié")
+                out['justification']=justification
+            rows.append(out)
+        if actual-declared: raise ContentReviewError(f"Des liens Wikipédia de {title} ne figurent pas dans l’inventaire : {sorted(actual-declared)!r}")
+        clean.append({'subsection_title':title,'scan_complete':True,'scan_note':str(inv['scan_note']).strip(),'terms':rows})
+    return clean
+
 def _validate_debate(review: Mapping[str, Any], source: Mapping[str, Any], sources: Mapping[str, Mapping[str, Any]], debate_id: str) -> dict[str, Any]:
     if review.get("status") != "approved":
         raise ContentReviewError("La revue de la page Débat n’est pas approuvée")
@@ -635,6 +752,8 @@ def _validate_debate(review: Mapping[str, Any], source: Mapping[str, Any], sourc
     for field in INTRO_TRUE_FIELDS:
         if review.get(field) is not True:
             raise ContentReviewError(f"Attestation d’introduction manquante : {field}")
+    specialized_term_inventory = _validated_specialized_term_inventory(introduction, review.get("specialized_term_inventory"), ledger, "fr")
+    terminal_period_sentence_exceptions = _validated_terminal_period_exceptions(introduction, review.get("terminal_period_sentence_exceptions"))
     if len(str(review.get("topic_label_rationale") or "").strip()) < 12:
         raise ContentReviewError("Justification du libellé de sujet insuffisante")
     family_notes = review.get("documentation_family_notes")
@@ -702,6 +821,8 @@ def _validate_debate(review: Mapping[str, Any], source: Mapping[str, Any], sourc
         "reviewed_at": review.get("reviewed_at"),
         "note": review.get("note"),
         "attestations": {field: True for field in INTRO_TRUE_FIELDS},
+        "terminal_period_sentence_exceptions": terminal_period_sentence_exceptions,
+        "specialized_term_inventory": specialized_term_inventory,
         "page_origin": source.get("page_origin", "preexisting"),
         "preserved_parameters": copy.deepcopy(source.get("preserved_parameters") or {}),
     }
@@ -875,6 +996,8 @@ def _introduction_review(final: Mapping[str, Any]) -> dict[str, Any]:
             "topic_label_rationale": "Le sujet retenu est le libellé nominal validé par la revue française.",
             "complete_topic_initial_capital_justification": None,
             "subsections": copy.deepcopy(final["subsections"]),
+            "terminal_period_sentence_exceptions": copy.deepcopy(final.get("terminal_period_sentence_exceptions") or []),
+            "specialized_term_inventory": copy.deepcopy(final.get("specialized_term_inventory") or []),
         }],
     }
 

@@ -15,9 +15,9 @@ import zipfile
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
-NORM_VERSION = "1.2.43"
-VALIDATOR_VERSION = "0.4.46"
-KIT_VERSION = "2.15.19"
+NORM_VERSION = "1.2.46"
+VALIDATOR_VERSION = "0.4.49"
+KIT_VERSION = "2.15.23"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",
@@ -31,7 +31,15 @@ TRACKED_ROOT_FILES = (
     "WIKIDEBIA_NORMES_ACTIVES.md",
     "WIKIDEBIA_VALIDATEUR_ACTIF.md",
     "WIKIDEBIA_RECUS_ARCHIVES.json",
+    "WIKIDEBIA_SOURCE_ACTIVE.md",
+    "WIKIDEBIA_SOURCE_PACKAGE_RECEIPT.json",
     "requirements-runtime.txt",
+)
+
+OBSOLETE_ROOT_SOURCE_FILES = (
+    "WIKIDEBIA_NORMES_ACTIVES.md",
+    "WIKIDEBIA_VALIDATEUR_ACTIF.md",
+    "WIKIDEBIA_RECUS_ARCHIVES.json",
 )
 
 REQUIRED_GITIGNORE_RULES = (
@@ -465,6 +473,11 @@ def test_staged_components(root: Path, staged: dict[str, Path]) -> None:
 
 
 def aggregate_package(package: Path, title: str, versions: dict[str, str]) -> str:
+    """Compatibilité interne : agrège les fichiers textuels d’un composant.
+
+    La mise à niveau courante utilise `build_unified_source`; cette fonction reste
+    disponible pour les consommateurs historiques du kit.
+    """
     manifest = json_load(package / "PACKAGE_MANIFEST_SHA256.json")
     lines = [
         f"# {title}",
@@ -498,35 +511,112 @@ def aggregate_package(package: Path, title: str, versions: dict[str, str]) -> st
     return "\n".join(lines).rstrip() + "\n"
 
 
-def generate_readable_sources(root: Path, staged: dict[str, Path], versions: dict[str, str], component_archives: dict[str, Path]) -> dict[str, Path]:
-    output = root / ".state" / "generated-update"
-    output.mkdir(parents=True, exist_ok=True)
-    norms_md = output / "WIKIDEBIA_NORMES_ACTIVES.md"
-    validator_md = output / "WIKIDEBIA_VALIDATEUR_ACTIF.md"
-    norms_md.write_text(aggregate_package(staged["norms"], f"Wikidéb’IA — Normes actives {versions['norm']}", versions), encoding="utf-8", newline="\n")
-    validator_md.write_text(aggregate_package(staged["validator"], f"Wikidéb’IA — Validateur actif {versions['validator']}", versions), encoding="utf-8", newline="\n")
-    artifacts = []
+def _append_unified_source_section(lines: list[str], title: str, source_label: str, path: Path) -> None:
+    lines.extend(
+        [
+            f"## {title}",
+            "",
+            f"Source interne : `{source_label}`  ",
+            f"SHA-256 : `{sha256_file(path)}`",
+            "",
+            path.read_text(encoding="utf-8").rstrip("\n"),
+            "",
+        ]
+    )
+
+
+def build_unified_source(
+    staged: dict[str, Path],
+    versions: dict[str, str],
+    component_archives: dict[str, Path],
+) -> str:
     stable = {
         "wikidebia-normes": "wikidebia-normes.zip",
         "wikidebia-validator": "wikidebia-validator.zip",
         "wikidebia-kit": "wikidebia-kit.zip",
     }
+    lines = [
+        "# Wikidéb’IA — Source active unifiée",
+        "",
+        "Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. "
+        "Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.",
+        "",
+        f"- norme active : **{versions['norm']}** ;",
+        f"- validateur actif : **{versions['validator']}** ;",
+        f"- kit actif : **{versions['kit']}**.",
+        "",
+        "## Composants associés",
+        "",
+    ]
     for artifact in ("wikidebia-normes", "wikidebia-validator", "wikidebia-kit"):
         path = component_archives[artifact]
-        artifacts.append({"path": stable[artifact], "size_bytes": path.stat().st_size, "sha256": sha256_file(path)})
-    for path in (norms_md, validator_md):
-        artifacts.append({"path": path.name, "size_bytes": path.stat().st_size, "sha256": sha256_file(path)})
-    receipt = output / "WIKIDEBIA_RECUS_ARCHIVES.json"
+        lines.append(
+            f"- `{stable[artifact]}` — {path.stat().st_size} octets — SHA-256 `{sha256_file(path)}`"
+        )
+    lines.append("")
+
+    norm_file = staged["norms"] / "normative_reference" / "01_normes" / f"WIKIDEBIA_NORME_CONSOLIDEE_{versions['norm']}.md"
+    sections = (
+        ("Norme consolidée active", f"norms/normative_reference/01_normes/{norm_file.name}", norm_file),
+        ("Changelog normatif", "norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md", staged["norms"] / "normative_reference" / "01_normes" / "CHANGELOG_NORMATIF.md"),
+        ("État actif du validateur", "validator/README.md", staged["validator"] / "README.md"),
+        ("Changelog du validateur", "validator/CHANGELOG.md", staged["validator"] / "CHANGELOG.md"),
+        ("État actif du kit", "kit/README.md", staged["kit"] / "README.md"),
+        ("Changelog du kit", "kit/CHANGELOG.md", staged["kit"] / "CHANGELOG.md"),
+        ("Guide de publication", "kit/GUIDE_PUBLICATION.md", staged["kit"] / "GUIDE_PUBLICATION.md"),
+        ("Guide de revue du contenu", "kit/GUIDE_CONTENT_REVIEW.md", staged["kit"] / "GUIDE_CONTENT_REVIEW.md"),
+        ("Rapport de tests du kit", "kit/TEST_REPORT.txt", staged["kit"] / "TEST_REPORT.txt"),
+    )
+    for title, source_label, path in sections:
+        if not path.is_file():
+            raise ManagementError(f"Source active introuvable : {source_label}")
+        _append_unified_source_section(lines, title, source_label, path)
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def generate_readable_sources(root: Path, staged: dict[str, Path], versions: dict[str, str], component_archives: dict[str, Path]) -> dict[str, Path]:
+    output = root / ".state" / "generated-update"
+    output.mkdir(parents=True, exist_ok=True)
+    source = output / "WIKIDEBIA_SOURCE_ACTIVE.md"
+    source.write_text(
+        build_unified_source(staged, versions, component_archives),
+        encoding="utf-8",
+        newline="\n",
+    )
+
+    stable = {
+        "wikidebia-normes": "wikidebia-normes.zip",
+        "wikidebia-validator": "wikidebia-validator.zip",
+        "wikidebia-kit": "wikidebia-kit.zip",
+    }
+    files = [
+        {
+            "path": source.name,
+            "size_bytes": source.stat().st_size,
+            "sha256": sha256_file(source),
+        }
+    ]
+    for artifact in ("wikidebia-normes", "wikidebia-validator", "wikidebia-kit"):
+        path = component_archives[artifact]
+        files.append(
+            {
+                "path": stable[artifact],
+                "size_bytes": path.stat().st_size,
+                "sha256": sha256_file(path),
+            }
+        )
+    receipt = output / "WIKIDEBIA_SOURCE_PACKAGE_RECEIPT.json"
     write_json(
         receipt,
         {
-            "release": f"WIKIDEBIA_{versions['norm']}",
-            "generated_date": dt.date.today().isoformat(),
+            "artifact": "WIKIDEBIA_SOURCES_COMPLETES_RATIONALISE",
             "versions": versions,
-            "artifacts": artifacts,
+            "created_at": dt.datetime.now().astimezone().isoformat(timespec="seconds"),
+            "purpose": "Source textuelle unifiée et composants de mise à niveau",
+            "files": files,
         },
     )
-    return {path.name: path for path in (norms_md, validator_md, receipt)}
+    return {path.name: path for path in (source, receipt)}
 
 
 def migrate_private_files(root: Path, backup: Path) -> None:
@@ -820,6 +910,12 @@ def update_sources(root: Path, archive: Path | None, *, allow_downgrade: bool, n
         restore_historical_entrypoint_modes(root / "kit")
         install_root_template(root, root / "kit")
         write_runtime_marker_if_ready(root)
+        for name in OBSOLETE_ROOT_SOURCE_FILES:
+            legacy = root / name
+            if legacy.exists():
+                destination = backup / "previous" / name
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.move(str(legacy), destination)
         for name, source in generated.items():
             target = root / name
             if target.exists():

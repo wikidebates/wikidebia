@@ -1,8 +1,7 @@
-Wikidéb’IA Validator 0.4.46
-Norme implémentée : 1.2.43
-Tests pytest : 281 réussis, 0 échec
-Contrôles 1.2.43 : sous-partie obligatoire « Enjeux du débat », au moins deux conséquences concrètes, densité minimale et absence de catalogue argumentatif
-Contrôles 1.2.42 conservés : orientations documentaires exclusives, attribution YouTube et titres affichés non mécaniques
-Compatibilité : normes 1.1.0 à 1.2.43, sans rétroactivité silencieuse
-Validation ordinaire : strictement locale et en lecture seule
-Résultat : RÉUSSI
+Wikidéb’IA Validator 0.4.49 — rapport de tests
+
+Tests pytest : 292 réussis
+
+- norme active : 1.2.46
+- contrôle ajouté : WDV-EDT-029, inventaire exhaustif des notions spécialisées de chaque sous-partie d’introduction ;
+- rétrocompatibilité : politique 1.2.45 conservée pour les corpus qui la déclarent.

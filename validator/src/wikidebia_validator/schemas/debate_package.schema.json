@@ -335,6 +335,15 @@
               "type": "integer",
               "minimum": 1,
               "description": "Champ historique de compatibilité ; les minima structurels actifs sont déclarés dans debate_documentation."
+            },
+            "punctuation_policy_revision": {
+              "type": "string",
+              "enum": [
+                "1.2.44",
+                "1.2.45",
+                "1.2.46"
+              ],
+              "description": "Politique de ponctuation terminale des notes inline."
             }
           },
           "required": [
@@ -525,7 +534,10 @@
                 "0.4.43",
                 "0.4.44",
                 "0.4.45",
-                "0.4.46"
+                "0.4.46",
+                "0.4.47",
+                "0.4.48",
+                "0.4.49"
               ],
               "description": "Active la confrontation du verrou historique à l’inventaire source attesté."
             },
@@ -555,7 +567,8 @@
                       "0.4.43",
                       "0.4.44",
                       "0.4.45",
-                      "0.4.46"
+                      "0.4.46",
+                      "0.4.47"
                     ]
                   }
                 },
@@ -608,6 +621,30 @@
             "generated_pages_only"
           ],
           "description": "Limite la nouvelle revue sémantique aux pages générées lorsqu’un verrou historique atteste les pages importées."
+        },
+        "inline_reference_punctuation_policy_revision": {
+          "type": "string",
+          "enum": [
+            "1.2.44",
+            "1.2.45",
+            "1.2.46"
+          ],
+          "description": "Active la règle 1.2.44 : pas de point final dans une simple notice <ref>; exceptions de phrases attestées."
+        },
+        "wikipedia_link_consistency_policy_revision": {
+          "type": "string",
+          "enum": [
+            "1.2.45",
+            "1.2.46"
+          ],
+          "description": "Active la revue détaillée de la cohérence locale des liens Wikipédia explicatifs."
+        },
+        "specialized_term_explanation_policy_revision": {
+          "type": "string",
+          "enum": [
+            "1.2.46"
+          ],
+          "description": "Active l’inventaire exhaustif, sous-partie par sous-partie, des notions spécialisées à expliquer ou à lier."
         }
       },
       "required": [

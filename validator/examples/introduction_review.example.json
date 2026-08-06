@@ -1,6 +1,6 @@
 {
   "review_version": "1.0",
-  "normative_revision": "1.2.43",
+  "normative_revision": "1.2.46",
   "debate_id": "exemple_debat",
   "entries": [
     {
@@ -66,7 +66,30 @@
       "topic_is_nominal_label": true,
       "conventional_topic_label_used_or_not_applicable": true,
       "complete_topic_lowercase_initial_or_justified": true,
-      "topic_label_rationale": "Le libellé nominal retenu est conventionnel, précis et adapté à l’en-tête du débat."
+      "topic_label_rationale": "Le libellé nominal retenu est conventionnel, précis et adapté à l’en-tête du débat.",
+      "reference_note_punctuation_reviewed": true,
+      "terminal_period_sentence_exceptions": [],
+      "specialized_term_inventory_reviewed": true,
+      "specialized_term_inventory": [
+        {
+          "subsection_title": "Définition et périmètre",
+          "scan_complete": true,
+          "scan_note": "La sous-partie a été relue intégralement afin d’identifier toute notion spécialisée nécessitant une explication ou un lien.",
+          "terms": []
+        },
+        {
+          "subsection_title": "Origine et évolution du débat",
+          "scan_complete": true,
+          "scan_note": "La sous-partie a été relue intégralement afin d’identifier toute notion spécialisée nécessitant une explication ou un lien.",
+          "terms": []
+        },
+        {
+          "subsection_title": "Enjeux du débat",
+          "scan_complete": true,
+          "scan_note": "La sous-partie a été relue intégralement afin d’identifier toute notion spécialisée nécessitant une explication ou un lien.",
+          "terms": []
+        }
+      ]
     },
     {
       "language": "en",
@@ -131,7 +154,30 @@
       "topic_is_nominal_label": true,
       "conventional_topic_label_used_or_not_applicable": true,
       "complete_topic_lowercase_initial_or_justified": true,
-      "topic_label_rationale": "The selected nominal label is conventional, precise and fits the debate heading."
+      "topic_label_rationale": "The selected nominal label is conventional, precise and fits the debate heading.",
+      "reference_note_punctuation_reviewed": true,
+      "terminal_period_sentence_exceptions": [],
+      "specialized_term_inventory_reviewed": true,
+      "specialized_term_inventory": [
+        {
+          "subsection_title": "Definition and scope",
+          "scan_complete": true,
+          "scan_note": "La sous-partie a été relue intégralement afin d’identifier toute notion spécialisée nécessitant une explication ou un lien.",
+          "terms": []
+        },
+        {
+          "subsection_title": "Origins and development",
+          "scan_complete": true,
+          "scan_note": "La sous-partie a été relue intégralement afin d’identifier toute notion spécialisée nécessitant une explication ou un lien.",
+          "terms": []
+        },
+        {
+          "subsection_title": "Stakes of the debate",
+          "scan_complete": true,
+          "scan_note": "La sous-partie a été relue intégralement afin d’identifier toute notion spécialisée nécessitant une explication ou un lien.",
+          "terms": []
+        }
+      ]
     }
   ]
 }
