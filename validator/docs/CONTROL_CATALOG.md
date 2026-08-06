@@ -1,4 +1,4 @@
-# Catalogue des codes de contrôle — 0.4.40
+# Catalogue des codes de contrôle — 0.4.42
 
 | Code | Signification |
 |---|---|
@@ -118,3 +118,5 @@
 - contrôles interlangues : absence admise en mode différé, présence strictement validée.
 - contrôles bilingues et éditoriaux anglais : différés jusqu’au passage à `ready` ou `published`.
 - page anglaise manifestée : titre canonique anglais verrouillé obligatoire.
+
+- `WDV-EDT-027` — contenu historique protégé modifié, supprimé ou ajouté hors verrou.

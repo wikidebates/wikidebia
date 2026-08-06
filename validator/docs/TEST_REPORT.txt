@@ -1,10 +1,10 @@
-Wikidéb’IA Validator 0.4.40
-Norme implémentée : 1.2.38
-Tests pytest : 257 réussis, 0 échec
-Contrôles nouveaux : WDV-EDT-024, WDV-EDT-025 et WDV-EDT-026
-Résumés : gabarits connus, énumération de pages filles, phrases répétées et attestations d’originalité contrôlés
+Wikidéb’IA Validator 0.4.42
+Norme implémentée : 1.2.39
+Tests pytest : 266 réussis, 0 échec
+Contrôles nouveaux de la révision : confrontation du verrou historique à l’inventaire source attesté
+Résumés : provenance du champ vérifiée contre la présence réelle du paramètre dans la source
+Initialisation : présence et valeur vérifiées contre l’inventaire source
 Mots-clés : intersections de domaines décomposées ; locutions atomiques conventionnelles conservées
-Schémas : vocabulaire contrôlé et revue des résumés validés sous 1.2.38 ou profil éditorial 1.2.38
-Compatibilité : normes 1.1.0 à 1.2.38, sans rétroactivité silencieuse
+Compatibilité : normes 1.1.0 à 1.2.39, sans rétroactivité silencieuse
 Validation ordinaire : strictement locale et en lecture seule
 Résultat : RÉUSSI

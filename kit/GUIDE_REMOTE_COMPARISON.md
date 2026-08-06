@@ -1,4 +1,4 @@
-# Guide de comparaison distante en lecture seule — Kit 2.15.13
+# Guide de comparaison distante en lecture seule — Kit 2.15.15
 
 ## Commande
 

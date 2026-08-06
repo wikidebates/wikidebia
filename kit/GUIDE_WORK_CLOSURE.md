@@ -1,4 +1,4 @@
-# Clôture formelle d’un Work — Kit 2.15.13
+# Clôture formelle d’un Work — Kit 2.15.15
 
 Cette phase intervient uniquement après une exécution distante terminée avec un reçu signé `executed` ou `no_changes`. Elle ne contacte pas MediaWiki.
 

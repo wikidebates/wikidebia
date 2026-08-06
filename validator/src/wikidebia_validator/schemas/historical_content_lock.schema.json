@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "historical_content_lock.schema.json",
+  "title": "Wikidéb’IA — Verrou des contenus historiques",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "debate_id",
+    "source_archive",
+    "source_archive_sha256",
+    "protected_fields",
+    "arguments"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "debate_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_archive": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_archive_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "protected_fields": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "résumé",
+          "summary",
+          "initialisation",
+          "initialization"
+        ]
+      }
+    },
+    "arguments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "language",
+          "summary_provenance",
+          "initialisation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^A[0-9]{4}$"
+          },
+          "language": {
+            "enum": [
+              "fr",
+              "en"
+            ]
+          },
+          "summary_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "summary_length": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "initialisation": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "present"
+            ],
+            "properties": {
+              "present": {
+                "type": "boolean"
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "present": {
+                      "const": true
+                    }
+                  }
+                },
+                "then": {
+                  "required": [
+                    "value"
+                  ]
+                },
+                "else": {
+                  "not": {
+                    "required": [
+                      "value"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "summary_provenance": {
+            "enum": [
+              "historical_existing",
+              "generated_after_import"
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "summary_provenance": {
+                  "const": "historical_existing"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "summary_sha256",
+                "summary_length"
+              ]
+            },
+            "else": {
+              "not": {
+                "anyOf": [
+                  {
+                    "required": [
+                      "summary_sha256"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "summary_length"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

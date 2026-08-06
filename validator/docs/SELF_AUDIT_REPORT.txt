@@ -1,4 +1,4 @@
-Wikidéb’IA Validator 0.4.40 — auto-audit
-Norme active unique : 1.2.38
+Wikidéb’IA Validator 0.4.42 — auto-audit
+Norme active unique : 1.2.39
 Versions, schémas, provenance, inventaire, encodage UTF-8, fins de ligne et syntaxe contrôlés.
 Résultat : RÉUSSI

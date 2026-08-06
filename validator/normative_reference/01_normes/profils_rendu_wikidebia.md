@@ -797,7 +797,7 @@ Avant qu'une page soit déclarée conforme au profil, le validateur doit confirm
 16. que les références mentionnées dans le résumé sont représentées dans les paramètres documentaires ;
 17. qu'aucune catégorie documentaire vide n'est émise ;
 18. qu'aucune citation ou quote n'est produite dans les pages Argument ;
-19. que `nom`, `name`, `initialisation`, `initialization`, `débat-détaillé` et `detailed-debate` sont absents des pages Argument générées ;
+19. que `nom`, `name`, `débat-détaillé` et `detailed-debate` sont absents des pages Argument générées, et que `initialisation` / `initialization` est absent des pages nouvelles mais préservé exactement sur les pages historiques verrouillées ;
 20. que la date de création n'a pas été modifiée par une correction, un enrichissement ou une nouvelle tentative d'import.
 
 ---

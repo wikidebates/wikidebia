@@ -8,8 +8,7 @@
     "schema_version",
     "normative_revision",
     "debate_id",
-    "entries",
-    "quality_policy_revision"
+    "entries"
   ],
   "properties": {
     "schema_version": {
@@ -66,6 +65,21 @@
     },
     "quality_policy_revision": {
       "const": "1.2.38"
+    },
+    "summary_policy_revision": {
+      "const": "1.2.39"
     }
-  }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "quality_policy_revision"
+      ]
+    },
+    {
+      "required": [
+        "summary_policy_revision"
+      ]
+    }
+  ]
 }

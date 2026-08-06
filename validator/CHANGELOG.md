@@ -1,3 +1,19 @@
+## 0.4.42 — 6 août 2026
+
+- correction du verrou historique : confrontation obligatoire à l’inventaire source lorsque `verification_revision=0.4.42` ;
+- refus des résumés faussement déclarés historiques, des résumés historiques classés comme générés, des valeurs `initialisation` manquantes et des empreintes de verrou divergentes ;
+- ajout de trois tests d’intégration et conservation de la norme 1.2.39 ;
+- alignement sur le kit 2.15.15.
+
+## 0.4.41 — 6 août 2026
+
+- alignement sur la norme 1.2.39 et le kit 2.15.14 ;
+- séparation des profils mots-clés, résumés et capitalisation ;
+- ajout de `WDV-EDT-027` et du verrou des contenus historiques ;
+- autorisation conditionnelle de `initialisation` / `initialization` uniquement lorsqu'il est attesté et inchangé ;
+- blocage de toute réécriture des résumés historiques verrouillés ;
+- compatibilité conservée avec le profil combiné 1.2.38.
+
 ## 0.4.40 — 6 août 2026
 
 - alignement sur la norme 1.2.38 et le kit 2.15.13 ;

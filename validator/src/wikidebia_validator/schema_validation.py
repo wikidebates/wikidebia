@@ -84,14 +84,21 @@ def validate_all_schemas(ctx: PackageContext, store: SchemaStore) -> None:
     norm = ((manifest or {}).get("normative_versions") or {}).get("consolidated_norm")
     controls = (manifest or {}).get("editorial_controls") or {}
     quality_policy = controls.get("quality_policy_revision")
-    if norm == "1.2.38" or quality_policy == "1.2.38":
-        editorial_schemas = {
-            controls.get("keyword_vocabulary_path"): "keyword_vocabulary.schema.json",
-            controls.get("summary_style_review_path"): "summary_style_review.schema.json",
-        }
-        for rel, schema in editorial_schemas.items():
-            if rel and ctx.exists(rel):
-                validate_instance(ctx, store, rel, schema)
+    keyword_policy = controls.get("keyword_policy_revision")
+    summary_policy = controls.get("summary_policy_revision")
+    if norm in {"1.2.38", "1.2.39"} or quality_policy == "1.2.38" or keyword_policy == "1.2.39":
+        rel = controls.get("keyword_vocabulary_path")
+        if rel and ctx.exists(rel):
+            validate_instance(ctx, store, rel, "keyword_vocabulary.schema.json")
+    if norm in {"1.2.38", "1.2.39"} or quality_policy == "1.2.38" or summary_policy == "1.2.39":
+        rel = controls.get("summary_style_review_path")
+        if rel and ctx.exists(rel):
+            validate_instance(ctx, store, rel, "summary_style_review.schema.json")
+    preservation = controls.get("legacy_content_preservation") or {}
+    if preservation.get("enabled") is True:
+        rel = preservation.get("lock_path")
+        if rel and ctx.exists(rel):
+            validate_instance(ctx, store, rel, "historical_content_lock.schema.json")
     if manifest:
         for i, page in enumerate(manifest.get("pages", [])):
             validate_instance(ctx, store, "manifest.json", "page_manifest.schema.json", page)

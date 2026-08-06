@@ -46,7 +46,7 @@ from wikidebia_content_review import (
     META_DISCOURSE,
 )
 
-KIT_VERSION = "2.15.13"
+KIT_VERSION = "2.15.15"
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.0"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
@@ -914,7 +914,8 @@ def _merge_summary_review(path: Path, arguments: Sequence[Mapping[str, Any]], de
         }
     data["schema_version"] = "1.0"
     data["normative_revision"] = NORM_VERSION
-    data["quality_policy_revision"] = "1.2.38"
+    data["summary_policy_revision"] = "1.2.39"
+    data.pop("quality_policy_revision", None)
     data["debate_id"] = debate_id
     data["entries"] = [by_id[key] for key in sorted(by_id)]
     write_json(path, data)
@@ -1010,7 +1011,7 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     write_json(target / "data/en_page_metadata_lock.json", metadata_lock)
     write_json(target / "data/en_content_lock.json", content_lock)
     write_json(target / "data/en_translation_lock.json", translation_lock)
-    write_json(target / "data/keyword_vocabulary_bilingual.json", {"schema": "wikidebia-keyword-vocabulary-bilingual-1.0", "normative_revision": NORM_VERSION, "quality_policy_revision": "1.2.38", "debate_id": debate_id, "status": "approved_bilingual", "language_status": "bilingual_locked", "review_sha256": review["review_sha256"], "entries": bilingual_entries})
+    write_json(target / "data/keyword_vocabulary_bilingual.json", {"schema": "wikidebia-keyword-vocabulary-bilingual-1.0", "normative_revision": NORM_VERSION, "keyword_policy_revision": "1.2.39", "debate_id": debate_id, "status": "approved_bilingual", "language_status": "bilingual_locked", "review_sha256": review["review_sha256"], "entries": bilingual_entries})
     write_json(target / "changes/en_translation_changeset.json", changeset)
     write_json(target / "reviews/en/translation_review.json", copy.deepcopy(review))
     _merge_introduction_review(target / "reviews/introduction_review.json", final["debate"])

@@ -59,7 +59,7 @@ from wikidebia_editorial_workspace import (
     workspace_receipt_hash,
 )
 
-KIT_VERSION = "2.15.13"
+KIT_VERSION = "2.15.15"
 REVIEW_SCHEMA = "wikidebia-fr-page-metadata-review-1.1"
 METADATA_LOCK_SCHEMA = "wikidebia-fr-page-metadata-lock-1.0"
 CHANGESET_SCHEMA = "wikidebia-editorial-changeset-1.1"
@@ -660,7 +660,7 @@ def _build_reviewed_copy(project_root: Path, source: Path, target: Path, review:
     vocabulary = {
         "schema": "wikidebia-keyword-vocabulary-1.0",
         "normative_revision": NORM_VERSION,
-        "quality_policy_revision": "1.2.38",
+        "keyword_policy_revision": "1.2.39",
         "debate_id": debate_id,
         "status": "approved_fr",
         "language_status": "fr_locked_en_pending",

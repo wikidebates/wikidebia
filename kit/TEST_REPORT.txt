@@ -1,16 +1,14 @@
-Wikidéb’IA Kit 2.15.13
-Norme : 1.2.38
-Validateur requis : 0.4.40
+Wikidéb’IA Kit 2.15.15
+Norme : 1.2.39
+Validateur requis : 0.4.42
 Extracteur de graphe : 1.0.2
 Tests pytest du kit : 250 réussis, 0 échec
-Tests pytest du validateur : 257 réussis, 0 échec
+Tests pytest du validateur : 266 réussis, 0 échec
 
-Décision 1.2.38 :
-- les intersections transparentes de domaines sont décomposées en unités simples et cliquables ;
-- les locutions conventionnelles irréductibles, dont `argument d'autorité`, restent atomiques ;
-- les schémas du vocabulaire et de la revue des résumés sont vérifiés avant publication ou reprise ;
-- les contrôles éditoriaux WDV-EDT-024 à WDV-EDT-026 restent bloquants ;
-- aucune correction de prose ou de mots-clés n’est appliquée silencieusement par le kit ;
-- les protections de reprise historique non destructive de 2.15.12 restent actives.
+Correction :
+- confrontation du verrou historique à l’inventaire source attesté ;
+- refus des faux résumés historiques ;
+- refus des valeurs `initialisation` manquantes ou divergentes ;
+- conservation des protections de publication et de reprise existantes.
 
 Résultat : RÉUSSI

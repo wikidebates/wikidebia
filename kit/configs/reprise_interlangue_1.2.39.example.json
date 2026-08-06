@@ -1,0 +1,80 @@
+{
+  "kit_version": "2.15.15",
+  "project_root": ".",
+  "family": "wikidebates",
+  "family_file": "kit/families/wikidebates_family.py",
+  "pywikibot_dir": "private/pywikibot",
+  "sites": {
+    "fr": {
+      "code": "fr",
+      "expected_user": "ChatGPT"
+    },
+    "en": {
+      "code": "en",
+      "expected_user": "ChatGPT"
+    }
+  },
+  "change_tags": [
+    "chatgpt"
+  ],
+  "verification_attempts": 8,
+  "verification_delay_seconds": 2,
+  "write_delay_seconds": 0.5,
+  "debate_id": "identifiant_du_debat",
+  "corpus_root": "corpus/identifiant_du_debat",
+  "logs_dir": "logs/identifiant_du_debat_operation",
+  "validator": {
+    "command": [
+      ".venv/bin/python",
+      "validator/scripts/wikidebia_validate.py",
+      "validate"
+    ],
+    "required_version": "0.4.42",
+    "scopes": [
+      "schema",
+      "coherence",
+      "graph",
+      "files",
+      "batches",
+      "sources",
+      "wikicode",
+      "bilingual",
+      "editorial",
+      "workflow"
+    ],
+    "max_warnings": 0,
+    "fingerprint_path": "validator"
+  },
+  "manifest_requirements": {
+    "normative_versions.consolidated_norm": "1.2.39",
+    "translation_status.en": "ready"
+  },
+  "operation": {
+    "id": "add_french_interlanguage_after_translation",
+    "kind": "parameter_update",
+    "languages": [
+      "fr"
+    ],
+    "page_types": [],
+    "language_order": [
+      "fr"
+    ],
+    "page_type_order": [
+      "debate",
+      "argument"
+    ],
+    "source_path_field": "file_path",
+    "create_missing": false,
+    "update_existing": true,
+    "parameters": {
+      "fr": "interlangue"
+    },
+    "edit_summaries": {
+      "fr": "Corrections"
+    },
+    "remote_title_overrides": {
+      "fr": {}
+    }
+  },
+  "publication_profile": "norm_1_2_direct_interlanguage"
+}

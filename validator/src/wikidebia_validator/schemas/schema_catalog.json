@@ -2,7 +2,7 @@
   "catalog_version": "1.1.0",
   "package_revision": "1.2.38",
   "draft": "https://json-schema.org/draft/2020-12/schema",
-  "schema_count": 21,
+  "schema_count": 22,
   "schemas": [
     {
       "path": "archive_receipt.schema.json",
@@ -43,6 +43,11 @@
       "path": "handoff.schema.json",
       "id": "handoff.schema.json",
       "title": "Wikidéb'IA — Transmission entre Work"
+    },
+    {
+      "path": "historical_content_lock.schema.json",
+      "id": "historical_content_lock.schema.json",
+      "title": "Wikidéb’IA — Verrou des contenus historiques"
     },
     {
       "path": "interlanguage_patch.schema.json",

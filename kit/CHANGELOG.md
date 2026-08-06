@@ -1,3 +1,24 @@
+## 2.15.15 — 6 août 2026
+
+- alignement sur le validateur 0.4.42 et la norme 1.2.39 ;
+- contrôle préalable des corpus utilisant un verrou historique confronté à un inventaire source attesté ;
+- conservation de toutes les protections de publication et de reprise 2.15.14.
+
+## 2.15.14 — 6 août 2026
+
+- alignement sur la norme 1.2.39 et le validateur 0.4.41 ;
+- séparation des politiques d’atomicité des mots-clés, d’originalité des résumés et de capitalisation ;
+- conservation contrôlée des résumés et du paramètre `initialisation` historiques ;
+- ajout d’un verrou machine empêchant toute modification hors périmètre des pages importées ;
+- compatibilité conservée avec les corpus 1.2.38 et les mécanismes distants antérieurs.
+
+## 2.15.14 — 6 août 2026
+
+- alignement sur la norme 1.2.39 et le validateur 0.4.41 ;
+- préservation des champs historiques vérifiée avant toute planification ;
+- prise en charge du profil indépendant d'atomicité des mots-clés ;
+- aucune modification des mécanismes distants de publication et de reprise.
+
 ## 2.15.13 — 6 août 2026
 
 - alignement sur la norme 1.2.38 et le validateur 0.4.40 ;

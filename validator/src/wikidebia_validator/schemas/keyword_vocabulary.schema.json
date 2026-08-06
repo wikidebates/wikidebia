@@ -6,8 +6,7 @@
   "additionalProperties": true,
   "required": [
     "entries",
-    "status",
-    "quality_policy_revision"
+    "status"
   ],
   "properties": {
     "status": {
@@ -106,6 +105,21 @@
     },
     "quality_policy_revision": {
       "const": "1.2.38"
+    },
+    "keyword_policy_revision": {
+      "const": "1.2.39"
     }
-  }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "quality_policy_revision"
+      ]
+    },
+    {
+      "required": [
+        "keyword_policy_revision"
+      ]
+    }
+  ]
 }

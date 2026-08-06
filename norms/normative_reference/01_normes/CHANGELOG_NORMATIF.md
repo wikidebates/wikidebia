@@ -1,3 +1,11 @@
+## 1.2.39 — 6 août 2026
+
+- interdiction de réécrire un champ historique lors d'une correction ciblée non autorisée ;
+- restauration et préservation exacte de `initialisation` / `initialization` sur les pages importées ;
+- ajout d'un verrou machine des résumés et paramètres historiques ;
+- séparation des politiques d'atomicité des mots-clés, d'originalité des résumés et de capitalisation ;
+- compatibilité conservée avec le profil combiné 1.2.38.
+
 ## 1.2.38 — 6 août 2026
 
 - distinction explicite entre locution atomique et intersection compositionnelle de domaines ;

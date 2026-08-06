@@ -1,5 +1,5 @@
-# Wikidéb’IA — Kit 2.15.13
+# Wikidéb’IA — Kit 2.15.15
 
-Kit générique de publication et de reprise, aligné sur la norme 1.2.38 et le validateur 0.4.40. Il bloque avant toute écriture les corpus contenant des résumés à gabarit ou répétitifs, des mots-clés non atomiques ou une minuscule fautive au nom propre `Dieu`.
+Kit générique de publication et de reprise, aligné sur la norme 1.2.39 et le validateur 0.4.42. Il conserve toutes les protections de publication et de reprise de 2.15.14.
 
-Le kit ne réécrit pas silencieusement ces contenus : les corrections sont effectuées dans le corpus, puis validées. Toutes les protections de reprise non destructive, de traduction anglaise différée et de concurrence distante de la version 2.15.11 sont conservées.
+La révision 2.15.15 exige le validateur corrigé avant de publier un corpus qui protège des contenus historiques par un verrou confronté à un inventaire source attesté. Le kit n’altère ni les résumés historiques ni les paramètres `initialisation`.
