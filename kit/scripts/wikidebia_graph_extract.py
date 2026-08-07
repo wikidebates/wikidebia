@@ -31,7 +31,7 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping, Protocol, Sequence
 
 
-KIT_VERSION = "2.15.28"
+KIT_VERSION = "2.15.29"
 GRAPH_EXTRACT_VERSION = "1.0.2"
 
 

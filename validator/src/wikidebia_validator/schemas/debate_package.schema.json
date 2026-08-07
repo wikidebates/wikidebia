@@ -551,7 +551,8 @@
                 "0.4.51",
                 "0.4.52",
                 "0.4.53",
-                "0.4.54"
+                "0.4.54",
+                "0.4.55"
               ],
               "description": "Active la confrontation du verrou historique à l’inventaire source attesté."
             },
@@ -694,6 +695,17 @@
           ]
         },
         "argument_name_assignment_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "argument_name_discovery_revision": {
+          "type": "string",
+          "enum": [
+            "1.2.52"
+          ],
+          "description": "Active la recherche documentaire obligatoire d’une appellation consacrée pour chaque page Argument nouvelle."
+        },
+        "argument_name_discovery_path": {
           "type": "string",
           "minLength": 1
         }

@@ -1,6 +1,6 @@
 # Revue française des introductions, résumés et références
 
-Le kit 2.15.20 applique une phase de contenu après le verrouillage des titres, rubriques et mots-clés. Elle part de `reviewed-copy/`, conserve toutes les copies antérieures et ne génère toujours aucune page MediaWiki finale.
+Le kit 2.15.29 applique une phase de contenu après le verrouillage des titres, rubriques et mots-clés. Elle part de `reviewed-copy/`, conserve toutes les copies antérieures et ne génère toujours aucune page MediaWiki finale.
 
 ## 1. Préparer la revue
 
@@ -26,10 +26,31 @@ Le registre couvre :
 - les articles Wikipédia français vérifiés ;
 - les neuf paramètres documentaires de la page Débat ;
 - le résumé de chaque argument ;
+- pour chaque argument nouveau, la recherche d’une éventuelle appellation consacrée dans la littérature ;
 - la bibliographie, la sitographie et la vidéographie de chaque argument ;
 - les attestations de lisibilité, de fidélité logique, de force expressive et de vérification documentaire.
 
 Aucune proposition produite par une heuristique n’est appliquée automatiquement.
+
+
+## Recherche d’un nom consacré pour un argument nouveau
+
+Cette recherche est **obligatoire**, mais l’ajout d’un nom ne l’est pas. Le cas normal est `outcome=none`. Il ne faut jamais chercher à augmenter artificiellement le nombre de pages possédant `nom=`.
+
+Pour chaque argument nouveau :
+
+1. partir du raisonnement complet (prémisses, mécanisme, conclusion), pas seulement de son titre ;
+2. effectuer au moins deux recherches terminologiques distinctes ;
+3. lorsque la littérature pertinente est internationale, vérifier également l’anglais ou la langue académique/originale pertinente ;
+4. privilégier les encyclopédies spécialisées, ouvrages et articles académiques ;
+5. ne retenir un nom que si ces sources emploient réellement cette étiquette pour le **même raisonnement** ;
+6. ne pas transformer en nom d’argument un thème, une doctrine, un auteur, un principe seulement mobilisé ou un raccourci inventé ;
+7. en français, ne pas fabriquer une traduction d’un nom anglais : employer une forme française attestée ou, si c’est l’usage établi, la forme étrangère elle-même ;
+8. au moindre doute sérieux, conclure `none`.
+
+La fiche `reviews/argument_name_discovery_review.json` conserve les requêtes, le périmètre de recherche, le résultat et la justification. Si le résultat est `known_name`, elle conserve aussi au moins une attestation documentaire avec l’appellation telle qu’elle est utilisée et sa localisation.
+
+La rareté des arguments nommés est donc attendue, mais elle n’est pas contrôlée par un quota : certains corpus spécialisés peuvent naturellement en contenir davantage que d’autres.
 
 ## 2. Finaliser la revue
 

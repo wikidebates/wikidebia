@@ -2,27 +2,29 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.51** ;
-- validateur actif : **0.4.54** ;
-- kit actif : **2.15.28**.
+- norme active : **1.2.52** ;
+- validateur actif : **0.4.55** ;
+- kit actif : **2.15.29**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 1773541 octets — SHA-256 `98187f6b9030343c3250f07a4a01e504159e227a5f3813ec854467cbd137818a`
-- `wikidebia-validator.zip` — 2059541 octets — SHA-256 `23b18a73654cca5cb2672b80ab4304bd02dfd11ea9662cc1a0551838a71a3c70`
-- `wikidebia-kit.zip` — 426733 octets — SHA-256 `ac6743648828878a2b7bda9f124cc4d68b1d4d9c550af044d9376d3a03be65df`
+- `wikidebia-normes.zip` — 1827715 octets — SHA-256 `ec6250d819b4f5a4630ebf8661169cba8403aa8e8efbd4f72e4c57f89dc33bb2`
+- `wikidebia-validator.zip` — 2118848 octets — SHA-256 `84b998a011b87e578479ea7bed3c93f7dc34269e86c4e0be725bedbe4eecdd48`
+- `wikidebia-kit.zip` — 431538 octets — SHA-256 `1e1e5c6d1a92ed56c45d092d28c531147b188a8e2ca03eb67bc8017fe8327839`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.51.md`  
-SHA-256 : `894ac5e930b2699bb40ea79296b6f0cc022668c91f26ffc4bb166f82a4465b37`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.52.md`  
+SHA-256 : `37c68dda386b351ed062c7841e6157d5394cdc5e86d7cafbf7b5d37a9b93cbf9`
 
-# Norme consolidée Wikidéb’IA 1.2.51
+# Norme consolidée Wikidéb’IA 1.2.52
 
 > **Révision 1.2.50 — séparation création / modification.** Les listes de paramètres générés ou non générés définies par les profils de rendu ne valent que pour la création automatisée d’une page à partir de zéro. Lorsqu’une page `Débat` ou `Argument` existe déjà, en français comme en anglais, sa modification obéit à un contrat de préservation : tout paramètre top-level autorisé qui était présent dans l’état historique ou distant attesté reste présent, même si le workflow de création ne l’aurait pas généré. Les paramètres de cycle de vie et d’avertissement sont traités comme des métadonnées opaques et ne peuvent recevoir une valeur par défaut de génération. Une suppression n’est admise que si elle est explicitement décidée et enregistrée pour la page et le paramètre concernés, ou si une exception normative spécialisée l’autorise (par exemple l’omission locale de relations sur une frontière `débat-détaillé`). Les mêmes principes s’appliquent aux pages de débat.
 
 
 > **Révision 1.2.51 — attribution éditoriale explicite de `nom` / `name`.** La protection historique introduite en 1.2.49 reste la règle par défaut : une absence historique de `nom` ou `name` n’est jamais comblée automatiquement. Une exception étroite est désormais admise lorsqu’une décision éditoriale explicite du propriétaire attribue à une page Argument une appellation consacrée dans la littérature. Le corpus déclare alors `editorial_controls.argument_name_assignment_revision=1.2.51` et un registre dédié. Ce registre identifie chaque page, la langue, le titre canonique, la valeur exacte à ajouter et la justification. L’inventaire historique reste inchangé et continue d’attester l’absence antérieure ; l’attribution éditoriale constitue une couche de décision séparée. Le validateur exige une concordance exacte entre le registre et le wikicode. Lors d’une reprise, le kit peut ajouter uniquement ce paramètre sur les pages listées, sans relâcher la préservation des autres paramètres historiques.
+> **Révision 1.2.52 — recherche documentaire des noms consacrés des arguments nouveaux.** Pour chaque page `Argument` réellement nouvelle, la génération examine explicitement si le raisonnement possède une appellation conventionnelle reconnue dans la littérature. Cette recherche est obligatoire, mais l’ajout de `nom` / `name` reste exceptionnel : la présomption est l’absence de nom consacré. Aucun quota, objectif de remplissage ou dérivation depuis le titre n’est admis. Une appellation n’est retenue que si des sources de référence ou académiques l’emploient pour désigner substantiellement le même raisonnement dans la langue de la page, ou sous une forme étrangère elle-même consacrée. La revue consigne les requêtes, le résultat et, lorsqu’un nom est retenu, les attestations documentaires. Le validateur exige une couverture exacte de toutes les pages Argument nouvelles et une concordance stricte avec le wikicode.
+
 
 **Statut :** source normative active unique  
 **Date d’effet :** 7 août 2026  
@@ -1233,6 +1235,28 @@ Le {{Lien Wikipédia|article=théisme}} affirme un Dieu personnel ; le {{Lien Wi
 Lier seulement `théisme` dans cette série, sans justification propre aux trois autres notions, est non conforme.
 
 
+
+## Addendum 1.2.52 — recherche d’une appellation consacrée pour tout argument nouveau
+
+Lorsqu’une page `Argument` est créée par Wikidéb’IA, une recherche documentaire distincte vérifie si le raisonnement possède un nom conventionnel. Cette étape ne cherche pas à fabriquer un sous-titre : elle sert principalement à confirmer que, dans la grande majorité des cas, aucun `nom` / `name` ne doit être ajouté.
+
+La règle active est la suivante :
+
+1. toute page `Argument` nouvelle fait l’objet d’une recherche explicite avant verrouillage du contenu ;
+2. la recherche part du raisonnement lui-même (prémisses, mécanisme et conclusion), et non du seul titre canonique ;
+3. elle vérifie au minimum deux formulations de recherche suffisamment distinctes ; lorsque la littérature pertinente est internationale, une recherche dans la langue de la page est complétée par une recherche en anglais ou dans la langue académique/originale pertinente ;
+4. les sources de référence, encyclopédies spécialisées, livres et articles académiques sont prioritaires ; une page populaire peut orienter la recherche mais ne suffit pas, à elle seule, à consacrer une appellation douteuse ;
+5. un nom n’est retenu que lorsque la littérature l’emploie effectivement comme désignation du même raisonnement, de la même objection, défense, preuve, réfutation, paradoxe, problème ou principe argumentatif ;
+6. le nom d’une doctrine, d’un thème, d’un auteur, d’un principe seulement mentionné dans le raisonnement ou une reformulation pratique du titre ne constitue pas une appellation consacrée ;
+7. la valeur française doit être une appellation française attestée, ou une forme étrangère elle-même couramment employée telle quelle en français ; aucune traduction ad hoc n’est créée pour remplir `nom=` ; la règle symétrique s’applique à `name=` ;
+8. en cas d’hésitation entre plusieurs étiquettes, d’attestation trop faible ou de doute sur l’identité du raisonnement, le résultat est `none` et le paramètre est omis ;
+9. aucun quota minimal ou maximal de pages nommées n’est fixé. La rareté attendue des noms est une conséquence éditoriale, jamais un seuil statistique ;
+10. la revue est enregistrée dans un registre déclaré par `editorial_controls.argument_name_discovery_revision=1.2.52` et `argument_name_discovery_path`.
+
+Le registre contient une entrée pour chaque page Argument nouvelle dans chaque langue produite. Il consigne au minimum : la langue, l’identifiant, le titre canonique, les requêtes de recherche, une note sur le périmètre exploré, le résultat `none` ou `known_name`, la valeur retenue le cas échéant, les attestations documentaires, et une justification. Pour `known_name`, il atteste explicitement que la source désigne le même raisonnement, que l’étiquette n’a pas été inventée et qu’elle convient à la langue de la page.
+
+Le validateur bloque : une page nouvelle sans entrée de revue, un `nom` / `name` rendu après un résultat `none`, un nom différent de la valeur attestée, une appellation sans preuve documentaire, ou une revue qui couvre une page préexistante au lieu d’un argument nouveau. Les pages préexistantes restent régies par les règles 1.2.49 et 1.2.51.
+
 ## Addendum 1.2.51 — attribution éditoriale contrôlée d’un nom consacré
 
 Le paramètre `nom` en français, ou `name` en anglais, reste facultatif et ne doit jamais être déduit mécaniquement du titre canonique, du titre affiché, des mots-clés ou du contenu du résumé. Il sert à afficher l’appellation conventionnelle d’un argument, d’une objection, d’une défense, d’un paradoxe, d’un principe ou d’un problème lorsque cette appellation est réellement reconnue dans la littérature et utile au lecteur.
@@ -1338,7 +1362,16 @@ La revue reste qualitative. Elle n’impose pas de lier les mots courants, les n
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `3b980fe03976790e0caca95076ca5eb4bc5a419d055f5db8febb6736d92afb82`
+SHA-256 : `7fec36338eea648c37de364413b9ae3c936a15e1b8c6ddb9f1e4b1d04636df51`
+
+## 1.2.52 — 7 août 2026
+
+- recherche documentaire obligatoire d’une appellation consacrée pour chaque page Argument nouvelle ;
+- présomption explicite d’absence : aucun quota et aucun objectif de remplissage de `nom` / `name` ;
+- nom retenu uniquement lorsqu’il est attesté dans la littérature pour le même raisonnement et dans une forme adaptée à la langue de la page ;
+- registre de revue avec requêtes, résultat `none` / `known_name` et preuves documentaires ;
+- nouveau contrôle `WDV-EDT-032` ;
+- alignement recommandé : validateur 0.4.55 et kit 2.15.29.
 
 ## 1.2.51 — 7 août 2026
 
@@ -1839,18 +1872,28 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `3d68f4d14fbcd8978b1990818661f32292eb5f3391f737d469602c5ce69b1921`
+SHA-256 : `af4af32a1642d61544778b6b468162bcd41cb5a264c61842740d1ecde96e79a2`
 
-# Wikidéb’IA Validator 0.4.54
+# Wikidéb’IA Validator 0.4.55
 
+La version 0.4.55 ajoute `WDV-EDT-032`. Pour toute page Argument nouvelle sous la norme 1.2.52, le validateur exige une revue documentaire de l’éventuelle appellation consacrée. Le résultat normal peut être `none`; `nom` / `name` n’est accepté que lorsque la revue conclut `known_name`, fournit une preuve documentaire et correspond exactement au wikicode.
 La version 0.4.54 ajoute le contrôle de la politique 1.2.51 d’attribution éditoriale explicite de `nom` / `name`. Une absence historique reste protégée par défaut ; seules les pages listées dans un registre approuvé peuvent recevoir la valeur exacte déclarée.
 
-Validateur local aligné sur la norme 1.2.51 et rétrocompatible avec les paquets antérieurs.
+Validateur local aligné sur la norme 1.2.52 et rétrocompatible avec les paquets antérieurs.
 
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `f04caac02ec8812bb29c0680e7c75971f5e07800a254e97af5fa114db4a582c5`
+SHA-256 : `6f5a3fb7785656727b2b712cf3861dd083b02c710c720b65d00dbf8b49d7af86`
+
+## 0.4.55 — 7 août 2026
+
+- alignement sur la norme 1.2.52 ;
+- ajout du schéma `argument_name_discovery_review.schema.json` ;
+- ajout de `WDV-EDT-032` pour exiger une recherche documentaire sur chaque argument nouveau ;
+- résultat `none` explicitement admis et attendu par défaut ;
+- `nom` / `name` autorisé seulement si la revue conclut `known_name`, avec preuve et concordance exacte ;
+- préservation 1.2.49 et attribution propriétaire 1.2.51 inchangées.
 
 ## 0.4.54 — 7 août 2026
 
@@ -2240,20 +2283,31 @@ SHA-256 : `f04caac02ec8812bb29c0680e7c75971f5e07800a254e97af5fa114db4a582c5`
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `a2ae4ef096140c0026077c5c1880821acad1d69b6bd09392a6f1c1c43d2267e7`
+SHA-256 : `e857ae8be42cf40bfe3f42b555c61c3cd0aa591d1025fd3ede2b930a21a44b1c`
 
-# Wikidéb’IA — Kit 2.15.28
+# Wikidéb’IA — Kit 2.15.29
+
+Le kit 2.15.29 intègre la recherche des appellations consacrées pour les arguments nouveaux. Chaque argument généré doit être associé à une revue documentaire ; le résultat normal est l’absence de nom. `nom` / `name` n’est rendu que lorsque la revue conclut `known_name` et documente que la littérature emploie réellement cette appellation pour le même raisonnement.
 
 Le kit 2.15.28 ajoute la prise en charge de l’attribution éditoriale explicite de `nom` / `name` selon la politique 1.2.51. Un nom historiquement absent reste protégé par défaut ; il ne peut être ajouté que pour une page Argument inscrite dans un registre approuvé par le propriétaire, avec un titre et une valeur exacts.
 
 La reprise distante applique cette exception uniquement à `nom` / `name`. Tous les autres paramètres historiques protégés conservent les garanties de la révision 2.15.27.
 
-Kit aligné sur la norme 1.2.51 et le validateur 0.4.54.
+Kit aligné sur la norme 1.2.52 et le validateur 0.4.55.
 
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `7d8e9b11636550a48f1dcbaba3b5ecbcc40961d8c3ac9720fecec04b6421af60`
+SHA-256 : `449836e32415c55ae7b7ffab8c473c0b992808a549a780e3f0f4417c60c437f3`
+
+## 2.15.29 — 7 août 2026
+
+- alignement sur la norme 1.2.52 et le validateur 0.4.55 ;
+- ajout au workflow de génération d’une recherche documentaire sur l’éventuelle appellation consacrée de chaque argument nouveau ;
+- présomption d’absence : aucun quota de `nom` / `name` et aucun nom fabriqué depuis le titre ;
+- rendu de `nom` / `name` sur une page nouvelle uniquement depuis `argument_name` après revue `known_name` ;
+- guide de revue enrichi avec critères de recherche et hiérarchie des sources ;
+- préservation des mécanismes 1.2.49 et 1.2.51 pour les pages historiques.
 
 ## 2.15.28 — 7 août 2026
 
@@ -2918,11 +2972,11 @@ Le corpus déclare `translation_status.en=deferred`, ne manifeste que les pages 
 ## Guide de revue du contenu
 
 Source interne : `kit/GUIDE_CONTENT_REVIEW.md`  
-SHA-256 : `9ba1f3b4f3577c5cb9c189edf61cb7d2363ba768ce240a72052a79c5551d28e3`
+SHA-256 : `83eb890331d288f0da6cf3d2ab132076487e058ae428698553a7765d989005fe`
 
 # Revue française des introductions, résumés et références
 
-Le kit 2.15.20 applique une phase de contenu après le verrouillage des titres, rubriques et mots-clés. Elle part de `reviewed-copy/`, conserve toutes les copies antérieures et ne génère toujours aucune page MediaWiki finale.
+Le kit 2.15.29 applique une phase de contenu après le verrouillage des titres, rubriques et mots-clés. Elle part de `reviewed-copy/`, conserve toutes les copies antérieures et ne génère toujours aucune page MediaWiki finale.
 
 ## 1. Préparer la revue
 
@@ -2948,10 +3002,31 @@ Le registre couvre :
 - les articles Wikipédia français vérifiés ;
 - les neuf paramètres documentaires de la page Débat ;
 - le résumé de chaque argument ;
+- pour chaque argument nouveau, la recherche d’une éventuelle appellation consacrée dans la littérature ;
 - la bibliographie, la sitographie et la vidéographie de chaque argument ;
 - les attestations de lisibilité, de fidélité logique, de force expressive et de vérification documentaire.
 
 Aucune proposition produite par une heuristique n’est appliquée automatiquement.
+
+
+## Recherche d’un nom consacré pour un argument nouveau
+
+Cette recherche est **obligatoire**, mais l’ajout d’un nom ne l’est pas. Le cas normal est `outcome=none`. Il ne faut jamais chercher à augmenter artificiellement le nombre de pages possédant `nom=`.
+
+Pour chaque argument nouveau :
+
+1. partir du raisonnement complet (prémisses, mécanisme, conclusion), pas seulement de son titre ;
+2. effectuer au moins deux recherches terminologiques distinctes ;
+3. lorsque la littérature pertinente est internationale, vérifier également l’anglais ou la langue académique/originale pertinente ;
+4. privilégier les encyclopédies spécialisées, ouvrages et articles académiques ;
+5. ne retenir un nom que si ces sources emploient réellement cette étiquette pour le **même raisonnement** ;
+6. ne pas transformer en nom d’argument un thème, une doctrine, un auteur, un principe seulement mobilisé ou un raccourci inventé ;
+7. en français, ne pas fabriquer une traduction d’un nom anglais : employer une forme française attestée ou, si c’est l’usage établi, la forme étrangère elle-même ;
+8. au moindre doute sérieux, conclure `none`.
+
+La fiche `reviews/argument_name_discovery_review.json` conserve les requêtes, le périmètre de recherche, le résultat et la justification. Si le résultat est `known_name`, elle conserve aussi au moins une attestation documentaire avec l’appellation telle qu’elle est utilisée et sa localisation.
+
+La rareté des arguments nommés est donc attendue, mais elle n’est pas contrôlée par un quota : certains corpus spécialisés peuvent naturellement en contenir davantage que d’autres.
 
 ## 2. Finaliser la revue
 
@@ -3029,6 +3104,6 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `fa9bfc698a1b5217864bdfe491bd7ad3ed912e153bda4219f337249cf651b577`
+SHA-256 : `68beb387ee6dbbbac1d8b2be8f24b5a27e38afdfd4e8221db2be4a9e707b87e6`
 
-Tests pytest : 286 réussis, 0 échec.
+Tests pytest : 287 réussis, 0 échec.

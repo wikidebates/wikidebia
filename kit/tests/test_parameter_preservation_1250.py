@@ -190,3 +190,24 @@ def test_explicit_argument_name_assignment_rejects_other_protected_parameter():
         assert "nom/name" in str(exc)
     else:
         raise AssertionError("Une attribution explicite hors nom/name aurait dû être refusée")
+
+
+def test_new_argument_renderer_emits_reviewed_conventional_name():
+    node = {
+        "id": "A9998",
+        "fr": {"rubriques": ["Philosophie"], "keywords": ["Dieu"]},
+        "en": {"canonical_title": "Argument"},
+    }
+    registry = {"graph": {"edges": [], "occurrences": [], "nodes": [node]}}
+    content = {
+        "summary": "Résumé d'une page réellement nouvelle.",
+        "citations": [],
+        "sources": {},
+        "argument_name": "Argument cosmologique",
+        "page_origin": "new",
+        "preserved_parameters": {},
+    }
+    text = render._render_argument(
+        lang="fr", node=node, content=content, registry=registry, sources={}, creation_date="2026-08-07"
+    )
+    assert "|nom=Argument cosmologique" in text

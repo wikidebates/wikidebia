@@ -88,6 +88,7 @@ def validate_coherence(ctx: PackageContext) -> None:
 
     validate_manual_remote_adoptions(ctx, manifest)
     validate_argument_name_assignments(ctx, manifest)
+    validate_argument_name_discovery(ctx, manifest)
     validate_interlanguage_patch(ctx, manifest, registry)
     validate_operation_logs(ctx, manifest)
 
@@ -184,9 +185,70 @@ def validate_argument_name_assignments(ctx: PackageContext, manifest: dict[str, 
             ctx.report.error("WDV-EDT-031", "Une attribution 1.2.51 ne peut pas remplacer un nom historique déjà présent", path=str(rel), details={"page_id": key[1]})
     ctx.report.metrics.setdefault("coherence", {})["argument_name_assignments"] = len(seen)
 
+def validate_argument_name_discovery(ctx: PackageContext, manifest: dict[str, Any]) -> None:
+    controls = manifest.get("editorial_controls") or {}
+    revision = controls.get("argument_name_discovery_revision")
+    rel = controls.get("argument_name_discovery_path")
+    norm = str((manifest.get("normative_versions") or {}).get("consolidated_norm") or "")
+    new_arguments = {
+        (str(page.get("language") or ""), str(page.get("page_id") or "")): page
+        for page in manifest.get("pages") or []
+        if page.get("page_type") == "argument" and page.get("page_origin") == "new"
+    }
+    if not new_arguments and revision is None and rel is None:
+        return
+    if norm == "1.2.52" and new_arguments and (revision != "1.2.52" or not rel):
+        ctx.report.error("WDV-EDT-032", "La recherche d’un nom consacré n’est pas attestée pour les arguments nouveaux", path="manifest.json")
+        return
+    if revision is None and rel is None:
+        return
+    if revision != "1.2.52" or not rel:
+        ctx.report.error("WDV-EDT-032", "Politique de recherche de nom d’argument incomplète", path="manifest.json")
+        return
+    data = ctx.load_json(str(rel))
+    if not isinstance(data, dict):
+        return
+    if data.get("debate_id") != manifest.get("debate_id"):
+        ctx.report.error("WDV-EDT-032", "Revue de recherche des noms rattachée à un autre débat", path=str(rel))
+    seen: set[tuple[str, str]] = set()
+    for row in data.get("entries") or []:
+        key = (str(row.get("language") or ""), str(row.get("page_id") or ""))
+        if key in seen:
+            ctx.report.error("WDV-EDT-032", "Revue de nom d’argument dupliquée", path=str(rel), details={"language": key[0], "page_id": key[1]})
+            continue
+        seen.add(key)
+        page = new_arguments.get(key)
+        if page is None:
+            ctx.report.error("WDV-EDT-032", "La revue de recherche de nom doit viser uniquement une page Argument nouvelle", path=str(rel), details={"language": key[0], "page_id": key[1]})
+            continue
+        if row.get("title") != page.get("canonical_title"):
+            ctx.report.error("WDV-EDT-032", "Titre divergent dans la revue de recherche de nom", path=str(rel), details={"page_id": key[1], "expected": page.get("canonical_title"), "actual": row.get("title")})
+        if row.get("search_reviewed") is not True or len(row.get("search_queries") or []) < 2:
+            ctx.report.error("WDV-EDT-032", "Recherche documentaire insuffisamment attestée pour le nom d’argument", path=str(rel), details={"page_id": key[1]})
+        outcome = row.get("outcome")
+        if outcome == "known_name":
+            if not str(row.get("name") or "").strip() or not (row.get("evidence") or []):
+                ctx.report.error("WDV-EDT-032", "Nom consacré déclaré sans appellation ou preuve documentaire", path=str(rel), details={"page_id": key[1]})
+            for field in ("same_reasoning_confirmed", "non_invented_label_confirmed", "language_fit_confirmed"):
+                if row.get(field) is not True:
+                    ctx.report.error("WDV-EDT-032", f"Attestation manquante pour un nom consacré : {field}", path=str(rel), details={"page_id": key[1]})
+        elif outcome == "none":
+            if row.get("name") is not None:
+                ctx.report.error("WDV-EDT-032", "Une recherche conclue sans nom ne peut fournir de valeur nom/name", path=str(rel), details={"page_id": key[1]})
+        else:
+            ctx.report.error("WDV-EDT-032", "Résultat de recherche de nom invalide", path=str(rel), details={"page_id": key[1]})
+    missing = sorted(set(new_arguments) - seen)
+    extra = sorted(seen - set(new_arguments))
+    if missing:
+        ctx.report.error("WDV-EDT-032", "La revue ne couvre pas tous les arguments nouveaux", path=str(rel), details={"missing": missing[:20], "count": len(missing)})
+    if extra:
+        ctx.report.error("WDV-EDT-032", "La revue contient des pages qui ne sont pas des arguments nouveaux", path=str(rel), details={"extra": extra[:20], "count": len(extra)})
+    ctx.report.metrics.setdefault("coherence", {})["argument_name_discovery_entries"] = len(seen)
+
+
 def validate_interlanguage_patch(ctx: PackageContext, manifest: dict[str, Any], registry: dict[str, Any]) -> None:
     norm = (manifest.get("normative_versions") or {}).get("consolidated_norm")
-    if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49", "1.2.50", "1.2.51"}:
+    if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49", "1.2.50", "1.2.51", "1.2.52"}:
         # New packages carry their links in the canonical French files; no patch is required.
         return
     rel = "patches/interlanguage_fr.validated.json" if ctx.exists("patches/interlanguage_fr.validated.json") else "patches/interlanguage_fr.json"

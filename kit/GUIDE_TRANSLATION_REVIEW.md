@@ -82,3 +82,8 @@ La traduction conserve terme à terme l’ordre français de pertinence décrois
 
 Une revue de traduction validée remplace `translation_status.en=deferred` par `ready`. Elle verrouille les titres anglais, prépare les pages anglaises et réactive les contrôles bilingues. Les liens français sont ajoutés ensuite par une reprise explicite ; ils ne sont jamais anticipés.
 
+
+
+## Noms consacrés des arguments anglais
+
+Un `name=` anglais n’est jamais obtenu par simple traduction d’un `nom=` français. Pour chaque page Argument anglaise nouvelle, la revue recherche séparément l’appellation réellement employée dans la littérature anglophone. Le résultat par défaut reste l’absence de nom ; une valeur n’est verrouillée que si la littérature désigne le même raisonnement sous cette appellation.

@@ -1,3 +1,12 @@
+## 0.4.55 — 7 août 2026
+
+- alignement sur la norme 1.2.52 ;
+- ajout du schéma `argument_name_discovery_review.schema.json` ;
+- ajout de `WDV-EDT-032` pour exiger une recherche documentaire sur chaque argument nouveau ;
+- résultat `none` explicitement admis et attendu par défaut ;
+- `nom` / `name` autorisé seulement si la revue conclut `known_name`, avec preuve et concordance exacte ;
+- préservation 1.2.49 et attribution propriétaire 1.2.51 inchangées.
+
 ## 0.4.54 — 7 août 2026
 
 - alignement sur la norme 1.2.51 ;

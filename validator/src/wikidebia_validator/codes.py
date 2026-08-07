@@ -110,6 +110,7 @@ CODES = {
     "WDV-EDT-028": "Traitement incohérent de notions spécialisées voisines",
     "WDV-EDT-030": "Paramètre existant supprimé sans autorisation explicite",
     "WDV-EDT-031": "Attribution éditoriale de nom d’argument absente, divergente ou non autorisée",
+    "WDV-EDT-032": "Recherche d’une appellation consacrée absente, incomplète ou incohérente",
     "WDV-RMT-001": "Empreinte du plan de reprise divergente",
     "WDV-RMT-002": "Compteurs du plan de reprise incohérents",
     "WDV-RMT-003": "Opérations distantes mutantes contradictoires",

@@ -46,7 +46,7 @@ from wikidebia_content_review import (
     META_DISCOURSE,
 )
 
-KIT_VERSION = "2.15.28"
+KIT_VERSION = "2.15.29"
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.0"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
@@ -416,6 +416,15 @@ def _blank_argument(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -
         "summary": "",
         "citations": [_blank_citation(row) for row in (fr_content.get("citations") or [])],
         "sources": {bucket: [] for bucket in ARGUMENT_BUCKETS},
+        "argument_name_search_queries": [],
+        "argument_name_search_scope_note": "",
+        "argument_name_outcome": "pending",
+        "argument_name": None,
+        "argument_name_evidence": [],
+        "argument_name_same_reasoning_confirmed": False,
+        "argument_name_non_invented_label_confirmed": False,
+        "argument_name_language_fit_confirmed": False,
+        "argument_name_rationale": "",
         "metadata_equivalent_to_french": False,
         "summary_equivalent_to_french": False,
         "sections_exactly_mapped": False,
@@ -775,6 +784,55 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
     }
 
 
+def _validate_argument_name_discovery(row: Mapping[str, Any], node_id: str, page_origin: str) -> tuple[str | None, dict[str, Any] | None]:
+    if page_origin != "new":
+        return None, None
+    queries = _strings(row.get("argument_name_search_queries"), f"recherches de nom de {node_id}")
+    if len(queries) < 2 or len(set(queries)) != len(queries):
+        raise TranslationReviewError(f"Au moins deux recherches distinctes sont requises pour le nom de {node_id}")
+    scope_note = _text(row.get("argument_name_search_scope_note"), f"périmètre de recherche du nom de {node_id}", 12)
+    rationale = _text(row.get("argument_name_rationale"), f"justification de recherche du nom de {node_id}", 12)
+    outcome = str(row.get("argument_name_outcome") or "")
+    evidence = row.get("argument_name_evidence")
+    if not isinstance(evidence, list):
+        raise TranslationReviewError(f"Preuves documentaires invalides pour le nom de {node_id}")
+    if outcome == "known_name":
+        name = _text(row.get("argument_name"), f"nom consacré de {node_id}", 2)
+        if not evidence:
+            raise TranslationReviewError(f"Nom consacré sans preuve documentaire pour {node_id}")
+        for ev in evidence:
+            if not isinstance(ev, dict):
+                raise TranslationReviewError(f"Preuve documentaire invalide pour {node_id}")
+            _text(ev.get("source"), f"source du nom de {node_id}", 6)
+            _text(ev.get("label_as_used"), f"appellation attestée de {node_id}", 2)
+            _text(ev.get("locator"), f"localisation du nom de {node_id}", 2)
+        for field in ("argument_name_same_reasoning_confirmed", "argument_name_non_invented_label_confirmed", "argument_name_language_fit_confirmed"):
+            if row.get(field) is not True:
+                raise TranslationReviewError(f"Attestation de nom consacrée absente pour {node_id} : {field}")
+        same = True
+    elif outcome == "none":
+        if row.get("argument_name") not in (None, ""):
+            raise TranslationReviewError(f"Un nom ne peut être fourni après une recherche négative pour {node_id}")
+        if row.get("argument_name_non_invented_label_confirmed") is not True or row.get("argument_name_language_fit_confirmed") is not True:
+            raise TranslationReviewError(f"Attestation de recherche négative incomplète pour {node_id}")
+        name = None
+        same = False
+    else:
+        raise TranslationReviewError(f"Résultat de recherche du nom invalide pour {node_id}")
+    return name, {
+        "search_reviewed": True,
+        "search_queries": queries,
+        "search_scope_note": scope_note,
+        "outcome": outcome,
+        "name": name,
+        "evidence": evidence,
+        "same_reasoning_confirmed": same,
+        "non_invented_label_confirmed": bool(row.get("argument_name_non_invented_label_confirmed")),
+        "language_fit_confirmed": bool(row.get("argument_name_language_fit_confirmed")),
+        "rationale": rationale,
+    }
+
+
 def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sources: Mapping[str, Mapping[str, Any]]) -> dict[str, Any]:
     node_id = _text(item.get("id"), "identifiant d’argument")
     row = item.get("translation") or {}
@@ -827,6 +885,8 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
     _text(row.get("reviewer"), f"relecteur anglais de {node_id}", 3)
     _text(row.get("reviewed_at"), f"date de revue anglaise de {node_id}", 10)
     _text(row.get("note"), f"note de revue anglaise de {node_id}", 12)
+    lifecycle = _validate_page_lifecycle(row, "argument", node_id)
+    argument_name, name_discovery = _validate_argument_name_discovery(row, node_id, lifecycle["page_origin"])
     return {
         "id": node_id, "canonical_title": canonical, "displayed_title": displayed,
         "sections": sections, "keywords": keywords, "summary": summary, "citations": citations, "sources": final_sources,
@@ -834,7 +894,8 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         "quantitative_claims": numbers, "quantitative_claims_verified": bool(row.get("quantitative_claims_verified")),
         "quantitative_claims_note": row.get("quantitative_claims_note"),
         "reviewer": row.get("reviewer"), "reviewed_at": row.get("reviewed_at"), "note": row.get("note"),
-        **_validate_page_lifecycle(row, "argument", node_id),
+        "argument_name": argument_name, "argument_name_discovery": name_discovery,
+        **lifecycle,
     }
 
 
@@ -1044,6 +1105,28 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     write_json(target / "data/en_page_metadata_lock.json", metadata_lock)
     write_json(target / "data/en_content_lock.json", content_lock)
     write_json(target / "data/en_translation_lock.json", translation_lock)
+    name_review_path = target / "reviews/argument_name_discovery_review.json"
+    existing_name_review = load_json(name_review_path, "revue des noms d’arguments") if name_review_path.is_file() else {
+        "version": "wikidebia-argument-name-discovery-review-1.0",
+        "normative_revision": NORM_VERSION,
+        "debate_id": debate_id,
+        "entries": [],
+    }
+    name_entries = [row for row in (existing_name_review.get("entries") or []) if row.get("language") != "en"]
+    for arg in final["arguments"]:
+        if arg.get("page_origin") != "new":
+            continue
+        discovery = copy.deepcopy(arg.get("argument_name_discovery") or {})
+        name_entries.append({
+            "language": "en", "page_id": arg["id"], "title": arg["canonical_title"], "page_origin": "new",
+            **discovery,
+        })
+    write_json(name_review_path, {
+        "version": "wikidebia-argument-name-discovery-review-1.0",
+        "normative_revision": NORM_VERSION,
+        "debate_id": debate_id,
+        "entries": name_entries,
+    })
     write_json(target / "data/keyword_vocabulary_bilingual.json", {"schema": "wikidebia-keyword-vocabulary-bilingual-1.0", "normative_revision": NORM_VERSION, "keyword_policy_revision": "1.2.39", "debate_id": debate_id, "status": "approved_bilingual", "language_status": "bilingual_locked", "review_sha256": review["review_sha256"], "entries": bilingual_entries})
     write_json(target / "changes/en_translation_changeset.json", changeset)
     write_json(target / "reviews/en/translation_review.json", copy.deepcopy(review))
@@ -1052,6 +1135,8 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     manifest = load_json(target / "manifest.json", "manifest.json")
     manifest.setdefault("translation_status", {})["en"] = "ready"
     controls = manifest.setdefault("editorial_controls", {})
+    controls["argument_name_discovery_revision"] = "1.2.52"
+    controls["argument_name_discovery_path"] = "reviews/argument_name_discovery_review.json"
     required_reports = controls.setdefault("required_reports", [])
     for rel in ("reports/en_translation_preflight.json", "reports/en_translation_validation.json"):
         if rel not in required_reports: required_reports.append(rel)

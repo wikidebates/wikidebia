@@ -1,3 +1,12 @@
+## 2.15.29 — 7 août 2026
+
+- alignement sur la norme 1.2.52 et le validateur 0.4.55 ;
+- ajout au workflow de génération d’une recherche documentaire sur l’éventuelle appellation consacrée de chaque argument nouveau ;
+- présomption d’absence : aucun quota de `nom` / `name` et aucun nom fabriqué depuis le titre ;
+- rendu de `nom` / `name` sur une page nouvelle uniquement depuis `argument_name` après revue `known_name` ;
+- guide de revue enrichi avec critères de recherche et hiérarchie des sources ;
+- préservation des mécanismes 1.2.49 et 1.2.51 pour les pages historiques.
+
 ## 2.15.28 — 7 août 2026
 
 - alignement sur la norme 1.2.51 et le validateur 0.4.54 ;

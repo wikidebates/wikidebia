@@ -1,3 +1,12 @@
+## 1.2.52 — 7 août 2026
+
+- recherche documentaire obligatoire d’une appellation consacrée pour chaque page Argument nouvelle ;
+- présomption explicite d’absence : aucun quota et aucun objectif de remplissage de `nom` / `name` ;
+- nom retenu uniquement lorsqu’il est attesté dans la littérature pour le même raisonnement et dans une forme adaptée à la langue de la page ;
+- registre de revue avec requêtes, résultat `none` / `known_name` et preuves documentaires ;
+- nouveau contrôle `WDV-EDT-032` ;
+- alignement recommandé : validateur 0.4.55 et kit 2.15.29.
+
 ## 1.2.51 — 7 août 2026
 
 - maintien de la préservation stricte des `nom` / `name` historiques existants ;
