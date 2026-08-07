@@ -269,30 +269,32 @@
     {
       "id": "MW-006",
       "domain": "mediawiki",
-      "statement": "A newly created English Debate uses progress=Constructed debate; an existing Debate preserves the exact previous presence and value of progress.",
+      "statement": "A genuinely new English Debate generated from scratch uses progress=Constructed debate. In FR→EN translation, progress maps the exact French avancement value and an absent source field remains absent; an existing English target page is not an editorial translation source.",
       "disposition": "active",
-      "enforcement": "automatic",
+      "enforcement": "automatic+human",
       "sources": [
-        "owner decision 2026-08-05"
+        "owner decision 2026-08-05",
+        "owner decision 2026-08-07"
       ],
       "normative_files": [
         "01_normes/profils_rendu_wikidebia.md"
       ],
-      "note": null
+      "note": "Translation metadata mapping overrides creation defaults for FR→EN editorial production."
     },
     {
       "id": "MW-007",
       "domain": "mediawiki",
-      "statement": "Exact AI warnings are added only to pages newly created by Wikidéb’IA; existing Debate and Argument pages preserve the exact previous warning presence and value.",
+      "statement": "Exact AI warnings are added only to pages genuinely created from scratch. A generated English translation maps French title/debate/argument warning values exactly and does not add an AI warning when the French source lacks it.",
       "disposition": "active",
-      "enforcement": "automatic",
+      "enforcement": "automatic+human",
       "sources": [
-        "owner decision 2026-08-05"
+        "owner decision 2026-08-05",
+        "owner decision 2026-08-07"
       ],
       "normative_files": [
         "01_normes/profils_rendu_wikidebia.md"
       ],
-      "note": null
+      "note": "A translation file being new does not make the translated page a new AI-created logical page for warning defaults."
     },
     {
       "id": "MW-008",
@@ -5136,17 +5138,18 @@
     {
       "id": "MW-026",
       "domain": "mediawiki",
-      "statement": "New Debate pages omit débats-connexes/related-debates; existing Debate pages preserve the parameter exactly when present and keep it absent when absent.",
+      "statement": "New Debate pages normally omit débats-connexes/related-debates; during FR→EN translation, related-debates contains only French source relations whose English counterpart page is verified to exist, and no relation absent from the French source is added.",
       "disposition": "active",
-      "enforcement": "automatic",
+      "enforcement": "automatic+human",
       "sources": [
-        "owner decision 2026-08-05"
+        "owner decision 2026-08-05",
+        "owner decision 2026-08-07"
       ],
       "normative_files": [
         "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md",
         "01_normes/structures_mediawiki_wikidebia.md"
       ],
-      "note": null
+      "note": "FR→EN translation is the explicit exception to the ordinary new-page omission rule."
     },
     {
       "id": "REF-031",
@@ -6325,6 +6328,83 @@
         "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md"
       ],
       "note": "La compatibilité technique ne réduit pas les normes éditoriales courantes."
+    },
+    {
+      "id": "DEN-006",
+      "domain": "debate_en",
+      "statement": "During FR→EN editorial translation, treat the English target page as if it did not exist and do not reuse its content, metadata, warnings, progress, references or relations as translation input.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "owner decision 2026-08-07"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md",
+        "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+      ],
+      "note": "Technical remote-publication checks remain separate and may still inspect the target revision."
+    },
+    {
+      "id": "DEN-009",
+      "domain": "debate_en",
+      "statement": "Build related-debates only from French débats-connexes whose English counterpart page is verified to exist; omit missing counterparts and never add a relation absent from the French source.",
+      "disposition": "active",
+      "enforcement": "external check+human",
+      "sources": [
+        "owner decision 2026-08-07"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md",
+        "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DEN-010",
+      "domain": "debate_en",
+      "statement": "Every translation batch is closed only after a distinct FR→EN verification pass covering metadata mapping, related-debate existence, semantic equivalence, argument polarity, idiomatic English, residual French wikicode and documentary adaptation.",
+      "disposition": "active",
+      "enforcement": "human+prompt",
+      "sources": [
+        "owner decision 2026-08-07"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md",
+        "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+      ],
+      "note": null
+    },
+    {
+      "id": "DEN-011",
+      "domain": "debate_en",
+      "statement": "Translate the exact source values of avancement/progress and Debate/Argument title and page warnings according to the exhaustive owner-approved FR→EN mapping; never replace a source value with a creation default.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-08-07"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md",
+        "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": "Covers all owner-provided allowed values for Debate and Argument metadata."
+    },
+    {
+      "id": "DEN-012",
+      "domain": "debate_en",
+      "statement": "If one of the mapped metadata parameters is absent in French, keep the corresponding English parameter absent; an unknown source value requires review rather than approximation.",
+      "disposition": "active",
+      "enforcement": "automatic+human",
+      "sources": [
+        "owner decision 2026-08-07"
+      ],
+      "normative_files": [
+        "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md",
+        "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md",
+        "01_normes/profils_rendu_wikidebia.md"
+      ],
+      "note": null
     }
   ],
   "source_aliases": {
@@ -6622,6 +6702,10 @@
     "owner decision 2026-08-07 — English translation batches and documentary adaptation": [
       "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md",
       "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md"
+    ],
+    "owner decision 2026-08-07": [
+      "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md",
+      "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md"
     ]
   },
   "normative_revision": "1.2.54"

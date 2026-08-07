@@ -412,3 +412,12 @@ La décision du propriétaire du 7 août 2026 formalise la phase anglaise après
 
 La décision du propriétaire du 7 août 2026 supprime les versions comme mécanisme d’activation éditoriale. `ARCH-001` rend les normes courantes cumulatives ; `ARCH-002` réduit les anciens champs de révision à la traçabilité ; `ARCH-003` réserve les versions aux formats, migrations et artefacts qui en ont réellement besoin.
 
+## Correctif actif du 7 août 2026 — traduction FR→EN source-authoritative
+
+| Décision | Exigence | Preuve attendue |
+|---|---|---|
+| Ignorer l'ancienne page anglaise cible comme source de traduction | DEN-006 | revue de lot attestant `target_english_page_ignored=true` ou équivalent éditorial |
+| Traduire exactement les options de progression et d'avertissement | DEN-011, DEN-012, MW-006, MW-007 | comparaison champ par champ avec la table FR→EN ; absence de valeur par défaut non présente dans la source |
+| N'ajouter un débat connexe que si sa page anglaise existe | DEN-009, MW-026 | liste source française + vérification d'existence pour chaque cible anglaise projetée |
+| Refaire une passe de vérification de la traduction | DEN-010 | attestation de seconde passe par lot puis passe globale inter-lots |
+

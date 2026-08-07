@@ -56,8 +56,8 @@ Le catalogue machine-readable complet est `requirements_catalog_wikidebia.json` 
   - Motif/évolution : Supersedes original debate-prompt instruction to retain empty parameters.
 - **MW-004 — ACTIVE — automatic** : Allowed-but-not-generated warning parameters remain in the structural schema but are absent from automatic output.
 - **MW-005 — ACTIVE — automatic** : A newly created French Debate uses avancement=Débat construit; an existing Debate preserves the exact previous presence and value of avancement.
-- **MW-006 — ACTIVE — automatic** : A newly created English Debate uses progress=Constructed debate; an existing Debate preserves the exact previous presence and value of progress.
-- **MW-007 — ACTIVE — automatic** : Add exact AI warnings only to pages newly created by Wikidéb’IA; existing Debate and Argument pages preserve their prior warning presence and value.
+- **MW-006 — ACTIVE — automatic+human** : A genuinely new English Debate generated from scratch uses progress=Constructed debate. An English Debate produced by translating a French page instead maps the exact French avancement value to progress; an absent source field remains absent. Existing-page preservation remains a technical publication rule, not a source for the editorial translation.
+- **MW-007 — ACTIVE — automatic+human** : Add exact AI warnings only to pages genuinely created from scratch by Wikidéb’IA. A newly generated English translation file does not receive an AI warning by default: title/debate/argument warnings are translated from the French source values, and absent source fields remain absent.
 - **MW-008 — ACTIVE — automatic** : Do not invent nom/name or initialisation/initialization automatically. For every new Argument page, research whether a conventional name is attested in the literature and emit nom/name only when the dedicated discovery review concludes known_name; preserve historical values exactly, and allow additions to preexisting pages only through an explicit owner-approved assignment review.
 - **MW-009 — SUPERSEDED — automatic** : Do not generate citations/quotes in Argument pages. Replaced by the locked-citation rendering rules RND-003 and RND-004 from revision 1.2.27.
 - **MW-010 — ACTIVE — automatic** : Preserve an attested historical `débat-détaillé` / `detailed-debate` parameter exactly. Local justifications and objections may be omitted only when the omission and owner notification are locked.
@@ -184,6 +184,11 @@ Le catalogue machine-readable complet est `requirements_catalog_wikidebia.json` 
 - **DEN-003 — ACTIVE — human+metadata** : Use verified English-language references rather than reusing French-only documentary references by default.
 - **DEN-004 — ACTIVE — external check+human** : Use only verified existing English Wikipedia pages with exact titles and direct relevance.
 - **DEN-005 — ACTIVE — human** : Apply the same epistemic cautions, comprehension functions and neutral classification rules as the French Debate page.
+- **DEN-006 — ACTIVE — human+prompt** : During FR→EN editorial translation, treat the English target page as if it did not exist; do not reuse its content, metadata, warnings, progress, references or relations as translation input.
+- **DEN-011 — ACTIVE — automatic+human** : Translate the exact source values of avancement/progress and Debate/Argument title and page warnings according to the exhaustive owner-approved FR→EN mapping; never replace a source value with a creation default.
+- **DEN-012 — ACTIVE — automatic+human** : If one of these mapped metadata parameters is absent in French, keep the corresponding English parameter absent; an unknown source value requires review rather than approximation.
+- **DEN-009 — ACTIVE — external check+human** : Build related-debates only from French débats-connexes whose corresponding English page is verified to exist; omit missing counterparts and never add a relation absent from the French source.
+- **DEN-010 — ACTIVE — human+prompt** : Close every translation batch only after a distinct FR→EN verification pass covering metadata mapping, related-debate existence, semantic equivalence, argument polarity, idiomatic English, residual French wikicode and documentary adaptation.
 
 ## 10. Pages Argument et résumés
 
@@ -508,7 +513,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 ## Correctifs de production 1.2.17
 
 - rechercher et rendre au moins un article Wikipédia exact et vérifié dans chaque page Débat/Debate ; un paramètre Wikipédia vide est bloquant ;
-- ne jamais rendre `débats-connexes` ni `related-debates` ;
+- ne jamais rendre `débats-connexes` ni `related-debates` dans le profil générique visé par ce correctif historique ; pour une traduction FR→EN, l’exception active `DEN-009` s’applique et autorise uniquement les débats connexes français dont la page anglaise correspondante existe ;
 - convertir les listes JSON d’auteurs en texte MediaWiki (`["Auteur"]` → `Auteur`, plusieurs auteurs séparés par `, `, liste vide → omission) ;
 - publier sans invite interactive : le plan signé est confirmé automatiquement par l’orchestrateur après validation, sans supprimer les contrôles d’empreinte et de concurrence.
 

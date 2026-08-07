@@ -78,8 +78,8 @@
     },
     {
       "path": "GUIDE_TRANSLATION_REVIEW.md",
-      "size_bytes": 9980,
-      "sha256": "73fe1d93c428d9f6ea3bfd1b6345301bc838e0ab5ef40f6c24b73b5f358b7dfc"
+      "size_bytes": 12492,
+      "sha256": "ce4b5738b1e5ebb564572297aa182dde0c23f1b278c1aadf9188bdd3ec35bfa1"
     },
     {
       "path": "GUIDE_WORK_CLOSURE.md",
@@ -413,8 +413,8 @@
     },
     {
       "path": "README.md",
-      "size_bytes": 1300,
-      "sha256": "ea7222c35784e2e7f29e07d8dfdb6d266256e50824d548d6b7ef9eeb62dc0d3c"
+      "size_bytes": 1703,
+      "sha256": "c15805e58ba9084b31250b73f07b94dda538e846ee2426701eee10c770e6a5c1"
     },
     {
       "path": "TEST_REPORT.txt",

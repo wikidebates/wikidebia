@@ -17,6 +17,9 @@
     "La modification d’une page existante préserve la présence de tous ses paramètres top-level autorisés et la valeur exacte de ses métadonnées historiques, sauf suppression explicitement attestée.",
     "Une absence historique de nom/name peut être dépassée uniquement par un registre d’attribution éditoriale 1.2.51 explicitement approuvé.",
     "Chaque argument nouveau fait l’objet d’une recherche d’appellation consacrée; l’absence de nom reste le résultat attendu par défaut.",
-    "La traduction anglaise, dont les règles ont été introduites en 1.2.53, se fait par lots fermés, adapte les références à des versions anglaises réelles et recherche séparément les noms consacrés et les nouvelles sources anglophones."
+    "La traduction anglaise, dont les règles ont été introduites en 1.2.53, se fait par lots fermés, adapte les références à des versions anglaises réelles et recherche séparément les noms consacrés et les nouvelles sources anglophones.",
+    "En traduction FR→EN, la page anglaise cible existante est ignorée comme source éditoriale; le français validé reste autoritatif.",
+    "Les valeurs de progression et d'avertissement sont traduites selon la table exhaustive FR→EN; une absence source reste une absence et les défauts de création ne s'appliquent pas à une traduction.",
+    "related-debates ne projette que des débats connexes présents en français dont la page anglaise correspondante existe réellement, avec une seconde passe de vérification par lot."
   ]
 }

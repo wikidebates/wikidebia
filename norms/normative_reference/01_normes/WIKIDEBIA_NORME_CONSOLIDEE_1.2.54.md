@@ -2,6 +2,8 @@
 
 > **Révision 1.2.54 — architecture cumulative des normes éditoriales.** Les règles éditoriales actives de la présente norme consolidée s’appliquent désormais indépendamment de la valeur déclarée dans `normative_versions.consolidated_norm`. Ce numéro reste une métadonnée de provenance, de compatibilité de format, de migration et de publication ; il n’est plus un interrupteur de fonctionnalités éditoriales. De même, les champs historiques `*_policy_revision`, `*_revision`, `argument_name_assignment_revision`, `argument_name_discovery_revision` ou analogues, lorsqu’ils sont encore présents, servent uniquement à la traçabilité et ne peuvent ni activer ni désactiver un contrôle. L’application des règles dépend de l’état fonctionnel constaté : présence d’un registre ou d’un chemin de revue, origine d’une page, statut de traduction, activation de la préservation historique avec inventaire attesté, ou version propre d’un artefact. Les anciennes formulations « activée pour la révision X » sont conservées comme historique mais sont remplacées par cette architecture pour toute validation courante. Les règles de traduction anglaise 1.2.53 restent inchangées.
 
+> **Correctif actif du 7 août 2026 — traduction FR→EN source-authoritative et métadonnées.** Lors de la production éditoriale anglaise, la page anglaise cible est ignorée comme source de contenu : la page française validée est traduite comme si la cible anglaise n'existait pas. Les valeurs françaises réellement présentes de `avancement`, `avertissements-titre`, `avertissements-débat` et `avertissements-argument` sont traduites par une table FR→EN exhaustive ; aucune valeur de création par défaut ne peut les remplacer et un paramètre absent reste absent. Les débats connexes français ne sont projetés dans `related-debates` que si la page anglaise correspondante existe réellement ; aucun débat connexe étranger à la source française n'est ajouté. Chaque lot de traduction fait enfin l'objet d'une seconde passe explicite de comparaison FR→EN. Ce correctif précise et, pour la phase de traduction, prévaut sur les profils génériques de création lorsqu'ils prescrivent des valeurs par défaut.
+
 > **Révision 1.2.50 — séparation création / modification.** Les listes de paramètres générés ou non générés définies par les profils de rendu ne valent que pour la création automatisée d’une page à partir de zéro. Lorsqu’une page `Débat` ou `Argument` existe déjà, en français comme en anglais, sa modification obéit à un contrat de préservation : tout paramètre top-level autorisé qui était présent dans l’état historique ou distant attesté reste présent, même si le workflow de création ne l’aurait pas généré. Les paramètres de cycle de vie et d’avertissement sont traités comme des métadonnées opaques et ne peuvent recevoir une valeur par défaut de génération. Une suppression n’est admise que si elle est explicitement décidée et enregistrée pour la page et le paramètre concernés, ou si une exception normative spécialisée l’autorise (par exemple l’omission locale de relations sur une frontière `débat-détaillé`). Les mêmes principes s’appliquent aux pages de débat.
 
 
@@ -375,7 +377,7 @@ Cette règle vise les tirets cadratins appariés employés comme signes de paren
 
 Toute page `Débat` française contient un paramètre `articles-Wikipédia` non vide avec au moins un sous-modèle `{{Article Wikipédia|page=…}}`. Toute page `Debate` anglaise contient de même `wikipedia-articles` avec au moins un `{{Wikipedia article|page=…}}`. Les titres exacts sont recherchés et vérifiés dans l’édition linguistique correspondante ; l’absence de résultat ne peut pas être déclarée sans recherche. Un article directement centré sur le sujet est privilégié, mais des articles de cadrage étroitement liés sont admis lorsque le titre exact du débat n’a pas de page dédiée.
 
-Lors de la création d’une page de débat qui n’existait pas, Wikidéb’IA ne produit pas `débats-connexes` ni `related-debates`. Lors de la modification d’une page préexistante, le paramètre est conservé exactement s’il existe déjà, avec sa valeur antérieure ; il reste absent s’il n’existait pas. La modification ne doit donc ni supprimer une liste existante de débats connexes, ni en inventer une nouvelle.
+Lors de la création d’une page de débat réellement nouvelle hors traduction, Wikidéb’IA ne produit pas `débats-connexes` ni `related-debates`. Lors de la modification d’une page préexistante hors protocole de retraduction, le paramètre est conservé exactement s’il existe déjà, avec sa valeur antérieure ; il reste absent s’il n’existait pas. **Exception FR→EN : pendant la traduction éditoriale d’une page française, `related-debates` est reconstruit uniquement à partir des entrées françaises de `débats-connexes` dont la page anglaise correspondante est vérifiée comme existante ; les autres sont omises et aucun nouveau débat connexe n’est inventé.**
 
 ### 8.0 Création et modification des paramètres protégés
 
@@ -387,6 +389,8 @@ Le manifeste de chaque page déclare `page_origin` (`new` ou `preexisting`) ains
 - `débats-connexes` / `related-debates` conserve exactement sa valeur antérieure et reste absent s’il était absent.
 
 Le moteur de mise à jour bloque toute opération qui modifierait l’un de ces paramètres sur une page existante.
+
+**Exception de production éditoriale FR→EN :** les règles de préservation distante ci-dessus ne servent pas à choisir le contenu de la traduction. Pour produire la page anglaise, la source française prévaut et les métadonnées mappées sont traduites depuis elle. La préservation distante reste une contrainte technique distincte au moment d’une éventuelle publication.
 
 ### 8.1 Page Débat française
 
@@ -534,7 +538,7 @@ Lorsqu’une page historique contient `|débat-détaillé=…`, ce paramètre es
 }}
 ```
 
-The `progress=Constructed debate` and `debate-warnings=Debate generated by AI` lines apply only to a newly created Debate page. A pre-existing page preserves the exact previous presence and value of these parameters.
+The `progress=Constructed debate` and `debate-warnings=Debate generated by AI` lines apply only to a genuinely new Debate generated from scratch. **They do not apply to an English page produced as a translation of an existing French Debate:** in that workflow, `progress`, `title-warnings` and `debate-warnings` are translated from the exact French source values according to the active FR→EN mapping, and an absent source parameter remains absent. The editorial translation ignores any pre-existing English target page as a source of content.
 
 ### 8.4 English Argument page
 
@@ -587,6 +591,8 @@ The `progress=Constructed debate` and `debate-warnings=Debate generated by AI` l
 ```
 
 Les pages anglaises ne contiennent pas de lien interlangue.
+
+Dans une traduction FR→EN, `argument-warnings=Argument generated by AI` n'est pas ajouté par défaut au seul motif que le fichier anglais vient d'être généré. `title-warnings` et `argument-warnings` sont traduits uniquement à partir des valeurs françaises présentes selon la table normative active ; un paramètre absent en français reste absent en anglais.
 
 ## 9. Dates de création
 
@@ -1269,6 +1275,49 @@ Pour la page `Debate`, toutes les références de l'introduction et des paramèt
 La règle précédente sur l'adaptation des références ne modifie pas le contrat spécial des citations importées. Lors de la projection anglaise, `{{Citation}}` devient `{{Quote}}` et les noms de paramètres sont localisés selon le contrat anglais. **Seules les valeurs de `citation`→`quote` et de `date` sont traduites.** Les valeurs documentaires de `authors`, `article`, `work`, `volume`, `issue`, `page`, `location`, `publisher`, `place` et `link` sont conservées exactement et dans le même ordre. `warnings` reprend tout avertissement existant puis ajoute une seule fois `Citation traduite par IA`, avec le séparateur exact `, `.
 
 Cette exception concerne le contenu d'un modèle de citation déjà importé ; elle n'autorise pas à traduire artificiellement une référence bibliographique, sitographique ou vidéographique pour la faire passer pour une édition anglaise.
+
+## Complément actif 1.2.53-C — source française, métadonnées et débats connexes
+
+### La page anglaise cible n'est pas une source de traduction
+
+Pendant la production éditoriale anglaise, toute éventuelle page anglaise déjà présente sur le wiki est **ignorée comme source de contenu**. Le traducteur travaille à partir du corpus français validé comme si la page cible anglaise n'existait pas : il ne reprend ni sa rédaction, ni son introduction, ni ses titres, ni son `progress`, ni ses avertissements, ni sa documentation, ni ses relations. Une existence distante peut encore être consultée ultérieurement par les mécanismes techniques de publication, de concurrence ou de sécurité ; elle ne modifie pas le contenu éditorial à produire. Les vérifications d'existence de pages tierces nécessaires à `related-debates` restent autorisées.
+
+### Table normative exhaustive des valeurs FR→EN
+
+Pour une traduction, les valeurs ci-dessous sont traduites **uniquement lorsqu'elles sont réellement présentes dans le wikicode français**. Aucune valeur de profil de création n'est injectée à leur place. Un paramètre absent en français est absent en anglais. Pour les champs à cases multiples, toutes les valeurs présentes sont traduites séparément dans le même ordre.
+
+| Paramètre FR | Valeur française | Paramètre EN | Valeur anglaise |
+|---|---|---|---|
+| `avancement` | `Ébauche` | `progress` | `Draft` |
+| `avancement` | `Débat en construction` | `progress` | `Debate under construction` |
+| `avancement` | `Débat construit` | `progress` | `Constructed debate` |
+| `avertissements-titre` (Débat) | `Titre non standard` | `title-warnings` | `Non-standard title` |
+| `avertissements-titre` (Débat) | `Titre à simplifier` | `title-warnings` | `Title to simplify` |
+| `avertissements-titre` (Débat) | `Titre à expliciter` | `title-warnings` | `Title to be explained` |
+| `avertissements-débat` | `Débat sensible` | `debate-warnings` | `Sensitive debate` |
+| `avertissements-débat` | `Débat saugrenu` | `debate-warnings` | `Fanciful debate` |
+| `avertissements-débat` | `Débat redondant` | `debate-warnings` | `Redundant debate` |
+| `avertissements-débat` | `Débat déséquilibré` | `debate-warnings` | `Unbalanced debate` |
+| `avertissements-débat` | `Plan à améliorer` | `debate-warnings` | `Plan to improve` |
+| `avertissements-débat` | `Débat généré par IA` | `debate-warnings` | `Debate generated by AI` |
+| `avertissements-titre` (Argument) | `Titre désavantageux` | `title-warnings` | `Disadvantageous title` |
+| `avertissements-titre` (Argument) | `Titre peu clair` | `title-warnings` | `Unclear title` |
+| `avertissements-titre` (Argument) | `Titre incomplet` | `title-warnings` | `Incomplete title` |
+| `avertissements-titre` (Argument) | `Titre trop long` | `title-warnings` | `Too long title` |
+| `avertissements-argument` | `Argument sensible` | `argument-warnings` | `Sensitive argument` |
+| `avertissements-argument` | `Argument saugrenu` | `argument-warnings` | `Fanciful argument` |
+| `avertissements-argument` | `Argument potentiellement illégal` | `argument-warnings` | `Potentially illegal argument` |
+| `avertissements-argument` | `Argument généré par IA` | `argument-warnings` | `Argument generated by AI` |
+
+Cette table est normative et exhaustive pour les options actuellement autorisées de ces champs. Une valeur française non reconnue n'est jamais traduite par approximation : elle déclenche une revue.
+
+### `related-debates` : intersection avec les pages anglaises existantes
+
+Si la page française possède `débats-connexes`, chaque entrée est examinée individuellement. Une entrée est projetée dans `related-debates` uniquement si la page anglaise correspondant à ce débat existe réellement et si son titre anglais est vérifié. Une entrée sans page anglaise vérifiée est omise. Aucun débat absent de `débats-connexes` n'est ajouté. Si aucune entrée française n'a d'équivalent anglais existant, `related-debates` est omis.
+
+### Seconde passe de vérification obligatoire
+
+Avant la clôture de chaque lot, une passe distincte de la première traduction compare le français et l'anglais. Elle contrôle au minimum : l'absence de reprise de l'ancienne page anglaise cible ; la traduction exacte des métadonnées ci-dessus ; l'absence de valeurs par défaut ajoutées ; le filtrage de `related-debates` par existence réelle des pages anglaises ; la conservation du sens et de la polarité pour/contre ; l'anglais idiomatique ; l'absence de wikicode français résiduel ; la réalité des versions anglaises des références ; et le respect des contrats spéciaux tels que `Citation`→`Quote`. La passe globale inter-lots reprend ces points à l'échelle du corpus.
 
 ## Addendum 1.2.51 — attribution éditoriale contrôlée d’un nom consacré
 

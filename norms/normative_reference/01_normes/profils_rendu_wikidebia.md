@@ -267,17 +267,21 @@ Une ressource bilingue ne compte comme française que si l'intégralité du cont
 
 ### Mots-clés et traitement des débats connexes
 
-Lors de la création d’une page de débat qui n’existait pas, les paramètres `débats-connexes` et `related-debates` ne sont pas produits. Lors de la modification d’une page préexistante, leur présence ou leur absence et, s’ils existent, leur valeur sont conservées exactement. Les rapprochements internes ne servent jamais à inventer une nouvelle valeur.
+Lors de la création d’une page de débat réellement nouvelle hors traduction, les paramètres `débats-connexes` et `related-debates` ne sont pas produits. Lors de la modification d’une page préexistante hors protocole de retraduction, leur présence ou leur absence et, s’ils existent, leur valeur sont conservées exactement. **Pendant une traduction FR→EN, `related-debates` constitue une exception : il est reconstruit uniquement à partir des débats connexes français dont la page anglaise correspondante est vérifiée comme existante.** Les rapprochements internes ne servent jamais à inventer une nouvelle valeur.
 
 Les rubriques d’une page Débat sont rangées par ordre alphabétique et choisies avec parcimonie : la précision prime sur l’exhaustivité, et une rubrique secondaire n’est pas ajoutée au seul motif qu’elle apparaît dans un argument ou une sous-partie. La liste des mots-clés d'une page Débat est resserrée, normalement de cinq à huit concepts réutilisables. Elle évite les mots d'action trop génériques (`interdiction`, `autorisation`, `obligation`), les formulations propres à une seule proposition et les synonymes redondants.
 
 ---
 
+## 3.9 Exception de traduction FR→EN : métadonnées et cible anglaise
+
+Pour la traduction, le corpus français validé est la seule source éditoriale. Une éventuelle page anglaise cible déjà existante n'est ni lue ni réutilisée pour décider du contenu traduit. `avancement`/`progress`, les deux familles de `avertissements-titre`/`title-warnings`, `avertissements-débat`/`debate-warnings` et `avertissements-argument`/`argument-warnings` suivent la table exhaustive de `docs/GUIDE_TRADUCTION_METADONNEES_FR_EN.md`. Les valeurs de création par défaut ne s'appliquent pas à une traduction. `related-debates` ne reprend que les débats connexes français dont l'équivalent anglais existe réellement. Une seconde passe FR→EN vérifie ces points avant clôture du lot.
+
 # 4. Profil de rendu — Page Debate anglaise
 
 ## 4.1 Paramètres obligatoires
 
-The progress and warning values below are mandatory only for a page created by Wikidéb’IA. A pre-existing page preserves their prior presence, absence and exact value.
+The progress and warning values below are mandatory only for a genuinely new page generated from scratch. **An English translation of a French page is not treated as such a creation for these metadata:** the exact French values are mapped to English, and absent source parameters remain absent. Any pre-existing English target page is ignored as an editorial source.
 
 | Parameter | Rule |
 |---|---|

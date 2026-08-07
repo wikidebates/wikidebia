@@ -8,6 +8,11 @@
 - exige des tests d’invariance pour empêcher le retour de gardes éditoriales par version ;
 - aligne également le cahier des charges, le workflow, les structures MediaWiki et le schéma de graphe afin qu’aucune formulation active ne réintroduise un seuil éditorial par version ;
 - préserve sans modification toutes les règles de contenu 1.2.53.
+- correctif de traduction FR→EN : la page anglaise cible existante est ignorée comme source éditoriale ;
+- ajout d'une table exhaustive des valeurs `avancement`/`progress`, `avertissements-titre`/`title-warnings`, `avertissements-débat`/`debate-warnings` et `avertissements-argument`/`argument-warnings` ;
+- les valeurs françaises présentes sont traduites exactement et l'absence d'un paramètre reste une absence, sans injection d'un défaut de création ;
+- `related-debates` ne projette que les débats connexes français dont la page anglaise existe réellement ;
+- ajout d'une seconde passe FR→EN obligatoire avant clôture de chaque lot.
 
 ## 1.2.53 — 7 août 2026
 
