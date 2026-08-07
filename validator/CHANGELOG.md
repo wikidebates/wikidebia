@@ -1,3 +1,8 @@
+## Correctif 0.4.51 — 7 août 2026
+
+- prise en compte d’une suppression de résumé historique explicitement décidée par le propriétaire, avec provenance `owner_removed` et décision tracée ;
+- maintien du verrou strict pour tous les autres résumés historiques.
+
 ## 0.4.51 — 7 août 2026
 
 - alignement sur la norme 1.2.48 ;

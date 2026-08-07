@@ -9,7 +9,7 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 ## Composants associés
 
 - `wikidebia-normes.zip` — 1631365 octets — SHA-256 `675c1b3c9d650410257274495285970417e40de7708489f422031008dc25844c`
-- `wikidebia-validator.zip` — 1910389 octets — SHA-256 `1366f380119464f5b24ff3431bce93bee619efffea5d060e77c9b32cd9792a5e`
+- `wikidebia-validator.zip` — 1940477 octets — SHA-256 `1eba7675b8e15a5936a9539149805f4a24c4fb533be7e5d390979cd11f1cc931`
 - `wikidebia-kit.zip` — 420437 octets — SHA-256 `77d8db2ac6d149563a78fb3aa8b36edfdc4b5cb0d41640fce68f1d077f9069fb`
 
 ## Norme consolidée active
@@ -1776,7 +1776,12 @@ Norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.48.
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `6b45bba9115ef87a46412f10fc5fbd9ebc879f23e8423ecbef054ff8f8ca368a`
+SHA-256 : `4ea8743dd0c7049f140b17e0ee854e7e31efb1d4b7b6972a01400969d7cd7574`
+
+## Correctif 0.4.51 — 7 août 2026
+
+- prise en compte d’une suppression de résumé historique explicitement décidée par le propriétaire, avec provenance `owner_removed` et décision tracée ;
+- maintien du verrou strict pour tous les autres résumés historiques.
 
 ## 0.4.51 — 7 août 2026
 

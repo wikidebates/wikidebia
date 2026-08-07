@@ -13,8 +13,8 @@
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size_bytes": 18012,
-      "sha256": "6b45bba9115ef87a46412f10fc5fbd9ebc879f23e8423ecbef054ff8f8ca368a"
+      "size_bytes": 18285,
+      "sha256": "4ea8743dd0c7049f140b17e0ee854e7e31efb1d4b7b6972a01400969d7cd7574"
     },
     {
       "path": "COMPATIBILITY.json",
@@ -1238,8 +1238,8 @@
     },
     {
       "path": "src/wikidebia_validator/editorial.py",
-      "size_bytes": 159687,
-      "sha256": "9de3d277bcb7fd53adf48322cd7eaf362c365f08261c39a65ece1e7c473df7f6"
+      "size_bytes": 161572,
+      "sha256": "1393869438a5a2057d73ba33380d67992bd014f4ca1a2b3fc37dfd1222e3cc43"
     },
     {
       "path": "src/wikidebia_validator/files.py",
@@ -1318,8 +1318,8 @@
     },
     {
       "path": "src/wikidebia_validator/schemas/historical_content_lock.schema.json",
-      "size_bytes": 5517,
-      "sha256": "f6fa91cb0d042ecde3fd0fb3e4f27ec6435854cd0b6f948beb3fe37654147429"
+      "size_bytes": 6128,
+      "sha256": "ffe4031ccb81dbc80cbc6071b814879866870d9cf9ad653f097195014b7c3d9e"
     },
     {
       "path": "src/wikidebia_validator/schemas/interlanguage_patch.schema.json",
@@ -1393,8 +1393,8 @@
     },
     {
       "path": "src/wikidebia_validator/schemas/summary_style_review.schema.json",
-      "size_bytes": 3925,
-      "sha256": "24a6a29eb8cf7289b91a166775f38ee76d50310152dde49e489d5718d4bd23d7"
+      "size_bytes": 4551,
+      "sha256": "79c5cdba9de78251f5979ef458ab8a1115557430b620c5027ff416182a7d9079"
     },
     {
       "path": "src/wikidebia_validator/sources.py",
@@ -1413,8 +1413,8 @@
     },
     {
       "path": "src/wikidebia_validator/wikicode.py",
-      "size_bytes": 92821,
-      "sha256": "3628a1cde15bd8c8dcab3af39e490af9ef0301dc36f4544b4e880e6e630e1a61"
+      "size_bytes": 94881,
+      "sha256": "855cba905bbf3e3e55b8ac77b91f205ac32157191e3f431ac33e95827443c39d"
     },
     {
       "path": "src/wikidebia_validator/workflow.py",
@@ -1623,8 +1623,8 @@
     },
     {
       "path": "tests/test_norm_1240_historical_absent_summary.py",
-      "size_bytes": 4031,
-      "sha256": "8e277dc0d24bd1c66ca337a0e481fdea1b01db30b3fef06e9d6ec5df63cfb057"
+      "size_bytes": 5441,
+      "sha256": "73df3f852acec9de4194e47ca3f9aa58784c38e48f87d1ef96104c5dee54a14d"
     },
     {
       "path": "tests/test_norm_1242.py",

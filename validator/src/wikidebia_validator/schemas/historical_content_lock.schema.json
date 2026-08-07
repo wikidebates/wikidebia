@@ -120,7 +120,8 @@
             "enum": [
               "historical_existing",
               "generated_after_import",
-              "historical_absent"
+              "historical_absent",
+              "owner_removed"
             ]
           },
           "detailed_debate": {
@@ -190,6 +191,14 @@
                 }
               }
             ]
+          },
+          "owner_decision": {
+            "type": "string",
+            "minLength": 10
+          },
+          "owner_decision_recorded_at": {
+            "type": "string",
+            "minLength": 10
           }
         },
         "allOf": [
@@ -222,6 +231,21 @@
                   }
                 ]
               }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "summary_provenance": {
+                  "const": "owner_removed"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "owner_decision",
+                "owner_decision_recorded_at"
+              ]
             }
           }
         ]

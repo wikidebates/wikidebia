@@ -1591,6 +1591,7 @@ def validate_summary_style_review_data(
     summary_policy_revision: str | None = None,
     protected_historical: set[tuple[str, str]] | None = None,
     historically_absent: set[tuple[str, str]] | None = None,
+    owner_removed_summaries: set[tuple[str, str]] | None = None,
 ) -> list[dict[str, Any]]:
     """Validate page-level human attestations for direct, general-public summaries."""
     issues: list[dict[str, Any]] = []
@@ -1598,6 +1599,7 @@ def validate_summary_style_review_data(
     summary_map = summaries or {}
     protected = protected_historical or set()
     absent = historically_absent or set()
+    owner_removed = owner_removed_summaries or set()
     quality_1238 = quality_policy_revision == "1.2.38" or summary_policy_revision in {"1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48"} or norm in {"1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48"}
     if not isinstance(review, dict):
         return [{"reason": "missing_or_invalid_document"}]
@@ -1659,6 +1661,14 @@ def validate_summary_style_review_data(
                 issues.append({"reason": "language_decision", "node_id": node_id, "language": lang})
                 continue
             key_tuple = (node_id, lang)
+            if key_tuple in owner_removed:
+                if decision.get("status") != "owner_removed":
+                    issues.append({"reason": "owner_removed_status", "node_id": node_id, "language": lang})
+                if decision.get("owner_decision_verified") is not True:
+                    issues.append({"reason": "owner_decision_verified", "node_id": node_id, "language": lang})
+                if len(str(decision.get("note") or "").strip()) < 12:
+                    issues.append({"reason": "note", "node_id": node_id, "language": lang})
+                continue
             if key_tuple in absent:
                 if decision.get("status") != "historical_absent":
                     issues.append({"reason": "historical_absent_status", "node_id": node_id, "language": lang})
@@ -1746,6 +1756,25 @@ def _historically_absent_summary_keys(ctx: PackageContext) -> set[tuple[str, str
     setattr(ctx, "_historically_absent_summary_keys_cache", result)
     return result
 
+def _owner_removed_summary_keys(ctx: PackageContext) -> set[tuple[str, str]]:
+    cached = getattr(ctx, "_owner_removed_summary_keys_cache", None)
+    if isinstance(cached, set):
+        return cached
+    result: set[tuple[str, str]] = set()
+    manifest = ctx.manifest() or {}
+    cfg = ((manifest.get("editorial_controls") or {}).get("legacy_content_preservation") or {})
+    rel = cfg.get("lock_path")
+    if cfg.get("enabled") is True and isinstance(rel, str) and ctx.exists(rel):
+        lock = ctx.load_json(rel)
+        if isinstance(lock, dict):
+            for entry in lock.get("arguments") or []:
+                if isinstance(entry, dict) and entry.get("summary_provenance") == "owner_removed":
+                    node_id, language = entry.get("id"), entry.get("language")
+                    if isinstance(node_id, str) and language in {"fr", "en"}:
+                        result.add((node_id, language))
+    setattr(ctx, "_owner_removed_summary_keys_cache", result)
+    return result
+
 def _validate_summary_style(
     ctx: PackageContext,
     nodes: list[dict[str, Any]],
@@ -1770,6 +1799,7 @@ def _validate_summary_style(
     reviewed_pages = 0
     protected_historical = _protected_historical_summary_keys(ctx)
     historically_absent = _historically_absent_summary_keys(ctx)
+    owner_removed_summaries = _owner_removed_summary_keys(ctx)
     for page in manifest.get("pages", []):
         if page.get("page_type") != "argument":
             continue
@@ -1780,7 +1810,7 @@ def _validate_summary_style(
         tmpl = _parse_page(ctx, page.get("file_path"))
         if not tmpl or lang not in {"fr", "en"}:
             continue
-        if (node_id, lang) in historically_absent:
+        if (node_id, lang) in (historically_absent | owner_removed_summaries):
             summaries[(node_id, lang)] = ""
             continue
         summary = _summary(tmpl, lang)
@@ -1876,6 +1906,7 @@ def _validate_summary_style(
         summary_policy_revision=summary_policy,
         protected_historical=protected_historical,
         historically_absent=historically_absent,
+        owner_removed_summaries=owner_removed_summaries,
     )
     opening_review_reasons = {"opening_develops_title"}
     quantitative_reasons = {"quantitative_claims_verified", "quantitative_claims_note"}
@@ -2131,7 +2162,7 @@ def validate_editorial(ctx: PackageContext) -> None:
             if not page:
                 continue
             tmpl = _parse_page(ctx, page.get("file_path"))
-            if tmpl and (node_id, lang) not in (_protected_historical_summary_keys(ctx) | _historically_absent_summary_keys(ctx)) and summary_has_auto_objection(_summary(tmpl, lang), lang):
+            if tmpl and (node_id, lang) not in (_protected_historical_summary_keys(ctx) | _historically_absent_summary_keys(ctx) | _owner_removed_summary_keys(ctx)) and summary_has_auto_objection(_summary(tmpl, lang), lang):
                 bad_summary += 1
                 ctx.report.error("WDV-EDT-003", "Le résumé se termine par une auto-objection, une concession ou du métadiscours", path=page.get("file_path"))
         summary_counts[lang] = bad_summary

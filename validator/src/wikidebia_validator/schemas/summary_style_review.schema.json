@@ -94,6 +94,25 @@
                   {
                     "properties": {
                       "status": {
+                        "const": "owner_removed"
+                      },
+                      "owner_decision_verified": {
+                        "const": true
+                      },
+                      "note": {
+                        "type": "string",
+                        "minLength": 12
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "owner_decision_verified",
+                      "note"
+                    ]
+                  },
+                  {
+                    "properties": {
+                      "status": {
                         "enum": [
                           "approved",
                           "revised",

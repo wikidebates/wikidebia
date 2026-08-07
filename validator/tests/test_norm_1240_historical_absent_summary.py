@@ -76,3 +76,25 @@ def test_generated_after_import_summary_still_required(tmp_path: Path):
     _remove_summary_everywhere(tmp_path, page, path)
     report = validate_package(tmp_path, scopes=["schema", "wikicode"])
     assert any(f.code in {"WDV-MWK-004", "WDV-EDT-027"} for f in report.findings)
+
+    # Une décision explicite du propriétaire peut, à l'inverse, supprimer un résumé
+    # historiquement présent sans désactiver la protection des autres pages.
+    manifest2, page2, path2 = _package(tmp_path / "owner_removed")
+    source_text = path2.read_text(encoding="utf-8")
+    _enable_inventory_verification(tmp_path / "owner_removed", manifest2, page2, source_text)
+    owner_root = tmp_path / "owner_removed"
+    current = json.loads((owner_root / "manifest.json").read_text(encoding="utf-8"))
+    current["editorial_controls"]["legacy_content_preservation"]["verification_revision"] = "0.4.51"
+    dump(owner_root / "manifest.json", current)
+    lock2 = json.loads((owner_root / "data/historical_content_lock.json").read_text(encoding="utf-8"))
+    lock2["schema_version"] = "1.2"
+    entry2 = lock2["arguments"][0]
+    entry2["summary_provenance"] = "owner_removed"
+    entry2.pop("summary_sha256", None)
+    entry2.pop("summary_length", None)
+    entry2["owner_decision"] = "Le propriétaire demande explicitement la suppression de ce résumé historique."
+    entry2["owner_decision_recorded_at"] = "2026-08-07T11:43:00+02:00"
+    dump(owner_root / "data/historical_content_lock.json", lock2)
+    _remove_summary_everywhere(owner_root, page2, path2)
+    report2 = validate_package(owner_root, scopes=["schema", "wikicode"])
+    assert not any(f.level == "ERROR" for f in report2.findings)

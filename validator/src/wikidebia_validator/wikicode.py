@@ -518,7 +518,7 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
     if page_type == "argument" and page_manifest is not None:
         summary_parameter = "résumé" if lang == "fr" else "summary"
         page_key = (page_manifest.get("page_id"), lang)
-        if page_key in _historically_absent_summary_keys(ctx) and summary_parameter in spec["required"]:
+        if page_key in (_historically_absent_summary_keys(ctx) | _owner_removed_summary_keys(ctx)) and summary_parameter in spec["required"]:
             spec["required"].remove(summary_parameter)
     if _is_norm_1217(ctx) and not _norm_at_least(ctx, "1.2.33") and page_type == "debate":
         wikipedia_parameter = "articles-Wikipédia" if lang == "fr" else "wikipedia-articles"
@@ -1138,6 +1138,25 @@ def _historically_absent_summary_keys(ctx: PackageContext) -> set[tuple[str, str
     setattr(ctx, "_historically_absent_summary_keys_cache", result)
     return result
 
+def _owner_removed_summary_keys(ctx: PackageContext) -> set[tuple[str, str]]:
+    cached = getattr(ctx, "_owner_removed_summary_keys_cache", None)
+    if isinstance(cached, set):
+        return cached
+    result: set[tuple[str, str]] = set()
+    manifest = ctx.manifest() or {}
+    cfg = ((manifest.get("editorial_controls") or {}).get("legacy_content_preservation") or {})
+    rel = cfg.get("lock_path")
+    if cfg.get("enabled") is True and isinstance(rel, str) and ctx.exists(rel):
+        lock = ctx.load_json(rel)
+        if isinstance(lock, dict):
+            for entry in lock.get("arguments") or []:
+                if isinstance(entry, dict) and entry.get("summary_provenance") == "owner_removed":
+                    node_id, language = entry.get("id"), entry.get("language")
+                    if isinstance(node_id, str) and language in {"fr", "en"}:
+                        result.add((node_id, language))
+    setattr(ctx, "_owner_removed_summary_keys_cache", result)
+    return result
+
 def _historical_detailed_debate_states(ctx: PackageContext) -> dict[tuple[str, str], dict[str, Any]]:
     cached = getattr(ctx, "_historical_detailed_debate_states_cache", None)
     if isinstance(cached, dict):
@@ -1239,7 +1258,7 @@ def validate_page(ctx: PackageContext, page_manifest: dict[str, Any], *, overrid
     validate_template_shape(ctx, tmpl, lang, page_type, rel, page_manifest)
     _check_reference_language_and_typography(ctx, tmpl, rel, lang)
     page_key = (page_manifest.get("page_id"), lang)
-    _validate_wikipedia_hover_links(ctx, tmpl, rel, lang, page_type, skip_summary=page_key in (_protected_historical_summary_keys(ctx) | _historically_absent_summary_keys(ctx)))
+    _validate_wikipedia_hover_links(ctx, tmpl, rel, lang, page_type, skip_summary=page_key in (_protected_historical_summary_keys(ctx) | _historically_absent_summary_keys(ctx) | _owner_removed_summary_keys(ctx)))
     if lang == "fr":
         _validate_french_parenthetical_dashes(ctx, tmpl, rel, page_type)
     registry = ctx.registry() or {}
@@ -1328,7 +1347,7 @@ def _validate_legacy_content_preservation(ctx: PackageContext, parsed_by_key: di
             field="résumé" if lang=="fr" else "summary"
             source_tmpl = source_templates.get(key)
             source_summary = source_tmpl.one(field) if source_tmpl is not None else None
-            if provenance not in {"historical_existing", "generated_after_import", "historical_absent"}:
+            if provenance not in {"historical_existing", "generated_after_import", "historical_absent", "owner_removed"}:
                 ctx.report.error("WDV-EDT-027", "Provenance du résumé historique invalide", path=lock_rel, details={"page_id":key[0],"provenance":provenance})
             elif verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51"} and source_tmpl is None:
                 ctx.report.error("WDV-EDT-027", "Page historique absente de l’inventaire source", path=lock_rel, details={"page_id": key[0], "language": lang})
@@ -1336,6 +1355,14 @@ def _validate_legacy_content_preservation(ctx: PackageContext, parsed_by_key: di
                 ctx.report.error("WDV-EDT-027", "Résumé déclaré historique mais absent de l’inventaire source", path=lock_rel, details={"page_id": key[0]})
             elif verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51"} and provenance in {"generated_after_import", "historical_absent"} and source_summary is not None:
                 ctx.report.error("WDV-EDT-027", "Résumé historique présent dans l’inventaire mais classé comme absent ou généré", path=lock_rel, details={"page_id": key[0], "provenance": provenance})
+            elif provenance == "owner_removed":
+                if source_summary is None:
+                    ctx.report.error("WDV-EDT-027", "Suppression propriétaire déclarée pour un résumé historiquement absent", path=lock_rel, details={"page_id": key[0]})
+                if len(str(entry.get("owner_decision") or "").strip()) < 10 or len(str(entry.get("owner_decision_recorded_at") or "").strip()) < 10:
+                    ctx.report.error("WDV-EDT-027", "Décision propriétaire insuffisamment documentée pour la suppression du résumé", path=lock_rel, details={"page_id": key[0]})
+                actual = tmpl.one(field)
+                if actual is not None:
+                    ctx.report.error("WDV-EDT-027", "Le résumé explicitement supprimé par le propriétaire est encore présent", path=next((p.get("file_path") for p in manifest.get("pages",[]) if p.get("page_id")==key[0] and p.get("language")==lang), lock_rel), details={"page_id":key[0]})
             elif provenance == "historical_absent":
                 if cfg.get("historical_summary_absence_revision") != "1.2.40":
                     ctx.report.error("WDV-EDT-027", "Absence historique du résumé non activée par le manifeste", path=lock_rel, details={"page_id": key[0]})
