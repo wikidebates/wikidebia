@@ -1,3 +1,10 @@
+## 1.2.55 — 2026-08-07
+
+- unités internes de revue anglaise ramenées à 10 arguments par défaut, 5–8 pour les groupes denses, avec agrégation possible de plusieurs unités dans une livraison longue ;
+- `name=` anglais : comparaison obligatoire des formes concurrentes, interdiction d'uniformiser `X argument` / `Argument from X` / possessifs, et exigence d'identité de portée ;
+- principe explicite « contraintes, pas patron mécanique » pour Work et les agents ;
+- conservation de l'absence historique de résumé dans la traduction et interdiction de créer un `summary=` de remplissage.
+
 ## 1.2.54 — 7 août 2026 — architecture cumulative des normes éditoriales
 
 - supprime l’activation des règles éditoriales par listes ou comparaisons de versions ;
@@ -21,7 +28,7 @@
 - recherche de `name=` indépendante dans la littérature anglophone, sans traduction mécanique de `nom=` ;
 - interdiction de traduire artificiellement les références françaises ; projection uniquement d'une version anglaise réelle et vérifiée avec ses métadonnées propres ;
 - recherche indépendante de nouvelles références anglophones ;
-- confirmation du contrat `Citation`→`Quote` : seules les valeurs `quote` et `date` sont traduites et `Citation traduite par IA` est ajouté ;
+- confirmation du contrat `Citation`→`Quote` : seules les valeurs `quote` et `date` sont traduites et `Quote translated by AI` est ajouté ;
 - alignement recommandé : validateur 0.4.56 et kit 2.15.30.
 
 ## 1.2.52 — 7 août 2026

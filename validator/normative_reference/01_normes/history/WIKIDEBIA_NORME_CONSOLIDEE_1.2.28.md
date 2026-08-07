@@ -472,7 +472,7 @@ La présence des pages anglaises dans le manifeste de pages n’est pas une cond
 |lieu=
 |date=
 |lien=
-|avertissements-citation=Citation traduite par IA
+|avertissements-citation=Quote translated by AI
 }}
 |bibliography={{Bibliographical reference
 |authors=
@@ -905,8 +905,8 @@ Les citations d’une page Argument française sont rendues dans `citations=` so
 1. tous les paramètres documentaires de la citation française, notamment `auteurs`, `ouvrage`, `article`, `édition`, `volume`, `numéro`, `page`, `localisation`, `lieu` et `lien`, sont conservés à l’identique et dans le même ordre ;
 2. seul le contenu de `citation` est traduit ;
 3. `date` est traduit dans la langue anglaise sans changer la date représentée ; une année seule reste inchangée ;
-4. le paramètre `avertissements-citation` contient la mention exacte `Citation traduite par IA` ;
-5. si un avertissement existe déjà, la mention est ajoutée après sa valeur avec exactement une virgule et une espace : `Avertissement existant, Citation traduite par IA` ;
+4. le paramètre `avertissements-citation` contient la mention exacte `Quote translated by AI` ;
+5. si un avertissement existe déjà, la mention est ajoutée après sa valeur avec exactement une virgule et une espace : `Avertissement existant, Quote translated by AI` ;
 6. la mention n’est jamais dupliquée ; un paramètre vide est traité comme absent.
 
 Le registre de traduction, les verrous de contenu, le rendu et le validateur comparent la liste ordonnée complète des paramètres. Toute modification d’un paramètre documentaire, toute date différente, toute citation omise ou ajoutée, tout avertissement absent, dupliqué ou mal séparé bloque la validation.

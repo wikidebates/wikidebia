@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.54
+- **Révision :** 1.2.55
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -421,3 +421,8 @@ La décision du propriétaire du 7 août 2026 supprime les versions comme mécan
 | N'ajouter un débat connexe que si sa page anglaise existe | DEN-009, MW-026 | liste source française + vérification d'existence pour chaque cible anglaise projetée |
 | Refaire une passe de vérification de la traduction | DEN-010 | attestation de seconde passe par lot puis passe globale inter-lots |
 
+
+
+### Révision 1.2.55 — qualité adaptative de la traduction anglaise
+
+Le retour propriétaire du 7 août 2026 après les premiers lots anglais affine `TRN-005` et `EDT-063`, puis ajoute `TRN-007`, `EDT-064` et `TRN-008` : unités internes de dix arguments par défaut avec agrégation possible, forme anglaise consacrée non normalisée, identité exacte de portée pour `name=`, exécution non mécanique par Work/agent, et conservation des résumés historiquement absents pendant la traduction.

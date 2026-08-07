@@ -46,7 +46,7 @@ from wikidebia_content_review import (
     META_DISCOURSE,
 )
 
-KIT_VERSION = "2.15.31"
+KIT_VERSION = "2.15.32"
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.0"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
@@ -153,7 +153,7 @@ def _assert_english_wikicode_localized(value: str, label: str) -> None:
     if parameter:
         raise TranslationReviewError(f"Paramètre français interdit dans {label} : {parameter.group(1)}")
 
-TRANSLATED_CITATION_WARNING = "Citation traduite par IA"
+TRANSLATED_CITATION_WARNING = "Quote translated by AI"
 FR_MONTHS = {
     "janvier": 1, "février": 2, "fevrier": 2, "mars": 3, "avril": 4, "mai": 5, "juin": 6,
     "juillet": 7, "août": 8, "aout": 8, "septembre": 9, "octobre": 10, "novembre": 11, "décembre": 12, "decembre": 12,
@@ -850,25 +850,38 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         raise TranslationReviewError(f"Keywords anglais divergents pour {node_id}")
     if row.get("keywords_order_preserved_by_relevance") is not True:
         raise TranslationReviewError(f"Ordre de pertinence des keywords non attesté pour {node_id}")
-    summary = _text(row.get("summary"), f"summary de {node_id}", 40)
-    _assert_english_wikicode_localized(summary, f"le summary de {node_id}")
-    if META_DISCOURSE.search(_plain(summary)):
-        raise TranslationReviewError(f"Métadiscours interdit dans le summary de {node_id}")
-    fr_summary = _text(fr_content.get("summary"), f"résumé français verrouillé de {node_id}", 40)
-    ratio = len(_plain(summary)) / max(1, len(_plain(fr_summary)))
-    if not 0.60 <= ratio <= 1.45 or row.get("summary_ratio_reviewed") is not True:
-        raise TranslationReviewError(f"Ratio anglais/français hors limites pour {node_id} : {ratio:.2f}")
-    for field in ("metadata_equivalent_to_french", "summary_equivalent_to_french", "title_is_idiomatic", "displayed_title_is_complete_proposition", "displayed_title_concision_reviewed", "displayed_title_semantically_equivalent", *SUMMARY_TRUE_FIELDS):
-        if row.get(field) is not True:
-            raise TranslationReviewError(f"Attestation anglaise manquante pour {node_id} : {field}")
+    raw_fr_summary = fr_content.get("summary")
+    summary_absent = raw_fr_summary is None or not str(raw_fr_summary).strip()
+    if summary_absent:
+        if row.get("summary") not in (None, ""):
+            raise TranslationReviewError(f"Un summary anglais ne peut pas être inventé lorsque le résumé français est historiquement absent : {node_id}")
+        summary = None
+        ratio = None
+        expression = None
+        numbers = []
+        for field in ("metadata_equivalent_to_french", "summary_equivalent_to_french", "title_is_idiomatic", "displayed_title_is_complete_proposition", "displayed_title_concision_reviewed", "displayed_title_semantically_equivalent"):
+            if row.get(field) is not True:
+                raise TranslationReviewError(f"Attestation anglaise manquante pour {node_id} : {field}")
+    else:
+        summary = _text(row.get("summary"), f"summary de {node_id}", 40)
+        _assert_english_wikicode_localized(summary, f"le summary de {node_id}")
+        if META_DISCOURSE.search(_plain(summary)):
+            raise TranslationReviewError(f"Métadiscours interdit dans le summary de {node_id}")
+        fr_summary = _text(raw_fr_summary, f"résumé français verrouillé de {node_id}", 40)
+        ratio = len(_plain(summary)) / max(1, len(_plain(fr_summary)))
+        if not 0.60 <= ratio <= 1.45 or row.get("summary_ratio_reviewed") is not True:
+            raise TranslationReviewError(f"Ratio anglais/français hors limites pour {node_id} : {ratio:.2f}")
+        for field in ("metadata_equivalent_to_french", "summary_equivalent_to_french", "title_is_idiomatic", "displayed_title_is_complete_proposition", "displayed_title_concision_reviewed", "displayed_title_semantically_equivalent", *SUMMARY_TRUE_FIELDS):
+            if row.get(field) is not True:
+                raise TranslationReviewError(f"Attestation anglaise manquante pour {node_id} : {field}")
+        expression = _text(row.get("forceful_expression"), f"expression de force anglaise de {node_id}", 8)
+        if _plain(expression).casefold() not in _plain(summary).casefold():
+            raise TranslationReviewError(f"L’expression de force anglaise est absente du summary de {node_id}")
+        numbers = NUMBER.findall(_plain(summary))
+        if numbers and (row.get("quantitative_claims_verified") is not True or len(str(row.get("quantitative_claims_note") or "").strip()) < 12):
+            raise TranslationReviewError(f"Donnée chiffrée anglaise non vérifiée dans {node_id}")
     if canonical.casefold() != displayed.casefold() and row.get("displayed_title_improves_readability_when_distinct") is not True:
         raise TranslationReviewError(f"Le displayed title distinct n’améliore pas explicitement la lisibilité pour {node_id}")
-    expression = _text(row.get("forceful_expression"), f"expression de force anglaise de {node_id}", 8)
-    if _plain(expression).casefold() not in _plain(summary).casefold():
-        raise TranslationReviewError(f"L’expression de force anglaise est absente du summary de {node_id}")
-    numbers = NUMBER.findall(_plain(summary))
-    if numbers and (row.get("quantitative_claims_verified") is not True or len(str(row.get("quantitative_claims_note") or "").strip()) < 12):
-        raise TranslationReviewError(f"Donnée chiffrée anglaise non vérifiée dans {node_id}")
     citations = _validate_citations(row.get("citations"), fr_content.get("citations") or [], node_id)
     selected = row.get("sources")
     if not isinstance(selected, dict) or set(selected) != set(ARGUMENT_BUCKETS):
@@ -890,7 +903,7 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
     return {
         "id": node_id, "canonical_title": canonical, "displayed_title": displayed,
         "sections": sections, "keywords": keywords, "summary": summary, "citations": citations, "sources": final_sources,
-        "summary_length_ratio": round(ratio, 4), "forceful_expression": expression,
+        "summary_length_ratio": (round(ratio, 4) if ratio is not None else None), "forceful_expression": expression,
         "quantitative_claims": numbers, "quantitative_claims_verified": bool(row.get("quantitative_claims_verified")),
         "quantitative_claims_note": row.get("quantitative_claims_note"),
         "reviewer": row.get("reviewer"), "reviewed_at": row.get("reviewed_at"), "note": row.get("note"),
@@ -993,19 +1006,26 @@ def _merge_summary_review(path: Path, arguments: Sequence[Mapping[str, Any]], de
     by_id = {str(row.get("id")): row for row in data.get("entries") or []}
     for arg in arguments:
         entry = by_id.setdefault(arg["id"], {"id": arg["id"], "languages": {}})
-        entry.setdefault("languages", {})["en"] = {
-            "status": "translated_and_reviewed", "thesis_first": True, "general_public_style": True,
-            "sentence_rhythm_reviewed": True, "technical_terms_reviewed": True,
-            "opening_develops_title": True, "example_or_data_reviewed": True,
-            "assertive_tone_reviewed": True, "no_artificial_example_or_number": True,
-            "no_polemical_overstatement": True, "conviction_visible": True,
-            "wikipedia_hover_links_reviewed": True, "specialized_terms_linked_or_explained": True,
-            "forceful_expression": arg.get("forceful_expression"),
-            "originality_reviewed": True,
-            "mechanism_statement": _summary_mechanism_excerpt(arg.get("summary")),
-            "quantitative_claims_verified": arg.get("quantitative_claims_verified"),
-            "quantitative_claims_note": arg.get("quantitative_claims_note"), "note": arg.get("note"),
-        }
+        if arg.get("summary") is None:
+            entry.setdefault("languages", {})["en"] = {
+                "status": "historical_absent",
+                "historical_absence_verified": True,
+                "note": arg.get("note") or "French source summary is historically absent and the English parameter is omitted.",
+            }
+        else:
+            entry.setdefault("languages", {})["en"] = {
+                "status": "translated_and_reviewed", "thesis_first": True, "general_public_style": True,
+                "sentence_rhythm_reviewed": True, "technical_terms_reviewed": True,
+                "opening_develops_title": True, "example_or_data_reviewed": True,
+                "assertive_tone_reviewed": True, "no_artificial_example_or_number": True,
+                "no_polemical_overstatement": True, "conviction_visible": True,
+                "wikipedia_hover_links_reviewed": True, "specialized_terms_linked_or_explained": True,
+                "forceful_expression": arg.get("forceful_expression"),
+                "originality_reviewed": True,
+                "mechanism_statement": _summary_mechanism_excerpt(arg.get("summary")),
+                "quantitative_claims_verified": arg.get("quantitative_claims_verified"),
+                "quantitative_claims_note": arg.get("quantitative_claims_note"), "note": arg.get("note"),
+            }
     data["schema_version"] = "1.0"
     data["normative_revision"] = NORM_VERSION
     data.pop("quality_policy_revision", None)

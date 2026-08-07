@@ -1,12 +1,46 @@
-# Norme consolidée Wikidéb’IA 1.2.36
+# Norme consolidée Wikidéb’IA 1.2.55
+
+> **Révision 1.2.55 — traduction anglaise adaptative, noms consacrés et absences historiques.** La traduction anglaise reste une adaptation éditoriale et non une procédure de remplissage. Les pages `Argument` sont désormais relues en unités internes de dix pages par défaut ; une livraison plus vaste peut agréger plusieurs unités déjà closes, tandis qu’un groupe particulièrement dense est réduit à cinq à huit pages. Les exemples, checklists et traductions antérieurement validées sont des contraintes et des points de comparaison, jamais des patrons à reproduire mécaniquement. Pour `name=`, la revue compare les formulations réellement attestées et conserve la construction anglaise consacrée telle qu’elle est employée (`X argument`, `Argument from X`, possessif ou autre) sans normalisation stylistique. L’attestation `same_reasoning_confirmed` inclut désormais l’identité de portée : un nom qui ne désigne qu’une sous-variante, un auteur particulier ou une partie du raisonnement est refusé si la page est plus large. Enfin, lorsqu’un résumé français est historiquement absent et que cette absence est attestée par le verrou de provenance, la page anglaise conserve cette absence ; aucun workflow de traduction ne peut imposer ou inventer un `summary=`.
+
+> **Révision 1.2.54 — architecture cumulative des normes éditoriales.** Les règles éditoriales actives de la présente norme consolidée s’appliquent désormais indépendamment de la valeur déclarée dans `normative_versions.consolidated_norm`. Ce numéro reste une métadonnée de provenance, de compatibilité de format, de migration et de publication ; il n’est plus un interrupteur de fonctionnalités éditoriales. De même, les champs historiques `*_policy_revision`, `*_revision`, `argument_name_assignment_revision`, `argument_name_discovery_revision` ou analogues, lorsqu’ils sont encore présents, servent uniquement à la traçabilité et ne peuvent ni activer ni désactiver un contrôle. L’application des règles dépend de l’état fonctionnel constaté : présence d’un registre ou d’un chemin de revue, origine d’une page, statut de traduction, activation de la préservation historique avec inventaire attesté, ou version propre d’un artefact. Les anciennes formulations « activée pour la révision X » sont conservées comme historique mais sont remplacées par cette architecture pour toute validation courante. Les règles de traduction anglaise 1.2.53 restent inchangées.
+
+> **Correctif actif du 7 août 2026 — traduction FR→EN source-authoritative et métadonnées.** Lors de la production éditoriale anglaise, la page anglaise cible est ignorée comme source de contenu : la page française validée est traduite comme si la cible anglaise n'existait pas. Les valeurs françaises réellement présentes de `avancement`, `avertissements-titre`, `avertissements-débat` et `avertissements-argument` sont traduites par une table FR→EN exhaustive ; aucune valeur de création par défaut ne peut les remplacer et un paramètre absent reste absent. Les débats connexes français ne sont projetés dans `related-debates` que si la page anglaise correspondante existe réellement ; aucun débat connexe étranger à la source française n'est ajouté. Chaque lot de traduction fait enfin l'objet d'une seconde passe explicite de comparaison FR→EN. Ce correctif précise et, pour la phase de traduction, prévaut sur les profils génériques de création lorsqu'ils prescrivent des valeurs par défaut.
+
+> **Révision 1.2.50 — séparation création / modification.** Les listes de paramètres générés ou non générés définies par les profils de rendu ne valent que pour la création automatisée d’une page à partir de zéro. Lorsqu’une page `Débat` ou `Argument` existe déjà, en français comme en anglais, sa modification obéit à un contrat de préservation : tout paramètre top-level autorisé qui était présent dans l’état historique ou distant attesté reste présent, même si le workflow de création ne l’aurait pas généré. Les paramètres de cycle de vie et d’avertissement sont traités comme des métadonnées opaques et ne peuvent recevoir une valeur par défaut de génération. Une suppression n’est admise que si elle est explicitement décidée et enregistrée pour la page et le paramètre concernés, ou si une exception normative spécialisée l’autorise (par exemple l’omission locale de relations sur une frontière `débat-détaillé`). Les mêmes principes s’appliquent aux pages de débat.
+
+
+> **Révision 1.2.51 — attribution éditoriale explicite de `nom` / `name`.** La protection historique introduite en 1.2.49 reste la règle par défaut : une absence historique de `nom` ou `name` n’est jamais comblée automatiquement. Une exception étroite est désormais admise lorsqu’une décision éditoriale explicite du propriétaire attribue à une page Argument une appellation consacrée dans la littérature. Le corpus déclare alors un registre dédié par `editorial_controls.argument_name_assignment_path`. Le champ historique `argument_name_assignment_revision`, s’il est encore présent, n’est qu’une trace de provenance. Ce registre identifie chaque page, la langue, le titre canonique, la valeur exacte à ajouter et la justification. L’inventaire historique reste inchangé et continue d’attester l’absence antérieure ; l’attribution éditoriale constitue une couche de décision séparée. Le validateur exige une concordance exacte entre le registre et le wikicode. Lors d’une reprise, le kit peut ajouter uniquement ce paramètre sur les pages listées, sans relâcher la préservation des autres paramètres historiques.
+> **Révision 1.2.52 — recherche documentaire des noms consacrés des arguments nouveaux.** Pour chaque page `Argument` réellement nouvelle, la génération examine explicitement si le raisonnement possède une appellation conventionnelle reconnue dans la littérature. Cette recherche est obligatoire, mais l’ajout de `nom` / `name` reste exceptionnel : la présomption est l’absence de nom consacré. Aucun quota, objectif de remplissage ou dérivation depuis le titre n’est admis. Une appellation n’est retenue que si des sources de référence ou académiques l’emploient pour désigner substantiellement le même raisonnement dans la langue de la page, ou sous une forme étrangère elle-même consacrée. La revue consigne les requêtes, le résultat et, lorsqu’un nom est retenu, les attestations documentaires. Le validateur exige une couverture exacte de toutes les pages Argument nouvelles et une concordance stricte avec le wikicode.
+> **Révision 1.2.53 — traduction anglaise par lots et adaptation documentaire.** La production anglaise est menée comme une adaptation éditoriale contrôlée, non comme une substitution lexicale. La page `Debate` constitue un lot autonome. Les pages `Argument` sont ensuite traitées par lots de vingt pages par défaut, sans dépasser vingt-cinq ; un lot documentairement dense est réduit à dix à quinze pages. Chaque argument est achevé dans un seul lot, qui inclut la traduction idiomatique, la recherche séparée de `name=`, la vérification des équivalents anglais des références françaises, la recherche de nouvelles références anglophones et le traitement des modèles `Quote`. Une référence française n’est jamais traduite artificiellement : elle n’est projetée comme référence anglaise que si une édition, traduction ou version anglaise réelle est vérifiée, avec ses métadonnées propres. Des références anglaises nouvelles sont recherchées indépendamment. L’exception documentaire des modèles `Citation` importés reste stricte : `Citation` devient `Quote`, seuls le texte de `quote` et la forme linguistique de `date` sont traduits, les autres valeurs sont conservées exactement, et `Quote translated by AI` est ajouté à `warnings`. Une passe inter-lots finale vérifie la cohérence globale avant finalisation.
+
 
 **Statut :** source normative active unique  
-**Date d’effet :** 5 août 2026  
+**Date d’effet :** 7 août 2026  
 **Domaine :** production, validation et préparation à la publication de débats bilingues français–anglais sous MediaWiki  
 **Remplace comme sources actives séparées :** révision 1.0.6, correctif du 23 juillet 2026 et décisions correctives du 25 juillet 2026. Ces documents restent conservés dans `history/` à titre de provenance.
 
 
-> **Révision 1.2.36.** Cette révision rend la reprise des pages historiques réellement non destructive. Pour toute page distante attestée et inchangée depuis l’état publié, le kit préserve automatiquement ses paramètres de cycle de vie (date de création, avertissements, avancement et métadonnées historiques admises) dans un fichier effectif dérivé, au lieu de bloquer la mise à jour ou d’ajouter rétroactivement une étiquette IA. La politique de date par défaut devient `per_page_preserved` : aucune page déjà existante n’est tenue d’avoir la date du corpus ou la date du jour. Une page historique sans marqueur IA ne peut être supprimée automatiquement que si son retrait est déclaré par une migration explicite, que son contenu et sa révision correspondent exactement à l’état attesté et qu’aucun autre débat connu ne la possède. Toutes les règles 1.2.35 restent actives sauf contradiction explicite.
+> **Révision 1.2.49.** Cette révision protège le paramètre historique `nom` des pages `Argument` françaises et `name` de leurs équivalents anglais. Lorsqu’un tel paramètre existe dans une page importée ou préexistante, sa présence et sa valeur sont conservées exactement : il ne peut être supprimé, renommé, réécrit, normalisé ni remplacé par le titre canonique. Lorsqu’il était absent, le moteur n’en invente pas. L’état de présence et la valeur sont consignés dans les paramètres préservés et, pour les corpus historiques, dans le verrou de contenu confronté à l’inventaire source.
+
+> **Révision 1.2.48.** Cette révision permet d’intégrer sans contournement les modifications manuelles explicitement approuvées par le propriétaire. Un registre local peut attester une révision distante précise, par identifiant de révision et/ou empreinte SHA-256, puis autoriser une modification contrôlée à partir de cette base. Le plan reste bloqué si la page a changé depuis l’attestation. Les paramètres de cycle de vie demeurent protégés, sauf autorisation nominative dans le registre. Cette procédure ne transforme jamais une modification humaine inconnue en mise à jour automatique.
+
+> **Révision 1.2.47.** Cette révision protège les frontières vers un débat détaillé. Lorsqu’un paramètre historique `débat-détaillé` ou `detailed-debate` existe, il est conservé exactement dans la sortie. La présence de cette frontière autorise l’omission des paramètres locaux `justifications` et `objections`, mais uniquement lorsque cette omission est consignée dans le verrou historique et que le propriétaire en a été informé. Le validateur compare la cible du débat détaillé à la source attestée et ne confond plus l’arrêt du parcours du graphe avec la suppression du paramètre de la page.
+
+> **Révision 1.2.46.** Cette révision remplace le contrôle trop étroit des seules « notions voisines de même rang » introduit en 1.2.45. La revue porte désormais sur toutes les notions spécialisées ou potentiellement opaques de chaque sous-partie d’introduction. Pour chaque notion identifiée, elle consigne un traitement vérifiable : lien Wikipédia à la première occurrence utile, explication intégrée, renvoi à une explication antérieure, ou justification précise que le contexte suffit. Chaque sous-partie possède un inventaire exhaustif attesté. Le validateur vérifie la concordance entre cet inventaire, le texte visible, les liens réellement présents et les traitements antérieurs déclarés. La cohérence entre notions voisines demeure une conséquence de cette revue générale, non son objet principal.
+
+> **Révision 1.2.45.** Cette révision impose la cohérence locale des liens Wikipédia explicatifs. Lorsque plusieurs notions spécialisées de même rang sont énumérées ou comparées dans un même passage, la revue les traite comme un ensemble : si l’une reçoit `{{Lien Wikipédia}}` ou `{{Wikipedia link}}`, les autres reçoivent le même traitement lorsqu’un article vérifié existe et que le besoin explicatif est comparable. Toute asymétrie doit être justifiée notion par notion dans le registre de revue. Cette règle évite les liens ajoutés de manière ponctuelle ou arbitraire sans transformer le texte en glossaire.
+
+> **Révision 1.2.44.** Cette révision règle la ponctuation terminale des notes `<ref>`. Une simple notice bibliographique, sitographique ou vidéographique ne reçoit pas de point final avant `</ref>` ; la ponctuation de la phrase porte après l’appel de note. Un point à l’intérieur de la balise n’est admis que lorsque le contenu de la note constitue lui-même une phrase explicative complète. Toute exception est attestée dans la revue de l’introduction.
+
+> **Révision 1.2.43.** Cette révision corrige la politique d’introduction 1.2.42 : une sous-partie explicitement consacrée aux enjeux du débat est obligatoire. Elle ne doit cependant pas être un remplissage abstrait. Elle expose des conséquences déterminées des principales réponses possibles, précise ce que la conclusion changerait pour la compréhension du sujet et reste distincte d’un catalogue des arguments pour et contre. La revue consigne au moins deux enjeux concrets et atteste la non-redondance de la rubrique.
+
+> **Révision 1.2.42.** Cette révision supprime quatre contraintes mécaniques qui dégradaient les pages : les sources présentant plusieurs positions sont classées dans la documentation neutre et ne sont jamais dupliquées entre orientations ; les vidéos YouTube indiquent leur créateur ou leur chaîne ; les introductions sont évaluées par leur densité informative plutôt que par une liste fixe de rubriques ; et le titre canonique peut rester le titre affiché lorsqu’il est déjà le plus clair. Toute reformulation distincte doit améliorer réellement la lecture sans modifier la thèse.
+
+> **Révision 1.2.41.** Cette révision applique deux décisions du propriétaire. Premièrement, les mots-clés des pages nouvelles doivent employer les concepts de navigation les plus simples : un qualificatif qui ne fait que rappeler le contexte de la page est supprimé (`liberté divine` devient `liberté` à côté de `Dieu`; `épistémologie réformée` devient `épistémologie`). Les locutions qui désignent réellement un concept autonome, telles que `croyance fondamentale`, restent intactes. Deuxièmement, `./wikidebia update` sélectionne automatiquement l’unique ZIP présent dans `incoming/` et déduit la portée des langues réellement publiables (`fr` lorsque l’anglais est différé, `all` lorsque les deux langues sont prêtes) ; un identifiant ou une portée explicite n’est exigé qu’en cas d’ambiguïté ou de choix volontaire différent.
+
+> **Révision 1.2.40.** Cette révision restaure l’absence historique des résumés qui n’existaient pas dans les pages importées. Un résumé ne peut être omis que si un inventaire source attesté prouve cette absence et si le verrou de provenance classe le champ comme `historical_absent`. Les pages nouvelles et les résumés effectivement ajoutés après import restent soumis à toutes les exigences de contenu et de style.
+
+> **Révision 1.2.39.** Cette révision conserve les protections de reprise historique non destructive introduites en 1.2.36 et ferme trois failles éditoriales constatées sur un corpus réel : les mots-clés doivent désigner des concepts atomiques plutôt que des mini-rubriques, les résumés produits par gabarit répétitif, métadiscours ou énumération de pages filles sont bloqués à l’échelle du corpus, et le nom propre « Dieu » reçoit la majuscule attendue. Toutes les règles 1.2.36 restent actives sauf contradiction explicite.
 
 ## 1. Autorité et priorité
 
@@ -109,9 +143,9 @@ Le critère est l’accessibilité sur un clavier d’ordinateur ordinaire, sans
 
 Les guillemets typographiques ou chevrons `« »`, `“ ”`, `„ ”`, `‹ ›` sont interdits dans les noms de pages et titres affichés. L’apostrophe droite ASCII `'` reste utilisée pour les élisions françaises et les contractions ou possessifs anglais ; elle ne remplace pas les guillemets d’une citation principale. Les guillemets droits doivent être équilibrés.
 
-La copie mécanique sans revue est interdite. Chaque titre affiché fait l'objet d'une décision éditoriale page par page, consignée dans un registre de revue. Pour chaque langue, cette revue atteste explicitement que le titre forme une proposition complète, que l’argument qu’il exprime est compréhensible à la lecture du seul libellé et que la concision a été effectivement recherchée.
+Chaque titre affiché fait l'objet d'une décision éditoriale page par page. Le titre canonique est conservé à l'identique lorsqu'il est déjà clair, complet et suffisamment lisible : cette identité est un choix normal, non une exception statistique, et aucun quota n'impose de reformuler les titres. Un titre affiché distinct n'est retenu que si la nouvelle formulation améliore concrètement la lecture tout en conservant exactement le sujet, le prédicat, la modalité, la relation logique, la portée et le degré de force du titre canonique.
 
-À compter de la norme 1.2.22, l'identité exacte avec le titre canonique est une exception. Toute identité doit être accompagnée, dans le registre individuel, d'une justification propre au nœud et à la langue expliquant pourquoi aucune formulation plus courte ne préserverait aussi bien la thèse. Les identités ne peuvent dépasser 10 % des arguments actifs dans une langue. Le seuil porte sur l’égalité normalisée après retrait des espaces périphériques et mise en minuscules ; il n’autorise ni les troncatures, ni les paraphrases artificielles. Le validateur bloque les corpus dépassant ce seuil et contrôle la présence des attestations de concision et des justifications individuelles.
+Toute différence est consignée dans le registre individuel avec une justification propre au nœud et à la langue. La revue atteste l'équivalence sémantique et l'amélioration réelle de lisibilité. Une reformulation seulement plus courte, plus vague, plus catégorique ou plus imagée est refusée. La concision ne prime jamais sur la précision ; lorsqu'aucune meilleure formulation n'est évidente, le titre affiché reprend le titre canonique.
 
 ## 5. Résumés d’arguments
 
@@ -150,7 +184,7 @@ Les noms d'auteurs, d'études et de méthodes ne précèdent pas l'explication q
 
 Une revue page par page atteste, pour chaque langue produite : l'annonce directe de la thèse, l'accessibilité au grand public, le rythme des phrases et l'explication des termes techniques nécessaires. Le validateur peut signaler une accumulation de phrases longues, mais ce signal est heuristique et ne mesure ni la qualité logique ni la suffisance des définitions.
 
-Les résumés français et anglais d’un même nœud doivent être substantiellement équivalents : mêmes prémisses principales, mêmes éléments probants décisifs, même conclusion et même portée. Une différence de longueur n’est pas en soi une faute, mais un ratio anglais/français inférieur à 0,60 ou supérieur à 1,45 déclenche un blocage automatique et une reprise humaine.
+Lorsqu’un résumé existe dans les deux langues, les résumés français et anglais d’un même nœud doivent être substantiellement équivalents : mêmes prémisses principales, mêmes éléments probants décisifs, même conclusion et même portée. Une différence de longueur n’est pas en soi une faute, mais un ratio anglais/français inférieur à 0,60 ou supérieur à 1,45 déclenche un blocage automatique et une reprise humaine. Cette règle de ratio ne s’applique pas à une absence historique de résumé attestée et conservée conformément à la présente norme.
 
 ### 5.2 Ouverture, concrétisation et force expressive
 
@@ -161,6 +195,14 @@ Un exemple concret, un ordre de grandeur ou une donnée chiffrée est ajouté lo
 Le résumé adopte normalement une formulation ferme, imagée et légèrement mordante qui fait apparaître la force du raisonnement et la conviction de la voix qui le défend. Une rédaction uniformément lisse, distante ou neutralisée n’est pas conforme lorsque le nœud permet une expression plus saillante. Cette fermeté ne doit pas devenir un ton militant, sarcastique ou méprisant. Le texte ne ridiculise pas l’argument adverse, ne prête pas d’intentions aux personnes ou aux institutions et ne transforme pas une proposition discutée en vérité éditoriale incontestable. La revue page par page relève une expression réellement présente dans le résumé qui rend cette force perceptible.
 
 Les images explicatives, oppositions de formulation et phrases saillantes sont admises lorsqu’elles clarifient le mécanisme. Elles ne doivent pas devenir des slogans, être répétées mécaniquement d’une page à l’autre ou dépasser ce que permettent le titre, le graphe et les sources.
+
+Un résumé est bloqué lorsqu’il emploie une charpente rédactionnelle générique à la place du raisonnement propre au nœud. Sont notamment non conformes les formulations telles que « Plusieurs faits ou principes sont ici interprétés… », « Cette conclusion s’appuie notamment sur les propositions suivantes… », « Les faits, principes ou expériences invoqués… », « La thèse en tire une conséquence directe… », « La critique en tire une conséquence directe… », « Le point concret est le suivant… » ou « La conséquence avancée est précise… ». Les variantes proches et les traductions fonctionnelles sont traitées de la même manière.
+
+Le résumé ne peut pas être obtenu en recopiant ou en énumérant les titres des justifications et objections reliées. Il doit expliquer le mécanisme qui permet de passer des prémisses à la conclusion, même lorsque les pages filles fournissent le détail de ces prémisses. Une reprise de deux titres enfants ou davantage sous la forme d’une liste, d’une série de citations ou d’une phrase d’annonce constitue un signal bloquant à reprendre humainement.
+
+À l’échelle d’un corpus, une même phrase normalisée de huit mots significatifs ou davantage ne peut apparaître dans quatre résumés ou plus, sauf citation commune explicitement balisée et documentée. La revue individuelle atteste pour chaque page que le mécanisme propre au nœud est effectivement formulé et que le résumé n’est pas une variante superficielle d’un gabarit utilisé ailleurs.
+
+Dans la prose française, `Dieu` prend une majuscule lorsqu’il désigne le nom propre du Dieu unique des traditions monothéistes. La minuscule est conservée pour un nom commun réellement générique (`un dieu`, `les dieux`, `le dieu d’une tradition particulière`). Les occurrences telles que `dieu est`, `l’existence de dieu`, `la volonté de dieu` ou `selon laquelle dieu…` sont donc non conformes lorsqu’elles visent le nom propre.
 
 La revue humaine page par page atteste en outre que l’ouverture développe le titre, que la pertinence d’un exemple ou d’une donnée a été examinée, que tout chiffre a fait l’objet d’une vérification documentaire explicite, et que le ton reste ferme sans devenir polémique.
 
@@ -188,7 +230,15 @@ Sont interdits :
 - les détails propres à une étude, une date, un seuil ou un résultat lorsqu’un concept encyclopédique plus stable existe ;
 - les synonymes artificiels créés pour rendre les jeux de mots-clés différents.
 
-Un mot-clé thématique comporte normalement au plus quatre mots lexicaux et quarante caractères. Un vocabulaire contrôlé bilingue consigne chaque paire français–anglais, sa définition et, à titre informatif, ses usages dans le corpus courant.
+Un mot-clé thématique désigne normalement **un concept atomique de navigation**. L’atomicité est sémantique, non seulement grammaticale. Une expression n’est pas rendue atomique par le simple remplacement d’un complément par un adjectif : `psychologie de la religion` ne doit donc pas devenir `psychologie religieuse`, mais être décomposée en `psychologie` et `religion`. La même règle s’applique aux intersections transparentes de disciplines, domaines ou thèmes, telles que `histoire des religions`, `science et religion`, `sociologie religieuse` ou `religious psychology` : chaque unité de base devient un mot-clé distinct et cliquable.
+
+Une locution multi-mots reste cependant atomique lorsqu’elle nomme une catégorie conventionnelle dont le sens ne se réduit pas à la simple intersection de ses constituants. `argument d'autorité`, `problème du mal`, `lois de la nature`, `charge de la preuve` et `pari de Pascal` sont ainsi conservés comme unités. Le test décisif est le suivant : si la combinaison des mots-clés de base permet de retrouver sans perte la même catégorie, l’expression doit être décomposée ; si la locution désigne un type d’argument, une doctrine, une méthode, un phénomène ou un objet technique reconnu qui disparaîtrait lors de la séparation, elle peut rester entière.
+
+La forme préférée est un nom unique ou un composé lexical stable de deux mots au plus. Une expression de trois mots ou davantage, ou contenant un connecteur tel que « de », « du », « des », « et », `of` ou `and`, n’est admise que lorsqu’elle constitue une dénomination encyclopédique lexicalisée impossible à simplifier sans perte. Le vocabulaire contrôlé atteste alors `atomic_concept=true`, `compositional_intersection=false`, `multiword_exception=true` et une justification spécifique non vide. Pour toute autre entrée, `compositional_intersection=false` et `multiword_exception=false` sont explicitement enregistrés.
+
+Les mini-rubriques productives qui décrivent un angle de traitement au lieu de nommer un concept sont interdites, notamment les formes du type `limites de la science`, `histoire des religions`, `construction des lois scientifiques`, `fiabilité des preuves`, `origine de …` ou `sens de …`, lorsqu’un nom simple ou un composé stable existe (`épistémologie`, `histoire religieuse`, `loi scientifique`, `preuve`, `cosmogonie`, `sens existentiel`). Une attestation générique ne transforme pas une telle formule en mot-clé.
+
+Un mot-clé thématique comporte au plus quarante caractères. Le vocabulaire contrôlé bilingue consigne chaque paire français–anglais, sa définition, son caractère atomique, toute exception multi-mots et, à titre informatif, ses usages dans le corpus courant.
 
 La **graphie canonique** est obligatoire. Un nom commun ou groupe nominal commun commence par une minuscule : `revenu`, `revenu de base`, `philosophie politique`. Une majuscule initiale ou interne n’est conservée que lorsqu’elle appartient à la graphie établie d’un nom propre, d’une dénomination officielle, d’un sigle, d’un acronyme ou d’une marque : `Dieu`, `Islam`, `Union européenne`, `ONU`, `ADN`, `eBay`. Le vocabulaire contrôlé indique pour chaque entrée sa nature grammaticale, sa politique de capitalisation et, lorsqu’une majuscule est conservée, une justification non vide. Un terme ne peut pas être déclaré artificiellement nom propre afin de conserver une majuscule décorative. Deux entrées qui ne diffèrent que par la casse, telles que `revenu` et `Revenu`, constituent un doublon interdit. Les pages reproduisent exactement la graphie canonique du vocabulaire. La même règle s’applique aux keywords anglais.
 
@@ -206,7 +256,7 @@ Les keywords anglais sont des équivalents idiomatiques et conservent exactement
 
 Une source possède un identifiant documentaire unique, une notice vérifiable et des usages réciproques cohérents. Les doublons par DOI, ISBN, URL canonique ou clé normalisée sont interdits.
 
-La bibliographie est généralement prioritaire. La sitographie et la vidéographie sont complémentaires. La sélection documentaire s’adapte au domaine de l’argument : publications scientifiques et synthèses pour les questions empiriques, textes officiels et doctrine pour le droit, sources primaires et travaux historiques pour l’histoire, œuvres et commentaires académiques pour la philosophie, données et rapports institutionnels pour les politiques publiques, ou toute autre source de référence adaptée au sujet. Les pages Argument ne remplissent pas de quotas : chaque famille documentaire peut contenir zéro, une ou plusieurs références selon son apport réel. Les pages Débat et Debate suivent toutefois une règle de couverture propre : chacun de leurs neuf paramètres documentaires (trois positions pour chacune des familles bibliographie, sitographie/webliography et vidéographie) contient au moins deux références distinctes. Cette pluralité garantit qu’aucune position n’est représentée par une notice symbolique isolée.
+La bibliographie est généralement prioritaire. La sitographie et la vidéographie sont complémentaires. La sélection documentaire s’adapte au domaine de l’argument : publications scientifiques et synthèses pour les questions empiriques, textes officiels et doctrine pour le droit, sources primaires et travaux historiques pour l’histoire, œuvres et commentaires académiques pour la philosophie, données et rapports institutionnels pour les politiques publiques, ou toute autre source de référence adaptée au sujet. Les pages Argument ne remplissent pas de quotas : chaque famille documentaire peut contenir zéro, une ou plusieurs références selon son apport réel. Les pages Débat et Debate répartissent les références selon leur orientation réelle, sans quota par paramètre. Une source qui développe substantiellement des arguments favorables et défavorables, présente un débat contradictoire ou offre une synthèse générale appartient à la position `ni-pour-ni-contre` / neutre. Une même référence ne figure jamais simultanément dans plusieurs orientations. Une rubrique peut rester vide ou contenir une seule référence lorsqu'aucune autre source réellement pertinente n'est disponible ; elle n'est jamais remplie artificiellement pour équilibrer le tableau.
 
 Sur une page `Argument`, le critère déterminant est que la source développe, explique, défende, documente ou étaye réellement le raisonnement propre à l’argument. Une source seulement contextuelle ou consacrée uniquement à des objections n’est pas retenue comme référence de cet argument. En revanche, lorsqu’une source développe bien l’argument, le fait qu’elle examine aussi des objections, des limites ou des réponses adverses ne constitue jamais un motif de retrait. L’usage documentaire consigne séparément la vérification du développement de l’argument et l’éventuelle présence d’objections ; cette seconde information est descriptive et n’invalide pas la référence.
 
@@ -247,7 +297,7 @@ Elle traite normalement, dans un ordre adapté au sujet :
 3. des repères historiques permettant de comprendre l’apparition et l’évolution du débat ;
 4. de l’état actuel du débat lorsqu’il demeure contemporain, notamment ses principaux acteurs, institutions, évolutions ou cadres applicables ;
 5. des concepts, mécanismes, méthodes, données ou contextes indispensables à la compréhension du désaccord ;
-6. des enjeux intellectuels, sociaux, éthiques, politiques, juridiques, économiques, scientifiques ou pratiques du débat.
+6. des conséquences ou enjeux uniquement lorsqu'ils apportent une information précise indispensable à la compréhension de la controverse.
 
 D’autres sous-parties peuvent être ajoutées lorsqu’elles apportent un élément réellement nécessaire à la compréhension du sujet. Aucune liste thématique propre à un débat particulier ne devient une structure universelle applicable mécaniquement aux autres débats.
 
@@ -256,6 +306,15 @@ Les sous-parties suivent une progression compréhensible pour un lecteur qui dé
 Les titres de sous-parties privilégient les formulations accessibles et informatives. Ils évitent les intitulés spécialisés ou abstraits dont le rapport avec le débat n’est pas immédiatement compréhensible.
 
 Dans le contenu des sous-parties, une notion spécialisée dont la définition est utile mais secondaire peut être rendue explicite au survol avec `{{Lien Wikipédia}}` en français ou `{{Wikipedia link}}` en anglais. Le modèle est réservé aux notions qui risqueraient réellement d’arrêter un lecteur non spécialiste. Il ne sert ni à lier chaque nom propre, chaque institution ou chaque terme courant, ni à remplacer les explications nécessaires au sens de la question débattue.
+
+La sélection des liens est précédée d’une revue sémantique complète de chaque sous-partie. La revue inventorie toute notion scientifique, philosophique, juridique, religieuse, historique ou technique qui pourrait arrêter un lecteur non spécialiste. Pour chaque notion, elle choisit et justifie un traitement :
+
+- `wikipedia_link` lorsque le premier paragraphe d’un article vérifié fournit l’éclaircissement secondaire utile ;
+- `explained_inline` lorsque le sens nécessaire au débat doit être formulé directement dans la prose ;
+- `prior_treatment` lorsque la notion a déjà été liée ou expliquée dans une sous-partie antérieure et qu’un nouveau lien serait redondant ;
+- `context_sufficient` seulement lorsque le passage rend déjà le sens immédiatement intelligible, avec une justification propre à la notion.
+
+Chaque sous-partie possède une ligne d’inventaire, même lorsqu’aucune notion spécialisée n’y est retenue. L’attestation globale `specialized_terms_linked_or_explained=true` ne suffit plus. L’inventaire reproduit l’ordre des sous-parties, nomme les notions effectivement présentes et permet de vérifier tous les liens Wikipédia rendus. Les notions voisines de même rang sont naturellement traitées de manière cohérente, mais une série n’est plus nécessaire pour déclencher la revue.
 
 Exemples français conformes :
 
@@ -276,13 +335,13 @@ Le rendu français repose sur le modèle MediaWiki suivant, fourni par le propri
 
 Cette implémentation confirme que le paramètre `article` détermine à la fois la cible Wikipédia et, par défaut, le texte visible. Le modèle anglais `Wikipedia link` suit la convention fonctionnelle correspondante avec `article` et `displayed-text`; son code interne n’est pas imposé par la norme tant que ce comportement est respecté.
 
-Le nombre de sous-parties et le volume documentaire dépendent de la complexité, de l’étendue du sujet et de l’abondance de la littérature disponible. Il n’existe pas de minimum universel de cinq sous-parties ni de vingt références. Le profil local peut déclarer des minima adaptés, accompagnés d’une justification non vide ; ces minima ne doivent jamais conduire à fragmenter artificiellement l’introduction ou à ajouter des sources sans apport réel. Inversement, une page portant sur une controverse abondamment documentée ne doit pas s’arrêter à une sélection symbolique ou minimale. Chaque famille applicable (bibliographie, sitographie et vidéographie) fait l’objet d’un examen séparé. Pour une page Débat ou Debate, les neuf paramètres documentaires sont tous présents et chacun contient au moins deux références distinctes ; une référence unique dans un paramètre est insuffisante. Au-delà de ce plancher structurel, le volume total reste proportionné à l’abondance et à la qualité de la littérature, sans remplissage artificiel.
+Le nombre de sous-parties et le volume documentaire dépendent de la complexité, de l’étendue du sujet et de l’abondance de la littérature disponible. Il n’existe pas de minimum universel de cinq sous-parties ni de vingt références. Le profil local peut déclarer des minima adaptés, accompagnés d’une justification non vide ; ces minima ne doivent jamais conduire à fragmenter artificiellement l’introduction ou à ajouter des sources sans apport réel. Inversement, une page portant sur une controverse abondamment documentée ne doit pas s’arrêter à une sélection symbolique ou minimale. Chaque famille applicable (bibliographie, sitographie et vidéographie) fait l’objet d’un examen séparé. Pour une page Débat ou Debate, les paramètres documentaires restent présents mais peuvent être vides lorsque l'orientation correspondante n'offre pas de source suffisamment pertinente. Le volume total reste proportionné à l'abondance et à la qualité de la littérature. La classification suit le contenu effectif de la ressource et non un objectif de symétrie numérique.
 
-Chaque sous-partie substantielle contient les appels de référence inline nécessaires pour soutenir les affirmations factuelles qui exigent une attribution. Dans les introductions française et anglaise, chaque appel développé est rédigé directement en wikicode lisible à l’intérieur de `<ref>…</ref>`, sans passer par un modèle MediaWiki. Les modèles `{{Référence}}`, `{{Reference}}`, les modèles bibliographiques, sitographiques ou vidéographiques spécialisés et tout autre modèle de citation sont interdits dans le corps d’une note d’introduction. La note indique directement les éléments utiles à l’identification de la source — auteur, titre, publication ou site, date en langage naturel, pagination et lien selon le cas. Une référence nommée peut être définie sous la forme `<ref name="…">contenu rédigé directement</ref>` puis réutilisée avec `<ref name="…" />`. Les appels français sont placés avant la ponctuation finale ; les appels anglais suivent la convention anglaise. Les balises `<references />` et `<references>` ne sont jamais ajoutées : l’affichage des notes est géré par le wiki. Les mêmes sources peuvent également figurer dans les listes documentaires structurées de la page lorsque l’appel inline attribue une affirmation précise.
+Chaque sous-partie substantielle contient les appels de référence inline nécessaires pour soutenir les affirmations factuelles qui exigent une attribution. Dans les introductions française et anglaise, chaque appel développé est rédigé directement en wikicode lisible à l’intérieur de `<ref>…</ref>`, sans passer par un modèle MediaWiki. Les modèles `{{Référence}}`, `{{Reference}}`, les modèles bibliographiques, sitographiques ou vidéographiques spécialisés et tout autre modèle de citation sont interdits dans le corps d’une note d’introduction. La note indique directement les éléments utiles à l’identification de la source — auteur, titre, publication ou site, date en langage naturel, pagination et lien selon le cas. Une simple notice documentaire est traitée comme une notice et non comme une phrase : elle ne se termine donc pas par un point avant `</ref>`. Le signe de ponctuation de la phrase principale vient après l’appel de note (`texte<ref>Notice sans point final</ref>.`). Un point final reste admis à l’intérieur de la balise uniquement si la note contient une véritable phrase explicative complète, et cette exception est consignée dans la revue de l’introduction. Une référence nommée peut être définie sous la forme `<ref name="…">contenu rédigé directement</ref>` puis réutilisée avec `<ref name="…" />`. Les appels français sont placés avant la ponctuation finale ; les appels anglais suivent la convention anglaise. Les balises `<references />` et `<references>` ne sont jamais ajoutées : l’affichage des notes est géré par le wiki. Les mêmes sources peuvent également figurer dans les listes documentaires structurées de la page lorsque l’appel inline attribue une affirmation précise.
 
 Aucun nombre minimal d’appels `<ref>` n’est imposé à l’introduction dans son ensemble ni à une sous-partie particulière. Une introduction principalement définitionnelle, conceptuelle ou argumentative peut donc ne contenir aucun appel inline lorsqu’elle ne formule aucune affirmation factuelle externe nécessitant une attribution. Le contrôle porte sur l’adéquation entre les affirmations présentes et leurs sources, non sur la présence mécanique d’au moins une référence.
 
-Avant `release_ready`, une revue humaine bilingue consigne pour chaque langue que le sujet et le périmètre sont définis, que le sens de la question est expliqué, que l’histoire et l’actualité sont traitées lorsqu’elles sont pertinentes, que les enjeux sont explicites, que chaque sous-partie est nécessaire, que la progression est logique, qu’une section technique est contextualisée et que l’introduction ne reproduit ni le graphe ni une checklist propre à un corpus pilote.
+Avant `release_ready`, une revue humaine bilingue consigne pour chaque langue que le sujet et le périmètre sont définis, que le sens de la question est expliqué, que l’histoire et l’actualité sont traitées lorsqu’elles sont pertinentes, que chaque sous-partie apporte une information distincte et nécessaire, que la progression est logique, qu’une section technique est contextualisée et que l’introduction ne reproduit ni le graphe ni une checklist propre à un corpus pilote. Une rubrique générique sur les « enjeux », la « lecture du débat » ou les « principales lignes de contestation » est supprimée lorsqu'elle se contente d'énumérer des thèmes déjà visibles dans le graphe ou d'énoncer des conséquences évidentes sans information nouvelle.
 
 ### 7.6 Sélection de la bibliographie des pages de débat
 
@@ -297,6 +356,8 @@ Chaque usage bibliographique du débat indique s’il s’agit d’une œuvre fo
 Le registre JSON conserve `authors` sous forme de liste, mais cette liste ne doit jamais être sérialisée littéralement dans le wikicode. La conversion vers MediaWiki est obligatoire : une liste d’un élément devient le texte brut de cet élément (`["L'Encyclopédie philosophique"]` devient `|auteurs=L'Encyclopédie philosophique`) ; plusieurs éléments sont séparés par une virgule suivie d’une espace (`Auteur 1, Auteur 2`) ; une liste vide entraîne l’omission du paramètre. Les crochets, guillemets et virgules syntaxiques du JSON ne sont jamais publiés.
 
 Lorsque le titre de la page et le nom du site sont identiques, seul `site=` est conservé. Les triples identiques `page`, `auteurs` et `site` sont interdits.
+
+Pour toute référence vidéographique YouTube, `auteurs=` / `authors=` indique le créateur ou le nom de la chaîne affiché par la plateforme. Le champ n'est pas omis lorsque cette attribution est directement visible sur la page de la vidéo. Le titre de la vidéo, la plateforme et la chaîne remplissent des fonctions distinctes : le nom de YouTube n'est pas utilisé comme auteur.
 
 ### 7.8 Incises parenthétiques dans la prose française
 
@@ -318,7 +379,7 @@ Cette règle vise les tirets cadratins appariés employés comme signes de paren
 
 Toute page `Débat` française contient un paramètre `articles-Wikipédia` non vide avec au moins un sous-modèle `{{Article Wikipédia|page=…}}`. Toute page `Debate` anglaise contient de même `wikipedia-articles` avec au moins un `{{Wikipedia article|page=…}}`. Les titres exacts sont recherchés et vérifiés dans l’édition linguistique correspondante ; l’absence de résultat ne peut pas être déclarée sans recherche. Un article directement centré sur le sujet est privilégié, mais des articles de cadrage étroitement liés sont admis lorsque le titre exact du débat n’a pas de page dédiée.
 
-Lors de la création d’une page de débat qui n’existait pas, Wikidéb’IA ne produit pas `débats-connexes` ni `related-debates`. Lors de la modification d’une page préexistante, le paramètre est conservé exactement s’il existe déjà, avec sa valeur antérieure ; il reste absent s’il n’existait pas. La modification ne doit donc ni supprimer une liste existante de débats connexes, ni en inventer une nouvelle.
+Lors de la création d’une page de débat réellement nouvelle hors traduction, Wikidéb’IA ne produit pas `débats-connexes` ni `related-debates`. Lors de la modification d’une page préexistante hors protocole de retraduction, le paramètre est conservé exactement s’il existe déjà, avec sa valeur antérieure ; il reste absent s’il n’existait pas. **Exception FR→EN : pendant la traduction éditoriale d’une page française, `related-debates` est reconstruit uniquement à partir des entrées françaises de `débats-connexes` dont la page anglaise correspondante est vérifiée comme existante ; les autres sont omises et aucun nouveau débat connexe n’est inventé.**
 
 ### 8.0 Création et modification des paramètres protégés
 
@@ -330,6 +391,8 @@ Le manifeste de chaque page déclare `page_origin` (`new` ou `preexisting`) ains
 - `débats-connexes` / `related-debates` conserve exactement sa valeur antérieure et reste absent s’il était absent.
 
 Le moteur de mise à jour bloque toute opération qui modifierait l’un de ces paramètres sur une page existante.
+
+**Exception de production éditoriale FR→EN :** les règles de préservation distante ci-dessus ne servent pas à choisir le contenu de la traduction. Pour produire la page anglaise, la source française prévaut et les métadonnées mappées sont traduites depuis elle. La préservation distante reste une contrainte technique distincte au moment d’une éventuelle publication.
 
 ### 8.1 Page Débat française
 
@@ -437,6 +500,8 @@ Avec `translation_status.en=deferred`, les pages anglaises sont absentes du mani
 
 Les lignes `avertissements-argument=Argument généré par IA` de la structure française valent uniquement pour une page Argument nouvellement créée. Une page Argument préexistante conserve exactement sa valeur antérieure ou l’absence du paramètre.
 
+Lorsqu’une page historique contient `|débat-détaillé=…`, ce paramètre est conservé exactement. Il est placé après `objections` et avant `rubriques`. Les paramètres `justifications` et `objections` peuvent être omis sur cette page frontière, même si le registre conserve des relations nécessaires au graphe général, à condition que l’omission et l’information donnée au propriétaire soient attestées dans le verrou historique. L’arrêt du parcours au débat détaillé ne permet jamais de supprimer silencieusement le paramètre.
+
 ### 8.3 English Debate page
 
 ```mediawiki
@@ -475,7 +540,7 @@ Les lignes `avertissements-argument=Argument généré par IA` de la structure f
 }}
 ```
 
-The `progress=Constructed debate` and `debate-warnings=Debate generated by AI` lines apply only to a newly created Debate page. A pre-existing page preserves the exact previous presence and value of these parameters.
+The `progress=Constructed debate` and `debate-warnings=Debate generated by AI` lines apply only to a genuinely new Debate generated from scratch. **They do not apply to an English page produced as a translation of an existing French Debate:** in that workflow, `progress`, `title-warnings` and `debate-warnings` are translated from the exact French source values according to the active FR→EN mapping, and an absent source parameter remains absent. The editorial translation ignores any pre-existing English target page as a source of content.
 
 ### 8.4 English Argument page
 
@@ -528,6 +593,8 @@ The `progress=Constructed debate` and `debate-warnings=Debate generated by AI` l
 ```
 
 Les pages anglaises ne contiennent pas de lien interlangue.
+
+Dans une traduction FR→EN, `argument-warnings=Argument generated by AI` n'est pas ajouté par défaut au seul motif que le fichier anglais vient d'être généré. `title-warnings` et `argument-warnings` sont traduits uniquement à partir des valeurs françaises présentes selon la table normative active ; un paramètre absent en français reste absent en anglais.
 
 ## 9. Dates de création
 
@@ -582,7 +649,7 @@ Aucune reprise corrective ne peut supprimer silencieusement une fonction, un con
 
 Les contrôles sont répartis entre schémas JSON, cohérence et fichiers, graphe, lots, sources, wikicode, bilinguisme, workflow, contrôles éditoriaux automatisables et revue humaine obligatoire.
 
-Le validateur recommandé 0.4.13 conserve les contrôles antérieurs, applique les règles 1.2.6 à 1.2.9 aux paquets qui les déclarent et maintient la compatibilité explicite avec les révisions historiques annoncées. Chaque règle binaire nouvelle possède au moins un test positif et un test négatif. Les nombres de tests, exigences et fichiers déclarés dans les reçus doivent correspondre aux éléments réellement livrés.
+Le validateur courant conserve les contrôles éditoriaux cumulés indépendamment de la révision normative historique déclarée et maintient séparément la compatibilité technique de lecture avec les formats historiques annoncés. Chaque règle binaire nouvelle possède au moins un test positif et un test négatif. Les nombres de tests, exigences et fichiers déclarés dans les reçus doivent correspondre aux éléments réellement livrés.
 
 Les longueurs indicatives des résumés restent des guides éditoriaux et non des quotas. Une distribution systématiquement courte déclenche une information de revue humaine, sans provoquer de remplissage artificiel. La revue doit confirmer que chaque page demeure autonome, informative et fidèle à un seul nœud.
 
@@ -604,7 +671,7 @@ Avant toute publication, W11 doit :
 10. classifier chaque titre distant comme `absent`, `equivalent_existing`, `collision` ou `manual_review` ;
 11. ne jamais écraser une page existante par défaut : une page équivalente est ignorée et une collision bloque le plan ; la page Débat française préexistante bloque spécifiquement le test ;
 12. comparer les contenus local et distant par SHA-256 et enregistrer les identifiants de révision ;
-13. utiliser `createonly` pour chaque création canonique ; aucune mise à jour interlangue distincte n’est prévue pour un paquet 1.2.x ;
+13. utiliser `createonly` pour chaque création canonique ; une mise à jour interlangue distincte n’est admise que par le workflow fonctionnel prévu après préparation de la langue cible et reste interdite tant que cette traduction est `deferred` ;
 14. relire chaque page après écriture, vérifier son contenu et enregistrer la nouvelle révision ;
 15. s’arrêter sur perte de session, collision, divergence, droits insuffisants ou révision concurrente ;
 16. ne créer aucune sous-page utilisateur pour le test de publication ;
@@ -648,7 +715,7 @@ Le paquet déclare dans son manifeste les chemins du vocabulaire contrôlé, du 
 
 Les archives de normes, du validateur et du kit comportent un manifeste SHA-256 exhaustif. Tout fichier livré, y compris un manifeste historique placé dans un sous-dossier, est soit déclaré avec sa taille et son empreinte, soit explicitement exclu par un chemin précis. Le reçu externe indique des nombres exacts et reproductibles.
 
-La configuration de publication d’un paquet 1.2.x exécute toutes les portées applicables du validateur, notamment `wikicode` et `editorial` lorsque des pages sont publiées. Le kit refuse une configuration qui omet une portée obligatoire du profil actif.
+La configuration de publication exécute toutes les portées applicables du validateur courant, notamment `wikicode` et `editorial` lorsque des pages sont publiées. Le kit refuse une configuration qui omet une portée obligatoire du profil actif.
 
 La première écriture canonique de W11 est le test de l’unique page Débat française. La page doit être absente dans le plan et est créée avec `createonly`. Son reçu machine est lié au plan signé, au titre canonique, au fichier local, au contenu relu, à la révision distante, à l’identité vérifiée, au résumé et à la balise de modification. Avant toute autre écriture, le kit recharge ce reçu, en vérifie l’empreinte et confirme que la page courante reste exactement à la révision attestée. Aucune sous-page utilisateur n’est créée.
 
@@ -749,7 +816,7 @@ Une archive ne peut être déclarée autonome lorsque son catalogue renvoie à u
 
 ## Addendum 1.2.8 — traçabilité exhaustive et cohérence des exemples
 
-La révision 1.2.8 ne modifie aucune exigence éditoriale de 1.2.6. Elle exige que chaque étiquette de provenance effectivement utilisée par le catalogue soit déclarée dans `source_aliases` et résolve vers au moins un fichier livré. Elle aligne les exemples actifs sur la révision courante, corrige leur langue, et étend les conditions de schéma applicables aux paquets 1.2.7 et 1.2.8. Les contrôles d’auto-audit doivent vérifier ces trois propriétés.
+La révision 1.2.8 ne modifie aucune exigence éditoriale de 1.2.6. Elle exige que chaque étiquette de provenance effectivement utilisée par le catalogue soit déclarée dans `source_aliases` et résolve vers au moins un fichier livré. Elle aligne les exemples actifs sur la révision courante, corrige leur langue et impose que les schémas actifs couvrent correctement les formats historiques pris en charge, sans utiliser leur numéro comme interrupteur éditorial. Les contrôles d’auto-audit doivent vérifier ces trois propriétés.
 
 
 ## Addendum 1.2.9 — références, acronymes et publication française indépendante
@@ -765,7 +832,7 @@ La révision 1.2.9 corrige cinq défauts observés lors d’une production réel
 
 ## Addendum 1.2.10 — notes d’introduction rédigées directement
 
-La règle 1.2.9 qui imposait le modèle générique `Référence`/`Reference` est remplacée. Pour tout paquet déclarant la norme 1.2.10, le corps d’une note développée d’introduction contient directement une référence bibliographique ou web lisible, sans aucun appel de modèle MediaWiki. Les références nommées restent admises, à condition que leur première définition soit rédigée directement. Le validateur refuse tout `{{…}}` dans le corps d’une note d’introduction et continue de refuser les dates documentaires au format machine.
+La règle 1.2.9 qui imposait le modèle générique `Référence`/`Reference` est remplacée. La règle introduite en 1.2.10 s’applique cumulativement : le corps d’une note développée d’introduction contient directement une référence bibliographique ou web lisible, sans aucun appel de modèle MediaWiki. Les références nommées restent admises, à condition que leur première définition soit rédigée directement. Le validateur refuse tout `{{…}}` dans le corps d’une note d’introduction et continue de refuser les dates documentaires au format machine.
 
 Exemple français conforme :
 
@@ -782,9 +849,9 @@ A documented claim.<ref>Jane Smith, “Article title”, ''Journal Name'', 25 Ju
 
 ## Addendum 1.2.11 — compaction des modèles MediaWiki adjacents
 
-Dans tout wikicode de page produit sous la norme 1.2.11, deux modèles immédiatement successifs sont accolés sans saut de ligne, espace ni tabulation entre la fermeture du premier et l’ouverture du second. La forme `}}` suivie d’un retour à la ligne puis de `{{` est interdite ; elle est remplacée par `}}{{`. Cette règle vaut en français et en anglais, dans les pages individuelles comme dans les agrégats. Elle ne change ni le contenu des modèles ni l’ordre des paramètres : elle impose seulement une jonction compacte et déterministe entre sous-modèles adjacents.
+La règle introduite en 1.2.11 s’applique à tout wikicode de page produit : deux modèles immédiatement successifs sont accolés sans saut de ligne, espace ni tabulation entre la fermeture du premier et l’ouverture du second. La forme `}}` suivie d’un retour à la ligne puis de `{{` est interdite ; elle est remplacée par `}}{{`. Cette règle vaut en français et en anglais, dans les pages individuelles comme dans les agrégats. Elle ne change ni le contenu des modèles ni l’ordre des paramètres : elle impose seulement une jonction compacte et déterministe entre sous-modèles adjacents.
 
-Le validateur 0.4.13 signale cette anomalie avec `WDV-MWK-018`. Le kit 2.1.13 l’intercepte également avant la construction d’un plan de publication. Les paquets déclarant une norme antérieure conservent leur comportement historique jusqu’à migration explicite.
+Le validateur 0.4.13 et le kit 2.1.13 sont les versions historiques qui ont introduit les contrôles correspondants. Dans la norme cumulative courante, cette règle s’applique à tout corpus traité, indépendamment de la valeur déclarée de `consolidated_norm` ; cette valeur reste une métadonnée de provenance et de compatibilité de lecture, non un interrupteur éditorial.
 
 ## 12. Installation portable, publication intégrée et sauvegarde des sources
 
@@ -882,11 +949,11 @@ La révision 1.2.17 rend bloquante l’absence d’article Wikipédia dans les p
 
 ## Correction 1.2.18 — séparateur canonique des auteurs
 
-La conversion d’un tableau JSON d’auteurs vers le wikicode emploie la virgule suivie d’une espace comme séparateur canonique : `Auteur 1, Auteur 2`. Le point-virgule, la virgule sans espace, la virgule précédée d’une espace et la virgule pleine chasse sont interdits dans les sorties générées. Une liste d’un seul élément reste une valeur scalaire et une liste vide entraîne l’omission du paramètre. Cette correction ne réinterprète pas rétroactivement les paquets qui demeurent déclarés sous la norme 1.2.17 ; leur provenance est conservée, mais toute nouvelle production ou migration vers 1.2.18 doit appliquer la forme canonique.
+La conversion d’un tableau JSON d’auteurs vers le wikicode emploie la virgule suivie d’une espace comme séparateur canonique : `Auteur 1, Auteur 2`. Le point-virgule, la virgule sans espace, la virgule précédée d’une espace et la virgule pleine chasse sont interdits dans les sorties générées. Une liste d’un seul élément reste une valeur scalaire et une liste vide entraîne l’omission du paramètre. La provenance des anciens paquets reste conservée, mais toute validation ou production courante applique cette forme canonique indépendamment de la révision historique déclarée, sous réserve des protections explicites de contenu historique prévues ailleurs dans la norme.
 
 ## 1.2.19 — 1er août 2026
 
-La révision 1.2.19 corrige l’interprétation trop permissive des titres affichés. Un `titre-affiché` / `displayed-title` doit désormais être une proposition argumentative complète, et non un simple groupe nominal ou un thème abrégé. Le contexte peut raccourcir le cadrage, mais ne peut supprimer ni le prédicat ni la conclusion qui rendent l’argument intelligible. La revue individuelle atteste cette complétude dans les deux langues et le validateur 0.4.21 bloque les libellés manifestement non propositionnels sous cette seule révision.
+La révision 1.2.19 corrige l’interprétation trop permissive des titres affichés. Un `titre-affiché` / `displayed-title` doit désormais être une proposition argumentative complète, et non un simple groupe nominal ou un thème abrégé. Le contexte peut raccourcir le cadrage, mais ne peut supprimer ni le prédicat ni la conclusion qui rendent l’argument intelligible. La revue individuelle atteste cette complétude dans les deux langues et le validateur courant bloque les libellés manifestement non propositionnels quelle que soit la révision historique déclarée.
 
 
 ## Compléments normatifs de la révision 1.2.23
@@ -949,7 +1016,7 @@ Le registre de traduction, les verrous de contenu, le rendu et le validateur com
 
 ## Addendum 1.2.28 — resynchronisation corrective des documents actifs
 
-La règle historique qui interdisait de générer `citations=` et `quotes=` sur les pages Argument est remplacée à compter de 1.2.27. Elle ne peut plus apparaître comme règle active dans le cahier des charges, le catalogue d’exigences ou les profils de rendu. Les corpus antérieurs restent interprétés selon leur révision déclarée.
+La règle historique qui interdisait de générer `citations=` et `quotes=` sur les pages Argument est remplacée à compter de 1.2.27. Elle ne peut plus apparaître comme règle active dans le cahier des charges, le catalogue d’exigences ou les profils de rendu. Les archives antérieures conservent leur révision comme information de provenance et de lecture de format ; après interprétation, la règle éditoriale courante s’applique cumulativement.
 
 La désignation du modèle anglais est `{{Quote}}`. La règle transitoire 1.2.29 qui conservait les noms de paramètres français est remplacée par 1.2.31 : la page anglaise utilise exclusivement les paramètres anglais déclarés, tandis que les valeurs documentaires restent conservées sauf `quote` et `date`.
 
@@ -966,7 +1033,7 @@ Toute page anglaise utilise exclusivement les modèles et paramètres déclarés
 
 Pour les citations, `{{Citation}}` devient `{{Quote}}` et la table canonique est : `citation→quote`, `auteurs→authors`, `article→article`, `ouvrage→work`, `volume→volume`, `numéro→issue`, `page→page`, `localisation→location`, `édition→publisher`, `lieu→place`, `date→date`, `lien→link`, `avertissements-citation→warnings`. Seules les valeurs de `quote` et de `date` sont traduites. Toutes les autres valeurs sont conservées exactement. La valeur de `warnings` reprend l’avertissement antérieur, le cas échéant, puis ajoute une unique mention `Quote translated by AI` avec le séparateur exact `, `.
 
-Un paramètre source sans équivalent anglais déclaré bloque la traduction ; il n’est jamais recopié sous son nom français. Le validateur refuse tout modèle français ou paramètre français dans une page anglaise rendue sous 1.2.31.
+Un paramètre source sans équivalent anglais déclaré bloque la traduction ; il n’est jamais recopié sous son nom français. Le validateur courant refuse tout modèle français ou paramètre français dans une page anglaise rendue, quelle que soit la révision normative historique déclarée.
 
 ## Addendum 1.2.34 — publication française autonome et traduction anglaise différée
 
@@ -1010,11 +1077,372 @@ Après traduction, le paquet passe de `deferred` à `ready` ou `published`, verr
 
 ## Addendum 1.2.35 — compatibilité historique de la traduction différée et conservation des données importées
 
-Le statut `translation_status.en=deferred` est une déclaration opérationnelle distincte de la révision éditoriale du corpus. Lorsqu'il est explicitement présent, il s'applique à toute révision 1.2.x prise en charge par le validateur courant. Son ajout ne constitue pas une migration normative et ne déclenche pas rétroactivement les règles éditoriales introduites après la révision déclarée du corpus. En l'absence de cette déclaration, les corpus historiques conservent leurs exigences bilingues strictes.
+Le statut `translation_status.en=deferred` est une déclaration opérationnelle distincte de la révision éditoriale du corpus. Lorsqu’il est explicitement présent, il suspend uniquement les obligations fonctionnelles liées à la production anglaise. Il ne désactive aucune autre règle éditoriale courante. En l’absence de cette déclaration, les exigences bilingues strictes s’appliquent.
 
 Dans ce mode, la portée française n'exige ni titre anglais, ni page anglaise, ni lien interlangue. Toute portée anglaise reste bloquée. Un statut anglais `locked`, `ready` ou `published`, une page anglaise présente dans le manifeste ou un lien interlangue français déjà rendu réactivent les contrôles stricts correspondants.
 
 La politique normale est `editorial_controls.creation_date_policy=per_page_preserved`, y compris lorsque ce champ est omis. La date déclarée dans chaque entrée du manifeste est autoritative pour cette page et doit correspondre exactement au wikicode canonique et au registre. Une page déjà présente sur le wiki conserve sa date historique lors de toute correction, reprise, traduction tardive, déplacement ou enrichissement : elle n’a jamais à adopter la date du corpus ni la date du jour. `single_active_date` reste disponible uniquement comme option explicite pour un corpus neuf et homogène.
 
 Une décision explicite du propriétaire peut conserver des titres affichés hérités identiques à leurs titres canoniques. Cette exception est fermée : elle exige un fichier de revue séparé, une décision non vide, la liste exhaustive des identifiants concernés et la preuve que chaque titre est déjà verrouillé et exactement identique. Le seuil normal de 10 % continue de s'appliquer à toutes les pages non couvertes.
+
+## Addendum 1.2.38 — atomicité des mots-clés et originalité effective des résumés
+
+La révision 1.2.38 remplace la tolérance antérieure fondée principalement sur une longueur maximale de quatre mots. Un mot-clé doit désormais nommer un concept atomique ; les expressions longues ne sont admises que comme dénominations lexicalisées justifiées individuellement dans le vocabulaire contrôlé. Les mini-rubriques productives, notamment `limites de la science`, `histoire des religions` et `construction des lois scientifiques`, sont refusées lorsqu’une forme conceptuelle simple existe. `Lois de la nature` reste conforme comme locution encyclopédique lexicalisée, sous réserve de l’attestation d’exception correspondante.
+
+Les résumés sont contrôlés à la fois page par page et à l’échelle du corpus. Les charpentes génériques, le métadiscours, l’énumération des titres enfants et la répétition d’une même phrase dans quatre pages ou davantage sont bloquants. Le registre de revue consigne `mechanism_statement`, extrait réellement présent qui formule le mécanisme propre au nœud, et `originality_reviewed=true`. La capitalisation de `Dieu` comme nom propre est également vérifiée dans les résumés français.
+
+
+### Profil éditorial rétrocompatible
+
+Ces contrôles font partie de la norme éditoriale cumulative et s’appliquent donc sans migration du numéro de norme déclaré. Les anciens champs `quality_policy_revision` peuvent rester présents comme traces historiques, mais leur présence ou leur valeur ne sélectionne aucun contrôle. Le champ global `normative_revision`, lorsqu’il est conservé dans un registre, décrit la provenance de l’artefact et non l’activation d’une politique.
+
+
+
+## Addendum 1.2.39 — conservation des contenus historiques et séparation des politiques éditoriales
+
+Une correction ciblée ne confère jamais l'autorisation de réécrire les autres champs d'une page. Lorsqu'un corpus historique est repris pour corriger les mots-clés, les résumés, citations, références, relations et métadonnées existants restent inchangés, sauf décision explicite du propriétaire visant précisément l'un de ces champs. Une amélioration stylistique supposée ne constitue pas une autorisation.
+
+Le verrou distingue la provenance du champ et non seulement celle de la page. Une page importée peut contenir un résumé historique déjà rédigé, qui doit être conservé exactement, ou ne contenir aucun résumé, auquel cas le résumé produit ultérieurement par le Work reste un contenu généré et n'est pas rendu immuable au seul motif que la page elle-même est ancienne. Le registre emploie `summary_provenance=historical_existing` ou `summary_provenance=generated_after_import`; seuls les résumés de la première catégorie sont verrouillés. Le contenu historique verrouillé est conservé même s'il ne satisfait pas une heuristique stylistique ou une règle de wikicode introduite après sa rédaction ; ces contrôles ne peuvent servir à forcer sa modification. La conformité exigée porte alors sur l'identité avec la source attestée.
+
+Le paramètre `initialisation` demeure interdit sur une page Argument entièrement nouvelle. En revanche, lorsqu'il existait dans la page historique importée, il constitue une donnée de provenance et doit être conservé exactement. Il ne peut être supprimé, remplacé ou normalisé. Le même principe s'applique à `initialization` dans un corpus anglais historique.
+
+Un corpus peut déclarer `editorial_controls.legacy_content_preservation`. Le fichier verrou indiqué contient, pour chaque page protégée, l'empreinte du résumé historique et l'état exact du paramètre `initialisation` ou `initialization`. Le validateur autorise ce paramètre uniquement pour les pages répertoriées et bloque toute divergence avec le verrou.
+
+Les contrôles éditoriaux renforcés sont désormais activables séparément sur un corpus historique :
+
+Les anciens champs `keyword_policy_revision`, `summary_policy_revision`, `capitalization_policy_revision` et `quality_policy_revision` restent acceptés pour la compatibilité des artefacts déjà produits. Ils ne servent plus à activer séparément ces contrôles : atomicité des mots-clés, originalité des résumés et capitalisation du nom propre `Dieu` sont des règles courantes cumulatives. Les générateurs n’émettent plus ces champs lorsqu’ils ne sont utiles qu’à la sélection d’une politique.
+
+
+## Addendum 1.2.40 — absence historique attestée des résumés
+
+L’absence d’un résumé dans une page Argument historique est un état de contenu qui peut être conservé lorsqu’elle est prouvée par l’inventaire source en lecture seule. Elle ne doit pas être comblée par un texte générique uniquement pour satisfaire une structure de sortie.
+
+Le verrou de contenu emploie alors `summary_provenance=historical_absent`. Cette valeur n’est recevable que si toutes les conditions suivantes sont réunies :
+
+1. la page est présente dans l’inventaire historique attesté ;
+2. le paramètre `résumé` ou `summary` y est réellement absent ;
+3. le manifeste active `legacy_content_preservation` et fournit l’inventaire historique attestant l’absence du résumé ; le champ historique `historical_summary_absence_revision`, s’il existe, est purement informatif ;
+4. la page produite omet entièrement le paramètre, sans valeur vide ni texte provisoire ;
+5. la revue individuelle consigne `status=historical_absent` et `historical_absence_verified=true`.
+
+Cette dérogation est fermée. Elle ne s’applique jamais à une page nouvelle, à une page absente de l’inventaire, ni à un résumé déjà présent dans la source. Un résumé ajouté ultérieurement après un véritable travail éditorial reçoit la provenance `generated_after_import` et redevient obligatoire, contrôlé et révisable comme tout contenu généré.
+
+Les résumés historiques réellement présents restent classés `historical_existing` et demeurent verrouillés à l’identique. Les contrôles de gabarit, d’originalité et de style ne servent ni à créer un résumé fictif sur une page historiquement vide, ni à réécrire rétroactivement un résumé historique protégé.
+
+
+## Addendum 1.2.41 — mots-clés simples et sélection implicite non ambiguë des reprises
+
+### Mots-clés des pages nouvelles
+
+Pour une page nouvellement produite, le mot-clé retient le concept de navigation le plus simple qui conserve le sens utile. Un adjectif ou complément qui rappelle seulement le sujet du débat ne crée pas une catégorie autonome. Lorsque `Dieu` figure déjà parmi les mots-clés, `liberté divine`, `justice divine`, `attributs divins` ou `révélation divine` deviennent normalement `liberté`, `justice`, `attributs` ou `révélation`. De même, une doctrine employée seulement comme cadrage d’une question plus générale peut être ramenée à son domaine : `épistémologie réformée` devient `épistémologie`.
+
+Cette simplification ne détruit pas les dénominations lexicalisées. Une locution reste entière lorsqu’elle désigne un concept reconnu qui ne se reconstitue pas sans perte par la juxtaposition de termes plus généraux. `Croyance fondamentale`, `dilemme d’Euthyphron`, `pari de Pascal`, `problème du mal`, `simplicité divine` et `effondrement modal` peuvent ainsi être conservés.
+
+Une correction ciblée des pages nouvelles ne modifie pas les mots-clés des pages historiques, sauf décision séparée du propriétaire.
+
+### Sélection d’une archive pour `update`
+
+La sélection strictement explicite imposée en 1.2.26 est remplacée par la règle suivante :
+
+1. si `incoming/` contient exactement un ZIP, `./wikidebia update` sélectionne ce ZIP, l’extrait en staging et utilise le `debate_id` de son manifeste ;
+2. si plusieurs ZIP sont présents, la commande sans identifiant refuse de choisir et affiche leurs sélecteurs ; `./wikidebia update IDENTIFIANT` sélectionne exactement `incoming/IDENTIFIANT.zip` ;
+3. si aucun ZIP n’est présent, la commande revient au corpus installé : elle sélectionne l’unique corpus disponible ou exige son identifiant lorsqu’il y en a plusieurs ;
+4. lorsqu’un identifiant correspond à la fois à un ZIP entrant et à un corpus installé, le ZIP entrant est prioritaire, puisqu’il représente la nouvelle version demandée ;
+5. `--archive` reste accepté pour compatibilité, mais n’est plus nécessaire dans le cas non ambigu ;
+6. lorsque `--scope` est omis, la portée est déduite des langues validées et non différées du corpus : `fr` pour un corpus français dont l’anglais est différé, `all` lorsque les deux langues sont publiables ; une portée explicite n’est requise que pour imposer volontairement un autre choix.
+
+Le staging, le dry-run, les plans signés, les contrôles de concurrence et les protections contre les modifications humaines restent inchangés.
+
+
+## Addendum 1.2.42 — classement documentaire, auteurs vidéo, densité des introductions et titres affichés
+
+La révision 1.2.42 remplace quatre mécanismes qui produisaient des corrections artificielles :
+
+1. aucune référence n'est dupliquée entre les orientations `pour`, `contre` et `ni-pour-ni-contre`; une source exposant plusieurs positions est classée dans la rubrique neutre, sans quota minimal par paramètre ;
+2. toute vidéo YouTube indique le créateur ou la chaîne lorsque cette information est affichée par la plateforme ;
+3. l'introduction privilégie la densité informative et supprime les sous-parties génériques qui répètent le graphe, notamment les catalogues d'arguments et les rubriques d'enjeux sans information propre ;
+4. l'identité entre titre canonique et titre affiché est admise sans plafond. Une reformulation n'est créée que si son amélioration de lisibilité et son équivalence sémantique sont attestées. La longueur plus faible ne constitue jamais, à elle seule, une amélioration.
+
+Ces règles sont cumulatives et s’appliquent également aux corpus historiques. Les anciens champs `debate_documentation_policy_revision`, `video_authorship_policy_revision`, `introduction_policy_revision` et `displayed_title_policy_revision` restent acceptés comme traces, sans effet d’activation. Les titres canoniques et contenus historiques explicitement protégés restent soumis à leurs règles de préservation propres.
+
+
+## Addendum 1.2.43 — sous-partie obligatoire sur les enjeux du débat
+
+La disposition 1.2.42 qui rendait facultative la présence d’une rubrique d’enjeux est remplacée. Toute introduction de page `Débat` comporte une sous-partie dédiée intitulée `Enjeux du débat`. Toute introduction de page `Debate` comporte la sous-partie fonctionnellement équivalente `Stakes of the debate`.
+
+Cette obligation porte sur une fonction éditoriale réelle, non sur une formule de transition. La sous-partie :
+
+1. indique ce que les principales réponses possibles changeraient dans la compréhension du sujet, les décisions, les pratiques, les institutions ou les critères de rationalité concernés ;
+2. développe au moins deux conséquences concrètes propres au débat ;
+3. distingue ces conséquences de la simple importance générale du sujet ;
+4. ne reproduit pas la liste des arguments pour et contre et ne résume pas successivement les branches du graphe ;
+5. ne se contente pas d’une énumération abstraite d’« enjeux philosophiques, sociaux, politiques, éthiques ou économiques » ;
+6. reste concise et non redondante avec les autres sous-parties.
+
+La revue d’introduction atteste `stakes_explained=true`, `dedicated_stakes_subsection_present=true`, `stakes_consequences_concrete=true`, `stakes_not_argument_catalogue=true` et `no_generic_stakes_filler=true`. La ligne correspondant à la sous-partie contient `stakes_section=true` et une liste `concrete_stakes` d’au moins deux conséquences distinctes.
+
+Cette correction fait partie de la norme cumulative et ne nécessite aucun changement de numéro déclaré. Un ancien `introduction_policy_revision` peut être conservé comme trace de provenance, sans effet conditionnel.
+
+## Addendum 1.2.44 — ponctuation terminale des notes de référence
+
+Dans une note développée `<ref>…</ref>`, une notice qui se limite à identifier une source n'est pas une phrase. Elle ne reçoit aucun point final avant la fermeture de la balise, même si elle contient un auteur, un titre, une publication, une date, une pagination ou un lien. La ponctuation appartenant à la phrase du texte principal est placée après `</ref>` en français, conformément à la règle générale sur la position de l'appel de note.
+
+Exemple conforme :
+
+```mediawiki
+Une affirmation documentée<ref>Jean Dupont, « Titre de l’article », ''Nom de la revue'', 25 juin 2012, p. 36-37, [https://example.org texte intégral]</ref>.
+```
+
+Exemple non conforme :
+
+```mediawiki
+Une affirmation documentée<ref>Jean Dupont, « Titre de l’article », ''Nom de la revue'', 25 juin 2012, p. 36-37, [https://example.org texte intégral].</ref>.
+```
+
+Un point final à l'intérieur de `<ref>` n'est admis que lorsque le corps de la note est lui-même une phrase explicative complète et non une simple notice. La revue de l'introduction atteste `reference_note_punctuation_reviewed=true`. Chaque exception est identifiée par l'empreinte SHA-256 du corps exact de la note dans `terminal_period_sentence_exceptions`, avec `complete_sentence=true` et un extrait justificatif réellement présent.
+
+Cette règle s’applique cumulativement. Un ancien `inline_reference_punctuation_policy_revision` peut être conservé comme trace de provenance, mais n’est ni requis ni utilisé comme interrupteur.
+
+## Addendum 1.2.45 — cohérence locale des liens Wikipédia explicatifs
+
+La décision d’ajouter un lien explicatif ne se prend pas terme par terme sans comparaison avec le passage environnant. Pour toute série de notions spécialisées de même fonction syntaxique et de même niveau conceptuel :
+
+1. la revue inventorie les notions de la série ;
+2. elle vérifie l’existence et le titre exact de l’article dans la langue de la page ;
+3. si une notion est liée et que les autres présentent un besoin explicatif comparable, toutes les notions disposant d’un article pertinent sont liées ;
+4. une notion laissée sans lien dans une série partiellement liée reçoit une justification spécifique ;
+5. la revue consigne le titre de la sous-partie, les termes, les articles, la décision et sa justification ;
+6. le validateur vérifie que chaque lien déclaré comme retenu est réellement présent dans la sous-partie correspondante.
+
+Exemple conforme :
+
+```mediawiki
+Le {{Lien Wikipédia|article=théisme}} affirme un Dieu personnel ; le {{Lien Wikipédia|article=déisme}} retient un créateur sans révélation ; le {{Lien Wikipédia|article=panthéisme}} identifie Dieu au réel ; le {{Lien Wikipédia|article=panenthéisme}} situe le monde en Dieu sans les confondre.
+```
+
+Lier seulement `théisme` dans cette série, sans justification propre aux trois autres notions, est non conforme.
+
+
+
+## Addendum 1.2.52 — recherche d’une appellation consacrée pour tout argument nouveau
+
+Lorsqu’une page `Argument` est créée par Wikidéb’IA, une recherche documentaire distincte vérifie si le raisonnement possède un nom conventionnel. Cette étape ne cherche pas à fabriquer un sous-titre : elle sert principalement à confirmer que, dans la grande majorité des cas, aucun `nom` / `name` ne doit être ajouté.
+
+La règle active est la suivante :
+
+1. toute page `Argument` nouvelle fait l’objet d’une recherche explicite avant verrouillage du contenu ;
+2. la recherche part du raisonnement lui-même (prémisses, mécanisme et conclusion), et non du seul titre canonique ;
+3. elle vérifie au minimum deux formulations de recherche suffisamment distinctes ; lorsque la littérature pertinente est internationale, une recherche dans la langue de la page est complétée par une recherche en anglais ou dans la langue académique/originale pertinente ;
+4. les sources de référence, encyclopédies spécialisées, livres et articles académiques sont prioritaires ; une page populaire peut orienter la recherche mais ne suffit pas, à elle seule, à consacrer une appellation douteuse ;
+5. un nom n’est retenu que lorsque la littérature l’emploie effectivement comme désignation du même raisonnement, de la même objection, défense, preuve, réfutation, paradoxe, problème ou principe argumentatif ;
+6. le nom d’une doctrine, d’un thème, d’un auteur, d’un principe seulement mentionné dans le raisonnement ou une reformulation pratique du titre ne constitue pas une appellation consacrée ;
+7. la valeur française doit être une appellation française attestée, ou une forme étrangère elle-même couramment employée telle quelle en français ; aucune traduction ad hoc n’est créée pour remplir `nom=` ; la règle symétrique s’applique à `name=` ;
+8. en cas d’hésitation entre plusieurs étiquettes, d’attestation trop faible ou de doute sur l’identité du raisonnement, le résultat est `none` et le paramètre est omis ;
+9. aucun quota minimal ou maximal de pages nommées n’est fixé. La rareté attendue des noms est une conséquence éditoriale, jamais un seuil statistique ;
+10. la revue est enregistrée dans un registre déclaré par `editorial_controls.argument_name_discovery_path` ; l’ancien `argument_name_discovery_revision`, s’il est présent, n’est qu’une métadonnée de traçabilité.
+
+Le registre contient une entrée pour chaque page Argument nouvelle dans chaque langue produite. Il consigne au minimum : la langue, l’identifiant, le titre canonique, les requêtes de recherche, une note sur le périmètre exploré, le résultat `none` ou `known_name`, la valeur retenue le cas échéant, les attestations documentaires, et une justification. Pour `known_name`, il atteste explicitement que la source désigne le même raisonnement, que l’étiquette n’a pas été inventée et qu’elle convient à la langue de la page.
+
+Le validateur bloque : une page nouvelle sans entrée de revue, un `nom` / `name` rendu après un résultat `none`, un nom différent de la valeur attestée, une appellation sans preuve documentaire, ou une revue qui couvre une page préexistante au lieu d’un argument nouveau. Les pages préexistantes restent régies par les règles 1.2.49 et 1.2.51.
+
+## Addendum 1.2.53 — traduction anglaise par lots et adaptation documentaire
+
+La traduction anglaise commence après verrouillage du contenu français et se déroule en unités de travail explicitement closes. Elle vise une page anglaise autonome et idiomatique, substantiellement équivalente au français, tout en adaptant la terminologie et la documentation à la littérature anglophone.
+
+### Ordre et taille des lots
+
+1. la page `Debate` forme à elle seule le premier lot de traduction ; elle n'est mélangée à aucune page `Argument` ;
+2. les pages `Argument` sont ensuite **relues en unités internes de 10 pages par défaut** ; une livraison ou un travail long peut agréger plusieurs unités déjà closes sans fusionner leur revue ;
+3. lorsqu'un groupe est particulièrement dense en citations, références, ambiguïtés terminologiques, recherches de noms consacrés ou anomalies de préservation, l'unité est réduite à **5–8 pages** ; une unité de plus de 10 pages exige une justification explicite de l'absence de perte de qualité ;
+4. une page Argument n'est jamais scindée entre deux lots : titre canonique, displayed title, summary, sections, keywords, citations, références et éventuel `name=` sont traités ensemble ;
+5. un lot n'est considéré comme clos qu'après vérification de toutes ses pages, de leur orientation argumentative et de leur documentation ; le lot suivant ne sert pas à corriger silencieusement les omissions du précédent ;
+6. après le dernier lot d'arguments, une passe globale inter-lots vérifie les choix terminologiques, les titres, le vocabulaire bilingue, les noms consacrés, la documentation, les citations et la parité du graphe avant `--finalize`.
+
+### `name=` : recherche propre à la langue anglaise
+
+Le paramètre français `nom=` n'est jamais traduit mécaniquement. Pour chaque page Argument anglaise, une recherche distincte vérifie l'appellation réellement attestée dans la littérature anglophone pour le même raisonnement. L'existence d'un `nom=` français constitue seulement un indice de recherche, jamais une preuve du nom anglais. Le résultat par défaut reste l'absence de `name=`. Une valeur n'est retenue que si des sources de référence ou académiques anglophones l'emploient effectivement pour désigner substantiellement le même argument, objection, défense, preuve, réfutation, paradoxe, problème ou principe. **La forme syntaxique elle-même fait partie de l'attestation** : la revue compare les variantes concurrentes et ne transforme pas arbitrairement `Argument from X` en `X argument`, ni l'inverse, ni une forme possessive en forme générique. **L'identité du raisonnement inclut sa portée** : une appellation réservée à une sous-variante, à un auteur particulier ou à une étape du raisonnement ne peut nommer une page plus large. En cas d'attestation faible, de concurrence non résolue entre formulations, d'équivalence de portée incertaine ou de traduction seulement plausible, `name=` est omis.
+
+### Principe d'exécution : contraintes, pas patron mécanique
+
+Les listes de contrôles, exemples de traductions déjà validées et valeurs antérieurement retenues servent à détecter les régressions ; elles ne constituent pas un algorithme de rédaction. Un agent ou un Work doit relire le contenu propre de chaque page, rechercher les éléments externes nécessaires et décider à partir du sens précis du nœud. Il est interdit d'attribuer un nom, une structure de résumé, une référence ou une formulation simplement parce qu'un cas voisin a reçu ce traitement. Une livraison de grande taille est admise seulement si cette autonomie éditoriale est conservée dans les unités internes de revue.
+
+### Absence historique de résumé pendant la traduction
+
+Si le verrou français atteste `summary_provenance=historical_absent` ou une absence équivalente autorisée par la norme, la traduction anglaise conserve l'absence de `summary=`. Le formulaire, le kit ou le validateur de traduction ne doit pas exiger un texte de remplacement, un ratio de longueur, une expression de force ou des attestations stylistiques propres à un résumé inexistant. La revue anglaise consigne l'absence comme telle et le rendu omet le paramètre.
+
+### Références : équivalents anglais et enrichissement autonome
+
+Les références françaises ne sont jamais traduites comme notices anglaises. Pour chaque référence française pertinente, la revue recherche s'il existe une **version anglaise réelle et vérifiable** : édition anglaise d'un livre, traduction publiée, version officielle d'une page, version anglaise d'un rapport, doublage ou sous-titrage officiel pertinent d'une vidéo, publication originale anglaise, ou autre équivalent documentaire effectivement disponible en anglais.
+
+Lorsqu'un équivalent anglais existe, la page anglaise utilise la notice de **cette version anglaise**, avec son titre publié, son éditeur ou diffuseur, sa date, son URL et ses autres métadonnées propres. Les métadonnées de la version française ne sont pas transposées ni traduites artificiellement. Lorsqu'aucune version anglaise de la référence française n'existe, cette référence n'est pas transférée en anglais au seul motif qu'elle figurait dans la page française.
+
+La recherche documentaire anglaise ne se limite jamais aux équivalents des sources françaises. Chaque page fait aussi l'objet d'une recherche de **nouvelles références anglophones** pertinentes, afin que sa documentation reflète la littérature disponible en anglais plutôt qu'une simple copie de la sélection française. La sélection conserve les règles ordinaires de pertinence, de non-redondance et de qualité documentaire ; aucun remplissage artificiel n'est admis.
+
+Pour la page `Debate`, toutes les références de l'introduction et des paramètres documentaires doivent être réellement disponibles en anglais. Pour les pages `Argument`, la politique linguistique générale reste symétrique à celle du français, mais la projection d'une référence française vers l'anglais exige toujours l'identification d'un équivalent anglais réel ; une source étrangère éventuellement retenue en anglais doit être sélectionnée et justifiée indépendamment selon les règles générales, et non fabriquée par traduction de la notice française.
+
+### Exception contrôlée : modèles `Citation` / `Quote`
+
+La règle précédente sur l'adaptation des références ne modifie pas le contrat spécial des citations importées. Lors de la projection anglaise, `{{Citation}}` devient `{{Quote}}` et les noms de paramètres sont localisés selon le contrat anglais. **Seules les valeurs de `citation`→`quote` et de `date` sont traduites.** Les valeurs documentaires de `authors`, `article`, `work`, `volume`, `issue`, `page`, `location`, `publisher`, `place` et `link` sont conservées exactement et dans le même ordre. `warnings` reprend tout avertissement existant puis ajoute une seule fois `Quote translated by AI`, avec le séparateur exact `, `.
+
+Cette exception concerne le contenu d'un modèle de citation déjà importé ; elle n'autorise pas à traduire artificiellement une référence bibliographique, sitographique ou vidéographique pour la faire passer pour une édition anglaise.
+
+## Complément actif 1.2.53-C — source française, métadonnées et débats connexes
+
+### La page anglaise cible n'est pas une source de traduction
+
+Pendant la production éditoriale anglaise, toute éventuelle page anglaise déjà présente sur le wiki est **ignorée comme source de contenu**. Le traducteur travaille à partir du corpus français validé comme si la page cible anglaise n'existait pas : il ne reprend ni sa rédaction, ni son introduction, ni ses titres, ni son `progress`, ni ses avertissements, ni sa documentation, ni ses relations. Une existence distante peut encore être consultée ultérieurement par les mécanismes techniques de publication, de concurrence ou de sécurité ; elle ne modifie pas le contenu éditorial à produire. Les vérifications d'existence de pages tierces nécessaires à `related-debates` restent autorisées.
+
+### Table normative exhaustive des valeurs FR→EN
+
+Pour une traduction, les valeurs ci-dessous sont traduites **uniquement lorsqu'elles sont réellement présentes dans le wikicode français**. Aucune valeur de profil de création n'est injectée à leur place. Un paramètre absent en français est absent en anglais. Pour les champs à cases multiples, toutes les valeurs présentes sont traduites séparément dans le même ordre.
+
+| Paramètre FR | Valeur française | Paramètre EN | Valeur anglaise |
+|---|---|---|---|
+| `avancement` | `Ébauche` | `progress` | `Draft` |
+| `avancement` | `Débat en construction` | `progress` | `Debate under construction` |
+| `avancement` | `Débat construit` | `progress` | `Constructed debate` |
+| `avertissements-titre` (Débat) | `Titre non standard` | `title-warnings` | `Non-standard title` |
+| `avertissements-titre` (Débat) | `Titre à simplifier` | `title-warnings` | `Title to simplify` |
+| `avertissements-titre` (Débat) | `Titre à expliciter` | `title-warnings` | `Title to be explained` |
+| `avertissements-débat` | `Débat sensible` | `debate-warnings` | `Sensitive debate` |
+| `avertissements-débat` | `Débat saugrenu` | `debate-warnings` | `Fanciful debate` |
+| `avertissements-débat` | `Débat redondant` | `debate-warnings` | `Redundant debate` |
+| `avertissements-débat` | `Débat déséquilibré` | `debate-warnings` | `Unbalanced debate` |
+| `avertissements-débat` | `Plan à améliorer` | `debate-warnings` | `Plan to improve` |
+| `avertissements-débat` | `Débat généré par IA` | `debate-warnings` | `Debate generated by AI` |
+| `avertissements-titre` (Argument) | `Titre désavantageux` | `title-warnings` | `Disadvantageous title` |
+| `avertissements-titre` (Argument) | `Titre peu clair` | `title-warnings` | `Unclear title` |
+| `avertissements-titre` (Argument) | `Titre incomplet` | `title-warnings` | `Incomplete title` |
+| `avertissements-titre` (Argument) | `Titre trop long` | `title-warnings` | `Too long title` |
+| `avertissements-argument` | `Argument sensible` | `argument-warnings` | `Sensitive argument` |
+| `avertissements-argument` | `Argument saugrenu` | `argument-warnings` | `Fanciful argument` |
+| `avertissements-argument` | `Argument potentiellement illégal` | `argument-warnings` | `Potentially illegal argument` |
+| `avertissements-argument` | `Argument généré par IA` | `argument-warnings` | `Argument generated by AI` |
+
+Cette table est normative et exhaustive pour les options actuellement autorisées de ces champs. Une valeur française non reconnue n'est jamais traduite par approximation : elle déclenche une revue.
+
+### `related-debates` : intersection avec les pages anglaises existantes
+
+Si la page française possède `débats-connexes`, chaque entrée est examinée individuellement. Une entrée est projetée dans `related-debates` uniquement si la page anglaise correspondant à ce débat existe réellement et si son titre anglais est vérifié. Une entrée sans page anglaise vérifiée est omise. Aucun débat absent de `débats-connexes` n'est ajouté. Si aucune entrée française n'a d'équivalent anglais existant, `related-debates` est omis.
+
+### Seconde passe de vérification obligatoire
+
+Avant la clôture de chaque lot, une passe distincte de la première traduction compare le français et l'anglais. Elle contrôle au minimum : l'absence de reprise de l'ancienne page anglaise cible ; la traduction exacte des métadonnées ci-dessus ; l'absence de valeurs par défaut ajoutées ; le filtrage de `related-debates` par existence réelle des pages anglaises ; la conservation du sens et de la polarité pour/contre ; l'anglais idiomatique ; l'absence de wikicode français résiduel ; la réalité des versions anglaises des références ; et le respect des contrats spéciaux tels que `Citation`→`Quote`. La passe globale inter-lots reprend ces points à l'échelle du corpus.
+
+## Addendum 1.2.51 — attribution éditoriale contrôlée d’un nom consacré
+
+Le paramètre `nom` en français, ou `name` en anglais, reste facultatif et ne doit jamais être déduit mécaniquement du titre canonique, du titre affiché, des mots-clés ou du contenu du résumé. Il sert à afficher l’appellation conventionnelle d’un argument, d’une objection, d’une défense, d’un paradoxe, d’un principe ou d’un problème lorsque cette appellation est réellement reconnue dans la littérature et utile au lecteur.
+
+La règle de préservation 1.2.49 demeure inchangée pour les valeurs historiques existantes. Une page historiquement dépourvue de `nom` / `name` peut toutefois recevoir ce paramètre si, et seulement si, toutes les conditions suivantes sont réunies :
+
+1. le propriétaire du projet a explicitement approuvé l’attribution ;
+2. le manifeste déclare `editorial_controls.argument_name_assignment_path` ; l’ancien `argument_name_assignment_revision`, s’il est présent, est une trace sans effet d’activation ;
+3. le registre d’attribution identifie exactement la langue, l’identifiant logique, le titre canonique et la valeur de `nom` / `name` ;
+4. chaque entrée contient une justification éditoriale non vide attestant qu’il s’agit d’une appellation consacrée et non d’un simple raccourci inventé ;
+5. le registre historique reste fidèle à la source et continue d’indiquer que le paramètre était absent lorsqu’il l’était ; il n’est jamais falsifié pour faire passer l’ajout pour une donnée historique ;
+6. le wikicode contient exactement la valeur approuvée, dans l’ordre canonique des paramètres : après `initialisation` / `initialization` lorsqu’il est présent, sinon en première position du modèle `Argument` ;
+7. aucune page non listée ne peut recevoir un `nom` / `name` absent de sa provenance ;
+8. une valeur historique déjà présente reste prioritaire et ne peut être remplacée par ce mécanisme ;
+9. lors d’une reprise distante, l’exception porte uniquement sur `nom` / `name` pour les pages listées ; tous les autres paramètres protégés restent soumis à leur état historique ou distant attesté ;
+10. une modification ou suppression ultérieure du nom attribué exige une nouvelle décision explicite et ne peut être déduite automatiquement.
+
+Cette politique s’applique dès qu’un registre d’attribution est fonctionnellement déclaré par son chemin. Le validateur contrôle le registre et la concordance du wikicode, tandis que le kit de reprise traite l’attribution comme une dérogation nominative et non comme une normalisation générale. Le numéro historique associé au registre ne modifie pas ce comportement.
+
+## Addendum 1.2.49 — préservation stricte de `nom` / `name`
+
+Le paramètre `nom` d’une page `Argument` française, ou `name` d’une page anglaise, constitue une donnée historique protégée lorsqu’il existe déjà sur la page source ou distante attestée. Il est distinct du titre canonique, du titre affiché et de l’identifiant logique.
+
+1. une page préexistante qui possède `nom` / `name` conserve exactement sa valeur ;
+2. le paramètre ne peut être supprimé, vidé, reformulé, normalisé ou recalculé ;
+3. un changement de titre canonique ou affiché ne modifie jamais `nom` / `name` ;
+4. une page préexistante qui ne possédait pas ce paramètre reste sans ce paramètre ;
+5. le manifeste de page enregistre l’état exact de présence et de valeur parmi les paramètres préservés ;
+6. lorsqu’un corpus emploie `legacy_content_preservation`, `nom` / `name` peut être ajouté à `protected_fields` et son état est comparé à l’inventaire historique source ;
+7. le rendu réémet la valeur historique avant les autres contenus de la page ;
+8. toute suppression, modification ou invention non explicitement attestée est bloquante.
+
+Cette protection s’applique aux reprises et aux nouveaux rendus d’un corpus historique. Elle n’oblige pas une page véritablement nouvelle à créer un paramètre `nom` / `name`.
+
+## Addendum 1.2.48 — adoption contrôlée d’une révision manuelle distante
+
+Lorsqu’une page du wiki a été créée ou modifiée manuellement après le dernier état publié signé, elle reste protégée par défaut et produit `manual_review` ou `blocked`. Une décision explicite du propriétaire peut cependant autoriser sa prise en compte comme nouvelle base distante.
+
+Le corpus déclare alors un `manual_remote_adoption_path`. L’ancien champ `manual_remote_adoption_revision`, s’il est présent, reste une trace de provenance sans effet d’activation. Le registre correspondant :
+
+1. identifie exactement le débat, la langue, l’identifiant logique et le titre de chaque page ;
+2. atteste la révision distante observée par son identifiant MediaWiki et/ou son empreinte SHA-256 ;
+3. explique la provenance et la raison de l’adoption ;
+4. indique si le contenu proposé peut différer de la révision adoptée ;
+5. énumère nominativement tout paramètre de cycle de vie dont la modification est autorisée ;
+6. ne vaut que tant que la révision et l’empreinte distantes correspondent encore à l’attestation ;
+7. est validé localement avant la construction du plan et incorporé au plan signé ;
+8. n’autorise aucune page non listée et ne réduit aucune protection contre les modifications humaines ultérieures.
+
+Lorsque la page distante correspond déjà au corpus, elle est classée `skip` et peut être incorporée au nouvel état publié après l’attestation finale. Lorsqu’elle diffère et que la modification proposée est autorisée, elle est classée `update` avec la révision adoptée comme `baserevid`. Toute divergence postérieure bloque l’exécution.
+
+Cette procédure est distincte d’une modification manuelle de `.state/published/`, qui reste interdite. Elle est également distincte d’une normalisation silencieuse : les différences proposées et les éventuelles modifications de paramètres protégés sont explicites dans le registre et dans le plan.
+
+Une adoption peut aussi déclarer des **relations externes préservées** lorsque la page distante contient une justification ou une objection visant une page qui n’appartient pas au graphe local du débat. Ces relations sont reproduites dans le wikicode et contrôlées par leur type, leur titre canonique et leur titre affiché, mais elles ne créent ni nœud, ni occurrence, ni page à publier dans le corpus courant. Cette exception est nominative et ne vaut que pour la page adoptée.
+
+## Addendum 1.2.47 — préservation des frontières vers un débat détaillé
+
+Une page `Argument` peut contenir `débat-détaillé` en français ou `detailed-debate` en anglais. Ce paramètre désigne un débat autonome qui développe la question portée par la page.
+
+Lorsqu’il existe dans une page historique importée :
+
+1. sa présence et sa valeur sont conservées exactement dans toutes les sorties ultérieures ;
+2. il est inscrit dans le verrou de contenu historique et confronté à l’inventaire source ;
+3. le parcours du graphe peut s’arrêter à cette frontière sans traverser les relations locales de la page ;
+4. `justifications` et `objections` peuvent être omis dans le wikicode rendu afin de laisser le débat détaillé porter le développement ;
+5. cette omission est explicitement enregistrée page par page ;
+6. le verrou atteste que le propriétaire a été informé de la suppression des relations locales ;
+7. l’omission dans le wikicode ne supprime pas nécessairement les relations du registre maître, lorsqu’elles restent utiles au graphe général ou à d’autres occurrences ;
+8. une cible modifiée, un paramètre supprimé, une omission non déclarée ou une frontière ajoutée sans provenance est bloquant.
+
+Le moteur d’extraction conserve toujours la cible de la frontière dans ses données. Le moteur de rendu réémet le paramètre historique et omet les relations locales seulement lorsque la décision est verrouillée. Pour un corpus historique, cette règle est déterminée par la présence attestée de `débat-détaillé` ou `detailed-debate`, par `legacy_content_preservation` et par son verrou de contenu ; aucun numéro de norme ne l’active.
+
+## Addendum 1.2.46 — inventaire exhaustif des notions spécialisées des introductions
+
+La règle 1.2.45 fondée principalement sur les groupes de notions voisines est remplacée par la présente règle cumulative. L’ancien `specialized_term_explanation_policy_revision` peut rester comme trace, sans effet d’activation. Le registre `wikipedia_link_groups` peut rester dans les archives historiques, mais ne constitue pas une preuve suffisante de revue.
+
+Le registre actif emploie `specialized_term_inventory_reviewed=true` et `specialized_term_inventory`. Il contient exactement une entrée par sous-partie, dans le même ordre que l’introduction. Chaque entrée atteste `scan_complete=true`, fournit une note de revue substantielle et inventorie les notions spécialisées effectivement rencontrées.
+
+Pour chaque notion :
+
+1. `term` reproduit la forme visible dans la sous-partie ;
+2. `treatment=wikipedia_link` indique l’article vérifié et correspond à un modèle réellement présent dont le texte affiché est la notion ;
+3. `treatment=explained_inline` cite un extrait explicatif réellement présent ;
+4. `treatment=prior_treatment` désigne une sous-partie antérieure et une notion antérieure déjà liée ou expliquée ;
+5. `treatment=context_sufficient` fournit une justification spécifique expliquant pourquoi le passage suffit sans lien ni définition supplémentaire ;
+6. tous les modèles `{{Lien Wikipédia}}` ou `{{Wikipedia link}}` présents dans la sous-partie figurent dans l’inventaire ;
+7. une sous-partie déclarée technique ou spécialisée ne peut avoir un inventaire vide.
+
+La revue reste qualitative. Elle n’impose pas de lier les mots courants, les noms propres évidents ni chaque discipline mentionnée. Elle exige en revanche qu’aucune notion réellement opaque ne soit oubliée derrière une attestation générale.
+
+
+
+## Addendum 1.2.50 — préservation de tous les paramètres des pages existantes
+
+1. **Création de zéro.** Le profil de génération reste restrictif : seuls les paramètres prévus pour une page nouvelle sont émis et les marqueurs d’origine IA ne sont ajoutés que dans ce cas.
+2. **Modification d’une page existante.** Le moteur ne reconstruit jamais la page comme si elle était nouvelle. Tout paramètre top-level autorisé attesté comme présent constitue un minimum de présence et ne peut disparaître silencieusement.
+3. **Métadonnées opaques.** `initialisation`/`initialization`, `nom`/`name`, les paramètres d’avertissement, `débat-détaillé`/`detailed-debate`, les dates de création et les métadonnées de cycle de vie conservent par défaut leur présence et leur valeur exactes. Les profils de création ne peuvent ni les effacer, ni les remplacer, ni y injecter un marqueur IA.
+4. **Contenus éditables.** Les paramètres de contenu (`résumé`, citations, références, justifications, objections, documentation du débat, etc.) peuvent être enrichis ou corrigés ; leur paramètre top-level ne peut toutefois être supprimé s’il existait sans décision explicite de suppression.
+5. **Liens interlangues.** L’absence de traduction peut interdire la création d’un nouveau lien, mais ne justifie jamais la suppression d’un `interlangue` historique.
+6. **Suppressions explicites.** Toute suppression volontaire est enregistrée page par page et paramètre par paramètre avec décision propriétaire. Les exceptions déjà spécialisées (`owner_removed` pour un résumé, `relations_omitted` sur une frontière détaillée) restent valables.
+7. **Débats.** Les règles 1 à 6 valent sans distinction pour `Débat` / `Debate` et `Argument`.
+
+## Addendum 1.2.54 — architecture cumulative et séparation des versions de format
+
+La norme active est cumulative. Sauf mention explicite dans la présente norme qu’une règle est supprimée ou remplacée, toute règle éditoriale active s’applique à tout corpus soumis au validateur courant, quelle que soit la valeur historique déclarée dans `normative_versions.consolidated_norm`.
+
+1. `consolidated_norm` décrit la provenance normative déclarée, la compatibilité de lecture, les besoins de migration et la traçabilité d’une livraison. Il ne constitue jamais un *feature flag* éditorial.
+2. Les champs dont le nom finit par `policy_revision` ou `_revision`, ainsi que les champs historiques spécialisés tels que `argument_name_assignment_revision`, `argument_name_discovery_revision` ou `manual_remote_adoption_revision`, sont des métadonnées de traçabilité lorsqu’ils existent. Une différence, une absence ou une ancienne valeur ne désactive pas une règle éditoriale active.
+3. Les anciennes clauses des révisions 1.2.x indiquant qu’une politique « peut être activée » en déclarant une révision sont **remplacées** sur ce point. Elles restent lisibles comme historique de l’introduction de la règle, mais leur mécanisme d’activation par numéro n’est plus normatif.
+4. Les contrôles sont commandés par les faits fonctionnels pertinents : présence d’un registre ou d’un chemin déclaré, `page_origin`, `translation_status.en`, existence d’un inventaire historique lorsque la préservation est activée, état distant attesté, ou autre donnée directement liée à l’opération contrôlée.
+5. Lorsqu’un artefact ou un registre possède son propre format, sa compatibilité est déterminée par `schema`, `schema_version` ou un identifiant `version` stable propre à cet artefact. Une révision globale de la norme ne remplace pas la version de format de l’artefact.
+6. La lecture de corpus anciens et les migrations peuvent continuer à examiner les versions globales pour interpréter un ancien format. Cette compatibilité de lecture ne réduit jamais les exigences éditoriales courantes après interprétation.
+7. Les générateurs cessent d’émettre les champs de révision qui n’ont plus d’utilité opérationnelle. Ils peuvent conserver une révision historique lorsqu’elle est utile à la provenance ou à la reproductibilité, sans lui donner de portée conditionnelle.
+8. Le validateur et le kit doivent posséder des tests d’invariance garantissant qu’à contenu fonctionnel identique, changer seulement `consolidated_norm` ou une métadonnée `*_revision` ne modifie pas le verdict éditorial.
+9. Les versions du paquet, du validateur et du kit restent obligatoires pour identifier une livraison, vérifier la compatibilité technique, reproduire un environnement et piloter les migrations. Leur maintien n’autorise aucune branche éditoriale conditionnée au numéro de version.
+10. La présente refonte ne modifie aucune règle de contenu de la révision 1.2.53 : lots de traduction, recherche anglophone de `name=`, adaptation réelle des références et contrat spécial `Citation`→`Quote` demeurent intégralement applicables.
 

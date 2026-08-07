@@ -2,22 +2,24 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.54** ;
-- validateur actif : **0.4.57** ;
-- kit actif : **2.15.31**.
+- norme active : **1.2.55** ;
+- validateur actif : **0.4.58** ;
+- kit actif : **2.15.32**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 1892672 octets — SHA-256 `740164d06bb4fe01f0f33def289d3fc6a6667ddfca21bac6251e0d9f3e9f07a2`
-- `wikidebia-validator.zip` — 2172536 octets — SHA-256 `17a7e75dee87e6f535477dfc2492d087b943ce9c77a9a62cd8c4069d6bd01d4c`
-- `wikidebia-kit.zip` — 435071 octets — SHA-256 `584498aaa771f6ee096dc2f99fb2f32ed8fd62d551905b18f3388ad597d39676`
+- `wikidebia-normes.zip` — 1950228 octets — SHA-256 `888ed94931d67ffa431ec125feae216010b847bb699a3cf69e275d6c031db7f8`
+- `wikidebia-validator.zip` — 2228922 octets — SHA-256 `ebcde1d28a630b18ad31d4c24c370a68d165ca9e0fcaa7c286acf48d111bbded`
+- `wikidebia-kit.zip` — 437003 octets — SHA-256 `35ad572d78853b4e2880a29fa1c8623e8a07f6d1451c8036db78e5911959ee38`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md`  
-SHA-256 : `221044078ac148dfc0f5f717fa38036c39615a6f366a31669a2a941dce3cef17`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.55.md`  
+SHA-256 : `f0c2daaf68abeaf8867e3507d8f92673d17008341d5ef6c931ebc6eb95264510`
 
-# Norme consolidée Wikidéb’IA 1.2.54
+# Norme consolidée Wikidéb’IA 1.2.55
+
+> **Révision 1.2.55 — traduction anglaise adaptative, noms consacrés et absences historiques.** La traduction anglaise reste une adaptation éditoriale et non une procédure de remplissage. Les pages `Argument` sont désormais relues en unités internes de dix pages par défaut ; une livraison plus vaste peut agréger plusieurs unités déjà closes, tandis qu’un groupe particulièrement dense est réduit à cinq à huit pages. Les exemples, checklists et traductions antérieurement validées sont des contraintes et des points de comparaison, jamais des patrons à reproduire mécaniquement. Pour `name=`, la revue compare les formulations réellement attestées et conserve la construction anglaise consacrée telle qu’elle est employée (`X argument`, `Argument from X`, possessif ou autre) sans normalisation stylistique. L’attestation `same_reasoning_confirmed` inclut désormais l’identité de portée : un nom qui ne désigne qu’une sous-variante, un auteur particulier ou une partie du raisonnement est refusé si la page est plus large. Enfin, lorsqu’un résumé français est historiquement absent et que cette absence est attestée par le verrou de provenance, la page anglaise conserve cette absence ; aucun workflow de traduction ne peut imposer ou inventer un `summary=`.
 
 > **Révision 1.2.54 — architecture cumulative des normes éditoriales.** Les règles éditoriales actives de la présente norme consolidée s’appliquent désormais indépendamment de la valeur déclarée dans `normative_versions.consolidated_norm`. Ce numéro reste une métadonnée de provenance, de compatibilité de format, de migration et de publication ; il n’est plus un interrupteur de fonctionnalités éditoriales. De même, les champs historiques `*_policy_revision`, `*_revision`, `argument_name_assignment_revision`, `argument_name_discovery_revision` ou analogues, lorsqu’ils sont encore présents, servent uniquement à la traçabilité et ne peuvent ni activer ni désactiver un contrôle. L’application des règles dépend de l’état fonctionnel constaté : présence d’un registre ou d’un chemin de revue, origine d’une page, statut de traduction, activation de la préservation historique avec inventaire attesté, ou version propre d’un artefact. Les anciennes formulations « activée pour la révision X » sont conservées comme historique mais sont remplacées par cette architecture pour toute validation courante. Les règles de traduction anglaise 1.2.53 restent inchangées.
 
@@ -28,7 +30,7 @@ SHA-256 : `221044078ac148dfc0f5f717fa38036c39615a6f366a31669a2a941dce3cef17`
 
 > **Révision 1.2.51 — attribution éditoriale explicite de `nom` / `name`.** La protection historique introduite en 1.2.49 reste la règle par défaut : une absence historique de `nom` ou `name` n’est jamais comblée automatiquement. Une exception étroite est désormais admise lorsqu’une décision éditoriale explicite du propriétaire attribue à une page Argument une appellation consacrée dans la littérature. Le corpus déclare alors un registre dédié par `editorial_controls.argument_name_assignment_path`. Le champ historique `argument_name_assignment_revision`, s’il est encore présent, n’est qu’une trace de provenance. Ce registre identifie chaque page, la langue, le titre canonique, la valeur exacte à ajouter et la justification. L’inventaire historique reste inchangé et continue d’attester l’absence antérieure ; l’attribution éditoriale constitue une couche de décision séparée. Le validateur exige une concordance exacte entre le registre et le wikicode. Lors d’une reprise, le kit peut ajouter uniquement ce paramètre sur les pages listées, sans relâcher la préservation des autres paramètres historiques.
 > **Révision 1.2.52 — recherche documentaire des noms consacrés des arguments nouveaux.** Pour chaque page `Argument` réellement nouvelle, la génération examine explicitement si le raisonnement possède une appellation conventionnelle reconnue dans la littérature. Cette recherche est obligatoire, mais l’ajout de `nom` / `name` reste exceptionnel : la présomption est l’absence de nom consacré. Aucun quota, objectif de remplissage ou dérivation depuis le titre n’est admis. Une appellation n’est retenue que si des sources de référence ou académiques l’emploient pour désigner substantiellement le même raisonnement dans la langue de la page, ou sous une forme étrangère elle-même consacrée. La revue consigne les requêtes, le résultat et, lorsqu’un nom est retenu, les attestations documentaires. Le validateur exige une couverture exacte de toutes les pages Argument nouvelles et une concordance stricte avec le wikicode.
-> **Révision 1.2.53 — traduction anglaise par lots et adaptation documentaire.** La production anglaise est menée comme une adaptation éditoriale contrôlée, non comme une substitution lexicale. La page `Debate` constitue un lot autonome. Les pages `Argument` sont ensuite traitées par lots de vingt pages par défaut, sans dépasser vingt-cinq ; un lot documentairement dense est réduit à dix à quinze pages. Chaque argument est achevé dans un seul lot, qui inclut la traduction idiomatique, la recherche séparée de `name=`, la vérification des équivalents anglais des références françaises, la recherche de nouvelles références anglophones et le traitement des modèles `Quote`. Une référence française n’est jamais traduite artificiellement : elle n’est projetée comme référence anglaise que si une édition, traduction ou version anglaise réelle est vérifiée, avec ses métadonnées propres. Des références anglaises nouvelles sont recherchées indépendamment. L’exception documentaire des modèles `Citation` importés reste stricte : `Citation` devient `Quote`, seuls le texte de `quote` et la forme linguistique de `date` sont traduits, les autres valeurs sont conservées exactement, et `Citation traduite par IA` est ajouté à `warnings`. Une passe inter-lots finale vérifie la cohérence globale avant finalisation.
+> **Révision 1.2.53 — traduction anglaise par lots et adaptation documentaire.** La production anglaise est menée comme une adaptation éditoriale contrôlée, non comme une substitution lexicale. La page `Debate` constitue un lot autonome. Les pages `Argument` sont ensuite traitées par lots de vingt pages par défaut, sans dépasser vingt-cinq ; un lot documentairement dense est réduit à dix à quinze pages. Chaque argument est achevé dans un seul lot, qui inclut la traduction idiomatique, la recherche séparée de `name=`, la vérification des équivalents anglais des références françaises, la recherche de nouvelles références anglophones et le traitement des modèles `Quote`. Une référence française n’est jamais traduite artificiellement : elle n’est projetée comme référence anglaise que si une édition, traduction ou version anglaise réelle est vérifiée, avec ses métadonnées propres. Des références anglaises nouvelles sont recherchées indépendamment. L’exception documentaire des modèles `Citation` importés reste stricte : `Citation` devient `Quote`, seuls le texte de `quote` et la forme linguistique de `date` sont traduits, les autres valeurs sont conservées exactement, et `Quote translated by AI` est ajouté à `warnings`. Une passe inter-lots finale vérifie la cohérence globale avant finalisation.
 
 
 **Statut :** source normative active unique  
@@ -201,7 +203,7 @@ Les noms d'auteurs, d'études et de méthodes ne précèdent pas l'explication q
 
 Une revue page par page atteste, pour chaque langue produite : l'annonce directe de la thèse, l'accessibilité au grand public, le rythme des phrases et l'explication des termes techniques nécessaires. Le validateur peut signaler une accumulation de phrases longues, mais ce signal est heuristique et ne mesure ni la qualité logique ni la suffisance des définitions.
 
-Les résumés français et anglais d’un même nœud doivent être substantiellement équivalents : mêmes prémisses principales, mêmes éléments probants décisifs, même conclusion et même portée. Une différence de longueur n’est pas en soi une faute, mais un ratio anglais/français inférieur à 0,60 ou supérieur à 1,45 déclenche un blocage automatique et une reprise humaine.
+Lorsqu’un résumé existe dans les deux langues, les résumés français et anglais d’un même nœud doivent être substantiellement équivalents : mêmes prémisses principales, mêmes éléments probants décisifs, même conclusion et même portée. Une différence de longueur n’est pas en soi une faute, mais un ratio anglais/français inférieur à 0,60 ou supérieur à 1,45 déclenche un blocage automatique et une reprise humaine. Cette règle de ratio ne s’applique pas à une absence historique de résumé attestée et conservée conformément à la présente norme.
 
 ### 5.2 Ouverture, concrétisation et force expressive
 
@@ -578,7 +580,7 @@ The `progress=Constructed debate` and `debate-warnings=Debate generated by AI` l
 |place=
 |date=
 |link=
-|warnings=Citation traduite par IA
+|warnings=Quote translated by AI
 }}
 |bibliography={{Bibliographical reference
 |authors=
@@ -1024,8 +1026,8 @@ Les citations d’une page Argument française sont rendues dans `citations=` so
 2. seule la valeur de `quote`, issue de `citation`, est traduite ;
 3. la valeur de `date` est traduite dans la langue anglaise sans changer la date représentée ; une année seule reste inchangée ;
 4. toutes les autres valeurs documentaires sont conservées exactement, dans le même ordre conceptuel ;
-5. le paramètre `warnings` contient la mention exacte `Citation traduite par IA` ;
-6. si un avertissement existe déjà, la mention est ajoutée après sa valeur avec exactement une virgule et une espace : `Avertissement existant, Citation traduite par IA` ;
+5. le paramètre `warnings` contient la mention exacte `Quote translated by AI` ;
+6. si un avertissement existe déjà, la mention est ajoutée après sa valeur avec exactement une virgule et une espace : `Avertissement existant, Quote translated by AI` ;
 7. la mention n’est jamais dupliquée ; un paramètre vide est traité comme absent.
 
 Le registre de traduction, les verrous de contenu, le rendu et le validateur comparent la liste ordonnée complète des paramètres après application de cette table de correspondance. Toute valeur documentaire modifiée, tout nom de paramètre français conservé dans la page anglaise, toute date différente, toute citation omise ou ajoutée, ou tout avertissement absent, dupliqué ou mal séparé bloque la validation.
@@ -1048,7 +1050,7 @@ La révision 1.2.29 a correctement restauré le nom du modèle anglais `{{Quote}
 
 Toute page anglaise utilise exclusivement les modèles et paramètres déclarés sur le wiki anglais. La traduction d’une page française ne consiste donc pas à copier son wikicode et à traduire seulement la prose : le modèle principal, ses paramètres, les sous-modèles et leurs paramètres sont projetés selon le contrat anglais actif.
 
-Pour les citations, `{{Citation}}` devient `{{Quote}}` et la table canonique est : `citation→quote`, `auteurs→authors`, `article→article`, `ouvrage→work`, `volume→volume`, `numéro→issue`, `page→page`, `localisation→location`, `édition→publisher`, `lieu→place`, `date→date`, `lien→link`, `avertissements-citation→warnings`. Seules les valeurs de `quote` et de `date` sont traduites. Toutes les autres valeurs sont conservées exactement. La valeur de `warnings` reprend l’avertissement antérieur, le cas échéant, puis ajoute une unique mention `Citation traduite par IA` avec le séparateur exact `, `.
+Pour les citations, `{{Citation}}` devient `{{Quote}}` et la table canonique est : `citation→quote`, `auteurs→authors`, `article→article`, `ouvrage→work`, `volume→volume`, `numéro→issue`, `page→page`, `localisation→location`, `édition→publisher`, `lieu→place`, `date→date`, `lien→link`, `avertissements-citation→warnings`. Seules les valeurs de `quote` et de `date` sont traduites. Toutes les autres valeurs sont conservées exactement. La valeur de `warnings` reprend l’avertissement antérieur, le cas échéant, puis ajoute une unique mention `Quote translated by AI` avec le séparateur exact `, `.
 
 Un paramètre source sans équivalent anglais déclaré bloque la traduction ; il n’est jamais recopié sous son nom français. Le validateur courant refuse tout modèle français ou paramètre français dans une page anglaise rendue, quelle que soit la révision normative historique déclarée.
 
@@ -1269,15 +1271,23 @@ La traduction anglaise commence après verrouillage du contenu français et se d
 ### Ordre et taille des lots
 
 1. la page `Debate` forme à elle seule le premier lot de traduction ; elle n'est mélangée à aucune page `Argument` ;
-2. les pages `Argument` sont ensuite traduites par lots de **20 pages par défaut**, avec un **maximum de 25** ;
-3. lorsqu'un groupe est particulièrement dense en citations, références, ambiguïtés terminologiques ou recherches de noms consacrés, le lot est réduit à **10–15 pages** ;
+2. les pages `Argument` sont ensuite **relues en unités internes de 10 pages par défaut** ; une livraison ou un travail long peut agréger plusieurs unités déjà closes sans fusionner leur revue ;
+3. lorsqu'un groupe est particulièrement dense en citations, références, ambiguïtés terminologiques, recherches de noms consacrés ou anomalies de préservation, l'unité est réduite à **5–8 pages** ; une unité de plus de 10 pages exige une justification explicite de l'absence de perte de qualité ;
 4. une page Argument n'est jamais scindée entre deux lots : titre canonique, displayed title, summary, sections, keywords, citations, références et éventuel `name=` sont traités ensemble ;
 5. un lot n'est considéré comme clos qu'après vérification de toutes ses pages, de leur orientation argumentative et de leur documentation ; le lot suivant ne sert pas à corriger silencieusement les omissions du précédent ;
 6. après le dernier lot d'arguments, une passe globale inter-lots vérifie les choix terminologiques, les titres, le vocabulaire bilingue, les noms consacrés, la documentation, les citations et la parité du graphe avant `--finalize`.
 
 ### `name=` : recherche propre à la langue anglaise
 
-Le paramètre français `nom=` n'est jamais traduit mécaniquement. Pour chaque page Argument anglaise, une recherche distincte vérifie l'appellation réellement attestée dans la littérature anglophone pour le même raisonnement. L'existence d'un `nom=` français constitue seulement un indice de recherche, jamais une preuve du nom anglais. Le résultat par défaut reste l'absence de `name=`. Une valeur n'est retenue que si des sources de référence ou académiques anglophones l'emploient effectivement pour désigner substantiellement le même argument, objection, défense, preuve, réfutation, paradoxe, problème ou principe. En cas d'attestation faible, d'équivalence incertaine ou de traduction seulement plausible, `name=` est omis.
+Le paramètre français `nom=` n'est jamais traduit mécaniquement. Pour chaque page Argument anglaise, une recherche distincte vérifie l'appellation réellement attestée dans la littérature anglophone pour le même raisonnement. L'existence d'un `nom=` français constitue seulement un indice de recherche, jamais une preuve du nom anglais. Le résultat par défaut reste l'absence de `name=`. Une valeur n'est retenue que si des sources de référence ou académiques anglophones l'emploient effectivement pour désigner substantiellement le même argument, objection, défense, preuve, réfutation, paradoxe, problème ou principe. **La forme syntaxique elle-même fait partie de l'attestation** : la revue compare les variantes concurrentes et ne transforme pas arbitrairement `Argument from X` en `X argument`, ni l'inverse, ni une forme possessive en forme générique. **L'identité du raisonnement inclut sa portée** : une appellation réservée à une sous-variante, à un auteur particulier ou à une étape du raisonnement ne peut nommer une page plus large. En cas d'attestation faible, de concurrence non résolue entre formulations, d'équivalence de portée incertaine ou de traduction seulement plausible, `name=` est omis.
+
+### Principe d'exécution : contraintes, pas patron mécanique
+
+Les listes de contrôles, exemples de traductions déjà validées et valeurs antérieurement retenues servent à détecter les régressions ; elles ne constituent pas un algorithme de rédaction. Un agent ou un Work doit relire le contenu propre de chaque page, rechercher les éléments externes nécessaires et décider à partir du sens précis du nœud. Il est interdit d'attribuer un nom, une structure de résumé, une référence ou une formulation simplement parce qu'un cas voisin a reçu ce traitement. Une livraison de grande taille est admise seulement si cette autonomie éditoriale est conservée dans les unités internes de revue.
+
+### Absence historique de résumé pendant la traduction
+
+Si le verrou français atteste `summary_provenance=historical_absent` ou une absence équivalente autorisée par la norme, la traduction anglaise conserve l'absence de `summary=`. Le formulaire, le kit ou le validateur de traduction ne doit pas exiger un texte de remplacement, un ratio de longueur, une expression de force ou des attestations stylistiques propres à un résumé inexistant. La revue anglaise consigne l'absence comme telle et le rendu omet le paramètre.
 
 ### Références : équivalents anglais et enrichissement autonome
 
@@ -1291,7 +1301,7 @@ Pour la page `Debate`, toutes les références de l'introduction et des paramèt
 
 ### Exception contrôlée : modèles `Citation` / `Quote`
 
-La règle précédente sur l'adaptation des références ne modifie pas le contrat spécial des citations importées. Lors de la projection anglaise, `{{Citation}}` devient `{{Quote}}` et les noms de paramètres sont localisés selon le contrat anglais. **Seules les valeurs de `citation`→`quote` et de `date` sont traduites.** Les valeurs documentaires de `authors`, `article`, `work`, `volume`, `issue`, `page`, `location`, `publisher`, `place` et `link` sont conservées exactement et dans le même ordre. `warnings` reprend tout avertissement existant puis ajoute une seule fois `Citation traduite par IA`, avec le séparateur exact `, `.
+La règle précédente sur l'adaptation des références ne modifie pas le contrat spécial des citations importées. Lors de la projection anglaise, `{{Citation}}` devient `{{Quote}}` et les noms de paramètres sont localisés selon le contrat anglais. **Seules les valeurs de `citation`→`quote` et de `date` sont traduites.** Les valeurs documentaires de `authors`, `article`, `work`, `volume`, `issue`, `page`, `location`, `publisher`, `place` et `link` sont conservées exactement et dans le même ordre. `warnings` reprend tout avertissement existant puis ajoute une seule fois `Quote translated by AI`, avec le séparateur exact `, `.
 
 Cette exception concerne le contenu d'un modèle de citation déjà importé ; elle n'autorise pas à traduire artificiellement une référence bibliographique, sitographique ou vidéographique pour la faire passer pour une édition anglaise.
 
@@ -1458,7 +1468,14 @@ La norme active est cumulative. Sauf mention explicite dans la présente norme q
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `4b3bcd49c53ab116f9edd7546c460d05083b4dea337fab6baf21e6737a85cc92`
+SHA-256 : `ef33c4875cb474d07d9e049f56000fdc5f2898bb21c9b8163ef26c6d1720212f`
+
+## 1.2.55 — 2026-08-07
+
+- unités internes de revue anglaise ramenées à 10 arguments par défaut, 5–8 pour les groupes denses, avec agrégation possible de plusieurs unités dans une livraison longue ;
+- `name=` anglais : comparaison obligatoire des formes concurrentes, interdiction d'uniformiser `X argument` / `Argument from X` / possessifs, et exigence d'identité de portée ;
+- principe explicite « contraintes, pas patron mécanique » pour Work et les agents ;
+- conservation de l'absence historique de résumé dans la traduction et interdiction de créer un `summary=` de remplissage.
 
 ## 1.2.54 — 7 août 2026 — architecture cumulative des normes éditoriales
 
@@ -1483,7 +1500,7 @@ SHA-256 : `4b3bcd49c53ab116f9edd7546c460d05083b4dea337fab6baf21e6737a85cc92`
 - recherche de `name=` indépendante dans la littérature anglophone, sans traduction mécanique de `nom=` ;
 - interdiction de traduire artificiellement les références françaises ; projection uniquement d'une version anglaise réelle et vérifiée avec ses métadonnées propres ;
 - recherche indépendante de nouvelles références anglophones ;
-- confirmation du contrat `Citation`→`Quote` : seules les valeurs `quote` et `date` sont traduites et `Citation traduite par IA` est ajouté ;
+- confirmation du contrat `Citation`→`Quote` : seules les valeurs `quote` et `date` sont traduites et `Quote translated by AI` est ajouté ;
 - alignement recommandé : validateur 0.4.56 et kit 2.15.30.
 
 ## 1.2.52 — 7 août 2026
@@ -1988,20 +2005,26 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `d5a42fb962ceb3c39b4565af341e6062f3d2a9f1d341e3de2e7f198ad896eab1`
+SHA-256 : `4b0739126d119d4b268bcc670f70f0c6da37944a18bbb6b9b9a5982c83bb941b`
 
-# Wikidéb’IA Validator 0.4.57
+# Wikidéb’IA Validator 0.4.58
 
-La version 0.4.57 aligne le paquet sur la norme 1.2.54 et supprime les gardes de version des contrôles éditoriaux. Elle conserve les contrôles existants et embarque les nouvelles règles éditoriales de traduction anglaise par lots, d'adaptation des références à des versions anglaises réelles, de recherche anglophone autonome de `name=` et de maintien du contrat `Citation`→`Quote`. Ces exigences de recherche et d'ordonnancement restent principalement éditoriales ; les contrôles automatiques antérieurs ne sont pas relâchés.
+La version 0.4.58 aligne le paquet sur la norme 1.2.55. Elle conserve les contrôles existants et embarque la copie normative affinée pour les unités de traduction adaptatives, la forme et la portée exactes de `name=`, l'exécution non mécanique et la conservation des résumés historiquement absents. Les contrôles automatiques antérieurs ne sont pas relâchés.
 
-Validateur local aligné sur la norme 1.2.54 et rétrocompatible avec les paquets antérieurs.
+Validateur local aligné sur la norme 1.2.55 et rétrocompatible avec les paquets antérieurs.
 
 Les normes éditoriales courantes sont cumulatives : `consolidated_norm` et les anciens champs `*_revision` ne servent plus de feature flags. Les versions restent réservées à la compatibilité de format, aux migrations et à la traçabilité.
 
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `ce67e2efa394d52fd2f9f9ffa46f21e4270256ba5c938ac56204b9d667d6fe3e`
+SHA-256 : `d9d2002f40255b717951e0174eb9633c29e6f82f9705582e4a980f27dbfbab03`
+
+## 0.4.58
+
+- alignement sur la norme 1.2.55 ;
+- copie normative mise à jour pour les unités de revue adaptatives et les règles renforcées de `name=` ;
+- maintien de tous les contrôles existants et de la compatibilité des formats antérieurs.
 
 ## 0.4.57 — 7 août 2026
 
@@ -2417,26 +2440,35 @@ SHA-256 : `ce67e2efa394d52fd2f9f9ffa46f21e4270256ba5c938ac56204b9d667d6fe3e`
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `c15805e58ba9084b31250b73f07b94dda538e846ee2426701eee10c770e6a5c1`
+SHA-256 : `3f613f4b84804a97918092d7ba1f102560f595fd65957b81facd76a9bd03d1d2`
 
-# Wikidéb’IA — Kit 2.15.31
+# Wikidéb’IA — Kit 2.15.32
 
-Le kit 2.15.31 applique l’architecture cumulative 1.2.54 tout en conservant la traduction anglaise 1.2.53 par lots : page Debate en lot autonome, puis lots Argument de 20 pages par défaut (25 maximum, 10–15 lorsque la documentation ou les citations sont denses), avec passe globale inter-lots avant finalisation.
+Le kit 2.15.32 applique la norme 1.2.55. La page Debate reste un lot autonome ; les Arguments sont relus en unités internes de 10 pages par défaut, réduites à 5–8 pour les groupes denses. Une livraison Work peut agréger plusieurs unités déjà closes sans transformer les exemples ou checklists en patrons mécaniques.
 
-La phase anglaise recherche séparément les appellations consacrées dans la littérature anglophone et n'obtient jamais `name=` par traduction mécanique de `nom=`. Les références françaises ne sont pas traduites : une version anglaise réelle doit être trouvée et citée avec ses propres métadonnées, et de nouvelles références anglophones sont recherchées indépendamment. Le contrat `Citation`→`Quote` reste inchangé : seules les valeurs `quote` et `date` sont traduites et `Citation traduite par IA` est ajouté.
+La phase anglaise recherche séparément les appellations consacrées dans la littérature anglophone et n'obtient jamais `name=` par traduction mécanique de `nom=`. Elle compare les formes concurrentes sans normaliser artificiellement `Argument from X`, `X argument` ou les possessifs, et refuse un nom dont la portée est plus étroite que celle de la page. Les références françaises ne sont pas traduites : une version anglaise réelle doit être trouvée et citée avec ses propres métadonnées, et de nouvelles références anglophones sont recherchées indépendamment. Le contrat `Citation`→`Quote` reste inchangé : seules les valeurs `quote` et `date` sont traduites et `Quote translated by AI` est ajouté.
 
 La reprise distante applique cette exception uniquement à `nom` / `name`. Tous les autres paramètres historiques protégés conservent les garanties de la révision 2.15.27.
 
 Correctif actif de traduction : le contenu d'une éventuelle page anglaise cible existante est ignoré pendant la production éditoriale ; les valeurs françaises de progression et d'avertissement sont traduites selon la table officielle sans défaut de création ; `related-debates` ne reprend que les relations françaises dont la page anglaise existe ; chaque lot reçoit une seconde passe FR→EN.
 
-Kit aligné sur la norme 1.2.54 et le validateur 0.4.57.
+Kit aligné sur la norme 1.2.55 et le validateur 0.4.58.
+
+Lorsqu'un résumé français est historiquement absent et attesté, le workflow anglais conserve cette absence et n'exige aucun `summary=` de remplacement.
 
 Les numéros de norme et les anciens champs de révision ne sont plus des feature flags éditoriaux ; ils servent uniquement à la compatibilité technique et à la traçabilité.
 
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `e6ebca1fc737e6df899dd82199cb44c94551459ba71646d0fd0099ed7c283c4e`
+SHA-256 : `a8bc498c0814b634c83d609827472d64948b39c53b7a15b1558ac75d7736e9e2`
+
+## 2.15.32
+
+- alignement sur la norme 1.2.55 et le validateur 0.4.58 ;
+- unités internes de revue anglaise de 10 arguments par défaut, 5–8 pour les groupes denses, avec agrégation possible dans Work ;
+- règle `name=` renforcée : forme anglaise attestée non normalisée et portée exacte ;
+- correction du workflow de traduction pour conserver les résumés historiquement absents au lieu d'en exiger un artificiellement.
 
 ## 2.15.31 — 7 août 2026
 
@@ -2753,7 +2785,7 @@ SHA-256 : `e6ebca1fc737e6df899dd82199cb44c94551459ba71646d0fd0099ed7c283c4e`
 - ajout direct et unique de `{{Lien interlangue}}` dans chaque page française ;
 - absence garantie de lien interlangue dans les pages anglaises ;
 - rendu des citations françaises et anglaises depuis les verrous ;
-- conservation exacte des paramètres documentaires et contrôle de `Citation traduite par IA` ;
+- conservation exacte des paramètres documentaires et contrôle de `Quote translated by AI` ;
 - verrouillage du graphe, génération des manifestes, lots et agrégats, puis validation bilingue complète.
 
 
@@ -2763,8 +2795,8 @@ SHA-256 : `e6ebca1fc737e6df899dd82199cb44c94551459ba71646d0fd0099ed7c283c4e`
 - conservation exacte de tous les paramètres documentaires et de leur ordre ;
 - traduction contrôlée limitée au texte de `citation` et à la forme linguistique de `date` ;
 - vérification que la date anglaise désigne exactement la même date que la date française ;
-- ajout déterministe de `Citation traduite par IA` dans `avertissements-citation` ;
-- concaténation canonique `, Citation traduite par IA` après tout avertissement préexistant, sans doublon ;
+- ajout déterministe de `Quote translated by AI` dans `avertissements-citation` ;
+- concaténation canonique `, Quote translated by AI` après tout avertissement préexistant, sans doublon ;
 - scellement des citations traduites dans `en_content_lock.json` et du contrat de rendu dans `en_translation_lock.json` ;
 - aucune génération de page finale et aucune modification des paramètres source.
 
@@ -3154,13 +3186,13 @@ Le corpus déclare `translation_status.en=deferred`, ne manifeste que les pages 
 ## Guide de revue du contenu
 
 Source interne : `kit/GUIDE_CONTENT_REVIEW.md`  
-SHA-256 : `8163dcf1c03fbe3c4fb447a3814396e10fe2b8806d3b297ffdadad335fac5efa`
+SHA-256 : `9ee58ce4f965ed7c42d623d3a6bcef503f699dddcdac0ec7eb519b8d4010cb12`
 
 # Revue française des introductions, résumés et références
 
 > Depuis 1.2.54, les normes éditoriales sont cumulatives : les anciennes métadonnées de révision ne servent plus à sélectionner les contrôles.
 
-Le kit 2.15.31 applique une phase de contenu après le verrouillage des titres, rubriques et mots-clés. Elle part de `reviewed-copy/`, conserve toutes les copies antérieures et ne génère toujours aucune page MediaWiki finale.
+Le kit 2.15.32 applique une phase de contenu après le verrouillage des titres, rubriques et mots-clés. Elle part de `reviewed-copy/`, conserve toutes les copies antérieures et ne génère toujours aucune page MediaWiki finale.
 
 ## 1. Préparer la revue
 
@@ -3195,7 +3227,7 @@ Aucune proposition produite par une heuristique n’est appliquée automatiqueme
 
 ## Recherche d’un nom consacré pour un argument nouveau
 
-Cette exigence relève du contrat général de génération 1.2.53. La commande `corpus-workspace-content-review` ci-dessus part d’un snapshot importé et ne crée donc pas elle-même de nouvel argument français. Lorsqu’un corpus généré contient des pages `Argument` françaises nouvelles, il doit fournir `reviews/argument_name_discovery_review.json` avant validation ; le validateur 0.4.57 bloque toute page nouvelle non couverte. La phase de traduction anglaise du kit construit la partie anglaise de ce registre pour les pages anglaises nouvelles.
+Cette exigence relève du contrat général de génération 1.2.53. La commande `corpus-workspace-content-review` ci-dessus part d’un snapshot importé et ne crée donc pas elle-même de nouvel argument français. Lorsqu’un corpus généré contient des pages `Argument` françaises nouvelles, il doit fournir `reviews/argument_name_discovery_review.json` avant validation ; le validateur 0.4.58 bloque toute page nouvelle non couverte. La phase de traduction anglaise du kit construit la partie anglaise de ce registre pour les pages anglaises nouvelles.
 
 La recherche est **obligatoire**, mais l’ajout d’un nom ne l’est pas. Le cas normal est `outcome=none`. Il ne faut jamais chercher à augmenter artificiellement le nombre de pages possédant `nom=`.
 
@@ -3290,16 +3322,16 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `69c624e95fc6149ecd04562e3b72dc7aec5f4c46f4a6d898c678e6993001932d`
+SHA-256 : `1eff28b086c626cc0e0a64700e03b471b1df74857c2757800ea2d1f49a9247c1`
 
-Tests pytest : 290 réussis, 0 échec.
+Tests pytest : 291 réussis, 0 échec.
 
 ## Guide de traduction anglaise
 
 Source interne : `kit/GUIDE_TRANSLATION_REVIEW.md`  
-SHA-256 : `ce4b5738b1e5ebb564572297aa182dde0c23f1b278c1aadf9188bdd3ec35bfa1`
+SHA-256 : `70400d89073fadb2ae1edeeb22e2635b8392603e8df0645d0b5bce1f681c469c`
 
-# Guide de traduction anglaise contrôlée — Kit 2.15.31
+# Guide de traduction anglaise contrôlée — Kit 2.15.32
 
 > Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 
@@ -3310,7 +3342,7 @@ La traduction anglaise commence uniquement après le verrouillage complet des m�
 La traduction est une adaptation idiomatique et documentaire, pas une substitution mot à mot. Elle est effectuée dans l'ordre suivant :
 
 1. **Lot Debate** : la page `Debate` complète constitue un lot autonome, avec son introduction, ses titres, ses sections, ses keywords, ses liens Wikipédia anglais et toute sa documentation anglaise.
-2. **Lots Argument** : 20 pages Argument par lot par défaut, jamais plus de 25. Réduire à 10–15 pages lorsque le groupe comporte beaucoup de citations, de références, de recherches terminologiques ou de noms consacrés à vérifier.
+2. **Unités de revue Argument** : 10 pages par défaut. Réduire à 5–8 lorsque le groupe comporte beaucoup de citations, de références, de recherches terminologiques, de noms consacrés à vérifier ou d’anomalies de préservation. Une livraison Work peut agréger plusieurs unités closes ; ne pas fusionner leur revue.
 3. Une page Argument est entièrement achevée dans le même lot : canonical title, displayed title, summary, sections, keywords, `name=` éventuel, citations et références.
 4. Chaque lot est relu et clos avant le suivant. Il faut notamment vérifier le sens et l'orientation de chaque argument à partir du summary français, des citations, justifications et objections disponibles, afin d'éviter une inversion pour/contre.
 5. Après le dernier lot, effectuer une passe globale inter-lots sur la terminologie, les titres, le vocabulaire bilingue, les `name=`, les références, les citations et la parité du graphe avant `--finalize`.
@@ -3350,11 +3382,19 @@ La commande exige un workspace au statut `fr_content_applied` et une préparatio
 
 Le registre couvre la page Debate, chaque argument actif, le vocabulaire contrôlé français–anglais et les sources anglaises. Aucune traduction automatique n’est appliquée.
 
+### Contraintes, pas patron mécanique
+
+Les exemples, lots déjà validés et champs de revue sont des garde-fous. Ils ne doivent jamais servir de modèle lexical ou rhétorique à reproduire automatiquement. Chaque argument est interprété à partir de sa page française et des sources pertinentes.
+
+### Résumé historiquement absent
+
+Si le résumé français est absent et cette absence est attestée par la source verrouillée, laisser `summary` vide dans la fiche de travail. La finalisation conserve `summary=None`, omet le paramètre dans le rendu et n’exige ni ratio, ni expression de force, ni attestations stylistiques de résumé.
+
 ## 2. Revue à compléter
 
 La page Debate reçoit un titre canonique, `topic`, `complete-topic`, des sections, des keywords, une introduction structurée, des articles Wikipédia anglais vérifiés et une documentation classée selon sa contribution réelle, sans quota par paramètre. Une source couvrant les deux positions est placée dans la rubrique neutre.
 
-Chaque argument reçoit un titre canonique et un displayed title idiomatiques, des sections exactement équivalentes aux rubriques françaises, des keywords issus du vocabulaire bilingue, un summary substantiellement équivalent et une documentation anglaise adaptée. Le ratio de longueur anglais/français doit rester compris entre 0,60 et 1,45. La traduction vérifie explicitement la polarité du raisonnement : le titre seul ne suffit pas lorsqu'il peut être ambigu ; le summary français, les citations, justifications et objections disponibles servent à confirmer si l'argument soutient ou combat la thèse parente.
+Chaque argument reçoit un titre canonique et un displayed title idiomatiques, des sections exactement équivalentes aux rubriques françaises, des keywords issus du vocabulaire bilingue et une documentation anglaise adaptée. Lorsqu’un summary français existe, son équivalent anglais doit être substantiellement équivalent et son ratio de longueur anglais/français doit rester compris entre 0,60 et 1,45. Lorsqu’il est historiquement absent et attesté comme tel, aucun summary anglais n’est créé et aucun ratio n’est calculé. La traduction vérifie explicitement la polarité du raisonnement : le titre seul ne suffit pas lorsqu'il peut être ambigu ; le summary français lorsqu’il existe, les citations, justifications et objections disponibles servent à confirmer si l'argument soutient ou combat la thèse parente.
 
 Les relations, occurrences, orientations et profondeurs sont linguistiquement neutres : elles ne peuvent pas être modifiées pendant cette phase.
 
@@ -3370,7 +3410,7 @@ Chaque page anglaise fait en outre l'objet d'une **recherche indépendante de no
 
 Chaque modèle `{{Citation}}` français importé est inventorié avec un identifiant stable. La projection anglaise utilise `{{Quote}}` et traduit obligatoirement tous les noms de paramètres selon le contrat du wiki anglais : `citation→quote`, `auteurs→authors`, `ouvrage→work`, `numéro→issue`, `localisation→location`, `édition→publisher`, `lieu→place`, `lien→link` et `avertissements-citation→warnings`; les noms `article`, `volume`, `page` et `date` sont identiques dans les deux langues.
 
-Seules les valeurs de `quote` et de `date` peuvent être traduites. Les valeurs de `authors`, `article`, `work`, `volume`, `issue`, `page`, `location`, `publisher`, `place` et `link` sont reprises exactement. `warnings` reçoit toujours `Citation traduite par IA`, après un avertissement préexistant avec le séparateur exact `, `. La date traduite doit désigner la même date ; une année seule reste inchangée. Un paramètre français sans équivalent anglais déclaré bloque la finalisation.
+Seules les valeurs de `quote` et de `date` peuvent être traduites. Les valeurs de `authors`, `article`, `work`, `volume`, `issue`, `page`, `location`, `publisher`, `place` et `link` sont reprises exactement. `warnings` reçoit toujours `Quote translated by AI`, après un avertissement préexistant avec le séparateur exact `, `. La date traduite doit désigner la même date ; une année seule reste inchangée. Un paramètre français sans équivalent anglais déclaré bloque la finalisation.
 
 ## 3. Finalisation
 
@@ -3390,7 +3430,7 @@ La finalisation vérifie notamment :
 - la correspondance des sections avec les rubriques françaises ;
 - la correspondance des keywords avec le vocabulaire contrôlé ;
 - la limite de 25 % pour un même jeu exact de keywords ;
-- l’équivalence substantielle des introductions et summaries ;
+- l’équivalence substantielle des introductions et des summaries lorsqu’ils existent, ou la préservation attestée de leur absence historique ;
 - la couverture exacte des citations françaises, la préservation de leurs paramètres, l’équivalence des dates et l’avertissement de traduction ;
 - la langue et la vérification des sources anglaises ;
 - l’absence de doublon documentaire entre orientations et l’attribution des vidéos YouTube ;
@@ -3429,4 +3469,4 @@ Une revue de traduction validée remplace `translation_status.en=deferred` par `
 
 ## Noms consacrés des arguments anglais
 
-Un `name=` anglais n’est jamais obtenu par simple traduction d’un `nom=` français. Pour chaque page Argument anglaise nouvelle, la revue recherche séparément l’appellation réellement employée dans la littérature anglophone. Le résultat par défaut reste l’absence de nom ; une valeur n’est verrouillée que si la littérature désigne le même raisonnement sous cette appellation. L'existence d'un `nom=` français sert uniquement de piste pour les requêtes. Une traduction anglaise plausible mais non attestée ne doit jamais être inscrite dans `name=`.
+Un `name=` anglais n’est jamais obtenu par simple traduction d’un `nom=` français. Pour chaque page Argument anglaise nouvelle, la revue recherche séparément l’appellation réellement employée dans la littérature anglophone. Elle compare les variantes attestées et ne normalise pas leur construction (`X argument`, `Argument from X`, possessif, etc.). `same_reasoning_confirmed` signifie aussi **même portée** : un nom propre à une sous-variante, à un auteur ou à une étape du raisonnement ne convient pas à une page plus large. Le résultat par défaut reste l’absence de nom ; une valeur n’est verrouillée que si la littérature désigne exactement le raisonnement de la page sous cette appellation. L'existence d'un `nom=` français sert uniquement de piste pour les requêtes. Une traduction anglaise plausible mais non attestée ne doit jamais être inscrite dans `name=`.

@@ -1,3 +1,9 @@
+## 0.4.58
+
+- alignement sur la norme 1.2.55 ;
+- copie normative mise à jour pour les unités de revue adaptatives et les règles renforcées de `name=` ;
+- maintien de tous les contrôles existants et de la compatibilité des formats antérieurs.
+
 ## 0.4.57 — 7 août 2026
 
 - applique cumulativement les règles éditoriales actives, sans garde sur `consolidated_norm` ;

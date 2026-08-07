@@ -4,4 +4,4 @@ Cette révision formalise le protocole de traduction anglaise après validation 
 
 `name=` anglais fait toujours l'objet d'une recherche propre à la littérature anglophone. Les références françaises ne sont jamais traduites comme notices : seule une version anglaise réellement publiée et vérifiée peut être projetée, avec ses propres métadonnées, et de nouvelles références anglophones sont recherchées indépendamment.
 
-Le contrat spécial `Citation`→`Quote` reste inchangé : seules les valeurs de `quote` et `date` sont traduites, les autres valeurs sont préservées et `Citation traduite par IA` est ajouté à `warnings`.
+Le contrat spécial `Citation`→`Quote` reste inchangé : seules les valeurs de `quote` et `date` sont traduites, les autres valeurs sont préservées et `Quote translated by AI` est ajouté à `warnings`.

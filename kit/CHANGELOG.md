@@ -1,3 +1,10 @@
+## 2.15.32
+
+- alignement sur la norme 1.2.55 et le validateur 0.4.58 ;
+- unités internes de revue anglaise de 10 arguments par défaut, 5–8 pour les groupes denses, avec agrégation possible dans Work ;
+- règle `name=` renforcée : forme anglaise attestée non normalisée et portée exacte ;
+- correction du workflow de traduction pour conserver les résumés historiquement absents au lieu d'en exiger un artificiellement.
+
 ## 2.15.31 — 7 août 2026
 
 - supprime l’usage des révisions normatives comme feature flags éditoriaux ;
@@ -313,7 +320,7 @@
 - ajout direct et unique de `{{Lien interlangue}}` dans chaque page française ;
 - absence garantie de lien interlangue dans les pages anglaises ;
 - rendu des citations françaises et anglaises depuis les verrous ;
-- conservation exacte des paramètres documentaires et contrôle de `Citation traduite par IA` ;
+- conservation exacte des paramètres documentaires et contrôle de `Quote translated by AI` ;
 - verrouillage du graphe, génération des manifestes, lots et agrégats, puis validation bilingue complète.
 
 
@@ -323,8 +330,8 @@
 - conservation exacte de tous les paramètres documentaires et de leur ordre ;
 - traduction contrôlée limitée au texte de `citation` et à la forme linguistique de `date` ;
 - vérification que la date anglaise désigne exactement la même date que la date française ;
-- ajout déterministe de `Citation traduite par IA` dans `avertissements-citation` ;
-- concaténation canonique `, Citation traduite par IA` après tout avertissement préexistant, sans doublon ;
+- ajout déterministe de `Quote translated by AI` dans `avertissements-citation` ;
+- concaténation canonique `, Quote translated by AI` après tout avertissement préexistant, sans doublon ;
 - scellement des citations traduites dans `en_content_lock.json` et du contrat de rendu dans `en_translation_lock.json` ;
 - aucune génération de page finale et aucune modification des paramètres source.
 

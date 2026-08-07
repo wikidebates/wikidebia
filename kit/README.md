@@ -1,13 +1,15 @@
-# Wikidéb’IA — Kit 2.15.31
+# Wikidéb’IA — Kit 2.15.32
 
-Le kit 2.15.31 applique l’architecture cumulative 1.2.54 tout en conservant la traduction anglaise 1.2.53 par lots : page Debate en lot autonome, puis lots Argument de 20 pages par défaut (25 maximum, 10–15 lorsque la documentation ou les citations sont denses), avec passe globale inter-lots avant finalisation.
+Le kit 2.15.32 applique la norme 1.2.55. La page Debate reste un lot autonome ; les Arguments sont relus en unités internes de 10 pages par défaut, réduites à 5–8 pour les groupes denses. Une livraison Work peut agréger plusieurs unités déjà closes sans transformer les exemples ou checklists en patrons mécaniques.
 
-La phase anglaise recherche séparément les appellations consacrées dans la littérature anglophone et n'obtient jamais `name=` par traduction mécanique de `nom=`. Les références françaises ne sont pas traduites : une version anglaise réelle doit être trouvée et citée avec ses propres métadonnées, et de nouvelles références anglophones sont recherchées indépendamment. Le contrat `Citation`→`Quote` reste inchangé : seules les valeurs `quote` et `date` sont traduites et `Citation traduite par IA` est ajouté.
+La phase anglaise recherche séparément les appellations consacrées dans la littérature anglophone et n'obtient jamais `name=` par traduction mécanique de `nom=`. Elle compare les formes concurrentes sans normaliser artificiellement `Argument from X`, `X argument` ou les possessifs, et refuse un nom dont la portée est plus étroite que celle de la page. Les références françaises ne sont pas traduites : une version anglaise réelle doit être trouvée et citée avec ses propres métadonnées, et de nouvelles références anglophones sont recherchées indépendamment. Le contrat `Citation`→`Quote` reste inchangé : seules les valeurs `quote` et `date` sont traduites et `Quote translated by AI` est ajouté.
 
 La reprise distante applique cette exception uniquement à `nom` / `name`. Tous les autres paramètres historiques protégés conservent les garanties de la révision 2.15.27.
 
 Correctif actif de traduction : le contenu d'une éventuelle page anglaise cible existante est ignoré pendant la production éditoriale ; les valeurs françaises de progression et d'avertissement sont traduites selon la table officielle sans défaut de création ; `related-debates` ne reprend que les relations françaises dont la page anglaise existe ; chaque lot reçoit une seconde passe FR→EN.
 
-Kit aligné sur la norme 1.2.54 et le validateur 0.4.57.
+Kit aligné sur la norme 1.2.55 et le validateur 0.4.58.
+
+Lorsqu'un résumé français est historiquement absent et attesté, le workflow anglais conserve cette absence et n'exige aucun `summary=` de remplacement.
 
 Les numéros de norme et les anciens champs de révision ne sont plus des feature flags éditoriaux ; ils servent uniquement à la compatibilité technique et à la traçabilité.

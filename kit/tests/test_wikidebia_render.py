@@ -130,7 +130,7 @@ def test_render_emits_translated_citations_without_mutating_source_metadata(tmp_
     assert "|authors=Harry G. Frankfurt" in en
     assert "|article=Freedom of the Will and the Concept of a Person" in en
     assert "|work=The Importance of What We Care About" in en
-    assert "|warnings=Texte abrégé, Citation traduite par IA" in en
+    assert "|warnings=Texte abrégé, Quote translated by AI" in en
     for forbidden in ("|citation=", "|auteurs=", "|ouvrage=", "|numéro=", "|localisation=", "|édition=", "|lieu=", "|lien=", "|avertissements-citation="):
         assert forbidden not in en
     assert "|quotes={{Quote" in en

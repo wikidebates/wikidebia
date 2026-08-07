@@ -549,8 +549,8 @@ def _validate_citations_against_locks(ctx: PackageContext, tmpl: Template, rel: 
             warning_name = 'warnings' if current_contract else 'avertissements-citation'
             warning_values = [value for name, value in actual_params if name == warning_name]
             expected_warning = str(expected.get(warning_name) or '').strip()
-            if warning_values != [expected_warning] or expected_warning.count('Citation traduite par IA') != 1:
-                ctx.report.error('WDV-MWK-021', "La citation anglaise doit contenir une unique mention 'Citation traduite par IA', ajoutée avec le séparateur ', ' après tout avertissement existant", path=rel, pointer=f'{parameter}/{index}', details={'expected': expected_warning, 'actual': warning_values, 'parameter': warning_name})
+            if warning_values != [expected_warning] or expected_warning.count('Quote translated by AI') != 1:
+                ctx.report.error('WDV-MWK-021', "La citation anglaise doit contenir une unique mention 'Quote translated by AI', ajoutée avec le séparateur ', ' après tout avertissement existant", path=rel, pointer=f'{parameter}/{index}', details={'expected': expected_warning, 'actual': warning_values, 'parameter': warning_name})
             source = expected.get('source') or {}
             source_params = _parameter_pairs(source.get('source_parameters'))
             if current_contract:

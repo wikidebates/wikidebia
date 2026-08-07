@@ -327,12 +327,12 @@ def test_finalize_translation_preserves_citation_metadata_and_appends_warning(tm
     assert output["article"] == "Freedom of the Will and the Concept of a Person"
     assert output["quote"] == "Freedom consists in wanting what one wants."
     assert output["date"] == "25 June 2012"
-    assert output["warnings"] == "Texte abrégé, Citation traduite par IA"
+    assert output["warnings"] == "Texte abrégé, Quote translated by AI"
     assert a["output_template"] == "Quote"
     assert all(row["name"] not in {"citation", "auteurs", "ouvrage", "numéro", "localisation", "édition", "lieu", "lien", "avertissements-citation"} for row in a["parameters"])
     b = by_id["A0002"]["citations"][0]
     output_b = {row["name"]: row["value"] for row in b["parameters"]}
-    assert output_b["warnings"] == "Citation traduite par IA"
+    assert output_b["warnings"] == "Quote translated by AI"
     assert by_id["A0004"]["citations"][0]["date"] == "1971"
 
 
@@ -473,3 +473,31 @@ def test_finalize_translation_rejects_missing_stakes_subsection(tmp_path: Path):
 
 def test_english_argument_name_is_a_preserved_import_parameter():
     assert 'name' in translation.EN_PAGE_LIFECYCLE_PARAMETERS['argument']
+
+
+def test_validate_argument_preserves_historical_absent_summary(monkeypatch):
+    row = {
+        "status": "approved", "page_origin": "new", "preserved_parameters": {},
+        "french": {"metadata": {"rubriques": ["Philosophie"], "keywords": ["cause", "existence"]}, "content": {"summary": None, "citations": []}},
+        "canonical_title": "A complete argument is valid", "displayed_title": "A complete argument is valid",
+        "sections": ["Philosophy"], "keywords": ["cause", "existence"], "summary": "",
+        "citations": [], "sources": {"bibliography": [], "webliography": [], "videography": []},
+        "argument_name_search_queries": ["complete argument name", "complete argument terminology"],
+        "argument_name_search_scope_note": "Academic English terminology was reviewed.",
+        "argument_name_outcome": "none", "argument_name": None, "argument_name_evidence": [],
+        "argument_name_same_reasoning_confirmed": False, "argument_name_non_invented_label_confirmed": True,
+        "argument_name_language_fit_confirmed": True, "argument_name_rationale": "No conventional name is sufficiently established.",
+        "metadata_equivalent_to_french": True, "summary_equivalent_to_french": True,
+        "sections_exactly_mapped": True, "keywords_exactly_mapped": True, "keywords_order_preserved_by_relevance": True,
+        "title_is_idiomatic": True, "displayed_title_is_complete_proposition": True,
+        "displayed_title_concision_reviewed": True, "displayed_title_semantically_equivalent": True,
+        "displayed_title_improves_readability_when_distinct": True, "summary_ratio_reviewed": False,
+        "forceful_expression": "", "quantitative_claims_verified": False, "quantitative_claims_note": "",
+        "documentation_rationale": "No English documentary source is selected for this test page.",
+        "reviewer": "Reviewer", "reviewed_at": "2026-08-07T22:00:00+02:00",
+        "note": "French source summary is historically absent and must remain absent in English.",
+    }
+    result = translation._validate_argument({"id": "A9999", "translation": row}, {"cause": "cause", "existence": "existence"}, {})
+    assert result["summary"] is None
+    assert result["summary_length_ratio"] is None
+    assert result["forceful_expression"] is None

@@ -6,7 +6,7 @@
 **Remplace comme sources actives séparées :** révision 1.0.6, correctif du 23 juillet 2026 et décisions correctives du 25 juillet 2026. Ces documents restent conservés dans `history/` à titre de provenance.
 
 
-> **Révision 1.2.29.** Cette révision corrective remplace uniquement la désignation erronée du modèle anglais introduite en 1.2.28 : la citation française reste rendue avec `{{Citation}}`, tandis que sa projection anglaise est rendue avec `{{Quote}}`. Les noms, l’ordre et les valeurs des paramètres documentaires français restent conservés ; seules les valeurs de `citation` et de `date` sont traduites, et `avertissements-citation` reçoit la mention canonique `Citation traduite par IA`. Toutes les autres règles 1.2.28 restent actives.
+> **Révision 1.2.29.** Cette révision corrective remplace uniquement la désignation erronée du modèle anglais introduite en 1.2.28 : la citation française reste rendue avec `{{Citation}}`, tandis que sa projection anglaise est rendue avec `{{Quote}}`. Les noms, l’ordre et les valeurs des paramètres documentaires français restent conservés ; seules les valeurs de `citation` et de `date` sont traduites, et `avertissements-citation` reçoit la mention canonique `Quote translated by AI`. Toutes les autres règles 1.2.28 restent actives.
 
 ## 1. Autorité et priorité
 
@@ -472,7 +472,7 @@ La présence des pages anglaises dans le manifeste de pages n’est pas une cond
 |lieu=
 |date=
 |lien=
-|avertissements-citation=Citation traduite par IA
+|avertissements-citation=Quote translated by AI
 }}
 |bibliography={{Bibliographical reference
 |authors=
@@ -905,8 +905,8 @@ Les citations d’une page Argument française sont rendues dans `citations=` so
 1. tous les paramètres documentaires de la citation française, notamment `auteurs`, `ouvrage`, `article`, `édition`, `volume`, `numéro`, `page`, `localisation`, `lieu` et `lien`, sont conservés à l’identique et dans le même ordre ;
 2. seul le contenu de `citation` est traduit ;
 3. `date` est traduit dans la langue anglaise sans changer la date représentée ; une année seule reste inchangée ;
-4. le paramètre `avertissements-citation` contient la mention exacte `Citation traduite par IA` ;
-5. si un avertissement existe déjà, la mention est ajoutée après sa valeur avec exactement une virgule et une espace : `Avertissement existant, Citation traduite par IA` ;
+4. le paramètre `avertissements-citation` contient la mention exacte `Quote translated by AI` ;
+5. si un avertissement existe déjà, la mention est ajoutée après sa valeur avec exactement une virgule et une espace : `Avertissement existant, Quote translated by AI` ;
 6. la mention n’est jamais dupliquée ; un paramètre vide est traité comme absent.
 
 Le registre de traduction, les verrous de contenu, le rendu et le validateur comparent la liste ordonnée complète des paramètres. Toute modification d’un paramètre documentaire, toute date différente, toute citation omise ou ajoutée, tout avertissement absent, dupliqué ou mal séparé bloque la validation.
@@ -925,4 +925,4 @@ Lorsqu’un ancien wikicode importé utilise le paramètre générique `avertiss
 
 Le nom du modèle est localisé selon la langue de la page : `{{Citation}}` en français et `{{Quote}}` en anglais. Cette localisation du nom du modèle ne traduit ni ne renomme ses paramètres documentaires verrouillés. Dans `quotes=`, le modèle `{{Quote}}` conserve donc les mêmes noms de paramètres que la citation française (`citation`, `auteurs`, `article`, `ouvrage`, `volume`, `numéro`, `page`, `localisation`, `édition`, `lieu`, `date`, `lien` et `avertissements-citation`, ainsi que tout autre paramètre source verrouillé).
 
-Seules les valeurs de `citation` et de `date` peuvent différer conformément à la traduction approuvée. Tous les autres noms, valeurs et positions restent identiques. `avertissements-citation` contient une unique mention `Citation traduite par IA`, ajoutée avec le séparateur exact `, ` lorsqu’un avertissement préexiste.
+Seules les valeurs de `citation` et de `date` peuvent différer conformément à la traduction approuvée. Tous les autres noms, valeurs et positions restent identiques. `avertissements-citation` contient une unique mention `Quote translated by AI`, ajoutée avec le séparateur exact `, ` lorsqu’un avertissement préexiste.

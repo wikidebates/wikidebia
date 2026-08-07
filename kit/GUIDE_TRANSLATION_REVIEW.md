@@ -1,4 +1,4 @@
-# Guide de traduction anglaise contrôlée — Kit 2.15.31
+# Guide de traduction anglaise contrôlée — Kit 2.15.32
 
 > Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 
@@ -9,7 +9,7 @@ La traduction anglaise commence uniquement après le verrouillage complet des m�
 La traduction est une adaptation idiomatique et documentaire, pas une substitution mot à mot. Elle est effectuée dans l'ordre suivant :
 
 1. **Lot Debate** : la page `Debate` complète constitue un lot autonome, avec son introduction, ses titres, ses sections, ses keywords, ses liens Wikipédia anglais et toute sa documentation anglaise.
-2. **Lots Argument** : 20 pages Argument par lot par défaut, jamais plus de 25. Réduire à 10–15 pages lorsque le groupe comporte beaucoup de citations, de références, de recherches terminologiques ou de noms consacrés à vérifier.
+2. **Unités de revue Argument** : 10 pages par défaut. Réduire à 5–8 lorsque le groupe comporte beaucoup de citations, de références, de recherches terminologiques, de noms consacrés à vérifier ou d’anomalies de préservation. Une livraison Work peut agréger plusieurs unités closes ; ne pas fusionner leur revue.
 3. Une page Argument est entièrement achevée dans le même lot : canonical title, displayed title, summary, sections, keywords, `name=` éventuel, citations et références.
 4. Chaque lot est relu et clos avant le suivant. Il faut notamment vérifier le sens et l'orientation de chaque argument à partir du summary français, des citations, justifications et objections disponibles, afin d'éviter une inversion pour/contre.
 5. Après le dernier lot, effectuer une passe globale inter-lots sur la terminologie, les titres, le vocabulaire bilingue, les `name=`, les références, les citations et la parité du graphe avant `--finalize`.
@@ -49,11 +49,19 @@ La commande exige un workspace au statut `fr_content_applied` et une préparatio
 
 Le registre couvre la page Debate, chaque argument actif, le vocabulaire contrôlé français–anglais et les sources anglaises. Aucune traduction automatique n’est appliquée.
 
+### Contraintes, pas patron mécanique
+
+Les exemples, lots déjà validés et champs de revue sont des garde-fous. Ils ne doivent jamais servir de modèle lexical ou rhétorique à reproduire automatiquement. Chaque argument est interprété à partir de sa page française et des sources pertinentes.
+
+### Résumé historiquement absent
+
+Si le résumé français est absent et cette absence est attestée par la source verrouillée, laisser `summary` vide dans la fiche de travail. La finalisation conserve `summary=None`, omet le paramètre dans le rendu et n’exige ni ratio, ni expression de force, ni attestations stylistiques de résumé.
+
 ## 2. Revue à compléter
 
 La page Debate reçoit un titre canonique, `topic`, `complete-topic`, des sections, des keywords, une introduction structurée, des articles Wikipédia anglais vérifiés et une documentation classée selon sa contribution réelle, sans quota par paramètre. Une source couvrant les deux positions est placée dans la rubrique neutre.
 
-Chaque argument reçoit un titre canonique et un displayed title idiomatiques, des sections exactement équivalentes aux rubriques françaises, des keywords issus du vocabulaire bilingue, un summary substantiellement équivalent et une documentation anglaise adaptée. Le ratio de longueur anglais/français doit rester compris entre 0,60 et 1,45. La traduction vérifie explicitement la polarité du raisonnement : le titre seul ne suffit pas lorsqu'il peut être ambigu ; le summary français, les citations, justifications et objections disponibles servent à confirmer si l'argument soutient ou combat la thèse parente.
+Chaque argument reçoit un titre canonique et un displayed title idiomatiques, des sections exactement équivalentes aux rubriques françaises, des keywords issus du vocabulaire bilingue et une documentation anglaise adaptée. Lorsqu’un summary français existe, son équivalent anglais doit être substantiellement équivalent et son ratio de longueur anglais/français doit rester compris entre 0,60 et 1,45. Lorsqu’il est historiquement absent et attesté comme tel, aucun summary anglais n’est créé et aucun ratio n’est calculé. La traduction vérifie explicitement la polarité du raisonnement : le titre seul ne suffit pas lorsqu'il peut être ambigu ; le summary français lorsqu’il existe, les citations, justifications et objections disponibles servent à confirmer si l'argument soutient ou combat la thèse parente.
 
 Les relations, occurrences, orientations et profondeurs sont linguistiquement neutres : elles ne peuvent pas être modifiées pendant cette phase.
 
@@ -69,7 +77,7 @@ Chaque page anglaise fait en outre l'objet d'une **recherche indépendante de no
 
 Chaque modèle `{{Citation}}` français importé est inventorié avec un identifiant stable. La projection anglaise utilise `{{Quote}}` et traduit obligatoirement tous les noms de paramètres selon le contrat du wiki anglais : `citation→quote`, `auteurs→authors`, `ouvrage→work`, `numéro→issue`, `localisation→location`, `édition→publisher`, `lieu→place`, `lien→link` et `avertissements-citation→warnings`; les noms `article`, `volume`, `page` et `date` sont identiques dans les deux langues.
 
-Seules les valeurs de `quote` et de `date` peuvent être traduites. Les valeurs de `authors`, `article`, `work`, `volume`, `issue`, `page`, `location`, `publisher`, `place` et `link` sont reprises exactement. `warnings` reçoit toujours `Citation traduite par IA`, après un avertissement préexistant avec le séparateur exact `, `. La date traduite doit désigner la même date ; une année seule reste inchangée. Un paramètre français sans équivalent anglais déclaré bloque la finalisation.
+Seules les valeurs de `quote` et de `date` peuvent être traduites. Les valeurs de `authors`, `article`, `work`, `volume`, `issue`, `page`, `location`, `publisher`, `place` et `link` sont reprises exactement. `warnings` reçoit toujours `Quote translated by AI`, après un avertissement préexistant avec le séparateur exact `, `. La date traduite doit désigner la même date ; une année seule reste inchangée. Un paramètre français sans équivalent anglais déclaré bloque la finalisation.
 
 ## 3. Finalisation
 
@@ -89,7 +97,7 @@ La finalisation vérifie notamment :
 - la correspondance des sections avec les rubriques françaises ;
 - la correspondance des keywords avec le vocabulaire contrôlé ;
 - la limite de 25 % pour un même jeu exact de keywords ;
-- l’équivalence substantielle des introductions et summaries ;
+- l’équivalence substantielle des introductions et des summaries lorsqu’ils existent, ou la préservation attestée de leur absence historique ;
 - la couverture exacte des citations françaises, la préservation de leurs paramètres, l’équivalence des dates et l’avertissement de traduction ;
 - la langue et la vérification des sources anglaises ;
 - l’absence de doublon documentaire entre orientations et l’attribution des vidéos YouTube ;
@@ -128,4 +136,4 @@ Une revue de traduction validée remplace `translation_status.en=deferred` par `
 
 ## Noms consacrés des arguments anglais
 
-Un `name=` anglais n’est jamais obtenu par simple traduction d’un `nom=` français. Pour chaque page Argument anglaise nouvelle, la revue recherche séparément l’appellation réellement employée dans la littérature anglophone. Le résultat par défaut reste l’absence de nom ; une valeur n’est verrouillée que si la littérature désigne le même raisonnement sous cette appellation. L'existence d'un `nom=` français sert uniquement de piste pour les requêtes. Une traduction anglaise plausible mais non attestée ne doit jamais être inscrite dans `name=`.
+Un `name=` anglais n’est jamais obtenu par simple traduction d’un `nom=` français. Pour chaque page Argument anglaise nouvelle, la revue recherche séparément l’appellation réellement employée dans la littérature anglophone. Elle compare les variantes attestées et ne normalise pas leur construction (`X argument`, `Argument from X`, possessif, etc.). `same_reasoning_confirmed` signifie aussi **même portée** : un nom propre à une sous-variante, à un auteur ou à une étape du raisonnement ne convient pas à une page plus large. Le résultat par défaut reste l’absence de nom ; une valeur n’est verrouillée que si la littérature désigne exactement le raisonnement de la page sous cette appellation. L'existence d'un `nom=` français sert uniquement de piste pour les requêtes. Une traduction anglaise plausible mais non attestée ne doit jamais être inscrite dans `name=`.

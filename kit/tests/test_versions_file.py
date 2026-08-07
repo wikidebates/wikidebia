@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_versions_file_has_only_the_three_functional_versions():
     versions = json.loads((ROOT / "VERSIONS.json").read_text(encoding="utf-8"))
-    assert versions == {"norm": "1.2.54", "validator": "0.4.57", "kit": "2.15.31"}
+    assert versions == {"norm": "1.2.55", "validator": "0.4.58", "kit": "2.15.32"}
 
     forbidden = (
         "pour les paquets 1.2.",
