@@ -22,3 +22,25 @@ def test_historical_direct_entrypoints_remain_executable():
     for rel in ("scripts/wikidebia_graph_extract.py", "scripts/wikidebia_corpus_init.py"):
         mode = stat.S_IMODE((ROOT / rel).stat().st_mode)
         assert mode & 0o111, rel
+
+
+def test_changelog_release_headings_are_unique_and_migration_headings_match_filenames():
+    import re
+    root = Path(__file__).resolve().parents[1]
+    changelog = root / "CHANGELOG.md"
+    versions = []
+    for line in changelog.read_text(encoding="utf-8").splitlines():
+        match = re.match(r"^##\s+(\d+\.\d+\.\d+)\b", line)
+        if match:
+            versions.append(match.group(1))
+    assert len(versions) == len(set(versions))
+    numeric = [tuple(int(part) for part in version.split(".")) for version in versions]
+    assert numeric == sorted(numeric, reverse=True)
+
+    mismatches = []
+    for path in sorted(root.glob("MIGRATION_*.md")):
+        expected = path.stem.removeprefix("MIGRATION_")
+        heading = next((line for line in path.read_text(encoding="utf-8").splitlines() if line.startswith("# ")), "")
+        if expected not in heading:
+            mismatches.append((path.name, heading))
+    assert mismatches == []

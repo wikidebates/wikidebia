@@ -97,6 +97,21 @@ if manifest_path.is_file():
             )
             if not report_match or int(declared_test_count) != int(report_match.group(1)):
                 errors.append("nombre de tests déclaré divergent dans le manifeste")
+        self_audit_report_path = ROOT / "docs/SELF_AUDIT_REPORT.txt"
+        if self_audit_report_path.is_file():
+            report_text = self_audit_report_path.read_text(encoding="utf-8")
+            current_versions = json.loads((ROOT / "VERSIONS.json").read_text(encoding="utf-8"))
+            expected_validator = str(current_versions.get("validator") or "")
+            expected_norm = str(current_versions.get("norm") or "")
+            validator_match = re.search(r"Wikidéb’IA Validator\s+([^\s]+)\s+— auto-audit", report_text)
+            norm_match = re.search(r"Norme active unique\s*:\s*([^\s]+)", report_text)
+            tests_match = re.search(r"Tests\s*:\s*(\d+)\s+réussis", report_text)
+            if not validator_match or validator_match.group(1) != expected_validator:
+                errors.append("version périmée dans SELF_AUDIT_REPORT.txt")
+            if not norm_match or norm_match.group(1) != expected_norm:
+                errors.append("norme périmée dans SELF_AUDIT_REPORT.txt")
+            if declared_test_count is not None and (not tests_match or int(tests_match.group(1)) != int(declared_test_count)):
+                errors.append("nombre de tests périmé dans SELF_AUDIT_REPORT.txt")
         actual = {
             path.relative_to(ROOT).as_posix()
             for path in ROOT.rglob("*")

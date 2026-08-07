@@ -165,7 +165,7 @@
 - suppression d’une page historique non marquée autorisée seulement par migration explicite, état distant exact et absence d’autre propriétaire connu ;
 - maintien de la traduction anglaise différée et de toutes les protections contre les modifications humaines.
 
-# 1.2.35 — 5 août 2026
+## 1.2.35 — 5 août 2026
 
 - le statut anglais `deferred` devient une déclaration opérationnelle rétrocompatible avec tous les corpus historiques 1.2.x pris en charge, sans migration de leur norme éditoriale ;
 - ajout de `creation_date_policy=per_page_preserved` pour conserver les dates immuables page par page ;
@@ -205,7 +205,7 @@
 - suppression de toute cible, limite et alerte numérique de profondeur ;
 - `maximum_observed` maintenu comme métrique descriptive.
 
-# 1.2.30 — 4 août 2026
+## 1.2.30 — 4 août 2026
 
 - localisation complète du modèle anglais `{{Quote}}` et de tous ses paramètres ;
 - correspondances canoniques `citation→quote`, `auteurs→authors`, `ouvrage→work`, `numéro→issue`, `localisation→location`, `édition→publisher`, `lieu→place`, `lien→link` et `avertissements-citation→warnings` ;
@@ -213,28 +213,26 @@
 - blocage de tout paramètre français ou sans équivalent déclaré dans une page anglaise ;
 - alignement recommandé : validateur 0.4.32 et kit 2.15.3.
 
-# 1.2.29 — 4 août 2026
+## 1.2.29 — 4 août 2026
 
 - restauration du nom anglais `{{Quote}}` dans `quotes=` ;
 - conservation des noms français de paramètres verrouillés à l’intérieur du modèle anglais ;
 - traduction limitée aux valeurs de `citation` et de `date` ;
 - aucune suppression ni modification des fonctions introduites avant cette correction.
 
-# 1.2.27 — 3 août 2026
+## 1.2.28 — 3 août 2026
 
-- rendu déterministe des pages françaises et anglaises depuis les verrous éditoriaux ;
-- ajout obligatoire du lien interlangue direct dans chaque page française ;
-- rendu des citations et traduction limitée à `citation` et `date` ;
-- conservation exacte des paramètres documentaires et ajout canonique de `Citation traduite par IA`.
-
-# Changelog normatif
+- correction documentaire de 1.2.27 sans modification du graphe ni du protocole distant ;
+- suppression de l’ancienne interdiction contradictoire des citations dans les documents spécialisés ;
+- maintien de `{{Citation}}` dans `quotes=` avec les mêmes paramètres documentaires français ;
+- revérification du rendu des citations lors de la migration.
 
 ## 1.2.27 — 3 août 2026
 
 - rendu déterministe bilingue depuis les verrous ;
 - lien interlangue direct obligatoire dans chaque page française ;
 - traduction sélective des citations et avertissement canonique ;
-- alignement recommandé : validateur 0.4.29 et kit 2.15.0.
+- alignement recommandé : validateur 0.4.29 et kit 2.10.0.
 
 ## 1.2.26 — 2 août 2026
 
@@ -267,6 +265,14 @@
 - ajout des exigences `ARG-035`, `DFR-047`, `DEN-008`, `MW-027`, `PRM-018` et `VAL-032` ;
 - alignement recommandé : validateur 0.4.26 et kit 2.2.11.
 
+
+## 1.2.23 — 2 août 2026
+
+- minuscule initiale harmonisée pour `sujet-complet` et `complete-topic` ;
+- préférence explicite pour un sujet nominal conventionnel ;
+- règles auteur/site/page étendues aux pages Argument et à la vidéographie, avec seconde recherche obligatoire en cas d’égalité auteur-site ;
+- résumé de modification distant simplifié en « Corrections » ;
+- compatibilité du fichier unique de mise à niveau renforcée.
 
 ## 1.2.22 — 1er août 2026
 
@@ -346,6 +352,13 @@
 - `manifest.debate_id` déclaré comme identité autoritative du corpus ;
 - compatibilité directe avec les anciennes archives portant des suffixes descriptifs ou une date.
 
+## 1.2.14 — 31 juillet 2026
+
+- correction de la contrainte 1.2.13 qui imposait l’égalité entre le nom du ZIP et `manifest.debate_id` ;
+- nom du ZIP réduit au rôle de sélecteur de fichier ;
+- `manifest.debate_id` maintenu comme identité autoritative du corpus ;
+- compatibilité directe avec les archives historiques dont le nom comporte un suffixe descriptif.
+
 ## 1.2.13 — 30 juillet 2026
 
 - dossier unique `incoming/` pour les archives de débats ;
@@ -353,8 +366,6 @@
 - sélection obligatoire par identifiant lorsqu’il y en a plusieurs ;
 - suppression de toute obligation de suffixe `release_ready` dans le nom du ZIP ;
 - correspondance bloquante entre `<identifiant>.zip` et `manifest.debate_id`.
-
-## 1.2.11 — 30 juillet 2026
 
 ## 1.2.12 — 30 juillet 2026
 
@@ -367,6 +378,7 @@
 - interdiction de conserver le chemin absolu de l’installation dans les fichiers persistants ;
 - alignement recommandé : validateur 0.4.12 et kit 2.1.12.
 
+## 1.2.11 — 30 juillet 2026
 
 - interdiction de tout saut de ligne ou espace entre deux modèles MediaWiki adjacents ;
 - forme canonique obligatoire `}}{{` ;
@@ -397,15 +409,6 @@
 - correction de la condition de schéma applicable aux paquets 1.2.7 et ultérieurs ;
 - renforcement de l’auto-audit pour empêcher ces régressions ;
 - aucune modification des exigences éditoriales 1.2.6.
-
-# Changelog normatif
-
-## 1.2.27 — 3 août 2026
-
-- rendu déterministe bilingue depuis les verrous ;
-- lien interlangue direct obligatoire dans chaque page française ;
-- traduction sélective des citations et avertissement canonique ;
-- alignement recommandé : validateur 0.4.29 et kit 2.10.0.
 
 ## 1.2.7 — 29 juillet 2026
 
@@ -514,12 +517,3 @@ Toutes les exigences 1.1.7 restent actives sauf contradiction explicite ci-dessu
 - migration sûre des pages déjà créées depuis l’état W10.R7.
 
 Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessus.
-
-
-## 1.2.23 — 2 août 2026
-
-- minuscule initiale harmonisée pour `sujet-complet` et `complete-topic` ;
-- préférence explicite pour un sujet nominal conventionnel ;
-- règles auteur/site/page étendues aux pages Argument et à la vidéographie, avec seconde recherche obligatoire en cas d’égalité auteur-site ;
-- résumé de modification distant simplifié en « Corrections » ;
-- compatibilité du fichier unique de mise à niveau renforcée.

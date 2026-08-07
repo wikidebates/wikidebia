@@ -1,6 +1,6 @@
-# Migration vers le kit 2.1.17
+# Migration vers le kit 2.1.16
 
-1. Remplacer le kit 2.1.15 par le kit 2.1.17 avec `./wikidebia update`.
+1. Remplacer le kit 2.1.15 par le kit 2.1.16 avec `./wikidebia update`.
 2. Le lanceur crée automatiquement `.venv/` lorsqu’il est absent ou inutilisable.
 3. Il installe automatiquement les dépendances déclarées dans `requirements-runtime.txt`, notamment Pywikibot.
 4. L’empreinte des exigences installées est conservée uniquement dans `.state/`, dossier exclu de Git.

@@ -69,6 +69,12 @@
 
 ## 2.15.23 — 6 août 2026
 
+- maintenance de rationalisation des sources après `./wikidebia upgrade` ;
+- conservation à la racine de `WIKIDEBIA_SOURCE_ACTIVE.md` et `WIKIDEBIA_SOURCE_PACKAGE_RECEIPT.json` comme seules documentations actives ;
+- archivage des anciens fichiers actifs séparés au lieu de leur régénération.
+
+## 2.15.22 — 6 août 2026
+
 - alignement sur la norme 1.2.46 et le validateur 0.4.49 ;
 - remplacement de `wikipedia_link_groups` par `specialized_term_inventory` comme mécanisme principal ;
 - inventaire obligatoire de chaque sous-partie et vérification de tous les liens rendus ;
@@ -91,9 +97,9 @@
 - exceptions de phrases complètes attestées par SHA-256 ;
 - tests de refus des notices ponctuées et d’acceptation des phrases attestées.
 
-## 2.15.20 — 6 août 2026
+## 2.15.19 — 6 août 2026
 
-- alignement sur la norme 1.2.44 et le validateur 0.4.47 ;
+- alignement sur la norme 1.2.43 et le validateur 0.4.46 ;
 - rétablissement obligatoire de la sous-partie `Enjeux du débat` dans les introductions françaises ;
 - contrôle d’au moins deux conséquences concrètes, de la densité minimale et de l’absence de catalogue argumentatif ;
 - génération des champs de revue propres à cette sous-partie et tests négatifs dédiés.
@@ -117,6 +123,20 @@
 - détection automatique de la portée lorsque `--scope` est omis ;
 - conservation des résumés obligatoires pour les pages nouvelles et de l’absence attestée pour les pages historiques ;
 - conservation de toutes les protections de plan signé, concurrence, staging et modification humaine.
+## 2.15.16 — 6 août 2026
+
+- alignement sur la norme 1.2.40 et le validateur 0.4.43 ;
+- prise en charge de `summary_provenance=historical_absent` pour les pages historiquement dépourvues de résumé ;
+- maintien du résumé obligatoire pour les pages nouvelles ;
+- vérification de l’inventaire source avant toute omission historique.
+
+## 2.15.15 — 6 août 2026
+
+- maintien de la norme 1.2.39 et alignement sur le validateur 0.4.42 ;
+- renforcement de la confrontation des verrous historiques à l’inventaire source attesté ;
+- préservation des champs historiques vérifiée avant toute planification ;
+- aucune modification des mécanismes distants de publication et de reprise.
+
 ## 2.15.14 — 6 août 2026
 
 - alignement sur la norme 1.2.39 et le validateur 0.4.41 ;
@@ -124,13 +144,6 @@
 - conservation contrôlée des résumés et du paramètre `initialisation` historiques ;
 - ajout d’un verrou machine empêchant toute modification hors périmètre des pages importées ;
 - compatibilité conservée avec les corpus 1.2.38 et les mécanismes distants antérieurs.
-
-## 2.15.14 — 6 août 2026
-
-- alignement sur la norme 1.2.39 et le validateur 0.4.41 ;
-- préservation des champs historiques vérifiée avant toute planification ;
-- prise en charge du profil indépendant d'atomicité des mots-clés ;
-- aucune modification des mécanismes distants de publication et de reprise.
 
 ## 2.15.13 — 6 août 2026
 
@@ -154,6 +167,12 @@
 - conservation de la date historique des pages existantes, sans exigence de date du corpus ou de date du jour ;
 - suppression contrôlée d’une page historique non marquée uniquement lorsqu’une migration explicite documente son retrait et que l’état distant est exact ;
 - maintien du blocage des modifications humaines et de la traduction anglaise différée.
+
+## 2.15.10 — 5 août 2026
+
+- reconnaissance de `translation_status.en=deferred` sur les corpus historiques de la famille 1.2.x sans migration de leur révision normative ;
+- portées françaises autorisées dans cet état ;
+- portées anglaises bloquées jusqu’au passage à `ready` ou `published`.
 
 ## 2.15.9 — 5 août 2026
 
@@ -521,7 +540,7 @@
 - ajout de `./wikidebia github-sync` pour reprendre un push après authentification ;
 - dépendances d’exécution bornées, dont Pywikibot 11.x.
 
-## 2.1.17 — 31 juillet 2026
+## 2.1.16 — 31 juillet 2026
 
 - création ou réparation automatique de `.venv/` par le lanceur ;
 - installation automatique de Pywikibot et des dépendances d’exécution ;
@@ -530,6 +549,12 @@
 - conservation de `.venv/` et de l’état d’installation hors de Git.
 
 ## 2.1.15 — 31 juillet 2026
+
+- conservation des champs historiques `normative_versions` lors de la reprise d’un corpus déjà produit ;
+- exécution du validateur installé et vérification de sa version réelle avant publication ;
+- compatibilité explicite avec une norme de corpus antérieure supportée, sans réécriture silencieuse de sa provenance.
+
+## 2.1.14 — 31 juillet 2026
 
 - correction de la sélection automatique d’un ZIP unique dont le nom diffère du `debate_id` interne ;
 - le nom du ZIP devient uniquement un sélecteur de fichier, tandis que `manifest.debate_id` reste l’identité autoritative du corpus ;

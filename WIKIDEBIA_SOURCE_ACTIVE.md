@@ -8,14 +8,14 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 1888722 octets — SHA-256 `ce14dd0516f03710c13ca6991cbd844595d2e46e86b037d952835bcc441bfc4d`
-- `wikidebia-validator.zip` — 2172782 octets — SHA-256 `627424bb15caaca401e6726b02aab46fe3352795d5781ceea920f6fe5083cdae`
-- `wikidebia-kit.zip` — 434546 octets — SHA-256 `a085cc194744daf6d3ee606f36a8ad7aab82a91ea6b9b306d3addf481f3888b8`
+- `wikidebia-normes.zip` — 1888834 octets — SHA-256 `ae5fc3b6a6d3e260b3580651d56eb8183ea3ce0a6f8c51113263faf69cb710f3`
+- `wikidebia-validator.zip` — 2173667 octets — SHA-256 `391a6ae7802e00be6ecdee26b285f7fafb3e4bb807083f07affab6267ff51e4c`
+- `wikidebia-kit.zip` — 435799 octets — SHA-256 `d4f1aa2d8b4f4c4285c6448099e63514230fb789645f5a4d48f8c7ec16ce4228`
 
 ## Norme consolidée active
 
 Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md`  
-SHA-256 : `ee24fd53f1726dae2c961e83972cb23b36308ac1170427437e79778b678c1593`
+SHA-256 : `0167c9d780605cdcaeddb995c57f1522cbb801970e0a25ea525f832114a84077`
 
 # Norme consolidée Wikidéb’IA 1.2.54
 
@@ -862,7 +862,7 @@ A documented claim.<ref>Jane Smith, “Article title”, ''Journal Name'', 25 Ju
 
 La règle introduite en 1.2.11 s’applique à tout wikicode de page produit : deux modèles immédiatement successifs sont accolés sans saut de ligne, espace ni tabulation entre la fermeture du premier et l’ouverture du second. La forme `}}` suivie d’un retour à la ligne puis de `{{` est interdite ; elle est remplacée par `}}{{`. Cette règle vaut en français et en anglais, dans les pages individuelles comme dans les agrégats. Elle ne change ni le contenu des modèles ni l’ordre des paramètres : elle impose seulement une jonction compacte et déterministe entre sous-modèles adjacents.
 
-Le validateur 0.4.13 signale cette anomalie avec `WDV-MWK-018`. Le kit 2.1.13 l’intercepte également avant la construction d’un plan de publication. Les paquets déclarant une norme antérieure conservent leur comportement historique jusqu’à migration explicite.
+Le validateur 0.4.13 et le kit 2.1.13 sont les versions historiques qui ont introduit les contrôles correspondants. Dans la norme cumulative courante, cette règle s’applique à tout corpus traité, indépendamment de la valeur déclarée de `consolidated_norm` ; cette valeur reste une métadonnée de provenance et de compatibilité de lecture, non un interrupteur éditorial.
 
 ## 12. Installation portable, publication intégrée et sauvegarde des sources
 
@@ -1409,7 +1409,7 @@ La norme active est cumulative. Sauf mention explicite dans la présente norme q
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `7d1b43e5c4bed8680afeafce350f94a0e3eed0c7833baf50d8f744a371afa331`
+SHA-256 : `47986f477de8bf662be8d1db2a4f9ebe76b8c03aeb3c7921d434c69717d4a389`
 
 ## 1.2.54 — 7 août 2026 — architecture cumulative des normes éditoriales
 
@@ -1578,7 +1578,7 @@ SHA-256 : `7d1b43e5c4bed8680afeafce350f94a0e3eed0c7833baf50d8f744a371afa331`
 - suppression d’une page historique non marquée autorisée seulement par migration explicite, état distant exact et absence d’autre propriétaire connu ;
 - maintien de la traduction anglaise différée et de toutes les protections contre les modifications humaines.
 
-# 1.2.35 — 5 août 2026
+## 1.2.35 — 5 août 2026
 
 - le statut anglais `deferred` devient une déclaration opérationnelle rétrocompatible avec tous les corpus historiques 1.2.x pris en charge, sans migration de leur norme éditoriale ;
 - ajout de `creation_date_policy=per_page_preserved` pour conserver les dates immuables page par page ;
@@ -1618,7 +1618,7 @@ SHA-256 : `7d1b43e5c4bed8680afeafce350f94a0e3eed0c7833baf50d8f744a371afa331`
 - suppression de toute cible, limite et alerte numérique de profondeur ;
 - `maximum_observed` maintenu comme métrique descriptive.
 
-# 1.2.30 — 4 août 2026
+## 1.2.30 — 4 août 2026
 
 - localisation complète du modèle anglais `{{Quote}}` et de tous ses paramètres ;
 - correspondances canoniques `citation→quote`, `auteurs→authors`, `ouvrage→work`, `numéro→issue`, `localisation→location`, `édition→publisher`, `lieu→place`, `lien→link` et `avertissements-citation→warnings` ;
@@ -1626,28 +1626,26 @@ SHA-256 : `7d1b43e5c4bed8680afeafce350f94a0e3eed0c7833baf50d8f744a371afa331`
 - blocage de tout paramètre français ou sans équivalent déclaré dans une page anglaise ;
 - alignement recommandé : validateur 0.4.32 et kit 2.15.3.
 
-# 1.2.29 — 4 août 2026
+## 1.2.29 — 4 août 2026
 
 - restauration du nom anglais `{{Quote}}` dans `quotes=` ;
 - conservation des noms français de paramètres verrouillés à l’intérieur du modèle anglais ;
 - traduction limitée aux valeurs de `citation` et de `date` ;
 - aucune suppression ni modification des fonctions introduites avant cette correction.
 
-# 1.2.27 — 3 août 2026
+## 1.2.28 — 3 août 2026
 
-- rendu déterministe des pages françaises et anglaises depuis les verrous éditoriaux ;
-- ajout obligatoire du lien interlangue direct dans chaque page française ;
-- rendu des citations et traduction limitée à `citation` et `date` ;
-- conservation exacte des paramètres documentaires et ajout canonique de `Citation traduite par IA`.
-
-# Changelog normatif
+- correction documentaire de 1.2.27 sans modification du graphe ni du protocole distant ;
+- suppression de l’ancienne interdiction contradictoire des citations dans les documents spécialisés ;
+- maintien de `{{Citation}}` dans `quotes=` avec les mêmes paramètres documentaires français ;
+- revérification du rendu des citations lors de la migration.
 
 ## 1.2.27 — 3 août 2026
 
 - rendu déterministe bilingue depuis les verrous ;
 - lien interlangue direct obligatoire dans chaque page française ;
 - traduction sélective des citations et avertissement canonique ;
-- alignement recommandé : validateur 0.4.29 et kit 2.15.0.
+- alignement recommandé : validateur 0.4.29 et kit 2.10.0.
 
 ## 1.2.26 — 2 août 2026
 
@@ -1680,6 +1678,14 @@ SHA-256 : `7d1b43e5c4bed8680afeafce350f94a0e3eed0c7833baf50d8f744a371afa331`
 - ajout des exigences `ARG-035`, `DFR-047`, `DEN-008`, `MW-027`, `PRM-018` et `VAL-032` ;
 - alignement recommandé : validateur 0.4.26 et kit 2.2.11.
 
+
+## 1.2.23 — 2 août 2026
+
+- minuscule initiale harmonisée pour `sujet-complet` et `complete-topic` ;
+- préférence explicite pour un sujet nominal conventionnel ;
+- règles auteur/site/page étendues aux pages Argument et à la vidéographie, avec seconde recherche obligatoire en cas d’égalité auteur-site ;
+- résumé de modification distant simplifié en « Corrections » ;
+- compatibilité du fichier unique de mise à niveau renforcée.
 
 ## 1.2.22 — 1er août 2026
 
@@ -1759,6 +1765,13 @@ SHA-256 : `7d1b43e5c4bed8680afeafce350f94a0e3eed0c7833baf50d8f744a371afa331`
 - `manifest.debate_id` déclaré comme identité autoritative du corpus ;
 - compatibilité directe avec les anciennes archives portant des suffixes descriptifs ou une date.
 
+## 1.2.14 — 31 juillet 2026
+
+- correction de la contrainte 1.2.13 qui imposait l’égalité entre le nom du ZIP et `manifest.debate_id` ;
+- nom du ZIP réduit au rôle de sélecteur de fichier ;
+- `manifest.debate_id` maintenu comme identité autoritative du corpus ;
+- compatibilité directe avec les archives historiques dont le nom comporte un suffixe descriptif.
+
 ## 1.2.13 — 30 juillet 2026
 
 - dossier unique `incoming/` pour les archives de débats ;
@@ -1766,8 +1779,6 @@ SHA-256 : `7d1b43e5c4bed8680afeafce350f94a0e3eed0c7833baf50d8f744a371afa331`
 - sélection obligatoire par identifiant lorsqu’il y en a plusieurs ;
 - suppression de toute obligation de suffixe `release_ready` dans le nom du ZIP ;
 - correspondance bloquante entre `<identifiant>.zip` et `manifest.debate_id`.
-
-## 1.2.11 — 30 juillet 2026
 
 ## 1.2.12 — 30 juillet 2026
 
@@ -1780,6 +1791,7 @@ SHA-256 : `7d1b43e5c4bed8680afeafce350f94a0e3eed0c7833baf50d8f744a371afa331`
 - interdiction de conserver le chemin absolu de l’installation dans les fichiers persistants ;
 - alignement recommandé : validateur 0.4.12 et kit 2.1.12.
 
+## 1.2.11 — 30 juillet 2026
 
 - interdiction de tout saut de ligne ou espace entre deux modèles MediaWiki adjacents ;
 - forme canonique obligatoire `}}{{` ;
@@ -1810,15 +1822,6 @@ SHA-256 : `7d1b43e5c4bed8680afeafce350f94a0e3eed0c7833baf50d8f744a371afa331`
 - correction de la condition de schéma applicable aux paquets 1.2.7 et ultérieurs ;
 - renforcement de l’auto-audit pour empêcher ces régressions ;
 - aucune modification des exigences éditoriales 1.2.6.
-
-# Changelog normatif
-
-## 1.2.27 — 3 août 2026
-
-- rendu déterministe bilingue depuis les verrous ;
-- lien interlangue direct obligatoire dans chaque page française ;
-- traduction sélective des citations et avertissement canonique ;
-- alignement recommandé : validateur 0.4.29 et kit 2.10.0.
 
 ## 1.2.7 — 29 juillet 2026
 
@@ -1927,15 +1930,6 @@ Toutes les exigences 1.1.7 restent actives sauf contradiction explicite ci-dessu
 - migration sûre des pages déjà créées depuis l’état W10.R7.
 
 Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessus.
-
-
-## 1.2.23 — 2 août 2026
-
-- minuscule initiale harmonisée pour `sujet-complet` et `complete-topic` ;
-- préférence explicite pour un sujet nominal conventionnel ;
-- règles auteur/site/page étendues aux pages Argument et à la vidéographie, avec seconde recherche obligatoire en cas d’égalité auteur-site ;
-- résumé de modification distant simplifié en « Corrections » ;
-- compatibilité du fichier unique de mise à niveau renforcée.
 
 ## État actif du validateur
 
@@ -2386,7 +2380,7 @@ Les numéros de norme et les anciens champs de révision ne sont plus des featur
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `d6fef12cf8452c3f896ba18b5a3e25b592be7c2f0ba0f32897b3c8a559391789`
+SHA-256 : `e6ebca1fc737e6df899dd82199cb44c94551459ba71646d0fd0099ed7c283c4e`
 
 ## 2.15.31 — 7 août 2026
 
@@ -2459,6 +2453,12 @@ SHA-256 : `d6fef12cf8452c3f896ba18b5a3e25b592be7c2f0ba0f32897b3c8a559391789`
 
 ## 2.15.23 — 6 août 2026
 
+- maintenance de rationalisation des sources après `./wikidebia upgrade` ;
+- conservation à la racine de `WIKIDEBIA_SOURCE_ACTIVE.md` et `WIKIDEBIA_SOURCE_PACKAGE_RECEIPT.json` comme seules documentations actives ;
+- archivage des anciens fichiers actifs séparés au lieu de leur régénération.
+
+## 2.15.22 — 6 août 2026
+
 - alignement sur la norme 1.2.46 et le validateur 0.4.49 ;
 - remplacement de `wikipedia_link_groups` par `specialized_term_inventory` comme mécanisme principal ;
 - inventaire obligatoire de chaque sous-partie et vérification de tous les liens rendus ;
@@ -2481,9 +2481,9 @@ SHA-256 : `d6fef12cf8452c3f896ba18b5a3e25b592be7c2f0ba0f32897b3c8a559391789`
 - exceptions de phrases complètes attestées par SHA-256 ;
 - tests de refus des notices ponctuées et d’acceptation des phrases attestées.
 
-## 2.15.20 — 6 août 2026
+## 2.15.19 — 6 août 2026
 
-- alignement sur la norme 1.2.44 et le validateur 0.4.47 ;
+- alignement sur la norme 1.2.43 et le validateur 0.4.46 ;
 - rétablissement obligatoire de la sous-partie `Enjeux du débat` dans les introductions françaises ;
 - contrôle d’au moins deux conséquences concrètes, de la densité minimale et de l’absence de catalogue argumentatif ;
 - génération des champs de revue propres à cette sous-partie et tests négatifs dédiés.
@@ -2507,6 +2507,20 @@ SHA-256 : `d6fef12cf8452c3f896ba18b5a3e25b592be7c2f0ba0f32897b3c8a559391789`
 - détection automatique de la portée lorsque `--scope` est omis ;
 - conservation des résumés obligatoires pour les pages nouvelles et de l’absence attestée pour les pages historiques ;
 - conservation de toutes les protections de plan signé, concurrence, staging et modification humaine.
+## 2.15.16 — 6 août 2026
+
+- alignement sur la norme 1.2.40 et le validateur 0.4.43 ;
+- prise en charge de `summary_provenance=historical_absent` pour les pages historiquement dépourvues de résumé ;
+- maintien du résumé obligatoire pour les pages nouvelles ;
+- vérification de l’inventaire source avant toute omission historique.
+
+## 2.15.15 — 6 août 2026
+
+- maintien de la norme 1.2.39 et alignement sur le validateur 0.4.42 ;
+- renforcement de la confrontation des verrous historiques à l’inventaire source attesté ;
+- préservation des champs historiques vérifiée avant toute planification ;
+- aucune modification des mécanismes distants de publication et de reprise.
+
 ## 2.15.14 — 6 août 2026
 
 - alignement sur la norme 1.2.39 et le validateur 0.4.41 ;
@@ -2514,13 +2528,6 @@ SHA-256 : `d6fef12cf8452c3f896ba18b5a3e25b592be7c2f0ba0f32897b3c8a559391789`
 - conservation contrôlée des résumés et du paramètre `initialisation` historiques ;
 - ajout d’un verrou machine empêchant toute modification hors périmètre des pages importées ;
 - compatibilité conservée avec les corpus 1.2.38 et les mécanismes distants antérieurs.
-
-## 2.15.14 — 6 août 2026
-
-- alignement sur la norme 1.2.39 et le validateur 0.4.41 ;
-- préservation des champs historiques vérifiée avant toute planification ;
-- prise en charge du profil indépendant d'atomicité des mots-clés ;
-- aucune modification des mécanismes distants de publication et de reprise.
 
 ## 2.15.13 — 6 août 2026
 
@@ -2544,6 +2551,12 @@ SHA-256 : `d6fef12cf8452c3f896ba18b5a3e25b592be7c2f0ba0f32897b3c8a559391789`
 - conservation de la date historique des pages existantes, sans exigence de date du corpus ou de date du jour ;
 - suppression contrôlée d’une page historique non marquée uniquement lorsqu’une migration explicite documente son retrait et que l’état distant est exact ;
 - maintien du blocage des modifications humaines et de la traduction anglaise différée.
+
+## 2.15.10 — 5 août 2026
+
+- reconnaissance de `translation_status.en=deferred` sur les corpus historiques de la famille 1.2.x sans migration de leur révision normative ;
+- portées françaises autorisées dans cet état ;
+- portées anglaises bloquées jusqu’au passage à `ready` ou `published`.
 
 ## 2.15.9 — 5 août 2026
 
@@ -2911,7 +2924,7 @@ SHA-256 : `d6fef12cf8452c3f896ba18b5a3e25b592be7c2f0ba0f32897b3c8a559391789`
 - ajout de `./wikidebia github-sync` pour reprendre un push après authentification ;
 - dépendances d’exécution bornées, dont Pywikibot 11.x.
 
-## 2.1.17 — 31 juillet 2026
+## 2.1.16 — 31 juillet 2026
 
 - création ou réparation automatique de `.venv/` par le lanceur ;
 - installation automatique de Pywikibot et des dépendances d’exécution ;
@@ -2920,6 +2933,12 @@ SHA-256 : `d6fef12cf8452c3f896ba18b5a3e25b592be7c2f0ba0f32897b3c8a559391789`
 - conservation de `.venv/` et de l’état d’installation hors de Git.
 
 ## 2.1.15 — 31 juillet 2026
+
+- conservation des champs historiques `normative_versions` lors de la reprise d’un corpus déjà produit ;
+- exécution du validateur installé et vérification de sa version réelle avant publication ;
+- compatibilité explicite avec une norme de corpus antérieure supportée, sans réécriture silencieuse de sa provenance.
+
+## 2.1.14 — 31 juillet 2026
 
 - correction de la sélection automatique d’un ZIP unique dont le nom diffère du `debate_id` interne ;
 - le nom du ZIP devient uniquement un sélecteur de fichier, tandis que `manifest.debate_id` reste l’identité autoritative du corpus ;
@@ -3215,9 +3234,9 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `02c83106131b1bb31156d660a1037fbcbfd66dea0ced808560b1beef85bb591e`
+SHA-256 : `69c624e95fc6149ecd04562e3b72dc7aec5f4c46f4a6d898c678e6993001932d`
 
-Tests pytest : 288 réussis, 0 échec.
+Tests pytest : 290 réussis, 0 échec.
 
 ## Guide de traduction anglaise
 

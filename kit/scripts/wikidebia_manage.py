@@ -472,6 +472,28 @@ def test_staged_components(root: Path, staged: dict[str, Path]) -> None:
     run([py, "-m", "pytest", "-q"], cwd=staged["kit"], env={"PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1"})
 
 
+RUNTIME_ARTIFACT_DIRS = {"__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache"}
+RUNTIME_ARTIFACT_FILES = {".coverage", "coverage.xml"}
+RUNTIME_ARTIFACT_SUFFIXES = {".pyc", ".pyo"}
+
+
+def purge_staged_runtime_artifacts(staged: dict[str, Path]) -> None:
+    """Remove files created by validation/tests before staged components are installed."""
+    for base in staged.values():
+        if not base.is_dir():
+            continue
+        for current, dirnames, filenames in os.walk(base, topdown=False):
+            current_path = Path(current)
+            for filename in filenames:
+                path = current_path / filename
+                if filename in RUNTIME_ARTIFACT_FILES or path.suffix in RUNTIME_ARTIFACT_SUFFIXES:
+                    path.unlink(missing_ok=True)
+            for dirname in dirnames:
+                path = current_path / dirname
+                if dirname in RUNTIME_ARTIFACT_DIRS and path.exists():
+                    shutil.rmtree(path)
+
+
 def aggregate_package(package: Path, title: str, versions: dict[str, str]) -> str:
     """Compatibilité interne : agrège les fichiers textuels d’un composant.
 
@@ -888,6 +910,7 @@ def update_sources(root: Path, archive: Path | None, *, allow_downgrade: bool, n
         versions = verify_version_set(components, root, allow_downgrade)
         staged = extract_components(components, workspace)
         test_staged_components(root, staged)
+        purge_staged_runtime_artifacts(staged)
         generated = generate_readable_sources(root, staged, versions, components)
 
         backup = root / "archives" / "updates" / f"{timestamp()}-{versions['norm']}"

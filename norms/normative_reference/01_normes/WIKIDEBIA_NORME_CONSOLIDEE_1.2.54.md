@@ -843,7 +843,7 @@ A documented claim.<ref>Jane Smith, “Article title”, ''Journal Name'', 25 Ju
 
 La règle introduite en 1.2.11 s’applique à tout wikicode de page produit : deux modèles immédiatement successifs sont accolés sans saut de ligne, espace ni tabulation entre la fermeture du premier et l’ouverture du second. La forme `}}` suivie d’un retour à la ligne puis de `{{` est interdite ; elle est remplacée par `}}{{`. Cette règle vaut en français et en anglais, dans les pages individuelles comme dans les agrégats. Elle ne change ni le contenu des modèles ni l’ordre des paramètres : elle impose seulement une jonction compacte et déterministe entre sous-modèles adjacents.
 
-Le validateur 0.4.13 signale cette anomalie avec `WDV-MWK-018`. Le kit 2.1.13 l’intercepte également avant la construction d’un plan de publication. Les paquets déclarant une norme antérieure conservent leur comportement historique jusqu’à migration explicite.
+Le validateur 0.4.13 et le kit 2.1.13 sont les versions historiques qui ont introduit les contrôles correspondants. Dans la norme cumulative courante, cette règle s’applique à tout corpus traité, indépendamment de la valeur déclarée de `consolidated_norm` ; cette valeur reste une métadonnée de provenance et de compatibilité de lecture, non un interrupteur éditorial.
 
 ## 12. Installation portable, publication intégrée et sauvegarde des sources
 

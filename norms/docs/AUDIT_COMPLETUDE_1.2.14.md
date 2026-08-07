@@ -1,6 +1,6 @@
-# Audit de complétude 1.2.15
+# Audit de complétude 1.2.14
 
-- norme consolidée active 1.2.15 présente ;
+- norme consolidée active 1.2.14 présente ;
 - norme 1.2.13 archivée ;
 - migration documentée ;
 - exigences IMP-017 et FIL-017 corrigées ;

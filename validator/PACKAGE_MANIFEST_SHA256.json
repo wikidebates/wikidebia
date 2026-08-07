@@ -9,7 +9,7 @@
     "PACKAGE_RECEIPT.json"
   ],
   "declared_file_count": 360,
-  "declared_test_count": 316,
+  "declared_test_count": 318,
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -268,8 +268,8 @@
     },
     {
       "path": "docs/MIGRATION_1.2.14.md",
-      "size_bytes": 487,
-      "sha256": "8b4582dab1ff1b09af7dc5271101ac4d098d1018299e7f25852b073a7428cddf"
+      "size_bytes": 535,
+      "sha256": "3d6c4fedc31444ab30c0f8b0a4411e202e1a1ad4f57b36aaaaa3e0a9c33a7ac9"
     },
     {
       "path": "docs/MIGRATION_1.2.15.md",
@@ -464,12 +464,12 @@
     {
       "path": "docs/SELF_AUDIT_REPORT.txt",
       "size_bytes": 174,
-      "sha256": "605cc0d5ce62f89f1ca912f7270b7db00d2248297b7b61fba5dbb8d8c76092d7"
+      "sha256": "9c70307a0098a85616acb1cd3052e8583686c1f572bfd107e84a9fbee9da6674"
     },
     {
       "path": "docs/TEST_REPORT.txt",
       "size_bytes": 39,
-      "sha256": "de6bd16d1d8b848ff35ad34ba187033136f6cfff7248a3ccab8cc052f297b4a6"
+      "sha256": "879173159346467532949ceedb302c8413305608c07b2ecdcc9035e4a10ca2fe"
     },
     {
       "path": "docs/history/README.md",
@@ -833,8 +833,8 @@
     },
     {
       "path": "normative_reference/01_normes/CHANGELOG_NORMATIF.md",
-      "size_bytes": 31977,
-      "sha256": "7d1b43e5c4bed8680afeafce350f94a0e3eed0c7833baf50d8f744a371afa331"
+      "size_bytes": 32048,
+      "sha256": "47986f477de8bf662be8d1db2a4f9ebe76b8c03aeb3c7921d434c69717d4a389"
     },
     {
       "path": "normative_reference/01_normes/MATRICE_TRACEABILITE_DESIDERATA.md",
@@ -843,8 +843,8 @@
     },
     {
       "path": "normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md",
-      "size_bytes": 166650,
-      "sha256": "ee24fd53f1726dae2c961e83972cb23b36308ac1170427437e79778b678c1593"
+      "size_bytes": 166761,
+      "sha256": "0167c9d780605cdcaeddb995c57f1522cbb801970e0a25ea525f832114a84077"
     },
     {
       "path": "normative_reference/01_normes/cahier_des_charges_consolide_wikidebia.md",
@@ -1218,8 +1218,8 @@
     },
     {
       "path": "scripts/self_audit.py",
-      "size_bytes": 11805,
-      "sha256": "a88a07ce0a56a18bc816d44fcac8c486702ee789d33dd9ee720355425d02074a"
+      "size_bytes": 13039,
+      "sha256": "22557640f9b392e99799d1f3d5614334bef940a40471665380a080b4d7ba2474"
     },
     {
       "path": "scripts/wikidebia_remote_compare.py",
@@ -1758,8 +1758,8 @@
     },
     {
       "path": "tests/test_policy_architecture.py",
-      "size_bytes": 5007,
-      "sha256": "2b2f67b694aa6f088ea3ae1e808834a03cb2f24c236581e49db19005125296df"
+      "size_bytes": 5664,
+      "sha256": "96fc90c091a7f8adcb1dc992ad9295655845818eb0d482916e46482d6f26bec8"
     },
     {
       "path": "tests/test_portable_paths.py",
@@ -1788,8 +1788,8 @@
     },
     {
       "path": "tests/test_self_audit_counts.py",
-      "size_bytes": 4252,
-      "sha256": "c17e9e5b365b91a6f9b6aa5d9cd921cda5d9a5a406e25dbfc21a7e3962c5ce52"
+      "size_bytes": 5884,
+      "sha256": "e5b4f8b4183f14782d47c950b1e5ab0b7651ea7058a8ee542c886091fb945ae7"
     },
     {
       "path": "tests/test_source_0428_feature_baseline.py",

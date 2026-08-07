@@ -102,6 +102,7 @@ def test_active_normative_documents_do_not_reintroduce_version_gated_editorial_w
         "applicable à partir de 1.2.",
         "aux paquets qui les déclarent",
         "rendue sous 1.2.31",
+        "conservent leur comportement historique jusqu’à migration explicite",
     )
     failures: list[str] = []
     for path in normative_root.rglob("*.md"):
@@ -128,3 +129,16 @@ def test_active_normative_documents_do_not_reintroduce_version_gated_editorial_w
                 inspect_catalog(child)
     inspect_catalog(catalog)
     assert failures == []
+
+
+def test_active_normative_changelog_has_no_duplicate_release_headings():
+    import re
+    changelog = ROOT / "normative_reference" / "01_normes" / "CHANGELOG_NORMATIF.md"
+    versions = []
+    for line in changelog.read_text(encoding="utf-8").splitlines():
+        match = re.match(r"^#{1,3}\s+(1\.\d+(?:\.\d+)?)\b", line)
+        if match:
+            versions.append(match.group(1))
+    assert len(versions) == len(set(versions))
+    numeric = [tuple(int(part) for part in version.split(".")) for version in versions]
+    assert numeric == sorted(numeric, reverse=True)

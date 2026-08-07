@@ -967,6 +967,23 @@ def test_staged_component_tests_disable_external_pytest_plugins(tmp_path, monkey
     assert pytest_calls[0][1]["env"]["PYTHONPATH"] == "src"
     assert pytest_calls[1][1]["env"]["PYTEST_DISABLE_PLUGIN_AUTOLOAD"] == "1"
 
+
+def test_purge_staged_runtime_artifacts_removes_test_caches_before_install(tmp_path: Path):
+    staged = {name: tmp_path / name for name in ("norms", "validator", "kit")}
+    for base in staged.values():
+        (base / ".pytest_cache").mkdir(parents=True)
+        (base / ".pytest_cache" / "CACHEDIR.TAG").write_text("cache\n", encoding="utf-8")
+        (base / "pkg" / "__pycache__").mkdir(parents=True)
+        (base / "pkg" / "__pycache__" / "module.pyc").write_bytes(b"cache")
+        (base / "pkg" / "keep.py").write_text("pass\n", encoding="utf-8")
+        (base / ".coverage").write_text("coverage\n", encoding="utf-8")
+    module.purge_staged_runtime_artifacts(staged)
+    for base in staged.values():
+        assert not (base / ".pytest_cache").exists()
+        assert not (base / "pkg" / "__pycache__").exists()
+        assert not (base / ".coverage").exists()
+        assert (base / "pkg" / "keep.py").is_file()
+
 def test_generated_config_selects_deferred_profile_from_manifest(tmp_path: Path):
     (tmp_path / "config").mkdir()
     corpus = tmp_path / "corpus" / "demo"

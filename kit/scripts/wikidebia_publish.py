@@ -800,7 +800,7 @@ class GenericPublisher:
             )
         if re.search(r"<\s*references\b", text, flags=re.IGNORECASE):
             raise PublicationError(
-                f"Balise <references /> interdite en norme 1.2.11 : {language}/{page_id}"
+                f"Balise <references /> interdite par les règles éditoriales actives : {language}/{page_id}"
             )
         names = [span.name for span in _main_template_parameter_spans(text)]
         json_author = re.search(r"(?m)^\s*\|\s*(?:auteurs|authors)\s*=\s*\[", text)
@@ -833,7 +833,7 @@ class GenericPublisher:
                 raise PublicationError(f"Lien interlangue interdit en anglais : {page_id}")
             if page_type == "debate":
                 if "type" in names:
-                    raise PublicationError("Le paramètre anglais |type= est interdit en norme 1.2.11")
+                    raise PublicationError("Le paramètre anglais |type= est interdit par les règles éditoriales actives")
                 if names.count("topic") != 1 or names.count("complete-topic") != 1:
                     raise PublicationError(
                         "La page Debate anglaise doit contenir exactement |topic= et |complete-topic="
@@ -1279,7 +1279,7 @@ class GenericPublisher:
         self._validate_local()
         self._prepare_logging()
         if self.publication_profile not in DIRECT_PROFILES:
-            raise PublicationError("Le test de la page Débat est réservé au profil 1.2.20")
+            raise PublicationError("Le test de la page Débat est réservé au profil de publication directe")
         if self.operation.get("kind") != "full_page":
             raise PublicationError("Le test de la page Débat exige une opération full_page")
         actions = [
@@ -1365,7 +1365,7 @@ class GenericPublisher:
         if not french_debate_actions:
             return
         if not isinstance(receipt, dict):
-            raise PublicationError("Le profil 1.2.20 exige --debate-test-receipt")
+            raise PublicationError("Le profil de publication directe exige --debate-test-receipt")
         copy = dict(receipt)
         claimed = copy.pop("receipt_sha256", None)
         if not claimed or claimed != sha_object(copy):

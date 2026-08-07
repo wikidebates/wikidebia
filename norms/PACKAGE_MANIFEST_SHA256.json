@@ -54,7 +54,7 @@
     {
       "path": "docs/AUDIT_COMPLETUDE_1.2.14.md",
       "size_bytes": 234,
-      "sha256": "6d67a5dee1d0ce94cd5cd6e043354d62b960b0af09b51d13b283f44e4e920bf5"
+      "sha256": "f6300c0d019c9a8933ebfc1522dd35ec80413e4132a4f1747c63dee801904caa"
     },
     {
       "path": "docs/AUDIT_COMPLETUDE_1.2.15.md",
@@ -154,7 +154,7 @@
     {
       "path": "docs/AUDIT_COMPLETUDE_1.2.35.md",
       "size_bytes": 302,
-      "sha256": "ac53aae079082686fc315e6a0d79024e2f91c4996b72888917010edd9e15a7a7"
+      "sha256": "ac4080c0f810fd7c54e3eeec8e4b0459d634e301fabcdb5eaa0e0bddbaf43008"
     },
     {
       "path": "docs/AUDIT_COMPLETUDE_1.2.44.md",
@@ -293,8 +293,8 @@
     },
     {
       "path": "docs/MIGRATION_1.2.14.md",
-      "size_bytes": 487,
-      "sha256": "8b4582dab1ff1b09af7dc5271101ac4d098d1018299e7f25852b073a7428cddf"
+      "size_bytes": 535,
+      "sha256": "3d6c4fedc31444ab30c0f8b0a4411e202e1a1ad4f57b36aaaaa3e0a9c33a7ac9"
     },
     {
       "path": "docs/MIGRATION_1.2.15.md",
@@ -514,7 +514,7 @@
     {
       "path": "docs/NORMATIVE_AUDIT_1.2.14.md",
       "size_bytes": 380,
-      "sha256": "1829fb016171690cdd8bc2379c455eaac4656c2c44a45229f35f47d02712f8ac"
+      "sha256": "92367aad0a7b33db9a76eaad5f6bf34d1c35c3e9daef9de184d21aa0c7331394"
     },
     {
       "path": "docs/NORMATIVE_AUDIT_1.2.15.md",
@@ -763,8 +763,8 @@
     },
     {
       "path": "normative_reference/01_normes/CHANGELOG_NORMATIF.md",
-      "size_bytes": 31977,
-      "sha256": "7d1b43e5c4bed8680afeafce350f94a0e3eed0c7833baf50d8f744a371afa331"
+      "size_bytes": 32048,
+      "sha256": "47986f477de8bf662be8d1db2a4f9ebe76b8c03aeb3c7921d434c69717d4a389"
     },
     {
       "path": "normative_reference/01_normes/MATRICE_TRACEABILITE_DESIDERATA.md",
@@ -773,8 +773,8 @@
     },
     {
       "path": "normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md",
-      "size_bytes": 166650,
-      "sha256": "ee24fd53f1726dae2c961e83972cb23b36308ac1170427437e79778b678c1593"
+      "size_bytes": 166761,
+      "sha256": "0167c9d780605cdcaeddb995c57f1522cbb801970e0a25ea525f832114a84077"
     },
     {
       "path": "normative_reference/01_normes/cahier_des_charges_consolide_wikidebia.md",

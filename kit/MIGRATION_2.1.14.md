@@ -1,6 +1,6 @@
-# Migration vers le kit 2.1.15
+# Migration vers le kit 2.1.14
 
-1. Remplacer le kit 2.1.13 par le kit 2.1.15.
+1. Remplacer le kit 2.1.13 par le kit 2.1.14.
 2. Conserver les ZIP de débats directement dans `incoming/`.
 3. Lorsqu’un seul ZIP est présent, `./wikidebia publish` le sélectionne quel que soit son nom.
 4. Lorsqu’il y en a plusieurs, l’argument de commande sélectionne exactement le nom du ZIP sans `.zip`.

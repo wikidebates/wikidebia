@@ -93,3 +93,33 @@ def test_self_audit_rejects_duplicate_requirement_ids(tmp_path):
     result = subprocess.run([sys.executable, str(root / "scripts/self_audit.py")], capture_output=True, text=True)
     assert result.returncode == 1
     assert "identifiant d'exigence dupliqué: DUP-001" in result.stdout
+
+
+def test_self_audit_rejects_stale_current_self_audit_report(tmp_path):
+    root = _build_minimal_package(tmp_path)
+    report = root / "docs/SELF_AUDIT_REPORT.txt"
+    report.write_text(
+        "Wikidéb’IA Validator 0.4.48 — auto-audit\n"
+        "Norme active unique : 1.2.45\n"
+        "Arbre normatif : identique au paquet des normes\n"
+        "Tests : 288 réussis, 0 échec\n"
+        "Résultat : RÉUSSI\n",
+        encoding="utf-8",
+    )
+    manifest_path = root / "PACKAGE_MANIFEST_SHA256.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    raw = report.read_bytes()
+    manifest["files"].append({"path": "docs/SELF_AUDIT_REPORT.txt", "size_bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()})
+    manifest["declared_file_count"] = len(manifest["files"])
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    receipt_path = root / "PACKAGE_RECEIPT.json"
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    receipt["package_manifest_sha256"] = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
+    receipt["declared_file_count"] = len(manifest["files"])
+    receipt_path.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
+
+    result = subprocess.run([sys.executable, str(root / "scripts/self_audit.py")], capture_output=True, text=True)
+    assert result.returncode == 1
+    assert "version périmée dans SELF_AUDIT_REPORT.txt" in result.stdout
+    assert "norme périmée dans SELF_AUDIT_REPORT.txt" in result.stdout
+    assert "nombre de tests périmé dans SELF_AUDIT_REPORT.txt" in result.stdout
