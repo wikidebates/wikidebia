@@ -49,7 +49,7 @@ from wikidebia_editorial_review import (
 )
 from wikidebia_graph_extract import iter_templates, normalize_key
 
-KIT_VERSION = "2.15.25"
+KIT_VERSION = "2.15.26"
 CONTENT_REVIEW_SCHEMA = "wikidebia-fr-content-review-1.0"
 CONTENT_LOCK_SCHEMA = "wikidebia-fr-content-lock-1.0"
 CONTENT_CHANGESET_SCHEMA = "wikidebia-fr-content-changeset-1.0"
@@ -57,7 +57,7 @@ SOURCES_WORKING_SCHEMA = "wikidebia-source-registry-working-1.0"
 
 PAGE_LIFECYCLE_PARAMETERS = {
     "debate": ("avancement", "avertissements-débat", "débats-connexes"),
-    "argument": ("avertissements-argument", "débat-détaillé"),
+    "argument": ("nom", "avertissements-argument", "débat-détaillé"),
 }
 
 

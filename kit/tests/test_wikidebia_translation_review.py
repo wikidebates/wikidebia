@@ -457,3 +457,7 @@ def test_finalize_translation_rejects_missing_stakes_subsection(tmp_path: Path):
         assert "Stakes of the debate" in str(exc)
     else:
         raise AssertionError("A missing Stakes of the debate subsection should have been rejected")
+
+
+def test_english_argument_name_is_a_preserved_import_parameter():
+    assert 'name' in translation.EN_PAGE_LIFECYCLE_PARAMETERS['argument']

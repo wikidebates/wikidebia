@@ -1,3 +1,10 @@
+## 0.4.52 — 7 août 2026
+
+- alignement sur la norme 1.2.49 ;
+- `nom` / `name` devient un champ historique préservé lorsqu’il est attesté ;
+- blocage de toute suppression, modification ou invention du paramètre ;
+- confrontation de la valeur au snapshot source sous `verification_revision=0.4.52`.
+
 ## Correctif 0.4.51 — 7 août 2026
 
 - prise en compte d’une suppression de résumé historique explicitement décidée par le propriétaire, avec provenance `owner_removed` et décision tracée ;

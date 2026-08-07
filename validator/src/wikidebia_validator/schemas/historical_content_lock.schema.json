@@ -43,7 +43,9 @@
           "initialisation",
           "initialization",
           "débat-détaillé",
-          "detailed-debate"
+          "detailed-debate",
+          "nom",
+          "name"
         ]
       }
     },
@@ -199,6 +201,84 @@
           "owner_decision_recorded_at": {
             "type": "string",
             "minLength": 10
+          },
+          "nom": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "present"
+            ],
+            "properties": {
+              "present": {
+                "type": "boolean"
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "present": {
+                      "const": true
+                    }
+                  }
+                },
+                "then": {
+                  "required": [
+                    "value"
+                  ]
+                },
+                "else": {
+                  "not": {
+                    "required": [
+                      "value"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "name": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "present"
+            ],
+            "properties": {
+              "present": {
+                "type": "boolean"
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "present": {
+                      "const": true
+                    }
+                  }
+                },
+                "then": {
+                  "required": [
+                    "value"
+                  ]
+                },
+                "else": {
+                  "not": {
+                    "required": [
+                      "value"
+                    ]
+                  }
+                }
+              }
+            ]
           }
         },
         "allOf": [

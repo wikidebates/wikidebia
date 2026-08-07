@@ -1,3 +1,10 @@
+## 2.15.26 — 7 août 2026
+
+- alignement sur la norme 1.2.49 et le validateur 0.4.52 ;
+- capture de `nom` / `name` dans les paramètres préservés des pages Argument préexistantes ;
+- rendu exact du paramètre lorsqu’il existait et absence garantie lorsqu’il était absent ;
+- tests de non-régression du rendu et de la revue de contenu.
+
 ## 2.15.25 — 7 août 2026
 
 - alignement sur la norme 1.2.48 et le validateur 0.4.51 ;

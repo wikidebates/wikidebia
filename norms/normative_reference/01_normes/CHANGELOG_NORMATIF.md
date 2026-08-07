@@ -1,3 +1,11 @@
+## 1.2.49 — 7 août 2026
+
+- préservation stricte de `nom` / `name` lorsqu’il existe sur une page Argument historique ;
+- interdiction de le supprimer, modifier, normaliser ou remplacer lors d’un renommage ;
+- interdiction symétrique d’inventer ce paramètre lorsqu’il était absent ;
+- état de présence et valeur consignés dans les paramètres préservés et dans le verrou historique ;
+- alignement recommandé : validateur 0.4.52 et kit 2.15.26.
+
 ## 1.2.48 — 7 août 2026
 - prise en charge nominative des relations externes préservées dans une adoption distante, sans création de nœud local ;
 

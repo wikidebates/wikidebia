@@ -221,3 +221,18 @@ def test_render_preserves_detailed_debate_and_omits_local_relations():
     assert '|débat-détaillé=Débat sous-jacent' in text
     assert '|justifications=' not in text
     assert '|objections=' not in text
+
+
+def test_render_preserves_historical_argument_name():
+    node={'id':'A0001','fr':{'rubriques':['Philosophie'],'keywords':['Dieu']},'en':{'canonical_title':'Argument topic'}}
+    registry={'graph':{'edges':[],'occurrences':[],'nodes':[node]}}
+    content={
+        'summary':'Résumé historique conservé.', 'citations':[], 'sources':{}, 'page_origin':'preexisting',
+        'preserved_parameters':{
+            'nom':{'present':True,'value':'Argument cosmologique'},
+            'avertissements-argument':{'present':False,'value':None},
+        },
+    }
+    text=render._render_argument(lang='fr',node=node,content=content,registry=registry,sources={},creation_date='2026-08-05')
+    assert '|nom=Argument cosmologique' in text
+    assert text.index('|nom=') < text.index('|résumé=')

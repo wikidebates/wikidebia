@@ -479,3 +479,7 @@ def test_specialized_term_inventory_rejects_undeclared_link():
     except ContentReviewError:
         return
     raise AssertionError('le lien non déclaré devait être refusé')
+
+
+def test_argument_name_is_a_preserved_import_parameter():
+    assert 'nom' in content.PAGE_LIFECYCLE_PARAMETERS['argument']

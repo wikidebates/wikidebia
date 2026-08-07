@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.25",
-  "validator_version": "0.4.51",
+  "version": "2.15.26",
+  "validator_version": "0.4.52",
   "scope": [
     "publish_archive",
     "github_init",
@@ -369,9 +369,10 @@
     "historical_detailed_debate_preservation",
     "detailed_debate_relations_omission_acknowledgement",
     "manual_remote_revision_adoption",
-    "revision_locked_human_change_reconciliation"
+    "revision_locked_human_change_reconciliation",
+    "preserved_argument_name"
   ],
-  "normative_revision": "1.2.48",
+  "normative_revision": "1.2.49",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
