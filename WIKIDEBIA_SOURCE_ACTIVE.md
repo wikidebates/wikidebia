@@ -10,7 +10,7 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - `wikidebia-normes.zip` — 1827715 octets — SHA-256 `ec6250d819b4f5a4630ebf8661169cba8403aa8e8efbd4f72e4c57f89dc33bb2`
 - `wikidebia-validator.zip` — 2118848 octets — SHA-256 `84b998a011b87e578479ea7bed3c93f7dc34269e86c4e0be725bedbe4eecdd48`
-- `wikidebia-kit.zip` — 431538 octets — SHA-256 `1e1e5c6d1a92ed56c45d092d28c531147b188a8e2ca03eb67bc8017fe8327839`
+- `wikidebia-kit.zip` — 432590 octets — SHA-256 `0fd100a145638e484ab053ad8bebdda966d0786d4496aae03870aec2b69a0b66`
 
 ## Norme consolidée active
 
@@ -2283,11 +2283,12 @@ SHA-256 : `6f5a3fb7785656727b2b712cf3861dd083b02c710c720b65d00dbf8b49d7af86`
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `e857ae8be42cf40bfe3f42b555c61c3cd0aa591d1025fd3ede2b930a21a44b1c`
+SHA-256 : `c92291e6fb0bbfcda55825d3b013d5df66b5afbb198a3fb7710f85e15c57869c`
 
 # Wikidéb’IA — Kit 2.15.29
 
 Le kit 2.15.29 intègre la recherche des appellations consacrées pour les arguments nouveaux. Chaque argument généré doit être associé à une revue documentaire ; le résultat normal est l’absence de nom. `nom` / `name` n’est rendu que lorsque la revue conclut `known_name` et documente que la littérature emploie réellement cette appellation pour le même raisonnement.
+La revue française de contenu d’un workspace reste une phase d’import et ne crée pas d’arguments français nouveaux ; pour un corpus généré qui en contient, la revue 1.2.52 est fournie avec le corpus et contrôlée par le validateur. La traduction anglaise du kit renseigne séparément la revue des pages anglaises nouvelles.
 
 Le kit 2.15.28 ajoute la prise en charge de l’attribution éditoriale explicite de `nom` / `name` selon la politique 1.2.51. Un nom historiquement absent reste protégé par défaut ; il ne peut être ajouté que pour une page Argument inscrite dans un registre approuvé par le propriétaire, avec un titre et une valeur exacts.
 
@@ -2972,7 +2973,7 @@ Le corpus déclare `translation_status.en=deferred`, ne manifeste que les pages 
 ## Guide de revue du contenu
 
 Source interne : `kit/GUIDE_CONTENT_REVIEW.md`  
-SHA-256 : `83eb890331d288f0da6cf3d2ab132076487e058ae428698553a7765d989005fe`
+SHA-256 : `c87fbff457ddcc14d9bf8ac6e4f978eb29204cd591fef33ffa12e0064889473c`
 
 # Revue française des introductions, résumés et références
 
@@ -3002,7 +3003,7 @@ Le registre couvre :
 - les articles Wikipédia français vérifiés ;
 - les neuf paramètres documentaires de la page Débat ;
 - le résumé de chaque argument ;
-- pour chaque argument nouveau, la recherche d’une éventuelle appellation consacrée dans la littérature ;
+- les données de contenu des arguments français importés ; les arguments réellement nouveaux ne sont pas créés par cette commande et doivent, lorsqu’un corpus en contient, être accompagnés de la revue documentaire 1.2.52 décrite ci-dessous ;
 - la bibliographie, la sitographie et la vidéographie de chaque argument ;
 - les attestations de lisibilité, de fidélité logique, de force expressive et de vérification documentaire.
 
@@ -3011,7 +3012,9 @@ Aucune proposition produite par une heuristique n’est appliquée automatiqueme
 
 ## Recherche d’un nom consacré pour un argument nouveau
 
-Cette recherche est **obligatoire**, mais l’ajout d’un nom ne l’est pas. Le cas normal est `outcome=none`. Il ne faut jamais chercher à augmenter artificiellement le nombre de pages possédant `nom=`.
+Cette exigence relève du contrat général de génération 1.2.52. La commande `corpus-workspace-content-review` ci-dessus part d’un snapshot importé et ne crée donc pas elle-même de nouvel argument français. Lorsqu’un corpus généré contient des pages `Argument` françaises nouvelles, il doit fournir `reviews/argument_name_discovery_review.json` avant validation ; le validateur 0.4.55 bloque toute page nouvelle non couverte. La phase de traduction anglaise du kit construit la partie anglaise de ce registre pour les pages anglaises nouvelles.
+
+La recherche est **obligatoire**, mais l’ajout d’un nom ne l’est pas. Le cas normal est `outcome=none`. Il ne faut jamais chercher à augmenter artificiellement le nombre de pages possédant `nom=`.
 
 Pour chaque argument nouveau :
 

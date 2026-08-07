@@ -23,8 +23,8 @@
     },
     {
       "path": "GUIDE_CONTENT_REVIEW.md",
-      "size_bytes": 5865,
-      "sha256": "83eb890331d288f0da6cf3d2ab132076487e058ae428698553a7765d989005fe"
+      "size_bytes": 6565,
+      "sha256": "c87fbff457ddcc14d9bf8ac6e4f978eb29204cd591fef33ffa12e0064889473c"
     },
     {
       "path": "GUIDE_CORPUS_INIT.md",
@@ -408,8 +408,8 @@
     },
     {
       "path": "README.md",
-      "size_bytes": 984,
-      "sha256": "e857ae8be42cf40bfe3f42b555c61c3cd0aa591d1025fd3ede2b930a21a44b1c"
+      "size_bytes": 1322,
+      "sha256": "c92291e6fb0bbfcda55825d3b013d5df66b5afbb198a3fb7710f85e15c57869c"
     },
     {
       "path": "TEST_REPORT.txt",
