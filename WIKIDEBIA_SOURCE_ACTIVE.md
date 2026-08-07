@@ -2,24 +2,27 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.50** ;
-- validateur actif : **0.4.53** ;
-- kit actif : **2.15.27**.
+- norme active : **1.2.51** ;
+- validateur actif : **0.4.54** ;
+- kit actif : **2.15.28**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 1725351 octets — SHA-256 `ac7fe8ba84bbef74e8ff8f1dac85b153e1f3af2af2609a2ca8d6f7b1716e46a4`
-- `wikidebia-validator.zip` — 2010431 octets — SHA-256 `1b1cf6e1e9d42b4419329f2b5c77c6acea12e17fe847e782718bc7028e4371bf`
-- `wikidebia-kit.zip` — 425717 octets — SHA-256 `8d7ac04700b0181a57b7cbf6bc4b0854ccc6bb0dd19ae4cdfb6513d9c3abc5c7`
+- `wikidebia-normes.zip` — 1773541 octets — SHA-256 `98187f6b9030343c3250f07a4a01e504159e227a5f3813ec854467cbd137818a`
+- `wikidebia-validator.zip` — 2059541 octets — SHA-256 `23b18a73654cca5cb2672b80ab4304bd02dfd11ea9662cc1a0551838a71a3c70`
+- `wikidebia-kit.zip` — 426733 octets — SHA-256 `ac6743648828878a2b7bda9f124cc4d68b1d4d9c550af044d9376d3a03be65df`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.50.md`  
-SHA-256 : `350490eae03861b965370ccb5e8c5bacf0d21de14e39818e64759c6124899095`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.51.md`  
+SHA-256 : `894ac5e930b2699bb40ea79296b6f0cc022668c91f26ffc4bb166f82a4465b37`
 
-# Norme consolidée Wikidéb’IA 1.2.50
+# Norme consolidée Wikidéb’IA 1.2.51
 
 > **Révision 1.2.50 — séparation création / modification.** Les listes de paramètres générés ou non générés définies par les profils de rendu ne valent que pour la création automatisée d’une page à partir de zéro. Lorsqu’une page `Débat` ou `Argument` existe déjà, en français comme en anglais, sa modification obéit à un contrat de préservation : tout paramètre top-level autorisé qui était présent dans l’état historique ou distant attesté reste présent, même si le workflow de création ne l’aurait pas généré. Les paramètres de cycle de vie et d’avertissement sont traités comme des métadonnées opaques et ne peuvent recevoir une valeur par défaut de génération. Une suppression n’est admise que si elle est explicitement décidée et enregistrée pour la page et le paramètre concernés, ou si une exception normative spécialisée l’autorise (par exemple l’omission locale de relations sur une frontière `débat-détaillé`). Les mêmes principes s’appliquent aux pages de débat.
+
+
+> **Révision 1.2.51 — attribution éditoriale explicite de `nom` / `name`.** La protection historique introduite en 1.2.49 reste la règle par défaut : une absence historique de `nom` ou `name` n’est jamais comblée automatiquement. Une exception étroite est désormais admise lorsqu’une décision éditoriale explicite du propriétaire attribue à une page Argument une appellation consacrée dans la littérature. Le corpus déclare alors `editorial_controls.argument_name_assignment_revision=1.2.51` et un registre dédié. Ce registre identifie chaque page, la langue, le titre canonique, la valeur exacte à ajouter et la justification. L’inventaire historique reste inchangé et continue d’attester l’absence antérieure ; l’attribution éditoriale constitue une couche de décision séparée. Le validateur exige une concordance exacte entre le registre et le wikicode. Lors d’une reprise, le kit peut ajouter uniquement ce paramètre sur les pages listées, sans relâcher la préservation des autres paramètres historiques.
 
 **Statut :** source normative active unique  
 **Date d’effet :** 7 août 2026  
@@ -1230,6 +1233,25 @@ Le {{Lien Wikipédia|article=théisme}} affirme un Dieu personnel ; le {{Lien Wi
 Lier seulement `théisme` dans cette série, sans justification propre aux trois autres notions, est non conforme.
 
 
+## Addendum 1.2.51 — attribution éditoriale contrôlée d’un nom consacré
+
+Le paramètre `nom` en français, ou `name` en anglais, reste facultatif et ne doit jamais être déduit mécaniquement du titre canonique, du titre affiché, des mots-clés ou du contenu du résumé. Il sert à afficher l’appellation conventionnelle d’un argument, d’une objection, d’une défense, d’un paradoxe, d’un principe ou d’un problème lorsque cette appellation est réellement reconnue dans la littérature et utile au lecteur.
+
+La règle de préservation 1.2.49 demeure inchangée pour les valeurs historiques existantes. Une page historiquement dépourvue de `nom` / `name` peut toutefois recevoir ce paramètre si, et seulement si, toutes les conditions suivantes sont réunies :
+
+1. le propriétaire du projet a explicitement approuvé l’attribution ;
+2. le manifeste déclare `editorial_controls.argument_name_assignment_revision=1.2.51` et `argument_name_assignment_path` ;
+3. le registre d’attribution identifie exactement la langue, l’identifiant logique, le titre canonique et la valeur de `nom` / `name` ;
+4. chaque entrée contient une justification éditoriale non vide attestant qu’il s’agit d’une appellation consacrée et non d’un simple raccourci inventé ;
+5. le registre historique reste fidèle à la source et continue d’indiquer que le paramètre était absent lorsqu’il l’était ; il n’est jamais falsifié pour faire passer l’ajout pour une donnée historique ;
+6. le wikicode contient exactement la valeur approuvée, dans l’ordre canonique des paramètres : après `initialisation` / `initialization` lorsqu’il est présent, sinon en première position du modèle `Argument` ;
+7. aucune page non listée ne peut recevoir un `nom` / `name` absent de sa provenance ;
+8. une valeur historique déjà présente reste prioritaire et ne peut être remplacée par ce mécanisme ;
+9. lors d’une reprise distante, l’exception porte uniquement sur `nom` / `name` pour les pages listées ; tous les autres paramètres protégés restent soumis à leur état historique ou distant attesté ;
+10. une modification ou suppression ultérieure du nom attribué exige une nouvelle décision explicite et ne peut être déduite automatiquement.
+
+Cette politique peut être activée sur un corpus historique 1.2.x sans migration globale de ses autres règles en déclarant le couple de champs ci-dessus. Le validateur courant contrôle alors le registre et la concordance du wikicode, tandis que le kit de reprise traite l’attribution comme une dérogation nominative et non comme une normalisation générale.
+
 ## Addendum 1.2.49 — préservation stricte de `nom` / `name`
 
 Le paramètre `nom` d’une page `Argument` française, ou `name` d’une page anglaise, constitue une donnée historique protégée lorsqu’il existe déjà sur la page source ou distante attestée. Il est distinct du titre canonique, du titre affiché et de l’identifiant logique.
@@ -1316,7 +1338,15 @@ La revue reste qualitative. Elle n’impose pas de lier les mots courants, les n
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `2d55ebc76ce842b7d6e79ee537d8954413dbc3aafc64a175e302e3e14cf13427`
+SHA-256 : `3b980fe03976790e0caca95076ca5eb4bc5a419d055f5db8febb6736d92afb82`
+
+## 1.2.51 — 7 août 2026
+
+- maintien de la préservation stricte des `nom` / `name` historiques existants ;
+- ajout d’un registre d’attribution éditoriale explicite pour les appellations consacrées ajoutées à des pages auparavant dépourvues de `nom` / `name` ;
+- séparation obligatoire entre la provenance historique et la nouvelle décision éditoriale ;
+- dérogation limitée au seul paramètre `nom` / `name` et aux seules pages listées ;
+- alignement recommandé : validateur 0.4.54 et kit 2.15.28.
 
 ## 1.2.50 — 7 août 2026
 
@@ -1809,20 +1839,26 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `0783ca365674f518462c9279ef9018eb0eb1f3bbf4f9ec15cfaca995a0a95bb5`
+SHA-256 : `3d68f4d14fbcd8978b1990818661f32292eb5f3391f737d469602c5ce69b1921`
 
-# Wikidéb’IA Validator 0.4.53
+# Wikidéb’IA Validator 0.4.54
 
-La version 0.4.53 applique la norme 1.2.50 et sépare strictement création et modification. Pour une page existante, le validateur contrôle les paramètres historiques opaques et, lorsqu’un inventaire source est disponible, compare aussi la **présence de tous les paramètres top-level** : une disparition non explicitement autorisée produit `WDV-EDT-030`.
+La version 0.4.54 ajoute le contrôle de la politique 1.2.51 d’attribution éditoriale explicite de `nom` / `name`. Une absence historique reste protégée par défaut ; seules les pages listées dans un registre approuvé peuvent recevoir la valeur exacte déclarée.
 
-Les marqueurs de création IA ne peuvent plus être ajoutés rétroactivement à une page préexistante ni remplacer un avertissement historique. Les protections antérieures de `initialisation`, `nom`, `débat-détaillé`, des résumés historiques et des adoptions distantes restent actives.
-
-Norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.50.md`.
+Validateur local aligné sur la norme 1.2.51 et rétrocompatible avec les paquets antérieurs.
 
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `817da9deb3b6372b7811d511ee495f35cc6c9b2ec0d3136abb96bdb934f77e47`
+SHA-256 : `f04caac02ec8812bb29c0680e7c75971f5e07800a254e97af5fa114db4a582c5`
+
+## 0.4.54 — 7 août 2026
+
+- alignement sur la norme 1.2.51 ;
+- ajout du schéma et du contrôle du registre d’attribution éditoriale de `nom` / `name` ;
+- maintien de la provenance historique distincte : le verrou peut rester `present=false` tandis qu’une attribution approuvée autorise le wikicode exact ;
+- conservation du blocage pour toute page non listée ou toute valeur divergente ;
+- compatibilité conservée avec les corpus 1.2.50 et antérieurs.
 
 ## 0.4.53 — 7 août 2026
 
@@ -2204,22 +2240,27 @@ SHA-256 : `817da9deb3b6372b7811d511ee495f35cc6c9b2ec0d3136abb96bdb934f77e47`
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `3d1b007711cbda396f12ffc5a2d2c45508d461c2b00ddb07a55d89d69a09fb3d`
+SHA-256 : `a2ae4ef096140c0026077c5c1880821acad1d69b6bd09392a6f1c1c43d2267e7`
 
-# Wikidéb’IA — Kit 2.15.27
+# Wikidéb’IA — Kit 2.15.28
 
-Le kit 2.15.27 applique le contrat de préservation 1.2.50. Le profil de **création** reste restreint ; le profil de **modification** commence au contraire par l’état existant et ne peut plus s’en servir comme cible de nettoyage.
+Le kit 2.15.28 ajoute la prise en charge de l’attribution éditoriale explicite de `nom` / `name` selon la politique 1.2.51. Un nom historiquement absent reste protégé par défaut ; il ne peut être ajouté que pour une page Argument inscrite dans un registre approuvé par le propriétaire, avec un titre et une valeur exacts.
 
-Pour une page préexistante, les métadonnées historiques et avertissements sont réémis à l’identique. En plus, le planificateur compare directement les paramètres top-level de la révision distante avec ceux du rendu proposé et bloque toute disparition non autorisée, y compris pour un paramètre de contenu qui ne fait pas partie des métadonnées opaques. Une suppression n’est admise que par une décision explicite page/paramètre ou une exception spécialisée déjà verrouillée.
+La reprise distante applique cette exception uniquement à `nom` / `name`. Tous les autres paramètres historiques protégés conservent les garanties de la révision 2.15.27.
 
-Les marqueurs `Argument généré par IA` et `Débat généré par IA` sont réservés aux pages réellement nouvelles.
-
-Kit aligné sur la norme 1.2.50 et le validateur 0.4.53.
+Kit aligné sur la norme 1.2.51 et le validateur 0.4.54.
 
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `ce02c29b0c57b880ab4ba6fd9989cfa8aa10b6612eaa51697809b3fbc8881dc8`
+SHA-256 : `7d8e9b11636550a48f1dcbaba3b5ecbcc40961d8c3ac9720fecec04b6421af60`
+
+## 2.15.28 — 7 août 2026
+
+- alignement sur la norme 1.2.51 et le validateur 0.4.54 ;
+- prise en charge du registre explicite d’attribution de `nom` / `name` ;
+- conservation de l’absence historique par défaut et exception limitée aux pages approuvées ;
+- aucune ouverture des autres paramètres protégés lors d’une reprise.
 
 ## 2.15.27 — 7 août 2026
 
@@ -2988,6 +3029,6 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `b5d1a697452221b7580e04164339782c479aa8cb50ac9abeb08b9e22befdef20`
+SHA-256 : `fa9bfc698a1b5217864bdfe491bd7ad3ed912e153bda4219f337249cf651b577`
 
-Tests pytest : 284 réussis, 0 échec.
+Tests pytest : 286 réussis, 0 échec.

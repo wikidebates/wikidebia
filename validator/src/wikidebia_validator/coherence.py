@@ -87,6 +87,7 @@ def validate_coherence(ctx: PackageContext) -> None:
             ctx.report.error("WDV-FS-006", f"Titre de page divergent pour {key}", details={"manifest": page.get("canonical_title"), "registry": title_by_key[key]})
 
     validate_manual_remote_adoptions(ctx, manifest)
+    validate_argument_name_assignments(ctx, manifest)
     validate_interlanguage_patch(ctx, manifest, registry)
     validate_operation_logs(ctx, manifest)
 
@@ -143,9 +144,49 @@ def validate_manual_remote_adoptions(ctx: PackageContext, manifest: dict[str, An
                 ctx.report.error("WDV-RMT-007", "Une relation externe ne peut pas viser sa propre page", path=str(rel), details={"page_id": key[1], "target": external_key[1]})
     ctx.report.metrics.setdefault("coherence", {})["manual_remote_adoptions"] = len(seen)
 
+
+def validate_argument_name_assignments(ctx: PackageContext, manifest: dict[str, Any]) -> None:
+    controls = manifest.get("editorial_controls") or {}
+    revision = controls.get("argument_name_assignment_revision")
+    rel = controls.get("argument_name_assignment_path")
+    if revision is None and rel is None:
+        return
+    if revision != "1.2.51" or not rel:
+        ctx.report.error("WDV-EDT-031", "Politique d’attribution de nom d’argument incomplète", path="manifest.json")
+        return
+    data = ctx.load_json(str(rel))
+    if not isinstance(data, dict):
+        return
+    if data.get("debate_id") != manifest.get("debate_id"):
+        ctx.report.error("WDV-EDT-031", "Registre d’attribution de noms rattaché à un autre débat", path=str(rel))
+    if not str(data.get("decision") or "").strip():
+        ctx.report.error("WDV-EDT-031", "Décision propriétaire absente du registre d’attribution de noms", path=str(rel))
+    pages = {(str(row.get("language")), str(row.get("page_id"))): row for row in manifest.get("pages") or []}
+    seen: set[tuple[str, str]] = set()
+    for row in data.get("entries") or []:
+        key = (str(row.get("language") or ""), str(row.get("page_id") or ""))
+        if key in seen:
+            ctx.report.error("WDV-EDT-031", "Attribution de nom dupliquée", path=str(rel), details={"language": key[0], "page_id": key[1]})
+            continue
+        seen.add(key)
+        page = pages.get(key)
+        if page is None or page.get("page_type") != "argument":
+            ctx.report.error("WDV-EDT-031", "Attribution visant une page Argument absente du manifeste", path=str(rel), details={"language": key[0], "page_id": key[1]})
+            continue
+        if row.get("title") != page.get("canonical_title"):
+            ctx.report.error("WDV-EDT-031", "Titre divergent dans l’attribution de nom", path=str(rel), details={"page_id": key[1], "expected": page.get("canonical_title"), "actual": row.get("title")})
+        if row.get("owner_approved") is not True or not str(row.get("name") or "").strip() or not str(row.get("reason") or "").strip():
+            ctx.report.error("WDV-EDT-031", "Attribution de nom incomplète ou non approuvée", path=str(rel), details={"page_id": key[1]})
+        name_param = "nom" if key[0] == "fr" else "name"
+        preserved = page.get("preserved_parameters") or {}
+        state = preserved.get(name_param)
+        if page.get("page_origin") == "preexisting" and isinstance(state, dict) and state.get("present") is True:
+            ctx.report.error("WDV-EDT-031", "Une attribution 1.2.51 ne peut pas remplacer un nom historique déjà présent", path=str(rel), details={"page_id": key[1]})
+    ctx.report.metrics.setdefault("coherence", {})["argument_name_assignments"] = len(seen)
+
 def validate_interlanguage_patch(ctx: PackageContext, manifest: dict[str, Any], registry: dict[str, Any]) -> None:
     norm = (manifest.get("normative_versions") or {}).get("consolidated_norm")
-    if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49", "1.2.50"}:
+    if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49", "1.2.50", "1.2.51"}:
         # New packages carry their links in the canonical French files; no patch is required.
         return
     rel = "patches/interlanguage_fr.validated.json" if ctx.exists("patches/interlanguage_fr.validated.json") else "patches/interlanguage_fr.json"

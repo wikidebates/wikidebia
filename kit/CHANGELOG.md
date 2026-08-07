@@ -1,3 +1,10 @@
+## 2.15.28 — 7 août 2026
+
+- alignement sur la norme 1.2.51 et le validateur 0.4.54 ;
+- prise en charge du registre explicite d’attribution de `nom` / `name` ;
+- conservation de l’absence historique par défaut et exception limitée aux pages approuvées ;
+- aucune ouverture des autres paramètres protégés lors d’une reprise.
+
 ## 2.15.27 — 7 août 2026
 
 - alignement sur la norme 1.2.50 et le validateur 0.4.53 ;

@@ -51,3 +51,35 @@ def test_name_cannot_be_invented_when_historically_absent(tmp_path: Path):
     path.write_text(path.read_text().replace('{{Argument\n','{{Argument\n|nom=Nom inventé\n',1))
     report=validate_package(tmp_path,scopes=['wikicode'])
     assert any(f.code=='WDV-EDT-027' and 'ajouté sans provenance' in f.message for f in report.findings)
+
+
+def _approve_explicit_name(root: Path, page: dict, name: str = "Argument moral"):
+    manifest=json.loads((root/'manifest.json').read_text())
+    manifest.setdefault('normative_versions',{})['consolidated_norm']='1.2.50'
+    controls=manifest.setdefault('editorial_controls',{})
+    controls['argument_name_assignment_revision']='1.2.51'
+    controls['argument_name_assignment_path']='reviews/argument_name_assignments.json'
+    (root/'reviews').mkdir(exist_ok=True)
+    dump(root/'reviews/argument_name_assignments.json',{
+        'version':'wikidebia-argument-name-assignments-1.0',
+        'debate_id':manifest['debate_id'],
+        'decision':'Attribution explicitement approuvée par le propriétaire.',
+        'entries':[{'language':'fr','page_id':page['page_id'],'title':page['canonical_title'],'name':name,'reason':'Appellation consacrée dans la littérature.','owner_approved':True}],
+    })
+    dump(root/'manifest.json',manifest)
+
+
+def test_name_can_be_added_when_explicitly_approved_under_1251(tmp_path: Path):
+    page,path=_package(tmp_path,False)
+    _approve_explicit_name(tmp_path,page)
+    path.write_text(path.read_text().replace('{{Argument\n','{{Argument\n|nom=Argument moral\n',1))
+    report=validate_package(tmp_path,scopes=['schema','coherence','wikicode'])
+    assert not any(f.code in {'WDV-EDT-027','WDV-EDT-031'} for f in report.findings)
+
+
+def test_explicit_name_must_match_registry_exactly(tmp_path: Path):
+    page,path=_package(tmp_path,False)
+    _approve_explicit_name(tmp_path,page)
+    path.write_text(path.read_text().replace('{{Argument\n','{{Argument\n|nom=Nom différent\n',1))
+    report=validate_package(tmp_path,scopes=['coherence','wikicode'])
+    assert any(f.code in {'WDV-EDT-027','WDV-EDT-031'} and 'nom' in f.message.lower() for f in report.findings)

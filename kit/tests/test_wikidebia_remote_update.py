@@ -132,11 +132,11 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(state), encoding="utf-8")
     validator = root / "validator.py"
-    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.53','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.54','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     config = {
-        "kit_version":"2.15.27","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
+        "kit_version":"2.15.28","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
         "family":"wikidebates","pywikibot_dir":"private/pywikibot","sites":{lang:{"code":lang,"expected_user":"ChatGPT"} for lang in languages},
-        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.53","scopes":[]},
+        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.54","scopes":[]},
         "published_state_dir":".state/published","receipts_dir":".state/receipts","logs_dir":"logs",
     }
     config_path = root / "config.json"

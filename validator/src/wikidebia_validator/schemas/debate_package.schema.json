@@ -550,7 +550,8 @@
                 "0.4.50",
                 "0.4.51",
                 "0.4.52",
-                "0.4.53"
+                "0.4.53",
+                "0.4.54"
               ],
               "description": "Active la confrontation du verrou historique à l’inventaire source attesté."
             },
@@ -683,6 +684,16 @@
           ]
         },
         "manual_remote_adoption_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "argument_name_assignment_revision": {
+          "type": "string",
+          "enum": [
+            "1.2.51"
+          ]
+        },
+        "argument_name_assignment_path": {
           "type": "string",
           "minLength": 1
         }

@@ -1,9 +1,7 @@
-# Wikidéb’IA — Kit 2.15.27
+# Wikidéb’IA — Kit 2.15.28
 
-Le kit 2.15.27 applique le contrat de préservation 1.2.50. Le profil de **création** reste restreint ; le profil de **modification** commence au contraire par l’état existant et ne peut plus s’en servir comme cible de nettoyage.
+Le kit 2.15.28 ajoute la prise en charge de l’attribution éditoriale explicite de `nom` / `name` selon la politique 1.2.51. Un nom historiquement absent reste protégé par défaut ; il ne peut être ajouté que pour une page Argument inscrite dans un registre approuvé par le propriétaire, avec un titre et une valeur exacts.
 
-Pour une page préexistante, les métadonnées historiques et avertissements sont réémis à l’identique. En plus, le planificateur compare directement les paramètres top-level de la révision distante avec ceux du rendu proposé et bloque toute disparition non autorisée, y compris pour un paramètre de contenu qui ne fait pas partie des métadonnées opaques. Une suppression n’est admise que par une décision explicite page/paramètre ou une exception spécialisée déjà verrouillée.
+La reprise distante applique cette exception uniquement à `nom` / `name`. Tous les autres paramètres historiques protégés conservent les garanties de la révision 2.15.27.
 
-Les marqueurs `Argument généré par IA` et `Débat généré par IA` sont réservés aux pages réellement nouvelles.
-
-Kit aligné sur la norme 1.2.50 et le validateur 0.4.53.
+Kit aligné sur la norme 1.2.51 et le validateur 0.4.54.

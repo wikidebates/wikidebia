@@ -39,7 +39,7 @@ def validate_bilingual(ctx: PackageContext) -> None:
             continue
         expected_sections = [SECTION_MAP[x] for x in fr.get("rubriques", []) if x in SECTION_MAP]
         norm = ((ctx.manifest().get("normative_versions") or {}).get("consolidated_norm"))
-        if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49", "1.2.50"}:
+        if norm in {"1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49", "1.2.50", "1.2.51"}:
             expected_sections = alphabetically_sorted(expected_sections)
         if en.get("sections") and en.get("sections") != expected_sections:
             ctx.report.warning("WDV-BIL-004", f"Sections anglaises divergentes pour {nid}; une justification éditoriale est requise", path=ctx.core_paths()["registry"], details={"expected": expected_sections, "actual": en.get("sections")})

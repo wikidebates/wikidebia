@@ -109,6 +109,7 @@ CODES = {
     "WDV-EDT-027": "Contenu historique protégé modifié ou supprimé",
     "WDV-EDT-028": "Traitement incohérent de notions spécialisées voisines",
     "WDV-EDT-030": "Paramètre existant supprimé sans autorisation explicite",
+    "WDV-EDT-031": "Attribution éditoriale de nom d’argument absente, divergente ou non autorisée",
     "WDV-RMT-001": "Empreinte du plan de reprise divergente",
     "WDV-RMT-002": "Compteurs du plan de reprise incohérents",
     "WDV-RMT-003": "Opérations distantes mutantes contradictoires",

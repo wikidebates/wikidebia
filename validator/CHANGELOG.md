@@ -1,3 +1,11 @@
+## 0.4.54 — 7 août 2026
+
+- alignement sur la norme 1.2.51 ;
+- ajout du schéma et du contrôle du registre d’attribution éditoriale de `nom` / `name` ;
+- maintien de la provenance historique distincte : le verrou peut rester `present=false` tandis qu’une attribution approuvée autorise le wikicode exact ;
+- conservation du blocage pour toute page non listée ou toute valeur divergente ;
+- compatibilité conservée avec les corpus 1.2.50 et antérieurs.
+
 ## 0.4.53 — 7 août 2026
 
 - alignement sur la norme 1.2.50 ;

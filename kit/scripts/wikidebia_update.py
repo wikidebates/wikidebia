@@ -29,8 +29,8 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.15.27"
-REQUIRED_VALIDATOR_VERSION = "0.4.53"
+KIT_VERSION = "2.15.28"
+REQUIRED_VALIDATOR_VERSION = "0.4.54"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
 RECEIPT_VERSION = "wikidebia-remote-update-receipt-1.0"
@@ -113,6 +113,7 @@ def preserve_remote_lifecycle_parameters(
     *,
     desired_preserved_parameters: dict[str, Any] | None = None,
     allow_historical_restoration: bool = False,
+    explicit_parameter_assignments: dict[str, str] | None = None,
 ) -> tuple[str, dict[str, Any]]:
     """Preserve exact historical metadata while keeping creation/update separate.
 
@@ -160,6 +161,18 @@ def preserve_remote_lifecycle_parameters(
                 if state.get("value") is not None:
                     raise UpdateError(f"Valeur historique fournie pour {name} pourtant absent")
                 desired[name] = (False, None)
+
+    explicit_parameter_assignments = explicit_parameter_assignments or {}
+    explicit_applied: dict[str, str] = {}
+    for name, value in explicit_parameter_assignments.items():
+        if name not in names:
+            raise UpdateError(f"Attribution explicite interdite pour un paramètre non protégé : {name}")
+        if name not in {"nom", "name"}:
+            raise UpdateError(f"La politique d’attribution explicite ne peut modifier que nom/name : {name}")
+        if not isinstance(value, str) or not value.strip():
+            raise UpdateError(f"Valeur d’attribution explicite invalide pour {name}")
+        desired[name] = (True, value)
+        explicit_applied[name] = value
 
     protected_by_normalized = {normalize_key(name): name for name in names}
     preserved: list[tuple[str, str]] = []
@@ -216,6 +229,7 @@ def preserve_remote_lifecycle_parameters(
         "original_proposed": protected_lifecycle_snapshot(proposed_text, language, page_type),
         "effective": effective_snapshot,
         "historical_restoration": bool(allow_historical_restoration),
+        "explicit_parameter_assignments": explicit_applied,
         "changes": changes,
     }
 
@@ -567,6 +581,7 @@ class RemoteUpdatePlanner:
         self.extra_markers = tuple(config.get("generated_markers") or ())
         self.migrations = self._load_migrations()
         self.remote_adoptions = self._load_remote_adoptions()
+        self.argument_name_assignments = self._load_argument_name_assignments()
         self._validate_config()
         inventory_root = self.config.get("state_inventory_root")
         resolved_inventory_root = self._resolve(inventory_root) if inventory_root else None
@@ -644,6 +659,50 @@ class RemoteUpdatePlanner:
                 raise UpdateError(f"Adoption distante sans révision ni empreinte : {key}")
             result.append(row)
         return result
+
+    def _load_argument_name_assignments(self) -> list[dict[str, Any]]:
+        controls = self.manifest.get("editorial_controls") or {}
+        revision = controls.get("argument_name_assignment_revision")
+        rel = controls.get("argument_name_assignment_path")
+        if revision is None and rel is None:
+            return []
+        if revision != "1.2.51" or not rel:
+            raise UpdateError("L’attribution explicite de noms d’arguments exige la politique 1.2.51 et un registre déclaré")
+        path = self.corpus_root / str(rel)
+        data = load_json(path)
+        if data.get("debate_id") != self.debate_id:
+            raise UpdateError("Le registre d’attribution des noms appartient à un autre débat")
+        if not str(data.get("decision") or "").strip():
+            raise UpdateError("Le registre d’attribution des noms doit consigner la décision du propriétaire")
+        entries = data.get("entries") or []
+        if not isinstance(entries, list):
+            raise UpdateError("entries doit être une liste dans le registre d’attribution des noms")
+        result: list[dict[str, Any]] = []
+        seen: set[tuple[str, str]] = set()
+        for raw in entries:
+            row = dict(raw)
+            key = (str(row.get("language") or ""), str(row.get("page_id") or ""))
+            if not all(key) or key in seen:
+                raise UpdateError(f"Attribution de nom absente ou dupliquée : {key}")
+            seen.add(key)
+            if key[0] not in {"fr", "en"}:
+                raise UpdateError(f"Langue invalide dans l’attribution de nom : {key}")
+            if not row.get("title") or not row.get("name") or not row.get("reason") or row.get("owner_approved") is not True:
+                raise UpdateError(f"Attribution de nom incomplète ou non approuvée : {key}")
+            result.append(row)
+        return result
+
+    def _argument_name_assignment_for(self, language: str, page_id: str, title: str) -> dict[str, Any] | None:
+        matches = [
+            row for row in self.argument_name_assignments
+            if row.get("language") == language and str(row.get("page_id")) == page_id
+        ]
+        if not matches:
+            return None
+        row = matches[0]
+        if row.get("title") != title:
+            raise UpdateError(f"Titre divergent dans l’attribution de nom : {language}/{page_id}")
+        return row
 
     def _remote_adoption_for(self, language: str, page_id: str, title: str) -> dict[str, Any] | None:
         matches = [
@@ -753,6 +812,10 @@ class RemoteUpdatePlanner:
         remote_text: str,
     ) -> tuple[dict[str, Any], dict[str, Any] | None]:
         restoration = (((self.manifest.get("editorial_controls") or {}).get("legacy_content_preservation") or {}).get("historical_parameter_restoration") is True)
+        assignment = self._argument_name_assignment_for(prior.language, prior.page_id, proposed["title"]) if prior.page_type == "argument" else None
+        explicit_assignments = {}
+        if assignment is not None:
+            explicit_assignments["nom" if prior.language == "fr" else "name"] = str(assignment["name"])
         effective_text, preservation = preserve_remote_lifecycle_parameters(
             remote_text,
             proposed["content"],
@@ -760,6 +823,7 @@ class RemoteUpdatePlanner:
             prior.page_type,
             desired_preserved_parameters=proposed.get("preserved_parameters") if proposed.get("page_origin") == "preexisting" else None,
             allow_historical_restoration=restoration and proposed.get("page_origin") == "preexisting",
+            explicit_parameter_assignments=explicit_assignments,
         )
         if effective_text == proposed["content"]:
             return proposed, None

@@ -1,3 +1,11 @@
+## 1.2.51 — 7 août 2026
+
+- maintien de la préservation stricte des `nom` / `name` historiques existants ;
+- ajout d’un registre d’attribution éditoriale explicite pour les appellations consacrées ajoutées à des pages auparavant dépourvues de `nom` / `name` ;
+- séparation obligatoire entre la provenance historique et la nouvelle décision éditoriale ;
+- dérogation limitée au seul paramètre `nom` / `name` et aux seules pages listées ;
+- alignement recommandé : validateur 0.4.54 et kit 2.15.28.
+
 ## 1.2.50 — 7 août 2026
 
 - séparation normative entre création d’une page nouvelle et modification d’une page existante ;
