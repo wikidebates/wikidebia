@@ -404,3 +404,6 @@ RND-005 interdit tout modèle ou paramètre français dans une page anglaise ren
 | Éviter les liens répétés | MW-032 | traitement `prior_treatment` vérifié vers une sous-partie antérieure |
 | Empêcher les cases globales sans preuve | VAL-040 | concordance entre termes, texte, extraits et modèles réellement présents |
 
+## Révision 1.2.53 — traduction anglaise par lots et adaptation documentaire
+
+La décision du propriétaire du 7 août 2026 formalise la phase anglaise après validation du corpus français. `TRN-005` et `TRN-006` imposent le lot autonome de la page Debate, les lots d'arguments bornés et la passe globale inter-lots. `EDT-063` sépare strictement la recherche de `name=` anglais de tout `nom=` français. `REF-038` interdit la traduction artificielle des notices françaises et exige un équivalent anglais réel avant projection ; `REF-039` impose une recherche documentaire anglophone indépendante. `RND-006` confirme que le contrat spécial `Citation`→`Quote` reste inchangé et constitue une exception contrôlée à la politique générale d'adaptation des références.

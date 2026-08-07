@@ -552,7 +552,8 @@
                 "0.4.52",
                 "0.4.53",
                 "0.4.54",
-                "0.4.55"
+                "0.4.55",
+                "0.4.56"
               ],
               "description": "Active la confrontation du verrou historique à l’inventaire source attesté."
             },

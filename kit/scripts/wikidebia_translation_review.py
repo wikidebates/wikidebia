@@ -46,7 +46,7 @@ from wikidebia_content_review import (
     META_DISCOURSE,
 )
 
-KIT_VERSION = "2.15.29"
+KIT_VERSION = "2.15.30"
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.0"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
@@ -1108,7 +1108,7 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     name_review_path = target / "reviews/argument_name_discovery_review.json"
     existing_name_review = load_json(name_review_path, "revue des noms d’arguments") if name_review_path.is_file() else {
         "version": "wikidebia-argument-name-discovery-review-1.0",
-        "normative_revision": NORM_VERSION,
+        "normative_revision": "1.2.52",
         "debate_id": debate_id,
         "entries": [],
     }
@@ -1123,7 +1123,7 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
         })
     write_json(name_review_path, {
         "version": "wikidebia-argument-name-discovery-review-1.0",
-        "normative_revision": NORM_VERSION,
+        "normative_revision": "1.2.52",
         "debate_id": debate_id,
         "entries": name_entries,
     })

@@ -5,10 +5,10 @@ from wikidebia_validator.validator import validate_package
 from .helpers import create_fr_package, dump
 
 
-def _set_1252(root: Path, *, with_review: bool = True, first_outcome: str = "known_name"):
+def _set_1252(root: Path, *, with_review: bool = True, first_outcome: str = "known_name", norm_version: str = "1.2.52"):
     create_fr_package(root)
     manifest = json.loads((root / "manifest.json").read_text())
-    manifest.setdefault("normative_versions", {})["consolidated_norm"] = "1.2.52"
+    manifest.setdefault("normative_versions", {})["consolidated_norm"] = norm_version
     if with_review:
         controls = manifest.setdefault("editorial_controls", {})
         controls["argument_name_discovery_revision"] = "1.2.52"
@@ -54,9 +54,12 @@ def _set_1252(root: Path, *, with_review: bool = True, first_outcome: str = "kno
 
 
 def test_1252_requires_name_search_for_every_new_argument(tmp_path: Path):
-    _set_1252(tmp_path, with_review=False)
-    report = validate_package(tmp_path, scopes=["coherence"])
-    assert any(f.code == "WDV-EDT-032" and "recherche" in f.message.lower() for f in report.findings)
+    for norm_version in ("1.2.52", "1.2.53"):
+        root = tmp_path / norm_version.replace(".", "_")
+        root.mkdir()
+        _set_1252(root, with_review=False, norm_version=norm_version)
+        report = validate_package(root, scopes=["coherence"])
+        assert any(f.code == "WDV-EDT-032" and "recherche" in f.message.lower() for f in report.findings), norm_version
 
 
 def test_1252_known_name_is_allowed_when_attested(tmp_path: Path):

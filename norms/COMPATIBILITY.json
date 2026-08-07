@@ -1,7 +1,7 @@
 {
-  "normative_revision": "1.2.52",
-  "recommended_validator_version": "0.4.55",
-  "recommended_kit_version": "2.15.29",
+  "normative_revision": "1.2.53",
+  "recommended_validator_version": "0.4.56",
+  "recommended_kit_version": "2.15.30",
   "compatible_from": "1.1.0",
   "translation_modes": [
     "pending",
@@ -16,6 +16,7 @@
     "Les profils de paramètres générés/non générés s’appliquent à la création de zéro, jamais comme nettoyage d’une page existante.",
     "La modification d’une page existante préserve la présence de tous ses paramètres top-level autorisés et la valeur exacte de ses métadonnées historiques, sauf suppression explicitement attestée.",
     "Une absence historique de nom/name peut être dépassée uniquement par un registre d’attribution éditoriale 1.2.51 explicitement approuvé.",
-    "Chaque argument nouveau fait l’objet d’une recherche d’appellation consacrée; l’absence de nom reste le résultat attendu par défaut."
+    "Chaque argument nouveau fait l’objet d’une recherche d’appellation consacrée; l’absence de nom reste le résultat attendu par défaut.",
+    "La traduction anglaise 1.2.53 se fait par lots fermés, adapte les références à des versions anglaises réelles et recherche séparément les noms consacrés et les nouvelles sources anglophones."
   ]
 }

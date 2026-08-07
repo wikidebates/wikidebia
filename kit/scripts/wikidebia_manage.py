@@ -15,9 +15,9 @@ import zipfile
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
-NORM_VERSION = "1.2.52"
-VALIDATOR_VERSION = "0.4.55"
-KIT_VERSION = "2.15.29"
+NORM_VERSION = "1.2.53"
+VALIDATOR_VERSION = "0.4.56"
+KIT_VERSION = "2.15.30"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",
@@ -571,6 +571,9 @@ def build_unified_source(
         if not path.is_file():
             raise ManagementError(f"Source active introuvable : {source_label}")
         _append_unified_source_section(lines, title, source_label, path)
+    translation_guide = staged["kit"] / "GUIDE_TRANSLATION_REVIEW.md"
+    if translation_guide.is_file():
+        _append_unified_source_section(lines, "Guide de traduction anglaise", "kit/GUIDE_TRANSLATION_REVIEW.md", translation_guide)
     return "\n".join(lines).rstrip() + "\n"
 
 

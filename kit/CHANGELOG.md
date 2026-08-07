@@ -1,3 +1,14 @@
+## 2.15.30 — 7 août 2026
+
+- alignement sur la norme 1.2.53 et le validateur 0.4.56 ;
+- formalisation du lot Debate autonome et des lots Argument de 20 pages par défaut, 25 maximum, réduits à 10–15 lorsque la charge documentaire l'exige ;
+- ajout d'une passe globale inter-lots avant finalisation ;
+- recherche anglophone autonome de `name=` sans traduction mécanique de `nom=` ;
+- adaptation des références uniquement à partir de versions anglaises réelles et vérifiées, plus recherche indépendante de nouvelles sources anglophones ;
+- rappel explicite du contrat `Citation`→`Quote` ;
+- inclusion du guide de traduction anglaise dans la source active unifiée générée par `upgrade` ;
+- correction de non-régression : le registre de recherche des noms anglais reste scellé sous la révision de politique `1.2.52`, même lorsque la norme active est 1.2.53.
+
 ## 2.15.29 — 7 août 2026
 
 - alignement sur la norme 1.2.52 et le validateur 0.4.55 ;

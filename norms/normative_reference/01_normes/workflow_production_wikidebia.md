@@ -215,3 +215,11 @@ Les notions spécialisées de même rang énumérées ou comparées dans un mêm
 ## Inventaire général des notions spécialisées (1.2.46)
 
 La revue ne se limite pas aux séries de notions comparables. Chaque sous-partie est examinée intégralement et reçoit une entrée dans `specialized_term_inventory`. Toute notion susceptible d’arrêter un lecteur est liée, expliquée, rattachée à un traitement antérieur ou déclarée intelligible en contexte avec une justification spécifique. Tous les liens Wikipédia réellement présents sont recensés. Le registre `wikipedia_link_groups` de 1.2.45 est remplacé comme mécanisme actif par cet inventaire général.
+
+## Traduction anglaise par lots — révision 1.2.53
+
+Après verrouillage du français, la page Debate anglaise est traduite et documentée comme un lot autonome. Les pages Argument sont ensuite traitées par lots de 20 pages par défaut, sans dépasser 25, ou de 10 à 15 pour les groupes riches en citations ou en recherches documentaires. Une page Argument est entièrement traitée dans le même lot.
+
+Chaque lot inclut : traduction idiomatique ; contrôle de l'orientation argumentative ; recherche autonome d'un éventuel `name=` anglais ; recherche d'une version anglaise réelle pour les références françaises pertinentes sans traduction artificielle de leurs notices ; recherche de nouvelles références anglophones ; traitement des `Citation`→`Quote` selon le contrat qui ne traduit que `quote` et `date` et ajoute `Citation traduite par IA`.
+
+Une passe globale inter-lots est obligatoire avant finalisation afin d'harmoniser terminologie, titres, vocabulaire, documentation et noms consacrés et de vérifier la parité complète du graphe.

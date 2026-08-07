@@ -1,3 +1,12 @@
+## 0.4.56 — 7 août 2026
+
+- alignement documentaire sur la norme 1.2.53 ;
+- intégration des exigences de traduction anglaise par lots et de passe inter-lots ;
+- intégration de la politique d'équivalents anglais réels et de recherche de nouvelles références anglophones ;
+- confirmation de la recherche autonome de `name=` anglais et du contrat `Citation`→`Quote` ;
+- aucun relâchement des contrôles automatiques existants ;
+- correction de non-régression : sous 1.2.53, la revue des noms consacrés reste obligatoire via la politique stable `argument_name_discovery_revision=1.2.52`.
+
 ## 0.4.55 — 7 août 2026
 
 - alignement sur la norme 1.2.52 ;

@@ -240,3 +240,13 @@ Une vérification supplémentaire a montré qu’un plan entièrement `skip` doi
 6. Le même principe s'applique aux pages Débat et Argument, en français comme en anglais. Il protège aussi les paramètres existants ajoutés manuellement après l'import : le planificateur compare directement l'état distant au rendu proposé et bloque toute suppression non autorisée.
 7. Une restauration corrective fondée sur un inventaire historique signé peut retirer un paramètre qui avait lui-même été ajouté ou écrasé par erreur par le pipeline ; cette capacité ne constitue pas une permission générale de nettoyage.
 
+## Décisions du 7 août 2026 — protocole de traduction anglaise du corpus français validé
+
+1. La traduction anglaise est effectuée par lots afin de préserver la qualité éditoriale et documentaire.
+2. La page `Debate` constitue un lot autonome.
+3. Les pages `Argument` sont traitées par lots de 20 pages par défaut, au maximum 25, et de 10 à 15 pages lorsque la densité documentaire ou citationnelle l'exige. Une page Argument est achevée dans un seul lot.
+4. Après tous les lots, une passe globale vérifie la cohérence inter-lots avant finalisation.
+5. `nom=` n'est jamais traduit mécaniquement en `name=`. Une recherche propre à la littérature anglophone est menée pour chaque argument ; `name=` n'est ajouté que si l'appellation anglaise est réellement attestée pour le même raisonnement.
+6. Une référence française n'est jamais transformée en référence anglaise par traduction de sa notice ou de son titre. La revue recherche une version anglaise réelle et l'ajoute uniquement si elle existe, avec les métadonnées de cette version.
+7. La documentation anglaise est enrichie par une recherche indépendante de nouvelles références anglophones ; elle n'est pas limitée aux équivalents des références françaises.
+8. Le contrat des modèles `Citation` / `Quote` est confirmé : seuls les champs textuels `citation`→`quote` et `date` sont traduits ; les autres valeurs documentaires sont conservées exactement et l'avertissement `Citation traduite par IA` est ajouté dans `warnings`.

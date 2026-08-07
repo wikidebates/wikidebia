@@ -1,3 +1,13 @@
+## 1.2.53 — 7 août 2026
+
+- traduction anglaise organisée en lots fermés : page Debate seule, puis 20 Arguments par défaut, maximum 25 et réduction à 10–15 pour les lots documentaires denses ;
+- passe globale inter-lots obligatoire avant finalisation ;
+- recherche de `name=` indépendante dans la littérature anglophone, sans traduction mécanique de `nom=` ;
+- interdiction de traduire artificiellement les références françaises ; projection uniquement d'une version anglaise réelle et vérifiée avec ses métadonnées propres ;
+- recherche indépendante de nouvelles références anglophones ;
+- confirmation du contrat `Citation`→`Quote` : seules les valeurs `quote` et `date` sont traduites et `Citation traduite par IA` est ajouté ;
+- alignement recommandé : validateur 0.4.56 et kit 2.15.30.
+
 ## 1.2.52 — 7 août 2026
 
 - recherche documentaire obligatoire d’une appellation consacrée pour chaque page Argument nouvelle ;

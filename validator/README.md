@@ -1,6 +1,5 @@
-# Wikidéb’IA Validator 0.4.55
+# Wikidéb’IA Validator 0.4.56
 
-La version 0.4.55 ajoute `WDV-EDT-032`. Pour toute page Argument nouvelle sous la norme 1.2.52, le validateur exige une revue documentaire de l’éventuelle appellation consacrée. Le résultat normal peut être `none`; `nom` / `name` n’est accepté que lorsque la revue conclut `known_name`, fournit une preuve documentaire et correspond exactement au wikicode.
-La version 0.4.54 ajoute le contrôle de la politique 1.2.51 d’attribution éditoriale explicite de `nom` / `name`. Une absence historique reste protégée par défaut ; seules les pages listées dans un registre approuvé peuvent recevoir la valeur exacte déclarée.
+La version 0.4.56 aligne le paquet sur la norme 1.2.53. Elle conserve les contrôles existants et embarque les nouvelles règles éditoriales de traduction anglaise par lots, d'adaptation des références à des versions anglaises réelles, de recherche anglophone autonome de `name=` et de maintien du contrat `Citation`→`Quote`. Ces exigences de recherche et d'ordonnancement restent principalement éditoriales ; les contrôles automatiques antérieurs ne sont pas relâchés.
 
-Validateur local aligné sur la norme 1.2.52 et rétrocompatible avec les paquets antérieurs.
+Validateur local aligné sur la norme 1.2.53 et rétrocompatible avec les paquets antérieurs.
