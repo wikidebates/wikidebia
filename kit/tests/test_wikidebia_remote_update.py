@@ -84,7 +84,7 @@ def argument(text: str) -> str:
     return "{{Argument\n" + MARKER + f"|résumé={text}\n|rubriques=Société\n}}}}\n"
 
 
-def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages=None, migrations=None):
+def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages=None, migrations=None, remote_adoptions=None):
     root = tmp_path
     corpus = root / "corpus" / "demo"
     corpus.mkdir(parents=True)
@@ -105,10 +105,18 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
             "sha256": module.sha_file(path),
         })
     manifest = {"debate_id": "demo", "release_version": "2026-07-31", "pages": manifest_pages}
+    if remote_adoptions:
+        manifest["editorial_controls"] = {
+            "manual_remote_adoption_revision": "1.2.48",
+            "manual_remote_adoption_path": "data/manual_remote_adoptions.json",
+        }
     (corpus / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
     if migrations:
-        (corpus / "data").mkdir()
+        (corpus / "data").mkdir(exist_ok=True)
         (corpus / "data" / "remote_migrations.json").write_text(json.dumps({"version":"1.0","debate_id":"demo","entries":migrations}), encoding="utf-8")
+    if remote_adoptions:
+        (corpus / "data").mkdir(exist_ok=True)
+        (corpus / "data" / "manual_remote_adoptions.json").write_text(json.dumps({"version":"1.0","debate_id":"demo","decision":"Décision explicite du propriétaire", "entries":remote_adoptions}), encoding="utf-8")
     for language in languages:
         pages = []
         for row in old_pages or []:
@@ -124,11 +132,11 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(state), encoding="utf-8")
     validator = root / "validator.py"
-    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.50','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.51','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     config = {
-        "kit_version":"2.15.24","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
+        "kit_version":"2.15.25","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
         "family":"wikidebates","pywikibot_dir":"private/pywikibot","sites":{lang:{"code":lang,"expected_user":"ChatGPT"} for lang in languages},
-        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.50","scopes":[]},
+        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.51","scopes":[]},
         "published_state_dir":".state/published","receipts_dir":".state/receipts","logs_dir":"logs",
     }
     config_path = root / "config.json"
@@ -508,3 +516,104 @@ def test_deferred_translation_blocks_english_remote_update_scope(tmp_path):
         assert "deferred" in str(exc)
     else:
         raise AssertionError("reprise anglaise acceptée pendant la traduction différée")
+
+
+def test_authorized_manual_remote_adoption_allows_controlled_update(tmp_path):
+    old, human, proposed = argument("Ancien"), argument("Modification humaine"), argument("Nouveau")
+    adoption = [{
+        "language": "fr", "page_id": "A1", "title": "Titre",
+        "observed_revision_id": 11, "observed_sha256": module.sha_text(human),
+        "allow_proposed_change": True, "reason": "Modification manuelle fournie par le propriétaire",
+        "allowed_lifecycle_parameter_changes": [],
+    }]
+    p, *_ = plan(
+        tmp_path, old_pages=[("fr", "A1", "Titre", old)],
+        new_pages=[("fr", "A1", "Titre", proposed)],
+        remote_pages={("fr", "Titre"): (11, human)}, remote_adoptions=adoption,
+    )
+    assert p["counts"]["update"] == 1
+    assert p["counts"]["manual_review"] == 0
+    assert p["operations"]["update"][0]["expected_revision_id"] == 11
+
+
+def test_authorized_existing_unowned_page_can_be_adopted_and_updated(tmp_path):
+    remote, proposed = argument("Manuel"), argument("Normalisé")
+    adoption = [{
+        "language": "fr", "page_id": "A1", "title": "Titre",
+        "observed_revision_id": 21, "allow_proposed_change": True,
+        "reason": "Page créée manuellement puis intégrée au corpus",
+        "allowed_lifecycle_parameter_changes": [],
+    }]
+    p, *_ = plan(
+        tmp_path, old_pages=[], new_pages=[("fr", "A1", "Titre", proposed)],
+        remote_pages={("fr", "Titre"): (21, remote)}, remote_adoptions=adoption,
+    )
+    assert p["counts"]["update"] == 1
+    assert p["counts"]["blocked"] == 0
+
+
+def test_remote_adoption_rejects_changed_revision(tmp_path):
+    old, human, proposed = argument("Ancien"), argument("Modification humaine"), argument("Nouveau")
+    adoption = [{
+        "language": "fr", "page_id": "A1", "title": "Titre",
+        "observed_revision_id": 10, "allow_proposed_change": True,
+        "reason": "Révision attendue", "allowed_lifecycle_parameter_changes": [],
+    }]
+    p, *_ = plan(
+        tmp_path, old_pages=[("fr", "A1", "Titre", old)],
+        new_pages=[("fr", "A1", "Titre", proposed)],
+        remote_pages={("fr", "Titre"): (11, human)}, remote_adoptions=adoption,
+    )
+    assert p["counts"]["blocked"] == 1
+    assert "ne correspond plus" in p["operations"]["blocked"][0]["justification"]
+
+
+def test_dieu_manual_sync_plan_has_no_blocked_or_manual_review(tmp_path):
+    old_religions = "{{Argument\n|débat-détaillé=Les religions se rejoignent-elles ?\n|rubriques=Religion et spiritualité\n|mots-clés=Dieu, religion, contradiction, pluralisme religieux\n|date-création=2021-02-17\n}}\n"
+    proposed_religions = old_religions.replace("{{Argument\n", "{{Argument\n|résumé=Résumé vérifié. Deuxième phrase.\n", 1)
+    new_parent_remote = "{{Argument\n|justifications={{Justification\n|page=Les religions se contredisent\n|titre-affiché=Les religions se contredisent\n}}\n|rubriques=Culture, Religion et spiritualité\n|mots-clés=Dieu, religion, contradiction\n}}\n"
+    new_parent_proposed = new_parent_remote.replace("\n}}\n", "\n|date-création=2026-08-06\n}}\n", 1)
+    reinc_remote = "{{Argument\n|initialisation=Objection@30833\n|débat-détaillé=La réincarnation existe-t-elle ?\n|rubriques=Religion et spiritualité\n|mots-clés=réincarnation\n|date-création=2026-08-06\n}}\n"
+    reinc_proposed = reinc_remote.replace("|mots-clés=réincarnation\n", "|mots-clés=réincarnation, scepticisme\n")
+    fatima_remote = "{{Argument\n|initialisation=Objection@6604\n|débat-détaillé=Le miracle du soleil de Fatima est-il fondé ?\n|rubriques=Religion et spiritualité, Science\n|mots-clés=miracle, soleil, Fatima, illusion, charlatanisme\n|date-création=2026-08-06\n}}\n"
+    fatima_proposed = fatima_remote.replace("miracle, soleil, Fatima", "miracle, Fatima")
+    external = "Argument externe"
+    aseity_old = "{{Argument\n|résumé=Texte. Deuxième phrase.\n|objections={{Objection\n|page=Objection interne\n|titre-affiché=Objection interne\n}}\n|rubriques=Philosophie\n|date-création=2026-08-05\n}}\n"
+    aseity_remote = aseity_old.replace("\n}}\n|rubriques", f"}}{{{{Objection\n|page={external}\n|titre-affiché={external}\n}}}}\n|rubriques", 1)
+    debate_remote = "{{Débat\n|arguments-contre={{Argument contre\n|page=Argument retiré\n|titre-affiché=Argument retiré\n}}\n|date-création=2017-01-29\n}}\n"
+    debate_proposed = "{{Débat\n|arguments-contre=\n|date-création=2017-01-29\n}}\n"
+    new_pages = [
+        ("fr", "dieu", "Dieu existe-t-il ?", debate_proposed, "debate"),
+        ("fr", "A0016", "Les religions se contredisent", proposed_religions),
+        ("fr", "A0755", "Dieu n'existe pas car les religions se contredisent", new_parent_proposed),
+        ("fr", "A0756", "La réincarnation n'existe pas", reinc_proposed),
+        ("fr", "A0757", "Le miracle du soleil de Fatima n'est pas fondé", fatima_proposed),
+        ("fr", "A0752", "L'aséité divine est menacée", aseity_remote),
+    ]
+    old_pages = [
+        ("fr", "dieu", "Dieu existe-t-il ?", debate_remote, "debate", 1),
+        ("fr", "A0016", "Les religions se contredisent", old_religions, "argument", 2),
+        ("fr", "A0752", "L'aséité divine est menacée", aseity_old, "argument", 3),
+    ]
+    adoptions = [
+        {"language":"fr","page_id":"dieu","title":"Dieu existe-t-il ?","observed_revision_id":11,"observed_sha256":module.sha_text(debate_remote),"reason":"Révision manuelle adoptée.","allow_proposed_change":True,"allowed_lifecycle_parameter_changes":[]},
+        {"language":"fr","page_id":"A0016","title":"Les religions se contredisent","observed_revision_id":12,"observed_sha256":module.sha_text(old_religions),"reason":"Révision manuelle adoptée.","allow_proposed_change":True,"allowed_lifecycle_parameter_changes":[]},
+        {"language":"fr","page_id":"A0755","title":"Dieu n'existe pas car les religions se contredisent","observed_revision_id":13,"observed_sha256":module.sha_text(new_parent_remote),"reason":"Révision manuelle adoptée.","allow_proposed_change":True,"allowed_lifecycle_parameter_changes":["date-création"]},
+        {"language":"fr","page_id":"A0756","title":"La réincarnation n'existe pas","observed_revision_id":14,"observed_sha256":module.sha_text(reinc_remote),"reason":"Révision manuelle adoptée.","allow_proposed_change":True,"allowed_lifecycle_parameter_changes":[]},
+        {"language":"fr","page_id":"A0757","title":"Le miracle du soleil de Fatima n'est pas fondé","observed_revision_id":15,"observed_sha256":module.sha_text(fatima_remote),"reason":"Révision manuelle adoptée.","allow_proposed_change":True,"allowed_lifecycle_parameter_changes":[]},
+        {"language":"fr","page_id":"A0752","title":"L'aséité divine est menacée","observed_revision_id":16,"observed_sha256":module.sha_text(aseity_remote),"reason":"Relation externe conservée.","allow_proposed_change":False,"allowed_lifecycle_parameter_changes":[],"external_relations":[{"relation":"objection","page":external,"displayed_title":external}]},
+    ]
+    remote = {
+        ("fr", "Dieu existe-t-il ?"):(11, debate_remote),
+        ("fr", "Les religions se contredisent"):(12, old_religions),
+        ("fr", "Dieu n'existe pas car les religions se contredisent"):(13, new_parent_remote),
+        ("fr", "La réincarnation n'existe pas"):(14, reinc_remote),
+        ("fr", "Le miracle du soleil de Fatima n'est pas fondé"):(15, fatima_remote),
+        ("fr", "L'aséité divine est menacée"):(16, aseity_remote),
+    }
+    result, *_ = plan(tmp_path, remote_pages=remote, old_pages=old_pages, new_pages=new_pages, remote_adoptions=adoptions)
+    assert result["counts"]["blocked"] == 0
+    assert result["counts"]["manual_review"] == 0
+    assert result["counts"]["update"] == 5
+    assert result["counts"]["skip"] == 1
+    assert result["counts"]["move"] == 0

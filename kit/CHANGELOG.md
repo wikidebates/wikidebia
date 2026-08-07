@@ -1,3 +1,12 @@
+## 2.15.25 — 7 août 2026
+
+- alignement sur la norme 1.2.48 et le validateur 0.4.51 ;
+- lecture d’un registre `manual_remote_adoptions` déclaré par le corpus ;
+- conversion d’une révision manuelle attestée en mise à jour contrôlée avec `baserevid` ;
+- blocage si la révision ou l’empreinte distante a changé ;
+- autorisation nominative obligatoire de toute modification d’un paramètre de cycle de vie ;
+- maintien intégral des protections contre les modifications humaines non attestées.
+
 ## 2.15.24 — 6 août 2026
 
 - alignement sur la norme 1.2.47 et le validateur 0.4.50 ;

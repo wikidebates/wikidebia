@@ -1,10 +1,12 @@
-# Norme consolidée Wikidéb’IA 1.2.47
+# Norme consolidée Wikidéb’IA 1.2.48
 
 **Statut :** source normative active unique  
-**Date d’effet :** 6 août 2026  
+**Date d’effet :** 7 août 2026  
 **Domaine :** production, validation et préparation à la publication de débats bilingues français–anglais sous MediaWiki  
 **Remplace comme sources actives séparées :** révision 1.0.6, correctif du 23 juillet 2026 et décisions correctives du 25 juillet 2026. Ces documents restent conservés dans `history/` à titre de provenance.
 
+
+> **Révision 1.2.48.** Cette révision permet d’intégrer sans contournement les modifications manuelles explicitement approuvées par le propriétaire. Un registre local peut attester une révision distante précise, par identifiant de révision et/ou empreinte SHA-256, puis autoriser une modification contrôlée à partir de cette base. Le plan reste bloqué si la page a changé depuis l’attestation. Les paramètres de cycle de vie demeurent protégés, sauf autorisation nominative dans le registre. Cette procédure ne transforme jamais une modification humaine inconnue en mise à jour automatique.
 
 > **Révision 1.2.47.** Cette révision protège les frontières vers un débat détaillé. Lorsqu’un paramètre historique `débat-détaillé` ou `detailed-debate` existe, il est conservé exactement dans la sortie. La présence de cette frontière autorise l’omission des paramètres locaux `justifications` et `objections`, mais uniquement lorsque cette omission est consignée dans le verrou historique et que le propriétaire en a été informé. Le validateur compare la cible du débat détaillé à la source attestée et ne confond plus l’arrêt du parcours du graphe avec la suppression du paramètre de la page.
 
@@ -1203,6 +1205,27 @@ Le {{Lien Wikipédia|article=théisme}} affirme un Dieu personnel ; le {{Lien Wi
 ```
 
 Lier seulement `théisme` dans cette série, sans justification propre aux trois autres notions, est non conforme.
+
+## Addendum 1.2.48 — adoption contrôlée d’une révision manuelle distante
+
+Lorsqu’une page du wiki a été créée ou modifiée manuellement après le dernier état publié signé, elle reste protégée par défaut et produit `manual_review` ou `blocked`. Une décision explicite du propriétaire peut cependant autoriser sa prise en compte comme nouvelle base distante.
+
+Le corpus déclare alors `editorial_controls.manual_remote_adoption_revision=1.2.48` et un `manual_remote_adoption_path`. Le registre correspondant :
+
+1. identifie exactement le débat, la langue, l’identifiant logique et le titre de chaque page ;
+2. atteste la révision distante observée par son identifiant MediaWiki et/ou son empreinte SHA-256 ;
+3. explique la provenance et la raison de l’adoption ;
+4. indique si le contenu proposé peut différer de la révision adoptée ;
+5. énumère nominativement tout paramètre de cycle de vie dont la modification est autorisée ;
+6. ne vaut que tant que la révision et l’empreinte distantes correspondent encore à l’attestation ;
+7. est validé localement avant la construction du plan et incorporé au plan signé ;
+8. n’autorise aucune page non listée et ne réduit aucune protection contre les modifications humaines ultérieures.
+
+Lorsque la page distante correspond déjà au corpus, elle est classée `skip` et peut être incorporée au nouvel état publié après l’attestation finale. Lorsqu’elle diffère et que la modification proposée est autorisée, elle est classée `update` avec la révision adoptée comme `baserevid`. Toute divergence postérieure bloque l’exécution.
+
+Cette procédure est distincte d’une modification manuelle de `.state/published/`, qui reste interdite. Elle est également distincte d’une normalisation silencieuse : les différences proposées et les éventuelles modifications de paramètres protégés sont explicites dans le registre et dans le plan.
+
+Une adoption peut aussi déclarer des **relations externes préservées** lorsque la page distante contient une justification ou une objection visant une page qui n’appartient pas au graphe local du débat. Ces relations sont reproduites dans le wikicode et contrôlées par leur type, leur titre canonique et leur titre affiché, mais elles ne créent ni nœud, ni occurrence, ni page à publier dans le corpus courant. Cette exception est nominative et ne vaut que pour la page adoptée.
 
 ## Addendum 1.2.47 — préservation des frontières vers un débat détaillé
 

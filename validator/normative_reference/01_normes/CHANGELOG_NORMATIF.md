@@ -1,3 +1,13 @@
+## 1.2.48 — 7 août 2026
+- prise en charge nominative des relations externes préservées dans une adoption distante, sans création de nœud local ;
+
+- adoption contrôlée des pages créées ou modifiées manuellement après le dernier état publié signé ;
+- attestation par identifiant de révision et/ou empreinte SHA-256 ;
+- autorisation explicite et nominative des changements de paramètres de cycle de vie ;
+- maintien du blocage si la page distante a changé depuis l’attestation ;
+- interdiction maintenue de modifier directement l’état publié signé ;
+- nouveau contrôle `WDV-RMT-007`.
+
 ## 1.2.47 — 6 août 2026
 
 - préservation obligatoire de `débat-détaillé` / `detailed-debate` sur les pages historiques ;

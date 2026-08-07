@@ -1,1 +1,1 @@
-Kit 2.15.24 — 273 tests réussis le 6 août 2026.
+Kit 2.15.25 — 277 tests réussis le 7 août 2026.

@@ -1,3 +1,10 @@
+## 0.4.51 — 7 août 2026
+
+- alignement sur la norme 1.2.48 ;
+- ajout du schéma `manual_remote_adoptions` ;
+- ajout de `WDV-RMT-007` pour vérifier le rattachement des pages, titres et décisions d’adoption ;
+- maintien du blocage des modifications humaines non attestées.
+
 ## 0.4.50 — 6 août 2026
 
 - préservation contrôlée de `débat-détaillé` / `detailed-debate` sur les pages historiques ;

@@ -2,28 +2,30 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.47** ;
-- validateur actif : **0.4.50** ;
-- kit actif : **2.15.24**.
+- norme active : **1.2.48** ;
+- validateur actif : **0.4.51** ;
+- kit actif : **2.15.25**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 1633299 octets — SHA-256 `8846d213380ca66e4a1914711de6f2c6437ae16fd55f789d8439f144db2d0b8f`
-- `wikidebia-validator.zip` — 1915303 octets — SHA-256 `c2fa13404a8773a72b0e1190148b4d9808cbacf1d3221e10d824f3a2bfe4468d`
-- `wikidebia-kit.zip` — 418679 octets — SHA-256 `a931996e2549c85c48ca30386ea823e9ad5d61c22cc5a17d7869f56dd6aad8e9`
+- `wikidebia-normes.zip` — 1631365 octets — SHA-256 `675c1b3c9d650410257274495285970417e40de7708489f422031008dc25844c`
+- `wikidebia-validator.zip` — 1910389 octets — SHA-256 `1366f380119464f5b24ff3431bce93bee619efffea5d060e77c9b32cd9792a5e`
+- `wikidebia-kit.zip` — 420437 octets — SHA-256 `77d8db2ac6d149563a78fb3aa8b36edfdc4b5cb0d41640fce68f1d077f9069fb`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.47.md`  
-SHA-256 : `4209d3540a6706576f8ee9739f961fa42fc5c2d4a5a4bd855c9237ba68f6b5cb`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.48.md`  
+SHA-256 : `fd38fd343df188dfd74c0b8baa5c6714294fade1ee13428949a99ff27ac79bb1`
 
-# Norme consolidée Wikidéb’IA 1.2.47
+# Norme consolidée Wikidéb’IA 1.2.48
 
 **Statut :** source normative active unique  
-**Date d’effet :** 6 août 2026  
+**Date d’effet :** 7 août 2026  
 **Domaine :** production, validation et préparation à la publication de débats bilingues français–anglais sous MediaWiki  
 **Remplace comme sources actives séparées :** révision 1.0.6, correctif du 23 juillet 2026 et décisions correctives du 25 juillet 2026. Ces documents restent conservés dans `history/` à titre de provenance.
 
+
+> **Révision 1.2.48.** Cette révision permet d’intégrer sans contournement les modifications manuelles explicitement approuvées par le propriétaire. Un registre local peut attester une révision distante précise, par identifiant de révision et/ou empreinte SHA-256, puis autoriser une modification contrôlée à partir de cette base. Le plan reste bloqué si la page a changé depuis l’attestation. Les paramètres de cycle de vie demeurent protégés, sauf autorisation nominative dans le registre. Cette procédure ne transforme jamais une modification humaine inconnue en mise à jour automatique.
 
 > **Révision 1.2.47.** Cette révision protège les frontières vers un débat détaillé. Lorsqu’un paramètre historique `débat-détaillé` ou `detailed-debate` existe, il est conservé exactement dans la sortie. La présence de cette frontière autorise l’omission des paramètres locaux `justifications` et `objections`, mais uniquement lorsque cette omission est consignée dans le verrou historique et que le propriétaire en a été informé. Le validateur compare la cible du débat détaillé à la source attestée et ne confond plus l’arrêt du parcours du graphe avec la suppression du paramètre de la page.
 
@@ -1223,6 +1225,27 @@ Le {{Lien Wikipédia|article=théisme}} affirme un Dieu personnel ; le {{Lien Wi
 
 Lier seulement `théisme` dans cette série, sans justification propre aux trois autres notions, est non conforme.
 
+## Addendum 1.2.48 — adoption contrôlée d’une révision manuelle distante
+
+Lorsqu’une page du wiki a été créée ou modifiée manuellement après le dernier état publié signé, elle reste protégée par défaut et produit `manual_review` ou `blocked`. Une décision explicite du propriétaire peut cependant autoriser sa prise en compte comme nouvelle base distante.
+
+Le corpus déclare alors `editorial_controls.manual_remote_adoption_revision=1.2.48` et un `manual_remote_adoption_path`. Le registre correspondant :
+
+1. identifie exactement le débat, la langue, l’identifiant logique et le titre de chaque page ;
+2. atteste la révision distante observée par son identifiant MediaWiki et/ou son empreinte SHA-256 ;
+3. explique la provenance et la raison de l’adoption ;
+4. indique si le contenu proposé peut différer de la révision adoptée ;
+5. énumère nominativement tout paramètre de cycle de vie dont la modification est autorisée ;
+6. ne vaut que tant que la révision et l’empreinte distantes correspondent encore à l’attestation ;
+7. est validé localement avant la construction du plan et incorporé au plan signé ;
+8. n’autorise aucune page non listée et ne réduit aucune protection contre les modifications humaines ultérieures.
+
+Lorsque la page distante correspond déjà au corpus, elle est classée `skip` et peut être incorporée au nouvel état publié après l’attestation finale. Lorsqu’elle diffère et que la modification proposée est autorisée, elle est classée `update` avec la révision adoptée comme `baserevid`. Toute divergence postérieure bloque l’exécution.
+
+Cette procédure est distincte d’une modification manuelle de `.state/published/`, qui reste interdite. Elle est également distincte d’une normalisation silencieuse : les différences proposées et les éventuelles modifications de paramètres protégés sont explicites dans le registre et dans le plan.
+
+Une adoption peut aussi déclarer des **relations externes préservées** lorsque la page distante contient une justification ou une objection visant une page qui n’appartient pas au graphe local du débat. Ces relations sont reproduites dans le wikicode et contrôlées par leur type, leur titre canonique et leur titre affiché, mais elles ne créent ni nœud, ni occurrence, ni page à publier dans le corpus courant. Cette exception est nominative et ne vaut que pour la page adoptée.
+
 ## Addendum 1.2.47 — préservation des frontières vers un débat détaillé
 
 Une page `Argument` peut contenir `débat-détaillé` en français ou `detailed-debate` en anglais. Ce paramètre désigne un débat autonome qui développe la question portée par la page.
@@ -1261,7 +1284,17 @@ La revue reste qualitative. Elle n’impose pas de lier les mots courants, les n
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `b9ba407611bb27ff9a00237d03476f67ecf8025b727cb3fdf536f25c38b35dfa`
+SHA-256 : `8a6161d20e154fcc1e60a7ec0b661b5f83d9b3c267453987f8bdc0b9ed7b549a`
+
+## 1.2.48 — 7 août 2026
+- prise en charge nominative des relations externes préservées dans une adoption distante, sans création de nœud local ;
+
+- adoption contrôlée des pages créées ou modifiées manuellement après le dernier état publié signé ;
+- attestation par identifiant de révision et/ou empreinte SHA-256 ;
+- autorisation explicite et nominative des changements de paramètres de cycle de vie ;
+- maintien du blocage si la page distante a changé depuis l’attestation ;
+- interdiction maintenue de modifier directement l’état publié signé ;
+- nouveau contrôle `WDV-RMT-007`.
 
 ## 1.2.47 — 6 août 2026
 
@@ -1726,22 +1759,31 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `7429c38b1e67ceb5b4a0d665b02d9e9b864be3db2aa04f91bd4173eadf4dedbb`
+SHA-256 : `187d4f7e7aaca1cd4f75859de298c376a49780147401c8880081a002916e8078`
 
-# Wikidéb’IA Validator 0.4.50
+# Wikidéb’IA Validator 0.4.51
+
+La version 0.4.51 ajoute `WDV-RMT-007` et valide les registres d’adoption contrôlée de révisions manuelles distantes définis par la norme 1.2.48.
 
 La version 0.4.50 protège `débat-détaillé` / `detailed-debate` dans les pages historiques. Elle compare la cible au verrou source et accepte l’omission des justifications et objections seulement lorsque cette décision et l’information du propriétaire sont attestées.
 
 Les contrôles 0.4.49 sur l’inventaire exhaustif des notions spécialisées restent actifs.
 
-Validateur local aligné sur la norme 1.2.47 et rétrocompatible avec les paquets antérieurs.
+Validateur local aligné sur la norme 1.2.48 et rétrocompatible avec les paquets antérieurs.
 
-Norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.47.md`.
+Norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.48.md`.
 
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `ff18894918b9c47c922935821e860b1a825449cd8c87e23f64304e0b7c945bb5`
+SHA-256 : `6b45bba9115ef87a46412f10fc5fbd9ebc879f23e8423ecbef054ff8f8ca368a`
+
+## 0.4.51 — 7 août 2026
+
+- alignement sur la norme 1.2.48 ;
+- ajout du schéma `manual_remote_adoptions` ;
+- ajout de `WDV-RMT-007` pour vérifier le rattachement des pages, titres et décisions d’adoption ;
+- maintien du blocage des modifications humaines non attestées.
 
 ## 0.4.50 — 6 août 2026
 
@@ -2094,20 +2136,31 @@ SHA-256 : `ff18894918b9c47c922935821e860b1a825449cd8c87e23f64304e0b7c945bb5`
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `f16b005a6e48e6cd94c27bc40bd04a7ef279108e85586113c0c436bc250a748c`
+SHA-256 : `176de37881e59382bbd99671f6d14f50f46bd5c2ada6891aa7d31883d207dfba`
 
-# Wikidéb’IA — Kit 2.15.24
+# Wikidéb’IA — Kit 2.15.25
+
+Le kit accepte désormais un registre d’adoption distante 1.2.48 pour reprendre de façon contrôlée une révision manuelle explicitement approuvée, sans modifier directement l’état publié signé.
 
 Le kit conserve désormais les paramètres historiques `débat-détaillé` / `detailed-debate` depuis l’import jusqu’au rendu. Une frontière peut omettre ses relations locales, mais le paramètre lui-même est réémis exactement.
 
-Kit de production, publication et reprise aligné sur la norme 1.2.47 et le validateur 0.4.50.
+Kit de production, publication et reprise aligné sur la norme 1.2.48 et le validateur 0.4.51.
 
 Pour mettre à jour un débat, déposez son ZIP dans `incoming/` puis lancez `./wikidebia update`.
 
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `f807faf29ba023caa795d9f6999f858befba832bb4bec87fbf2a5118411a6713`
+SHA-256 : `f0e6c6b916668a1739598e66357425dc94fe55a82ce9a11af5c13aae95d53d21`
+
+## 2.15.25 — 7 août 2026
+
+- alignement sur la norme 1.2.48 et le validateur 0.4.51 ;
+- lecture d’un registre `manual_remote_adoptions` déclaré par le corpus ;
+- conversion d’une révision manuelle attestée en mise à jour contrôlée avec `baserevid` ;
+- blocage si la révision ou l’empreinte distante a changé ;
+- autorisation nominative obligatoire de toute modification d’un paramètre de cycle de vie ;
+- maintien intégral des protections contre les modifications humaines non attestées.
 
 ## 2.15.24 — 6 août 2026
 
@@ -2850,6 +2903,6 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `1bf447a9b86530c76992dbb006f0f1e75dbe6cc612578bbf28172bd2b73732b1`
+SHA-256 : `d272e5560fa066fa0fef7966aafd700b0f3b208e0c7c2786f3853e926495e3a0`
 
-Kit 2.15.24 — 273 tests réussis le 6 août 2026.
+Kit 2.15.25 — 277 tests réussis le 7 août 2026.

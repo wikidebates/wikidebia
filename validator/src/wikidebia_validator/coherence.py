@@ -86,6 +86,7 @@ def validate_coherence(ctx: PackageContext) -> None:
         if title_by_key[key] and page.get("canonical_title") != title_by_key[key]:
             ctx.report.error("WDV-FS-006", f"Titre de page divergent pour {key}", details={"manifest": page.get("canonical_title"), "registry": title_by_key[key]})
 
+    validate_manual_remote_adoptions(ctx, manifest)
     validate_interlanguage_patch(ctx, manifest, registry)
     validate_operation_logs(ctx, manifest)
 
@@ -101,9 +102,50 @@ def validate_coherence(ctx: PackageContext) -> None:
     ctx.report.metrics["coherence"] = {"debate_id": debate_id, "english_translation_deferred": deferred}
 
 
+
+def validate_manual_remote_adoptions(ctx: PackageContext, manifest: dict[str, Any]) -> None:
+    controls = manifest.get("editorial_controls") or {}
+    revision = controls.get("manual_remote_adoption_revision")
+    rel = controls.get("manual_remote_adoption_path")
+    if revision is None and rel is None:
+        return
+    if revision != "1.2.48" or not rel:
+        ctx.report.error("WDV-RMT-007", "Politique d’adoption distante incomplète", path="manifest.json")
+        return
+    data = ctx.load_json(str(rel))
+    if not isinstance(data, dict):
+        return
+    if data.get("debate_id") != manifest.get("debate_id"):
+        ctx.report.error("WDV-RMT-007", "Registre d’adoption distante rattaché à un autre débat", path=str(rel))
+    if not str(data.get("decision") or "").strip():
+        ctx.report.error("WDV-RMT-007", "Décision propriétaire absente du registre d’adoption distante", path=str(rel))
+    pages = {(str(row.get("language")), str(row.get("page_id"))): row for row in manifest.get("pages") or []}
+    seen: set[tuple[str, str]] = set()
+    for row in data.get("entries") or []:
+        key = (str(row.get("language") or ""), str(row.get("page_id") or ""))
+        if key in seen:
+            ctx.report.error("WDV-RMT-007", "Adoption distante dupliquée", path=str(rel), details={"language": key[0], "page_id": key[1]})
+            continue
+        seen.add(key)
+        page = pages.get(key)
+        if page is None:
+            ctx.report.error("WDV-RMT-007", "Adoption distante visant une page absente du manifeste", path=str(rel), details={"language": key[0], "page_id": key[1]})
+            continue
+        if row.get("title") != page.get("canonical_title"):
+            ctx.report.error("WDV-RMT-007", "Titre divergent dans l’adoption distante", path=str(rel), details={"page_id": key[1], "expected": page.get("canonical_title"), "actual": row.get("title")})
+        external_seen: set[tuple[str, str]] = set()
+        for external in row.get("external_relations") or []:
+            external_key = (str(external.get("relation") or ""), str(external.get("page") or ""))
+            if external_key in external_seen:
+                ctx.report.error("WDV-RMT-007", "Relation externe distante dupliquée", path=str(rel), details={"page_id": key[1], "relation": external_key[0], "target": external_key[1]})
+            external_seen.add(external_key)
+            if external_key[1] == row.get("title"):
+                ctx.report.error("WDV-RMT-007", "Une relation externe ne peut pas viser sa propre page", path=str(rel), details={"page_id": key[1], "target": external_key[1]})
+    ctx.report.metrics.setdefault("coherence", {})["manual_remote_adoptions"] = len(seen)
+
 def validate_interlanguage_patch(ctx: PackageContext, manifest: dict[str, Any], registry: dict[str, Any]) -> None:
     norm = (manifest.get("normative_versions") or {}).get("consolidated_norm")
-    if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47"}:
+    if norm in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48"}:
         # New packages carry their links in the canonical French files; no patch is required.
         return
     rel = "patches/interlanguage_fr.validated.json" if ctx.exists("patches/interlanguage_fr.validated.json") else "patches/interlanguage_fr.json"

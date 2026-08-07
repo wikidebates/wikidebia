@@ -29,8 +29,8 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.15.24"
-REQUIRED_VALIDATOR_VERSION = "0.4.50"
+KIT_VERSION = "2.15.25"
+REQUIRED_VALIDATOR_VERSION = "0.4.51"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
 RECEIPT_VERSION = "wikidebia-remote-update-receipt-1.0"
@@ -488,6 +488,7 @@ class RemoteUpdatePlanner:
         self.adapter = adapter if hasattr(adapter, "user_rights") else UpdateAdapter(adapter)
         self.extra_markers = tuple(config.get("generated_markers") or ())
         self.migrations = self._load_migrations()
+        self.remote_adoptions = self._load_remote_adoptions()
         self._validate_config()
         inventory_root = self.config.get("state_inventory_root")
         resolved_inventory_root = self._resolve(inventory_root) if inventory_root else None
@@ -535,6 +536,68 @@ class RemoteUpdatePlanner:
         if not isinstance(entries, list):
             raise UpdateError("entries doit être une liste dans le registre de migrations")
         return [dict(row) for row in entries]
+
+    def _load_remote_adoptions(self) -> list[dict[str, Any]]:
+        controls = self.manifest.get("editorial_controls") or {}
+        revision = controls.get("manual_remote_adoption_revision")
+        rel = controls.get("manual_remote_adoption_path")
+        if revision is None and rel is None:
+            return []
+        if revision != "1.2.48" or not rel:
+            raise UpdateError("La reprise manuelle distante exige la politique 1.2.48 et un registre déclaré")
+        path = self.corpus_root / str(rel)
+        data = load_json(path)
+        if data.get("debate_id") != self.debate_id:
+            raise UpdateError("Le registre d’adoption distante appartient à un autre débat")
+        entries = data.get("entries") or []
+        if not isinstance(entries, list):
+            raise UpdateError("entries doit être une liste dans le registre d’adoption distante")
+        result: list[dict[str, Any]] = []
+        seen: set[tuple[str, str]] = set()
+        for raw in entries:
+            row = dict(raw)
+            key = (str(row.get("language") or ""), str(row.get("page_id") or ""))
+            if not all(key) or key in seen:
+                raise UpdateError(f"Adoption distante absente ou dupliquée : {key}")
+            seen.add(key)
+            if not row.get("title") or not row.get("reason"):
+                raise UpdateError(f"Adoption distante incomplète : {key}")
+            if row.get("observed_revision_id") is None and not row.get("observed_sha256"):
+                raise UpdateError(f"Adoption distante sans révision ni empreinte : {key}")
+            result.append(row)
+        return result
+
+    def _remote_adoption_for(self, language: str, page_id: str, title: str) -> dict[str, Any] | None:
+        matches = [
+            row for row in self.remote_adoptions
+            if row.get("language") == language and str(row.get("page_id")) == page_id
+        ]
+        if not matches:
+            return None
+        row = matches[0]
+        if row.get("title") != title:
+            raise UpdateError(f"Titre divergent dans l’adoption distante : {language}/{page_id}")
+        return row
+
+    @staticmethod
+    def _remote_matches_adoption(adoption: dict[str, Any], revision_id: int | None, remote_text: str) -> bool:
+        expected_revision = adoption.get("observed_revision_id")
+        expected_sha = adoption.get("observed_sha256")
+        if expected_revision is not None and revision_id != int(expected_revision):
+            return False
+        if expected_sha and sha_text(remote_text) != str(expected_sha):
+            return False
+        return True
+
+    @staticmethod
+    def _unauthorized_lifecycle_changes(
+        adoption: dict[str, Any], remote_text: str, proposed_text: str, language: str, page_type: str
+    ) -> tuple[list[str], dict[str, Any]]:
+        before = protected_lifecycle_snapshot(remote_text, language, page_type)
+        after = protected_lifecycle_snapshot(proposed_text, language, page_type)
+        changed = sorted(name for name in before if before[name] != after[name])
+        allowed = {str(name) for name in adoption.get("allowed_lifecycle_parameter_changes") or []}
+        return sorted(set(changed) - allowed), {"remote": before, "proposed": after, "changed": changed, "allowed": sorted(allowed)}
 
     def _new_pages(self) -> dict[tuple[str, str], dict[str, Any]]:
         result: dict[tuple[str, str], dict[str, Any]] = {}
@@ -779,13 +842,46 @@ class RemoteUpdatePlanner:
                     "original_local_file_sha256": effective["original_file_sha256"],
                     "original_new_sha256": effective["original_content_sha256"],
                 })
+            adoption = self._remote_adoption_for(language, str(effective["page_id"]), str(effective["title"]))
+            adoption_matches = bool(exists and adoption and self._remote_matches_adoption(adoption, revision_id, remote_text))
             if not exists:
                 op["preconditions"] = ["title_absent_at_execution"]
                 buckets["create"].append(op)
             elif sha_text(remote_text) == effective["content_sha256"]:
                 op["justification"] = "Contenu distant déjà équivalent"
                 op["phase"] = 0
+                if adoption_matches:
+                    op["remote_adoption"] = adoption
                 buckets["skip"].append(op)
+            elif adoption and not adoption_matches:
+                op["justification"] = "La révision distante ne correspond plus à l’adoption explicitement autorisée"
+                op["phase"] = 0
+                op["remote_adoption"] = adoption
+                buckets["blocked"].append(op)
+            elif adoption_matches:
+                unauthorized, lifecycle = self._unauthorized_lifecycle_changes(
+                    adoption, remote_text, effective["content"], language, effective["page_type"]
+                )
+                op["remote_adoption"] = adoption
+                op["lifecycle_comparison"] = lifecycle
+                if unauthorized:
+                    op["justification"] = "L’adoption distante n’autorise pas la modification de paramètres de cycle de vie"
+                    op["unauthorized_lifecycle_parameters"] = unauthorized
+                    op["phase"] = 0
+                    buckets["blocked"].append(op)
+                elif adoption.get("allow_proposed_change") is not True:
+                    op["justification"] = "L’adoption distante autorise la prise en compte de l’état courant, mais pas sa modification"
+                    op["phase"] = 0
+                    buckets["blocked"].append(op)
+                else:
+                    op.update({
+                        "old_sha256": sha_text(remote_text),
+                        "expected_revision_id": revision_id,
+                        "justification": "Révision manuelle explicitement adoptée comme base; remplacement contrôlé autorisé",
+                        "preconditions": ["remote_matches_authorized_adoption", "remote_lifecycle_changes_authorized", "baserevid_unchanged"],
+                        "phase": 1 if effective["page_type"] == "debate" else 3,
+                    })
+                    buckets["update"].append(op)
             elif prior is None:
                 op["justification"] = "Page existante non attestée dans l’ancien état publié"
                 op["phase"] = 0
