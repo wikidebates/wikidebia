@@ -13,9 +13,9 @@ import stat
 from pathlib import Path
 from typing import Any, Iterable, Iterator, Mapping
 
-KIT_VERSION = "2.15.26"
-NORM_VERSION = "1.2.49"
-VALIDATOR_VERSION = "0.4.52"
+KIT_VERSION = "2.15.27"
+NORM_VERSION = "1.2.50"
+VALIDATOR_VERSION = "0.4.53"
 
 REVIEW_ENVELOPE = "reviews/graph_build_review.json"
 PLACEMENT_REVIEW = "reviews/graph_placement_review.json"

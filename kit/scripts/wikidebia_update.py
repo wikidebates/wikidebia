@@ -29,8 +29,8 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.15.26"
-REQUIRED_VALIDATOR_VERSION = "0.4.52"
+KIT_VERSION = "2.15.27"
+REQUIRED_VALIDATOR_VERSION = "0.4.53"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
 RECEIPT_VERSION = "wikidebia-remote-update-receipt-1.0"
@@ -46,11 +46,30 @@ GENERATED_MARKERS = (
 
 
 PROTECTED_LIFECYCLE_PARAMETERS = {
-    ("fr", "debate"): ("avancement", "avertissements-débat", "débats-connexes", "date-création"),
-    ("en", "debate"): ("progress", "debate-warnings", "related-debates", "creation-date"),
-    ("fr", "argument"): ("avertissements-argument", "date-création"),
-    ("en", "argument"): ("argument-warnings", "creation-date"),
+    ("fr", "debate"): (
+        "avancement", "avertissements-titre", "avertissements-débat",
+        "avertissements-bibliographie", "avertissements-sitographie",
+        "avertissements-vidéographie", "débats-connexes", "interlangue",
+        "date-création",
+    ),
+    ("en", "debate"): (
+        "progress", "title-warnings", "debate-warnings", "related-debates",
+        "creation-date",
+    ),
+    ("fr", "argument"): (
+        "initialisation", "nom", "avertissements-titre",
+        "avertissements-argument", "avertissements-résumé",
+        "avertissements-références", "avertissements-justifications",
+        "avertissements-objections", "débat-détaillé", "interlangue",
+        "date-création",
+    ),
+    ("en", "argument"): (
+        "initialization", "name", "title-warnings", "argument-warnings",
+        "summary-warnings", "reference-warnings", "justification-warnings",
+        "objection-warnings", "detailed-debate", "creation-date",
+    ),
 }
+
 
 
 def protected_lifecycle_snapshot(text: str, language: str, page_type: str) -> dict[str, tuple[bool, str | None]]:
@@ -60,6 +79,24 @@ def protected_lifecycle_snapshot(text: str, language: str, page_type: str) -> di
         raise UpdateError(f"Modèle principal introuvable pour le contrôle des paramètres protégés ({language}/{page_type})")
     call = max(calls, key=lambda item: len(item.raw))
     return {name: (name in call.params, call.get(name) if name in call.params else None) for name in PROTECTED_LIFECYCLE_PARAMETERS[(language, page_type)]}
+
+
+def top_level_parameter_deletions(remote_text: str, proposed_text: str, language: str, page_type: str) -> list[str]:
+    """Return top-level parameters present remotely but absent from the proposal."""
+    expected = {(
+        "fr", "debate"): "debat", ("en", "debate"): "debate",
+        ("fr", "argument"): "argument", ("en", "argument"): "argument",
+    }[(language, page_type)]
+    def names(text: str) -> dict[str, str]:
+        calls = [call for call in iter_templates(text or "") if normalize_key(call.name) == expected]
+        if not calls:
+            raise UpdateError(f"Modèle principal introuvable pour le contrôle de suppression ({language}/{page_type})")
+        call = max(calls, key=lambda item: len(item.raw))
+        # Keep the exact remote spelling for the plan and for page/parameter
+        # deletion authorizations.  Normalization is used only for comparison.
+        return {normalize_key(key): key for key in call.params}
+    before, after = names(remote_text), names(proposed_text)
+    return sorted(before[name] for name in (set(before) - set(after)))
 
 
 def lifecycle_parameters_unchanged(remote_text: str, proposed_text: str, language: str, page_type: str) -> tuple[bool, dict[str, Any]]:
@@ -73,13 +110,17 @@ def preserve_remote_lifecycle_parameters(
     proposed_text: str,
     language: str,
     page_type: str,
+    *,
+    desired_preserved_parameters: dict[str, Any] | None = None,
+    allow_historical_restoration: bool = False,
 ) -> tuple[str, dict[str, Any]]:
-    """Overlay immutable page-lifecycle parameters from the attested remote page.
+    """Preserve exact historical metadata while keeping creation/update separate.
 
-    The operation is intentionally limited to pages whose current remote revision
-    has already been proven identical to the previous published state.  It never
-    imports arbitrary human changes: only the small, enumerated lifecycle set is
-    copied into a derived publication file.
+    Normal updates overlay the attested remote values for the protected metadata
+    set.  A validated corrective corpus may opt into historical restoration: in
+    that case the desired states recorded in the page manifest are authoritative
+    for this exact set (including an historically absent parameter).  The corpus
+    validator verifies those states against the authenticated historical source.
     """
     expected = {
         ("fr", "debate"): "debat",
@@ -96,9 +137,31 @@ def preserve_remote_lifecycle_parameters(
     if parsed is None:
         raise UpdateError(f"Modèle principal illisible pour la préservation des paramètres ({language}/{page_type})")
 
-    protected_by_normalized = {
-        normalize_key(name): name for name in PROTECTED_LIFECYCLE_PARAMETERS[(language, page_type)]
-    }
+    names = PROTECTED_LIFECYCLE_PARAMETERS[(language, page_type)]
+    desired: dict[str, tuple[bool, str | None]] = dict(remote_snapshot)
+    if allow_historical_restoration:
+        states = desired_preserved_parameters or {}
+        if set(states) != set(names):
+            raise UpdateError(
+                f"États historiques incomplets pour la restauration ({language}/{page_type}) : "
+                f"attendu={sorted(names)!r}, reçu={sorted(states)!r}"
+            )
+        desired = {}
+        for name in names:
+            state = states.get(name)
+            if not isinstance(state, dict) or not isinstance(state.get("present"), bool):
+                raise UpdateError(f"État historique invalide pour {name}")
+            if state["present"]:
+                value = state.get("value")
+                if not isinstance(value, str) or not value.strip():
+                    raise UpdateError(f"Valeur historique absente pour {name}")
+                desired[name] = (True, value)
+            else:
+                if state.get("value") is not None:
+                    raise UpdateError(f"Valeur historique fournie pour {name} pourtant absent")
+                desired[name] = (False, None)
+
+    protected_by_normalized = {normalize_key(name): name for name in names}
     preserved: list[tuple[str, str]] = []
     seen: set[str] = set()
     changes: dict[str, dict[str, Any]] = {}
@@ -108,23 +171,36 @@ def preserve_remote_lifecycle_parameters(
             preserved.append((key, value))
             continue
         seen.add(canonical)
-        present, remote_value = remote_snapshot[canonical]
+        present, desired_value = desired[canonical]
         if present:
-            assert remote_value is not None
-            preserved.append((key, remote_value))
-            if value != remote_value:
-                changes[canonical] = {"proposed": [True, value], "preserved": [True, remote_value]}
-        else:
-            changes[canonical] = {"proposed": [True, value], "preserved": [False, None]}
+            assert desired_value is not None
+            preserved.append((key, desired_value))
+            if value != desired_value or remote_snapshot[canonical] != desired[canonical]:
+                changes[canonical] = {
+                    "remote": list(remote_snapshot[canonical]),
+                    "proposed": [True, value],
+                    "effective": [True, desired_value],
+                }
+        elif value is not None:
+            changes[canonical] = {
+                "remote": list(remote_snapshot[canonical]),
+                "proposed": [True, value],
+                "effective": [False, None],
+            }
 
-    for canonical in PROTECTED_LIFECYCLE_PARAMETERS[(language, page_type)]:
+    for canonical in names:
         if canonical in seen:
             continue
-        present, remote_value = remote_snapshot[canonical]
+        present, desired_value = desired[canonical]
         if present:
-            assert remote_value is not None
-            preserved.append((canonical, remote_value))
-            changes[canonical] = {"proposed": [False, None], "preserved": [True, remote_value]}
+            assert desired_value is not None
+            preserved.append((canonical, desired_value))
+        if remote_snapshot[canonical] != desired[canonical]:
+            changes[canonical] = {
+                "remote": list(remote_snapshot[canonical]),
+                "proposed": [False, None],
+                "effective": list(desired[canonical]),
+            }
 
     rows = [f"{{{{{parsed.name}"]
     rows.extend(f"|{value}" for value in parsed.positional)
@@ -133,14 +209,16 @@ def preserve_remote_lifecycle_parameters(
     effective_template = "\n".join(rows)
     effective_text = proposed_text.replace(proposed_call.raw, effective_template, 1)
     effective_snapshot = protected_lifecycle_snapshot(effective_text, language, page_type)
-    if effective_snapshot != remote_snapshot:
+    if effective_snapshot != desired:
         raise UpdateError(f"Échec de préservation des paramètres protégés ({language}/{page_type})")
     return effective_text, {
         "remote": remote_snapshot,
         "original_proposed": protected_lifecycle_snapshot(proposed_text, language, page_type),
         "effective": effective_snapshot,
+        "historical_restoration": bool(allow_historical_restoration),
         "changes": changes,
     }
+
 
 
 class UpdateError(RuntimeError):
@@ -624,6 +702,8 @@ class RemoteUpdatePlanner:
                 "content": text,
                 "content_sha256": sha_text(text),
                 "file_sha256": sha_file(source),
+                "page_origin": str(row.get("page_origin") or ""),
+                "preserved_parameters": row.get("preserved_parameters") or {},
             }
         if not result:
             raise UpdateError("Le nouveau manifeste ne contient aucune page sélectionnée")
@@ -633,17 +713,53 @@ class RemoteUpdatePlanner:
         row = (self.config.get("sites") or {}).get(language) or {}
         return str(row.get("code") or language), str(row.get("expected_user") or "")
 
+    def _historically_authorized_parameter_deletions(self, language: str, page_id: str) -> set[str]:
+        cfg = (((self.manifest.get("editorial_controls") or {}).get("legacy_content_preservation") or {}))
+        lock_rel = cfg.get("lock_path")
+        if not isinstance(lock_rel, str):
+            return set()
+        path = self.corpus_root / lock_rel
+        if not path.is_file():
+            return set()
+        lock = load_json(path)
+        return {
+            str(row.get("parameter")) for row in (lock.get("allowed_parameter_deletions") or [])
+            if isinstance(row, dict) and row.get("page_id") == page_id and row.get("language") == language
+        }
+
+    def _unauthorized_parameter_deletions(
+        self, proposed: dict[str, Any], remote_text: str, adoption: dict[str, Any] | None = None
+    ) -> list[str]:
+        deleted = set(top_level_parameter_deletions(remote_text, proposed["content"], proposed["language"], proposed["page_type"]))
+        allowed = self._historically_authorized_parameter_deletions(proposed["language"], proposed["page_id"])
+        if adoption:
+            allowed.update(str(name) for name in adoption.get("allowed_parameter_deletions") or [])
+        # A corpus validé peut réparer les métadonnées qui ont été ajoutées ou
+        # écrasées par une ancienne génération. La restauration ne vaut que pour
+        # le jeu opaque et seulement si l'état désiré est explicitement absent.
+        restoration = (((self.manifest.get("editorial_controls") or {}).get("legacy_content_preservation") or {}).get("historical_parameter_restoration") is True)
+        if restoration:
+            states = proposed.get("preserved_parameters") or {}
+            for name in PROTECTED_LIFECYCLE_PARAMETERS[(proposed["language"], proposed["page_type"])]:
+                state = states.get(name)
+                if isinstance(state, dict) and state.get("present") is False:
+                    allowed.add(name)
+        return sorted(deleted - allowed)
+
     def _effective_proposed(
         self,
         prior: StatePage,
         proposed: dict[str, Any],
         remote_text: str,
     ) -> tuple[dict[str, Any], dict[str, Any] | None]:
+        restoration = (((self.manifest.get("editorial_controls") or {}).get("legacy_content_preservation") or {}).get("historical_parameter_restoration") is True)
         effective_text, preservation = preserve_remote_lifecycle_parameters(
             remote_text,
             proposed["content"],
             prior.language,
             prior.page_type,
+            desired_preserved_parameters=proposed.get("preserved_parameters") if proposed.get("page_origin") == "preexisting" else None,
+            allow_historical_restoration=restoration and proposed.get("page_origin") == "preexisting",
         )
         if effective_text == proposed["content"]:
             return proposed, None
@@ -844,7 +960,13 @@ class RemoteUpdatePlanner:
                 })
             adoption = self._remote_adoption_for(language, str(effective["page_id"]), str(effective["title"]))
             adoption_matches = bool(exists and adoption and self._remote_matches_adoption(adoption, revision_id, remote_text))
-            if not exists:
+            unauthorized_deletions = self._unauthorized_parameter_deletions(effective, remote_text, adoption if adoption_matches else None) if exists else []
+            if unauthorized_deletions and sha_text(remote_text) != effective["content_sha256"]:
+                op["justification"] = "La modification supprimerait des paramètres existants sans autorisation explicite"
+                op["unauthorized_parameter_deletions"] = unauthorized_deletions
+                op["phase"] = 0
+                buckets["blocked"].append(op)
+            elif not exists:
                 op["preconditions"] = ["title_absent_at_execution"]
                 buckets["create"].append(op)
             elif sha_text(remote_text) == effective["content_sha256"]:

@@ -1,9 +1,9 @@
-# Wikidéb’IA — Kit 2.15.26
+# Wikidéb’IA — Kit 2.15.27
 
-Le kit 2.15.26 conserve strictement le paramètre historique `nom` des pages `Argument` françaises et `name` des pages anglaises. Il capture son état exact à l’import et le réémet sans modification lors du rendu. Un renommage de page ne modifie jamais ce champ, et une page qui n’en possédait pas n’en reçoit pas artificiellement.
+Le kit 2.15.27 applique le contrat de préservation 1.2.50. Le profil de **création** reste restreint ; le profil de **modification** commence au contraire par l’état existant et ne peut plus s’en servir comme cible de nettoyage.
 
-Le registre d’adoption distante 1.2.48, la préservation de `débat-détaillé` / `detailed-debate` et les autres protections de contenu historique restent actives.
+Pour une page préexistante, les métadonnées historiques et avertissements sont réémis à l’identique. En plus, le planificateur compare directement les paramètres top-level de la révision distante avec ceux du rendu proposé et bloque toute disparition non autorisée, y compris pour un paramètre de contenu qui ne fait pas partie des métadonnées opaques. Une suppression n’est admise que par une décision explicite page/paramètre ou une exception spécialisée déjà verrouillée.
 
-Kit de production, publication et reprise aligné sur la norme 1.2.49 et le validateur 0.4.52.
+Les marqueurs `Argument généré par IA` et `Débat généré par IA` sont réservés aux pages réellement nouvelles.
 
-Pour mettre à jour un débat, déposez son ZIP dans `incoming/` puis lancez `./wikidebia update`.
+Kit aligné sur la norme 1.2.50 et le validateur 0.4.53.

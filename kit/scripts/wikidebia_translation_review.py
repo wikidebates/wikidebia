@@ -46,7 +46,7 @@ from wikidebia_content_review import (
     META_DISCOURSE,
 )
 
-KIT_VERSION = "2.15.26"
+KIT_VERSION = "2.15.27"
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.0"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
@@ -55,8 +55,14 @@ TRANSLATION_CHANGESET_SCHEMA = "wikidebia-en-translation-changeset-1.0"
 EN_SOURCES_WORKING_SCHEMA = "wikidebia-en-source-registry-working-1.0"
 
 EN_PAGE_LIFECYCLE_PARAMETERS = {
-    "debate": ("progress", "debate-warnings", "related-debates"),
-    "argument": ("name", "argument-warnings", "detailed-debate"),
+    # Existing-page metadata is opaque.  These fields describe the imported
+    # page state and must not be cleaned up by a translation/generation profile.
+    "debate": ("progress", "title-warnings", "debate-warnings", "related-debates", "creation-date"),
+    "argument": (
+        "initialization", "name", "title-warnings", "argument-warnings", "summary-warnings",
+        "reference-warnings", "justification-warnings", "objection-warnings",
+        "detailed-debate", "creation-date",
+    ),
 }
 
 

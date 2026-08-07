@@ -49,15 +49,29 @@ from wikidebia_editorial_review import (
 )
 from wikidebia_graph_extract import iter_templates, normalize_key
 
-KIT_VERSION = "2.15.26"
+KIT_VERSION = "2.15.27"
 CONTENT_REVIEW_SCHEMA = "wikidebia-fr-content-review-1.0"
 CONTENT_LOCK_SCHEMA = "wikidebia-fr-content-lock-1.0"
 CONTENT_CHANGESET_SCHEMA = "wikidebia-fr-content-changeset-1.0"
 SOURCES_WORKING_SCHEMA = "wikidebia-source-registry-working-1.0"
 
 PAGE_LIFECYCLE_PARAMETERS = {
-    "debate": ("avancement", "avertissements-débat", "débats-connexes"),
-    "argument": ("nom", "avertissements-argument", "débat-détaillé"),
+    # Ces paramètres sont des métadonnées historiques opaques : sur une page
+    # préexistante, présence ET valeur sont reprises exactement. Les profils de
+    # génération ne s'appliquent qu'aux pages nouvelles.
+    "debate": (
+        "avancement", "avertissements-titre", "avertissements-débat",
+        "avertissements-bibliographie", "avertissements-sitographie",
+        "avertissements-vidéographie", "débats-connexes", "interlangue",
+        "date-création",
+    ),
+    "argument": (
+        "initialisation", "nom", "avertissements-titre",
+        "avertissements-argument", "avertissements-résumé",
+        "avertissements-références", "avertissements-justifications",
+        "avertissements-objections", "débat-détaillé", "interlangue",
+        "date-création",
+    ),
 }
 
 

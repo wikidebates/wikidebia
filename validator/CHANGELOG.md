@@ -1,3 +1,13 @@
+## 0.4.53 — 7 août 2026
+
+- alignement sur la norme 1.2.50 ;
+- distinction stricte entre création de page et modification d’une page existante ;
+- protection exacte de l’ensemble des métadonnées historiques de cycle de vie et d’avertissement ;
+- nouveau contrôle `WDV-EDT-030` : un paramètre top-level attesté sur une page historique ne peut disparaître sans autorisation page/paramètre ;
+- conservation de l’absence historique d’un paramètre et interdiction d’ajouter rétroactivement les marqueurs IA ;
+- prise en charge d’une restauration corrective contrôlée contre l’inventaire source ;
+- 306 tests pytest réussis.
+
 ## 0.4.52 — 7 août 2026
 
 - alignement sur la norme 1.2.49 ;

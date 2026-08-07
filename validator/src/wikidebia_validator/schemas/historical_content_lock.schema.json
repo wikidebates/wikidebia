@@ -45,7 +45,8 @@
           "débat-détaillé",
           "detailed-debate",
           "nom",
-          "name"
+          "name",
+          "all-existing-parameters"
         ]
       }
     },
@@ -329,6 +330,44 @@
             }
           }
         ]
+      }
+    },
+    "allowed_parameter_deletions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "page_id",
+          "language",
+          "parameter",
+          "owner_decision",
+          "owner_decision_recorded_at"
+        ],
+        "properties": {
+          "page_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "language": {
+            "enum": [
+              "fr",
+              "en"
+            ]
+          },
+          "parameter": {
+            "type": "string",
+            "minLength": 1
+          },
+          "owner_decision": {
+            "type": "string",
+            "minLength": 10
+          },
+          "owner_decision_recorded_at": {
+            "type": "string",
+            "minLength": 10
+          }
+        }
       }
     }
   }

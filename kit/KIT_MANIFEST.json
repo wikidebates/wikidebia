@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.26",
-  "validator_version": "0.4.52",
+  "version": "2.15.27",
+  "validator_version": "0.4.53",
   "scope": [
     "publish_archive",
     "github_init",
@@ -59,7 +59,10 @@
     "source_inventory_lock_verification",
     "historical_summary_absence",
     "mandatory_stakes_subsection_review",
-    "reference_note_terminal_punctuation_review"
+    "reference_note_terminal_punctuation_review",
+    "existing_page_parameter_preservation",
+    "generic_top_level_deletion_guard",
+    "creation_update_profile_separation"
   ],
   "debate_specific_code": false,
   "change_tag": "chatgpt",
@@ -372,7 +375,7 @@
     "revision_locked_human_change_reconciliation",
     "preserved_argument_name"
   ],
-  "normative_revision": "1.2.49",
+  "normative_revision": "1.2.50",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [

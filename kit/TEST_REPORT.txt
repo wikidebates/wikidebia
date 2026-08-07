@@ -1,1 +1,1 @@
-Kit 2.15.26 — 280 tests réussis le 7 août 2026.
+Tests pytest : 284 réussis, 0 échec.

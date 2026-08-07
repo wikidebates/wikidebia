@@ -1,7 +1,7 @@
 # Structures MediaWiki autorisées de Wikidéb'IA
 
 - **Version du schéma :** 1.0
-- **Révision corrective du paquet :** 1.0.6
+- **Révision corrective du paquet :** 1.0.7
 - **Date de validation de cette version :** 2026-07-23
 - **Statut :** source normative
 - **Portée :** pages de débats et d'arguments en français et en anglais
@@ -27,8 +27,8 @@ Ce document **ne détermine pas** quels paramètres doivent effectivement appara
 1. Aucun paramètre, modèle ou sous-modèle absent de ce document ne peut être inventé.
 2. Les paramètres émis dans une page doivent respecter l'ordre de la structure correspondante.
 3. Un sous-modèle placé dans un paramètre peut être répété autant de fois que nécessaire.
-4. L'existence d'un paramètre dans la structure autorisée n'oblige pas à l'émettre.
-5. Les paramètres facultatifs vides sont omis conformément au profil de rendu ; `articles-Wikipédia` et `wikipedia-articles` ne sont toutefois jamais facultatifs ni vides dans une sortie conforme à la révision 1.2.17.
+4. L'existence d'un paramètre dans la structure autorisée n'oblige pas à l'émettre **lors de la création d'une page nouvelle**. Lors de la modification d'une page existante, tout paramètre top-level attesté comme présent est conservé, sauf suppression explicite enregistrée.
+5. Sur une page nouvelle, les paramètres facultatifs vides sont omis conformément au profil de rendu ; sur une page existante, cette règle ne permet jamais de supprimer un paramètre historique présent.  `articles-Wikipédia` et `wikipedia-articles` ne sont toutefois jamais facultatifs ni vides dans une sortie conforme à la révision 1.2.17.
 6. Les structures française et anglaise ne doivent jamais être mélangées.
 7. `date-création` et `creation-date` sont des paramètres autorisés et placés à la fin des quatre structures.
 8. Les liens interlangues sont autorisés uniquement dans les structures françaises.

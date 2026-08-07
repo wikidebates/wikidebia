@@ -1,3 +1,13 @@
+## 2.15.27 — 7 août 2026
+
+- alignement sur la norme 1.2.50 et le validateur 0.4.53 ;
+- séparation explicite création/modification dans le rendu ;
+- conservation exacte des avertissements et métadonnées historiques des pages existantes ;
+- contrôle générique des suppressions de paramètres top-level dans le planificateur de reprise ;
+- restauration corrective possible uniquement à partir d’états historiques attestés ;
+- protection équivalente des pages Débat et Argument, en français et en anglais ;
+- 284 tests pytest réussis.
+
 ## 2.15.26 — 7 août 2026
 
 - alignement sur la norme 1.2.49 et le validateur 0.4.52 ;

@@ -344,7 +344,8 @@
                 "1.2.46",
                 "1.2.47",
                 "1.2.48",
-                "1.2.49"
+                "1.2.49",
+                "1.2.50"
               ],
               "description": "Politique de ponctuation terminale des notes inline."
             }
@@ -526,7 +527,8 @@
                   "débat-détaillé",
                   "detailed-debate",
                   "nom",
-                  "name"
+                  "name",
+                  "all-existing-parameters"
                 ]
               }
             },
@@ -547,7 +549,8 @@
                 "0.4.49",
                 "0.4.50",
                 "0.4.51",
-                "0.4.52"
+                "0.4.52",
+                "0.4.53"
               ],
               "description": "Active la confrontation du verrou historique à l’inventaire source attesté."
             },
@@ -565,6 +568,9 @@
                 "1.2.40"
               ],
               "description": "Autorise uniquement l’omission attestée d’un résumé historiquement absent."
+            },
+            "historical_parameter_restoration": {
+              "type": "boolean"
             }
           },
           "allOf": [
@@ -640,7 +646,8 @@
             "1.2.46",
             "1.2.47",
             "1.2.48",
-            "1.2.49"
+            "1.2.49",
+            "1.2.50"
           ],
           "description": "Active la règle 1.2.44 : pas de point final dans une simple notice <ref>; exceptions de phrases attestées."
         },
@@ -651,7 +658,8 @@
             "1.2.46",
             "1.2.47",
             "1.2.48",
-            "1.2.49"
+            "1.2.49",
+            "1.2.50"
           ],
           "description": "Active la revue détaillée de la cohérence locale des liens Wikipédia explicatifs."
         },
@@ -661,7 +669,8 @@
             "1.2.46",
             "1.2.47",
             "1.2.48",
-            "1.2.49"
+            "1.2.49",
+            "1.2.50"
           ],
           "description": "Active l’inventaire exhaustif, sous-partie par sous-partie, des notions spécialisées à expliquer ou à lier."
         },
@@ -669,7 +678,8 @@
           "type": "string",
           "enum": [
             "1.2.48",
-            "1.2.49"
+            "1.2.49",
+            "1.2.50"
           ]
         },
         "manual_remote_adoption_path": {

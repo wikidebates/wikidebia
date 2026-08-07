@@ -132,11 +132,11 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(state), encoding="utf-8")
     validator = root / "validator.py"
-    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.52','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.53','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     config = {
-        "kit_version":"2.15.26","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
+        "kit_version":"2.15.27","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
         "family":"wikidebates","pywikibot_dir":"private/pywikibot","sites":{lang:{"code":lang,"expected_user":"ChatGPT"} for lang in languages},
-        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.52","scopes":[]},
+        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.53","scopes":[]},
         "published_state_dir":".state/published","receipts_dir":".state/receipts","logs_dir":"logs",
     }
     config_path = root / "config.json"
@@ -579,7 +579,11 @@ def test_dieu_manual_sync_plan_has_no_blocked_or_manual_review(tmp_path):
     fatima_proposed = fatima_remote.replace("miracle, soleil, Fatima", "miracle, Fatima")
     external = "Argument externe"
     aseity_old = "{{Argument\n|résumé=Texte. Deuxième phrase.\n|objections={{Objection\n|page=Objection interne\n|titre-affiché=Objection interne\n}}\n|rubriques=Philosophie\n|date-création=2026-08-05\n}}\n"
-    aseity_remote = aseity_old.replace("\n}}\n|rubriques", f"}}{{{{Objection\n|page={external}\n|titre-affiché={external}\n}}}}\n|rubriques", 1)
+    aseity_remote = aseity_old.replace(
+        "|objections={{Objection\n|page=Objection interne\n|titre-affiché=Objection interne\n}}",
+        f"|objections={{{{Objection\n|page=Objection interne\n|titre-affiché=Objection interne\n}}}}{{{{Objection\n|page={external}\n|titre-affiché={external}\n}}}}",
+        1,
+    )
     debate_remote = "{{Débat\n|arguments-contre={{Argument contre\n|page=Argument retiré\n|titre-affiché=Argument retiré\n}}\n|date-création=2017-01-29\n}}\n"
     debate_proposed = "{{Débat\n|arguments-contre=\n|date-création=2017-01-29\n}}\n"
     new_pages = [

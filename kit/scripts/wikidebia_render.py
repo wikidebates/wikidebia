@@ -45,7 +45,7 @@ from wikidebia_corpus_init import extract_page_metadata
 from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
 from wikidebia_editorial_review import EditorialReviewError, _assert_source_unchanged, _run_validator
 
-KIT_VERSION = "2.15.26"
+KIT_VERSION = "2.15.27"
 PREVIOUS_NORM_VERSION = "1.2.33"
 COMPATIBLE_PREVIOUS_NORM_VERSIONS = {"1.2.27", "1.2.28", "1.2.30", PREVIOUS_NORM_VERSION}
 RENDER_LOCK_SCHEMA = "wikidebia-bilingual-render-lock-1.0"
@@ -346,9 +346,29 @@ def _append_lifecycle_parameter(params: list[tuple[str, Any]], content: Mapping[
         if new_value is not None:
             params.append((name, new_value))
         return
-    present, value = _preserved_parameter(content, name)
+    # Les anciens workspaces peuvent ne pas encore porter tous les états. Le
+    # validateur 1.2.50 exige la complétude dans un paquet publiable ; le rendu
+    # reste toutefois rétrocompatible et n'invente rien en cas d'état absent.
+    present, value = _optional_preserved_parameter(content, name)
     if present:
         params.append((name, value))
+
+
+def _append_interlanguage_parameter(params: list[tuple[str, Any]], content: Mapping[str, Any], name: str, new_value: str | None) -> None:
+    if _page_origin(content) == "new":
+        if new_value is not None:
+            params.append((name, new_value))
+        return
+    state = (content.get("preserved_parameters") or {}).get(name)
+    if isinstance(state, dict) and state.get("present") is True:
+        value = state.get("value")
+        if isinstance(value, str) and value.strip():
+            params.append((name, value))
+        return
+    # Un lien absent historiquement peut être ajouté par le workflow bilingue ;
+    # en revanche un lien historique présent est toujours conservé exactement.
+    if new_value is not None:
+        params.append((name, new_value))
 
 
 def _render_debate(
@@ -356,23 +376,20 @@ def _render_debate(
     sources: Mapping[str, Mapping[str, Any]], creation_date: str,
 ) -> str:
     debate = content_lock.get("debate") or {}
+    documentation = debate.get("documentation") or {}
     if lang == "fr":
-        documentation = debate.get("documentation") or {}
-        bucket_specs = [
-            ("bibliographie-pour", "pro"), ("bibliographie-contre", "con"), ("bibliographie-ni-pour-ni-contre", None),
-            ("sitographie-pour", "pro"), ("sitographie-contre", "con"), ("sitographie-ni-pour-ni-contre", None),
-            ("vidéographie-pour", "pro"), ("vidéographie-contre", "con"), ("vidéographie-ni-pour-ni-contre", None),
-        ]
-        rendered_documentation = {
+        rendered = {
             bucket: _sequence(_source_template(sources[source_id], lang="fr", position=position) for source_id in documentation.get(bucket) or [])
-            for bucket, position in bucket_specs
+            for bucket, position in [
+                ("bibliographie-pour", "pro"), ("bibliographie-contre", "con"), ("bibliographie-ni-pour-ni-contre", None),
+                ("sitographie-pour", "pro"), ("sitographie-contre", "con"), ("sitographie-ni-pour-ni-contre", None),
+                ("vidéographie-pour", "pro"), ("vidéographie-contre", "con"), ("vidéographie-ni-pour-ni-contre", None),
+            ]
         }
         target = (((registry.get("debate") or {}).get("pages") or {}).get("en") or {}).get("canonical_title")
-        params: list[tuple[str, Any]] = [
-            ("sujet", debate.get("subject")),
-            ("sujet-complet", debate.get("complete_topic")),
-        ]
+        params: list[tuple[str, Any]] = [("sujet", debate.get("subject")), ("sujet-complet", debate.get("complete_topic"))]
         _append_lifecycle_parameter(params, debate, "avancement", "Débat construit")
+        _append_lifecycle_parameter(params, debate, "avertissements-titre", None)
         _append_lifecycle_parameter(params, debate, "avertissements-débat", "Débat généré par IA")
         params.extend([
             ("introduction", _normalize_sequence(str(debate.get("introduction") or ""))),
@@ -380,31 +397,32 @@ def _render_debate(
             ("arguments-pour", _main_arguments(registry, "pro", "fr")),
             ("arguments-contre", _main_arguments(registry, "con", "fr")),
         ])
-        params.extend((bucket, rendered_documentation[bucket]) for bucket, _ in bucket_specs)
+        _append_lifecycle_parameter(params, debate, "avertissements-bibliographie", None)
+        params.extend((bucket, rendered[bucket]) for bucket in ("bibliographie-pour", "bibliographie-contre", "bibliographie-ni-pour-ni-contre"))
+        _append_lifecycle_parameter(params, debate, "avertissements-sitographie", None)
+        params.extend((bucket, rendered[bucket]) for bucket in ("sitographie-pour", "sitographie-contre", "sitographie-ni-pour-ni-contre"))
+        _append_lifecycle_parameter(params, debate, "avertissements-vidéographie", None)
+        params.extend((bucket, rendered[bucket]) for bucket in ("vidéographie-pour", "vidéographie-contre", "vidéographie-ni-pour-ni-contre"))
         _append_lifecycle_parameter(params, debate, "débats-connexes", None)
         params.extend([
             ("rubriques", ", ".join((metadata_lock.get("debate") or {}).get("rubriques") or [])),
             ("mots-clés", ", ".join((metadata_lock.get("debate") or {}).get("keywords") or [])),
-            ("interlangue", _template("Lien interlangue", (("langue", "en"), ("page", target)))),
-            ("date-création", creation_date),
         ])
+        _append_interlanguage_parameter(params, debate, "interlangue", _template("Lien interlangue", (("langue", "en"), ("page", target))))
+        _append_lifecycle_parameter(params, debate, "date-création", creation_date)
         return _template("Débat", params) + "\n"
 
-    documentation = debate.get("documentation") or {}
-    bucket_specs = [
-        ("pro-bibliography", "pro"), ("con-bibliography", "con"), ("bibliography", None),
-        ("pro-webliography", "pro"), ("con-webliography", "con"), ("webliography", None),
-        ("pro-videography", "pro"), ("con-videography", "con"), ("videography", None),
-    ]
-    rendered_documentation = {
+    rendered = {
         bucket: _sequence(_source_template(sources[source_id], lang="en", position=position) for source_id in documentation.get(bucket) or [])
-        for bucket, position in bucket_specs
+        for bucket, position in [
+            ("pro-bibliography", "pro"), ("con-bibliography", "con"), ("bibliography", None),
+            ("pro-webliography", "pro"), ("con-webliography", "con"), ("webliography", None),
+            ("pro-videography", "pro"), ("con-videography", "con"), ("videography", None),
+        ]
     }
-    params = [
-        ("topic", debate.get("topic")),
-        ("complete-topic", debate.get("complete_topic")),
-    ]
+    params = [("topic", debate.get("topic")), ("complete-topic", debate.get("complete_topic"))]
     _append_lifecycle_parameter(params, debate, "progress", "Constructed debate")
+    _append_lifecycle_parameter(params, debate, "title-warnings", None)
     _append_lifecycle_parameter(params, debate, "debate-warnings", "Debate generated by AI")
     params.extend([
         ("introduction", _normalize_sequence(str(debate.get("introduction") or ""))),
@@ -412,13 +430,16 @@ def _render_debate(
         ("pro-arguments", _main_arguments(registry, "pro", "en")),
         ("con-arguments", _main_arguments(registry, "con", "en")),
     ])
-    params.extend((bucket, rendered_documentation[bucket]) for bucket, _ in bucket_specs)
+    params.extend((bucket, rendered[bucket]) for bucket in (
+        "pro-bibliography", "con-bibliography", "bibliography", "pro-webliography", "con-webliography", "webliography",
+        "pro-videography", "con-videography", "videography",
+    ))
     _append_lifecycle_parameter(params, debate, "related-debates", None)
     params.extend([
         ("sections", ", ".join((metadata_lock.get("debate") or {}).get("sections") or [])),
         ("keywords", ", ".join((metadata_lock.get("debate") or {}).get("keywords") or [])),
-        ("creation-date", creation_date),
     ])
+    _append_lifecycle_parameter(params, debate, "creation-date", creation_date)
     return _template("Debate", params) + "\n"
 
 
@@ -427,58 +448,63 @@ def _render_argument(
     sources: Mapping[str, Mapping[str, Any]], creation_date: str,
 ) -> str:
     node_id = str(node.get("id"))
+    selected = content.get("sources") or {}
     if lang == "fr":
         citations = _sequence(_citation_template(row, lang="fr") for row in content.get("citations") or [])
-        selected = content.get("sources") or {}
         target = (node.get("en") or {}).get("canonical_title")
-        params = []
-        name_present, name_value = _optional_preserved_parameter(content, "nom")
-        if name_present:
-            params.append(("nom", name_value))
-        _append_lifecycle_parameter(params, content, "avertissements-argument", "Argument généré par IA")
-        detailed_present, detailed_value = _optional_preserved_parameter(content, "débat-détaillé")
+        params: list[tuple[str, Any]] = []
+        for name, default in (
+            ("initialisation", None), ("nom", None), ("avertissements-titre", None),
+            ("avertissements-argument", "Argument généré par IA"), ("avertissements-résumé", None),
+        ):
+            _append_lifecycle_parameter(params, content, name, default)
+        params.extend([("résumé", content.get("summary")), ("citations", citations)])
+        _append_lifecycle_parameter(params, content, "avertissements-références", None)
         params.extend([
-            ("résumé", content.get("summary")),
-            ("citations", citations),
             ("références-bibliographiques", _sequence(_source_template(sources[source_id], lang="fr") for source_id in selected.get("bibliography") or [])),
             ("références-sitographiques", _sequence(_source_template(sources[source_id], lang="fr") for source_id in selected.get("webliography") or [])),
             ("références-vidéographiques", _sequence(_source_template(sources[source_id], lang="fr") for source_id in selected.get("videography") or [])),
-            ("justifications", None if detailed_present else _relations(registry, node_id, "justification", "fr")),
-            ("objections", None if detailed_present else _relations(registry, node_id, "objection", "fr")),
         ])
+        detailed_present, detailed_value = _optional_preserved_parameter(content, "débat-détaillé")
+        _append_lifecycle_parameter(params, content, "avertissements-justifications", None)
+        params.append(("justifications", None if detailed_present else _relations(registry, node_id, "justification", "fr")))
+        _append_lifecycle_parameter(params, content, "avertissements-objections", None)
+        params.append(("objections", None if detailed_present else _relations(registry, node_id, "objection", "fr")))
         if detailed_present:
             params.append(("débat-détaillé", detailed_value))
         params.extend([
             ("rubriques", ", ".join((node.get("fr") or {}).get("rubriques") or [])),
             ("mots-clés", ", ".join((node.get("fr") or {}).get("keywords") or [])),
-            ("interlangue", _template("Lien interlangue", (("langue", "en"), ("page", target)))),
-            ("date-création", creation_date),
         ])
+        _append_interlanguage_parameter(params, content, "interlangue", _template("Lien interlangue", (("langue", "en"), ("page", target))))
+        _append_lifecycle_parameter(params, content, "date-création", creation_date)
     else:
         citations = _sequence(_citation_template(row, lang="en") for row in content.get("citations") or [])
-        selected = content.get("sources") or {}
         params = []
-        name_present, name_value = _optional_preserved_parameter(content, "name")
-        if name_present:
-            params.append(("name", name_value))
-        _append_lifecycle_parameter(params, content, "argument-warnings", "Argument generated by AI")
-        detailed_present, detailed_value = _optional_preserved_parameter(content, "detailed-debate")
+        for name, default in (
+            ("initialization", None), ("name", None), ("title-warnings", None),
+            ("argument-warnings", "Argument generated by AI"), ("summary-warnings", None),
+        ):
+            _append_lifecycle_parameter(params, content, name, default)
+        params.extend([("summary", content.get("summary")), ("quotes", citations)])
+        _append_lifecycle_parameter(params, content, "reference-warnings", None)
         params.extend([
-            ("summary", content.get("summary")),
-            ("quotes", citations),
             ("bibliography", _sequence(_source_template(sources[source_id], lang="en") for source_id in selected.get("bibliography") or [])),
             ("webliography", _sequence(_source_template(sources[source_id], lang="en") for source_id in selected.get("webliography") or [])),
             ("videography", _sequence(_source_template(sources[source_id], lang="en") for source_id in selected.get("videography") or [])),
-            ("justifications", None if detailed_present else _relations(registry, node_id, "justification", "en")),
-            ("objections", None if detailed_present else _relations(registry, node_id, "objection", "en")),
         ])
+        detailed_present, detailed_value = _optional_preserved_parameter(content, "detailed-debate")
+        _append_lifecycle_parameter(params, content, "justification-warnings", None)
+        params.append(("justifications", None if detailed_present else _relations(registry, node_id, "justification", "en")))
+        _append_lifecycle_parameter(params, content, "objection-warnings", None)
+        params.append(("objections", None if detailed_present else _relations(registry, node_id, "objection", "en")))
         if detailed_present:
             params.append(("detailed-debate", detailed_value))
         params.extend([
             ("sections", ", ".join((node.get("en") or {}).get("sections") or [])),
             ("keywords", ", ".join((node.get("en") or {}).get("keywords") or [])),
-            ("creation-date", creation_date),
         ])
+        _append_lifecycle_parameter(params, content, "creation-date", creation_date)
     return _template("Argument", params) + "\n"
 
 

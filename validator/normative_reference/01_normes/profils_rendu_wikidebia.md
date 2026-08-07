@@ -1,7 +1,7 @@
 # Profils de rendu MediaWiki de Wikidéb'IA
 
 - **Version du profil :** 1.0
-- **Révision corrective du paquet :** 1.0.6
+- **Révision corrective du paquet :** 1.0.7
 - **Version de structure compatible :** 1.0
 - **Date de validation de cette version :** 2026-07-23
 - **Statut :** source normative
@@ -13,6 +13,8 @@
 ## 1. Fonction de ce document
 
 Les structures générales recensent tous les paramètres possibles. Le présent document détermine lesquels sont effectivement générés par le workflow standard de Wikidéb'IA.
+
+**Portée essentielle : les catégories ci-dessous décrivent la création automatisée d’une page nouvelle. Elles ne constituent jamais une liste de paramètres à conserver lors de la modification d’une page existante. Une modification utilise le profil de préservation : les paramètres top-level déjà présents restent présents et les métadonnées historiques opaques conservent leur valeur, sauf décision explicite contraire.**
 
 Pour chaque type de page, un paramètre appartient à l'une des catégories suivantes :
 
@@ -418,7 +420,9 @@ Chaque lien d'objection utilise :
 
 La valeur de `page` provient exclusivement du champ canonique anglais du registre bilingue, jamais du titre affiché.
 
-## 5.4 Paramètres autorisés mais non générés
+## 5.4 Paramètres autorisés mais non générés **lors d’une création de zéro**
+
+Cette liste ne doit jamais être utilisée pour retirer ces paramètres d’un argument existant. Si l’un d’eux est déjà présent, il est préservé conformément au profil de modification.
 
 - `initialisation`
 - `nom`
@@ -998,3 +1002,21 @@ Les notions spécialisées de même rang énumérées ou comparées dans un mêm
 ## Inventaire général des notions spécialisées (1.2.46)
 
 La revue ne se limite pas aux séries de notions comparables. Chaque sous-partie est examinée intégralement et reçoit une entrée dans `specialized_term_inventory`. Toute notion susceptible d’arrêter un lecteur est liée, expliquée, rattachée à un traitement antérieur ou déclarée intelligible en contexte avec une justification spécifique. Tous les liens Wikipédia réellement présents sont recensés. Le registre `wikipedia_link_groups` de 1.2.45 est remplacé comme mécanisme actif par cet inventaire général.
+
+
+# 8. Profil de modification d’une page existante
+
+## 8.1 Principe
+
+Le profil de modification est distinct du profil de création. Il part de l’état attesté de la page et non d’un gabarit vide. Pour toute page `Débat`, `Debate` ou `Argument` préexistante :
+
+- aucun paramètre top-level autorisé déjà présent ne peut disparaître par simple reconstruction ;
+- les paramètres d’avertissement et de cycle de vie ne reçoivent jamais les valeurs par défaut réservées à une création IA ;
+- les valeurs historiques opaques sont conservées exactement tant qu’une décision explicite ne demande pas leur modification ;
+- un contenu éditorial peut être enrichi ou corrigé à l’intérieur de son paramètre, sans que le paramètre lui-même soit supprimé ;
+- toute suppression volontaire est attestée par page et par paramètre ;
+- les sous-modèles conservés ne sont pas nettoyés de leurs propres paramètres d’avertissement par une règle de génération.
+
+## 8.2 Avertissements IA
+
+`Argument généré par IA`, `Débat généré par IA` et leurs équivalents anglais sont des marqueurs de **création automatisée**. Ils ne sont jamais ajoutés rétroactivement à une page préexistante et ne remplacent jamais un avertissement historique (`Argument saugrenu`, avertissement de titre, de résumé, de références, etc.).

@@ -1,9 +1,7 @@
-# Wikidéb’IA Validator 0.4.52
+# Wikidéb’IA Validator 0.4.53
 
-La version 0.4.52 applique la norme 1.2.49 : `nom` / `name` est un champ historique protégé. Le validateur confronte sa présence et sa valeur à l’inventaire source et au verrou historique, bloque toute suppression ou modification d’une valeur existante et bloque toute invention sur une page historiquement dépourvue du paramètre.
+La version 0.4.53 applique la norme 1.2.50 et sépare strictement création et modification. Pour une page existante, le validateur contrôle les paramètres historiques opaques et, lorsqu’un inventaire source est disponible, compare aussi la **présence de tous les paramètres top-level** : une disparition non explicitement autorisée produit `WDV-EDT-030`.
 
-La version 0.4.51 conserve l’adoption contrôlée de révisions manuelles distantes, et la version 0.4.50 conserve la protection de `débat-détaillé` / `detailed-debate`.
+Les marqueurs de création IA ne peuvent plus être ajoutés rétroactivement à une page préexistante ni remplacer un avertissement historique. Les protections antérieures de `initialisation`, `nom`, `débat-détaillé`, des résumés historiques et des adoptions distantes restent actives.
 
-Validateur local aligné sur la norme 1.2.49 et rétrocompatible avec les paquets antérieurs.
-
-Norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.49.md`.
+Norme active : `normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.50.md`.

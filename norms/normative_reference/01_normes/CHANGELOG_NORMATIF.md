@@ -1,3 +1,13 @@
+## 1.2.50 — 7 août 2026
+
+- séparation normative entre création d’une page nouvelle et modification d’une page existante ;
+- préservation de présence de tout paramètre top-level autorisé attesté sur une page existante ;
+- préservation exacte par défaut des métadonnées historiques et avertissements ;
+- interdiction d’appliquer rétroactivement les marqueurs IA aux pages préexistantes ;
+- suppression uniquement sur décision explicite page/paramètre ou exception spécialisée ;
+- même contrat pour les pages Débat et Argument, françaises et anglaises ;
+- alignement recommandé : validateur 0.4.53 et kit 2.15.27.
+
 ## 1.2.49 — 7 août 2026
 
 - préservation stricte de `nom` / `name` lorsqu’il existe sur une page Argument historique ;

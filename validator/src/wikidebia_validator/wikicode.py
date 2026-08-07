@@ -435,28 +435,57 @@ def split_adjacent_templates(text: str) -> list[re.Match[str]]:
 
 
 PROTECTED_PAGE_PARAMETERS = {
-    ("fr", "debate"): ("avancement", "avertissements-débat", "débats-connexes"),
-    ("en", "debate"): ("progress", "debate-warnings", "related-debates"),
-    ("fr", "argument"): ("avertissements-argument",),
-    ("en", "argument"): ("argument-warnings",),
+    # Métadonnées historiques opaques. Sur une page préexistante, leur présence
+    # et leur valeur ne sont jamais déduites du profil de génération.
+    ("fr", "debate"): (
+        "avancement", "avertissements-titre", "avertissements-débat",
+        "avertissements-bibliographie", "avertissements-sitographie",
+        "avertissements-vidéographie", "débats-connexes", "interlangue",
+        "date-création",
+    ),
+    ("en", "debate"): (
+        "progress", "title-warnings", "debate-warnings", "related-debates",
+        "creation-date",
+    ),
+    ("fr", "argument"): (
+        "initialisation", "nom", "avertissements-titre",
+        "avertissements-argument", "avertissements-résumé",
+        "avertissements-références", "avertissements-justifications",
+        "avertissements-objections", "débat-détaillé", "interlangue",
+        "date-création",
+    ),
+    ("en", "argument"): (
+        "initialization", "name", "title-warnings", "argument-warnings",
+        "summary-warnings", "reference-warnings", "justification-warnings",
+        "objection-warnings", "detailed-debate", "creation-date",
+    ),
 }
 
 
 def _protected_page_parameters(ctx: PackageContext, lang: str, page_type: str) -> tuple[str, ...]:
-    base = PROTECTED_PAGE_PARAMETERS[(lang, page_type)]
+    if _norm_at_least(ctx, "1.2.50"):
+        return PROTECTED_PAGE_PARAMETERS[(lang, page_type)]
+    # Contrat antérieur conservé pour les corpus verrouillés sous une norme plus
+    # ancienne ; les extensions 1.2.47/1.2.49 restent reconnues.
+    legacy = {
+        ("fr", "debate"): ("avancement", "avertissements-débat", "débats-connexes"),
+        ("en", "debate"): ("progress", "debate-warnings", "related-debates"),
+        ("fr", "argument"): ("avertissements-argument",),
+        ("en", "argument"): ("argument-warnings",),
+    }[(lang, page_type)]
     if page_type != "argument":
-        return base
+        return legacy
     controls = (ctx.manifest() or {}).get("editorial_controls") or {}
-    preservation = controls.get("legacy_content_preservation") or {}
-    protected_fields = set(preservation.get("protected_fields") or [])
+    protected_fields = set(((controls.get("legacy_content_preservation") or {}).get("protected_fields") or []))
+    extra: list[str] = []
     detailed = "débat-détaillé" if lang == "fr" else "detailed-debate"
     name = "nom" if lang == "fr" else "name"
-    extra: list[str] = []
     if _norm_at_least(ctx, "1.2.47") or detailed in protected_fields:
         extra.append(detailed)
     if _norm_at_least(ctx, "1.2.49") or name in protected_fields:
         extra.append(name)
-    return (*base, *extra)
+    return (*legacy, *extra)
+
 
 
 def _apply_page_lifecycle_contract(ctx: PackageContext, spec: dict[str, Any], tmpl: Template, lang: str, page_type: str, rel: str, page_manifest: dict[str, Any] | None) -> None:
@@ -959,7 +988,9 @@ def _validate_argument_content(ctx: PackageContext, tmpl: Template, rel: str, la
     date_param = "date-création" if lang == "fr" else "creation-date"
     expected_date = page_manifest.get("creation_date") or (((node.get("pages") or {}).get(lang) or {}).get("generation") or {}).get("creation_date")
     actual_date = tmpl.one(date_param)
-    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", actual_date or "") or (expected_date and actual_date != expected_date):
+    preserved_date = (page_manifest.get("preserved_parameters") or {}).get(date_param) if isinstance(page_manifest, dict) else None
+    historical_absence = bool(_norm_at_least(ctx, "1.2.50") and page_manifest.get("page_origin") == "preexisting" and isinstance(preserved_date, dict) and preserved_date.get("present") is False)
+    if not historical_absence and (not re.fullmatch(r"\d{4}-\d{2}-\d{2}", actual_date or "") or (expected_date and actual_date != expected_date)):
         ctx.report.error("WDV-MWK-010", "Date de création absente, invalide ou divergente", path=rel, details={"expected": expected_date, "actual": actual_date})
 
 
@@ -987,7 +1018,9 @@ def _validate_debate_content(ctx: PackageContext, tmpl: Template, rel: str, lang
     date_param = "date-création" if lang == "fr" else "creation-date"
     expected_date = page_manifest.get("creation_date")
     actual_date = tmpl.one(date_param)
-    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", actual_date or "") or (expected_date and actual_date != expected_date):
+    preserved_date = (page_manifest.get("preserved_parameters") or {}).get(date_param) if isinstance(page_manifest, dict) else None
+    historical_absence = bool(_norm_at_least(ctx, "1.2.50") and page_manifest.get("page_origin") == "preexisting" and isinstance(preserved_date, dict) and preserved_date.get("present") is False)
+    if not historical_absence and (not re.fullmatch(r"\d{4}-\d{2}-\d{2}", actual_date or "") or (expected_date and actual_date != expected_date)):
         ctx.report.error("WDV-MWK-010", "Date de création du débat invalide ou divergente", path=rel, details={"expected": expected_date, "actual": actual_date})
 
 
@@ -1003,6 +1036,12 @@ def _validate_interlanguage(ctx: PackageContext, tmpl: Template, rel: str, lang:
 
     norm_120 = _is_norm_120(ctx)
     deferred = english_translation_deferred(manifest)
+    page_manifest = next((p for p in manifest.get("pages", []) if p.get("page_id") == page_id and p.get("language") == lang), {})
+    inter_state = (page_manifest.get("preserved_parameters") or {}).get("interlangue") if isinstance(page_manifest, dict) else None
+    historical_interlanguage = bool(
+        _norm_at_least(ctx, "1.2.50") and deferred and links and isinstance(inter_state, dict)
+        and inter_state.get("present") is True and inter_state.get("value") == tmpl.one("interlangue")
+    )
     expected_present = False if deferred else (True if norm_120 else (staging or state_at_least(status, "interlanguage_applied")))
     if expected_present and len(links) != 1:
         message = "Un lien interlangue français unique est requis dès la création" if norm_120 else "Un lien interlangue français unique est requis à cette étape"
@@ -1027,13 +1066,21 @@ def _validate_interlanguage(ctx: PackageContext, tmpl: Template, rel: str, lang:
             node = next((n for n in registry.get("graph", {}).get("nodes", []) if n.get("id") == page_id), {})
             english_record = node.get("en") or {}
         expected_title = english_record.get("canonical_title")
-        if english_record.get("title_status") != "locked" or not expected_title:
-            ctx.report.error("WDV-MWK-011", "Un lien interlangue exige un titre canonique anglais verrouillé", path=rel)
         actual_title = link.one("page")
-        if not actual_title:
-            ctx.report.error("WDV-MWK-011", "La cible du lien interlangue ne peut pas être vide", path=rel)
-        elif actual_title != expected_title:
-            ctx.report.error("WDV-MWK-011", "Cible interlangue incorrecte", path=rel, details={"expected": expected_title, "actual": actual_title})
+        if historical_interlanguage:
+            # Un lien historique attesté est du contenu à préserver, même si la
+            # traduction anglaise du corpus courant est différée. Son exactitude
+            # est garantie par l'état préservé, non recalculée depuis un titre EN
+            # encore non verrouillé.
+            if not actual_title:
+                ctx.report.error("WDV-MWK-011", "La cible du lien interlangue historique ne peut pas être vide", path=rel)
+        else:
+            if english_record.get("title_status") != "locked" or not expected_title:
+                ctx.report.error("WDV-MWK-011", "Un lien interlangue exige un titre canonique anglais verrouillé", path=rel)
+            if not actual_title:
+                ctx.report.error("WDV-MWK-011", "La cible du lien interlangue ne peut pas être vide", path=rel)
+            elif actual_title != expected_title:
+                ctx.report.error("WDV-MWK-011", "Cible interlangue incorrecte", path=rel, details={"expected": expected_title, "actual": actual_title})
 
 
 
@@ -1041,7 +1088,7 @@ PAIRED_EM_DASH_RE = re.compile(r"\s—\s[^—\n]{1,500}?\s—(?=\s|[.,;:!?])")
 
 
 def _validate_french_parenthetical_dashes(ctx: PackageContext, tmpl: Template, rel: str, page_type: str) -> None:
-    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49"}:
+    if _consolidated_norm(ctx) not in {"1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49", "1.2.50"}:
         return
     values: list[tuple[str, str]] = []
     if page_type == "argument":
@@ -1300,7 +1347,7 @@ def _validate_legacy_content_preservation(ctx: PackageContext, parsed_by_key: di
 
     source_templates: dict[tuple[str, str], Template] = {}
     verification_revision = cfg.get("verification_revision")
-    if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52"}:
+    if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52", "0.4.53"}:
         inventory_rel = cfg.get("source_inventory_path")
         inventory_sha = cfg.get("source_inventory_sha256")
         if not isinstance(inventory_rel, str) or not ctx.exists(inventory_rel):
@@ -1315,7 +1362,7 @@ def _validate_legacy_content_preservation(ctx: PackageContext, parsed_by_key: di
                 ctx.report.error("WDV-EDT-027", "Inventaire source historique invalide", path=inventory_rel)
             else:
                 for source_page in inventory.get("pages") or []:
-                    if not isinstance(source_page, dict) or source_page.get("page_type") != "argument":
+                    if not isinstance(source_page, dict) or source_page.get("page_type") not in {"argument", "debate"}:
                         continue
                     page_id = source_page.get("page_id")
                     content = source_page.get("content")
@@ -1330,6 +1377,48 @@ def _validate_legacy_content_preservation(ctx: PackageContext, parsed_by_key: di
                         ctx.report.error("WDV-EDT-027", f"Page source historique illisible : {exc}", path=inventory_rel, details={"page_id": page_id})
 
     protected_fields = set(cfg.get("protected_fields") or [])
+
+    # Révision 0.4.53 : une modification de page existante n'est jamais un
+    # rendu de création. Tout paramètre top-level attesté par l'inventaire
+    # historique doit rester présent, sauf suppression propriétaire explicite
+    # ou exception relationnelle déjà documentée pour un débat détaillé.
+    if verification_revision == "0.4.53" and "all-existing-parameters" in protected_fields:
+        allowed_deletions: set[tuple[str, str, str]] = set()
+        for row in lock.get("allowed_parameter_deletions") or []:
+            if not isinstance(row, dict):
+                continue
+            page_id = row.get("page_id")
+            language = row.get("language")
+            parameter = row.get("parameter")
+            if all(isinstance(v, str) and v for v in (page_id, language, parameter)):
+                allowed_deletions.add((page_id, language, parameter))
+        lock_entries = {
+            (row.get("id"), row.get("language")): row
+            for row in (lock.get("arguments") or []) if isinstance(row, dict)
+        }
+        for key, source_tmpl in source_templates.items():
+            current = parsed_by_key.get(key)
+            if current is None:
+                # Les pages supprimées/fusionnées sont traitées par le cycle de
+                # vie du registre, pas comme une disparition de paramètre.
+                continue
+            current_names = {name for name, _ in current.params}
+            source_names = {name for name, _ in source_tmpl.params}
+            entry = lock_entries.get(key) or {}
+            detailed = entry.get("detailed_debate") if isinstance(entry, dict) else None
+            for parameter in sorted(source_names - current_names):
+                permitted = (key[0], key[1], parameter) in allowed_deletions
+                if parameter in {"justifications", "objections"} and isinstance(detailed, dict) and detailed.get("relations_omitted") is True:
+                    permitted = True
+                if parameter in {"résumé", "summary"} and isinstance(entry, dict) and entry.get("summary_provenance") == "owner_removed":
+                    permitted = True
+                if not permitted:
+                    ctx.report.error(
+                        "WDV-EDT-030",
+                        "Un paramètre d’une page historique a été supprimé sans décision explicite",
+                        path=next((p.get("file_path") for p in manifest.get("pages", []) if p.get("page_id") == key[0] and p.get("language") == key[1]), lock_rel),
+                        details={"page_id": key[0], "language": key[1], "parameter": parameter},
+                    )
     entries = lock.get("arguments")
     if not isinstance(entries, list):
         ctx.report.error("WDV-EDT-027", "Liste des pages historiques absente", path=lock_rel)
@@ -1356,11 +1445,11 @@ def _validate_legacy_content_preservation(ctx: PackageContext, parsed_by_key: di
             source_summary = source_tmpl.one(field) if source_tmpl is not None else None
             if provenance not in {"historical_existing", "generated_after_import", "historical_absent", "owner_removed"}:
                 ctx.report.error("WDV-EDT-027", "Provenance du résumé historique invalide", path=lock_rel, details={"page_id":key[0],"provenance":provenance})
-            elif verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52"} and source_tmpl is None:
+            elif verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52", "0.4.53"} and source_tmpl is None:
                 ctx.report.error("WDV-EDT-027", "Page historique absente de l’inventaire source", path=lock_rel, details={"page_id": key[0], "language": lang})
-            elif verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52"} and provenance == "historical_existing" and source_summary is None:
+            elif verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52", "0.4.53"} and provenance == "historical_existing" and source_summary is None:
                 ctx.report.error("WDV-EDT-027", "Résumé déclaré historique mais absent de l’inventaire source", path=lock_rel, details={"page_id": key[0]})
-            elif verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52"} and provenance in {"generated_after_import", "historical_absent"} and source_summary is not None:
+            elif verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52", "0.4.53"} and provenance in {"generated_after_import", "historical_absent"} and source_summary is not None:
                 ctx.report.error("WDV-EDT-027", "Résumé historique présent dans l’inventaire mais classé comme absent ou généré", path=lock_rel, details={"page_id": key[0], "provenance": provenance})
             elif provenance == "owner_removed":
                 if source_summary is None:
@@ -1385,7 +1474,7 @@ def _validate_legacy_content_preservation(ctx: PackageContext, parsed_by_key: di
                 actual_sha=hashlib.sha256((actual or "").encode("utf-8")).hexdigest()
                 expected_sha = entry.get("summary_sha256")
                 expected_length = entry.get("summary_length")
-                if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52"} and source_summary is not None:
+                if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52", "0.4.53"} and source_summary is not None:
                     source_sha = hashlib.sha256(source_summary.encode("utf-8")).hexdigest()
                     if expected_sha != source_sha or expected_length != len(source_summary):
                         ctx.report.error("WDV-EDT-027", "Verrou du résumé historique incohérent avec l’inventaire source", path=lock_rel, details={"page_id": key[0], "expected_sha256": source_sha, "lock_sha256": expected_sha})
@@ -1397,7 +1486,7 @@ def _validate_legacy_content_preservation(ctx: PackageContext, parsed_by_key: di
             actual=tmpl.one(init_field)
             source_tmpl = source_templates.get(key)
             source_initialisation = source_tmpl.one(init_field) if source_tmpl is not None else None
-            if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52"} and source_tmpl is not None:
+            if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52", "0.4.53"} and source_tmpl is not None:
                 expected_present = source_initialisation is not None
                 lock_present = isinstance(state, dict) and state.get("present") is True
                 lock_value = state.get("value") if isinstance(state, dict) else None
@@ -1416,7 +1505,7 @@ def _validate_legacy_content_preservation(ctx: PackageContext, parsed_by_key: di
             actual = tmpl.one(name_field)
             source_tmpl = source_templates.get(key)
             source_name = source_tmpl.one(name_field) if source_tmpl is not None else None
-            if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52"} and source_tmpl is not None:
+            if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52", "0.4.53"} and source_tmpl is not None:
                 expected_present = source_name is not None
                 lock_present = isinstance(state, dict) and state.get("present") is True
                 lock_value = state.get("value") if isinstance(state, dict) else None
@@ -1441,7 +1530,7 @@ def _validate_legacy_content_preservation(ctx: PackageContext, parsed_by_key: di
                 expected = state.get("value")
                 if not isinstance(expected, str) or not expected.strip():
                     ctx.report.error("WDV-EDT-027", "Cible historique du débat détaillé absente", path=lock_rel, details={"page_id": key[0]})
-                if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52"} and source_tmpl is not None and source_value != expected:
+                if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52", "0.4.53"} and source_tmpl is not None and source_value != expected:
                     ctx.report.error("WDV-EDT-027", "Verrou du débat détaillé incohérent avec l’inventaire source", path=lock_rel, details={"page_id": key[0], "expected": source_value, "lock": expected})
                 if actual != expected:
                     ctx.report.error("WDV-EDT-027", "Paramètre débat-détaillé historique modifié ou supprimé", path=next((p.get("file_path") for p in manifest.get("pages",[]) if p.get("page_id")==key[0] and p.get("language")==lang), lock_rel), details={"page_id": key[0], "expected": expected, "actual": actual})
@@ -1450,13 +1539,16 @@ def _validate_legacy_content_preservation(ctx: PackageContext, parsed_by_key: di
                 if state.get("relations_omitted") is True and state.get("owner_notified") is not True:
                     ctx.report.error("WDV-EDT-027", "L’omission des justifications et objections n’a pas été signalée au propriétaire", path=lock_rel, details={"page_id": key[0]})
             else:
-                if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52"} and source_value is not None:
+                if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52", "0.4.53"} and source_value is not None:
                     ctx.report.error("WDV-EDT-027", "Débat détaillé présent dans l’inventaire mais déclaré absent du verrou", path=lock_rel, details={"page_id": key[0], "source": source_value})
                 if actual is not None:
                     ctx.report.error("WDV-EDT-027", "Paramètre débat-détaillé ajouté sans provenance historique", path=next((p.get("file_path") for p in manifest.get("pages",[]) if p.get("page_id")==key[0] and p.get("language")==lang), lock_rel), details={"page_id": key[0], "actual": actual})
 
-    if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52"}:
+    if verification_revision in {"0.4.42", "0.4.43", "0.4.44", "0.4.45", "0.4.46", "0.4.47", "0.4.48", "0.4.49", "0.4.50", "0.4.51", "0.4.52", "0.4.53"}:
+        debate_id = manifest.get("debate_id")
         for key in parsed_by_key:
+            if key[0] == debate_id:
+                continue
             if key in source_templates and key not in by_key:
                 ctx.report.error("WDV-EDT-027", "Page importée active absente du verrou historique", path=lock_rel, details={"page_id": key[0], "language": key[1]})
     for key, tmpl in parsed_by_key.items():

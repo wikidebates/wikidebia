@@ -1,7 +1,7 @@
 {
-  "normative_revision": "1.2.49",
-  "recommended_validator_version": "0.4.52",
-  "recommended_kit_version": "2.15.26",
+  "normative_revision": "1.2.50",
+  "recommended_validator_version": "0.4.53",
+  "recommended_kit_version": "2.15.27",
   "compatible_from": "1.1.0",
   "translation_modes": [
     "pending",
@@ -12,6 +12,8 @@
   "notes": [
     "Le mode deferred est une déclaration opérationnelle explicite applicable aux corpus historiques 1.2.x sans migration de leur norme éditoriale.",
     "L'absence de translation_status.en=deferred conserve le contrat bilingue strict de la révision déclarée.",
-    "Les dates de création importées peuvent être conservées page par page avec creation_date_policy=per_page_preserved."
+    "Les dates de création importées peuvent être conservées page par page avec creation_date_policy=per_page_preserved.",
+    "Les profils de paramètres générés/non générés s’appliquent à la création de zéro, jamais comme nettoyage d’une page existante.",
+    "La modification d’une page existante préserve la présence de tous ses paramètres top-level autorisés et la valeur exacte de ses métadonnées historiques, sauf suppression explicitement attestée."
   ]
 }

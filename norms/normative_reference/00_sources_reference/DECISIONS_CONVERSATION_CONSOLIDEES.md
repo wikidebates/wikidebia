@@ -230,3 +230,13 @@ Une vérification supplémentaire a montré qu’un plan entièrement `skip` doi
 3. Un point final à l'intérieur de la note est admis seulement lorsque le contenu de la note constitue une phrase explicative complète.
 4. Toute exception est attestée explicitement dans le registre de revue afin d'éviter qu'une ponctuation automatique soit réintroduite.
 
+## Décision du 7 août 2026 — séparation stricte création / modification et préservation des paramètres
+
+1. Les profils de rendu restreints (« paramètres générés » / « paramètres non générés ») s'appliquent uniquement à la création d'une page à partir de zéro.
+2. Lors de la modification d'une page existante, aucun paramètre de premier niveau déjà présent et autorisé par le modèle MediaWiki ne peut disparaître du seul fait qu'il n'appartient pas au profil de génération IA.
+3. Les métadonnées historiques et avertissements sont opaques par défaut : présence et valeur sont conservées exactement, notamment `initialisation`/`initialization`, `nom`/`name`, tous les paramètres d'avertissement, `débat-détaillé`/`detailed-debate`, `interlangue` lorsqu'il existe et `date-création`/`creation-date`.
+4. Les marqueurs `Argument généré par IA` et `Débat généré par IA` sont des marqueurs de création. Ils ne sont jamais ajoutés rétroactivement à une page préexistante et ne remplacent jamais un avertissement historique.
+5. Un paramètre de contenu peut être modifié, mais sa disparition complète exige une décision explicite portant sur la page et le paramètre concernés, ou une exception spécialisée déjà attestée (par exemple omission locale des relations à une frontière `débat-détaillé`).
+6. Le même principe s'applique aux pages Débat et Argument, en français comme en anglais. Il protège aussi les paramètres existants ajoutés manuellement après l'import : le planificateur compare directement l'état distant au rendu proposé et bloque toute suppression non autorisée.
+7. Une restauration corrective fondée sur un inventaire historique signé peut retirer un paramètre qui avait lui-même été ajouté ou écrasé par erreur par le pipeline ; cette capacité ne constitue pas une permission générale de nettoyage.
+
