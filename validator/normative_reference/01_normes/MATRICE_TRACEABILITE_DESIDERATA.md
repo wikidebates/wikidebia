@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.22
+- **Révision :** 1.2.54
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -359,7 +359,7 @@ La correction 1.2.28 avait retiré le statut actif de MW-009 et tenté de resync
 
 ## Trace 1.2.29
 
-La correction 1.2.29 conserve `{{Citation}}` en français et restaure `{{Quote}}` en anglais. Elle préserve séparément le contrat historique de `Quote` pour les anciennes normes et le contrat de projection verrouillée applicable à partir de 1.2.27.
+La correction 1.2.29 conserve `{{Citation}}` en français et restaure `{{Quote}}` en anglais. Les anciens rendus restent lisibles comme formats historiques, mais toute nouvelle projection applique le contrat courant de projection verrouillée indépendamment de la révision de provenance du corpus.
 
 
 ## Correction 1.2.32 — localisation intégrale du wikicode anglais
@@ -407,3 +407,8 @@ RND-005 interdit tout modèle ou paramètre français dans une page anglaise ren
 ## Révision 1.2.53 — traduction anglaise par lots et adaptation documentaire
 
 La décision du propriétaire du 7 août 2026 formalise la phase anglaise après validation du corpus français. `TRN-005` et `TRN-006` imposent le lot autonome de la page Debate, les lots d'arguments bornés et la passe globale inter-lots. `EDT-063` sépare strictement la recherche de `name=` anglais de tout `nom=` français. `REF-038` interdit la traduction artificielle des notices françaises et exige un équivalent anglais réel avant projection ; `REF-039` impose une recherche documentaire anglophone indépendante. `RND-006` confirme que le contrat spécial `Citation`→`Quote` reste inchangé et constitue une exception contrôlée à la politique générale d'adaptation des références.
+
+## Architecture cumulative 1.2.54
+
+La décision du propriétaire du 7 août 2026 supprime les versions comme mécanisme d’activation éditoriale. `ARCH-001` rend les normes courantes cumulatives ; `ARCH-002` réduit les anciens champs de révision à la traçabilité ; `ARCH-003` réserve les versions aux formats, migrations et artefacts qui en ont réellement besoin.
+

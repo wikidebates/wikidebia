@@ -18,7 +18,7 @@ def test_schema_violation(tmp_path: Path):
 def test_cli_json_output(tmp_path: Path):
     create_graph_package(tmp_path)
     output = tmp_path / "report.json"
-    rc = main(["validate", str(tmp_path), "--format", "json", "--json-output", str(output)])
+    rc = main(["validate", str(tmp_path), "--scope", "graph", "--format", "json", "--json-output", str(output)])
     assert rc == 0
     data = json.loads(output.read_text())
     assert data["result"] in {"passed", "passed_with_warnings"}
@@ -74,7 +74,7 @@ def _editorial_controls_124():
     }
 
 
-def test_norm_124_schema_requires_introduction_review_and_profile_rationale(tmp_path: Path):
+def test_old_norm_metadata_does_not_schema_gate_introduction_review_or_profile_rationale(tmp_path: Path):
     create_graph_package(tmp_path)
     manifest = json.loads((tmp_path / "manifest.json").read_text())
     manifest["normative_versions"]["consolidated_norm"] = "1.2.4"
@@ -84,7 +84,7 @@ def test_norm_124_schema_requires_introduction_review_and_profile_rationale(tmp_
     manifest["editorial_controls"] = controls
     dump(tmp_path / "manifest.json", manifest)
     report = validate_package(tmp_path, scopes=["schema"])
-    assert any(f.code == "WDV-SCH-003" for f in report.findings)
+    assert not any(f.code == "WDV-SCH-003" for f in report.findings)
 
 
 def test_norm_124_schema_accepts_declared_introduction_review_and_rationale(tmp_path: Path):
@@ -98,14 +98,14 @@ def test_norm_124_schema_accepts_declared_introduction_review_and_rationale(tmp_
 
 
 
-def test_norm_1220_schema_requires_graph_placement_review_path(tmp_path: Path):
+def test_old_1220_metadata_does_not_schema_gate_graph_placement_review_path(tmp_path: Path):
     create_graph_package(tmp_path)
     manifest = json.loads((tmp_path / "manifest.json").read_text())
     manifest["normative_versions"]["consolidated_norm"] = "1.2.20"
     manifest["editorial_controls"] = _editorial_controls_124()
     dump(tmp_path / "manifest.json", manifest)
     report = validate_package(tmp_path, scopes=["schema"])
-    assert any(f.code == "WDV-SCH-003" for f in report.findings)
+    assert not any(f.code == "WDV-SCH-003" for f in report.findings)
 
 
 def test_norm_1220_schema_accepts_graph_placement_review_path(tmp_path: Path):
@@ -130,11 +130,11 @@ def test_norm_1219_schema_does_not_require_graph_placement_review_path(tmp_path:
     assert not any(f.code == "WDV-SCH-003" and "graph_placement_review_path" in str(f.details) for f in report.findings)
 
 
-def test_norm_1221_schema_requires_graph_placement_review_path(tmp_path: Path):
+def test_old_1221_metadata_does_not_schema_gate_graph_placement_review_path(tmp_path: Path):
     create_graph_package(tmp_path)
     manifest = json.loads((tmp_path / "manifest.json").read_text())
     manifest["normative_versions"]["consolidated_norm"] = "1.2.21"
     manifest["editorial_controls"] = _editorial_controls_124()
     dump(tmp_path / "manifest.json", manifest)
     report = validate_package(tmp_path, scopes=["schema"])
-    assert any(f.code == "WDV-SCH-003" for f in report.findings)
+    assert not any(f.code == "WDV-SCH-003" for f in report.findings)

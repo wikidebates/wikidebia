@@ -28,12 +28,12 @@ Ce document **ne détermine pas** quels paramètres doivent effectivement appara
 2. Les paramètres émis dans une page doivent respecter l'ordre de la structure correspondante.
 3. Un sous-modèle placé dans un paramètre peut être répété autant de fois que nécessaire.
 4. L'existence d'un paramètre dans la structure autorisée n'oblige pas à l'émettre **lors de la création d'une page nouvelle**. Lors de la modification d'une page existante, tout paramètre top-level attesté comme présent est conservé, sauf suppression explicite enregistrée.
-5. Sur une page nouvelle, les paramètres facultatifs vides sont omis conformément au profil de rendu ; sur une page existante, cette règle ne permet jamais de supprimer un paramètre historique présent.  `articles-Wikipédia` et `wikipedia-articles` ne sont toutefois jamais facultatifs ni vides dans une sortie conforme à la révision 1.2.17.
+5. Sur une page nouvelle, les paramètres facultatifs vides sont omis conformément au profil de rendu ; sur une page existante, cette règle ne permet jamais de supprimer un paramètre historique présent. `articles-Wikipédia` et `wikipedia-articles` ne sont toutefois jamais facultatifs ni vides dans une sortie courante conforme.
 6. Les structures française et anglaise ne doivent jamais être mélangées.
 7. `date-création` et `creation-date` sont des paramètres autorisés et placés à la fin des quatre structures.
 8. Les liens interlangues sont autorisés uniquement dans les structures françaises.
 9. Les noms canoniques des pages sont enregistrés dans le manifeste et le registre du débat. Ils ne dépendent pas de l'utilisation de `nom=` ou `name=`.
-10. `débats-connexes` et `related-debates` restent décrits comme paramètres historiquement autorisés par les modèles du wiki, mais ils sont interdits dans toute sortie générée sous la révision 1.2.17.
+10. `débats-connexes` et `related-debates` restent décrits comme paramètres historiquement autorisés par les modèles du wiki, mais le générateur courant ne les émet jamais sur une page nouvelle ; sur une page existante, leur préservation suit le contrat historique de modification.
 11. Les valeurs `auteurs` et `authors` sont du texte MediaWiki ; elles ne reçoivent jamais la sérialisation littérale d’une liste JSON.
 
 ---
@@ -467,7 +467,7 @@ Chaque rubrique retenue est justifiée individuellement au moyen d’une structu
 
 # Addendum actif 1.2.0 — structure corrigée
 
-Pour les paquets 1.2.0, la page Débat française emploie exclusivement `{{Lien interlangue}}`. La page Debate anglaise n’emploie pas `type=` et contient, dans cet ordre, `topic=` puis `complete-topic=`. Les balises `<references />` ne font partie d’aucune sortie générée. Toute disposition antérieure incompatible est historique.
+La règle structurelle introduite en 1.2.0 s’applique cumulativement : lorsqu’un lien interlangue est fonctionnellement requis, la page Débat française emploie exclusivement `{{Lien interlangue}}`. La page Debate anglaise n’emploie pas `type=` et contient, dans cet ordre, `topic=` puis `complete-topic=`. Les balises `<references />` ne font partie d’aucune sortie générée. Pendant `translation_status.en=deferred`, le lien interlangue français est omis conformément au workflow différé. Toute disposition antérieure incompatible est historique.
 
 
 # Addendum intégré 1.2.1 — contrainte de contenu français
@@ -477,7 +477,7 @@ Les structures MediaWiki ne changent pas. Dans les valeurs rédactionnelles fran
 
 # Addendum intégré 1.2.2 — cohérence des exemples
 
-Les structures actives sont celles décrites ci-dessus : `{{Lien interlangue}}` sur toutes les pages françaises, `topic` puis `complete-topic` sur la page Debate anglaise, aucune balise `<references />`, et aucune phase de staging pour les paquets 1.2.x.
+Les structures actives sont celles décrites ci-dessus : `{{Lien interlangue}}` sur les pages françaises lorsque la langue cible est prête, `topic` puis `complete-topic` sur la page Debate anglaise et aucune balise `<references />`. Pendant une traduction différée, aucun lien provisoire n’est généré ; l’ajout canonique ultérieur suit le workflow interlangue explicite.
 
 
 # Addendum intégré 1.2.2 (historique, complété par 1.2.3) — cohérence de livraison

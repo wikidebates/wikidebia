@@ -13,9 +13,9 @@ import stat
 from pathlib import Path
 from typing import Any, Iterable, Iterator, Mapping
 
-KIT_VERSION = "2.15.30"
-NORM_VERSION = "1.2.53"
-VALIDATOR_VERSION = "0.4.56"
+KIT_VERSION = "2.15.31"
+NORM_VERSION = "1.2.54"
+VALIDATOR_VERSION = "0.4.57"
 
 REVIEW_ENVELOPE = "reviews/graph_build_review.json"
 PLACEMENT_REVIEW = "reviews/graph_placement_review.json"
@@ -339,8 +339,6 @@ def placement_review_issues(review: Any, registry: Mapping[str, Any]) -> list[di
     issues: list[dict[str, Any]] = []
     if not isinstance(review, dict):
         return [{"reason": "missing_or_invalid_document"}]
-    if review.get("normative_revision") != NORM_VERSION:
-        issues.append({"reason": "normative_revision", "expected": NORM_VERSION, "actual": review.get("normative_revision")})
     debate_id = (registry.get("debate") or {}).get("id")
     if review.get("debate_id") != debate_id:
         issues.append({"reason": "debate_id", "expected": debate_id, "actual": review.get("debate_id")})
@@ -417,8 +415,6 @@ def verify_review_envelope(review: dict[str, Any], *, debate_id: str, source_sha
     errors: list[str] = []
     if review.get("schema") != "wikidebia-graph-build-review-1.0":
         errors.append("schema")
-    if review.get("normative_revision") != NORM_VERSION:
-        errors.append("normative_revision")
     if review.get("kit_version") != KIT_VERSION:
         errors.append("kit_version")
     if review.get("validator_version") != VALIDATOR_VERSION:

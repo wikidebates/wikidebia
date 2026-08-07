@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from .current_policy_helpers import complete_summary_decision
+
 from wikidebia_validator.editorial import (
     opening_title_similarity,
     summary_quantitative_claims,
@@ -22,7 +24,8 @@ def _decision(**overrides):
         "note": "Résumé relu page par page selon les exigences de la norme 1.1.9.",
     }
     value.update(overrides)
-    return value
+    completed, _ = complete_summary_decision(value)
+    return completed
 
 
 def test_exact_title_repetition_triggers_opening_warning():
@@ -56,9 +59,9 @@ def test_119_review_requires_new_human_attestations():
         "normative_revision": "1.1.9",
         "entries": [{"id": "A0001", "languages": {"fr": _decision()}}],
     }
-    assert validate_summary_style_review_data(review, [{"id": "A0001"}], {"A0001": {"fr"}}, norm="1.1.9") == []
+    assert validate_summary_style_review_data(review, [{"id": "A0001"}], {"A0001": {"fr"}}, norm="1.1.9", summaries={("A0001", "fr"): complete_summary_decision()[1]}) == []
     review["entries"][0]["languages"]["fr"]["opening_develops_title"] = False
-    issues = validate_summary_style_review_data(review, [{"id": "A0001"}], {"A0001": {"fr"}}, norm="1.1.9")
+    issues = validate_summary_style_review_data(review, [{"id": "A0001"}], {"A0001": {"fr"}}, norm="1.1.9", summaries={("A0001", "fr"): complete_summary_decision()[1]})
     assert any(i["reason"] == "opening_develops_title" for i in issues)
 
 
@@ -73,6 +76,7 @@ def test_quantitative_summary_requires_explicit_verification():
         {"A0001": {"fr"}},
         norm="1.1.9",
         quantitative_pages={("A0001", "fr")},
+        summaries={("A0001", "fr"): complete_summary_decision()[1]},
     )
     assert any(i["reason"] == "quantitative_claims_verified" for i in issues)
     assert any(i["reason"] == "quantitative_claims_note" for i in issues)
@@ -85,10 +89,11 @@ def test_quantitative_summary_requires_explicit_verification():
         {"A0001": {"fr"}},
         norm="1.1.9",
         quantitative_pages={("A0001", "fr")},
+        summaries={("A0001", "fr"): complete_summary_decision()[1]},
     ) == []
 
 
-def test_118_review_remains_backward_compatible():
+def test_old_norm_metadata_does_not_disable_current_summary_rules():
     review = {
         "entries": [{
             "id": "A0001",
@@ -98,13 +103,15 @@ def test_118_review_remains_backward_compatible():
                 "general_public_style": True,
                 "sentence_rhythm_reviewed": True,
                 "technical_terms_reviewed": True,
-                "note": "Résumé relu selon les attestations historiques de la norme 1.1.8.",
+                "note": "Ancienne métadonnée de norme, sans effet sur les règles courantes.",
             }},
         }],
     }
-    assert validate_summary_style_review_data(review, [{"id": "A0001"}], {"A0001": {"fr"}}, norm="1.1.8") == []
+    issues = validate_summary_style_review_data(review, [{"id": "A0001"}], {"A0001": {"fr"}}, norm="1.1.8", summaries={("A0001", "fr"): complete_summary_decision()[1]})
+    assert any(i["reason"] == "opening_develops_title" for i in issues)
+    assert any(i["reason"] == "originality_reviewed" for i in issues)
 
 
 def test_active_norm_is_119():
     root = Path(__file__).parents[1] / "normative_reference" / "01_normes"
-    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.53.md"]
+    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md"]

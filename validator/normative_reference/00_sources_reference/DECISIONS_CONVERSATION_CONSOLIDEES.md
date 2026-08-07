@@ -33,7 +33,7 @@
 2. Les titres canoniques anglais sont verrouillés après validation du graphe et avant la génération française ; le contenu anglais est rédigé après validation française.
 3. Les pages anglaises sont des adaptations idiomatiques autonomes, non des traductions mécaniques.
 4. Les pages françaises reçoivent seules les liens interlangues, dès leur première génération valide.
-5. Aucun staging interlangue tardif n’est utilisé pour les paquets 1.2.x ; la cible anglaise peut être créée ensuite.
+5. **Disposition historique remplacée le 7 août 2026.** Aucun lien interlangue provisoire n’est généré pendant `translation_status.en=deferred`; lorsque la langue anglaise devient prête, la cible canonique peut être ajoutée par le workflow interlangue explicite, indépendamment du numéro de norme historique déclaré.
 6. Le lien interlangue vise toujours le titre canonique anglais, jamais le titre affiché.
 
 ### Décision du 1er août 2026 — concision effective des titres affichés
@@ -250,3 +250,14 @@ Une vérification supplémentaire a montré qu’un plan entièrement `skip` doi
 6. Une référence française n'est jamais transformée en référence anglaise par traduction de sa notice ou de son titre. La revue recherche une version anglaise réelle et l'ajoute uniquement si elle existe, avec les métadonnées de cette version.
 7. La documentation anglaise est enrichie par une recherche indépendante de nouvelles références anglophones ; elle n'est pas limitée aux équivalents des références françaises.
 8. Le contrat des modèles `Citation` / `Quote` est confirmé : seuls les champs textuels `citation`→`quote` et `date` sont traduits ; les autres valeurs documentaires sont conservées exactement et l'avertissement `Citation traduite par IA` est ajouté dans `warnings`.
+
+## Décision du 7 août 2026 — normes éditoriales cumulatives indépendantes des numéros de version
+
+1. Les normes éditoriales actives s’appliquent quelle que soit la version historique déclarée par le corpus ; un numéro de norme ne sert plus à activer ou désactiver une règle.
+2. `consolidated_norm` est conservé pour la provenance, la compatibilité de format, les migrations et la traçabilité des livraisons.
+3. Les champs `*_policy_revision` et `*_revision` existants deviennent des métadonnées historiques de traçabilité et ne pilotent plus le comportement éditorial.
+4. Les règles sont déclenchées par l’état fonctionnel correspondant : présence d’un registre, origine de page, statut de traduction, préservation historique activée et inventaire attesté, ou version propre de l’artefact.
+5. La compatibilité avec les anciens formats est traitée dans les lecteurs et migrations sans affaiblir les normes éditoriales courantes.
+6. Les règles de contenu déjà validées, notamment celles de la traduction anglaise 1.2.53, restent inchangées.
+7. Le validateur et le kit doivent tester l’invariance du verdict éditorial lorsque seule une métadonnée de version change.
+

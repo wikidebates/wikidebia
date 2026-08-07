@@ -1,7 +1,7 @@
 {
-  "normative_revision": "1.2.53",
-  "recommended_validator_version": "0.4.56",
-  "recommended_kit_version": "2.15.30",
+  "normative_revision": "1.2.54",
+  "recommended_validator_version": "0.4.57",
+  "recommended_kit_version": "2.15.31",
   "compatible_from": "1.1.0",
   "translation_modes": [
     "pending",
@@ -10,13 +10,13 @@
     "published"
   ],
   "notes": [
-    "Le mode deferred est une déclaration opérationnelle explicite applicable aux corpus historiques 1.2.x sans migration de leur norme éditoriale.",
-    "L'absence de translation_status.en=deferred conserve le contrat bilingue strict de la révision déclarée.",
+    "Les règles éditoriales 1.2.54 sont cumulatives et ne sont jamais activées ou désactivées par consolidated_norm ou un champ *_revision.",
+    "Les numéros de version restent utilisables pour la compatibilité de format, les migrations, la provenance et l'identification des livraisons.",
     "Les dates de création importées peuvent être conservées page par page avec creation_date_policy=per_page_preserved.",
     "Les profils de paramètres générés/non générés s’appliquent à la création de zéro, jamais comme nettoyage d’une page existante.",
     "La modification d’une page existante préserve la présence de tous ses paramètres top-level autorisés et la valeur exacte de ses métadonnées historiques, sauf suppression explicitement attestée.",
     "Une absence historique de nom/name peut être dépassée uniquement par un registre d’attribution éditoriale 1.2.51 explicitement approuvé.",
     "Chaque argument nouveau fait l’objet d’une recherche d’appellation consacrée; l’absence de nom reste le résultat attendu par défaut.",
-    "La traduction anglaise 1.2.53 se fait par lots fermés, adapte les références à des versions anglaises réelles et recherche séparément les noms consacrés et les nouvelles sources anglophones."
+    "La traduction anglaise, dont les règles ont été introduites en 1.2.53, se fait par lots fermés, adapte les références à des versions anglaises réelles et recherche séparément les noms consacrés et les nouvelles sources anglophones."
   ]
 }

@@ -81,31 +81,17 @@ def validate_all_schemas(ctx: PackageContext, store: SchemaStore) -> None:
     for rel, schema in mapping.items():
         if ctx.exists(rel):
             validate_instance(ctx, store, rel, schema)
-    norm = ((manifest or {}).get("normative_versions") or {}).get("consolidated_norm")
     controls = (manifest or {}).get("editorial_controls") or {}
-    quality_policy = controls.get("quality_policy_revision")
-    keyword_policy = controls.get("keyword_policy_revision")
-    summary_policy = controls.get("summary_policy_revision")
-    if norm in {"1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49", "1.2.50", "1.2.51", "1.2.52", "1.2.53"} or quality_policy == "1.2.38" or keyword_policy == "1.2.39":
-        rel = controls.get("keyword_vocabulary_path")
+    for path_key, schema_name in (
+        ("keyword_vocabulary_path", "keyword_vocabulary.schema.json"),
+        ("summary_style_review_path", "summary_style_review.schema.json"),
+        ("manual_remote_adoption_path", "manual_remote_adoptions.schema.json"),
+        ("argument_name_assignment_path", "argument_name_assignments.schema.json"),
+        ("argument_name_discovery_path", "argument_name_discovery_review.schema.json"),
+    ):
+        rel = controls.get(path_key)
         if rel and ctx.exists(rel):
-            validate_instance(ctx, store, rel, "keyword_vocabulary.schema.json")
-    if norm in {"1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49", "1.2.50", "1.2.51", "1.2.52", "1.2.53"} or quality_policy == "1.2.38" or summary_policy in {"1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49", "1.2.50", "1.2.51", "1.2.52", "1.2.53"}:
-        rel = controls.get("summary_style_review_path")
-        if rel and ctx.exists(rel):
-            validate_instance(ctx, store, rel, "summary_style_review.schema.json")
-    if controls.get("manual_remote_adoption_revision") == "1.2.48":
-        rel = controls.get("manual_remote_adoption_path")
-        if rel and ctx.exists(rel):
-            validate_instance(ctx, store, rel, "manual_remote_adoptions.schema.json")
-    if controls.get("argument_name_assignment_revision") == "1.2.51":
-        rel = controls.get("argument_name_assignment_path")
-        if rel and ctx.exists(rel):
-            validate_instance(ctx, store, rel, "argument_name_assignments.schema.json")
-    if controls.get("argument_name_discovery_revision") == "1.2.52":
-        rel = controls.get("argument_name_discovery_path")
-        if rel and ctx.exists(rel):
-            validate_instance(ctx, store, rel, "argument_name_discovery_review.schema.json")
+            validate_instance(ctx, store, rel, schema_name)
     preservation = controls.get("legacy_content_preservation") or {}
     if preservation.get("enabled") is True:
         rel = preservation.get("lock_path")

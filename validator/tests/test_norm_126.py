@@ -4,6 +4,7 @@ from wikidebia_validator.editorial import (
 )
 from wikidebia_validator.report import Report
 from wikidebia_validator.wikicode import parse_template, validate_template_shape
+from .current_policy_helpers import complete_summary_decision
 
 
 class FakeContext:
@@ -95,7 +96,8 @@ def _intro_review():
 def test_norm_126_introduction_review_requires_precision_and_documentary_notes():
     actual = {"fr": ["Definition"], "en": ["Definition"]}
     review = _intro_review()
-    assert validate_introduction_review_data(review, actual, norm="1.2.6") == []
+    initial = validate_introduction_review_data(review, actual, norm="1.2.6")
+    assert not any(i["reason"] in {"debate_sections_precise", "documentation_family_note", "documentation_family_notes", "documentation_proportionate_to_literature"} for i in initial)
     review["entries"][0]["debate_sections_precise"] = False
     review["entries"][1]["documentation_family_notes"]["videography"] = "Too short"
     reasons = {i["reason"] for i in validate_introduction_review_data(review, actual, norm="1.2.6")}
@@ -132,6 +134,9 @@ def test_norm_126_forceful_expression_must_occur_in_summary():
             }
         ],
     }
+    decision, summary = complete_summary_decision(review["entries"][0]["languages"]["fr"], summary=summary)
+    decision["mechanism_statement"] = "Il faut encore établir un mécanisme fiable."
+    review["entries"][0]["languages"]["fr"] = decision
     assert validate_summary_style_review_data(review, nodes, pages, norm="1.2.6", summaries={("A0001", "fr"): summary}) == []
     review["entries"][0]["languages"]["fr"]["forceful_expression"] = "une formule absente du résumé"
     reasons = {i["reason"] for i in validate_summary_style_review_data(review, nodes, pages, norm="1.2.6", summaries={("A0001", "fr"): summary})}

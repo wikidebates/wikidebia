@@ -2,27 +2,29 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.53** ;
-- validateur actif : **0.4.56** ;
-- kit actif : **2.15.30**.
+- norme active : **1.2.54** ;
+- validateur actif : **0.4.57** ;
+- kit actif : **2.15.31**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 1828507 octets — SHA-256 `fc5a6865b9971f5f3ed9cb69e20c47f3bef61139a4a72833ab9c8a6587a38dc9`
-- `wikidebia-validator.zip` — 2116268 octets — SHA-256 `5bf7fe280e17797e113a78f52146b17d147bbb77ff437f4265d238defe5b2f64`
-- `wikidebia-kit.zip` — 432658 octets — SHA-256 `54f2279b1d132c6679a1be0b0f6ad76b9f825f0d3feeadd70e853148ebafcd87`
+- `wikidebia-normes.zip` — 1888722 octets — SHA-256 `ce14dd0516f03710c13ca6991cbd844595d2e46e86b037d952835bcc441bfc4d`
+- `wikidebia-validator.zip` — 2172782 octets — SHA-256 `627424bb15caaca401e6726b02aab46fe3352795d5781ceea920f6fe5083cdae`
+- `wikidebia-kit.zip` — 434546 octets — SHA-256 `a085cc194744daf6d3ee606f36a8ad7aab82a91ea6b9b306d3addf481f3888b8`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.53.md`  
-SHA-256 : `ff57c465427fde931ed08d1f0b8922230aa0c0289e055e448c08712ab43090e5`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md`  
+SHA-256 : `ee24fd53f1726dae2c961e83972cb23b36308ac1170427437e79778b678c1593`
 
-# Norme consolidée Wikidéb’IA 1.2.53
+# Norme consolidée Wikidéb’IA 1.2.54
+
+> **Révision 1.2.54 — architecture cumulative des normes éditoriales.** Les règles éditoriales actives de la présente norme consolidée s’appliquent désormais indépendamment de la valeur déclarée dans `normative_versions.consolidated_norm`. Ce numéro reste une métadonnée de provenance, de compatibilité de format, de migration et de publication ; il n’est plus un interrupteur de fonctionnalités éditoriales. De même, les champs historiques `*_policy_revision`, `*_revision`, `argument_name_assignment_revision`, `argument_name_discovery_revision` ou analogues, lorsqu’ils sont encore présents, servent uniquement à la traçabilité et ne peuvent ni activer ni désactiver un contrôle. L’application des règles dépend de l’état fonctionnel constaté : présence d’un registre ou d’un chemin de revue, origine d’une page, statut de traduction, activation de la préservation historique avec inventaire attesté, ou version propre d’un artefact. Les anciennes formulations « activée pour la révision X » sont conservées comme historique mais sont remplacées par cette architecture pour toute validation courante. Les règles de traduction anglaise 1.2.53 restent inchangées.
 
 > **Révision 1.2.50 — séparation création / modification.** Les listes de paramètres générés ou non générés définies par les profils de rendu ne valent que pour la création automatisée d’une page à partir de zéro. Lorsqu’une page `Débat` ou `Argument` existe déjà, en français comme en anglais, sa modification obéit à un contrat de préservation : tout paramètre top-level autorisé qui était présent dans l’état historique ou distant attesté reste présent, même si le workflow de création ne l’aurait pas généré. Les paramètres de cycle de vie et d’avertissement sont traités comme des métadonnées opaques et ne peuvent recevoir une valeur par défaut de génération. Une suppression n’est admise que si elle est explicitement décidée et enregistrée pour la page et le paramètre concernés, ou si une exception normative spécialisée l’autorise (par exemple l’omission locale de relations sur une frontière `débat-détaillé`). Les mêmes principes s’appliquent aux pages de débat.
 
 
-> **Révision 1.2.51 — attribution éditoriale explicite de `nom` / `name`.** La protection historique introduite en 1.2.49 reste la règle par défaut : une absence historique de `nom` ou `name` n’est jamais comblée automatiquement. Une exception étroite est désormais admise lorsqu’une décision éditoriale explicite du propriétaire attribue à une page Argument une appellation consacrée dans la littérature. Le corpus déclare alors `editorial_controls.argument_name_assignment_revision=1.2.51` et un registre dédié. Ce registre identifie chaque page, la langue, le titre canonique, la valeur exacte à ajouter et la justification. L’inventaire historique reste inchangé et continue d’attester l’absence antérieure ; l’attribution éditoriale constitue une couche de décision séparée. Le validateur exige une concordance exacte entre le registre et le wikicode. Lors d’une reprise, le kit peut ajouter uniquement ce paramètre sur les pages listées, sans relâcher la préservation des autres paramètres historiques.
+> **Révision 1.2.51 — attribution éditoriale explicite de `nom` / `name`.** La protection historique introduite en 1.2.49 reste la règle par défaut : une absence historique de `nom` ou `name` n’est jamais comblée automatiquement. Une exception étroite est désormais admise lorsqu’une décision éditoriale explicite du propriétaire attribue à une page Argument une appellation consacrée dans la littérature. Le corpus déclare alors un registre dédié par `editorial_controls.argument_name_assignment_path`. Le champ historique `argument_name_assignment_revision`, s’il est encore présent, n’est qu’une trace de provenance. Ce registre identifie chaque page, la langue, le titre canonique, la valeur exacte à ajouter et la justification. L’inventaire historique reste inchangé et continue d’attester l’absence antérieure ; l’attribution éditoriale constitue une couche de décision séparée. Le validateur exige une concordance exacte entre le registre et le wikicode. Lors d’une reprise, le kit peut ajouter uniquement ce paramètre sur les pages listées, sans relâcher la préservation des autres paramètres historiques.
 > **Révision 1.2.52 — recherche documentaire des noms consacrés des arguments nouveaux.** Pour chaque page `Argument` réellement nouvelle, la génération examine explicitement si le raisonnement possède une appellation conventionnelle reconnue dans la littérature. Cette recherche est obligatoire, mais l’ajout de `nom` / `name` reste exceptionnel : la présomption est l’absence de nom consacré. Aucun quota, objectif de remplissage ou dérivation depuis le titre n’est admis. Une appellation n’est retenue que si des sources de référence ou académiques l’emploient pour désigner substantiellement le même raisonnement dans la langue de la page, ou sous une forme étrangère elle-même consacrée. La revue consigne les requêtes, le résultat et, lorsqu’un nom est retenu, les attestations documentaires. Le validateur exige une couverture exacte de toutes les pages Argument nouvelles et une concordance stricte avec le wikicode.
 > **Révision 1.2.53 — traduction anglaise par lots et adaptation documentaire.** La production anglaise est menée comme une adaptation éditoriale contrôlée, non comme une substitution lexicale. La page `Debate` constitue un lot autonome. Les pages `Argument` sont ensuite traitées par lots de vingt pages par défaut, sans dépasser vingt-cinq ; un lot documentairement dense est réduit à dix à quinze pages. Chaque argument est achevé dans un seul lot, qui inclut la traduction idiomatique, la recherche séparée de `name=`, la vérification des équivalents anglais des références françaises, la recherche de nouvelles références anglophones et le traitement des modèles `Quote`. Une référence française n’est jamais traduite artificiellement : elle n’est projetée comme référence anglaise que si une édition, traduction ou version anglaise réelle est vérifiée, avec ses métadonnées propres. Des références anglaises nouvelles sont recherchées indépendamment. L’exception documentaire des modèles `Citation` importés reste stricte : `Citation` devient `Quote`, seuls le texte de `quote` et la forme linguistique de `date` sont traduits, les autres valeurs sont conservées exactement, et `Citation traduite par IA` est ajouté à `warnings`. Une passe inter-lots finale vérifie la cohérence globale avant finalisation.
 
@@ -658,7 +660,7 @@ Aucune reprise corrective ne peut supprimer silencieusement une fonction, un con
 
 Les contrôles sont répartis entre schémas JSON, cohérence et fichiers, graphe, lots, sources, wikicode, bilinguisme, workflow, contrôles éditoriaux automatisables et revue humaine obligatoire.
 
-Le validateur recommandé 0.4.13 conserve les contrôles antérieurs, applique les règles 1.2.6 à 1.2.9 aux paquets qui les déclarent et maintient la compatibilité explicite avec les révisions historiques annoncées. Chaque règle binaire nouvelle possède au moins un test positif et un test négatif. Les nombres de tests, exigences et fichiers déclarés dans les reçus doivent correspondre aux éléments réellement livrés.
+Le validateur courant conserve les contrôles éditoriaux cumulés indépendamment de la révision normative historique déclarée et maintient séparément la compatibilité technique de lecture avec les formats historiques annoncés. Chaque règle binaire nouvelle possède au moins un test positif et un test négatif. Les nombres de tests, exigences et fichiers déclarés dans les reçus doivent correspondre aux éléments réellement livrés.
 
 Les longueurs indicatives des résumés restent des guides éditoriaux et non des quotas. Une distribution systématiquement courte déclenche une information de revue humaine, sans provoquer de remplissage artificiel. La revue doit confirmer que chaque page demeure autonome, informative et fidèle à un seul nœud.
 
@@ -680,7 +682,7 @@ Avant toute publication, W11 doit :
 10. classifier chaque titre distant comme `absent`, `equivalent_existing`, `collision` ou `manual_review` ;
 11. ne jamais écraser une page existante par défaut : une page équivalente est ignorée et une collision bloque le plan ; la page Débat française préexistante bloque spécifiquement le test ;
 12. comparer les contenus local et distant par SHA-256 et enregistrer les identifiants de révision ;
-13. utiliser `createonly` pour chaque création canonique ; aucune mise à jour interlangue distincte n’est prévue pour un paquet 1.2.x ;
+13. utiliser `createonly` pour chaque création canonique ; une mise à jour interlangue distincte n’est admise que par le workflow fonctionnel prévu après préparation de la langue cible et reste interdite tant que cette traduction est `deferred` ;
 14. relire chaque page après écriture, vérifier son contenu et enregistrer la nouvelle révision ;
 15. s’arrêter sur perte de session, collision, divergence, droits insuffisants ou révision concurrente ;
 16. ne créer aucune sous-page utilisateur pour le test de publication ;
@@ -724,7 +726,7 @@ Le paquet déclare dans son manifeste les chemins du vocabulaire contrôlé, du 
 
 Les archives de normes, du validateur et du kit comportent un manifeste SHA-256 exhaustif. Tout fichier livré, y compris un manifeste historique placé dans un sous-dossier, est soit déclaré avec sa taille et son empreinte, soit explicitement exclu par un chemin précis. Le reçu externe indique des nombres exacts et reproductibles.
 
-La configuration de publication d’un paquet 1.2.x exécute toutes les portées applicables du validateur, notamment `wikicode` et `editorial` lorsque des pages sont publiées. Le kit refuse une configuration qui omet une portée obligatoire du profil actif.
+La configuration de publication exécute toutes les portées applicables du validateur courant, notamment `wikicode` et `editorial` lorsque des pages sont publiées. Le kit refuse une configuration qui omet une portée obligatoire du profil actif.
 
 La première écriture canonique de W11 est le test de l’unique page Débat française. La page doit être absente dans le plan et est créée avec `createonly`. Son reçu machine est lié au plan signé, au titre canonique, au fichier local, au contenu relu, à la révision distante, à l’identité vérifiée, au résumé et à la balise de modification. Avant toute autre écriture, le kit recharge ce reçu, en vérifie l’empreinte et confirme que la page courante reste exactement à la révision attestée. Aucune sous-page utilisateur n’est créée.
 
@@ -825,7 +827,7 @@ Une archive ne peut être déclarée autonome lorsque son catalogue renvoie à u
 
 ## Addendum 1.2.8 — traçabilité exhaustive et cohérence des exemples
 
-La révision 1.2.8 ne modifie aucune exigence éditoriale de 1.2.6. Elle exige que chaque étiquette de provenance effectivement utilisée par le catalogue soit déclarée dans `source_aliases` et résolve vers au moins un fichier livré. Elle aligne les exemples actifs sur la révision courante, corrige leur langue, et étend les conditions de schéma applicables aux paquets 1.2.7 et 1.2.8. Les contrôles d’auto-audit doivent vérifier ces trois propriétés.
+La révision 1.2.8 ne modifie aucune exigence éditoriale de 1.2.6. Elle exige que chaque étiquette de provenance effectivement utilisée par le catalogue soit déclarée dans `source_aliases` et résolve vers au moins un fichier livré. Elle aligne les exemples actifs sur la révision courante, corrige leur langue et impose que les schémas actifs couvrent correctement les formats historiques pris en charge, sans utiliser leur numéro comme interrupteur éditorial. Les contrôles d’auto-audit doivent vérifier ces trois propriétés.
 
 
 ## Addendum 1.2.9 — références, acronymes et publication française indépendante
@@ -841,7 +843,7 @@ La révision 1.2.9 corrige cinq défauts observés lors d’une production réel
 
 ## Addendum 1.2.10 — notes d’introduction rédigées directement
 
-La règle 1.2.9 qui imposait le modèle générique `Référence`/`Reference` est remplacée. Pour tout paquet déclarant la norme 1.2.10, le corps d’une note développée d’introduction contient directement une référence bibliographique ou web lisible, sans aucun appel de modèle MediaWiki. Les références nommées restent admises, à condition que leur première définition soit rédigée directement. Le validateur refuse tout `{{…}}` dans le corps d’une note d’introduction et continue de refuser les dates documentaires au format machine.
+La règle 1.2.9 qui imposait le modèle générique `Référence`/`Reference` est remplacée. La règle introduite en 1.2.10 s’applique cumulativement : le corps d’une note développée d’introduction contient directement une référence bibliographique ou web lisible, sans aucun appel de modèle MediaWiki. Les références nommées restent admises, à condition que leur première définition soit rédigée directement. Le validateur refuse tout `{{…}}` dans le corps d’une note d’introduction et continue de refuser les dates documentaires au format machine.
 
 Exemple français conforme :
 
@@ -858,7 +860,7 @@ A documented claim.<ref>Jane Smith, “Article title”, ''Journal Name'', 25 Ju
 
 ## Addendum 1.2.11 — compaction des modèles MediaWiki adjacents
 
-Dans tout wikicode de page produit sous la norme 1.2.11, deux modèles immédiatement successifs sont accolés sans saut de ligne, espace ni tabulation entre la fermeture du premier et l’ouverture du second. La forme `}}` suivie d’un retour à la ligne puis de `{{` est interdite ; elle est remplacée par `}}{{`. Cette règle vaut en français et en anglais, dans les pages individuelles comme dans les agrégats. Elle ne change ni le contenu des modèles ni l’ordre des paramètres : elle impose seulement une jonction compacte et déterministe entre sous-modèles adjacents.
+La règle introduite en 1.2.11 s’applique à tout wikicode de page produit : deux modèles immédiatement successifs sont accolés sans saut de ligne, espace ni tabulation entre la fermeture du premier et l’ouverture du second. La forme `}}` suivie d’un retour à la ligne puis de `{{` est interdite ; elle est remplacée par `}}{{`. Cette règle vaut en français et en anglais, dans les pages individuelles comme dans les agrégats. Elle ne change ni le contenu des modèles ni l’ordre des paramètres : elle impose seulement une jonction compacte et déterministe entre sous-modèles adjacents.
 
 Le validateur 0.4.13 signale cette anomalie avec `WDV-MWK-018`. Le kit 2.1.13 l’intercepte également avant la construction d’un plan de publication. Les paquets déclarant une norme antérieure conservent leur comportement historique jusqu’à migration explicite.
 
@@ -958,11 +960,11 @@ La révision 1.2.17 rend bloquante l’absence d’article Wikipédia dans les p
 
 ## Correction 1.2.18 — séparateur canonique des auteurs
 
-La conversion d’un tableau JSON d’auteurs vers le wikicode emploie la virgule suivie d’une espace comme séparateur canonique : `Auteur 1, Auteur 2`. Le point-virgule, la virgule sans espace, la virgule précédée d’une espace et la virgule pleine chasse sont interdits dans les sorties générées. Une liste d’un seul élément reste une valeur scalaire et une liste vide entraîne l’omission du paramètre. Cette correction ne réinterprète pas rétroactivement les paquets qui demeurent déclarés sous la norme 1.2.17 ; leur provenance est conservée, mais toute nouvelle production ou migration vers 1.2.18 doit appliquer la forme canonique.
+La conversion d’un tableau JSON d’auteurs vers le wikicode emploie la virgule suivie d’une espace comme séparateur canonique : `Auteur 1, Auteur 2`. Le point-virgule, la virgule sans espace, la virgule précédée d’une espace et la virgule pleine chasse sont interdits dans les sorties générées. Une liste d’un seul élément reste une valeur scalaire et une liste vide entraîne l’omission du paramètre. La provenance des anciens paquets reste conservée, mais toute validation ou production courante applique cette forme canonique indépendamment de la révision historique déclarée, sous réserve des protections explicites de contenu historique prévues ailleurs dans la norme.
 
 ## 1.2.19 — 1er août 2026
 
-La révision 1.2.19 corrige l’interprétation trop permissive des titres affichés. Un `titre-affiché` / `displayed-title` doit désormais être une proposition argumentative complète, et non un simple groupe nominal ou un thème abrégé. Le contexte peut raccourcir le cadrage, mais ne peut supprimer ni le prédicat ni la conclusion qui rendent l’argument intelligible. La revue individuelle atteste cette complétude dans les deux langues et le validateur 0.4.21 bloque les libellés manifestement non propositionnels sous cette seule révision.
+La révision 1.2.19 corrige l’interprétation trop permissive des titres affichés. Un `titre-affiché` / `displayed-title` doit désormais être une proposition argumentative complète, et non un simple groupe nominal ou un thème abrégé. Le contexte peut raccourcir le cadrage, mais ne peut supprimer ni le prédicat ni la conclusion qui rendent l’argument intelligible. La revue individuelle atteste cette complétude dans les deux langues et le validateur courant bloque les libellés manifestement non propositionnels quelle que soit la révision historique déclarée.
 
 
 ## Compléments normatifs de la révision 1.2.23
@@ -1025,7 +1027,7 @@ Le registre de traduction, les verrous de contenu, le rendu et le validateur com
 
 ## Addendum 1.2.28 — resynchronisation corrective des documents actifs
 
-La règle historique qui interdisait de générer `citations=` et `quotes=` sur les pages Argument est remplacée à compter de 1.2.27. Elle ne peut plus apparaître comme règle active dans le cahier des charges, le catalogue d’exigences ou les profils de rendu. Les corpus antérieurs restent interprétés selon leur révision déclarée.
+La règle historique qui interdisait de générer `citations=` et `quotes=` sur les pages Argument est remplacée à compter de 1.2.27. Elle ne peut plus apparaître comme règle active dans le cahier des charges, le catalogue d’exigences ou les profils de rendu. Les archives antérieures conservent leur révision comme information de provenance et de lecture de format ; après interprétation, la règle éditoriale courante s’applique cumulativement.
 
 La désignation du modèle anglais est `{{Quote}}`. La règle transitoire 1.2.29 qui conservait les noms de paramètres français est remplacée par 1.2.31 : la page anglaise utilise exclusivement les paramètres anglais déclarés, tandis que les valeurs documentaires restent conservées sauf `quote` et `date`.
 
@@ -1042,7 +1044,7 @@ Toute page anglaise utilise exclusivement les modèles et paramètres déclarés
 
 Pour les citations, `{{Citation}}` devient `{{Quote}}` et la table canonique est : `citation→quote`, `auteurs→authors`, `article→article`, `ouvrage→work`, `volume→volume`, `numéro→issue`, `page→page`, `localisation→location`, `édition→publisher`, `lieu→place`, `date→date`, `lien→link`, `avertissements-citation→warnings`. Seules les valeurs de `quote` et de `date` sont traduites. Toutes les autres valeurs sont conservées exactement. La valeur de `warnings` reprend l’avertissement antérieur, le cas échéant, puis ajoute une unique mention `Citation traduite par IA` avec le séparateur exact `, `.
 
-Un paramètre source sans équivalent anglais déclaré bloque la traduction ; il n’est jamais recopié sous son nom français. Le validateur refuse tout modèle français ou paramètre français dans une page anglaise rendue sous 1.2.31.
+Un paramètre source sans équivalent anglais déclaré bloque la traduction ; il n’est jamais recopié sous son nom français. Le validateur courant refuse tout modèle français ou paramètre français dans une page anglaise rendue, quelle que soit la révision normative historique déclarée.
 
 ## Addendum 1.2.34 — publication française autonome et traduction anglaise différée
 
@@ -1086,7 +1088,7 @@ Après traduction, le paquet passe de `deferred` à `ready` ou `published`, verr
 
 ## Addendum 1.2.35 — compatibilité historique de la traduction différée et conservation des données importées
 
-Le statut `translation_status.en=deferred` est une déclaration opérationnelle distincte de la révision éditoriale du corpus. Lorsqu'il est explicitement présent, il s'applique à toute révision 1.2.x prise en charge par le validateur courant. Son ajout ne constitue pas une migration normative et ne déclenche pas rétroactivement les règles éditoriales introduites après la révision déclarée du corpus. En l'absence de cette déclaration, les corpus historiques conservent leurs exigences bilingues strictes.
+Le statut `translation_status.en=deferred` est une déclaration opérationnelle distincte de la révision éditoriale du corpus. Lorsqu’il est explicitement présent, il suspend uniquement les obligations fonctionnelles liées à la production anglaise. Il ne désactive aucune autre règle éditoriale courante. En l’absence de cette déclaration, les exigences bilingues strictes s’appliquent.
 
 Dans ce mode, la portée française n'exige ni titre anglais, ni page anglaise, ni lien interlangue. Toute portée anglaise reste bloquée. Un statut anglais `locked`, `ready` ou `published`, une page anglaise présente dans le manifeste ou un lien interlangue français déjà rendu réactivent les contrôles stricts correspondants.
 
@@ -1103,7 +1105,7 @@ Les résumés sont contrôlés à la fois page par page et à l’échelle du co
 
 ### Profil éditorial rétrocompatible
 
-Ces contrôles peuvent être appliqués à un corpus historique sans migration globale de sa révision normative. Le manifeste déclare alors `editorial_controls.quality_policy_revision=1.2.38`. Cette déclaration active exclusivement l’atomicité sémantique des mots-clés, l’originalité effective des résumés et la vérification de la majuscule de `Dieu`; elle ne rend pas rétroactives les autres exigences introduites après la révision déclarée du corpus. Le vocabulaire contrôlé et la revue des résumés portent eux aussi `quality_policy_revision=1.2.38`, tandis que leur champ `normative_revision` continue de correspondre à la révision propre du corpus.
+Ces contrôles font partie de la norme éditoriale cumulative et s’appliquent donc sans migration du numéro de norme déclaré. Les anciens champs `quality_policy_revision` peuvent rester présents comme traces historiques, mais leur présence ou leur valeur ne sélectionne aucun contrôle. Le champ global `normative_revision`, lorsqu’il est conservé dans un registre, décrit la provenance de l’artefact et non l’activation d’une politique.
 
 
 
@@ -1119,11 +1121,7 @@ Un corpus peut déclarer `editorial_controls.legacy_content_preservation`. Le fi
 
 Les contrôles éditoriaux renforcés sont désormais activables séparément sur un corpus historique :
 
-- `keyword_policy_revision=1.2.39` active l'atomicité des mots-clés ;
-- `summary_policy_revision=1.2.39` active les contrôles d'originalité des résumés ;
-- `capitalization_policy_revision=1.2.39` active le contrôle de la majuscule du nom propre `Dieu`.
-
-L'ancien champ combiné `quality_policy_revision=1.2.38` reste accepté pour compatibilité et conserve son comportement historique. Il ne doit plus être employé lorsqu'une correction ne porte que sur une partie de ces contrôles. Pour un nouveau corpus déclarant directement la norme 1.2.39, les trois politiques sont actives par défaut.
+Les anciens champs `keyword_policy_revision`, `summary_policy_revision`, `capitalization_policy_revision` et `quality_policy_revision` restent acceptés pour la compatibilité des artefacts déjà produits. Ils ne servent plus à activer séparément ces contrôles : atomicité des mots-clés, originalité des résumés et capitalisation du nom propre `Dieu` sont des règles courantes cumulatives. Les générateurs n’émettent plus ces champs lorsqu’ils ne sont utiles qu’à la sélection d’une politique.
 
 
 ## Addendum 1.2.40 — absence historique attestée des résumés
@@ -1134,7 +1132,7 @@ Le verrou de contenu emploie alors `summary_provenance=historical_absent`. Cette
 
 1. la page est présente dans l’inventaire historique attesté ;
 2. le paramètre `résumé` ou `summary` y est réellement absent ;
-3. le manifeste active `legacy_content_preservation` et la politique `historical_summary_absence_revision=1.2.40` ;
+3. le manifeste active `legacy_content_preservation` et fournit l’inventaire historique attestant l’absence du résumé ; le champ historique `historical_summary_absence_revision`, s’il existe, est purement informatif ;
 4. la page produite omet entièrement le paramètre, sans valeur vide ni texte provisoire ;
 5. la revue individuelle consigne `status=historical_absent` et `historical_absence_verified=true`.
 
@@ -1176,7 +1174,7 @@ La révision 1.2.42 remplace quatre mécanismes qui produisaient des corrections
 3. l'introduction privilégie la densité informative et supprime les sous-parties génériques qui répètent le graphe, notamment les catalogues d'arguments et les rubriques d'enjeux sans information propre ;
 4. l'identité entre titre canonique et titre affiché est admise sans plafond. Une reformulation n'est créée que si son amélioration de lisibilité et son équivalence sémantique sont attestées. La longueur plus faible ne constitue jamais, à elle seule, une amélioration.
 
-Ces règles peuvent être activées séparément sur un corpus historique par les politiques éditoriales `debate_documentation_policy_revision`, `video_authorship_policy_revision`, `introduction_policy_revision` et `displayed_title_policy_revision`, toutes fixées à `1.2.42`. Elles ne modifient pas les titres canoniques ni les contenus historiques protégés.
+Ces règles sont cumulatives et s’appliquent également aux corpus historiques. Les anciens champs `debate_documentation_policy_revision`, `video_authorship_policy_revision`, `introduction_policy_revision` et `displayed_title_policy_revision` restent acceptés comme traces, sans effet d’activation. Les titres canoniques et contenus historiques explicitement protégés restent soumis à leurs règles de préservation propres.
 
 
 ## Addendum 1.2.43 — sous-partie obligatoire sur les enjeux du débat
@@ -1194,7 +1192,7 @@ Cette obligation porte sur une fonction éditoriale réelle, non sur une formule
 
 La revue d’introduction atteste `stakes_explained=true`, `dedicated_stakes_subsection_present=true`, `stakes_consequences_concrete=true`, `stakes_not_argument_catalogue=true` et `no_generic_stakes_filler=true`. La ligne correspondant à la sous-partie contient `stakes_section=true` et une liste `concrete_stakes` d’au moins deux conséquences distinctes.
 
-Un corpus historique peut activer cette correction sans migrer toutes ses autres règles en déclarant `editorial_controls.introduction_policy_revision=1.2.43`. Les autres politiques 1.2.42 restent inchangées.
+Cette correction fait partie de la norme cumulative et ne nécessite aucun changement de numéro déclaré. Un ancien `introduction_policy_revision` peut être conservé comme trace de provenance, sans effet conditionnel.
 
 ## Addendum 1.2.44 — ponctuation terminale des notes de référence
 
@@ -1214,7 +1212,7 @@ Une affirmation documentée<ref>Jean Dupont, « Titre de l’article », ''Nom d
 
 Un point final à l'intérieur de `<ref>` n'est admis que lorsque le corps de la note est lui-même une phrase explicative complète et non une simple notice. La revue de l'introduction atteste `reference_note_punctuation_reviewed=true`. Chaque exception est identifiée par l'empreinte SHA-256 du corps exact de la note dans `terminal_period_sentence_exceptions`, avec `complete_sentence=true` et un extrait justificatif réellement présent.
 
-Un corpus historique peut activer cette règle isolément avec `editorial_controls.inline_reference_punctuation_policy_revision=1.2.44`.
+Cette règle s’applique cumulativement. Un ancien `inline_reference_punctuation_policy_revision` peut être conservé comme trace de provenance, mais n’est ni requis ni utilisé comme interrupteur.
 
 ## Addendum 1.2.45 — cohérence locale des liens Wikipédia explicatifs
 
@@ -1252,7 +1250,7 @@ La règle active est la suivante :
 7. la valeur française doit être une appellation française attestée, ou une forme étrangère elle-même couramment employée telle quelle en français ; aucune traduction ad hoc n’est créée pour remplir `nom=` ; la règle symétrique s’applique à `name=` ;
 8. en cas d’hésitation entre plusieurs étiquettes, d’attestation trop faible ou de doute sur l’identité du raisonnement, le résultat est `none` et le paramètre est omis ;
 9. aucun quota minimal ou maximal de pages nommées n’est fixé. La rareté attendue des noms est une conséquence éditoriale, jamais un seuil statistique ;
-10. la revue est enregistrée dans un registre déclaré par `editorial_controls.argument_name_discovery_revision=1.2.52` et `argument_name_discovery_path`.
+10. la revue est enregistrée dans un registre déclaré par `editorial_controls.argument_name_discovery_path` ; l’ancien `argument_name_discovery_revision`, s’il est présent, n’est qu’une métadonnée de traçabilité.
 
 Le registre contient une entrée pour chaque page Argument nouvelle dans chaque langue produite. Il consigne au minimum : la langue, l’identifiant, le titre canonique, les requêtes de recherche, une note sur le périmètre exploré, le résultat `none` ou `known_name`, la valeur retenue le cas échéant, les attestations documentaires, et une justification. Pour `known_name`, il atteste explicitement que la source désigne le même raisonnement, que l’étiquette n’a pas été inventée et qu’elle convient à la langue de la page.
 
@@ -1298,7 +1296,7 @@ Le paramètre `nom` en français, ou `name` en anglais, reste facultatif et ne d
 La règle de préservation 1.2.49 demeure inchangée pour les valeurs historiques existantes. Une page historiquement dépourvue de `nom` / `name` peut toutefois recevoir ce paramètre si, et seulement si, toutes les conditions suivantes sont réunies :
 
 1. le propriétaire du projet a explicitement approuvé l’attribution ;
-2. le manifeste déclare `editorial_controls.argument_name_assignment_revision=1.2.51` et `argument_name_assignment_path` ;
+2. le manifeste déclare `editorial_controls.argument_name_assignment_path` ; l’ancien `argument_name_assignment_revision`, s’il est présent, est une trace sans effet d’activation ;
 3. le registre d’attribution identifie exactement la langue, l’identifiant logique, le titre canonique et la valeur de `nom` / `name` ;
 4. chaque entrée contient une justification éditoriale non vide attestant qu’il s’agit d’une appellation consacrée et non d’un simple raccourci inventé ;
 5. le registre historique reste fidèle à la source et continue d’indiquer que le paramètre était absent lorsqu’il l’était ; il n’est jamais falsifié pour faire passer l’ajout pour une donnée historique ;
@@ -1308,7 +1306,7 @@ La règle de préservation 1.2.49 demeure inchangée pour les valeurs historique
 9. lors d’une reprise distante, l’exception porte uniquement sur `nom` / `name` pour les pages listées ; tous les autres paramètres protégés restent soumis à leur état historique ou distant attesté ;
 10. une modification ou suppression ultérieure du nom attribué exige une nouvelle décision explicite et ne peut être déduite automatiquement.
 
-Cette politique peut être activée sur un corpus historique 1.2.x sans migration globale de ses autres règles en déclarant le couple de champs ci-dessus. Le validateur courant contrôle alors le registre et la concordance du wikicode, tandis que le kit de reprise traite l’attribution comme une dérogation nominative et non comme une normalisation générale.
+Cette politique s’applique dès qu’un registre d’attribution est fonctionnellement déclaré par son chemin. Le validateur contrôle le registre et la concordance du wikicode, tandis que le kit de reprise traite l’attribution comme une dérogation nominative et non comme une normalisation générale. Le numéro historique associé au registre ne modifie pas ce comportement.
 
 ## Addendum 1.2.49 — préservation stricte de `nom` / `name`
 
@@ -1329,7 +1327,7 @@ Cette protection s’applique aux reprises et aux nouveaux rendus d’un corpus 
 
 Lorsqu’une page du wiki a été créée ou modifiée manuellement après le dernier état publié signé, elle reste protégée par défaut et produit `manual_review` ou `blocked`. Une décision explicite du propriétaire peut cependant autoriser sa prise en compte comme nouvelle base distante.
 
-Le corpus déclare alors `editorial_controls.manual_remote_adoption_revision=1.2.48` et un `manual_remote_adoption_path`. Le registre correspondant :
+Le corpus déclare alors un `manual_remote_adoption_path`. L’ancien champ `manual_remote_adoption_revision`, s’il est présent, reste une trace de provenance sans effet d’activation. Le registre correspondant :
 
 1. identifie exactement le débat, la langue, l’identifiant logique et le titre de chaque page ;
 2. atteste la révision distante observée par son identifiant MediaWiki et/ou son empreinte SHA-256 ;
@@ -1361,11 +1359,11 @@ Lorsqu’il existe dans une page historique importée :
 7. l’omission dans le wikicode ne supprime pas nécessairement les relations du registre maître, lorsqu’elles restent utiles au graphe général ou à d’autres occurrences ;
 8. une cible modifiée, un paramètre supprimé, une omission non déclarée ou une frontière ajoutée sans provenance est bloquant.
 
-Le moteur d’extraction conserve toujours la cible de la frontière dans ses données. Le moteur de rendu réémet le paramètre historique et omet les relations locales seulement lorsque la décision est verrouillée. Un corpus historique peut activer cette règle sans migrer toutes ses autres politiques en ajoutant `débat-détaillé` ou `detailed-debate` aux `protected_fields` de `legacy_content_preservation` et en utilisant un verrou historique de schéma 1.2.
+Le moteur d’extraction conserve toujours la cible de la frontière dans ses données. Le moteur de rendu réémet le paramètre historique et omet les relations locales seulement lorsque la décision est verrouillée. Pour un corpus historique, cette règle est déterminée par la présence attestée de `débat-détaillé` ou `detailed-debate`, par `legacy_content_preservation` et par son verrou de contenu ; aucun numéro de norme ne l’active.
 
 ## Addendum 1.2.46 — inventaire exhaustif des notions spécialisées des introductions
 
-La règle 1.2.45 fondée principalement sur les groupes de notions voisines est remplacée pour les productions nouvelles et les corpus qui activent `specialized_term_explanation_policy_revision=1.2.46`. Le registre `wikipedia_link_groups` n’est plus exigé par cette politique. Il peut rester dans les archives historiques, mais ne constitue pas une preuve suffisante de revue.
+La règle 1.2.45 fondée principalement sur les groupes de notions voisines est remplacée par la présente règle cumulative. L’ancien `specialized_term_explanation_policy_revision` peut rester comme trace, sans effet d’activation. Le registre `wikipedia_link_groups` peut rester dans les archives historiques, mais ne constitue pas une preuve suffisante de revue.
 
 Le registre actif emploie `specialized_term_inventory_reviewed=true` et `specialized_term_inventory`. Il contient exactement une entrée par sous-partie, dans le même ordre que l’introduction. Chaque entrée atteste `scan_complete=true`, fournit une note de revue substantielle et inventorie les notions spécialisées effectivement rencontrées.
 
@@ -1393,10 +1391,36 @@ La revue reste qualitative. Elle n’impose pas de lier les mots courants, les n
 6. **Suppressions explicites.** Toute suppression volontaire est enregistrée page par page et paramètre par paramètre avec décision propriétaire. Les exceptions déjà spécialisées (`owner_removed` pour un résumé, `relations_omitted` sur une frontière détaillée) restent valables.
 7. **Débats.** Les règles 1 à 6 valent sans distinction pour `Débat` / `Debate` et `Argument`.
 
+## Addendum 1.2.54 — architecture cumulative et séparation des versions de format
+
+La norme active est cumulative. Sauf mention explicite dans la présente norme qu’une règle est supprimée ou remplacée, toute règle éditoriale active s’applique à tout corpus soumis au validateur courant, quelle que soit la valeur historique déclarée dans `normative_versions.consolidated_norm`.
+
+1. `consolidated_norm` décrit la provenance normative déclarée, la compatibilité de lecture, les besoins de migration et la traçabilité d’une livraison. Il ne constitue jamais un *feature flag* éditorial.
+2. Les champs dont le nom finit par `policy_revision` ou `_revision`, ainsi que les champs historiques spécialisés tels que `argument_name_assignment_revision`, `argument_name_discovery_revision` ou `manual_remote_adoption_revision`, sont des métadonnées de traçabilité lorsqu’ils existent. Une différence, une absence ou une ancienne valeur ne désactive pas une règle éditoriale active.
+3. Les anciennes clauses des révisions 1.2.x indiquant qu’une politique « peut être activée » en déclarant une révision sont **remplacées** sur ce point. Elles restent lisibles comme historique de l’introduction de la règle, mais leur mécanisme d’activation par numéro n’est plus normatif.
+4. Les contrôles sont commandés par les faits fonctionnels pertinents : présence d’un registre ou d’un chemin déclaré, `page_origin`, `translation_status.en`, existence d’un inventaire historique lorsque la préservation est activée, état distant attesté, ou autre donnée directement liée à l’opération contrôlée.
+5. Lorsqu’un artefact ou un registre possède son propre format, sa compatibilité est déterminée par `schema`, `schema_version` ou un identifiant `version` stable propre à cet artefact. Une révision globale de la norme ne remplace pas la version de format de l’artefact.
+6. La lecture de corpus anciens et les migrations peuvent continuer à examiner les versions globales pour interpréter un ancien format. Cette compatibilité de lecture ne réduit jamais les exigences éditoriales courantes après interprétation.
+7. Les générateurs cessent d’émettre les champs de révision qui n’ont plus d’utilité opérationnelle. Ils peuvent conserver une révision historique lorsqu’elle est utile à la provenance ou à la reproductibilité, sans lui donner de portée conditionnelle.
+8. Le validateur et le kit doivent posséder des tests d’invariance garantissant qu’à contenu fonctionnel identique, changer seulement `consolidated_norm` ou une métadonnée `*_revision` ne modifie pas le verdict éditorial.
+9. Les versions du paquet, du validateur et du kit restent obligatoires pour identifier une livraison, vérifier la compatibilité technique, reproduire un environnement et piloter les migrations. Leur maintien n’autorise aucune branche éditoriale conditionnée au numéro de version.
+10. La présente refonte ne modifie aucune règle de contenu de la révision 1.2.53 : lots de traduction, recherche anglophone de `name=`, adaptation réelle des références et contrat spécial `Citation`→`Quote` demeurent intégralement applicables.
+
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `668d68cc6fbbf3035a973cdbc69050c686e38cf7370b35c10f514853d87d6c31`
+SHA-256 : `7d1b43e5c4bed8680afeafce350f94a0e3eed0c7833baf50d8f744a371afa331`
+
+## 1.2.54 — 7 août 2026 — architecture cumulative des normes éditoriales
+
+- supprime l’activation des règles éditoriales par listes ou comparaisons de versions ;
+- conserve `consolidated_norm` pour le format, les migrations, la provenance et la traçabilité uniquement ;
+- transforme les anciens `*_policy_revision` / `*_revision` en métadonnées de trace sans effet de sélection ;
+- fait dépendre les contrôles de l’état fonctionnel réellement pertinent ;
+- conserve des versions propres aux formats d’artefacts ;
+- exige des tests d’invariance pour empêcher le retour de gardes éditoriales par version ;
+- aligne également le cahier des charges, le workflow, les structures MediaWiki et le schéma de graphe afin qu’aucune formulation active ne réintroduise un seuil éditorial par version ;
+- préserve sans modification toutes les règles de contenu 1.2.53.
 
 ## 1.2.53 — 7 août 2026
 
@@ -1916,18 +1940,28 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `5212111cb421bceca7423de2dff633779a90c371ff160654346c049de1c4c139`
+SHA-256 : `d5a42fb962ceb3c39b4565af341e6062f3d2a9f1d341e3de2e7f198ad896eab1`
 
-# Wikidéb’IA Validator 0.4.56
+# Wikidéb’IA Validator 0.4.57
 
-La version 0.4.56 aligne le paquet sur la norme 1.2.53. Elle conserve les contrôles existants et embarque les nouvelles règles éditoriales de traduction anglaise par lots, d'adaptation des références à des versions anglaises réelles, de recherche anglophone autonome de `name=` et de maintien du contrat `Citation`→`Quote`. Ces exigences de recherche et d'ordonnancement restent principalement éditoriales ; les contrôles automatiques antérieurs ne sont pas relâchés.
+La version 0.4.57 aligne le paquet sur la norme 1.2.54 et supprime les gardes de version des contrôles éditoriaux. Elle conserve les contrôles existants et embarque les nouvelles règles éditoriales de traduction anglaise par lots, d'adaptation des références à des versions anglaises réelles, de recherche anglophone autonome de `name=` et de maintien du contrat `Citation`→`Quote`. Ces exigences de recherche et d'ordonnancement restent principalement éditoriales ; les contrôles automatiques antérieurs ne sont pas relâchés.
 
-Validateur local aligné sur la norme 1.2.53 et rétrocompatible avec les paquets antérieurs.
+Validateur local aligné sur la norme 1.2.54 et rétrocompatible avec les paquets antérieurs.
+
+Les normes éditoriales courantes sont cumulatives : `consolidated_norm` et les anciens champs `*_revision` ne servent plus de feature flags. Les versions restent réservées à la compatibilité de format, aux migrations et à la traçabilité.
 
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `fda661a750feb10d53aa95e1d4bea67757f22085623e05bb9ee319282511b24c`
+SHA-256 : `ce67e2efa394d52fd2f9f9ffa46f21e4270256ba5c938ac56204b9d667d6fe3e`
+
+## 0.4.57 — 7 août 2026
+
+- applique cumulativement les règles éditoriales actives, sans garde sur `consolidated_norm` ;
+- traite les anciens champs `*_policy_revision` / `*_revision` comme traces sans effet conditionnel ;
+- déclenche les contrôles selon l’état fonctionnel du corpus ;
+- conserve les versions pour le format, les migrations et la non-régression des sources normatives ;
+- ajoute des tests d’invariance, contrôle aussi l’absence de formulations normatives actives conditionnées par version, et maintient la protection `WDV-EDT-030` sans garde de version.
 
 ## 0.4.56 — 7 août 2026
 
@@ -2335,22 +2369,32 @@ SHA-256 : `fda661a750feb10d53aa95e1d4bea67757f22085623e05bb9ee319282511b24c`
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `9bf973db9ee37fe4474b0778caafe2e2eb2951ce9a5010497c2c3d5bb111fe72`
+SHA-256 : `ea7222c35784e2e7f29e07d8dfdb6d266256e50824d548d6b7ef9eeb62dc0d3c`
 
-# Wikidéb’IA — Kit 2.15.30
+# Wikidéb’IA — Kit 2.15.31
 
-Le kit 2.15.30 formalise la traduction anglaise 1.2.53 par lots : page Debate en lot autonome, puis lots Argument de 20 pages par défaut (25 maximum, 10–15 lorsque la documentation ou les citations sont denses), avec passe globale inter-lots avant finalisation.
+Le kit 2.15.31 applique l’architecture cumulative 1.2.54 tout en conservant la traduction anglaise 1.2.53 par lots : page Debate en lot autonome, puis lots Argument de 20 pages par défaut (25 maximum, 10–15 lorsque la documentation ou les citations sont denses), avec passe globale inter-lots avant finalisation.
 
 La phase anglaise recherche séparément les appellations consacrées dans la littérature anglophone et n'obtient jamais `name=` par traduction mécanique de `nom=`. Les références françaises ne sont pas traduites : une version anglaise réelle doit être trouvée et citée avec ses propres métadonnées, et de nouvelles références anglophones sont recherchées indépendamment. Le contrat `Citation`→`Quote` reste inchangé : seules les valeurs `quote` et `date` sont traduites et `Citation traduite par IA` est ajouté.
 
 La reprise distante applique cette exception uniquement à `nom` / `name`. Tous les autres paramètres historiques protégés conservent les garanties de la révision 2.15.27.
 
-Kit aligné sur la norme 1.2.53 et le validateur 0.4.56.
+Kit aligné sur la norme 1.2.54 et le validateur 0.4.57.
+
+Les numéros de norme et les anciens champs de révision ne sont plus des feature flags éditoriaux ; ils servent uniquement à la compatibilité technique et à la traçabilité.
 
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `02033c0ae0fcaa1c5a955984211fc78a817b316aa658e06beafd82e1fd2f560b`
+SHA-256 : `d6fef12cf8452c3f896ba18b5a3e25b592be7c2f0ba0f32897b3c8a559391789`
+
+## 2.15.31 — 7 août 2026
+
+- supprime l’usage des révisions normatives comme feature flags éditoriaux ;
+- base les contrôles et transitions sur l’état fonctionnel du corpus ;
+- conserve les versions pour la compatibilité de format, les migrations et la traçabilité ;
+- maintient les règles de traduction anglaise 1.2.53 sans modification ;
+- ajoute des tests d’invariance et un test explicite du lien interlangue selon le statut `deferred`.
 
 ## 2.15.30 — 7 août 2026
 
@@ -3035,11 +3079,13 @@ Le corpus déclare `translation_status.en=deferred`, ne manifeste que les pages 
 ## Guide de revue du contenu
 
 Source interne : `kit/GUIDE_CONTENT_REVIEW.md`  
-SHA-256 : `520bcbd5690a9ba3d1df42afc2d097f803ffd4feaa7257705bf4ed74532738bf`
+SHA-256 : `8163dcf1c03fbe3c4fb447a3814396e10fe2b8806d3b297ffdadad335fac5efa`
 
 # Revue française des introductions, résumés et références
 
-Le kit 2.15.30 applique une phase de contenu après le verrouillage des titres, rubriques et mots-clés. Elle part de `reviewed-copy/`, conserve toutes les copies antérieures et ne génère toujours aucune page MediaWiki finale.
+> Depuis 1.2.54, les normes éditoriales sont cumulatives : les anciennes métadonnées de révision ne servent plus à sélectionner les contrôles.
+
+Le kit 2.15.31 applique une phase de contenu après le verrouillage des titres, rubriques et mots-clés. Elle part de `reviewed-copy/`, conserve toutes les copies antérieures et ne génère toujours aucune page MediaWiki finale.
 
 ## 1. Préparer la revue
 
@@ -3074,7 +3120,7 @@ Aucune proposition produite par une heuristique n’est appliquée automatiqueme
 
 ## Recherche d’un nom consacré pour un argument nouveau
 
-Cette exigence relève du contrat général de génération 1.2.53. La commande `corpus-workspace-content-review` ci-dessus part d’un snapshot importé et ne crée donc pas elle-même de nouvel argument français. Lorsqu’un corpus généré contient des pages `Argument` françaises nouvelles, il doit fournir `reviews/argument_name_discovery_review.json` avant validation ; le validateur 0.4.56 bloque toute page nouvelle non couverte. La phase de traduction anglaise du kit construit la partie anglaise de ce registre pour les pages anglaises nouvelles.
+Cette exigence relève du contrat général de génération 1.2.53. La commande `corpus-workspace-content-review` ci-dessus part d’un snapshot importé et ne crée donc pas elle-même de nouvel argument français. Lorsqu’un corpus généré contient des pages `Argument` françaises nouvelles, il doit fournir `reviews/argument_name_discovery_review.json` avant validation ; le validateur 0.4.57 bloque toute page nouvelle non couverte. La phase de traduction anglaise du kit construit la partie anglaise de ce registre pour les pages anglaises nouvelles.
 
 La recherche est **obligatoire**, mais l’ajout d’un nom ne l’est pas. Le cas normal est `outcome=none`. Il ne faut jamais chercher à augmenter artificiellement le nombre de pages possédant `nom=`.
 
@@ -3169,6 +3215,125 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `68beb387ee6dbbbac1d8b2be8f24b5a27e38afdfd4e8221db2be4a9e707b87e6`
+SHA-256 : `02c83106131b1bb31156d660a1037fbcbfd66dea0ced808560b1beef85bb591e`
 
-Tests pytest : 287 réussis, 0 échec.
+Tests pytest : 288 réussis, 0 échec.
+
+## Guide de traduction anglaise
+
+Source interne : `kit/GUIDE_TRANSLATION_REVIEW.md`  
+SHA-256 : `73fe1d93c428d9f6ea3bfd1b6345301bc838e0ab5ef40f6c24b73b5f358b7dfc`
+
+# Guide de traduction anglaise contrôlée — Kit 2.15.31
+
+> Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
+
+La traduction anglaise commence uniquement après le verrouillage complet des métadonnées et du contenu français. Elle travaille dans le même workspace éditorial et ne modifie ni le corpus promu, ni `working-copy/`, ni `reviewed-copy/`, ni `content-reviewed-copy/`.
+
+## 0. Protocole de lots pour la traduction
+
+La traduction est une adaptation idiomatique et documentaire, pas une substitution mot à mot. Elle est effectuée dans l'ordre suivant :
+
+1. **Lot Debate** : la page `Debate` complète constitue un lot autonome, avec son introduction, ses titres, ses sections, ses keywords, ses liens Wikipédia anglais et toute sa documentation anglaise.
+2. **Lots Argument** : 20 pages Argument par lot par défaut, jamais plus de 25. Réduire à 10–15 pages lorsque le groupe comporte beaucoup de citations, de références, de recherches terminologiques ou de noms consacrés à vérifier.
+3. Une page Argument est entièrement achevée dans le même lot : canonical title, displayed title, summary, sections, keywords, `name=` éventuel, citations et références.
+4. Chaque lot est relu et clos avant le suivant. Il faut notamment vérifier le sens et l'orientation de chaque argument à partir du summary français, des citations, justifications et objections disponibles, afin d'éviter une inversion pour/contre.
+5. Après le dernier lot, effectuer une passe globale inter-lots sur la terminologie, les titres, le vocabulaire bilingue, les `name=`, les références, les citations et la parité du graphe avant `--finalize`.
+
+Ces tailles sont des bornes de qualité de travail, non des quotas de contenu. Un lot peut être réduit davantage si cela améliore la fiabilité de la recherche documentaire.
+
+## 1. Préparation
+
+```bash
+./wikidebia corpus-workspace-translation <debate_id> --work-id <work_id> --prepare
+```
+
+La commande exige un workspace au statut `fr_content_applied` et une préparation anglaise `ready_for_translation`. Elle produit :
+
+- `reviews/en/translation_review.json` ;
+- `data/sources_en_working.json` ;
+- `audits/en_translation_inventory.json` ;
+- `audits/en_translation_inventory.md`.
+
+Le registre couvre la page Debate, chaque argument actif, le vocabulaire contrôlé français–anglais et les sources anglaises. Aucune traduction automatique n’est appliquée.
+
+## 2. Revue à compléter
+
+La page Debate reçoit un titre canonique, `topic`, `complete-topic`, des sections, des keywords, une introduction structurée, des articles Wikipédia anglais vérifiés et une documentation classée selon sa contribution réelle, sans quota par paramètre. Une source couvrant les deux positions est placée dans la rubrique neutre.
+
+Chaque argument reçoit un titre canonique et un displayed title idiomatiques, des sections exactement équivalentes aux rubriques françaises, des keywords issus du vocabulaire bilingue, un summary substantiellement équivalent et une documentation anglaise adaptée. Le ratio de longueur anglais/français doit rester compris entre 0,60 et 1,45. La traduction vérifie explicitement la polarité du raisonnement : le titre seul ne suffit pas lorsqu'il peut être ambigu ; le summary français, les citations, justifications et objections disponibles servent à confirmer si l'argument soutient ou combat la thèse parente.
+
+Les relations, occurrences, orientations et profondeurs sont linguistiquement neutres : elles ne peuvent pas être modifiées pendant cette phase.
+
+### Références anglaises
+
+Une référence française n'est **jamais traduite comme notice anglaise**. Pour chaque référence française pertinente, rechercher si une version anglaise réelle existe : édition ou traduction anglaise publiée, publication originale anglaise, version anglaise officielle d'une page ou d'un rapport, version audiovisuelle anglaise officielle, ou autre équivalent documentaire vérifiable.
+
+Si cet équivalent existe, enregistrer et citer **la version anglaise elle-même**, avec son titre publié, son éditeur/diffuseur, sa date, son lien et ses autres métadonnées vérifiées. Ne jamais traduire librement le titre ou recopier les métadonnées françaises comme si elles appartenaient à une édition anglaise. Si aucune version anglaise n'existe, ne pas transférer cette référence au seul motif qu'elle existe en français.
+
+Chaque page anglaise fait en outre l'objet d'une **recherche indépendante de nouvelles références anglophones**. La documentation anglaise doit refléter la littérature réellement disponible en anglais et peut donc différer de la sélection française tout en conservant une profondeur et une qualité comparables. Pour la page Debate, toutes les références doivent être réellement disponibles en anglais. Pour les pages Argument, la politique linguistique générale demeure symétrique à celle du français ; une éventuelle source non anglaise est sélectionnée indépendamment selon cette politique, jamais produite par traduction artificielle d'une notice française.
+
+### Citations importées
+
+Chaque modèle `{{Citation}}` français importé est inventorié avec un identifiant stable. La projection anglaise utilise `{{Quote}}` et traduit obligatoirement tous les noms de paramètres selon le contrat du wiki anglais : `citation→quote`, `auteurs→authors`, `ouvrage→work`, `numéro→issue`, `localisation→location`, `édition→publisher`, `lieu→place`, `lien→link` et `avertissements-citation→warnings`; les noms `article`, `volume`, `page` et `date` sont identiques dans les deux langues.
+
+Seules les valeurs de `quote` et de `date` peuvent être traduites. Les valeurs de `authors`, `article`, `work`, `volume`, `issue`, `page`, `location`, `publisher`, `place` et `link` sont reprises exactement. `warnings` reçoit toujours `Citation traduite par IA`, après un avertissement préexistant avec le séparateur exact `, `. La date traduite doit désigner la même date ; une année seule reste inchangée. Un paramètre français sans équivalent anglais déclaré bloque la finalisation.
+
+## 3. Finalisation
+
+Avant d’exécuter `--finalize`, la revue éditoriale du travail doit avoir contrôlé et consigné : la clôture de chaque lot ; l’existence d’un équivalent anglais réel pour toute référence française projetée ; la recherche indépendante de nouvelles références anglophones ; la recherche autonome de `name=` dans la littérature anglophone ; et la passe globale inter-lots. Ces opérations de recherche ne sont pas toutes déductibles automatiquement du wikicode final : elles restent des obligations éditoriales même lorsque le validateur ne peut en vérifier que les traces structurées disponibles.
+
+```bash
+./wikidebia corpus-workspace-translation <debate_id> --work-id <work_id> --finalize
+```
+
+La finalisation vérifie notamment :
+
+- la couverture exacte de tous les arguments actifs ;
+- l’unicité et l’autonomie des titres canoniques anglais ;
+- le caractère propositionnel des displayed titles ;
+- la possibilité de conserver le titre canonique comme displayed title lorsqu’il est déjà le plus clair ;
+- pour tout displayed title distinct, l’équivalence sémantique et le gain réel de lisibilité ;
+- la correspondance des sections avec les rubriques françaises ;
+- la correspondance des keywords avec le vocabulaire contrôlé ;
+- la limite de 25 % pour un même jeu exact de keywords ;
+- l’équivalence substantielle des introductions et summaries ;
+- la couverture exacte des citations françaises, la préservation de leurs paramètres, l’équivalence des dates et l’avertissement de traduction ;
+- la langue et la vérification des sources anglaises ;
+- l’absence de doublon documentaire entre orientations et l’attribution des vidéos YouTube ;
+- la présence des attestations éditoriales requises ;
+- l’absence de page finale et d’accès distant.
+
+La revue et le registre documentaire anglais sont scellés par SHA-256.
+
+## 4. Application
+
+```bash
+./wikidebia corpus-workspace-translation <debate_id> --work-id <work_id> --apply --confirm-review-sha256 <empreinte>
+```
+
+L’application crée atomiquement `translated-copy/`. Cette copie contient notamment :
+
+- `data/en_page_metadata_lock.json` ;
+- `data/en_content_lock.json` ;
+- `data/en_translation_lock.json` ;
+- `data/keyword_vocabulary_bilingual.json` ;
+- `changes/en_translation_changeset.json` ;
+- les projections anglaises du registre maître ;
+- les rapports de validation de la traduction.
+
+Les verrous français et les imports de provenance doivent rester identiques octet par octet. Aucune page sous `output/` n’est créée.
+
+## Ordre des keywords
+
+La traduction conserve terme à terme l’ordre français de pertinence décroissante. Chaque entrée Debate et Argument atteste `keywords_order_preserved_by_relevance=true`.
+
+## Sortie du mode différé
+
+Une revue de traduction validée remplace `translation_status.en=deferred` par `ready`. Elle verrouille les titres anglais, prépare les pages anglaises et réactive les contrôles bilingues. Les liens français sont ajoutés ensuite par une reprise explicite ; ils ne sont jamais anticipés.
+
+
+
+## Noms consacrés des arguments anglais
+
+Un `name=` anglais n’est jamais obtenu par simple traduction d’un `nom=` français. Pour chaque page Argument anglaise nouvelle, la revue recherche séparément l’appellation réellement employée dans la littérature anglophone. Le résultat par défaut reste l’absence de nom ; une valeur n’est verrouillée que si la littérature désigne le même raisonnement sous cette appellation. L'existence d'un `nom=` français sert uniquement de piste pour les requêtes. Une traduction anglaise plausible mais non attestée ne doit jamais être inscrite dans `name=`.

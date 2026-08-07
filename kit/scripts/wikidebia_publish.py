@@ -14,8 +14,8 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Protocol
 
-KIT_VERSION = "2.15.30"
-REQUIRED_VALIDATOR_VERSION = "0.4.56"
+KIT_VERSION = "2.15.31"
+REQUIRED_VALIDATOR_VERSION = "0.4.57"
 DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
 DEFERRED_TRANSLATION_PROFILE = "norm_1_2_deferred_translation"
 DIRECT_PROFILES = {DIRECT_INTERLANGUAGE_PROFILE, DEFERRED_TRANSLATION_PROFILE}
@@ -559,12 +559,7 @@ class GenericPublisher:
         return str(((self.manifest.get("translation_status") or {}).get("en") or "pending"))
 
     def _english_translation_deferred(self) -> bool:
-        norm = str(((self.manifest.get("normative_versions") or {}).get("consolidated_norm") or ""))
-        try:
-            version = tuple(int(part) for part in norm.split("."))
-        except ValueError:
-            version = ()
-        return version >= (1, 2, 34) and self._english_translation_status() == "deferred"
+        return self._english_translation_status() == "deferred"
 
     def _validate_configuration(self) -> None:
         if str(self.config.get("kit_version") or "") not in {KIT_VERSION, "2"}:
@@ -624,14 +619,9 @@ class GenericPublisher:
                 self.publication_profile in DIRECT_PROFILES
                 and any(str(parameters.get(language) or "") == "interlangue" for language in self.languages)
             ):
-                norm = str(((self.manifest.get("normative_versions") or {}).get("consolidated_norm") or ""))
-                try:
-                    version = tuple(int(part) for part in norm.split("."))
-                except ValueError:
-                    version = ()
-                if version < (1, 2, 34) or self._english_translation_deferred():
+                if self._english_translation_deferred():
                     raise PublicationError(
-                        "La mise à jour séparée de |interlangue= n'est autorisée qu'après sortie du mode deferred sous la norme 1.2.35 ou ultérieure."
+                        "La mise à jour séparée de |interlangue= n'est autorisée qu'après sortie du mode deferred."
                     )
         requirements = self.config.get("manifest_requirements") or {}
         for field, expected in requirements.items():
@@ -818,24 +808,18 @@ class GenericPublisher:
             raise PublicationError(
                 f"Un champ auteurs/authors contient un tableau JSON au lieu de texte MediaWiki : {language}/{page_id}"
             )
-        norm = str(((self.manifest.get("normative_versions") or {}).get("consolidated_norm") or ""))
-        try:
-            norm_tuple = tuple(int(part) for part in norm.split("."))
-        except ValueError:
-            norm_tuple = ()
-        if norm_tuple >= (1, 2, 18):
-            for match in re.finditer(r"(?m)^\s*\|\s*(?:auteurs|authors)\s*=\s*(.*?)\s*$", text):
-                author_value = match.group(1).strip()
-                malformed_separator = (
-                    ";" in author_value
-                    or "，" in author_value
-                    or bool(re.search(r"\s+,|,(?! )|, {2,}|,$", author_value))
+        for match in re.finditer(r"(?m)^\s*\|\s*(?:auteurs|authors)\s*=\s*(.*?)\s*$", text):
+            author_value = match.group(1).strip()
+            malformed_separator = (
+                ";" in author_value
+                or "，" in author_value
+                or bool(re.search(r"\s+,|,(?! )|, {2,}|,$", author_value))
+            )
+            if malformed_separator:
+                raise PublicationError(
+                    "Plusieurs auteurs doivent être séparés exactement par une virgule suivie d’une espace : "
+                    f"{language}/{page_id}"
                 )
-                if malformed_separator:
-                    raise PublicationError(
-                        "Plusieurs auteurs doivent être séparés exactement par une virgule suivie d’une espace : "
-                        f"{language}/{page_id}"
-                    )
         section_param = "rubriques" if language == "fr" else "sections"
         if section_param in names:
             actual_sections = [item.strip() for item in extract_parameter(text, section_param).split(",") if item.strip()]

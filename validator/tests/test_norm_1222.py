@@ -37,6 +37,16 @@ def _review(displayed_fr: str, displayed_en: str, **overrides):
         "displayed_title_argument_intelligible_en": True,
         "displayed_title_concision_reviewed_fr": True,
         "displayed_title_concision_reviewed_en": True,
+        "displayed_title_semantic_equivalence_reviewed_fr": True,
+        "displayed_title_readability_improvement_reviewed_fr": True,
+        "displayed_title_semantic_equivalence_reviewed_en": True,
+        "displayed_title_readability_improvement_reviewed_en": True,
+        "new_keywords_fr": [],
+        "new_keywords_en": [],
+        "keywords_ordered_by_relevance_fr": True,
+        "keyword_order_rationale_fr": "Ordre des mots-clés relu du plus pertinent au moins direct.",
+        "keywords_ordered_by_relevance_en": True,
+        "keyword_order_rationale_en": "Keyword order reviewed from most relevant to least direct.",
     }
     entry.update(overrides)
     return {"entries": [entry]}
@@ -72,16 +82,14 @@ def test_1222_review_requires_concision_attestations():
     assert any(issue["reason"] == "displayed_title_concision_reviewed_fr" for issue in issues)
 
 
-def test_1222_exact_identity_requires_specific_justification_but_1221_does_not():
+def test_exact_identity_is_allowed_independently_of_declared_norm():
     canonical_fr = "Le monde résiste à nos attentes et révèle son indépendance"
     canonical_en = "The world resists our expectations and reveals its independence"
     n = _node(canonical_fr, canonical_fr, canonical_en, canonical_en)
     review = _review(canonical_fr, canonical_en)
-    issues = validate_individual_review_data(review, [n], norm="1.2.22")
-    assert any(issue["reason"] == "displayed_title_identity_justification_fr" for issue in issues)
-    assert any(issue["reason"] == "displayed_title_identity_justification_en" for issue in issues)
-    assert not validate_individual_review_data(review, [n], norm="1.2.21")
-
+    for norm in ("1.2.21", "1.2.22", "1.2.53"):
+        issues = validate_individual_review_data(review, [n], norm=norm)
+        assert not any(issue["reason"].startswith("displayed_title_identity_justification") for issue in issues)
 
 def test_1222_exact_identity_accepts_substantial_justifications():
     canonical_fr = "Le monde résiste à nos attentes et révèle son indépendance"

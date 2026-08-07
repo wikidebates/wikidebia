@@ -1,3 +1,14 @@
+## 1.2.54 — 7 août 2026 — architecture cumulative des normes éditoriales
+
+- supprime l’activation des règles éditoriales par listes ou comparaisons de versions ;
+- conserve `consolidated_norm` pour le format, les migrations, la provenance et la traçabilité uniquement ;
+- transforme les anciens `*_policy_revision` / `*_revision` en métadonnées de trace sans effet de sélection ;
+- fait dépendre les contrôles de l’état fonctionnel réellement pertinent ;
+- conserve des versions propres aux formats d’artefacts ;
+- exige des tests d’invariance pour empêcher le retour de gardes éditoriales par version ;
+- aligne également le cahier des charges, le workflow, les structures MediaWiki et le schéma de graphe afin qu’aucune formulation active ne réintroduise un seuil éditorial par version ;
+- préserve sans modification toutes les règles de contenu 1.2.53.
+
 ## 1.2.53 — 7 août 2026
 
 - traduction anglaise organisée en lots fermés : page Debate seule, puis 20 Arguments par défaut, maximum 25 et réduction à 10–15 pour les lots documentaires denses ;

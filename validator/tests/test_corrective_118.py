@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from wikidebia_validator.editorial import summary_style_issues, validate_summary_style_review_data
+from .current_policy_helpers import complete_summary_decision
 
 
 def test_short_varied_sentences_do_not_trigger_style_warning():
@@ -16,12 +17,14 @@ def test_accumulated_long_sentences_trigger_heuristic_warning():
 def test_summary_style_review_requires_all_human_attestations():
     nodes = [{"id": "A0001"}]
     pages = {"A0001": {"fr"}}
-    review = {"entries": [{"id": "A0001", "languages": {"fr": {"status": "approved", "thesis_first": True, "general_public_style": True, "sentence_rhythm_reviewed": True, "technical_terms_reviewed": True, "note": "Résumé relu et accessible au grand public."}}}]}
-    assert validate_summary_style_review_data(review, nodes, pages) == []
+    decision, summary = complete_summary_decision({"status": "approved", "note": "Résumé relu et accessible au grand public."})
+    review = {"entries": [{"id": "A0001", "languages": {"fr": decision}}]}
+    summaries = {("A0001", "fr"): summary}
+    assert validate_summary_style_review_data(review, nodes, pages, summaries=summaries) == []
     review["entries"][0]["languages"]["fr"]["technical_terms_reviewed"] = False
-    assert any(x["reason"] == "technical_terms_reviewed" for x in validate_summary_style_review_data(review, nodes, pages))
+    assert any(x["reason"] == "technical_terms_reviewed" for x in validate_summary_style_review_data(review, nodes, pages, summaries=summaries))
 
 
 def test_active_norm_is_current():
     root = Path(__file__).parents[1] / "normative_reference" / "01_normes"
-    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.53.md"]
+    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md"]

@@ -49,7 +49,7 @@ from wikidebia_graph_extract import (
     normalize_key,
 )
 
-KIT_VERSION = "2.15.30"
+KIT_VERSION = "2.15.31"
 WORKSPACE_SCHEMA = "wikidebia-editorial-workspace-1.0"
 AUDIT_SCHEMA = "wikidebia-editorial-audit-1.0"
 TASK_SCHEMA = "wikidebia-editorial-task-ledger-1.0"
@@ -433,7 +433,6 @@ def keyword_vocabulary_working(items: Sequence[Mapping[str, Any]], debate_id: st
         })
     return {
         "schema": "wikidebia-keyword-vocabulary-working-1.0",
-        "keyword_policy_revision": "1.2.39",
         "debate_id": debate_id,
         "work_id": work_id,
         "status": "draft",

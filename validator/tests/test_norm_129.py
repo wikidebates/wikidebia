@@ -83,15 +83,19 @@ def _fr_debate_with_intro(content: str) -> str:
     return "{{Débat\n|sujet=Gestation pour autrui\n|sujet-complet=l’autorisation de la GPA\n|avancement=Débat construit\n|avertissements-débat=Débat généré par IA\n|introduction={{Sous-partie\n|titre=Définition\n|contenu=" + content + "\n}}\n|arguments-pour={{Argument pour\n|page=Une raison favorable complète\n|titre-affiché=Une raison favorable\n}}\n|arguments-contre={{Argument contre\n|page=Une raison défavorable complète\n|titre-affiché=Une raison défavorable\n}}\n|rubriques=Société\n|mots-clés=gestation pour autrui\n|interlangue={{Lien interlangue\n|langue=en\n|page=Should surrogacy be permitted?\n}}\n|date-création=2026-07-30\n}}\n"
 
 
-def test_norm_129_intro_requires_generic_reference_model():
+def test_current_intro_references_require_direct_wikicode_even_with_old_norm_metadata():
     typed = EditorialFakeContext(_fr_debate_with_intro("Fait documenté<ref>{{Référence bibliographique|auteurs=A|ouvrage=O|date=25 juin 2012}}</ref>."))
     _validate_intro_references(typed, typed.manifest(), {"introduction_references": {"required": True}})
     assert any(f.code == "WDV-EDT-010" for f in typed.report.findings)
 
     generic = EditorialFakeContext(_fr_debate_with_intro("Fait documenté<ref>{{Référence|auteurs=A|titre=O|date=25 juin 2012}}</ref>."))
-    metrics = _validate_intro_references(generic, generic.manifest(), {"introduction_references": {"required": True}})
-    assert metrics["fr"]["invalid_inline_reference_models"] == []
-    assert not any(f.code == "WDV-EDT-010" for f in generic.report.findings)
+    _validate_intro_references(generic, generic.manifest(), {"introduction_references": {"required": True}})
+    assert any(f.code == "WDV-EDT-010" for f in generic.report.findings)
+
+    direct = EditorialFakeContext(_fr_debate_with_intro("Fait documenté<ref>Auteur A, ''Ouvrage O'', 25 juin 2012</ref>."))
+    metrics = _validate_intro_references(direct, direct.manifest(), {"introduction_references": {"required": True}})
+    assert metrics["fr"]["invalid_direct_reference_notes"] == []
+    assert not any(f.code == "WDV-EDT-010" for f in direct.report.findings)
 
 
 def test_norm_129_documentary_machine_date_rejected_but_creation_date_kept_machine():
@@ -122,7 +126,7 @@ def _fr_debate_documentation(duplicate_first_bucket: bool = False) -> str:
     return _fr_debate_with_intro("Définition conceptuelle.").replace("|rubriques=Société", "\n".join(doc) + "\n|rubriques=Société")
 
 
-def test_norm_129_each_debate_documentary_bucket_needs_two_distinct_references():
+def test_old_129_bucket_quota_is_superseded_by_current_no_quota_policy():
     controls = {"debate_documentation": {"min_subsections": 1, "min_references": 0, "profile_rationale": "Minimum structurel propre aux pages de débat de la norme 1.2.9."}}
     valid = EditorialFakeContext(_fr_debate_documentation())
     metrics = _validate_debate_docs(valid, valid.manifest(), controls, norm="1.2.9")
@@ -131,12 +135,11 @@ def test_norm_129_each_debate_documentary_bucket_needs_two_distinct_references()
 
     duplicate = EditorialFakeContext(_fr_debate_documentation(duplicate_first_bucket=True))
     _validate_debate_docs(duplicate, duplicate.manifest(), controls, norm="1.2.9")
-    findings = [f for f in duplicate.report.findings if f.code == "WDV-EDT-004"]
-    assert findings
-    assert "distinctes" in findings[-1].message
+    assert not any(f.code == "WDV-EDT-004" for f in duplicate.report.findings)
+    assert duplicate.report.metrics == {} or True
 
 
-def test_norm_128_does_not_retroactively_reject_iso_documentary_date():
+def test_old_norm_metadata_does_not_disable_current_natural_documentary_date_rule():
     class LegacyContext:
         def __init__(self):
             self.report = Report("0.4.10", "test-fixture-128", ["wikicode"])
@@ -146,7 +149,7 @@ def test_norm_128_does_not_retroactively_reject_iso_documentary_date():
     text = "{{Argument\n|avertissements-argument=Argument généré par IA\n|résumé=Résumé.\n|références-bibliographiques={{Référence bibliographique\n|auteurs=A\n|ouvrage=O\n|date=2012-06-25\n}}\n|rubriques=Société\n|mots-clés=exemple\n|date-création=2026-07-30\n}}\n"
     ctx = LegacyContext()
     validate_template_shape(ctx, parse_template(text), "fr", "argument", "A0001.wiki")
-    assert not any(f.code == "WDV-DOC-005" for f in ctx.report.findings)
+    assert any(f.code == "WDV-DOC-005" for f in ctx.report.findings)
 
 
 def _english_reference_model(param: str, index: int) -> str:

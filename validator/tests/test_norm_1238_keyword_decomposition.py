@@ -96,7 +96,7 @@ def test_legacy_norm_can_opt_into_quality_profile_without_global_migration(tmp_p
     assert not any(f.code == "WDV-SCH-003" and f.path in {"data/keyword_vocabulary.json", "reviews/summary_style_review.json"} for f in report.findings)
 
 
-def test_legacy_norm_without_profile_does_not_receive_1238_rules_retroactively(tmp_path: Path):
+def test_old_norm_and_missing_policy_revision_do_not_disable_current_keyword_rules(tmp_path: Path):
     _activate_1238_package(tmp_path)
     manifest = json.loads((tmp_path / "manifest.json").read_text())
     manifest["normative_versions"]["consolidated_norm"] = "1.2.30"
@@ -110,4 +110,4 @@ def test_legacy_norm_without_profile_does_not_receive_1238_rules_retroactively(t
     vocab.pop("quality_policy_revision", None)
     dump(tmp_path / "data/keyword_vocabulary.json", vocab)
     report = validate_package(tmp_path, scopes=["editorial"])
-    assert not any(f.code in {"WDV-EDT-024", "WDV-EDT-025", "WDV-EDT-026"} for f in report.findings)
+    assert any(f.code == "WDV-EDT-025" and f.details.get("keyword") == "psychologie religieuse" for f in report.findings)

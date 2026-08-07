@@ -56,7 +56,7 @@ def write_fixture(tmp_path: Path, kind: str):
     (corpus / "output" / "en" / "debate.wiki").write_text(en_debate, encoding="utf-8")
     manifest = {
       "debate_id":"demo",
-      "normative_versions":{"validator":"0.4.56"},
+      "normative_versions":{"validator":"0.4.57"},
       "core_files":{"registry":"data/registre_debat.json"},
       "pages":[
         {"language":"fr","page_id":"A1","page_type":"argument","canonical_title":"Titre FR","file_path":"output/fr/A1.wiki","sha256":module.sha_file(corpus / "output/fr/A1.wiki")},
@@ -74,7 +74,7 @@ def write_fixture(tmp_path: Path, kind: str):
     validator = tmp_path / "validator"
     validator.mkdir()
     validator_script = validator / "validate.py"
-    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.56','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.57','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     operation = {
       "id":"test",
       "kind":kind,
@@ -87,8 +87,8 @@ def write_fixture(tmp_path: Path, kind: str):
     }
     if kind == "parameter_update": operation["parameters"]={"fr":"résumé","en":"summary"}
     config = {
-      "kit_version":"2.15.30","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
-      "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.56","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
+      "kit_version":"2.15.31","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
+      "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.57","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
       "family":"wikidebates","family_file":str(Path(__file__)),"pywikibot_dir":str(tmp_path),
       "sites":{"fr":{"code":"fr","expected_user":"ChatGPT"},"en":{"code":"en","expected_user":"ChatGPT"}},
       "logs_dir":"logs","change_tags":["chatgpt"],"verification_attempts":1,"verification_delay_seconds":0,"write_delay_seconds":0,
@@ -274,18 +274,33 @@ def test_direct_profile_rejects_old_english_debate_shape(tmp_path):
         raise AssertionError("ancienne structure Debate acceptée")
 
 
-def test_direct_profile_forbids_interlanguage_parameter_update(tmp_path):
+def test_direct_profile_allows_interlanguage_parameter_update_after_translation_is_ready(tmp_path):
     config, path, _, _ = write_fixture(tmp_path, "parameter_update")
     config["publication_profile"] = module.DIRECT_INTERLANGUAGE_PROFILE
     config["validator"]["scopes"] = sorted(module.REQUIRED_DIRECT_SCOPES)
     config["operation"]["parameters"] = {"fr":"interlangue","en":"summary"}
     path.write_text(json.dumps(config), encoding="utf-8")
+    module.GenericPublisher(config, FakeAdapter(), path)
+
+
+def test_direct_profile_blocks_separate_interlanguage_update_while_translation_is_deferred(tmp_path):
+    config, path, _, _ = write_fixture(tmp_path, "parameter_update")
+    config["publication_profile"] = module.DIRECT_INTERLANGUAGE_PROFILE
+    config["validator"]["scopes"] = sorted(module.REQUIRED_DIRECT_SCOPES)
+    config["operation"]["languages"] = ["fr"]
+    config["operation"]["parameters"] = {"fr":"interlangue"}
+    corpus = tmp_path / "corpus" / "demo"
+    manifest_path = corpus / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["translation_status"] = {"en": "deferred"}
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    path.write_text(json.dumps(config), encoding="utf-8")
     try:
         module.GenericPublisher(config, FakeAdapter(), path)
     except module.PublicationError as exc:
-        assert "interlangue" in str(exc)
+        assert "interlangue" in str(exc) and "deferred" in str(exc)
     else:
-        raise AssertionError("mise à jour interlangue séparée acceptée")
+        raise AssertionError("mise à jour interlangue séparée acceptée pendant deferred")
 
 
 def test_direct_profile_rejects_parenthetical_em_dashes_in_french_summary(tmp_path):
@@ -658,12 +673,12 @@ def test_historical_manifest_versions_do_not_block_current_validation(tmp_path):
     publisher = module.GenericPublisher(config, FakeAdapter(), path)
     plan = publisher.build_plan()
     assert not plan["blockers"]
-    assert plan["required_validator_version"] == "0.4.56"
+    assert plan["required_validator_version"] == "0.4.57"
 
 
 def test_explicit_custom_manifest_requirement_is_still_enforced(tmp_path):
     config, path, _, _ = write_fixture(tmp_path, "full_page")
-    config["manifest_requirements"] = {"normative_versions.validator": "0.4.56"}
+    config["manifest_requirements"] = {"normative_versions.validator": "0.4.57"}
     path.write_text(json.dumps(config), encoding="utf-8")
     corpus = tmp_path / "corpus" / "demo"
     manifest_path = corpus / "manifest.json"
@@ -773,9 +788,14 @@ def test_direct_profile_rejects_fullwidth_comma(tmp_path):
     else:
         raise AssertionError("virgule pleine chasse acceptée")
 
-def test_author_separator_rule_is_not_retroactive_to_1217(tmp_path):
+def test_old_norm_metadata_does_not_disable_current_author_separator_rule(tmp_path):
     config, path = _inject_author_value(tmp_path, "Auteur A ; Auteur B", "1.2.17")
-    module.GenericPublisher(config, FakeAdapter(), path).build_plan()
+    try:
+        module.GenericPublisher(config, FakeAdapter(), path).build_plan()
+    except module.PublicationError as exc:
+        assert "virgule" in str(exc)
+    else:
+        raise AssertionError("ancien séparateur d’auteurs accepté à cause du numéro de norme")
 
 
 def test_direct_profile_rejects_empty_english_wikipedia_articles(tmp_path):

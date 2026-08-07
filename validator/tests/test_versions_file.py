@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_versions_file_has_only_the_three_functional_versions():
     versions = json.loads((ROOT / "VERSIONS.json").read_text(encoding="utf-8"))
-    assert versions == {"norm": "1.2.53", "validator": "0.4.56", "kit": "2.15.30"}
+    assert versions == {"norm": "1.2.54", "validator": "0.4.57", "kit": "2.15.31"}
 
 
 def test_versions_file_matches_validator_metadata():
@@ -27,12 +27,11 @@ def test_compatibility_keeps_historical_corpus_revisions():
     supported = compatibility["compatible_normative_revisions"]
     assert "1.2.10" in supported
     assert "1.2.14" in supported
-    assert supported[-1] == "1.2.53"
+    assert supported[-1] == "1.2.54"
 
 
-def test_schema_accepts_historical_and_current_norm_revisions():
-    schema = json.loads((ROOT / "src/wikidebia_validator/schemas/debate_package.schema.json").read_text(encoding="utf-8"))
-    text = json.dumps(schema)
-    assert '"1.2.10"' in text
-    assert '"1.2.16"' in text
-    assert '"1.2.18"' in text
+def test_schema_accepts_norm_versions_through_generic_semver_contract():
+    common = json.loads((ROOT / "src/wikidebia_validator/schemas/common.schema.json").read_text(encoding="utf-8"))
+    prop = common["$defs"]["normativeVersions"]["properties"]["consolidated_norm"]
+    assert "$ref" in prop
+    assert "enum" not in prop

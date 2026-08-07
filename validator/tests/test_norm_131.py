@@ -2,15 +2,14 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 
-def test_graph_validator_has_unbounded_policy_without_current_threshold_warning():
+def test_graph_validator_has_unbounded_policy_without_version_gate_or_threshold_warning():
     text=(ROOT/'src/wikidebia_validator/graph.py').read_text(encoding='utf-8')
-    assert 'if norm in {"1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49", "1.2.50", "1.2.51", "1.2.52", "1.2.53"}' in text
     assert 'policy.get("limit_policy") != "unbounded"' in text
-    current=text.split('if norm in {"1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49", "1.2.50", "1.2.51", "1.2.52", "1.2.53"}:',1)[1].split('else:',1)[0]
-    assert 'Profondeur exceptionnelle élevée' not in current
+    assert 'if norm in {' not in text
+    assert 'Profondeur exceptionnelle élevée' not in text
 
 def test_active_norm_orders_keywords_by_relevance():
-    text=(ROOT/'normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.53.md').read_text(encoding='utf-8')
+    text=(ROOT/'normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md').read_text(encoding='utf-8')
     assert 'du plus directement pertinent au moins directement pertinent' in text
     assert 'L’ordre chronologique' in text
 

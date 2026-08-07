@@ -329,7 +329,7 @@
           "properties": {
             "required": {
               "type": "boolean",
-              "description": "Active le contrôle documentaire des introductions ; ne fixe aucun nombre minimal d’appels inline sous les normes 1.2.4 et ultérieures."
+              "description": "Déclare le contrôle documentaire des introductions ; la règle active ne fixe aucun nombre minimal mécanique d’appels inline."
             },
             "min_subsections": {
               "type": "integer",
@@ -338,16 +338,8 @@
             },
             "punctuation_policy_revision": {
               "type": "string",
-              "enum": [
-                "1.2.44",
-                "1.2.45",
-                "1.2.46",
-                "1.2.47",
-                "1.2.48",
-                "1.2.49",
-                "1.2.50"
-              ],
-              "description": "Politique de ponctuation terminale des notes inline."
+              "pattern": "^\\d+\\.\\d+\\.\\d+$",
+              "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
             }
           },
           "required": [
@@ -470,32 +462,23 @@
         },
         "quality_policy_revision": {
           "type": "string",
-          "enum": [
-            "1.2.38"
-          ],
-          "description": "Active les contrôles éditoriaux renforcés 1.2.38 sans migrer rétroactivement les autres invariants de la révision normative du corpus."
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
         },
         "keyword_policy_revision": {
           "type": "string",
-          "enum": [
-            "1.2.39"
-          ],
-          "description": "Active uniquement l’atomicité sémantique des mots-clés sur un corpus historique."
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
         },
         "summary_policy_revision": {
           "type": "string",
-          "enum": [
-            "1.2.39",
-            "1.2.40"
-          ],
-          "description": "Active les contrôles renforcés d’originalité des résumés."
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
         },
         "capitalization_policy_revision": {
           "type": "string",
-          "enum": [
-            "1.2.39"
-          ],
-          "description": "Active le contrôle renforcé de la majuscule du nom propre Dieu."
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
         },
         "legacy_content_preservation": {
           "type": "object",
@@ -504,7 +487,9 @@
             "enabled",
             "lock_path",
             "protected_fields",
-            "source_archive_sha256"
+            "source_archive_sha256",
+            "source_inventory_path",
+            "source_inventory_sha256"
           ],
           "properties": {
             "enabled": {
@@ -538,24 +523,8 @@
             },
             "verification_revision": {
               "type": "string",
-              "enum": [
-                "0.4.42",
-                "0.4.43",
-                "0.4.44",
-                "0.4.45",
-                "0.4.46",
-                "0.4.47",
-                "0.4.48",
-                "0.4.49",
-                "0.4.50",
-                "0.4.51",
-                "0.4.52",
-                "0.4.53",
-                "0.4.54",
-                "0.4.55",
-                "0.4.56"
-              ],
-              "description": "Active la confrontation du verrou historique à l’inventaire source attesté."
+              "pattern": "^\\d+\\.\\d+\\.\\d+$",
+              "description": "Métadonnée historique de traçabilité de la version du validateur; la vérification courante s’applique indépendamment de cette valeur."
             },
             "source_inventory_path": {
               "type": "string",
@@ -567,71 +536,33 @@
             },
             "historical_summary_absence_revision": {
               "type": "string",
-              "enum": [
-                "1.2.40"
-              ],
-              "description": "Autorise uniquement l’omission attestée d’un résumé historiquement absent."
+              "pattern": "^\\d+\\.\\d+\\.\\d+$",
+              "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
             },
             "historical_parameter_restoration": {
               "type": "boolean"
             }
-          },
-          "allOf": [
-            {
-              "if": {
-                "properties": {
-                  "verification_revision": {
-                    "enum": [
-                      "0.4.42",
-                      "0.4.43",
-                      "0.4.44",
-                      "0.4.45",
-                      "0.4.46",
-                      "0.4.47"
-                    ]
-                  }
-                },
-                "required": [
-                  "verification_revision"
-                ]
-              },
-              "then": {
-                "required": [
-                  "source_inventory_path",
-                  "source_inventory_sha256"
-                ]
-              }
-            }
-          ]
+          }
         },
         "displayed_title_policy_revision": {
           "type": "string",
-          "enum": [
-            "1.2.42"
-          ],
-          "description": "Active la règle 1.2.42 : identité autorisée et reformulation uniquement si elle améliore réellement la lisibilité sans perte de sens."
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
         },
         "debate_documentation_policy_revision": {
           "type": "string",
-          "enum": [
-            "1.2.42"
-          ],
-          "description": "Active la règle 1.2.42 : absence de quota par orientation et interdiction des doublons entre orientations."
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
         },
         "introduction_policy_revision": {
           "type": "string",
-          "enum": [
-            "1.2.42",
-            "1.2.43"
-          ],
-          "description": "Active la règle 1.2.42 de densité informative ou sa correction 1.2.43, qui exige une sous-partie dédiée et concrète sur les enjeux du débat."
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
         },
         "video_authorship_policy_revision": {
           "type": "string",
-          "enum": [
-            "1.2.42"
-          ],
-          "description": "Active la règle 1.2.42 : créateur ou chaîne obligatoire pour les références YouTube de la page Débat."
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
         },
         "displayed_title_policy_scope": {
           "type": "string",
@@ -643,47 +574,23 @@
         },
         "inline_reference_punctuation_policy_revision": {
           "type": "string",
-          "enum": [
-            "1.2.44",
-            "1.2.45",
-            "1.2.46",
-            "1.2.47",
-            "1.2.48",
-            "1.2.49",
-            "1.2.50"
-          ],
-          "description": "Active la règle 1.2.44 : pas de point final dans une simple notice <ref>; exceptions de phrases attestées."
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
         },
         "wikipedia_link_consistency_policy_revision": {
           "type": "string",
-          "enum": [
-            "1.2.45",
-            "1.2.46",
-            "1.2.47",
-            "1.2.48",
-            "1.2.49",
-            "1.2.50"
-          ],
-          "description": "Active la revue détaillée de la cohérence locale des liens Wikipédia explicatifs."
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
         },
         "specialized_term_explanation_policy_revision": {
           "type": "string",
-          "enum": [
-            "1.2.46",
-            "1.2.47",
-            "1.2.48",
-            "1.2.49",
-            "1.2.50"
-          ],
-          "description": "Active l’inventaire exhaustif, sous-partie par sous-partie, des notions spécialisées à expliquer ou à lier."
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
         },
         "manual_remote_adoption_revision": {
           "type": "string",
-          "enum": [
-            "1.2.48",
-            "1.2.49",
-            "1.2.50"
-          ]
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
         },
         "manual_remote_adoption_path": {
           "type": "string",
@@ -691,9 +598,8 @@
         },
         "argument_name_assignment_revision": {
           "type": "string",
-          "enum": [
-            "1.2.51"
-          ]
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
         },
         "argument_name_assignment_path": {
           "type": "string",
@@ -701,10 +607,8 @@
         },
         "argument_name_discovery_revision": {
           "type": "string",
-          "enum": [
-            "1.2.52"
-          ],
-          "description": "Active la recherche documentaire obligatoire d’une appellation consacrée pour chaque page Argument nouvelle."
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
         },
         "argument_name_discovery_path": {
           "type": "string",
@@ -785,157 +689,5 @@
     "validations",
     "release"
   ],
-  "description": "Manifeste global du paquet, version 1.0, révision corrective 1.0.6. Les objets pages et lots sont intégrés et peuvent être projetés séparément.",
-  "allOf": [
-    {
-      "if": {
-        "properties": {
-          "normative_versions": {
-            "properties": {
-              "consolidated_norm": {
-                "const": "1.2.4"
-              }
-            },
-            "required": [
-              "consolidated_norm"
-            ]
-          }
-        },
-        "required": [
-          "normative_versions"
-        ]
-      },
-      "then": {
-        "required": [
-          "editorial_controls"
-        ],
-        "properties": {
-          "editorial_controls": {
-            "required": [
-              "introduction_review_path"
-            ],
-            "properties": {
-              "debate_documentation": {
-                "required": [
-                  "profile_rationale"
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
-    {
-      "if": {
-        "properties": {
-          "normative_versions": {
-            "properties": {
-              "consolidated_norm": {
-                "enum": [
-                  "1.2.5",
-                  "1.2.6",
-                  "1.2.7",
-                  "1.2.8",
-                  "1.2.9",
-                  "1.2.10",
-                  "1.2.11",
-                  "1.2.12",
-                  "1.2.13",
-                  "1.2.14",
-                  "1.2.15",
-                  "1.2.16",
-                  "1.2.17",
-                  "1.2.18",
-                  "1.2.19",
-                  "1.2.20",
-                  "1.2.21",
-                  "1.2.22",
-                  "1.2.23",
-                  "1.2.24",
-                  "1.2.25",
-                  "1.2.26",
-                  "1.2.27",
-                  "1.2.28",
-                  "1.2.29",
-                  "1.2.30",
-                  "1.2.31",
-                  "1.2.32"
-                ]
-              }
-            },
-            "required": [
-              "consolidated_norm"
-            ]
-          }
-        },
-        "required": [
-          "normative_versions"
-        ]
-      },
-      "then": {
-        "required": [
-          "editorial_controls"
-        ],
-        "properties": {
-          "editorial_controls": {
-            "required": [
-              "introduction_review_path"
-            ],
-            "properties": {
-              "debate_documentation": {
-                "required": [
-                  "profile_rationale"
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
-    {
-      "if": {
-        "properties": {
-          "normative_versions": {
-            "properties": {
-              "consolidated_norm": {
-                "enum": [
-                  "1.2.20",
-                  "1.2.21",
-                  "1.2.22",
-                  "1.2.23",
-                  "1.2.24",
-                  "1.2.25",
-                  "1.2.26",
-                  "1.2.27",
-                  "1.2.28",
-                  "1.2.29",
-                  "1.2.30",
-                  "1.2.31",
-                  "1.2.32"
-                ]
-              }
-            },
-            "required": [
-              "consolidated_norm"
-            ]
-          }
-        },
-        "required": [
-          "normative_versions"
-        ]
-      },
-      "then": {
-        "required": [
-          "editorial_controls"
-        ],
-        "properties": {
-          "editorial_controls": {
-            "required": [
-              "graph_placement_review_path"
-            ]
-          }
-        }
-      }
-    }
-  ]
+  "description": "Manifeste global du paquet, version 1.0, révision corrective 1.0.6. Les objets pages et lots sont intégrés et peuvent être projetés séparément."
 }

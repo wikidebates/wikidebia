@@ -104,22 +104,14 @@
       }
     },
     "quality_policy_revision": {
-      "const": "1.2.38"
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
     },
     "keyword_policy_revision": {
-      "const": "1.2.39"
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
     }
-  },
-  "anyOf": [
-    {
-      "required": [
-        "quality_policy_revision"
-      ]
-    },
-    {
-      "required": [
-        "keyword_policy_revision"
-      ]
-    }
-  ]
+  }
 }

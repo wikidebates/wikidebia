@@ -59,7 +59,7 @@ from wikidebia_editorial_workspace import (
     workspace_receipt_hash,
 )
 
-KIT_VERSION = "2.15.30"
+KIT_VERSION = "2.15.31"
 REVIEW_SCHEMA = "wikidebia-fr-page-metadata-review-1.1"
 METADATA_LOCK_SCHEMA = "wikidebia-fr-page-metadata-lock-1.0"
 CHANGESET_SCHEMA = "wikidebia-editorial-changeset-1.1"
@@ -112,8 +112,6 @@ def _load_workspace(project_root: Path, debate_id: str, work_id: str) -> tuple[P
         raise EditorialReviewError("Schéma de workspace non pris en charge")
     if meta.get("debate_id") != debate_id or meta.get("work_id") != work_id:
         raise EditorialReviewError("Identité du workspace divergente")
-    if meta.get("normative_revision") != NORM_VERSION:
-        raise EditorialReviewError("Révision normative du workspace divergente")
     if meta.get("workspace_sha256") != workspace_receipt_hash(meta):
         raise EditorialReviewError("Empreinte de workspace.json invalide")
     return path, meta
@@ -490,8 +488,6 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
         raise EditorialReviewError("Schéma de revue française non pris en charge")
     if review.get("debate_id") != debate_id or review.get("work_id") != work_id:
         raise EditorialReviewError("Identité de la revue française divergente")
-    if review.get("normative_revision") != NORM_VERSION:
-        raise EditorialReviewError("Révision normative de la revue divergente")
     raw_items = review.get("items")
     if not isinstance(raw_items, list):
         raise EditorialReviewError("La revue française ne contient pas de liste items")
@@ -663,7 +659,6 @@ def _build_reviewed_copy(project_root: Path, source: Path, target: Path, review:
     vocabulary = {
         "schema": "wikidebia-keyword-vocabulary-1.0",
         "normative_revision": NORM_VERSION,
-        "keyword_policy_revision": "1.2.39",
         "debate_id": debate_id,
         "status": "approved_fr",
         "language_status": "fr_locked_en_pending",

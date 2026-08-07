@@ -3,18 +3,11 @@ from __future__ import annotations
 from typing import Any
 
 
-def _version_tuple(value: Any) -> tuple[int, ...]:
-    try:
-        return tuple(int(part) for part in str(value or "").split("."))
-    except ValueError:
-        return ()
-
-
 def english_translation_status(manifest: dict[str, Any] | None) -> str:
     """Return the explicit English translation state.
 
-    Packages predating norm 1.2.34 remain strict by default.  The relaxed
-    behaviour is enabled only by an explicit ``translation_status.en`` value.
+    The workflow state is read directly from ``translation_status.en``. Absence of
+    the field remains strict and does not depend on the declared norm version.
     """
     if not isinstance(manifest, dict):
         return "pending"

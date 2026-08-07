@@ -32,6 +32,15 @@ def _package(root:Path):
     path.write_text(text)
     summary=_field(text,"résumé")
     dump(root/"data/historical_content_lock.json",{"schema_version":"1.0","debate_id":manifest["debate_id"],"source_archive":"source.zip","source_archive_sha256":"a"*64,"protected_fields":["résumé","initialisation"],"arguments":[{"id":page["page_id"],"language":"fr","summary_provenance":"historical_existing","summary_sha256":hashlib.sha256(summary.encode()).hexdigest(),"summary_length":len(summary),"initialisation":{"present":True,"value":"Objection@42"}}]})
+    # La politique courante de préservation exige un inventaire source attesté,
+    # indépendamment de l'ancienne valeur de verification_revision.
+    inventory_path=root/"data/initial_remote_inventory_fr.json"
+    dump(inventory_path,{"inventory_version":"1.0","inventory_mode":"explicit_debate_pages_read_only","debate_id":manifest["debate_id"],"language":"fr","generated_at":"2026-08-06T00:00:00+00:00","pages":[{"page_id":page["page_id"],"page_type":"argument","canonical_title":page["canonical_title"],"content_sha256":hashlib.sha256(text.encode()).hexdigest(),"revision_id":42,"status":"published","content":text}],"inventory_sha256":"0"*64})
+    manifest=json.loads((root/"manifest.json").read_text())
+    cfg=manifest["editorial_controls"]["legacy_content_preservation"]
+    cfg["source_inventory_path"]="data/initial_remote_inventory_fr.json"
+    cfg["source_inventory_sha256"]=hashlib.sha256(inventory_path.read_bytes()).hexdigest()
+    dump(root/"manifest.json",manifest)
     vocab={"status":"draft","keyword_policy_revision":"1.2.39","entries":[{"fr":"mesure X","en":None,"kind":"noun_phrase","scope":"site_navigation","cross_debate_reusable":True,"local_frequency_is_validity_criterion":False,"usage_count_in_debate":2,"atomic_concept":True,"compositional_intersection":False,"multiword_exception":False}]}
     dump(root/"data/keyword_vocabulary.json",vocab)
     return manifest,page,path
@@ -76,9 +85,12 @@ def test_generated_after_import_summary_is_not_locked(tmp_path:Path):
     entry.pop("summary_sha256",None)
     entry.pop("summary_length",None)
     dump(tmp_path/"data/historical_content_lock.json",lock)
+    source_text=path.read_text()
+    source_text=source_text.replace(f"|résumé={_field(source_text, 'résumé')}\n", "")
+    _enable_inventory_verification(tmp_path,manifest,page,source_text)
     path.write_text(path.read_text().replace(_field(path.read_text(),"résumé"),"Résumé généré après import et modifiable."))
     report=validate_package(tmp_path,scopes=["wikicode","schema"])
-    assert not any(f.code=="WDV-EDT-027" and "Résumé historique" in f.message for f in report.findings)
+    assert not any(f.code=="WDV-EDT-027" and f.details.get("page_id")==page["page_id"] for f in report.findings)
 
 
 def test_protected_historical_summary_is_exempt_from_retroactive_quality_rewrite(tmp_path:Path):

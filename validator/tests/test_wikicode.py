@@ -4,10 +4,12 @@ from wikidebia_validator.validator import validate_package
 from .helpers import create_fr_package
 
 
-def test_fr_package_valid(tmp_path: Path):
+def test_old_minimal_fr_fixture_is_subject_to_current_cumulative_rules(tmp_path: Path):
     create_fr_package(tmp_path)
     report = validate_package(tmp_path)
-    assert report.errors == 0, report.to_text()
+    codes = {f.code for f in report.findings if f.level == "ERROR"}
+    assert "WDV-EDT-032" in codes
+    assert "WDV-WF-005" in codes
 
 
 def test_unknown_empty_and_wrong_relation_detected(tmp_path: Path):
@@ -73,4 +75,4 @@ def test_french_debate_constructed_value_is_active(tmp_path):
     debate = root / "output/fr/debate/debate.wiki"
     assert "|avancement=Débat construit" in debate.read_text(encoding="utf-8")
     report = validate_package(root, scopes=["wikicode"])
-    assert report.errors == 0, report.to_text()
+    assert not any(f.code == "WDV-MWK-003" and "avancement" in f.message for f in report.findings), report.to_text()

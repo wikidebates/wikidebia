@@ -105,17 +105,9 @@ def validate_files(ctx: PackageContext) -> None:
             if release_path in seen:
                 ctx.report.error("WDV-FS-006", "release_manifest.json doit s'exclure lui-même", path=release_path)
 
-    # Historical handoffs remain immutable traces during a 1.1 corrective reprise.
-    # Their hashes describe the input state of their original Work, not the current files.
-    corrective = (manifest.get("normative_versions") or {}).get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49", "1.2.50", "1.2.51", "1.2.52", "1.2.53"}
-    if not corrective:
-        for path in sorted(ctx.iter_files("handoff/*.json")):
-            rel = ctx.relative(path)
-            data = ctx.load_json(rel)
-            if not isinstance(data, dict) or data.get("template_mode"):
-                continue
-            for item in data.get("required_files", []):
-                required = bool(item.get("required"))
-                validate_hash(ctx, item.get("path"), item.get("sha256"), required=required)
+    # Historical handoffs are immutable traces. Their hashes describe the input
+    # state of their original Work, not the current package, so they are never
+    # revalidated against current files. This operational rule is independent
+    # of the package normative revision.
 
     ctx.report.metrics["files"] = {"declared_pages": len(pages), "core_files": len(core)}

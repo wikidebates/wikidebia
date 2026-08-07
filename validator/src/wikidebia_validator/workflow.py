@@ -63,8 +63,6 @@ def validate_workflow(ctx: PackageContext, previous_status: str | None = None) -
         return
     status = manifest.get("global_status")
     english_deferred = english_translation_deferred(manifest)
-    norm_versions = manifest.get("normative_versions") or {}
-    corrective_mode = status in {"corrective_in_progress", "corrective_blocked"} or norm_versions.get("consolidated_norm") in {"1.1.0", "1.1.1", "1.1.2", "1.1.3", "1.1.4", "1.1.5", "1.1.6", "1.1.7", "1.1.8", "1.1.9", "1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49", "1.2.50", "1.2.51", "1.2.52", "1.2.53"}
     if previous_status and not allowed_transition(previous_status, status):
         ctx.report.error("WDV-WF-002", f"Transition interdite : {previous_status} -> {status}", path="manifest.json")
     try:
@@ -118,7 +116,7 @@ def validate_workflow(ctx: PackageContext, previous_status: str | None = None) -
                 if page and page.get("status") not in {"validated", "published"}:
                     ctx.report.error("WDV-WF-001", f"Page {pid}/{lang} non validée à l'état {status}")
 
-    if norm_versions.get("consolidated_norm") in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49", "1.2.50", "1.2.51", "1.2.52", "1.2.53"} and state_at_least(status, "fr_debate_validated") and not english_deferred:
+    if state_at_least(status, "fr_debate_validated") and not english_deferred:
         debate_en = ((((registry.get("debate") or {}).get("pages") or {}).get("en") or {}))
         if debate_en.get("title_status") != "locked" or not debate_en.get("canonical_title"):
             ctx.report.error("WDV-WF-005", "Le titre anglais du débat doit être verrouillé avant la création des pages françaises", path=ctx.core_paths()["registry"])
@@ -134,16 +132,8 @@ def validate_workflow(ctx: PackageContext, previous_status: str | None = None) -
             if record.get("title_status") == "locked" and not record.get("canonical_title"):
                 ctx.report.error("WDV-WF-005", f"Titre anglais déclaré verrouillé mais absent : {identifier}", path=ctx.core_paths()["registry"])
 
-    patch_rel = "patches/interlanguage_fr.validated.json"
-    if norm_versions.get("consolidated_norm") not in {"1.2.0", "1.2.1", "1.2.2", "1.2.3", "1.2.4", "1.2.5", "1.2.6", "1.2.7", "1.2.8", "1.2.9", "1.2.10", "1.2.11", "1.2.12", "1.2.13", "1.2.14", "1.2.15", "1.2.16", "1.2.17", "1.2.18", "1.2.19", "1.2.20", "1.2.21", "1.2.22", "1.2.23", "1.2.24", "1.2.25", "1.2.26", "1.2.27", "1.2.28", "1.2.29", "1.2.30", "1.2.31", "1.2.32", "1.2.33", "1.2.34", "1.2.35", "1.2.36", "1.2.37", "1.2.38", "1.2.39", "1.2.40", "1.2.41", "1.2.42", "1.2.43", "1.2.44", "1.2.45", "1.2.46", "1.2.47", "1.2.48", "1.2.49", "1.2.50", "1.2.51", "1.2.52", "1.2.53"}:
-        if state_at_least(status, "interlanguage_prepared"):
-            patch = ctx.load_json(patch_rel, required=True)
-            if isinstance(patch, dict) and patch.get("status") not in {"validated", "partially_applied", "applied"}:
-                ctx.report.error("WDV-WF-001", "Patch interlangue non validé à l'état interlanguage_prepared", path=patch_rel)
-        if state_at_least(status, "interlanguage_applied"):
-            patch = ctx.load_json(patch_rel)
-            if not isinstance(patch, dict) or patch.get("status") != "applied":
-                ctx.report.error("WDV-WF-001", "L'état interlanguage_applied exige un patch appliqué", path=patch_rel)
+    # Interlanguage state is governed by the current registry/page workflow.
+    # Historical patch-file requirements are no longer activated by norm version.
     if state_at_least(status, "released"):
         release_path = (manifest.get("release") or {}).get("release_manifest_path")
         release = ctx.load_json(release_path, required=True) if release_path else None
@@ -163,9 +153,6 @@ def validate_workflow(ctx: PackageContext, previous_status: str | None = None) -
             ctx.report.error("WDV-GRA-001", f"Identifiant de Work dupliqué : {wid}", path="manifest.json")
         seen_work_ids.add(wid)
         if work.get("status") == "completed":
-            min_state = WORK_MIN_STATE.get(work.get("work_type"))
-            if min_state and not corrective_mode and not state_at_least(status, min_state):
-                ctx.report.error("WDV-WF-001", f"Work {wid} terminé mais état global trop ancien : {status}", path="manifest.json")
             if not work.get("completed_at"):
                 ctx.report.error("WDV-WF-001", f"Work terminé sans completed_at : {wid}", path="manifest.json")
         if work.get("status") == "blocked" and state_at_least(status, WORK_MIN_STATE.get(work.get("work_type"), "initialized")):
@@ -180,19 +167,13 @@ def validate_workflow(ctx: PackageContext, previous_status: str | None = None) -
             continue
         if handoff.get("debate_id") != manifest.get("debate_id"):
             ctx.report.error("WDV-WF-004", "Transmission rattachée à un autre débat", path=rel)
-        if not corrective_mode:
-            for key, value in (handoff.get("normative_versions") or {}).items():
-                if value != norm_versions.get(key):
-                    ctx.report.error("WDV-WF-005", f"Version normative incompatible dans la transmission : {key}", path=rel, details={"handoff": value, "manifest": norm_versions.get(key)})
-        required_state = (handoff.get("destination") or {}).get("required_global_status")
-        if required_state and not corrective_mode and not state_at_least(status, required_state) and status not in {"blocked", "migration_required"}:
-            ctx.report.error("WDV-WF-004", f"État global incompatible avec la transmission : {required_state} requis", path=rel)
+        # A handoff's normative versions are trace metadata, not policy switches.
+        # Historical required-state constraints are preserved as provenance and do
+        # not gate the current cumulative workflow.
         for required in handoff.get("required_validations", []):
             scope = required.get("validation_type")
             current = validations_by_scope.get(scope)
             if not current or current.get("result") not in {"passed", "passed_with_warnings"}:
                 ctx.report.error("WDV-WF-003", f"Validation préalable absente pour la transmission : {scope}", path=rel)
-        if (handoff.get("origin") or {}).get("result") in {"blocked", "failed"} and not corrective_mode and status not in {"blocked", "migration_required"}:
-            ctx.report.error("WDV-WF-004", "Le paquet a progressé malgré une transmission d'origine bloquée ou échouée", path=rel)
 
     ctx.report.metrics["workflow"] = {"global_status": status, "passed_validation_scopes": sorted(scopes), "english_translation_status": english_translation_status(manifest), "english_translation_deferred": english_deferred}

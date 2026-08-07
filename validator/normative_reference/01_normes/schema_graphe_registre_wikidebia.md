@@ -453,7 +453,7 @@ Règles :
 - `limit_policy` vaut exactement `unbounded` ;
 - `maximum_observed` est recalculé automatiquement ;
 - `maximum_observed` est une mesure descriptive, non une limite ;
-- les anciens champs `normal_target`, `declared_maximum` et `exception_reason` restent lisibles uniquement pour la compatibilité des corpus déclarant une norme antérieure à 1.2.32 ; ils ne sont pas générés dans un corpus 1.2.32.
+- les anciens champs `normal_target`, `declared_maximum` et `exception_reason` restent lisibles lorsqu’ils sont rencontrés dans un artefact historique pour les besoins de compatibilité et de migration ; le générateur courant ne les émet jamais et leur présence n’active aucune règle éditoriale ancienne.
 
 ---
 
@@ -622,7 +622,7 @@ locked
 
 Un titre `locked` ne peut être modifié qu'au moyen d'une migration.
 
-Pour les corpus 1.2.19 et ultérieurs, le registre de revue individuelle associe à chaque nœud les attestations booléennes `displayed_title_complete_proposition_fr`, `displayed_title_argument_intelligible_fr`, `displayed_title_complete_proposition_en` et `displayed_title_argument_intelligible_en`. Elles valent toutes `true` avant verrouillage. Le validateur compare en outre les titres revus aux valeurs exactes du registre maître.
+Le registre de revue individuelle associe à chaque nœud les attestations booléennes `displayed_title_complete_proposition_fr`, `displayed_title_argument_intelligible_fr`, `displayed_title_complete_proposition_en` et `displayed_title_argument_intelligible_en`. Elles valent toutes `true` avant verrouillage. Le validateur compare en outre les titres revus aux valeurs exactes du registre maître, indépendamment de la révision de provenance du corpus.
 
 ## 10.4 Règles des titres
 
@@ -1747,7 +1747,7 @@ Pour une occurrence de niveau 1 :
 
 Pour une occurrence de profondeur supérieure à 1, `semantic_target` est l’identifiant de l’occurrence parente, `declared_function` vaut `justification` ou `objection`, et `subordinate_review.parent_is_best_immediate_target` ainsi que `subordinate_review.relation_to_parent_explicit` valent `true`.
 
-Le validateur compare ce registre aux occurrences et relations actives. Une couverture incomplète, un niveau divergent, une cible erronée, une fonction incompatible ou une attestation défavorable bloque la validation éditoriale sous la norme 1.2.20.
+Le validateur compare ce registre aux occurrences et relations actives. Une couverture incomplète, un niveau divergent, une cible erronée, une fonction incompatible ou une attestation défavorable bloque la validation éditoriale courante, quelle que soit la révision normative historique déclarée.
 
 ### Renforcement 1.2.22 — concision des titres affichés
 

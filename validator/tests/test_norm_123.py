@@ -3,7 +3,7 @@ from pathlib import Path
 
 def test_norm_123_declares_canonical_debate_test():
     root = Path(__file__).parents[1] / "normative_reference" / "01_normes"
-    text = (root / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.53.md").read_text(encoding="utf-8")
+    text = (root / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md").read_text(encoding="utf-8")
     assert "page Débat française canonique" in text
     assert "créée avec `createonly`" in text
     assert "Aucune sous-page utilisateur n’est créée" in text

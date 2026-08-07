@@ -1,4 +1,6 @@
-# Guide de traduction anglaise contrôlée — Kit 2.15.30
+# Guide de traduction anglaise contrôlée — Kit 2.15.31
+
+> Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 
 La traduction anglaise commence uniquement après le verrouillage complet des métadonnées et du contenu français. Elle travaille dans le même workspace éditorial et ne modifie ni le corpus promu, ni `working-copy/`, ni `reviewed-copy/`, ni `content-reviewed-copy/`.
 

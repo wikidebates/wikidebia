@@ -58,7 +58,7 @@ Le catalogue machine-readable complet est `requirements_catalog_wikidebia.json` 
 - **MW-005 — ACTIVE — automatic** : A newly created French Debate uses avancement=Débat construit; an existing Debate preserves the exact previous presence and value of avancement.
 - **MW-006 — ACTIVE — automatic** : A newly created English Debate uses progress=Constructed debate; an existing Debate preserves the exact previous presence and value of progress.
 - **MW-007 — ACTIVE — automatic** : Add exact AI warnings only to pages newly created by Wikidéb’IA; existing Debate and Argument pages preserve their prior warning presence and value.
-- **MW-008 — ACTIVE — automatic** : Do not invent nom/name or initialisation/initialization automatically. For every new Argument page, research whether a conventional name is attested in the literature and emit nom/name only when the dedicated 1.2.52 review concludes known_name; preserve historical values exactly, with policy 1.2.51 reserved for explicit owner-approved additions to preexisting pages.
+- **MW-008 — ACTIVE — automatic** : Do not invent nom/name or initialisation/initialization automatically. For every new Argument page, research whether a conventional name is attested in the literature and emit nom/name only when the dedicated discovery review concludes known_name; preserve historical values exactly, and allow additions to preexisting pages only through an explicit owner-approved assignment review.
 - **MW-009 — SUPERSEDED — automatic** : Do not generate citations/quotes in Argument pages. Replaced by the locked-citation rendering rules RND-003 and RND-004 from revision 1.2.27.
 - **MW-010 — ACTIVE — automatic** : Preserve an attested historical `débat-détaillé` / `detailed-debate` parameter exactly. Local justifications and objections may be omitted only when the omission and owner notification are locked.
 - **MW-011 — ACTIVE — automatic** : date-création/creation-date is mandatory for all four page types.
@@ -255,7 +255,7 @@ Le catalogue machine-readable complet est `requirements_catalog_wikidebia.json` 
 - **BI-003 — ACTIVE — automatic** : Only French pages contain interlanguage parameters; English pages never do.
 - **BI-004 — ACTIVE — automatic** : French interlanguage targets come exclusively from canonical English titles locked before French page generation, never displayed titles.
 - **BI-005 — ACTIVE — automatic** : Interlanguage links are present in initial French canonical files, even when English pages are created later.
-- **BI-006 — ACTIVE — automatic** : For norm 1.2.0, no interlanguage staging is used: canonical French files already contain the links. Legacy staging remains historical compatibility only.
+- **BI-006 — ACTIVE — automatic** : The current workflow uses no interlanguage staging: canonical French files contain the links when the English translation is ready. Legacy staging remains historical format compatibility only.
 - **BI-007 — ACTIVE — automatic** : Changing an English canonical title through migration updates the English page, all English links and all French interlanguage targets.
 - **BI-008 — ACTIVE — automatic** : Adding interlanguage never changes the creation date.
 
@@ -422,7 +422,7 @@ Chaque rubrique retenue est justifiée individuellement au moyen d’une structu
 - **DFR-039 — ACTIVE — human+profile** : aucun minimum universel de cinq sous-parties ou vingt références n'est imposé ; les minima locaux sont justifiés.
 - **DFR-040 — ACTIVE — automatic+human** : aucune checklist, constante ou configuration propre à un corpus pilote n'est active dans les composants génériques.
 - **DFR-041 — ACTIVE — human** : les enjeux du débat sont explicitement présentés dans l'introduction.
-- **VAL-023 — ACTIVE — automatic** : le validateur exige et contrôle le registre bilingue de revue des introductions pour les paquets 1.2.4 et ultérieurs.
+- **VAL-023 — ACTIVE — automatic** : le validateur exige et contrôle le registre bilingue de revue des introductions chaque fois que cette revue est fonctionnellement requise ; la révision normative historique déclarée ne désactive pas ce contrôle.
 - **VAL-024 — ACTIVE — audit** : l'auto-audit des composants génériques recherche les identifiants, exemples et constantes propres aux corpus pilotes hors dossiers historiques.
 - **PRM-017 — ACTIVE — prompt** : la rédaction de l'introduction part des besoins de compréhension du lecteur et non des branches du graphe ou des familles de sources.
 - **FIL-014 — ACTIVE — packaging** : les configurations propres à un débat restent dans son corpus et ne sont pas distribuées dans le kit générique.
@@ -431,7 +431,7 @@ Chaque rubrique retenue est justifiée individuellement au moyen d’une structu
 ## 26. Exigences ajoutées par la norme 1.2.5
 
 - **DFR-042 — ACTIVE — human+automatic** : les appels de référence inline des introductions sont déterminés par les affirmations factuelles à attribuer ; aucun minimum global ou par sous-partie n’est imposé.
-- **VAL-025 — ACTIVE — automatic** : pour les paquets 1.2.4 et ultérieurs, le validateur n’exige pas au moins un appel `<ref>` ; il contrôle l’interdiction de `<references />`, l’activation du contrôle et la cohérence de la revue humaine.
+- **VAL-025 — ACTIVE — automatic** : le validateur n’exige pas au moins un appel `<ref>` ; il contrôle l’interdiction de `<references />`, l’activation fonctionnelle du contrôle et la cohérence de la revue humaine, indépendamment de la révision normative historique déclarée.
 
 ## 27. Exigences ajoutées par la norme 1.2.6
 
@@ -458,7 +458,7 @@ Chaque rubrique retenue est justifiée individuellement au moyen d’une structu
 - toutes les étiquettes utilisées par `requirements[].sources` sont déclarées dans `source_aliases` ;
 - chaque alias et chaque `normative_files` pointe vers un fichier livré ;
 - les exemples actifs déclarent la révision courante et respectent la langue de leur entrée ;
-- les conditions de schéma éditoriales s’appliquent aux paquets 1.2.7 et 1.2.8 ;
+- les conditions de schéma éditoriales actives s’appliquent cumulativement ; les versions historiques ne servent qu’à la compatibilité de lecture et aux migrations ;
 - aucune exigence éditoriale nouvelle n’est ajoutée.
 
 
@@ -533,7 +533,7 @@ Pour chaque langue, le registre individuel contient `displayed_title_concision_r
 - **DEN-008 — ACTIVE — human+automatic syntax** : les introductions anglaises utilisent `{{Wikipedia link}}` avec `article` et, seulement si nécessaire, `displayed-text`.
 - **MW-027 — ACTIVE — automatic** : les noms, paramètres, langues, emplacements et interdictions dans les notes sont contrôlés.
 - **PRM-018 — ACTIVE — prompt+human** : la première occurrence utile est liée sans surliaison et sans substitution aux explications centrales.
-- **VAL-032 — ACTIVE — automatic+human ledger** : le validateur contrôle la syntaxe et les attestations de revue pour les corpus 1.2.24 et ultérieurs.
+- **VAL-032 — ACTIVE — automatic+human ledger** : le validateur contrôle la syntaxe et les attestations de revue pour tout corpus traité par les composants courants.
 
 ## Décision du 2 août 2026 — révision 1.2.25
 

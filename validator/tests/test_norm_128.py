@@ -17,32 +17,27 @@ def test_norm_128_catalog_all_source_labels_resolve():
         assert all((root / rel).is_file() for rel in req.get("normative_files", []))
 
 
-def test_norm_128_introduction_review_requires_current_revision():
+def test_introduction_review_revision_is_trace_only():
     review = {"normative_revision": "1.2.7", "entries": []}
     issues = validate_introduction_review_data(review, {}, norm="1.2.8")
-    assert any(i["reason"] == "wrong_normative_revision" for i in issues)
+    assert not any(i["reason"] == "wrong_normative_revision" for i in issues)
 
 
-def test_norm_128_schema_condition_includes_127_and_128():
+def test_schema_has_no_norm_version_activation_condition():
     root = Path(__file__).resolve().parents[1]
     data = json.loads((root / "src/wikidebia_validator/schemas/debate_package.schema.json").read_text(encoding="utf-8"))
-    enums = []
-    for block in data.get("allOf", []):
-        cn = block.get("if", {}).get("properties", {}).get("normative_versions", {}).get("properties", {}).get("consolidated_norm", {})
-        if "enum" in cn:
-            enums.extend(cn["enum"])
-    assert "1.2.7" in enums and "1.2.8" in enums
+    assert not data.get("allOf")
 
 
 def test_active_examples_use_current_revision_and_language():
     package_root = Path(__file__).resolve().parents[1]
     intro = json.loads((package_root / "examples/introduction_review.example.json").read_text(encoding="utf-8"))
     style = json.loads((package_root / "examples/summary_style_review.example.json").read_text(encoding="utf-8"))
-    assert intro["normative_revision"] == "1.2.53"
-    assert style["normative_revision"] == "1.2.53"
+    assert intro["normative_revision"] == "1.2.54"
+    assert style["normative_revision"] == "1.2.54"
     en = next(entry for entry in intro["entries"] if entry["language"] == "en")
     assert en["documentation_family_notes"]["bibliography"].startswith("Broad syntheses")
     root = package_root / "normative_reference"
     decisions = (root / "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md").read_text(encoding="utf-8")
     assert "Les titres canoniques anglais sont verrouillés" in decisions
-    assert "Aucun staging interlangue tardif" in decisions
+    assert "Aucun lien interlangue provisoire n’est généré pendant `translation_status.en=deferred`" in decisions

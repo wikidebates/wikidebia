@@ -303,9 +303,10 @@ def test_apply_translation_creates_distinct_bilingual_copy(tmp_path: Path):
     assert registry["debate"]["pages"]["en"]["canonical_title"] == "Test debate"
     assert all(node["en"]["title_status"] == "validated" for node in registry["graph"]["nodes"] if node["status"] == "active")
     name_review = json.loads((target / "reviews/argument_name_discovery_review.json").read_text(encoding="utf-8"))
-    assert name_review["normative_revision"] == "1.2.52"
+    assert name_review["normative_revision"] == translation.NORM_VERSION
     manifest = json.loads((target / "manifest.json").read_text(encoding="utf-8"))
-    assert manifest["editorial_controls"]["argument_name_discovery_revision"] == "1.2.52"
+    assert "argument_name_discovery_revision" not in manifest["editorial_controls"]
+    assert manifest["editorial_controls"]["argument_name_discovery_path"] == "reviews/argument_name_discovery_review.json"
 
 
 

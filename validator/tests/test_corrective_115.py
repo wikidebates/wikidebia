@@ -1,11 +1,12 @@
 from pathlib import Path
 from wikidebia_validator.editorial import validate_individual_review_data
+from .current_policy_helpers import complete_individual_entry
 
 def node(node_id, title="Titre", rubriques=None):
     return {"id":node_id,"fr":{"displayed_title":title,"rubriques":rubriques or ["Science"]},"en":{"displayed_title":"English title","sections":["Science"]}}
 
 def entry(node_id, title="Titre", rubriques=None):
-    return {"id":node_id,"title_decision":"retained_after_review","new_displayed_title_fr":title,"new_rubriques":rubriques or ["Science"],"rubric_decision":"retained_after_review","rubric_rationales":{r:"Justification suffisamment développée pour "+r for r in (rubriques or ["Science"])},"title_reason":"Titre relu et maintenu.","new_displayed_title_en":"English title","new_sections_en":["Science"]}
+    return complete_individual_entry({"id":node_id,"title_decision":"retained_after_review","new_displayed_title_fr":title,"new_rubriques":rubriques or ["Science"],"rubric_decision":"retained_after_review","rubric_rationales":{r:"Justification suffisamment développée pour "+r for r in (rubriques or ["Science"])},"title_reason":"Titre relu et maintenu.","new_displayed_title_en":"English title","new_sections_en":["Science"]}, node(node_id, title, rubriques))
 
 def test_complete_page_level_review_accepts_ubiquitous_science_and_identical_title():
     nodes=[node("A0001"),node("A0002")]
@@ -28,4 +29,4 @@ def test_selected_rubric_requires_page_specific_rationale():
 
 def test_active_norm_is_115():
     root=Path(__file__).parents[1]/"normative_reference"/"01_normes"
-    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md"))==["WIKIDEBIA_NORME_CONSOLIDEE_1.2.53.md"]
+    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md"))==["WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md"]

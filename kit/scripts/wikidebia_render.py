@@ -45,9 +45,7 @@ from wikidebia_corpus_init import extract_page_metadata
 from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
 from wikidebia_editorial_review import EditorialReviewError, _assert_source_unchanged, _run_validator
 
-KIT_VERSION = "2.15.30"
-PREVIOUS_NORM_VERSION = "1.2.33"
-COMPATIBLE_PREVIOUS_NORM_VERSIONS = {"1.2.27", "1.2.28", "1.2.30", PREVIOUS_NORM_VERSION}
+KIT_VERSION = "2.15.31"
 RENDER_LOCK_SCHEMA = "wikidebia-bilingual-render-lock-1.0"
 RENDER_CHANGESET_SCHEMA = "wikidebia-bilingual-render-changeset-1.0"
 
@@ -79,8 +77,6 @@ def _load_workspace(project_root: Path, debate_id: str, work_id: str) -> tuple[P
         raise RenderError("Schéma de workspace non pris en charge")
     if meta.get("debate_id") != debate_id or meta.get("work_id") != work_id:
         raise RenderError("Identité du workspace divergente")
-    if meta.get("normative_revision") not in (COMPATIBLE_PREVIOUS_NORM_VERSIONS | {NORM_VERSION}):
-        raise RenderError(f"Révision normative du workspace non migrable : {meta.get('normative_revision')}")
     if meta.get("workspace_sha256") != workspace_receipt_hash(meta):
         raise RenderError("Empreinte de workspace.json invalide")
     return path, meta
@@ -699,7 +695,6 @@ def _finalize_summary_review(target: Path, debate_id: str) -> None:
     review = copy.deepcopy(review)
     review["schema_version"] = "1.0"
     review["normative_revision"] = NORM_VERSION
-    review["summary_policy_revision"] = "1.2.39"
     review.pop("quality_policy_revision", None)
     review["debate_id"] = debate_id
     for entry in review["entries"]:

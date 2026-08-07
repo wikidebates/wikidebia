@@ -173,31 +173,30 @@ def audit_normative_provenance(root: Path, errors: list[str]) -> None:
         structures = root / "normative_reference/01_normes/structures_mediawiki_wikidebia.md"
         profiles = root / "normative_reference/01_normes/profils_rendu_wikidebia.md"
         cahier = root / "normative_reference/01_normes/cahier_des_charges_consolide_wikidebia.md"
-        if implemented == "1.2.32":
-            structures_text = structures.read_text(encoding="utf-8") if structures.is_file() else ""
-            if "|quotes={{Quote" not in structures_text or "|quotes={{Citation" in structures_text:
-                errors.append("structure anglaise des citations non conforme")
-            if "|avertissements-citation=" not in structures_text:
-                errors.append("paramètre avertissements-citation absent des structures")
-            profiles_text = profiles.read_text(encoding="utf-8") if profiles.is_file() else ""
-            if "Les citations textuelles ne sont jamais générées" in profiles_text or "Quotes are never generated" in profiles_text:
-                errors.append("ancienne interdiction des citations encore active dans les profils")
-            cahier_text = cahier.read_text(encoding="utf-8") if cahier.is_file() else ""
-            if "MW-009 — ACTIVE" in cahier_text:
-                errors.append("MW-009 reste active dans le cahier des charges")
-            mw009 = next((req for req in requirements if req.get("id") == "MW-009"), {})
-            if mw009.get("disposition") != "superseded":
-                errors.append("MW-009 n'est pas classée comme remplacée dans le catalogue")
-            active_norm_text = active_norms[0].read_text(encoding="utf-8") if len(active_norms) == 1 else ""
-            if "graphie canonique" not in active_norm_text or "Deux entrées qui ne diffèrent que par la casse" not in active_norm_text:
-                errors.append("règle active de capitalisation des mots-clés absente ou incomplète")
-            edt052 = next((req for req in requirements if req.get("id") == "EDT-052"), {})
-            if edt052.get("disposition") != "active":
-                errors.append("EDT-052 n'est pas active dans le catalogue")
-            editorial_module = root / "src/wikidebia_validator/editorial.py"
-            editorial_text = editorial_module.read_text(encoding="utf-8") if editorial_module.is_file() else ""
-            if "WDV-EDT-023" not in editorial_text or "keyword_capitalization_issues" not in editorial_text:
-                errors.append("contrôle WDV-EDT-023 absent du validateur actif")
+        structures_text = structures.read_text(encoding="utf-8") if structures.is_file() else ""
+        if "|quotes={{Quote" not in structures_text or "|quotes={{Citation" in structures_text:
+            errors.append("structure anglaise des citations non conforme")
+        if "|avertissements-citation=" not in structures_text:
+            errors.append("paramètre avertissements-citation absent des structures")
+        profiles_text = profiles.read_text(encoding="utf-8") if profiles.is_file() else ""
+        if "Les citations textuelles ne sont jamais générées" in profiles_text or "Quotes are never generated" in profiles_text:
+            errors.append("ancienne interdiction des citations encore active dans les profils")
+        cahier_text = cahier.read_text(encoding="utf-8") if cahier.is_file() else ""
+        if "MW-009 — ACTIVE" in cahier_text:
+            errors.append("MW-009 reste active dans le cahier des charges")
+        mw009 = next((req for req in requirements if req.get("id") == "MW-009"), {})
+        if mw009.get("disposition") != "superseded":
+            errors.append("MW-009 n'est pas classée comme remplacée dans le catalogue")
+        active_norm_text = active_norms[0].read_text(encoding="utf-8") if len(active_norms) == 1 else ""
+        if "graphie canonique" not in active_norm_text or "Deux entrées qui ne diffèrent que par la casse" not in active_norm_text:
+            errors.append("règle active de capitalisation des mots-clés absente ou incomplète")
+        edt052 = next((req for req in requirements if req.get("id") == "EDT-052"), {})
+        if edt052.get("disposition") != "active":
+            errors.append("EDT-052 n'est pas active dans le catalogue")
+        editorial_module = root / "src/wikidebia_validator/editorial.py"
+        editorial_text = editorial_module.read_text(encoding="utf-8") if editorial_module.is_file() else ""
+        if "WDV-EDT-023" not in editorial_text or "keyword_capitalization_issues" not in editorial_text:
+            errors.append("contrôle WDV-EDT-023 absent du validateur actif")
         for example in sorted((root / "examples").glob("*review.example.json")):
             try:
                 data = json.loads(example.read_text(encoding="utf-8"))

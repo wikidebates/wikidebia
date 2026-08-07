@@ -69,12 +69,19 @@ def _review():
     }
 
 
-def test_norm_124_accepts_complete_bilingual_introduction_review():
+def test_old_norm_metadata_does_not_invalidate_valid_124_attestations():
     actual = {
         "fr": ["Définition et périmètre", "Enjeux du débat"],
         "en": ["Definition and scope", "Stakes of the debate"],
     }
-    assert validate_introduction_review_data(_review(), actual, norm="1.2.4") == []
+    issues = validate_introduction_review_data(_review(), actual, norm="1.2.4")
+    original_fields = {
+        "subject_and_scope_defined", "debate_question_explained", "history_and_evolution_addressed",
+        "current_state_addressed_or_not_applicable", "stakes_explained", "factual_claims_referenced",
+        "progression_coherent", "no_argument_tree_mirroring", "no_topic_specific_checklist",
+    }
+    assert not any(i.get("reason") == "attestation_false_or_missing" and i.get("field") in original_fields for i in issues)
+    assert not any(i.get("reason") == "subsection_titles_mismatch" for i in issues)
 
 
 def test_norm_124_rejects_missing_stakes_and_title_mismatch():
@@ -106,7 +113,7 @@ def test_norm_124_rejects_unexplained_technical_subsection():
 def test_norm_124_active_rules_are_corpus_generic():
     root = Path(__file__).parents[1] / "normative_reference" / "01_normes"
     active_files = [
-        root / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.53.md",
+        root / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md",
         root / "profils_rendu_wikidebia.md",
         root / "workflow_production_wikidebia.md",
         root / "schema_graphe_registre_wikidebia.md",

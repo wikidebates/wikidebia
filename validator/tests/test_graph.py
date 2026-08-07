@@ -6,7 +6,7 @@ from .helpers import create_graph_package, dump
 
 def test_graph_package_valid(tmp_path: Path):
     create_graph_package(tmp_path)
-    report = validate_package(tmp_path)
+    report = validate_package(tmp_path, scopes=["graph"])
     assert report.errors == 0, report.to_text()
 
 

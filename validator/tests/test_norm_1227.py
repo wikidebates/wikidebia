@@ -36,16 +36,16 @@ def english_expected() -> dict:
         {"name": "avertissements-citation", "value": "Texte abrégé"},
     ]
     parameters = [
-        {"name": "citation", "value": "Translated text."},
-        {"name": "auteurs", "value": "Auteur inchangé"},
-        {"name": "ouvrage", "value": "Original Work"},
+        {"name": "quote", "value": "Translated text."},
+        {"name": "authors", "value": "Auteur inchangé"},
+        {"name": "work", "value": "Original Work"},
         {"name": "date", "value": "25 June 2012"},
-        {"name": "avertissements-citation", "value": "Texte abrégé, Citation traduite par IA"},
+        {"name": "warnings", "value": "Texte abrégé, Citation traduite par IA"},
     ]
     return {
         "id": "A0001-C001",
         "parameters": parameters,
-        "avertissements-citation": "Texte abrégé, Citation traduite par IA",
+        "warnings": "Texte abrégé, Citation traduite par IA",
         "source": {"source_parameters": source_parameters},
     }
 
@@ -75,19 +75,19 @@ def argument(quote: str, *, lang: str = "en") -> str:
 
 
 def test_validator_version_and_active_norm_1227():
-    assert __version__ == "0.4.56"
+    assert __version__ == "0.4.57"
     root = Path(__file__).resolve().parents[1] / "normative_reference/01_normes"
-    assert [path.name for path in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")] == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.53.md"]
+    assert [path.name for path in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")] == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md"]
 
 
 def test_english_citation_matching_lock_is_accepted(tmp_path: Path):
     expected = english_expected()
     raw = """{{Quote
-|citation=Translated text.
-|auteurs=Auteur inchangé
-|ouvrage=Original Work
+|quote=Translated text.
+|authors=Auteur inchangé
+|work=Original Work
 |date=25 June 2012
-|avertissements-citation=Texte abrégé, Citation traduite par IA
+|warnings=Texte abrégé, Citation traduite par IA
 }}"""
     ctx = context(tmp_path, "en", expected)
     tmpl = parse_template(argument(raw))
@@ -100,11 +100,11 @@ def test_english_citation_matching_lock_is_accepted(tmp_path: Path):
 def test_english_citation_rejects_changed_documentary_parameter(tmp_path: Path):
     expected = english_expected()
     raw = """{{Quote
-|citation=Translated text.
-|auteurs=Translated author
-|ouvrage=Original Work
+|quote=Translated text.
+|authors=Translated author
+|work=Original Work
 |date=25 June 2012
-|avertissements-citation=Texte abrégé, Citation traduite par IA
+|warnings=Texte abrégé, Citation traduite par IA
 }}"""
     ctx = context(tmp_path, "en", expected)
     tmpl = parse_template(argument(raw))
@@ -115,11 +115,11 @@ def test_english_citation_rejects_changed_documentary_parameter(tmp_path: Path):
 def test_english_citation_rejects_missing_translation_warning(tmp_path: Path):
     expected = english_expected()
     raw = """{{Quote
-|citation=Translated text.
-|auteurs=Auteur inchangé
-|ouvrage=Original Work
+|quote=Translated text.
+|authors=Auteur inchangé
+|work=Original Work
 |date=25 June 2012
-|avertissements-citation=Texte abrégé
+|warnings=Texte abrégé
 }}"""
     ctx = context(tmp_path, "en", expected)
     tmpl = parse_template(argument(raw))
@@ -127,7 +127,7 @@ def test_english_citation_rejects_missing_translation_warning(tmp_path: Path):
     assert any(item.code == "WDV-MWK-021" and "Citation traduite par IA" in item.message for item in ctx.report.findings)
 
 
-def test_citations_remain_forbidden_before_norm_1227(tmp_path: Path):
+def test_old_norm_metadata_does_not_disable_current_citation_support(tmp_path: Path):
     ctx = PackageContext(
         root=tmp_path,
         report=Report("0.4.44", tmp_path.name, ["wikicode"]),
@@ -136,17 +136,17 @@ def test_citations_remain_forbidden_before_norm_1227(tmp_path: Path):
     raw = "{{Citation\n|citation=Texte.\n}}"
     tmpl = parse_template(argument(raw, lang="fr"))
     validate_template_shape(ctx, tmpl, "fr", "argument", "argument.wiki")
-    assert any(item.code == "WDV-MWK-003" and "citations" in item.message for item in ctx.report.findings)
+    assert not any(item.code == "WDV-MWK-003" and "citations" in item.message for item in ctx.report.findings)
 
 
 def test_english_citation_model_name_must_be_quote(tmp_path: Path):
     expected = english_expected()
     raw = """{{Citation
-|citation=Translated text.
-|auteurs=Auteur inchangé
-|ouvrage=Original Work
+|quote=Translated text.
+|authors=Auteur inchangé
+|work=Original Work
 |date=25 June 2012
-|avertissements-citation=Texte abrégé, Citation traduite par IA
+|warnings=Texte abrégé, Citation traduite par IA
 }}"""
     ctx = context(tmp_path, "en", expected)
     tmpl = parse_template(argument(raw))

@@ -71,7 +71,7 @@ def test_norm_125_schema_accepts_control_without_legacy_minimum(tmp_path):
     assert not any(f.code == "WDV-SCH-003" for f in report.findings)
 
 
-def test_norm_125_schema_still_requires_introduction_review(tmp_path):
+def test_old_norm_metadata_does_not_activate_schema_requirement(tmp_path):
     import json
     from tests.helpers import create_graph_package, dump
     from wikidebia_validator.validator import validate_package
@@ -95,4 +95,4 @@ def test_norm_125_schema_still_requires_introduction_review(tmp_path):
     }
     dump(tmp_path / "manifest.json", manifest)
     report = validate_package(tmp_path, scopes=["schema"])
-    assert any(f.code == "WDV-SCH-003" for f in report.findings)
+    assert not any(f.code == "WDV-SCH-003" for f in report.findings)

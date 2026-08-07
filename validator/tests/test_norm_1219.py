@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from wikidebia_validator.editorial import displayed_title_argument_issues, validate_individual_review_data
+from .current_policy_helpers import complete_individual_entry
 
 
 def node(fr_title: str, en_title: str = "Observer agreement indicates public objects"):
@@ -33,7 +34,8 @@ def review(**overrides):
         "displayed_title_argument_intelligible_en": True,
     }
     entry.update(overrides)
-    return {"entries": [entry]}
+    n = node("La convergence entre observateurs indique l'existence d'objets publics")
+    return {"entries": [complete_individual_entry(entry, n)]}
 
 
 def test_nominal_french_displayed_titles_are_rejected():
@@ -70,7 +72,7 @@ def test_1219_review_requires_complete_proposition_attestations():
     assert any(issue["reason"] == "displayed_title_argument_intelligible_fr" for issue in issues)
 
 
-def test_1218_review_does_not_require_new_attestations():
+def test_old_norm_metadata_does_not_disable_complete_proposition_attestations():
     n = node("La convergence entre observateurs indique l'existence d'objets publics")
     old = review()
     for field in [
@@ -80,4 +82,5 @@ def test_1218_review_does_not_require_new_attestations():
         "displayed_title_argument_intelligible_en",
     ]:
         old["entries"][0].pop(field)
-    assert not validate_individual_review_data(old, [n], norm="1.2.18")
+    issues = validate_individual_review_data(old, [n], norm="1.2.18")
+    assert any(issue["reason"] == "displayed_title_complete_proposition_fr" for issue in issues)

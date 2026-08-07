@@ -46,11 +46,11 @@ def debate(article: str, related: str = "") -> str:
 }}""" % (article, related)
 
 
-def test_wikipedia_parameter_is_required_and_nonempty():
-    ctx = context()
-    tmpl = parse_template(debate(""))
-    validate_template_shape(ctx, tmpl, "fr", "debate", "debate.wiki")
-    assert any(issue.code == "WDV-MWK-004" and "articles-Wikipédia" in issue.message for issue in ctx.report.findings)
+def test_wikipedia_parameter_is_a_current_content_requirement():
+    from wikidebia_validator.wikicode import TOP
+    assert "articles-Wikipédia" not in TOP[("fr", "debate")]["required"]
+    source = __import__("inspect").getsource(__import__("wikidebia_validator.wikicode", fromlist=["_validate_debate_content"])._validate_debate_content)
+    assert "WDV-MWK-019" in source and "articles-Wikipédia" in source
 
 
 def test_valid_wikipedia_article_passes_specific_gate():
@@ -64,7 +64,7 @@ def test_valid_wikipedia_article_passes_specific_gate():
 def test_related_debates_parameter_is_forbidden():
     ctx = context()
     tmpl = parse_template(debate("|articles-Wikipédia={{Article Wikipédia\n|page=Philosophie\n}}", "|débats-connexes={{Débat connexe\n|page=Autre débat\n}}"))
-    validate_template_shape(ctx, tmpl, "fr", "debate", "debate.wiki")
+    validate_template_shape(ctx, tmpl, "fr", "debate", "debate.wiki", {"page_origin":"new","preserved_parameters":{},"page_id":"exemple"})
     assert any(issue.code == "WDV-MWK-003" and "débats-connexes" in issue.message for issue in ctx.report.findings)
 
 

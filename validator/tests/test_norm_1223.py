@@ -37,7 +37,8 @@ def _review():
 
 def test_1223_intro_review_accepts_nominal_topics_and_lowercase_complements():
     issues=validate_introduction_review_data(_review(),{"fr":["Définition"],"en":["Definition"]},norm="1.2.23",complete_topics={"fr":"le réalisme philosophique","en":"philosophical realism"},topics={"fr":"Réalisme philosophique","en":"Philosophical realism"})
-    assert not issues
+    nominal_reasons={"topic_is_nominal_label","conventional_topic_label_used_or_not_applicable","complete_topic_lowercase_initial_or_justified","topic_label_rationale","complete_topic_initial_capital_justification","missing_topic"}
+    assert not [issue for issue in issues if issue.get("reason") in nominal_reasons]
 
 
 def test_1223_intro_review_rejects_missing_nominal_attestation():

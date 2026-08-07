@@ -1,3 +1,11 @@
+## 0.4.57 — 7 août 2026
+
+- applique cumulativement les règles éditoriales actives, sans garde sur `consolidated_norm` ;
+- traite les anciens champs `*_policy_revision` / `*_revision` comme traces sans effet conditionnel ;
+- déclenche les contrôles selon l’état fonctionnel du corpus ;
+- conserve les versions pour le format, les migrations et la non-régression des sources normatives ;
+- ajoute des tests d’invariance, contrôle aussi l’absence de formulations normatives actives conditionnées par version, et maintient la protection `WDV-EDT-030` sans garde de version.
+
 ## 0.4.56 — 7 août 2026
 
 - alignement documentaire sur la norme 1.2.53 ;

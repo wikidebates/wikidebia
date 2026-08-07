@@ -3,74 +3,184 @@
   "$id": "argument_name_discovery_review.schema.json",
   "type": "object",
   "additionalProperties": false,
-  "required": ["version", "normative_revision", "debate_id", "entries"],
+  "required": [
+    "version",
+    "debate_id",
+    "entries"
+  ],
   "properties": {
-    "version": {"const": "wikidebia-argument-name-discovery-review-1.0"},
-    "normative_revision": {"const": "1.2.52"},
-    "debate_id": {"type": "string", "minLength": 1},
+    "version": {
+      "const": "wikidebia-argument-name-discovery-review-1.0"
+    },
+    "normative_revision": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Métadonnée historique de traçabilité; le format de cette revue est déterminé par version."
+    },
+    "debate_id": {
+      "type": "string",
+      "minLength": 1
+    },
     "entries": {
       "type": "array",
       "items": {
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "language", "page_id", "title", "page_origin", "search_reviewed",
-          "search_queries", "search_scope_note", "outcome", "name", "evidence",
-          "same_reasoning_confirmed", "non_invented_label_confirmed",
-          "language_fit_confirmed", "rationale"
+          "language",
+          "page_id",
+          "title",
+          "page_origin",
+          "search_reviewed",
+          "search_queries",
+          "search_scope_note",
+          "outcome",
+          "name",
+          "evidence",
+          "same_reasoning_confirmed",
+          "non_invented_label_confirmed",
+          "language_fit_confirmed",
+          "rationale"
         ],
         "properties": {
-          "language": {"enum": ["fr", "en"]},
-          "page_id": {"type": "string", "minLength": 1},
-          "title": {"type": "string", "minLength": 1},
-          "page_origin": {"const": "new"},
-          "search_reviewed": {"const": true},
+          "language": {
+            "enum": [
+              "fr",
+              "en"
+            ]
+          },
+          "page_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "page_origin": {
+            "const": "new"
+          },
+          "search_reviewed": {
+            "const": true
+          },
           "search_queries": {
             "type": "array",
             "minItems": 2,
             "uniqueItems": true,
-            "items": {"type": "string", "minLength": 3}
+            "items": {
+              "type": "string",
+              "minLength": 3
+            }
           },
-          "search_scope_note": {"type": "string", "minLength": 12},
-          "outcome": {"enum": ["none", "known_name"]},
-          "name": {"type": ["string", "null"]},
+          "search_scope_note": {
+            "type": "string",
+            "minLength": 12
+          },
+          "outcome": {
+            "enum": [
+              "none",
+              "known_name"
+            ]
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
           "evidence": {
             "type": "array",
             "items": {
               "type": "object",
               "additionalProperties": false,
-              "required": ["source", "label_as_used", "locator"],
+              "required": [
+                "source",
+                "label_as_used",
+                "locator"
+              ],
               "properties": {
-                "source": {"type": "string", "minLength": 6},
-                "label_as_used": {"type": "string", "minLength": 2},
-                "locator": {"type": "string", "minLength": 2},
-                "url": {"type": ["string", "null"], "pattern": "^(https?://.*)?$"}
+                "source": {
+                  "type": "string",
+                  "minLength": 6
+                },
+                "label_as_used": {
+                  "type": "string",
+                  "minLength": 2
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 2
+                },
+                "url": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "pattern": "^(https?://.*)?$"
+                }
               }
             }
           },
-          "same_reasoning_confirmed": {"type": "boolean"},
-          "non_invented_label_confirmed": {"type": "boolean"},
-          "language_fit_confirmed": {"type": "boolean"},
-          "rationale": {"type": "string", "minLength": 12}
+          "same_reasoning_confirmed": {
+            "type": "boolean"
+          },
+          "non_invented_label_confirmed": {
+            "type": "boolean"
+          },
+          "language_fit_confirmed": {
+            "type": "boolean"
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 12
+          }
         },
         "allOf": [
           {
-            "if": {"properties": {"outcome": {"const": "known_name"}}, "required": ["outcome"]},
+            "if": {
+              "properties": {
+                "outcome": {
+                  "const": "known_name"
+                }
+              },
+              "required": [
+                "outcome"
+              ]
+            },
             "then": {
               "properties": {
-                "name": {"type": "string", "minLength": 2},
-                "evidence": {"minItems": 1},
-                "same_reasoning_confirmed": {"const": true},
-                "non_invented_label_confirmed": {"const": true},
-                "language_fit_confirmed": {"const": true}
+                "name": {
+                  "type": "string",
+                  "minLength": 2
+                },
+                "evidence": {
+                  "minItems": 1
+                },
+                "same_reasoning_confirmed": {
+                  "const": true
+                },
+                "non_invented_label_confirmed": {
+                  "const": true
+                },
+                "language_fit_confirmed": {
+                  "const": true
+                }
               }
             },
             "else": {
               "properties": {
-                "name": {"type": "null"},
-                "same_reasoning_confirmed": {"const": false},
-                "non_invented_label_confirmed": {"const": true},
-                "language_fit_confirmed": {"const": true}
+                "name": {
+                  "type": "null"
+                },
+                "same_reasoning_confirmed": {
+                  "const": false
+                },
+                "non_invented_label_confirmed": {
+                  "const": true
+                },
+                "language_fit_confirmed": {
+                  "const": true
+                }
               }
             }
           }

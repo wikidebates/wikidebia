@@ -45,5 +45,5 @@ def test_norm_1211_rejects_crlf_and_multiple_blank_lines_between_templates():
     assert findings("\r\n  \r\n")
 
 
-def test_norm_1210_remains_backward_compatible_for_existing_packages():
-    assert findings("\n", norm="1.2.10") == []
+def test_old_norm_metadata_does_not_disable_adjacent_template_rule():
+    assert any(f.code == "WDV-MWK-018" for f in findings("\n", norm="1.2.10"))

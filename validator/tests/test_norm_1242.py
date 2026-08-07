@@ -143,7 +143,7 @@ def test_1242_accepts_canonical_title_as_displayed_without_exception():
     assert not any(i["reason"] == "displayed_title_identity_justification_fr" for i in issues)
 
 
-def test_1242_intro_review_does_not_force_generic_stakes_section():
+def test_old_1242_revision_does_not_disable_current_dedicated_stakes_rule():
     entry = {
         "language": "fr",
         "subject_and_scope_defined": True,
@@ -191,9 +191,10 @@ def test_1242_intro_review_does_not_force_generic_stakes_section():
         topics={"fr": "Exemple"},
         introduction_policy_revision="1.2.42",
     )
-    assert not any(i.get("field") == "stakes_explained" for i in issues)
+    assert any(i.get("field") == "stakes_explained" for i in issues)
+    assert any(i.get("reason") == "missing_dedicated_stakes_subsection" for i in issues)
 
 
 def test_active_norm_is_1242():
     root = Path(__file__).parents[1] / "normative_reference" / "01_normes"
-    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.53.md"]
+    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md"]

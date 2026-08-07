@@ -97,7 +97,7 @@ Vérifier exactement un `{{Lien interlangue}}` dans chaque page française, sa c
 9. Relire chaque révision exacte, vérifier contenu, résumé et balise, puis journaliser.
 10. S’arrêter sur toute divergence, collision, perte d’identité, changement de plan ou révision concurrente.
 
-Aucune opération distincte de mise à jour interlangue n’existe pour les paquets 1.2.x.
+Une mise à jour interlangue distincte n’est admise que lorsque la langue cible est préparée (`ready` ou `published`) et que le workflow la prévoit explicitement. Elle reste interdite tant que `translation_status.en=deferred`; aucun lien provisoire n’est créé.
 
 ## 15. Reprises correctives
 
@@ -223,3 +223,8 @@ Après verrouillage du français, la page Debate anglaise est traduite et docume
 Chaque lot inclut : traduction idiomatique ; contrôle de l'orientation argumentative ; recherche autonome d'un éventuel `name=` anglais ; recherche d'une version anglaise réelle pour les références françaises pertinentes sans traduction artificielle de leurs notices ; recherche de nouvelles références anglophones ; traitement des `Citation`→`Quote` selon le contrat qui ne traduit que `quote` et `date` et ajoute `Citation traduite par IA`.
 
 Une passe globale inter-lots est obligatoire avant finalisation afin d'harmoniser terminologie, titres, vocabulaire, documentation et noms consacrés et de vérifier la parité complète du graphe.
+
+## Architecture cumulative depuis 1.2.54
+
+Les numéros de norme et les anciens champs `*_policy_revision` / `*_revision` ne sélectionnent plus les règles éditoriales. Le workflow applique la norme consolidée courante à partir de l’état fonctionnel du corpus. Les versions globales restent disponibles pour la lecture d’anciens formats, les migrations, la provenance et l’identification d’une livraison. Un registre ou un artefact dont le format évolue utilise sa propre version de schéma.
+

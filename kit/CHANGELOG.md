@@ -1,3 +1,11 @@
+## 2.15.31 — 7 août 2026
+
+- supprime l’usage des révisions normatives comme feature flags éditoriaux ;
+- base les contrôles et transitions sur l’état fonctionnel du corpus ;
+- conserve les versions pour la compatibilité de format, les migrations et la traçabilité ;
+- maintient les règles de traduction anglaise 1.2.53 sans modification ;
+- ajoute des tests d’invariance et un test explicite du lien interlangue selon le statut `deferred`.
+
 ## 2.15.30 — 7 août 2026
 
 - alignement sur la norme 1.2.53 et le validateur 0.4.56 ;

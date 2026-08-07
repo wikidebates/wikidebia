@@ -6,7 +6,7 @@ from pathlib import Path
 from wikidebia_validator.package import PackageContext
 from wikidebia_validator.report import Report
 from wikidebia_validator.validator import validate_package
-from wikidebia_validator.wikicode import parse_template, validate_template_shape
+from wikidebia_validator.wikicode import PROTECTED_PAGE_PARAMETERS, parse_template, validate_template_shape
 from .helpers import create_graph_package, dump
 
 
@@ -61,6 +61,11 @@ def argument(warning='Argument généré par IA') -> str:
     return '\n'.join(rows)
 
 
+
+def preserved(text: str, page_type: str) -> dict:
+    tmpl = parse_template(text)
+    return {name: {"present": tmpl.one(name) is not None, "value": tmpl.one(name)} for name in PROTECTED_PAGE_PARAMETERS["fr", page_type]}
+
 def test_new_debate_gets_creation_only_fields_and_no_related_debates():
     ctx=context()
     manifest={'page_origin':'new','preserved_parameters':{}}
@@ -72,14 +77,8 @@ def test_new_debate_gets_creation_only_fields_and_no_related_debates():
 
 
 def test_preexisting_debate_preserves_exact_fields_or_absence():
-    existing={
-        'page_origin':'preexisting',
-        'preserved_parameters':{
-            'avancement': {'present':True,'value':'Débat en construction'},
-            'avertissements-débat': {'present':False,'value':None},
-            'débats-connexes': {'present':True,'value':'{{Débat connexe|page=Autre débat}}'},
-        },
-    }
+    historical = debate('Débat en construction', None, '{{Débat connexe|page=Autre débat}}')
+    existing={'page_origin':'preexisting','preserved_parameters':preserved(historical, 'debate')}
     ctx=context()
     validate_template_shape(ctx, parse_template(debate('Débat en construction', None, '{{Débat connexe|page=Autre débat}}')), 'fr', 'debate', 'debate.wiki', existing)
     assert not any(i.code == 'WDV-MWK-023' for i in ctx.report.findings), ctx.report.to_text()
@@ -89,7 +88,7 @@ def test_preexisting_debate_preserves_exact_fields_or_absence():
 
 
 def test_preexisting_argument_does_not_gain_ai_warning():
-    manifest={'page_origin':'preexisting','preserved_parameters':{'avertissements-argument':{'present':False,'value':None}}}
+    manifest={'page_origin':'preexisting','preserved_parameters':preserved(argument(None), 'argument')}
     ctx=context()
     validate_template_shape(ctx, parse_template(argument(None)), 'fr', 'argument', 'argument.wiki', manifest)
     assert not any(i.code == 'WDV-MWK-023' for i in ctx.report.findings), ctx.report.to_text()

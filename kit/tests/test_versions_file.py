@@ -10,7 +10,23 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_versions_file_has_only_the_three_functional_versions():
     versions = json.loads((ROOT / "VERSIONS.json").read_text(encoding="utf-8"))
-    assert versions == {"norm": "1.2.53", "validator": "0.4.56", "kit": "2.15.30"}
+    assert versions == {"norm": "1.2.54", "validator": "0.4.57", "kit": "2.15.31"}
+
+    forbidden = (
+        "pour les paquets 1.2.",
+        "pour les corpus 1.2.",
+        "sous la norme 1.2.",
+        "sous les normes 1.2.",
+        "for packages declaring norm 1.2.",
+        "for norm 1.2.",
+    )
+    failures = []
+    for path in ROOT.glob("GUIDE_*.md"):
+        text = path.read_text(encoding="utf-8").casefold()
+        for phrase in forbidden:
+            if phrase.casefold() in text:
+                failures.append(f"{path.name}:{phrase}")
+    assert failures == []
 
 
 def test_versions_file_matches_kit_metadata_and_script():

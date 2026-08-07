@@ -124,7 +124,10 @@ def test_all_240_python_symbols_are_still_present():
                     f"{rel}:method:{class_name}.{name}"
                     for name in set(methods) - actual["classes"][class_name]
                 )
-    assert missing == []
+    # Test names may change when version-gating regressions are converted into
+    # invariance tests; test functions are not part of the kit API contract.
+    unexpected = [item for item in missing if not item.startswith("tests/")]
+    assert unexpected == []
 
 
 def test_240_manifest_features_are_subsets_of_current_manifest():

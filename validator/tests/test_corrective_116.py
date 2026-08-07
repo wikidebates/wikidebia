@@ -1,5 +1,6 @@
 from pathlib import Path
 from wikidebia_validator.editorial import validate_individual_review_data
+from .current_policy_helpers import complete_individual_entry
 
 
 def node(node_id, rubriques=None):
@@ -11,7 +12,7 @@ def entry(node_id, rubriques=None):
     rs=rubriques or ["Science", "Philosophie"]
     reasons={r:f"Justification éditoriale propre à la rubrique {r}" for r in rs}
     sections={"Science":"Science","Philosophie":"Philosophy","Histoire":"History"}
-    return {"id":node_id,"title_decision":"retained_after_review","title_reason":"Le titre est déjà clair et concis.","new_displayed_title_fr":"Titre","new_rubriques":rs,"rubric_decision":"retained_after_review","rubric_rationales":reasons,"new_displayed_title_en":"English title","new_sections_en":[sections[r] for r in rs]}
+    return complete_individual_entry({"id":node_id,"title_decision":"retained_after_review","title_reason":"Le titre est déjà clair et concis.","new_displayed_title_fr":"Titre","new_rubriques":rs,"rubric_decision":"retained_after_review","rubric_rationales":reasons,"new_displayed_title_en":"English title","new_sections_en":[sections[r] for r in rs]}, node(node_id, rs))
 
 
 def test_every_selected_rubric_requires_a_rationale():
@@ -43,4 +44,4 @@ def test_runtime_has_no_corpus_specific_constants():
 
 def test_active_norm_is_116():
     root=Path(__file__).parents[1]/"normative_reference"/"01_normes"
-    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md"))==["WIKIDEBIA_NORME_CONSOLIDEE_1.2.53.md"]
+    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md"))==["WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md"]

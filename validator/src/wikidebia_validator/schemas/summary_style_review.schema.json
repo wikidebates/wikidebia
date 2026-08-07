@@ -6,7 +6,6 @@
   "additionalProperties": true,
   "required": [
     "schema_version",
-    "normative_revision",
     "debate_id",
     "entries"
   ],
@@ -16,7 +15,8 @@
     },
     "normative_revision": {
       "type": "string",
-      "minLength": 1
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Métadonnée historique de traçabilité de la norme sous laquelle la revue a été produite; le format est déterminé par schema_version."
     },
     "debate_id": {
       "type": "string",
@@ -142,25 +142,14 @@
       }
     },
     "quality_policy_revision": {
-      "const": "1.2.38"
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
     },
     "summary_policy_revision": {
-      "enum": [
-        "1.2.39",
-        "1.2.40"
-      ]
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Métadonnée historique de traçabilité; n’active ni ne désactive aucun contrôle éditorial."
     }
-  },
-  "anyOf": [
-    {
-      "required": [
-        "quality_policy_revision"
-      ]
-    },
-    {
-      "required": [
-        "summary_policy_revision"
-      ]
-    }
-  ]
+  }
 }

@@ -49,7 +49,7 @@ from wikidebia_editorial_review import (
 )
 from wikidebia_graph_extract import iter_templates, normalize_key
 
-KIT_VERSION = "2.15.30"
+KIT_VERSION = "2.15.31"
 CONTENT_REVIEW_SCHEMA = "wikidebia-fr-content-review-1.0"
 CONTENT_LOCK_SCHEMA = "wikidebia-fr-content-lock-1.0"
 CONTENT_CHANGESET_SCHEMA = "wikidebia-fr-content-changeset-1.0"
@@ -919,8 +919,6 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
         return {"status": "fr_content_review_finalized", "debate_id": debate_id, "work_id": work_id, "review_sha256": review["review_sha256"], "idempotent": True}
     if review.get("schema") != CONTENT_REVIEW_SCHEMA or review.get("debate_id") != debate_id or review.get("work_id") != work_id:
         raise ContentReviewError("Identité ou schéma de la revue de contenu invalide")
-    if review.get("normative_revision") != NORM_VERSION:
-        raise ContentReviewError("Révision normative divergente dans la revue de contenu")
     if review.get("prepared_reviewed_copy_sha256") != full_tree_sha256(reviewed):
         raise ContentReviewError("reviewed-copy a changé depuis la préparation")
     working_sources = load_json(workspace / "data/sources_working.json", "sources de travail")
@@ -1055,7 +1053,6 @@ def _summary_style_review(arguments: Sequence[Mapping[str, Any]], debate_id: str
     return {
         "schema_version": "1.0",
         "normative_revision": NORM_VERSION,
-        "summary_policy_revision": "1.2.39",
         "debate_id": debate_id,
         "entries": entries,
     }

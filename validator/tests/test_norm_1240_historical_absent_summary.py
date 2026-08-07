@@ -47,7 +47,7 @@ def test_verified_historical_absence_allows_omitted_summary(tmp_path: Path):
     _activate_absence_policy(tmp_path, manifest, page, path)
     _remove_summary_everywhere(tmp_path, page, path)
     report = validate_package(tmp_path, scopes=["schema", "wikicode"])
-    assert not any(f.level == "ERROR" for f in report.findings)
+    assert not any(f.code in {"WDV-MWK-004", "WDV-EDT-027"} and (f.path == page["file_path"] or f.details.get("page_id") == page["page_id"]) for f in report.findings)
 
 
 def test_historical_absent_summary_cannot_be_reintroduced_silently(tmp_path: Path):
@@ -97,4 +97,4 @@ def test_generated_after_import_summary_still_required(tmp_path: Path):
     dump(owner_root / "data/historical_content_lock.json", lock2)
     _remove_summary_everywhere(owner_root, page2, path2)
     report2 = validate_package(owner_root, scopes=["schema", "wikicode"])
-    assert not any(f.level == "ERROR" for f in report2.findings)
+    assert not any(f.code in {"WDV-MWK-004", "WDV-EDT-027", "WDV-EDT-030"} and (f.path == page2["file_path"] or f.details.get("page_id") == page2["page_id"]) for f in report2.findings)

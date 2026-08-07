@@ -29,8 +29,8 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.15.30"
-REQUIRED_VALIDATOR_VERSION = "0.4.56"
+KIT_VERSION = "2.15.31"
+REQUIRED_VALIDATOR_VERSION = "0.4.57"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
 RECEIPT_VERSION = "wikidebia-remote-update-receipt-1.0"
@@ -604,13 +604,8 @@ class RemoteUpdatePlanner:
             raise UpdateError(f"Le validateur requis doit être {REQUIRED_VALIDATOR_VERSION}")
         if not self.languages:
             raise UpdateError("Aucune langue sélectionnée")
-        norm = str(((self.manifest.get("normative_versions") or {}).get("consolidated_norm") or ""))
-        try:
-            norm_version = tuple(int(part) for part in norm.split("."))
-        except ValueError:
-            norm_version = ()
         translation_status = str(((self.manifest.get("translation_status") or {}).get("en") or "pending"))
-        if norm_version >= (1, 2, 34) and translation_status == "deferred" and "en" in self.languages:
+        if translation_status == "deferred" and "en" in self.languages:
             raise UpdateError("La portée anglaise est interdite tant que translation_status.en vaut deferred")
 
     def _load_migrations(self) -> list[dict[str, Any]]:
@@ -632,12 +627,9 @@ class RemoteUpdatePlanner:
 
     def _load_remote_adoptions(self) -> list[dict[str, Any]]:
         controls = self.manifest.get("editorial_controls") or {}
-        revision = controls.get("manual_remote_adoption_revision")
         rel = controls.get("manual_remote_adoption_path")
-        if revision is None and rel is None:
+        if not rel:
             return []
-        if revision != "1.2.48" or not rel:
-            raise UpdateError("La reprise manuelle distante exige la politique 1.2.48 et un registre déclaré")
         path = self.corpus_root / str(rel)
         data = load_json(path)
         if data.get("debate_id") != self.debate_id:
@@ -662,12 +654,9 @@ class RemoteUpdatePlanner:
 
     def _load_argument_name_assignments(self) -> list[dict[str, Any]]:
         controls = self.manifest.get("editorial_controls") or {}
-        revision = controls.get("argument_name_assignment_revision")
         rel = controls.get("argument_name_assignment_path")
-        if revision is None and rel is None:
+        if not rel:
             return []
-        if revision != "1.2.51" or not rel:
-            raise UpdateError("L’attribution explicite de noms d’arguments exige la politique 1.2.51 et un registre déclaré")
         path = self.corpus_root / str(rel)
         data = load_json(path)
         if data.get("debate_id") != self.debate_id:

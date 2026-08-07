@@ -86,4 +86,4 @@ Ces commandes ne génèrent pas encore de pages. Voir `GUIDE_CORPUS_REVIEW.md`.
 
 ## Profondeur
 
-Sous les normes 1.2.31 et suivantes, le build utilise `depth_policy.limit_policy=unbounded`. La profondeur maximale observée est descriptive ; aucune limite, cible normale, justification d’exception ou alerte numérique n’est générée.
+Le build courant utilise `depth_policy.limit_policy=unbounded`, indépendamment de la révision de provenance du corpus. La profondeur maximale observée est descriptive ; aucune limite, cible normale, justification d’exception ou alerte numérique n’est générée.

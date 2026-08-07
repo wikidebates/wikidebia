@@ -1,6 +1,7 @@
 from pathlib import Path
 import hashlib, json
 from wikidebia_validator.validator import validate_package
+from wikidebia_validator.wikicode import PROTECTED_PAGE_PARAMETERS, parse_template
 from .helpers import create_fr_package, dump
 
 
@@ -20,7 +21,8 @@ def _package(root: Path, source_has_name: bool = True):
     manifest['editorial_controls']={'legacy_content_preservation':{'enabled':True,'lock_path':'data/historical_content_lock.json','protected_fields':['nom'],'source_archive_sha256':'a'*64,'verification_revision':'0.4.52','source_inventory_path':'data/initial_remote_inventory_fr.json','source_inventory_sha256':hashlib.sha256(inventory_path.read_bytes()).hexdigest()}}
     # lifecycle state: nom is protected for preexisting arguments
     page['page_origin']='preexisting'
-    page['preserved_parameters']={'avertissements-argument':{'present':True,'value':'Argument généré par IA'},'nom':{'present':source_has_name,'value':'Argument historique' if source_has_name else None}}
+    tmpl=parse_template(text)
+    page['preserved_parameters']={name:{'present':tmpl.one(name) is not None,'value':tmpl.one(name)} for name in PROTECTED_PAGE_PARAMETERS['fr','argument']}
     dump(root/'manifest.json',manifest)
     dump(root/'data/historical_content_lock.json',{'schema_version':'1.2','debate_id':manifest['debate_id'],'source_archive':'source.zip','source_archive_sha256':'a'*64,'protected_fields':['nom'],'arguments':[{'id':page['page_id'],'language':'fr','summary_provenance':'generated_after_import','initialisation':{'present':False},'nom':{'present':source_has_name,**({'value':'Argument historique'} if source_has_name else {})}}]})
     return page,path

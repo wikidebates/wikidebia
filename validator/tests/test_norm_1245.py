@@ -37,9 +37,11 @@ def test_1245_accepts_uniform_links():
     assert not [i for i in _issues(_review(),content) if i["reason"].startswith("wikipedia") or i["reason"]=="declared_wikipedia_link_missing"]
 
 
-def test_1245_rejects_declared_link_missing_from_subsection():
+def test_old_1245_revision_does_not_reactivate_superseded_link_group_switch():
     content="Le {{Lien Wikipédia|article=théisme}}, le déisme et le {{Lien Wikipédia|article=panthéisme}} sont distingués."
-    assert any(i["reason"]=="declared_wikipedia_link_missing" for i in _issues(_review(),content))
+    issues = _issues(_review(), content)
+    assert not any(i["reason"]=="declared_wikipedia_link_missing" for i in issues)
+    assert any(i["reason"].startswith("specialized_term_") for i in issues)
 
 
 def test_1245_accepts_explicitly_justified_exception():

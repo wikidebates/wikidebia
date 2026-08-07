@@ -46,7 +46,7 @@ from wikidebia_content_review import (
     META_DISCOURSE,
 )
 
-KIT_VERSION = "2.15.30"
+KIT_VERSION = "2.15.31"
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.0"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
@@ -915,8 +915,8 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
         return {"status": "en_translation_review_finalized", "debate_id": debate_id, "work_id": work_id, "review_sha256": review["review_sha256"], "idempotent": True}
     if review.get("schema") != TRANSLATION_REVIEW_SCHEMA or review.get("debate_id") != debate_id or review.get("work_id") != work_id:
         raise TranslationReviewError("Schéma ou identité de revue anglaise invalide")
-    if review.get("normative_revision") != NORM_VERSION or review.get("prepared_content_reviewed_copy_sha256") != full_tree_sha256(source):
-        raise TranslationReviewError("Base française ou norme divergente pour la revue anglaise")
+    if review.get("prepared_content_reviewed_copy_sha256") != full_tree_sha256(source):
+        raise TranslationReviewError("Base française divergente pour la revue anglaise")
     registry, metadata_lock, content_lock, vocabulary_fr = _source_snapshot(source)
     french_source_rows = load_json(source / "data/sources.json", "sources françaises").get("sources") or []
     french_ids = {str(row.get("id")) for row in french_source_rows}
@@ -1008,7 +1008,6 @@ def _merge_summary_review(path: Path, arguments: Sequence[Mapping[str, Any]], de
         }
     data["schema_version"] = "1.0"
     data["normative_revision"] = NORM_VERSION
-    data["summary_policy_revision"] = "1.2.39"
     data.pop("quality_policy_revision", None)
     data["debate_id"] = debate_id
     data["entries"] = [by_id[key] for key in sorted(by_id)]
@@ -1108,7 +1107,7 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     name_review_path = target / "reviews/argument_name_discovery_review.json"
     existing_name_review = load_json(name_review_path, "revue des noms d’arguments") if name_review_path.is_file() else {
         "version": "wikidebia-argument-name-discovery-review-1.0",
-        "normative_revision": "1.2.52",
+        "normative_revision": NORM_VERSION,
         "debate_id": debate_id,
         "entries": [],
     }
@@ -1123,11 +1122,11 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
         })
     write_json(name_review_path, {
         "version": "wikidebia-argument-name-discovery-review-1.0",
-        "normative_revision": "1.2.52",
+        "normative_revision": NORM_VERSION,
         "debate_id": debate_id,
         "entries": name_entries,
     })
-    write_json(target / "data/keyword_vocabulary_bilingual.json", {"schema": "wikidebia-keyword-vocabulary-bilingual-1.0", "normative_revision": NORM_VERSION, "keyword_policy_revision": "1.2.39", "debate_id": debate_id, "status": "approved_bilingual", "language_status": "bilingual_locked", "review_sha256": review["review_sha256"], "entries": bilingual_entries})
+    write_json(target / "data/keyword_vocabulary_bilingual.json", {"schema": "wikidebia-keyword-vocabulary-bilingual-1.0", "normative_revision": NORM_VERSION, "debate_id": debate_id, "status": "approved_bilingual", "language_status": "bilingual_locked", "review_sha256": review["review_sha256"], "entries": bilingual_entries})
     write_json(target / "changes/en_translation_changeset.json", changeset)
     write_json(target / "reviews/en/translation_review.json", copy.deepcopy(review))
     _merge_introduction_review(target / "reviews/introduction_review.json", final["debate"])
@@ -1135,7 +1134,6 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     manifest = load_json(target / "manifest.json", "manifest.json")
     manifest.setdefault("translation_status", {})["en"] = "ready"
     controls = manifest.setdefault("editorial_controls", {})
-    controls["argument_name_discovery_revision"] = "1.2.52"
     controls["argument_name_discovery_path"] = "reviews/argument_name_discovery_review.json"
     required_reports = controls.setdefault("required_reports", [])
     for rel in ("reports/en_translation_preflight.json", "reports/en_translation_validation.json"):

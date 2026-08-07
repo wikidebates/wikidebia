@@ -92,7 +92,7 @@ def test_context_dependent_canonical_titles_are_detected():
     assert contextual_title_issues(
         "La convergence de plusieurs échecs indépendants sur ce protocole réduit sa valeur",
         "fr",
-    ) == ["implicit_referent"]
+    ) == ["possible_contextual_referent"]
     assert contextual_title_issues(
         "La convergence de plusieurs échecs indépendants sur le protocole de contrôle croisé réduit sa valeur emblématique",
         "fr",

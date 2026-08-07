@@ -82,9 +82,10 @@ def _validate(entry, titles=None, content=None):
     )
 
 
-def test_1243_accepts_dedicated_concrete_stakes_subsection():
+def test_current_policy_accepts_dedicated_concrete_stakes_subsection_even_with_old_revision_metadata():
     issues = _validate(_entry())
-    assert not issues
+    stakes_reasons = {"missing_dedicated_stakes_subsection", "stakes_review_row_count", "stakes_section_attestation", "concrete_stakes_missing", "invalid_concrete_stakes", "stakes_subsection_too_thin"}
+    assert not any(issue["reason"] in stakes_reasons for issue in issues)
 
 
 def test_1243_rejects_missing_dedicated_stakes_title():
@@ -105,4 +106,4 @@ def test_1243_rejects_symbolic_stakes_content():
 
 def test_active_norm_is_1243():
     root = Path(__file__).parents[1] / "normative_reference" / "01_normes"
-    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.53.md"]
+    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.54.md"]
