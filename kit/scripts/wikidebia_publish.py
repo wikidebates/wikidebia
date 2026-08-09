@@ -14,8 +14,8 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Protocol
 
-KIT_VERSION = "2.15.32"
-REQUIRED_VALIDATOR_VERSION = "0.4.58"
+KIT_VERSION = "2.15.33"
+REQUIRED_VALIDATOR_VERSION = "0.4.59"
 DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
 DEFERRED_TRANSLATION_PROFILE = "norm_1_2_deferred_translation"
 DIRECT_PROFILES = {DIRECT_INTERLANGUAGE_PROFILE, DEFERRED_TRANSLATION_PROFILE}
@@ -358,6 +358,7 @@ class PageAction:
     desired_sha256: str | None
     classification: str
     operation: str
+    edit_summary: str = ""
     note: str | None = None
 
 
@@ -651,6 +652,50 @@ class GenericPublisher:
 
     def _summary(self, language: str) -> str:
         return str(self.operation["edit_summaries"][language])
+
+    def _french_source_title(self, page_id: str, page_type: str) -> str:
+        matches = [
+            row for row in (self.manifest.get("pages") or [])
+            if str(row.get("language")) == "fr"
+            and str(row.get("page_id")) == page_id
+            and str(row.get("page_type") or "") == page_type
+        ]
+        if len(matches) != 1:
+            raise PublicationError(
+                f"Impossible de résoudre la page française source pour {page_type} {page_id}"
+            )
+        title = str(matches[0].get("canonical_title") or "").strip()
+        if not title:
+            raise PublicationError(
+                f"Titre français source absent pour {page_type} {page_id}"
+            )
+        return title
+
+    def _summary_for_page(self, language: str, page_id: str, page_type: str) -> str:
+        # A translated English page receives a page-specific cross-wiki source link.
+        # The source title comes from the locked French page manifest with the same
+        # logical page id; it is never inferred from the English title.
+        if (
+            language == "en"
+            and self.operation.get("kind") == "full_page"
+            and self._english_translation_status() in {"ready", "published"}
+        ):
+            source_title = self._french_source_title(page_id, page_type)
+            return f"Translation of the French page [[:fr:{source_title}|{source_title}]]"
+        return self._summary(language)
+
+    def _summary_for_action(self, action: dict[str, Any]) -> str:
+        expected = self._summary_for_page(
+            str(action.get("language") or ""),
+            str(action.get("page_id") or ""),
+            str(action.get("page_type") or ""),
+        )
+        planned = str(action.get("edit_summary") or "")
+        if planned != expected:
+            raise PublicationError(
+                f"Résumé individualisé divergent dans le plan : {action.get('page_id')}"
+            )
+        return planned
 
     def _parameter(self, language: str) -> str | None:
         if self.operation["kind"] != "parameter_update":
@@ -1056,7 +1101,7 @@ class GenericPublisher:
             }
             counts[language]["total"] = len(language_actions)
         plan: dict[str, Any] = {
-            "plan_version": "wikidebia-publication-plan-2.15.23",
+            "plan_version": "wikidebia-publication-plan-2.15.33",
             "publication_profile": self.publication_profile,
             "kit_version": KIT_VERSION,
             "debate_id": self.config["debate_id"],
@@ -1095,6 +1140,7 @@ class GenericPublisher:
             parameter=parameter,
             local_file_sha256=sha_file(source_path),
             local_target_sha256=sha_text(local_target),
+            edit_summary=self._summary_for_page(language, page_id, page_type),
         )
         if not exists:
             if self.operation["kind"] == "full_page" and self.operation.get("create_missing", True):
@@ -1204,6 +1250,8 @@ class GenericPublisher:
             raise PublicationError("Balises divergentes du plan")
         if plan.get("edit_summaries") != self.operation.get("edit_summaries"):
             raise PublicationError("Résumés de modification divergents du plan")
+        for action in plan.get("actions", []):
+            self._summary_for_action(action)
         if plan.get("blockers"):
             raise CollisionError("Le plan contient des bloqueurs")
 
@@ -1299,7 +1347,7 @@ class GenericPublisher:
         current_language = "fr"
         title = str(action["title"])
         _, user = self._site(current_language)
-        summary = self._summary(current_language)
+        summary = self._summary_for_page(current_language, str(action["page_id"]), "debate")
         source_path = self.root / str(action["source_path"])
         if sha_file(source_path) != action["local_file_sha256"]:
             raise PublicationError("Fichier local modifié depuis le plan")
@@ -1406,7 +1454,7 @@ class GenericPublisher:
             "local_file_sha256": action.get("local_file_sha256"),
             "desired_sha256": action.get("desired_sha256"),
             "content_sha256": action.get("desired_sha256"),
-            "summary": self._summary(language),
+            "summary": self._summary_for_action(action),
         }
         for field, expected in action_checks.items():
             if receipt.get(field) != expected:
@@ -1540,12 +1588,12 @@ class GenericPublisher:
             if not language_actions:
                 continue
             _, user = self._site(current_language)
-            summary = self._summary(current_language)
             self.adapter.open_language(current_language, user)
             try:
                 self.adapter.assert_identity(user)
                 self._change_tag_gate(current_language)
                 for action in language_actions:
+                    summary = self._summary_for_action(action)
                     result = self._execute_action(action, user, summary)
                     counts[result] += 1
                     delay = max(0.0, float(self.config.get("write_delay_seconds", 0.5)))

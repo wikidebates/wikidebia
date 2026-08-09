@@ -1,1 +1,1 @@
-Tests pytest : 291 réussis, 0 échec.
+Tests pytest : 293 réussis, 0 échec.

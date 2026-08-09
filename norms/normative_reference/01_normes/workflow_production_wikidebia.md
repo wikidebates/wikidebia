@@ -228,3 +228,7 @@ Une passe globale inter-unités est obligatoire avant finalisation afin d'harmon
 
 Les numéros de norme et les anciens champs `*_policy_revision` / `*_revision` ne sélectionnent plus les règles éditoriales. Le workflow applique la norme consolidée courante à partir de l’état fonctionnel du corpus. Les versions globales restent disponibles pour la lecture d’anciens formats, les migrations, la provenance et l’identification d’une livraison. Un registre ou un artefact dont le format évolue utilise sa propre version de schéma.
 
+## Résumé de publication des traductions anglaises
+
+Pour une page anglaise créée comme traduction d’une page française verrouillée, le résumé MediaWiki est individualisé : `Translation of the French page [[:fr:X|X]]`, où `X` est le titre canonique français de la même `page_id`. Le plan signé conserve cette valeur page par page ; l’exécuteur la recalcule depuis le manifeste avant écriture et la relecture de la révision créée en vérifie l’identité exacte. Le résumé générique anglais reste réservé aux créations qui ne sont pas des traductions. Ce lien d’historique ne remplace pas le lien interlangue rendu dans la page française après passage à `ready`.
+

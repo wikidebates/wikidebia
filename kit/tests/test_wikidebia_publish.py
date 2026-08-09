@@ -56,7 +56,7 @@ def write_fixture(tmp_path: Path, kind: str):
     (corpus / "output" / "en" / "debate.wiki").write_text(en_debate, encoding="utf-8")
     manifest = {
       "debate_id":"demo",
-      "normative_versions":{"validator":"0.4.58"},
+      "normative_versions":{"validator":"0.4.59"},
       "core_files":{"registry":"data/registre_debat.json"},
       "pages":[
         {"language":"fr","page_id":"A1","page_type":"argument","canonical_title":"Titre FR","file_path":"output/fr/A1.wiki","sha256":module.sha_file(corpus / "output/fr/A1.wiki")},
@@ -74,7 +74,7 @@ def write_fixture(tmp_path: Path, kind: str):
     validator = tmp_path / "validator"
     validator.mkdir()
     validator_script = validator / "validate.py"
-    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.58','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.59','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     operation = {
       "id":"test",
       "kind":kind,
@@ -87,8 +87,8 @@ def write_fixture(tmp_path: Path, kind: str):
     }
     if kind == "parameter_update": operation["parameters"]={"fr":"résumé","en":"summary"}
     config = {
-      "kit_version":"2.15.32","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
-      "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.58","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
+      "kit_version":"2.15.33","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
+      "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.59","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
       "family":"wikidebates","family_file":str(Path(__file__)),"pywikibot_dir":str(tmp_path),
       "sites":{"fr":{"code":"fr","expected_user":"ChatGPT"},"en":{"code":"en","expected_user":"ChatGPT"}},
       "logs_dir":"logs","change_tags":["chatgpt"],"verification_attempts":1,"verification_delay_seconds":0,"write_delay_seconds":0,
@@ -673,12 +673,12 @@ def test_historical_manifest_versions_do_not_block_current_validation(tmp_path):
     publisher = module.GenericPublisher(config, FakeAdapter(), path)
     plan = publisher.build_plan()
     assert not plan["blockers"]
-    assert plan["required_validator_version"] == "0.4.58"
+    assert plan["required_validator_version"] == "0.4.59"
 
 
 def test_explicit_custom_manifest_requirement_is_still_enforced(tmp_path):
     config, path, _, _ = write_fixture(tmp_path, "full_page")
-    config["manifest_requirements"] = {"normative_versions.validator": "0.4.58"}
+    config["manifest_requirements"] = {"normative_versions.validator": "0.4.59"}
     path.write_text(json.dumps(config), encoding="utf-8")
     corpus = tmp_path / "corpus" / "demo"
     manifest_path = corpus / "manifest.json"
@@ -906,3 +906,44 @@ def test_direct_profile_1234_allows_later_interlanguage_parameter_update_when_re
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
     path.write_text(json.dumps(config), encoding="utf-8")
     module.GenericPublisher(config, FakeAdapter(), path)
+
+def test_ready_english_translation_uses_page_specific_french_source_summary(tmp_path):
+    config, path, _, _ = write_fixture(tmp_path, "full_page")
+    corpus, manifest_path = make_direct_profile(config, path, tmp_path)
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["translation_status"] = {"en": "ready"}
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    config["operation"]["languages"] = ["en"]
+    config["operation"]["page_types"] = ["argument"]
+    path.write_text(json.dumps(config), encoding="utf-8")
+    adapter = FakeAdapter()
+    publisher = module.GenericPublisher(config, adapter, path)
+    plan = publisher.build_plan()
+    assert len(plan["actions"]) == 1
+    action = plan["actions"][0]
+    assert action["edit_summary"] == "Translation of the French page [[:fr:Titre FR|Titre FR]]"
+    result = publisher.publish(plan=plan, confirmation=plan["plan_sha256"])
+    assert result == {"created": 1, "updated": 0, "skipped": 0}
+    revision = max(adapter.revisions)
+    assert adapter.revisions[revision]["summary"] == action["edit_summary"]
+
+
+def test_tampered_page_specific_translation_summary_is_rejected(tmp_path):
+    config, path, _, _ = write_fixture(tmp_path, "full_page")
+    _, manifest_path = make_direct_profile(config, path, tmp_path)
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["translation_status"] = {"en": "ready"}
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    config["operation"]["languages"] = ["en"]
+    config["operation"]["page_types"] = ["argument"]
+    path.write_text(json.dumps(config), encoding="utf-8")
+    publisher = module.GenericPublisher(config, FakeAdapter(), path)
+    plan = publisher.build_plan()
+    plan["actions"][0]["edit_summary"] = "Translation of another page"
+    plan["plan_sha256"] = module.sha_object({k: v for k, v in plan.items() if k != "plan_sha256"})
+    try:
+        publisher.publish(plan=plan, confirmation=plan["plan_sha256"])
+    except module.PublicationError as exc:
+        assert "Résumé individualisé divergent" in str(exc)
+    else:
+        raise AssertionError("tampered per-page translation summary accepted")

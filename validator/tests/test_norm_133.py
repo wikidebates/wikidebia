@@ -141,3 +141,22 @@ def test_argument_reference_must_develop_argument_not_only_context(tmp_path):
 def test_argument_reference_requires_explicit_argument_attestation(tmp_path):
     report=validate_package(_source_package(tmp_path,_source(None,False)),scopes=['sources'])
     assert any(i.code == 'WDV-SRC-006' for i in report.findings), report.to_text()
+
+def test_preexisting_french_page_may_gain_interlanguage_when_english_is_ready():
+    historical = argument(None).replace('|interlangue={{Lien interlangue\n|langue=en\n|page=Argument topic\n}}\n', '')
+    page_manifest={'page_id':'A0001','page_type':'argument','page_origin':'preexisting','preserved_parameters':preserved(historical, 'argument')}
+    ctx = PackageContext(
+        root=Path('.'),
+        report=Report('0.4.59', '.', ['wikicode']),
+        cache={'manifest.json': {
+            'normative_versions': {'consolidated_norm': '1.2.56'},
+            'translation_status': {'en': 'ready'},
+            'pages': [
+                {'page_id':'A0001','page_type':'argument','language':'fr','canonical_title':'Argument français'},
+                {'page_id':'A0001','page_type':'argument','language':'en','canonical_title':'Argument topic'},
+            ],
+        }},
+    )
+    validate_template_shape(ctx, parse_template(argument(None)), 'fr', 'argument', 'argument.wiki', page_manifest)
+    assert not any(i.code == 'WDV-MWK-023' and 'interlangue' in i.message for i in ctx.report.findings), ctx.report.to_text()
+

@@ -29,8 +29,8 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.15.32"
-REQUIRED_VALIDATOR_VERSION = "0.4.58"
+KIT_VERSION = "2.15.33"
+REQUIRED_VALIDATOR_VERSION = "0.4.59"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
 RECEIPT_VERSION = "wikidebia-remote-update-receipt-1.0"

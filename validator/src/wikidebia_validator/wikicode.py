@@ -291,6 +291,22 @@ def _apply_page_lifecycle_contract(ctx: PackageContext, spec: dict[str, Any], tm
         elif actual is not None:
             if page_type == 'argument' and name == name_parameter and (name_assignment is not None) and (actual == name_assignment.get('name')):
                 continue
+            # A French interlanguage link is the one lifecycle field that may be
+            # added after the English translation leaves deferred mode.  The
+            # bilingual checks validate the exact locked target; this branch only
+            # prevents the generic historical-preservation rule from rejecting
+            # that explicitly authorised enrichment.
+            if lang == 'fr' and name == 'interlangue':
+                manifest = ctx.manifest() or {}
+                status = str(((manifest.get('translation_status') or {}).get('en') or ''))
+                en_page = next((row for row in (manifest.get('pages') or [])
+                                if row.get('page_id') == page_id
+                                and row.get('page_type') == page_type
+                                and row.get('language') == 'en'
+                                and isinstance(row.get('canonical_title'), str)
+                                and row.get('canonical_title').strip()), None)
+                if status in {'ready', 'published'} and en_page is not None:
+                    continue
             ctx.report.error('WDV-MWK-023', f'Le paramètre {name} a été ajouté à une page existante alors qu’il était absent', path=rel, details={'actual': actual})
     if page_type == 'argument' and name_assignment is not None and (tmpl.one(name_parameter) != name_assignment.get('name')):
         ctx.report.error('WDV-EDT-031', 'Le nom d’argument rendu diverge de l’attribution éditoriale approuvée', path=rel, details={'expected': name_assignment.get('name'), 'actual': tmpl.one(name_parameter)})

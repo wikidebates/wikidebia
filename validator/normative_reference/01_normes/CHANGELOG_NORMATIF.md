@@ -1,3 +1,10 @@
+## 1.2.56 — 9 août 2026
+
+- les créations anglaises issues d’une traduction française utilisent désormais le résumé individualisé `Translation of the French page [[:fr:X|X]]` ;
+- `X` provient du titre canonique français verrouillé de la même `page_id` ;
+- le résumé est scellé par action dans le plan, recalculé avant écriture et vérifié sur la révision distante ;
+- cette règle remplace uniquement le résumé générique anglais des créations de traduction et ne remplace pas les liens interlangues de contenu.
+
 ## 1.2.55 — 2026-08-07
 
 - unités internes de revue anglaise ramenées à 10 arguments par défaut, 5–8 pour les groupes denses, avec agrégation possible de plusieurs unités dans une livraison longue ;

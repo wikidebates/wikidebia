@@ -16,7 +16,7 @@ spec.loader.exec_module(module)
 
 
 def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = False) -> None:
-    versions = {"norm": "1.2.20", "validator": "0.4.58", "kit": "2.15.32"}
+    versions = {"norm": "1.2.20", "validator": "0.4.59", "kit": "2.15.33"}
     payloads = {
         "VERSIONS.json": (json.dumps(versions, ensure_ascii=False, indent=2) + "\n").encode("utf-8"),
         "README.md": f"# {artifact}\n".encode("utf-8"),
@@ -25,7 +25,7 @@ def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = F
         {"path": name, "size_bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
         for name, raw in sorted(payloads.items())
     ]
-    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.58", "wikidebia-kit": "2.15.32"}[artifact]
+    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.59", "wikidebia-kit": "2.15.33"}[artifact]
     manifest = {
         "artifact": artifact,
         "version": version,
@@ -59,7 +59,7 @@ def test_component_inspector_accepts_and_verifies_optional_receipt(tmp_path: Pat
     _write_component_zip(archive, "wikidebia-kit", include_receipt=True)
     metadata = module.inspect_component_zip(archive)
     assert metadata["artifact"] == "wikidebia-kit"
-    assert metadata["versions"]["kit"] == "2.15.32"
+    assert metadata["versions"]["kit"] == "2.15.33"
 
 
 def test_single_complete_bundle_is_collected_from_updates(tmp_path: Path):
@@ -155,7 +155,7 @@ def test_generated_config_is_relative_and_debate_first(tmp_path: Path):
     assert config["pywikibot_dir"] == "private/pywikibot"
     assert config["corpus_root"] == "corpus/demo"
     assert config["operation"]["page_type_order"] == ["debate", "argument"]
-    assert config["validator"]["required_version"] == "0.4.58"
+    assert config["validator"]["required_version"] == "0.4.59"
     assert config["manifest_requirements"] == {}
     assert str(tmp_path) not in path.read_text(encoding="utf-8")
 
@@ -1037,7 +1037,7 @@ def test_generated_sources_are_unified_and_legacy_names_are_obsolete(tmp_path: P
         path.write_bytes(artifact.encode("utf-8"))
         archives[artifact] = path
     generated = module.generate_readable_sources(
-        tmp_path, staged, {"norm": "1.2.47", "validator": "0.4.58", "kit": "2.15.32"}, archives
+        tmp_path, staged, {"norm": "1.2.47", "validator": "0.4.59", "kit": "2.15.33"}, archives
     )
     assert set(generated) == {"WIKIDEBIA_SOURCE_ACTIVE.md", "WIKIDEBIA_SOURCE_PACKAGE_RECEIPT.json"}
     source = generated["WIKIDEBIA_SOURCE_ACTIVE.md"].read_text(encoding="utf-8")

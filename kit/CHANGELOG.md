@@ -1,3 +1,10 @@
+## 2.15.33 — 9 août 2026
+
+- les créations anglaises issues d’une traduction française reçoivent un résumé de modification individualisé `Translation of the French page [[:fr:X|X]]` ;
+- `X` est résolu par `page_id` depuis le titre canonique français verrouillé du manifeste, jamais déduit du titre anglais ;
+- le résumé exact de chaque page est incorporé au plan signé, revérifié avant écriture et contrôlé sur la révision distante relue ;
+- les résumés génériques antérieurs restent applicables aux écritures qui ne sont pas des créations de traduction FR→EN.
+
 ## 2.15.32
 
 - alignement sur la norme 1.2.55 et le validateur 0.4.58 ;

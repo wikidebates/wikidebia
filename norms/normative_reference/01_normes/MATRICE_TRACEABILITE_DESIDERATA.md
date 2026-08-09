@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.55
+- **Révision :** 1.2.56
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -422,6 +422,14 @@ La décision du propriétaire du 7 août 2026 supprime les versions comme mécan
 | Refaire une passe de vérification de la traduction | DEN-010 | attestation de seconde passe par lot puis passe globale inter-lots |
 
 
+
+
+### Révision 1.2.56 — provenance française dans le résumé de publication anglais
+
+- chaque création d’une page anglaise issue de la traduction FR→EN utilise le résumé exact `Translation of the French page [[:fr:X|X]]` ;
+- `X` est le titre canonique français verrouillé de la même `page_id` et du même type de page ;
+- le résumé individualisé est inclus dans le plan signé, recalculé avant écriture et vérifié lors de la relecture de la révision distante ;
+- ce lien d’historique ne remplace pas le `{{Lien interlangue}}` ajouté au contenu français lorsque la traduction est `ready` ou `published`.
 
 ### Révision 1.2.55 — qualité adaptative de la traduction anglaise
 
