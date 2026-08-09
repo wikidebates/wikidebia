@@ -10,7 +10,7 @@ import time
 from pathlib import Path
 from typing import Any, Iterable
 
-KIT_VERSION = "2.15.40"
+KIT_VERSION = "2.15.42"
 TAG = "translated-fr"
 BASE_TAG = "chatgpt"
 LANGUAGE = "en"
@@ -230,6 +230,11 @@ class PywikibotTagAdapter:
 
 
 def expected_summary(fr_title: str) -> str:
+    return f"Translation of the French page: [[:fr:{fr_title}|{fr_title}]]"
+
+
+def legacy_expected_summary(fr_title: str) -> str:
+    # Compatibility for translations published before norm 1.2.57.
     return f"Translation of the French page [[:fr:{fr_title}|{fr_title}]]"
 
 
@@ -304,6 +309,7 @@ def build_plan(
             "published_state_revision_id": state_revision_id,
             "source_fr_title": fr_title,
             "expected_summary": expected_summary(fr_title) if fr_title else None,
+            "accepted_summaries": ([expected_summary(fr_title), legacy_expected_summary(fr_title)] if fr_title else []),
             "expected_content_sha256": expected_state_sha,
             "published_state_content_sha256": expected_state_sha,
             "expected_user": expected_user,
@@ -347,7 +353,7 @@ def build_plan(
                 blockers.append("not_creation_revision")
             if candidate.get("user") != expected_user:
                 blockers.append("creator_mismatch")
-            if fr_title and candidate.get("summary") != op["expected_summary"]:
+            if fr_title and candidate.get("summary") not in set(op.get("accepted_summaries") or []):
                 blockers.append("translation_summary_mismatch")
             tags = {str(value) for value in (candidate.get("tags") or [])}
             if BASE_TAG not in tags:
@@ -428,7 +434,15 @@ def execute_plan(*, project_root: Path, plan: dict[str, Any], adapter: Pywikibot
             raise RetroTagError(f"Provenance divergente pour la révision {revid}")
         if sha_text(str(revision.get("text") or "")) != row.get("expected_content_sha256"):
             raise RetroTagError(f"Contenu divergent pour la révision {revid}")
-        if revision.get("summary") != row.get("expected_summary"):
+        fr_title = str(row.get("source_fr_title") or "").strip()
+        canonical_summary = expected_summary(fr_title) if fr_title else ""
+        legacy_summary = legacy_expected_summary(fr_title) if fr_title else ""
+        accepted_summaries = [canonical_summary, legacy_summary] if fr_title else []
+        if row.get("expected_summary") != canonical_summary:
+            raise RetroTagError(f"Résumé canonique divergent dans le plan pour la révision {revid}")
+        if list(row.get("accepted_summaries") or []) != accepted_summaries:
+            raise RetroTagError(f"Résumés acceptés divergents dans le plan pour la révision {revid}")
+        if revision.get("summary") not in set(accepted_summaries):
             raise RetroTagError(f"Résumé divergent pour la révision {revid}")
         tags = {str(value) for value in (revision.get("tags") or [])}
         if BASE_TAG not in tags:

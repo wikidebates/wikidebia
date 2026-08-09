@@ -46,7 +46,7 @@ from wikidebia_content_review import (
     META_DISCOURSE,
 )
 
-KIT_VERSION = "2.15.40"
+KIT_VERSION = "2.15.42"
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.0"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
@@ -153,7 +153,7 @@ def _assert_english_wikicode_localized(value: str, label: str) -> None:
     if parameter:
         raise TranslationReviewError(f"Paramètre français interdit dans {label} : {parameter.group(1)}")
 
-TRANSLATED_CITATION_WARNING = "Quote translated by AI"
+TRANSLATED_CITATION_WARNING = "AI-translated quote"
 FR_MONTHS = {
     "janvier": 1, "février": 2, "fevrier": 2, "mars": 3, "avril": 4, "mai": 5, "juin": 6,
     "juillet": 7, "août": 8, "aout": 8, "septembre": 9, "octobre": 10, "novembre": 11, "décembre": 12, "decembre": 12,

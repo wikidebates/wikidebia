@@ -14,8 +14,8 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Protocol
 
-KIT_VERSION = "2.15.40"
-REQUIRED_VALIDATOR_VERSION = "0.4.60"
+KIT_VERSION = "2.15.42"
+REQUIRED_VALIDATOR_VERSION = "0.4.61"
 DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
 DEFERRED_TRANSLATION_PROFILE = "norm_1_2_deferred_translation"
 DIRECT_PROFILES = {DIRECT_INTERLANGUAGE_PROFILE, DEFERRED_TRANSLATION_PROFILE}
@@ -683,7 +683,7 @@ class GenericPublisher:
             and self._english_translation_status() in {"ready", "published"}
         ):
             source_title = self._french_source_title(page_id, page_type)
-            return f"Translation of the French page [[:fr:{source_title}|{source_title}]]"
+            return f"Translation of the French page: [[:fr:{source_title}|{source_title}]]"
         return self._summary(language)
 
     def _summary_for_action(self, action: dict[str, Any]) -> str:
@@ -1139,7 +1139,7 @@ class GenericPublisher:
             }
             counts[language]["total"] = len(language_actions)
         plan: dict[str, Any] = {
-            "plan_version": "wikidebia-publication-plan-2.15.40",
+            "plan_version": "wikidebia-publication-plan-2.15.42",
             "publication_profile": self.publication_profile,
             "kit_version": KIT_VERSION,
             "debate_id": self.config["debate_id"],

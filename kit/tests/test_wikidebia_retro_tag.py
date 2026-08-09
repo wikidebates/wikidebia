@@ -142,6 +142,28 @@ def test_retro_tag_postwrite_verification_retries_on_replica_lag(tmp_path, monke
     assert receipt["counts"]["verified"] == 2
     assert adapter.post_add_reads == 3
 
+
+def test_retro_tag_executes_legacy_pre_1257_summary(tmp_path):
+    debate_id, revisions = _write_project(tmp_path)
+    for row in revisions.values():
+        if int(row.get("parent_id") or 0) == 0:
+            fr_title = (
+                "Dieu existe-t-il ?"
+                if row["title"] == "Does God exist?"
+                else "Dieu est la cause première de l'univers"
+            )
+            row["summary"] = mod.legacy_expected_summary(fr_title)
+    adapter = FakeAdapter(revisions)
+    plan = mod.build_plan(project_root=tmp_path, debate_id=debate_id, adapter=adapter, expected_user="ChatGPT@import")
+    assert plan["counts"] == {"add": 2, "skip": 0, "block": 0}
+    assert all(
+        mod.legacy_expected_summary(row["source_fr_title"]) in row["accepted_summaries"]
+        for row in plan["operations"]
+    )
+    receipt = mod.execute_plan(project_root=tmp_path, plan=plan, adapter=adapter)
+    assert receipt["counts"] == {"added": 2, "already_tagged": 0, "verified": 2}
+    assert adapter.added == [100, 101]
+
 def test_retro_tag_resolves_creation_when_published_state_points_to_later_revision(tmp_path):
     debate_id, revisions = _write_project(tmp_path)
 

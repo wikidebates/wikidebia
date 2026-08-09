@@ -30,8 +30,8 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.15.40"
-REQUIRED_VALIDATOR_VERSION = "0.4.60"
+KIT_VERSION = "2.15.42"
+REQUIRED_VALIDATOR_VERSION = "0.4.61"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
 RECEIPT_VERSION = "wikidebia-remote-update-receipt-1.0"
@@ -978,7 +978,7 @@ class RemoteUpdatePlanner:
 
     def _interlanguage_edit_summary(self, page_id: str, page_type: str) -> str:
         title = self._english_title_for(page_id, page_type)
-        return f"Ajout du lien interlangue vers la page anglaise [[en:{title}|{title}]]"
+        return f"Ajout du lien interlangue vers la page anglaise : [[:en:{title}|{title}]]"
 
     def _apply_update_summary_policy(
         self,
@@ -1826,7 +1826,7 @@ class PlanExecutor:
 
     def _interlanguage_edit_summary(self, page_id: str, page_type: str) -> str:
         title = self._english_title_for(page_id, page_type)
-        return f"Ajout du lien interlangue vers la page anglaise [[en:{title}|{title}]]"
+        return f"Ajout du lien interlangue vers la page anglaise : [[:en:{title}|{title}]]"
 
     def _verify_written_revision(self, title: str, revision_id: int, desired: str, summary: str) -> None:
         # MediaWiki revision metadata (notably change tags) can briefly lag behind

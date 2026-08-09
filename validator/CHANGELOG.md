@@ -1,3 +1,9 @@
+## 0.4.61 — 9 août 2026
+
+- aligne le validateur sur la norme 1.2.57 ;
+- exige désormais `AI-translated quote` pour l’avertissement des citations anglaises traduites automatiquement ;
+- conserve tous les autres contrôles de traduction et de préservation.
+
 ## 0.4.60 — 9 août 2026
 
 - alignement sur la norme 1.2.56 ;

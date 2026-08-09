@@ -40,12 +40,12 @@ def english_expected() -> dict:
         {"name": "authors", "value": "Auteur inchangé"},
         {"name": "work", "value": "Original Work"},
         {"name": "date", "value": "25 June 2012"},
-        {"name": "warnings", "value": "Texte abrégé, Quote translated by AI"},
+        {"name": "warnings", "value": "Texte abrégé, AI-translated quote"},
     ]
     return {
         "id": "A0001-C001",
         "parameters": parameters,
-        "warnings": "Texte abrégé, Quote translated by AI",
+        "warnings": "Texte abrégé, AI-translated quote",
         "source": {"source_parameters": source_parameters},
     }
 
@@ -75,9 +75,9 @@ def argument(quote: str, *, lang: str = "en") -> str:
 
 
 def test_validator_version_and_active_norm_1227():
-    assert __version__ == "0.4.60"
+    assert __version__ == "0.4.61"
     root = Path(__file__).resolve().parents[1] / "normative_reference/01_normes"
-    assert [path.name for path in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")] == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.56.md"]
+    assert [path.name for path in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")] == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.57.md"]
 
 
 def test_english_citation_matching_lock_is_accepted(tmp_path: Path):
@@ -87,7 +87,7 @@ def test_english_citation_matching_lock_is_accepted(tmp_path: Path):
 |authors=Auteur inchangé
 |work=Original Work
 |date=25 June 2012
-|warnings=Texte abrégé, Quote translated by AI
+|warnings=Texte abrégé, AI-translated quote
 }}"""
     ctx = context(tmp_path, "en", expected)
     tmpl = parse_template(argument(raw))
@@ -104,7 +104,7 @@ def test_english_citation_rejects_changed_documentary_parameter(tmp_path: Path):
 |authors=Translated author
 |work=Original Work
 |date=25 June 2012
-|warnings=Texte abrégé, Quote translated by AI
+|warnings=Texte abrégé, AI-translated quote
 }}"""
     ctx = context(tmp_path, "en", expected)
     tmpl = parse_template(argument(raw))
@@ -124,7 +124,7 @@ def test_english_citation_rejects_missing_translation_warning(tmp_path: Path):
     ctx = context(tmp_path, "en", expected)
     tmpl = parse_template(argument(raw))
     _validate_citations_against_locks(ctx, tmpl, "output/en/arguments/A0001.wiki", "en", "A0001")
-    assert any(item.code == "WDV-MWK-021" and "Quote translated by AI" in item.message for item in ctx.report.findings)
+    assert any(item.code == "WDV-MWK-021" and "AI-translated quote" in item.message for item in ctx.report.findings)
 
 
 def test_old_norm_metadata_does_not_disable_current_citation_support(tmp_path: Path):
@@ -146,7 +146,7 @@ def test_english_citation_model_name_must_be_quote(tmp_path: Path):
 |authors=Auteur inchangé
 |work=Original Work
 |date=25 June 2012
-|warnings=Texte abrégé, Quote translated by AI
+|warnings=Texte abrégé, AI-translated quote
 }}"""
     ctx = context(tmp_path, "en", expected)
     tmpl = parse_template(argument(raw))

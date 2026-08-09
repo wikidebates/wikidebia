@@ -139,11 +139,11 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(state), encoding="utf-8")
     validator = root / "validator.py"
-    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.60','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.61','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     config = {
-        "kit_version":"2.15.40","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
+        "kit_version":"2.15.42","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
         "family":"wikidebates","pywikibot_dir":"private/pywikibot","sites":{lang:{"code":lang,"expected_user":"ChatGPT"} for lang in languages},
-        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.60","scopes":[]},
+        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.61","scopes":[]},
         "published_state_dir":".state/published","receipts_dir":".state/receipts","logs_dir":"logs",
     }
     config_path = root / "config.json"
@@ -676,7 +676,7 @@ def test_french_interlanguage_addition_gets_page_specific_summary_and_executes(t
     planned = planner.build_plan()
     assert planned["counts"]["update"] == 1
     row = planned["operations"]["update"][0]
-    expected = f"Ajout du lien interlangue vers la page anglaise [[en:{en_title}|{en_title}]]"
+    expected = f"Ajout du lien interlangue vers la page anglaise : [[:en:{en_title}|{en_title}]]"
     assert row["edit_summary_policy"] == "french_interlanguage_addition"
     assert row["edit_summary"] == expected
     executor = module.PlanExecutor(config, adapter, path)
@@ -745,7 +745,7 @@ def test_56_interlanguage_only_preserves_human_changes(tmp_path):
     assert "Modification humaine conservée" in desired
     assert "Version du corpus différente" not in desired
     assert "|interlangue={{Lien interlangue\n|langue=en\n|page=English title\n}}" in desired
-    assert row["edit_summary"] == "Ajout du lien interlangue vers la page anglaise [[en:English title|English title]]"
+    assert row["edit_summary"] == "Ajout du lien interlangue vers la page anglaise : [[:en:English title|English title]]"
 
 
 def test_57_interlanguage_only_preserves_external_parameter(tmp_path):

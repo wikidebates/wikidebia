@@ -327,12 +327,12 @@ def test_finalize_translation_preserves_citation_metadata_and_appends_warning(tm
     assert output["article"] == "Freedom of the Will and the Concept of a Person"
     assert output["quote"] == "Freedom consists in wanting what one wants."
     assert output["date"] == "25 June 2012"
-    assert output["warnings"] == "Texte abrégé, Quote translated by AI"
+    assert output["warnings"] == "Texte abrégé, AI-translated quote"
     assert a["output_template"] == "Quote"
     assert all(row["name"] not in {"citation", "auteurs", "ouvrage", "numéro", "localisation", "édition", "lieu", "lien", "avertissements-citation"} for row in a["parameters"])
     b = by_id["A0002"]["citations"][0]
     output_b = {row["name"]: row["value"] for row in b["parameters"]}
-    assert output_b["warnings"] == "Quote translated by AI"
+    assert output_b["warnings"] == "AI-translated quote"
     assert by_id["A0004"]["citations"][0]["date"] == "1971"
 
 

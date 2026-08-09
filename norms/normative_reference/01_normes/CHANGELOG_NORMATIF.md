@@ -1,3 +1,11 @@
+## 1.2.57 — 9 août 2026 — conventions de publication des futures traductions
+
+- résumé des nouvelles créations anglaises FR→EN : `Translation of the French page: [[:fr:X|X]]` ;
+- résumé des futurs ajouts interlangues français : `Ajout du lien interlangue vers la page anglaise : [[:en:X|X]]` ;
+- avertissement des citations traduites automatiquement : `AI-translated quote` ;
+- balises des créations anglaises traduites : `chatgpt` et `translated-fr` ;
+- aucune réécriture rétroactive imposée aux historiques déjà publiés.
+
 ## 1.2.56 — 9 août 2026
 
 - les créations anglaises issues d’une traduction française utilisent désormais le résumé individualisé `Translation of the French page [[:fr:X|X]]` ;
@@ -35,7 +43,7 @@
 - recherche de `name=` indépendante dans la littérature anglophone, sans traduction mécanique de `nom=` ;
 - interdiction de traduire artificiellement les références françaises ; projection uniquement d'une version anglaise réelle et vérifiée avec ses métadonnées propres ;
 - recherche indépendante de nouvelles références anglophones ;
-- confirmation du contrat `Citation`→`Quote` : seules les valeurs `quote` et `date` sont traduites et `Quote translated by AI` est ajouté ;
+- confirmation du contrat `Citation`→`Quote` : seules les valeurs `quote` et `date` sont traduites et `Quote translated by AI` est ajouté (mention remplacée par `AI-translated quote` en 1.2.57) ;
 - alignement recommandé : validateur 0.4.56 et kit 2.15.30.
 
 ## 1.2.52 — 7 août 2026

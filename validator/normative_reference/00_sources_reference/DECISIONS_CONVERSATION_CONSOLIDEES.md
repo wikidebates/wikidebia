@@ -282,3 +282,14 @@ Une vérification supplémentaire a montré qu’un plan entièrement `skip` doi
 4. Les exemples, checklists et lots déjà validés servent de garde-fous ; Work ou tout autre agent doit raisonner à partir du contenu de chaque page et des sources, et ne doit pas exécuter mécaniquement un patron dérivé des cas précédents.
 5. Une absence historique de résumé attestée en français doit rester une absence en anglais. Le workflow ne doit ni bloquer sur cette absence ni inventer un `summary=` pour satisfaire un formulaire ou un contrôle de longueur.
 
+
+
+## Décision du 9 août 2026 — conventions futures de publication FR→EN
+
+Pour les prochains débats traduits du français vers l’anglais :
+
+1. le résumé d’une nouvelle création anglaise est exactement `Translation of the French page: [[:fr:X|X]]` ;
+2. le résumé d’un ajout de lien interlangue sur la page française est exactement `Ajout du lien interlangue vers la page anglaise : [[:en:X|X]]` ;
+3. l’avertissement des citations traduites automatiquement est exactement `AI-translated quote` ;
+4. toute nouvelle page anglaise issue d’une traduction reçoit les deux balises `chatgpt` et `translated-fr` sur sa révision de création ;
+5. ces changements valent pour les futures créations et ne déclenchent aucune réécriture rétroactive des débats déjà publiés.

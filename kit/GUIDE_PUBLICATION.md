@@ -83,7 +83,7 @@ Le corpus déclare `translation_status.en=deferred`, ne manifeste que les pages 
 Lorsqu’une page anglaise est créée depuis une traduction française verrouillée et que `translation_status.en` vaut `ready` ou `published`, le plan porte un résumé propre à la page :
 
 ```text
-Translation of the French page [[:fr:X|X]]
+Translation of the French page: [[:fr:X|X]]
 ```
 
 `X` est le titre canonique français de la même `page_id`. Le titre est résolu depuis le manifeste, le résumé est signé avec l’action, recalculé avant l’écriture et contrôlé sur la révision relue. Le lien d’historique ne remplace pas `{{Lien interlangue}}` dans la page française.

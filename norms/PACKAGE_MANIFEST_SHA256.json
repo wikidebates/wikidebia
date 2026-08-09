@@ -1,30 +1,30 @@
 {
   "artifact": "wikidebia-normes",
-  "version": "1.2.56",
-  "normative_revision": "1.2.56",
+  "version": "1.2.57",
+  "normative_revision": "1.2.57",
   "stable_archive_name": "wikidebia-normes.zip",
   "version_source": "VERSIONS.json",
   "self_excluded": [
     "PACKAGE_MANIFEST_SHA256.json",
     "PACKAGE_RECEIPT.json"
   ],
-  "declared_file_count": 229,
+  "declared_file_count": 230,
   "declared_test_count": 0,
   "files": [
     {
       "path": "COMPATIBILITY.json",
-      "size_bytes": 2511,
-      "sha256": "54e4ee0102c4abf4d340d33450d7e3ec95b7de464bae4e08566676cef7236b47"
+      "size_bytes": 2664,
+      "sha256": "29a71cb978954fe1828a758debbda4e81296bb85695ccefcf74f2227ac97c7cd"
     },
     {
       "path": "README.md",
-      "size_bytes": 2202,
-      "sha256": "0e5bd50aa2d2798393f080a1a777a381ade1df96d79001833b52054c316060c4"
+      "size_bytes": 2183,
+      "sha256": "c386b7ddbf95e5177aa7af3524d68825e2dfbea2098dcac99f770b8f3608f03b"
     },
     {
       "path": "VERSIONS.json",
       "size_bytes": 68,
-      "sha256": "3f03db06c68e5a0894d9ad0270c833bfcb72229c2410ab7792719026e001781a"
+      "sha256": "044db5fb5c41da1845265187f2857cb4288ee5ae26ad5a1d573e494630aa3d11"
     },
     {
       "path": "docs/ARCHITECTURE_VALIDATEUR.md",
@@ -210,6 +210,11 @@
       "path": "docs/AUDIT_COMPLETUDE_1.2.55.md",
       "size_bytes": 382,
       "sha256": "7ff4a06f7376c8ce698faa2e31a98fe6e234369a9f1c493aadf04ad3d7372750"
+    },
+    {
+      "path": "docs/AUDIT_COMPLETUDE_1.2.57.md",
+      "size_bytes": 423,
+      "sha256": "5d6b2c1ceb0f7eb7ecb186fb8c7e2abf5aecfc94cc39d8dbb3562c7ced057bae"
     },
     {
       "path": "docs/AUDIT_COMPLETUDE_1.2.8.md",
@@ -773,8 +778,8 @@
     },
     {
       "path": "normative_reference/00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md",
-      "size_bytes": 31247,
-      "sha256": "671b1f8da697fdd4e4458dc6a2fe5afbde4fbde240cb00c07076062e7419216d"
+      "size_bytes": 32039,
+      "sha256": "3bf5728ffda4041cd21f3ff66c75f7a377861ca85ed4b0cd60571fc9055eda78"
     },
     {
       "path": "normative_reference/00_sources_reference/PROVENANCE_DOCUMENTAIRE.md",
@@ -783,18 +788,18 @@
     },
     {
       "path": "normative_reference/01_normes/CHANGELOG_NORMATIF.md",
-      "size_bytes": 33839,
-      "sha256": "9fca80f3f565edc227f752d8454c887ea06702120028f9efe9ed52a40424644c"
+      "size_bytes": 34441,
+      "sha256": "9e067a0a8288c9b5502e4163a65512546ac5098a9419e15689711a0e1d771d98"
     },
     {
       "path": "normative_reference/01_normes/MATRICE_TRACEABILITE_DESIDERATA.md",
-      "size_bytes": 31083,
-      "sha256": "8cbf2a3cf9c62ef98991375b003ae9bb84c4bbb49ae9b1ec0159376a4f18a7a4"
+      "size_bytes": 31623,
+      "sha256": "a78a0ce02ca3101760dbf26627bd1bcff14f44bfc9ee1de8e449e18ed140b651"
     },
     {
-      "path": "normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.56.md",
-      "size_bytes": 179689,
-      "sha256": "60a6e6c27aa177507b57a150d3978462d2fb8530f5a4a99edf56f76622960388"
+      "path": "normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.57.md",
+      "size_bytes": 180726,
+      "sha256": "5f59b429c60a59aba522cbba18add3ebd4644e628c3efff6530d81d634b520a3"
     },
     {
       "path": "normative_reference/01_normes/cahier_des_charges_consolide_wikidebia.md",
@@ -1138,8 +1143,8 @@
     },
     {
       "path": "normative_reference/01_normes/requirements_catalog_wikidebia.json",
-      "size_bytes": 248285,
-      "sha256": "0fc5333b5454aed8d9275984e2a113ab277a7608c490edb36dfa61db14b45669"
+      "size_bytes": 249937,
+      "sha256": "7ddb447ca8b2ef8d208cb95cec23a689f156d5f167a2649f188eaa895e3c0600"
     },
     {
       "path": "normative_reference/01_normes/schema_graphe_registre_wikidebia.md",
@@ -1153,8 +1158,8 @@
     },
     {
       "path": "normative_reference/01_normes/workflow_production_wikidebia.md",
-      "size_bytes": 24806,
-      "sha256": "380188930e6d20ecf5686037ade5cd0ed41f14e339d7df9647db9e6ae254f9bb"
+      "size_bytes": 24804,
+      "sha256": "386109ebda87aaf227005114cbc15d5e7a802cca8d010ed3d59fceef6bdc4f2b"
     }
   ]
 }

@@ -1,3 +1,18 @@
+## 2.15.42 — 10 août 2026
+
+- corrige l’exécution de `tag-translated-fr` afin qu’elle accepte réellement les résumés historiques sans deux-points déjà admis par le dry-run ;
+- recalcule les deux résumés admissibles depuis le titre français source et refuse toute liste de résumés altérée dans le plan ;
+- ajoute un test de non-régression dry-run → exécution sur une publication antérieure à 1.2.57 ;
+- aligne la documentation de provenance sans modifier les règles éditoriales 1.2.57.
+
+## 2.15.41 — 9 août 2026
+
+- adopte pour les futures créations anglaises FR→EN le résumé exact `Translation of the French page: [[:fr:X|X]]` ;
+- adopte pour les futurs ajouts interlangues français le résumé exact `Ajout du lien interlangue vers la page anglaise : [[:en:X|X]]` ;
+- remplace l’avertissement anglais des citations traduites par IA par `AI-translated quote` ;
+- conserve l’application conjointe des balises `chatgpt` et `translated-fr` à toute nouvelle page anglaise issue d’une traduction française ;
+- maintient `tag-translated-fr` compatible avec les deux formes historiques et nouvelles du résumé de traduction.
+
 ## 2.15.40 — 9 août 2026
 
 - corrige `tag-translated-fr` lorsque l’état publié pointe vers une révision postérieure à la création ;

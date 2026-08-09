@@ -37,12 +37,12 @@ def _expected() -> dict:
         {"name": "place", "value": "Paris"},
         {"name": "date", "value": "25 June 2012"},
         {"name": "link", "value": "https://example.org"},
-        {"name": "warnings", "value": "Texte abrégé, Quote translated by AI"},
+        {"name": "warnings", "value": "Texte abrégé, AI-translated quote"},
     ]
     return {
         "id": "A0001-C001",
         "parameters": parameters,
-        "warnings": "Texte abrégé, Quote translated by AI",
+        "warnings": "Texte abrégé, AI-translated quote",
         "source": {"source_parameters": source_parameters},
     }
 
@@ -89,7 +89,7 @@ def test_english_quote_uses_only_english_template_parameters(tmp_path: Path):
 |place=Paris
 |date=25 June 2012
 |link=https://example.org
-|warnings=Texte abrégé, Quote translated by AI
+|warnings=Texte abrégé, AI-translated quote
 }}"""
     ctx = _context(tmp_path)
     tmpl = parse_template(_argument(raw))
@@ -112,7 +112,7 @@ def test_english_quote_rejects_french_parameter_names(tmp_path: Path):
 |lieu=Paris
 |date=25 June 2012
 |lien=https://example.org
-|avertissements-citation=Texte abrégé, Quote translated by AI
+|avertissements-citation=Texte abrégé, AI-translated quote
 }}"""
     ctx = _context(tmp_path)
     tmpl = parse_template(_argument(raw))
@@ -134,7 +134,7 @@ def test_english_quote_preserves_documentary_values_after_parameter_mapping(tmp_
 |place=Paris
 |date=25 June 2012
 |link=https://example.org
-|warnings=Texte abrégé, Quote translated by AI
+|warnings=Texte abrégé, AI-translated quote
 }}"""
     ctx = _context(tmp_path)
     tmpl = parse_template(_argument(raw))
@@ -166,7 +166,7 @@ def test_english_debate_rejects_french_subsection_model(tmp_path: Path):
 
 
 def test_english_argument_rejects_french_relation_parameters(tmp_path: Path):
-    raw = _argument("{{Quote|quote=Translated text.|authors=Auteur inchangé|date=25 June 2012|warnings=Quote translated by AI}}")
+    raw = _argument("{{Quote|quote=Translated text.|authors=Auteur inchangé|date=25 June 2012|warnings=AI-translated quote}}")
     raw = raw.replace(
         "|sections=Philosophy",
         "|justifications={{Justification|page=A supporting claim|titre-affiché=Un titre français}}\n|sections=Philosophy",

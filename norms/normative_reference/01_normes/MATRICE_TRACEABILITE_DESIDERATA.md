@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.56
+- **Révision :** 1.2.57
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -426,7 +426,7 @@ La décision du propriétaire du 7 août 2026 supprime les versions comme mécan
 
 ### Révision 1.2.56 — provenance française dans le résumé de publication anglais
 
-- chaque création d’une page anglaise issue de la traduction FR→EN utilise le résumé exact `Translation of the French page [[:fr:X|X]]` ;
+- chaque création d’une page anglaise issue de la traduction FR→EN utilise alors le résumé exact `Translation of the French page [[:fr:X|X]]` (forme remplacée pour les futures créations par la convention 1.2.57) ;
 - `X` est le titre canonique français verrouillé de la même `page_id` et du même type de page ;
 - le résumé individualisé est inclus dans le plan signé, recalculé avant écriture et vérifié lors de la relecture de la révision distante ;
 - ce lien d’historique ne remplace pas le `{{Lien interlangue}}` ajouté au contenu français lorsque la traduction est `ready` ou `published`.
@@ -434,3 +434,11 @@ La décision du propriétaire du 7 août 2026 supprime les versions comme mécan
 ### Révision 1.2.55 — qualité adaptative de la traduction anglaise
 
 Le retour propriétaire du 7 août 2026 après les premiers lots anglais affine `TRN-005` et `EDT-063`, puis ajoute `TRN-007`, `EDT-064` et `TRN-008` : unités internes de dix arguments par défaut avec agrégation possible, forme anglaise consacrée non normalisée, identité exacte de portée pour `name=`, exécution non mécanique par Work/agent, et conservation des résumés historiquement absents pendant la traduction.
+
+
+### Conventions de publication des traductions — décision du 9 août 2026
+
+- chaque nouvelle création anglaise FR→EN utilise `Translation of the French page: [[:fr:X|X]]` ;
+- chaque futur ajout interlangue français utilise `Ajout du lien interlangue vers la page anglaise : [[:en:X|X]]` ;
+- les créations anglaises traduites reçoivent `chatgpt` et `translated-fr` ;
+- les citations anglaises traduites automatiquement utilisent `AI-translated quote`.
