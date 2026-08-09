@@ -1,6 +1,6 @@
-# Wikidéb’IA Validator 0.4.59
+# Wikidéb’IA Validator 0.4.60
 
-La version 0.4.59 aligne le paquet sur la norme 1.2.56 et embarque la nouvelle règle de provenance française dans les résumés de publication anglais. Elle conserve les contrôles existants et embarque la copie normative affinée pour les unités de traduction adaptatives, la forme et la portée exactes de `name=`, l'exécution non mécanique et la conservation des résumés historiquement absents. Les contrôles automatiques antérieurs ne sont pas relâchés.
+La version 0.4.60 aligne le paquet sur la norme 1.2.56 et embarque la nouvelle règle de provenance française dans les résumés de publication anglais. Elle conserve les contrôles existants et embarque la copie normative affinée pour les unités de traduction adaptatives, la forme et la portée exactes de `name=`, l'exécution non mécanique et la conservation des résumés historiquement absents. Les contrôles automatiques antérieurs ne sont pas relâchés.
 
 Validateur local aligné sur la norme 1.2.56 et rétrocompatible avec les paquets antérieurs.
 

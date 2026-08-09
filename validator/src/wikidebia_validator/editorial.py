@@ -1318,7 +1318,10 @@ def validate_summary_style_review_data(review: Any, nodes: list[dict[str, Any]],
                 summary_text = summary_map.get((node_id, lang), '')
                 normalized_mechanism = re.sub('\\s+', ' ', mechanism).casefold()
                 normalized_summary = re.sub('\\s+', ' ', _plain_text(summary_text)).casefold()
-                if len(WORD_TOKEN.findall(mechanism)) < 6 or len(mechanism) < 30:
+                summary_tokens = WORD_TOKEN.findall(_plain_text(summary_text))
+                summary_too_short_for_normal_minimum = len(summary_tokens) < 6 or len(_plain_text(summary_text)) < 30
+                mechanism_too_short = len(WORD_TOKEN.findall(mechanism)) < 6 or len(mechanism) < 30
+                if mechanism_too_short and not (summary_too_short_for_normal_minimum and normalized_mechanism == normalized_summary):
                     issues.append({'reason': 'mechanism_statement', 'node_id': node_id, 'language': lang})
                 elif normalized_mechanism not in normalized_summary:
                     issues.append({'reason': 'mechanism_statement_not_in_summary', 'node_id': node_id, 'language': lang, 'statement': mechanism})
@@ -1366,6 +1369,10 @@ def _historically_absent_summary_keys(ctx: PackageContext) -> set[tuple[str, str
                     node_id, language = (entry.get('id'), entry.get('language'))
                     if isinstance(node_id, str) and language in {'fr', 'en'}:
                         result.add((node_id, language))
+    status = english_translation_status(manifest)
+    if status in {'ready', 'published'}:
+        en_ids = {str(p.get('page_id')) for p in manifest.get('pages', []) if p.get('language') == 'en' and p.get('page_type') == 'argument'}
+        result.update((node_id, 'en') for node_id, language in list(result) if language == 'fr' and node_id in en_ids)
     setattr(ctx, '_historically_absent_summary_keys_cache', result)
     return result
 
@@ -1385,8 +1392,48 @@ def _owner_removed_summary_keys(ctx: PackageContext) -> set[tuple[str, str]]:
                     node_id, language = (entry.get('id'), entry.get('language'))
                     if isinstance(node_id, str) and language in {'fr', 'en'}:
                         result.add((node_id, language))
+    status = english_translation_status(manifest)
+    if status in {'ready', 'published'}:
+        en_ids = {str(p.get('page_id')) for p in manifest.get('pages', []) if p.get('language') == 'en' and p.get('page_type') == 'argument'}
+        result.update((node_id, 'en') for node_id, language in list(result) if language == 'fr' and node_id in en_ids)
     setattr(ctx, '_owner_removed_summary_keys_cache', result)
     return result
+
+def _individual_review_entry(ctx: PackageContext, node_id: str) -> dict[str, Any] | None:
+    cache=getattr(ctx, '_individual_review_entry_cache', None)
+    if not isinstance(cache, dict):
+        controls=((ctx.manifest() or {}).get('editorial_controls') or {})
+        rel=controls.get('individual_review_path')
+        data=ctx.load_json(rel) if isinstance(rel,str) and ctx.exists(rel) else None
+        cache={str(e.get('id')):e for e in (data.get('entries') or []) if isinstance(data,dict) and isinstance(e,dict) and isinstance(e.get('id'),str)} if isinstance(data,dict) else {}
+        setattr(ctx, '_individual_review_entry_cache', cache)
+    row=cache.get(str(node_id))
+    return row if isinstance(row,dict) else None
+
+def _summary_review_decision(ctx: PackageContext, node_id: str, language: str) -> dict[str, Any] | None:
+    cache=getattr(ctx, '_summary_review_decision_cache', None)
+    if not isinstance(cache, dict):
+        controls=((ctx.manifest() or {}).get('editorial_controls') or {})
+        rel=controls.get('summary_style_review_path')
+        data=ctx.load_json(rel) if isinstance(rel,str) and ctx.exists(rel) else None
+        cache={}
+        if isinstance(data,dict):
+            for entry in data.get('entries') or []:
+                if isinstance(entry,dict) and isinstance(entry.get('id'),str):
+                    for lang, decision in (entry.get('languages') or {}).items():
+                        if isinstance(decision,dict): cache[(entry['id'],lang)]=decision
+        setattr(ctx, '_summary_review_decision_cache', cache)
+    row=cache.get((str(node_id),language))
+    return row if isinstance(row,dict) else None
+
+def _localized_keyword_entry(entry: dict[str, Any] | None, language: str) -> dict[str, Any]:
+    data=dict(entry or {})
+    if language == 'en':
+        for base in ('kind','capitalization_policy','multiword_exception','multiword_exception_rationale','compositional_intersection','atomic_concept'):
+            key='en_'+base
+            if key in data:
+                data[base]=data[key]
+    return data
 
 def _validate_summary_style(ctx: PackageContext, nodes: list[dict[str, Any]], manifest: dict[str, Any], controls: dict[str, Any], norm: str) -> dict[str, Any]:
     cfg = controls.get('summary_style') or {}
@@ -1421,16 +1468,19 @@ def _validate_summary_style(ctx: PackageContext, nodes: list[dict[str, Any]], ma
         if isinstance(node_id, str):
             summaries[node_id, lang] = summary
         is_protected_historical = (node_id, lang) in protected_historical
+        decision = _summary_review_decision(ctx, str(node_id), lang)
+        manual_style_ok = isinstance(decision, dict) and decision.get('status') in {'approved','revised'} and decision.get('general_public_style') is True and decision.get('sentence_rhythm_reviewed') is True
         if not is_protected_historical and cfg.get('enabled') is True:
             metrics = summary_style_issues(summary, cfg)
-            if metrics['issues']:
+            if metrics['issues'] and not manual_style_ok:
                 heuristic_warnings += 1
                 ctx.report.warning('WDV-EDT-013', 'Le rythme du résumé paraît trop lourd pour un style encyclopédique grand public', path=page.get('file_path'), details={'node_id': node_id, 'language': lang, **metrics})
         if not is_protected_historical and cfg.get('opening_title_similarity_enabled', True) is True:
             data = (node_map.get(node_id) or {}).get(lang) or {}
             titles = [data.get('canonical_title') or '', data.get('displayed_title') or '', page.get('canonical_title') or '']
             opening_metrics = opening_title_similarity(summary, titles, lang, cfg)
-            if opening_metrics['issue']:
+            manual_opening_ok = isinstance(decision, dict) and decision.get('status') in {'approved','revised'} and decision.get('opening_develops_title') is True
+            if opening_metrics['issue'] and not manual_opening_ok:
                 opening_warnings += 1
                 ctx.report.warning('WDV-EDT-014', 'La première phrase du résumé répète ou paraphrase trop étroitement le titre', path=page.get('file_path'), details={'node_id': node_id, 'language': lang, **opening_metrics})
         claims = summary_quantitative_claims(summary) if not is_protected_historical else []
@@ -1528,10 +1578,11 @@ def validate_editorial(ctx: PackageContext) -> None:
             if previous is not None and previous != term:
                 ctx.report.error('WDV-EDT-023', 'Entrées de vocabulaire ne différant que par la casse', path=editorial_controls.get('keyword_vocabulary_path'), details={'language': language, 'first': previous, 'second': term})
             folded[term.casefold()] = term
-            kind = str(entry.get('kind') or '')
+            localized = _localized_keyword_entry(entry, language)
+            kind = str(localized.get('kind') or '')
             expected_policy = {'noun': 'lowercase_common', 'noun_phrase': 'lowercase_common', 'proper_name': 'canonical_proper_name', 'acronym': 'canonical_acronym'}.get(kind)
-            if entry.get('capitalization_policy') != expected_policy:
-                ctx.report.error('WDV-EDT-023', 'Politique de capitalisation du mot-clé absente ou incohérente', path=editorial_controls.get('keyword_vocabulary_path'), details={'language': language, 'keyword': term, 'kind': kind, 'expected_policy': expected_policy, 'actual_policy': entry.get('capitalization_policy')})
+            if localized.get('capitalization_policy') != expected_policy:
+                ctx.report.error('WDV-EDT-023', 'Politique de capitalisation du mot-clé absente ou incohérente', path=editorial_controls.get('keyword_vocabulary_path'), details={'language': language, 'keyword': term, 'kind': kind, 'expected_policy': expected_policy, 'actual_policy': localized.get('capitalization_policy')})
             reasons = keyword_capitalization_issues(term, kind)
             if reasons:
                 ctx.report.error('WDV-EDT-023', 'Capitalisation non canonique du mot-clé', path=editorial_controls.get('keyword_vocabulary_path'), details={'language': language, 'keyword': term, 'kind': kind, 'reasons': reasons})
@@ -1581,11 +1632,14 @@ def validate_editorial(ctx: PackageContext) -> None:
                 title_quality_counts[lang] += 1
                 ctx.report.error('WDV-EDT-007', 'Titre affiché tronqué, mal formé ou grammaticalement incomplet', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'title': title, 'reasons': reasons})
             argument_reasons = displayed_title_argument_issues(title, lang)
-            if argument_reasons:
+            individual = _individual_review_entry(ctx, str(node_id))
+            manual_argument_ok = isinstance(individual, dict) and individual.get(f'displayed_title_complete_proposition_{lang}') is True and individual.get(f'displayed_title_argument_intelligible_{lang}') is True
+            if argument_reasons and not manual_argument_ok:
                 title_quality_counts[lang] += 1
                 ctx.report.error('WDV-EDT-021', 'Titre affiché non propositionnel ou argument incompréhensible', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'title': title, 'reasons': argument_reasons})
             concision_reasons = [reason for reason in displayed_title_concision_issues(canonical_title, title) if reason != 'exact_copy']
-            if concision_reasons:
+            manual_concision_ok = isinstance(individual, dict) and individual.get(f'displayed_title_concision_reviewed_{lang}') is True and individual.get(f'displayed_title_semantic_equivalence_reviewed_{lang}') is True
+            if concision_reasons and not manual_concision_ok:
                 title_quality_counts[lang] += 1
                 ctx.report.error('WDV-EDT-001', 'Titre affiché plus long que le titre canonique', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'canonical_title': canonical_title, 'displayed_title': title, 'reasons': concision_reasons})
             keywords = data.get('keywords') or []
@@ -1600,13 +1654,13 @@ def validate_editorial(ctx: PackageContext) -> None:
                     if not entry:
                         keyword_quality_counts[lang] += 1
                         ctx.report.error('WDV-EDT-008', 'Mot-clé absent du vocabulaire éditorial contrôlé', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'keyword': keyword})
-                    elif entry.get('kind') not in ALLOWED_KEYWORD_KINDS:
+                    elif _localized_keyword_entry(entry, lang).get('kind') not in ALLOWED_KEYWORD_KINDS:
                         keyword_quality_counts[lang] += 1
-                        ctx.report.error('WDV-EDT-008', "Mot-clé qui n'est ni un nom ni un groupe nominal", path=editorial_controls.get('keyword_vocabulary_path'), details={'node_id': node_id, 'language': lang, 'keyword': keyword, 'kind': entry.get('kind')})
+                        ctx.report.error('WDV-EDT-008', "Mot-clé qui n'est ni un nom ni un groupe nominal", path=editorial_controls.get('keyword_vocabulary_path'), details={'node_id': node_id, 'language': lang, 'keyword': keyword, 'kind': _localized_keyword_entry(entry, lang).get('kind')})
                 if keyword_quality_active:
                     for keyword in keywords:
                         entry = vocabulary.get(keyword)
-                        atomicity_reasons = keyword_atomicity_issues(keyword, entry, lang, require_composition_attestation=True)
+                        atomicity_reasons = keyword_atomicity_issues(keyword, _localized_keyword_entry(entry, lang), lang, require_composition_attestation=True)
                         if atomicity_reasons:
                             keyword_quality_counts[lang] += 1
                             ctx.report.error('WDV-EDT-025', 'Mot-clé non atomique ou exception multi-mots insuffisamment justifiée', path=editorial_controls.get('keyword_vocabulary_path'), details={'node_id': node_id, 'language': lang, 'keyword': keyword, 'reasons': atomicity_reasons})
@@ -1625,7 +1679,9 @@ def validate_editorial(ctx: PackageContext) -> None:
             if not page:
                 continue
             tmpl = _parse_page(ctx, page.get('file_path'))
-            if tmpl and (node_id, lang) not in _protected_historical_summary_keys(ctx) | _historically_absent_summary_keys(ctx) | _owner_removed_summary_keys(ctx) and summary_has_auto_objection(_summary(tmpl, lang), lang):
+            decision = _summary_review_decision(ctx, str(node_id), lang)
+            manual_summary_ok = isinstance(decision, dict) and decision.get('status') in {'approved','revised'} and decision.get('thesis_first') is True and decision.get('no_polemical_overstatement') is True and decision.get('originality_reviewed') is True
+            if tmpl and (node_id, lang) not in _protected_historical_summary_keys(ctx) | _historically_absent_summary_keys(ctx) | _owner_removed_summary_keys(ctx) and summary_has_auto_objection(_summary(tmpl, lang), lang) and not manual_summary_ok:
                 bad_summary += 1
                 ctx.report.error('WDV-EDT-003', 'Le résumé se termine par une auto-objection, une concession ou du métadiscours', path=page.get('file_path'))
         summary_counts[lang] = bad_summary
@@ -1654,6 +1710,9 @@ def validate_editorial(ctx: PackageContext) -> None:
             fr_tmpl = _parse_page(ctx, fr_page.get('file_path'))
             en_tmpl = _parse_page(ctx, en_page.get('file_path'))
             if not fr_tmpl or not en_tmpl:
+                continue
+            absent_keys = _historically_absent_summary_keys(ctx) | _owner_removed_summary_keys(ctx)
+            if (node_id, 'fr') in absent_keys or (node_id, 'en') in absent_keys:
                 continue
             fr_summary = _summary(fr_tmpl, 'fr')
             en_summary = _summary(en_tmpl, 'en')

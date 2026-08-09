@@ -4,7 +4,7 @@ from wikidebia_validator import __version__
 
 
 def test_validator_metadata_reports_0414():
-    assert __version__ == "0.4.59"
+    assert __version__ == "0.4.60"
 
 
 def test_norm_1214_is_declared_compatible():

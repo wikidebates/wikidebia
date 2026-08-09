@@ -7,7 +7,7 @@ from wikidebia_validator import __version__
 
 
 def test_validator_version_is_0428_for_norm_1226():
-    assert __version__ == "0.4.59"
+    assert __version__ == "0.4.60"
 
 
 def test_package_schema_does_not_enumerate_norm_1226_as_feature_flag():

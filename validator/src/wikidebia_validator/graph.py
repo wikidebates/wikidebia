@@ -158,6 +158,15 @@ def structural_sha256(registry: dict[str, Any]) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
+def _canonical_referent_manually_verified(ctx: PackageContext, node_id: str, language: str) -> bool:
+    controls=((ctx.manifest() or {}).get('editorial_controls') or {})
+    rel=controls.get('individual_review_path')
+    if not isinstance(rel,str) or not ctx.exists(rel): return False
+    data=ctx.load_json(rel)
+    if not isinstance(data,dict): return False
+    row=next((e for e in data.get('entries') or [] if isinstance(e,dict) and str(e.get('id'))==str(node_id)),None)
+    return isinstance(row,dict) and row.get(f'canonical_referents_explicit_{language}') is True
+
 def validate_graph(ctx: PackageContext) -> None:
     registry = ctx.registry()
     if not registry:
@@ -190,9 +199,10 @@ def validate_graph(ctx: PackageContext) -> None:
                 ctx.report.error("WDV-GRA-016", f"Titre {lang} non conforme : {title}", path=ctx.core_paths()["registry"], pointer=f"/graph/nodes/{node.get('id')}/{lang}/canonical_title")
             contextual = contextual_title_issues(title, lang)
             details = {"node_id": node.get("id"), "language": lang, "issues": contextual}
-            if "implicit_referent" in contextual or "initial_contextual_referent" in contextual:
+            manual_referent_ok = _canonical_referent_manually_verified(ctx, str(node.get('id')), lang)
+            if ("implicit_referent" in contextual or "initial_contextual_referent" in contextual) and not manual_referent_ok:
                 ctx.report.error("WDV-EDT-016", f"Titre {lang} non autonome : le référent initial dépend du contexte extérieur : {title}", path=ctx.core_paths()["registry"], pointer=f"/graph/nodes/{node.get('id')}/{lang}/canonical_title", details=details)
-            elif "possible_contextual_referent" in contextual:
+            elif "possible_contextual_referent" in contextual and not manual_referent_ok:
                 ctx.report.warning("WDV-EDT-016", f"Titre {lang} à vérifier : un démonstratif interne peut dépendre du contexte extérieur : {title}", path=ctx.core_paths()["registry"], pointer=f"/graph/nodes/{node.get('id')}/{lang}/canonical_title", details=details)
             key = normalized_title(title)
             if key in seen and seen[key] != node.get("id"):

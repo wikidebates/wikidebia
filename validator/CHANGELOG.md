@@ -1,8 +1,8 @@
-## 0.4.59 — 9 août 2026
+## 0.4.60 — 9 août 2026
 
 - alignement sur la norme 1.2.56 ;
 - copie normative mise à jour avec le résumé de publication individualisé des traductions anglaises ;
-- aucun relâchement des contrôles de corpus : la vérification opérationnelle du résumé par action reste assurée par le kit 2.15.33 et son plan signé.
+- aucun relâchement des contrôles de corpus : la vérification opérationnelle du résumé par action reste assurée par le kit 2.15.34 et son plan signé.
 
 ## 0.4.58
 

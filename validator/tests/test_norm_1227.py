@@ -75,7 +75,7 @@ def argument(quote: str, *, lang: str = "en") -> str:
 
 
 def test_validator_version_and_active_norm_1227():
-    assert __version__ == "0.4.59"
+    assert __version__ == "0.4.60"
     root = Path(__file__).resolve().parents[1] / "normative_reference/01_normes"
     assert [path.name for path in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")] == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.56.md"]
 

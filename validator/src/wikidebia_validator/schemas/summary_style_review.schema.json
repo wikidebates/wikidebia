@@ -48,7 +48,7 @@
                   },
                   "mechanism_statement": {
                     "type": "string",
-                    "minLength": 30
+                    "minLength": 12
                   }
                 },
                 "additionalProperties": true,
@@ -124,7 +124,7 @@
                       },
                       "mechanism_statement": {
                         "type": "string",
-                        "minLength": 30
+                        "minLength": 12
                       }
                     },
                     "required": [

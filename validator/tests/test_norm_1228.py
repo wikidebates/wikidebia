@@ -8,7 +8,7 @@ from wikidebia_validator import __version__
 ROOT = Path(__file__).resolve().parents[1]
 
 def test_validator_version_is_current_for_norm_1230():
-    assert __version__ == "0.4.59"
+    assert __version__ == "0.4.60"
 
 def test_active_normative_source_is_uniquely_1230():
     base = ROOT / "normative_reference/01_normes"

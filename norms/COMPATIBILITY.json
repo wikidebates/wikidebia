@@ -1,7 +1,7 @@
 {
   "normative_revision": "1.2.56",
-  "recommended_validator_version": "0.4.59",
-  "recommended_kit_version": "2.15.33",
+  "recommended_validator_version": "0.4.60",
+  "recommended_kit_version": "2.15.34",
   "compatible_from": "1.1.0",
   "translation_modes": [
     "pending",

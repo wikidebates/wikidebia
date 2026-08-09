@@ -1,4 +1,4 @@
-## 2.15.33 — 9 août 2026
+## 2.15.34 — 9 août 2026
 
 - les créations anglaises issues d’une traduction française reçoivent un résumé de modification individualisé `Translation of the French page [[:fr:X|X]]` ;
 - `X` est résolu par `page_id` depuis le titre canonique français verrouillé du manifeste, jamais déduit du titre anglais ;

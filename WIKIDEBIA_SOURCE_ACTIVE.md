@@ -3,14 +3,14 @@
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
 - norme active : **1.2.56** ;
-- validateur actif : **0.4.59** ;
-- kit actif : **2.15.33**.
+- validateur actif : **0.4.60** ;
+- kit actif : **2.15.34**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 2007148 octets — SHA-256 `177bdf320dcda3f340befa6398cd838821bee733a85f6973b78fec540bce9391`
-- `wikidebia-validator.zip` — 2285876 octets — SHA-256 `98c4a88e845730ed1e31753c14c62fe986194c3a7dea1017e271ce4b516001b3`
-- `wikidebia-kit.zip` — 438742 octets — SHA-256 `d5832f6076fbb11d60ea840ab3d99bfc21bee0fe4b49daa3233b64dd0b1a4f83`
+- `wikidebia-normes.zip` — 2011332 octets — SHA-256 `840035cbfb5405815fa52903deac09e42c1b896b30abf1c3d743afeb78aaccb9`
+- `wikidebia-validator.zip` — 2294878 octets — SHA-256 `be9a6006de6ca5f5f014a328e7655360ea079f7dd7ec7e8c22dad67e75d35485`
+- `wikidebia-kit.zip` — 440562 octets — SHA-256 `3a879064597d701939be4f01c66abcb6c8174ca8480d12396305f837daa55f66`
 
 ## Norme consolidée active
 
@@ -2029,11 +2029,11 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `6af086d8e14eb235f3a2468540adaaa28721285cd8d348f13d8c427c34b22531`
+SHA-256 : `0887bc5d2f8690a5f84181b29be68add9bd197b0c57c5c4119afc1e9635f5496`
 
-# Wikidéb’IA Validator 0.4.59
+# Wikidéb’IA Validator 0.4.60
 
-La version 0.4.59 aligne le paquet sur la norme 1.2.56 et embarque la nouvelle règle de provenance française dans les résumés de publication anglais. Elle conserve les contrôles existants et embarque la copie normative affinée pour les unités de traduction adaptatives, la forme et la portée exactes de `name=`, l'exécution non mécanique et la conservation des résumés historiquement absents. Les contrôles automatiques antérieurs ne sont pas relâchés.
+La version 0.4.60 aligne le paquet sur la norme 1.2.56 et embarque la nouvelle règle de provenance française dans les résumés de publication anglais. Elle conserve les contrôles existants et embarque la copie normative affinée pour les unités de traduction adaptatives, la forme et la portée exactes de `name=`, l'exécution non mécanique et la conservation des résumés historiquement absents. Les contrôles automatiques antérieurs ne sont pas relâchés.
 
 Validateur local aligné sur la norme 1.2.56 et rétrocompatible avec les paquets antérieurs.
 
@@ -2042,13 +2042,13 @@ Les normes éditoriales courantes sont cumulatives : `consolidated_norm` et les 
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `e30e33c1553812c3ff1636f97a11114077947602b9c36bb30fb96c961c30983a`
+SHA-256 : `08a54a7ec806223457ceefd42792de7da791793769d34ece662ac2a330d93d65`
 
-## 0.4.59 — 9 août 2026
+## 0.4.60 — 9 août 2026
 
 - alignement sur la norme 1.2.56 ;
 - copie normative mise à jour avec le résumé de publication individualisé des traductions anglaises ;
-- aucun relâchement des contrôles de corpus : la vérification opérationnelle du résumé par action reste assurée par le kit 2.15.33 et son plan signé.
+- aucun relâchement des contrôles de corpus : la vérification opérationnelle du résumé par action reste assurée par le kit 2.15.34 et son plan signé.
 
 ## 0.4.58
 
@@ -2470,11 +2470,11 @@ SHA-256 : `e30e33c1553812c3ff1636f97a11114077947602b9c36bb30fb96c961c30983a`
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `dd2e678e6ed027ca537daafd7e9a6f4308c46578a58a1ba0d77742139f3ea3f4`
+SHA-256 : `04a85a4856a08eac182d47d3dd07b94630227c6d7a52578204708d86532790ee`
 
-# Wikidéb’IA — Kit 2.15.33
+# Wikidéb’IA — Kit 2.15.34
 
-Le kit 2.15.33 applique la norme 1.2.56. La page Debate reste un lot autonome ; les Arguments sont relus en unités internes de 10 pages par défaut, réduites à 5–8 pour les groupes denses. Une livraison Work peut agréger plusieurs unités déjà closes sans transformer les exemples ou checklists en patrons mécaniques.
+Le kit 2.15.34 applique la norme 1.2.56. La page Debate reste un lot autonome ; les Arguments sont relus en unités internes de 10 pages par défaut, réduites à 5–8 pour les groupes denses. Une livraison Work peut agréger plusieurs unités déjà closes sans transformer les exemples ou checklists en patrons mécaniques.
 
 La phase anglaise recherche séparément les appellations consacrées dans la littérature anglophone et n'obtient jamais `name=` par traduction mécanique de `nom=`. Elle compare les formes concurrentes sans normaliser artificiellement `Argument from X`, `X argument` ou les possessifs, et refuse un nom dont la portée est plus étroite que celle de la page. Les références françaises ne sont pas traduites : une version anglaise réelle doit être trouvée et citée avec ses propres métadonnées, et de nouvelles références anglophones sont recherchées indépendamment. Le contrat `Citation`→`Quote` reste inchangé : seules les valeurs `quote` et `date` sont traduites et `Quote translated by AI` est ajouté.
 
@@ -2482,7 +2482,7 @@ La reprise distante applique cette exception uniquement à `nom` / `name`. Tous 
 
 Correctif actif de traduction : le contenu d'une éventuelle page anglaise cible existante est ignoré pendant la production éditoriale ; les valeurs françaises de progression et d'avertissement sont traduites selon la table officielle sans défaut de création ; `related-debates` ne reprend que les relations françaises dont la page anglaise existe ; chaque lot reçoit une seconde passe FR→EN.
 
-Kit aligné sur la norme 1.2.56 et le validateur 0.4.59.
+Kit aligné sur la norme 1.2.56 et le validateur 0.4.60.
 
 Lorsqu'un résumé français est historiquement absent et attesté, le workflow anglais conserve cette absence et n'exige aucun `summary=` de remplacement.
 
@@ -2491,9 +2491,9 @@ Les numéros de norme et les anciens champs de révision ne sont plus des featur
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `7681f2082001c95a83b925223aaad787353e0734047c5d046902139d5c710508`
+SHA-256 : `5b25a5b3e41541c2e895f21b88c2ee4ffd3d4de674fc0d5f693761ce72deff19`
 
-## 2.15.33 — 9 août 2026
+## 2.15.34 — 9 août 2026
 
 - les créations anglaises issues d’une traduction française reçoivent un résumé de modification individualisé `Translation of the French page [[:fr:X|X]]` ;
 - `X` est résolu par `page_id` depuis le titre canonique français verrouillé du manifeste, jamais déduit du titre anglais ;
@@ -3233,13 +3233,13 @@ Translation of the French page [[:fr:X|X]]
 ## Guide de revue du contenu
 
 Source interne : `kit/GUIDE_CONTENT_REVIEW.md`  
-SHA-256 : `b5f7923f395cedcd98760b997a5381a02a6c6596b3c24468602aead8fbe3d39b`
+SHA-256 : `996028e4a2f348c806075e86f653e6c8ce12b224d21993e21b020d0c3792baec`
 
 # Revue française des introductions, résumés et références
 
 > Depuis 1.2.54, les normes éditoriales sont cumulatives : les anciennes métadonnées de révision ne servent plus à sélectionner les contrôles.
 
-Le kit 2.15.33 applique une phase de contenu après le verrouillage des titres, rubriques et mots-clés. Elle part de `reviewed-copy/`, conserve toutes les copies antérieures et ne génère toujours aucune page MediaWiki finale.
+Le kit 2.15.34 applique une phase de contenu après le verrouillage des titres, rubriques et mots-clés. Elle part de `reviewed-copy/`, conserve toutes les copies antérieures et ne génère toujours aucune page MediaWiki finale.
 
 ## 1. Préparer la revue
 
@@ -3274,7 +3274,7 @@ Aucune proposition produite par une heuristique n’est appliquée automatiqueme
 
 ## Recherche d’un nom consacré pour un argument nouveau
 
-Cette exigence relève du contrat général de génération 1.2.53. La commande `corpus-workspace-content-review` ci-dessus part d’un snapshot importé et ne crée donc pas elle-même de nouvel argument français. Lorsqu’un corpus généré contient des pages `Argument` françaises nouvelles, il doit fournir `reviews/argument_name_discovery_review.json` avant validation ; le validateur 0.4.59 bloque toute page nouvelle non couverte. La phase de traduction anglaise du kit construit la partie anglaise de ce registre pour les pages anglaises nouvelles.
+Cette exigence relève du contrat général de génération 1.2.53. La commande `corpus-workspace-content-review` ci-dessus part d’un snapshot importé et ne crée donc pas elle-même de nouvel argument français. Lorsqu’un corpus généré contient des pages `Argument` françaises nouvelles, il doit fournir `reviews/argument_name_discovery_review.json` avant validation ; le validateur 0.4.60 bloque toute page nouvelle non couverte. La phase de traduction anglaise du kit construit la partie anglaise de ce registre pour les pages anglaises nouvelles.
 
 La recherche est **obligatoire**, mais l’ajout d’un nom ne l’est pas. Le cas normal est `outcome=none`. Il ne faut jamais chercher à augmenter artificiellement le nombre de pages possédant `nom=`.
 
@@ -3376,9 +3376,9 @@ Tests pytest : 293 réussis, 0 échec.
 ## Guide de traduction anglaise
 
 Source interne : `kit/GUIDE_TRANSLATION_REVIEW.md`  
-SHA-256 : `7d2ee8e51e3ad7704362a01c1e0c12ada136b618fe677bdd6ee05d8cf6ea6b52`
+SHA-256 : `1b030d1144fec09d17468a32cb5799b2debb47623ccd84ab4284340a00a8855e`
 
-# Guide de traduction anglaise contrôlée — Kit 2.15.33
+# Guide de traduction anglaise contrôlée — Kit 2.15.34
 
 > Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 

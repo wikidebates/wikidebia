@@ -8,7 +8,7 @@ from wikidebia_validator.schema_validation import SchemaStore
 
 
 def test_validator_version_is_0428():
-    assert __version__ == "0.4.59"
+    assert __version__ == "0.4.60"
 
 
 def test_package_schema_does_not_enumerate_norm_1225_as_feature_flag():
