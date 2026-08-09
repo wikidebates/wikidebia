@@ -1,6 +1,6 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.35",
+  "version": "2.15.36",
   "validator_version": "0.4.60",
   "scope": [
     "publish_archive",

@@ -141,7 +141,7 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
     validator = root / "validator.py"
     validator.write_text("import json; print(json.dumps({'validator_version':'0.4.60','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     config = {
-        "kit_version":"2.15.35","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
+        "kit_version":"2.15.36","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
         "family":"wikidebates","pywikibot_dir":"private/pywikibot","sites":{lang:{"code":lang,"expected_user":"ChatGPT"} for lang in languages},
         "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.60","scopes":[]},
         "published_state_dir":".state/published","receipts_dir":".state/receipts","logs_dir":"logs",
@@ -698,3 +698,20 @@ def test_non_interlanguage_french_update_keeps_generic_summary(tmp_path):
     executor = module.PlanExecutor(config, adapter, path)
     receipt = executor.execute(p, p["plan_sha256"])
     assert receipt["results"][0]["edit_summary"] == "Corrections"
+
+
+def test_remote_page_without_expected_main_template_is_page_specific_manual_review(tmp_path):
+    old = argument("Ancien")
+    proposed = argument("Nouveau")
+    remote = "#REDIRECT [[Autre titre]]\n"
+    p, *_ = plan(
+        tmp_path,
+        old_pages=[("fr", "A1", "Titre", old)],
+        new_pages=[("fr", "A1", "Titre", proposed)],
+        remote_pages={("fr", "Titre"): (11, remote)},
+    )
+    assert p["counts"]["manual_review"] == 1
+    row = p["operations"]["manual_review"][0]
+    assert row["title"] == "Titre"
+    assert "Modèle principal introuvable" in row["remote_structure_error"]
+    assert row["remote_excerpt"].startswith("#REDIRECT")

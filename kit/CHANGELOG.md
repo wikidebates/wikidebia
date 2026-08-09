@@ -1,3 +1,10 @@
+## 2.15.36 — 9 août 2026
+
+- correction de la planification des reprises lorsqu’une page distante existante ne contient pas le modèle principal attendu ;
+- le cas n’interrompt plus globalement le dry-run : il est classé page par page en `manual_review` (ou `blocked` si la page n’est pas attestée), avec titre, révision, empreinte, erreur structurelle et extrait distant ;
+- aucune écriture distante n’est autorisée pour ces opérations non résolues ;
+- maintien intégral des résumés individualisés d’ajout interlangue introduits en 2.15.35.
+
 ## 2.15.35 — 9 août 2026
 
 - autorise explicitement l’enrichissement tardif du paramètre français `interlangue` après passage de l’anglais à `ready` ou `published`, sans que la préservation historique ne restaure à tort son absence antérieure ;

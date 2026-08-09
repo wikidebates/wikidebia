@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.56** ;
 - validateur actif : **0.4.60** ;
-- kit actif : **2.15.35**.
+- kit actif : **2.15.36**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 2013115 octets — SHA-256 `cf5695eddb6b3f7f366b477a38ec7b1cb4bfa8215ed92454bcd732750db465d2`
-- `wikidebia-validator.zip` — 2299292 octets — SHA-256 `846ade641b17e3350b6a097be2fb1327c4ba64a9bc95c378496c3a4bd4b0b693`
-- `wikidebia-kit.zip` — 444888 octets — SHA-256 `b507a3b11c5013c1363ae414dec032d7639dd38ce696d32b75ecfdebdd288e55`
+- `wikidebia-normes.zip` — 2025798 octets — SHA-256 `dea4fc9c582f0d48c14cc56486d020cd96f42b5b61fe59b13eb712b72ef370f8`
+- `wikidebia-validator.zip` — 2319878 octets — SHA-256 `343c57376d798c76199131604a9f1542645fb7542e7814852f8f815bf035ffe2`
+- `wikidebia-kit.zip` — 457579 octets — SHA-256 `bf78d0fe2470675a2bbe961d1744e75d82bf220b2c0d9558d2806448361787d1`
 
 ## Norme consolidée active
 
@@ -2470,11 +2470,11 @@ SHA-256 : `08a54a7ec806223457ceefd42792de7da791793769d34ece662ac2a330d93d65`
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `38fdc02846bfad4e82b00289159c598a8e2db8585fa26c8106dfd17e9b2f7965`
+SHA-256 : `c2f01fb03562c7888227dd5b724247612ab84d80b238057483020668f7828838`
 
-# Wikidéb’IA — Kit 2.15.35
+# Wikidéb’IA — Kit 2.15.36
 
-Le kit 2.15.35 applique la norme 1.2.56. La page Debate reste un lot autonome ; les Arguments sont relus en unités internes de 10 pages par défaut, réduites à 5–8 pour les groupes denses. Une livraison Work peut agréger plusieurs unités déjà closes sans transformer les exemples ou checklists en patrons mécaniques.
+Le kit 2.15.36 applique la norme 1.2.56. La page Debate reste un lot autonome ; les Arguments sont relus en unités internes de 10 pages par défaut, réduites à 5–8 pour les groupes denses. Une livraison Work peut agréger plusieurs unités déjà closes sans transformer les exemples ou checklists en patrons mécaniques.
 
 La phase anglaise recherche séparément les appellations consacrées dans la littérature anglophone et n'obtient jamais `name=` par traduction mécanique de `nom=`. Elle compare les formes concurrentes sans normaliser artificiellement `Argument from X`, `X argument` ou les possessifs, et refuse un nom dont la portée est plus étroite que celle de la page. Les références françaises ne sont pas traduites : une version anglaise réelle doit être trouvée et citée avec ses propres métadonnées, et de nouvelles références anglophones sont recherchées indépendamment. Le contrat `Citation`→`Quote` reste inchangé : seules les valeurs `quote` et `date` sont traduites et `Quote translated by AI` est ajouté.
 
@@ -2491,7 +2491,14 @@ Les numéros de norme et les anciens champs de révision ne sont plus des featur
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `b60dbf4c22a1e656466bb7af6854415ccea37d61c22553e06427d42319b82991`
+SHA-256 : `1ad3aa21ad662ed049dab29eb956eff2d371c0f3818c0faa8a7032508dc6e9f6`
+
+## 2.15.36 — 9 août 2026
+
+- correction de la planification des reprises lorsqu’une page distante existante ne contient pas le modèle principal attendu ;
+- le cas n’interrompt plus globalement le dry-run : il est classé page par page en `manual_review` (ou `blocked` si la page n’est pas attestée), avec titre, révision, empreinte, erreur structurelle et extrait distant ;
+- aucune écriture distante n’est autorisée pour ces opérations non résolues ;
+- maintien intégral des résumés individualisés d’ajout interlangue introduits en 2.15.35.
 
 ## 2.15.35 — 9 août 2026
 
@@ -3377,16 +3384,16 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `4e7af4ede47529bb1501dbebc62a0840527396c57866283253f3b61ff52aefe4`
+SHA-256 : `93e28a06a89f96c05f1bd5f29ae0974541c5441c2ca4f6dd186b300b9d0cec0c`
 
-Tests pytest : 296 réussis, 0 échec.
+Tests pytest : 297 réussis, 0 échec.
 
 ## Guide de traduction anglaise
 
 Source interne : `kit/GUIDE_TRANSLATION_REVIEW.md`  
-SHA-256 : `1665f6ddfb3451d8919839c8caf0eedf65547b144c3f4b15358a6563f5f85554`
+SHA-256 : `6d936330c6ed05844b287be398b96b653610862ce77ca48f2330bee5e21dc645`
 
-# Guide de traduction anglaise contrôlée — Kit 2.15.35
+# Guide de traduction anglaise contrôlée — Kit 2.15.36
 
 > Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 

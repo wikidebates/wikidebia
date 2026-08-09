@@ -29,7 +29,7 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.15.35"
+KIT_VERSION = "2.15.36"
 REQUIRED_VALIDATOR_VERSION = "0.4.60"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
@@ -1092,6 +1092,37 @@ class RemoteUpdatePlanner:
                 handled_old.add(key)
                 continue
             exists, revision_id, remote_text = self.adapter.read_page(proposed["title"])
+            # An existing remote title that does not contain the main template
+            # expected for this logical page must never abort the whole plan. It
+            # may be a redirect, a moved page, or a human/legacy format. Surface
+            # it as a page-specific unresolved operation so the dry-run can
+            # enumerate every anomaly without writing anything remotely.
+            if exists:
+                try:
+                    top_level_parameter_map(remote_text, language, proposed["page_type"])
+                except UpdateError as exc:
+                    op = self._base_operation(
+                        language=language,
+                        page_id=proposed["page_id"],
+                        page_type=proposed["page_type"],
+                        title=proposed["title"],
+                        justification=(
+                            "Page distante existante sans modèle principal attendu; "
+                            "revue explicite requise avant toute modification"
+                        ),
+                    )
+                    op.update({
+                        "source_path": proposed["source_path"],
+                        "local_file_sha256": proposed["file_sha256"],
+                        "new_sha256": proposed["content_sha256"],
+                        "observed_revision_id": revision_id,
+                        "remote_sha256": sha_text(remote_text),
+                        "remote_structure_error": str(exc),
+                        "remote_excerpt": remote_text[:1000],
+                        "phase": 0,
+                    })
+                    buckets["blocked" if prior is None else "manual_review"].append(op)
+                    continue
             effective = proposed
             lifecycle_preservation = None
             if exists and prior is not None and self._remote_matches_prior(prior, revision_id, remote_text):
