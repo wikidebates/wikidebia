@@ -1,3 +1,12 @@
+## 2.15.37 — 9 août 2026
+
+- ajoute `./wikidebia update --scope fr --interlanguage-only` pour les reprises consacrées exclusivement à l’ajout des liens FR→EN ;
+- dans ce mode, le wikicode distant courant est la base autoritative : tout contenu humain, toute relation externe et toute métadonnée existante sont préservés exactement, et seul le lien interlangue attendu est ajouté ;
+- les adoptions distantes obsolètes et les divergences avec l’ancien état publié ne bloquent plus ce mode étroit, puisque la révision distante courante est elle-même verrouillée par `baserevid` et empreinte dans le plan ;
+- les redirections françaises sont conservées comme redirections et reçoivent un lien interlangue MediaWiki direct `[[en:Titre]]` ;
+- le résumé individualisé `Ajout du lien interlangue vers la page anglaise [[en:X|X]]` reste signé dans le plan et revérifié après écriture ;
+- aucune création, suppression, déplacement ni autre correction de contenu n’est autorisée dans ce mode.
+
 ## 2.15.36 — 9 août 2026
 
 - correction de la planification des reprises lorsqu’une page distante existante ne contient pas le modèle principal attendu ;

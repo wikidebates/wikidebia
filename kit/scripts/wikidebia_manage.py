@@ -17,7 +17,7 @@ from typing import Any, Iterable
 
 NORM_VERSION = "1.2.56"
 VALIDATOR_VERSION = "0.4.60"
-KIT_VERSION = "2.15.36"
+KIT_VERSION = "2.15.37"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",
@@ -1242,7 +1242,7 @@ def resolve_update_scope(corpus_root: Path, requested_scope: str | None) -> str:
     )
 
 
-def remote_update_config(root: Path, debate_id: str, scope: str, run_dir: Path, corpus_root: Path | None = None) -> Path:
+def remote_update_config(root: Path, debate_id: str, scope: str, run_dir: Path, corpus_root: Path | None = None, interlanguage_only: bool = False) -> Path:
     settings = load_local_settings(root)
     languages = ["fr", "en"] if scope == "all" else [scope]
     users = settings.get("expected_users") or {"fr": "ChatGPT", "en": "ChatGPT"}
@@ -1257,6 +1257,7 @@ def remote_update_config(root: Path, debate_id: str, scope: str, run_dir: Path, 
         "languages": languages,
         "debate_id": debate_id,
         "corpus_root": portable_path(corpus_root or (root / "corpus" / debate_id), root),
+        "interlanguage_only": bool(interlanguage_only),
         "logs_dir": f"logs/{debate_id}/{run_dir.name}",
         "published_state_dir": ".state/published",
         "receipts_dir": ".state/receipts",
@@ -1362,6 +1363,7 @@ def update_debate(
     dry_run: bool,
     keep_zip: bool,
     archive_selector: str | None = None,
+    interlanguage_only: bool = False,
 ) -> dict[str, Any]:
     ensure_credentials(root)
     if no_delete and only_delete:
@@ -1371,6 +1373,10 @@ def update_debate(
     try:
         debate_id, archive, corpus_root, staging_root = _prepare_update_corpus(root, debate_identifier, archive_selector)
         effective_scope = resolve_update_scope(corpus_root, scope)
+        if interlanguage_only and effective_scope != "fr":
+            raise ManagementError("--interlanguage-only exige --scope fr")
+        if interlanguage_only and (no_delete or only_delete):
+            raise ManagementError("--interlanguage-only est incompatible avec --no-delete et --only-delete")
         if scope is None:
             print(f"Portée sélectionnée automatiquement : {effective_scope}")
         if archive is None:
@@ -1380,7 +1386,11 @@ def update_debate(
         print(f"Identifiant interne du débat : {debate_id}")
         run_dir = root / "plans" / debate_id / timestamp()
         run_dir.mkdir(parents=True, exist_ok=True)
-        config = remote_update_config(root, debate_id, effective_scope, run_dir, corpus_root)
+        config = (
+            remote_update_config(root, debate_id, effective_scope, run_dir, corpus_root, True)
+            if interlanguage_only
+            else remote_update_config(root, debate_id, effective_scope, run_dir, corpus_root)
+        )
         plan_path = run_dir / "update-plan.json"
         flags: list[str] = []
         if no_delete:
@@ -1952,6 +1962,7 @@ def build_parser() -> argparse.ArgumentParser:
     update.add_argument("--only-delete", action="store_true", help="N’exécuter que les retraits sûrs et redirections de fusion")
     update.add_argument("--dry-run", action="store_true", help="Produire seulement le plan signé")
     update.add_argument("--keep-zip", action="store_true", help="Ne pas archiver le ZIP après succès")
+    update.add_argument("--interlanguage-only", action="store_true", help="Préserver chaque page française distante et n'ajouter que son lien vers la page anglaise correspondante")
 
     upgrade = sub.add_parser("upgrade", help="Installer les composants déposés dans updates/")
     upgrade.add_argument("archive", nargs="?", type=Path, help="Archive complète facultative")
@@ -2146,7 +2157,7 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(result, ensure_ascii=False, sort_keys=True))
         return 0
     if args.command == "update":
-        result = update_debate(root, args.debate_identifier, args.scope, args.yes, args.no_delete, args.only_delete, args.dry_run, args.keep_zip, args.archive)
+        result = update_debate(root, args.debate_identifier, args.scope, args.yes, args.no_delete, args.only_delete, args.dry_run, args.keep_zip, args.archive, args.interlanguage_only)
         print(json.dumps(result, ensure_ascii=False, sort_keys=True))
         return 0
     if args.command == "upgrade":

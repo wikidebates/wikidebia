@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.56** ;
 - validateur actif : **0.4.60** ;
-- kit actif : **2.15.36**.
+- kit actif : **2.15.37**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 2025798 octets — SHA-256 `dea4fc9c582f0d48c14cc56486d020cd96f42b5b61fe59b13eb712b72ef370f8`
-- `wikidebia-validator.zip` — 2319878 octets — SHA-256 `343c57376d798c76199131604a9f1542645fb7542e7814852f8f815bf035ffe2`
-- `wikidebia-kit.zip` — 457579 octets — SHA-256 `bf78d0fe2470675a2bbe961d1744e75d82bf220b2c0d9558d2806448361787d1`
+- `wikidebia-normes.zip` — 2013113 octets — SHA-256 `c97cca666f5f3c651be85d8dd7c9a088f5e8980faf49347feb8408d0e2276bd5`
+- `wikidebia-validator.zip` — 2299288 octets — SHA-256 `7210f475798f1ef1fe84553c2a54683aebfd9669050326214b24771999ee1900`
+- `wikidebia-kit.zip` — 449448 octets — SHA-256 `d2f2721b5e0e3a30d41bb26b02afbd257d43ec47387b8396ad82f843e602cf89`
 
 ## Norme consolidée active
 
@@ -2470,11 +2470,11 @@ SHA-256 : `08a54a7ec806223457ceefd42792de7da791793769d34ece662ac2a330d93d65`
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `c2f01fb03562c7888227dd5b724247612ab84d80b238057483020668f7828838`
+SHA-256 : `f8db5f5dd4f60368c6ab4d4e5501821e6bcb32a3a55f47fd1111d79fdcfa0ff7`
 
-# Wikidéb’IA — Kit 2.15.36
+# Wikidéb’IA — Kit 2.15.37
 
-Le kit 2.15.36 applique la norme 1.2.56. La page Debate reste un lot autonome ; les Arguments sont relus en unités internes de 10 pages par défaut, réduites à 5–8 pour les groupes denses. Une livraison Work peut agréger plusieurs unités déjà closes sans transformer les exemples ou checklists en patrons mécaniques.
+Le kit 2.15.37 applique la norme 1.2.56. La page Debate reste un lot autonome ; les Arguments sont relus en unités internes de 10 pages par défaut, réduites à 5–8 pour les groupes denses. Une livraison Work peut agréger plusieurs unités déjà closes sans transformer les exemples ou checklists en patrons mécaniques.
 
 La phase anglaise recherche séparément les appellations consacrées dans la littérature anglophone et n'obtient jamais `name=` par traduction mécanique de `nom=`. Elle compare les formes concurrentes sans normaliser artificiellement `Argument from X`, `X argument` ou les possessifs, et refuse un nom dont la portée est plus étroite que celle de la page. Les références françaises ne sont pas traduites : une version anglaise réelle doit être trouvée et citée avec ses propres métadonnées, et de nouvelles références anglophones sont recherchées indépendamment. Le contrat `Citation`→`Quote` reste inchangé : seules les valeurs `quote` et `date` sont traduites et `Quote translated by AI` est ajouté.
 
@@ -2491,7 +2491,16 @@ Les numéros de norme et les anciens champs de révision ne sont plus des featur
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `1ad3aa21ad662ed049dab29eb956eff2d371c0f3818c0faa8a7032508dc6e9f6`
+SHA-256 : `9ca574528be14dc1a3b54ded4ae12f932997d2f66dcded3688ff8d6574fde93b`
+
+## 2.15.37 — 9 août 2026
+
+- ajoute `./wikidebia update --scope fr --interlanguage-only` pour les reprises consacrées exclusivement à l’ajout des liens FR→EN ;
+- dans ce mode, le wikicode distant courant est la base autoritative : tout contenu humain, toute relation externe et toute métadonnée existante sont préservés exactement, et seul le lien interlangue attendu est ajouté ;
+- les adoptions distantes obsolètes et les divergences avec l’ancien état publié ne bloquent plus ce mode étroit, puisque la révision distante courante est elle-même verrouillée par `baserevid` et empreinte dans le plan ;
+- les redirections françaises sont conservées comme redirections et reçoivent un lien interlangue MediaWiki direct `[[en:Titre]]` ;
+- le résumé individualisé `Ajout du lien interlangue vers la page anglaise [[en:X|X]]` reste signé dans le plan et revérifié après écriture ;
+- aucune création, suppression, déplacement ni autre correction de contenu n’est autorisée dans ce mode.
 
 ## 2.15.36 — 9 août 2026
 
@@ -3391,9 +3400,9 @@ Tests pytest : 297 réussis, 0 échec.
 ## Guide de traduction anglaise
 
 Source interne : `kit/GUIDE_TRANSLATION_REVIEW.md`  
-SHA-256 : `6d936330c6ed05844b287be398b96b653610862ce77ca48f2330bee5e21dc645`
+SHA-256 : `cb841d8961e1a14fa9d86a6cde5d54f082509fc2ff0aee3ad41821ab9ae0c594`
 
-# Guide de traduction anglaise contrôlée — Kit 2.15.36
+# Guide de traduction anglaise contrôlée — Kit 2.15.37
 
 > Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 

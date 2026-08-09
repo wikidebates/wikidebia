@@ -35,7 +35,7 @@ from wikidebia_graph_extract import (
     normalize_key,
 )
 
-KIT_VERSION = "2.15.36"
+KIT_VERSION = "2.15.37"
 CORPUS_INIT_VERSION = "1.0.0"
 NORM_VERSION = "1.2.56"
 VALIDATOR_VERSION = "0.4.60"

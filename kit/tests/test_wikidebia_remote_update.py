@@ -141,7 +141,7 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
     validator = root / "validator.py"
     validator.write_text("import json; print(json.dumps({'validator_version':'0.4.60','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     config = {
-        "kit_version":"2.15.36","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
+        "kit_version":"2.15.37","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
         "family":"wikidebates","pywikibot_dir":"private/pywikibot","sites":{lang:{"code":lang,"expected_user":"ChatGPT"} for lang in languages},
         "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.60","scopes":[]},
         "published_state_dir":".state/published","receipts_dir":".state/receipts","logs_dir":"logs",
@@ -715,3 +715,82 @@ def test_remote_page_without_expected_main_template_is_page_specific_manual_revi
     assert row["title"] == "Titre"
     assert "Modèle principal introuvable" in row["remote_structure_error"]
     assert row["remote_excerpt"].startswith("#REDIRECT")
+
+
+def test_56_interlanguage_only_preserves_human_changes(tmp_path):
+    remote = argument("Modification humaine conservée")
+    proposed = argument("Version du corpus différente")
+    config, path = make_fixture(
+        tmp_path,
+        languages=("fr",),
+        old_pages=[("fr", "A1", "Titre", argument("Ancien"))],
+        new_pages=[("fr", "A1", "Titre", proposed)],
+    )
+    corpus = tmp_path / "corpus" / "demo"
+    en_dir = corpus / "output" / "en"; en_dir.mkdir(parents=True, exist_ok=True)
+    en_file = en_dir / "A1.wiki"; en_file.write_text("{{Argument\n|summary=English\n}}\n", encoding="utf-8")
+    manifest = json.loads((corpus / "manifest.json").read_text())
+    manifest["translation_status"] = {"en": "ready"}
+    manifest["pages"].append({"language":"en","page_id":"A1","page_type":"argument","canonical_title":"English title","file_path":"output/en/A1.wiki","sha256":module.sha_file(en_file)})
+    (corpus / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+    config["interlanguage_only"] = True
+    path.write_text(json.dumps(config), encoding="utf-8")
+    adapter = FakeAdapter({("fr", "Titre"):(11, remote)})
+    planner = module.RemoteUpdatePlanner(config, adapter, path)
+    p = planner.build_plan()
+    assert p["counts"]["update"] == 1
+    assert p["counts"]["manual_review"] == 0
+    row = p["operations"]["update"][0]
+    desired = Path(tmp_path / row["source_path"]).read_text(encoding="utf-8")
+    assert "Modification humaine conservée" in desired
+    assert "Version du corpus différente" not in desired
+    assert "|interlangue={{Lien interlangue\n|langue=en\n|page=English title\n}}" in desired
+    assert row["edit_summary"] == "Ajout du lien interlangue vers la page anglaise [[en:English title|English title]]"
+
+
+def test_57_interlanguage_only_preserves_external_parameter(tmp_path):
+    remote = "{{Argument\n|résumé=Texte\n|objections={{Objection\n|page=Ajout humain\n|titre-affiché=Ajout humain\n}}\n|rubriques=Philosophie\n}}\n"
+    proposed = "{{Argument\n|résumé=Texte\n|rubriques=Philosophie\n}}\n"
+    config, path = make_fixture(tmp_path, languages=("fr",), old_pages=[], new_pages=[("fr","A1","Titre",proposed)])
+    corpus = tmp_path / "corpus" / "demo"; en_dir=corpus/"output"/"en"; en_dir.mkdir(parents=True,exist_ok=True)
+    en_file=en_dir/"A1.wiki"; en_file.write_text("{{Argument\n|summary=x\n}}\n",encoding="utf-8")
+    manifest=json.loads((corpus/"manifest.json").read_text()); manifest["translation_status"]={"en":"ready"}; manifest["pages"].append({"language":"en","page_id":"A1","page_type":"argument","canonical_title":"English title","file_path":"output/en/A1.wiki","sha256":module.sha_file(en_file)}); (corpus/"manifest.json").write_text(json.dumps(manifest),encoding="utf-8")
+    config["interlanguage_only"]=True; path.write_text(json.dumps(config),encoding="utf-8")
+    adapter=FakeAdapter({("fr","Titre"):(25,remote)})
+    p=module.RemoteUpdatePlanner(config,adapter,path).build_plan()
+    assert p["counts"]["update"]==1 and p["counts"]["blocked"]==0
+    row=p["operations"]["update"][0]; desired=(tmp_path/row["source_path"]).read_text(encoding="utf-8")
+    assert "Ajout humain" in desired
+
+
+def test_58_interlanguage_only_keeps_redirect_and_adds_direct_language_link(tmp_path):
+    remote = "#REDIRECTION [[L'homme est déterminé]]\n"
+    proposed = argument("Page complète du corpus")
+    config, path = make_fixture(tmp_path, languages=("fr",), old_pages=[], new_pages=[("fr","A1","Il n'existe pas de libre arbitre",proposed)])
+    corpus=tmp_path/"corpus"/"demo"; en_dir=corpus/"output"/"en"; en_dir.mkdir(parents=True,exist_ok=True)
+    en_file=en_dir/"A1.wiki"; en_file.write_text("{{Argument\n|summary=x\n}}\n",encoding="utf-8")
+    manifest=json.loads((corpus/"manifest.json").read_text()); manifest["translation_status"]={"en":"ready"}; manifest["pages"].append({"language":"en","page_id":"A1","page_type":"argument","canonical_title":"There is no free will","file_path":"output/en/A1.wiki","sha256":module.sha_file(en_file)}); (corpus/"manifest.json").write_text(json.dumps(manifest),encoding="utf-8")
+    config["interlanguage_only"]=True; path.write_text(json.dumps(config),encoding="utf-8")
+    adapter=FakeAdapter({("fr","Il n'existe pas de libre arbitre"):(30,remote)})
+    p=module.RemoteUpdatePlanner(config,adapter,path).build_plan(); assert p["counts"]["update"]==1
+    row=p["operations"]["update"][0]; desired=(tmp_path/row["source_path"]).read_text(encoding="utf-8")
+    assert desired.startswith("#REDIRECTION [[L'homme est déterminé]]")
+    assert "[[en:There is no free will]]" in desired
+    assert row["interlanguage_representation"] == "redirect_added"
+
+
+def test_59_interlanguage_only_executor_rechecks_pure_overlay(tmp_path):
+    remote = argument("Modification humaine conservée")
+    proposed = argument("Version corpus")
+    config, path = make_fixture(tmp_path, languages=("fr",), old_pages=[("fr","A1","Titre",argument("Ancien"))], new_pages=[("fr","A1","Titre",proposed)])
+    corpus=tmp_path/"corpus"/"demo"; en_dir=corpus/"output"/"en"; en_dir.mkdir(parents=True,exist_ok=True)
+    en_file=en_dir/"A1.wiki"; en_file.write_text("{{Argument\n|summary=x\n}}\n",encoding="utf-8")
+    manifest=json.loads((corpus/"manifest.json").read_text()); manifest["translation_status"]={"en":"ready"}; manifest["pages"].append({"language":"en","page_id":"A1","page_type":"argument","canonical_title":"English title","file_path":"output/en/A1.wiki","sha256":module.sha_file(en_file)}); (corpus/"manifest.json").write_text(json.dumps(manifest),encoding="utf-8")
+    config["interlanguage_only"]=True; path.write_text(json.dumps(config),encoding="utf-8")
+    adapter=FakeAdapter({("fr","Titre"):(11,remote)})
+    planner=module.RemoteUpdatePlanner(config,adapter,path); p=planner.build_plan()
+    executor=module.PlanExecutor(config,adapter,path); receipt=executor.execute(p,p["plan_sha256"])
+    assert receipt["counts"]["updated"] == 1
+    final = adapter.pages[("fr", "Titre")][1]
+    assert "Modification humaine conservée" in final
+    assert "|page=English title" in final

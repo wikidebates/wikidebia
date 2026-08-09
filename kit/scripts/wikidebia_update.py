@@ -29,7 +29,7 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.15.36"
+KIT_VERSION = "2.15.37"
 REQUIRED_VALIDATOR_VERSION = "0.4.60"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
@@ -140,6 +140,102 @@ def only_french_interlanguage_addition(
         return False
     return link.get("langue") == "en" and link.get("page") == expected_english_title
 
+
+
+
+def french_interlanguage_value(expected_english_title: str) -> str:
+    return (
+        "{{Lien interlangue\n"
+        "|langue=en\n"
+        f"|page={expected_english_title}\n"
+        "}}"
+    )
+
+
+def french_redirect_target(text: str) -> str | None:
+    match = re.match(r"(?is)^\s*#(?:REDIRECTION|REDIRECT)\s*\[\[([^\]]+)\]\]", text or "")
+    return match.group(1).strip() if match else None
+
+
+def french_redirect_interlanguage_target(text: str) -> str | None:
+    links = re.findall(r"(?im)^\s*\[\[en:([^\]|]+)(?:\|[^\]]*)?\]\]\s*$", text or "")
+    if not links:
+        return None
+    distinct = {item.strip() for item in links if item.strip()}
+    if len(distinct) != 1:
+        raise UpdateError("Plusieurs liens interlangues anglais divergents sur la redirection")
+    return next(iter(distinct))
+
+
+def add_french_interlanguage_to_remote(
+    remote_text: str,
+    page_type: str,
+    expected_english_title: str,
+) -> tuple[str, str]:
+    """Return current remote text plus only the requested FR→EN interlanguage link.
+
+    Normal Debate/Argument pages keep their exact current remote top-level content
+    and receive the canonical ``interlangue`` parameter. A remote redirect is kept
+    as a redirect and receives a standard direct MediaWiki interlanguage link.
+    """
+    expected = {("fr", "debate"): "debat", ("fr", "argument"): "argument"}[("fr", page_type)]
+    calls = [call for call in iter_templates(remote_text or "") if normalize_key(call.name) == expected]
+    if calls:
+        call = max(calls, key=lambda item: len(item.raw))
+        parsed = parse_template(call.raw)
+        if parsed is None:
+            raise UpdateError(f"Modèle principal illisible (fr/{page_type})")
+        if "interlangue" in parsed.params:
+            value = parsed.params["interlangue"]
+            links = [item for item in iter_templates(value) if normalize_key(item.name) == "lien interlangue"]
+            if len(links) != 1 or set(links[0].params) != {"langue", "page"}:
+                raise UpdateError("Paramètre interlangue distant illisible ou non canonique")
+            if links[0].get("langue") != "en" or links[0].get("page") != expected_english_title:
+                raise UpdateError("Paramètre interlangue distant divergent de la cible anglaise attendue")
+            return remote_text, "template_existing"
+
+        addition = f"|interlangue={french_interlanguage_value(expected_english_title)}\n"
+        date_match = re.search(r"(?m)^\|date-création=", call.raw)
+        if date_match:
+            new_raw = call.raw[:date_match.start()] + addition + call.raw[date_match.start():]
+        else:
+            closing = call.raw.rfind("}}")
+            if closing < 0:
+                raise UpdateError(f"Modèle principal illisible (fr/{page_type})")
+            prefix = call.raw[:closing]
+            if prefix and not prefix.endswith("\n"):
+                prefix += "\n"
+            new_raw = prefix + addition + call.raw[closing:]
+        return remote_text.replace(call.raw, new_raw, 1), "template_added"
+
+    if french_redirect_target(remote_text) is not None:
+        existing = french_redirect_interlanguage_target(remote_text)
+        if existing is not None:
+            if existing != expected_english_title:
+                raise UpdateError("Lien interlangue anglais divergent sur la redirection")
+            return remote_text, "redirect_existing"
+        base = remote_text.rstrip("\n")
+        return base + f"\n[[en:{expected_english_title}]]\n", "redirect_added"
+
+    raise UpdateError(f"Modèle principal ou redirection introuvable (fr/{page_type})")
+
+
+def only_french_interlanguage_overlay(
+    remote_text: str,
+    desired_text: str,
+    page_type: str,
+    expected_english_title: str,
+) -> bool:
+    try:
+        if only_french_interlanguage_addition(remote_text, desired_text, page_type, expected_english_title):
+            return True
+    except UpdateError:
+        pass
+    try:
+        expected, _ = add_french_interlanguage_to_remote(remote_text, page_type, expected_english_title)
+    except UpdateError:
+        return False
+    return normalize_wikicode(expected) == normalize_wikicode(desired_text)
 
 def lifecycle_parameters_unchanged(remote_text: str, proposed_text: str, language: str, page_type: str) -> tuple[bool, dict[str, Any]]:
     before = protected_lifecycle_snapshot(remote_text, language, page_type)
@@ -621,6 +717,7 @@ class RemoteUpdatePlanner:
         self.manifest = load_json(self.manifest_path)
         self.debate_id = str(config["debate_id"])
         self.languages = tuple(config.get("languages") or ("fr", "en"))
+        self.interlanguage_only = config.get("interlanguage_only") is True
         self.adapter = adapter if hasattr(adapter, "user_rights") else UpdateAdapter(adapter)
         self.extra_markers = tuple(config.get("generated_markers") or ())
         self.migrations = self._load_migrations()
@@ -651,6 +748,8 @@ class RemoteUpdatePlanner:
         translation_status = str(((self.manifest.get("translation_status") or {}).get("en") or "pending"))
         if translation_status == "deferred" and "en" in self.languages:
             raise UpdateError("La portée anglaise est interdite tant que translation_status.en vaut deferred")
+        if self.interlanguage_only and self.languages != ("fr",):
+            raise UpdateError("interlanguage_only exige une portée française exclusive")
 
     def _load_migrations(self) -> list[dict[str, Any]]:
         rel = self.config.get("migrations_file")
@@ -898,6 +997,103 @@ class RemoteUpdatePlanner:
             op["edit_summary_policy"] = "french_interlanguage_addition"
             op["edit_summary"] = self._interlanguage_edit_summary(page_id, page_type)
 
+    def _materialize_remote_overlay(self, proposed: dict[str, Any], text: str) -> dict[str, Any]:
+        digest = sha_text(text)
+        target = (
+            self.project_root / ".state" / "update-effective" / self.debate_id / "fr"
+            / f"{proposed['page_id']}-{digest[:16]}.wiki"
+        )
+        target.parent.mkdir(parents=True, exist_ok=True)
+        temporary = target.with_suffix(target.suffix + ".tmp")
+        temporary.write_text(text, encoding="utf-8", newline="\n")
+        os.replace(temporary, target)
+        effective = dict(proposed)
+        effective.update({
+            "content": text,
+            "content_sha256": digest,
+            "source_path": portable(target, self.project_root),
+            "file_sha256": sha_file(target),
+            "original_source_path": proposed["source_path"],
+            "original_content_sha256": proposed["content_sha256"],
+            "original_file_sha256": proposed["file_sha256"],
+        })
+        return effective
+
+    def _plan_interlanguage_only_page(
+        self,
+        language: str,
+        proposed: dict[str, Any],
+        exists: bool,
+        revision_id: int | None,
+        remote_text: str,
+        buckets: dict[str, list[dict[str, Any]]],
+    ) -> None:
+        if language != "fr":
+            raise UpdateError("La reprise interlangue seule est réservée au français")
+        op = self._base_operation(
+            language=language,
+            page_id=proposed["page_id"],
+            page_type=proposed["page_type"],
+            title=proposed["title"],
+            justification="Ajout interlangue seul demandé par le propriétaire",
+        )
+        if not exists or revision_id is None:
+            op.update({
+                "source_path": proposed["source_path"],
+                "local_file_sha256": proposed["file_sha256"],
+                "new_sha256": proposed["content_sha256"],
+                "observed_revision_id": revision_id,
+                "phase": 0,
+            })
+            op["justification"] = "La reprise interlangue seule ne crée aucune page française absente"
+            buckets["blocked"].append(op)
+            return
+        expected_title = self._english_title_for(str(proposed["page_id"]), str(proposed["page_type"]))
+        try:
+            desired_text, representation = add_french_interlanguage_to_remote(
+                remote_text, str(proposed["page_type"]), expected_title
+            )
+        except UpdateError as exc:
+            op.update({
+                "source_path": proposed["source_path"],
+                "local_file_sha256": proposed["file_sha256"],
+                "new_sha256": proposed["content_sha256"],
+                "observed_revision_id": revision_id,
+                "remote_sha256": sha_text(remote_text),
+                "remote_structure_error": str(exc),
+                "remote_excerpt": remote_text[:1000],
+                "phase": 0,
+            })
+            buckets["blocked"].append(op)
+            return
+        effective = self._materialize_remote_overlay(proposed, desired_text)
+        op.update({
+            "source_path": effective["source_path"],
+            "local_file_sha256": effective["file_sha256"],
+            "new_sha256": effective["content_sha256"],
+            "observed_revision_id": revision_id,
+            "remote_sha256": sha_text(remote_text),
+            "interlanguage_representation": representation,
+            "original_source_path": effective["original_source_path"],
+            "original_local_file_sha256": effective["original_file_sha256"],
+            "original_new_sha256": effective["original_content_sha256"],
+        })
+        if sha_text(remote_text) == effective["content_sha256"]:
+            op["justification"] = "Lien interlangue distant déjà conforme; contenu distant conservé tel quel"
+            op["phase"] = 0
+            buckets["skip"].append(op)
+            return
+        op.update({
+            "old_sha256": sha_text(remote_text),
+            "expected_revision_id": revision_id,
+            "justification": "Ajout interlangue pur sur l’état distant courant; tout autre contenu distant est préservé",
+            "preconditions": ["remote_snapshot_unchanged", "only_interlanguage_addition", "baserevid_unchanged"],
+            "phase": 1 if proposed["page_type"] == "debate" else 3,
+            "edit_summary_policy": "french_interlanguage_addition",
+            "edit_summary": self._interlanguage_edit_summary(str(proposed["page_id"]), str(proposed["page_type"])),
+        })
+        buckets["update"].append(op)
+
     def _effective_proposed(
         self,
         prior: StatePage,
@@ -1087,11 +1283,14 @@ class RemoteUpdatePlanner:
         # Current corpus pages: create, skip, controlled update, move, or review.
         for key, proposed in new.items():
             prior = old.get(key)
-            if prior and prior.title != proposed["title"]:
+            if prior and prior.title != proposed["title"] and not self.interlanguage_only:
                 self._plan_move(prior, proposed, buckets, comparisons)
                 handled_old.add(key)
                 continue
             exists, revision_id, remote_text = self.adapter.read_page(proposed["title"])
+            if self.interlanguage_only:
+                self._plan_interlanguage_only_page(language, proposed, exists, revision_id, remote_text, buckets)
+                continue
             # An existing remote title that does not contain the main template
             # expected for this logical page must never abort the whole plan. It
             # may be a redirect, a moved page, or a human/legacy format. Surface
@@ -1227,6 +1426,9 @@ class RemoteUpdatePlanner:
                 comparisons.append(comparison)
                 op["comparison_id"] = comparison["comparison_id"]
                 buckets["manual_review"].append(op)
+
+        if self.interlanguage_only:
+            return
 
         # Retired pages: explicit merge policy or safe deletion; never infer ownership from absence alone.
         for key, prior in old.items():
@@ -1443,6 +1645,7 @@ class PlanExecutor:
         self.manifest = load_json(self.corpus_root / str(config.get("manifest_file") or "manifest.json"))
         self.debate_id = str(config["debate_id"])
         self.languages = tuple(config.get("languages") or ("fr", "en"))
+        self.interlanguage_only = config.get("interlanguage_only") is True
         self.adapter = adapter if hasattr(adapter, "user_rights") else UpdateAdapter(adapter)
         self.logs_dir = self._resolve(config.get("logs_dir") or "logs")
         self.state_dir = self._resolve(config.get("published_state_dir") or ".state/published")
@@ -1696,7 +1899,7 @@ class PlanExecutor:
                 raise PlanConflict(f"Modification distante intervenue depuis le plan : {title}")
             if row.get("edit_summary_policy") == "french_interlanguage_addition":
                 expected_title = self._english_title_for(str(row.get("page_id") or ""), str(row.get("page_type") or ""))
-                if not only_french_interlanguage_addition(remote_text, desired, str(row.get("page_type") or ""), expected_title):
+                if not only_french_interlanguage_overlay(remote_text, desired, str(row.get("page_type") or ""), expected_title):
                     raise PlanConflict(f"La modification n'est plus un ajout interlangue pur : {row.get('page_id')}")
             new_rev = self.adapter.write_page(title=title, text=desired, summary=summary, tags=["chatgpt"], expected_user=user, create_only=False, base_revision_id=revision_id)
             self._verify_written_revision(title, new_rev, desired, summary)
