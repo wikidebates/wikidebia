@@ -13,8 +13,8 @@
   "files": [
     {
       "path": "COMPATIBILITY.json",
-      "size_bytes": 2323,
-      "sha256": "be4ad6f78d4bf8bed96d513a4394d560d2c43eee68696b00b842a898d51f1478"
+      "size_bytes": 2503,
+      "sha256": "e7d48d580c1a0532d0c1bf21c82cfcc8b4eb26c7ff0ddddd198e2dfcd250b602"
     },
     {
       "path": "README.md",
@@ -24,7 +24,7 @@
     {
       "path": "VERSIONS.json",
       "size_bytes": 68,
-      "sha256": "113345f2092d2666284d7396f7d2d2057689f0282e94e306dccdebd128dc3057"
+      "sha256": "e10c7ecc07977836572e12b5b4a73f9f5ec9eacdc36e1b5dd443c2378a51c089"
     },
     {
       "path": "docs/ARCHITECTURE_VALIDATEUR.md",

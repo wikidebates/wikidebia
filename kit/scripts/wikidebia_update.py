@@ -29,7 +29,7 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.15.34"
+KIT_VERSION = "2.15.35"
 REQUIRED_VALIDATOR_VERSION = "0.4.60"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
@@ -97,6 +97,48 @@ def top_level_parameter_deletions(remote_text: str, proposed_text: str, language
         return {normalize_key(key): key for key in call.params}
     before, after = names(remote_text), names(proposed_text)
     return sorted(before[name] for name in (set(before) - set(after)))
+
+
+
+def top_level_parameter_map(text: str, language: str, page_type: str) -> tuple[str, list[str], dict[str, str]]:
+    """Return main-template name, positional values and top-level parameters."""
+    expected = {
+        ("fr", "debate"): "debat", ("en", "debate"): "debate",
+        ("fr", "argument"): "argument", ("en", "argument"): "argument",
+    }[(language, page_type)]
+    calls = [call for call in iter_templates(text or "") if normalize_key(call.name) == expected]
+    if not calls:
+        raise UpdateError(f"Modèle principal introuvable ({language}/{page_type})")
+    call = max(calls, key=lambda item: len(item.raw))
+    parsed = parse_template(call.raw)
+    if parsed is None:
+        raise UpdateError(f"Modèle principal illisible ({language}/{page_type})")
+    return parsed.name, list(parsed.positional), dict(parsed.params)
+
+
+def only_french_interlanguage_addition(
+    remote_text: str,
+    proposed_text: str,
+    page_type: str,
+    expected_english_title: str,
+) -> bool:
+    """True only when the sole top-level content change is adding the expected FR→EN link."""
+    before_name, before_positional, before_params = top_level_parameter_map(remote_text, "fr", page_type)
+    after_name, after_positional, after_params = top_level_parameter_map(proposed_text, "fr", page_type)
+    if normalize_key(before_name) != normalize_key(after_name) or before_positional != after_positional:
+        return False
+    if "interlangue" in before_params or "interlangue" not in after_params:
+        return False
+    link_value = after_params.pop("interlangue")
+    if before_params != after_params:
+        return False
+    links = [call for call in iter_templates(link_value) if normalize_key(call.name) == "lien interlangue"]
+    if len(links) != 1:
+        return False
+    link = links[0]
+    if set(link.params) != {"langue", "page"}:
+        return False
+    return link.get("langue") == "en" and link.get("page") == expected_english_title
 
 
 def lifecycle_parameters_unchanged(remote_text: str, proposed_text: str, language: str, page_type: str) -> tuple[bool, dict[str, Any]]:
@@ -167,8 +209,10 @@ def preserve_remote_lifecycle_parameters(
     for name, value in explicit_parameter_assignments.items():
         if name not in names:
             raise UpdateError(f"Attribution explicite interdite pour un paramètre non protégé : {name}")
-        if name not in {"nom", "name"}:
-            raise UpdateError(f"La politique d’attribution explicite ne peut modifier que nom/name : {name}")
+        if name not in {"nom", "name", "interlangue"}:
+            raise UpdateError(f"L’attribution explicite ne peut modifier que nom/name ou interlangue : {name}")
+        if name == "interlangue" and language != "fr":
+            raise UpdateError("Le paramètre interlangue explicite est réservé aux pages françaises")
         if not isinstance(value, str) or not value.strip():
             raise UpdateError(f"Valeur d’attribution explicite invalide pour {name}")
         desired[name] = (True, value)
@@ -794,6 +838,66 @@ class RemoteUpdatePlanner:
                     allowed.add(name)
         return sorted(deleted - allowed)
 
+    def _english_title_for(self, page_id: str, page_type: str) -> str:
+        matches = [
+            row for row in (self.manifest.get("pages") or [])
+            if str(row.get("language") or "") == "en"
+            and str(row.get("page_id") or "") == page_id
+            and str(row.get("page_type") or "") == page_type
+        ]
+        if len(matches) != 1:
+            raise UpdateError(f"Titre anglais correspondant introuvable ou ambigu : {page_type}/{page_id}")
+        title = str(matches[0].get("canonical_title") or "").strip()
+        if not title:
+            raise UpdateError(f"Titre anglais correspondant vide : {page_type}/{page_id}")
+        if any(char in title for char in "[]|"):
+            raise UpdateError(f"Titre anglais incompatible avec un résumé MediaWiki : {page_type}/{page_id}")
+        return title
+
+    def _interlanguage_assignment_for(
+        self,
+        prior: StatePage,
+        proposed: dict[str, Any],
+        remote_text: str,
+    ) -> str | None:
+        if prior.language != "fr":
+            return None
+        status = str(((self.manifest.get("translation_status") or {}).get("en") or "pending"))
+        if status not in {"ready", "published"}:
+            return None
+        _, _, remote_params = top_level_parameter_map(remote_text, prior.language, prior.page_type)
+        _, _, proposed_params = top_level_parameter_map(proposed["content"], prior.language, prior.page_type)
+        if "interlangue" in remote_params or "interlangue" not in proposed_params:
+            return None
+        expected_title = self._english_title_for(prior.page_id, prior.page_type)
+        value = proposed_params["interlangue"]
+        links = [call for call in iter_templates(value) if normalize_key(call.name) == "lien interlangue"]
+        if len(links) != 1 or links[0].get("langue") != "en" or links[0].get("page") != expected_title:
+            raise UpdateError(f"Lien interlangue proposé divergent du titre anglais verrouillé : fr/{prior.page_id}")
+        return value
+
+    def _interlanguage_edit_summary(self, page_id: str, page_type: str) -> str:
+        title = self._english_title_for(page_id, page_type)
+        return f"Ajout du lien interlangue vers la page anglaise [[en:{title}|{title}]]"
+
+    def _apply_update_summary_policy(
+        self,
+        op: dict[str, Any],
+        remote_text: str,
+        proposed_text: str,
+    ) -> None:
+        if str(op.get("language")) != "fr":
+            return
+        status = str(((self.manifest.get("translation_status") or {}).get("en") or "pending"))
+        if status not in {"ready", "published"}:
+            return
+        page_id = str(op.get("page_id") or "")
+        page_type = str(op.get("page_type") or "")
+        expected_title = self._english_title_for(page_id, page_type)
+        if only_french_interlanguage_addition(remote_text, proposed_text, page_type, expected_title):
+            op["edit_summary_policy"] = "french_interlanguage_addition"
+            op["edit_summary"] = self._interlanguage_edit_summary(page_id, page_type)
+
     def _effective_proposed(
         self,
         prior: StatePage,
@@ -805,6 +909,9 @@ class RemoteUpdatePlanner:
         explicit_assignments = {}
         if assignment is not None:
             explicit_assignments["nom" if prior.language == "fr" else "name"] = str(assignment["name"])
+        interlanguage_value = self._interlanguage_assignment_for(prior, proposed, remote_text)
+        if interlanguage_value is not None:
+            explicit_assignments["interlangue"] = interlanguage_value
         effective_text, preservation = preserve_remote_lifecycle_parameters(
             remote_text,
             proposed["content"],
@@ -1056,6 +1163,7 @@ class RemoteUpdatePlanner:
                         "preconditions": ["remote_matches_authorized_adoption", "remote_lifecycle_changes_authorized", "baserevid_unchanged"],
                         "phase": 1 if effective["page_type"] == "debate" else 3,
                     })
+                    self._apply_update_summary_policy(op, remote_text, effective["content"])
                     buckets["update"].append(op)
             elif prior is None:
                 op["justification"] = "Page existante non attestée dans l’ancien état publié"
@@ -1075,6 +1183,7 @@ class RemoteUpdatePlanner:
                     "preconditions": ["same_debate_id", "remote_matches_published_state", "remote_lifecycle_parameters_preserved", "baserevid_unchanged"],
                     "phase": 1 if effective["page_type"] == "debate" else 3,
                 })
+                self._apply_update_summary_policy(op, remote_text, effective["content"])
                 buckets["update"].append(op)
             else:
                 op.update({
@@ -1466,11 +1575,58 @@ class PlanExecutor:
             stream.write(str(os.getpid()))
         return path
 
+    def _english_title_for(self, page_id: str, page_type: str) -> str:
+        matches = [
+            row for row in (self.manifest.get("pages") or [])
+            if str(row.get("language") or "") == "en"
+            and str(row.get("page_id") or "") == page_id
+            and str(row.get("page_type") or "") == page_type
+        ]
+        if len(matches) != 1:
+            raise PlanConflict(f"Titre anglais correspondant introuvable ou ambigu : {page_type}/{page_id}")
+        title = str(matches[0].get("canonical_title") or "").strip()
+        if not title or any(char in title for char in "[]|"):
+            raise PlanConflict(f"Titre anglais incompatible avec le résumé interlangue : {page_type}/{page_id}")
+        return title
+
+    def _interlanguage_edit_summary(self, page_id: str, page_type: str) -> str:
+        title = self._english_title_for(page_id, page_type)
+        return f"Ajout du lien interlangue vers la page anglaise [[en:{title}|{title}]]"
+
+    def _verify_written_revision(self, title: str, revision_id: int, desired: str, summary: str) -> None:
+        observed = self.adapter.read_revision(title, revision_id)
+        if not observed:
+            raise PlanConflict(f"Révision écrite introuvable lors de la relecture : {title}")
+        if int(observed.get("revision_id") or 0) != int(revision_id):
+            raise PlanConflict(f"Identifiant de révision divergent après écriture : {title}")
+        if sha_text(str(observed.get("text") or "")) != sha_text(desired):
+            raise PlanConflict(f"Contenu distant divergent après écriture : {title}")
+        if str(observed.get("summary") or "") != summary:
+            raise PlanConflict(f"Résumé de modification distant divergent après écriture : {title}")
+        if "chatgpt" not in set(observed.get("tags") or []):
+            raise PlanConflict(f"Balise chatgpt absente après écriture : {title}")
+
     def _summary(self, language: str, operation: str, plan: dict[str, Any]) -> str:
         configured = (self.config.get("edit_summaries") or {}).get(language)
         if configured:
             return str(configured).format(debate_id=self.debate_id, corpus_version=plan.get("corpus_version"), operation=operation)
         return "Corrections"
+
+    def _expected_row_summary(self, row: dict[str, Any], operation: str, plan: dict[str, Any]) -> str:
+        policy = str(row.get("edit_summary_policy") or "")
+        if not policy:
+            if row.get("edit_summary"):
+                raise PlanConflict(f"Résumé individualisé sans politique signée : {row.get('page_id')}")
+            return self._summary(str(row["language"]), operation, plan)
+        if policy != "french_interlanguage_addition":
+            raise PlanConflict(f"Politique de résumé inconnue : {policy}")
+        if str(row.get("language")) != "fr" or operation != "update":
+            raise PlanConflict(f"Politique interlangue appliquée à une opération invalide : {row.get('page_id')}")
+        expected = self._interlanguage_edit_summary(str(row.get("page_id") or ""), str(row.get("page_type") or ""))
+        planned = str(row.get("edit_summary") or "")
+        if planned != expected:
+            raise PlanConflict(f"Résumé interlangue divergent dans le plan : {row.get('page_id')}")
+        return planned
 
     def _source_text(self, row: dict[str, Any]) -> str:
         path = self._resolve(row["source_path"])
@@ -1485,7 +1641,7 @@ class PlanExecutor:
         operation = row["operation"]
         title = row["title"]
         exists, revision_id, remote_text = self.adapter.read_page(title)
-        summary = self._summary(row["language"], operation, plan)
+        summary = self._expected_row_summary(row, operation, plan)
         result = {"operation": operation, "language": row["language"], "page_id": row["page_id"], "title": title, "status": None}
         if operation == "create":
             desired = self._source_text(row)
@@ -1495,7 +1651,8 @@ class PlanExecutor:
                     return result
                 raise PlanConflict(f"Collision apparue après le plan : {title}")
             new_rev = self.adapter.write_page(title=title, text=desired, summary=summary, tags=["chatgpt"], expected_user=user, create_only=True, base_revision_id=None)
-            result.update(status="created", revision_id=new_rev, content_sha256=sha_text(desired))
+            self._verify_written_revision(title, new_rev, desired, summary)
+            result.update(status="created", revision_id=new_rev, content_sha256=sha_text(desired), edit_summary=summary)
             return result
         if operation == "update":
             desired = self._source_text(row)
@@ -1506,8 +1663,13 @@ class PlanExecutor:
                 return result
             if revision_id != row.get("expected_revision_id") or sha_text(remote_text) != row.get("old_sha256"):
                 raise PlanConflict(f"Modification distante intervenue depuis le plan : {title}")
+            if row.get("edit_summary_policy") == "french_interlanguage_addition":
+                expected_title = self._english_title_for(str(row.get("page_id") or ""), str(row.get("page_type") or ""))
+                if not only_french_interlanguage_addition(remote_text, desired, str(row.get("page_type") or ""), expected_title):
+                    raise PlanConflict(f"La modification n'est plus un ajout interlangue pur : {row.get('page_id')}")
             new_rev = self.adapter.write_page(title=title, text=desired, summary=summary, tags=["chatgpt"], expected_user=user, create_only=False, base_revision_id=revision_id)
-            result.update(status="updated", old_revision_id=revision_id, revision_id=new_rev, content_sha256=sha_text(desired))
+            self._verify_written_revision(title, new_rev, desired, summary)
+            result.update(status="updated", old_revision_id=revision_id, revision_id=new_rev, content_sha256=sha_text(desired), edit_summary=summary)
             return result
         if operation == "move":
             old_title, new_title = row["old_title"], row["new_title"]

@@ -1,6 +1,6 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.34",
+  "version": "2.15.35",
   "validator_version": "0.4.60",
   "scope": [
     "publish_archive",
@@ -72,7 +72,10 @@
     "independent_english_reference_enrichment",
     "cross_batch_translation_review",
     "cumulative_editorial_policy",
-    "page_specific_translation_edit_summary"
+    "page_specific_translation_edit_summary",
+    "later_interlanguage_enrichment_preservation_exception",
+    "page_specific_interlanguage_update_summary",
+    "post_update_revision_summary_verification"
   ],
   "debate_specific_code": false,
   "change_tag": "chatgpt",

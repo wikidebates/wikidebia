@@ -52,7 +52,7 @@ def make_extraction(root: Path) -> Path:
         (args / name).write_text(text, encoding="utf-8")
     manifest = {
         "schema": "wikidebia-graph-snapshot-1.0",
-        "kit_version": "2.15.34",
+        "kit_version": "2.15.35",
         "extractor_version": "1.0.0",
         "extraction_date": "2026-08-03",
         "debate": _row(snapshot, "Débat test", "pages/debate.wiki", 1),
@@ -91,7 +91,7 @@ def make_extraction(root: Path) -> Path:
         })
     package_manifest = {
         "schema": "wikidebia-graph-extraction-package-1.0",
-        "kit_version": "2.15.34",
+        "kit_version": "2.15.35",
         "extractor_version": "1.0.0",
         "debate": "Débat test",
         "extraction_date": "2026-08-03",

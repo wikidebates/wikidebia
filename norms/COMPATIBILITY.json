@@ -1,7 +1,7 @@
 {
   "normative_revision": "1.2.56",
   "recommended_validator_version": "0.4.60",
-  "recommended_kit_version": "2.15.34",
+  "recommended_kit_version": "2.15.35",
   "compatible_from": "1.1.0",
   "translation_modes": [
     "pending",
@@ -21,6 +21,7 @@
     "En traduction FR→EN, la page anglaise cible existante est ignorée comme source éditoriale; le français validé reste autoritatif.",
     "Les valeurs de progression et d'avertissement sont traduites selon la table exhaustive FR→EN; une absence source reste une absence et les défauts de création ne s'appliquent pas à une traduction.",
     "related-debates ne projette que des débats connexes présents en français dont la page anglaise correspondante existe réellement, avec une seconde passe de vérification par lot.",
-    "Les créations anglaises issues d’une traduction FR→EN utilisent un résumé de modification individualisé reliant la page française source par son titre canonique verrouillé."
+    "Les créations anglaises issues d’une traduction FR→EN utilisent un résumé de modification individualisé reliant la page française source par son titre canonique verrouillé.",
+    "Le kit 2.15.35 corrige l'enrichissement interlangue français tardif et individualise le résumé des seules mises à jour qui ajoutent ce lien vers la traduction anglaise."
   ]
 }

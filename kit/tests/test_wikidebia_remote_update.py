@@ -26,6 +26,7 @@ class FakeAdapter:
         self.events = []
         self.fail_after_writes = None
         self.write_count = 0
+        self.revisions = {}
 
     def open_language(self, language, expected_user):
         assert self.language is None
@@ -57,8 +58,14 @@ class FakeAdapter:
         self.next_revision += 1
         self.write_count += 1
         self.pages[key] = (self.next_revision, text)
-        self.events.append(("write", self.language, title))
+        self.revisions[(self.language, title, self.next_revision)] = {
+            "revision_id": self.next_revision, "text": text, "summary": summary, "tags": list(tags)
+        }
+        self.events.append(("write", self.language, title, summary))
         return self.next_revision
+
+    def read_revision(self, title, revision_id):
+        return self.revisions.get((self.language, title, revision_id))
 
     def move_page(self, *, old_title, new_title, reason, expected_user, leave_redirect):
         old = (self.language, old_title)
@@ -134,7 +141,7 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
     validator = root / "validator.py"
     validator.write_text("import json; print(json.dumps({'validator_version':'0.4.60','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     config = {
-        "kit_version":"2.15.34","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
+        "kit_version":"2.15.35","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
         "family":"wikidebates","pywikibot_dir":"private/pywikibot","sites":{lang:{"code":lang,"expected_user":"ChatGPT"} for lang in languages},
         "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.60","scopes":[]},
         "published_state_dir":".state/published","receipts_dir":".state/receipts","logs_dir":"logs",
@@ -621,3 +628,73 @@ def test_dieu_manual_sync_plan_has_no_blocked_or_manual_review(tmp_path):
     assert result["counts"]["update"] == 5
     assert result["counts"]["skip"] == 1
     assert result["counts"]["move"] == 0
+
+
+def test_interlanguage_explicit_assignment_survives_historical_restoration():
+    remote = "{{Argument\n|résumé=Texte.\n|rubriques=Philosophie\n|date-création=2020-01-01\n}}\n"
+    link = "{{Lien interlangue\n|langue=en\n|page=English title\n}}"
+    proposed = remote.replace("|rubriques=", f"|interlangue={link}\n|rubriques=", 1)
+    snapshot = module.protected_lifecycle_snapshot(remote, "fr", "argument")
+    states = {
+        key: {"present": present, "value": value}
+        for key, (present, value) in snapshot.items()
+    }
+    effective, audit = module.preserve_remote_lifecycle_parameters(
+        remote,
+        proposed,
+        "fr",
+        "argument",
+        desired_preserved_parameters=states,
+        allow_historical_restoration=True,
+        explicit_parameter_assignments={"interlangue": link},
+    )
+    assert f"|interlangue={link}" in effective
+    assert audit["explicit_parameter_assignments"] == {"interlangue": link}
+
+
+def test_french_interlanguage_addition_gets_page_specific_summary_and_executes(tmp_path):
+    old = "{{Argument\n|résumé=Texte.\n|rubriques=Philosophie\n|date-création=2020-01-01\n}}\n"
+    en_title = "English title"
+    link = f"{{{{Lien interlangue\n|langue=en\n|page={en_title}\n}}}}"
+    new = old.replace("|rubriques=", f"|interlangue={link}\n|rubriques=", 1)
+    config, path = make_fixture(
+        tmp_path,
+        languages=("fr",),
+        old_pages=[("fr", "A1", "Titre français", old)],
+        new_pages=[("fr", "A1", "Titre français", new)],
+    )
+    manifest_path = tmp_path / "corpus" / "demo" / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["translation_status"] = {"en": "ready"}
+    manifest["pages"].append({
+        "language": "en", "page_id": "A1", "page_type": "argument",
+        "canonical_title": en_title, "file_path": "output/en/A1.wiki", "sha256": "0" * 64,
+    })
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    adapter = FakeAdapter({("fr", "Titre français"): (10, old)})
+    planner = module.RemoteUpdatePlanner(config, adapter, path)
+    planned = planner.build_plan()
+    assert planned["counts"]["update"] == 1
+    row = planned["operations"]["update"][0]
+    expected = f"Ajout du lien interlangue vers la page anglaise [[en:{en_title}|{en_title}]]"
+    assert row["edit_summary_policy"] == "french_interlanguage_addition"
+    assert row["edit_summary"] == expected
+    executor = module.PlanExecutor(config, adapter, path)
+    receipt = executor.execute(planned, planned["plan_sha256"])
+    assert receipt["results"][0]["edit_summary"] == expected
+    assert any(event[0] == "write" and event[3] == expected for event in adapter.events)
+
+
+def test_non_interlanguage_french_update_keeps_generic_summary(tmp_path):
+    old, new = argument("Ancien"), argument("Nouveau")
+    p, config, path, adapter = plan(
+        tmp_path,
+        old_pages=[("fr", "A1", "Titre", old)],
+        new_pages=[("fr", "A1", "Titre", new)],
+        remote_pages={("fr", "Titre"): (10, old)},
+    )
+    row = p["operations"]["update"][0]
+    assert "edit_summary" not in row
+    executor = module.PlanExecutor(config, adapter, path)
+    receipt = executor.execute(p, p["plan_sha256"])
+    assert receipt["results"][0]["edit_summary"] == "Corrections"

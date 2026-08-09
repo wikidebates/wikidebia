@@ -15,7 +15,7 @@
   ],
   "properties": {
     "kit_version": {
-      "const": "2.15.34"
+      "const": "2.15.35"
     },
     "debate_id": {
       "type": "string",

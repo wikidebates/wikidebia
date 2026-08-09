@@ -1,3 +1,11 @@
+## 2.15.35 — 9 août 2026
+
+- autorise explicitement l’enrichissement tardif du paramètre français `interlangue` après passage de l’anglais à `ready` ou `published`, sans que la préservation historique ne restaure à tort son absence antérieure ;
+- individualise le résumé des mises à jour françaises qui ajoutent uniquement ce lien : `Ajout du lien interlangue vers la page anglaise [[en:X|X]]` ;
+- résout `X` par `page_id` depuis le titre canonique anglais verrouillé du manifeste ;
+- inscrit la politique et le résumé dans le plan signé, revérifie que la modification est un ajout interlangue pur juste avant l’écriture et relit la révision écrite pour contrôler contenu, résumé et balise `chatgpt` ;
+- conserve `Corrections` pour les autres reprises françaises et anglaises.
+
 ## 2.15.34 — 9 août 2026
 
 - les créations anglaises issues d’une traduction française reçoivent un résumé de modification individualisé `Translation of the French page [[:fr:X|X]]` ;

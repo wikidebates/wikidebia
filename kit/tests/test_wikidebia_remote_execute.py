@@ -25,6 +25,7 @@ class FakeAdapter:
         self.language = None
         self.next_revision = 100
         self.events = []
+        self.revisions = {}
 
     def open_language(self, language, expected_user):
         assert self.language is None
@@ -53,8 +54,14 @@ class FakeAdapter:
             raise RuntimeError("revision collision")
         self.next_revision += 1
         self.pages[key] = (self.next_revision, text)
+        self.revisions[(self.language, title, self.next_revision)] = {
+            "revision_id": self.next_revision, "text": text, "summary": summary, "tags": list(tags)
+        }
         self.events.append(("write", self.language, title))
         return self.next_revision
+
+    def read_revision(self, title, revision_id):
+        return self.revisions.get((self.language, title, revision_id))
 
     def move_page(self, *, old_title, new_title, reason, expected_user, leave_redirect):
         old = (self.language, old_title)
