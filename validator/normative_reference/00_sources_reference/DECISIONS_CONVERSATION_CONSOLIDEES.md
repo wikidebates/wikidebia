@@ -293,3 +293,7 @@ Pour les prochains débats traduits du français vers l’anglais :
 3. l’avertissement des citations traduites automatiquement est exactement `AI-translated quote` ;
 4. toute nouvelle page anglaise issue d’une traduction reçoit les deux balises `chatgpt` et `translated-fr` sur sa révision de création ;
 5. ces changements valent pour les futures créations et ne déclenchent aucune réécriture rétroactive des débats déjà publiés.
+## Décision du 10 août 2026 — renommage du paramètre d’appellation consacrée
+
+Le propriétaire renomme exclusivement le deuxième paramètre top-level du modèle `Argument` : `nom` devient `nom-consacré` en français et `name` devient `established-name` en anglais. Ce renommage ne vise pas les titres de pages, les noms de sites ou d’auteurs, ni les champs techniques génériques `name` des artefacts JSON. Les pages nouvelles utilisent uniquement les nouveaux noms ; les anciens paramètres peuvent être conservés tels quels sur des pages préexistantes lorsque la préservation historique l’exige.
+

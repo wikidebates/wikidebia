@@ -1,3 +1,11 @@
+## 0.4.62 — 10 août 2026
+
+- aligne le validateur sur la norme 1.2.58 et reconnaît `nom-consacré` / `established-name` comme paramètres canoniques du modèle `Argument` ;
+- refuse `nom` / `name` sur les nouvelles pages relevant du format 1.2.58 et interdit la coexistence des alias ;
+- conserve la validation exacte des anciens `nom` / `name` lorsqu’ils sont attestés sur une page préexistante ou dans un paquet de format antérieur ;
+- étend les schémas de préservation aux nouveaux noms sans renommer les champs JSON techniques `name` ;
+- ajoute les tests de compatibilité, d’ordre et de non-confusion des paramètres.
+
 ## 0.4.61 — 9 août 2026
 
 - aligne le validateur sur la norme 1.2.57 ;

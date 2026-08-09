@@ -1,5 +1,5 @@
-Wikidéb’IA Validator 0.4.61 — auto-audit
-Norme active unique : 1.2.57
+Wikidéb’IA Validator 0.4.62 — auto-audit
+Norme active unique : 1.2.58
 Arbre normatif : identique au paquet des normes
-Tests : 319 réussis, 0 échec
+Tests : 326 réussis, 0 échec
 Résultat : RÉUSSI

@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.57
+- **Révision :** 1.2.58
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -442,3 +442,11 @@ Le retour propriétaire du 7 août 2026 après les premiers lots anglais affine 
 - chaque futur ajout interlangue français utilise `Ajout du lien interlangue vers la page anglaise : [[:en:X|X]]` ;
 - les créations anglaises traduites reçoivent `chatgpt` et `translated-fr` ;
 - les citations anglaises traduites automatiquement utilisent `AI-translated quote`.
+## Révision 1.2.58 — paramètre d’appellation consacrée
+
+| Besoin | Exigence | Mise en œuvre | Contrôle |
+|---|---|---|---|
+| Renommer uniquement le deuxième paramètre du modèle `Argument` | MW-008, EDT-062 | `nom-consacré` / `established-name` dans les rendus nouveaux | automatique + tests |
+| Ne pas confondre avec les titres, sites ou champs JSON `name` | MW-008 | renommage limité au paramètre top-level `Argument` | tests de non-régression |
+| Préserver les pages historiques utilisant encore l’ancien paramètre | VAL-041 | `nom` / `name` acceptés uniquement comme alias de préservation attestée | validateur + reprise |
+

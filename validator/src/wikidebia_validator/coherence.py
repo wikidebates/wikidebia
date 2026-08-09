@@ -170,11 +170,11 @@ def validate_argument_name_assignments(ctx: PackageContext, manifest: dict[str, 
             ctx.report.error("WDV-EDT-031", "Titre divergent dans l’attribution de nom", path=str(rel), details={"page_id": key[1], "expected": page.get("canonical_title"), "actual": row.get("title")})
         if row.get("owner_approved") is not True or not str(row.get("name") or "").strip() or not str(row.get("reason") or "").strip():
             ctx.report.error("WDV-EDT-031", "Attribution de nom incomplète ou non approuvée", path=str(rel), details={"page_id": key[1]})
-        name_param = "nom" if key[0] == "fr" else "name"
+        current_name_param, legacy_name_param = (("nom-consacré", "nom") if key[0] == "fr" else ("established-name", "name"))
         preserved = page.get("preserved_parameters") or {}
-        state = preserved.get(name_param)
-        if page.get("page_origin") == "preexisting" and isinstance(state, dict) and state.get("present") is True:
-            ctx.report.error("WDV-EDT-031", "Une attribution explicite ne peut pas remplacer un nom historique déjà présent", path=str(rel), details={"page_id": key[1]})
+        name_states = [preserved.get(current_name_param), preserved.get(legacy_name_param)]
+        if page.get("page_origin") == "preexisting" and any(isinstance(state, dict) and state.get("present") is True for state in name_states):
+            ctx.report.error("WDV-EDT-031", "Une attribution explicite ne peut pas remplacer un nom consacré historique déjà présent", path=str(rel), details={"page_id": key[1]})
     ctx.report.metrics.setdefault("coherence", {})["argument_name_assignments"] = len(seen)
 
 def validate_argument_name_discovery(ctx: PackageContext, manifest: dict[str, Any]) -> None:
@@ -221,7 +221,7 @@ def validate_argument_name_discovery(ctx: PackageContext, manifest: dict[str, An
                     ctx.report.error("WDV-EDT-032", f"Attestation manquante pour un nom consacré : {field}", path=str(rel), details={"page_id": key[1]})
         elif outcome == "none":
             if row.get("name") is not None:
-                ctx.report.error("WDV-EDT-032", "Une recherche conclue sans nom ne peut fournir de valeur nom/name", path=str(rel), details={"page_id": key[1]})
+                ctx.report.error("WDV-EDT-032", "Une recherche conclue sans nom ne peut fournir de valeur d’appellation consacrée", path=str(rel), details={"page_id": key[1]})
         else:
             ctx.report.error("WDV-EDT-032", "Résultat de recherche de nom invalide", path=str(rel), details={"page_id": key[1]})
     missing = sorted(set(new_arguments) - seen)

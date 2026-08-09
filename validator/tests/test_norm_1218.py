@@ -36,7 +36,7 @@ def test_old_norm_metadata_does_not_disable_separator_rule():
 
 def test_active_norm_debate_skeletons_have_nonempty_wikipedia_articles():
     from pathlib import Path
-    source = Path(__file__).resolve().parents[1] / "normative_reference" / "01_normes" / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.57.md"
+    source = Path(__file__).resolve().parents[1] / "normative_reference" / "01_normes" / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.58.md"
     norm = source.read_text(encoding="utf-8")
     assert "|articles-Wikipédia={{Article Wikipédia" in norm
     assert "|wikipedia-articles={{Wikipedia article" in norm
@@ -46,7 +46,7 @@ def test_active_norm_debate_skeletons_have_nonempty_wikipedia_articles():
 
 def test_active_norm_skeletons_do_not_render_related_debates():
     from pathlib import Path
-    source = Path(__file__).resolve().parents[1] / "normative_reference" / "01_normes" / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.57.md"
+    source = Path(__file__).resolve().parents[1] / "normative_reference" / "01_normes" / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.58.md"
     norm = source.read_text(encoding="utf-8")
     # The terms may appear in prose explaining the prohibition, but never as rendered parameters.
     assert "\n|débats-connexes=" not in norm

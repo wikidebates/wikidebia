@@ -48,6 +48,7 @@ def test_historical_restoration_can_remove_only_attested_wrong_ai_marker():
     proposed = remote
     states = {
         "initialisation": {"present": False, "value": None},
+        "nom-consacré": {"present": False, "value": None},
         "nom": {"present": False, "value": None},
         "avertissements-titre": {"present": False, "value": None},
         "avertissements-argument": {"present": False, "value": None},
@@ -135,6 +136,7 @@ def test_new_argument_renderer_still_uses_restricted_creation_profile():
         lang="fr", node=node, content=content, registry=registry, sources={}, creation_date="2026-08-07"
     )
     assert "|avertissements-argument=Argument généré par IA" in text
+    assert "|nom-consacré=" not in text
     assert "|nom=" not in text
     assert "|avertissements-titre=" not in text
 
@@ -148,7 +150,7 @@ def test_explicit_argument_name_assignment_overrides_historical_absence_only_for
 }}
 """
     proposed = """{{Argument
-|nom=Argument moral
+|nom-consacré=Argument moral
 |résumé=Résumé historique.
 |rubriques=Philosophie
 |mots-clés=Dieu
@@ -157,6 +159,7 @@ def test_explicit_argument_name_assignment_overrides_historical_absence_only_for
 """
     states = {
         "initialisation": {"present": False, "value": None},
+        "nom-consacré": {"present": False, "value": None},
         "nom": {"present": False, "value": None},
         "avertissements-titre": {"present": False, "value": None},
         "avertissements-argument": {"present": False, "value": None},
@@ -172,10 +175,10 @@ def test_explicit_argument_name_assignment_overrides_historical_absence_only_for
         remote, proposed, "fr", "argument",
         desired_preserved_parameters=states,
         allow_historical_restoration=True,
-        explicit_parameter_assignments={"nom": "Argument moral"},
+        explicit_parameter_assignments={"nom-consacré": "Argument moral"},
     )
-    assert "|nom=Argument moral" in effective
-    assert audit["explicit_parameter_assignments"] == {"nom": "Argument moral"}
+    assert "|nom-consacré=Argument moral" in effective
+    assert audit["explicit_parameter_assignments"] == {"nom-consacré": "Argument moral"}
     assert "|avertissements-argument=" not in effective
 
 
@@ -187,9 +190,9 @@ def test_explicit_argument_name_assignment_rejects_other_protected_parameter():
             explicit_parameter_assignments={"avertissements-argument": "X"},
         )
     except update.UpdateError as exc:
-        assert "nom/name" in str(exc)
+        assert "nom-consacré/established-name" in str(exc)
     else:
-        raise AssertionError("Une attribution explicite hors nom/name aurait dû être refusée")
+        raise AssertionError("Une attribution explicite hors nom-consacré/established-name aurait dû être refusée")
 
 
 def test_new_argument_renderer_emits_reviewed_conventional_name():
@@ -210,4 +213,67 @@ def test_new_argument_renderer_emits_reviewed_conventional_name():
     text = render._render_argument(
         lang="fr", node=node, content=content, registry=registry, sources={}, creation_date="2026-08-07"
     )
-    assert "|nom=Argument cosmologique" in text
+    assert "|nom-consacré=Argument cosmologique" in text
+
+
+def test_pre_1258_restoration_manifest_with_only_legacy_nom_remains_compatible():
+    remote = """{{Argument
+|nom=Argument historique
+|résumé=Résumé historique.
+|rubriques=Philosophie
+|mots-clés=Dieu
+|date-création=2020-01-01
+}}
+"""
+    states = {
+        "initialisation": {"present": False, "value": None},
+        "nom": {"present": True, "value": "Argument historique"},
+        "avertissements-titre": {"present": False, "value": None},
+        "avertissements-argument": {"present": False, "value": None},
+        "avertissements-résumé": {"present": False, "value": None},
+        "avertissements-références": {"present": False, "value": None},
+        "avertissements-justifications": {"present": False, "value": None},
+        "avertissements-objections": {"present": False, "value": None},
+        "débat-détaillé": {"present": False, "value": None},
+        "interlangue": {"present": False, "value": None},
+        "date-création": {"present": True, "value": "2020-01-01"},
+    }
+    effective, audit = update.preserve_remote_lifecycle_parameters(
+        remote, remote, "fr", "argument",
+        desired_preserved_parameters=states,
+        allow_historical_restoration=True,
+    )
+    assert "|nom=Argument historique" in effective
+    assert "|nom-consacré=" not in effective
+    assert set(audit["effective"]) == set(states)
+
+
+def test_pre_1258_restoration_manifest_with_only_legacy_english_name_remains_compatible():
+    remote = """{{Argument
+|name=Cosmological argument
+|summary=Historical summary.
+|sections=Philosophy
+|keywords=God
+|creation-date=2020-01-01
+}}
+"""
+    states = {
+        "initialization": {"present": False, "value": None},
+        "name": {"present": True, "value": "Cosmological argument"},
+        "title-warnings": {"present": False, "value": None},
+        "argument-warnings": {"present": False, "value": None},
+        "summary-warnings": {"present": False, "value": None},
+        "reference-warnings": {"present": False, "value": None},
+        "justification-warnings": {"present": False, "value": None},
+        "objection-warnings": {"present": False, "value": None},
+        "detailed-debate": {"present": False, "value": None},
+        "creation-date": {"present": True, "value": "2020-01-01"},
+    }
+    effective, audit = update.preserve_remote_lifecycle_parameters(
+        remote, remote, "en", "argument",
+        desired_preserved_parameters=states,
+        allow_historical_restoration=True,
+    )
+    assert "|name=Cosmological argument" in effective
+    assert "|established-name=" not in effective
+    assert set(audit["effective"]) == set(states)

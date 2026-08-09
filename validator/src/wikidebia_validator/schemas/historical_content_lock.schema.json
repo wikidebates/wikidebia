@@ -46,6 +46,8 @@
           "detailed-debate",
           "nom",
           "name",
+          "nom-consacré",
+          "established-name",
           "all-existing-parameters"
         ]
       }
@@ -243,6 +245,84 @@
             ]
           },
           "name": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "present"
+            ],
+            "properties": {
+              "present": {
+                "type": "boolean"
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "present": {
+                      "const": true
+                    }
+                  }
+                },
+                "then": {
+                  "required": [
+                    "value"
+                  ]
+                },
+                "else": {
+                  "not": {
+                    "required": [
+                      "value"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "nom-consacré": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "present"
+            ],
+            "properties": {
+              "present": {
+                "type": "boolean"
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "present": {
+                      "const": true
+                    }
+                  }
+                },
+                "then": {
+                  "required": [
+                    "value"
+                  ]
+                },
+                "else": {
+                  "not": {
+                    "required": [
+                      "value"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "established-name": {
             "type": "object",
             "additionalProperties": false,
             "required": [

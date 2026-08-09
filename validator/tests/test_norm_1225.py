@@ -8,7 +8,7 @@ from wikidebia_validator.schema_validation import SchemaStore
 
 
 def test_validator_version_is_0428():
-    assert __version__ == "0.4.61"
+    assert __version__ == "0.4.62"
 
 
 def test_package_schema_does_not_enumerate_norm_1225_as_feature_flag():
@@ -21,4 +21,4 @@ def test_package_schema_does_not_enumerate_norm_1225_as_feature_flag():
 def test_active_normative_source_is_1226():
     base = Path(__file__).resolve().parents[1] / "normative_reference" / "01_normes"
     active = sorted(base.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md"))
-    assert [path.name for path in active] == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.57.md"]
+    assert [path.name for path in active] == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.58.md"]

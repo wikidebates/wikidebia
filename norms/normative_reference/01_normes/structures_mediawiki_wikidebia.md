@@ -32,7 +32,7 @@ Ce document **ne détermine pas** quels paramètres doivent effectivement appara
 6. Les structures française et anglaise ne doivent jamais être mélangées.
 7. `date-création` et `creation-date` sont des paramètres autorisés et placés à la fin des quatre structures.
 8. Les liens interlangues sont autorisés uniquement dans les structures françaises.
-9. Les noms canoniques des pages sont enregistrés dans le manifeste et le registre du débat. Ils ne dépendent pas de l'utilisation de `nom=` ou `name=`.
+9. Les noms canoniques des pages sont enregistrés dans le manifeste et le registre du débat. Ils ne dépendent pas de l'utilisation de `nom-consacré=` / `established-name=` ni de leurs alias historiques `nom=` / `name=`.
 10. `débats-connexes` et `related-debates` restent décrits comme paramètres historiquement autorisés par les modèles du wiki, mais le générateur courant ne les émet jamais sur une page nouvelle ; sur une page existante, leur préservation suit le contrat historique de modification.
 11. Les valeurs `auteurs` et `authors` sont du texte MediaWiki ; elles ne reçoivent jamais la sérialisation littérale d’une liste JSON.
 
@@ -163,10 +163,12 @@ Ce document **ne détermine pas** quels paramètres doivent effectivement appara
 
 # 4. Page française de type Argument
 
+Le paramètre facultatif d’appellation consacrée est `nom-consacré`. L’ancien `nom` n’est qu’un alias historique de compatibilité pour des pages préexistantes attestées ; il n’est jamais généré sur une page nouvelle. Ce paramètre n’est ni le titre de la page ni un nom de site.
+
 ```mediawiki
 {{Argument
 |initialisation=
-|nom=
+|nom-consacré=
 |avertissements-titre=
 |avertissements-argument=
 |avertissements-résumé=
@@ -359,10 +361,12 @@ Le paramètre `débat-détaillé` est conservé lorsqu’il existe dans une page
 
 # 6. English Argument page
 
+The optional conventional-label parameter is `established-name`. Legacy `name` is accepted only for exact preservation of attested pre-existing pages and is never generated on a new page. It is unrelated to page titles, website names, or generic JSON fields named `name`.
+
 ```mediawiki
 {{Argument
 |initialization=
-|name=
+|established-name=
 |title-warnings=
 |argument-warnings=
 |summary-warnings=

@@ -30,8 +30,8 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.15.42"
-REQUIRED_VALIDATOR_VERSION = "0.4.61"
+KIT_VERSION = "2.15.43"
+REQUIRED_VALIDATOR_VERSION = "0.4.62"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
 RECEIPT_VERSION = "wikidebia-remote-update-receipt-1.0"
@@ -58,14 +58,14 @@ PROTECTED_LIFECYCLE_PARAMETERS = {
         "creation-date",
     ),
     ("fr", "argument"): (
-        "initialisation", "nom", "avertissements-titre",
+        "initialisation", "nom-consacré", "nom", "avertissements-titre",
         "avertissements-argument", "avertissements-résumé",
         "avertissements-références", "avertissements-justifications",
         "avertissements-objections", "débat-détaillé", "interlangue",
         "date-création",
     ),
     ("en", "argument"): (
-        "initialization", "name", "title-warnings", "argument-warnings",
+        "initialization", "established-name", "name", "title-warnings", "argument-warnings",
         "summary-warnings", "reference-warnings", "justification-warnings",
         "objection-warnings", "detailed-debate", "creation-date",
     ),
@@ -115,6 +115,25 @@ def top_level_parameter_map(text: str, language: str, page_type: str) -> tuple[s
     if parsed is None:
         raise UpdateError(f"Modèle principal illisible ({language}/{page_type})")
     return parsed.name, list(parsed.positional), dict(parsed.params)
+
+
+def argument_established_name_parameter(language: str, text: str | None = None) -> str:
+    """Return the canonical established-name parameter, preserving legacy proposals when needed.
+
+    `nom`/`name` are compatibility aliases for already-existing historical pages only.
+    New renders use `nom-consacré`/`established-name`.
+    """
+    current, legacy = (("nom-consacré", "nom") if language == "fr" else ("established-name", "name"))
+    if text:
+        try:
+            _model, _positional, params = top_level_parameter_map(text, language, "argument")
+        except UpdateError:
+            params = {}
+        if current in params:
+            return current
+        if legacy in params:
+            return legacy
+    return current
 
 
 def only_french_interlanguage_addition(
@@ -268,7 +287,7 @@ def preserve_remote_lifecycle_parameters(
         ("fr", "argument"): "argument",
         ("en", "argument"): "argument",
     }[(language, page_type)]
-    remote_snapshot = protected_lifecycle_snapshot(remote_text, language, page_type)
+    full_remote_snapshot = protected_lifecycle_snapshot(remote_text, language, page_type)
     proposed_calls = [call for call in iter_templates(proposed_text or "") if normalize_key(call.name) == expected]
     if not proposed_calls:
         raise UpdateError(f"Modèle principal introuvable pour la préservation des paramètres ({language}/{page_type})")
@@ -277,10 +296,21 @@ def preserve_remote_lifecycle_parameters(
     if parsed is None:
         raise UpdateError(f"Modèle principal illisible pour la préservation des paramètres ({language}/{page_type})")
 
-    names = PROTECTED_LIFECYCLE_PARAMETERS[(language, page_type)]
+    all_names = PROTECTED_LIFECYCLE_PARAMETERS[(language, page_type)]
+    names = all_names
+    states = (desired_preserved_parameters or {}) if allow_historical_restoration else {}
+    if allow_historical_restoration and page_type == "argument":
+        current_name, legacy_name = (("nom-consacré", "nom") if language == "fr" else ("established-name", "name"))
+        # Manifests created before norm 1.2.58 know only the legacy key.  A future
+        # explicitly migrated manifest may know only the canonical key.  Accept
+        # either shape without forcing an unrelated metadata migration.
+        if legacy_name in states and current_name not in states:
+            names = tuple(name for name in all_names if name != current_name)
+        elif current_name in states and legacy_name not in states:
+            names = tuple(name for name in all_names if name != legacy_name)
+    remote_snapshot = {name: full_remote_snapshot[name] for name in names}
     desired: dict[str, tuple[bool, str | None]] = dict(remote_snapshot)
     if allow_historical_restoration:
-        states = desired_preserved_parameters or {}
         if set(states) != set(names):
             raise UpdateError(
                 f"États historiques incomplets pour la restauration ({language}/{page_type}) : "
@@ -306,8 +336,8 @@ def preserve_remote_lifecycle_parameters(
     for name, value in explicit_parameter_assignments.items():
         if name not in names:
             raise UpdateError(f"Attribution explicite interdite pour un paramètre non protégé : {name}")
-        if name not in {"nom", "name", "interlangue"}:
-            raise UpdateError(f"L’attribution explicite ne peut modifier que nom/name ou interlangue : {name}")
+        if name not in {"nom-consacré", "established-name", "nom", "name", "interlangue"}:
+            raise UpdateError(f"L’attribution explicite ne peut modifier que nom-consacré/established-name (ou l’alias historique nom/name) ou interlangue : {name}")
         if name == "interlangue" and language != "fr":
             raise UpdateError("Le paramètre interlangue explicite est réservé aux pages françaises")
         if not isinstance(value, str) or not value.strip():
@@ -362,12 +392,14 @@ def preserve_remote_lifecycle_parameters(
     rows.append("}}")
     effective_template = "\n".join(rows)
     effective_text = proposed_text.replace(proposed_call.raw, effective_template, 1)
-    effective_snapshot = protected_lifecycle_snapshot(effective_text, language, page_type)
+    full_effective_snapshot = protected_lifecycle_snapshot(effective_text, language, page_type)
+    effective_snapshot = {name: full_effective_snapshot[name] for name in names}
     if effective_snapshot != desired:
         raise UpdateError(f"Échec de préservation des paramètres protégés ({language}/{page_type})")
+    full_original_proposed = protected_lifecycle_snapshot(proposed_text, language, page_type)
     return effective_text, {
         "remote": remote_snapshot,
-        "original_proposed": protected_lifecycle_snapshot(proposed_text, language, page_type),
+        "original_proposed": {name: full_original_proposed[name] for name in names},
         "effective": effective_snapshot,
         "historical_restoration": bool(allow_historical_restoration),
         "explicit_parameter_assignments": explicit_applied,
@@ -1105,7 +1137,7 @@ class RemoteUpdatePlanner:
         assignment = self._argument_name_assignment_for(prior.language, prior.page_id, proposed["title"]) if prior.page_type == "argument" else None
         explicit_assignments = {}
         if assignment is not None:
-            explicit_assignments["nom" if prior.language == "fr" else "name"] = str(assignment["name"])
+            explicit_assignments[argument_established_name_parameter(prior.language, proposed.get("content"))] = str(assignment["name"])
         interlanguage_value = self._interlanguage_assignment_for(prior, proposed, remote_text)
         if interlanguage_value is not None:
             explicit_assignments["interlangue"] = interlanguage_value

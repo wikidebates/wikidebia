@@ -83,7 +83,7 @@ Règles :
 4. Les titres canoniques et titres affichés utilisent des apostrophes simples `'`, jamais des apostrophes typographiques `’`.
 5. Les titres français de tous les nœuds sont normalisés et verrouillés dans le graphe avant la génération des pages françaises.
 6. Les titres anglais sont fixés et verrouillés après validation du graphe, avant la génération des pages françaises ; le contenu anglais est produit ensuite.
-7. `nom=`, `name=`, `initialisation=` et `initialization=` ne sont pas utilisés pour déterminer ou répéter le titre de la page.
+7. `nom-consacré=`, `established-name=`, `initialisation=` et `initialization=` ne sont pas utilisés pour déterminer ou répéter le titre de la page.
 8. Le titre affiché n'est pas rendu identique au titre canonique par automatisme. Il peut être plus concis, mais demeure une proposition argumentative complète : sujet et prédicat sont explicites, et le lecteur comprend ce qui est affirmé sans ouvrir la page. Un groupe nominal ou un simple thème est interdit.
 9. Les titres anglais évitent les contractions lorsqu'elles diminuent le ton encyclopédique.
 
@@ -429,7 +429,7 @@ La valeur de `page` provient exclusivement du champ canonique anglais du registr
 Cette liste ne doit jamais être utilisée pour retirer ces paramètres d’un argument existant. Si l’un d’eux est déjà présent, il est préservé conformément au profil de modification.
 
 - `initialisation`
-- `nom`
+- `nom-consacré`
 - `avertissements-titre`
 - `avertissements-résumé`
 - `citations`
@@ -560,7 +560,7 @@ An objection uses:
 ## 6.3 Parameters authorized but not generated
 
 - `initialization`
-- `name`
+- `established-name`
 - `title-warnings`
 - `summary-warnings`
 - `quotes`
@@ -803,7 +803,7 @@ Avant qu'une page soit déclarée conforme au profil, le validateur doit confirm
 16. que les références mentionnées dans le résumé sont représentées dans les paramètres documentaires ;
 17. qu'aucune catégorie documentaire vide n'est émise ;
 18. qu'aucune citation ou quote n'est produite dans les pages Argument ;
-19. que `nom` et `name` ne sont jamais inventés automatiquement ; pour une page nouvelle, ils ne sont émis qu’après une recherche documentaire 1.2.52 concluant à une appellation consacrée, et pour une page historique seulement lorsqu’une attribution éditoriale 1.2.51 les approuve explicitement, et que `initialisation` / `initialization` est absent des pages nouvelles mais préservé exactement sur les pages historiques verrouillées, et que `débat-détaillé` / `detailed-debate` est réémis exactement lorsqu’il est attesté ;
+19. que `nom-consacré` et `established-name` ne sont jamais inventés automatiquement ; pour une page nouvelle, ils ne sont émis qu’après une recherche documentaire 1.2.52 concluant à une appellation consacrée, et pour une page historique seulement lorsqu’une attribution éditoriale 1.2.51 les approuve explicitement, et que `initialisation` / `initialization` est absent des pages nouvelles mais préservé exactement sur les pages historiques verrouillées, et que `débat-détaillé` / `detailed-debate` est réémis exactement lorsqu’il est attesté ;
 20. que l’omission des `justifications` et `objections` sur une frontière vers un débat détaillé est déclarée et que l’information du propriétaire est attestée ;
 21. que la date de création n'a pas été modifiée par une correction, un enrichissement ou une nouvelle tentative d'import.
 

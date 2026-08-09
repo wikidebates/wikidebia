@@ -1,8 +1,16 @@
+## 2.15.43 — 10 août 2026
+
+- aligne le deuxième paramètre top-level du modèle `Argument` sur la norme 1.2.58 : `nom-consacré` en français et `established-name` en anglais ;
+- interdit `nom` / `name` sur toute nouvelle page Argument tout en préservant exactement ces alias lorsqu’ils sont attestés sur une page préexistante ;
+- maintient les champs techniques internes `argument_name_*` et les champs JSON génériques `name` inchangés, afin de ne pas confondre le paramètre MediaWiki avec les titres, sites, auteurs ou métadonnées techniques ;
+- rend les nouvelles appellations consacrées uniquement avec les paramètres canoniques et conserve la compatibilité de lecture/restauration des manifestes antérieurs à 1.2.58 ;
+- ajoute des tests français/anglais de rendu, d’ordre, de coexistence interdite et de préservation historique.
+
 ## 2.15.42 — 10 août 2026
 
 - corrige l’exécution de `tag-translated-fr` afin qu’elle accepte réellement les résumés historiques sans deux-points déjà admis par le dry-run ;
 - recalcule les deux résumés admissibles depuis le titre français source et refuse toute liste de résumés altérée dans le plan ;
-- ajoute un test de non-régression dry-run → exécution sur une publication antérieure à 1.2.57 ;
+- ajoute un test de non-régression dry-run → exécution sur une publication antérieure à 1.2.58 ;
 - aligne la documentation de provenance sans modifier les règles éditoriales 1.2.57.
 
 ## 2.15.41 — 9 août 2026

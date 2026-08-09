@@ -1,0 +1,3 @@
+# Audit de complétude 1.2.58
+
+Contrôles documentés : renommage exclusivement du deuxième paramètre top-level du modèle `Argument` (`nom-consacré` / `established-name`) ; maintien de l’ordre après `initialisation` / `initialization` ; absence de renommage des titres de pages, noms de sites, auteurs, modèles et champs JSON génériques `name` ; nouveaux rendus exclusivement canoniques ; refus des alias `nom` / `name` sur les nouvelles pages 1.2.58 ; préservation exacte des alias historiques attestés ; compatibilité de format avec les manifestes antérieurs qui ne suivaient que l’ancien paramètre ; maintien intégral des conventions de traduction et publication 1.2.57.

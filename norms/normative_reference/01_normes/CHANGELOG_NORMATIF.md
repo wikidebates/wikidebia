@@ -1,3 +1,11 @@
+## 1.2.58 — 10 août 2026 — `nom-consacré` / `established-name`
+
+- renommage du deuxième paramètre du modèle `Argument` : `nom` → `nom-consacré` en français et `name` → `established-name` en anglais ;
+- génération interdite des anciens `nom` / `name` sur les pages nouvelles ;
+- maintien des anciens paramètres comme alias historiques uniquement pour la préservation exacte de pages préexistantes attestées ;
+- invariance explicite des noms de titres de pages, sites, auteurs et champs JSON génériques `name` ;
+- alignement recommandé : validateur 0.4.62 et kit 2.15.43.
+
 ## 1.2.57 — 9 août 2026 — conventions de publication des futures traductions
 
 - résumé des nouvelles créations anglaises FR→EN : `Translation of the French page: [[:fr:X|X]]` ;

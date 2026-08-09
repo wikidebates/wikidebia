@@ -481,5 +481,6 @@ def test_specialized_term_inventory_rejects_undeclared_link():
     raise AssertionError('le lien non déclaré devait être refusé')
 
 
-def test_argument_name_is_a_preserved_import_parameter():
+def test_argument_established_name_parameters_are_preserved_import_parameters():
+    assert 'nom-consacré' in content.PAGE_LIFECYCLE_PARAMETERS['argument']
     assert 'nom' in content.PAGE_LIFECYCLE_PARAMETERS['argument']

@@ -34,7 +34,7 @@ from test_wikidebia_translation_review import make_french_locked, complete_trans
 
 def make_translated(tmp_path: Path) -> tuple[Path, Path, str, str]:
     project, workspace, work_id = make_french_locked(tmp_path)
-    norm_path = project / "norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.57.md"
+    norm_path = project / "norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.58.md"
     norm_path.parent.mkdir(parents=True, exist_ok=True)
     norm_path.write_text("# Norme de test 1.2.27\n", encoding="utf-8")
     translation.prepare_review(project, "debat_test", work_id)
@@ -236,3 +236,29 @@ def test_render_preserves_historical_argument_name():
     text=render._render_argument(lang='fr',node=node,content=content,registry=registry,sources={},creation_date='2026-08-05')
     assert '|nom=Argument cosmologique' in text
     assert text.index('|nom=') < text.index('|résumé=')
+
+
+def test_render_new_argument_uses_nom_consacre_not_legacy_nom():
+    node={'id':'A9001','fr':{'rubriques':['Philosophie'],'keywords':['Dieu']},'en':{'canonical_title':'Argument topic'}}
+    registry={'graph':{'edges':[],'occurrences':[],'nodes':[node]}}
+    content={
+        'summary':'Résumé nouveau.', 'citations':[], 'sources':{}, 'page_origin':'new',
+        'preserved_parameters':{}, 'argument_name':'Argument cosmologique',
+    }
+    text=render._render_argument(lang='fr',node=node,content=content,registry=registry,sources={},creation_date='2026-08-10')
+    assert '|nom-consacré=Argument cosmologique' in text
+    assert '|nom=Argument cosmologique' not in text
+    assert text.index('|nom-consacré=') < text.index('|résumé=')
+
+
+def test_render_new_english_argument_uses_established_name_not_legacy_name():
+    node={'id':'A9002','fr':{'rubriques':['Philosophie'],'keywords':['Dieu']},'en':{'canonical_title':'Argument topic','sections':['Philosophy'],'keywords':['God']}}
+    registry={'graph':{'edges':[],'occurrences':[],'nodes':[node]}}
+    content={
+        'summary':'New summary.', 'quotes':[], 'sources':{}, 'page_origin':'new',
+        'preserved_parameters':{}, 'argument_name':'Cosmological argument',
+    }
+    text=render._render_argument(lang='en',node=node,content=content,registry=registry,sources={},creation_date='2026-08-10')
+    assert '|established-name=Cosmological argument' in text
+    assert '|name=Cosmological argument' not in text
+    assert text.index('|established-name=') < text.index('|summary=')

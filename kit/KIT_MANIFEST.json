@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.42",
-  "validator_version": "0.4.61",
+  "version": "2.15.43",
+  "validator_version": "0.4.62",
   "scope": [
     "publish_archive",
     "github_init",
@@ -77,7 +77,8 @@
     "page_specific_interlanguage_update_summary",
     "post_update_revision_summary_verification",
     "remote_interlanguage_only_update",
-    "retroactive_translation_change_tag"
+    "retroactive_translation_change_tag",
+    "canonical_argument_established_name_parameters"
   ],
   "debate_specific_code": false,
   "change_tag": "chatgpt",
@@ -262,7 +263,8 @@
     "manual_remote_adoption_sha_lock",
     "explicit_lifecycle_change_authorization",
     "immutable_revision_tagging",
-    "eventually_consistent_postwrite_tag_verification"
+    "eventually_consistent_postwrite_tag_verification",
+    "legacy_argument_name_alias_preservation"
   ],
   "publication_profiles": [
     "norm_1_2_direct_interlanguage",
@@ -395,7 +397,7 @@
     "redirect_preserving_interlanguage_enrichment",
     "interlanguage_only_owner_mode"
   ],
-  "normative_revision": "1.2.57",
+  "normative_revision": "1.2.58",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -476,7 +478,8 @@
     "content_review_intro_density_regression",
     "displayed_title_identity_allowed_regression",
     "displayed_title_noncopy_ratio",
-    "content_review_nine_documentary_bucket_regression"
+    "content_review_nine_documentary_bucket_regression",
+    "argument_established_name_parameter_order_gate"
   ],
   "regression_gates": [
     "argument_reference_develops_argument_regression",
@@ -490,7 +493,8 @@
     "mandatory_stakes_subsection_regression",
     "concrete_stakes_density_regression",
     "interlanguage_only_preserves_human_remote_content_regression",
-    "interlanguage_only_redirect_preservation_regression"
+    "interlanguage_only_redirect_preservation_regression",
+    "argument_established_name_parameter_alias_regression"
   ],
   "translation_change_tag": "translated-fr"
 }

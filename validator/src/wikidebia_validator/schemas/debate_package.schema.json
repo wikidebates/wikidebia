@@ -513,6 +513,8 @@
                   "detailed-debate",
                   "nom",
                   "name",
+                  "nom-consacré",
+                  "established-name",
                   "all-existing-parameters"
                 ]
               }

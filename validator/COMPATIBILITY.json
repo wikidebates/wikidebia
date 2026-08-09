@@ -1,7 +1,7 @@
 {
   "package": "wikidebia-validator",
-  "validator_version": "0.4.61",
-  "implemented_normative_revision": "1.2.57",
+  "validator_version": "0.4.62",
+  "implemented_normative_revision": "1.2.58",
   "compatible_normative_revisions": [
     "1.1.0",
     "1.1.1",
@@ -70,7 +70,8 @@
     "1.2.54",
     "1.2.55",
     "1.2.56",
-    "1.2.57"
+    "1.2.57",
+    "1.2.58"
   ],
   "recommended_normative_archive": "wikidebia-normes.zip",
   "independent_update_policy": {
@@ -79,15 +80,16 @@
   },
   "stable_archive_name": "wikidebia-validator.zip",
   "version_source": "VERSIONS.json",
-  "normative_revision": "1.2.57",
-  "kit_version": "2.15.42",
-  "recommended_kit_version": "2.15.42",
+  "normative_revision": "1.2.58",
+  "kit_version": "2.15.43",
+  "recommended_kit_version": "2.15.43",
   "supported_normative_revisions": [
     "1.2.53",
     "1.2.54",
     "1.2.55",
     "1.2.56",
-    "1.2.57"
+    "1.2.57",
+    "1.2.58"
   ],
   "compatibility_scope": "format_reader_and_migration_only",
   "editorial_policy": "current_rules_are_cumulative_and_version_independent"
