@@ -17,7 +17,7 @@ from typing import Any, Iterable
 
 NORM_VERSION = "1.2.56"
 VALIDATOR_VERSION = "0.4.60"
-KIT_VERSION = "2.15.37"
+KIT_VERSION = "2.15.39"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",
@@ -1099,6 +1099,7 @@ def publication_config(root: Path, debate_id: str, scope: str, run_dir: Path) ->
         "pywikibot_dir": "private/pywikibot",
         "sites": sites,
         "change_tags": ["chatgpt"],
+        "translation_change_tag": "translated-fr",
         "verification_attempts": int(settings.get("verification_attempts", 8)),
         "verification_delay_seconds": float(settings.get("verification_delay_seconds", 2)),
         "write_delay_seconds": float(settings.get("write_delay_seconds", 0.5)),
@@ -1483,6 +1484,47 @@ def update_debate(
     finally:
         if staging_root is not None:
             shutil.rmtree(staging_root, ignore_errors=True)
+
+
+
+def tag_translated_fr(root: Path, debate_id: str, *, dry_run: bool) -> dict[str, Any]:
+    ensure_credentials(root)
+    if not re.fullmatch(r"[A-Za-z0-9_.-]+", debate_id or ""):
+        raise ManagementError("Identifiant de débat invalide")
+    script = root / "kit" / "scripts" / "wikidebia_retro_tag.py"
+    if not script.is_file():
+        raise ManagementError("Outil de rattrapage translated-fr absent du kit")
+    settings = load_local_settings(root)
+    users = settings.get("expected_users") or {"fr": "ChatGPT", "en": "ChatGPT"}
+    expected_user = str(users.get("en") or "ChatGPT")
+    family = str(settings.get("family") or "wikidebates")
+    run_dir = root / "plans" / debate_id / timestamp()
+    run_dir.mkdir(parents=True, exist_ok=True)
+    plan_path = run_dir / "translated-fr-tag-plan.json"
+    command = [
+        python_command(root), str(script), debate_id,
+        "--project-root", str(root),
+        "--family", family,
+        "--code", "en",
+        "--pywikibot-dir", str(root / "private" / "pywikibot"),
+        "--family-file", str(root / "kit" / "families" / "wikidebates_family.py"),
+        "--expected-user", expected_user,
+        "--plan-output", str(plan_path),
+        "--machine-readable",
+    ]
+    if dry_run:
+        command.append("--dry-run")
+    result = run(command, cwd=root, capture=True, check=False)
+    if result.returncode != 0:
+        raise ManagementError((result.stderr or result.stdout or "Rattrapage translated-fr impossible").strip())
+    lines = (result.stdout or "").strip().splitlines()
+    if not lines:
+        raise ManagementError("Sortie du rattrapage translated-fr absente")
+    try:
+        payload = json.loads(lines[-1])
+    except json.JSONDecodeError as exc:
+        raise ManagementError("Sortie du rattrapage translated-fr illisible") from exc
+    return payload
 
 
 def graph_output_slug(value: str) -> str:
@@ -1910,6 +1952,7 @@ def doctor(root: Path) -> dict[str, Any]:
         "wikidebia_render.py", "wikidebia_release.py",
         "wikidebia_remote_compare.py", "wikidebia_remote_plan_review.py",
         "wikidebia_remote_execute.py", "wikidebia_work_close.py",
+        "wikidebia_retro_tag.py",
     )
     for script_name in required_scripts:
         if not (root / "kit" / "scripts" / script_name).is_file():
@@ -1963,6 +2006,10 @@ def build_parser() -> argparse.ArgumentParser:
     update.add_argument("--dry-run", action="store_true", help="Produire seulement le plan signé")
     update.add_argument("--keep-zip", action="store_true", help="Ne pas archiver le ZIP après succès")
     update.add_argument("--interlanguage-only", action="store_true", help="Préserver chaque page française distante et n'ajouter que son lien vers la page anglaise correspondante")
+
+    retro_tag = sub.add_parser("tag-translated-fr", help="Ajouter rétroactivement translated-fr aux révisions anglaises de traduction")
+    retro_tag.add_argument("debate_id", help="Identifiant interne du débat")
+    retro_tag.add_argument("--dry-run", action="store_true", help="Vérifier les révisions ciblées sans modifier leurs balises")
 
     upgrade = sub.add_parser("upgrade", help="Installer les composants déposés dans updates/")
     upgrade.add_argument("archive", nargs="?", type=Path, help="Archive complète facultative")
@@ -2158,6 +2205,10 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.command == "update":
         result = update_debate(root, args.debate_identifier, args.scope, args.yes, args.no_delete, args.only_delete, args.dry_run, args.keep_zip, args.archive, args.interlanguage_only)
+        print(json.dumps(result, ensure_ascii=False, sort_keys=True))
+        return 0
+    if args.command == "tag-translated-fr":
+        result = tag_translated_fr(root, args.debate_id, dry_run=args.dry_run)
         print(json.dumps(result, ensure_ascii=False, sort_keys=True))
         return 0
     if args.command == "upgrade":

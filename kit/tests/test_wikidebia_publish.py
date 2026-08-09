@@ -25,7 +25,7 @@ class FakeAdapter:
     def open_language(self, language, expected_user): self.language = language
     def close_language(self): self.language = None
     def assert_identity(self, expected_user): return None
-    def available_change_tags(self): return {"chatgpt"}
+    def available_change_tags(self): return {"chatgpt", "translated-fr"}
     def read_page(self, title):
         row = self.pages.get((self.language, title))
         return (False, None, "") if row is None else (True, row[0], row[1])
@@ -87,7 +87,7 @@ def write_fixture(tmp_path: Path, kind: str):
     }
     if kind == "parameter_update": operation["parameters"]={"fr":"résumé","en":"summary"}
     config = {
-      "kit_version":"2.15.37","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
+      "kit_version":"2.15.39","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
       "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.60","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
       "family":"wikidebates","family_file":str(Path(__file__)),"pywikibot_dir":str(tmp_path),
       "sites":{"fr":{"code":"fr","expected_user":"ChatGPT"},"en":{"code":"en","expected_user":"ChatGPT"}},
@@ -922,10 +922,12 @@ def test_ready_english_translation_uses_page_specific_french_source_summary(tmp_
     assert len(plan["actions"]) == 1
     action = plan["actions"][0]
     assert action["edit_summary"] == "Translation of the French page [[:fr:Titre FR|Titre FR]]"
+    assert action["change_tags"] == ["chatgpt", "translated-fr"]
     result = publisher.publish(plan=plan, confirmation=plan["plan_sha256"])
     assert result == {"created": 1, "updated": 0, "skipped": 0}
     revision = max(adapter.revisions)
     assert adapter.revisions[revision]["summary"] == action["edit_summary"]
+    assert adapter.revisions[revision]["tags"] == ["chatgpt", "translated-fr"]
 
 
 def test_tampered_page_specific_translation_summary_is_rejected(tmp_path):

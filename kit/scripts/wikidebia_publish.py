@@ -14,7 +14,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Protocol
 
-KIT_VERSION = "2.15.37"
+KIT_VERSION = "2.15.39"
 REQUIRED_VALIDATOR_VERSION = "0.4.60"
 DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
 DEFERRED_TRANSLATION_PROFILE = "norm_1_2_deferred_translation"
@@ -359,6 +359,7 @@ class PageAction:
     classification: str
     operation: str
     edit_summary: str = ""
+    change_tags: list[str] | None = None
     note: str | None = None
 
 
@@ -545,6 +546,7 @@ class GenericPublisher:
         self.publication_profile = str(config.get("publication_profile") or LEGACY_PROFILE)
         self.languages = tuple(self.operation.get("languages") or config.get("languages") or ())
         self.tags = list(config.get("change_tags") or ["chatgpt"])
+        self.translation_tag = str(config.get("translation_change_tag") or "translated-fr")
         logs_dir = self._resolve(config["logs_dir"])
         operation_id = str(self.operation.get("id") or self.operation.get("kind") or "publication")
         self.log_path = logs_dir / f"{operation_id}.jsonl"
@@ -697,15 +699,51 @@ class GenericPublisher:
             )
         return planned
 
+    def _tags_for_page(self, language: str, page_id: str, page_type: str) -> list[str]:
+        tags = list(self.tags)
+        if (
+            language == "en"
+            and self.operation.get("kind") == "full_page"
+            and self._english_translation_status() in {"ready", "published"}
+            and self.translation_tag not in tags
+        ):
+            tags.append(self.translation_tag)
+        return tags
+
+    def _tags_for_action(self, action: dict[str, Any]) -> list[str]:
+        expected = self._tags_for_page(
+            str(action.get("language") or ""),
+            str(action.get("page_id") or ""),
+            str(action.get("page_type") or ""),
+        )
+        planned = list(action.get("change_tags") or [])
+        if planned != expected:
+            raise PublicationError(
+                f"Balises individualisées divergentes dans le plan : {action.get('page_id')}"
+            )
+        return planned
+
+    def _required_tags_for_language(self, language: str) -> list[str]:
+        tags = list(self.tags)
+        if (
+            language == "en"
+            and self.operation.get("kind") == "full_page"
+            and self._english_translation_status() in {"ready", "published"}
+            and self.translation_tag not in tags
+        ):
+            tags.append(self.translation_tag)
+        return tags
+
     def _parameter(self, language: str) -> str | None:
         if self.operation["kind"] != "parameter_update":
             return None
         return str(self.operation["parameters"][language])
 
-    def _change_tag_gate(self, language: str) -> None:
+    def _change_tag_gate(self, language: str, required_tags: list[str] | None = None) -> None:
         if language not in self._tag_cache:
             self._tag_cache[language] = self.adapter.available_change_tags()
-        missing = [tag for tag in self.tags if tag not in self._tag_cache[language]]
+        tags = required_tags or self._required_tags_for_language(language)
+        missing = [tag for tag in tags if tag not in self._tag_cache[language]]
         if missing:
             raise PublicationError(
                 f"Balise(s) inactive(s) sur {language} : {', '.join(missing)}"
@@ -1101,7 +1139,7 @@ class GenericPublisher:
             }
             counts[language]["total"] = len(language_actions)
         plan: dict[str, Any] = {
-            "plan_version": "wikidebia-publication-plan-2.15.37",
+            "plan_version": "wikidebia-publication-plan-2.15.39",
             "publication_profile": self.publication_profile,
             "kit_version": KIT_VERSION,
             "debate_id": self.config["debate_id"],
@@ -1111,6 +1149,7 @@ class GenericPublisher:
             "validator_report_sha256": sha_object(report),
             "package_fingerprints": self._package_fingerprints(),
             "change_tags": self.tags,
+            "translation_change_tag": self.translation_tag,
             "edit_summaries": self.operation["edit_summaries"],
             "actions": actions,
             "blockers": blockers,
@@ -1141,6 +1180,7 @@ class GenericPublisher:
             local_file_sha256=sha_file(source_path),
             local_target_sha256=sha_text(local_target),
             edit_summary=self._summary_for_page(language, page_id, page_type),
+            change_tags=self._tags_for_page(language, page_id, page_type),
         )
         if not exists:
             if self.operation["kind"] == "full_page" and self.operation.get("create_missing", True):
@@ -1248,10 +1288,13 @@ class GenericPublisher:
             raise PublicationError("Corpus, configuration, validateur ou kit modifié depuis le plan")
         if plan.get("change_tags") != self.tags:
             raise PublicationError("Balises divergentes du plan")
+        if plan.get("translation_change_tag") != self.translation_tag:
+            raise PublicationError("Balise de traduction divergente du plan")
         if plan.get("edit_summaries") != self.operation.get("edit_summaries"):
             raise PublicationError("Résumés de modification divergents du plan")
         for action in plan.get("actions", []):
             self._summary_for_action(action)
+            self._tags_for_action(action)
         if plan.get("blockers"):
             raise CollisionError("Le plan contient des bloqueurs")
 
@@ -1288,9 +1331,11 @@ class GenericPublisher:
         revision_id: int,
         desired_text: str,
         summary: str,
+        tags: list[str] | None = None,
     ) -> dict[str, Any]:
         attempts = max(1, int(self.config.get("verification_attempts", 8)))
         delay = max(0.0, float(self.config.get("verification_delay_seconds", 2)))
+        expected_tags = list(tags or self.tags)
         observed: dict[str, Any] | None = None
         for index in range(attempts):
             observed = self.adapter.read_revision(title, revision_id)
@@ -1298,7 +1343,7 @@ class GenericPublisher:
                 observed
                 and sha_text(str(observed.get("text", ""))) == sha_text(desired_text)
                 and observed.get("summary") == summary
-                and all(tag in (observed.get("tags") or []) for tag in self.tags)
+                and all(tag in (observed.get("tags") or []) for tag in expected_tags)
             ):
                 return observed
             if index + 1 < attempts and delay:
@@ -1310,7 +1355,7 @@ class GenericPublisher:
                 "revision_id": revision_id,
                 "expected_content_sha256": sha_text(desired_text),
                 "expected_summary": summary,
-                "expected_tags": self.tags,
+                "expected_tags": expected_tags,
                 "observed": observed,
             }
         )
@@ -1348,6 +1393,7 @@ class GenericPublisher:
         title = str(action["title"])
         _, user = self._site(current_language)
         summary = self._summary_for_page(current_language, str(action["page_id"]), "debate")
+        action_tags = self._tags_for_action(action)
         source_path = self.root / str(action["source_path"])
         if sha_file(source_path) != action["local_file_sha256"]:
             raise PublicationError("Fichier local modifié depuis le plan")
@@ -1360,11 +1406,11 @@ class GenericPublisher:
             if exists:
                 raise CollisionError("La page Débat française existe déjà depuis la simulation")
             revision_id = self.adapter.write_page(
-                title=title, text=desired_text, summary=summary, tags=self.tags,
+                title=title, text=desired_text, summary=summary, tags=action_tags,
                 expected_user=user, create_only=True, base_revision_id=None,
             )
             self._verify_written_revision(
-                title=title, revision_id=revision_id, desired_text=desired_text, summary=summary
+                title=title, revision_id=revision_id, desired_text=desired_text, summary=summary, tags=action_tags
             )
         finally:
             self.adapter.close_language()
@@ -1388,7 +1434,7 @@ class GenericPublisher:
             "revision_id": revision_id,
             "expected_user": user,
             "summary": summary,
-            "tags": self.tags,
+            "tags": action_tags,
         }
         receipt["receipt_sha256"] = sha_object(receipt)
         self._log({"event": "canonical_debate_test_verified", **receipt})
@@ -1429,7 +1475,7 @@ class GenericPublisher:
             "operation_id": self.operation.get("id"),
             "language": "fr",
             "page_type": "debate",
-            "tags": self.tags,
+            "tags": self._tags_for_action(french_debate_actions[0]),
         }
         for field, expected in checks.items():
             if receipt.get(field) != expected:
@@ -1483,7 +1529,7 @@ class GenericPublisher:
                 raise RevisionConflict("Contenu du test de la page Débat divergent")
             if observed.get("summary") != receipt.get("summary"):
                 raise RevisionConflict("Résumé du test de la page Débat divergent")
-            if any(tag not in (observed.get("tags") or []) for tag in self.tags):
+            if any(tag not in (observed.get("tags") or []) for tag in (receipt.get("tags") or [])):
                 raise RevisionConflict("Balise du test de la page Débat divergente")
         finally:
             self.adapter.close_language()
@@ -1605,6 +1651,7 @@ class GenericPublisher:
         return counts
 
     def _execute_action(self, action: dict[str, Any], user: str, summary: str) -> str:
+        action_tags = self._tags_for_action(action)
         exists, revision_id, remote_text = self.adapter.read_page(action["title"])
         if action["operation"] == "create":
             source_path = self.root / action["source_path"]
@@ -1620,13 +1667,13 @@ class GenericPublisher:
                 title=action["title"],
                 text=desired_text,
                 summary=summary,
-                tags=self.tags,
+                tags=action_tags,
                 expected_user=user,
                 create_only=True,
                 base_revision_id=None,
             )
             self._verify_written_revision(
-                title=action["title"], revision_id=new_revision, desired_text=desired_text, summary=summary
+                title=action["title"], revision_id=new_revision, desired_text=desired_text, summary=summary, tags=action_tags
             )
             self._log({
                 "event": "page_creation_verified",
@@ -1634,7 +1681,7 @@ class GenericPublisher:
                 "new_revision_id": new_revision,
                 "content_sha256": sha_text(desired_text),
                 "summary": summary,
-                "tags": self.tags,
+                "tags": action_tags,
             })
             return "created"
         if not exists or revision_id is None:
@@ -1657,7 +1704,7 @@ class GenericPublisher:
             title=action["title"],
             text=desired_text,
             summary=summary,
-            tags=self.tags,
+            tags=action_tags,
             expected_user=user,
             create_only=False,
             base_revision_id=revision_id,
@@ -1675,7 +1722,7 @@ class GenericPublisher:
             "new_content_sha256": desired_sha,
             "parameter": action.get("parameter"),
             "summary": summary,
-            "tags": self.tags,
+            "tags": action_tags,
         })
         return "updated"
 

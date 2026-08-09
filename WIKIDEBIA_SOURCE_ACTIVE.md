@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.56** ;
 - validateur actif : **0.4.60** ;
-- kit actif : **2.15.37**.
+- kit actif : **2.15.39**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 2013113 octets — SHA-256 `c97cca666f5f3c651be85d8dd7c9a088f5e8980faf49347feb8408d0e2276bd5`
-- `wikidebia-validator.zip` — 2299288 octets — SHA-256 `7210f475798f1ef1fe84553c2a54683aebfd9669050326214b24771999ee1900`
-- `wikidebia-kit.zip` — 449448 octets — SHA-256 `d2f2721b5e0e3a30d41bb26b02afbd257d43ec47387b8396ad82f843e602cf89`
+- `wikidebia-normes.zip` — 2013119 octets — SHA-256 `4729dbc12a54bc842253aa74f1731223b3a42a2b63fd707e9352c1ff54d0b116`
+- `wikidebia-validator.zip` — 2299284 octets — SHA-256 `c73050270df50065350614a2ed1bfcabd1783f501b63bfae13f03ad69bc85c43`
+- `wikidebia-kit.zip` — 461059 octets — SHA-256 `4346be289234f1e64ef025254c80f99f41136e88d11497f48ff9de87c31c8179`
 
 ## Norme consolidée active
 
@@ -2470,11 +2470,11 @@ SHA-256 : `08a54a7ec806223457ceefd42792de7da791793769d34ece662ac2a330d93d65`
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `f8db5f5dd4f60368c6ab4d4e5501821e6bcb32a3a55f47fd1111d79fdcfa0ff7`
+SHA-256 : `63d71a7dac840b646cc631f57ee03586088ea7b97a84f9345d376bcf7f604057`
 
-# Wikidéb’IA — Kit 2.15.37
+# Wikidéb’IA — Kit 2.15.39
 
-Le kit 2.15.37 applique la norme 1.2.56. La page Debate reste un lot autonome ; les Arguments sont relus en unités internes de 10 pages par défaut, réduites à 5–8 pour les groupes denses. Une livraison Work peut agréger plusieurs unités déjà closes sans transformer les exemples ou checklists en patrons mécaniques.
+Le kit 2.15.39 applique la norme 1.2.56. La page Debate reste un lot autonome ; les Arguments sont relus en unités internes de 10 pages par défaut, réduites à 5–8 pour les groupes denses. Une livraison Work peut agréger plusieurs unités déjà closes sans transformer les exemples ou checklists en patrons mécaniques.
 
 La phase anglaise recherche séparément les appellations consacrées dans la littérature anglophone et n'obtient jamais `name=` par traduction mécanique de `nom=`. Elle compare les formes concurrentes sans normaliser artificiellement `Argument from X`, `X argument` ou les possessifs, et refuse un nom dont la portée est plus étroite que celle de la page. Les références françaises ne sont pas traduites : une version anglaise réelle doit être trouvée et citée avec ses propres métadonnées, et de nouvelles références anglophones sont recherchées indépendamment. Le contrat `Citation`→`Quote` reste inchangé : seules les valeurs `quote` et `date` sont traduites et `Quote translated by AI` est ajouté.
 
@@ -2488,10 +2488,34 @@ Lorsqu'un résumé français est historiquement absent et attesté, le workflow 
 
 Les numéros de norme et les anciens champs de révision ne sont plus des feature flags éditoriaux ; ils servent uniquement à la compatibilité technique et à la traçabilité.
 
+## Rattrapage de la balise de traduction
+
+Pour une traduction anglaise déjà publiée sans la seconde balise, utiliser `./wikidebia tag-translated-fr DEBAT --dry-run`, puis `./wikidebia tag-translated-fr DEBAT`. Le rattrapage cible les révisions de création attestées et n’altère ni le wikicode ni le résumé de modification.
+
+Les futures créations anglaises issues d’une traduction française reçoivent automatiquement les deux balises `chatgpt` et `translated-fr`.
+
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `9ca574528be14dc1a3b54ded4ae12f932997d2f66dcded3688ff8d6574fde93b`
+SHA-256 : `7fa57d8c775c3d7cca77f3fc80af67f7a05ebbf13df990c70b5c81e293be112a`
+
+## 2.15.39 — 9 août 2026
+
+- corrige un faux blocage possible après une mise à jour MediaWiki réussie lorsque la balise `chatgpt` n’est pas encore visible sur la première relecture de la révision ;
+- `update` réutilise désormais la politique de vérification bornée de `publish` (8 tentatives, délai de 2 secondes par défaut) avant de conclure à une divergence ;
+- aucune nouvelle écriture n’est effectuée pendant ces tentatives : seule la révision déjà créée est relue ;
+- applique la même tolérance bornée au contrôle postérieur à `action=tag` de `tag-translated-fr`, afin d’éviter un faux négatif analogue pour `translated-fr` ;
+- conserve intégralement les fonctions 2.15.38 de rattrapage et d’application future de `translated-fr`.
+
+## 2.15.38 — 9 août 2026
+
+- ajoute `./wikidebia tag-translated-fr DEBAT --dry-run` puis `./wikidebia tag-translated-fr DEBAT` pour ajouter rétroactivement `translated-fr` aux seules révisions anglaises de création attestées comme traductions FR→EN ;
+- le ciblage provient de `.state/published/<debat>/en/latest.json` et du manifeste bilingue installé ;
+- contrôle avant toute écriture de métadonnées : révision de création (`parentid=0`), auteur attendu, contenu attesté, résumé individualisé de traduction et présence préalable de `chatgpt` ;
+- exige la balise `translated-fr` active, définie et manuelle ainsi que le droit MediaWiki `changetags` ;
+- utilise l’API MediaWiki `action=tag`, sans créer de nouvelle révision ni modifier le wikicode ou le résumé ;
+- opération idempotente avec relecture post-écriture et reçu machine signé.
+- pour les futures créations anglaises dont `translation_status.en` vaut `ready` ou `published`, le plan et l’écriture appliquent directement les deux balises `chatgpt` et `translated-fr`.
 
 ## 2.15.37 — 9 août 2026
 
@@ -3162,7 +3186,7 @@ SHA-256 : `9ca574528be14dc1a3b54ded4ae12f932997d2f66dcded3688ff8d6574fde93b`
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
-SHA-256 : `64371f7ac2aa4ae60ec49100ab56a213f58bd53325932377cff386ecd7091aa4`
+SHA-256 : `7d6a2286cbe029a81e4f8ad8e40a844a3f43a3120d21463cfb34dd07ac9c8820`
 
 # Guide de publication et de reprise Wikidéb’IA 2.15.9
 
@@ -3253,6 +3277,13 @@ Translation of the French page [[:fr:X|X]]
 ```
 
 `X` est le titre canonique français de la même `page_id`. Le titre est résolu depuis le manifeste, le résumé est signé avec l’action, recalculé avant l’écriture et contrôlé sur la révision relue. Le lien d’historique ne remplace pas `{{Lien interlangue}}` dans la page française.
+
+
+## Ajouter rétroactivement `translated-fr`
+
+Après une publication anglaise FR→EN déjà effectuée avec seulement `chatgpt`, lancer d’abord `./wikidebia tag-translated-fr DEBAT --dry-run`. Si le plan ne contient aucun blocage, lancer `./wikidebia tag-translated-fr DEBAT`. Le kit utilise l’état publié anglais pour identifier les révisions de création, exige leur résumé individualisé de traduction et ajoute uniquement la balise `translated-fr` via l’API MediaWiki `action=tag`. Cette opération ne crée aucune révision et ne modifie aucun contenu.
+
+Pour les futures créations anglaises FR→EN, lorsque `translation_status.en` vaut `ready` ou `published`, le plan signé porte `change_tags: ["chatgpt", "translated-fr"]` pour chaque page anglaise et la relecture de la révision vérifie les deux balises.
 
 ## Guide de revue du contenu
 
@@ -3393,16 +3424,16 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `93e28a06a89f96c05f1bd5f29ae0974541c5441c2ca4f6dd186b300b9d0cec0c`
+SHA-256 : `a14c9ab2dcdaaaa9f8c4e57713238285295c4122a95c38e28f158b81241f5309`
 
-Tests pytest : 297 réussis, 0 échec.
+Tests pytest : 305 réussis, 0 échec.
 
 ## Guide de traduction anglaise
 
 Source interne : `kit/GUIDE_TRANSLATION_REVIEW.md`  
-SHA-256 : `cb841d8961e1a14fa9d86a6cde5d54f082509fc2ff0aee3ad41821ab9ae0c594`
+SHA-256 : `99295b3af0a6d76c4fc503b8479667656aebe90491d353c4f3f3649ce1b6c98c`
 
-# Guide de traduction anglaise contrôlée — Kit 2.15.37
+# Guide de traduction anglaise contrôlée — Kit 2.15.39
 
 > Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 

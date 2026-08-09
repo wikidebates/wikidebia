@@ -88,3 +88,9 @@ Translation of the French page [[:fr:X|X]]
 
 `X` est le titre canonique français de la même `page_id`. Le titre est résolu depuis le manifeste, le résumé est signé avec l’action, recalculé avant l’écriture et contrôlé sur la révision relue. Le lien d’historique ne remplace pas `{{Lien interlangue}}` dans la page française.
 
+
+## Ajouter rétroactivement `translated-fr`
+
+Après une publication anglaise FR→EN déjà effectuée avec seulement `chatgpt`, lancer d’abord `./wikidebia tag-translated-fr DEBAT --dry-run`. Si le plan ne contient aucun blocage, lancer `./wikidebia tag-translated-fr DEBAT`. Le kit utilise l’état publié anglais pour identifier les révisions de création, exige leur résumé individualisé de traduction et ajoute uniquement la balise `translated-fr` via l’API MediaWiki `action=tag`. Cette opération ne crée aucune révision et ne modifie aucun contenu.
+
+Pour les futures créations anglaises FR→EN, lorsque `translation_status.en` vaut `ready` ou `published`, le plan signé porte `change_tags: ["chatgpt", "translated-fr"]` pour chaque page anglaise et la relecture de la révision vérifie les deux balises.

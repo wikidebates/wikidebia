@@ -79,8 +79,8 @@
   "stable_archive_name": "wikidebia-validator.zip",
   "version_source": "VERSIONS.json",
   "normative_revision": "1.2.56",
-  "kit_version": "2.15.37",
-  "recommended_kit_version": "2.15.37",
+  "kit_version": "2.15.39",
+  "recommended_kit_version": "2.15.39",
   "supported_normative_revisions": [
     "1.2.53",
     "1.2.54",

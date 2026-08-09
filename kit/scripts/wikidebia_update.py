@@ -9,6 +9,7 @@ import json
 import os
 import re
 import sys
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
@@ -29,7 +30,7 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.15.37"
+KIT_VERSION = "2.15.39"
 REQUIRED_VALIDATOR_VERSION = "0.4.60"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
@@ -1828,7 +1829,24 @@ class PlanExecutor:
         return f"Ajout du lien interlangue vers la page anglaise [[en:{title}|{title}]]"
 
     def _verify_written_revision(self, title: str, revision_id: int, desired: str, summary: str) -> None:
-        observed = self.adapter.read_revision(title, revision_id)
+        # MediaWiki revision metadata (notably change tags) can briefly lag behind
+        # the successful write on read replicas. Publication already tolerates this;
+        # updates must use the same bounded post-write retry policy.
+        attempts = max(1, int(self.config.get("verification_attempts", 8)))
+        delay = max(0.0, float(self.config.get("verification_delay_seconds", 2)))
+        observed: dict[str, Any] | None = None
+        for index in range(attempts):
+            observed = self.adapter.read_revision(title, revision_id)
+            if (
+                observed
+                and int(observed.get("revision_id") or 0) == int(revision_id)
+                and sha_text(str(observed.get("text") or "")) == sha_text(desired)
+                and str(observed.get("summary") or "") == summary
+                and "chatgpt" in {str(value) for value in (observed.get("tags") or [])}
+            ):
+                return
+            if index + 1 < attempts and delay:
+                time.sleep(delay)
         if not observed:
             raise PlanConflict(f"Révision écrite introuvable lors de la relecture : {title}")
         if int(observed.get("revision_id") or 0) != int(revision_id):
@@ -1837,8 +1855,8 @@ class PlanExecutor:
             raise PlanConflict(f"Contenu distant divergent après écriture : {title}")
         if str(observed.get("summary") or "") != summary:
             raise PlanConflict(f"Résumé de modification distant divergent après écriture : {title}")
-        if "chatgpt" not in set(observed.get("tags") or []):
-            raise PlanConflict(f"Balise chatgpt absente après écriture : {title}")
+        if "chatgpt" not in {str(value) for value in (observed.get("tags") or [])}:
+            raise PlanConflict(f"Balise chatgpt absente après écriture après {attempts} relectures : {title}")
 
     def _summary(self, language: str, operation: str, plan: dict[str, Any]) -> str:
         configured = (self.config.get("edit_summaries") or {}).get(language)

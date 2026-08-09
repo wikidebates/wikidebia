@@ -16,7 +16,7 @@ spec.loader.exec_module(module)
 
 
 def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = False) -> None:
-    versions = {"norm": "1.2.20", "validator": "0.4.60", "kit": "2.15.37"}
+    versions = {"norm": "1.2.20", "validator": "0.4.60", "kit": "2.15.39"}
     payloads = {
         "VERSIONS.json": (json.dumps(versions, ensure_ascii=False, indent=2) + "\n").encode("utf-8"),
         "README.md": f"# {artifact}\n".encode("utf-8"),
@@ -25,7 +25,7 @@ def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = F
         {"path": name, "size_bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
         for name, raw in sorted(payloads.items())
     ]
-    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.60", "wikidebia-kit": "2.15.37"}[artifact]
+    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.60", "wikidebia-kit": "2.15.39"}[artifact]
     manifest = {
         "artifact": artifact,
         "version": version,
@@ -59,7 +59,7 @@ def test_component_inspector_accepts_and_verifies_optional_receipt(tmp_path: Pat
     _write_component_zip(archive, "wikidebia-kit", include_receipt=True)
     metadata = module.inspect_component_zip(archive)
     assert metadata["artifact"] == "wikidebia-kit"
-    assert metadata["versions"]["kit"] == "2.15.37"
+    assert metadata["versions"]["kit"] == "2.15.39"
 
 
 def test_single_complete_bundle_is_collected_from_updates(tmp_path: Path):
@@ -929,6 +929,7 @@ def test_doctor_checks_every_pipeline_script(tmp_path: Path, monkeypatch):
         "wikidebia_content_review.py", "wikidebia_translation_review.py", "wikidebia_render.py",
         "wikidebia_release.py", "wikidebia_remote_compare.py", "wikidebia_remote_plan_review.py",
         "wikidebia_remote_execute.py", "wikidebia_work_close.py",
+        "wikidebia_retro_tag.py",
     }
     monkeypatch.setattr(module, "runtime_environment_report", lambda root: {"requirements_sha256":"x","python_available":True,"missing_modules":[],"probe_error":None})
     monkeypatch.setattr(module, "assert_portable_sources", lambda root: None)
@@ -1037,7 +1038,7 @@ def test_generated_sources_are_unified_and_legacy_names_are_obsolete(tmp_path: P
         path.write_bytes(artifact.encode("utf-8"))
         archives[artifact] = path
     generated = module.generate_readable_sources(
-        tmp_path, staged, {"norm": "1.2.47", "validator": "0.4.60", "kit": "2.15.37"}, archives
+        tmp_path, staged, {"norm": "1.2.47", "validator": "0.4.60", "kit": "2.15.39"}, archives
     )
     assert set(generated) == {"WIKIDEBIA_SOURCE_ACTIVE.md", "WIKIDEBIA_SOURCE_PACKAGE_RECEIPT.json"}
     source = generated["WIKIDEBIA_SOURCE_ACTIVE.md"].read_text(encoding="utf-8")

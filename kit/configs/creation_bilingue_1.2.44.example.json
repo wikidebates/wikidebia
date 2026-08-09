@@ -1,5 +1,5 @@
 {
-  "kit_version": "2.15.37",
+  "kit_version": "2.15.39",
   "project_root": ".",
   "family": "wikidebates",
   "family_file": "kit/families/wikidebates_family.py",

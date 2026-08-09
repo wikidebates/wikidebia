@@ -1,6 +1,6 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.37",
+  "version": "2.15.39",
   "validator_version": "0.4.60",
   "scope": [
     "publish_archive",
@@ -76,7 +76,8 @@
     "later_interlanguage_enrichment_preservation_exception",
     "page_specific_interlanguage_update_summary",
     "post_update_revision_summary_verification",
-    "remote_interlanguage_only_update"
+    "remote_interlanguage_only_update",
+    "retroactive_translation_change_tag"
   ],
   "debate_specific_code": false,
   "change_tag": "chatgpt",
@@ -259,7 +260,9 @@
     "source_inventory_lock_verification",
     "manual_remote_adoption_revision_lock",
     "manual_remote_adoption_sha_lock",
-    "explicit_lifecycle_change_authorization"
+    "explicit_lifecycle_change_authorization",
+    "immutable_revision_tagging",
+    "eventually_consistent_postwrite_tag_verification"
   ],
   "publication_profiles": [
     "norm_1_2_direct_interlanguage",
@@ -488,5 +491,6 @@
     "concrete_stakes_density_regression",
     "interlanguage_only_preserves_human_remote_content_regression",
     "interlanguage_only_redirect_preservation_regression"
-  ]
+  ],
+  "translation_change_tag": "translated-fr"
 }

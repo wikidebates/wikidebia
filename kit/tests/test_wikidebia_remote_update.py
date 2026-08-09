@@ -141,7 +141,7 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
     validator = root / "validator.py"
     validator.write_text("import json; print(json.dumps({'validator_version':'0.4.60','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     config = {
-        "kit_version":"2.15.37","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
+        "kit_version":"2.15.39","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
         "family":"wikidebates","pywikibot_dir":"private/pywikibot","sites":{lang:{"code":lang,"expected_user":"ChatGPT"} for lang in languages},
         "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.60","scopes":[]},
         "published_state_dir":".state/published","receipts_dir":".state/receipts","logs_dir":"logs",
@@ -794,3 +794,37 @@ def test_59_interlanguage_only_executor_rechecks_pure_overlay(tmp_path):
     final = adapter.pages[("fr", "Titre")][1]
     assert "Modification humaine conservée" in final
     assert "|page=English title" in final
+
+
+def test_60_postwrite_verification_retries_until_chatgpt_tag_is_visible(tmp_path):
+    old = argument("Ancien")
+    new = argument("Nouveau")
+    config, path = make_fixture(
+        tmp_path,
+        old_pages=[("fr", "A1", "Titre", old)],
+        new_pages=[("fr", "A1", "Titre", new)],
+    )
+    config["verification_attempts"] = 4
+    config["verification_delay_seconds"] = 0
+    path.write_text(json.dumps(config), encoding="utf-8")
+
+    class LaggingTagAdapter(FakeAdapter):
+        def __init__(self, pages):
+            super().__init__(pages)
+            self.postwrite_reads = 0
+
+        def read_revision(self, title, revision_id):
+            row = super().read_revision(title, revision_id)
+            if row is None:
+                return None
+            self.postwrite_reads += 1
+            copy = dict(row)
+            if self.postwrite_reads < 3:
+                copy["tags"] = []
+            return copy
+
+    adapter = LaggingTagAdapter({("fr", "Titre"): (10, old)})
+    planned = module.RemoteUpdatePlanner(config, adapter, path).build_plan()
+    receipt = module.PlanExecutor(config, adapter, path).execute(planned, planned["plan_sha256"])
+    assert receipt["counts"]["updated"] == 1
+    assert adapter.postwrite_reads == 3

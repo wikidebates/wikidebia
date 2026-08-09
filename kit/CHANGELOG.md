@@ -1,3 +1,21 @@
+## 2.15.39 — 9 août 2026
+
+- corrige un faux blocage possible après une mise à jour MediaWiki réussie lorsque la balise `chatgpt` n’est pas encore visible sur la première relecture de la révision ;
+- `update` réutilise désormais la politique de vérification bornée de `publish` (8 tentatives, délai de 2 secondes par défaut) avant de conclure à une divergence ;
+- aucune nouvelle écriture n’est effectuée pendant ces tentatives : seule la révision déjà créée est relue ;
+- applique la même tolérance bornée au contrôle postérieur à `action=tag` de `tag-translated-fr`, afin d’éviter un faux négatif analogue pour `translated-fr` ;
+- conserve intégralement les fonctions 2.15.38 de rattrapage et d’application future de `translated-fr`.
+
+## 2.15.38 — 9 août 2026
+
+- ajoute `./wikidebia tag-translated-fr DEBAT --dry-run` puis `./wikidebia tag-translated-fr DEBAT` pour ajouter rétroactivement `translated-fr` aux seules révisions anglaises de création attestées comme traductions FR→EN ;
+- le ciblage provient de `.state/published/<debat>/en/latest.json` et du manifeste bilingue installé ;
+- contrôle avant toute écriture de métadonnées : révision de création (`parentid=0`), auteur attendu, contenu attesté, résumé individualisé de traduction et présence préalable de `chatgpt` ;
+- exige la balise `translated-fr` active, définie et manuelle ainsi que le droit MediaWiki `changetags` ;
+- utilise l’API MediaWiki `action=tag`, sans créer de nouvelle révision ni modifier le wikicode ou le résumé ;
+- opération idempotente avec relecture post-écriture et reçu machine signé.
+- pour les futures créations anglaises dont `translation_status.en` vaut `ready` ou `published`, le plan et l’écriture appliquent directement les deux balises `chatgpt` et `translated-fr`.
+
 ## 2.15.37 — 9 août 2026
 
 - ajoute `./wikidebia update --scope fr --interlanguage-only` pour les reprises consacrées exclusivement à l’ajout des liens FR→EN ;
