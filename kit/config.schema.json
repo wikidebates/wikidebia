@@ -15,7 +15,7 @@
   ],
   "properties": {
     "kit_version": {
-      "const": "2.15.43"
+      "const": "2.15.44"
     },
     "debate_id": {
       "type": "string",
@@ -34,7 +34,7 @@
       ],
       "properties": {
         "required_version": {
-          "const": "0.4.62"
+          "const": "0.4.63"
         },
         "command": {
           "type": "array",
@@ -80,6 +80,11 @@
     "manifest_requirements": {
       "type": "object",
       "additionalProperties": true
+    },
+    "publication_timezone": {
+      "type": "string",
+      "minLength": 1,
+      "default": "Europe/Paris"
     }
   }
 }

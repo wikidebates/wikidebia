@@ -602,3 +602,8 @@ Les notions spécialisées de même rang énumérées ou comparées dans un mêm
 ## Inventaire général des notions spécialisées (1.2.46)
 
 La revue ne se limite pas aux séries de notions comparables. Chaque sous-partie est examinée intégralement et reçoit une entrée dans `specialized_term_inventory`. Toute notion susceptible d’arrêter un lecteur est liée, expliquée, rattachée à un traitement antérieur ou déclarée intelligible en contexte avec une justification spécifique. Tous les liens Wikipédia réellement présents sont recensés. Le registre `wikipedia_link_groups` de 1.2.45 est remplacé comme mécanisme actif par cet inventaire général.
+
+
+### Règle 1.2.59 — création d’une traduction anglaise
+
+Pour un `Argument` anglais **nouvellement créé par traduction FR→EN**, `initialization` est absent, même si la page française source possède `initialisation`. Pour toute nouvelle page anglaise traduite (`Debate` ou `Argument`), `creation-date` est remplacée au moment de la publication par la date civile du jour de création distante. Les structures ci-dessus continuent de décrire aussi les pages anglaises historiques préexistantes, pour lesquelles ces paramètres peuvent être préservés.

@@ -36,8 +36,12 @@ class FakeAdapter:
         if not create_only and (key not in self.pages or self.pages[key][0] != base_revision_id): raise RuntimeError("revision collision")
         self.next_revision += 1
         revision = self.next_revision
+        parent_id = 0 if create_only else int(base_revision_id or 0)
         self.pages[key] = (revision, text)
-        self.revisions[revision] = {"revision_id": revision, "text": text, "summary": summary, "tags": tags}
+        self.revisions[revision] = {
+            "revision_id": revision, "parent_id": parent_id, "user": expected_user,
+            "text": text, "summary": summary, "tags": tags,
+        }
         return revision
 
 
@@ -47,16 +51,16 @@ def write_fixture(tmp_path: Path, kind: str):
     (corpus / "output" / "en").mkdir(parents=True)
     (corpus / "data").mkdir(parents=True)
     fr = "{{Argument\n|résumé=Nouveau résumé.\n|rubriques=Société\n}}\n"
-    en = "{{Argument\n|summary=New summary.\n|sections=Society\n}}\n"
+    en = "{{Argument\n|summary=New summary.\n|sections=Society\n|creation-date=2020-01-01\n}}\n"
     (corpus / "output" / "fr" / "A1.wiki").write_text(fr, encoding="utf-8")
     (corpus / "output" / "en" / "A1.wiki").write_text(en, encoding="utf-8")
     fr_debate = "{{Débat\n|sujet=Démo\n|sujet-complet=la démonstration\n}}\n"
-    en_debate = "{{Debate\n|topic=Demo\n|complete-topic=the demonstration\n}}\n"
+    en_debate = "{{Debate\n|topic=Demo\n|complete-topic=the demonstration\n|creation-date=2020-01-01\n}}\n"
     (corpus / "output" / "fr" / "debate.wiki").write_text(fr_debate, encoding="utf-8")
     (corpus / "output" / "en" / "debate.wiki").write_text(en_debate, encoding="utf-8")
     manifest = {
       "debate_id":"demo",
-      "normative_versions":{"validator":"0.4.62"},
+      "normative_versions":{"validator":"0.4.63"},
       "core_files":{"registry":"data/registre_debat.json"},
       "pages":[
         {"language":"fr","page_id":"A1","page_type":"argument","canonical_title":"Titre FR","file_path":"output/fr/A1.wiki","sha256":module.sha_file(corpus / "output/fr/A1.wiki")},
@@ -74,7 +78,7 @@ def write_fixture(tmp_path: Path, kind: str):
     validator = tmp_path / "validator"
     validator.mkdir()
     validator_script = validator / "validate.py"
-    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.62','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.63','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     operation = {
       "id":"test",
       "kind":kind,
@@ -87,8 +91,8 @@ def write_fixture(tmp_path: Path, kind: str):
     }
     if kind == "parameter_update": operation["parameters"]={"fr":"résumé","en":"summary"}
     config = {
-      "kit_version":"2.15.43","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
-      "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.62","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
+      "kit_version":"2.15.44","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
+      "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.63","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
       "family":"wikidebates","family_file":str(Path(__file__)),"pywikibot_dir":str(tmp_path),
       "sites":{"fr":{"code":"fr","expected_user":"ChatGPT"},"en":{"code":"en","expected_user":"ChatGPT"}},
       "logs_dir":"logs","change_tags":["chatgpt"],"verification_attempts":1,"verification_delay_seconds":0,"write_delay_seconds":0,
@@ -673,12 +677,12 @@ def test_historical_manifest_versions_do_not_block_current_validation(tmp_path):
     publisher = module.GenericPublisher(config, FakeAdapter(), path)
     plan = publisher.build_plan()
     assert not plan["blockers"]
-    assert plan["required_validator_version"] == "0.4.62"
+    assert plan["required_validator_version"] == "0.4.63"
 
 
 def test_explicit_custom_manifest_requirement_is_still_enforced(tmp_path):
     config, path, _, _ = write_fixture(tmp_path, "full_page")
-    config["manifest_requirements"] = {"normative_versions.validator": "0.4.62"}
+    config["manifest_requirements"] = {"normative_versions.validator": "0.4.63"}
     path.write_text(json.dumps(config), encoding="utf-8")
     corpus = tmp_path / "corpus" / "demo"
     manifest_path = corpus / "manifest.json"
@@ -928,6 +932,68 @@ def test_ready_english_translation_uses_page_specific_french_source_summary(tmp_
     revision = max(adapter.revisions)
     assert adapter.revisions[revision]["summary"] == action["edit_summary"]
     assert adapter.revisions[revision]["tags"] == ["chatgpt", "translated-fr"]
+    written = adapter.revisions[revision]["text"]
+    assert "|initialization=" not in written
+    assert f"|creation-date={publisher.publication_date}" in written
+    assert "|creation-date=2020-01-01" not in written
+    assert action["publication_creation_date"] == publisher.publication_date
+    assert plan["publication_date"] == publisher.publication_date
+    assert plan["publication_timezone"] == "Europe/Paris"
+
+
+def test_ready_english_translation_rejects_initialization_from_french_parent(tmp_path):
+    config, path, _, _ = write_fixture(tmp_path, "full_page")
+    corpus, manifest_path = make_direct_profile(config, path, tmp_path)
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["translation_status"] = {"en": "ready"}
+    for row in manifest["pages"]:
+        if row["language"] == "en" and row["page_id"] == "A1":
+            row["page_origin"] = "new"
+    en_source = corpus / "output" / "en" / "A1.wiki"
+    en_source.write_text(
+        "{{Argument\n|initialization=Objection@12345\n|summary=New summary.\n|sections=Society\n|creation-date=2020-01-01\n}}\n",
+        encoding="utf-8",
+    )
+    for row in manifest["pages"]:
+        if row["language"] == "en" and row["page_id"] == "A1":
+            row["sha256"] = module.sha_file(en_source)
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    config["operation"]["languages"] = ["en"]
+    config["operation"]["page_types"] = ["argument"]
+    path.write_text(json.dumps(config), encoding="utf-8")
+    try:
+        module.GenericPublisher(config, FakeAdapter(), path).build_plan()
+    except module.PublicationError as exc:
+        assert "initialization" in str(exc)
+    else:
+        raise AssertionError("initialization carried from French parent was accepted")
+
+
+def test_ready_english_translation_resume_keeps_original_remote_creation_date(tmp_path):
+    config, path, _, _ = write_fixture(tmp_path, "full_page")
+    corpus, manifest_path = make_direct_profile(config, path, tmp_path)
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["translation_status"] = {"en": "ready"}
+    for row in manifest["pages"]:
+        if row["language"] == "en" and row["page_id"] == "A1":
+            row["page_origin"] = "new"
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    config["operation"]["languages"] = ["en"]
+    config["operation"]["page_types"] = ["argument"]
+    path.write_text(json.dumps(config), encoding="utf-8")
+    adapter = FakeAdapter()
+    adapter.language = "en"
+    remote = "{{Argument\n|summary=New summary.\n|sections=Society\n|creation-date=2026-08-09\n}}\n"
+    adapter.pages[("en", "Title EN")] = (77, remote)
+    expected_summary = "Translation of the French page: [[:fr:Titre FR|Titre FR]]"
+    adapter.revisions[77] = {"revision_id": 77, "parent_id": 0, "user": "ChatGPT", "text": remote, "summary": expected_summary, "tags": ["chatgpt", "translated-fr"]}
+    adapter.language = None
+    publisher = module.GenericPublisher(config, adapter, path)
+    plan = publisher.build_plan()
+    assert plan["counts"]["en"]["skip"] == 1
+    action = plan["actions"][0]
+    assert action["publication_creation_date"] == "2026-08-09"
+    assert action["operation"] == "skip"
 
 
 def test_tampered_page_specific_translation_summary_is_rejected(tmp_path):
@@ -949,3 +1015,75 @@ def test_tampered_page_specific_translation_summary_is_rejected(tmp_path):
         assert "Résumé individualisé divergent" in str(exc)
     else:
         raise AssertionError("tampered per-page translation summary accepted")
+
+
+def test_ready_english_translation_debate_uses_publication_date(tmp_path):
+    config, path, _, _ = write_fixture(tmp_path, "full_page")
+    corpus, manifest_path = make_direct_profile(config, path, tmp_path)
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["translation_status"] = {"en": "ready"}
+    for row in manifest["pages"]:
+        if row["language"] == "en" and row["page_id"] == "DEBATE":
+            row["page_origin"] = "new"
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    source = corpus / "output" / "en" / "debate.wiki"
+    source.write_text(
+        "{{Debate\n"
+        "|topic=Demo\n"
+        "|complete-topic=the demonstration\n"
+        "|wikipedia-articles={{Wikipedia article\n|page=Demonstration\n}}\n"
+        "|creation-date=2020-01-01\n"
+        "}}\n",
+        encoding="utf-8",
+    )
+    update_hash(manifest_path, "en", "DEBATE", source)
+    config["operation"]["languages"] = ["en"]
+    config["operation"]["page_types"] = ["debate"]
+    path.write_text(json.dumps(config), encoding="utf-8")
+    adapter = FakeAdapter()
+    publisher = module.GenericPublisher(config, adapter, path)
+    plan = publisher.build_plan()
+    action = plan["actions"][0]
+    assert action["publication_creation_date"] == publisher.publication_date
+    result = publisher.publish(plan=plan, confirmation=plan["plan_sha256"])
+    assert result == {"created": 1, "updated": 0, "skipped": 0}
+    written = adapter.pages[("en", "Demo debate")][1]
+    assert f"|creation-date={publisher.publication_date}" in written
+    assert "|creation-date=2020-01-01" not in written
+
+
+def test_english_creation_rechecks_date_immediately_before_each_write(tmp_path):
+    config, path, _, _ = write_fixture(tmp_path, "full_page")
+    _, manifest_path = make_direct_profile(config, path, tmp_path)
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["translation_status"] = {"en": "ready"}
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    config["operation"]["languages"] = ["en"]
+    config["operation"]["page_types"] = ["argument"]
+    path.write_text(json.dumps(config), encoding="utf-8")
+    publisher = module.GenericPublisher(config, FakeAdapter(), path)
+    plan = publisher.build_plan()
+    planned = plan["publication_date"]
+    next_day = "2099-12-31" if planned != "2099-12-31" else "2099-12-30"
+    dates = iter([planned, next_day])
+    publisher._current_publication_date = lambda: next(dates)
+    try:
+        publisher.publish(plan=plan, confirmation=plan["plan_sha256"])
+    except module.PublicationError as exc:
+        assert "jour de publication" in str(exc)
+        assert "Title EN" in str(exc)
+    else:
+        raise AssertionError("une création anglaise a traversé un changement de jour sans blocage")
+
+
+def test_non_english_creation_is_not_invalidated_by_publication_day_change(tmp_path):
+    config, path, _, _ = write_fixture(tmp_path, "full_page")
+    config["operation"]["languages"] = ["fr"]
+    config["operation"]["page_types"] = ["argument"]
+    path.write_text(json.dumps(config), encoding="utf-8")
+    adapter = FakeAdapter()
+    publisher = module.GenericPublisher(config, adapter, path)
+    plan = publisher.build_plan()
+    publisher._current_publication_date = lambda: "2099-12-31"
+    result = publisher.publish(plan=plan, confirmation=plan["plan_sha256"])
+    assert result == {"created": 1, "updated": 0, "skipped": 0}

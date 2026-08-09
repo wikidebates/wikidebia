@@ -113,7 +113,7 @@ def test_norm_124_rejects_unexplained_technical_subsection():
 def test_norm_124_active_rules_are_corpus_generic():
     root = Path(__file__).parents[1] / "normative_reference" / "01_normes"
     active_files = [
-        root / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.58.md",
+        root / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.59.md",
         root / "profils_rendu_wikidebia.md",
         root / "workflow_production_wikidebia.md",
         root / "schema_graphe_registre_wikidebia.md",

@@ -1,7 +1,7 @@
 {
-  "normative_revision": "1.2.58",
-  "recommended_validator_version": "0.4.62",
-  "recommended_kit_version": "2.15.43",
+  "normative_revision": "1.2.59",
+  "recommended_validator_version": "0.4.63",
+  "recommended_kit_version": "2.15.44",
   "compatible_from": "1.1.0",
   "translation_modes": [
     "pending",
@@ -22,7 +22,7 @@
     "Les valeurs de progression et d'avertissement sont traduites selon la table exhaustive FR→EN; une absence source reste une absence et les défauts de création ne s'appliquent pas à une traduction.",
     "related-debates ne projette que des débats connexes présents en français dont la page anglaise correspondante existe réellement, avec une seconde passe de vérification par lot.",
     "Les créations anglaises issues d’une traduction FR→EN utilisent un résumé de modification individualisé reliant la page française source par son titre canonique verrouillé.",
-    "Le kit 2.15.43 conserve les reprises interlangues strictes et le rattrapage audité de la balise `translated-fr` sur les révisions anglaises de traduction déjà publiées.",
+    "Le kit 2.15.44 conserve les reprises interlangues strictes et le rattrapage audité de la balise `translated-fr` sur les révisions anglaises de traduction déjà publiées.",
     "Pour les nouvelles traductions FR→EN : résumés avec deux-points, avertissement `AI-translated quote` et doubles balises `chatgpt` + `translated-fr`.",
     "À partir de 1.2.58, les nouvelles pages Argument utilisent `nom-consacré` / `established-name`; `nom` / `name` est réservé à la préservation exacte de pages historiques attestées."
   ]

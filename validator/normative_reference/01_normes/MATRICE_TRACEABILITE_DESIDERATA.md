@@ -450,3 +450,11 @@ Le retour propriétaire du 7 août 2026 après les premiers lots anglais affine 
 | Ne pas confondre avec les titres, sites ou champs JSON `name` | MW-008 | renommage limité au paramètre top-level `Argument` | tests de non-régression |
 | Préserver les pages historiques utilisant encore l’ancien paramètre | VAL-041 | `nom` / `name` acceptés uniquement comme alias de préservation attestée | validateur + reprise |
 
+
+
+## Révision 1.2.59 — création des futures traductions anglaises
+
+| Besoin | Exigence | Mise en œuvre | Contrôle |
+|---|---|---|---|
+| Ne pas transférer l’ID parent français | TRN-009 | `initialization` interdit sur un nouvel Argument EN traduit | validateur + préflight de publication + tests |
+| Dater la page anglaise au jour de sa publication | RND-007 | substitution signée de `creation-date` au plan de publication | moteur de publication + tests de reprise et de changement de jour |

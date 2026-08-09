@@ -1,3 +1,10 @@
+## 1.2.59 — 10 août 2026 — création des traductions anglaises
+
+- interdit `initialization` lors de la création d’un nouvel Argument anglais traduit depuis le français ;
+- impose que `creation-date` des nouvelles pages anglaises traduites soit le jour réel de leur publication, et non la date française ou la date de traduction ;
+- impose l’invalidation du plan si le jour change avant l’écriture et une reprise sûre fondée sur la révision de création vérifiée ;
+- conserve intégralement la migration `nom-consacré` / `established-name` de 1.2.58.
+
 ## 1.2.58 — 10 août 2026 — `nom-consacré` / `established-name`
 
 - renommage du deuxième paramètre du modèle `Argument` : `nom` → `nom-consacré` en français et `name` → `established-name` en anglais ;

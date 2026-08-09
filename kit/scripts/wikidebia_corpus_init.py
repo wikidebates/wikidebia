@@ -35,10 +35,10 @@ from wikidebia_graph_extract import (
     normalize_key,
 )
 
-KIT_VERSION = "2.15.43"
+KIT_VERSION = "2.15.44"
 CORPUS_INIT_VERSION = "1.0.0"
-NORM_VERSION = "1.2.58"
-VALIDATOR_VERSION = "0.4.62"
+NORM_VERSION = "1.2.59"
+VALIDATOR_VERSION = "0.4.63"
 
 RUBRIQUES = {
     "Aménagement", "Culture", "Droit", "Écologie", "Économie", "Éducation",

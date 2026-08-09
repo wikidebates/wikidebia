@@ -297,3 +297,9 @@ Pour les prochains débats traduits du français vers l’anglais :
 
 Le propriétaire renomme exclusivement le deuxième paramètre top-level du modèle `Argument` : `nom` devient `nom-consacré` en français et `name` devient `established-name` en anglais. Ce renommage ne vise pas les titres de pages, les noms de sites ou d’auteurs, ni les champs techniques génériques `name` des artefacts JSON. Les pages nouvelles utilisent uniquement les nouveaux noms ; les anciens paramètres peuvent être conservés tels quels sur des pages préexistantes lorsque la préservation historique l’exige.
 
+
+
+## Décision du propriétaire — 10 août 2026 — métadonnées des futures traductions anglaises
+
+- Lors de la création d’un nouvel Argument anglais traduit depuis le français, ne pas publier `initialization`, car l’identifiant de page parent français n’est pas portable sur le wiki anglais.
+- Ne pas traduire ni recopier `date-création` française : publier `creation-date` avec la date du jour au moment de la création de la page anglaise.

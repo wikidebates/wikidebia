@@ -1024,3 +1024,8 @@ Le profil de modification est distinct du profil de création. Il part de l’é
 ## 8.2 Avertissements IA
 
 `Argument généré par IA`, `Débat généré par IA` et leurs équivalents anglais sont des marqueurs de **création automatisée**. Ils ne sont jamais ajoutés rétroactivement à une page préexistante et ne remplacent jamais un avertissement historique (`Argument saugrenu`, avertissement de titre, de résumé, de références, etc.).
+
+
+## Complément 1.2.59 — date de publication anglaise
+
+Dans un rendu local de traduction anglaise, `creation-date` peut être provisoire afin que le paquet reste validable. Pour une création distante FR→EN, le moteur de publication remplace uniquement cette valeur par la date du jour de publication. Il bloque aussi tout nouvel `Argument` anglais contenant `initialization`.

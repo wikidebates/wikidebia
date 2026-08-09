@@ -1,3 +1,10 @@
+## 2.15.44 — 10 août 2026
+
+- verrouille l’absence de `initialization` sur toute nouvelle traduction anglaise d’Argument ;
+- fixe `creation-date` des nouvelles traductions anglaises au jour réel de publication, dans un plan signé ;
+- invalide le plan si le jour change avant l’écriture et sécurise la reprise après publication partielle ;
+- conserve intégralement la migration `nom-consacré` / `established-name` de 2.15.43.
+
 ## 2.15.43 — 10 août 2026
 
 - aligne le deuxième paramètre top-level du modèle `Argument` sur la norme 1.2.58 : `nom-consacré` en français et `established-name` en anglais ;

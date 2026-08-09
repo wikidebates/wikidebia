@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.43",
-  "validator_version": "0.4.62",
+  "version": "2.15.44",
+  "validator_version": "0.4.63",
   "scope": [
     "publish_archive",
     "github_init",
@@ -78,7 +78,10 @@
     "post_update_revision_summary_verification",
     "remote_interlanguage_only_update",
     "retroactive_translation_change_tag",
-    "canonical_argument_established_name_parameters"
+    "canonical_argument_established_name_parameters",
+    "english_translation_publication_creation_date",
+    "english_translation_no_cross_wiki_initialization",
+    "per_page_publication_day_gate"
   ],
   "debate_specific_code": false,
   "change_tag": "chatgpt",
@@ -397,7 +400,7 @@
     "redirect_preserving_interlanguage_enrichment",
     "interlanguage_only_owner_mode"
   ],
-  "normative_revision": "1.2.58",
+  "normative_revision": "1.2.59",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -494,7 +497,10 @@
     "concrete_stakes_density_regression",
     "interlanguage_only_preserves_human_remote_content_regression",
     "interlanguage_only_redirect_preservation_regression",
-    "argument_established_name_parameter_alias_regression"
+    "argument_established_name_parameter_alias_regression",
+    "english_creation_date_runtime_override_regression",
+    "english_initialization_cross_wiki_rejection_regression",
+    "english_creation_midnight_boundary_regression"
   ],
   "translation_change_tag": "translated-fr"
 }

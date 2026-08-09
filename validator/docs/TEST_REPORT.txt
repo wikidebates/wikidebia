@@ -1,1 +1,2 @@
-Tests pytest : 326 réussis, 0 échec.
+Tests pytest : 328 réussis, 0 échec.
+Suite complète exécutée le 10 août 2026 sur le validateur 0.4.63 / norme 1.2.59.

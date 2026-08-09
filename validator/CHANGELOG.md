@@ -1,3 +1,9 @@
+## 0.4.63 — 10 août 2026
+
+- aligne le validateur sur la norme 1.2.59 ;
+- conserve l’interdiction de `initialization` sur les nouveaux Arguments anglais et toute la compatibilité 1.2.58 ;
+- embarque les nouvelles exigences de date de publication anglaise, appliquées dynamiquement par le kit 2.15.44.
+
 ## 0.4.62 — 10 août 2026
 
 - aligne le validateur sur la norme 1.2.58 et reconnaît `nom-consacré` / `established-name` comme paramètres canoniques du modèle `Argument` ;

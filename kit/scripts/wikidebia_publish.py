@@ -13,9 +13,10 @@ import unicodedata
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Protocol
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-KIT_VERSION = "2.15.43"
-REQUIRED_VALIDATOR_VERSION = "0.4.62"
+KIT_VERSION = "2.15.44"
+REQUIRED_VALIDATOR_VERSION = "0.4.63"
 DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
 DEFERRED_TRANSLATION_PROFILE = "norm_1_2_deferred_translation"
 DIRECT_PROFILES = {DIRECT_INTERLANGUAGE_PROFILE, DEFERRED_TRANSLATION_PROFILE}
@@ -358,6 +359,7 @@ class PageAction:
     desired_sha256: str | None
     classification: str
     operation: str
+    publication_creation_date: str | None = None
     edit_summary: str = ""
     change_tags: list[str] | None = None
     note: str | None = None
@@ -476,7 +478,7 @@ class PywikibotAdapter:
             action="query",
             prop="revisions",
             revids=int(revision_id),
-            rvprop="ids|content|comment|tags",
+            rvprop="ids|content|comment|tags|user",
             rvslots="main",
         ).submit()
         for page in ((data.get("query") or {}).get("pages") or {}).values():
@@ -487,6 +489,8 @@ class PywikibotAdapter:
             slot = (revision.get("slots") or {}).get("main") or {}
             return {
                 "revision_id": int(revision.get("revid", revision_id)),
+                "parent_id": int(revision.get("parentid", 0) or 0),
+                "user": str(revision.get("user") or ""),
                 "text": slot.get("content", slot.get("*", revision.get("*", ""))),
                 "summary": revision.get("comment", "") or "",
                 "tags": list(revision.get("tags") or []),
@@ -547,6 +551,12 @@ class GenericPublisher:
         self.languages = tuple(self.operation.get("languages") or config.get("languages") or ())
         self.tags = list(config.get("change_tags") or ["chatgpt"])
         self.translation_tag = str(config.get("translation_change_tag") or "translated-fr")
+        self.publication_timezone = str(config.get("publication_timezone") or "Europe/Paris")
+        try:
+            ZoneInfo(self.publication_timezone)
+        except ZoneInfoNotFoundError as exc:
+            raise PublicationError(f"Fuseau horaire de publication inconnu : {self.publication_timezone}") from exc
+        self.publication_date = self._current_publication_date()
         logs_dir = self._resolve(config["logs_dir"])
         operation_id = str(self.operation.get("id") or self.operation.get("kind") or "publication")
         self.log_path = logs_dir / f"{operation_id}.jsonl"
@@ -563,6 +573,65 @@ class GenericPublisher:
 
     def _english_translation_deferred(self) -> bool:
         return self._english_translation_status() == "deferred"
+
+    def _current_publication_date(self) -> str:
+        return dt.datetime.now(ZoneInfo(self.publication_timezone)).date().isoformat()
+
+    def _is_new_english_translation_page(self, row: dict[str, Any]) -> bool:
+        return (
+            str(row.get("language") or "") == "en"
+            and str(row.get("page_origin") or "new") == "new"
+            and self.operation.get("kind") == "full_page"
+            and self._english_translation_status() in {"ready", "published"}
+        )
+
+    def _english_translation_creation_text(
+        self,
+        row: dict[str, Any],
+        text: str,
+        publication_date: str,
+    ) -> str:
+        """Apply publication-time metadata to a newly translated English page."""
+        if not self._is_new_english_translation_page(row):
+            return text
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", publication_date):
+            raise PublicationError(f"Date de publication invalide : {publication_date!r}")
+        names = [span.name for span in _main_template_parameter_spans(text)]
+        if str(row.get("page_type") or "") == "argument" and "initialization" in names:
+            raise PublicationError(
+                "Une nouvelle traduction anglaise d’Argument ne doit pas contenir |initialization= : "
+                + str(row.get("page_id") or "")
+            )
+        if names.count("creation-date") != 1:
+            raise PublicationError(
+                "Une nouvelle traduction anglaise doit contenir exactement un |creation-date= avant publication : "
+                + str(row.get("page_id") or "")
+            )
+        return replace_parameter(text, "creation-date", publication_date)
+
+    def _verified_existing_translation_creation(
+        self,
+        *,
+        row: dict[str, Any],
+        title: str,
+        revision_id: int,
+        remote_text: str,
+        summary: str,
+        tags: list[str],
+    ) -> bool:
+        if not self._is_new_english_translation_page(row):
+            return True
+        observed = self.adapter.read_revision(title, revision_id)
+        if not observed:
+            return False
+        expected_user = self._site("en")[1]
+        return (
+            int(observed.get("parent_id", -1)) == 0
+            and str(observed.get("user") or "") == expected_user
+            and sha_text(str(observed.get("text", ""))) == sha_text(remote_text)
+            and str(observed.get("summary") or "") == summary
+            and all(tag in (observed.get("tags") or []) for tag in tags)
+        )
 
     def _validate_configuration(self) -> None:
         if str(self.config.get("kit_version") or "") not in {KIT_VERSION, "2"}:
@@ -914,6 +983,15 @@ class GenericPublisher:
         if language == "en":
             if "interlangue" in names:
                 raise PublicationError(f"Lien interlangue interdit en anglais : {page_id}")
+            if self._is_new_english_translation_page(row):
+                if page_type == "argument" and "initialization" in names:
+                    raise PublicationError(
+                        f"Une nouvelle traduction anglaise d’Argument ne doit pas contenir |initialization= : {page_id}"
+                    )
+                if names.count("creation-date") != 1:
+                    raise PublicationError(
+                        f"Une nouvelle traduction anglaise doit contenir exactement un |creation-date= : {page_id}"
+                    )
             if page_type == "debate":
                 if "type" in names:
                     raise PublicationError("Le paramètre anglais |type= est interdit par les règles éditoriales actives")
@@ -1139,7 +1217,7 @@ class GenericPublisher:
             }
             counts[language]["total"] = len(language_actions)
         plan: dict[str, Any] = {
-            "plan_version": "wikidebia-publication-plan-2.15.43",
+            "plan_version": "wikidebia-publication-plan-2.15.44",
             "publication_profile": self.publication_profile,
             "kit_version": KIT_VERSION,
             "debate_id": self.config["debate_id"],
@@ -1150,6 +1228,8 @@ class GenericPublisher:
             "package_fingerprints": self._package_fingerprints(),
             "change_tags": self.tags,
             "translation_change_tag": self.translation_tag,
+            "publication_timezone": self.publication_timezone,
+            "publication_date": self.publication_date,
             "edit_summaries": self.operation["edit_summaries"],
             "actions": actions,
             "blockers": blockers,
@@ -1168,6 +1248,9 @@ class GenericPublisher:
         local_target = local_text if parameter is None else extract_parameter(local_text, parameter)
         title = self._remote_title(row)
         exists, revision_id, remote_text = self.adapter.read_page(title)
+        page_summary = self._summary_for_page(language, page_id, page_type)
+        page_tags = self._tags_for_page(language, page_id, page_type)
+        publication_creation_date: str | None = None
         common = dict(
             operation_id=str(self.operation["id"]),
             kind=str(self.operation["kind"]),
@@ -1179,17 +1262,24 @@ class GenericPublisher:
             parameter=parameter,
             local_file_sha256=sha_file(source_path),
             local_target_sha256=sha_text(local_target),
-            edit_summary=self._summary_for_page(language, page_id, page_type),
-            change_tags=self._tags_for_page(language, page_id, page_type),
+            edit_summary=page_summary,
+            change_tags=page_tags,
         )
         if not exists:
             if self.operation["kind"] == "full_page" and self.operation.get("create_missing", True):
+                desired_create_text = local_text
+                if self._is_new_english_translation_page(row):
+                    publication_creation_date = self.publication_date
+                    desired_create_text = self._english_translation_creation_text(
+                        row, local_text, publication_creation_date
+                    )
                 return PageAction(
                     **common,
+                    publication_creation_date=publication_creation_date,
                     remote_revision_id=None,
                     remote_sha256=None,
                     remote_target_sha256=None,
-                    desired_sha256=sha_text(local_text),
+                    desired_sha256=sha_text(desired_create_text),
                     classification="remote_absent",
                     operation="create",
                 )
@@ -1209,6 +1299,39 @@ class GenericPublisher:
             if self.operation["kind"] == "full_page":
                 remote_target = remote_text
                 desired_text = local_text
+                if self._is_new_english_translation_page(row):
+                    if not self._verified_existing_translation_creation(
+                        row=row,
+                        title=title,
+                        revision_id=revision_id,
+                        remote_text=remote_text,
+                        summary=page_summary,
+                        tags=page_tags,
+                    ):
+                        return PageAction(
+                            **common,
+                            remote_revision_id=revision_id,
+                            remote_sha256=sha_text(remote_text),
+                            remote_target_sha256=sha_text(remote_text),
+                            desired_sha256=None,
+                            classification="unverified_existing_translation",
+                            operation="block",
+                            note="La page anglaise existe mais sa révision courante ne peut pas être prouvée comme création de traduction Wikidéb’IA.",
+                        )
+                    remote_date = extract_parameter(remote_text, "creation-date").strip()
+                    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", remote_date):
+                        return PageAction(
+                            **common,
+                            remote_revision_id=revision_id,
+                            remote_sha256=sha_text(remote_text),
+                            remote_target_sha256=sha_text(remote_text),
+                            desired_sha256=None,
+                            classification="invalid_existing_creation_date",
+                            operation="block",
+                            note="La page anglaise existante a une |creation-date= invalide.",
+                        )
+                    publication_creation_date = remote_date
+                    desired_text = self._english_translation_creation_text(row, local_text, remote_date)
             else:
                 assert parameter is not None
                 insert_missing = bool(
@@ -1260,6 +1383,7 @@ class GenericPublisher:
             note = "La page existe avec un contenu différent et update_existing=false."
         return PageAction(
             **common,
+            publication_creation_date=publication_creation_date,
             remote_revision_id=revision_id,
             remote_sha256=sha_text(remote_text),
             remote_target_sha256=sha_text(remote_target),
@@ -1290,6 +1414,25 @@ class GenericPublisher:
             raise PublicationError("Balises divergentes du plan")
         if plan.get("translation_change_tag") != self.translation_tag:
             raise PublicationError("Balise de traduction divergente du plan")
+        if plan.get("publication_timezone") != self.publication_timezone:
+            raise PublicationError("Fuseau horaire de publication divergent dans le plan")
+        english_creates = [
+            action for action in plan.get("actions", [])
+            if action.get("language") == "en"
+            and action.get("operation") == "create"
+            and action.get("publication_creation_date")
+        ]
+        if english_creates:
+            current_date = self._current_publication_date()
+            if current_date != plan.get("publication_date"):
+                raise PublicationError(
+                    "Le jour de publication a changé depuis le plan ; régénérez le plan avant de créer les pages anglaises"
+                )
+            for action in english_creates:
+                if action.get("publication_creation_date") != plan.get("publication_date"):
+                    raise PublicationError(
+                        f"Date de création anglaise divergente dans le plan : {action.get('page_id')}"
+                    )
         if plan.get("edit_summaries") != self.operation.get("edit_summaries"):
             raise PublicationError("Résumés de modification divergents du plan")
         for action in plan.get("actions", []):
@@ -1658,7 +1801,34 @@ class GenericPublisher:
             if sha_file(source_path) != action["local_file_sha256"]:
                 raise PublicationError(f"Fichier local modifié : {action['source_path']}")
             desired_text = source_path.read_text(encoding="utf-8")
+            row = self._manifest_page(str(action.get("language") or ""), str(action.get("page_id") or ""))
+            if row is None:
+                raise PublicationError(f"Page absente du manifeste : {action.get('language')}/{action.get('page_id')}")
+            publication_creation_date = action.get("publication_creation_date")
+            if publication_creation_date:
+                current_publication_date = self._current_publication_date()
+                if current_publication_date != str(publication_creation_date):
+                    raise PublicationError(
+                        "Le jour de publication a changé avant la création de "
+                        f"{action['title']} ; régénérez le plan pour dater correctement les pages restantes"
+                    )
+                desired_text = self._english_translation_creation_text(
+                    row, desired_text, str(publication_creation_date)
+                )
+            if sha_text(desired_text) != action["desired_sha256"]:
+                raise PublicationError(f"Contenu de création divergent du plan : {action['title']}")
             if exists:
+                if revision_id is None:
+                    raise RevisionConflict(f"Révision distante absente : {action['title']}")
+                if publication_creation_date and not self._verified_existing_translation_creation(
+                    row=row,
+                    title=action["title"],
+                    revision_id=revision_id,
+                    remote_text=remote_text,
+                    summary=summary,
+                    tags=action_tags,
+                ):
+                    raise RevisionConflict(f"Collision anglaise non vérifiée depuis le plan : {action['title']}")
                 if sha_text(remote_text) == action["desired_sha256"]:
                     self._log({"event": "resume_skip_equivalent", **self._identity(action), "revision_id": revision_id})
                     return "skipped"
