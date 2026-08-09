@@ -10,7 +10,7 @@ import time
 from pathlib import Path
 from typing import Any, Iterable
 
-KIT_VERSION = "2.15.39"
+KIT_VERSION = "2.15.40"
 TAG = "translated-fr"
 BASE_TAG = "chatgpt"
 LANGUAGE = "en"
@@ -180,6 +180,40 @@ class PywikibotTagAdapter:
                     }
         return output
 
+    def read_first_revision(self, title: str) -> dict[str, Any] | None:
+        data = self._request(
+            action="query",
+            prop="revisions",
+            titles=title,
+            rvprop="ids|content|comment|tags|user|timestamp",
+            rvslots="main",
+            rvdir="newer",
+            rvlimit=1,
+        )
+        pages = ((data.get("query") or {}).get("pages") or {})
+        for page in pages.values():
+            page_title = str(page.get("title") or "")
+            revisions = page.get("revisions") or []
+            if not revisions:
+                continue
+            revision = revisions[0]
+            revid = int(revision.get("revid") or 0)
+            if revid <= 0:
+                return None
+            slot = (revision.get("slots") or {}).get("main") or {}
+            content = slot.get("content", slot.get("*", revision.get("*", ""))) or ""
+            return {
+                "revision_id": revid,
+                "parent_id": int(revision.get("parentid") or 0),
+                "title": page_title,
+                "text": str(content),
+                "summary": str(revision.get("comment") or ""),
+                "tags": list(revision.get("tags") or []),
+                "user": str(revision.get("user") or ""),
+                "timestamp": str(revision.get("timestamp") or ""),
+            }
+        return None
+
     def add_tag(self, revision_ids: list[int], tag: str) -> None:
         if self.site is None:
             raise RetroTagError("Site non ouvert")
@@ -259,51 +293,81 @@ def build_plan(
         page_id = str(row.get("page_id") or "")
         page_type = str(row.get("page_type") or "")
         title = str(row.get("canonical_title") or "")
-        revision_id = int(row.get("revision_id") or 0)
+        state_revision_id = int(row.get("revision_id") or 0)
         fr_title = fr_titles.get((page_id, page_type))
+        expected_state_sha = str(row.get("content_sha256") or "")
         op: dict[str, Any] = {
             "page_id": page_id,
             "page_type": page_type,
             "title": title,
-            "revision_id": revision_id,
+            "revision_id": state_revision_id,
+            "published_state_revision_id": state_revision_id,
             "source_fr_title": fr_title,
             "expected_summary": expected_summary(fr_title) if fr_title else None,
-            "expected_content_sha256": str(row.get("content_sha256") or ""),
+            "expected_content_sha256": expected_state_sha,
+            "published_state_content_sha256": expected_state_sha,
             "expected_user": expected_user,
             "required_existing_tag": BASE_TAG,
             "tag_to_add": TAG,
+            "revision_resolution": "published_state",
         }
-        revision = observed.get(revision_id)
+        state_revision = observed.get(state_revision_id)
         blockers: list[str] = []
         if not fr_title:
             blockers.append("source_fr_missing")
-        if revision is None:
+        if state_revision is None:
             blockers.append("revision_missing")
         else:
-            if revision.get("title") != title:
+            if state_revision.get("title") != title:
                 blockers.append("title_mismatch")
-            if revision.get("parent_id") != 0:
-                blockers.append("not_creation_revision")
-            if revision.get("user") != expected_user:
-                blockers.append("creator_mismatch")
-            if sha_text(str(revision.get("text") or "")) != op["expected_content_sha256"]:
+            if sha_text(str(state_revision.get("text") or "")) != expected_state_sha:
                 blockers.append("content_mismatch")
-            if fr_title and revision.get("summary") != op["expected_summary"]:
+
+        # The published-state receipt records the revision that represented the
+        # page at the end of publication. A secondary automated edit can
+        # legitimately make that revision newer than the creation itself.
+        # In that case resolve the immutable first revision from page history,
+        # while retaining the published-state revision as the provenance anchor.
+        candidate = state_revision
+        if state_revision is not None and state_revision.get("parent_id") != 0 and not blockers:
+            candidate = adapter.read_first_revision(title)
+            if candidate is None:
+                blockers.append("creation_revision_missing")
+            else:
+                op["revision_resolution"] = "page_creation_history"
+                op["revision_id"] = int(candidate.get("revision_id") or 0)
+                op["expected_content_sha256"] = sha_text(str(candidate.get("text") or ""))
+                op["published_state_observed_tags"] = sorted({str(value) for value in (state_revision.get("tags") or [])})
+                op["published_state_observed_timestamp"] = state_revision.get("timestamp")
+
+        if candidate is not None:
+            if candidate.get("title") != title:
+                blockers.append("creation_title_mismatch" if op["revision_resolution"] == "page_creation_history" else "title_mismatch")
+            if candidate.get("parent_id") != 0:
+                blockers.append("not_creation_revision")
+            if candidate.get("user") != expected_user:
+                blockers.append("creator_mismatch")
+            if fr_title and candidate.get("summary") != op["expected_summary"]:
                 blockers.append("translation_summary_mismatch")
-            tags = {str(value) for value in (revision.get("tags") or [])}
+            tags = {str(value) for value in (candidate.get("tags") or [])}
             if BASE_TAG not in tags:
                 blockers.append("chatgpt_tag_missing")
             op["observed_tags"] = sorted(tags)
-            op["observed_timestamp"] = revision.get("timestamp")
+            op["observed_timestamp"] = candidate.get("timestamp")
+
         if blockers:
             op["operation"] = "block"
-            op["reasons"] = blockers
+            op["reasons"] = list(dict.fromkeys(blockers))
         elif TAG in set(op.get("observed_tags") or []):
             op["operation"] = "skip"
             op["reasons"] = ["already_tagged"]
         else:
             op["operation"] = "add"
-            op["reasons"] = ["verified_translation_creation"]
+            op["reasons"] = [
+                "verified_translation_creation_from_history"
+                if op["revision_resolution"] == "page_creation_history"
+                else "verified_translation_creation"
+            ]
         operations.append(op)
 
     counts = {kind: sum(1 for row in operations if row["operation"] == kind) for kind in ("add", "skip", "block")}

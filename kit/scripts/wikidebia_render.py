@@ -45,7 +45,7 @@ from wikidebia_corpus_init import extract_page_metadata
 from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
 from wikidebia_editorial_review import EditorialReviewError, _assert_source_unchanged, _run_validator
 
-KIT_VERSION = "2.15.39"
+KIT_VERSION = "2.15.40"
 RENDER_LOCK_SCHEMA = "wikidebia-bilingual-render-lock-1.0"
 RENDER_CHANGESET_SCHEMA = "wikidebia-bilingual-render-changeset-1.0"
 

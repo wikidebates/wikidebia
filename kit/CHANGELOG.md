@@ -1,3 +1,9 @@
+## 2.15.40 — 9 août 2026
+
+- corrige `tag-translated-fr` lorsque l’état publié pointe vers une révision postérieure à la création ;
+- résout alors la première révision de l’historique et exige titre, parent nul, auteur, résumé FR→EN et balise `chatgpt` exacts ;
+- conserve dans le plan signé la révision d’état et la révision de création effectivement ciblée.
+
 ## 2.15.39 — 9 août 2026
 
 - corrige un faux blocage possible après une mise à jour MediaWiki réussie lorsque la balise `chatgpt` n’est pas encore visible sur la première relecture de la révision ;

@@ -141,3 +141,50 @@ def test_retro_tag_postwrite_verification_retries_on_replica_lag(tmp_path, monke
     receipt = mod.execute_plan(project_root=tmp_path, plan=plan, adapter=adapter)
     assert receipt["counts"]["verified"] == 2
     assert adapter.post_add_reads == 3
+
+def test_retro_tag_resolves_creation_when_published_state_points_to_later_revision(tmp_path):
+    debate_id, revisions = _write_project(tmp_path)
+
+    # The published state for A0001 now points to a later automated revision,
+    # while the actual translation creation remains revision 101.
+    state_path = tmp_path / ".state" / "published" / debate_id / "en" / "latest.json"
+    state = json.loads(state_path.read_text(encoding="utf-8"))
+    argument = next(row for row in state["pages"] if row["page_id"] == "A0001")
+    argument["revision_id"] = 202
+    argument["content_sha256"] = mod.sha_text("argument text + automated relation")
+    state.pop("state_sha256", None)
+    state["state_sha256"] = mod.sha_object(state)
+    state_path.write_text(json.dumps(state, ensure_ascii=False), encoding="utf-8")
+
+    revisions[202] = {
+        "revision_id": 202,
+        "parent_id": 101,
+        "title": "God is the first cause of the universe",
+        "text": "argument text + automated relation",
+        "summary": "Argument added",
+        "tags": ["argument added"],
+        "user": "ChatGPT@import",
+        "timestamp": "2026-08-09T19:01:00Z",
+    }
+
+    class HistoryAdapter(FakeAdapter):
+        def read_first_revision(self, title):
+            candidates = [
+                row for row in self.revisions.values()
+                if row.get("title") == title and int(row.get("parent_id") or 0) == 0
+            ]
+            return dict(sorted(candidates, key=lambda row: int(row["revision_id"]))[0]) if candidates else None
+
+    adapter = HistoryAdapter(revisions)
+    plan = mod.build_plan(project_root=tmp_path, debate_id=debate_id, adapter=adapter, expected_user="ChatGPT@import")
+    assert plan["counts"] == {"add": 2, "skip": 0, "block": 0}
+    row = next(row for row in plan["operations"] if row["page_id"] == "A0001")
+    assert row["published_state_revision_id"] == 202
+    assert row["revision_id"] == 101
+    assert row["revision_resolution"] == "page_creation_history"
+    assert row["reasons"] == ["verified_translation_creation_from_history"]
+    assert row["expected_content_sha256"] == mod.sha_text("argument text")
+
+    receipt = mod.execute_plan(project_root=tmp_path, plan=plan, adapter=adapter)
+    assert 101 in receipt["added_revision_ids"]
+    assert 202 not in receipt["added_revision_ids"]

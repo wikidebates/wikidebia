@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.56** ;
 - validateur actif : **0.4.60** ;
-- kit actif : **2.15.39**.
+- kit actif : **2.15.40**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 2013119 octets — SHA-256 `4729dbc12a54bc842253aa74f1731223b3a42a2b63fd707e9352c1ff54d0b116`
-- `wikidebia-validator.zip` — 2299284 octets — SHA-256 `c73050270df50065350614a2ed1bfcabd1783f501b63bfae13f03ad69bc85c43`
-- `wikidebia-kit.zip` — 461059 octets — SHA-256 `4346be289234f1e64ef025254c80f99f41136e88d11497f48ff9de87c31c8179`
+- `wikidebia-normes.zip` — 2013119 octets — SHA-256 `8828fa70f769a1885f5b0a46122793617ad7caa5f05dae4f58417e81ee23ad51`
+- `wikidebia-validator.zip` — 2299283 octets — SHA-256 `6a8f455459b094537b93ab07b97a872a176db63d0f6af90328843314f46e7fba`
+- `wikidebia-kit.zip` — 462853 octets — SHA-256 `8c858905907b38ecc42ed7df3f7d71014784c26e00e2bdd66f54a67d8d9afdc8`
 
 ## Norme consolidée active
 
@@ -2470,11 +2470,11 @@ SHA-256 : `08a54a7ec806223457ceefd42792de7da791793769d34ece662ac2a330d93d65`
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `63d71a7dac840b646cc631f57ee03586088ea7b97a84f9345d376bcf7f604057`
+SHA-256 : `f1a248088b13daea2b20ef8ff1c393c86643d9f5a10005ee7047c41445f61366`
 
-# Wikidéb’IA — Kit 2.15.39
+# Wikidéb’IA — Kit 2.15.40
 
-Le kit 2.15.39 applique la norme 1.2.56. La page Debate reste un lot autonome ; les Arguments sont relus en unités internes de 10 pages par défaut, réduites à 5–8 pour les groupes denses. Une livraison Work peut agréger plusieurs unités déjà closes sans transformer les exemples ou checklists en patrons mécaniques.
+Le kit 2.15.40 applique la norme 1.2.56. La page Debate reste un lot autonome ; les Arguments sont relus en unités internes de 10 pages par défaut, réduites à 5–8 pour les groupes denses. Une livraison Work peut agréger plusieurs unités déjà closes sans transformer les exemples ou checklists en patrons mécaniques.
 
 La phase anglaise recherche séparément les appellations consacrées dans la littérature anglophone et n'obtient jamais `name=` par traduction mécanique de `nom=`. Elle compare les formes concurrentes sans normaliser artificiellement `Argument from X`, `X argument` ou les possessifs, et refuse un nom dont la portée est plus étroite que celle de la page. Les références françaises ne sont pas traduites : une version anglaise réelle doit être trouvée et citée avec ses propres métadonnées, et de nouvelles références anglophones sont recherchées indépendamment. Le contrat `Citation`→`Quote` reste inchangé : seules les valeurs `quote` et `date` sont traduites et `Quote translated by AI` est ajouté.
 
@@ -2497,7 +2497,13 @@ Les futures créations anglaises issues d’une traduction française reçoivent
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `7fa57d8c775c3d7cca77f3fc80af67f7a05ebbf13df990c70b5c81e293be112a`
+SHA-256 : `2419d14d947f2531dc35f64a8819fdb0d38003275c6131091a43451509c996ce`
+
+## 2.15.40 — 9 août 2026
+
+- corrige `tag-translated-fr` lorsque l’état publié pointe vers une révision postérieure à la création ;
+- résout alors la première révision de l’historique et exige titre, parent nul, auteur, résumé FR→EN et balise `chatgpt` exacts ;
+- conserve dans le plan signé la révision d’état et la révision de création effectivement ciblée.
 
 ## 2.15.39 — 9 août 2026
 
@@ -3424,16 +3430,16 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `a14c9ab2dcdaaaa9f8c4e57713238285295c4122a95c38e28f158b81241f5309`
+SHA-256 : `6dd027e4bc6b7bcd8008f633d27b64c52bf345524f2acd2e19b8bb9bfadb9c27`
 
-Tests pytest : 305 réussis, 0 échec.
+Tests pytest : 308 réussis, 0 échec.
 
 ## Guide de traduction anglaise
 
 Source interne : `kit/GUIDE_TRANSLATION_REVIEW.md`  
-SHA-256 : `99295b3af0a6d76c4fc503b8479667656aebe90491d353c4f3f3649ce1b6c98c`
+SHA-256 : `79626aa8113f739ef56c0acda492c6175f83a5ddf0609ddafbdb13daf950a584`
 
-# Guide de traduction anglaise contrôlée — Kit 2.15.39
+# Guide de traduction anglaise contrôlée — Kit 2.15.40
 
 > Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 

@@ -19,7 +19,7 @@
     {
       "path": "COMPATIBILITY.json",
       "size_bytes": 1777,
-      "sha256": "07b83c816708fc245c24a426f75cb966c131ee2c77263f1693ef3ac560f83231"
+      "sha256": "6db581a7a5713e6f3b715d6537e2e154a26599ae4f606e0c75c429f2102aabe5"
     },
     {
       "path": "LICENSE",
@@ -34,7 +34,7 @@
     {
       "path": "VERSIONS.json",
       "size_bytes": 68,
-      "sha256": "3ac9822afb9a1009d14d731a8b838246503291e9ebc54108979589c85f64a51e"
+      "sha256": "3f03db06c68e5a0894d9ad0270c833bfcb72229c2410ab7792719026e001781a"
     },
     {
       "path": "docs/ARCHITECTURE.md",
@@ -1814,7 +1814,7 @@
     {
       "path": "tests/test_versions_file.py",
       "size_bytes": 1577,
-      "sha256": "67a930c892405621c707b0f7c8f97a99291b649b89156219012771aa7a872130"
+      "sha256": "42b60500145c012752e939b9d7de04ba8129b2256434773454d2d4fd8ef426de"
     },
     {
       "path": "tests/test_wikicode.py",

@@ -141,7 +141,7 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
     validator = root / "validator.py"
     validator.write_text("import json; print(json.dumps({'validator_version':'0.4.60','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     config = {
-        "kit_version":"2.15.39","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
+        "kit_version":"2.15.40","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
         "family":"wikidebates","pywikibot_dir":"private/pywikibot","sites":{lang:{"code":lang,"expected_user":"ChatGPT"} for lang in languages},
         "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.60","scopes":[]},
         "published_state_dir":".state/published","receipts_dir":".state/receipts","logs_dir":"logs",
