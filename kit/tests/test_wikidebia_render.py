@@ -34,7 +34,7 @@ from test_wikidebia_translation_review import make_french_locked, complete_trans
 
 def make_translated(tmp_path: Path) -> tuple[Path, Path, str, str]:
     project, workspace, work_id = make_french_locked(tmp_path)
-    norm_path = project / "norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.59.md"
+    norm_path = project / "norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.60.md"
     norm_path.parent.mkdir(parents=True, exist_ok=True)
     norm_path.write_text("# Norme de test 1.2.27\n", encoding="utf-8")
     translation.prepare_review(project, "debat_test", work_id)

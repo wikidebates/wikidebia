@@ -1,3 +1,11 @@
+## 1.2.60 — 10 août 2026 — cohérence normative
+
+- aucun changement fonctionnel de règle ;
+- corrige l’en-tête de la matrice de traçabilité vers 1.2.60 ;
+- corrige le pointeur de préséance du catalogue vers la norme consolidée active 1.2.60 ;
+- met à jour la date d’effet de la norme consolidée au 10 août 2026 ;
+- alignement recommandé : validateur 0.4.64 et kit 2.15.45.
+
 ## 1.2.59 — 10 août 2026 — création des traductions anglaises
 
 - interdit `initialization` lors de la création d’un nouvel Argument anglais traduit depuis le français ;

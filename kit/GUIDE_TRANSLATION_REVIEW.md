@@ -1,4 +1,4 @@
-# Guide de traduction anglaise contrôlée — Kit 2.15.44
+# Guide de traduction anglaise contrôlée — Kit 2.15.45
 
 > Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 

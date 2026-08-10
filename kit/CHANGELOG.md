@@ -1,3 +1,9 @@
+## 2.15.45 — 10 août 2026
+
+- aligne le kit sur la norme 1.2.60 et le validateur 0.4.64 ;
+- ne modifie aucun comportement fonctionnel de 2.15.44 ;
+- accompagne le correctif de cohérence des métadonnées normatives actives et conserve intégralement les règles `initialization`, `creation-date`, `nom-consacré` / `established-name` et de publication FR→EN.
+
 ## 2.15.44 — 10 août 2026
 
 - verrouille l’absence de `initialization` sur toute nouvelle traduction anglaise d’Argument ;

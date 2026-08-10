@@ -10,7 +10,7 @@ import time
 from pathlib import Path
 from typing import Any, Iterable
 
-KIT_VERSION = "2.15.44"
+KIT_VERSION = "2.15.45"
 TAG = "translated-fr"
 BASE_TAG = "chatgpt"
 LANGUAGE = "en"

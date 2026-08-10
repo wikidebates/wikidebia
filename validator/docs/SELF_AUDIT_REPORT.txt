@@ -1,4 +1,4 @@
-Wikidéb’IA Validator 0.4.63 — auto-audit
-Norme active unique : 1.2.59
-Tests : 328 réussis
+Wikidéb’IA Validator 0.4.64 — auto-audit
+Norme active unique : 1.2.60
+Tests : 331 réussis
 Rapport régénéré lors du scellement du paquet.

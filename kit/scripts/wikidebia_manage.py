@@ -15,9 +15,9 @@ import zipfile
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
-NORM_VERSION = "1.2.59"
-VALIDATOR_VERSION = "0.4.63"
-KIT_VERSION = "2.15.44"
+NORM_VERSION = "1.2.60"
+VALIDATOR_VERSION = "0.4.64"
+KIT_VERSION = "2.15.45"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",

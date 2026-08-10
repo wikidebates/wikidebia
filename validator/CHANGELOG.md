@@ -1,3 +1,9 @@
+## 0.4.64 — 10 août 2026
+
+- aligne le validateur sur la norme 1.2.60 sans modifier les règles de validation fonctionnelles de 0.4.63 ;
+- corrige et verrouille la cohérence des métadonnées normatives actives : matrice de traçabilité, préséance du catalogue et archivage de 1.2.59 ;
+- ajoute des tests dédiés empêchant le retour de ces divergences documentaires.
+
 ## 0.4.63 — 10 août 2026
 
 - aligne le validateur sur la norme 1.2.59 ;
