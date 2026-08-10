@@ -1,4 +1,4 @@
-## Exigences actives 1.2.70 — revue des changements idiomatiques et corpus réel
+## Exigences actives 1.2.71 — revue des changements idiomatiques et corpus réel
 
 La traduction champ-à-champ reste source-authoritative. Un changement de forme du `displayed-title` n’est pas une erreur en soi lorsqu’il est idiomatique : il exige une revue explicite du même acte de langage, de la même thèse et de la même portée, plus une justification non vide. Toute proposition source dégradée en fragment reste bloquante. Les familles de risques sémantiques du kit et du validateur sont contractuellement alignées. Un corpus de fixtures dérivé des erreurs réelles contient des couples `fr`, `bad_en`, `good_en` et les signaux attendus. Les risques effectivement détectés sont documentés par des extraits source/cible. La page Debate bénéficie des mêmes empreintes et preuves de champ que les Arguments.
 
@@ -592,3 +592,8 @@ La revue ne se limite pas aux séries de notions comparables. Chaque sous-partie
 - **TRN-023 / TRN-026** : le métadiscours ajouté uniquement en anglais et les glissements sémantiques observés sont des régressions ou signaux différentiels; aucune réécriture automatique n'est permise.
 - **TRN-024 / TRN-027** : l'application d'une traduction exige deux passes sémantiques indépendantes propres sur la même empreinte exacte; le reçu est lié jusqu'à la release et l'extraction fraîche.
 - **EDT-066 / VAL-054** : les nouvelles entrées de vocabulaire disposent d'un `concept_id` stable et les contrôles multiligne lisent la valeur complète de `summary=`/`quote=`.
+
+
+## Compatibilité par schémas/capacités
+
+Les versions de producteur sont de la provenance. Les workflows actifs déterminent la compatibilité par identifiant/version de schéma et capacités déclarées ; aucune égalité de version de kit ou de validateur ne sert de feature flag éditorial. Les alias MediaWiki historiques sont normalisés à la frontière d’entrée et les sorties nouvelles utilisent exclusivement les noms canoniques.

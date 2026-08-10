@@ -116,8 +116,8 @@ def _load_execution(project_root: Path, debate_id: str, work_id: str, comparison
         raise WorkClosureError("L’empreinte confirmée ne correspond pas au reçu d’exécution")
     if receipt.get("status") not in {"executed", "no_changes"} or receipt.get("execution_completed") is not True:
         raise WorkClosureError("L’exécution distante n’est pas terminée avec succès")
-    if receipt.get("kit_version") != KIT_VERSION or receipt.get("validator_version") != VALIDATOR_VERSION:
-        raise WorkClosureError("Le reçu d’exécution doit être reconstruit avec les versions actives")
+    # Producer release versions are provenance. The execution receipt schema,
+    # signed hashes and release-copy identity are the compatibility/integrity gates.
     if preflight.get("schema") != PREFLIGHT_SCHEMA or preflight.get("preflight_sha256") != _canonical(preflight, "preflight_sha256"):
         raise WorkClosureError("Préflight d’exécution invalide")
     if authorization.get("schema") != AUTHORIZATION_SCHEMA or authorization.get("authorization_sha256") != _canonical(authorization, "authorization_sha256"):

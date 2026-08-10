@@ -1,7 +1,7 @@
-Wikidéb’IA Normes 1.2.70 — audit de cohérence normative
+Wikidéb’IA Normes 1.2.71 — audit de cohérence normative
 Statut : PASSED
 Exigences : 503 uniques
 Alias de provenance : 103
-Norme active unique : 1.2.70 ; norme 1.2.69 archivée exactement avant remplacement.
-Arbre normatif destiné au validateur : synchronisé octet pour octet sur 93 fichiers.
-Correctif : alignement du validateur sur l’absence d’initialization cross-wiki et l’indépendance de creation-date anglaise.
+Norme active unique : 1.2.71 ; norme 1.2.70 archivée exactement avant remplacement.
+Arbre normatif destiné au validateur : synchronisé octet pour octet sur 95 fichiers.
+Architecture : règle active séparée de l’historique ; compatibilité par schémas/capacités ; versions de release sans fonction de feature flag éditorial.

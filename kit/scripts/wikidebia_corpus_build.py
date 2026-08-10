@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from wikidebia_release_info import KIT_VERSION, NORM_VERSION, VALIDATOR_VERSION
+
 import contextlib
 import datetime as dt
 import hashlib
@@ -12,10 +14,6 @@ import re
 import stat
 from pathlib import Path
 from typing import Any, Iterable, Iterator, Mapping
-
-KIT_VERSION = "2.15.54"
-NORM_VERSION = "1.2.70"
-VALIDATOR_VERSION = "0.4.73"
 
 REVIEW_ENVELOPE = "reviews/graph_build_review.json"
 PLACEMENT_REVIEW = "reviews/graph_placement_review.json"
@@ -415,10 +413,8 @@ def verify_review_envelope(review: dict[str, Any], *, debate_id: str, source_sha
     errors: list[str] = []
     if review.get("schema") != "wikidebia-graph-build-review-1.0":
         errors.append("schema")
-    if review.get("kit_version") != KIT_VERSION:
-        errors.append("kit_version")
-    if review.get("validator_version") != VALIDATOR_VERSION:
-        errors.append("validator_version")
+    # kit_version / validator_version are retained as provenance. The stable
+    # review schema is the compatibility gate.
     if review.get("debate_id") != debate_id:
         errors.append("debate_id")
     if review.get("source_build_sha256") != source_sha256:

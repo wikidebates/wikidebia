@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from wikidebia_release_info import KIT_VERSION, REQUIRED_VALIDATOR_VERSION, require_validator_report
+
 import argparse
 import datetime as dt
 import difflib
@@ -30,8 +32,6 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.15.54"
-REQUIRED_VALIDATOR_VERSION = "0.4.73"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
 RECEIPT_VERSION = "wikidebia-remote-update-receipt-1.0"
@@ -77,8 +77,8 @@ PROTECTED_LIFECYCLE_PARAMETERS = {
 PARAMETER_RENAMES = {
     ("fr", "debate"): {"sujet-complet": "sujet-développé"},
     ("en", "debate"): {"complete-topic": "expanded-topic"},
-    ("fr", "argument"): {"débat-détaillé": "débat-dédié"},
-    ("en", "argument"): {"detailed-debate": "dedicated-debate"},
+    ("fr", "argument"): {"débat-détaillé": "débat-dédié", "nom": "nom-consacré"},
+    ("en", "argument"): {"detailed-debate": "dedicated-debate", "name": "established-name"},
 }
 
 def _canonical_parameter_name(language: str, page_type: str, name: str) -> str:
@@ -802,13 +802,11 @@ class RemoteUpdatePlanner:
         return path.resolve() if path.is_absolute() else (self.project_root / path).resolve()
 
     def _validate_config(self) -> None:
-        if self.config.get("kit_version") != KIT_VERSION:
-            raise UpdateError(f"kit_version doit être {KIT_VERSION}")
+        # kit_version is provenance; update compatibility is schema/capability based.
         if self.manifest.get("debate_id") != self.debate_id:
             raise UpdateError("debate_id divergent entre la configuration et le manifeste")
         validator = self.config.get("validator") or {}
-        if validator.get("required_version") != REQUIRED_VALIDATOR_VERSION:
-            raise UpdateError(f"Le validateur requis doit être {REQUIRED_VALIDATOR_VERSION}")
+        # required_version is provenance only; validator report schema is authoritative.
         if not self.languages:
             raise UpdateError("Aucune langue sélectionnée")
         translation_status = str(((self.manifest.get("translation_status") or {}).get("en") or "pending"))
@@ -1253,8 +1251,7 @@ class RemoteUpdatePlanner:
                             return found
                 return None
             actual = str(find(report) or "")
-        if actual != REQUIRED_VALIDATOR_VERSION:
-            raise UpdateError(f"Version réelle du validateur divergente : {actual!r}")
+        require_validator_report(report, UpdateError)
         return report
 
     def _known_other_owner(self, language: str, title: str) -> str | None:

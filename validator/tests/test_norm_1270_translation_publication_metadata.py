@@ -16,7 +16,7 @@ def _ctx(tmp_path: Path, french: str, *, target_origin: str = "new", preserved=N
         "preserved_parameters": preserved or {},
     }
     manifest = {
-        "normative_versions": {"consolidated_norm": "1.2.70"},
+        "normative_versions": {"consolidated_norm": "1.2.71"},
         "translation_status": {"en": "ready"},
         "pages": [
             {"page_id": "A0001", "page_type": "argument", "language": "fr", "file_path": "fr.wiki"},
@@ -25,7 +25,7 @@ def _ctx(tmp_path: Path, french: str, *, target_origin: str = "new", preserved=N
     }
     return PackageContext(
         root=tmp_path,
-        report=Report("0.4.73", str(tmp_path), ["wikicode"]),
+        report=Report("0.4.74", str(tmp_path), ["wikicode"]),
         cache={"manifest.json": manifest},
     ), page
 

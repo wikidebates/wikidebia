@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from wikidebia_release_info import KIT_VERSION
+
 import argparse
 import datetime as dt
 import hashlib
@@ -10,7 +12,6 @@ import time
 from pathlib import Path
 from typing import Any, Iterable
 
-KIT_VERSION = "2.15.54"
 TAG = "translated-fr"
 BASE_TAG = "chatgpt"
 LANGUAGE = "en"
@@ -402,8 +403,9 @@ def build_plan(
 
 def verify_plan_inputs(project_root: Path, plan: dict[str, Any]) -> None:
     verify_signed_object(plan, "plan_sha256", "du plan")
-    if plan.get("plan_version") != PLAN_VERSION or plan.get("kit_version") != KIT_VERSION:
-        raise RetroTagError("Version du plan rétro-balise divergente")
+    if plan.get("plan_version") != PLAN_VERSION:
+        raise RetroTagError("Schéma du plan rétro-balise divergent")
+    # kit_version is producer provenance only.
     state_path = project_root / str(plan.get("state_path") or "")
     manifest_path = project_root / str(plan.get("manifest_path") or "")
     if not state_path.is_file() or sha_file(state_path) != plan.get("state_sha256"):

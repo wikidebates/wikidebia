@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from typing import Any, Mapping
+from pathlib import Path
+import json
 
 
 def complete_individual_entry(entry: Mapping[str, Any], node: Mapping[str, Any], *, english_deferred: bool = False) -> dict[str, Any]:
@@ -76,3 +78,16 @@ def complete_summary_decision(decision: Mapping[str, Any] | None = None, *, summ
     out.setdefault("mechanism_statement", "Le mécanisme central relie directement la cause alléguée à la conclusion défendue.")
     out.setdefault("note", "Résumé relu individuellement selon l’ensemble de la politique éditoriale courante.")
     return out, text
+
+
+# Current release metadata is read from the component source of truth.
+_TEST_ROOT = Path(__file__).resolve().parents[1]
+CURRENT_VERSIONS = json.loads((_TEST_ROOT / "VERSIONS.json").read_text(encoding="utf-8"))
+CURRENT_NORM = str(CURRENT_VERSIONS["norm"])
+CURRENT_VALIDATOR = str(CURRENT_VERSIONS["validator"])
+CURRENT_KIT = str(CURRENT_VERSIONS["kit"])
+CURRENT_NORM_FILE = f"WIKIDEBIA_NORME_CONSOLIDEE_{CURRENT_NORM}.md"
+
+def current_norm_path(root: Path | None = None) -> Path:
+    base = root or (_TEST_ROOT / "normative_reference" / "01_normes")
+    return base / CURRENT_NORM_FILE

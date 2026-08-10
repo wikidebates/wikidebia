@@ -1,3 +1,4 @@
+from .current_policy_helpers import CURRENT_NORM_FILE, CURRENT_NORM, CURRENT_VALIDATOR, CURRENT_KIT, current_norm_path
 from pathlib import Path
 
 from wikidebia_validator.editorial import (
@@ -197,4 +198,4 @@ def test_old_1242_revision_does_not_disable_current_dedicated_stakes_rule():
 
 def test_active_norm_is_1242():
     root = Path(__file__).parents[1] / "normative_reference" / "01_normes"
-    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.70.md"]
+    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == [CURRENT_NORM_FILE]

@@ -61,11 +61,15 @@ else:
                 errors.append("version du validateur divergente dans COMPATIBILITY.json")
             if compatibility.get("implemented_normative_revision") != versions.get("norm"):
                 errors.append("révision normative divergente dans COMPATIBILITY.json")
-        init_path = ROOT / "src/wikidebia_validator/__init__.py"
-        if init_path.is_file():
-            match = re.search(r'^__version__\s*=\s*["\']([^"\']+)["\']', init_path.read_text(encoding="utf-8"), re.M)
-            if not match or match.group(1) != versions.get("validator"):
-                errors.append("version du paquet Python divergente")
+        versioning_path = ROOT / "src/wikidebia_validator/versioning.py"
+        capabilities_path = ROOT / "CAPABILITIES.json"
+        # Minimal self-audit fixtures intentionally omit the application tree.
+        # On a complete validator package both files are mandatory.
+        if (ROOT / "src/wikidebia_validator").is_dir():
+            if not versioning_path.is_file():
+                errors.append("source centrale des versions absente")
+            if not capabilities_path.is_file():
+                errors.append("CAPABILITIES.json absent")
         pyproject_path = ROOT / "pyproject.toml"
         if pyproject_path.is_file():
             match = re.search(r'^version\s*=\s*"([^"]+)"', pyproject_path.read_text(encoding="utf-8"), re.M)

@@ -19,6 +19,11 @@ def _symbols(path: Path) -> dict:
             result["classes"][node.name] = {
                 item.name for item in node.body if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef))
             }
+        elif isinstance(node, ast.ImportFrom):
+            for alias in node.names:
+                name = alias.asname or alias.name
+                if name.isupper():
+                    result["constants"].add(name)
         elif isinstance(node, (ast.Assign, ast.AnnAssign)):
             targets = node.targets if isinstance(node, ast.Assign) else [node.target]
             for target in targets:

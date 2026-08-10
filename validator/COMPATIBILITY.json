@@ -1,7 +1,14 @@
 {
   "package": "wikidebia-validator",
-  "validator_version": "0.4.73",
-  "implemented_normative_revision": "1.2.70",
+  "validator_version": "0.4.74",
+  "implemented_normative_revision": "1.2.71",
+  "normative_revision": "1.2.71",
+  "kit_version": "2.15.55",
+  "recommended_kit_version": "2.15.55",
+  "recommended_normative_archive": "wikidebia-normes.zip",
+  "stable_archive_name": "wikidebia-validator.zip",
+  "version_source": "VERSIONS.json",
+  "capability_source": "CAPABILITIES.json",
   "compatible_normative_revisions": [
     "1.1.0",
     "1.1.1",
@@ -83,18 +90,9 @@
     "1.2.67",
     "1.2.68",
     "1.2.69",
-    "1.2.70"
+    "1.2.70",
+    "1.2.71"
   ],
-  "recommended_normative_archive": "wikidebia-normes.zip",
-  "independent_update_policy": {
-    "validator_patch_without_norm_change": true,
-    "new_norm_without_validator_change": "Allowed only when no automatic control, schema, or validator behavior must change."
-  },
-  "stable_archive_name": "wikidebia-validator.zip",
-  "version_source": "VERSIONS.json",
-  "normative_revision": "1.2.70",
-  "kit_version": "2.15.54",
-  "recommended_kit_version": "2.15.54",
   "supported_normative_revisions": [
     "1.2.53",
     "1.2.54",
@@ -113,12 +111,17 @@
     "1.2.67",
     "1.2.68",
     "1.2.69",
-    "1.2.70"
+    "1.2.70",
+    "1.2.71"
   ],
-  "compatibility_scope": "format_reader_and_migration_only",
+  "compatibility_scope": "schema_capability_reader_and_migration",
   "editorial_policy": "current_rules_are_cumulative_and_version_independent",
   "notes": [
-    "1.2.69 / 0.4.72 adds format-compatible validation of the renamed MediaWiki parameters sujet-développé/expanded-topic and débat-dédié/dedicated-debate while retaining read compatibility with pre-1.2.69 names.",
-    "1.2.70 / 0.4.73 corrige le chemin translated_english : initialization n’est pas projeté depuis initialisation et creation-date reste indépendante de date-création française."
-  ]
+    "Producer release numbers are provenance; schema/capability contracts decide runtime compatibility."
+  ],
+  "compatibility_list_generation": {
+    "compatible_normative_revisions": "derived informational semver range 1.1.0..current",
+    "supported_normative_revisions": "derived informational semver range 1.2.53..current",
+    "used_as_feature_flag": false
+  }
 }

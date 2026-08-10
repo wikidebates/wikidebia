@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from wikidebia_release_info import require_validator_report
+
 import argparse
 import json
 import os
@@ -56,8 +58,7 @@ def run_validator(project_root: Path, package: Path, json_output: Path, text_out
     report = load_json(json_output, "rapport de validation de promotion")
     if completed.returncode != 0 or report.get("result") == "failed":
         raise CorpusBuildError("Validation finale de promotion échouée")
-    if str(report.get("validator_version")) != VALIDATOR_VERSION:
-        raise CorpusBuildError("Version de validateur inattendue pendant la promotion")
+    require_validator_report(report, CorpusBuildError)
     return report
 
 

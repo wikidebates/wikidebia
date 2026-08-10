@@ -1,6 +1,10 @@
-# Wikidéb’IA — Validateur 0.4.73
+# Wikidéb’IA Validator 0.4.74
 
-Version courante pour la norme 1.2.70 et le kit 2.15.54.
+Le validateur 0.4.74 émet le schéma stable `wikidebia-validator-report-1.0`, charge sa version depuis `VERSIONS.json` et applique la norme éditoriale active indépendamment de la release productrice des artefacts. Les formats historiques sont interprétés puis contrôlés selon l’état fonctionnel courant.
+
+## Notes héritées du paquet parent 0.4.73
+
+Version courante pour la norme 1.2.71 et le kit 2.15.55.
 
 Elle conserve les contrôles différentiels et sémantiques de la lignée traduction 0.4.64 et intègre les contrôles de la lignée publication GitHub : `nom-consacré` / `established-name`, `AI-translated quote`, absence d'`initialization` sur une nouvelle traduction anglaise, cohérence normative et préservation historique des alias.
 
@@ -17,3 +21,7 @@ Le correctif 0.4.71 formalise les familles de méthodes de convergence 1.1 tout 
 Le validateur 0.4.72 implémente le renommage des paramètres MediaWiki de la norme 1.2.69 avec compatibilité de lecture historique.
 
 Le correctif 0.4.73 aligne l’exécution du validateur sur les règles déjà actives de première publication anglaise : pas de projection de `initialization` et aucune égalité imposée entre `creation-date` anglaise et `date-création` française.
+
+## Architecture de compatibilité 2026-08-10
+
+Les numéros de release sont une provenance. La compatibilité opérationnelle est pilotée par `CAPABILITIES.json` et les identifiants/version de schéma ; les égalités exactes sont réservées à l’installation, l’anti-downgrade, la reproductibilité et l’audit.

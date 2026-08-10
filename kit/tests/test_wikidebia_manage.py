@@ -8,6 +8,7 @@ import zipfile
 from pathlib import Path
 
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "wikidebia_manage.py"
+CURRENT_VERSIONS = json.loads((SCRIPT.parents[1] / "VERSIONS.json").read_text(encoding="utf-8"))
 spec = importlib.util.spec_from_file_location("wikidebia_manage", SCRIPT)
 module = importlib.util.module_from_spec(spec)
 assert spec and spec.loader
@@ -155,7 +156,7 @@ def test_generated_config_is_relative_and_debate_first(tmp_path: Path):
     assert config["pywikibot_dir"] == "private/pywikibot"
     assert config["corpus_root"] == "corpus/demo"
     assert config["operation"]["page_type_order"] == ["debate", "argument"]
-    assert config["validator"]["required_version"] == "0.4.73"
+    assert config["validator"]["required_version"] == CURRENT_VERSIONS["validator"]
     assert config["manifest_requirements"] == {}
     assert str(tmp_path) not in path.read_text(encoding="utf-8")
 

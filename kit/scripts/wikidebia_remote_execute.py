@@ -143,8 +143,8 @@ def _load_approved_handoff(project_root: Path, debate_id: str, work_id: str, com
     if not config_path.is_file() or config_path.is_symlink():
         raise RemoteExecutionError("Configuration de comparaison absente")
     config = load_json(config_path, "configuration distante")
-    if config.get("kit_version") != KIT_VERSION or (config.get("validator") or {}).get("required_version") != REQUIRED_VALIDATOR_VERSION:
-        raise RemoteExecutionError("La comparaison doit être reconstruite avec les versions actives")
+    # Producer release numbers are provenance only. Integrity is bound by the
+    # signed plan/review hashes and supported artifact schemas.
     if config.get("remote_write_authorized") is not False or config.get("comparison_mode") != "read_only":
         raise RemoteExecutionError("La configuration de comparaison n’est pas une preuve de lecture seule")
     return {

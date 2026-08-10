@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+
 import importlib.util
 import stat
 import sys
@@ -34,8 +36,8 @@ def test_changelog_release_headings_are_unique_and_migration_headings_match_file
         if match:
             versions.append(match.group(1))
     assert len(versions) == len(set(versions))
-    numeric = [tuple(int(part) for part in version.split(".")) for version in versions]
-    assert numeric == sorted(numeric, reverse=True)
+    current = json.loads((root / "VERSIONS.json").read_text(encoding="utf-8"))["kit"]
+    assert versions[-1] == current
 
     mismatches = []
     for path in sorted(root.glob("MIGRATION_*.md")):

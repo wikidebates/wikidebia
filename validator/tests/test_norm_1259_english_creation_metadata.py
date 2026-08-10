@@ -1,9 +1,10 @@
+from .current_policy_helpers import CURRENT_NORM_FILE, CURRENT_NORM, CURRENT_VALIDATOR, CURRENT_KIT, current_norm_path
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
 def test_norm_1259_records_english_creation_metadata_rules():
-    text = (ROOT / "normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.70.md").read_text(encoding="utf-8")
+    text = (ROOT / "normative_reference/01_normes" / CURRENT_NORM_FILE).read_text(encoding="utf-8")
     assert "ne transporte jamais `|initialisation=`/`|initialization=`" in text
     assert "jour civil de la publication distante" in text
     assert "Europe/Paris" in text

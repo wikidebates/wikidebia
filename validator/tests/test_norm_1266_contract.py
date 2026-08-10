@@ -1,3 +1,4 @@
+from .current_policy_helpers import CURRENT_NORM_FILE, CURRENT_NORM, CURRENT_VALIDATOR, CURRENT_KIT, current_norm_path
 from pathlib import Path
 import hashlib, json
 
@@ -19,8 +20,8 @@ def test_norm_1266_requirements_are_unique_and_present():
     assert len(ids) == len(set(ids))
     for rid in [*(f"TRN-{n:03d}" for n in range(20, 28)), "EDT-066", "VAL-054"]:
         assert rid in ids
-    assert data["active_package_revision"] == "1.2.70"
-    assert data["normative_revision"] == "1.2.70"
+    assert data["active_package_revision"] == CURRENT_NORM
+    assert data["normative_revision"] == CURRENT_NORM
     assert len(data["requirements"]) >= 494
     assert len(data["source_aliases"]) >= 101
 

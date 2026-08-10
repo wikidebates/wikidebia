@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from wikidebia_release_info import KIT_VERSION, REQUIRED_VALIDATOR_VERSION, PUBLICATION_PLAN_SCHEMA, PUBLICATION_PLAN_SCHEMA_VERSION, publication_plan_is_compatible, require_validator_report
+
 import argparse
 import datetime as dt
 import hashlib
@@ -15,9 +17,7 @@ from pathlib import Path
 from typing import Any, Protocol
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-KIT_VERSION = "2.15.54"
-REQUIRED_VALIDATOR_VERSION = "0.4.73"
-PUBLICATION_PLAN_VERSION = "wikidebia-publication-plan-2.15.54"
+PUBLICATION_PLAN_VERSION = PUBLICATION_PLAN_SCHEMA
 DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
 DEFERRED_TRANSLATION_PROFILE = "norm_1_2_deferred_translation"
 DIRECT_PROFILES = {DIRECT_INTERLANGUAGE_PROFILE, DEFERRED_TRANSLATION_PROFILE}
@@ -635,15 +635,14 @@ class GenericPublisher:
         )
 
     def _validate_configuration(self) -> None:
-        if str(self.config.get("kit_version") or "") not in {KIT_VERSION, "2"}:
-            raise PublicationError(f"kit_version doit être {KIT_VERSION}")
+        # kit_version is producer provenance only. Compatibility is governed by
+        # the schemas/capabilities consumed below. Historical config value "2"
+        # therefore remains readable without a release-number gate.
         if self.manifest.get("debate_id") != self.config.get("debate_id"):
             raise PublicationError("debate_id divergent entre la configuration et le manifeste")
         validator = self.config.get("validator") or {}
-        if validator.get("required_version") != REQUIRED_VALIDATOR_VERSION:
-            raise PublicationError(
-                f"Le validateur requis doit être exactement {REQUIRED_VALIDATOR_VERSION}"
-            )
+        # required_version is retained as provenance for historical configs;
+        # the executed validator is accepted by report schema/capability.
         if self.publication_profile in DIRECT_PROFILES:
             scopes = {str(value) for value in (validator.get("scopes") or [])}
             missing_scopes = sorted(REQUIRED_DIRECT_SCOPES - scopes)
@@ -1128,11 +1127,7 @@ class GenericPublisher:
             report = json.loads(result.stdout)
         except json.JSONDecodeError as exc:
             raise PublicationError("Sortie JSON du validateur illisible") from exc
-        version = recursive_find_version(report)
-        if version != REQUIRED_VALIDATOR_VERSION:
-            raise PublicationError(
-                f"Version réelle du validateur divergente : {version!r}; attendu : {REQUIRED_VALIDATOR_VERSION}"
-            )
+        require_validator_report(report, PublicationError)
         summary = report.get("summary") or {}
         errors = int(summary.get("errors", 0))
         warnings = int(summary.get("warnings", 0))
@@ -1234,6 +1229,8 @@ class GenericPublisher:
             }
             counts[language]["total"] = len(language_actions)
         plan: dict[str, Any] = {
+            "schema": PUBLICATION_PLAN_SCHEMA,
+            "schema_version": PUBLICATION_PLAN_SCHEMA_VERSION,
             "plan_version": PUBLICATION_PLAN_VERSION,
             "publication_profile": self.publication_profile,
             "kit_version": KIT_VERSION,
@@ -1415,10 +1412,8 @@ class GenericPublisher:
         claimed = copy.pop("plan_sha256", None)
         if not claimed or claimed != sha_object(copy) or confirmation != claimed:
             raise PublicationError("SHA-256 du plan divergent")
-        if plan.get("kit_version") != KIT_VERSION:
-            raise PublicationError("Version du kit divergente")
-        if plan.get("required_validator_version") != REQUIRED_VALIDATOR_VERSION:
-            raise PublicationError("Version du validateur divergente dans le plan")
+        if not publication_plan_is_compatible(plan):
+            raise PublicationError("Schéma du plan de publication incompatible")
         if plan.get("publication_profile") != self.publication_profile:
             raise PublicationError("Profil de publication divergent dans le plan")
         if plan.get("debate_id") != self.config.get("debate_id"):

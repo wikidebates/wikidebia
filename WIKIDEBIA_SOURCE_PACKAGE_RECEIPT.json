@@ -1,32 +1,32 @@
 {
   "artifact": "WIKIDEBIA_SOURCES_COMPLETES_RATIONALISE",
   "versions": {
-    "norm": "1.2.70",
-    "validator": "0.4.73",
-    "kit": "2.15.54"
+    "norm": "1.2.71",
+    "validator": "0.4.74",
+    "kit": "2.15.55"
   },
-  "created_at": "2026-08-10T21:15:55+00:00",
+  "created_at": "2026-08-10T22:33:22+00:00",
   "purpose": "Source textuelle unifiée et composants de mise à niveau",
   "files": [
     {
       "path": "WIKIDEBIA_SOURCE_ACTIVE.md",
-      "size_bytes": 295981,
-      "sha256": "ccfdc03a6a4ab2d81f8de2b0e9e7a99fb2a9d02c82d6d44449e56194da633dfa"
+      "size_bytes": 168442,
+      "sha256": "b2cc2f4a65da0c462e2287a389487535719616a18fa2d3241223d95184608409"
     },
     {
       "path": "wikidebia-normes.zip",
-      "size_bytes": 3168696,
-      "sha256": "673961ea68df2b5ac6b539398a76756e258a1ab927963a750fc4d97f902f1c8b"
+      "size_bytes": 3220478,
+      "sha256": "aeed34ec1f1e5bc4681fbd4fac88bab55574ac2cad73f8fcdeec457592eef028"
     },
     {
       "path": "wikidebia-validator.zip",
-      "size_bytes": 3306209,
-      "sha256": "8a1e887559229dcc781ead6094d34747f309b5f0a9a9aa6d8139a9c8e3e1609d"
+      "size_bytes": 3363500,
+      "sha256": "838a0c460b808cff73c91f6c2d2aa1c41cd7d0a79e56e99a6ab17787a1cae942"
     },
     {
       "path": "wikidebia-kit.zip",
-      "size_bytes": 561568,
-      "sha256": "77a88599cfcad2ce63ad4a1ab70780e36e3add0cb6b5381df8edf4ac33c20399"
+      "size_bytes": 570122,
+      "sha256": "c274a91a325a5ea299cf322bdd08429e82fc744d239d9b036147f3f89e321b9a"
     }
   ]
 }

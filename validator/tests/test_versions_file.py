@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_versions_file_has_only_the_three_functional_versions():
     versions = json.loads((ROOT / "VERSIONS.json").read_text(encoding="utf-8"))
-    assert versions == {"norm": "1.2.70", "validator": "0.4.73", "kit": "2.15.54"}
+    assert versions == {"norm": "1.2.71", "validator": "0.4.74", "kit": "2.15.55"}
 
 
 def test_versions_file_matches_validator_metadata():
@@ -18,8 +18,10 @@ def test_versions_file_matches_validator_metadata():
     compatibility = json.loads((ROOT / "COMPATIBILITY.json").read_text(encoding="utf-8"))
     assert compatibility["validator_version"] == versions["validator"]
     assert compatibility["implemented_normative_revision"] == versions["norm"]
+    versioning_text = (ROOT / "src/wikidebia_validator/versioning.py").read_text(encoding="utf-8")
     init_text = (ROOT / "src/wikidebia_validator/__init__.py").read_text(encoding="utf-8")
-    assert re.search(r'^__version__\s*=\s*"' + re.escape(versions["validator"]) + r'"', init_text, re.M)
+    assert 'VERSIONS = _load_json("VERSIONS.json")' in versioning_text
+    assert 'VALIDATOR_VERSION as __version__' in init_text
 
 
 def test_compatibility_keeps_historical_corpus_revisions():
@@ -27,7 +29,7 @@ def test_compatibility_keeps_historical_corpus_revisions():
     supported = compatibility["compatible_normative_revisions"]
     assert "1.2.10" in supported
     assert "1.2.14" in supported
-    assert supported[-1] == "1.2.70"
+    assert supported[-1] == "1.2.71"
 
 
 def test_schema_accepts_norm_versions_through_generic_semver_contract():

@@ -15,7 +15,9 @@
   ],
   "properties": {
     "kit_version": {
-      "const": "2.15.54"
+      "type": "string",
+      "minLength": 1,
+      "description": "Version du kit producteur, conservée à titre de provenance uniquement; la compatibilité opérationnelle est pilotée par les schémas/capacités."
     },
     "debate_id": {
       "type": "string",
@@ -34,7 +36,9 @@
       ],
       "properties": {
         "required_version": {
-          "const": "0.4.73"
+          "type": "string",
+          "minLength": 1,
+          "description": "Version de validateur enregistrée à titre de provenance/reproductibilité; le rapport est accepté selon son schéma supporté."
         },
         "command": {
           "type": "array",

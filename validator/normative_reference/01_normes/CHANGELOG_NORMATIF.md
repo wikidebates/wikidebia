@@ -651,3 +651,10 @@ Toutes les exigences 1.1.7 restent actives sauf contradiction explicite ci-dessu
 
 Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessus.
 
+## 1.2.71 — 10 août 2026 — architecture réellement version-agnostique
+
+- sépare la norme opérationnelle active des snapshots historiques et du changelog ;
+- rend les versions de release non normatives pour les règles éditoriales ;
+- pilote la compatibilité par schémas/capacités et normalise les alias historiques à l’entrée ;
+- centralise les versions courantes et rend les listes historiques compatibles dérivables ;
+- consacre une archive canonique unique pour upgrade, audit, conservation et handoff, avec `WIKIDEBIA_SOURCE_ACTIVE.md` à la racine.

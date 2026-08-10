@@ -13,6 +13,8 @@ Designed for Pywikibot 11.x and the Wikidéb'IA ``wikidebates`` family file.
 
 from __future__ import annotations
 
+from wikidebia_release_info import KIT_VERSION
+
 import argparse
 import csv
 import dataclasses
@@ -31,7 +33,6 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping, Protocol, Sequence
 
 
-KIT_VERSION = "2.15.54"
 GRAPH_EXTRACT_VERSION = "1.0.2"
 
 
@@ -133,6 +134,22 @@ def _split_top_level(text: str, delimiter: str, maxsplit: int = -1) -> list[str]
         i += 1
     parts.append(text[start:])
     return parts
+
+
+CANONICAL_MEDIAWIKI_PARAMETER_ALIASES = {
+    ("fr", "debate"): {"sujet-complet": "sujet-développé"},
+    ("en", "debate"): {"complete-topic": "expanded-topic"},
+    ("fr", "argument"): {"débat-détaillé": "débat-dédié", "nom": "nom-consacré"},
+    ("en", "argument"): {"detailed-debate": "dedicated-debate", "name": "established-name"},
+}
+
+def canonical_mediawiki_parameter(language: str, page_type: str, name: str) -> str:
+    mapping = CANONICAL_MEDIAWIKI_PARAMETER_ALIASES.get((language, page_type), {})
+    normalized = normalize_key(name)
+    for legacy, canonical in mapping.items():
+        if normalized in {normalize_key(legacy), normalize_key(canonical)}:
+            return canonical
+    return name
 
 
 @dataclasses.dataclass(frozen=True)

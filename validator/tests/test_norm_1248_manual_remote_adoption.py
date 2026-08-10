@@ -1,3 +1,4 @@
+from .current_policy_helpers import CURRENT_NORM_FILE, CURRENT_NORM, CURRENT_VALIDATOR, CURRENT_KIT, current_norm_path
 from pathlib import Path
 from wikidebia_validator.schema_validation import SchemaStore
 
@@ -35,5 +36,5 @@ def test_1248_schema_requires_revision_or_sha():
 def test_active_norm_is_1248():
     root = Path(__file__).parents[1] / "normative_reference" / "01_normes"
     assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == [
-        "WIKIDEBIA_NORME_CONSOLIDEE_1.2.70.md"
+        CURRENT_NORM_FILE
     ]

@@ -1,0 +1,120 @@
+{
+  "schema": "wikidebia-non-regression-audit-1.0",
+  "release": {
+    "norm": "1.2.71",
+    "validator": "0.4.74",
+    "kit": "2.15.55"
+  },
+  "date": "2026-08-10",
+  "lineages": [
+    {
+      "name": "socle_cumulatif",
+      "norm": "1.2.55",
+      "validator": "0.4.58",
+      "kit": "2.15.32"
+    },
+    {
+      "name": "publication",
+      "norm": "1.2.60",
+      "validator": "0.4.64",
+      "kit": "2.15.45"
+    },
+    {
+      "name": "translation",
+      "norm": "1.2.61",
+      "validator": "0.4.64",
+      "kit": "2.15.38"
+    },
+    {
+      "name": "parent",
+      "norm": "1.2.70",
+      "validator": "0.4.73",
+      "kit": "2.15.54"
+    }
+  ],
+  "requirements_parent_subset": true,
+  "requirements_parent_count": 503,
+  "requirements_current_count": 503,
+  "missing_parent_requirement_ids": [],
+  "branch_history_trees": {
+    "norms/branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45": {
+      "baseline_tree_sha256": "e865e960d77b20dcf40737dc23a7dcaba1f1633414a6698da172e61732734798",
+      "current_tree_sha256": "e865e960d77b20dcf40737dc23a7dcaba1f1633414a6698da172e61732734798",
+      "unchanged": true
+    },
+    "norms/branch_history/translation_branch_1.2.61_0.4.64_2.15.38": {
+      "baseline_tree_sha256": "4ce404f2ca2d3372eb815b166ff774eaff16e464e3d42536c1a9f4d96fd499df",
+      "current_tree_sha256": "4ce404f2ca2d3372eb815b166ff774eaff16e464e3d42536c1a9f4d96fd499df",
+      "unchanged": true
+    },
+    "validator/branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45": {
+      "baseline_tree_sha256": "49384235af4137f5dd92a5747489fffd9358e178d8a28fe47f025b3cb77302b8",
+      "current_tree_sha256": "49384235af4137f5dd92a5747489fffd9358e178d8a28fe47f025b3cb77302b8",
+      "unchanged": true
+    },
+    "validator/branch_history/translation_branch_1.2.61_0.4.64_2.15.38": {
+      "baseline_tree_sha256": "43a9e0c5dc443b190032b4b6e571a4111254a014ab4f9c4f827ce568b6ca2a27",
+      "current_tree_sha256": "43a9e0c5dc443b190032b4b6e571a4111254a014ab4f9c4f827ce568b6ca2a27",
+      "unchanged": true
+    },
+    "kit/branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45": {
+      "baseline_tree_sha256": "e02909143d997827ab418e04451bfde6bdd057f5fa404ba7aab24cd6186819db",
+      "current_tree_sha256": "e02909143d997827ab418e04451bfde6bdd057f5fa404ba7aab24cd6186819db",
+      "unchanged": true
+    },
+    "kit/branch_history/translation_branch_1.2.61_0.4.64_2.15.38": {
+      "baseline_tree_sha256": "bbce06686db26b2e612aa9021fe68c0a5c30a786922078e3cc76803282a52e2f",
+      "current_tree_sha256": "bbce06686db26b2e612aa9021fe68c0a5c30a786922078e3cc76803282a52e2f",
+      "unchanged": true
+    }
+  },
+  "selected_historical_files": {
+    "norm_1.2.55": {
+      "path": "norms/normative_reference/01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.55.md",
+      "baseline_sha256": "f0c2daaf68abeaf8867e3507d8f92673d17008341d5ef6c931ebc6eb95264510",
+      "current_sha256": "f0c2daaf68abeaf8867e3507d8f92673d17008341d5ef6c931ebc6eb95264510",
+      "unchanged": true
+    },
+    "kit_2.15.32": {
+      "path": "kit/MIGRATION_2.15.32.md",
+      "baseline_sha256": "fe5230d3f9cb5492d11207bc69f55b376683ce300e8caac0bea4edb9adf70ede",
+      "current_sha256": "fe5230d3f9cb5492d11207bc69f55b376683ce300e8caac0bea4edb9adf70ede",
+      "unchanged": true
+    },
+    "kit_2.15.45": {
+      "path": "kit/MIGRATION_2.15.45.md",
+      "baseline_sha256": "2e2aff9bbce18d92ca7a84306deef431c8ddc0b643ec40fc05fadef14f1036f2",
+      "current_sha256": "2e2aff9bbce18d92ca7a84306deef431c8ddc0b643ec40fc05fadef14f1036f2",
+      "unchanged": true
+    },
+    "kit_2.15.38_audit": {
+      "path": "kit/REGRESSION_AUDIT_2.15.38.md",
+      "baseline_sha256": "25b9a891c3d6a1e57ee0c554b93b8bfab4fadd65dd99079edf242e97822092da",
+      "current_sha256": "25b9a891c3d6a1e57ee0c554b93b8bfab4fadd65dd99079edf242e97822092da",
+      "unchanged": true
+    },
+    "validator_0.4.64_audit": {
+      "path": "validator/docs/AUDIT_NON_REGRESSION_0.4.64.md",
+      "baseline_sha256": "4d417b9ef4587dd932e0de54511c911008464fd28a3203839eb0b9c5332dace0",
+      "current_sha256": "4d417b9ef4587dd932e0de54511c911008464fd28a3203839eb0b9c5332dace0",
+      "unchanged": true
+    },
+    "validator_0.4.73_audit": {
+      "path": "validator/docs/AUDIT_NON_REGRESSION_0.4.73.md",
+      "baseline_sha256": "e6fd0c93aac9dc18c6f04adca219c79d7785314762cf5ed728c178730fea20a8",
+      "current_sha256": "e6fd0c93aac9dc18c6f04adca219c79d7785314762cf5ed728c178730fea20a8",
+      "unchanged": true
+    }
+  },
+  "parent_norm_snapshot": {
+    "source_sha256": "a21fd92df1066efadff2303aceb26f9d7a0cf0968c663c6df4f827fba3235e78",
+    "archived_sha256": "a21fd92df1066efadff2303aceb26f9d7a0cf0968c663c6df4f827fba3235e78",
+    "exact": true
+  },
+  "changelog_parent_prefixes": {
+    "norms": true,
+    "validator": true,
+    "kit": true
+  },
+  "result": "passed"
+}

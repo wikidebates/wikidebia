@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from wikidebia_release_info import KIT_VERSION, NORM_VERSION, VALIDATOR_VERSION
+
 import argparse
 import datetime as dt
 import hashlib
@@ -15,9 +17,6 @@ import zipfile
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
-NORM_VERSION = "1.2.70"
-VALIDATOR_VERSION = "0.4.73"
-KIT_VERSION = "2.15.54"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",

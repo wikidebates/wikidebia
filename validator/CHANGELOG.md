@@ -57,3 +57,10 @@
 - aligne les schémas et la copie normative sur 1.2.62.
 
 Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_history/`.
+
+## 0.4.74 — 10 août 2026 — compatibilité pilotée par schémas et capacités
+
+- ajoute un schéma explicite `wikidebia-validator-report-1.0` aux rapports ;
+- centralise les versions courantes dans `VERSIONS.json` ;
+- remplace les listes manuelles de révisions compatibles par une dérivation historique informative ;
+- conserve les numéros de producteur comme provenance sans les utiliser comme feature flags.

@@ -1,0 +1,97 @@
+{
+  "schema": "wikidebia-component-capabilities-1.0",
+  "schema_version": "1.0",
+  "component": "kit",
+  "release_source": "VERSIONS.json",
+  "release": {
+    "norm": "1.2.71",
+    "validator": "0.4.74",
+    "kit": "2.15.55"
+  },
+  "emits": {
+    "publication_plan": [
+      {
+        "schema": "wikidebia-publication-plan-1.0",
+        "schema_version": "1.0"
+      }
+    ],
+    "remote_update_plan": [
+      {
+        "schema": "wikidebia-remote-update-plan-1.0",
+        "schema_version": "1.0"
+      }
+    ],
+    "translation_review": [
+      {
+        "schema": "wikidebia-en-translation-review-1.1",
+        "schema_version": "1.1"
+      }
+    ],
+    "semantic_convergence": [
+      {
+        "schema": "wikidebia-semantic-convergence-review-1.1",
+        "schema_version": "1.1"
+      }
+    ]
+  },
+  "accepts": {
+    "validator_report": [
+      {
+        "schema": "wikidebia-validator-report-1.0",
+        "schema_versions": [
+          "1.0"
+        ]
+      }
+    ],
+    "publication_plan": [
+      {
+        "schema": "wikidebia-publication-plan-1.0",
+        "schema_versions": [
+          "1.0"
+        ]
+      }
+    ],
+    "remote_update_plan": [
+      {
+        "schema": "wikidebia-remote-update-plan-1.0",
+        "schema_versions": [
+          "1.0"
+        ]
+      }
+    ],
+    "published_state": [
+      {
+        "schema": "wikidebia-published-state-1.0",
+        "schema_versions": [
+          "1.0"
+        ]
+      }
+    ],
+    "translation_review": [
+      {
+        "schema": "wikidebia-en-translation-review-1.1",
+        "schema_versions": [
+          "1.1"
+        ]
+      }
+    ],
+    "semantic_convergence": [
+      {
+        "schema": "wikidebia-semantic-convergence-review-1.1",
+        "schema_versions": [
+          "1.1"
+        ]
+      }
+    ]
+  },
+  "compatibility_policy": {
+    "producer_versions": "provenance_only",
+    "schema_and_capability_gate": true,
+    "release_exactness_reserved_for": [
+      "component_installation",
+      "anti_downgrade",
+      "release_reproducibility",
+      "audit_provenance"
+    ]
+  }
+}

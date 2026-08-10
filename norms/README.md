@@ -1,4 +1,8 @@
-# Wikidéb’IA — Normes 1.2.70
+# Wikidéb’IA — Normes 1.2.71
+
+La révision 1.2.71 sépare la norme opérationnelle active de son historique et formalise la compatibilité par schémas/capacités. `VERSIONS.json` est la source de vérité de la version courante ; les snapshots historiques et le changelog sont immuables et informatifs.
+
+## Notes héritées du paquet parent 1.2.70
 
 Révision de réconciliation entre :
 
@@ -20,3 +24,7 @@ La révision 1.2.67 complète la preuve propositionnelle par la revue des change
 La révision 1.2.69 renomme les paramètres MediaWiki de cadrage et de frontière : `sujet-développé` / `expanded-topic` et `débat-dédié` / `dedicated-debate`, avec lecture rétrocompatible des anciens noms.
 
 La révision 1.2.70 corrige l’alignement du validateur sur les métadonnées de première publication anglaise sans modifier les règles éditoriales : aucune projection cross-wiki d’`initialization` et aucune égalité imposée entre les dates de création française et anglaise.
+
+## Architecture de compatibilité 2026-08-10
+
+Les numéros de release sont une provenance. La compatibilité opérationnelle est pilotée par `CAPABILITIES.json` et les identifiants/version de schéma ; les égalités exactes sont réservées à l’installation, l’anti-downgrade, la reproductibilité et l’audit.

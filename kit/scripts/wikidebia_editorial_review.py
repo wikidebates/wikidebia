@@ -12,6 +12,8 @@ No final MediaWiki page is rendered and no English translation is started.
 
 from __future__ import annotations
 
+from wikidebia_release_info import KIT_VERSION, require_validator_report
+
 import argparse
 import collections
 import copy
@@ -59,7 +61,6 @@ from wikidebia_editorial_workspace import (
     workspace_receipt_hash,
 )
 
-KIT_VERSION = "2.15.54"
 REVIEW_SCHEMA = "wikidebia-fr-page-metadata-review-1.1"
 METADATA_LOCK_SCHEMA = "wikidebia-fr-page-metadata-lock-1.0"
 CHANGESET_SCHEMA = "wikidebia-editorial-changeset-1.1"
@@ -595,8 +596,7 @@ def _run_validator(
             f"Validation structurelle échouée; consulter {json_output.relative_to(package).as_posix()}"
             + (f"; {detail}" if detail else "")
         )
-    if str(report.get("validator_version")) != VALIDATOR_VERSION:
-        raise EditorialReviewError(f"Version du validateur inattendue : {report.get('validator_version')}")
+    require_validator_report(report, EditorialReviewError)
     return report
 
 def _changes(source: Mapping[str, Any], final: Mapping[str, Any]) -> list[dict[str, Any]]:

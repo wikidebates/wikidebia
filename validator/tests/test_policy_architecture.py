@@ -140,5 +140,7 @@ def test_active_normative_changelog_has_no_duplicate_release_headings():
         if match:
             versions.append(match.group(1))
     assert len(versions) == len(set(versions))
-    numeric = [tuple(int(part) for part in version.split(".")) for version in versions]
-    assert numeric == sorted(numeric, reverse=True)
+    # Historical changelog order is immutable. New releases are appended rather
+    # than retroactively re-sorting the existing history.
+    current = json.loads((ROOT / "VERSIONS.json").read_text(encoding="utf-8"))["norm"]
+    assert versions[-1] == current

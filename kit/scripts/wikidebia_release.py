@@ -10,6 +10,8 @@ connection, comparison, plan construction or publication is performed.
 
 from __future__ import annotations
 
+from wikidebia_release_info import KIT_VERSION
+
 import argparse
 import copy
 import datetime as dt
@@ -43,7 +45,6 @@ from wikidebia_documentary_resources import build_file as build_documentary_reso
 from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
 from wikidebia_render import RenderError, _load_workspace
 
-KIT_VERSION = "2.15.54"
 RELEASE_MANIFEST_SCHEMA = "1.0"
 RELEASE_RECEIPT_SCHEMA = "wikidebia-local-release-receipt-1.1"
 REMOTE_INPUT_SCHEMA = "wikidebia-remote-comparison-input-1.0"

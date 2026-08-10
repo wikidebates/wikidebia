@@ -1,4 +1,8 @@
-# Wikidéb’IA — Kit 2.15.54
+# Wikidéb’IA Kit 2.15.55
+
+Le kit 2.15.55 introduit une architecture de compatibilité fondée sur les schémas et capacités, avec `VERSIONS.json` comme source unique des versions courantes. Les numéros de producteur restent inscrits dans les plans, reçus et configurations pour la provenance et la reproductibilité, mais ne conditionnent plus la lecture d’un artefact dont le schéma est supporté. Les anciens formats de paramètres MediaWiki sont normalisés à l’entrée et les nouveaux plans de publication utilisent le schéma stable `wikidebia-publication-plan-1.0`.
+
+## Notes héritées du paquet parent 2.15.54
 
 Version de réconciliation entre la lignée traduction/validation 2.15.38 et la lignée de publication GitHub 2.15.45 (commit `8b46816`), issues du kit 2.15.32 commun.
 
@@ -19,3 +23,7 @@ La version 2.15.52 durcit la preuve d’indépendance des passes et les régress
 La version 2.15.53 émet les paramètres MediaWiki `sujet-développé` / `expanded-topic` et `débat-dédié` / `dedicated-debate`, tout en lisant les anciens noms dans les corpus historiques.
 
 La version 2.15.54 corrige l’alignement du validateur sur les métadonnées de première publication anglaise : aucune projection cross-wiki d’`initialization`, et aucune égalité imposée entre `creation-date` anglaise et `date-création` française.
+
+## Architecture de compatibilité 2026-08-10
+
+Les numéros de release sont une provenance. La compatibilité opérationnelle est pilotée par `CAPABILITIES.json` et les identifiants/version de schéma ; les égalités exactes sont réservées à l’installation, l’anti-downgrade, la reproductibilité et l’audit.

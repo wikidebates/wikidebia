@@ -10,6 +10,8 @@ editorial corrections or generate final MediaWiki pages.
 
 from __future__ import annotations
 
+from wikidebia_release_info import KIT_VERSION
+
 import argparse
 import collections
 import datetime as dt
@@ -49,7 +51,6 @@ from wikidebia_graph_extract import (
     normalize_key,
 )
 
-KIT_VERSION = "2.15.54"
 WORKSPACE_SCHEMA = "wikidebia-editorial-workspace-1.0"
 AUDIT_SCHEMA = "wikidebia-editorial-audit-1.0"
 TASK_SCHEMA = "wikidebia-editorial-task-ledger-1.0"

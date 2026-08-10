@@ -1,7 +1,8 @@
-Wikidéb’IA Kit 2.15.54 — rapport de tests
+Wikidéb’IA Kit 2.15.55 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 365
-Tests pytest : 365 réussis
-Norme : 1.2.70
-Validateur requis : 0.4.73
-Publication EN, métadonnées de première création, renommage 1.2.69, historiques de version et workflows hérités : PASSED.
+Tests pytest collectés : 372
+Tests pytest : 372 réussis
+Norme : 1.2.71
+Validateur : 0.4.74
+Plans de publication : wikidebia-publication-plan-1.0
+Compatibilité par schémas/capacités, normalisation des formats historiques et workflows hérités : PASSED.

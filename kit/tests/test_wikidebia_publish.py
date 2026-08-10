@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "wikidebia_publish.py"
+CURRENT_VERSIONS = json.loads((SCRIPT.parents[1] / "VERSIONS.json").read_text(encoding="utf-8"))
 spec = importlib.util.spec_from_file_location("wikidebia_publish", SCRIPT)
 module = importlib.util.module_from_spec(spec)
 assert spec and spec.loader
@@ -139,7 +140,9 @@ def test_full_page_creation_is_dynamic(tmp_path):
     adapter = FakeAdapter()
     publisher = module.GenericPublisher(config, adapter, path)
     plan = publisher.build_plan()
-    assert plan["plan_version"] == "wikidebia-publication-plan-2.15.54"
+    assert plan["plan_version"] == "wikidebia-publication-plan-1.0"
+    assert plan["schema"] == "wikidebia-publication-plan-1.0"
+    assert plan["schema_version"] == "1.0"
     assert plan["counts"]["fr"]["create"] == 1
     assert plan["counts"]["en"]["create"] == 1
     result = publisher.publish(plan=plan, confirmation=plan["plan_sha256"])
@@ -703,7 +706,7 @@ def test_historical_manifest_versions_do_not_block_current_validation(tmp_path):
     publisher = module.GenericPublisher(config, FakeAdapter(), path)
     plan = publisher.build_plan()
     assert not plan["blockers"]
-    assert plan["required_validator_version"] == "0.4.73"
+    assert plan["required_validator_version"] == CURRENT_VERSIONS["validator"]
 
 
 def test_explicit_custom_manifest_requirement_is_still_enforced(tmp_path):

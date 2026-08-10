@@ -61,3 +61,10 @@
 - aligne le kit sur la norme 1.2.62 et le validateur 0.4.65.
 
 L’historique exact des deux branches antérieures est conservé sous `branch_history/`.
+
+## 2.15.55 — 10 août 2026 — workflows version-agnostiques et release canonique
+
+- centralise les versions courantes dans `VERSIONS.json` via `wikidebia_release_info.py` ;
+- remplace les égalités exactes kit/validateur des workflows par des contrats de schéma/capacité ;
+- normalise à l’entrée les labels historiques des plans et paramètres MediaWiki ;
+- fait de la release complète unique le format standard pour upgrade, audit, conservation et handoff.

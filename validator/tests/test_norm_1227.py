@@ -1,4 +1,5 @@
 from __future__ import annotations
+from .current_policy_helpers import CURRENT_NORM_FILE, CURRENT_NORM, CURRENT_VALIDATOR, CURRENT_KIT, current_norm_path
 
 import json
 from pathlib import Path
@@ -75,9 +76,9 @@ def argument(quote: str, *, lang: str = "en") -> str:
 
 
 def test_validator_version_and_active_norm_1227():
-    assert __version__ == "0.4.73"
+    assert __version__ == CURRENT_VALIDATOR
     root = Path(__file__).resolve().parents[1] / "normative_reference/01_normes"
-    assert [path.name for path in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")] == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.70.md"]
+    assert [path.name for path in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")] == [CURRENT_NORM_FILE]
 
 
 def test_english_citation_matching_lock_is_accepted(tmp_path: Path):

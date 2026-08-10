@@ -96,8 +96,8 @@ def _load_comparison(
 
     plan = load_json(required["plan"], "plan distant")
     _verify_sha_object(plan, "plan_sha256", "du plan")
-    if plan.get("kit_version") != KIT_VERSION or plan.get("required_validator_version") != REQUIRED_VALIDATOR_VERSION:
-        raise RemotePlanReviewError("Le plan doit être reconstruit avec les versions actives avant sa revue")
+    # Producer release numbers are provenance only; the signed plan schema and
+    # its hashes determine compatibility and integrity.
     receipt = load_json(required["comparison_receipt"], "reçu de comparaison")
     if receipt.get("receipt_sha256") != _canonical_sha(receipt, "receipt_sha256"):
         raise RemotePlanReviewError("Empreinte du reçu de comparaison invalide")

@@ -14,6 +14,7 @@ def portable_display_path(value: str | Path) -> str:
 
 
 from .codes import ACTIVE_CODES as CODES
+from .versioning import REPORT_SCHEMA, REPORT_SCHEMA_VERSION
 
 
 @dataclass(frozen=True)
@@ -110,7 +111,10 @@ class Report:
 
     def to_dict(self) -> dict[str, Any]:
         return {
+            "schema": REPORT_SCHEMA,
+            "schema_version": REPORT_SCHEMA_VERSION,
             "validator_version": self.validator_version,
+            "producer": {"component": "validator", "version": self.validator_version},
             "package_root": self.package_root,
             "scopes": self.scopes,
             "result": "failed" if self.errors else ("passed_with_warnings" if self.warnings else "passed"),

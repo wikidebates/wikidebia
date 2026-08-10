@@ -1,4 +1,5 @@
 from __future__ import annotations
+from .current_policy_helpers import CURRENT_NORM_FILE, CURRENT_NORM, CURRENT_VALIDATOR, CURRENT_KIT, current_norm_path
 
 from wikidebia_validator.wikicode import parse_template, validate_template_shape
 from tests.test_norm_1217 import context, debate
@@ -36,7 +37,7 @@ def test_old_norm_metadata_does_not_disable_separator_rule():
 
 def test_active_norm_debate_skeletons_have_nonempty_wikipedia_articles():
     from pathlib import Path
-    source = Path(__file__).resolve().parents[1] / "normative_reference" / "01_normes" / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.70.md"
+    source = Path(__file__).resolve().parents[1] / "normative_reference" / "01_normes" / CURRENT_NORM_FILE
     norm = source.read_text(encoding="utf-8")
     assert "|articles-Wikipédia={{Article Wikipédia" in norm
     assert "|wikipedia-articles={{Wikipedia article" in norm
@@ -46,7 +47,7 @@ def test_active_norm_debate_skeletons_have_nonempty_wikipedia_articles():
 
 def test_active_norm_skeletons_do_not_render_related_debates():
     from pathlib import Path
-    source = Path(__file__).resolve().parents[1] / "normative_reference" / "01_normes" / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.70.md"
+    source = Path(__file__).resolve().parents[1] / "normative_reference" / "01_normes" / CURRENT_NORM_FILE
     norm = source.read_text(encoding="utf-8")
     # The terms may appear in prose explaining the prohibition, but never as rendered parameters.
     assert "\n|débats-connexes=" not in norm

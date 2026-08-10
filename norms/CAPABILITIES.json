@@ -1,0 +1,24 @@
+{
+  "schema": "wikidebia-component-capabilities-1.0",
+  "schema_version": "1.0",
+  "component": "norms",
+  "release_source": "VERSIONS.json",
+  "release": {
+    "norm": "1.2.71",
+    "validator": "0.4.74",
+    "kit": "2.15.55"
+  },
+  "emits": {
+    "active_normative_policy": [
+      {
+        "schema": "wikidebia-active-normative-policy-1.0",
+        "schema_version": "1.0"
+      }
+    ]
+  },
+  "compatibility_policy": {
+    "editorial_rules": "current_cumulative_version_independent",
+    "historical_snapshots": "immutable_provenance",
+    "versions": "provenance_installation_migration_only"
+  }
+}

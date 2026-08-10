@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from wikidebia_release_info import require_validator_report
+
 import argparse
 import json
 import os
@@ -77,10 +79,7 @@ def run_validator(project_root: Path, package: Path, json_output: Path, text_out
         raise CorpusBuildError(
             "Validation structurelle échouée; consulter " + json_output.relative_to(package).as_posix()
         )
-    if str(report.get("validator_version")) != VALIDATOR_VERSION:
-        raise CorpusBuildError(
-            f"Version du validateur inattendue : {report.get('validator_version')} (attendue {VALIDATOR_VERSION})"
-        )
+    require_validator_report(report, CorpusBuildError)
     return report
 
 
