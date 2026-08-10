@@ -1,3 +1,10 @@
+## 1.2.70 — alignement du validateur sur la première publication anglaise
+
+- le chemin de validation source-authoritative n’exige plus `initialization` à partir de `initialisation` française ;
+- une nouvelle traduction anglaise reste interdite si elle contient `initialization` ;
+- `creation-date` anglaise n’est plus comparée à `date-création` française ; la date effective est imposée par le moteur de publication au jour civil de la création distante ;
+- ajout de tests d’exécution dédiés à ces deux contrats, sans modification des règles éditoriales déjà actives.
+
 ## 1.2.69 — renommage des paramètres MediaWiki de cadrage et de frontière
 
 - `sujet-complet` devient `sujet-développé` dans `{{Débat}}`.

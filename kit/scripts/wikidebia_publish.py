@@ -15,9 +15,9 @@ from pathlib import Path
 from typing import Any, Protocol
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-KIT_VERSION = "2.15.53"
-REQUIRED_VALIDATOR_VERSION = "0.4.72"
-PUBLICATION_PLAN_VERSION = "wikidebia-publication-plan-2.15.53"
+KIT_VERSION = "2.15.54"
+REQUIRED_VALIDATOR_VERSION = "0.4.73"
+PUBLICATION_PLAN_VERSION = "wikidebia-publication-plan-2.15.54"
 DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
 DEFERRED_TRANSLATION_PROFILE = "norm_1_2_deferred_translation"
 DIRECT_PROFILES = {DIRECT_INTERLANGUAGE_PROFILE, DEFERRED_TRANSLATION_PROFILE}

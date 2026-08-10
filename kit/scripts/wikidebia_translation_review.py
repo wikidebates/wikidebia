@@ -48,7 +48,7 @@ from wikidebia_content_review import (
     META_DISCOURSE_EN,
 )
 
-KIT_VERSION = "2.15.53"
+KIT_VERSION = "2.15.54"
 DISPLAYED_TITLE_FORMS = {"proposition", "question", "imperative", "thematic_label", "nominal_phrase", "doctrinal_label", "other"}
 NAME_SEARCH_PROVENANCE = {"actual_log", "fresh_recheck", "historical_reconstruction"}
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.1"

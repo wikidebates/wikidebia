@@ -2,22 +2,24 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.69** ;
-- validateur actif : **0.4.72** ;
-- kit actif : **2.15.53**.
+- norme active : **1.2.70** ;
+- validateur actif : **0.4.73** ;
+- kit actif : **2.15.54**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3103430 octets — SHA-256 `3e4396fe5049d1fd24d71c1c4586a7f2a0ea0ca9e879c728b5817ffa5a7cde40`
-- `wikidebia-validator.zip` — 3237624 octets — SHA-256 `fb48db771bf7088c82b9247863831ab160956499357b1bca07a956a097f5fffa`
-- `wikidebia-kit.zip` — 558891 octets — SHA-256 `604fadd51a363f6e7cd81f700713aea049910110b59c2538e2db7b53126969e8`
+- `wikidebia-normes.zip` — 3168696 octets — SHA-256 `673961ea68df2b5ac6b539398a76756e258a1ab927963a750fc4d97f902f1c8b`
+- `wikidebia-validator.zip` — 3306209 octets — SHA-256 `8a1e887559229dcc781ead6094d34747f309b5f0a9a9aa6d8139a9c8e3e1609d`
+- `wikidebia-kit.zip` — 561568 octets — SHA-256 `77a88599cfcad2ce63ad4a1ab70780e36e3add0cb6b5381df8edf4ac33c20399`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.69.md`  
-SHA-256 : `bad96ae25a52641eb01c660b6a53388121458cff47b376a07ab462d3ac76a388`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.70.md`  
+SHA-256 : `a21fd92df1066efadff2303aceb26f9d7a0cf0968c663c6df4f827fba3235e78`
 
-# Norme consolidée Wikidéb’IA 1.2.69
+# Norme consolidée Wikidéb’IA 1.2.70
+
+> **Révision 1.2.70 — alignement du validateur sur les métadonnées de première publication anglaise.** Cette révision corrective ne change aucune règle éditoriale. Elle corrige deux divergences d’implémentation du validateur découvertes après scellement de 1.2.69 : une nouvelle traduction anglaise d’`Argument` ne projette jamais `initialisation` vers `initialization`, même lorsque la source française contient cet identifiant propre au wiki français ; et `creation-date` d’une nouvelle page anglaise n’est jamais comparée à `date-création` française, car sa valeur publiée est déterminée au moment de la première création distante conformément au contrat de publication. Les pages anglaises préexistantes restent soumises à leur préservation historique. Des tests d’exécution du chemin `translated_english` rendent ces deux contrats non régressifs.
 
 > **Révision 1.2.69 — renommage canonique des paramètres MediaWiki.** À compter de cette révision, `{{Débat}}` utilise `sujet-développé=` à la place de `sujet-complet=`, `{{Debate}}` utilise `expanded-topic=` à la place de `complete-topic=`, et `{{Argument}}` utilise `débat-dédié=` / `dedicated-debate=` à la place de `débat-détaillé=` / `detailed-debate=`. Toute nouvelle sortie emploie exclusivement les quatre nouveaux noms. Les anciens noms restent lisibles pour la compatibilité des corpus antérieurs à 1.2.69 ; lorsqu’un tel corpus est migré ou repris sous le contrat courant, seule l’étiquette du paramètre est normalisée et sa valeur est conservée exactement. Les formes ancienne et nouvelle d’une même paire ne peuvent pas coexister dans une sortie courante. Cette migration de format ne renomme pas les clés internes de registre `complete_topic` et `detailed_debate`, qui ne sont pas des paramètres MediaWiki.
 
@@ -1620,7 +1622,14 @@ Pour toute nouvelle page anglaise issue d’une traduction FR→EN, qu’il s’
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `fbf82580a52ad76d63c888cdcbe75594f418db89a3ea80a10a2a404353247e0e`
+SHA-256 : `4f7df766247164d3a04b260a38045c22de640e8a38efac062188f7922bff8b80`
+
+## 1.2.70 — alignement du validateur sur la première publication anglaise
+
+- le chemin de validation source-authoritative n’exige plus `initialization` à partir de `initialisation` française ;
+- une nouvelle traduction anglaise reste interdite si elle contient `initialization` ;
+- `creation-date` anglaise n’est plus comparée à `date-création` française ; la date effective est imposée par le moteur de publication au jour civil de la création distante ;
+- ajout de tests d’exécution dédiés à ces deux contrats, sans modification des règles éditoriales déjà actives.
 
 ## 1.2.69 — renommage des paramètres MediaWiki de cadrage et de frontière
 
@@ -2271,11 +2280,11 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `4fd24cf8ea5d9247ca547da6fdda536be1e7ca135e6527fe207a6142f70480a3`
+SHA-256 : `01e84805d450ac2f3510a927fbde973162e339a3dfcc7ea13db5c355e7881f1b`
 
-# Wikidéb’IA — Validateur 0.4.72
+# Wikidéb’IA — Validateur 0.4.73
 
-Version courante pour la norme 1.2.69 et le kit 2.15.53.
+Version courante pour la norme 1.2.70 et le kit 2.15.54.
 
 Elle conserve les contrôles différentiels et sémantiques de la lignée traduction 0.4.64 et intègre les contrôles de la lignée publication GitHub : `nom-consacré` / `established-name`, `AI-translated quote`, absence d'`initialization` sur une nouvelle traduction anglaise, cohérence normative et préservation historique des alias.
 
@@ -2287,14 +2296,31 @@ Le correctif 0.4.69 aligne les diagnostics et la copie normative sur les documen
 
 Le correctif 0.4.70 accepte et contrôle les schémas sémantiques 1.4 / 1.3, les changements idiomatiques explicitement revus, le corpus réel de régressions et les preuves de champ scellées.
 
-Le correctif 0.4.72 formalise les familles de méthodes de convergence 1.1 tout en conservant la lecture 1.0.
+Le correctif 0.4.71 formalise les familles de méthodes de convergence 1.1 tout en conservant la lecture 1.0.
+
+Le validateur 0.4.72 implémente le renommage des paramètres MediaWiki de la norme 1.2.69 avec compatibilité de lecture historique.
+
+Le correctif 0.4.73 aligne l’exécution du validateur sur les règles déjà actives de première publication anglaise : pas de projection de `initialization` et aucune égalité imposée entre `creation-date` anglaise et `date-création` française.
 
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `84b78d364ec772c1b44f8715412f1bc07629e4d6643482a0c3320f47b37fa7de`
+SHA-256 : `13b724a312598f10753cf715aeabd72ab0d0ff90347279dc81a801703cbda430`
 
-## 0.4.72 — 10 août 2026 — familles de convergence normalisées
+## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
+
+- ne projette plus `initialisation` vers `initialization` dans le chemin `translated_english` d’une nouvelle page ;
+- ne compare plus `creation-date` anglaise à `date-création` française ;
+- conserve la préservation historique d’`initialization` et de `creation-date` sur les pages anglaises préexistantes ;
+- ajoute des régressions d’exécution et restaure l’attribution historique exacte de 0.4.71/0.4.72.
+
+## 0.4.72 — 10 août 2026 — renommage des paramètres MediaWiki
+
+- valide `sujet-développé` / `expanded-topic` et `débat-dédié` / `dedicated-debate` comme paramètres courants ;
+- conserve la lecture des anciens noms pour les paquets antérieurs à 1.2.69 ;
+- refuse la coexistence des anciennes et nouvelles formes dans une sortie courante.
+
+## 0.4.71 — 10 août 2026 — familles de convergence normalisées
 
 - accepte les reçus de convergence 1.0 et 1.1 ;
 - exige pour 1.1 deux `method_family` finales distinctes ;
@@ -2344,9 +2370,9 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `63cf83f5a2040f3439f99fa2ce95e38af44be808fa3384f37da8c86ba981859e`
+SHA-256 : `0bf91703c9d3dca1960e2faef797571dea9c334a04d6f7ee3bc6976370c9517a`
 
-# Wikidéb’IA — Kit 2.15.53
+# Wikidéb’IA — Kit 2.15.54
 
 Version de réconciliation entre la lignée traduction/validation 2.15.38 et la lignée de publication GitHub 2.15.45 (commit `8b46816`), issues du kit 2.15.32 commun.
 
@@ -2362,16 +2388,31 @@ La version 2.15.50 ajoute un garde-fou croisé empêchant le retour de formulati
 
 La version 2.15.51 étend la preuve propositionnelle : changement de forme idiomatique sous revue explicite, corpus versionné de régressions réelles, catalogue de marqueurs aligné avec le validateur et preuves sémantiques de champ pour Debate/Argument. Elle s’aligne sur 1.2.67 / 0.4.70.
 
-La version 2.15.53 durcit la preuve d’indépendance des passes et les régressions keyword/parsing, sans changer les règles éditoriales.
+La version 2.15.52 durcit la preuve d’indépendance des passes et les régressions keyword/parsing, sans changer les règles éditoriales.
 
 La version 2.15.53 émet les paramètres MediaWiki `sujet-développé` / `expanded-topic` et `débat-dédié` / `dedicated-debate`, tout en lisant les anciens noms dans les corpus historiques.
+
+La version 2.15.54 corrige l’alignement du validateur sur les métadonnées de première publication anglaise : aucune projection cross-wiki d’`initialization`, et aucune égalité imposée entre `creation-date` anglaise et `date-création` française.
 
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `c7e92cff50fece4c8dbefecadfe874379f2a41a5ce6b57922b0bcd87e5667be6`
+SHA-256 : `805eb46976f9b711fa74cdca291148a87288fb8f26c24ba668f21f1951e8264e`
 
-## 2.15.53 — 10 août 2026 — durcissement final des preuves
+## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
+
+- aligne le validateur courant sur le contrat déjà actif : aucune projection `initialisation` → `initialization` pour une nouvelle traduction anglaise ;
+- conserve `creation-date` anglaise indépendante de `date-création` française et sous responsabilité du jour réel de première publication distante ;
+- préserve les métadonnées historiques des pages anglaises préexistantes ;
+- ajoute des tests d’exécution croisés et restaure l’attribution historique exacte des versions 2.15.52 et 2.15.53.
+
+## 2.15.53 — 10 août 2026 — renommage des paramètres MediaWiki
+
+- émet `sujet-développé` / `expanded-topic` et `débat-dédié` / `dedicated-debate` dans les sorties courantes ;
+- conserve la lecture des anciens noms pour les corpus historiques et normalise les reprises sans modifier les valeurs ;
+- ajoute les tests de migration, de reprise et de non-coexistence des anciens/nouveaux noms.
+
+## 2.15.52 — 10 août 2026 — durcissement final des preuves
 
 - normalise les familles de méthodes des passes de convergence ;
 - ajoute la régression explicite `established-name=` → keyword ;
@@ -2663,16 +2704,15 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `8d98b2c6a372042a13041728091672ddb9699757efbeadafb3b12a966d675b3e`
+SHA-256 : `860bb6c6ffaf112cfc8662cb59c5bcb262ea12b20842f617660d31c632ed8a45`
 
-Wikidéb’IA Kit 2.15.53 — rapport de tests
+Wikidéb’IA Kit 2.15.54 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 361
-Tests pytest : 361 réussis
-Norme : 1.2.69
-Validateur requis : 0.4.72
-Rendu des nouveaux paramètres, normalisation des alias historiques, reprise distante, publication et workflows hérités : PASSED.
-Ordre normal et ordre de fichiers inversé : PASSED ; modules critiques de migration exécutés isolément : PASSED.
+Tests pytest collectés : 365
+Tests pytest : 365 réussis
+Norme : 1.2.70
+Validateur requis : 0.4.73
+Publication EN, métadonnées de première création, renommage 1.2.69, historiques de version et workflows hérités : PASSED.
 
 ## Guide de traduction anglaise
 

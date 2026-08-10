@@ -60,7 +60,7 @@ def write_fixture(tmp_path: Path, kind: str):
     (corpus / "output" / "en" / "debate.wiki").write_text(en_debate, encoding="utf-8")
     manifest = {
       "debate_id":"demo",
-      "normative_versions":{"validator":"0.4.72"},
+      "normative_versions":{"validator":"0.4.73"},
       "core_files":{"registry":"data/registre_debat.json"},
       "pages":[
         {"language":"fr","page_id":"A1","page_type":"argument","canonical_title":"Titre FR","file_path":"output/fr/A1.wiki","sha256":module.sha_file(corpus / "output/fr/A1.wiki")},
@@ -78,7 +78,7 @@ def write_fixture(tmp_path: Path, kind: str):
     validator = tmp_path / "validator"
     validator.mkdir()
     validator_script = validator / "validate.py"
-    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.72','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.73','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     operation = {
       "id":"test",
       "kind":kind,
@@ -91,8 +91,8 @@ def write_fixture(tmp_path: Path, kind: str):
     }
     if kind == "parameter_update": operation["parameters"]={"fr":"résumé","en":"summary"}
     config = {
-      "kit_version":"2.15.53","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
-      "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.72","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
+      "kit_version":"2.15.54","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
+      "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.73","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
       "family":"wikidebates","family_file":str(Path(__file__)),"pywikibot_dir":str(tmp_path),
       "sites":{"fr":{"code":"fr","expected_user":"ChatGPT"},"en":{"code":"en","expected_user":"ChatGPT"}},
       "logs_dir":"logs","change_tags":["chatgpt"],"verification_attempts":1,"verification_delay_seconds":0,"write_delay_seconds":0,
@@ -139,7 +139,7 @@ def test_full_page_creation_is_dynamic(tmp_path):
     adapter = FakeAdapter()
     publisher = module.GenericPublisher(config, adapter, path)
     plan = publisher.build_plan()
-    assert plan["plan_version"] == "wikidebia-publication-plan-2.15.53"
+    assert plan["plan_version"] == "wikidebia-publication-plan-2.15.54"
     assert plan["counts"]["fr"]["create"] == 1
     assert plan["counts"]["en"]["create"] == 1
     result = publisher.publish(plan=plan, confirmation=plan["plan_sha256"])
@@ -703,12 +703,12 @@ def test_historical_manifest_versions_do_not_block_current_validation(tmp_path):
     publisher = module.GenericPublisher(config, FakeAdapter(), path)
     plan = publisher.build_plan()
     assert not plan["blockers"]
-    assert plan["required_validator_version"] == "0.4.72"
+    assert plan["required_validator_version"] == "0.4.73"
 
 
 def test_explicit_custom_manifest_requirement_is_still_enforced(tmp_path):
     config, path, _, _ = write_fixture(tmp_path, "full_page")
-    config["manifest_requirements"] = {"normative_versions.validator": "0.4.72"}
+    config["manifest_requirements"] = {"normative_versions.validator": "0.4.73"}
     path.write_text(json.dumps(config), encoding="utf-8")
     corpus = tmp_path / "corpus" / "demo"
     manifest_path = corpus / "manifest.json"

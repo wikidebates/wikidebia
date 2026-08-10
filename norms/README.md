@@ -1,4 +1,4 @@
-# Wikidéb’IA — Normes 1.2.69
+# Wikidéb’IA — Normes 1.2.70
 
 Révision de réconciliation entre :
 
@@ -18,3 +18,5 @@ La révision 1.2.65 corrige uniquement des contradictions résiduelles dans les 
 La révision 1.2.67 complète la preuve propositionnelle par la revue des changements idiomatiques, le corpus réel de régressions et les preuves de champ Debate.
 
 La révision 1.2.69 renomme les paramètres MediaWiki de cadrage et de frontière : `sujet-développé` / `expanded-topic` et `débat-dédié` / `dedicated-debate`, avec lecture rétrocompatible des anciens noms.
+
+La révision 1.2.70 corrige l’alignement du validateur sur les métadonnées de première publication anglaise sans modifier les règles éditoriales : aucune projection cross-wiki d’`initialization` et aucune égalité imposée entre les dates de création française et anglaise.

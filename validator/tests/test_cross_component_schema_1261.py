@@ -67,6 +67,6 @@ def test_name_discovery_uses_pre_render_content_lock_when_manifest_pages_are_emp
       "literature_name_scope_summary":"","scope_relation":"","scope_identity_confirmed":False
     }]}
     (tmp_path/"reviews/argument_name_discovery_review.json").write_text(json.dumps(review)+"\n",encoding="utf-8")
-    report=Report("0.4.72",str(tmp_path),["coherence"]); ctx=PackageContext(tmp_path,report)
+    report=Report("0.4.73",str(tmp_path),["coherence"]); ctx=PackageContext(tmp_path,report)
     validate_argument_name_discovery(ctx,manifest)
     assert report.errors==0, [f.to_dict() for f in report.findings]

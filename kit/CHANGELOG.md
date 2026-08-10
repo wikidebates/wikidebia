@@ -1,4 +1,17 @@
-## 2.15.53 — 10 août 2026 — durcissement final des preuves
+## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
+
+- aligne le validateur courant sur le contrat déjà actif : aucune projection `initialisation` → `initialization` pour une nouvelle traduction anglaise ;
+- conserve `creation-date` anglaise indépendante de `date-création` française et sous responsabilité du jour réel de première publication distante ;
+- préserve les métadonnées historiques des pages anglaises préexistantes ;
+- ajoute des tests d’exécution croisés et restaure l’attribution historique exacte des versions 2.15.52 et 2.15.53.
+
+## 2.15.53 — 10 août 2026 — renommage des paramètres MediaWiki
+
+- émet `sujet-développé` / `expanded-topic` et `débat-dédié` / `dedicated-debate` dans les sorties courantes ;
+- conserve la lecture des anciens noms pour les corpus historiques et normalise les reprises sans modifier les valeurs ;
+- ajoute les tests de migration, de reprise et de non-coexistence des anciens/nouveaux noms.
+
+## 2.15.52 — 10 août 2026 — durcissement final des preuves
 
 - normalise les familles de méthodes des passes de convergence ;
 - ajoute la régression explicite `established-name=` → keyword ;

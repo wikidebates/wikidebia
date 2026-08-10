@@ -1,4 +1,17 @@
-## 0.4.72 — 10 août 2026 — familles de convergence normalisées
+## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
+
+- ne projette plus `initialisation` vers `initialization` dans le chemin `translated_english` d’une nouvelle page ;
+- ne compare plus `creation-date` anglaise à `date-création` française ;
+- conserve la préservation historique d’`initialization` et de `creation-date` sur les pages anglaises préexistantes ;
+- ajoute des régressions d’exécution et restaure l’attribution historique exacte de 0.4.71/0.4.72.
+
+## 0.4.72 — 10 août 2026 — renommage des paramètres MediaWiki
+
+- valide `sujet-développé` / `expanded-topic` et `débat-dédié` / `dedicated-debate` comme paramètres courants ;
+- conserve la lecture des anciens noms pour les paquets antérieurs à 1.2.69 ;
+- refuse la coexistence des anciennes et nouvelles formes dans une sortie courante.
+
+## 0.4.71 — 10 août 2026 — familles de convergence normalisées
 
 - accepte les reçus de convergence 1.0 et 1.1 ;
 - exige pour 1.1 deux `method_family` finales distinctes ;

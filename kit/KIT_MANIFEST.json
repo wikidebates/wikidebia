@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.53",
-  "validator_version": "0.4.72",
+  "version": "2.15.54",
+  "validator_version": "0.4.73",
   "scope": [
     "publish_archive",
     "github_init",
@@ -440,7 +440,7 @@
     "publication_multiline_parser_conformance",
     "canonical_expanded_topic_and_dedicated_debate_parameters"
   ],
-  "normative_revision": "1.2.69",
+  "normative_revision": "1.2.70",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -554,7 +554,10 @@
     "established_name_keyword_contamination_regression",
     "publication_multiline_parameter_parser_regression",
     "mediawiki_parameter_rename_1269_regression",
-    "historical_parameter_alias_preservation_1269"
+    "historical_parameter_alias_preservation_1269",
+    "validator_english_initialization_source_projection_regression",
+    "validator_english_creation_date_source_equality_regression",
+    "historical_version_attribution_regression"
   ],
   "translation_change_tag": "translated-fr"
 }

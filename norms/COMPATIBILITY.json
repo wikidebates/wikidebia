@@ -1,7 +1,7 @@
 {
-  "normative_revision": "1.2.69",
-  "recommended_validator_version": "0.4.72",
-  "recommended_kit_version": "2.15.53",
+  "normative_revision": "1.2.70",
+  "recommended_validator_version": "0.4.73",
+  "recommended_kit_version": "2.15.54",
   "compatible_from": "1.1.0",
   "translation_modes": [
     "pending",
@@ -44,6 +44,7 @@
     "La révision 1.2.66 rend exécutables la filiation champ-à-champ, les preuves sémantiques par champ et la convergence finale à deux passes, avec concept_id stable et régressions multiligne.",
     "La révision 1.2.67 ajoute la revue explicite des changements idiomatiques, le corpus réel de régressions, l’alignement des marqueurs et les preuves par champ de Debate.",
     "La révision 1.2.68 durcit la preuve d’indépendance des passes de convergence par familles normalisées et ajoute des régressions dédiées established-name→keyword et parsing multiligne de publication, sans changement éditorial.",
-    "La révision 1.2.69 renomme les paramètres MediaWiki sujet-complet/complete-topic et débat-détaillé/detailed-debate en sujet-développé/expanded-topic et débat-dédié/dedicated-debate ; les anciens noms restent lisibles comme alias de format historique."
+    "La révision 1.2.69 renomme les paramètres MediaWiki sujet-complet/complete-topic et débat-détaillé/detailed-debate en sujet-développé/expanded-topic et débat-dédié/dedicated-debate ; les anciens noms restent lisibles comme alias de format historique.",
+    "La révision 1.2.70 corrige uniquement l’alignement du validateur : initialization n’est jamais projeté vers une nouvelle traduction anglaise et creation-date n’est jamais dérivée de date-création française."
   ]
 }

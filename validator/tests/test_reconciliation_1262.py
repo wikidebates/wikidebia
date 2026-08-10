@@ -7,7 +7,7 @@ NORM = ROOT / 'normative_reference' / '01_normes'
 
 def test_reconciliation_has_single_active_norm_and_noncolliding_requirements():
     active = sorted(p.name for p in NORM.glob('WIKIDEBIA_NORME_CONSOLIDEE_*.md'))
-    assert active == ['WIKIDEBIA_NORME_CONSOLIDEE_1.2.69.md']
+    assert active == ['WIKIDEBIA_NORME_CONSOLIDEE_1.2.70.md']
     data = json.loads((NORM / 'requirements_catalog_wikidebia.json').read_text(encoding='utf-8'))
     rows = data['requirements']
     ids = [row['id'] for row in rows]
@@ -25,7 +25,7 @@ def test_reconciliation_preserves_both_branch_histories():
     history = NORM / 'history'
     assert (history / 'translation_branch' / 'WIKIDEBIA_NORME_CONSOLIDEE_1.2.61__translation_branch.md').is_file()
     assert (history / 'parallel_publication_branch' / 'WIKIDEBIA_NORME_CONSOLIDEE_1.2.60__github_8b46816.md').is_file()
-    active = (NORM / 'WIKIDEBIA_NORME_CONSOLIDEE_1.2.69.md').read_text(encoding='utf-8')
+    active = (NORM / 'WIKIDEBIA_NORME_CONSOLIDEE_1.2.70.md').read_text(encoding='utf-8')
     assert 'Translation of the French page: [[:fr:X|X]]' in active
     assert 'AI-translated quote' in active
     assert '`nom-consacré=` / `established-name=`' in active or 'nom-consacré' in active and 'established-name' in active

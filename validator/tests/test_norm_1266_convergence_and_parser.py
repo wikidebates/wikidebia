@@ -55,7 +55,7 @@ def test_semantic_convergence_validator_accepts_two_distinct_clean_passes(tmp_pa
     (tmp_path / "reviews/en/translation_review.json").write_text(json.dumps(review), encoding="utf-8")
     (tmp_path / "reviews/en/semantic_convergence_review.json").write_text(json.dumps(receipt), encoding="utf-8")
     manifest={"editorial_controls":{"translation_semantic_review_schema_version":"1.3","semantic_convergence_review_path":"reviews/en/semantic_convergence_review.json","semantic_convergence_review_schema_version":"1.1"},"translation_status":{"en":"ready"}}
-    ctx=PackageContext(tmp_path, Report("0.4.72", str(tmp_path), ["editorial"]), cache={"manifest.json":manifest})
+    ctx=PackageContext(tmp_path, Report("0.4.73", str(tmp_path), ["editorial"]), cache={"manifest.json":manifest})
     metrics=_validate_semantic_convergence(ctx, manifest["editorial_controls"], False)
     assert metrics["status"] == "converged"
     assert not [f for f in ctx.report.findings if f.code == "WDV-BIL-009" and f.level == "ERROR"]
@@ -71,7 +71,7 @@ def test_semantic_convergence_validator_rejects_same_method(tmp_path: Path):
     (tmp_path/"reviews/en/translation_review.json").write_text(json.dumps(review),encoding="utf-8")
     (tmp_path/"reviews/en/semantic_convergence_review.json").write_text(json.dumps(receipt),encoding="utf-8")
     manifest={"editorial_controls":{"translation_semantic_review_schema_version":"1.3","semantic_convergence_review_path":"reviews/en/semantic_convergence_review.json","semantic_convergence_review_schema_version":"1.1"},"translation_status":{"en":"ready"}}
-    ctx=PackageContext(tmp_path, Report("0.4.72", str(tmp_path), ["editorial"]), cache={"manifest.json":manifest})
+    ctx=PackageContext(tmp_path, Report("0.4.73", str(tmp_path), ["editorial"]), cache={"manifest.json":manifest})
     _validate_semantic_convergence(ctx, manifest["editorial_controls"], False)
     assert any(f.code == "WDV-BIL-009" and f.level == "ERROR" for f in ctx.report.findings)
 
@@ -87,7 +87,7 @@ def test_semantic_convergence_validator_rejects_distinct_methods_from_same_famil
     (tmp_path/"reviews/en/translation_review.json").write_text(json.dumps(review),encoding="utf-8")
     (tmp_path/"reviews/en/semantic_convergence_review.json").write_text(json.dumps(receipt),encoding="utf-8")
     manifest={"editorial_controls":{"translation_semantic_review_schema_version":"1.4","semantic_convergence_review_path":"reviews/en/semantic_convergence_review.json","semantic_convergence_review_schema_version":"1.1"},"translation_status":{"en":"ready"}}
-    ctx=PackageContext(tmp_path, Report("0.4.72", str(tmp_path), ["editorial"]), cache={"manifest.json":manifest})
+    ctx=PackageContext(tmp_path, Report("0.4.73", str(tmp_path), ["editorial"]), cache={"manifest.json":manifest})
     _validate_semantic_convergence(ctx, manifest["editorial_controls"], False)
     errors=[f for f in ctx.report.findings if f.code == "WDV-BIL-009" and f.level == "ERROR"]
     assert errors

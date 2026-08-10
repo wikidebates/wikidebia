@@ -500,7 +500,11 @@ FR_EN_METADATA_VALUE_MAP = {
 }
 FR_EN_METADATA_PARAMETERS = {
     'debate': [('avancement','progress'), ('avertissements-titre','title-warnings'), ('avertissements-débat','debate-warnings')],
-    'argument': [('initialisation','initialization'), ('avertissements-titre','title-warnings'), ('avertissements-argument','argument-warnings'), ('avertissements-résumé','summary-warnings'), ('avertissements-références','reference-warnings'), ('avertissements-justifications','justification-warnings'), ('avertissements-objections','objection-warnings'), ('débat-dédié','dedicated-debate')],
+    # `initialisation` is a source-wiki page identifier and is deliberately not
+    # projected to English. New translated Arguments must never carry
+    # `initialization`; historical English pages remain governed by lifecycle
+    # preservation independently of this translation mapping.
+    'argument': [('avertissements-titre','title-warnings'), ('avertissements-argument','argument-warnings'), ('avertissements-résumé','summary-warnings'), ('avertissements-références','reference-warnings'), ('avertissements-justifications','justification-warnings'), ('avertissements-objections','objection-warnings'), ('débat-dédié','dedicated-debate')],
 }
 
 def _translated_english_source_template(ctx: PackageContext, page_manifest: dict[str, Any] | None) -> Template | None:
@@ -579,10 +583,12 @@ def _prepare_source_authoritative_translation(ctx: PackageContext, spec: dict[st
             ctx.report.error('WDV-MWK-023', f'Valeur française non reconnue pour la traduction de {fr_name}', path=rel, details={'page_id': page_manifest.get('page_id'), 'source_value': src})
         elif actual != expected:
             ctx.report.error('WDV-MWK-023', f'Valeur traduite incorrecte pour {en_name}', path=rel, details={'page_id': page_manifest.get('page_id'), 'source_value': src, 'expected': expected, 'actual': actual})
-    # Creation dates are preserved exactly across the translation.
-    source_date=source_params.get('date-création'); target_date=target_params.get('creation-date')
-    if source_date is not None and target_date != source_date:
-        ctx.report.error('WDV-MWK-023', 'La date de création anglaise ne correspond pas à la page française source', path=rel, details={'page_id': page_manifest.get('page_id'), 'expected': source_date, 'actual': target_date})
+    # `creation-date` is intentionally independent from the French
+    # `date-création` for a new translated page: the publisher replaces it with
+    # the civil day of the first remote English creation. Shape/order checks
+    # still require the parameter locally, while publication enforces the
+    # runtime date and midnight boundary. Preexisting English pages are handled
+    # by the lifecycle-preservation contract below.
     return True
 
 def _argument_established_name_parameters(lang: str) -> tuple[str, str]:

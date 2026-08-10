@@ -1,8 +1,7 @@
-Wikidéb’IA Validator 0.4.72 — rapport de tests
+Wikidéb’IA Validator 0.4.73 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 390
-Tests pytest : 390 réussis
-Norme active : 1.2.69
-Kit recommandé : 2.15.53
-Migration des paramètres MediaWiki 1.2.69, compatibilité historique, baselines, rendu/validation et non-régression : PASSED.
-Ordre normal et ordre de fichiers inversé : PASSED.
+Tests pytest collectés : 396
+Tests pytest : 396 réussis
+Norme active : 1.2.70
+Kit recommandé : 2.15.54
+Métadonnées translated_english, préservation historique, renommage 1.2.69 et historiques de version : PASSED.
