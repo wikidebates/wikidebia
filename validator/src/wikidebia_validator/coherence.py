@@ -185,6 +185,27 @@ def validate_argument_name_discovery(ctx: PackageContext, manifest: dict[str, An
         for page in manifest.get("pages") or []
         if page.get("page_type") == "argument" and page.get("page_origin") == "new"
     }
+    # Before deterministic MediaWiki rendering, manifest.pages may still be empty.
+    # Translation/content locks are authoritative for page origin and canonical title
+    # at that stage, so use them as an additional source instead of rejecting the
+    # kit's own pre-render translation artifact.
+    for language, lock_path in (("fr", "data/fr_content_lock.json"), ("en", "data/en_content_lock.json")):
+        lock = ctx.load_json(lock_path)
+        if not isinstance(lock, dict):
+            continue
+        for argument in lock.get("arguments") or []:
+            if not isinstance(argument, dict) or argument.get("page_origin") != "new":
+                continue
+            page_id = str(argument.get("id") or "")
+            if not page_id:
+                continue
+            new_arguments.setdefault((language, page_id), {
+                "language": language,
+                "page_id": page_id,
+                "page_type": "argument",
+                "page_origin": "new",
+                "canonical_title": argument.get("canonical_title"),
+            })
     if not new_arguments and not rel:
         return
     if new_arguments and not rel:
@@ -197,6 +218,8 @@ def validate_argument_name_discovery(ctx: PackageContext, manifest: dict[str, An
         return
     if data.get("debate_id") != manifest.get("debate_id"):
         ctx.report.error("WDV-EDT-032", "Revue de recherche des noms rattachée à un autre débat", path=str(rel))
+    review_version = str(data.get("version") or "")
+    provenance_required = review_version in {"wikidebia-argument-name-discovery-review-1.1", "wikidebia-argument-name-discovery-review-1.2"}
     seen: set[tuple[str, str]] = set()
     for row in data.get("entries") or []:
         key = (str(row.get("language") or ""), str(row.get("page_id") or ""))
@@ -212,13 +235,32 @@ def validate_argument_name_discovery(ctx: PackageContext, manifest: dict[str, An
             ctx.report.error("WDV-EDT-032", "Titre divergent dans la revue de recherche de nom", path=str(rel), details={"page_id": key[1], "expected": page.get("canonical_title"), "actual": row.get("title")})
         if row.get("search_reviewed") is not True or len(row.get("search_queries") or []) < 2:
             ctx.report.error("WDV-EDT-032", "Recherche documentaire insuffisamment attestée pour le nom d’argument", path=str(rel), details={"page_id": key[1]})
+        if provenance_required:
+            provenance = str(row.get("search_provenance") or "")
+            provenance_note = str(row.get("search_provenance_note") or "").strip()
+            if provenance not in {"actual_log", "fresh_recheck", "historical_reconstruction"} or len(provenance_note) < 12:
+                ctx.report.error("WDV-EDT-032", "Provenance de la recherche de nom absente ou invalide", path=str(rel), details={"page_id": key[1], "search_provenance": provenance})
+            if key[0] == "en" and page.get("page_origin") == "new" and provenance == "historical_reconstruction":
+                ctx.report.error("WDV-EDT-032", "Une page anglaise nouvelle ne peut pas présenter une reconstruction historique comme journal de recherche de nom", path=str(rel), details={"page_id": key[1]})
         outcome = row.get("outcome")
         if outcome == "known_name":
             if not str(row.get("name") or "").strip() or not (row.get("evidence") or []):
                 ctx.report.error("WDV-EDT-032", "Nom consacré déclaré sans appellation ou preuve documentaire", path=str(rel), details={"page_id": key[1]})
+            name_value = str(row.get("name") or "").strip()
+            if key[0] == 'en' and name_value:
+                first_alpha = next((char for char in name_value if char.isalpha()), '')
+                if first_alpha and not first_alpha.isupper():
+                    ctx.report.error("WDV-EDT-032", "Le champ name= anglais est un sous-titre et doit commencer par une majuscule", path=str(rel), details={"page_id": key[1], "name": name_value})
             for field in ("same_reasoning_confirmed", "non_invented_label_confirmed", "language_fit_confirmed"):
                 if row.get(field) is not True:
                     ctx.report.error("WDV-EDT-032", f"Attestation manquante pour un nom consacré : {field}", path=str(rel), details={"page_id": key[1]})
+            if review_version == "wikidebia-argument-name-discovery-review-1.2":
+                if len(str(row.get("page_reasoning_scope_summary") or "").strip()) < 12:
+                    ctx.report.error("WDV-EDT-032", "Portée du raisonnement de la page insuffisamment décrite", path=str(rel), details={"page_id": key[1]})
+                if len(str(row.get("literature_name_scope_summary") or "").strip()) < 12:
+                    ctx.report.error("WDV-EDT-032", "Portée de l’appellation dans la littérature insuffisamment décrite", path=str(rel), details={"page_id": key[1]})
+                if row.get("scope_relation") != "exact_match" or row.get("scope_identity_confirmed") is not True:
+                    ctx.report.error("WDV-EDT-032", "Le nom consacré ne peut être retenu sans identité exacte de portée", path=str(rel), details={"page_id": key[1], "scope_relation": row.get("scope_relation")})
         elif outcome == "none":
             if row.get("name") is not None:
                 ctx.report.error("WDV-EDT-032", "Une recherche conclue sans nom ne peut fournir de valeur d’appellation consacrée", path=str(rel), details={"page_id": key[1]})

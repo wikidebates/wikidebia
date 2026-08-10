@@ -1025,7 +1025,14 @@ Le profil de modification est distinct du profil de création. Il part de l’é
 
 `Argument généré par IA`, `Débat généré par IA` et leurs équivalents anglais sont des marqueurs de **création automatisée**. Ils ne sont jamais ajoutés rétroactivement à une page préexistante et ne remplacent jamais un avertissement historique (`Argument saugrenu`, avertissement de titre, de résumé, de références, etc.).
 
+## 6.5 Canonical documentary resource identity (1.2.58)
 
-## Complément 1.2.59 — date de publication anglaise
+Rendered documentary notices continue to follow the language and page-specific profile, but identity is no longer inferred from rendered wording. A corpus-wide resource registry binds DOI/URL/fingerprint identity to every source record. Localized titles, edition-specific metadata and usage roles remain in the source ledger; the global registry exists to prevent one stable identifier from silently naming incompatible resources.
 
-Dans un rendu local de traduction anglaise, `creation-date` peut être provisoire afin que le paquet reste validable. Pour une création distante FR→EN, le moteur de publication remplace uniquement cette valeur par la date du jour de publication. Il bloque aussi tout nouvel `Argument` anglais contenant `initialization`.
+## Profil réconcilié de publication FR→EN — 1.2.62
+
+Pour une nouvelle page `Argument`, le paramètre d'appellation consacrée rendu est `nom-consacré=` en français et `established-name=` en anglais. Les anciens `nom=` / `name=` ne sont conservés que lorsqu'une page préexistante les possède et que la préservation est attestée. Les champs JSON internes gardent leurs noms techniques historiques.
+
+Une nouvelle traduction anglaise d'`Argument` n'émet pas `initialization=`. Toute nouvelle page anglaise traduite conserve localement un `creation-date=` provisoire si le paquet en a besoin pour sa validation ; au plan de publication, seule cette valeur est remplacée par le jour civil réel de création distante. Le jour est revérifié avant chaque écriture.
+
+Toute `Quote` nouvellement traduite utilise l'avertissement `AI-translated quote`. Les modèles historiques contenant l'ancienne formulation restent préservés lorsqu'ils sont attestés comme existants.

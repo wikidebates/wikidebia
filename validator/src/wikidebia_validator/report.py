@@ -10,8 +10,6 @@ def portable_display_path(value: str | Path) -> str:
     raw = Path(value).expanduser()
     if not raw.is_absolute():
         return raw.as_posix() or "."
-    # Un chemin absolu local ne doit jamais dépendre du dossier courant :
-    # conserver uniquement le nom final évite toute fuite partielle de chemin.
     return raw.name or "."
 
 
@@ -29,6 +27,21 @@ class Finding:
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
+
+
+LAYER_SCOPES = {
+    "structural": {"schema", "coherence", "graph", "batches", "files", "wikicode", "bilingual", "workflow"},
+    "documentary": {"sources", "wikicode", "editorial"},
+    "semantic_review": {"bilingual", "editorial"},
+}
+
+
+def finding_layer(code: str) -> str:
+    if code.startswith("WDV-SRC-") or code.startswith("WDV-DOC-") or code in {"WDV-MWK-012", "WDV-MWK-014", "WDV-MWK-021", "WDV-MWK-024"}:
+        return "documentary"
+    if code.startswith("WDV-EDT-") or code in {"WDV-BIL-006", "WDV-BIL-007"}:
+        return "semantic_review"
+    return "structural"
 
 
 class Report:
@@ -66,12 +79,44 @@ class Report:
     def infos(self) -> int:
         return sum(f.level == "INFO" for f in self.findings)
 
+    def _layer_status(self, layer: str) -> dict[str, Any]:
+        selected = set(self.scopes)
+        if "all" in selected:
+            selected = set().union(*LAYER_SCOPES.values())
+        if layer == "fresh_archive":
+            return {
+                "status": "not_run",
+                "errors": 0,
+                "warnings": 0,
+                "infos": 0,
+                "meaning": "Ce statut ne peut être établi qu'après création puis réextraction de l'archive exacte; il est scellé par le workflow de release.",
+            }
+        if not (selected & LAYER_SCOPES[layer]):
+            return {"status": "not_run", "errors": 0, "warnings": 0, "infos": 0, "meaning": "Les portées nécessaires n'ont pas été exécutées."}
+        findings = [f for f in self.findings if finding_layer(f.code) == layer]
+        errors = sum(f.level == "ERROR" for f in findings)
+        warnings = sum(f.level == "WARNING" for f in findings)
+        infos = sum(f.level == "INFO" for f in findings)
+        status = "failed" if errors else ("passed_with_warnings" if warnings else "passed")
+        meanings = {
+            "structural": "Schémas, fichiers, graphe, wikicode, cohérence et workflow automatisables.",
+            "documentary": "Identité, langue, usages, métadonnées et cohérence normalisée des ressources documentaires.",
+            "semantic_review": "Heuristiques bilingues et présence/cohérence des attestations humaines encodées; ce statut ne remplace pas la lecture humaine elle-même.",
+        }
+        return {"status": status, "errors": errors, "warnings": warnings, "infos": infos, "meaning": meanings[layer]}
+
+    def validation_layers(self) -> dict[str, Any]:
+        return {layer: self._layer_status(layer) for layer in ("structural", "documentary", "semantic_review", "fresh_archive")}
+
     def to_dict(self) -> dict[str, Any]:
         return {
             "validator_version": self.validator_version,
             "package_root": self.package_root,
             "scopes": self.scopes,
             "result": "failed" if self.errors else ("passed_with_warnings" if self.warnings else "passed"),
+            "result_scope": "automated_validation",
+            "result_meaning": "Automated structural, documentary and encoded editorial checks only; bilingual semantic fidelity still depends on the required human review attestations.",
+            "validation_layers": self.validation_layers(),
             "summary": {"errors": self.errors, "warnings": self.warnings, "infos": self.infos},
             "metrics": self.metrics,
             "findings": [f.to_dict() for f in self.findings],
@@ -95,5 +140,9 @@ class Report:
         if not self.findings:
             lines.append("Aucune anomalie détectée.")
         lines += ["", f"Erreurs : {self.errors} | Avertissements : {self.warnings} | Informations : {self.infos}"]
-        lines.append("VALIDATION GLOBALE : " + ("ÉCHOUÉE" if self.errors else "RÉUSSIE"))
+        lines.append("VALIDATION AUTOMATISÉE GLOBALE : " + ("ÉCHOUÉE" if self.errors else "RÉUSSIE"))
+        lines.append("Statuts par couche :")
+        for name, row in self.validation_layers().items():
+            lines.append(f"- {name}: {row['status']} (erreurs={row['errors']}, avertissements={row['warnings']})")
+        lines.append("Portée du verdict : contrôles automatisés et attestations encodées ; la fidélité sémantique bilingue requiert la revue humaine prévue par la norme.")
         return "\n".join(lines) + "\n"

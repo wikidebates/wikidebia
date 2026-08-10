@@ -1,7 +1,7 @@
 {
-  "catalog_version": "1.1.0",
+  "catalog_version": "1.2.0",
   "draft": "https://json-schema.org/draft/2020-12/schema",
-  "schema_count": 22,
+  "schema_count": 24,
   "schemas": [
     {
       "path": "archive_receipt.schema.json",
@@ -37,6 +37,11 @@
       "path": "debate_package.schema.json",
       "id": "debate_package.schema.json",
       "title": "Wikidéb'IA — Manifeste du paquet d'un débat"
+    },
+    {
+      "path": "documentary_resource_registry.schema.json",
+      "id": "documentary_resource_registry.schema.json",
+      "title": "Wikidéb'IA — Registre global normalisé des ressources documentaires"
     },
     {
       "path": "handoff.schema.json",
@@ -112,6 +117,11 @@
       "path": "summary_style_review.schema.json",
       "id": "summary_style_review.schema.json",
       "title": "Wikidéb'IA — Revue individuelle des résumés"
+    },
+    {
+      "path": "validation_report.schema.json",
+      "id": "wikidebia-validator-report.schema.json",
+      "title": "Rapport structuré du validateur Wikidéb'IA"
     }
   ]
 }

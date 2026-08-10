@@ -284,6 +284,36 @@ Une vérification supplémentaire a montré qu’un plan entièrement `skip` doi
 
 
 
+## Décision du 9 août 2026 — validation différentielle du contenu traduit
+
+1. Les contenus français validés ne sont pas réédités silencieusement pendant leur traduction anglaise.
+2. Une propriété formelle déjà présente et acceptée dans le `titre-affiché` français — question, impératif, intitulé thématique, groupe nominal, étiquette doctrinale ou autre — peut être conservée dans une traduction fidèle.
+3. Si la source française satisfait une propriété de forme, la traduction ne peut la dégrader : une proposition source ne devient pas fragment, question, impératif ou simple intitulé par raccourcissement.
+4. La revue traduit le sens complet et compare explicitement sujet, prédicat, polarité, modalité, attribution, quantificateurs, degré, temporalité, conditions, causalité/concession et portée.
+5. `name=` est un sous-titre et commence par une majuscule ; un keyword conserve la casse lexicale de son vocabulaire et n’est jamais créé automatiquement depuis `name=`.
+6. Les ratios et heuristiques sont des détecteurs de risque, pas des objectifs de rédaction.
+7. Les anciennes requêtes de recherche manquantes ne sont jamais fabriquées rétroactivement ; une reconstruction historique est identifiée comme telle.
+8. La preuve finale porte sur l’archive exacte : ZIP scellé, SHA-256, extraction neuve et validation complète de cette extraction.
+
+
+## Correctif du 9 août 2026 — extension de la validation différentielle
+
+1. Les corrections issues des audits doivent être intégrées au paquet, aux consignes, aux normes et au validateur lorsqu’elles généralisent un défaut reproductible.
+2. Le contrôle sémantique différentiel ne se limite pas au `displayed-title` : un titre canonique traduit doit conserver tous les éléments décisifs de la proposition française.
+3. La page `Debate` est comparée FR→EN au niveau de ses affirmations et distinctions, pas seulement de sa structure et de sa documentation.
+4. Le validateur doit indiquer clairement que son verdict `passed` porte sur les contrôles automatisés et les attestations encodées ; il ne remplace pas la revue humaine de fidélité sémantique.
+
+## Décision du 9 août 2026 — registre documentaire global, statuts multicouches et moteur sémantique
+
+1. Une ressource documentaire possède une identité canonique distincte de ses usages de page et de langue. Le corpus maintient un registre global normalisé par DOI, URL canonique ou empreinte bibliographique de dernier recours.
+2. Une même identité DOI/URL ne peut porter, dans une même langue, des titres d’ouvrage/page incompatibles. Les variantes purement typographiques et les paramètres de suivi d’URL ne créent pas de nouvelles identités.
+3. `sources.json` reste le registre des usages éditoriaux et linguistiques ; le registre global des ressources est déterministe, lié par SHA-256 à la version exacte de `sources.json` et régénérable sans mémoire conversationnelle.
+4. Le verdict de validation est exposé en quatre couches distinctes : `structural`, `documentary`, `semantic_review`, `fresh_archive`. Une couche non exécutée est explicitement `not_run`; un `passed` global n’efface jamais cette distinction.
+5. `fresh_archive` ne peut être attesté à l’intérieur de l’archive qu’il décrit. Il est scellé dans le reçu externe après création du ZIP exact, contrôle CRC/sûreté, extraction dans un dossier vierge et revalidation complète.
+6. Le moteur bilingue de marqueurs sémantiques compare systématiquement les titres canoniques, les titres affichés et les résumés. Il couvre au minimum négation, modalité, attribution, quantificateurs, fréquence, nécessité/possibilité, restriction, condition, causalité, conséquence, concession, comparaison, intensité et immédiateté.
+7. Une perte détectée par ce moteur est un signal de revue, pas une preuve autonome d’erreur : la traduction peut exprimer un marqueur par paraphrase idiomatique. Le moteur n’effectue aucune réécriture automatique.
+8. Comme pour les autres règles de traduction, ces contrôles sont différentiels : une propriété formelle héritée et validée dans la source française n’est pas corrigée rétroactivement ; seule la perte ou la dégradation introduite par la traduction est visée.
+
 ## Décision du 9 août 2026 — conventions futures de publication FR→EN
 
 Pour les prochains débats traduits du français vers l’anglais :
@@ -303,3 +333,7 @@ Le propriétaire renomme exclusivement le deuxième paramètre top-level du mod�
 
 - Lors de la création d’un nouvel Argument anglais traduit depuis le français, ne pas publier `initialization`, car l’identifiant de page parent français n’est pas portable sur le wiki anglais.
 - Ne pas traduire ni recopier `date-création` française : publier `creation-date` avec la date du jour au moment de la création de la page anglaise.
+
+## Décision de réconciliation du 10 août 2026 — fusion des deux lignées
+
+La lignée de traduction/validation 1.2.61 et la lignée de publication GitHub `8b46816` sont fusionnées sans réécriture de leur histoire. Les conventions de publication déjà utilisées sur le wiki anglais et pour les liens interlangues français sont conservées. Les renforcements différentiels, documentaires, sémantiques et de scellement de la lignée 1.2.61 restent actifs. Les collisions d'identifiants normatifs sont résolues par de nouveaux identifiants dans 1.2.62, sans réaffecter rétroactivement un identifiant déjà publié.

@@ -1,5 +1,9 @@
-# Audit normatif du validateur 0.4.49
+# Audit normatif du validateur 0.4.67
 
-- norme active 1.2.46 ;
-- contrôle `WDV-EDT-029` et tests positifs/négatifs présents ;
-- copie normative synchronisée avec le paquet de normes.
+- norme active unique : 1.2.64 ;
+- 484 exigences uniques ;
+- 100 alias de provenance résolus ;
+- copie normative identique au paquet Normes sur 86 fichiers ;
+- terminologie active : `nom-consacré` / `established-name`, `AI-translated quote` ;
+- continuité de compatibilité : 1.2.62, 1.2.63 et 1.2.64 présentes une seule fois ;
+- exigences de publication et de traduction toutes conservées après fusion.

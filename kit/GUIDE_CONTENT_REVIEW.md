@@ -37,7 +37,7 @@ Aucune proposition produite par une heuristique n’est appliquée automatiqueme
 
 ## Recherche d’un nom consacré pour un argument nouveau
 
-Cette exigence relève du contrat général de génération 1.2.53. La commande `corpus-workspace-content-review` ci-dessus part d’un snapshot importé et ne crée donc pas elle-même de nouvel argument français. Lorsqu’un corpus généré contient des pages `Argument` françaises nouvelles, il doit fournir `reviews/argument_name_discovery_review.json` avant validation ; le validateur 0.4.64 bloque toute page nouvelle non couverte. La phase de traduction anglaise du kit construit la partie anglaise de ce registre pour les pages anglaises nouvelles.
+Cette exigence relève du contrat général de génération 1.2.53. La commande `corpus-workspace-content-review` ci-dessus part d’un snapshot importé et ne crée donc pas elle-même de nouvel argument français. Lorsqu’un corpus généré contient des pages `Argument` françaises nouvelles, il doit fournir `reviews/argument_name_discovery_review.json` avant validation ; le validateur 0.4.61 bloque toute page nouvelle non couverte. La phase de traduction anglaise du kit construit la partie anglaise de ce registre pour les pages anglaises nouvelles.
 
 La recherche est **obligatoire**, mais l’ajout d’un nom ne l’est pas. Le cas normal est `outcome=none`. Il ne faut jamais chercher à augmenter artificiellement le nombre de pages possédant `nom-consacré=`.
 

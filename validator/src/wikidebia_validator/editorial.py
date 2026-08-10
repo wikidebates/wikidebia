@@ -174,6 +174,100 @@ def displayed_title_argument_issues(title: str, language: str) -> list[str]:
         return []
     return ['missing_explicit_predicate']
 
+SEMANTIC_MARKERS = {
+    'attribution': (
+        re.compile(r"\b(?:cens[ée]e?s?|pr[ée]tendu(?:e|es|s)?|attribu[ée]e?s?|imput[ée]e?s?|selon|d['’]apr[èe]s)\b", re.I),
+        re.compile(r"\b(?:supposed|alleged|purported|attributed|ascribed|according\s+to)\b", re.I),
+    ),
+    'universal_quantifier': (re.compile(r"\b(?:tous|toutes|tout|chaque)\b", re.I), re.compile(r"\b(?:all|every|each)\b", re.I)),
+    'existential_quantifier': (re.compile(r"\b(?:certains|certaines|quelques)\b", re.I), re.compile(r"\b(?:some|certain|a\s+few)\b", re.I)),
+    'many_quantifier': (re.compile(r"\b(?:beaucoup|nombreux|nombreuses|innombrables)\b", re.I), re.compile(r"\b(?:many|numerous|countless|a\s+great\s+many|a\s+great\s+deal)\b", re.I)),
+    'frequency_often': (re.compile(r"\bsouvent\b", re.I), re.compile(r"\b(?:often|frequently)\b", re.I)),
+    'frequency_always': (re.compile(r"\b(?:toujours|de\s+tous\s+temps)\b", re.I), re.compile(r"\b(?:always|throughout\s+history|at\s+all\s+times)\b", re.I)),
+    'necessity': (re.compile(r"\b(?:n[ée]cessaire|n[ée]cessairement|doit|doivent)\b", re.I), re.compile(r"\b(?:necessary|necessarily|must|has\s+to|have\s+to)\b", re.I)),
+    'possibility': (re.compile(r"\b(?:peut|peuvent|pourrait|pourraient|possible|possiblement)\b", re.I), re.compile(r"\b(?:can|could|may|might|possible|possibly)\b", re.I)),
+    'restriction_only': (re.compile(r"\b(?:seulement|uniquement|simplement)\b|\bne\b[^,.;:!?]{0,80}\bque\b", re.I), re.compile(r"\b(?:only|merely|simply|nothing\s+but)\b", re.I)),
+    'negation': (re.compile(r"\b(?:ne|n['’])[^,.;:!?]{0,60}\b(?:pas|plus|jamais|aucun|aucune)\b|\b(?:sans|impossible)\b", re.I), re.compile(r"\b(?:not|no|never|without|impossible|cannot|can't|doesn't|don't|isn't|aren't|won't|wouldn't|couldn't)\b", re.I)),
+    'condition': (re.compile(r"\b(?:si|m[êe]me\s+si|[àa]\s+condition\s+que)\b", re.I), re.compile(r"\b(?:if|even\s+if|provided\s+that|assuming\s+that)\b", re.I)),
+    'causal_link': (re.compile(r"\b(?:car|parce\s+que|puisque|en\s+raison\s+de)\b", re.I), re.compile(r"\b(?:because|since|because\s+of|due\s+to)\b", re.I)),
+    'consequence_link': (re.compile(r"\b(?:donc|par\s+cons[ée]quent|ce\s+qui|ainsi)\b", re.I), re.compile(r"\b(?:therefore|thus|hence|so|which)\b", re.I)),
+    'concession': (re.compile(r"\b(?:m[êe]me\s+si|bien\s+que|quoique|cependant|n[ée]anmoins)\b", re.I), re.compile(r"\b(?:even\s+if|although|though|however|nevertheless)\b", re.I)),
+    'comparison': (re.compile(r"\b(?:plus|moins|davantage|autant|mieux|pire)\b", re.I), re.compile(r"\b(?:more|less|fewer|greater|better|worse|as\s+much|as\s+many)\b", re.I)),
+    'strong_intensity': (re.compile(r"\b(?:tr[èe]s|parfaitement|[ée]norm[ée]ment|fortement|radicalement)\b", re.I), re.compile(r"\b(?:very|perfectly|enormously|strongly|radically|far\s+more)\b", re.I)),
+    'immediacy': (re.compile(r"\b(?:aussit[oô]t|imm[ée]diatement)\b", re.I), re.compile(r"\b(?:at\s+once|immediately|straightaway)\b", re.I)),
+}
+
+
+def semantic_marker_inventory(text: str, language: str) -> list[str]:
+    index = 0 if language == 'fr' else 1
+    return sorted(label for label, patterns in SEMANTIC_MARKERS.items() if patterns[index].search(text or ''))
+
+
+def bilingual_semantic_marker_losses(fr_text: str, en_text: str) -> list[str]:
+    """Conservative FR→EN review signals; never an automatic translation verdict."""
+    fr_markers = set(semantic_marker_inventory(fr_text, 'fr'))
+    en_markers = set(semantic_marker_inventory(en_text, 'en'))
+    return sorted(fr_markers - en_markers)
+
+
+def bilingual_title_marker_losses(fr_title: str, en_title: str) -> list[str]:
+    return bilingual_semantic_marker_losses(fr_title, en_title)
+
+
+# Structured FR→EN semantic-risk patterns.  These are deliberately conservative
+# review signals: they never rewrite text and never constitute an automatic
+# verdict of mistranslation.  They encode regression classes observed in real
+# Wikidéb’IA translation audits that are not reducible to one missing keyword.
+GENERIC_DEITY_FR = re.compile(r"\b(?:un|une|aucun|aucune|quelque|des?)\s+dieu(?:x)?\b", re.I)
+GENERIC_DEITY_EN = re.compile(r"\b(?:a|an|no|any|some)\s+god\b|\bgods\b", re.I)
+PROPER_GOD_EN = re.compile(r"\bGod\b")
+EPISTEMIC_INFERENCE_FR = re.compile(r"\b(?:conduit|am[eè]ne|incite)\s+[àa]\s+(?:le\s+)?consid[ée]rer|\b(?:sugg[èe]re|semble|para[iî]t)|\bpeut\s+(?:indiquer|sugg[ée]rer)\b", re.I)
+EPISTEMIC_INFERENCE_EN = re.compile(r"\b(?:leads?\s+(?:us\s+)?to\s+(?:regard|consider|view)|suggests?|seems?|appears?|may\s+(?:indicate|suggest)|can\s+(?:indicate|suggest))\b", re.I)
+DIRECT_CATEGORICAL_EN = re.compile(r"\b(?:is|are|makes?|proves?|shows?)\b", re.I)
+ATTRIBUTED_PROPERTY_FR = re.compile(r"\b(?:attribu[ée]e?s?|imput[ée]e?s?|pr[ée]tendu(?:e|es|s)?|cens[ée]e?s?)\b", re.I)
+DIRECT_GOD_PROPERTY_EN = re.compile(r"\bGod['’]s\b|\bdivine\s+[A-Za-z]", re.I)
+QUANTITY_TIME_FR = re.compile(r"\bbeaucoup\s+de\s+temps\b", re.I)
+SUFFICIENCY_TIME_EN = re.compile(r"\b(?:sufficient|enough)\s+time\b", re.I)
+EQUIVALENCE_FR = re.compile(r"\b(?:cela|ça|ce)\s+revient\s+au\s+m[êe]me\b|\b[ée]quivaut\b", re.I)
+WEAK_SAME_PROBLEM_EN = re.compile(r"\b(?:raise|raises|pose|poses)\s+the\s+same\s+problem\b", re.I)
+IRRATIONAL_GOD_FR = re.compile(r"\bDieu\b[^.!?]{0,80}\b(?:objet\s+)?irrationnel\b", re.I)
+IRRATIONAL_BELIEF_EN = re.compile(r"\bbelief\s+in\s+(?:God|him)\b[^.!?]{0,40}\birrational\b", re.I)
+
+
+def bilingual_semantic_structure_signals(fr_text: str, en_text: str) -> list[str]:
+    """Return structured semantic-risk signals for human bilingual review.
+
+    The function intentionally detects only asymmetric patterns with a strong
+    chance of changing scope or logical force.  It is a review aid, not an
+    automatic translation judge.
+    """
+    fr = fr_text or ''
+    en = en_text or ''
+    signals: list[str] = []
+    if GENERIC_DEITY_FR.search(fr) and PROPER_GOD_EN.search(en) and not GENERIC_DEITY_EN.search(en):
+        signals.append('generic_deity_to_proper_God')
+    if ATTRIBUTED_PROPERTY_FR.search(fr) and DIRECT_GOD_PROPERTY_EN.search(en) and not SEMANTIC_MARKERS['attribution'][1].search(en):
+        signals.append('attributed_property_to_direct_property')
+    if EPISTEMIC_INFERENCE_FR.search(fr) and DIRECT_CATEGORICAL_EN.search(en) and not EPISTEMIC_INFERENCE_EN.search(en):
+        signals.append('epistemic_inference_to_categorical_assertion')
+    if QUANTITY_TIME_FR.search(fr) and SUFFICIENCY_TIME_EN.search(en):
+        signals.append('quantity_to_sufficiency')
+    if EQUIVALENCE_FR.search(fr) and WEAK_SAME_PROBLEM_EN.search(en):
+        signals.append('equivalence_weakened_to_same_problem')
+    if IRRATIONAL_GOD_FR.search(fr) and IRRATIONAL_BELIEF_EN.search(en):
+        signals.append('predicate_subject_shift_God_to_belief')
+    return sorted(set(signals))
+
+
+def displayed_title_translation_form_regression(fr_title: str, en_title: str) -> list[str]:
+    """Block only clear formal degradation introduced by FR→EN translation."""
+    fr_issues = displayed_title_argument_issues(fr_title, 'fr')
+    en_issues = displayed_title_argument_issues(en_title, 'en')
+    if not fr_issues and en_issues:
+        return ['source_proposition_target_nonproposition', *en_issues]
+    return []
+
+
 def displayed_title_issues(title: str, language: str) -> list[str]:
     """Return stable reason labels for malformed or truncated displayed titles."""
     value = title or ''
@@ -389,6 +483,42 @@ def _validate_documentary_registry(ctx: PackageContext) -> tuple[int, int]:
                 ctx.report.error('WDV-DOC-004', 'Le titre ou la page du registre documentaire duplique le nom du site et doit être omis', path=ctx.core_paths()['sources'], details={'source_id': source.get('id'), 'value': metadata.get('site'), 'source_type': source.get('type')})
             if site and site in authors:
                 ctx.report.error('WDV-DOC-004', 'Un auteur du registre reproduit le nom du site : une seconde recherche d’attribution est obligatoire et le champ doit être omis si aucun auteur distinct n’est identifié', path=ctx.core_paths()['sources'], details={'source_id': source.get('id'), 'value': metadata.get('site'), 'source_type': source.get('type'), 'authorship_rechecked_after_site_match': verification.get('authorship_rechecked_after_site_match')})
+    # 1.2.57: one canonical link/DOI must not claim incompatible identity
+    # metadata within a language. Missing optional metadata is not a conflict, and
+    # page/location locators may legitimately differ between citations of one work.
+    def _norm_identity_text(value: Any) -> str:
+        text = str(value or '').strip().casefold().replace('’', "'").replace('“', '"').replace('”', '"')
+        return re.sub(r'\s+', ' ', text)
+
+    by_resource: dict[tuple[str, str], list[dict[str, Any]]] = {}
+    for source in sources.get('sources', []):
+        metadata = source.get('metadata') or {}
+        locator = str(metadata.get('doi') or metadata.get('link') or source.get('doi') or source.get('link') or '').strip()
+        if not locator:
+            continue
+        language = str(source.get('language') or metadata.get('language') or '').strip().casefold()
+        by_resource.setdefault((language, locator), []).append(source)
+    identity_fields = ('article', 'work', 'title', 'date', 'publisher', 'site')
+    for (language, locator), rows in by_resource.items():
+        if len(rows) < 2:
+            continue
+        conflicts: dict[str, list[str]] = {}
+        for field in identity_fields:
+            values = sorted({_norm_identity_text((row.get('metadata') or {}).get(field)) for row in rows if _norm_identity_text((row.get('metadata') or {}).get(field))})
+            if len(values) > 1:
+                conflicts[field] = values
+        author_values = set()
+        for row in rows:
+            authors = (row.get('metadata') or {}).get('authors') or []
+            if isinstance(authors, str):
+                authors = [authors]
+            normalized = tuple(_norm_identity_text(a) for a in authors if _norm_identity_text(a))
+            if normalized:
+                author_values.add(normalized)
+        if len(author_values) > 1:
+            conflicts['authors'] = ['; '.join(value) for value in sorted(author_values)]
+        if conflicts:
+            ctx.report.error('WDV-DOC-009', 'Une même URL/DOI est décrite avec des métadonnées d’identité incompatibles dans la même langue', path=ctx.core_paths()['sources'], details={'language': language, 'locator': locator, 'source_ids': [str(r.get('id') or '') for r in rows], 'conflicts': conflicts})
     return (pagination_errors, date_errors)
 
 def _validate_debate_docs(ctx: PackageContext, manifest: dict[str, Any], controls: dict[str, Any], norm: str | None=None) -> dict[str, Any]:
@@ -703,7 +833,7 @@ def _visible_subsection_text(content: str, lang: str) -> str:
     text = re.sub('\\{\\{.*?\\}\\}', ' ', text, flags=re.S)
     return _normalized_visible_text(text)
 
-def validate_introduction_review_data(review: Any, actual_titles: dict[str, list[str]], norm: str | None=None, complete_topics: dict[str, str] | None=None, topics: dict[str, str] | None=None, introduction_policy_revision: str | None=None, inline_reference_punctuation_policy_revision: str | None=None, wikipedia_link_consistency_policy_revision: str | None=None, specialized_term_explanation_policy_revision: str | None=None, actual_contents: dict[str, dict[str, str]] | None=None) -> list[dict[str, Any]]:
+def validate_introduction_review_data(review: Any, actual_titles: dict[str, list[str]], norm: str | None=None, complete_topics: dict[str, str] | None=None, topics: dict[str, str] | None=None, introduction_policy_revision: str | None=None, inline_reference_punctuation_policy_revision: str | None=None, wikipedia_link_consistency_policy_revision: str | None=None, specialized_term_explanation_policy_revision: str | None=None, actual_contents: dict[str, dict[str, str]] | None=None, translation_semantic_review_schema_version: str='1.0') -> list[dict[str, Any]]:
     """Return stable inconsistencies in the bilingual introduction-review ledger."""
     issues: list[dict[str, Any]] = []
     if not isinstance(review, dict):
@@ -733,9 +863,16 @@ def validate_introduction_review_data(review: Any, actual_titles: dict[str, list
         policy_1245 = True
         policy_1246 = True
         required_intro_fields = INTRO_REVIEW_TRUE_FIELDS + ('information_density_reviewed', 'subsections_non_redundant', 'no_generic_stakes_filler', 'documentation_orientation_reviewed', 'youtube_authorship_reviewed', 'dedicated_stakes_subsection_present', 'stakes_consequences_concrete', 'stakes_not_argument_catalogue')
+        if translation_semantic_review_schema_version == '1.1' and lang == 'en':
+            required_intro_fields += ('canonical_title_semantic_inventory_reviewed', 'topic_semantic_equivalence_reviewed', 'complete_topic_semantic_equivalence_reviewed', 'introduction_claim_inventory_reviewed', 'subsection_structure_equivalence_reviewed')
         for field in required_intro_fields:
             if entry.get(field) is not True:
                 issues.append({'reason': 'attestation_false_or_missing', 'language': lang, 'field': field})
+        if translation_semantic_review_schema_version == '1.1' and lang == 'en':
+            if len(str(entry.get('canonical_title_semantic_inventory_note') or '').strip()) < 20:
+                issues.append({'reason': 'canonical_title_semantic_inventory_note', 'language': lang})
+            if len(str(entry.get('introduction_claim_inventory_note') or '').strip()) < 30:
+                issues.append({'reason': 'introduction_claim_inventory_note', 'language': lang})
         for field in ('complete_topic_fits_heading', 'debate_sections_precise', 'documentation_proportionate_to_literature'):
             if entry.get(field) is not True:
                 issues.append({'reason': field, 'language': lang})
@@ -987,7 +1124,7 @@ def _validate_introduction_review(ctx: PackageContext, manifest: dict[str, Any],
         actual_contents[lang] = {(sub.one(key) or '').strip(): (sub.one(content_key) or '').strip() for sub in subsections}
         complete_topics[lang] = (tmpl.one(complete_key) or '').strip()
         topics[lang] = (tmpl.one(topic_key) or '').strip()
-    issues = validate_introduction_review_data(review, actual_titles, norm=norm, complete_topics=complete_topics, topics=topics, introduction_policy_revision=controls.get('introduction_policy_revision'), inline_reference_punctuation_policy_revision=controls.get('inline_reference_punctuation_policy_revision'), wikipedia_link_consistency_policy_revision=controls.get('wikipedia_link_consistency_policy_revision'), specialized_term_explanation_policy_revision=controls.get('specialized_term_explanation_policy_revision'), actual_contents=actual_contents)
+    issues = validate_introduction_review_data(review, actual_titles, norm=norm, complete_topics=complete_topics, topics=topics, introduction_policy_revision=controls.get('introduction_policy_revision'), inline_reference_punctuation_policy_revision=controls.get('inline_reference_punctuation_policy_revision'), wikipedia_link_consistency_policy_revision=controls.get('wikipedia_link_consistency_policy_revision'), specialized_term_explanation_policy_revision=controls.get('specialized_term_explanation_policy_revision'), actual_contents=actual_contents, translation_semantic_review_schema_version=str(controls.get('translation_semantic_review_schema_version') or '1.0'))
     for issue in issues:
         reason = issue.get('reason')
         if reason in {'complete_topic_fits_heading', 'invalid_common_acronym', 'common_acronym_attestation', 'common_acronym_missing_from_complete_topic', 'topic_is_nominal_label', 'conventional_topic_label_used_or_not_applicable', 'complete_topic_lowercase_initial_or_justified', 'topic_label_rationale', 'complete_topic_initial_capital_justification', 'missing_topic'}:
@@ -1033,7 +1170,7 @@ def _validate_normative_non_regression(ctx: PackageContext, manifest: dict[str, 
             ctx.report.error('WDV-EDT-011', 'Handoff correctif courant incohérent', path=handoff_rel, details={'work_id': handoff.get('work_id'), 'normative_versions': nv, 'remote_operations_performed': handoff.get('remote_operations_performed'), 'expected_work': expected_work, 'expected_norm': norm, 'expected_validator': expected_validator})
     return {'active_norms': names, 'current_handoff': handoff_rel if isinstance(handoff, dict) else None}
 
-def validate_individual_review_data(review: Any, nodes: list[dict[str, Any]], norm: str | None=None, english_deferred: bool=False, displayed_title_policy_revision: str | None=None, displayed_title_policy_node_ids: set[str] | None=None) -> list[dict[str, Any]]:
+def validate_individual_review_data(review: Any, nodes: list[dict[str, Any]], norm: str | None=None, english_deferred: bool=False, displayed_title_policy_revision: str | None=None, displayed_title_policy_node_ids: set[str] | None=None, translation_validation_mode: str='absolute', translation_semantic_review_schema_version: str='1.0') -> list[dict[str, Any]]:
     """Return stable inconsistencies in a generic page-by-page editorial ledger."""
     issues: list[dict[str, Any]] = []
     if not isinstance(review, dict):
@@ -1065,12 +1202,56 @@ def validate_individual_review_data(review: Any, nodes: list[dict[str, Any]], no
             issues.append({'reason': 'canonical_referents_explicit', 'node_id': node_id})
         if entry.get('displayed_referents_explicit_fr') is not True or (not english_deferred and entry.get('displayed_referents_explicit_en') is not True):
             issues.append({'reason': 'displayed_referents_explicit', 'node_id': node_id})
-        required_title_attestations = ['displayed_title_complete_proposition_fr', 'displayed_title_argument_intelligible_fr']
+        current_differential = translation_validation_mode == 'differential'
+        if current_differential:
+            # The French source is authoritative in translation mode: attest its
+            # reviewed source form, but do not retroactively impose creation-form
+            # rules on historical content.
+            required_title_attestations = ['displayed_title_argument_intelligible_fr', 'displayed_title_source_form_reviewed_fr']
+        else:
+            required_title_attestations = ['displayed_title_complete_proposition_fr', 'displayed_title_argument_intelligible_fr']
         if not english_deferred:
-            required_title_attestations += ['displayed_title_complete_proposition_en', 'displayed_title_argument_intelligible_en']
+            if current_differential:
+                required_title_attestations += [
+                    'displayed_title_argument_intelligible_en',
+                    'displayed_title_source_form_reviewed_en',
+                    'displayed_title_no_formal_regression_en',
+                    'displayed_title_semantic_inventory_reviewed_en',
+                ]
+                if not displayed_title_argument_issues(str(fr.get('displayed_title') or ''), 'fr'):
+                    required_title_attestations.append('displayed_title_complete_proposition_en')
+            else:
+                required_title_attestations += ['displayed_title_complete_proposition_en', 'displayed_title_argument_intelligible_en']
         for field in required_title_attestations:
             if entry.get(field) is not True:
                 issues.append({'reason': field, 'node_id': node_id})
+        if current_differential and not english_deferred:
+            allowed_forms = {'proposition', 'question', 'imperative', 'thematic_label', 'nominal_phrase', 'doctrinal_label', 'other'}
+            source_form_fr = str(entry.get('displayed_title_source_form_fr') or '')
+            source_form_en = str(entry.get('displayed_title_source_form_en') or '')
+            target_form_en = str(entry.get('displayed_title_target_form_en') or '')
+            if source_form_fr not in allowed_forms or source_form_en not in allowed_forms or target_form_en not in allowed_forms:
+                issues.append({'reason': 'displayed_title_form_classification', 'node_id': node_id})
+            elif not (source_form_fr == source_form_en == target_form_en):
+                issues.append({'reason': 'displayed_title_form_regression', 'node_id': node_id, 'source_form_fr': source_form_fr, 'source_form_en': source_form_en, 'target_form_en': target_form_en})
+            if translation_semantic_review_schema_version in {'1.1', '1.2'}:
+                if entry.get('canonical_title_semantic_inventory_reviewed_en') is not True:
+                    issues.append({'reason': 'canonical_title_semantic_inventory_reviewed_en', 'node_id': node_id})
+                if entry.get('canonical_title_semantically_equivalent_en') is not True:
+                    issues.append({'reason': 'canonical_title_semantically_equivalent_en', 'node_id': node_id})
+                if len(str(entry.get('canonical_title_semantic_inventory_note_en') or '').strip()) < 20:
+                    issues.append({'reason': 'canonical_title_semantic_inventory_note_en', 'node_id': node_id})
+            if translation_semantic_review_schema_version == '1.2':
+                for field in (
+                    'canonical_title_subject_preserved_en', 'canonical_title_predicate_preserved_en',
+                    'canonical_title_scope_preserved_en', 'canonical_title_modality_preserved_en',
+                    'displayed_title_subject_preserved_en', 'displayed_title_predicate_preserved_en',
+                    'displayed_title_scope_preserved_en', 'displayed_title_modality_preserved_en',
+                ):
+                    if entry.get(field) is not True:
+                        issues.append({'reason': field, 'node_id': node_id})
+            if len(str(entry.get('displayed_title_semantic_inventory_note_en') or '').strip()) < 20:
+                issues.append({'reason': 'displayed_title_semantic_inventory_note_en', 'node_id': node_id})
         concision_fields = ['displayed_title_concision_reviewed_fr']
         if not english_deferred:
             concision_fields.append('displayed_title_concision_reviewed_en')
@@ -1222,7 +1403,7 @@ def _validate_individual_editorial_review(ctx: PackageContext, nodes: list[dict[
         lock = ctx.load_json(lock_path) if isinstance(lock_path, str) and ctx.exists(lock_path) else None
         historical_ids = {str(row.get('id')) for row in lock.get('arguments') or [] if isinstance(row, dict) and row.get('id')} if isinstance(lock, dict) else set()
         policy_node_ids = {str(node.get('id')) for node in nodes if str(node.get('id')) not in historical_ids}
-    issues = validate_individual_review_data(review, nodes, norm=norm, english_deferred=deferred, displayed_title_policy_revision=controls.get('displayed_title_policy_revision'), displayed_title_policy_node_ids=policy_node_ids)
+    issues = validate_individual_review_data(review, nodes, norm=norm, english_deferred=deferred, displayed_title_policy_revision=controls.get('displayed_title_policy_revision'), displayed_title_policy_node_ids=policy_node_ids, translation_validation_mode=str(controls.get('translation_validation_mode') or 'absolute'), translation_semantic_review_schema_version=str(controls.get('translation_semantic_review_schema_version') or '1.0'))
     if issues:
         ctx.report.error('WDV-EDT-012', 'Revue individuelle des titres affichés et rubriques absente ou incohérente', path=rel or 'manifest.json', details={'issue_count': len(issues), 'issues': issues[:25]})
     entries = review.get('entries', []) if isinstance(review, dict) else []
@@ -1521,6 +1702,25 @@ def _validate_summary_style(ctx: PackageContext, nodes: list[dict[str, Any]], ma
             for (language, sentence), node_ids in sentence_uses.items():
                 if len(node_ids) >= 4:
                     ctx.report.error('WDV-EDT-024', 'Une même phrase de résumé est répétée dans au moins quatre pages', path=review_rel or 'manifest.json', details={'language': language, 'occurrences': len(node_ids), 'node_ids': sorted(node_ids), 'normalized_sentence': sentence})
+    differential_translation = bool((manifest.get('editorial_controls') or {}).get('translation_validation_mode') == 'differential')
+    marker_engine_active = str((manifest.get('editorial_controls') or {}).get('semantic_marker_engine_version') or '') in {'1.0', '1.1'}
+    if differential_translation and marker_engine_active:
+        semantic_summary_signals = 0
+        for node_id in sorted(node_map):
+            fr_summary = summaries.get((node_id, 'fr'), '')
+            en_summary = summaries.get((node_id, 'en'), '')
+            if not fr_summary or not en_summary:
+                continue
+            losses = bilingual_semantic_marker_losses(fr_summary, en_summary)
+            structure_signals = bilingual_semantic_structure_signals(fr_summary, en_summary)
+            if losses:
+                semantic_summary_signals += 1
+                en_page = next((p.get('file_path') for p in manifest.get('pages', []) if p.get('page_id') == node_id and p.get('language') == 'en'), 'manifest.json')
+                ctx.report.info('WDV-BIL-007', 'Marqueurs sémantiques français possiblement perdus dans le résumé anglais ; revue bilingue requise', path=en_page, details={'node_id': node_id, 'field': 'summary', 'marker_families': losses})
+            if structure_signals:
+                en_page = next((p.get('file_path') for p in manifest.get('pages', []) if p.get('page_id') == node_id and p.get('language') == 'en'), 'manifest.json')
+                ctx.report.info('WDV-BIL-008', 'Structure sémantique FR→EN possiblement déplacée dans le résumé ; revue humaine requise', path=en_page, details={'node_id': node_id, 'field': 'summary', 'signals': structure_signals})
+        ctx.report.metrics.setdefault('semantic_marker_engine', {})['summary_pages_with_signals'] = semantic_summary_signals
     review = ctx.load_json(review_rel) if isinstance(review_rel, str) and ctx.exists(review_rel) else None
     issues = validate_summary_style_review_data(review, nodes, page_languages, norm=norm, quantitative_pages=quantitative_pages, summaries=summaries, protected_historical=protected_historical, historically_absent=historically_absent, owner_removed_summaries=owner_removed_summaries)
     opening_review_reasons = {'opening_develops_title'}
@@ -1618,6 +1818,16 @@ def validate_editorial(ctx: PackageContext) -> None:
             node_id = node.get('id')
             data = node.get(lang) or {}
             canonical_title = data.get('canonical_title') or ''
+            differential_translation = bool((manifest.get('editorial_controls') or {}).get('translation_validation_mode') == 'differential')
+            marker_engine_active = str((manifest.get('editorial_controls') or {}).get('semantic_marker_engine_version') or '') in {'1.0', '1.1'}
+            if lang == 'en' and differential_translation and marker_engine_active:
+                fr_canonical = (node.get('fr') or {}).get('canonical_title') or ''
+                canonical_losses = bilingual_semantic_marker_losses(fr_canonical, canonical_title)
+                canonical_structure = bilingual_semantic_structure_signals(fr_canonical, canonical_title)
+                if canonical_losses:
+                    ctx.report.info('WDV-BIL-007', 'Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'field': 'canonical_title', 'fr_text': fr_canonical, 'en_text': canonical_title, 'marker_families': canonical_losses})
+                if canonical_structure:
+                    ctx.report.info('WDV-BIL-008', 'Structure sémantique FR→EN possiblement déplacée dans le titre canonique ; revue humaine requise', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'field': 'canonical_title', 'fr_text': fr_canonical, 'en_text': canonical_title, 'signals': canonical_structure})
             canonical_quote_reasons = []
             if COMPLEX_QUOTES.search(canonical_title):
                 canonical_quote_reasons.append('complex_quotes')
@@ -1634,9 +1844,26 @@ def validate_editorial(ctx: PackageContext) -> None:
             argument_reasons = displayed_title_argument_issues(title, lang)
             individual = _individual_review_entry(ctx, str(node_id))
             manual_argument_ok = isinstance(individual, dict) and individual.get(f'displayed_title_complete_proposition_{lang}') is True and individual.get(f'displayed_title_argument_intelligible_{lang}') is True
-            if argument_reasons and not manual_argument_ok:
+            if lang == 'fr' and differential_translation:
+                # In translation mode the validated French source is the baseline,
+                # not a target for retroactive enforcement of creation-only form rules.
+                argument_reasons = []
+            elif lang == 'en' and differential_translation:
+                fr_title = (node.get('fr') or {}).get('displayed_title') or ''
+                argument_reasons = displayed_title_translation_form_regression(fr_title, title)
+                marker_losses = bilingual_title_marker_losses(fr_title, title) if marker_engine_active else []
+                structure_signals = bilingual_semantic_structure_signals(fr_title, title) if marker_engine_active else []
+                if marker_losses:
+                    ctx.report.info('WDV-BIL-007', 'Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'fr_title': fr_title, 'en_title': title, 'marker_families': marker_losses})
+                if structure_signals:
+                    ctx.report.info('WDV-BIL-008', 'Structure sémantique FR→EN possiblement déplacée dans le titre affiché ; revue humaine requise', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'field': 'displayed_title', 'fr_text': fr_title, 'en_text': title, 'signals': structure_signals})
+            # A manual proposition/intelligibility attestation may resolve a heuristic
+            # absolute-form warning, but it must not waive a differential FR→EN
+            # regression detected against the authoritative source.
+            manual_override = manual_argument_ok and not (lang == 'en' and differential_translation)
+            if argument_reasons and not manual_override:
                 title_quality_counts[lang] += 1
-                ctx.report.error('WDV-EDT-021', 'Titre affiché non propositionnel ou argument incompréhensible', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'title': title, 'reasons': argument_reasons})
+                ctx.report.error('WDV-EDT-021', 'Titre affiché non propositionnel ou argument incompréhensible', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'title': title, 'reasons': argument_reasons, 'validation_mode': 'differential' if (lang == 'en' and differential_translation) else 'absolute'})
             concision_reasons = [reason for reason in displayed_title_concision_issues(canonical_title, title) if reason != 'exact_copy']
             manual_concision_ok = isinstance(individual, dict) and individual.get(f'displayed_title_concision_reviewed_{lang}') is True and individual.get(f'displayed_title_semantic_equivalence_reviewed_{lang}') is True
             if concision_reasons and not manual_concision_ok:

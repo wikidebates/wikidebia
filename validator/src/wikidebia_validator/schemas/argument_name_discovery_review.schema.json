@@ -10,7 +10,11 @@
   ],
   "properties": {
     "version": {
-      "const": "wikidebia-argument-name-discovery-review-1.0"
+      "enum": [
+        "wikidebia-argument-name-discovery-review-1.0",
+        "wikidebia-argument-name-discovery-review-1.1",
+        "wikidebia-argument-name-discovery-review-1.2"
+      ]
     },
     "normative_revision": {
       "type": "string",
@@ -133,6 +137,37 @@
           "rationale": {
             "type": "string",
             "minLength": 12
+          },
+          "search_provenance": {
+            "enum": [
+              "actual_log",
+              "fresh_recheck",
+              "historical_reconstruction"
+            ]
+          },
+          "search_provenance_note": {
+            "type": "string",
+            "minLength": 12
+          },
+          "page_reasoning_scope_summary": {
+            "type": "string",
+            "minLength": 12
+          },
+          "literature_name_scope_summary": {
+            "type": "string"
+          },
+          "scope_relation": {
+            "type": "string",
+            "enum": [
+              "",
+              "exact_match",
+              "broader_than_page",
+              "narrower_than_page",
+              "ambiguous"
+            ]
+          },
+          "scope_identity_confirmed": {
+            "type": "boolean"
           }
         },
         "allOf": [
@@ -187,5 +222,121 @@
         ]
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "version": {
+            "const": "wikidebia-argument-name-discovery-review-1.1"
+          }
+        },
+        "required": [
+          "version"
+        ]
+      },
+      "then": {
+        "properties": {
+          "entries": {
+            "items": {
+              "allOf": [
+                {
+                  "required": [
+                    "search_provenance",
+                    "search_provenance_note"
+                  ]
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "language": {
+                        "const": "en"
+                      },
+                      "page_origin": {
+                        "const": "new"
+                      }
+                    },
+                    "required": [
+                      "language",
+                      "page_origin"
+                    ]
+                  },
+                  "then": {
+                    "properties": {
+                      "search_provenance": {
+                        "enum": [
+                          "actual_log",
+                          "fresh_recheck"
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "version": {
+            "const": "wikidebia-argument-name-discovery-review-1.2"
+          }
+        },
+        "required": [
+          "version"
+        ]
+      },
+      "then": {
+        "properties": {
+          "entries": {
+            "items": {
+              "allOf": [
+                {
+                  "required": [
+                    "search_provenance",
+                    "search_provenance_note",
+                    "page_reasoning_scope_summary"
+                  ]
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "outcome": {
+                        "const": "known_name"
+                      }
+                    },
+                    "required": [
+                      "outcome"
+                    ]
+                  },
+                  "then": {
+                    "required": [
+                      "literature_name_scope_summary",
+                      "scope_relation",
+                      "scope_identity_confirmed"
+                    ],
+                    "properties": {
+                      "scope_relation": {
+                        "const": "exact_match"
+                      },
+                      "scope_identity_confirmed": {
+                        "const": true
+                      },
+                      "literature_name_scope_summary": {
+                        "type": "string",
+                        "minLength": 12
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
 }

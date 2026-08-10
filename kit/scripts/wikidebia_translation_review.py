@@ -35,6 +35,7 @@ from wikidebia_corpus_build import (
     structural_sha256,
     write_json,
 )
+from wikidebia_documentary_resources import build_file as build_documentary_resource_registry
 from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
 from wikidebia_editorial_review import EditorialReviewError, _assert_source_unchanged, _load_workspace, _run_validator
 from wikidebia_content_review import (
@@ -46,7 +47,9 @@ from wikidebia_content_review import (
     META_DISCOURSE,
 )
 
-KIT_VERSION = "2.15.45"
+KIT_VERSION = "2.15.48"
+DISPLAYED_TITLE_FORMS = {"proposition", "question", "imperative", "thematic_label", "nominal_phrase", "doctrinal_label", "other"}
+NAME_SEARCH_PROVENANCE = {"actual_log", "fresh_recheck", "historical_reconstruction"}
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.0"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
@@ -207,6 +210,20 @@ def _date_signature(value: Any, language: str) -> tuple[int, int | None, int | N
     return None
 
 
+def _citation_source_text(source: Mapping[str, Any]) -> str:
+    for parameter in source.get("source_parameters") or []:
+        if not isinstance(parameter, Mapping):
+            continue
+        name = re.sub(r"[ _-]+", " ", str(parameter.get("name") or "").strip().casefold())
+        if name == "citation":
+            return str(parameter.get("value") or "")
+    return str(source.get("citation") or "")
+
+
+def _lexical_word_count(value: str) -> int:
+    return len(re.findall(r"[A-Za-zÀ-ÿ0-9]+(?:['’\-][A-Za-zÀ-ÿ0-9]+)*", _plain(value or "")))
+
+
 def _blank_citation(source: Mapping[str, Any]) -> dict[str, Any]:
     source_date = str(source.get("date") or "").strip()
     return {
@@ -219,6 +236,10 @@ def _blank_citation(source: Mapping[str, Any]) -> dict[str, Any]:
         "date_translated_or_language_neutral": False,
         "preserved_parameters_unchanged": False,
         "translation_warning_appended": False,
+        "quote_completeness_reviewed": False,
+        "quote_completeness_note": "",
+        "quote_low_ratio_reviewed": False,
+        "quote_low_ratio_note": "",
         "reviewer": "",
         "reviewed_at": None,
         "note": "",
@@ -253,9 +274,20 @@ def _validate_citations(rows: Any, french_rows: Sequence[Mapping[str, Any]], nod
                 raise TranslationReviewError(f"La date traduite ne désigne pas la même date pour {citation_id}")
             if fr_sig is None and translated_date == source_date and re.search(r"[A-Za-zÀ-ÿ]", source_date):
                 raise TranslationReviewError(f"La date textuelle de {citation_id} n’a pas été traduite")
-        for field in ("citation_translated", "date_translated_or_language_neutral", "preserved_parameters_unchanged", "translation_warning_appended"):
+        for field in ("citation_translated", "date_translated_or_language_neutral", "preserved_parameters_unchanged", "translation_warning_appended", "quote_completeness_reviewed"):
             if row.get(field) is not True:
                 raise TranslationReviewError(f"Attestation de citation manquante pour {citation_id} : {field}")
+        completeness_note = _text(row.get("quote_completeness_note"), f"note de complétude de citation {citation_id}", 12)
+        source_words = _lexical_word_count(_citation_source_text(source))
+        translated_words = _lexical_word_count(translated)
+        lexical_ratio = (translated_words / source_words) if source_words else None
+        low_ratio_reviewed = bool(row.get("quote_low_ratio_reviewed"))
+        low_ratio_note = str(row.get("quote_low_ratio_note") or "").strip()
+        if lexical_ratio is not None and source_words >= 8 and lexical_ratio < 0.60:
+            if not low_ratio_reviewed or len(low_ratio_note) < 12:
+                raise TranslationReviewError(
+                    f"La citation {citation_id} est très courte par rapport à la source ; une seconde revue explicite de complétude est requise"
+                )
         _text(row.get("reviewer"), f"relecteur de citation {citation_id}", 3)
         _text(row.get("reviewed_at"), f"date de revue de citation {citation_id}", 10)
         _text(row.get("note"), f"note de revue de citation {citation_id}", 8)
@@ -303,6 +335,13 @@ def _validate_citations(rows: Any, french_rows: Sequence[Mapping[str, Any]], nod
             "preserved_parameters": copy.deepcopy(source.get("preserved_parameters") or []),
             "parameters": output_parameters,
             "source": copy.deepcopy(source),
+            "source_word_count": source_words,
+            "translated_word_count": translated_words,
+            "lexical_ratio": lexical_ratio,
+            "quote_completeness_reviewed": True,
+            "quote_completeness_note": completeness_note,
+            "quote_low_ratio_reviewed": low_ratio_reviewed,
+            "quote_low_ratio_note": low_ratio_note,
             "reviewer": row.get("reviewer"),
             "reviewed_at": row.get("reviewed_at"),
             "note": row.get("note"),
@@ -390,6 +429,13 @@ def _blank_debate(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -> 
         "complete_topic_initial_capital_justification": None,
         "metadata_equivalent_to_french": False,
         "content_equivalent_to_french": False,
+        "canonical_title_semantic_inventory_reviewed": False,
+        "canonical_title_semantic_inventory_note": "",
+        "topic_semantic_equivalence_reviewed": False,
+        "complete_topic_semantic_equivalence_reviewed": False,
+        "introduction_claim_inventory_reviewed": False,
+        "introduction_claim_inventory_note": "",
+        "subsection_structure_equivalence_reviewed": False,
         "sections_exactly_mapped": False,
         "keywords_exactly_mapped": False,
         "keywords_order_preserved_by_relevance": False,
@@ -418,6 +464,8 @@ def _blank_argument(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -
         "sources": {bucket: [] for bucket in ARGUMENT_BUCKETS},
         "argument_name_search_queries": [],
         "argument_name_search_scope_note": "",
+        "argument_name_search_provenance": "",
+        "argument_name_search_provenance_note": "",
         "argument_name_outcome": "pending",
         "argument_name": None,
         "argument_name_evidence": [],
@@ -425,17 +473,39 @@ def _blank_argument(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -
         "argument_name_non_invented_label_confirmed": False,
         "argument_name_language_fit_confirmed": False,
         "argument_name_rationale": "",
+        "argument_name_page_reasoning_scope_summary": "",
+        "argument_name_literature_scope_summary": "",
+        "argument_name_scope_relation": "",
+        "argument_name_scope_identity_confirmed": False,
         "metadata_equivalent_to_french": False,
         "summary_equivalent_to_french": False,
+        "canonical_title_semantic_inventory_reviewed": False,
+        "canonical_title_semantic_inventory_note": "",
+        "canonical_title_equivalent_to_french": False,
+        "canonical_title_subject_preserved": False,
+        "canonical_title_predicate_preserved": False,
+        "canonical_title_scope_preserved": False,
+        "canonical_title_modality_preserved": False,
         "sections_exactly_mapped": False,
         "keywords_exactly_mapped": False,
         "keywords_order_preserved_by_relevance": False,
         "title_is_idiomatic": False,
+        "displayed_title_source_form": "",
+        "displayed_title_target_form": "",
+        "displayed_title_source_form_reviewed": False,
+        "displayed_title_no_formal_regression": False,
+        "displayed_title_semantic_inventory_reviewed": False,
+        "displayed_title_semantic_inventory_note": "",
+        "displayed_title_subject_preserved": False,
+        "displayed_title_predicate_preserved": False,
+        "displayed_title_scope_preserved": False,
+        "displayed_title_modality_preserved": False,
         "displayed_title_is_complete_proposition": False,
         "displayed_title_concision_reviewed": False,
         "displayed_title_semantically_equivalent": False,
         "displayed_title_improves_readability_when_distinct": False,
         "summary_ratio_reviewed": False,
+        "summary_subject_predicate_scope_modality_reviewed": False,
         "forceful_expression": "",
         "quantitative_claims_verified": False,
         "quantitative_claims_note": "",
@@ -446,6 +516,94 @@ def _blank_argument(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -
         **{field: False for field in SUMMARY_TRUE_FIELDS},
         "french": {"metadata": copy.deepcopy(fr_meta), "content": copy.deepcopy(fr_content)},
     }
+
+
+def _translation_risk_profile(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -> dict[str, Any]:
+    """Estimate review density from the immutable French source.
+
+    The score allocates human review effort; it is never a quality grade and
+    never authorizes automatic rewriting.  Only source-side observable factors
+    are used so the plan exists before English drafting begins.
+    """
+    factors: list[dict[str, Any]] = []
+    score = 0
+    citations = list(fr_content.get("citations") or [])
+    if citations:
+        points = min(6, len(citations) * 2)
+        score += points
+        factors.append({"factor": "citations", "count": len(citations), "points": points})
+    long_citations = 0
+    for row in citations:
+        text = str((row or {}).get("citation") or (row or {}).get("text") or "")
+        if len(re.findall(r"\b[\wÀ-ÿ'-]+\b", text)) >= 120:
+            long_citations += 1
+    if long_citations:
+        points = min(4, long_citations * 2)
+        score += points
+        factors.append({"factor": "long_citations", "count": long_citations, "points": points})
+    source_count = sum(len(v or []) for v in (fr_content.get("sources") or {}).values()) if isinstance(fr_content.get("sources"), dict) else 0
+    if source_count:
+        points = min(5, source_count)
+        score += points
+        factors.append({"factor": "documentary_sources", "count": source_count, "points": points})
+    summary = str(fr_content.get("summary") or "")
+    words = len(re.findall(r"\b[\wÀ-ÿ'-]+\b", summary))
+    if words >= 220:
+        score += 4; factors.append({"factor": "long_summary", "count": words, "points": 4})
+    elif words >= 120:
+        score += 2; factors.append({"factor": "long_summary", "count": words, "points": 2})
+    logical = re.findall(r"\b(?:si|même\s+si|donc|car|parce\s+que|cependant|néanmoins|seulement|uniquement|tous|certains|souvent|toujours|nécessaire|possible|attribu[ée]e?s?|selon)\b", summary, re.I)
+    if len(logical) >= 6:
+        score += 2; factors.append({"factor": "logical_marker_density", "count": len(logical), "points": 2})
+    numbers = re.findall(r"(?<!\w)\d+(?:[.,]\d+)?(?!\w)", summary)
+    if numbers:
+        score += 1; factors.append({"factor": "quantitative_claims", "count": len(numbers), "points": 1})
+    preserved = fr_meta.get("preserved_parameters") or {}
+    if isinstance(preserved, dict) and str(preserved.get("name") or "").strip():
+        score += 2; factors.append({"factor": "conventional_name_present_in_source", "count": 1, "points": 2})
+    if score >= 12:
+        level, unit = "very_high", 5
+    elif score >= 8:
+        level, unit = "high", 6
+    elif score >= 4:
+        level, unit = "medium", 8
+    else:
+        level, unit = "low", 10
+    return {"score": score, "level": level, "recommended_unit_size": unit, "factors": factors}
+
+
+def _build_translation_review_units(argument_rows: Sequence[dict[str, Any]]) -> list[dict[str, Any]]:
+    units: list[dict[str, Any]] = []
+    current: list[dict[str, Any]] = []
+    target = 10
+    severity = {"low": 0, "medium": 1, "high": 2, "very_high": 3}
+    def close() -> None:
+        nonlocal current, target
+        if not current:
+            return
+        max_level = max((row["review_risk"]["level"] for row in current), key=lambda x: severity[x])
+        units.append({
+            "id": f"U{len(units)+1:03d}",
+            "page_ids": [row["id"] for row in current],
+            "target_size": target,
+            "max_risk_level": max_level,
+            "status": "pending",
+            "reviewer": "",
+            "reviewed_at": None,
+            "note": "",
+        })
+        current = []
+        target = 10
+    for row in argument_rows:
+        rec = int(row["review_risk"]["recommended_unit_size"])
+        if current and len(current) >= min(target, rec):
+            close()
+        current.append(row)
+        target = min(target, rec)
+        if len(current) >= target:
+            close()
+    close()
+    return units
 
 
 def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrite: bool = False) -> dict[str, Any]:
@@ -498,10 +656,8 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
             for row in vocabulary.get("entries") or []
         ],
         "debate": _blank_debate(metadata_lock.get("debate") or {}, content_lock.get("debate") or {}),
-        "arguments": [
-            {"id": node_id, "translation": _blank_argument(fr_meta_by_id[node_id], fr_content_by_id[node_id])}
-            for node_id in active_ids
-        ],
+        "arguments": [],
+        "review_units": [],
         "global_review": {
             "reviewer": "", "reviewed_at": None,
             "all_entities_translated": False, "all_equivalences_reviewed": False,
@@ -511,6 +667,14 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
         },
         "review_sha256": None,
     }
+    review["arguments"] = [
+        {"id": node_id, "review_risk": _translation_risk_profile(fr_meta_by_id[node_id], fr_content_by_id[node_id]), "translation": _blank_argument(fr_meta_by_id[node_id], fr_content_by_id[node_id])}
+        for node_id in active_ids
+    ]
+    review["review_units"] = _build_translation_review_units(review["arguments"])
+    unit_by_page = {page_id: unit["id"] for unit in review["review_units"] for page_id in unit["page_ids"]}
+    for item in review["arguments"]:
+        item["review_unit_id"] = unit_by_page[item["id"]]
     write_json(review_path, review)
     write_json(sources_path, {
         "schema": EN_SOURCES_WORKING_SCHEMA,
@@ -525,6 +689,8 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
         "schema": "wikidebia-en-translation-inventory-1.0",
         "debate_id": debate_id, "work_id": work_id, "generated_at": now,
         "arguments": len(active_ids), "vocabulary_entries": len(review["vocabulary"]),
+        "review_units": len(review["review_units"]),
+        "risk_levels": dict(collections.Counter(item["review_risk"]["level"] for item in review["arguments"])),
         "french_sources": len((load_json(source / "data/sources.json", "sources françaises").get("sources") or [])),
         "boundaries": {"automatic_translation": False, "final_pages_generated": False, "remote_access": False},
     })
@@ -704,6 +870,11 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
         raise TranslationReviewError("complete-topic doit être nominal et non interrogatif")
     if complete[0].isalpha() and complete[0].isupper() and not row.get("complete_topic_initial_capital_justification"):
         raise TranslationReviewError("La majuscule initiale de complete-topic doit être justifiée")
+    for field in ("canonical_title_semantic_inventory_reviewed", "topic_semantic_equivalence_reviewed", "complete_topic_semantic_equivalence_reviewed", "introduction_claim_inventory_reviewed", "subsection_structure_equivalence_reviewed"):
+        if row.get(field) is not True:
+            raise TranslationReviewError(f"Attestation sémantique différentielle manquante pour Debate : {field}")
+    canonical_inventory_note = _text(row.get("canonical_title_semantic_inventory_note"), "inventaire sémantique du titre canonique de Debate", 20)
+    introduction_inventory_note = _text(row.get("introduction_claim_inventory_note"), "inventaire des affirmations de l’introduction anglaise", 30)
     sections = _strings(row.get("sections"), "sections de Debate")
     expected_sections = _expected_sections(fr_meta.get("rubriques") or [])
     if sections != expected_sections or row.get("sections_exactly_mapped") is not True:
@@ -778,6 +949,13 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
         "documentation": final_doc, "documentation_family_notes": copy.deepcopy(row.get("documentation_family_notes") or {}),
         "topic_label_rationale": row.get("topic_label_rationale"),
         "complete_topic_initial_capital_justification": row.get("complete_topic_initial_capital_justification"),
+        "canonical_title_semantic_inventory_reviewed": True,
+        "canonical_title_semantic_inventory_note": canonical_inventory_note,
+        "topic_semantic_equivalence_reviewed": True,
+        "complete_topic_semantic_equivalence_reviewed": True,
+        "introduction_claim_inventory_reviewed": True,
+        "introduction_claim_inventory_note": introduction_inventory_note,
+        "subsection_structure_equivalence_reviewed": True,
         "reviewer": row.get("reviewer"), "reviewed_at": row.get("reviewed_at"), "note": row.get("note"),
         "french_subject": fr_content.get("subject"), "french_complete_topic": fr_content.get("complete_topic"),
         **_validate_page_lifecycle(row, "debate", "Debate"),
@@ -791,13 +969,23 @@ def _validate_argument_name_discovery(row: Mapping[str, Any], node_id: str, page
     if len(queries) < 2 or len(set(queries)) != len(queries):
         raise TranslationReviewError(f"Au moins deux recherches distinctes sont requises pour le nom de {node_id}")
     scope_note = _text(row.get("argument_name_search_scope_note"), f"périmètre de recherche du nom de {node_id}", 12)
+    provenance = str(row.get("argument_name_search_provenance") or "")
+    if provenance not in NAME_SEARCH_PROVENANCE:
+        raise TranslationReviewError(f"Provenance de recherche du nom invalide pour {node_id}")
+    provenance_note = _text(row.get("argument_name_search_provenance_note"), f"note de provenance de recherche du nom de {node_id}", 12)
+    if provenance == "historical_reconstruction":
+        raise TranslationReviewError(f"Une page anglaise nouvelle doit utiliser un journal réel ou une nouvelle recherche, pas une reconstruction historique : {node_id}")
     rationale = _text(row.get("argument_name_rationale"), f"justification de recherche du nom de {node_id}", 12)
+    page_scope = _text(row.get("argument_name_page_reasoning_scope_summary"), f"portée du raisonnement de la page {node_id}", 12)
     outcome = str(row.get("argument_name_outcome") or "")
     evidence = row.get("argument_name_evidence")
     if not isinstance(evidence, list):
         raise TranslationReviewError(f"Preuves documentaires invalides pour le nom de {node_id}")
     if outcome == "known_name":
         name = _text(row.get("argument_name"), f"nom consacré de {node_id}", 2)
+        first_alpha = next((char for char in name if char.isalpha()), "")
+        if first_alpha and not first_alpha.isupper():
+            raise TranslationReviewError(f"Le established-name= anglais est un sous-titre et doit commencer par une majuscule : {node_id}")
         if not evidence:
             raise TranslationReviewError(f"Nom consacré sans preuve documentaire pour {node_id}")
         for ev in evidence:
@@ -809,6 +997,10 @@ def _validate_argument_name_discovery(row: Mapping[str, Any], node_id: str, page
         for field in ("argument_name_same_reasoning_confirmed", "argument_name_non_invented_label_confirmed", "argument_name_language_fit_confirmed"):
             if row.get(field) is not True:
                 raise TranslationReviewError(f"Attestation de nom consacrée absente pour {node_id} : {field}")
+        literature_scope = _text(row.get("argument_name_literature_scope_summary"), f"portée littéraire du nom de {node_id}", 12)
+        scope_relation = str(row.get("argument_name_scope_relation") or "")
+        if scope_relation != "exact_match" or row.get("argument_name_scope_identity_confirmed") is not True:
+            raise TranslationReviewError(f"Le established-name= doit désigner exactement la portée du raisonnement de la page : {node_id}")
         same = True
     elif outcome == "none":
         if row.get("argument_name") not in (None, ""):
@@ -816,6 +1008,8 @@ def _validate_argument_name_discovery(row: Mapping[str, Any], node_id: str, page
         if row.get("argument_name_non_invented_label_confirmed") is not True or row.get("argument_name_language_fit_confirmed") is not True:
             raise TranslationReviewError(f"Attestation de recherche négative incomplète pour {node_id}")
         name = None
+        literature_scope = ""
+        scope_relation = ""
         same = False
     else:
         raise TranslationReviewError(f"Résultat de recherche du nom invalide pour {node_id}")
@@ -823,6 +1017,8 @@ def _validate_argument_name_discovery(row: Mapping[str, Any], node_id: str, page
         "search_reviewed": True,
         "search_queries": queries,
         "search_scope_note": scope_note,
+        "search_provenance": provenance,
+        "search_provenance_note": provenance_note,
         "outcome": outcome,
         "name": name,
         "evidence": evidence,
@@ -830,6 +1026,10 @@ def _validate_argument_name_discovery(row: Mapping[str, Any], node_id: str, page
         "non_invented_label_confirmed": bool(row.get("argument_name_non_invented_label_confirmed")),
         "language_fit_confirmed": bool(row.get("argument_name_language_fit_confirmed")),
         "rationale": rationale,
+        "page_reasoning_scope_summary": page_scope,
+        "literature_name_scope_summary": literature_scope,
+        "scope_relation": scope_relation,
+        "scope_identity_confirmed": bool(row.get("argument_name_scope_identity_confirmed")) if outcome == "known_name" else False,
     }
 
 
@@ -842,6 +1042,27 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
     fr_content = ((row.get("french") or {}).get("content") or {})
     canonical = _validate_title(row.get("canonical_title"), f"titre canonique anglais de {node_id}")
     displayed = _validate_title(row.get("displayed_title"), f"titre affiché anglais de {node_id}", displayed=True)
+    if row.get("canonical_title_semantic_inventory_reviewed") is not True or row.get("canonical_title_equivalent_to_french") is not True:
+        raise TranslationReviewError(f"Revue sémantique différentielle du titre canonique manquante pour {node_id}")
+    for field in ("canonical_title_subject_preserved", "canonical_title_predicate_preserved", "canonical_title_scope_preserved", "canonical_title_modality_preserved"):
+        if row.get(field) is not True:
+            raise TranslationReviewError(f"Attestation structurée du titre canonique absente pour {node_id} : {field}")
+    canonical_inventory_note = _text(row.get("canonical_title_semantic_inventory_note"), f"inventaire sémantique du titre canonique de {node_id}", 20)
+    source_form = str(row.get("displayed_title_source_form") or "")
+    target_form = str(row.get("displayed_title_target_form") or "")
+    if source_form not in DISPLAYED_TITLE_FORMS or target_form not in DISPLAYED_TITLE_FORMS:
+        raise TranslationReviewError(f"Forme source/cible du displayed-title non classée pour {node_id}")
+    for field in ("displayed_title_source_form_reviewed", "displayed_title_no_formal_regression", "displayed_title_semantic_inventory_reviewed"):
+        if row.get(field) is not True:
+            raise TranslationReviewError(f"Attestation différentielle manquante pour {node_id} : {field}")
+    semantic_inventory_note = _text(row.get("displayed_title_semantic_inventory_note"), f"inventaire sémantique du displayed-title de {node_id}", 20)
+    for field in ("displayed_title_subject_preserved", "displayed_title_predicate_preserved", "displayed_title_scope_preserved", "displayed_title_modality_preserved"):
+        if row.get(field) is not True:
+            raise TranslationReviewError(f"Attestation structurée du displayed-title absente pour {node_id} : {field}")
+    if source_form != target_form:
+        raise TranslationReviewError(f"La traduction ne doit pas réparer ou dégrader silencieusement la forme du displayed-title source : {node_id} ({source_form} -> {target_form})")
+    if source_form == "proposition" and row.get("displayed_title_is_complete_proposition") is not True:
+        raise TranslationReviewError(f"Un displayed-title source propositionnel doit rester propositionnel en anglais : {node_id}")
     sections = _strings(row.get("sections"), f"sections de {node_id}")
     if sections != _expected_sections(fr_meta.get("rubriques") or []) or row.get("sections_exactly_mapped") is not True:
         raise TranslationReviewError(f"Sections anglaises divergentes pour {node_id}")
@@ -859,7 +1080,7 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         ratio = None
         expression = None
         numbers = []
-        for field in ("metadata_equivalent_to_french", "summary_equivalent_to_french", "title_is_idiomatic", "displayed_title_is_complete_proposition", "displayed_title_concision_reviewed", "displayed_title_semantically_equivalent"):
+        for field in ("metadata_equivalent_to_french", "summary_equivalent_to_french", "title_is_idiomatic", "displayed_title_concision_reviewed", "displayed_title_semantically_equivalent"):
             if row.get(field) is not True:
                 raise TranslationReviewError(f"Attestation anglaise manquante pour {node_id} : {field}")
     else:
@@ -871,9 +1092,11 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         ratio = len(_plain(summary)) / max(1, len(_plain(fr_summary)))
         if not 0.60 <= ratio <= 1.45 or row.get("summary_ratio_reviewed") is not True:
             raise TranslationReviewError(f"Ratio anglais/français hors limites pour {node_id} : {ratio:.2f}")
-        for field in ("metadata_equivalent_to_french", "summary_equivalent_to_french", "title_is_idiomatic", "displayed_title_is_complete_proposition", "displayed_title_concision_reviewed", "displayed_title_semantically_equivalent", *SUMMARY_TRUE_FIELDS):
+        for field in ("metadata_equivalent_to_french", "summary_equivalent_to_french", "title_is_idiomatic", "displayed_title_concision_reviewed", "displayed_title_semantically_equivalent", *SUMMARY_TRUE_FIELDS):
             if row.get(field) is not True:
                 raise TranslationReviewError(f"Attestation anglaise manquante pour {node_id} : {field}")
+        if row.get("summary_subject_predicate_scope_modality_reviewed") is not True:
+            raise TranslationReviewError(f"Revue structurée sujet/prédicat/portée/modalité du summary absente pour {node_id}")
         expression = _text(row.get("forceful_expression"), f"expression de force anglaise de {node_id}", 8)
         if _plain(expression).casefold() not in _plain(summary).casefold():
             raise TranslationReviewError(f"L’expression de force anglaise est absente du summary de {node_id}")
@@ -908,6 +1131,18 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         "quantitative_claims_note": row.get("quantitative_claims_note"),
         "reviewer": row.get("reviewer"), "reviewed_at": row.get("reviewed_at"), "note": row.get("note"),
         "argument_name": argument_name, "argument_name_discovery": name_discovery,
+        "canonical_title_semantic_inventory_reviewed": True,
+        "canonical_title_semantic_inventory_note": canonical_inventory_note,
+        "canonical_title_equivalent_to_french": True,
+        "canonical_title_subject_preserved": True, "canonical_title_predicate_preserved": True,
+        "canonical_title_scope_preserved": True, "canonical_title_modality_preserved": True,
+        "displayed_title_source_form": source_form, "displayed_title_target_form": target_form,
+        "displayed_title_source_form_reviewed": True, "displayed_title_no_formal_regression": True,
+        "displayed_title_semantic_inventory_reviewed": True, "displayed_title_semantic_inventory_note": semantic_inventory_note,
+        "displayed_title_subject_preserved": True, "displayed_title_predicate_preserved": True,
+        "displayed_title_scope_preserved": True, "displayed_title_modality_preserved": True,
+        "summary_subject_predicate_scope_modality_reviewed": bool(row.get("summary_subject_predicate_scope_modality_reviewed")) if summary is not None else True,
+        "displayed_title_is_complete_proposition": bool(row.get("displayed_title_is_complete_proposition")),
         **lifecycle,
     }
 
@@ -950,6 +1185,24 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
     keyword_sets = collections.Counter(tuple(row["keywords"]) for row in final_arguments)
     if final_arguments and max(keyword_sets.values(), default=0) / len(final_arguments) > 0.25:
         raise TranslationReviewError("Un même jeu exact de keywords anglais domine plus de 25 % des arguments")
+    review_units = review.get("review_units")
+    if not isinstance(review_units, list) or not review_units:
+        raise TranslationReviewError("Plan d’unités de revue anglaise absent")
+    covered: list[str] = []
+    for unit in review_units:
+        if not isinstance(unit, dict) or unit.get("status") != "approved":
+            raise TranslationReviewError("Toutes les unités de revue anglaise doivent être closes indépendamment")
+        page_ids = unit.get("page_ids")
+        if not isinstance(page_ids, list) or not page_ids:
+            raise TranslationReviewError("Unité de revue anglaise vide ou invalide")
+        if len(page_ids) > int(unit.get("target_size") or 0):
+            raise TranslationReviewError(f"Unité de revue trop grande pour son risque déclaré : {unit.get('id')}")
+        _text(unit.get("reviewer"), f"relecteur de l’unité {unit.get('id')}", 3)
+        _text(unit.get("reviewed_at"), f"date de l’unité {unit.get('id')}", 10)
+        _text(unit.get("note"), f"note de l’unité {unit.get('id')}", 12)
+        covered.extend(str(x) for x in page_ids)
+    if sorted(covered) != sorted(str(item.get("id")) for item in items) or len(covered) != len(set(covered)):
+        raise TranslationReviewError("Les unités de revue ne couvrent pas exactement chaque argument une fois")
     global_review = review.get("global_review") or {}
     for field in ("all_entities_translated", "all_equivalences_reviewed", "all_selected_sources_verified", "relations_and_occurrences_unchanged", "no_final_pages_generated", "remote_access_not_used"):
         if global_review.get(field) is not True:
@@ -988,7 +1241,7 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
 def _merge_introduction_review(path: Path, debate: Mapping[str, Any]) -> None:
     data = load_json(path, "revue des introductions") if path.is_file() else {"normative_revision": NORM_VERSION, "entries": []}
     entries = [row for row in data.get("entries") or [] if row.get("language") != "en"]
-    entries.append({"language": "en", **{field: True for field in INTRO_TRUE_FIELDS}, "documentation_family_notes": copy.deepcopy(debate.get("documentation_family_notes") or {}), "common_acronym": None, "topic_label_rationale": debate.get("topic_label_rationale"), "complete_topic_initial_capital_justification": debate.get("complete_topic_initial_capital_justification"), "subsections": copy.deepcopy(debate.get("subsections") or []), "specialized_term_inventory": copy.deepcopy(debate.get("specialized_term_inventory") or [])})
+    entries.append({"language": "en", **{field: True for field in INTRO_TRUE_FIELDS}, "documentation_family_notes": copy.deepcopy(debate.get("documentation_family_notes") or {}), "common_acronym": None, "topic_label_rationale": debate.get("topic_label_rationale"), "complete_topic_initial_capital_justification": debate.get("complete_topic_initial_capital_justification"), "subsections": copy.deepcopy(debate.get("subsections") or []), "specialized_term_inventory": copy.deepcopy(debate.get("specialized_term_inventory") or []), "canonical_title_semantic_inventory_reviewed": bool(debate.get("canonical_title_semantic_inventory_reviewed")), "canonical_title_semantic_inventory_note": debate.get("canonical_title_semantic_inventory_note"), "topic_semantic_equivalence_reviewed": bool(debate.get("topic_semantic_equivalence_reviewed")), "complete_topic_semantic_equivalence_reviewed": bool(debate.get("complete_topic_semantic_equivalence_reviewed")), "introduction_claim_inventory_reviewed": bool(debate.get("introduction_claim_inventory_reviewed")), "introduction_claim_inventory_note": debate.get("introduction_claim_inventory_note"), "subsection_structure_equivalence_reviewed": bool(debate.get("subsection_structure_equivalence_reviewed"))})
     data["entries"] = entries
     write_json(path, data)
 
@@ -1073,8 +1326,23 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
         "kit_version": KIT_VERSION, "debate_id": debate_id, "work_id": work_id, "language": "en",
         "status": "locked_for_generation", "review_sha256": review["review_sha256"], "applied_at": timestamp,
         "old_structural_sha256": old_structural, "new_structural_sha256": new_structural,
-        "debate": {k: copy.deepcopy(final["debate"][k]) for k in ("canonical_title", "topic", "complete_topic", "sections", "keywords", "reviewer", "reviewed_at", "note")},
-        "arguments": [{k: copy.deepcopy(row[k]) for k in ("id", "canonical_title", "displayed_title", "sections", "keywords", "reviewer", "reviewed_at", "note")} for row in final["arguments"]],
+        "debate": {k: copy.deepcopy(final["debate"][k]) for k in (
+            "canonical_title", "topic", "complete_topic", "sections", "keywords",
+            "canonical_title_semantic_inventory_reviewed", "canonical_title_semantic_inventory_note",
+            "topic_semantic_equivalence_reviewed", "complete_topic_semantic_equivalence_reviewed",
+            "introduction_claim_inventory_reviewed", "introduction_claim_inventory_note",
+            "subsection_structure_equivalence_reviewed", "reviewer", "reviewed_at", "note"
+        )},
+        "arguments": [{k: copy.deepcopy(row[k]) for k in (
+            "id", "canonical_title", "displayed_title", "sections", "keywords",
+            "canonical_title_semantic_inventory_reviewed", "canonical_title_semantic_inventory_note",
+            "canonical_title_equivalent_to_french", "canonical_title_subject_preserved", "canonical_title_predicate_preserved",
+            "canonical_title_scope_preserved", "canonical_title_modality_preserved", "displayed_title_source_form", "displayed_title_target_form",
+            "displayed_title_source_form_reviewed", "displayed_title_no_formal_regression",
+            "displayed_title_semantic_inventory_reviewed", "displayed_title_semantic_inventory_note",
+            "displayed_title_subject_preserved", "displayed_title_predicate_preserved", "displayed_title_scope_preserved", "displayed_title_modality_preserved",
+            "summary_subject_predicate_scope_modality_reviewed", "displayed_title_is_complete_proposition", "reviewer", "reviewed_at", "note"
+        )} for row in final["arguments"]],
     }
     content_lock = {
         "schema": EN_CONTENT_LOCK_SCHEMA, "schema_version": "1.0", "normative_revision": NORM_VERSION,
@@ -1121,12 +1389,13 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     write_json(target / "data/registre_debat.json", registry)
     write_json(target / "graph/graphe_argumentatif.json", projection)
     write_json(target / "data/sources.json", {"source_registry_version": "1.0", "debate_id": debate_id, "sources": merged_sources})
+    build_documentary_resource_registry(target / "data/sources.json", target / "data/documentary_resources.json")
     write_json(target / "data/en_page_metadata_lock.json", metadata_lock)
     write_json(target / "data/en_content_lock.json", content_lock)
     write_json(target / "data/en_translation_lock.json", translation_lock)
     name_review_path = target / "reviews/argument_name_discovery_review.json"
     existing_name_review = load_json(name_review_path, "revue des noms d’arguments") if name_review_path.is_file() else {
-        "version": "wikidebia-argument-name-discovery-review-1.0",
+        "version": "wikidebia-argument-name-discovery-review-1.2",
         "normative_revision": NORM_VERSION,
         "debate_id": debate_id,
         "entries": [],
@@ -1141,7 +1410,7 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
             **discovery,
         })
     write_json(name_review_path, {
-        "version": "wikidebia-argument-name-discovery-review-1.0",
+        "version": "wikidebia-argument-name-discovery-review-1.2",
         "normative_revision": NORM_VERSION,
         "debate_id": debate_id,
         "entries": name_entries,
@@ -1154,14 +1423,20 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     manifest = load_json(target / "manifest.json", "manifest.json")
     manifest.setdefault("translation_status", {})["en"] = "ready"
     controls = manifest.setdefault("editorial_controls", {})
+    controls["translation_validation_mode"] = "differential"
+    controls["translation_semantic_review_schema_version"] = "1.2"
+    controls["semantic_marker_engine_version"] = "1.1"
+    controls["quote_completeness_review_schema_version"] = "1.0"
+    controls["documentary_resource_registry_path"] = "data/documentary_resources.json"
+    controls["documentary_resource_registry_schema_version"] = "1.0"
     controls["argument_name_discovery_path"] = "reviews/argument_name_discovery_review.json"
     required_reports = controls.setdefault("required_reports", [])
     for rel in ("reports/en_translation_preflight.json", "reports/en_translation_validation.json"):
         if rel not in required_reports: required_reports.append(rel)
     manifest["updated_at"] = timestamp
     write_json(target / "manifest.json", manifest)
-    preflight = _run_validator(project_root, target, scopes=("schema", "coherence", "graph", "files"), json_output=target / "reports/en_translation_preflight.json", text_output=target / "reports/en_translation_preflight.txt")
-    validation = _run_validator(project_root, target, scopes=("schema", "coherence", "graph", "files", "bilingual", "workflow"), json_output=target / "reports/en_translation_validation.json", text_output=target / "reports/en_translation_validation.txt")
+    preflight = _run_validator(project_root, target, scopes=("schema", "coherence", "graph", "files", "sources"), json_output=target / "reports/en_translation_preflight.json", text_output=target / "reports/en_translation_preflight.txt")
+    validation = _run_validator(project_root, target, scopes=("schema", "coherence", "graph", "files", "sources", "bilingual", "workflow"), json_output=target / "reports/en_translation_validation.json", text_output=target / "reports/en_translation_validation.txt")
     return {"metadata_lock": metadata_lock, "content_lock": content_lock, "translation_lock": translation_lock, "changeset": changeset, "preflight_result": preflight.get("result"), "validator_result": validation.get("result")}
 
 

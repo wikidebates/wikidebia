@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.60
+- **Révision :** 1.2.64
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -423,38 +423,38 @@ La décision du propriétaire du 7 août 2026 supprime les versions comme mécan
 
 
 
-
-### Révision 1.2.56 — provenance française dans le résumé de publication anglais
-
-- chaque création d’une page anglaise issue de la traduction FR→EN utilise alors le résumé exact `Translation of the French page [[:fr:X|X]]` (forme remplacée pour les futures créations par la convention 1.2.57) ;
-- `X` est le titre canonique français verrouillé de la même `page_id` et du même type de page ;
-- le résumé individualisé est inclus dans le plan signé, recalculé avant écriture et vérifié lors de la relecture de la révision distante ;
-- ce lien d’historique ne remplace pas le `{{Lien interlangue}}` ajouté au contenu français lorsque la traduction est `ready` ou `published`.
-
 ### Révision 1.2.55 — qualité adaptative de la traduction anglaise
 
 Le retour propriétaire du 7 août 2026 après les premiers lots anglais affine `TRN-005` et `EDT-063`, puis ajoute `TRN-007`, `EDT-064` et `TRN-008` : unités internes de dix arguments par défaut avec agrégation possible, forme anglaise consacrée non normalisée, identité exacte de portée pour `name=`, exécution non mécanique par Work/agent, et conservation des résumés historiquement absents pendant la traduction.
 
 
-### Conventions de publication des traductions — décision du 9 août 2026
+### Révision 1.2.56 — traduction différentielle et preuve d’archive
 
-- chaque nouvelle création anglaise FR→EN utilise `Translation of the French page: [[:fr:X|X]]` ;
-- chaque futur ajout interlangue français utilise `Ajout du lien interlangue vers la page anglaise : [[:en:X|X]]` ;
-- les créations anglaises traduites reçoivent `chatgpt` et `translated-fr` ;
-- les citations anglaises traduites automatiquement utilisent `AI-translated quote`.
-## Révision 1.2.58 — paramètre d’appellation consacrée
-
-| Besoin | Exigence | Mise en œuvre | Contrôle |
-|---|---|---|---|
-| Renommer uniquement le deuxième paramètre du modèle `Argument` | MW-008, EDT-062 | `nom-consacré` / `established-name` dans les rendus nouveaux | automatique + tests |
-| Ne pas confondre avec les titres, sites ou champs JSON `name` | MW-008 | renommage limité au paramètre top-level `Argument` | tests de non-régression |
-| Préserver les pages historiques utilisant encore l’ancien paramètre | VAL-041 | `nom` / `name` acceptés uniquement comme alias de préservation attestée | validateur + reprise |
+Le retour propriétaire du 9 août 2026 précise que la validation de traduction est une validation de non-régression par rapport à la source française déjà contrôlée, et non une application absolue des règles de création à la cible. `TRN-009` à `TRN-012`, `EDT-065`, `REF-040`, `RND-007`, `VAL-042` à `VAL-045` et `ARCH-004` couvrent respectivement la forme différentielle, l’inventaire sémantique, les résumés, la casse `name=`/keywords, l’identité documentaire, la complétude des Quote et le scellement sur extraction fraîche.
 
 
+### Révision 1.2.57 — titres canoniques, Debate et sémantique du verdict
 
-## Révision 1.2.59 — création des futures traductions anglaises
+La revue des audits du 9 août 2026 montre que plusieurs pertes sémantiques avaient touché des titres **canoniques** alors que l’outillage 1.2.56 instrumentait surtout les `displayed-title`, et qu’une page `Debate` pouvait conserver une structure valide tout en omettant une affirmation française. `TRN-013`, `TRN-014`, `VAL-046`, `VAL-047` et `VAL-048` étendent donc l’inventaire différentiel aux titres canoniques et à Debate et définissent explicitement `passed` comme un verdict de contrôles automatisés.
 
-| Besoin | Exigence | Mise en œuvre | Contrôle |
-|---|---|---|---|
-| Ne pas transférer l’ID parent français | TRN-009 | `initialization` interdit sur un nouvel Argument EN traduit | validateur + préflight de publication + tests |
-| Dater la page anglaise au jour de sa publication | RND-007 | substitution signée de `creation-date` au plan de publication | moteur de publication + tests de reprise et de changement de jour |
+### Révision 1.2.58 — ressources, couches de validation et marqueurs sémantiques
+
+| Besoin | Preuve attendue |
+|---|---|
+| Identité documentaire globale | `data/documentary_resources.json` lié à `sources.json` par SHA-256 |
+| Collision URL/DOI | conflit `same_identity_incompatible_label` bloquant en même langue |
+| Verdict non ambigu | quatre couches `structural`, `documentary`, `semantic_review`, `fresh_archive` |
+| Archive réellement revalidée | reçu externe lié au SHA-256 exact avec `fresh_archive=passed` |
+| Pertes sémantiques potentielles | signaux `WDV-BIL-007` sur titre canonique, titre affiché et résumé |
+
+### Réconciliation 1.2.62 — décisions de la branche publication GitHub
+
+| Besoin propriétaire | Exigence réconciliée | Contrôle |
+|---|---|---|
+| Résumé anglais individualisé avec lien vers la page FR | PUB-045 | plan signé + recalcul + relecture distante |
+| Résumé français d'ajout interlangue vers EN | PUB-046 | plan signé + vérification de modification interlangue pure |
+| Balises `chatgpt` et `translated-fr` sur création EN | PUB-047 | publication + relecture bornée des balises |
+| Ne pas transférer l'identifiant parent français | TRN-019 | `initialization` interdit sur un nouvel Argument EN traduit |
+| Dater la page EN au jour réel de publication | RND-009 | substitution signée de `creation-date` + invalidation au changement de jour |
+| Paramètre d'appellation consacrée actuel | règle 1.2.62 de rendu | `nom-consacré` / `established-name`, alias historiques préservés |
+| Avertissement des citations traduites | règle 1.2.62 `Quote` | `AI-translated quote` pour les nouvelles opérations |

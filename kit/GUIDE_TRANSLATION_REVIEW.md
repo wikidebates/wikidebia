@@ -1,4 +1,4 @@
-# Guide de traduction anglaise contrôlée — Kit 2.15.45
+# Guide de traduction anglaise contrôlée — Kit 2.15.48
 
 > Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 
@@ -9,7 +9,7 @@ La traduction anglaise commence uniquement après le verrouillage complet des m�
 La traduction est une adaptation idiomatique et documentaire, pas une substitution mot à mot. Elle est effectuée dans l'ordre suivant :
 
 1. **Lot Debate** : la page `Debate` complète constitue un lot autonome, avec son introduction, ses titres, ses sections, ses keywords, ses liens Wikipédia anglais et toute sa documentation anglaise.
-2. **Unités de revue Argument** : 10 pages par défaut. Réduire à 5–8 lorsque le groupe comporte beaucoup de citations, de références, de recherches terminologiques, de noms consacrés à vérifier ou d’anomalies de préservation. Une livraison Work peut agréger plusieurs unités closes ; ne pas fusionner leur revue.
+2. **Unités de revue Argument** : le kit calcule avant traduction un profil de densité depuis la source française immuable et recommande 10, 8, 6 ou 5 pages. Les facteurs observables sont consignés ; le score alloue l’effort de revue et n’évalue pas la qualité de l’argument. Une livraison Work peut agréger plusieurs unités closes ; ne pas fusionner leur revue.
 3. Une page Argument est entièrement achevée dans le même lot : canonical title, displayed title, summary, sections, keywords, `established-name=` éventuel, citations et références.
 4. Chaque lot est relu et clos avant le suivant. Il faut notamment vérifier le sens et l'orientation de chaque argument à partir du summary français, des citations, justifications et objections disponibles, afin d'éviter une inversion pour/contre.
 5. Après le dernier lot, effectuer une passe globale inter-lots sur la terminologie, les titres, le vocabulaire bilingue, les `established-name=`, les références, les citations et la parité du graphe avant `--finalize`.
@@ -137,3 +137,47 @@ Une revue de traduction validée remplace `translation_status.en=deferred` par `
 ## Noms consacrés des arguments anglais
 
 Un `established-name=` anglais n’est jamais obtenu par simple traduction d’un `nom-consacré=` français. Pour chaque page Argument anglaise nouvelle, la revue recherche séparément l’appellation réellement employée dans la littérature anglophone. Elle compare les variantes attestées et ne normalise pas leur construction (`X argument`, `Argument from X`, possessif, etc.). `same_reasoning_confirmed` signifie aussi **même portée** : un nom propre à une sous-variante, à un auteur ou à une étape du raisonnement ne convient pas à une page plus large. Le résultat par défaut reste l’absence de nom ; une valeur n’est verrouillée que si la littérature désigne exactement le raisonnement de la page sous cette appellation. L'existence d'un `nom-consacré=` français sert uniquement de piste pour les requêtes. Une traduction anglaise plausible mais non attestée ne doit jamais être inscrite dans `established-name=`.
+
+## Révision 1.2.57 — validation différentielle FR→EN
+
+En traduction, le français validé est la **source autoritative**. Les règles de forme de création ne sont pas réappliquées rétroactivement au contenu source. Une question, un impératif, un intitulé thématique, un groupe nominal ou une étiquette doctrinale déjà validés en français sont conservés sous une forme anglaise équivalente ; ils ne doivent pas être « réparés » silencieusement. En revanche, une proposition française ne peut devenir un fragment, une question, un impératif ou une simple étiquette en anglais.
+
+Pour chaque `displayed-title`, la revue consigne la forme source et cible et vérifie explicitement : sujet, prédicat, polarité/négation, modalité, attribution, quantificateurs, degré/intensité, temporalité/fréquence, condition/restriction, causalité/concession/comparaison et portée du référent (notamment `a god`/`God`). Si un raccourcissement perd l'un de ces éléments, reprendre le titre canonique plutôt que forcer la concision.
+
+Le **titre canonique** reçoit désormais son propre inventaire sémantique : sa fidélité ne peut pas être déduite de celle du `displayed-title`. Toute perte de conclusion, changement de sujet du prédicat, généralisation, restriction ou modification de modalité dans le canonique bloque la finalisation.
+
+La page `Debate` est contrôlée de la même manière : titre canonique, `topic`, `complete-topic`, affirmations et distinctions de l’introduction, faits historiques ou actuels, enjeux et fonction des sous-parties sont comparés à la source française. Remplacer une référence par une source anglophone réelle ne permet jamais de supprimer l’information qu’elle étayait.
+
+Le ratio de longueur du résumé reste un **détecteur de risque**, jamais une cible rédactionnelle. Le summary anglais doit traduire tout le raisonnement français et rien de plus ; il ne doit pas ajouter de métadiscours (`the argument`, `this reasoning`, etc.) absent de la source.
+
+`established-name=` est un sous-titre et commence donc par une majuscule ; les keywords ordinaires suivent la capitalisation lexicale contrôlée et ne reçoivent jamais automatiquement le `established-name=` comme mot-clé supplémentaire. Pour une nouvelle page anglaise, les recherches de `established-name=` doivent provenir d'un journal réel ou d'une nouvelle vérification : ne jamais reconstruire artificiellement des requêtes historiques.
+
+## 2.15.35 — marqueurs sémantiques systématiques
+
+Le moteur automatique compare les familles de marqueurs dans les titres canoniques, titres affichés et résumés. Toute perte signalée doit être relue contre le français; une paraphrase idiomatique équivalente peut être justifiée. Le moteur ne corrige jamais le texte.
+
+La validation reste différentielle : une forme historique acceptée dans le français n’est pas normalisée au passage en anglais.
+
+
+
+## Correctif 2.15.36 — provenance, Quote et inventaire final
+
+La recherche d’`established-name=` enregistre sa provenance réelle. Une nouvelle page anglaise utilise `actual_log` ou `fresh_recheck`; `historical_reconstruction` ne sert qu'à décrire honnêtement une décision ancienne. Chaque `Quote` est relue de début à fin contre la `Citation` source ; sous un ratio lexical de 0,60, une seconde revue explicite est requise. La release calcule `release/content_inventory.json`, en lie l'empreinte au reçu, puis le recalcule sur l'extraction fraîche.
+
+
+## Revue structurée et `established-name=`
+
+Pour chaque titre traduit, confirmer explicitement le sujet, le prédicat, la portée et la modalité en plus de l’inventaire général. Pour chaque `established-name=` retenu, résumer séparément la portée du raisonnement de la page et celle de l’appellation attestée ; seule une correspondance exacte est admise. Les signaux automatiques issus des régressions connues servent à orienter la relecture et ne réécrivent jamais le texte.
+
+## Conventions de publication réconciliées 1.2.64
+
+La revue éditoriale reste indépendante de la publication distante. Pour une création anglaise réellement publiée :
+
+- le résumé MediaWiki est `Translation of the French page: [[:fr:X|X]]` ;
+- la révision reçoit `chatgpt` et `translated-fr` ;
+- `creation-date=` est remplacé au plan par le jour civil réel de publication ;
+- un nouvel `Argument` anglais ne transporte jamais `initialization=` depuis le wiki français ;
+- le paramètre MediaWiki actuel d'appellation consacrée est `established-name=` ; `name=` n'est qu'un alias historique de préservation ;
+- une `Quote` nouvellement traduite utilise `AI-translated quote`.
+
+Ces conventions ne changent pas la règle de traduction différentielle : une propriété formelle déjà validée dans la source française n'est pas « réparée » silencieusement en anglais.

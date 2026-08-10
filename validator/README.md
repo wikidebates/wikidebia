@@ -1,9 +1,9 @@
-# Wikidéb’IA Validator 0.4.64
+# Wikidéb’IA — Validateur 0.4.67
 
-La version 0.4.64 applique la norme 1.2.60. Elle conserve sans modification la migration `nom-consacré` / `established-name` de 0.4.62 et confirme que `initialization` reste interdit sur une nouvelle page `Argument` anglaise générée. La fixation de `creation-date` au jour réel de publication relève du moteur de publication signé : le validateur local contrôle la structure du paquet, tandis que le kit remplace cette métadonnée juste avant la création distante.
+Version de réconciliation pour la norme 1.2.64 et le kit 2.15.48.
 
-La version 0.4.62 aligne le validateur sur la norme 1.2.58 : le deuxième paramètre top-level du modèle `Argument` est désormais `nom-consacré` en français et `established-name` en anglais. Les alias historiques `nom` / `name` restent acceptés uniquement pour la lecture et la préservation exacte de pages ou paquets antérieurs attestés ; ils sont refusés sur une nouvelle page relevant du contrat 1.2.58.
+Elle conserve les contrôles différentiels et sémantiques de la lignée traduction 0.4.64 et intègre les contrôles de la lignée publication GitHub : `nom-consacré` / `established-name`, `AI-translated quote`, absence d'`initialization` sur une nouvelle traduction anglaise, cohérence normative et préservation historique des alias.
 
-Le validateur distingue explicitement ce paramètre MediaWiki des titres de pages, noms de sites, auteurs et champs JSON génériques `name`. Il conserve aussi les contrôles 1.2.57, dont `AI-translated quote`, les conventions de résumé MediaWiki et la double balise de création appliquée par le kit.
+Les heuristiques sémantiques restent des signaux de revue humaine ; elles ne réécrivent jamais automatiquement le contenu. Les règles éditoriales actives restent cumulatives et ne sont pas conditionnées par le seul numéro de norme.
 
-Les normes éditoriales courantes sont cumulatives : `consolidated_norm` et les anciens champs `*_revision` ne servent pas de feature flags éditoriaux. La distinction pré-1.2.58 utilisée ici est uniquement une compatibilité de format pour lire et restaurer l’ancien nom de paramètre.
+Le correctif 0.4.67 ne retire aucun contrôle de 0.4.66 ; il rétablit la continuité des révisions normatives compatibles et ajoute le test de non-régression correspondant.

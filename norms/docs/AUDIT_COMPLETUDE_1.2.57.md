@@ -1,3 +1,7 @@
 # Audit de complétude 1.2.57
 
-La norme consolide les quatre conventions de publication demandées pour les futures traductions FR→EN : deux nouveaux formats exacts de résumé, `AI-translated quote`, et la double balise `chatgpt` + `translated-fr`. Les règles sont reflétées dans le workflow, le catalogue d’exigences, le kit et le validateur. Aucun historique déjà publié n’est réécrit par cette migration.
+- norme active unique 1.2.57 ;
+- exigences TRN-013, TRN-014 et VAL-046 à VAL-048 intégrées ;
+- source de décision consolidée ;
+- compatibilité 1.2.56 préservée par version propre des nouveaux artefacts/attestations ;
+- synchronisation requise avec validateur 0.4.60 et kit 2.15.34.

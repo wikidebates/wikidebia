@@ -228,7 +228,43 @@ Une passe globale inter-unités est obligatoire avant finalisation afin d'harmon
 
 Les numéros de norme et les anciens champs `*_policy_revision` / `*_revision` ne sélectionnent plus les règles éditoriales. Le workflow applique la norme consolidée courante à partir de l’état fonctionnel du corpus. Les versions globales restent disponibles pour la lecture d’anciens formats, les migrations, la provenance et l’identification d’une livraison. Un registre ou un artefact dont le format évolue utilise sa propre version de schéma.
 
+
+## Traduction différentielle — révision 1.2.56
+
+Lorsqu'un contenu français déjà validé est traduit, il devient la source autoritative du contrôle de forme. Les normes de création ne doivent pas être utilisées pour « corriger » rétroactivement en anglais une question, un impératif, un intitulé thématique, un groupe nominal ou une autre forme déjà acceptée en français. Le contrôle porte sur la **non-régression** : une propriété formelle ou sémantique absente du défaut source ne peut être perdue ou dégradée par la traduction. Une proposition française ne peut notamment devenir un fragment, une simple étiquette ou une injonction anglaise.
+
+Chaque titre traduit est relu selon un inventaire sémantique explicite : sujet, prédicat, polarité, modalité, attribution, quantificateurs, intensité, temporalité, condition, causalité/concession et portée du référent. Les contrôles lexicaux automatisés sont des signaux de revue, non des preuves autonomes d'erreur.
+
+
+## Couverture différentielle complète — révision 1.2.57
+
+La revue différentielle porte sur **chaque titre canonique traduit** en plus du `displayed-title`. Une attestation distincte consigne l’inventaire sémantique du titre canonique et confirme son équivalence avec le titre français autoritatif ; la validation d’un `displayed-title` ne peut servir de preuve par substitution.
+
+La page `Debate` est relue comme un objet bilingue complet : titre canonique, `topic`, `complete-topic`, affirmations et distinctions de l’introduction, faits historiques ou actuels, enjeux, et structure fonctionnelle des sous-parties. Le remplacement légitime d’une référence française par une source anglophone ne permet jamais de supprimer l’information que cette référence étayait.
+
+Le verdict technique `passed` signifie seulement que les contrôles automatisés et les attestations requises sont cohérents. Le statut `release_ready` exige toujours les revues humaines prévues ; aucun rapport automatique ne doit se présenter comme une certification autonome de fidélité sémantique.
+
+## Scellement documentaire et validation multicouche — révision 1.2.58
+
+Avant une validation finale bilingue, `data/documentary_resources.json` est généré à partir de `data/sources.json`. Il regroupe les identités documentaires par DOI normalisé, URL canonique (sans fragment ni paramètres de suivi) ou empreinte bibliographique. Toute collision incompatible dans une même langue bloque la clôture documentaire.
+
+Le rapport de validation conserve quatre statuts indépendants : structure, documentation, revue sémantique encodée et archive fraîche. Les trois premiers peuvent être calculés sur un dossier de paquet. Le quatrième est nécessairement établi après création du ZIP exact et figure dans le reçu externe.
+
+Le moteur de marqueurs sémantiques est exécuté en mode traduction différentielle sur les titres canoniques, `displayed-title` et résumés. Il produit une liste de familles possiblement perdues à relire; aucune correction n’est appliquée automatiquement à partir de ce signal.
+
+
+
+### Correctif 1.2.59 — preuve de recherche et complétude de citation
+
+Pour toute nouvelle recherche de `nom-consacré=` / `established-name=`, conserver la provenance réelle (`actual_log` ou `fresh_recheck`) ; une décision historique reconstruite est marquée `historical_reconstruction` et ne remplace jamais une recherche obligatoire d'une nouvelle page anglaise. Chaque `Quote` est comparée intégralement à la `Citation` source ; un ratio lexical inférieur à 0,60 impose une seconde revue explicite, sans réécriture automatique. La release finale génère et revalide `release/content_inventory.json` sur l'archive exacte.
+
+
+## Allocation adaptative des unités de traduction — 1.2.60
+
+Avant toute rédaction anglaise, chaque page Argument reçoit un profil de densité calculé uniquement depuis le verrou français. Les facteurs observables incluent citations, citations longues, références sélectionnées, longueur et densité logique du résumé, données chiffrées et présence d’un nom consacré dans la source. Le profil recommande une unité de 10 pages (faible), 8 (moyenne), 6 (élevée) ou 5 (très élevée). Chaque unité reste indépendante et doit être close par un relecteur ; le score n’est jamais une note de qualité ni un substitut à la revue humaine.
+
+## Réconciliation publication — 1.2.62
+
 ## Résumé de publication des traductions anglaises
 
 Pour une page anglaise créée comme traduction d’une page française verrouillée, le résumé MediaWiki est individualisé : `Translation of the French page: [[:fr:X|X]]`, où `X` est le titre canonique français de la même `page_id`. Le plan signé conserve cette valeur page par page ; l’exécuteur la recalcule depuis le manifeste avant écriture et la relecture de la révision créée en vérifie l’identité exacte. Le résumé générique anglais reste réservé aux créations qui ne sont pas des traductions. Ce lien d’historique ne remplace pas le lien interlangue rendu dans la page française après passage à `ready`.
-

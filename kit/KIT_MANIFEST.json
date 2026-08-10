@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.45",
-  "validator_version": "0.4.64",
+  "version": "2.15.48",
+  "validator_version": "0.4.67",
   "scope": [
     "publish_archive",
     "github_init",
@@ -72,6 +72,18 @@
     "independent_english_reference_enrichment",
     "cross_batch_translation_review",
     "cumulative_editorial_policy",
+    "differential_translation_form_validation",
+    "bilingual_semantic_inventory_review",
+    "fresh_archive_release_revalidation",
+    "documentary_resource_identity_consistency",
+    "argument_name_title_capitalization",
+    "global_documentary_resource_registry",
+    "granular_validation_layers",
+    "systematic_bilingual_semantic_marker_engine",
+    "translation_regression_suite",
+    "structured_argument_name_scope_review",
+    "structured_bilingual_semantic_review",
+    "adaptive_translation_review_units",
     "page_specific_translation_edit_summary",
     "later_interlanguage_enrichment_preservation_exception",
     "page_specific_interlanguage_update_summary",
@@ -265,6 +277,8 @@
     "manual_remote_adoption_revision_lock",
     "manual_remote_adoption_sha_lock",
     "explicit_lifecycle_change_authorization",
+    "fresh_archive_validation",
+    "source_authoritative_translation_non_regression",
     "immutable_revision_tagging",
     "eventually_consistent_postwrite_tag_verification",
     "legacy_argument_name_alias_preservation"
@@ -396,11 +410,19 @@
     "manual_remote_revision_adoption",
     "revision_locked_human_change_reconciliation",
     "preserved_argument_name",
+    "canonical_title_bilingual_semantic_inventory",
+    "debate_bilingual_claim_inventory",
+    "automated_validation_scope_label",
+    "translation_semantic_review_schema_1_1",
+    "argument_name_search_provenance_1_1",
+    "quote_completeness_attestation",
+    "low_ratio_quote_second_review",
+    "transactional_release_content_inventory",
     "french_interlanguage_remote_overlay",
     "redirect_preserving_interlanguage_enrichment",
     "interlanguage_only_owner_mode"
   ],
-  "normative_revision": "1.2.60",
+  "normative_revision": "1.2.64",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -500,7 +522,8 @@
     "argument_established_name_parameter_alias_regression",
     "english_creation_date_runtime_override_regression",
     "english_initialization_cross_wiki_rejection_regression",
-    "english_creation_midnight_boundary_regression"
+    "english_creation_midnight_boundary_regression",
+    "isolated_test_module_import_regression"
   ],
   "translation_change_tag": "translated-fr"
 }

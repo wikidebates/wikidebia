@@ -568,3 +568,13 @@ Les notions spécialisées de même rang énumérées ou comparées dans un mêm
 ## Inventaire général des notions spécialisées (1.2.46)
 
 La revue ne se limite pas aux séries de notions comparables. Chaque sous-partie est examinée intégralement et reçoit une entrée dans `specialized_term_inventory`. Toute notion susceptible d’arrêter un lecteur est liée, expliquée, rattachée à un traitement antérieur ou déclarée intelligible en contexte avec une justification spécifique. Tous les liens Wikipédia réellement présents sont recensés. Le registre `wikipedia_link_groups` de 1.2.45 est remplacé comme mécanisme actif par cet inventaire général.
+
+## Exigences actives 1.2.58 — identité documentaire et validation multicouche
+
+- **REF-041 — ACTIVE — automatic** : un registre global normalisé sépare l’identité canonique des ressources de leurs usages dans `sources.json`; l’identité privilégie DOI, puis URL canonique, puis empreinte bibliographique déterministe.
+- **REF-042 — ACTIVE — automatic+human review** : une même identité DOI/URL ne peut porter des libellés documentaires incompatibles dans une même langue; les variantes interlangues restent distinctes et autorisées.
+- **REF-043 — ACTIVE — automatic** : le registre global des ressources est lié par SHA-256 à la version exacte de `sources.json`, déterministe et régénérable.
+- **VAL-049 — ACTIVE — automatic** : tout rapport du validateur expose séparément `structural`, `documentary`, `semantic_review` et `fresh_archive`, avec `not_run` lorsqu’une couche n’a pas été exécutée.
+- **VAL-050 — ACTIVE — automatic+human review** : le moteur sémantique FR→EN compare les marqueurs de négation, modalité, attribution, quantification, fréquence, nécessité/possibilité, restriction, condition, causalité, conséquence, concession, comparaison, intensité et immédiateté dans les titres canoniques, titres affichés et résumés; ses sorties sont des signaux de revue et non des verdicts automatiques.
+- **ARCH-005 — ACTIVE — automatic** : le statut `fresh_archive` n’est scellé qu’après création, empreinte, contrôle, extraction vierge et revalidation de l’archive exacte, dans un reçu externe lié au SHA-256 de l’archive.
+

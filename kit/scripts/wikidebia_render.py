@@ -45,7 +45,7 @@ from wikidebia_corpus_init import extract_page_metadata
 from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
 from wikidebia_editorial_review import EditorialReviewError, _assert_source_unchanged, _run_validator
 
-KIT_VERSION = "2.15.45"
+KIT_VERSION = "2.15.48"
 RENDER_LOCK_SCHEMA = "wikidebia-bilingual-render-lock-1.0"
 RENDER_CHANGESET_SCHEMA = "wikidebia-bilingual-render-changeset-1.0"
 
@@ -641,12 +641,31 @@ def _finalize_individual_review(
             "new_displayed_title_en": en_displayed,
             "canonical_referents_explicit_fr": True,
             "canonical_referents_explicit_en": True,
+            "canonical_title_semantic_inventory_reviewed_en": bool(en.get("canonical_title_semantic_inventory_reviewed")),
+            "canonical_title_semantic_inventory_note_en": en.get("canonical_title_semantic_inventory_note"),
+            "canonical_title_semantically_equivalent_en": bool(en.get("canonical_title_equivalent_to_french")),
+            "canonical_title_subject_preserved_en": bool(en.get("canonical_title_subject_preserved")),
+            "canonical_title_predicate_preserved_en": bool(en.get("canonical_title_predicate_preserved")),
+            "canonical_title_scope_preserved_en": bool(en.get("canonical_title_scope_preserved")),
+            "canonical_title_modality_preserved_en": bool(en.get("canonical_title_modality_preserved")),
             "displayed_referents_explicit_fr": True,
             "displayed_referents_explicit_en": True,
-            "displayed_title_complete_proposition_fr": True,
+            "displayed_title_complete_proposition_fr": en.get("displayed_title_source_form") == "proposition",
             "displayed_title_argument_intelligible_fr": True,
-            "displayed_title_complete_proposition_en": True,
+            "displayed_title_source_form_reviewed_fr": bool(en.get("displayed_title_source_form_reviewed")),
+            "displayed_title_source_form_fr": en.get("displayed_title_source_form"),
+            "displayed_title_complete_proposition_en": en.get("displayed_title_target_form") == "proposition",
             "displayed_title_argument_intelligible_en": True,
+            "displayed_title_source_form_reviewed_en": bool(en.get("displayed_title_source_form_reviewed")),
+            "displayed_title_no_formal_regression_en": bool(en.get("displayed_title_no_formal_regression")),
+            "displayed_title_semantic_inventory_reviewed_en": bool(en.get("displayed_title_semantic_inventory_reviewed")),
+            "displayed_title_source_form_en": en.get("displayed_title_source_form"),
+            "displayed_title_target_form_en": en.get("displayed_title_target_form"),
+            "displayed_title_semantic_inventory_note_en": en.get("displayed_title_semantic_inventory_note"),
+            "displayed_title_subject_preserved_en": bool(en.get("displayed_title_subject_preserved")),
+            "displayed_title_predicate_preserved_en": bool(en.get("displayed_title_predicate_preserved")),
+            "displayed_title_scope_preserved_en": bool(en.get("displayed_title_scope_preserved")),
+            "displayed_title_modality_preserved_en": bool(en.get("displayed_title_modality_preserved")),
             "displayed_title_concision_reviewed_fr": True,
             "displayed_title_concision_reviewed_en": True,
             "displayed_title_semantically_equivalent_fr": True,

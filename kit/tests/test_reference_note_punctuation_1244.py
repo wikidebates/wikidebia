@@ -1,9 +1,13 @@
 import hashlib
 import importlib.util
+import sys
 from pathlib import Path
 import pytest
 
-SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "wikidebia_content_review.py"
+SCRIPTS = Path(__file__).resolve().parents[1] / "scripts"
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+SCRIPT = SCRIPTS / "wikidebia_content_review.py"
 spec = importlib.util.spec_from_file_location("content_review_1244", SCRIPT)
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)

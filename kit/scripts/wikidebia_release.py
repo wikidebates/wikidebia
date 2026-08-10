@@ -39,12 +39,13 @@ from wikidebia_corpus_build import (
     write_json,
 )
 from wikidebia_editorial_review import EditorialReviewError, _assert_source_unchanged, _run_validator
+from wikidebia_documentary_resources import build_file as build_documentary_resource_registry
 from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
 from wikidebia_render import RenderError, _load_workspace
 
-KIT_VERSION = "2.15.45"
+KIT_VERSION = "2.15.48"
 RELEASE_MANIFEST_SCHEMA = "1.0"
-RELEASE_RECEIPT_SCHEMA = "wikidebia-local-release-receipt-1.0"
+RELEASE_RECEIPT_SCHEMA = "wikidebia-local-release-receipt-1.1"
 REMOTE_INPUT_SCHEMA = "wikidebia-remote-comparison-input-1.0"
 
 
@@ -173,6 +174,125 @@ def _write_deterministic_zip(source: Path, archive: Path, timestamp: str) -> Non
             bundle.writestr(info, path.read_bytes(), compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
 
 
+def _content_inventory_counts(package_root: Path) -> dict[str, int]:
+    manifest = load_json(package_root / "manifest.json", "manifest de release")
+    registry = load_json(package_root / "data/registre_debat.json", "registre maître")
+    pages = manifest.get("pages") or []
+    graph = registry.get("graph") or {}
+    controls = manifest.get("editorial_controls") or {}
+    name_count = 0
+    name_rel = controls.get("argument_name_discovery_path")
+    if name_rel and (package_root / str(name_rel)).is_file():
+        name_review = load_json(package_root / str(name_rel), "revue de noms")
+        name_count = sum(1 for row in name_review.get("entries") or [] if row.get("language") == "en" and row.get("outcome") == "known_name")
+    quote_count = summary_present = summary_absent = 0
+    en_lock_path = package_root / "data/en_content_lock.json"
+    if en_lock_path.is_file():
+        en_lock = load_json(en_lock_path, "verrou de contenu anglais")
+        for argument in en_lock.get("arguments") or []:
+            quote_count += len(argument.get("citations") or [])
+            if str(argument.get("summary") or "").strip():
+                summary_present += 1
+            else:
+                summary_absent += 1
+    resource_count = 0
+    resource_rel = controls.get("documentary_resource_registry_path") or "data/documentary_resources.json"
+    if (package_root / str(resource_rel)).is_file():
+        resources = load_json(package_root / str(resource_rel), "registre documentaire global")
+        resource_count = len(resources.get("resources") or [])
+    active_nodes = sum(1 for node in graph.get("nodes") or [] if node.get("status") == "active")
+    return {
+        "pages": len(pages),
+        "french_pages": sum(1 for row in pages if row.get("language") == "fr"),
+        "english_pages": sum(1 for row in pages if row.get("language") == "en"),
+        "active_argument_nodes": active_nodes,
+        "graph_edges": len(graph.get("edges") or []),
+        "graph_occurrences": len(graph.get("occurrences") or []),
+        "english_known_names": name_count,
+        "english_quotes": quote_count,
+        "english_summaries_present": summary_present,
+        "english_summaries_absent": summary_absent,
+        "documentary_resources": resource_count,
+    }
+
+
+def _write_content_inventory(package_root: Path, timestamp: str) -> dict[str, Any]:
+    controls = (load_json(package_root / "manifest.json", "manifest de release").get("editorial_controls") or {})
+    sources = {
+        "registry_sha256": sha256_file(package_root / "data/registre_debat.json"),
+        "en_content_lock_sha256": sha256_file(package_root / "data/en_content_lock.json") if (package_root / "data/en_content_lock.json").is_file() else None,
+        "argument_name_review_sha256": None,
+        "documentary_resources_sha256": None,
+    }
+    name_rel = controls.get("argument_name_discovery_path")
+    if name_rel and (package_root / str(name_rel)).is_file():
+        sources["argument_name_review_sha256"] = sha256_file(package_root / str(name_rel))
+    resource_rel = controls.get("documentary_resource_registry_path") or "data/documentary_resources.json"
+    if (package_root / str(resource_rel)).is_file():
+        sources["documentary_resources_sha256"] = sha256_file(package_root / str(resource_rel))
+    inventory = {
+        "schema": "wikidebia-release-content-inventory-1.0",
+        "created_at": timestamp,
+        "counts": _content_inventory_counts(package_root),
+        "source_sha256": sources,
+    }
+    write_json(package_root / "release/content_inventory.json", inventory)
+    return inventory
+
+
+def _verify_content_inventory(package_root: Path) -> dict[str, Any]:
+    path = package_root / "release/content_inventory.json"
+    if not path.is_file():
+        raise ReleaseError("Inventaire de contenu final absent de l’archive")
+    inventory = load_json(path, "inventaire de contenu final")
+    actual = _content_inventory_counts(package_root)
+    if inventory.get("counts") != actual:
+        raise ReleaseError(f"Inventaire de contenu final périmé : attendu {inventory.get('counts')!r}, obtenu {actual!r}")
+    manifest = load_json(package_root / "manifest.json", "manifest de release")
+    controls = manifest.get("editorial_controls") or {}
+    checks = {
+        "registry_sha256": package_root / "data/registre_debat.json",
+        "en_content_lock_sha256": package_root / "data/en_content_lock.json",
+    }
+    name_rel = controls.get("argument_name_discovery_path")
+    if name_rel:
+        checks["argument_name_review_sha256"] = package_root / str(name_rel)
+    resource_rel = controls.get("documentary_resource_registry_path") or "data/documentary_resources.json"
+    checks["documentary_resources_sha256"] = package_root / str(resource_rel)
+    declared = inventory.get("source_sha256") or {}
+    for key, source_path in checks.items():
+        expected = declared.get(key)
+        if source_path.is_file():
+            actual_sha = sha256_file(source_path)
+            if expected != actual_sha:
+                raise ReleaseError(f"Empreinte source divergente dans l’inventaire final : {key}")
+        elif expected is not None:
+            raise ReleaseError(f"L’inventaire référence une source absente : {key}")
+    return inventory
+
+
+def _validate_fresh_archive(project_root: Path, archive: Path, workspace: Path, report_json: Path, report_txt: Path) -> dict[str, Any]:
+    """Extract the exact ZIP into a fresh directory and validate that immutable artifact."""
+    with tempfile.TemporaryDirectory(prefix=".fresh-archive-validation-", dir=workspace) as tmp:
+        extracted = Path(tmp) / "extracted"
+        extracted.mkdir()
+        with zipfile.ZipFile(archive, "r") as bundle:
+            for info in bundle.infolist():
+                name = info.filename
+                pure = Path(name)
+                if pure.is_absolute() or ".." in pure.parts:
+                    raise ReleaseError(f"Chemin dangereux dans l’archive finale : {name}")
+            bundle.extractall(extracted)
+            bad = bundle.testzip()
+            if bad is not None:
+                raise ReleaseError(f"CRC invalide dans l’archive finale : {bad}")
+        _verify_content_inventory(extracted)
+        result = _run_validator(project_root, extracted, scopes=("all",), json_output=report_json, text_output=report_txt)
+        if result.get("result") not in {"passed", "passed_with_warnings"}:
+            raise ReleaseError("La validation de l’extraction fraîche de l’archive exacte a échoué")
+        return result
+
+
 def _build_release_copy(project_root: Path, source: Path, target: Path, *, debate_id: str, work_id: str) -> dict[str, Any]:
     shutil.copytree(source, target)
     assert_no_symlinks(target)
@@ -180,6 +300,12 @@ def _build_release_copy(project_root: Path, source: Path, target: Path, *, debat
     manifest_path = target / "manifest.json"
     manifest = load_json(manifest_path, "manifest de rendu")
     registry = load_json(target / "data/registre_debat.json", "registre maître")
+    resources_rel = "data/documentary_resources.json"
+    build_documentary_resource_registry(target / "data/sources.json", target / resources_rel)
+    controls = manifest.setdefault("editorial_controls", {})
+    controls["documentary_resource_registry_path"] = resources_rel
+    controls["documentary_resource_registry_schema_version"] = "1.0"
+    controls.setdefault("semantic_marker_engine_version", "1.1")
     structural = structural_sha256(registry)
     gate = {
         "local_release_status": "release_ready",
@@ -234,6 +360,7 @@ def _build_release_copy(project_root: Path, source: Path, target: Path, *, debat
         "reason": gate["blocking_reason"],
     })
     remote_input = _remote_input(target, manifest, timestamp)
+    content_inventory = _write_content_inventory(target, timestamp)
     write_json(target / "reports/release_validation.json", {"status": "pending"})
     internal_validation = _run_validator(
         project_root, target, scopes=("all",),
@@ -270,6 +397,8 @@ def _build_release_copy(project_root: Path, source: Path, target: Path, *, debat
         "files": files,
         "validation_reports": validation_reports,
         "publication_logs": ["logs/publication/not_started.json"],
+        "content_inventory": "release/content_inventory.json",
+        "content_inventory_sha256": sha256_file(target / "release/content_inventory.json"),
         "finalized_at": timestamp,
         "self_excluded": True,
         "publication_gate": copy.deepcopy(gate),
@@ -333,6 +462,9 @@ def release_workspace(project_root: Path, debate_id: str, work_id: str, confirm_
         archive = temp_artifact / f"{debate_id}.zip"
         _write_deterministic_zip(temp_copy, archive, built["timestamp"])
         archive_sha = sha256_file(archive)
+        fresh_json = temp_artifact / "fresh-archive-validation.json"
+        fresh_txt = temp_artifact / "fresh-archive-validation.txt"
+        fresh_validation = _validate_fresh_archive(project_root, archive, workspace, fresh_json, fresh_txt)
         receipt = {
             "schema": RELEASE_RECEIPT_SCHEMA,
             "schema_version": "1.0",
@@ -345,14 +477,39 @@ def release_workspace(project_root: Path, debate_id: str, work_id: str, confirm_
             "status": "release_ready",
             "release_copy_tree_sha256": tree_hash,
             "release_manifest_sha256": built["release_manifest_sha256"],
+            "content_inventory_path": "release/content_inventory.json",
+            "content_inventory_sha256": sha256_file(temp_copy / "release/content_inventory.json"),
+            "content_inventory_counts": copy.deepcopy(_verify_content_inventory(temp_copy).get("counts") or {}),
             "archive_name": archive.name,
             "archive_sha256": archive_sha,
             "archive_size_bytes": archive.stat().st_size,
             "postrelease_validation_result": final_validation.get("result"),
             "postrelease_validation_sha256": sha256_file(external_json),
+            "fresh_archive_validation_result": fresh_validation.get("result"),
+            "fresh_archive_validation_sha256": sha256_file(fresh_json),
+            "fresh_archive_audited_sha256": archive_sha,
+            "validation_layers": {
+                **copy.deepcopy(final_validation.get("validation_layers") or {}),
+                "fresh_archive": {
+                    "status": "passed" if fresh_validation.get("result") == "passed" else "passed_with_warnings",
+                    "errors": int((fresh_validation.get("summary") or {}).get("errors", 0)),
+                    "warnings": int((fresh_validation.get("summary") or {}).get("warnings", 0)),
+                    "infos": int((fresh_validation.get("summary") or {}).get("infos", 0)),
+                    "meaning": "L'archive exacte a été créée, réextraite dans un dossier vierge, contrôlée CRC/sûreté puis revalidée sans modifier son contenu.",
+                },
+            },
             "remote_access": False,
             "publication_started": False,
         }
+        write_json(temp_artifact / "validation-layers.json", {
+            "schema": "wikidebia-validation-layers-1.0",
+            "debate_id": debate_id,
+            "work_id": work_id,
+            "archive_sha256": archive_sha,
+            "validator_version": VALIDATOR_VERSION,
+            "layers": copy.deepcopy(receipt["validation_layers"]),
+        })
+        receipt["validation_layers_path"] = "validation-layers.json"
         receipt["receipt_sha256"] = _canonical_sha(receipt, "receipt_sha256")
         write_json(temp_artifact / "release-receipt.json", receipt)
         os.replace(temp_artifact, artifact_target)

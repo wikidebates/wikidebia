@@ -1,40 +1,72 @@
-## 1.2.60 — 10 août 2026 — cohérence normative
+# Changelog normatif Wikidéb’IA
 
-- aucun changement fonctionnel de règle ;
-- corrige l’en-tête de la matrice de traçabilité vers 1.2.60 ;
-- corrige le pointeur de préséance du catalogue vers la norme consolidée active 1.2.60 ;
-- met à jour la date d’effet de la norme consolidée au 10 août 2026 ;
-- alignement recommandé : validateur 0.4.64 et kit 2.15.45.
+## 1.2.64 — 10 août 2026 — correctif de preuve de release
 
-## 1.2.59 — 10 août 2026 — création des traductions anglaises
+- restaure `1.2.62` dans les listes de compatibilité du validateur et supprime la duplication accidentelle de `1.2.63` ;
+- impose que les modules de tests critiques du kit soient exécutables isolément sans dépendre d’un `sys.path` modifié par un autre module ;
+- ne modifie aucune règle éditoriale, aucun contrat de publication ni aucun historique antérieur.
 
-- interdit `initialization` lors de la création d’un nouvel Argument anglais traduit depuis le français ;
-- impose que `creation-date` des nouvelles pages anglaises traduites soit le jour réel de leur publication, et non la date française ou la date de traduction ;
-- impose l’invalidation du plan si le jour change avant l’écriture et une reprise sûre fondée sur la révision de création vérifiée ;
-- conserve intégralement la migration `nom-consacré` / `established-name` de 1.2.58.
+## 1.2.63 — 10 août 2026 — correctif de réconciliation
 
-## 1.2.58 — 10 août 2026 — `nom-consacré` / `established-name`
+- aligne toutes les règles actives sur `nom-consacré` / `established-name` ;
+- aligne le contrat courant des citations sur `AI-translated quote` ;
+- restaure dans les métadonnées de compatibilité et le manifeste du kit toutes les capacités de publication de la branche GitHub ;
+- ajoute des tests de non-régression spécifiques à la fusion.
 
-- renommage du deuxième paramètre du modèle `Argument` : `nom` → `nom-consacré` en français et `name` → `established-name` en anglais ;
-- génération interdite des anciens `nom` / `name` sur les pages nouvelles ;
-- maintien des anciens paramètres comme alias historiques uniquement pour la préservation exacte de pages préexistantes attestées ;
-- invariance explicite des noms de titres de pages, sites, auteurs et champs JSON génériques `name` ;
-- alignement recommandé : validateur 0.4.62 et kit 2.15.43.
+## 1.2.62 — 10 août 2026
 
-## 1.2.57 — 9 août 2026 — conventions de publication des futures traductions
+- réconciliation des branches traduction/validation et publication GitHub ;
+- conservation sans réécriture des deux historiques parallèles ;
+- intégration des conventions de publication FR→EN, `translated-fr`, `nom-consacré` / `established-name`, `AI-translated quote`, `initialization` et `creation-date` ;
+- maintien intégral des contrôles différentiels et sémantiques 1.2.61 ;
+- renumérotation des deux exigences en collision : branche publication `TRN-009` → `TRN-019`, `RND-007` → `RND-009`.
 
-- résumé des nouvelles créations anglaises FR→EN : `Translation of the French page: [[:fr:X|X]]` ;
-- résumé des futurs ajouts interlangues français : `Ajout du lien interlangue vers la page anglaise : [[:en:X|X]]` ;
-- avertissement des citations traduites automatiquement : `AI-translated quote` ;
-- balises des créations anglaises traduites : `chatgpt` et `translated-fr` ;
-- aucune réécriture rétroactive imposée aux historiques déjà publiés.
+## 1.2.61
+
+- Cohérence obligatoire des schémas kit↔validateur et test croisé isolé.
+- Archivage exact des normes consolidées remplacées.
+- Correction des métadonnées de compatibilité.
+
+# Changelog normatif
+
+## 1.2.60
+- tests de régression sémantique FR→EN issus des erreurs réelles ;
+- format `name=` 1.2 avec identité exacte de portée ;
+- attestation structurée sujet/prédicat/portée/modalité ;
+- score de densité source-only et unités de revue 10/8/6/5.
+
+## 1.2.59 — 9 août 2026
+
+- formalise la provenance des recherches de noms consacrés avec le format de revue 1.1 ;
+- exige une attestation humaine de complétude de chaque `Quote` et une seconde revue documentée en cas de ratio lexical faible ;
+- ajoute un inventaire transactionnel de contenu de release recalculé après extraction fraîche pour empêcher les reçus et compteurs périmés.
+
+## 1.2.58 — 9 août 2026
+
+- ajout du registre global déterministe des identités documentaires DOI/URL/empreinte bibliographique, séparé des usages de `sources.json` ;
+- détection des métadonnées incompatibles pour une même identité documentaire dans une même langue ;
+- rapports de validation à quatre couches : `structural`, `documentary`, `semantic_review`, `fresh_archive` ;
+- `fresh_archive` scellé uniquement dans la preuve externe post-ZIP ;
+- moteur bilingue systématique de marqueurs sémantiques sur titres canoniques, titres affichés et résumés, en mode signal de revue non destructif.
+
+## 1.2.57 — 9 août 2026
+
+- étend l’inventaire sémantique différentiel aux titres canoniques des pages Argument ;
+- impose une revue sémantique FR→EN explicite de la page Debate : titre, topic, complete-topic, affirmations de l’introduction et structure des sous-parties ;
+- précise qu’un `passed` du validateur signifie réussite des contrôles automatisés et des attestations encodées, sans se substituer à la revue bilingue humaine ;
+- conserve intégralement le principe 1.2.56 : aucune règle de création ne sert à rééditer rétroactivement le contenu français autoritatif.
 
 ## 1.2.56 — 9 août 2026
 
-- les créations anglaises issues d’une traduction française utilisent désormais le résumé individualisé `Translation of the French page [[:fr:X|X]]` ;
-- `X` provient du titre canonique français verrouillé de la même `page_id` ;
-- le résumé est scellé par action dans le plan, recalculé avant écriture et vérifié sur la révision distante ;
-- cette règle remplace uniquement le résumé générique anglais des créations de traduction et ne remplace pas les liens interlangues de contenu.
+- validation FR→EN explicitement différentielle : conservation fidèle des formes source déjà validées et blocage des dégradations introduites par la traduction ;
+- inventaire sémantique obligatoire des titres : sujet, prédicat, polarité, modalité, attribution, quantificateurs, degré, temporalité, conditions, connecteurs logiques et portée ;
+- ratio de résumé confirmé comme signal de risque et non objectif de rédaction ; détection du métadiscours ajouté uniquement en anglais ;
+- distinction explicite entre la majuscule de sous-titre de `name=` et la casse lexicale des keywords ;
+- interdiction de fabriquer rétroactivement des requêtes de recherche historiques ;
+- cohérence documentaire transversale par identité URL/DOI ;
+- contrôle de complétude source→cible des `Quote` comme signal de revue ;
+- validation finale obligatoire sur extraction neuve de l’archive exacte, avec SHA-256 enregistré ;
+- distinction entre validation automatique et revue sémantique humaine.
 
 ## 1.2.55 — 2026-08-07
 
@@ -66,7 +98,7 @@
 - recherche de `name=` indépendante dans la littérature anglophone, sans traduction mécanique de `nom=` ;
 - interdiction de traduire artificiellement les références françaises ; projection uniquement d'une version anglaise réelle et vérifiée avec ses métadonnées propres ;
 - recherche indépendante de nouvelles références anglophones ;
-- confirmation du contrat `Citation`→`Quote` : seules les valeurs `quote` et `date` sont traduites et `Quote translated by AI` est ajouté (mention remplacée par `AI-translated quote` en 1.2.57) ;
+- confirmation du contrat `Citation`→`Quote` : seules les valeurs `quote` et `date` sont traduites et `Quote translated by AI` est ajouté ;
 - alignement recommandé : validateur 0.4.56 et kit 2.15.30.
 
 ## 1.2.52 — 7 août 2026

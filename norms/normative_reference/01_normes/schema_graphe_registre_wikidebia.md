@@ -1770,3 +1770,9 @@ Le manifeste porte `translation_status.en` avec les valeurs `pending`, `deferred
 
 Le manifeste peut déclarer `editorial_controls.creation_date_policy=per_page_preserved`. Chaque entrée de page porte alors sa date immuable, reproduite à l'identique dans le registre et le wikicode. Le statut anglais différé n'exige pas de métadonnées anglaises avant traduction.
 
+## Registre global des ressources documentaires — schéma 1.0 / norme 1.2.58
+
+Le fichier courant `data/documentary_resources.json` est une projection déterministe de `data/sources.json`. Il ne remplace pas le registre des usages : il sépare l’identité de la ressource de son emploi dans une page. Chaque entrée contient un `id` stable dérivé de l’identité, `identity_type` (`doi`, `url`, `bibliographic_fingerprint`), `identity_key`, `canonical_url`, `doi`, les `source_ids`, langues, libellés, variantes de métadonnées et conflits éventuels. `source_registry_sha256` lie obligatoirement cette projection aux octets exacts de `sources.json`.
+
+La normalisation d’URL minuscule schéma/hôte, supprime le fragment, normalise les slashs, trie les paramètres utiles et élimine les paramètres de suivi usuels. Le DOI est normalisé en minuscules sans préfixe `doi:` ni URL. Une divergence de libellé pour une même identité dans une même langue constitue un conflit documentaire à résoudre; une traduction réelle dans une autre langue n’en constitue pas un.
+

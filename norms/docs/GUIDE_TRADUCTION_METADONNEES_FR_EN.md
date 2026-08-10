@@ -89,3 +89,19 @@ Avant de clore le lot Debate puis chaque lot Argument, une seconde passe compare
 8. que les références projetées correspondent à de vraies versions anglaises vérifiées et que les nouvelles références anglophones ont été recherchées conformément au protocole général ;
 9. que les contrats spéciaux, notamment `Citation`→`Quote`, sont respectés ;
 10. qu'une passe globale inter-lots confirme finalement la cohérence de ces choix sur tout le corpus.
+
+
+## 6. Contrôle différentiel de forme et de sens — 1.2.56
+
+La traduction ne réapplique pas mécaniquement à l’anglais les règles de création qui auraient pour effet de corriger un choix formel déjà présent dans la source française validée. Une question, un impératif, un intitulé thématique ou un groupe nominal source peut être traduit sous une forme équivalente. En revanche, si la source française satisfaisait une propriété de forme — par exemple une proposition complète — la traduction ne peut la dégrader en fragment, question, injonction ou simple étiquette.
+
+La seconde passe FR→EN compare explicitement : sujet, prédicat, négation/polarité, modalité, attribution, quantificateurs, degré, temporalité, condition, causalité/concession et portée du référent. Une perte ou une catégorisation plus forte exige une reprise. Le raccourcissement d’un `displayed-title` n’est jamais une justification suffisante.
+
+Le ratio des résumés reste un signal de risque, pas un objectif de longueur. Les mots-clés restent issus terme à terme du vocabulaire bilingue et conservent leur casse propre ; le sous-titre `name=` commence par une majuscule mais n’est jamais injecté comme keyword.
+
+La validation finale de traduction est exécutée sur une extraction neuve de l’archive finale dont le SHA-256 est enregistré dans le rapport.
+
+
+### Correctif 1.2.59 — preuve de recherche et complétude de citation
+
+Pour toute nouvelle recherche de `nom=` / `name=`, conserver la provenance réelle (`actual_log` ou `fresh_recheck`) ; une décision historique reconstruite est marquée `historical_reconstruction` et ne remplace jamais une recherche obligatoire d'une nouvelle page anglaise. Chaque `Quote` est comparée intégralement à la `Citation` source ; un ratio lexical inférieur à 0,60 impose une seconde revue explicite, sans réécriture automatique. La release finale génère et revalide `release/content_inventory.json` sur l'archive exacte.

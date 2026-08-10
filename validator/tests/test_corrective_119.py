@@ -114,4 +114,4 @@ def test_old_norm_metadata_does_not_disable_current_summary_rules():
 
 def test_active_norm_is_119():
     root = Path(__file__).parents[1] / "normative_reference" / "01_normes"
-    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.60.md"]
+    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.64.md"]

@@ -1,3 +1,3 @@
-# Migration 2.15.36
+# Migration kit 2.15.36
 
-Maintenance sans changement de norme ni de validateur. Le planificateur de reprise ne s’arrête plus globalement lorsqu’un titre distant existant ne contient pas le modèle principal attendu (`Débat`/`Argument`). La page est isolée dans `manual_review` si elle appartient à l’état publié, ou dans `blocked` si elle n’est pas attestée. Le plan conserve le titre, la révision, l’empreinte, l’erreur structurelle et un extrait du wikicode distant. Aucune de ces opérations ne peut être exécutée tant qu’elle reste non résolue.
+Le kit 2.15.36 accompagne la norme 1.2.59 et le validateur 0.4.62. Les nouvelles productions anglaises utilisent le registre de recherche des noms 1.1, attestent la complétude de chaque Quote et génèrent un inventaire de contenu de release vérifié après extraction fraîche. Les anciens registres de noms 1.0 restent lisibles mais ne sont jamais enrichis par invention de requêtes historiques.

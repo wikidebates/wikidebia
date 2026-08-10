@@ -615,6 +615,48 @@
         "argument_name_discovery_path": {
           "type": "string",
           "minLength": 1
+        },
+        "translation_validation_mode": {
+          "type": "string",
+          "enum": [
+            "absolute",
+            "differential"
+          ],
+          "description": "Differential validates translated form as non-regression against the authoritative source; absolute remains the creation-mode default."
+        },
+        "translation_semantic_review_schema_version": {
+          "type": "string",
+          "enum": [
+            "1.0",
+            "1.1",
+            "1.2"
+          ],
+          "description": "Artifact schema for bilingual semantic-review attestations. Version 1.2 adds structured subject/predicate/scope/modality attestations."
+        },
+        "documentary_resource_registry_path": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        },
+        "documentary_resource_registry_schema_version": {
+          "type": "string",
+          "enum": [
+            "1.0"
+          ],
+          "description": "Version du registre corpus-wide qui sépare l'identité canonique d'une ressource de ses usages documentaires localisés."
+        },
+        "semantic_marker_engine_version": {
+          "type": "string",
+          "enum": [
+            "1.0",
+            "1.1"
+          ],
+          "description": "Version de l’analyse conservative des marqueurs sémantiques FR→EN; 1.1 étend les familles de marqueurs et reste un signal de revue."
+        },
+        "quote_completeness_review_schema_version": {
+          "type": "string",
+          "enum": [
+            "1.0"
+          ],
+          "description": "Version de l’attestation humaine de complétude Citation→Quote; un ratio faible exige une seconde revue explicite sans devenir une preuve automatique de troncation."
         }
       },
       "required": [

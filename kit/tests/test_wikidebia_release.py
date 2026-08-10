@@ -30,8 +30,14 @@ def writing_validator(project_root, package_root, *, scopes, json_output, text_o
     report = {
         "validator_version": "0.4.29",
         "result": "passed",
-        "summary": {"errors": 0, "warnings": 0},
+        "summary": {"errors": 0, "warnings": 0, "infos": 0},
         "scopes": list(scopes),
+        "validation_layers": {
+            "structural": {"status": "passed", "errors": 0, "warnings": 0, "infos": 0, "meaning": "test"},
+            "documentary": {"status": "passed", "errors": 0, "warnings": 0, "infos": 0, "meaning": "test"},
+            "semantic_review": {"status": "passed", "errors": 0, "warnings": 0, "infos": 0, "meaning": "test"},
+            "fresh_archive": {"status": "not_run", "errors": 0, "warnings": 0, "infos": 0, "meaning": "test"},
+        },
     }
     json_output.parent.mkdir(parents=True, exist_ok=True)
     json_output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -69,6 +75,15 @@ def test_release_creates_installable_archive_and_exact_manifest(tmp_path: Path):
     assert remote_input["page_count"] == len(manifest["pages"])
     assert remote_input["remote_access_performed"] is False
     assert remote_input["plan_created"] is False
+    assert (target / "data/documentary_resources.json").is_file()
+    inventory_path = target / "release/content_inventory.json"
+    assert inventory_path.is_file()
+    content_inventory = json.loads(inventory_path.read_text(encoding="utf-8"))
+    assert content_inventory["counts"]["pages"] == len(manifest["pages"])
+    assert content_inventory["counts"]["english_quotes"] >= 1
+    controls = manifest["editorial_controls"]
+    assert controls["documentary_resource_registry_schema_version"] == "1.0"
+    assert controls["documentary_resource_registry_path"] == "data/documentary_resources.json"
 
     excluded = {"release/release_manifest.json"}
     actual = {
@@ -108,6 +123,15 @@ def test_release_is_idempotent_and_receipt_is_bound_to_archive(tmp_path: Path):
     archive = receipt_path.parent / receipt["archive_name"]
     assert common.sha256_file(archive) == receipt["archive_sha256"]
     assert release._canonical_sha(receipt, "receipt_sha256") == receipt["receipt_sha256"]
+    assert receipt["validation_layers"]["structural"]["status"] == "passed"
+    assert receipt["validation_layers"]["documentary"]["status"] == "passed"
+    assert receipt["validation_layers"]["semantic_review"]["status"] == "passed"
+    assert receipt["validation_layers"]["fresh_archive"]["status"] == "passed"
+    assert receipt["schema"] == "wikidebia-local-release-receipt-1.1"
+    assert receipt["content_inventory_path"] == "release/content_inventory.json"
+    assert len(receipt["content_inventory_sha256"]) == 64
+    assert receipt["content_inventory_counts"]["pages"] > 0
+    assert (receipt_path.parent / receipt["validation_layers_path"]).is_file()
 
 
 def test_release_refuses_partial_existing_state(tmp_path: Path):

@@ -13,6 +13,7 @@ from .package import PackageContext
 from .report import Report, portable_display_path
 from .schema_validation import SchemaStore, validate_all_schemas
 from .sources import validate_sources
+from .resource_registry import validate_resource_registry
 from .wikicode import validate_wikicode
 from .workflow import validate_workflow
 
@@ -38,6 +39,7 @@ def validate_package(root: str | Path, scopes: list[str] | None = None, previous
             validate_batches(ctx)
         if "sources" in selected:
             validate_sources(ctx)
+            validate_resource_registry(ctx)
         if "files" in selected:
             validate_files(ctx)
         if "wikicode" in selected:

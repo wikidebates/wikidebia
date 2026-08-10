@@ -1,0 +1,5 @@
+Wikidéb’IA Normes 1.2.64 — audit de cohérence et correctif de maintenance
+Statut : PASSED
+484 exigences uniques ; 100 alias résolus ; 86 fichiers normatifs.
+Les trois références sont préservées : ancêtre 1.2.55, traduction/validation 1.2.61 et publication GitHub 1.2.60 (8b46816).
+Norme active unique : 1.2.64 ; norme 1.2.63 archivée exactement avant remplacement.

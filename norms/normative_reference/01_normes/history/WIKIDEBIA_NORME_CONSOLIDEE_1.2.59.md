@@ -1,12 +1,10 @@
 # Norme consolidée Wikidéb’IA 1.2.59
 
-> **Révision 1.2.57 — conventions de publication des futures traductions FR→EN.** Pour toute nouvelle page anglaise `Debate` ou `Argument` créée comme traduction d’une page française, le résumé MediaWiki est exactement `Translation of the French page: [[:fr:X|X]]`, où `X` est le titre canonique français verrouillé. La révision de création reçoit simultanément les balises `chatgpt` et `translated-fr`. Lorsqu’une page française reçoit ensuite son lien interlangue anglais, le résumé exact est `Ajout du lien interlangue vers la page anglaise : [[:en:Y|Y]]`, où `Y` est le titre canonique anglais verrouillé. Enfin, toute citation traduite automatiquement en anglais porte dans `warnings` la mention exacte `AI-translated quote`, ajoutée une seule fois après tout avertissement préexistant avec le séparateur `, `. Ces conventions valent pour les nouvelles opérations et ne prescrivent aucune réécriture rétroactive des historiques déjà publiés.
+> **Révision 1.2.59 — identité documentaire normalisée, verdict multicouche et moteur sémantique systématique.** Le corpus sépare désormais l’identité canonique d’une ressource documentaire de ses usages localisés : un registre global déterministe regroupe les sources par DOI normalisé, URL canonique ou, à défaut, empreinte bibliographique, et bloque les métadonnées incompatibles associées à une même identité dans une même langue. Les rapports de validation distinguent explicitement les couches `structural`, `documentary`, `semantic_review` et `fresh_archive`; cette dernière ne peut être attestée qu’après création puis réextraction de l’archive exacte et appartient donc au reçu externe de release. Enfin, le moteur FR→EN de marqueurs sémantiques devient systématique sur les titres canoniques, titres affichés et résumés : négation, modalité, attribution, quantification, fréquence, nécessité/possibilité, restriction, condition, causalité, conséquence, concession, comparaison, intensité et immédiateté sont comparées comme signaux conservateurs de revue. Ces signaux ne réécrivent jamais automatiquement la traduction et ne remplacent pas l’attestation humaine d’équivalence.
 
-> **Révision 1.2.59 — création des futures traductions anglaises.** Lors de la création sur le wiki anglais d’une page issue d’une traduction FR→EN, un `Argument` nouveau ne transporte jamais `|initialisation=`/`|initialization=` depuis la page française : l’identifiant d’initialisation désigne une page parente sur le wiki source et n’est pas portable entre wikis. Pour toute nouvelle page anglaise traduite, `|creation-date=` est fixé au **jour civil de la publication distante**, et non à la `|date-création=` française ni au jour de traduction/rendu local. Le plan de publication signe cette date, utilise par défaut le fuseau `Europe/Paris`, et devient caduc si le jour change avant l’écriture. Les pages anglaises préexistantes restent soumises à la préservation historique exacte de leurs paramètres.
+> **Révision 1.2.57 — couverture sémantique complète de la traduction et portée explicite du verdict.** La validation différentielle 1.2.56 s’étend explicitement aux **titres canoniques** des pages Argument : chaque traduction atteste la conservation du sujet, du prédicat, de la polarité, de la modalité, de l’attribution, des quantificateurs, du degré de force, de la temporalité, des conditions, des relations logiques et de la portée du référent. La page `Debate` reçoit le même contrôle différentiel : équivalence du titre canonique, de `topic`/`complete-topic`, inventaire des affirmations, distinctions, faits et enjeux de l’introduction, ainsi que conservation de la structure fonctionnelle des sous-parties. Enfin, un résultat `passed` du validateur est explicitement défini comme le succès des contrôles automatisés et des attestations encodées ; il ne constitue jamais, isolément, une preuve autonome de fidélité sémantique bilingue.
 
-> **Révision 1.2.58 — renommage du paramètre d’appellation consacrée des pages Argument.** Le deuxième paramètre top-level du modèle `Argument`, immédiatement après `initialisation` / `initialization` lorsqu’il est présent, est désormais `nom-consacré=` en français et `established-name=` en anglais. Il s’agit exclusivement de l’appellation conventionnelle reconnue d’un raisonnement (par exemple « Argument cosmologique »), distincte du titre canonique de la page, du titre affiché, du nom d’un site, d’un auteur ou de tout champ générique `name` d’un artefact JSON. Pour toute page `Argument` nouvelle, le rendu et la validation n’émettent plus `nom=` / `name=` : ces anciens paramètres sont conservés uniquement comme alias historiques de compatibilité lorsqu’une page préexistante les possédait déjà et que leur préservation est attestée. La recherche documentaire et les registres internes conservent leurs identifiants techniques historiques (`argument_name_*`, champ JSON `name`) afin d’éviter une migration sans rapport avec le paramètre MediaWiki. Toutes les règles antérieures sur le caractère exceptionnel, attesté et non inventé de l’appellation consacrée restent inchangées.
-
-> **Révision 1.2.56 — résumé de publication individualisé des traductions anglaises.** Lorsqu’une page anglaise `Debate` ou `Argument` est créée comme traduction d’une page française verrouillée, le résumé de modification MediaWiki est calculé page par page selon la convention de provenance de traduction, désormais précisée par la révision 1.2.57, où `X` est le titre canonique français de la même `page_id`. Le titre source est lu dans le manifeste/registre français verrouillé et n’est jamais reconstruit depuis le titre anglais. Le résumé exact est incorporé à l’action du plan signé, revérifié immédiatement avant l’écriture et contrôlé lors de la relecture de la révision créée. Cette règle remplace, pour ces créations de traduction FR→EN, le résumé générique anglais `Content generated by ChatGPT 5.6`. Elle ne modifie pas le résumé `Corrections` des reprises ni les résumés génériques des créations qui ne sont pas des traductions. Le lien présent dans le résumé d’historique ne remplace pas le mécanisme interlangue du contenu : après passage de la traduction à `ready`, les pages françaises reçoivent toujours leur `{{Lien interlangue}}` par la reprise explicite prévue.
+> **Révision 1.2.56 — validation différentielle des traductions et scellement reproductible.** Lors d’une traduction FR→EN, le français validé reste la source éditoriale autoritative et les contrôles de forme du contenu anglais sont des contrôles de non-régression, non une seconde campagne de normalisation du contenu source. Une question, un impératif, un intitulé thématique, un groupe nominal ou une autre forme déjà présente et acceptée dans le `titre-affiché` français peut être conservé par une traduction fidèle ; la traduction est bloquée lorsqu’elle introduit une dégradation absente de la source, par exemple une proposition devenue fragment ou étiquette, ou lorsqu’elle perd un élément sémantique décisif. La revue bilingue inventorie le sujet, le prédicat, la polarité, la modalité, l’attribution, les quantificateurs, le degré de force, la temporalité, les conditions, les connecteurs causaux ou concessifs et la portée/référence ; aucun de ces éléments ne peut disparaître ou devenir plus catégorique sans justification d’équivalence. Les ratios de longueur et heuristiques de forme restent des détecteurs de risque et ne constituent jamais un objectif de rédaction. Enfin, tout paquet `release_ready` est validé sur l’archive exacte après extraction dans un répertoire neuf, avec une empreinte d’archive enregistrée ; un workspace mutable ne peut servir de preuve finale de conformité.
 
 > **Révision 1.2.55 — traduction anglaise adaptative, noms consacrés et absences historiques.** La traduction anglaise reste une adaptation éditoriale et non une procédure de remplissage. Les pages `Argument` sont désormais relues en unités internes de dix pages par défaut ; une livraison plus vaste peut agréger plusieurs unités déjà closes, tandis qu’un groupe particulièrement dense est réduit à cinq à huit pages. Les exemples, checklists et traductions antérieurement validées sont des contraintes et des points de comparaison, jamais des patrons à reproduire mécaniquement. Pour `name=`, la revue compare les formulations réellement attestées et conserve la construction anglaise consacrée telle qu’elle est employée (`X argument`, `Argument from X`, possessif ou autre) sans normalisation stylistique. L’attestation `same_reasoning_confirmed` inclut désormais l’identité de portée : un nom qui ne désigne qu’une sous-variante, un auteur particulier ou une partie du raisonnement est refusé si la page est plus large. Enfin, lorsqu’un résumé français est historiquement absent et que cette absence est attestée par le verrou de provenance, la page anglaise conserve cette absence ; aucun workflow de traduction ne peut imposer ou inventer un `summary=`.
 
@@ -19,7 +17,7 @@
 
 > **Révision 1.2.51 — attribution éditoriale explicite de `nom` / `name`.** La protection historique introduite en 1.2.49 reste la règle par défaut : une absence historique de `nom` ou `name` n’est jamais comblée automatiquement. Une exception étroite est désormais admise lorsqu’une décision éditoriale explicite du propriétaire attribue à une page Argument une appellation consacrée dans la littérature. Le corpus déclare alors un registre dédié par `editorial_controls.argument_name_assignment_path`. Le champ historique `argument_name_assignment_revision`, s’il est encore présent, n’est qu’une trace de provenance. Ce registre identifie chaque page, la langue, le titre canonique, la valeur exacte à ajouter et la justification. L’inventaire historique reste inchangé et continue d’attester l’absence antérieure ; l’attribution éditoriale constitue une couche de décision séparée. Le validateur exige une concordance exacte entre le registre et le wikicode. Lors d’une reprise, le kit peut ajouter uniquement ce paramètre sur les pages listées, sans relâcher la préservation des autres paramètres historiques.
 > **Révision 1.2.52 — recherche documentaire des noms consacrés des arguments nouveaux.** Pour chaque page `Argument` réellement nouvelle, la génération examine explicitement si le raisonnement possède une appellation conventionnelle reconnue dans la littérature. Cette recherche est obligatoire, mais l’ajout de `nom` / `name` reste exceptionnel : la présomption est l’absence de nom consacré. Aucun quota, objectif de remplissage ou dérivation depuis le titre n’est admis. Une appellation n’est retenue que si des sources de référence ou académiques l’emploient pour désigner substantiellement le même raisonnement dans la langue de la page, ou sous une forme étrangère elle-même consacrée. La revue consigne les requêtes, le résultat et, lorsqu’un nom est retenu, les attestations documentaires. Le validateur exige une couverture exacte de toutes les pages Argument nouvelles et une concordance stricte avec le wikicode.
-> **Révision 1.2.53 — traduction anglaise par lots et adaptation documentaire.** La production anglaise est menée comme une adaptation éditoriale contrôlée, non comme une substitution lexicale. La page `Debate` constitue un lot autonome. Les pages `Argument` sont ensuite traitées par lots de vingt pages par défaut, sans dépasser vingt-cinq ; un lot documentairement dense est réduit à dix à quinze pages. Chaque argument est achevé dans un seul lot, qui inclut la traduction idiomatique, la recherche séparée de `name=`, la vérification des équivalents anglais des références françaises, la recherche de nouvelles références anglophones et le traitement des modèles `Quote`. Une référence française n’est jamais traduite artificiellement : elle n’est projetée comme référence anglaise que si une édition, traduction ou version anglaise réelle est vérifiée, avec ses métadonnées propres. Des références anglaises nouvelles sont recherchées indépendamment. L’exception documentaire des modèles `Citation` importés reste stricte : `Citation` devient `Quote`, seuls le texte de `quote` et la forme linguistique de `date` sont traduits, les autres valeurs sont conservées exactement, et `AI-translated quote` est ajouté à `warnings`. Une passe inter-lots finale vérifie la cohérence globale avant finalisation.
+> **Révision 1.2.53 — traduction anglaise par lots et adaptation documentaire.** La production anglaise est menée comme une adaptation éditoriale contrôlée, non comme une substitution lexicale. La page `Debate` constitue un lot autonome. Les pages `Argument` sont ensuite traitées par lots de vingt pages par défaut, sans dépasser vingt-cinq ; un lot documentairement dense est réduit à dix à quinze pages. Chaque argument est achevé dans un seul lot, qui inclut la traduction idiomatique, la recherche séparée de `name=`, la vérification des équivalents anglais des références françaises, la recherche de nouvelles références anglophones et le traitement des modèles `Quote`. Une référence française n’est jamais traduite artificiellement : elle n’est projetée comme référence anglaise que si une édition, traduction ou version anglaise réelle est vérifiée, avec ses métadonnées propres. Des références anglaises nouvelles sont recherchées indépendamment. L’exception documentaire des modèles `Citation` importés reste stricte : `Citation` devient `Quote`, seuls le texte de `quote` et la forme linguistique de `date` sont traduits, les autres valeurs sont conservées exactement, et `Quote translated by AI` est ajouté à `warnings`. Une passe inter-lots finale vérifie la cohérence globale avant finalisation.
 
 
 **Statut :** source normative active unique  
@@ -569,7 +567,7 @@ The `progress=Constructed debate` and `debate-warnings=Debate generated by AI` l
 |place=
 |date=
 |link=
-|warnings=AI-translated quote
+|warnings=Quote translated by AI
 }}
 |bibliography={{Bibliographical reference
 |authors=
@@ -1015,8 +1013,8 @@ Les citations d’une page Argument française sont rendues dans `citations=` so
 2. seule la valeur de `quote`, issue de `citation`, est traduite ;
 3. la valeur de `date` est traduite dans la langue anglaise sans changer la date représentée ; une année seule reste inchangée ;
 4. toutes les autres valeurs documentaires sont conservées exactement, dans le même ordre conceptuel ;
-5. le paramètre `warnings` contient la mention exacte `AI-translated quote` ;
-6. si un avertissement existe déjà, la mention est ajoutée après sa valeur avec exactement une virgule et une espace : `Avertissement existant, AI-translated quote` ;
+5. le paramètre `warnings` contient la mention exacte `Quote translated by AI` ;
+6. si un avertissement existe déjà, la mention est ajoutée après sa valeur avec exactement une virgule et une espace : `Avertissement existant, Quote translated by AI` ;
 7. la mention n’est jamais dupliquée ; un paramètre vide est traité comme absent.
 
 Le registre de traduction, les verrous de contenu, le rendu et le validateur comparent la liste ordonnée complète des paramètres après application de cette table de correspondance. Toute valeur documentaire modifiée, tout nom de paramètre français conservé dans la page anglaise, toute date différente, toute citation omise ou ajoutée, ou tout avertissement absent, dupliqué ou mal séparé bloque la validation.
@@ -1039,7 +1037,7 @@ La révision 1.2.29 a correctement restauré le nom du modèle anglais `{{Quote}
 
 Toute page anglaise utilise exclusivement les modèles et paramètres déclarés sur le wiki anglais. La traduction d’une page française ne consiste donc pas à copier son wikicode et à traduire seulement la prose : le modèle principal, ses paramètres, les sous-modèles et leurs paramètres sont projetés selon le contrat anglais actif.
 
-Pour les citations, `{{Citation}}` devient `{{Quote}}` et la table canonique est : `citation→quote`, `auteurs→authors`, `article→article`, `ouvrage→work`, `volume→volume`, `numéro→issue`, `page→page`, `localisation→location`, `édition→publisher`, `lieu→place`, `date→date`, `lien→link`, `avertissements-citation→warnings`. Seules les valeurs de `quote` et de `date` sont traduites. Toutes les autres valeurs sont conservées exactement. La valeur de `warnings` reprend l’avertissement antérieur, le cas échéant, puis ajoute une unique mention `AI-translated quote` avec le séparateur exact `, `.
+Pour les citations, `{{Citation}}` devient `{{Quote}}` et la table canonique est : `citation→quote`, `auteurs→authors`, `article→article`, `ouvrage→work`, `volume→volume`, `numéro→issue`, `page→page`, `localisation→location`, `édition→publisher`, `lieu→place`, `date→date`, `lien→link`, `avertissements-citation→warnings`. Seules les valeurs de `quote` et de `date` sont traduites. Toutes les autres valeurs sont conservées exactement. La valeur de `warnings` reprend l’avertissement antérieur, le cas échéant, puis ajoute une unique mention `Quote translated by AI` avec le séparateur exact `, `.
 
 Un paramètre source sans équivalent anglais déclaré bloque la traduction ; il n’est jamais recopié sous son nom français. Le validateur courant refuse tout modèle français ou paramètre français dans une page anglaise rendue, quelle que soit la révision normative historique déclarée.
 
@@ -1244,7 +1242,7 @@ La règle active est la suivante :
 4. les sources de référence, encyclopédies spécialisées, livres et articles académiques sont prioritaires ; une page populaire peut orienter la recherche mais ne suffit pas, à elle seule, à consacrer une appellation douteuse ;
 5. un nom n’est retenu que lorsque la littérature l’emploie effectivement comme désignation du même raisonnement, de la même objection, défense, preuve, réfutation, paradoxe, problème ou principe argumentatif ;
 6. le nom d’une doctrine, d’un thème, d’un auteur, d’un principe seulement mentionné dans le raisonnement ou une reformulation pratique du titre ne constitue pas une appellation consacrée ;
-7. la valeur française doit être une appellation française attestée, ou une forme étrangère elle-même couramment employée telle quelle en français ; aucune traduction ad hoc n’est créée pour remplir `nom-consacré=` ; la règle symétrique s’applique à `established-name=` ;
+7. la valeur française doit être une appellation française attestée, ou une forme étrangère elle-même couramment employée telle quelle en français ; aucune traduction ad hoc n’est créée pour remplir `nom=` ; la règle symétrique s’applique à `name=` ;
 8. en cas d’hésitation entre plusieurs étiquettes, d’attestation trop faible ou de doute sur l’identité du raisonnement, le résultat est `none` et le paramètre est omis ;
 9. aucun quota minimal ou maximal de pages nommées n’est fixé. La rareté attendue des noms est une conséquence éditoriale, jamais un seuil statistique ;
 10. la revue est enregistrée dans un registre déclaré par `editorial_controls.argument_name_discovery_path` ; l’ancien `argument_name_discovery_revision`, s’il est présent, n’est qu’une métadonnée de traçabilité.
@@ -1252,6 +1250,64 @@ La règle active est la suivante :
 Le registre contient une entrée pour chaque page Argument nouvelle dans chaque langue produite. Il consigne au minimum : la langue, l’identifiant, le titre canonique, les requêtes de recherche, une note sur le périmètre exploré, le résultat `none` ou `known_name`, la valeur retenue le cas échéant, les attestations documentaires, et une justification. Pour `known_name`, il atteste explicitement que la source désigne le même raisonnement, que l’étiquette n’a pas été inventée et qu’elle convient à la langue de la page.
 
 Le validateur bloque : une page nouvelle sans entrée de revue, un `nom` / `name` rendu après un résultat `none`, un nom différent de la valeur attestée, une appellation sans preuve documentaire, ou une revue qui couvre une page préexistante au lieu d’un argument nouveau. Les pages préexistantes restent régies par les règles 1.2.49 et 1.2.51.
+
+## Addendum 1.2.56 — traduction différentielle, équivalence sémantique et preuve de livraison
+
+### Contrôle différentiel du contenu traduit
+
+La production anglaise ne constitue pas une nouvelle édition indépendante du contenu français. Le contenu source français est supposé avoir déjà franchi ses contrôles éditoriaux. En conséquence, les règles de création qui portent sur la **forme absolue** d’un titre ou d’un passage ne sont pas appliquées rétroactivement au texte anglais lorsqu’elles conduiraient à corriger silencieusement un choix déjà présent et validé en français.
+
+Pour les `displayed-title` en particulier :
+
+1. une propriété formelle déjà présente dans le `titre-affiché` français — question, impératif, intitulé thématique, groupe nominal, étiquette doctrinale ou autre forme acceptée — peut être conservée si la traduction en est fidèle et idiomatique ;
+2. si le `titre-affiché` français est une proposition complète, sa traduction ne peut devenir une question, un impératif, un fragment nominal, une simple étiquette ou une formulation thématique ;
+3. si la traduction change de forme pour des raisons idiomatiques, elle doit conserver exactement le même acte assertif, la même thèse et la même portée ;
+4. la traduction ne doit jamais « réparer » silencieusement une anomalie historique source ; une correction éditoriale du français relève d’un Work français explicite et précède, le cas échéant, une nouvelle projection anglaise.
+
+Cette règle de non-régression prévaut, pour la cible traduite, sur tout contrôle absolu de création portant uniquement sur la forme. Les contrôles structurels MediaWiki, de sécurité, de métadonnées, de graphe, de références et de localisation restent absolus.
+
+### Inventaire d’équivalence sémantique des titres
+
+Pour chaque paire de titres FR→EN, la seconde passe vérifie explicitement les éléments présents dans la source :
+
+- sujet et prédicat ;
+- polarité et négation ;
+- modalité (`peut`, `doit`, `nécessaire`, possibilité, hypothèse) ;
+- statut d’attribution (`selon`, `attribué à`, `censé`, `prétendu`, `décrit comme`) ;
+- quantificateurs (`tous`, `certains`, `beaucoup`, `aucun`, etc.) ;
+- degré et intensité (`seulement`, `simplement`, `parfaitement`, `innombrables`, etc.) ;
+- temporalité et fréquence (`souvent`, `toujours`, `aussitôt`, etc.) ;
+- conditions et restrictions (`si`, `sans`, `à condition que`, etc.) ;
+- causalité, conséquence, concession et comparaison (`car`, `donc`, `même si`, `plus que`, etc.) ;
+- portée du référent, notamment la distinction entre un dieu générique, plusieurs dieux et le nom propre `God`.
+
+Une formulation anglaise plus courte est refusée si elle perd l’un de ces éléments. Lorsque le `displayed-title` ne peut être raccourci sans perte, il reprend le titre canonique anglais. Les détecteurs automatiques de marqueurs sémantiques sont des signaux de revue : ils ne remplacent jamais la comparaison humaine de la paire.
+
+### Résumés traduits
+
+Le ratio de longueur EN/FR sert à détecter une probable omission ou expansion ; il ne doit jamais devenir une cible de rédaction. Une correction visant uniquement à rentrer dans le ratio est interdite. La revue vérifie les mêmes prémisses principales, mécanismes, conclusions, restrictions et exemples décisifs. Un métadiscours absent de la source (`the argument`, `the objection`, `this reasoning`, etc.) ne doit pas être ajouté par la traduction. Un métadiscours historiquement présent dans la source peut être conservé sans déclencher une réécriture silencieuse.
+
+### `name=` et `keywords`
+
+`name=` est un sous-titre : sa valeur anglaise commence par une majuscule initiale, sauf impossibilité linguistique exceptionnelle explicitement documentée. Un keyword n’hérite jamais de cette capitalisation du seul fait qu’il reprend le même concept : les noms communs et groupes nominaux du vocabulaire contrôlé restent en minuscule initiale ; seuls les noms propres, marques, sigles et acronymes suivent leur casse canonique. L’ajout d’un `name=` ne crée jamais automatiquement un keyword supplémentaire.
+
+### Traçabilité de la recherche
+
+Une revue distingue les preuves réellement conservées de la recherche et les reconstructions historiques. Il est interdit d’inventer rétroactivement des requêtes pour satisfaire un schéma postérieur. Les nouvelles recherches doivent conserver leurs requêtes réelles ; une ancienne décision reconstruite depuis des artefacts antérieurs est signalée comme telle.
+
+### Cohérence documentaire transversale
+
+Dans une même langue, une URL ou un DOI qui identifie une ressource déterminée ne peut être associé à des identités bibliographiques incompatibles selon les pages. Le contrôle transversal compare au minimum titre/ouvrage, auteurs, date et éditeur après normalisation typographique. Une simple variante d’apostrophe ou de ponctuation n’est pas une divergence d’identité ; deux ouvrages ou éditions différents sous le même identifiant le sont.
+
+### Citations traduites
+
+Le contrat `Citation`→`Quote` porte sur la valeur complète de `citation`. Une troncation ou un résumé n’est pas une traduction conforme. Un détecteur de longueur très faible peut signaler une omission probable, mais toute décision de blocage repose sur la comparaison source→cible ; une différence de longueur seule ne suffit pas.
+
+### Scellement et statut des validations
+
+Une validation finale reproductible suit l’ordre : état final → reconstruction des artefacts dérivés → manifeste unique → ZIP déterministe → empreinte SHA-256 → extraction dans un répertoire neuf → validation complète de cette extraction. Les rapports finaux enregistrent l’empreinte de l’archive auditée. Un workspace mutable ou un dossier ayant servi à plusieurs passes ne constitue pas la preuve finale.
+
+Les rapports distinguent explicitement validation structurelle, documentaire, bilingue/sémantique et validation de l’archive fraîche. Le résultat automatique `passed` n’est pas présenté comme une certification sémantique humaine lorsque la revue bilingue correspondante n’est pas attestée.
 
 ## Addendum 1.2.53 — traduction anglaise par lots et adaptation documentaire
 
@@ -1262,13 +1318,13 @@ La traduction anglaise commence après verrouillage du contenu français et se d
 1. la page `Debate` forme à elle seule le premier lot de traduction ; elle n'est mélangée à aucune page `Argument` ;
 2. les pages `Argument` sont ensuite **relues en unités internes de 10 pages par défaut** ; une livraison ou un travail long peut agréger plusieurs unités déjà closes sans fusionner leur revue ;
 3. lorsqu'un groupe est particulièrement dense en citations, références, ambiguïtés terminologiques, recherches de noms consacrés ou anomalies de préservation, l'unité est réduite à **5–8 pages** ; une unité de plus de 10 pages exige une justification explicite de l'absence de perte de qualité ;
-4. une page Argument n'est jamais scindée entre deux lots : titre canonique, displayed title, summary, sections, keywords, citations, références et éventuel `established-name=` sont traités ensemble ;
+4. une page Argument n'est jamais scindée entre deux lots : titre canonique, displayed title, summary, sections, keywords, citations, références et éventuel `name=` sont traités ensemble ;
 5. un lot n'est considéré comme clos qu'après vérification de toutes ses pages, de leur orientation argumentative et de leur documentation ; le lot suivant ne sert pas à corriger silencieusement les omissions du précédent ;
 6. après le dernier lot d'arguments, une passe globale inter-lots vérifie les choix terminologiques, les titres, le vocabulaire bilingue, les noms consacrés, la documentation, les citations et la parité du graphe avant `--finalize`.
 
-### `established-name=` : recherche propre à la langue anglaise
+### `name=` : recherche propre à la langue anglaise
 
-Le paramètre français `nom-consacré=` n'est jamais traduit mécaniquement. Pour chaque page Argument anglaise, une recherche distincte vérifie l'appellation réellement attestée dans la littérature anglophone pour le même raisonnement. L'existence d'un `nom-consacré=` français constitue seulement un indice de recherche, jamais une preuve du nom anglais. Le résultat par défaut reste l'absence de `established-name=`. Une valeur n'est retenue que si des sources de référence ou académiques anglophones l'emploient effectivement pour désigner substantiellement le même argument, objection, défense, preuve, réfutation, paradoxe, problème ou principe. **La forme syntaxique elle-même fait partie de l'attestation** : la revue compare les variantes concurrentes et ne transforme pas arbitrairement `Argument from X` en `X argument`, ni l'inverse, ni une forme possessive en forme générique. **L'identité du raisonnement inclut sa portée** : une appellation réservée à une sous-variante, à un auteur particulier ou à une étape du raisonnement ne peut nommer une page plus large. En cas d'attestation faible, de concurrence non résolue entre formulations, d'équivalence de portée incertaine ou de traduction seulement plausible, `established-name=` est omis.
+Le paramètre français `nom=` n'est jamais traduit mécaniquement. Pour chaque page Argument anglaise, une recherche distincte vérifie l'appellation réellement attestée dans la littérature anglophone pour le même raisonnement. L'existence d'un `nom=` français constitue seulement un indice de recherche, jamais une preuve du nom anglais. Le résultat par défaut reste l'absence de `name=`. Une valeur n'est retenue que si des sources de référence ou académiques anglophones l'emploient effectivement pour désigner substantiellement le même argument, objection, défense, preuve, réfutation, paradoxe, problème ou principe. **La forme syntaxique elle-même fait partie de l'attestation** : la revue compare les variantes concurrentes et ne transforme pas arbitrairement `Argument from X` en `X argument`, ni l'inverse, ni une forme possessive en forme générique. **L'identité du raisonnement inclut sa portée** : une appellation réservée à une sous-variante, à un auteur particulier ou à une étape du raisonnement ne peut nommer une page plus large. En cas d'attestation faible, de concurrence non résolue entre formulations, d'équivalence de portée incertaine ou de traduction seulement plausible, `name=` est omis.
 
 ### Principe d'exécution : contraintes, pas patron mécanique
 
@@ -1290,7 +1346,7 @@ Pour la page `Debate`, toutes les références de l'introduction et des paramèt
 
 ### Exception contrôlée : modèles `Citation` / `Quote`
 
-La règle précédente sur l'adaptation des références ne modifie pas le contrat spécial des citations importées. Lors de la projection anglaise, `{{Citation}}` devient `{{Quote}}` et les noms de paramètres sont localisés selon le contrat anglais. **Seules les valeurs de `citation`→`quote` et de `date` sont traduites.** Les valeurs documentaires de `authors`, `article`, `work`, `volume`, `issue`, `page`, `location`, `publisher`, `place` et `link` sont conservées exactement et dans le même ordre. `warnings` reprend tout avertissement existant puis ajoute une seule fois `AI-translated quote`, avec le séparateur exact `, `.
+La règle précédente sur l'adaptation des références ne modifie pas le contrat spécial des citations importées. Lors de la projection anglaise, `{{Citation}}` devient `{{Quote}}` et les noms de paramètres sont localisés selon le contrat anglais. **Seules les valeurs de `citation`→`quote` et de `date` sont traduites.** Les valeurs documentaires de `authors`, `article`, `work`, `volume`, `issue`, `page`, `location`, `publisher`, `place` et `link` sont conservées exactement et dans le même ordre. `warnings` reprend tout avertissement existant puis ajoute une seule fois `Quote translated by AI`, avec le séparateur exact `, `.
 
 Cette exception concerne le contenu d'un modèle de citation déjà importé ; elle n'autorise pas à traduire artificiellement une référence bibliographique, sitographique ou vidéographique pour la faire passer pour une édition anglaise.
 
@@ -1337,30 +1393,22 @@ Si la page française possède `débats-connexes`, chaque entrée est examinée 
 
 Avant la clôture de chaque lot, une passe distincte de la première traduction compare le français et l'anglais. Elle contrôle au minimum : l'absence de reprise de l'ancienne page anglaise cible ; la traduction exacte des métadonnées ci-dessus ; l'absence de valeurs par défaut ajoutées ; le filtrage de `related-debates` par existence réelle des pages anglaises ; la conservation du sens et de la polarité pour/contre ; l'anglais idiomatique ; l'absence de wikicode français résiduel ; la réalité des versions anglaises des références ; et le respect des contrats spéciaux tels que `Citation`→`Quote`. La passe globale inter-lots reprend ces points à l'échelle du corpus.
 
-## Addendum 1.2.58 — `nom-consacré` / `established-name`
-
-À compter de la révision 1.2.58, l’appellation conventionnelle facultative d’une page `Argument` est rendue exclusivement dans `|nom-consacré=` en français et `|established-name=` en anglais. Lorsqu’il est présent, ce paramètre suit immédiatement `|initialisation=` / `|initialization=` ; si ce dernier est absent, il est le premier paramètre nommé du modèle. Les anciens `|nom=` / `|name=` ne sont jamais émis sur une page nouvelle.
-
-Les termes « nom d’argument », « nom consacré » et les identifiants internes historiques `argument_name_*` décrivent le **concept éditorial** et ne doivent pas être confondus avec le nom du paramètre MediaWiki. Les champs génériques `name` utilisés dans les registres JSON, les noms de sites, auteurs, modèles, fichiers ou titres de pages ne sont pas concernés par ce renommage.
-
-Pour une page préexistante qui possède encore `|nom=` / `|name=`, la politique de préservation non destructive reste applicable : le kit et le validateur peuvent conserver cet alias historique exactement lorsqu’il est attesté. Une migration de cet alias vers le nouveau paramètre doit être explicite ; elle ne peut résulter d’un nettoyage automatique lors d’une autre modification. En revanche, toute nouvelle attribution éditoriale ou toute nouvelle page utilise `nom-consacré` / `established-name`.
-
 ## Addendum 1.2.51 — attribution éditoriale contrôlée d’un nom consacré
 
-Dans la terminologie actuelle, l’appellation consacrée facultative est portée par `nom-consacré` en français et `established-name` en anglais. Lors de l’introduction de cet addendum en 1.2.51, les paramètres s’appelaient encore `nom` / `name` ; ces deux formes sont désormais des **alias historiques de préservation**, et ne sont plus utilisées pour une nouvelle attribution. L’appellation consacrée ne doit jamais être déduite mécaniquement du titre canonique, du titre affiché, des mots-clés ou du contenu du résumé. Elle sert à afficher l’appellation conventionnelle d’un argument, d’une objection, d’une défense, d’un paradoxe, d’un principe ou d’un problème lorsque cette appellation est réellement reconnue dans la littérature et utile au lecteur.
+Le paramètre `nom` en français, ou `name` en anglais, reste facultatif et ne doit jamais être déduit mécaniquement du titre canonique, du titre affiché, des mots-clés ou du contenu du résumé. Il sert à afficher l’appellation conventionnelle d’un argument, d’une objection, d’une défense, d’un paradoxe, d’un principe ou d’un problème lorsque cette appellation est réellement reconnue dans la littérature et utile au lecteur.
 
-La règle de préservation 1.2.49 demeure inchangée pour les valeurs historiques existantes. Une page historiquement dépourvue d’appellation consacrée peut toutefois recevoir `nom-consacré` / `established-name` si, et seulement si, toutes les conditions suivantes sont réunies :
+La règle de préservation 1.2.49 demeure inchangée pour les valeurs historiques existantes. Une page historiquement dépourvue de `nom` / `name` peut toutefois recevoir ce paramètre si, et seulement si, toutes les conditions suivantes sont réunies :
 
 1. le propriétaire du projet a explicitement approuvé l’attribution ;
 2. le manifeste déclare `editorial_controls.argument_name_assignment_path` ; l’ancien `argument_name_assignment_revision`, s’il est présent, est une trace sans effet d’activation ;
-3. le registre d’attribution identifie exactement la langue, l’identifiant logique, le titre canonique et la valeur de l’appellation consacrée ; son champ JSON générique `name` reste inchangé et ne constitue pas le nom du paramètre MediaWiki ;
+3. le registre d’attribution identifie exactement la langue, l’identifiant logique, le titre canonique et la valeur de `nom` / `name` ;
 4. chaque entrée contient une justification éditoriale non vide attestant qu’il s’agit d’une appellation consacrée et non d’un simple raccourci inventé ;
-5. le registre historique reste fidèle à la source et continue d’indiquer que l’ancien `nom` / `name` était absent lorsqu’il l’était ; il n’est jamais falsifié pour faire passer l’ajout pour une donnée historique ;
-6. le wikicode contient exactement la valeur approuvée dans `nom-consacré` / `established-name`, dans l’ordre canonique des paramètres : après `initialisation` / `initialization` lorsqu’il est présent, sinon en première position du modèle `Argument` ;
-7. aucune page non listée ne peut recevoir une appellation consacrée absente de sa provenance ou de son attribution éditoriale approuvée ;
-8. une valeur historique déjà présente dans `nom` / `name` reste prioritaire et ne peut être remplacée ou migrée par ce mécanisme ;
-9. lors d’une reprise distante, l’exception porte uniquement sur le paramètre d’appellation consacrée canonique pour les pages listées ; tous les autres paramètres protégés, ainsi que tout alias historique `nom` / `name` déjà attesté, restent soumis à leur état historique ou distant attesté ;
-10. une modification ou suppression ultérieure de l’appellation attribuée exige une nouvelle décision explicite et ne peut être déduite automatiquement.
+5. le registre historique reste fidèle à la source et continue d’indiquer que le paramètre était absent lorsqu’il l’était ; il n’est jamais falsifié pour faire passer l’ajout pour une donnée historique ;
+6. le wikicode contient exactement la valeur approuvée, dans l’ordre canonique des paramètres : après `initialisation` / `initialization` lorsqu’il est présent, sinon en première position du modèle `Argument` ;
+7. aucune page non listée ne peut recevoir un `nom` / `name` absent de sa provenance ;
+8. une valeur historique déjà présente reste prioritaire et ne peut être remplacée par ce mécanisme ;
+9. lors d’une reprise distante, l’exception porte uniquement sur `nom` / `name` pour les pages listées ; tous les autres paramètres protégés restent soumis à leur état historique ou distant attesté ;
+10. une modification ou suppression ultérieure du nom attribué exige une nouvelle décision explicite et ne peut être déduite automatiquement.
 
 Cette politique s’applique dès qu’un registre d’attribution est fonctionnellement déclaré par son chemin. Le validateur contrôle le registre et la concordance du wikicode, tandis que le kit de reprise traite l’attribution comme une dérogation nominative et non comme une normalisation générale. Le numéro historique associé au registre ne modifie pas ce comportement.
 
@@ -1441,7 +1489,7 @@ La revue reste qualitative. Elle n’impose pas de lier les mots courants, les n
 
 1. **Création de zéro.** Le profil de génération reste restrictif : seuls les paramètres prévus pour une page nouvelle sont émis et les marqueurs d’origine IA ne sont ajoutés que dans ce cas.
 2. **Modification d’une page existante.** Le moteur ne reconstruit jamais la page comme si elle était nouvelle. Tout paramètre top-level autorisé attesté comme présent constitue un minimum de présence et ne peut disparaître silencieusement.
-3. **Métadonnées opaques des pages existantes.** Lors de la modification d’une page préexistante, `initialisation`/`initialization`, `nom`/`name`, les paramètres d’avertissement, `débat-détaillé`/`detailed-debate`, les dates de création et les métadonnées de cycle de vie conservent par défaut leur présence et leur valeur exactes. Cette règle de préservation ne transforme pas les métadonnées propres à une création nouvelle ; l’exception de publication des nouvelles traductions anglaises définie en 1.2.59 s’applique donc à leur `creation-date`.
+3. **Métadonnées opaques.** `initialisation`/`initialization`, `nom`/`name`, les paramètres d’avertissement, `débat-détaillé`/`detailed-debate`, les dates de création et les métadonnées de cycle de vie conservent par défaut leur présence et leur valeur exactes. Les profils de création ne peuvent ni les effacer, ni les remplacer, ni y injecter un marqueur IA.
 4. **Contenus éditables.** Les paramètres de contenu (`résumé`, citations, références, justifications, objections, documentation du débat, etc.) peuvent être enrichis ou corrigés ; leur paramètre top-level ne peut toutefois être supprimé s’il existait sans décision explicite de suppression.
 5. **Liens interlangues.** L’absence de traduction peut interdire la création d’un nouveau lien, mais ne justifie jamais la suppression d’un `interlangue` historique.
 6. **Suppressions explicites.** Toute suppression volontaire est enregistrée page par page et paramètre par paramètre avec décision propriétaire. Les exceptions déjà spécialisées (`owner_removed` pour un résumé, `relations_omitted` sur une frontière détaillée) restent valables.
@@ -1460,34 +1508,34 @@ La norme active est cumulative. Sauf mention explicite dans la présente norme q
 7. Les générateurs cessent d’émettre les champs de révision qui n’ont plus d’utilité opérationnelle. Ils peuvent conserver une révision historique lorsqu’elle est utile à la provenance ou à la reproductibilité, sans lui donner de portée conditionnelle.
 8. Le validateur et le kit doivent posséder des tests d’invariance garantissant qu’à contenu fonctionnel identique, changer seulement `consolidated_norm` ou une métadonnée `*_revision` ne modifie pas le verdict éditorial.
 9. Les versions du paquet, du validateur et du kit restent obligatoires pour identifier une livraison, vérifier la compatibilité technique, reproduire un environnement et piloter les migrations. Leur maintien n’autorise aucune branche éditoriale conditionnée au numéro de version.
-10. La présente refonte ne modifie aucune règle de contenu de la révision 1.2.53 : lots de traduction, recherche anglophone d’`established-name=`, adaptation réelle des références et contrat spécial `Citation`→`Quote` demeurent intégralement applicables.
+10. La présente refonte ne modifie aucune règle de contenu de la révision 1.2.53 : lots de traduction, recherche anglophone de `name=`, adaptation réelle des références et contrat spécial `Citation`→`Quote` demeurent intégralement applicables.
 
 
 
-## Addendum 1.2.56 — provenance française dans le résumé de publication anglais
+## Addendum 1.2.59 — provenance des recherches, complétude des Quote et inventaire de release
 
-Pour toute création distante d’une page anglaise issue de la traduction d’une page française du même corpus :
+### Provenance formelle des recherches de `nom=` / `name=`
 
-1. le résumé suit exactement la convention active de publication FR→EN définie en tête de la présente norme ;
-2. `X` est le titre canonique français verrouillé de la même `page_id` et du même type de page ;
-3. aucune translittération, traduction ou déduction depuis le titre anglais n’est admise ;
-4. le plan signé enregistre le résumé exact de chaque action et son empreinte couvre le manifeste qui fournit le titre français ;
-5. l’exécuteur recalcule le résumé attendu depuis le manifeste courant et bloque toute divergence avec le plan ;
-6. après écriture, la révision exacte est relue et le résumé distant doit être identique ;
-7. cette règle vaut pour la page `Debate` comme pour chaque page `Argument` ;
-8. le lien de l’historique est une trace de provenance et ne dispense pas de l’ajout du lien interlangue dans les pages françaises lorsque la traduction est `ready` ou `published`.
+Le registre `argument_name_discovery_review` utilise le format `wikidebia-argument-name-discovery-review-1.1` pour toute nouvelle production. Chaque entrée consigne, en plus des requêtes et du périmètre, la provenance de la recherche :
 
+- `actual_log` : les requêtes enregistrées sont les requêtes réellement exécutées pendant la revue ;
+- `fresh_recheck` : une nouvelle recherche a été exécutée explicitement pour remettre à niveau une ancienne décision ;
+- `historical_reconstruction` : la décision est reconstruite honnêtement depuis des artefacts historiques sans prétendre reconstituer un journal de requêtes absent.
 
-## Addendum 1.2.59 — métadonnées de création des traductions anglaises
+Une page anglaise nouvelle ne peut pas utiliser `historical_reconstruction` comme preuve de sa recherche obligatoire. Une reconstruction historique reste lisible pour la migration d'anciens corpus, mais ne doit jamais être présentée comme un journal réel. Le format 1.0 reste lisible ; il n'est pas réécrit rétroactivement pour fabriquer des champs de provenance.
 
-### Absence d’`initialization` sur un nouvel Argument traduit
+### Complétude de `Citation` → `Quote`
 
-Une page `Argument` anglaise créée à partir d’une page française est une nouvelle page du wiki anglais. Le paramètre français `initialisation` contient un identifiant rattaché au wiki français et ne doit donc ni être traduit, ni copié, ni converti en `initialization`. Une nouvelle traduction anglaise d’Argument est bloquée avant publication si son wikicode contient `|initialization=`. Cette règle ne supprime pas un `initialization` déjà attesté sur une page anglaise préexistante : la politique de préservation historique reste prioritaire pour les mises à jour.
+Toute nouvelle traduction de citation atteste explicitement que **la valeur complète** de `citation` a été comparée à la valeur `quote` de début à fin. L'attestation contient une note humaine non vide. Le workflow calcule en outre un ratio lexical indicatif FR→EN.
 
-### `creation-date` déterminée à la publication
+Le ratio n'est jamais une preuve automatique de troncation et ne constitue aucune cible rédactionnelle. Lorsqu'il est inférieur à `0,60` sur une citation source d'au moins huit unités lexicales, une **seconde revue explicite de complétude** est obligatoire et documentée. Une traduction concise peut donc rester conforme si cette seconde revue confirme que rien n'a été omis.
 
-Pour toute nouvelle page anglaise issue d’une traduction FR→EN, qu’il s’agisse de la page `Debate` ou d’une page `Argument`, la valeur publiée de `|creation-date=` est la date civile du jour où la page est créée sur le wiki anglais. Elle n’est jamais dérivée de `|date-création=` de la page française et n’est pas figée au moment de la traduction ou du rendu local.
+Le validateur contrôle la présence des attestations et la cohérence du ratio enregistré avec le texte rendu. Il bloque l'absence de seconde revue lorsque le seuil de signal est franchi, mais ne réécrit ni n'allonge automatiquement la citation.
 
-Le rendu local peut contenir une date provisoire nécessaire à la validation du paquet. Cette valeur n’est pas autoritative pour une création anglaise : le moteur de publication remplace **uniquement** `creation-date` par la date de publication dans le texte signé du plan, sans modifier les autres paramètres. Le fuseau par défaut est `Europe/Paris`. Le jour civil est revérifié juste avant **chaque** création anglaise ; si le jour a changé depuis le plan — y compris au milieu d’un lot qui franchit minuit — la prochaine écriture est bloquée et un nouveau plan doit être produit pour les pages restantes.
+### Inventaire transactionnel du contenu d'une release
 
-En cas de reprise après publication partielle, une page anglaise déjà créée conserve sa `creation-date` distante. Cette tolérance de reprise n’est admise que si la révision distante courante est vérifiée comme la révision de création de traduction attendue au moyen du résumé individualisé et des balises requises ; elle ne permet pas d’adopter arbitrairement une page préexistante.
+Avant le scellement, le kit génère `release/content_inventory.json` depuis l'état final exact. Cet inventaire compte au minimum : pages françaises et anglaises, nœuds Argument actifs, relations/edges, occurrences, `name=` anglais consacrés, `Quote` anglaises, résumés anglais présents/absents et ressources documentaires globales.
+
+L'inventaire est lié par SHA-256 aux fichiers sources dont dépendent ces comptes. Son empreinte et ses comptes sont recopiés dans le reçu externe de release. Après création du ZIP exact, le kit réextrait l'archive, **recalcule** l'inventaire et refuse le scellement si un compteur ou une empreinte source diverge.
+
+Cette règle interdit qu'un reçu, un rapport ou un manifeste de livraison décrive silencieusement l'état d'une version antérieure du corpus. Les compteurs narratifs non dérivés ne constituent jamais une source de vérité.

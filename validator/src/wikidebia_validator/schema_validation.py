@@ -88,6 +88,7 @@ def validate_all_schemas(ctx: PackageContext, store: SchemaStore) -> None:
         ("manual_remote_adoption_path", "manual_remote_adoptions.schema.json"),
         ("argument_name_assignment_path", "argument_name_assignments.schema.json"),
         ("argument_name_discovery_path", "argument_name_discovery_review.schema.json"),
+        ("documentary_resource_registry_path", "documentary_resource_registry.schema.json"),
     ):
         rel = controls.get(path_key)
         if rel and ctx.exists(rel):
