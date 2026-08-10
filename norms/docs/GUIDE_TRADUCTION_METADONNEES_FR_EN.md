@@ -97,11 +97,11 @@ La traduction ne réapplique pas mécaniquement à l’anglais les règles de cr
 
 La seconde passe FR→EN compare explicitement : sujet, prédicat, négation/polarité, modalité, attribution, quantificateurs, degré, temporalité, condition, causalité/concession et portée du référent. Une perte ou une catégorisation plus forte exige une reprise. Le raccourcissement d’un `displayed-title` n’est jamais une justification suffisante.
 
-Le ratio des résumés reste un signal de risque, pas un objectif de longueur. Les mots-clés restent issus terme à terme du vocabulaire bilingue et conservent leur casse propre ; le sous-titre `name=` commence par une majuscule mais n’est jamais injecté comme keyword.
+Le ratio des résumés reste un signal de risque, pas un objectif de longueur. Les mots-clés restent issus terme à terme du vocabulaire bilingue et conservent leur casse propre ; le sous-titre `established-name=` commence par une majuscule mais n’est jamais injecté comme keyword.
 
 La validation finale de traduction est exécutée sur une extraction neuve de l’archive finale dont le SHA-256 est enregistré dans le rapport.
 
 
 ### Correctif 1.2.59 — preuve de recherche et complétude de citation
 
-Pour toute nouvelle recherche de `nom=` / `name=`, conserver la provenance réelle (`actual_log` ou `fresh_recheck`) ; une décision historique reconstruite est marquée `historical_reconstruction` et ne remplace jamais une recherche obligatoire d'une nouvelle page anglaise. Chaque `Quote` est comparée intégralement à la `Citation` source ; un ratio lexical inférieur à 0,60 impose une seconde revue explicite, sans réécriture automatique. La release finale génère et revalide `release/content_inventory.json` sur l'archive exacte.
+Pour toute nouvelle recherche de `nom-consacré=` / `established-name=`, conserver la provenance réelle (`actual_log` ou `fresh_recheck`) ; une décision historique reconstruite est marquée `historical_reconstruction` et ne remplace jamais une recherche obligatoire d'une nouvelle page anglaise. Chaque `Quote` est comparée intégralement à la `Citation` source ; un ratio lexical inférieur à 0,60 impose une seconde revue explicite, sans réécriture automatique. La release finale génère et revalide `release/content_inventory.json` sur l'archive exacte.

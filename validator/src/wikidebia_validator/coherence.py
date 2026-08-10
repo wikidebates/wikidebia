@@ -250,7 +250,7 @@ def validate_argument_name_discovery(ctx: PackageContext, manifest: dict[str, An
             if key[0] == 'en' and name_value:
                 first_alpha = next((char for char in name_value if char.isalpha()), '')
                 if first_alpha and not first_alpha.isupper():
-                    ctx.report.error("WDV-EDT-032", "Le champ name= anglais est un sous-titre et doit commencer par une majuscule", path=str(rel), details={"page_id": key[1], "name": name_value})
+                    ctx.report.error("WDV-EDT-032", "L’appellation anglaise consacrée est un sous-titre et doit commencer par une majuscule", path=str(rel), details={"page_id": key[1], "name": name_value})
             for field in ("same_reasoning_confirmed", "non_invented_label_confirmed", "language_fit_confirmed"):
                 if row.get(field) is not True:
                     ctx.report.error("WDV-EDT-032", f"Attestation manquante pour un nom consacré : {field}", path=str(rel), details={"page_id": key[1]})

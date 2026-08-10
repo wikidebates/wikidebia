@@ -1017,12 +1017,12 @@ Pour chaque `Axxxx`, il existe au terme du workflow :
 ## 17.2 Chronologie
 
 1. Les titres français sont normalisés et verrouillés dans le Work du graphe.
-2. Les titres anglais sont proposés, validés puis verrouillés.
-3. Les pages françaises sont créées avec leur lien interlangue et validées.
-4. La validation française globale est réussie.
-5. Les pages anglaises sont produites.
-6. La cohérence bilingue est validée.
-7. Aucun patch interlangue distinct n’est nécessaire.
+2. Si `translation_status.en=deferred`, les titres anglais peuvent rester absents et les pages françaises sont produites sans `interlangue`.
+3. La validation française globale peut être réussie et la portée française publiée indépendamment.
+4. Lorsque la traduction commence, les titres anglais sont proposés, validés puis verrouillés.
+5. Les pages anglaises sont produites et la cohérence bilingue est validée.
+6. Après passage à `ready` ou `published`, les liens interlangues français sont ajoutés ou vérifiés par la reprise interlangue explicite, sans modifier les dates de création françaises.
+7. Les anciens dossiers de patch/staging interlangue ne font pas partie du flux actif.
 
 ## 17.3 Invariants bilingues
 
@@ -1493,8 +1493,9 @@ Le futur validateur doit traiter les violations applicables à l'état courant c
 - mêmes réutilisations ;
 - même occurrence primaire logique ;
 - aucune page anglaise avec interlangue ;
-- lien français pointant vers le titre canonique anglais exact ;
-- chaque fichier français valide contient déjà son lien vers le titre anglais verrouillé ; aucune insertion tardive distincte n’est autorisée.
+- en `deferred`, absence autorisée du titre anglais et du lien interlangue français ;
+- en `ready` ou `published`, lien français unique pointant vers le titre canonique anglais exact ;
+- tout ajout interlangue après une phase `deferred` passe par la reprise explicite et préserve la date de création française.
 
 ---
 

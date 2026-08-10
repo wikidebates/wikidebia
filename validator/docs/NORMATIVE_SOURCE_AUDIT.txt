@@ -1,3 +1,3 @@
-Source normative active : WIKIDEBIA_NORME_CONSOLIDEE_1.2.64.md
-Révision : 1.2.64
+Source normative active : WIKIDEBIA_NORME_CONSOLIDEE_1.2.65.md
+Révision : 1.2.65
 Copie normative du validateur : identique au paquet Normes sur 86 fichiers.

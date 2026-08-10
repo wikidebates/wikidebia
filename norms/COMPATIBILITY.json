@@ -1,7 +1,7 @@
 {
-  "normative_revision": "1.2.64",
-  "recommended_validator_version": "0.4.67",
-  "recommended_kit_version": "2.15.48",
+  "normative_revision": "1.2.65",
+  "recommended_validator_version": "0.4.68",
+  "recommended_kit_version": "2.15.49",
   "compatible_from": "1.1.0",
   "translation_modes": [
     "pending",
@@ -27,7 +27,7 @@
     "La validation différentielle couvre aussi le titre canonique des Arguments au moyen d'un inventaire sémantique distinct, sans rééditer la source française autoritative.",
     "La page Debate reçoit une revue bilingue différentielle de son titre, de topic/complete-topic, des affirmations et distinctions de l'introduction, des enjeux et de la fonction des sous-parties.",
     "Un verdict passed du validateur décrit les contrôles automatisés et les attestations encodées ; il ne remplace pas la revue humaine de fidélité sémantique.",
-    "Les nouvelles revues de name= utilisent le format 1.1 et distinguent journal réel, nouvelle vérification et reconstruction historique sans fabrication rétroactive.",
+    "Les nouvelles revues d’`established-name=` utilisent le format 1.1 et distinguent journal réel, nouvelle vérification et reconstruction historique sans fabrication rétroactive.",
     "Toute nouvelle Quote atteste sa complétude ; un ratio lexical faible impose une seconde revue explicite mais ne prouve jamais à lui seul une troncation.",
     "La release contient un inventaire de contenu dérivé et lié au reçu, recalculé sur l’extraction fraîche du ZIP exact.",
     "La révision 1.2.62 réconcilie la lignée traduction/validation 1.2.61 avec la lignée publication GitHub 8b46816 sans réécrire leurs historiques concurrents.",
@@ -39,6 +39,7 @@
     "Le kit 2.15.45 conserve les reprises interlangues strictes et le rattrapage audité de la balise `translated-fr` sur les révisions anglaises de traduction déjà publiées.",
     "Pour les nouvelles traductions FR→EN : résumés avec deux-points, avertissement `AI-translated quote` et doubles balises `chatgpt` + `translated-fr`.",
     "À partir de 1.2.58, les nouvelles pages Argument utilisent `nom-consacré` / `established-name`; `nom` / `name` est réservé à la préservation exacte de pages historiques attestées.",
-    "La révision 1.2.64 corrige la continuité des métadonnées de compatibilité et rend autonomes les modules de tests critiques du kit ; aucune règle éditoriale de 1.2.63 n’est modifiée."
+    "La révision 1.2.64 corrige la continuité des métadonnées de compatibilité et rend autonomes les modules de tests critiques du kit ; aucune règle éditoriale de 1.2.63 n’est modifiée.",
+    "La révision 1.2.65 resynchronise les guides actifs avec les règles déjà autoritatives : established-name pour les nouvelles appellations, interlangue conditionnel à translation_status.en et rendu des Citation/Quote verrouillées."
   ]
 }

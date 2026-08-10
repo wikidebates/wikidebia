@@ -1,4 +1,4 @@
-# Wikidéb’IA — Normes 1.2.64
+# Wikidéb’IA — Normes 1.2.65
 
 Révision de réconciliation entre :
 
@@ -11,3 +11,5 @@ La norme reste cumulative. Les renforcements de traduction différentielle, de r
 Les historiques de branches qui ont réutilisé les mêmes numéros de version pour des changements différents sont archivés sous des chemins qualifiés ; ils ne sont jamais réécrits.
 
 La révision 1.2.64 corrige deux défauts de preuve supplémentaires découverts après le scellement de 1.2.63, sans modifier les décisions éditoriales ou de publication.
+
+La révision 1.2.65 corrige uniquement des contradictions résiduelles dans les documents actifs : terminologie des appellations consacrées, interlangue différée et rendu des citations verrouillées.

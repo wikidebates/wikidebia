@@ -184,11 +184,11 @@ La recherche porte d’abord sur le sujet exact, puis sur les notions, instituti
 
 Ils sont omis lorsqu'aucun contenu pertinent et vérifié n'existe.
 
-## 3.4 Paramètre obligatoire dès la création
+## 3.4 Paramètre interlangue conditionnel
 
-`interlangue` est présent dans la première génération valide du fichier français canonique. Le titre anglais canonique doit être verrouillé dans le registre, mais la page anglaise cible peut être créée dans un second temps. Aucune copie de staging et aucune phase de patch interlangue séparée ne sont produites pour un paquet 1.2.0.
+`interlangue` dépend de `translation_status.en`. Avec `deferred`, il est absent et aucun titre anglais n’est requis. Avec `ready` ou `published`, il devient obligatoire et vise exactement le titre canonique anglais verrouillé. L’ajout ultérieur après une phase `deferred` passe par la reprise interlangue explicite ; il ne modifie jamais `date-création`.
 
-Forme unique pour les pages Débat et Argument françaises :
+Forme unique lorsque le paramètre est requis pour les pages Débat et Argument françaises :
 
 ```mediawiki
 |interlangue={{Lien interlangue
@@ -197,7 +197,7 @@ Forme unique pour les pages Débat et Argument françaises :
 }}
 ```
 
-Le champ `page` reproduit exactement le titre canonique anglais du même identifiant. L'ajout du lien ne dépend pas de l'existence distante préalable de la cible et ne modifie pas `date-création`.
+Le champ `page` reproduit exactement le titre canonique anglais du même identifiant. En `deferred`, ce bloc est entièrement omis. En `ready` ou `published`, son ajout ou sa mise à jour ne modifie pas `date-création`.
 
 ## 3.4 Paramètres autorisés mais non générés
 
@@ -797,12 +797,12 @@ Avant qu'une page soit déclarée conforme au profil, le validateur doit confirm
 10. que les titres affichés correspondent au registre ;
 11. que les rubriques ou sections appartiennent aux listes autorisées et sont rangées alphabétiquement dans la langue de la page ;
 12. que les pages anglaises ne contiennent aucun lien interlangue ;
-13. que chaque page française contient exactement un lien interlangue dès sa première génération valide ;
-14. que ce lien utilise `{{Lien interlangue}}` et vise le titre anglais canonique exact ;
+13. que l’état interlangue correspond à `translation_status.en` : aucun lien requis en `deferred`, exactement un lien en `ready` ou `published` ;
+14. que tout lien présent utilise `{{Lien interlangue}}` et vise le titre anglais canonique exact ;
 15. que les paramètres déclarés « autorisés mais non générés » sont absents des sorties automatiques, hors paramètres historiques explicitement verrouillés ;
 16. que les références mentionnées dans le résumé sont représentées dans les paramètres documentaires ;
 17. qu'aucune catégorie documentaire vide n'est émise ;
-18. qu'aucune citation ou quote n'est produite dans les pages Argument ;
+18. que `citations=` / `quotes=` ne rendent que les citations importées, revues et verrouillées, avec projection `Citation`→`Quote` conforme au contrat actif, et qu’aucune citation n’est inventée ;
 19. que `nom-consacré` et `established-name` ne sont jamais inventés automatiquement ; pour une page nouvelle, ils ne sont émis qu’après une recherche documentaire 1.2.52 concluant à une appellation consacrée, et pour une page historique seulement lorsqu’une attribution éditoriale 1.2.51 les approuve explicitement, et que `initialisation` / `initialization` est absent des pages nouvelles mais préservé exactement sur les pages historiques verrouillées, et que `débat-détaillé` / `detailed-debate` est réémis exactement lorsqu’il est attesté ;
 20. que l’omission des `justifications` et `objections` sur une frontière vers un débat détaillé est déclarée et que l’information du propriétaire est attestée ;
 21. que la date de création n'a pas été modifiée par une correction, un enrichissement ou une nouvelle tentative d'import.

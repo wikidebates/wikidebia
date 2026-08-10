@@ -1,5 +1,5 @@
-Wikidéb’IA Validator 0.4.67 — auto-audit
+Wikidéb’IA Validator 0.4.68 — auto-audit
 Statut : RÉUSSI
-Norme active unique : 1.2.64
-Tests : 364 réussis
-Provenance normative, schémas, versions, manifeste, reçu et continuité des révisions compatibles : vérifiés après correctif de maintenance.
+Norme active unique : 1.2.65
+Tests : 366 réussis
+Provenance normative, schémas, versions, manifeste, reçu, documents actifs et continuité des révisions compatibles : vérifiés après correctif de cohérence documentaire.

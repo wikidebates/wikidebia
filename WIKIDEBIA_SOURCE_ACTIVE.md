@@ -2,24 +2,26 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.64** ;
-- validateur actif : **0.4.67** ;
-- kit actif : **2.15.48**.
+- norme active : **1.2.65** ;
+- validateur actif : **0.4.68** ;
+- kit actif : **2.15.49**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 2772372 octets — SHA-256 `5c07668b59bf2c28395a973f694a55ff76cd994fd0f822ccf51040d2d5d81b94`
-- `wikidebia-validator.zip` — 2888470 octets — SHA-256 `b65fe1a5d3e7d02cbc9a9727a02c5ae55230c151db2039333e5418dbfd5a5ec3`
-- `wikidebia-kit.zip` — 531172 octets — SHA-256 `11ecdbe236fc9e6247609af9eeaebdca223d13eae9829752e990ecb08b2f90aa`
+- `wikidebia-normes.zip` — 2836147 octets — SHA-256 `2846e06f58bdb2fb77c9c4b1bfc33fa27f8e9ebf5388426d755479768f77af66`
+- `wikidebia-validator.zip` — 2952819 octets — SHA-256 `79c533ccb260a5e7485205ae08b10997e2ab5a863d9913321805ac39502b2c2c`
+- `wikidebia-kit.zip` — 532370 octets — SHA-256 `8375cbdc2cbdca609f296005f24088d0fe0d9e68d287a5e16dd31b3d5ca25b7c`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.64.md`  
-SHA-256 : `7b167c195f31877f22f4b1816f0ec6343a49d06db656c54bd751f47753a5eef8`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.65.md`  
+SHA-256 : `6239dba2c39612f6885a0bc6070cd803b67921267e2dd8735bd33e0f08cd3c22`
 
-# Norme consolidée Wikidéb’IA 1.2.64
+# Norme consolidée Wikidéb’IA 1.2.65
 
 > **Révision 1.2.64 — correctif de continuité de compatibilité et d’isolement des tests.** Cette révision de maintenance ne modifie aucune décision éditoriale ou de publication de 1.2.63. Elle corrige deux défauts de preuve découverts lors d’une réextraction indépendante du ZIP scellé : la liste de compatibilité du validateur avait remplacé `1.2.62` par une seconde occurrence de `1.2.63`, et deux modules de tests du kit dépendaient d’une modification de `sys.path` effectuée par un autre module collecté auparavant. Les listes de compatibilité redeviennent continues et sans doublon, et les modules de tests critiques chargent explicitement leurs dépendances afin de réussir lorsqu’ils sont exécutés seuls.
+
+> **Révision 1.2.65 — cohérence des documents actifs.** Cette révision ne change aucune décision éditoriale ni aucun comportement de publication. Elle resynchronise les guides et sections opérationnelles qui conservaient encore des formulations remplacées : les nouvelles appellations utilisent `nom-consacré=` / `established-name=`, le profil français peut rester sans titre anglais ni `interlangue` lorsque `translation_status.en=deferred`, et les `Citation` / `Quote` importées, revues et verrouillées sont rendues conformément au contrat actif. Les formulations historiques restent conservées dans les archives et sections de provenance.
 
 > **Révision 1.2.63 — correctif de réconciliation publication/traduction.** Cette révision corrige des divergences de fusion sans changer les décisions du propriétaire : les contrats actifs utilisent `nom-consacré=` / `established-name=` pour toute nouvelle attribution, `AI-translated quote` pour toute nouvelle `Quote` traduite, et le manifeste du kit déclare l’union des capacités de publication et de traduction. Les anciennes formes `nom=` / `name=` et `Quote translated by AI` restent uniquement historiques lorsqu’elles sont attestées sur des contenus ou artefacts antérieurs.
 
@@ -1607,7 +1609,14 @@ Pour toute nouvelle page anglaise issue d’une traduction FR→EN, qu’il s’
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `e654933a63ad52f629eb9ca9030525342509ceee7ce26d0933b1cdb9b18949b5`
+SHA-256 : `6a78edfe5f0e6fa9137818905f595352be4606641537076c78fc73a5684e3d92`
+
+## 1.2.65 — 10 août 2026 — cohérence des documents actifs
+
+- corrige le guide actif de traduction pour employer `nom-consacré=` / `established-name=` dans les nouvelles recherches et sous-titres ;
+- aligne les sections principales du workflow, du profil de rendu et du schéma sur `translation_status.en=deferred` et la reprise interlangue explicite ;
+- remplace dans la checklist active l’ancienne interdiction de `citations` / `quotes` par le contrat courant de rendu des citations importées, revues et verrouillées ;
+- ne modifie aucune exigence atomique ni aucun identifiant normatif.
 
 # Changelog normatif Wikidéb’IA
 
@@ -2214,11 +2223,11 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `973a8ccc27a4f253afe2f834b96789d0c5d13fec67f850061779f9b65f5c54e2`
+SHA-256 : `da1c367ce186995cc71751f5d22bfd9c671cdf47456cb407860c02cec3726c37`
 
-# Wikidéb’IA — Validateur 0.4.67
+# Wikidéb’IA — Validateur 0.4.68
 
-Version de réconciliation pour la norme 1.2.64 et le kit 2.15.48.
+Version de réconciliation pour la norme 1.2.65 et le kit 2.15.49.
 
 Elle conserve les contrôles différentiels et sémantiques de la lignée traduction 0.4.64 et intègre les contrôles de la lignée publication GitHub : `nom-consacré` / `established-name`, `AI-translated quote`, absence d'`initialization` sur une nouvelle traduction anglaise, cohérence normative et préservation historique des alias.
 
@@ -2226,10 +2235,18 @@ Les heuristiques sémantiques restent des signaux de revue humaine ; elles ne r�
 
 Le correctif 0.4.67 ne retire aucun contrôle de 0.4.66 ; il rétablit la continuité des révisions normatives compatibles et ajoute le test de non-régression correspondant.
 
+Le correctif 0.4.68 aligne les diagnostics et la copie normative sur les documents actifs resynchronisés de 1.2.65.
+
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `c28031bfd10310c5b6d916faf7b63250f1fda9264af297cc2bdf55bdc834aa8d`
+SHA-256 : `52d2343567c31e76ddaf92cc6f2a28a39a0876c9c0f05e2b9af2d41df3b6cf01`
+
+## 0.4.68 — 10 août 2026 — cohérence des documents actifs
+
+- aligne la copie normative sur 1.2.65 ;
+- corrige le diagnostic utilisateur qui appelait encore `name=` le champ MediaWiki anglais alors que `name` n’est plus qu’un champ interne de registre ;
+- ajoute des tests empêchant le retour des contradictions actives sur l’interlangue différée et les Citation/Quote.
 
 ## 0.4.67 — 10 août 2026 — continuité de compatibilité
 
@@ -2255,9 +2272,9 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `1cafb5d24173af6a83ff8e7eecd1ad54c76b4e362906b42f62f1e334c88bfe1f`
+SHA-256 : `c35efa3db1d5771e2ee22baed9fa65c27801e07e12cd75614404e65cb117e933`
 
-# Wikidéb’IA — Kit 2.15.48
+# Wikidéb’IA — Kit 2.15.49
 
 Version de réconciliation entre la lignée traduction/validation 2.15.38 et la lignée de publication GitHub 2.15.45 (commit `8b46816`), issues du kit 2.15.32 commun.
 
@@ -2269,10 +2286,18 @@ Les numéros 2.15.33 à 2.15.38 ont été réutilisés différemment dans les de
 
 La version 2.15.48 corrige la dépendance à l’ordre de collecte de deux modules de tests et aligne le kit sur le validateur 0.4.67 ; le premier point de réconciliation historique reste 2.15.46.
 
+La version 2.15.49 ajoute un garde-fou croisé empêchant le retour de formulations actives obsolètes dans le paquet Normes et s’aligne sur 1.2.65 / 0.4.68.
+
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `4cd7c1b6b4c2c0c21bbf8e4fd92f363a030cef5387a5b4e09cbbdacbf35f183b`
+SHA-256 : `7266d79fd8fdc4c8cf0625c9fd0471df711dd11b3af7e9fac1c216592fdbd27e`
+
+## 2.15.49 — 10 août 2026 — cohérence documentaire croisée
+
+- aligne les métadonnées sur la norme 1.2.65 et le validateur 0.4.68 ;
+- ajoute un test croisé vérifiant que le guide actif des Normes emploie `nom-consacré=` / `established-name=` ;
+- ajoute le regression gate `active_document_contract_consistency`.
 
 ## 2.15.48 — 10 août 2026 — tests critiques autonomes
 
@@ -2538,15 +2563,15 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `b040d1cbe5dd49e926092e1fc97e62cd85d61f723c97cc0765459f48a06916a4`
+SHA-256 : `1c0c848adfe4823846a408c81caf0185b8249ae394c0b521c5a9464ee4191cd8`
 
-Wikidéb’IA Kit 2.15.48 — rapport de tests
+Wikidéb’IA Kit 2.15.49 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 335
-Tests pytest : 335 réussis
-Norme : 1.2.64
-Validateur requis : 0.4.67
-Suites héritées des trois lignées + tests de réconciliation et d’exécution isolée : PASSED.
+Tests pytest collectés : 336
+Tests pytest : 336 réussis
+Norme : 1.2.65
+Validateur requis : 0.4.68
+Suites héritées des trois lignées + tests de réconciliation, exécution isolée et cohérence documentaire croisée : PASSED.
 
 ## Guide de traduction anglaise
 

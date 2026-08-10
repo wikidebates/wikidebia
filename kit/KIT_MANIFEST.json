@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.48",
-  "validator_version": "0.4.67",
+  "version": "2.15.49",
+  "validator_version": "0.4.68",
   "scope": [
     "publish_archive",
     "github_init",
@@ -422,7 +422,7 @@
     "redirect_preserving_interlanguage_enrichment",
     "interlanguage_only_owner_mode"
   ],
-  "normative_revision": "1.2.64",
+  "normative_revision": "1.2.65",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -523,7 +523,8 @@
     "english_creation_date_runtime_override_regression",
     "english_initialization_cross_wiki_rejection_regression",
     "english_creation_midnight_boundary_regression",
-    "isolated_test_module_import_regression"
+    "isolated_test_module_import_regression",
+    "active_document_contract_consistency"
   ],
   "translation_change_tag": "translated-fr"
 }

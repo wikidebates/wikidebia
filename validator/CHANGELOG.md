@@ -1,3 +1,9 @@
+## 0.4.68 — 10 août 2026 — cohérence des documents actifs
+
+- aligne la copie normative sur 1.2.65 ;
+- corrige le diagnostic utilisateur qui appelait encore `name=` le champ MediaWiki anglais alors que `name` n’est plus qu’un champ interne de registre ;
+- ajoute des tests empêchant le retour des contradictions actives sur l’interlangue différée et les Citation/Quote.
+
 ## 0.4.67 — 10 août 2026 — continuité de compatibilité
 
 - restaure `1.2.62` dans `compatible_normative_revisions` et `supported_normative_revisions` ;

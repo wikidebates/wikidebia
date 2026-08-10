@@ -5,9 +5,9 @@
 
 ## 1. Principes
 
-Le registre maître et les fichiers individuels sont les sources de vérité. Les titres canoniques français et anglais sont verrouillés avant la première génération des pages françaises. Les pages françaises contiennent donc immédiatement leur lien `{{Lien interlangue}}`, même si les pages anglaises sont rédigées et publiées ensuite. Leur publication n’exige pas que les pages anglaises existent déjà dans le manifeste : le titre anglais verrouillé du registre maître suffit.
+Le registre maître et les fichiers individuels sont les sources de vérité. Les titres canoniques français sont verrouillés avant la première génération française. Les titres canoniques anglais et les liens `{{Lien interlangue}}` français dépendent de `translation_status.en` : avec `deferred`, aucun titre anglais ni lien interlangue n’est requis ; avec `ready` ou `published`, les titres anglais sont verrouillés et chaque page française contient exactement le lien vers son titre canonique anglais.
 
-Aucun paquet 1.2.x ne produit de patch interlangue tardif ni de copie `staging/interlanguage/`. Les anciens dossiers restent lisibles uniquement pour la compatibilité historique.
+Aucune copie `staging/interlanguage/` ni ancien mécanisme de patch de corpus n’est utilisé. Lorsque l’anglais passe de `deferred` à `ready` ou `published`, l’ajout des liens français se fait par la reprise interlangue explicite et sûre prévue par le kit, sans modifier la date de création française.
 
 Chaque Work reçoit un handoff vérifié, modifie uniquement les champs autorisés et livre des rapports reproductibles. Aucune écriture distante n’est autorisée avant W11.
 
@@ -41,17 +41,17 @@ Définir la proposition, le périmètre, les acteurs, juridictions, ambiguïtés
 
 ## 4. Work 01 — Recherche, graphe et titres bilingues
 
-Effectuer les recherches et passes d’omission, construire puis consolider le DAG, fixer les occurrences et lots, et verrouiller les titres canoniques et affichés français et anglais. La rédaction anglaise des pages reste différée ; seul le titre anglais est nécessaire à ce stade pour les liens français directs.
+Effectuer les recherches et passes d’omission, construire puis consolider le DAG, fixer les occurrences et lots, et verrouiller les titres canoniques et affichés français. Les titres anglais ne sont verrouillés à ce stade que si la traduction n’est pas `deferred`; en mode `deferred`, aucune valeur anglaise n’est inventée.
 
 Contrôles obligatoires : DAG, absence de doublons, autonomie référentielle, titres idiomatiques, équilibre, saturation documentée, empreinte structurelle et revue humaine.
 
 ## 5. Work 02 — Page Débat française
 
-Créer la page française avec `{{Lien interlangue}}` vers le titre canonique anglais verrouillé. Concevoir l’introduction à partir des connaissances nécessaires au lecteur : définition et périmètre, sens de la question, histoire, actualité lorsqu’elle est pertinente, connaissances préalables et enjeux. Lors de la rédaction, repérer les notions spécialisées dont une définition secondaire aiderait le lecteur : utiliser à leur première occurrence `{{Lien Wikipédia|article=…}}` en français ou `{{Wikipedia link|article=…}}` en anglais lorsque le premier paragraphe de Wikipédia suffit ; sinon conserver une explication intégrée. Vérifier la page dans la langue correspondante, réserver le paramètre d’affichage aux différences réelles de libellé et ne jamais considérer ce lien comme une référence. Chaque sous-partie répond à une question identifiable ; une section technique explique pourquoi elle compte pour le débat. L’introduction ne reproduit ni le graphe ni une checklist issue d’un corpus pilote. Produire le registre bilingue de revue des introductions. Les appels `<ref>…</ref>` sont ajoutés lorsque nécessaire ; leur contenu bibliographique ou web est rédigé directement en wikicode, sans aucun modèle MediaWiki et sans balise `<references />`. Les dates documentaires complètes sont écrites en langage naturel. Aucun minimum global ou par sous-partie n’est recherché. Toutes les références de la page Débat sont disponibles en français. La bibliographie privilégie les ouvrages fondamentaux et synthèses larges. Chacun des neuf paramètres documentaires de la page Débat contient au moins deux références distinctes.
+Créer la page française. Si `translation_status.en=deferred`, omettre `interlangue`; si l’anglais est `ready` ou `published`, inclure exactement `{{Lien interlangue}}` vers le titre canonique anglais verrouillé. Concevoir l’introduction à partir des connaissances nécessaires au lecteur : définition et périmètre, sens de la question, histoire, actualité lorsqu’elle est pertinente, connaissances préalables et enjeux. Lors de la rédaction, repérer les notions spécialisées dont une définition secondaire aiderait le lecteur : utiliser à leur première occurrence `{{Lien Wikipédia|article=…}}` en français ou `{{Wikipedia link|article=…}}` en anglais lorsque le premier paragraphe de Wikipédia suffit ; sinon conserver une explication intégrée. Vérifier la page dans la langue correspondante, réserver le paramètre d’affichage aux différences réelles de libellé et ne jamais considérer ce lien comme une référence. Chaque sous-partie répond à une question identifiable ; une section technique explique pourquoi elle compte pour le débat. L’introduction ne reproduit ni le graphe ni une checklist issue d’un corpus pilote. Produire le registre bilingue de revue des introductions. Les appels `<ref>…</ref>` sont ajoutés lorsque nécessaire ; leur contenu bibliographique ou web est rédigé directement en wikicode, sans aucun modèle MediaWiki et sans balise `<references />`. Les dates documentaires complètes sont écrites en langage naturel. Aucun minimum global ou par sous-partie n’est recherché. Toutes les références de la page Débat sont disponibles en français. La bibliographie privilégie les ouvrages fondamentaux et synthèses larges. Chacun des neuf paramètres documentaires de la page Débat contient au moins deux références distinctes.
 
 ## 6. Work 03 — Arguments français
 
-Produire les pages par lots séquentiels. Chaque page contient son lien interlangue initial, reproduit exactement les relations du registre, emploie des références françaises lorsqu’un équivalent officiel existe et justifie toute source étrangère sans équivalent. Les incises françaises utilisent des parenthèses, non des tirets cadratins appariés.
+Produire les pages par lots séquentiels. Chaque page omet `interlangue` tant que `translation_status.en=deferred`; dès que l’anglais est `ready` ou `published`, le lien interlangue exact est présent. Chaque page reproduit exactement les relations du registre, emploie des références françaises lorsqu’un équivalent officiel existe et justifie toute source étrangère sans équivalent. Les incises françaises utilisent des parenthèses, non des tirets cadratins appariés.
 
 ## 7. Work 04 — Validation française
 
@@ -59,7 +59,7 @@ Exécuter au minimum les portées `schema`, `coherence`, `graph`, `files`, `batc
 
 ## 8. Work 05 — Audit des titres bilingues
 
-Vérifier que les titres anglais verrouillés sont idiomatiques, autonomes et équivalents aux titres français. Toute modification est une migration qui met à jour le registre, les pages françaises et toutes les cibles interlangues avant la production anglaise.
+Au démarrage de la phase anglaise, vérifier puis verrouiller les titres anglais idiomatiques, autonomes et équivalents aux titres français. Toute modification ultérieure est une migration explicite ; les liens interlangues français sont ajoutés ou mis à jour uniquement par le workflow interlangue prévu, après passage à `ready` ou `published`.
 
 ## 9. Work 06 — Page Debate anglaise
 
@@ -79,7 +79,7 @@ Contrôler l’identité des nœuds, relations, occurrences, réutilisations et 
 
 ## 13. Work 10 — Audit interlangue et prépublication
 
-Vérifier exactement un `{{Lien interlangue}}` dans chaque page française, sa cible canonique anglaise, l’absence de lien en anglais et l’absence totale de patch ou staging actif. Produire `reports/validation_interlanguage.txt`, la revue finale, le manifeste de libération et le handoff W11. W10 n’écrit jamais sur le wiki.
+Vérifier l’état interlangue selon `translation_status.en` : en `deferred`, aucun lien interlangue français n’est requis ; en `ready` ou `published`, chaque page française contient exactement un `{{Lien interlangue}}` vers sa cible canonique anglaise. Vérifier aussi l’absence de lien en anglais et l’absence de staging interlangue historique actif. Produire `reports/validation_interlanguage.txt`, la revue finale, le manifeste de libération et le handoff W11. W10 n’écrit jamais sur le wiki.
 
 ## 14. Work 11 — Simulation, test de la page Débat et publication
 
@@ -118,7 +118,7 @@ Le workflow de production et de publication reste identique à celui de 1.2.6. L
 
 ## Publication française avant production anglaise — norme 1.2.9
 
-Une opération W11 peut sélectionner uniquement `fr`. Le kit vérifie alors chaque cible `{{Lien interlangue}}` contre le titre anglais verrouillé dans `data/registre_debat.json`. L’absence des pages anglaises correspondantes dans `manifest.json` n’est pas bloquante. Elle le devient seulement si aucun titre anglais verrouillé ne permet de vérifier la cible française.
+Une opération W11 peut sélectionner uniquement `fr`. En mode `deferred`, elle n’exige ni titre anglais, ni page anglaise, ni lien interlangue. En mode `ready` ou `published`, le kit vérifie chaque cible `{{Lien interlangue}}` contre le titre anglais verrouillé dans `data/registre_debat.json`; toute cible incohérente est bloquante.
 
 
 ## Addendum 1.2.11 — passe de compaction avant validation

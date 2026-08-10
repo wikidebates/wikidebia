@@ -1,3 +1,10 @@
+## 1.2.65 — 10 août 2026 — cohérence des documents actifs
+
+- corrige le guide actif de traduction pour employer `nom-consacré=` / `established-name=` dans les nouvelles recherches et sous-titres ;
+- aligne les sections principales du workflow, du profil de rendu et du schéma sur `translation_status.en=deferred` et la reprise interlangue explicite ;
+- remplace dans la checklist active l’ancienne interdiction de `citations` / `quotes` par le contrat courant de rendu des citations importées, revues et verrouillées ;
+- ne modifie aucune exigence atomique ni aucun identifiant normatif.
+
 # Changelog normatif Wikidéb’IA
 
 ## 1.2.64 — 10 août 2026 — correctif de preuve de release

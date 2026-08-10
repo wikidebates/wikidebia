@@ -1,3 +1,9 @@
+## 2.15.49 — 10 août 2026 — cohérence documentaire croisée
+
+- aligne les métadonnées sur la norme 1.2.65 et le validateur 0.4.68 ;
+- ajoute un test croisé vérifiant que le guide actif des Normes emploie `nom-consacré=` / `established-name=` ;
+- ajoute le regression gate `active_document_contract_consistency`.
+
 ## 2.15.48 — 10 août 2026 — tests critiques autonomes
 
 - rend `test_wikidebia_remote_update.py` autonome en ajoutant explicitement `scripts/` à son chemin d’import ;
