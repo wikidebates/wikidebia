@@ -142,11 +142,11 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(state), encoding="utf-8")
     validator = root / "validator.py"
-    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.71','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator.write_text("import json; print(json.dumps({'validator_version':'0.4.72','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     config = {
-        "kit_version":"2.15.52","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
+        "kit_version":"2.15.53","project_root":str(root),"debate_id":"demo","corpus_root":"corpus/demo","languages":list(languages),
         "family":"wikidebates","pywikibot_dir":"private/pywikibot","sites":{lang:{"code":lang,"expected_user":"ChatGPT"} for lang in languages},
-        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.71","scopes":[]},
+        "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator),"validate"],"required_version":"0.4.72","scopes":[]},
         "published_state_dir":".state/published","receipts_dir":".state/receipts","logs_dir":"logs",
     }
     config_path = root / "config.json"
@@ -579,13 +579,13 @@ def test_remote_adoption_rejects_changed_revision(tmp_path):
 
 
 def test_dieu_manual_sync_plan_has_no_blocked_or_manual_review(tmp_path):
-    old_religions = "{{Argument\n|débat-détaillé=Les religions se rejoignent-elles ?\n|rubriques=Religion et spiritualité\n|mots-clés=Dieu, religion, contradiction, pluralisme religieux\n|date-création=2021-02-17\n}}\n"
+    old_religions = "{{Argument\n|débat-dédié=Les religions se rejoignent-elles ?\n|rubriques=Religion et spiritualité\n|mots-clés=Dieu, religion, contradiction, pluralisme religieux\n|date-création=2021-02-17\n}}\n"
     proposed_religions = old_religions.replace("{{Argument\n", "{{Argument\n|résumé=Résumé vérifié. Deuxième phrase.\n", 1)
     new_parent_remote = "{{Argument\n|justifications={{Justification\n|page=Les religions se contredisent\n|titre-affiché=Les religions se contredisent\n}}\n|rubriques=Culture, Religion et spiritualité\n|mots-clés=Dieu, religion, contradiction\n}}\n"
     new_parent_proposed = new_parent_remote.replace("\n}}\n", "\n|date-création=2026-08-06\n}}\n", 1)
-    reinc_remote = "{{Argument\n|initialisation=Objection@30833\n|débat-détaillé=La réincarnation existe-t-elle ?\n|rubriques=Religion et spiritualité\n|mots-clés=réincarnation\n|date-création=2026-08-06\n}}\n"
+    reinc_remote = "{{Argument\n|initialisation=Objection@30833\n|débat-dédié=La réincarnation existe-t-elle ?\n|rubriques=Religion et spiritualité\n|mots-clés=réincarnation\n|date-création=2026-08-06\n}}\n"
     reinc_proposed = reinc_remote.replace("|mots-clés=réincarnation\n", "|mots-clés=réincarnation, scepticisme\n")
-    fatima_remote = "{{Argument\n|initialisation=Objection@6604\n|débat-détaillé=Le miracle du soleil de Fatima est-il fondé ?\n|rubriques=Religion et spiritualité, Science\n|mots-clés=miracle, soleil, Fatima, illusion, charlatanisme\n|date-création=2026-08-06\n}}\n"
+    fatima_remote = "{{Argument\n|initialisation=Objection@6604\n|débat-dédié=Le miracle du soleil de Fatima est-il fondé ?\n|rubriques=Religion et spiritualité, Science\n|mots-clés=miracle, soleil, Fatima, illusion, charlatanisme\n|date-création=2026-08-06\n}}\n"
     fatima_proposed = fatima_remote.replace("miracle, soleil, Fatima", "miracle, Fatima")
     external = "Argument externe"
     aseity_old = "{{Argument\n|résumé=Texte. Deuxième phrase.\n|objections={{Objection\n|page=Objection interne\n|titre-affiché=Objection interne\n}}\n|rubriques=Philosophie\n|date-création=2026-08-05\n}}\n"

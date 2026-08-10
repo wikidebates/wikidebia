@@ -1,3 +1,4 @@
-Source normative active : WIKIDEBIA_NORME_CONSOLIDEE_1.2.68.md
-Révision : 1.2.68
-Copie normative du validateur : identique au paquet Normes sur 91 fichiers.
+Source normative active : WIKIDEBIA_NORME_CONSOLIDEE_1.2.69.md
+Révision : 1.2.69
+Copie normative du validateur : identique au paquet Normes sur 92 fichiers.
+Paramètres MediaWiki courants : sujet-développé / expanded-topic ; débat-dédié / dedicated-debate.

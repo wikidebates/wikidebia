@@ -5,7 +5,7 @@ from pathlib import Path
 
 from wikidebia_validator.graph import contextual_title_issues
 from wikidebia_validator.validator import validate_package
-from wikidebia_validator.wikicode import TOP
+from wikidebia_validator.wikicode import ACTIVE_TOP
 from .helpers import create_fr_package, create_graph_package, dump
 
 
@@ -48,10 +48,10 @@ def _insert_link(path: Path, target: str, model: str = "Lien interlangue") -> No
 
 
 def test_active_english_debate_shape_uses_topic_and_complete_topic():
-    spec = TOP[("en", "debate")]
+    spec = ACTIVE_TOP[("en", "debate")]
     assert "type" not in spec["order"]
-    assert spec["order"][:2] == ["topic", "complete-topic"]
-    assert {"topic", "complete-topic"} <= set(spec["required"])
+    assert spec["order"][:2] == ["topic", "expanded-topic"]
+    assert {"topic", "expanded-topic"} <= set(spec["required"])
 
 
 def test_norm_120_requires_direct_french_interlanguage_links(tmp_path: Path):

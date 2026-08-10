@@ -97,7 +97,7 @@
 | `WDV-EDT-015` | Donnée chiffrée sans attestation documentaire conforme |
 | `WDV-EDT-016` | Titre canonique non autonome en raison d’un référent contextuel |
 | `WDV-EDT-017` | Revue structurelle bilingue de l’introduction absente ou incohérente |
-| `WDV-EDT-018` | Forme de sujet-complet ou complete-topic incorrecte |
+| `WDV-EDT-018` | Forme de sujet-développé ou expanded-topic incorrecte |
 | `WDV-EDT-019` | Revue de précision et de profondeur documentaire du débat absente |
 | `WDV-EDT-020` | Force expressive du résumé non ancrée dans le texte |
 | `WDV-EDT-021` | Titre affiché non propositionnel ou argument incompréhensible |

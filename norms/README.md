@@ -1,4 +1,4 @@
-# Wikidéb’IA — Normes 1.2.68
+# Wikidéb’IA — Normes 1.2.69
 
 Révision de réconciliation entre :
 
@@ -17,4 +17,4 @@ La révision 1.2.65 corrige uniquement des contradictions résiduelles dans les 
 
 La révision 1.2.67 complète la preuve propositionnelle par la revue des changements idiomatiques, le corpus réel de régressions et les preuves de champ Debate.
 
-La révision 1.2.68 durcit uniquement les preuves de convergence et de parsing, sans modifier les règles éditoriales.
+La révision 1.2.69 renomme les paramètres MediaWiki de cadrage et de frontière : `sujet-développé` / `expanded-topic` et `débat-dédié` / `dedicated-debate`, avec lecture rétrocompatible des anciens noms.

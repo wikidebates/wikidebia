@@ -185,7 +185,7 @@ def create_fr_package(root: Path) -> Path:
     registry = make_registry()
     debate_wiki = """{{Débat
 |sujet=Mesure X
-|sujet-complet=l'adoption de la mesure X
+|sujet-développé=l'adoption de la mesure X
 |avancement=Débat construit
 |avertissements-débat=Débat généré par IA
 |introduction={{Sous-partie

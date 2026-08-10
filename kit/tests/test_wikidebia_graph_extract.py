@@ -45,7 +45,7 @@ class ParserTests(unittest.TestCase):
 
     def test_frontier_discards_relations(self):
         text = """{{Argument
-|débat-détaillé=[[Débat sous-jacent]]
+|débat-dédié=[[Débat sous-jacent]]
 |justifications={{Justification|page=X}}
 |objections={{Objection|page=Y}}
 }}"""

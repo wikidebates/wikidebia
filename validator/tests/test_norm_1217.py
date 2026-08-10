@@ -19,7 +19,7 @@ def context(norm: str = "1.2.17") -> PackageContext:
 def debate(article: str, related: str = "") -> str:
     return """{{Débat
 |sujet=Sujet
-|sujet-complet=la question du sujet
+|sujet-développé=la question du sujet
 |avancement=Débat construit
 |avertissements-débat=Débat généré par IA
 |introduction={{Sous-partie

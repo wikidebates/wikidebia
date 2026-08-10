@@ -30,8 +30,8 @@ sha_text = _publish.sha_text
 sha_file = _publish.sha_file
 sha_object = _publish.sha_object
 
-KIT_VERSION = "2.15.52"
-REQUIRED_VALIDATOR_VERSION = "0.4.71"
+KIT_VERSION = "2.15.53"
+REQUIRED_VALIDATOR_VERSION = "0.4.72"
 PLAN_VERSION = "wikidebia-remote-update-plan-1.0"
 STATE_VERSION = "wikidebia-published-state-1.0"
 RECEIPT_VERSION = "wikidebia-remote-update-receipt-1.0"
@@ -61,17 +61,38 @@ PROTECTED_LIFECYCLE_PARAMETERS = {
         "initialisation", "nom-consacré", "nom", "avertissements-titre",
         "avertissements-argument", "avertissements-résumé",
         "avertissements-références", "avertissements-justifications",
-        "avertissements-objections", "débat-détaillé", "interlangue",
+        "avertissements-objections", "débat-dédié", "interlangue",
         "date-création",
     ),
     ("en", "argument"): (
         "initialization", "established-name", "name", "title-warnings", "argument-warnings",
         "summary-warnings", "reference-warnings", "justification-warnings",
-        "objection-warnings", "detailed-debate", "creation-date",
+        "objection-warnings", "dedicated-debate", "creation-date",
     ),
 }
 
 
+
+
+PARAMETER_RENAMES = {
+    ("fr", "debate"): {"sujet-complet": "sujet-développé"},
+    ("en", "debate"): {"complete-topic": "expanded-topic"},
+    ("fr", "argument"): {"débat-détaillé": "débat-dédié"},
+    ("en", "argument"): {"detailed-debate": "dedicated-debate"},
+}
+
+def _canonical_parameter_name(language: str, page_type: str, name: str) -> str:
+    normalized = normalize_key(name)
+    mapping = {normalize_key(old): new for old, new in PARAMETER_RENAMES.get((language, page_type), {}).items()}
+    mapping.update({normalize_key(new): new for new in PARAMETER_RENAMES.get((language, page_type), {}).values()})
+    return mapping.get(normalized, name)
+
+def _parameter_aliases(language: str, page_type: str, canonical: str) -> tuple[str, ...]:
+    aliases = [canonical]
+    for old, new in PARAMETER_RENAMES.get((language, page_type), {}).items():
+        if new == canonical:
+            aliases.append(old)
+    return tuple(aliases)
 
 def protected_lifecycle_snapshot(text: str, language: str, page_type: str) -> dict[str, tuple[bool, str | None]]:
     expected = {("fr", "debate"): "debat", ("en", "debate"): "debate", ("fr", "argument"): "argument", ("en", "argument"): "argument"}[(language, page_type)]
@@ -79,7 +100,12 @@ def protected_lifecycle_snapshot(text: str, language: str, page_type: str) -> di
     if not calls:
         raise UpdateError(f"Modèle principal introuvable pour le contrôle des paramètres protégés ({language}/{page_type})")
     call = max(calls, key=lambda item: len(item.raw))
-    return {name: (name in call.params, call.get(name) if name in call.params else None) for name in PROTECTED_LIFECYCLE_PARAMETERS[(language, page_type)]}
+    snapshot: dict[str, tuple[bool, str | None]] = {}
+    for name in PROTECTED_LIFECYCLE_PARAMETERS[(language, page_type)]:
+        aliases = _parameter_aliases(language, page_type, name)
+        present = next((candidate for candidate in aliases if candidate in call.params), None)
+        snapshot[name] = (present is not None, call.get(*aliases) if present is not None else None)
+    return snapshot
 
 
 def top_level_parameter_deletions(remote_text: str, proposed_text: str, language: str, page_type: str) -> list[str]:
@@ -95,7 +121,11 @@ def top_level_parameter_deletions(remote_text: str, proposed_text: str, language
         call = max(calls, key=lambda item: len(item.raw))
         # Keep the exact remote spelling for the plan and for page/parameter
         # deletion authorizations.  Normalization is used only for comparison.
-        return {normalize_key(key): key for key in call.params}
+        result: dict[str, str] = {}
+        for key in call.params:
+            canonical = _canonical_parameter_name(language, page_type, key)
+            result[normalize_key(canonical)] = key
+        return result
     before, after = names(remote_text), names(proposed_text)
     return sorted(before[name] for name in (set(before) - set(after)))
 
@@ -345,7 +375,10 @@ def preserve_remote_lifecycle_parameters(
         desired[name] = (True, value)
         explicit_applied[name] = value
 
-    protected_by_normalized = {normalize_key(name): name for name in names}
+    protected_by_normalized: dict[str, str] = {}
+    for name in names:
+        for alias in _parameter_aliases(language, page_type, name):
+            protected_by_normalized[normalize_key(alias)] = name
     preserved: list[tuple[str, str]] = []
     seen: set[str] = set()
     changes: dict[str, dict[str, Any]] = {}
@@ -358,7 +391,7 @@ def preserve_remote_lifecycle_parameters(
         present, desired_value = desired[canonical]
         if present:
             assert desired_value is not None
-            preserved.append((key, desired_value))
+            preserved.append((canonical, desired_value))
             if value != desired_value or remote_snapshot[canonical] != desired[canonical]:
                 changes[canonical] = {
                     "remote": list(remote_snapshot[canonical]),

@@ -1,4 +1,4 @@
-## Workflow 1.2.68 — convergence après revue des changements de forme
+## Workflow 1.2.69 — convergence après revue des changements de forme
 
 Avant la première passe de convergence, tout changement de forme d’un `displayed-title` est classé et justifié. Une proposition source devenue non-proposition bloque la revue ; une transformation idiomatique recevable ne passe qu’après attestation du même acte de langage, de la même thèse et de la même portée. Les risques sémantiques des Arguments et de Debate doivent tous posséder leurs preuves source/cible avant scellement. Les deux passes de convergence portent ensuite sur cet état exact.
 
@@ -67,7 +67,7 @@ Au démarrage de la phase anglaise, vérifier puis verrouiller les titres anglai
 
 ## 9. Work 06 — Page Debate anglaise
 
-Créer la page anglaise autonome avec `topic` et `complete-topic`, sans `type` ni interlangue. Adapter le contexte et utiliser des sources anglaises vérifiées.
+Créer la page anglaise autonome avec `topic` et `expanded-topic`, sans `type` ni interlangue. Adapter le contexte et utiliser des sources anglaises vérifiées.
 
 ## 10. Work 07 — Arguments anglais
 
@@ -244,7 +244,7 @@ Chaque titre traduit est relu selon un inventaire sémantique explicite : sujet,
 
 La revue différentielle porte sur **chaque titre canonique traduit** en plus du `displayed-title`. Une attestation distincte consigne l’inventaire sémantique du titre canonique et confirme son équivalence avec le titre français autoritatif ; la validation d’un `displayed-title` ne peut servir de preuve par substitution.
 
-La page `Debate` est relue comme un objet bilingue complet : titre canonique, `topic`, `complete-topic`, affirmations et distinctions de l’introduction, faits historiques ou actuels, enjeux, et structure fonctionnelle des sous-parties. Le remplacement légitime d’une référence française par une source anglophone ne permet jamais de supprimer l’information que cette référence étayait.
+La page `Debate` est relue comme un objet bilingue complet : titre canonique, `topic`, `expanded-topic`, affirmations et distinctions de l’introduction, faits historiques ou actuels, enjeux, et structure fonctionnelle des sous-parties. Le remplacement légitime d’une référence française par une source anglophone ne permet jamais de supprimer l’information que cette référence étayait.
 
 Le verdict technique `passed` signifie seulement que les contrôles automatisés et les attestations requises sont cohérents. Le statut `release_ready` exige toujours les revues humaines prévues ; aucun rapport automatique ne doit se présenter comme une certification autonome de fidélité sémantique.
 

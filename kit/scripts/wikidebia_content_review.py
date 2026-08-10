@@ -49,11 +49,15 @@ from wikidebia_editorial_review import (
 )
 from wikidebia_graph_extract import iter_templates, normalize_key
 
-KIT_VERSION = "2.15.52"
+KIT_VERSION = "2.15.53"
 CONTENT_REVIEW_SCHEMA = "wikidebia-fr-content-review-1.0"
 CONTENT_LOCK_SCHEMA = "wikidebia-fr-content-lock-1.0"
 CONTENT_CHANGESET_SCHEMA = "wikidebia-fr-content-changeset-1.0"
 SOURCES_WORKING_SCHEMA = "wikidebia-source-registry-working-1.0"
+
+PAGE_PARAMETER_ALIASES = {
+    "débat-dédié": ("débat-dédié", "débat-détaillé"),
+}
 
 PAGE_LIFECYCLE_PARAMETERS = {
     # Ces paramètres sont des métadonnées historiques opaques : sur une page
@@ -69,7 +73,7 @@ PAGE_LIFECYCLE_PARAMETERS = {
         "initialisation", "nom-consacré", "nom", "avertissements-titre",
         "avertissements-argument", "avertissements-résumé",
         "avertissements-références", "avertissements-justifications",
-        "avertissements-objections", "débat-détaillé", "interlangue",
+        "avertissements-objections", "débat-dédié", "interlangue",
         "date-création",
     ),
 }
@@ -78,10 +82,15 @@ PAGE_LIFECYCLE_PARAMETERS = {
 def _page_lifecycle_snapshot(template: Any, page_type: str) -> dict[str, Any]:
     """Capture exact presence/value of protected parameters on an imported page."""
     names = PAGE_LIFECYCLE_PARAMETERS[page_type]
-    return {
-        name: {"present": name in template.params, "value": template.get(name) if name in template.params else None}
-        for name in names
-    }
+    result: dict[str, Any] = {}
+    for name in names:
+        aliases = PAGE_PARAMETER_ALIASES.get(name, (name,))
+        present_name = next((candidate for candidate in aliases if candidate in template.params), None)
+        result[name] = {
+            "present": present_name is not None,
+            "value": template.get(*aliases) if present_name is not None else None,
+        }
+    return result
 
 DEBATE_BUCKETS: dict[str, tuple[str, str]] = {
     "bibliographie-pour": ("bibliography", "pro_reference"),
@@ -285,7 +294,7 @@ def _source_imports(reviewed: Path) -> tuple[dict[str, Any], dict[str, Any], lis
         "import_path": str(debate_row.get("import_path")),
         "import_sha256": debate_row.get("sha256"),
         "subject": debate.get("sujet").strip(),
-        "complete_topic": debate.get("sujet-complet").strip(),
+        "complete_topic": debate.get("sujet-développé", "sujet-complet").strip(),
         "introduction": debate.get("introduction").strip(),
         "subsections": _subsections(debate.get("introduction")),
         "wikipedia_articles": _wikipedia_articles(debate.get("articles-Wikipédia")),
@@ -728,12 +737,12 @@ def _validate_debate(review: Mapping[str, Any], source: Mapping[str, Any], sourc
     if review.get("status") != "approved":
         raise ContentReviewError("La revue de la page Débat n’est pas approuvée")
     subject = _text(_select(review, "subject_decision", source.get("subject"), "proposed_subject"), "sujet", 2)
-    complete = _text(_select(review, "complete_topic_decision", source.get("complete_topic"), "proposed_complete_topic"), "sujet-complet", 2)
+    complete = _text(_select(review, "complete_topic_decision", source.get("complete_topic"), "proposed_complete_topic"), "sujet-développé", 2)
     if QUESTION_TOPIC.search(complete):
-        raise ContentReviewError("sujet-complet ne doit pas être une question")
+        raise ContentReviewError("sujet-développé ne doit pas être une question")
     first_alpha = next((char for char in complete if char.isalpha()), "")
     if first_alpha and first_alpha.isupper() and len(str(review.get("complete_topic_initial_capital_justification") or "").strip()) < 12:
-        raise ContentReviewError("La majuscule initiale de sujet-complet n’est pas justifiée")
+        raise ContentReviewError("La majuscule initiale de sujet-développé n’est pas justifiée")
     introduction = _text(_select(review, "introduction_decision", source.get("introduction"), "proposed_introduction"), "introduction", 30)
     subsection_values = _subsections(introduction)
     if not subsection_values:

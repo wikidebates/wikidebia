@@ -1,6 +1,6 @@
-# Wikidéb’IA — Validateur 0.4.71
+# Wikidéb’IA — Validateur 0.4.72
 
-Version courante pour la norme 1.2.68 et le kit 2.15.52.
+Version courante pour la norme 1.2.69 et le kit 2.15.53.
 
 Elle conserve les contrôles différentiels et sémantiques de la lignée traduction 0.4.64 et intègre les contrôles de la lignée publication GitHub : `nom-consacré` / `established-name`, `AI-translated quote`, absence d'`initialization` sur une nouvelle traduction anglaise, cohérence normative et préservation historique des alias.
 
@@ -12,4 +12,4 @@ Le correctif 0.4.69 aligne les diagnostics et la copie normative sur les documen
 
 Le correctif 0.4.70 accepte et contrôle les schémas sémantiques 1.4 / 1.3, les changements idiomatiques explicitement revus, le corpus réel de régressions et les preuves de champ scellées.
 
-Le correctif 0.4.71 formalise les familles de méthodes de convergence 1.1 tout en conservant la lecture 1.0.
+Le correctif 0.4.72 formalise les familles de méthodes de convergence 1.1 tout en conservant la lecture 1.0.

@@ -1,4 +1,4 @@
-## 0.4.71 — 10 août 2026 — familles de convergence normalisées
+## 0.4.72 — 10 août 2026 — familles de convergence normalisées
 
 - accepte les reçus de convergence 1.0 et 1.1 ;
 - exige pour 1.1 deux `method_family` finales distinctes ;

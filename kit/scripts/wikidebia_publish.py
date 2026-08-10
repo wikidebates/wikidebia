@@ -15,9 +15,9 @@ from pathlib import Path
 from typing import Any, Protocol
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-KIT_VERSION = "2.15.52"
-REQUIRED_VALIDATOR_VERSION = "0.4.71"
-PUBLICATION_PLAN_VERSION = "wikidebia-publication-plan-2.15.52"
+KIT_VERSION = "2.15.53"
+REQUIRED_VALIDATOR_VERSION = "0.4.72"
+PUBLICATION_PLAN_VERSION = "wikidebia-publication-plan-2.15.53"
 DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
 DEFERRED_TRANSLATION_PROFILE = "norm_1_2_deferred_translation"
 DIRECT_PROFILES = {DIRECT_INTERLANGUAGE_PROFILE, DEFERRED_TRANSLATION_PROFILE}
@@ -943,6 +943,13 @@ class GenericPublisher:
                 raise PublicationError(f"Titre anglais du manifeste divergent du registre maître : {page_id}")
         return title
 
+    def _uses_renamed_template_parameters(self) -> bool:
+        value = str(((self.manifest.get("normative_versions") or {}).get("consolidated_norm") or "")).strip()
+        match = re.fullmatch(r"(\d+)\.(\d+)\.(\d+)", value)
+        if not match:
+            return True
+        return tuple(map(int, match.groups())) >= (1, 2, 69)
+
     def _validate_norm_120_page(self, row: dict[str, Any], text: str) -> None:
         language = str(row.get("language") or "")
         page_id = str(row.get("page_id") or "")
@@ -996,9 +1003,13 @@ class GenericPublisher:
             if page_type == "debate":
                 if "type" in names:
                     raise PublicationError("Le paramètre anglais |type= est interdit par les règles éditoriales actives")
-                if names.count("topic") != 1 or names.count("complete-topic") != 1:
+                if "expanded-topic" in names and "complete-topic" not in names:
+                    expanded_parameter = "expanded-topic"
+                else:
+                    expanded_parameter = "expanded-topic" if self._uses_renamed_template_parameters() else "complete-topic"
+                if names.count("topic") != 1 or names.count(expanded_parameter) != 1:
                     raise PublicationError(
-                        "La page Debate anglaise doit contenir exactement |topic= et |complete-topic="
+                        f"La page Debate anglaise doit contenir exactement |topic= et |{expanded_parameter}="
                     )
         if page_type == "debate":
             wikipedia_parameter = "articles-Wikipédia" if language == "fr" else "wikipedia-articles"
@@ -1019,7 +1030,12 @@ class GenericPublisher:
                     f"Le paramètre |{related_parameter}= ne doit pas être publié : {language}/{page_id}"
                 )
             topic_param = "sujet" if language == "fr" else "topic"
-            complete_param = "sujet-complet" if language == "fr" else "complete-topic"
+            current_complete = "sujet-développé" if language == "fr" else "expanded-topic"
+            legacy_complete = "sujet-complet" if language == "fr" else "complete-topic"
+            if current_complete in names and legacy_complete not in names:
+                complete_param = current_complete
+            else:
+                complete_param = current_complete if self._uses_renamed_template_parameters() else legacy_complete
             topic_value = extract_parameter(text, topic_param) if topic_param in names else ""
             complete_value = extract_parameter(text, complete_param) if complete_param in names else ""
             if not _first_alpha_is_upper(topic_value):

@@ -30,7 +30,7 @@ def _debate(pro_link="https://example.org/pro", con_link="https://example.org/co
     author = "\n|auteurs=Chaîne Exemple" if video_author else ""
     return f"""{{{{Débat
 |sujet=Exemple
-|sujet-complet=l'exemple
+|sujet-développé=l'exemple
 |avancement=Débat construit
 |avertissements-débat=Débat généré par IA
 |introduction={{{{Sous-partie
@@ -197,4 +197,4 @@ def test_old_1242_revision_does_not_disable_current_dedicated_stakes_rule():
 
 def test_active_norm_is_1242():
     root = Path(__file__).parents[1] / "normative_reference" / "01_normes"
-    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.68.md"]
+    assert sorted(p.name for p in root.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md")) == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.69.md"]

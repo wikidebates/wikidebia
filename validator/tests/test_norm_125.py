@@ -21,7 +21,7 @@ class FakeContext:
 
 
 def _page(content: str) -> str:
-    return "{{Débat\n|sujet=Exemple\n|sujet-complet=la question d’exemple\n|avancement=Débat construit\n|avertissements-débat=Débat généré par IA\n|introduction={{Sous-partie\n|titre=Définition\n|contenu=" + content + "\n}}\n|arguments-pour={{Argument pour\n|page=Une raison favorable complète\n|titre-affiché=Une raison favorable\n}}\n|arguments-contre={{Argument contre\n|page=Une raison défavorable complète\n|titre-affiché=Une raison défavorable\n}}\n|rubriques=Philosophie\n|mots-clés=concept\n|interlangue={{Lien interlangue\n|langue=en\n|page=Should the example proposition be accepted?\n}}\n|date-création=2026-07-28\n}}\n"
+    return "{{Débat\n|sujet=Exemple\n|sujet-développé=la question d’exemple\n|avancement=Débat construit\n|avertissements-débat=Débat généré par IA\n|introduction={{Sous-partie\n|titre=Définition\n|contenu=" + content + "\n}}\n|arguments-pour={{Argument pour\n|page=Une raison favorable complète\n|titre-affiché=Une raison favorable\n}}\n|arguments-contre={{Argument contre\n|page=Une raison défavorable complète\n|titre-affiché=Une raison défavorable\n}}\n|rubriques=Philosophie\n|mots-clés=concept\n|interlangue={{Lien interlangue\n|langue=en\n|page=Should the example proposition be accepted?\n}}\n|date-création=2026-07-28\n}}\n"
 
 
 def test_norm_125_accepts_conceptual_introduction_without_inline_reference():

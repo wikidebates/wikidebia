@@ -22,7 +22,7 @@ def debate(progress='Débat construit', warning='Débat généré par IA', relat
     rows = [
         '{{Débat',
         '|sujet=Sujet',
-        '|sujet-complet=la question du sujet',
+        '|sujet-développé=la question du sujet',
     ]
     if progress is not None:
         rows.append(f'|avancement={progress}')
@@ -147,7 +147,7 @@ def test_preexisting_french_page_may_gain_interlanguage_when_english_is_ready():
     page_manifest={'page_id':'A0001','page_type':'argument','page_origin':'preexisting','preserved_parameters':preserved(historical, 'argument')}
     ctx = PackageContext(
         root=Path('.'),
-        report=Report('0.4.71', '.', ['wikicode']),
+        report=Report('0.4.72', '.', ['wikicode']),
         cache={'manifest.json': {
             'normative_versions': {'consolidated_norm': '1.2.58'},
             'translation_status': {'en': 'ready'},

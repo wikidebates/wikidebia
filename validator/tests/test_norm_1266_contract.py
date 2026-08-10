@@ -19,8 +19,8 @@ def test_norm_1266_requirements_are_unique_and_present():
     assert len(ids) == len(set(ids))
     for rid in [*(f"TRN-{n:03d}" for n in range(20, 28)), "EDT-066", "VAL-054"]:
         assert rid in ids
-    assert data["active_package_revision"] == "1.2.68"
-    assert data["normative_revision"] == "1.2.68"
+    assert data["active_package_revision"] == "1.2.69"
+    assert data["normative_revision"] == "1.2.69"
     assert len(data["requirements"]) >= 494
     assert len(data["source_aliases"]) >= 101
 

@@ -1,4 +1,4 @@
-## 2.15.52 — 10 août 2026 — durcissement final des preuves
+## 2.15.53 — 10 août 2026 — durcissement final des preuves
 
 - normalise les familles de méthodes des passes de convergence ;
 - ajoute la régression explicite `established-name=` → keyword ;

@@ -31,7 +31,7 @@ def test_remote_compare_is_read_only_and_fixture_mode(tmp_path: Path):
 
     package = tmp_path / "package"
     fixture = tmp_path / "fixture"
-    local = "{{Débat\n|sujet=Test\n|sujet-complet=le test\n|avancement=Débat construit\n}}\n"
+    local = "{{Débat\n|sujet=Test\n|sujet-développé=le test\n|avancement=Débat construit\n}}\n"
     (package / "output/fr/debate").mkdir(parents=True)
     (package / "output/fr/debate/debate.wiki").write_text(local, encoding="utf-8")
     (fixture / "fr").mkdir(parents=True)

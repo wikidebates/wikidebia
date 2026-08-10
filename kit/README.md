@@ -1,4 +1,4 @@
-# Wikidéb’IA — Kit 2.15.52
+# Wikidéb’IA — Kit 2.15.53
 
 Version de réconciliation entre la lignée traduction/validation 2.15.38 et la lignée de publication GitHub 2.15.45 (commit `8b46816`), issues du kit 2.15.32 commun.
 
@@ -14,4 +14,6 @@ La version 2.15.50 ajoute un garde-fou croisé empêchant le retour de formulati
 
 La version 2.15.51 étend la preuve propositionnelle : changement de forme idiomatique sous revue explicite, corpus versionné de régressions réelles, catalogue de marqueurs aligné avec le validateur et preuves sémantiques de champ pour Debate/Argument. Elle s’aligne sur 1.2.67 / 0.4.70.
 
-La version 2.15.52 durcit la preuve d’indépendance des passes et les régressions keyword/parsing, sans changer les règles éditoriales.
+La version 2.15.53 durcit la preuve d’indépendance des passes et les régressions keyword/parsing, sans changer les règles éditoriales.
+
+La version 2.15.53 émet les paramètres MediaWiki `sujet-développé` / `expanded-topic` et `débat-dédié` / `dedicated-debate`, tout en lisant les anciens noms dans les corpus historiques.

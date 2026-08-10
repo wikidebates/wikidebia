@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.52",
-  "validator_version": "0.4.71",
+  "version": "2.15.53",
+  "validator_version": "0.4.72",
   "scope": [
     "publish_archive",
     "github_init",
@@ -96,7 +96,8 @@
     "per_page_publication_day_gate",
     "english_translation_propositional_equivalence",
     "semantic_convergence",
-    "stable_keyword_concept_identity"
+    "stable_keyword_concept_identity",
+    "mediawiki_parameter_rename_1269"
   ],
   "debate_specific_code": false,
   "change_tag": "chatgpt",
@@ -287,7 +288,8 @@
     "legacy_argument_name_alias_preservation",
     "displayed_title_field_lineage",
     "semantic_convergence_hash_binding",
-    "differential_english_metadiscourse"
+    "differential_english_metadiscourse",
+    "legacy_mediawiki_parameter_alias_migration"
   ],
   "publication_profiles": [
     "norm_1_2_direct_interlanguage",
@@ -435,9 +437,10 @@
     "stable_keyword_concept_ids",
     "multiline_mediawiki_parser_regressions",
     "semantic_convergence_method_families",
-    "publication_multiline_parser_conformance"
+    "publication_multiline_parser_conformance",
+    "canonical_expanded_topic_and_dedicated_debate_parameters"
   ],
-  "normative_revision": "1.2.68",
+  "normative_revision": "1.2.69",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -522,7 +525,8 @@
     "argument_established_name_parameter_order_gate",
     "semantic_convergence_two_independent_passes",
     "semantic_field_evidence_bound_to_review_hash",
-    "main_clause_predicate_gate"
+    "main_clause_predicate_gate",
+    "current_mediawiki_parameter_name_gate"
   ],
   "regression_gates": [
     "argument_reference_develops_argument_regression",
@@ -548,7 +552,9 @@
     "real_semantic_regression_corpus_and_reviewed_form_change",
     "semantic_convergence_method_family_independence",
     "established_name_keyword_contamination_regression",
-    "publication_multiline_parameter_parser_regression"
+    "publication_multiline_parameter_parser_regression",
+    "mediawiki_parameter_rename_1269_regression",
+    "historical_parameter_alias_preservation_1269"
   ],
   "translation_change_tag": "translated-fr"
 }

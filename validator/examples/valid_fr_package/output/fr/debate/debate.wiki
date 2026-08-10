@@ -1,6 +1,6 @@
 {{Débat
 |sujet=Mesure X
-|sujet-complet=l'adoption de la mesure X
+|sujet-développé=l'adoption de la mesure X
 |avancement=Débat construit
 |avertissements-débat=Débat généré par IA
 |introduction={{Sous-partie

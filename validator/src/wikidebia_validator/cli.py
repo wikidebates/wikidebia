@@ -5,7 +5,7 @@ import json
 import sys
 from pathlib import Path
 
-from .codes import CODES
+from .codes import ACTIVE_CODES as CODES
 from .recalc import recalculate
 from .validator import ALL_SCOPES, validate_package
 from .remote_plan import validate_remote_plan

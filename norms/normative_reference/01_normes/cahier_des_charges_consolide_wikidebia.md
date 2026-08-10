@@ -1,4 +1,4 @@
-## Exigences actives 1.2.68 — revue des changements idiomatiques et corpus réel
+## Exigences actives 1.2.69 — revue des changements idiomatiques et corpus réel
 
 La traduction champ-à-champ reste source-authoritative. Un changement de forme du `displayed-title` n’est pas une erreur en soi lorsqu’il est idiomatique : il exige une revue explicite du même acte de langage, de la même thèse et de la même portée, plus une justification non vide. Toute proposition source dégradée en fragment reste bloquante. Les familles de risques sémantiques du kit et du validateur sont contractuellement alignées. Un corpus de fixtures dérivé des erreurs réelles contient des couples `fr`, `bad_en`, `good_en` et les signaux attendus. Les risques effectivement détectés sont documentés par des extraits source/cible. La page Debate bénéficie des mêmes empreintes et preuves de champ que les Arguments.
 
@@ -64,7 +64,7 @@ Le catalogue machine-readable complet est `requirements_catalog_wikidebia.json` 
 - **MW-007 — ACTIVE — automatic+human** : Add exact AI warnings only to pages genuinely created from scratch by Wikidéb’IA. A newly generated English translation file does not receive an AI warning by default: title/debate/argument warnings are translated from the French source values, and absent source fields remain absent.
 - **MW-008 — ACTIVE — automatic** : Do not invent nom-consacré/established-name or initialisation/initialization automatically. For every new Argument page, research whether a conventional name is attested in the literature and emit nom-consacré/established-name only when the dedicated discovery review concludes known_name; preserve legacy nom/name exactly only on attested pre-existing pages, and allow new additions to preexisting pages only through an explicit owner-approved assignment review.
 - **MW-009 — SUPERSEDED — automatic** : Do not generate citations/quotes in Argument pages. Replaced by the locked-citation rendering rules RND-003 and RND-004 from revision 1.2.27.
-- **MW-010 — ACTIVE — automatic** : Preserve an attested historical `débat-détaillé` / `detailed-debate` parameter exactly. Local justifications and objections may be omitted only when the omission and owner notification are locked.
+- **MW-010 — ACTIVE — automatic** : Preserve an attested historical `débat-dédié` / `dedicated-debate` parameter exactly. Local justifications and objections may be omitted only when the omission and owner notification are locked.
 - **MW-011 — ACTIVE — automatic** : date-création/creation-date is mandatory for all four page types.
 - **MW-012 — ACTIVE — automatic** : Creation date is the date on which the page file in that language first becomes valid; it is immutable through corrections, enrichment, import and interlanguage insertion.
 - **MW-013 — ACTIVE — automatic** : Publication date is stored separately in import logs.
@@ -139,7 +139,7 @@ Le catalogue machine-readable complet est `requirements_catalog_wikidebia.json` 
 ## 8. Page Débat française
 
 - **DFR-001 — ACTIVE — human+automatic heuristics** : sujet is the simplest general theme and is not the full interrogative debate proposition.
-- **DFR-002 — ACTIVE — human+heuristic** : sujet-complet expresses the exact object, integrates naturally in a sentence, and uses the common acronym when one exists.
+- **DFR-002 — ACTIVE — human+heuristic** : sujet-développé expresses the exact object, integrates naturally in a sentence, and uses the common acronym when one exists.
 - **DFR-003 — ACTIVE — human** : The introduction gives a non-specialist reader the information needed to understand the debate before reading the arguments; it is encyclopedic, neutral, precise, synthetic and structured according to the subject.
 - **DFR-004 — ACTIVE — human+prompt** : The introduction defines the subject and scope, explains the exact meaning of the question, gives relevant historical and current context, supplies necessary background and contains a dedicated stakes subsection. The stakes subsection presents concrete consequences rather than a generic list or a copy of the argument graph.
 - **DFR-005 — ACTIVE — human** : The introduction presents established facts, uncertainty, interpretive disagreement and relevant evolution without advocating a camp; every subsection has an identifiable purpose in the reader’s understanding.
@@ -396,7 +396,7 @@ Chaque rubrique retenue est justifiée individuellement au moyen d’une structu
 - **TTL-012 — ACTIVE — automatic+human** : A canonical title is referentially autonomous: every expression needed to identify its subject has an antecedent inside the title itself. Context-dependent demonstratives or pronouns are allowed only in displayed titles whose immediate context makes the referent unambiguous.
 - **TTL-013 — ACTIVE — human+automatic heuristics** : Every displayed title states the argumentative claim as a complete proposition; immediate context may shorten redundant framing but cannot supply a missing predicate, conclusion or logical relation.
 - **MW-016 — ACTIVE — automatic** : All French pages, including Débat, use `{{Lien interlangue}}` from their first valid generation.
-- **MW-017 — ACTIVE — automatic** : English Debate uses `topic` and `complete-topic`; `type` is forbidden.
+- **MW-017 — ACTIVE — automatic** : English Debate uses `topic` and `expanded-topic`; `type` is forbidden.
 - **DFR-035 — ACTIVE — automatic+human** : French Debate references, including inline introduction calls, are entirely available in French.
 - **REF-027 — ACTIVE — automatic+human** : Argument pages use a verified equivalent in the page language whenever one exists; cross-language use is explicitly justified.
 - **REF-028 — ACTIVE — human+automatic** : Debate bibliography contains foundational books or broad syntheses rather than narrow argument-level studies.
@@ -446,7 +446,7 @@ Chaque rubrique retenue est justifiée individuellement au moyen d’une structu
 
 - **CAT-008 — ACTIVE — automatic** : les rubriques françaises et sections anglaises sont triées alphabétiquement dans leur langue ; l’équivalence bilingue compare les ensembles conceptuels et non leur position.
 - **MW-021 — ACTIVE — automatic** : `sujet` et `topic` commencent par une majuscule.
-- **MW-022 — ACTIVE — human+heuristic** : `sujet-complet` et `complete-topic` sont non interrogatifs, complètent naturellement les en-têtes et emploient l’acronyme courant déclaré lorsqu’il existe.
+- **MW-022 — ACTIVE — human+heuristic** : `sujet-développé` et `expanded-topic` sont non interrogatifs, complètent naturellement les en-têtes et emploient l’acronyme courant déclaré lorsqu’il existe.
 - **DFR-043 — ACTIVE — human** : pour les rubriques d’une page Débat/Debate, la précision prime sur l’exhaustivité ; seules les catégories centrales à l’ensemble de la controverse sont retenues.
 - **DFR-044 — ACTIVE — human+ledger** : la profondeur documentaire d’une page Débat/Debate est proportionnée à l’abondance de la littérature et la revue examine séparément bibliographie, sitographie et vidéographie sans quota universel.
 - **ARG-034 — ACTIVE — human+automatic ledger** : la revue de chaque résumé relève une expression exacte présente dans le texte qui rend sa force ferme, imagée ou légèrement mordante perceptible.
@@ -476,7 +476,7 @@ Chaque rubrique retenue est justifiée individuellement au moyen d’une structu
 - **REF-030 — ACTIVE — automatic** : une date documentaire complète est en langage naturel dans la langue de la page ; une forme ISO machine est interdite, sans modifier les dates de création.
 - **MW-023 — ACTIVE — automatic** : les appels inline des introductions sont rédigés directement dans `<ref>…</ref>` en français comme en anglais ; aucun modèle MediaWiki n’est admis dans le corps d’une note développée.
 - **DFR-045 — ACTIVE — automatic+human** : chacun des neuf paramètres documentaires d’une page Débat ou Debate contient au moins deux références distinctes.
-- **MW-024 — ACTIVE — human+heuristic** : l’acronyme courant, s’il existe, est déclaré et employé dans `sujet-complet` ou `complete-topic`.
+- **MW-024 — ACTIVE — human+heuristic** : l’acronyme courant, s’il existe, est déclaré et employé dans `sujet-développé` ou `expanded-topic`.
 - **PUB-021 — ACTIVE — automatic** : une publication sélectionnant uniquement les pages françaises n’exige pas les pages anglaises dans le manifeste lorsque leurs titres verrouillés sont présents dans le registre maître.
 
 

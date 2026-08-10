@@ -168,10 +168,10 @@ def _detailed_debate_package(root: Path):
     manifest = json.loads((root / "manifest.json").read_text())
     manifest.setdefault("normative_versions", {})["consolidated_norm"] = "1.2.30"
     cfg = manifest["editorial_controls"]["legacy_content_preservation"]
-    cfg["protected_fields"].append("débat-détaillé")
+    cfg["protected_fields"].append("débat-dédié")
     cfg["verification_revision"] = "0.4.50"
     cfg["source_inventory_path"] = "data/initial_remote_inventory_fr.json"
-    text = path.read_text().replace("|rubriques=", "|débat-détaillé=Débat sous-jacent\n|rubriques=", 1)
+    text = path.read_text().replace("|rubriques=", "|débat-dédié=Débat sous-jacent\n|rubriques=", 1)
     path.write_text(text)
     registry = json.loads((root / "data/registre_debat.json").read_text())
     registry["graph"]["edges"] = [{
@@ -181,7 +181,7 @@ def _detailed_debate_package(root: Path):
     dump(root / "data/registre_debat.json", registry)
     lock = json.loads((root / "data/historical_content_lock.json").read_text())
     lock["schema_version"] = "1.2"
-    lock["protected_fields"].append("débat-détaillé")
+    lock["protected_fields"].append("débat-dédié")
     lock["arguments"][0]["detailed_debate"] = {
         "present": True, "value": "Débat sous-jacent",
         "relations_omitted": True, "owner_notified": True,
@@ -213,9 +213,9 @@ def test_historical_detailed_debate_is_preserved_and_relations_may_be_omitted(tm
 
 def test_historical_detailed_debate_removal_is_blocked(tmp_path: Path):
     page, path = _detailed_debate_package(tmp_path)
-    path.write_text(path.read_text().replace("|débat-détaillé=Débat sous-jacent\n", ""))
+    path.write_text(path.read_text().replace("|débat-dédié=Débat sous-jacent\n", ""))
     report = validate_package(tmp_path, scopes=["wikicode"])
-    assert any(f.code == "WDV-EDT-027" and "débat-détaillé" in f.message for f in report.findings)
+    assert any(f.code == "WDV-EDT-027" and "débat-dédié" in f.message for f in report.findings)
 
 
 def test_detailed_debate_relation_omission_requires_owner_notification(tmp_path: Path):

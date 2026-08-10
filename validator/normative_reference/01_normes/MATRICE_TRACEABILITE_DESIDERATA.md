@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.68
+- **Révision :** 1.2.69
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -14,7 +14,7 @@ Source d’origine non distribuée séparément ; exigences consolidées dans le
 | Section d'origine | Exigences consolidées | Statut |
 |---|---|---|
 | Objectif et structure | MW-001–MW-015, PRM-004–PRM-005, FIL-011 | Couvert, avec priorité aux décisions ultérieures |
-| sujet et sujet-complet | DFR-001–DFR-002 | Couvert, avec priorité aux décisions ultérieures |
+| sujet et sujet-développé | DFR-001–DFR-002 | Couvert, avec priorité aux décisions ultérieures |
 | Introduction | DFR-003–DFR-009, DFR-026 | Couvert, avec priorité aux décisions ultérieures |
 | Articles Wikipédia | DFR-010, DFR-027, DFR-033 | Couvert, avec priorité aux décisions ultérieures |
 | Arguments principaux | DFR-011–DFR-012, DFR-028 | Couvert, avec priorité aux décisions ultérieures |
@@ -166,7 +166,7 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 | `Lien interlangue` pour le débat | § 8.1 | structures + profils | WDV-MWK-011 | contrôle de préflight |
 | Liens français dès la création | § 8, § 12 | workflow | WDV-MWK-011, WDV-WF-005 | publication directe |
 | Absence de `<references />` | § 7.5 | profils | WDV-EDT-010 | préflight |
-| `topic` + `complete-topic` | § 8.3 | structures | WDV-MWK-003/004 | préflight |
+| `topic` + `expanded-topic` | § 8.3 | structures | WDV-MWK-003/004 | préflight |
 | Sources localisées et équivalents | § 7.4 | registre | WDV-SRC-004 | validation préalable |
 | Bibliographie de débat synthétique | § 7.6 | registre | WDV-SRC-005 | validation préalable |
 | Sitographie non redondante | § 7.7 | profils | WDV-DOC-004 | validation préalable |

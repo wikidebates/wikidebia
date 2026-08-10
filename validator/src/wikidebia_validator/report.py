@@ -13,7 +13,7 @@ def portable_display_path(value: str | Path) -> str:
     return raw.name or "."
 
 
-from .codes import CODES
+from .codes import ACTIVE_CODES as CODES
 
 
 @dataclass(frozen=True)

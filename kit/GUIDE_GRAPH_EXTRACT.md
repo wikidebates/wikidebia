@@ -73,7 +73,7 @@ Le snapshot est l'entrée de `./wikidebia corpus-init-from-snapshot`. L'extracte
 L'option suivante suit les relations locales d'une page frontière, sans ouvrir le débat sous-jacent :
 
 ```text
---follow-local-relations-at-detailed-debate
+--follow-local-relations-at-dedicated-debate
 ```
 
 ## Authentification

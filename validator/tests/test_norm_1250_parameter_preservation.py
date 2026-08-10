@@ -12,7 +12,7 @@ FR_ARGUMENT_PROTECTED = (
     "initialisation", "nom", "avertissements-titre", "avertissements-argument",
     "avertissements-résumé", "avertissements-références",
     "avertissements-justifications", "avertissements-objections",
-    "débat-détaillé", "interlangue", "date-création",
+    "débat-dédié", "interlangue", "date-création",
 )
 
 

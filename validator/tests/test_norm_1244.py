@@ -6,7 +6,7 @@ from wikidebia_validator.report import Report
 
 class Context:
     def __init__(self, body: str, exceptions=None):
-        self.page = "{{Débat\n|sujet=Dieu\n|sujet-complet=l’existence de Dieu\n|introduction={{Sous-partie\n|titre=Définition\n|contenu=Fait documenté<ref>" + body + "</ref>.\n}}\n|articles-Wikipédia={{Article Wikipédia|page=Dieu}}\n|arguments-pour=\n|arguments-contre=\n|rubriques=Philosophie\n|mots-clés=Dieu\n|date-création=2026-08-04\n}}\n"
+        self.page = "{{Débat\n|sujet=Dieu\n|sujet-développé=l’existence de Dieu\n|introduction={{Sous-partie\n|titre=Définition\n|contenu=Fait documenté<ref>" + body + "</ref>.\n}}\n|articles-Wikipédia={{Article Wikipédia|page=Dieu}}\n|arguments-pour=\n|arguments-contre=\n|rubriques=Philosophie\n|mots-clés=Dieu\n|date-création=2026-08-04\n}}\n"
         self.review = {"entries": [{"language": "fr", "reference_note_punctuation_reviewed": True, "terminal_period_sentence_exceptions": exceptions or []}]}
         self.report = Report("0.4.48", "test-fixture-1244", ["editorial"])
     def manifest(self):

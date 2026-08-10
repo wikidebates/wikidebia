@@ -51,7 +51,7 @@ def test_1223_wikicode_rejects_uppercase_complete_topic(tmp_path: Path):
     root=tmp_path
     (root/"manifest.json").write_text('{"normative_versions":{"consolidated_norm":"1.2.23"}}',encoding="utf-8")
     page=root/"debate.wiki"
-    page.write_text("{{Débat\n|sujet=Réalisme philosophique\n|sujet-complet=Le réalisme philosophique\n|avancement=Débat construit\n|avertissements-débat=Débat généré par IA\n|introduction={{Sous-partie\n|titre=Définition\n|contenu=Texte\n}}\n|arguments-pour={{Argument pour\n|page=Argument A\n|titre-affiché=Une thèse existe\n}}\n|arguments-contre={{Argument contre\n|page=Argument B\n|titre-affiché=Une objection existe\n}}\n|rubriques=Philosophie\n|mots-clés=réalisme\n|date-création=2026-08-02\n}}\n",encoding="utf-8")
+    page.write_text("{{Débat\n|sujet=Réalisme philosophique\n|sujet-développé=Le réalisme philosophique\n|avancement=Débat construit\n|avertissements-débat=Débat généré par IA\n|introduction={{Sous-partie\n|titre=Définition\n|contenu=Texte\n}}\n|arguments-pour={{Argument pour\n|page=Argument A\n|titre-affiché=Une thèse existe\n}}\n|arguments-contre={{Argument contre\n|page=Argument B\n|titre-affiché=Une objection existe\n}}\n|rubriques=Philosophie\n|mots-clés=réalisme\n|date-création=2026-08-02\n}}\n",encoding="utf-8")
     report=Report("0.4.28",str(root),["wikicode"]); ctx=PackageContext(root,report)
     validate_page(ctx,{"page_id":"demo","page_type":"debate","language":"fr","file_path":"debate.wiki"})
     assert any(i.code=="WDV-EDT-018" and "minuscule" in i.message for i in report.findings)

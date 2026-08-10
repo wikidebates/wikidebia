@@ -56,7 +56,7 @@ def test_historical_restoration_can_remove_only_attested_wrong_ai_marker():
         "avertissements-références": {"present": False, "value": None},
         "avertissements-justifications": {"present": False, "value": None},
         "avertissements-objections": {"present": False, "value": None},
-        "débat-détaillé": {"present": False, "value": None},
+        "débat-dédié": {"present": False, "value": None},
         "interlangue": {"present": False, "value": None},
         "date-création": {"present": True, "value": "2026-08-01"},
     }
@@ -89,7 +89,7 @@ def test_existing_argument_renderer_preserves_all_historical_warning_slots():
         "avertissements-références": {"present": True, "value": "Références incomplètes"},
         "avertissements-justifications": {"present": True, "value": "Justifications incomplètes"},
         "avertissements-objections": {"present": True, "value": "Objections incomplètes"},
-        "débat-détaillé": {"present": False, "value": None},
+        "débat-dédié": {"present": False, "value": None},
         "interlangue": {"present": False, "value": None},
         "date-création": {"present": True, "value": "2020-01-01"},
     }
@@ -167,7 +167,7 @@ def test_explicit_argument_name_assignment_overrides_historical_absence_only_for
         "avertissements-références": {"present": False, "value": None},
         "avertissements-justifications": {"present": False, "value": None},
         "avertissements-objections": {"present": False, "value": None},
-        "débat-détaillé": {"present": False, "value": None},
+        "débat-dédié": {"present": False, "value": None},
         "interlangue": {"present": False, "value": None},
         "date-création": {"present": True, "value": "2020-01-01"},
     }
@@ -234,7 +234,7 @@ def test_pre_1258_restoration_manifest_with_only_legacy_nom_remains_compatible()
         "avertissements-références": {"present": False, "value": None},
         "avertissements-justifications": {"present": False, "value": None},
         "avertissements-objections": {"present": False, "value": None},
-        "débat-détaillé": {"present": False, "value": None},
+        "débat-dédié": {"present": False, "value": None},
         "interlangue": {"present": False, "value": None},
         "date-création": {"present": True, "value": "2020-01-01"},
     }
@@ -266,7 +266,7 @@ def test_pre_1258_restoration_manifest_with_only_legacy_english_name_remains_com
         "reference-warnings": {"present": False, "value": None},
         "justification-warnings": {"present": False, "value": None},
         "objection-warnings": {"present": False, "value": None},
-        "detailed-debate": {"present": False, "value": None},
+        "dedicated-debate": {"present": False, "value": None},
         "creation-date": {"present": True, "value": "2020-01-01"},
     }
     effective, audit = update.preserve_remote_lifecycle_parameters(

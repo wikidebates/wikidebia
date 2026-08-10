@@ -1,7 +1,7 @@
 {
   "package": "wikidebia-validator",
-  "validator_version": "0.4.71",
-  "implemented_normative_revision": "1.2.68",
+  "validator_version": "0.4.72",
+  "implemented_normative_revision": "1.2.69",
   "compatible_normative_revisions": [
     "1.1.0",
     "1.1.1",
@@ -81,7 +81,8 @@
     "1.2.65",
     "1.2.66",
     "1.2.67",
-    "1.2.68"
+    "1.2.68",
+    "1.2.69"
   ],
   "recommended_normative_archive": "wikidebia-normes.zip",
   "independent_update_policy": {
@@ -90,9 +91,9 @@
   },
   "stable_archive_name": "wikidebia-validator.zip",
   "version_source": "VERSIONS.json",
-  "normative_revision": "1.2.68",
-  "kit_version": "2.15.52",
-  "recommended_kit_version": "2.15.52",
+  "normative_revision": "1.2.69",
+  "kit_version": "2.15.53",
+  "recommended_kit_version": "2.15.53",
   "supported_normative_revisions": [
     "1.2.53",
     "1.2.54",
@@ -109,11 +110,12 @@
     "1.2.65",
     "1.2.66",
     "1.2.67",
-    "1.2.68"
+    "1.2.68",
+    "1.2.69"
   ],
   "compatibility_scope": "format_reader_and_migration_only",
   "editorial_policy": "current_rules_are_cumulative_and_version_independent",
   "notes": [
-    "1.2.68 / 0.4.71 adds semantic-convergence receipt 1.1 with normalized method families and publication-parser multiline regression coverage while retaining 1.0 compatibility."
+    "1.2.69 / 0.4.72 adds format-compatible validation of the renamed MediaWiki parameters sujet-développé/expanded-topic and débat-dédié/dedicated-debate while retaining read compatibility with pre-1.2.69 names."
   ]
 }

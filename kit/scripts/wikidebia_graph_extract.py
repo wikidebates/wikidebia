@@ -31,7 +31,7 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping, Protocol, Sequence
 
 
-KIT_VERSION = "2.15.52"
+KIT_VERSION = "2.15.53"
 GRAPH_EXTRACT_VERSION = "1.0.2"
 
 
@@ -309,11 +309,15 @@ def parse_argument_wikitext(text: str, *, stop_on_detailed_debate: bool = True) 
     if outer:
         detailed = _detailed_debate_from_value(
             outer.get(
+                "débat-dédié",
                 "débat-détaillé",
+                "débat dédié",
                 "débat détaillé",
                 "debat-detaille",
                 "debat detaille",
+                "dedicated-debate",
                 "detailed-debate",
+                "dedicated debate",
                 "detailed debate",
             )
         )
@@ -1474,6 +1478,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="Émettre une seule ligne JSON sur la sortie standard",
     )
     parser.add_argument(
+        "--follow-local-relations-at-dedicated-debate",
         "--follow-local-relations-at-detailed-debate",
         action="store_true",
         help=(

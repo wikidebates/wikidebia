@@ -1201,7 +1201,7 @@ def _validate_introduction_review(ctx: PackageContext, manifest: dict[str, Any],
         if lang not in {'fr', 'en'} or not tmpl:
             continue
         key = 'titre' if lang == 'fr' else 'title'
-        complete_key = 'sujet-complet' if lang == 'fr' else 'complete-topic'
+        complete_key = 'sujet-développé' if lang == 'fr' else 'expanded-topic'
         topic_key = 'sujet' if lang == 'fr' else 'topic'
         subsections = get_subs(tmpl, 'introduction')
         actual_titles[lang] = [(sub.one(key) or '').strip() for sub in subsections]
@@ -1214,7 +1214,7 @@ def _validate_introduction_review(ctx: PackageContext, manifest: dict[str, Any],
         reason = issue.get('reason')
         if reason in {'complete_topic_fits_heading', 'invalid_common_acronym', 'common_acronym_attestation', 'common_acronym_missing_from_complete_topic', 'topic_is_nominal_label', 'conventional_topic_label_used_or_not_applicable', 'complete_topic_lowercase_initial_or_justified', 'topic_label_rationale', 'complete_topic_initial_capital_justification', 'missing_topic'}:
             code = 'WDV-EDT-018'
-            message = 'La forme de sujet-complet ou complete-topic, notamment l’usage de l’acronyme courant, n’est pas conforme'
+            message = 'La forme de sujet-développé ou expanded-topic, notamment l’usage de l’acronyme courant, n’est pas conforme'
         elif reason in {'debate_sections_precise', 'documentation_proportionate_to_literature', 'documentation_family_notes', 'documentation_family_note'}:
             code = 'WDV-EDT-019'
             message = 'La précision des rubriques ou la profondeur documentaire de la page de débat n’est pas attestée'

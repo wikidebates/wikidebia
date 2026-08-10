@@ -359,3 +359,14 @@ La lignée de traduction/validation 1.2.61 et la lignée de publication GitHub `
 3. Kit et validateur partagent le même catalogue conceptuel de marqueurs sémantiques et en vérifient la cohérence par test croisé.
 4. Tout risque détecté dans la revue finale possède des extraits français et anglais réellement présents et une note de revue.
 5. La page Debate est soumise aux mêmes empreintes par champ et à la même preuve de risque que les pages Argument pour son titre, son topic, son complete-topic et son introduction.
+
+## Décision du 10 août 2026 — renommage des paramètres de sujet développé et de débat dédié
+
+1. Le paramètre MediaWiki français de `{{Débat}}` anciennement nommé `sujet-complet` est renommé `sujet-développé`.
+2. Son équivalent anglais de `{{Debate}}` anciennement nommé `complete-topic` est renommé `expanded-topic`.
+3. Le paramètre MediaWiki français de `{{Argument}}` anciennement nommé `débat-détaillé` est renommé `débat-dédié`.
+4. Son équivalent anglais anciennement nommé `detailed-debate` est renommé `dedicated-debate`.
+5. Toute nouvelle sortie emploie exclusivement les quatre nouveaux noms. Les quatre anciens noms restent lisibles comme alias de format historique pour les corpus antérieurs, mais ils ne sont jamais émis par le rendu courant.
+6. Lorsqu’un contenu historique utilisant un ancien nom est migré ou mis à jour vers le contrat courant, la valeur est conservée exactement et seul le nom du paramètre est normalisé. Les anciens et nouveaux noms d’une même paire ne peuvent pas coexister sur une sortie courante.
+7. Les clés internes de registre `complete_topic` et `detailed_debate` restent des identifiants techniques de schéma et ne constituent pas des paramètres MediaWiki ; elles ne sont pas renommées par cette décision.
+

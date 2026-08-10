@@ -54,13 +54,13 @@ def write_fixture(tmp_path: Path, kind: str):
     en = "{{Argument\n|summary=New summary.\n|sections=Society\n|creation-date=2020-01-01\n}}\n"
     (corpus / "output" / "fr" / "A1.wiki").write_text(fr, encoding="utf-8")
     (corpus / "output" / "en" / "A1.wiki").write_text(en, encoding="utf-8")
-    fr_debate = "{{Débat\n|sujet=Démo\n|sujet-complet=la démonstration\n}}\n"
-    en_debate = "{{Debate\n|topic=Demo\n|complete-topic=the demonstration\n|creation-date=2020-01-01\n}}\n"
+    fr_debate = "{{Débat\n|sujet=Démo\n|sujet-développé=la démonstration\n}}\n"
+    en_debate = "{{Debate\n|topic=Demo\n|expanded-topic=the demonstration\n|creation-date=2020-01-01\n}}\n"
     (corpus / "output" / "fr" / "debate.wiki").write_text(fr_debate, encoding="utf-8")
     (corpus / "output" / "en" / "debate.wiki").write_text(en_debate, encoding="utf-8")
     manifest = {
       "debate_id":"demo",
-      "normative_versions":{"validator":"0.4.71"},
+      "normative_versions":{"validator":"0.4.72"},
       "core_files":{"registry":"data/registre_debat.json"},
       "pages":[
         {"language":"fr","page_id":"A1","page_type":"argument","canonical_title":"Titre FR","file_path":"output/fr/A1.wiki","sha256":module.sha_file(corpus / "output/fr/A1.wiki")},
@@ -78,7 +78,7 @@ def write_fixture(tmp_path: Path, kind: str):
     validator = tmp_path / "validator"
     validator.mkdir()
     validator_script = validator / "validate.py"
-    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.71','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
+    validator_script.write_text("import json; print(json.dumps({'validator_version':'0.4.72','result':'passed','summary':{'errors':0,'warnings':0}}))", encoding="utf-8")
     operation = {
       "id":"test",
       "kind":kind,
@@ -91,8 +91,8 @@ def write_fixture(tmp_path: Path, kind: str):
     }
     if kind == "parameter_update": operation["parameters"]={"fr":"résumé","en":"summary"}
     config = {
-      "kit_version":"2.15.52","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
-      "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.71","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
+      "kit_version":"2.15.53","publication_profile":"legacy","project_root":str(tmp_path),"debate_id":"demo","corpus_root":"corpus/demo",
+      "validator":{"command":[TEST_VALIDATOR_PYTHON,str(validator_script),"validate"],"required_version":"0.4.72","scopes":[],"max_warnings":0,"fingerprint_path":"validator"},
       "family":"wikidebates","family_file":str(Path(__file__)),"pywikibot_dir":str(tmp_path),
       "sites":{"fr":{"code":"fr","expected_user":"ChatGPT"},"en":{"code":"en","expected_user":"ChatGPT"}},
       "logs_dir":"logs","change_tags":["chatgpt"],"verification_attempts":1,"verification_delay_seconds":0,"write_delay_seconds":0,
@@ -139,7 +139,7 @@ def test_full_page_creation_is_dynamic(tmp_path):
     adapter = FakeAdapter()
     publisher = module.GenericPublisher(config, adapter, path)
     plan = publisher.build_plan()
-    assert plan["plan_version"] == "wikidebia-publication-plan-2.15.52"
+    assert plan["plan_version"] == "wikidebia-publication-plan-2.15.53"
     assert plan["counts"]["fr"]["create"] == 1
     assert plan["counts"]["en"]["create"] == 1
     result = publisher.publish(plan=plan, confirmation=plan["plan_sha256"])
@@ -222,12 +222,12 @@ def make_direct_profile(config, path, tmp_path):
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
     fr_debate = corpus / "output" / "fr" / "debate.wiki"
     fr_debate.write_text(
-        "{{Débat\n|sujet=Démo\n|sujet-complet=la démonstration\n|articles-Wikipédia={{Article Wikipédia\n|page=Démonstration\n}}\n|interlangue={{Lien interlangue\n|langue=en\n|page=Demo debate\n}}\n}}\n",
+        "{{Débat\n|sujet=Démo\n|sujet-développé=la démonstration\n|articles-Wikipédia={{Article Wikipédia\n|page=Démonstration\n}}\n|interlangue={{Lien interlangue\n|langue=en\n|page=Demo debate\n}}\n}}\n",
         encoding="utf-8",
     )
     en_debate = corpus / "output" / "en" / "debate.wiki"
     en_debate.write_text(
-        "{{Debate\n|topic=Demo\n|complete-topic=the demonstration\n|wikipedia-articles={{Wikipedia article\n|page=Demonstration\n}}\n}}\n",
+        "{{Debate\n|topic=Demo\n|expanded-topic=the demonstration\n|wikipedia-articles={{Wikipedia article\n|page=Demonstration\n}}\n}}\n",
         encoding="utf-8",
     )
     update_hash(manifest_path, "fr", "DEBATE", fr_debate)
@@ -613,7 +613,7 @@ def test_direct_profile_rejects_lowercase_topic(tmp_path):
     _write_valid_direct_argument(corpus, manifest_path)
     source = corpus / "output" / "en" / "debate.wiki"
     source.write_text(
-        "{{Debate\n|topic=parapsychology\n|complete-topic=the scientific status of parapsychology\n|wikipedia-articles={{Wikipedia article\n|page=Parapsychology\n}}\n}}\n",
+        "{{Debate\n|topic=parapsychology\n|expanded-topic=the scientific status of parapsychology\n|wikipedia-articles={{Wikipedia article\n|page=Parapsychology\n}}\n}}\n",
         encoding="utf-8",
     )
     update_hash(manifest_path, "en", "DEBATE", source)
@@ -631,7 +631,7 @@ def test_direct_profile_rejects_interrogative_complete_topic(tmp_path):
     _write_valid_direct_argument(corpus, manifest_path)
     source = corpus / "output" / "en" / "debate.wiki"
     source.write_text(
-        "{{Debate\n|topic=Parapsychology\n|complete-topic=whether parapsychology meets the criteria for scientific status\n|wikipedia-articles={{Wikipedia article\n|page=Parapsychology\n}}\n}}\n",
+        "{{Debate\n|topic=Parapsychology\n|expanded-topic=whether parapsychology meets the criteria for scientific status\n|wikipedia-articles={{Wikipedia article\n|page=Parapsychology\n}}\n}}\n",
         encoding="utf-8",
     )
     update_hash(manifest_path, "en", "DEBATE", source)
@@ -640,7 +640,7 @@ def test_direct_profile_rejects_interrogative_complete_topic(tmp_path):
     except module.PublicationError as exc:
         assert "forme non interrogative" in str(exc)
     else:
-        raise AssertionError("complete-topic interrogatif accepté")
+        raise AssertionError("expanded-topic interrogatif accepté")
 
 
 def test_direct_profile_rejects_split_adjacent_templates(tmp_path):
@@ -703,12 +703,12 @@ def test_historical_manifest_versions_do_not_block_current_validation(tmp_path):
     publisher = module.GenericPublisher(config, FakeAdapter(), path)
     plan = publisher.build_plan()
     assert not plan["blockers"]
-    assert plan["required_validator_version"] == "0.4.71"
+    assert plan["required_validator_version"] == "0.4.72"
 
 
 def test_explicit_custom_manifest_requirement_is_still_enforced(tmp_path):
     config, path, _, _ = write_fixture(tmp_path, "full_page")
-    config["manifest_requirements"] = {"normative_versions.validator": "0.4.71"}
+    config["manifest_requirements"] = {"normative_versions.validator": "0.4.72"}
     path.write_text(json.dumps(config), encoding="utf-8")
     corpus = tmp_path / "corpus" / "demo"
     manifest_path = corpus / "manifest.json"
@@ -1056,7 +1056,7 @@ def test_ready_english_translation_debate_uses_publication_date(tmp_path):
     source.write_text(
         "{{Debate\n"
         "|topic=Demo\n"
-        "|complete-topic=the demonstration\n"
+        "|expanded-topic=the demonstration\n"
         "|wikipedia-articles={{Wikipedia article\n|page=Demonstration\n}}\n"
         "|creation-date=2020-01-01\n"
         "}}\n",

@@ -122,7 +122,7 @@ def test_1258_preexisting_legacy_nom_is_preserved_without_migration(tmp_path: Pa
             "avertissements-références": {"present": False, "value": None},
             "avertissements-justifications": {"present": False, "value": None},
             "avertissements-objections": {"present": False, "value": None},
-            "débat-détaillé": {"present": False, "value": None},
+            "débat-dédié": {"present": False, "value": None},
             "interlangue": {"present": False, "value": None},
             "date-création": {"present": True, "value": "2020-01-01"},
         },

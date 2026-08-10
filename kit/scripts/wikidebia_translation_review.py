@@ -48,7 +48,7 @@ from wikidebia_content_review import (
     META_DISCOURSE_EN,
 )
 
-KIT_VERSION = "2.15.52"
+KIT_VERSION = "2.15.53"
 DISPLAYED_TITLE_FORMS = {"proposition", "question", "imperative", "thematic_label", "nominal_phrase", "doctrinal_label", "other"}
 NAME_SEARCH_PROVENANCE = {"actual_log", "fresh_recheck", "historical_reconstruction"}
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.1"
@@ -210,7 +210,7 @@ EN_PAGE_LIFECYCLE_PARAMETERS = {
     "argument": (
         "initialization", "established-name", "name", "title-warnings", "argument-warnings", "summary-warnings",
         "reference-warnings", "justification-warnings", "objection-warnings",
-        "detailed-debate", "creation-date",
+        "dedicated-debate", "creation-date",
     ),
 }
 
@@ -223,6 +223,9 @@ def _validate_page_lifecycle(row: Mapping[str, Any], page_type: str, label: str)
     if not isinstance(raw, dict):
         raise TranslationReviewError(f"Paramètres préservés invalides pour {label}")
     allowed = EN_PAGE_LIFECYCLE_PARAMETERS[page_type]
+    if page_type == "argument" and "detailed-debate" in raw and "dedicated-debate" not in raw:
+        raw = dict(raw)
+        raw["dedicated-debate"] = raw.pop("detailed-debate")
     if set(raw) - set(allowed):
         raise TranslationReviewError(f"Paramètre préservé inconnu pour {label}")
     if origin == "new":
@@ -1034,11 +1037,11 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
     fr_content = ((row.get("french") or {}).get("content") or {})
     title = _validate_title(row.get("canonical_title"), "titre canonique de Debate")
     topic = _text(row.get("topic"), "topic", 3)
-    complete = _text(row.get("complete_topic"), "complete-topic", 3)
+    complete = _text(row.get("complete_topic"), "expanded-topic", 3)
     if QUESTION_TOPIC.search(complete):
-        raise TranslationReviewError("complete-topic doit être nominal et non interrogatif")
+        raise TranslationReviewError("expanded-topic doit être nominal et non interrogatif")
     if complete[0].isalpha() and complete[0].isupper() and not row.get("complete_topic_initial_capital_justification"):
-        raise TranslationReviewError("La majuscule initiale de complete-topic doit être justifiée")
+        raise TranslationReviewError("La majuscule initiale de expanded-topic doit être justifiée")
     for field in ("canonical_title_semantic_inventory_reviewed", "topic_semantic_equivalence_reviewed", "complete_topic_semantic_equivalence_reviewed", "introduction_claim_inventory_reviewed", "subsection_structure_equivalence_reviewed"):
         if row.get(field) is not True:
             raise TranslationReviewError(f"Attestation sémantique différentielle manquante pour Debate : {field}")

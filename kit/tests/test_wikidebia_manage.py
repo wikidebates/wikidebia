@@ -155,7 +155,7 @@ def test_generated_config_is_relative_and_debate_first(tmp_path: Path):
     assert config["pywikibot_dir"] == "private/pywikibot"
     assert config["corpus_root"] == "corpus/demo"
     assert config["operation"]["page_type_order"] == ["debate", "argument"]
-    assert config["validator"]["required_version"] == "0.4.71"
+    assert config["validator"]["required_version"] == "0.4.72"
     assert config["manifest_requirements"] == {}
     assert str(tmp_path) not in path.read_text(encoding="utf-8")
 
@@ -761,7 +761,7 @@ def test_graph_extract_command_is_routed_read_only(monkeypatch, tmp_path: Path):
     assert command[command.index("--output-dir") + 1].endswith(".state/graph-extract/dieu_existe_t_il")
     assert "--machine-readable" in command
     assert "--force-refresh" not in command
-    assert "--follow-local-relations-at-detailed-debate" not in command
+    assert "--follow-local-relations-at-dedicated-debate" not in command
 
 
 def test_graph_extract_parser_exposes_native_command():

@@ -1,3 +1,12 @@
+## 1.2.69 — renommage des paramètres MediaWiki de cadrage et de frontière
+
+- `sujet-complet` devient `sujet-développé` dans `{{Débat}}`.
+- `complete-topic` devient `expanded-topic` dans `{{Debate}}`.
+- `débat-détaillé` devient `débat-dédié` dans `{{Argument}}`.
+- `detailed-debate` devient `dedicated-debate` dans `{{Argument}}` anglais.
+- Les anciens noms restent des alias de lecture des formats antérieurs ; toute sortie courante est normalisée vers les nouveaux noms sans modifier les valeurs.
+- Les structures, profils, workflows, validateur, rendu, publication, reprise distante, tests et exemples sont alignés sur ce contrat.
+
 ## 1.2.68 — 10 août 2026 — durcissement des preuves de convergence et de parsing
 
 - ajoute `method_family` au reçu de convergence courant 1.1 et exige deux familles distinctes pour les deux dernières passes propres ;
@@ -634,3 +643,4 @@ Toutes les exigences 1.1.7 restent actives sauf contradiction explicite ci-dessu
 - migration sûre des pages déjà créées depuis l’état W10.R7.
 
 Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessus.
+

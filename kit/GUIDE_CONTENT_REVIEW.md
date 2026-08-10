@@ -23,7 +23,7 @@ audits/fr_content_inventory.md
 
 Le registre couvre :
 
-- `sujet` et `sujet-complet` de la page Débat ;
+- `sujet` et `sujet-développé` de la page Débat ;
 - l’introduction et chacune de ses sous-parties ;
 - les articles Wikipédia français vérifiés ;
 - les neuf paramètres documentaires de la page Débat ;

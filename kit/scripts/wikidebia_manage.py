@@ -15,9 +15,9 @@ import zipfile
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
-NORM_VERSION = "1.2.68"
-VALIDATOR_VERSION = "0.4.71"
-KIT_VERSION = "2.15.52"
+NORM_VERSION = "1.2.69"
+VALIDATOR_VERSION = "0.4.72"
+KIT_VERSION = "2.15.53"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",
@@ -1611,7 +1611,7 @@ def graph_extract_debate(
     if allow_missing:
         command.append("--allow-missing")
     if follow_local_relations_at_detailed_debate:
-        command.append("--follow-local-relations-at-detailed-debate")
+        command.append("--follow-local-relations-at-dedicated-debate")
 
     result = run(command, cwd=root, check=False)
     return result.returncode
@@ -2054,6 +2054,7 @@ def build_parser() -> argparse.ArgumentParser:
     graph.add_argument("--retry-delay", type=float, default=2.0, help="Délai initial entre les tentatives")
     graph.add_argument("--progress-every", type=int, default=25, help="Fréquence des messages de progression")
     graph.add_argument(
+        "--follow-local-relations-at-dedicated-debate",
         "--follow-local-relations-at-detailed-debate",
         action="store_true",
         help="Suivre les relations locales d’une page frontière sans ouvrir le débat sous-jacent",

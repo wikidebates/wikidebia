@@ -1,7 +1,7 @@
 {
-  "normative_revision": "1.2.68",
-  "recommended_validator_version": "0.4.71",
-  "recommended_kit_version": "2.15.52",
+  "normative_revision": "1.2.69",
+  "recommended_validator_version": "0.4.72",
+  "recommended_kit_version": "2.15.53",
   "compatible_from": "1.1.0",
   "translation_modes": [
     "pending",
@@ -25,7 +25,7 @@
     "La clôture release_ready exige une validation de l’archive exacte après extraction dans un répertoire neuf et l’enregistrement de son empreinte SHA-256.",
     "La révision 1.2.57 étend la validation différentielle aux titres canoniques et à l’intégralité sémantique de la page Debate, et qualifie explicitement la portée du verdict automatisé.",
     "La validation différentielle couvre aussi le titre canonique des Arguments au moyen d'un inventaire sémantique distinct, sans rééditer la source française autoritative.",
-    "La page Debate reçoit une revue bilingue différentielle de son titre, de topic/complete-topic, des affirmations et distinctions de l'introduction, des enjeux et de la fonction des sous-parties.",
+    "La page Debate reçoit une revue bilingue différentielle de son titre, de topic/expanded-topic, des affirmations et distinctions de l'introduction, des enjeux et de la fonction des sous-parties.",
     "Un verdict passed du validateur décrit les contrôles automatisés et les attestations encodées ; il ne remplace pas la revue humaine de fidélité sémantique.",
     "Les nouvelles revues d’`established-name=` utilisent le format 1.1 et distinguent journal réel, nouvelle vérification et reconstruction historique sans fabrication rétroactive.",
     "Toute nouvelle Quote atteste sa complétude ; un ratio lexical faible impose une seconde revue explicite mais ne prouve jamais à lui seul une troncation.",
@@ -43,6 +43,7 @@
     "La révision 1.2.65 resynchronise les guides actifs avec les règles déjà autoritatives : established-name pour les nouvelles appellations, interlangue conditionnel à translation_status.en et rendu des Citation/Quote verrouillées.",
     "La révision 1.2.66 rend exécutables la filiation champ-à-champ, les preuves sémantiques par champ et la convergence finale à deux passes, avec concept_id stable et régressions multiligne.",
     "La révision 1.2.67 ajoute la revue explicite des changements idiomatiques, le corpus réel de régressions, l’alignement des marqueurs et les preuves par champ de Debate.",
-    "La révision 1.2.68 durcit la preuve d’indépendance des passes de convergence par familles normalisées et ajoute des régressions dédiées established-name→keyword et parsing multiligne de publication, sans changement éditorial."
+    "La révision 1.2.68 durcit la preuve d’indépendance des passes de convergence par familles normalisées et ajoute des régressions dédiées established-name→keyword et parsing multiligne de publication, sans changement éditorial.",
+    "La révision 1.2.69 renomme les paramètres MediaWiki sujet-complet/complete-topic et débat-détaillé/detailed-debate en sujet-développé/expanded-topic et débat-dédié/dedicated-debate ; les anciens noms restent lisibles comme alias de format historique."
   ]
 }

@@ -1,10 +1,10 @@
-## Contrat de traduction 1.2.68
+## Contrat de paramètres 1.2.69
 
-Le contrat MediaWiki ne change pas les noms de modèles ou paramètres introduits en 1.2.66. La preuve éditoriale est renforcée : un changement idiomatique de forme d’un `displayed-title` doit être justifié et conserver le même acte propositionnel ; chaque risque sémantique détecté est relié à des extraits source/cible ; les champs traduits de Debate sont hachés et revus individuellement.
+Les noms MediaWiki canoniques sont désormais `sujet-développé` / `expanded-topic` pour le cadrage développé du débat et `débat-dédié` / `dedicated-debate` pour la frontière vers un débat autonome. Les anciens noms sont des alias de lecture des formats historiques seulement et ne figurent dans aucune nouvelle sortie.
 
 # Structures MediaWiki autorisées de Wikidéb'IA
 
-- **Version du schéma :** 1.0
+- **Version du schéma :** 1.1
 - **Révision corrective du paquet :** 1.0.7
 - **Date de validation de cette version :** 2026-07-23
 - **Statut :** source normative
@@ -47,7 +47,7 @@ Ce document **ne détermine pas** quels paramètres doivent effectivement appara
 ```mediawiki
 {{Débat
 |sujet=
-|sujet-complet=
+|sujet-développé=
 |avancement=
 |avertissements-titre=
 |avertissements-débat=
@@ -232,7 +232,7 @@ Le paramètre facultatif d’appellation consacrée est `nom-consacré`. L’anc
 |titre-affiché=
 |avertissements=
 }}
-|débat-détaillé=
+|débat-dédié=
 |rubriques=
 |mots-clés=
 |interlangue={{Lien interlangue
@@ -243,7 +243,7 @@ Le paramètre facultatif d’appellation consacrée est `nom-consacré`. L’anc
 }}
 ```
 
-Le paramètre `débat-détaillé` est conservé lorsqu’il existe dans une page historique importée. Sa valeur est verrouillée. Sur une telle frontière, les paramètres `justifications` et `objections` peuvent être omis lorsque cette décision et l’information du propriétaire sont attestées. L’équivalent anglais est `detailed-debate`.
+Le paramètre `débat-dédié` est conservé lorsqu’il existe dans une page historique importée. Sa valeur est verrouillée. Sur une telle frontière, les paramètres `justifications` et `objections` peuvent être omis lorsque cette décision et l’information du propriétaire sont attestées. L’équivalent anglais est `dedicated-debate`.
 
 ---
 
@@ -252,7 +252,7 @@ Le paramètre `débat-détaillé` est conservé lorsqu’il existe dans une page
 ```mediawiki
 {{Debate
 |topic=
-|complete-topic=
+|expanded-topic=
 |progress=
 |title-warnings=
 |debate-warnings=
@@ -430,7 +430,7 @@ The optional conventional-label parameter is `established-name`. Legacy `name` i
 |displayed-title=
 |warnings=
 }}
-|detailed-debate=
+|dedicated-debate=
 |sections=
 |keywords=
 |creation-date=
@@ -460,7 +460,7 @@ La source normative active est désormais `WIKIDEBIA_NORME_CONSOLIDEE_1.1.0.md`.
 Les statuts correctifs et la date spécifique de W10.R1 sont définis par la norme consolidée. Les anciennes dispositions incompatibles de ce fichier sont historiques.
 # Addendum intégré 1.1.4 — structure historique
 
-La source normative active unique était `WIKIDEBIA_NORME_CONSOLIDEE_1.1.4.md` ; cet addendum est remplacé par l’addendum 1.1.5 ci-dessous. `page=` reste autorisé dans les références bibliographiques. L’ancienne révision autorisait `<references />`; la norme 1.2.0 conserve uniquement les appels `<ref>…</ref>` dans `contenu=`/`content=`. Jusqu’à la révision 1.2.26, les pages Argument générées n’employaient pas `nom`, `name`, `initialisation`, `initialization`, `citations`, `quotes`, `débat-détaillé` ni `detailed-debate`. Depuis 1.2.27, `citations` et `quotes` sont rendus uniquement à partir des verrous éditoriaux ; les autres paramètres de cette liste restent non générés sur les pages nouvelles ; `initialisation` / `initialization` est toutefois conservé à l’identique sur une page historique verrouillée. Les dispositions incompatibles antérieures sont de provenance seulement.
+La source normative active unique était `WIKIDEBIA_NORME_CONSOLIDEE_1.1.4.md` ; cet addendum est remplacé par l’addendum 1.1.5 ci-dessous. `page=` reste autorisé dans les références bibliographiques. L’ancienne révision autorisait `<references />`; la norme 1.2.0 conserve uniquement les appels `<ref>…</ref>` dans `contenu=`/`content=`. Jusqu’à la révision 1.2.26, les pages Argument générées n’employaient pas `nom`, `name`, `initialisation`, `initialization`, `citations`, `quotes`, `débat-dédié` ni `dedicated-debate`. Depuis 1.2.27, `citations` et `quotes` sont rendus uniquement à partir des verrous éditoriaux ; les autres paramètres de cette liste restent non générés sur les pages nouvelles ; `initialisation` / `initialization` est toutefois conservé à l’identique sur une page historique verrouillée. Les dispositions incompatibles antérieures sont de provenance seulement.
 
 
 # Addendum 1.1.5 — historique, remplacé par 1.1.7
@@ -475,7 +475,7 @@ Chaque rubrique retenue est justifiée individuellement au moyen d’une structu
 
 # Addendum actif 1.2.0 — structure corrigée
 
-La règle structurelle introduite en 1.2.0 s’applique cumulativement : lorsqu’un lien interlangue est fonctionnellement requis, la page Débat française emploie exclusivement `{{Lien interlangue}}`. La page Debate anglaise n’emploie pas `type=` et contient, dans cet ordre, `topic=` puis `complete-topic=`. Les balises `<references />` ne font partie d’aucune sortie générée. Pendant `translation_status.en=deferred`, le lien interlangue français est omis conformément au workflow différé. Toute disposition antérieure incompatible est historique.
+La règle structurelle introduite en 1.2.0 s’applique cumulativement : lorsqu’un lien interlangue est fonctionnellement requis, la page Débat française emploie exclusivement `{{Lien interlangue}}`. La page Debate anglaise n’emploie pas `type=` et contient, dans cet ordre, `topic=` puis `expanded-topic=`. Les balises `<references />` ne font partie d’aucune sortie générée. Pendant `translation_status.en=deferred`, le lien interlangue français est omis conformément au workflow différé. Toute disposition antérieure incompatible est historique.
 
 
 # Addendum intégré 1.2.1 — contrainte de contenu français
@@ -485,16 +485,16 @@ Les structures MediaWiki ne changent pas. Dans les valeurs rédactionnelles fran
 
 # Addendum intégré 1.2.2 — cohérence des exemples
 
-Les structures actives sont celles décrites ci-dessus : `{{Lien interlangue}}` sur les pages françaises lorsque la langue cible est prête, `topic` puis `complete-topic` sur la page Debate anglaise et aucune balise `<references />`. Pendant une traduction différée, aucun lien provisoire n’est généré ; l’ajout canonique ultérieur suit le workflow interlangue explicite.
+Les structures actives sont celles décrites ci-dessus : `{{Lien interlangue}}` sur les pages françaises lorsque la langue cible est prête, `topic` puis `expanded-topic` sur la page Debate anglaise et aucune balise `<references />`. Pendant une traduction différée, aucun lien provisoire n’est généré ; l’ajout canonique ultérieur suit le workflow interlangue explicite.
 
 
 # Addendum intégré 1.2.2 (historique, complété par 1.2.3) — cohérence de livraison
 
-Les règles 1.2.0 et 1.2.1 restent intégrées. Les exemples, profils et contrôles actifs sont ceux de la norme 1.2.2 : lien `{{Lien interlangue}}` présent dès la création française, aucune balise `<references />`, structure anglaise `topic` puis `complete-topic`, autonomie référentielle des titres canoniques et parenthèses pour les incises françaises.
+Les règles 1.2.0 et 1.2.1 restent intégrées. Les exemples, profils et contrôles actifs sont ceux de la norme 1.2.2 : lien `{{Lien interlangue}}` présent dès la création française, aucune balise `<references />`, structure anglaise `topic` puis `expanded-topic`, autonomie référentielle des titres canoniques et parenthèses pour les incises françaises.
 
 # Addendum intégré 1.2.6 — contraintes des valeurs de métadonnées
 
-Les structures MediaWiki ne changent pas. Dans les pages Débat/Debate, `sujet` et `topic` commencent par une majuscule. `sujet-complet` et `complete-topic` contiennent un complément non interrogatif compatible avec les en-têtes « Arguments pour et contre… » et « Pros and cons of… ». Les valeurs `rubriques` et `sections` sont triées alphabétiquement dans la langue de la page.
+Les structures MediaWiki ne changent pas. Dans les pages Débat/Debate, `sujet` et `topic` commencent par une majuscule. `sujet-développé` et `expanded-topic` contiennent un complément non interrogatif compatible avec les en-têtes « Arguments pour et contre… » et « Pros and cons of… ». Les valeurs `rubriques` et `sections` sont triées alphabétiquement dans la langue de la page.
 
 # Addendum intégré 1.2.7 — absence de changement structurel
 
@@ -540,7 +540,7 @@ Les paramètres français `bibliographie-pour`, `bibliographie-contre`, `bibliog
 
 ### Dates et acronymes
 
-Les sous-paramètres documentaires `date=` utilisent le langage naturel ; `date-création` et `creation-date` restent au format `AAAA-MM-JJ`. Lorsqu’un acronyme courant existe, il figure dans `sujet-complet` ou `complete-topic`.
+Les sous-paramètres documentaires `date=` utilisent le langage naturel ; `date-création` et `creation-date` restent au format `AAAA-MM-JJ`. Lorsqu’un acronyme courant existe, il figure dans `sujet-développé` ou `expanded-topic`.
 
 
 ## Correctif 1.2.11 — jonction de modèles adjacents
@@ -572,7 +572,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 
 ## Contraintes MediaWiki 1.2.23
 
-Dans `{{Débat}}` et `{{Debate}}`, `sujet-complet` et `complete-topic` commencent normalement par une minuscule. Dans les modèles sitographiques de toute page, `page=site` est interdit et `auteurs/authors=site` est interdit après la seconde vérification d’attribution. Les mêmes contraintes sont contrôlées dans le registre pour la vidéographie.
+Dans `{{Débat}}` et `{{Debate}}`, `sujet-développé` et `expanded-topic` commencent normalement par une minuscule. Dans les modèles sitographiques de toute page, `page=site` est interdit et `auteurs/authors=site` est interdit après la seconde vérification d’attribution. Les mêmes contraintes sont contrôlées dans le registre pour la vidéographie.
 
 
 ## Paramètres protégés des pages préexistantes — révision 1.2.33
