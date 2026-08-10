@@ -1,7 +1,7 @@
 {
-  "normative_revision": "1.2.65",
-  "recommended_validator_version": "0.4.68",
-  "recommended_kit_version": "2.15.49",
+  "normative_revision": "1.2.66",
+  "recommended_validator_version": "0.4.69",
+  "recommended_kit_version": "2.15.50",
   "compatible_from": "1.1.0",
   "translation_modes": [
     "pending",
@@ -40,6 +40,7 @@
     "Pour les nouvelles traductions FR→EN : résumés avec deux-points, avertissement `AI-translated quote` et doubles balises `chatgpt` + `translated-fr`.",
     "À partir de 1.2.58, les nouvelles pages Argument utilisent `nom-consacré` / `established-name`; `nom` / `name` est réservé à la préservation exacte de pages historiques attestées.",
     "La révision 1.2.64 corrige la continuité des métadonnées de compatibilité et rend autonomes les modules de tests critiques du kit ; aucune règle éditoriale de 1.2.63 n’est modifiée.",
-    "La révision 1.2.65 resynchronise les guides actifs avec les règles déjà autoritatives : established-name pour les nouvelles appellations, interlangue conditionnel à translation_status.en et rendu des Citation/Quote verrouillées."
+    "La révision 1.2.65 resynchronise les guides actifs avec les règles déjà autoritatives : established-name pour les nouvelles appellations, interlangue conditionnel à translation_status.en et rendu des Citation/Quote verrouillées.",
+    "La révision 1.2.66 rend exécutables la filiation champ-à-champ, les preuves sémantiques par champ et la convergence finale à deux passes, avec concept_id stable et régressions multiligne."
   ]
 }

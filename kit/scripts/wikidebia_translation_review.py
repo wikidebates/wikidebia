@@ -44,18 +44,103 @@ from wikidebia_content_review import (
     SUMMARY_TRUE_FIELDS,
     INTRO_TRUE_FIELDS,
     NUMBER,
-    META_DISCOURSE,
+    META_DISCOURSE_FR,
+    META_DISCOURSE_EN,
 )
 
-KIT_VERSION = "2.15.49"
+KIT_VERSION = "2.15.50"
 DISPLAYED_TITLE_FORMS = {"proposition", "question", "imperative", "thematic_label", "nominal_phrase", "doctrinal_label", "other"}
 NAME_SEARCH_PROVENANCE = {"actual_log", "fresh_recheck", "historical_reconstruction"}
-TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.0"
+TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.1"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
 EN_CONTENT_LOCK_SCHEMA = "wikidebia-en-content-lock-1.0"
 TRANSLATION_CHANGESET_SCHEMA = "wikidebia-en-translation-changeset-1.0"
 EN_SOURCES_WORKING_SCHEMA = "wikidebia-en-source-registry-working-1.0"
+SEMANTIC_CONVERGENCE_SCHEMA = "wikidebia-semantic-convergence-review-1.0"
+
+SEMANTIC_RISK_MARKERS = {
+    "negation": (re.compile(r"\b(?:ne|n['’])[^,.;:!?]{0,60}\b(?:pas|plus|jamais|aucun|aucune)\b|\bsans\b", re.I), re.compile(r"\b(?:not|no|never|without|cannot|can't|doesn't|don't|isn't|aren't)\b", re.I)),
+    "condition": (re.compile(r"\b(?:si|m[êe]me\s+si|[àa]\s+condition\s+que)\b", re.I), re.compile(r"\b(?:if|even\s+if|provided\s+that|assuming\s+that)\b", re.I)),
+    "causal": (re.compile(r"\b(?:car|parce\s+que|puisque)\b", re.I), re.compile(r"\b(?:because|since|due\s+to)\b", re.I)),
+    "restriction": (re.compile(r"\b(?:seulement|uniquement)\b|\bne\b[^,.;:!?]{0,80}\bque\b", re.I), re.compile(r"\b(?:only|merely|nothing\s+but)\b", re.I)),
+    "hypothesis": (re.compile(r"\bhypoth[èe]se\b", re.I), re.compile(r"\b(?:hypothesis|assumption)\b", re.I)),
+    "several": (re.compile(r"\b(?:plusieurs|divers|diverses|diff[ée]rents|diff[ée]rentes)\b", re.I), re.compile(r"\b(?:several|multiple|various|different|many|numerous)\b", re.I)),
+    "strong_probative_force": (re.compile(r"\b(?:prouve|prouvent|d[ée]montre|d[ée]montrent|[ée]tablit|[ée]tablissent)\b", re.I), re.compile(r"\b(?:prove|proves|demonstrate|demonstrates|establish|establishes)\b", re.I)),
+}
+
+def _field_sha256(value: Any) -> str:
+    return sha256_bytes(str(value or "").encode("utf-8"))
+
+def _proposition_edges(value: Any) -> tuple[str, str]:
+    text = _plain(str(value or "")).strip()
+    parts = [part.strip() for part in re.split(r"(?<=[.!?])\s+", text) if part.strip()]
+    if not parts:
+        return "", ""
+    return parts[0], parts[-1]
+
+def _semantic_risk_signals(fr_text: Any, en_text: Any) -> list[str]:
+    fr = _plain(str(fr_text or ""))
+    en = _plain(str(en_text or ""))
+    risks = [label for label, (fr_pattern, en_pattern) in SEMANTIC_RISK_MARKERS.items() if fr_pattern.search(fr) and not en_pattern.search(en)]
+    if META_DISCOURSE_EN.search(en) and not META_DISCOURSE_FR.search(fr):
+        risks.append("metadiscourse_added_in_english")
+    return sorted(set(risks))
+
+def semantic_content_payload(review: Mapping[str, Any]) -> dict[str, Any]:
+    final = review.get("final_values") or {}
+    debate_final = final.get("debate") or {}
+    debate_source = ((review.get("debate") or {}).get("french") or {})
+    payload: dict[str, Any] = {
+        "debate": {
+            "fr_metadata": debate_source.get("metadata") or {},
+            "fr_content": debate_source.get("content") or {},
+            "en": {key: debate_final.get(key) for key in ("canonical_title", "topic", "complete_topic", "introduction")},
+        },
+        "arguments": [],
+    }
+    original_by_id = {str(item.get("id")): item for item in review.get("arguments") or [] if isinstance(item, dict)}
+    for arg in sorted(final.get("arguments") or [], key=lambda row: str(row.get("id"))):
+        node_id = str(arg.get("id"))
+        source = (((original_by_id.get(node_id) or {}).get("translation") or {}).get("french") or {})
+        payload["arguments"].append({
+            "id": node_id,
+            "fr_metadata": source.get("metadata") or {},
+            "fr_summary": (source.get("content") or {}).get("summary"),
+            "en_canonical_title": arg.get("canonical_title"),
+            "en_displayed_title": arg.get("displayed_title"),
+            "en_summary": arg.get("summary"),
+        })
+    return payload
+
+def semantic_content_sha256(review: Mapping[str, Any]) -> str:
+    return sha256_bytes(canonical_json(semantic_content_payload(review)))
+
+
+def semantic_convergence_receipt_sha256(receipt: Mapping[str, Any]) -> str:
+    data = copy.deepcopy(dict(receipt))
+    data.pop("receipt_sha256", None)
+    return sha256_bytes(canonical_json(data))
+
+
+def verify_semantic_convergence_receipt(receipt: Mapping[str, Any], review: Mapping[str, Any]) -> None:
+    review_sha = str(review.get("review_sha256") or "")
+    semantic_sha = semantic_content_sha256(review)
+    if receipt.get("schema") != SEMANTIC_CONVERGENCE_SCHEMA or receipt.get("schema_version") != "1.0":
+        raise TranslationReviewError("Schéma du reçu de convergence sémantique invalide")
+    if receipt.get("translation_review_sha256") != review_sha or receipt.get("semantic_content_sha256") != semantic_sha:
+        raise TranslationReviewError("Le reçu de convergence sémantique ne vise plus la revue scellée courante")
+    if receipt.get("receipt_sha256") != semantic_convergence_receipt_sha256(receipt):
+        raise TranslationReviewError("Empreinte du reçu de convergence sémantique invalide")
+    passes = receipt.get("passes") or []
+    if receipt.get("status") != "converged" or not isinstance(passes, list) or len(passes) < 2:
+        raise TranslationReviewError("Deux passes sémantiques convergentes sont requises avant application")
+    first, second = passes[-2], passes[-1]
+    for row in (first, second):
+        if row.get("new_certain_errors") != 0 or row.get("translation_review_sha256") != review_sha or row.get("semantic_content_sha256") != semantic_sha:
+            raise TranslationReviewError("Les deux dernières passes de convergence doivent viser le même contenu et constater zéro nouvelle erreur certaine")
+    if str(first.get("method") or "").strip().casefold() == str(second.get("method") or "").strip().casefold():
+        raise TranslationReviewError("Les deux passes finales de convergence doivent employer des méthodes distinctes")
 
 EN_PAGE_LIFECYCLE_PARAMETERS = {
     # Existing-page metadata is opaque.  These fields describe the imported
@@ -504,8 +589,18 @@ def _blank_argument(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -
         "displayed_title_concision_reviewed": False,
         "displayed_title_semantically_equivalent": False,
         "displayed_title_improves_readability_when_distinct": False,
+        "displayed_title_translates_french_displayed_title": False,
+        "displayed_title_identity_pattern_reviewed": False,
+        "displayed_title_identity_pattern_note": "",
         "summary_ratio_reviewed": False,
         "summary_subject_predicate_scope_modality_reviewed": False,
+        "summary_opening_proposition_preserved": False,
+        "summary_closing_proposition_preserved": False,
+        "summary_conditions_exclusivities_preserved": False,
+        "summary_decisive_premises_preserved": False,
+        "summary_semantic_evidence_note": "",
+        "semantic_risk_reviewed": False,
+        "semantic_risk_note": "",
         "forceful_expression": "",
         "quantitative_claims_verified": False,
         "quantitative_claims_note": "",
@@ -631,7 +726,7 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
     now = now_iso()
     review = {
         "schema": TRANSLATION_REVIEW_SCHEMA,
-        "schema_version": "1.0",
+        "schema_version": "1.1",
         "normative_revision": NORM_VERSION,
         "kit_version": KIT_VERSION,
         "debate_id": debate_id,
@@ -646,7 +741,7 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
         "section_mapping": copy.deepcopy(SECTION_MAP),
         "vocabulary": [
             {
-                "fr": row.get("fr"), "en": row.get("en") or "", "definition_en": "",
+                "concept_id": row.get("concept_id"), "fr": row.get("fr"), "en": row.get("en") or "", "definition_en": "",
                 "kind": row.get("kind"), "capitalization_policy": row.get("capitalization_policy"),
                 "capitalization_verified": False, "capitalization_rationale_en": "",
                 "status": "pending", "idiomatic_equivalent": False, "same_concept": False,
@@ -815,6 +910,12 @@ def _validate_vocabulary(rows: Any, french_entries: Sequence[Mapping[str, Any]])
         if not isinstance(row, dict) or str(row.get("fr")) not in expected:
             raise TranslationReviewError("Entrée de vocabulaire anglaise inconnue")
         fr = str(row.get("fr"))
+        expected_concept_id = str(expected[fr].get("concept_id") or "").strip()
+        actual_concept_id = str(row.get("concept_id") or "").strip()
+        if expected_concept_id and actual_concept_id != expected_concept_id:
+            raise TranslationReviewError(f"concept_id anglais divergent pour {fr}")
+        if actual_concept_id and not re.fullmatch(r"KWD-[A-F0-9]{12,64}", actual_concept_id):
+            raise TranslationReviewError(f"concept_id anglais invalide pour {fr}")
         en = _text(row.get("en"), f"équivalent anglais de {fr}", 2)
         if en.casefold() in english_seen:
             raise TranslationReviewError(f"Équivalent anglais dupliqué : {en}")
@@ -1048,6 +1149,17 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         if row.get(field) is not True:
             raise TranslationReviewError(f"Attestation structurée du titre canonique absente pour {node_id} : {field}")
     canonical_inventory_note = _text(row.get("canonical_title_semantic_inventory_note"), f"inventaire sémantique du titre canonique de {node_id}", 20)
+    fr_canonical = str(fr_meta.get("canonical_title") or fr_meta.get("titre_canonique") or "").strip()
+    fr_displayed = str(fr_meta.get("displayed_title") or fr_meta.get("titre_affiché") or fr_meta.get("titre-affiché") or "").strip()
+    if row.get("displayed_title_translates_french_displayed_title") is not True:
+        raise TranslationReviewError(f"Le displayed-title anglais doit traduire directement le titre-affiché français : {node_id}")
+    if fr_canonical and fr_displayed:
+        source_identity = fr_canonical.casefold() == fr_displayed.casefold()
+        target_identity = canonical.casefold() == displayed.casefold()
+        if source_identity != target_identity:
+            if row.get("displayed_title_identity_pattern_reviewed") is not True:
+                raise TranslationReviewError(f"Changement de relation canonique/affiché non revu pour {node_id}")
+            _text(row.get("displayed_title_identity_pattern_note"), f"note de filiation du displayed-title de {node_id}", 20)
     source_form = str(row.get("displayed_title_source_form") or "")
     target_form = str(row.get("displayed_title_target_form") or "")
     if source_form not in DISPLAYED_TITLE_FORMS or target_form not in DISPLAYED_TITLE_FORMS:
@@ -1080,15 +1192,21 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         ratio = None
         expression = None
         numbers = []
+        semantic_risks = []
+        semantic_risk_note = ""
+        semantic_evidence_note = ""
+        source_opening = source_closing = target_opening = target_closing = ""
         for field in ("metadata_equivalent_to_french", "summary_equivalent_to_french", "title_is_idiomatic", "displayed_title_concision_reviewed", "displayed_title_semantically_equivalent"):
             if row.get(field) is not True:
                 raise TranslationReviewError(f"Attestation anglaise manquante pour {node_id} : {field}")
     else:
         summary = _text(row.get("summary"), f"summary de {node_id}", 40)
         _assert_english_wikicode_localized(summary, f"le summary de {node_id}")
-        if META_DISCOURSE.search(_plain(summary)):
-            raise TranslationReviewError(f"Métadiscours interdit dans le summary de {node_id}")
         fr_summary = _text(raw_fr_summary, f"résumé français verrouillé de {node_id}", 40)
+        en_metadiscourse = bool(META_DISCOURSE_EN.search(_plain(summary)))
+        fr_metadiscourse = bool(META_DISCOURSE_FR.search(_plain(fr_summary)))
+        if en_metadiscourse and not fr_metadiscourse:
+            raise TranslationReviewError(f"Métadiscours ajouté uniquement en anglais dans le summary de {node_id}")
         ratio = len(_plain(summary)) / max(1, len(_plain(fr_summary)))
         if not 0.60 <= ratio <= 1.45 or row.get("summary_ratio_reviewed") is not True:
             raise TranslationReviewError(f"Ratio anglais/français hors limites pour {node_id} : {ratio:.2f}")
@@ -1097,6 +1215,23 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
                 raise TranslationReviewError(f"Attestation anglaise manquante pour {node_id} : {field}")
         if row.get("summary_subject_predicate_scope_modality_reviewed") is not True:
             raise TranslationReviewError(f"Revue structurée sujet/prédicat/portée/modalité du summary absente pour {node_id}")
+        for field in ("summary_opening_proposition_preserved", "summary_closing_proposition_preserved", "summary_conditions_exclusivities_preserved", "summary_decisive_premises_preserved"):
+            if row.get(field) is not True:
+                raise TranslationReviewError(f"Attestation propositionnelle du summary absente pour {node_id} : {field}")
+        semantic_evidence_note = _text(row.get("summary_semantic_evidence_note"), f"preuve sémantique du summary de {node_id}", 24)
+        semantic_risks = sorted(set(
+            _semantic_risk_signals(fr_summary, summary)
+            + _semantic_risk_signals(fr_canonical, canonical)
+            + _semantic_risk_signals(fr_displayed, displayed)
+        ))
+        if semantic_risks:
+            if row.get("semantic_risk_reviewed") is not True:
+                raise TranslationReviewError(f"Risques sémantiques non revus pour {node_id} : {semantic_risks}")
+            semantic_risk_note = _text(row.get("semantic_risk_note"), f"note de risque sémantique de {node_id}", 24)
+        else:
+            semantic_risk_note = str(row.get("semantic_risk_note") or "").strip()
+        source_opening, source_closing = _proposition_edges(fr_summary)
+        target_opening, target_closing = _proposition_edges(summary)
         expression = _text(row.get("forceful_expression"), f"expression de force anglaise de {node_id}", 8)
         if _plain(expression).casefold() not in _plain(summary).casefold():
             raise TranslationReviewError(f"L’expression de force anglaise est absente du summary de {node_id}")
@@ -1143,6 +1278,26 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         "displayed_title_scope_preserved": True, "displayed_title_modality_preserved": True,
         "summary_subject_predicate_scope_modality_reviewed": bool(row.get("summary_subject_predicate_scope_modality_reviewed")) if summary is not None else True,
         "displayed_title_is_complete_proposition": bool(row.get("displayed_title_is_complete_proposition")),
+        "displayed_title_translates_french_displayed_title": True,
+        "displayed_title_identity_pattern_reviewed": bool(row.get("displayed_title_identity_pattern_reviewed")),
+        "displayed_title_identity_pattern_note": str(row.get("displayed_title_identity_pattern_note") or "").strip(),
+        "summary_opening_proposition_preserved": bool(row.get("summary_opening_proposition_preserved")) if summary is not None else True,
+        "summary_closing_proposition_preserved": bool(row.get("summary_closing_proposition_preserved")) if summary is not None else True,
+        "summary_conditions_exclusivities_preserved": bool(row.get("summary_conditions_exclusivities_preserved")) if summary is not None else True,
+        "summary_decisive_premises_preserved": bool(row.get("summary_decisive_premises_preserved")) if summary is not None else True,
+        "summary_semantic_evidence": {
+            "source_opening": source_opening, "target_opening": target_opening,
+            "source_closing": source_closing, "target_closing": target_closing,
+            "note": semantic_evidence_note,
+        } if summary is not None else None,
+        "semantic_risks": semantic_risks,
+        "semantic_risk_reviewed": bool(row.get("semantic_risk_reviewed")) if semantic_risks else True,
+        "semantic_risk_note": semantic_risk_note,
+        "field_sha256": {
+            "fr_canonical_title": _field_sha256(fr_canonical), "en_canonical_title": _field_sha256(canonical),
+            "fr_displayed_title": _field_sha256(fr_displayed), "en_displayed_title": _field_sha256(displayed),
+            "fr_summary": _field_sha256(raw_fr_summary or ""), "en_summary": _field_sha256(summary or ""),
+        },
         **lifecycle,
     }
 
@@ -1226,6 +1381,7 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
         "summary": {"arguments": len(final_arguments), "vocabulary_entries": len(vocabulary), "sources": len(english_rows), "debate_documentary_references": sum(len(v) for v in final_debate["documentation"].values()), "argument_documentary_references": sum(len(v) for arg in final_arguments for v in arg["sources"].values()), "citations": sum(len(arg.get("citations") or []) for arg in final_arguments)},
         "review_sha256": None,
     })
+    finalized["semantic_content_sha256"] = semantic_content_sha256(finalized)
     finalized["review_sha256"] = translation_review_sha256(finalized)
     write_json(review_path, finalized)
     meta = copy.deepcopy(meta)
@@ -1289,6 +1445,14 @@ def _merge_summary_review(path: Path, arguments: Sequence[Mapping[str, Any]], de
 
 def _build_translated_copy(project_root: Path, source: Path, target: Path, review: Mapping[str, Any], debate_id: str, work_id: str) -> dict[str, Any]:
     shutil.copytree(source, target, symlinks=False, copy_function=shutil.copy2)
+    convergence_source = target.parent / "reviews/en/semantic_convergence_review.json"
+    if not convergence_source.is_file():
+        raise TranslationReviewError("Reçu de convergence sémantique absent avant construction de translated-copy")
+    convergence_receipt = load_json(convergence_source, "reçu de convergence sémantique")
+    verify_semantic_convergence_receipt(convergence_receipt, review)
+    convergence_target = target / "reviews/en/semantic_convergence_review.json"
+    convergence_target.parent.mkdir(parents=True, exist_ok=True)
+    write_json(convergence_target, convergence_receipt)
     final = review["final_values"]
     registry = load_json(target / "data/registre_debat.json", "registre du débat")
     old_structural = str((((registry.get("graph") or {}).get("lifecycle") or {}).get("structural_sha256") or ""))
@@ -1356,7 +1520,11 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
         "kit_version": KIT_VERSION, "debate_id": debate_id, "work_id": work_id,
         "source_language": "fr", "target_language": "en", "status": "locked_for_generation",
         "review_sha256": review["review_sha256"], "french_metadata_review_sha256": review["french_metadata_review_sha256"],
-        "french_content_review_sha256": review["french_content_review_sha256"], "applied_at": timestamp,
+        "french_content_review_sha256": review["french_content_review_sha256"],
+        "semantic_content_sha256": review.get("semantic_content_sha256"),
+        "semantic_convergence_receipt_sha256": convergence_receipt.get("receipt_sha256"),
+        "semantic_convergence_pass_count": len(convergence_receipt.get("passes") or []),
+        "applied_at": timestamp,
         "relations_and_occurrences_unchanged": True, "argument_count": len(final["arguments"]),
         "vocabulary_count": len(final["vocabulary"]), "source_count": len(final["sources"]),
         "citation_count": sum(len(arg.get("citations") or []) for arg in final["arguments"]),
@@ -1376,7 +1544,7 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     for row in vocabulary.get("entries") or []:
         merged = copy.deepcopy(row)
         translated = by_fr[str(row.get("fr"))]
-        merged.update({"en": translated["en"], "definition_en": translated["definition_en"], "capitalization_rationale_en": translated.get("capitalization_rationale_en", ""), "status": "approved_bilingual", "english_review": {"reviewer": translated["reviewer"], "reviewed_at": translated["reviewed_at"], "note": translated["note"]}})
+        merged.update({"concept_id": translated.get("concept_id") or merged.get("concept_id"), "en": translated["en"], "definition_en": translated["definition_en"], "capitalization_rationale_en": translated.get("capitalization_rationale_en", ""), "status": "approved_bilingual", "english_review": {"reviewer": translated["reviewer"], "reviewed_at": translated["reviewed_at"], "note": translated["note"]}})
         bilingual_entries.append(merged)
     changeset = {
         "schema": TRANSLATION_CHANGESET_SCHEMA, "schema_version": "1.0", "debate_id": debate_id,
@@ -1424,8 +1592,10 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     manifest.setdefault("translation_status", {})["en"] = "ready"
     controls = manifest.setdefault("editorial_controls", {})
     controls["translation_validation_mode"] = "differential"
-    controls["translation_semantic_review_schema_version"] = "1.2"
-    controls["semantic_marker_engine_version"] = "1.1"
+    controls["translation_semantic_review_schema_version"] = "1.3"
+    controls["semantic_marker_engine_version"] = "1.2"
+    controls["semantic_convergence_review_path"] = "reviews/en/semantic_convergence_review.json"
+    controls["semantic_convergence_review_schema_version"] = "1.0"
     controls["quote_completeness_review_schema_version"] = "1.0"
     controls["documentary_resource_registry_path"] = "data/documentary_resources.json"
     controls["documentary_resource_registry_schema_version"] = "1.0"
@@ -1453,6 +1623,11 @@ def apply_review(project_root: Path, debate_id: str, work_id: str, confirm_revie
         raise TranslationReviewError("L’empreinte confirmée ne correspond pas à la revue anglaise")
     if review.get("prepared_content_reviewed_copy_sha256") != full_tree_sha256(source):
         raise TranslationReviewError("content-reviewed-copy a changé depuis la finalisation anglaise")
+    convergence_path = workspace / "reviews/en/semantic_convergence_review.json"
+    if not convergence_path.is_file():
+        raise TranslationReviewError("Deux passes sémantiques convergentes sont requises avant application")
+    convergence_receipt = load_json(convergence_path, "reçu de convergence sémantique")
+    verify_semantic_convergence_receipt(convergence_receipt, review)
     target = workspace / "translated-copy"
     if target.is_dir():
         if meta.get("status") != "en_translation_applied":

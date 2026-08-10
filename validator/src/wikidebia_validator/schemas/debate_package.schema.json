@@ -629,9 +629,10 @@
           "enum": [
             "1.0",
             "1.1",
-            "1.2"
+            "1.2",
+            "1.3"
           ],
-          "description": "Artifact schema for bilingual semantic-review attestations. Version 1.2 adds structured subject/predicate/scope/modality attestations."
+          "description": "Artifact schema for bilingual semantic-review attestations. Version 1.3 binds field-level evidence, proposition-edge review and semantic-risk evidence."
         },
         "documentary_resource_registry_path": {
           "$ref": "common.schema.json#/$defs/relativePath"
@@ -647,9 +648,10 @@
           "type": "string",
           "enum": [
             "1.0",
-            "1.1"
+            "1.1",
+            "1.2"
           ],
-          "description": "Version de l’analyse conservative des marqueurs sémantiques FR→EN; 1.1 étend les familles de marqueurs et reste un signal de revue."
+          "description": "Version de l’analyse conservative des marqueurs sémantiques FR→EN; 1.2 ajoute les familles de risques issues des erreurs réelles corrigées."
         },
         "quote_completeness_review_schema_version": {
           "type": "string",
@@ -657,6 +659,16 @@
             "1.0"
           ],
           "description": "Version de l’attestation humaine de complétude Citation→Quote; un ratio faible exige une seconde revue explicite sans devenir une preuve automatique de troncation."
+        },
+        "semantic_convergence_review_path": {
+          "$ref": "common.schema.json#/$defs/relativePath"
+        },
+        "semantic_convergence_review_schema_version": {
+          "type": "string",
+          "enum": [
+            "1.0"
+          ],
+          "description": "Reçu de deux passes sémantiques indépendantes consécutives lié à la revue de traduction scellée."
         }
       },
       "required": [

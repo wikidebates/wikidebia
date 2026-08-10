@@ -1,3 +1,10 @@
+## 2.15.50 — 10 août 2026 — preuve sémantique et convergence finale
+
+- enrichit translation_review avec empreintes, preuves et risques ;
+- ajoute la commande de convergence à deux passes distinctes ;
+- bloque l'application sans reçu convergé et propage sa preuve jusqu'à la release ;
+- ajoute les concept_id déterministes et les régressions de parsing multiligne.
+
 ## 2.15.49 — 10 août 2026 — cohérence documentaire croisée
 
 - aligne les métadonnées sur la norme 1.2.65 et le validateur 0.4.68 ;

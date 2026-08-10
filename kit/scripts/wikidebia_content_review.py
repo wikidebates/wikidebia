@@ -49,7 +49,7 @@ from wikidebia_editorial_review import (
 )
 from wikidebia_graph_extract import iter_templates, normalize_key
 
-KIT_VERSION = "2.15.49"
+KIT_VERSION = "2.15.50"
 CONTENT_REVIEW_SCHEMA = "wikidebia-fr-content-review-1.0"
 CONTENT_LOCK_SCHEMA = "wikidebia-fr-content-lock-1.0"
 CONTENT_CHANGESET_SCHEMA = "wikidebia-fr-content-changeset-1.0"
@@ -151,7 +151,10 @@ INTRO_TRUE_FIELDS = (
     "specialized_term_inventory_reviewed",
 )
 NUMBER = re.compile(r"(?<![\wÀ-ÿ])\d+(?:[.,]\d+)?(?:\s*%)?(?![\wÀ-ÿ])")
-META_DISCOURSE = re.compile(r"\b(?:cet argument|l'argument|la page|le raisonnement présenté)\b", re.I)
+META_DISCOURSE_FR = re.compile(r"\b(?:cet argument|l['’]argument|la page|le raisonnement présenté|ce raisonnement)\b", re.I)
+META_DISCOURSE_EN = re.compile(r"\b(?:this argument|the argument|this page|the page|this reasoning|the reasoning presented|the reasoning)\b", re.I)
+# Backward-compatible alias used by the French content review.
+META_DISCOURSE = META_DISCOURSE_FR
 QUESTION_TOPIC = re.compile(r"^(?:si\b|faut[- ]il\b|doit[- ]on\b|whether\b|should\b)", re.I)
 HTTP_URL = re.compile(r"^https?://", re.I)
 SOURCE_ID = re.compile(r"^S[0-9]{5,}$")

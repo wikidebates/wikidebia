@@ -89,6 +89,7 @@ def validate_all_schemas(ctx: PackageContext, store: SchemaStore) -> None:
         ("argument_name_assignment_path", "argument_name_assignments.schema.json"),
         ("argument_name_discovery_path", "argument_name_discovery_review.schema.json"),
         ("documentary_resource_registry_path", "documentary_resource_registry.schema.json"),
+        ("semantic_convergence_review_path", "semantic_convergence_review.schema.json"),
     ):
         rel = controls.get(path_key)
         if rel and ctx.exists(rel):

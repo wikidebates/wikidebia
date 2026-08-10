@@ -1,0 +1,48 @@
+from __future__ import annotations
+import json
+import sys
+from pathlib import Path
+import pytest
+
+SCRIPTS = Path(__file__).resolve().parents[1] / "scripts"
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+
+from test_wikidebia_translation_review import make_french_locked, complete_translation_review, translation, common  # noqa: E402
+
+
+def _prepared_complete(tmp_path: Path):
+    project, workspace, work_id = make_french_locked(tmp_path)
+    translation.prepare_review(project, "debat_test", work_id)
+    complete_translation_review(workspace)
+    path = workspace / "reviews/en/translation_review.json"
+    return project, workspace, work_id, path, json.loads(path.read_text(encoding="utf-8"))
+
+
+def test_displayed_title_field_lineage_is_blocking(tmp_path: Path):
+    project, workspace, work_id, path, review = _prepared_complete(tmp_path)
+    review["arguments"][0]["translation"]["displayed_title_translates_french_displayed_title"] = False
+    common.write_json(path, review)
+    with pytest.raises(translation.TranslationReviewError, match="traduire directement"):
+        translation.finalize_review(project, "debat_test", work_id)
+
+
+def test_english_only_metadiscourse_is_blocking(tmp_path: Path):
+    project, workspace, work_id, path, review = _prepared_complete(tmp_path)
+    row = review["arguments"][0]["translation"]
+    row["summary"] = "The argument concludes that " + row["summary"][0].lower() + row["summary"][1:]
+    common.write_json(path, review)
+    with pytest.raises(translation.TranslationReviewError, match="Métadiscours ajouté uniquement en anglais"):
+        translation.finalize_review(project, "debat_test", work_id)
+
+
+def test_keyword_concept_id_is_generated_and_must_match_in_english(tmp_path: Path):
+    project, workspace, work_id, path, review = _prepared_complete(tmp_path)
+    assert review["vocabulary"]
+    original = review["vocabulary"][0]["concept_id"]
+    assert original.startswith("KWD-") and len(original) >= 16
+    review["vocabulary"][0]["concept_id"] = "KWD-AAAAAAAAAAAA"
+    assert review["vocabulary"][0]["concept_id"] != original
+    common.write_json(path, review)
+    with pytest.raises(translation.TranslationReviewError, match="concept_id anglais divergent"):
+        translation.finalize_review(project, "debat_test", work_id)

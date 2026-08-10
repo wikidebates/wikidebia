@@ -2,26 +2,30 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.65** ;
-- validateur actif : **0.4.68** ;
-- kit actif : **2.15.49**.
+- norme active : **1.2.66** ;
+- validateur actif : **0.4.69** ;
+- kit actif : **2.15.50**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 2836147 octets — SHA-256 `2846e06f58bdb2fb77c9c4b1bfc33fa27f8e9ebf5388426d755479768f77af66`
-- `wikidebia-validator.zip` — 2952819 octets — SHA-256 `79c533ccb260a5e7485205ae08b10997e2ab5a863d9913321805ac39502b2c2c`
-- `wikidebia-kit.zip` — 532370 octets — SHA-256 `8375cbdc2cbdca609f296005f24088d0fe0d9e68d287a5e16dd31b3d5ca25b7c`
+- `wikidebia-normes.zip` — 2903653 octets — SHA-256 `ae92142cdfa33caeda631125c6f5b150345187af5d26fe3cb657773701cdd942`
+- `wikidebia-validator.zip` — 3027475 octets — SHA-256 `4c8e22ecfe548f682ee5978426cfc1577e6891a2b5f6b7533e0e972e6fdac3bc`
+- `wikidebia-kit.zip` — 544275 octets — SHA-256 `8c613f9f6d949f42ce4a2db447377f2f6390dad6769d4444fd0f9f8663810aab`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.65.md`  
-SHA-256 : `6239dba2c39612f6885a0bc6070cd803b67921267e2dd8735bd33e0f08cd3c22`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.66.md`  
+SHA-256 : `f7b5fce3076f66558e1eb502ab31d36536359cefb15f9335b7f3bb69210c48b8`
 
-# Norme consolidée Wikidéb’IA 1.2.65
+# Norme consolidée Wikidéb’IA 1.2.66
 
-> **Révision 1.2.64 — correctif de continuité de compatibilité et d’isolement des tests.** Cette révision de maintenance ne modifie aucune décision éditoriale ou de publication de 1.2.63. Elle corrige deux défauts de preuve découverts lors d’une réextraction indépendante du ZIP scellé : la liste de compatibilité du validateur avait remplacé `1.2.62` par une seconde occurrence de `1.2.63`, et deux modules de tests du kit dépendaient d’une modification de `sys.path` effectuée par un autre module collecté auparavant. Les listes de compatibilité redeviennent continues et sans doublon, et les modules de tests critiques chargent explicitement leurs dépendances afin de réussir lorsqu’ils sont exécutés seuls.
+> **Révision 1.2.66 — équivalence propositionnelle, preuve de revue et convergence sémantique.** Cette révision transforme les erreurs sémantiques FR→EN observées en garde-fous exécutables sans autoriser de réécriture automatique. Le `displayed-title` anglais traduit directement le `titre-affiché` français et n’est jamais régénéré depuis le titre canonique ; lorsqu’une proposition est attendue, un verbe situé uniquement dans une relative ne suffit pas à former le prédicat principal. Les résumés traduits attestent séparément la conservation de leur proposition d’ouverture, de leur conclusion, de leurs conditions ou exclusivités et de leurs prémisses décisives. Le métadiscours ajouté uniquement en anglais est bloqué différentiellement, tandis qu’un métadiscours déjà présent dans la source peut être conservé fidèlement. Le moteur de risques couvre en outre les glissements d’hypothèse ou d’interprétation vers un fait, la force probatoire, la pluralité et les quantificateurs, les relations causales ou conditionnelles, les ancrages de portée concrets et des glissements lexicaux issus des erreurs réellement rencontrées ; ces signaux imposent une revue humaine et ne réécrivent jamais le texte.
+
+> La revue anglaise courante enregistre des empreintes SHA-256 par champ, les premières et dernières propositions comparées, les risques détectés et une justification concrète lorsque nécessaire. Une traduction finalisée ne peut être appliquée qu’après **deux passes sémantiques indépendantes consécutives**, conduites selon des méthodes distinctes, portant sur la même empreinte sémantique exacte `semantic_content_sha256` et concluant chacune à `new_certain_errors=0`. Le reçu de convergence est séparé de l’artefact audité ; toute modification du contenu ou de la revue invalide ce reçu. Son empreinte est propagée jusqu’au verrou de traduction, à l’inventaire transactionnel et au reçu de release, puis revérifiée après extraction fraîche. Le vocabulaire bilingue peut porter un `concept_id` stable : le kit courant en assigne un déterministe aux nouvelles entrées et l’anglais conserve le même identifiant ; une appellation consacrée ne devient jamais un keyword par implication. Enfin, les contrôles critiques de `summary=` et `quote=` multiligne portent sur la valeur complète du paramètre et disposent de fixtures de non-régression communes.
 
 > **Révision 1.2.65 — cohérence des documents actifs.** Cette révision ne change aucune décision éditoriale ni aucun comportement de publication. Elle resynchronise les guides et sections opérationnelles qui conservaient encore des formulations remplacées : les nouvelles appellations utilisent `nom-consacré=` / `established-name=`, le profil français peut rester sans titre anglais ni `interlangue` lorsque `translation_status.en=deferred`, et les `Citation` / `Quote` importées, revues et verrouillées sont rendues conformément au contrat actif. Les formulations historiques restent conservées dans les archives et sections de provenance.
+
+> **Révision 1.2.64 — correctif de continuité de compatibilité et d’isolement des tests.** Cette révision de maintenance ne modifie aucune décision éditoriale ou de publication de 1.2.63. Elle corrige deux défauts de preuve découverts lors d’une réextraction indépendante du ZIP scellé : la liste de compatibilité du validateur avait remplacé `1.2.62` par une seconde occurrence de `1.2.63`, et deux modules de tests du kit dépendaient d’une modification de `sys.path` effectuée par un autre module collecté auparavant. Les listes de compatibilité redeviennent continues et sans doublon, et les modules de tests critiques chargent explicitement leurs dépendances afin de réussir lorsqu’ils sont exécutés seuls.
 
 > **Révision 1.2.63 — correctif de réconciliation publication/traduction.** Cette révision corrige des divergences de fusion sans changer les décisions du propriétaire : les contrats actifs utilisent `nom-consacré=` / `established-name=` pour toute nouvelle attribution, `AI-translated quote` pour toute nouvelle `Quote` traduite, et le manifeste du kit déclare l’union des capacités de publication et de traduction. Les anciennes formes `nom=` / `name=` et `Quote translated by AI` restent uniquement historiques lorsqu’elles sont attestées sur des contenus ou artefacts antérieurs.
 
@@ -1609,7 +1613,18 @@ Pour toute nouvelle page anglaise issue d’une traduction FR→EN, qu’il s’
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `6a78edfe5f0e6fa9137818905f595352be4606641537076c78fc73a5684e3d92`
+SHA-256 : `eb10d1ecff7beca4042ff8a2288c2e09aa4d593fb443d139ae01aaa04864c73a`
+
+## 1.2.66 — 10 août 2026 — équivalence propositionnelle et convergence sémantique
+
+- impose la filiation directe `titre-affiché` → `displayed-title` ;
+- exige un prédicat principal pour les titres affichés propositionnels ;
+- renforce la revue différentielle des résumés et du métadiscours ;
+- étend les signaux sémantiques à des erreurs réellement observées ;
+- lie la revue à des empreintes et preuves de champ ;
+- exige deux passes sémantiques indépendantes propres avant application ;
+- propage le reçu de convergence jusqu'à la release et l'extraction fraîche ;
+- ajoute des `concept_id` stables pour les nouveaux vocabulaires et des régressions multiligne.
 
 ## 1.2.65 — 10 août 2026 — cohérence des documents actifs
 
@@ -2223,11 +2238,11 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `da1c367ce186995cc71751f5d22bfd9c671cdf47456cb407860c02cec3726c37`
+SHA-256 : `c069084f6e5cb086c89336840aef2739de60a0748bcd10d3dcd4585907fb6198`
 
-# Wikidéb’IA — Validateur 0.4.68
+# Wikidéb’IA — Validateur 0.4.69
 
-Version de réconciliation pour la norme 1.2.65 et le kit 2.15.49.
+Version de réconciliation pour la norme 1.2.66 et le kit 2.15.50.
 
 Elle conserve les contrôles différentiels et sémantiques de la lignée traduction 0.4.64 et intègre les contrôles de la lignée publication GitHub : `nom-consacré` / `established-name`, `AI-translated quote`, absence d'`initialization` sur une nouvelle traduction anglaise, cohérence normative et préservation historique des alias.
 
@@ -2235,12 +2250,19 @@ Les heuristiques sémantiques restent des signaux de revue humaine ; elles ne r�
 
 Le correctif 0.4.67 ne retire aucun contrôle de 0.4.66 ; il rétablit la continuité des révisions normatives compatibles et ajoute le test de non-régression correspondant.
 
-Le correctif 0.4.68 aligne les diagnostics et la copie normative sur les documents actifs resynchronisés de 1.2.65.
+Le correctif 0.4.69 aligne les diagnostics et la copie normative sur les documents actifs resynchronisés de 1.2.66.
 
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `52d2343567c31e76ddaf92cc6f2a28a39a0876c9c0f05e2b9af2d41df3b6cf01`
+SHA-256 : `0f752332494a6e2f9f5ed0b8e19cbf1a24639a6c2d55b52667cd743d4bddd2c4`
+
+## 0.4.69 — 10 août 2026 — équivalence propositionnelle et convergence sémantique
+
+- contrôle le prédicat principal des displayed-title anglais ;
+- étend les signaux différentiels et le métadiscours anglais ;
+- valide les preuves de champ, les concept_id et le reçu de convergence ;
+- ajoute les régressions multiligne et les codes WDV-BIL-008/009, WDV-EDT-033.
 
 ## 0.4.68 — 10 août 2026 — cohérence des documents actifs
 
@@ -2272,9 +2294,9 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `c35efa3db1d5771e2ee22baed9fa65c27801e07e12cd75614404e65cb117e933`
+SHA-256 : `1ebcb042ee8173f507df1a9d4794a2a4c892982f4d3047ab96e7ed4e4dc979f1`
 
-# Wikidéb’IA — Kit 2.15.49
+# Wikidéb’IA — Kit 2.15.50
 
 Version de réconciliation entre la lignée traduction/validation 2.15.38 et la lignée de publication GitHub 2.15.45 (commit `8b46816`), issues du kit 2.15.32 commun.
 
@@ -2286,12 +2308,19 @@ Les numéros 2.15.33 à 2.15.38 ont été réutilisés différemment dans les de
 
 La version 2.15.48 corrige la dépendance à l’ordre de collecte de deux modules de tests et aligne le kit sur le validateur 0.4.67 ; le premier point de réconciliation historique reste 2.15.46.
 
-La version 2.15.49 ajoute un garde-fou croisé empêchant le retour de formulations actives obsolètes dans le paquet Normes et s’aligne sur 1.2.65 / 0.4.68.
+La version 2.15.50 ajoute un garde-fou croisé empêchant le retour de formulations actives obsolètes dans le paquet Normes et s’aligne sur 1.2.66 / 0.4.69.
 
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `7266d79fd8fdc4c8cf0625c9fd0471df711dd11b3af7e9fac1c216592fdbd27e`
+SHA-256 : `db347b1e73845f29cb330379b02ebc48b7aa7bb9b4fcecd97c5c283af013e342`
+
+## 2.15.50 — 10 août 2026 — preuve sémantique et convergence finale
+
+- enrichit translation_review avec empreintes, preuves et risques ;
+- ajoute la commande de convergence à deux passes distinctes ;
+- bloque l'application sans reçu convergé et propage sa preuve jusqu'à la release ;
+- ajoute les concept_id déterministes et les régressions de parsing multiligne.
 
 ## 2.15.49 — 10 août 2026 — cohérence documentaire croisée
 
@@ -2563,20 +2592,20 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `1c0c848adfe4823846a408c81caf0185b8249ae394c0b521c5a9464ee4191cd8`
+SHA-256 : `3e5ae71e0b1deec1ab3a6acaf3b45dca4ab194672ad434de7d6bb3b3e7cea795`
 
-Wikidéb’IA Kit 2.15.49 — rapport de tests
+Wikidéb’IA Kit 2.15.50 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 336
-Tests pytest : 336 réussis
-Norme : 1.2.65
-Validateur requis : 0.4.68
-Suites héritées des trois lignées + tests de réconciliation, exécution isolée et cohérence documentaire croisée : PASSED.
+Tests pytest collectés : 347
+Tests pytest : 347 réussis
+Norme : 1.2.66
+Validateur requis : 0.4.69
+Convergence sémantique, preuves de champ, concept_id, release et parsing multiligne : PASSED.
 
 ## Guide de traduction anglaise
 
 Source interne : `kit/GUIDE_TRANSLATION_REVIEW.md`  
-SHA-256 : `3c8d3547dd1e47c146ac132f490081e81c985e9da2c58fdd8d762c2893795be6`
+SHA-256 : `5d7174f5fdd18861465dfb2d8db1a9e85754d431511a657e3847300840879c57`
 
 # Guide de traduction anglaise contrôlée — Kit 2.15.48
 
@@ -2685,6 +2714,24 @@ La finalisation vérifie notamment :
 - l’absence de page finale et d’accès distant.
 
 La revue et le registre documentaire anglais sont scellés par SHA-256.
+
+### 3.1 Convergence sémantique obligatoire
+
+Après la dernière correction et avant l’application, exécuter **deux passes sémantiques indépendantes** sur la revue finalisée. Elles doivent employer des méthodes distinctes, porter sur le même `semantic_content_sha256` et déclarer chacune `new_certain_errors=0`. Une passe qui trouve une erreur certaine invalide la chaîne précédente ; toute mutation ultérieure de la revue ou du contenu invalide le reçu.
+
+Exemple :
+
+```bash
+./wikidebia corpus-workspace-semantic-convergence <debate_id> --work-id <work_id> \
+  --method "comparaison proposition par proposition" --reviewer "Relecteur A" \
+  --note "Comparaison indépendante du sujet, du prédicat, de la force, de la portée et des relations logiques."
+
+./wikidebia corpus-workspace-semantic-convergence <debate_id> --work-id <work_id> \
+  --method "relecture des marqueurs de risque et des propositions limites" --reviewer "Relecteur B" \
+  --note "Relecture indépendante des risques, de l'ouverture, de la conclusion, des conditions et des ancrages concrets."
+```
+
+Le reçu `reviews/en/semantic_convergence_review.json` doit atteindre `status=converged`. Il est ensuite lié au verrou de traduction, à l’inventaire transactionnel et au reçu de release.
 
 ## 4. Application
 

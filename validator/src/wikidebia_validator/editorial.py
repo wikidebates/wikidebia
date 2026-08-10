@@ -3,6 +3,7 @@ from collections import Counter, defaultdict
 from difflib import SequenceMatcher
 from pathlib import Path
 import hashlib
+import json
 import re
 import unicodedata
 from typing import Any
@@ -150,7 +151,40 @@ def _has_likely_finite_verb_fr(value: str) -> bool:
             if len(token) >= 5:
                 return True
     return False
-DISPLAYED_TITLE_PREDICATES_EN = re.compile('\\b(?:is|are|was|were|will|would|can|could|may|might|must|should|does|do|did|indicates?|shows?|proves?|supports?|contradicts?|suggests?|presupposes?|implies?|explains?|reveals?|confirms?|weakens?|strengthens?|depends?|exists?|resists?|allows?|prevents?|makes?|constitutes?|justifies?|challenges?|denies?|establishes?|signals?|favou?rs?|reduces?|increases?|limits?|produces?|causes?|guarantees?|suffices?|fails?|remains?|becomes?|emerges?|preexists?|survives?|persists?|varies?|distinguishes?)\\b', re.I)
+DISPLAYED_TITLE_PREDICATES_EN = re.compile(r"\b(?:is|are|was|were|will|would|can|could|may|might|must|should|does|do|did|indicates?|shows?|proves?|supports?|contradicts?|suggests?|presupposes?|implies?|explains?|reveals?|confirms?|weakens?|strengthens?|depends?|exists?|resists?|allows?|prevents?|makes?|constitutes?|justifies?|challenges?|denies?|establishes?|signals?|favou?rs?|reduces?|increases?|limits?|produces?|causes?|guarantees?|suffices?|fails?|remains?|becomes?|emerges?|preexists?|survives?|persists?|varies?|distinguishes?|shapes?|happens?|arises?|undercuts?|requires?|entails?|means?|follows?|points?|rules?|excludes?|refutes?|demonstrates?)\b", re.I)
+EN_RELATIVE_MARKER = re.compile(r"\b(?:that|who|which|whose)\b", re.I)
+EN_AUXILIARY_OR_MODAL = {"is", "are", "was", "were", "will", "would", "can", "could", "may", "might", "must", "should", "does", "do", "did"}
+
+
+def _has_main_clause_predicate_en(value: str) -> bool:
+    """Conservatively require an English main-clause predicate.
+
+    A relative clause alone does not make a displayed title propositional. This
+    rejects failures such as ``Evidence that challenges the theory`` and
+    ``Highly improbable events that shape history`` while retaining ordinary
+    main-clause constructions such as ``Evidence that challenges the theory is
+    weak`` and ``Those who believe the claim are mistaken``.
+    """
+    matches = list(DISPLAYED_TITLE_PREDICATES_EN.finditer(value or ""))
+    if not matches:
+        return False
+    relatives = list(EN_RELATIVE_MARKER.finditer(value or ""))
+    if not relatives:
+        return True
+    first_relative = relatives[0]
+    if any(match.start() < first_relative.start() for match in matches):
+        return True
+    if len(matches) >= 2:
+        return True
+    match = matches[0]
+    verb = match.group(0).casefold()
+    between = re.findall(r"\b[\w'-]+\b", (value or "")[first_relative.end():match.start()])
+    if verb in EN_AUXILIARY_OR_MODAL and len(between) >= 2:
+        return True
+    if verb in EN_AUXILIARY_OR_MODAL and re.match(r"^\s*(?:those|people|persons|anyone|everyone|someone)\s+who\b", value or "", re.I) and between:
+        return True
+    return False
+
 
 def displayed_title_argument_issues(title: str, language: str) -> list[str]:
     """Conservative current check for obvious nominal labels (introduced in 1.2.19).
@@ -163,15 +197,15 @@ def displayed_title_argument_issues(title: str, language: str) -> list[str]:
     if not stripped:
         return ['empty']
     predicate = DISPLAYED_TITLE_PREDICATES_FR if language == 'fr' else DISPLAYED_TITLE_PREDICATES_EN
-    if predicate.search(stripped):
+    if language == 'fr' and predicate.search(stripped):
+        return []
+    if language == 'en' and _has_main_clause_predicate_en(stripped):
         return []
     words = re.findall("\\b[\\wÀ-ÿ'-]+\\b", stripped)
     if language == 'fr':
         auxiliary_or_impersonal = re.search("\\b(?:n['’](?:a|ont|est|existe|y)|s['’][a-zà-ÿ]+|a|avons|ont|faut|y\\s+a|aspire|repose|relève|évolue|évoluent|correspond|sort|furent|allait|connaît|conduit|choisit|finit|impose|mérite|souffrent|force)\\b", stripped, re.I)
         if auxiliary_or_impersonal or _has_likely_finite_verb_fr(stripped):
             return []
-    elif len(words) >= 6:
-        return []
     return ['missing_explicit_predicate']
 
 SEMANTIC_MARKERS = {
@@ -182,6 +216,10 @@ SEMANTIC_MARKERS = {
     'universal_quantifier': (re.compile(r"\b(?:tous|toutes|tout|chaque)\b", re.I), re.compile(r"\b(?:all|every|each)\b", re.I)),
     'existential_quantifier': (re.compile(r"\b(?:certains|certaines|quelques)\b", re.I), re.compile(r"\b(?:some|certain|a\s+few)\b", re.I)),
     'many_quantifier': (re.compile(r"\b(?:beaucoup|nombreux|nombreuses|innombrables)\b", re.I), re.compile(r"\b(?:many|numerous|countless|a\s+great\s+many|a\s+great\s+deal)\b", re.I)),
+    'several_quantifier': (re.compile(r"\b(?:plusieurs|divers|diverses|diff[ée]rents|diff[ée]rentes)\b", re.I), re.compile(r"\b(?:several|multiple|various|different)\b", re.I)),
+    'hypothesis_status': (re.compile(r"\b(?:hypoth[èe]se|supposition)\b", re.I), re.compile(r"\b(?:hypothesis|assumption|supposition)\b", re.I)),
+    'interpretation_status': (re.compile(r"\b(?:interpr[èeé]t\w*|consid[èeé]r\w*|vu(?:e)?s?|lu(?:e)?s?)\b[^.!?]{0,80}\bcomme\b", re.I), re.compile(r"\b(?:interpreted|regarded|viewed|seen|understood|read)\s+as\b", re.I)),
+    'strong_probative_force': (re.compile(r"\b(?:prouve|prouvent|d[ée]montre|d[ée]montrent|[ée]tablit|[ée]tablissent)\b", re.I), re.compile(r"\b(?:prove|proves|demonstrate|demonstrates|establish|establishes)\b", re.I)),
     'frequency_often': (re.compile(r"\bsouvent\b", re.I), re.compile(r"\b(?:often|frequently)\b", re.I)),
     'frequency_always': (re.compile(r"\b(?:toujours|de\s+tous\s+temps)\b", re.I), re.compile(r"\b(?:always|throughout\s+history|at\s+all\s+times)\b", re.I)),
     'necessity': (re.compile(r"\b(?:n[ée]cessaire|n[ée]cessairement|doit|doivent)\b", re.I), re.compile(r"\b(?:necessary|necessarily|must|has\s+to|have\s+to)\b", re.I)),
@@ -218,7 +256,7 @@ def bilingual_title_marker_losses(fr_title: str, en_title: str) -> list[str]:
 # review signals: they never rewrite text and never constitute an automatic
 # verdict of mistranslation.  They encode regression classes observed in real
 # Wikidéb’IA translation audits that are not reducible to one missing keyword.
-GENERIC_DEITY_FR = re.compile(r"\b(?:un|une|aucun|aucune|quelque|des?)\s+dieu(?:x)?\b", re.I)
+GENERIC_DEITY_FR = re.compile(r"\b(?:un|une|aucun|aucune|quelque|des)\s+dieu(?:x)?\b", re.I)
 GENERIC_DEITY_EN = re.compile(r"\b(?:a|an|no|any|some)\s+god\b|\bgods\b", re.I)
 PROPER_GOD_EN = re.compile(r"\bGod\b")
 EPISTEMIC_INFERENCE_FR = re.compile(r"\b(?:conduit|am[eè]ne|incite)\s+[àa]\s+(?:le\s+)?consid[ée]rer|\b(?:sugg[èe]re|semble|para[iî]t)|\bpeut\s+(?:indiquer|sugg[ée]rer)\b", re.I)
@@ -232,6 +270,33 @@ EQUIVALENCE_FR = re.compile(r"\b(?:cela|ça|ce)\s+revient\s+au\s+m[êe]me\b|\b[�
 WEAK_SAME_PROBLEM_EN = re.compile(r"\b(?:raise|raises|pose|poses)\s+the\s+same\s+problem\b", re.I)
 IRRATIONAL_GOD_FR = re.compile(r"\bDieu\b[^.!?]{0,80}\b(?:objet\s+)?irrationnel\b", re.I)
 IRRATIONAL_BELIEF_EN = re.compile(r"\bbelief\s+in\s+(?:God|him)\b[^.!?]{0,40}\birrational\b", re.I)
+HYPOTHESIS_FR = re.compile(r"\bhypoth[èe]se\b", re.I)
+HYPOTHESIS_EN = re.compile(r"\b(?:hypothesis|assumption)\b", re.I)
+INTERPRETATION_FR = re.compile(r"\b(?:interpr[èeé]t\w*|consid[èeé]r\w*|vu(?:e)?s?|lu(?:e)?s?)\b[^.!?]{0,80}\bcomme\b", re.I)
+INTERPRETATION_EN = re.compile(r"\b(?:interpreted|regarded|viewed|seen|understood|read)\s+as\b", re.I)
+STRONG_PROOF_FR = re.compile(r"\b(?:prouve|prouvent|d[ée]montre|d[ée]montrent|[ée]tablit|[ée]tablissent)\b", re.I)
+STRONG_PROOF_EN = re.compile(r"\b(?:prove|proves|demonstrate|demonstrates|establish|establishes)\b", re.I)
+WEAK_PROOF_EN = re.compile(r"\b(?:support|supports|suggest|suggests|indicate|indicates|show|shows|evidence)\b", re.I)
+SEVERAL_SCOPE_FR = re.compile(r"\b(?:plusieurs|divers|diverses|diff[ée]rents|diff[ée]rentes)\b", re.I)
+SEVERAL_SCOPE_EN = re.compile(r"\b(?:several|multiple|various|different|many|numerous)\b", re.I)
+CAUSAL_FR = re.compile(r"\b(?:car|parce\s+que|puisque)\b", re.I)
+CONDITIONAL_EN = re.compile(r"\b(?:if|provided\s+that|assuming\s+that)\b", re.I)
+CAUSAL_EN = re.compile(r"\b(?:because|since|as\s+a\s+result\s+of|due\s+to)\b", re.I)
+EARTH_ANCHOR_FR = re.compile(r"\bsur\s+Terre\b", re.I)
+EARTH_ANCHOR_EN = re.compile(r"\bon\s+Earth\b", re.I)
+LIFE_EXISTENCE_FR = re.compile(r"\b(?:existence|pr[ée]sence)\s+de\s+la\s+vie\b", re.I)
+LIFE_ORIGIN_EN = re.compile(r"\borigin\s+of\s+life\b", re.I)
+
+SEMANTIC_LEXICAL_RISK_PAIRS = (
+    ("unsupported_qualifier_lost", re.compile(r"\b(?:sans\s+soutien|non\s+[ée]tay[ée]e?|non\s+fond[ée]e?)\b", re.I), re.compile(r"\b(?:unsupported|unsubstantiated|unfounded)\b", re.I)),
+    ("inherent_qualifier_lost", re.compile(r"\bintrins[èe]quement\b", re.I), re.compile(r"\binherently\b", re.I)),
+    ("collective_scope_lost", re.compile(r"\bcollectivement\b", re.I), re.compile(r"\bcollectively\b", re.I)),
+    ("religious_diversity_qualifier_lost", re.compile(r"\bdiversit[ée]\s+religieuse\b", re.I), re.compile(r"\breligious\s+diversity\b", re.I)),
+    ("living_conditions_qualifier_lost", re.compile(r"\bconditions\s+de\s+vie\b", re.I), re.compile(r"\bliving\s+conditions\b", re.I)),
+    ("sensationalism_qualifier_lost", re.compile(r"\bsensationnalisme\b", re.I), re.compile(r"\bsensationalism\b", re.I)),
+    ("inexplicable_weakened_to_unexplained", re.compile(r"\binexplicable\b", re.I), re.compile(r"\binexplicable\b", re.I)),
+    ("invariants_concept_lost", re.compile(r"\binvariants?\b", re.I), re.compile(r"\binvariants?\b", re.I)),
+)
 
 
 def bilingual_semantic_structure_signals(fr_text: str, en_text: str) -> list[str]:
@@ -256,6 +321,23 @@ def bilingual_semantic_structure_signals(fr_text: str, en_text: str) -> list[str
         signals.append('equivalence_weakened_to_same_problem')
     if IRRATIONAL_GOD_FR.search(fr) and IRRATIONAL_BELIEF_EN.search(en):
         signals.append('predicate_subject_shift_God_to_belief')
+    if HYPOTHESIS_FR.search(fr) and not HYPOTHESIS_EN.search(en):
+        signals.append('hypothesis_status_lost')
+    if INTERPRETATION_FR.search(fr) and not INTERPRETATION_EN.search(en):
+        signals.append('interpretation_status_lost')
+    if STRONG_PROOF_FR.search(fr) and WEAK_PROOF_EN.search(en) and not STRONG_PROOF_EN.search(en):
+        signals.append('probative_force_weakened')
+    if SEVERAL_SCOPE_FR.search(fr) and not SEVERAL_SCOPE_EN.search(en):
+        signals.append('plural_or_several_scope_lost')
+    if CAUSAL_FR.search(fr) and CONDITIONAL_EN.search(en) and not CAUSAL_EN.search(en):
+        signals.append('causal_relation_shifted_to_condition')
+    if EARTH_ANCHOR_FR.search(fr) and not EARTH_ANCHOR_EN.search(en):
+        signals.append('earth_scope_anchor_lost')
+    if LIFE_EXISTENCE_FR.search(fr) and LIFE_ORIGIN_EN.search(en):
+        signals.append('life_existence_shifted_to_origin')
+    for label, fr_pattern, en_pattern in SEMANTIC_LEXICAL_RISK_PAIRS:
+        if fr_pattern.search(fr) and not en_pattern.search(en):
+            signals.append(label)
     return sorted(set(signals))
 
 
@@ -1234,14 +1316,14 @@ def validate_individual_review_data(review: Any, nodes: list[dict[str, Any]], no
                 issues.append({'reason': 'displayed_title_form_classification', 'node_id': node_id})
             elif not (source_form_fr == source_form_en == target_form_en):
                 issues.append({'reason': 'displayed_title_form_regression', 'node_id': node_id, 'source_form_fr': source_form_fr, 'source_form_en': source_form_en, 'target_form_en': target_form_en})
-            if translation_semantic_review_schema_version in {'1.1', '1.2'}:
+            if translation_semantic_review_schema_version in {'1.1', '1.2', '1.3'}:
                 if entry.get('canonical_title_semantic_inventory_reviewed_en') is not True:
                     issues.append({'reason': 'canonical_title_semantic_inventory_reviewed_en', 'node_id': node_id})
                 if entry.get('canonical_title_semantically_equivalent_en') is not True:
                     issues.append({'reason': 'canonical_title_semantically_equivalent_en', 'node_id': node_id})
                 if len(str(entry.get('canonical_title_semantic_inventory_note_en') or '').strip()) < 20:
                     issues.append({'reason': 'canonical_title_semantic_inventory_note_en', 'node_id': node_id})
-            if translation_semantic_review_schema_version == '1.2':
+            if translation_semantic_review_schema_version in {'1.2', '1.3'}:
                 for field in (
                     'canonical_title_subject_preserved_en', 'canonical_title_predicate_preserved_en',
                     'canonical_title_scope_preserved_en', 'canonical_title_modality_preserved_en',
@@ -1703,7 +1785,7 @@ def _validate_summary_style(ctx: PackageContext, nodes: list[dict[str, Any]], ma
                 if len(node_ids) >= 4:
                     ctx.report.error('WDV-EDT-024', 'Une même phrase de résumé est répétée dans au moins quatre pages', path=review_rel or 'manifest.json', details={'language': language, 'occurrences': len(node_ids), 'node_ids': sorted(node_ids), 'normalized_sentence': sentence})
     differential_translation = bool((manifest.get('editorial_controls') or {}).get('translation_validation_mode') == 'differential')
-    marker_engine_active = str((manifest.get('editorial_controls') or {}).get('semantic_marker_engine_version') or '') in {'1.0', '1.1'}
+    marker_engine_active = str((manifest.get('editorial_controls') or {}).get('semantic_marker_engine_version') or '') in {'1.0', '1.1', '1.2'}
     if differential_translation and marker_engine_active:
         semantic_summary_signals = 0
         for node_id in sorted(node_map):
@@ -1741,6 +1823,56 @@ def _validate_summary_style(ctx: PackageContext, nodes: list[dict[str, Any]], ma
     if isinstance(review, dict) and isinstance(review.get('entries'), list):
         reviewed_pages = sum((len(e.get('languages') or {}) for e in review['entries'] if isinstance(e, dict)))
     return {'heuristic_warnings': heuristic_warnings, 'opening_similarity_warnings': opening_warnings, 'quantitative_summaries': quantitative_summaries, 'reviewed_language_pages': reviewed_pages, 'review_issues': len(issues)}
+
+def _canonical_object_sha256(data: dict[str, Any], omitted_field: str) -> str:
+    normalized = dict(data)
+    normalized.pop(omitted_field, None)
+    raw = json.dumps(normalized, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(raw).hexdigest()
+
+
+def _validate_semantic_convergence(ctx: PackageContext, controls: dict[str, Any], english_deferred: bool) -> dict[str, Any]:
+    path = controls.get('semantic_convergence_review_path')
+    schema_version = str(controls.get('semantic_convergence_review_schema_version') or '')
+    if english_deferred and not path:
+        return {'required': False, 'status': 'deferred'}
+    if not path:
+        if str(controls.get('translation_semantic_review_schema_version') or '') == '1.3':
+            ctx.report.error('WDV-BIL-009', 'Reçu de convergence sémantique absent pour une traduction utilisant la revue 1.3', path='manifest.json')
+        return {'required': False, 'status': 'absent'}
+    if schema_version != '1.0' or not ctx.exists(path):
+        ctx.report.error('WDV-BIL-009', 'Reçu de convergence sémantique déclaré mais absent ou de version incorrecte', path=path or 'manifest.json')
+        return {'required': True, 'status': 'invalid'}
+    receipt = ctx.load_json(path)
+    review_path = 'reviews/en/translation_review.json'
+    review = ctx.load_json(review_path) if ctx.exists(review_path) else None
+    if not isinstance(receipt, dict) or not isinstance(review, dict):
+        ctx.report.error('WDV-BIL-009', 'Reçu de convergence ou revue de traduction illisible', path=path)
+        return {'required': True, 'status': 'invalid'}
+    issues: list[str] = []
+    review_sha = str(review.get('review_sha256') or '')
+    semantic_sha = str(review.get('semantic_content_sha256') or '')
+    if not review_sha or _canonical_object_sha256(review, 'review_sha256') != review_sha:
+        issues.append('translation_review_sha256_invalid')
+    if receipt.get('translation_review_sha256') != review_sha:
+        issues.append('translation_review_sha256_mismatch')
+    if not semantic_sha or receipt.get('semantic_content_sha256') != semantic_sha:
+        issues.append('semantic_content_sha256_mismatch')
+    if _canonical_object_sha256(receipt, 'receipt_sha256') != receipt.get('receipt_sha256'):
+        issues.append('receipt_sha256_invalid')
+    passes = receipt.get('passes') or []
+    if receipt.get('status') != 'converged' or not isinstance(passes, list) or len(passes) < 2:
+        issues.append('not_converged')
+    else:
+        first, second = passes[-2], passes[-1]
+        if any((not isinstance(row, dict) or row.get('new_certain_errors') != 0 or row.get('translation_review_sha256') != review_sha or row.get('semantic_content_sha256') != semantic_sha) for row in (first, second)):
+            issues.append('final_passes_not_clean_or_not_bound')
+        if isinstance(first, dict) and isinstance(second, dict) and str(first.get('method') or '').strip().casefold() == str(second.get('method') or '').strip().casefold():
+            issues.append('final_methods_not_distinct')
+    if issues:
+        ctx.report.error('WDV-BIL-009', 'Convergence sémantique finale invalide', path=path, details={'reasons': issues})
+    return {'required': True, 'status': receipt.get('status'), 'passes': len(passes) if isinstance(passes, list) else 0, 'issues': issues}
+
 
 def validate_editorial(ctx: PackageContext) -> None:
     if not _active(ctx):
@@ -1792,6 +1924,12 @@ def validate_editorial(ctx: PackageContext) -> None:
                 ctx.report.error('WDV-EDT-023', 'Majuscule canonique insuffisamment justifiée', path=editorial_controls.get('keyword_vocabulary_path'), details={'language': language, 'keyword': term, 'kind': kind})
             if kind in {'noun', 'noun_phrase'} and rationale:
                 ctx.report.error('WDV-EDT-023', 'Justification de majuscule inattendue pour un nom commun', path=editorial_controls.get('keyword_vocabulary_path'), details={'language': language, 'keyword': term})
+    if vocab_fr:
+        concept_entries = list({id(entry): entry for entry in vocab_fr.values()}.values())
+        present_ids = [str(entry.get('concept_id') or '').strip() for entry in concept_entries]
+        if any(present_ids):
+            if any(not cid for cid in present_ids) or len(present_ids) != len(set(present_ids)) or any(not re.fullmatch(r'KWD-[A-F0-9]{12,64}', cid) for cid in present_ids):
+                ctx.report.error('WDV-EDT-033', 'concept_id des mots-clés absent, dupliqué ou invalide dans un vocabulaire courant', path=editorial_controls.get('keyword_vocabulary_path'))
     # La politique courante des titres affichés est cumulative : l’identité avec le titre canonique
     # est permise lorsqu’elle est déjà la meilleure formulation; aucune dérogation versionnée ne l’active.
     identity_exception_ids: set[str] = set()
@@ -1819,7 +1957,7 @@ def validate_editorial(ctx: PackageContext) -> None:
             data = node.get(lang) or {}
             canonical_title = data.get('canonical_title') or ''
             differential_translation = bool((manifest.get('editorial_controls') or {}).get('translation_validation_mode') == 'differential')
-            marker_engine_active = str((manifest.get('editorial_controls') or {}).get('semantic_marker_engine_version') or '') in {'1.0', '1.1'}
+            marker_engine_active = str((manifest.get('editorial_controls') or {}).get('semantic_marker_engine_version') or '') in {'1.0', '1.1', '1.2'}
             if lang == 'en' and differential_translation and marker_engine_active:
                 fr_canonical = (node.get('fr') or {}).get('canonical_title') or ''
                 canonical_losses = bilingual_semantic_marker_losses(fr_canonical, canonical_title)
@@ -1957,8 +2095,9 @@ def validate_editorial(ctx: PackageContext) -> None:
     introduction_review = _validate_introduction_review(ctx, manifest, editorial_controls, norm)
     date_migration_errors = _validate_dates(ctx, manifest, editorial_controls.get('creation_date'), editorial_controls.get('creation_date_policy', 'per_page_preserved'))
     trace = _validate_traceability(ctx, manifest, editorial_controls, trace_controls)
-    ctx.report.metrics['editorial'] = {'active_nodes': len(nodes), 'canonical_display_copy_ratio': {k: v for k, v in title_metrics.items() if not k.endswith('dominant_keyword_set_ratio')}, 'dominant_keyword_set_ratio': {lang: title_metrics.get(f'{lang}_dominant_keyword_set_ratio') for lang in editorial_languages}, 'displayed_title_quality_errors': title_quality_counts, 'keyword_quality_errors': keyword_quality_counts, 'dominant_classification_ratio': classification_metrics, 'summary_auto_objections': summary_counts, 'summary_bilingual_ratio_errors': summary_ratio_errors, 'documentary_pagination_errors': pagination_errors, 'documentary_access_date_errors': date_errors, 'debate_documentation': docs, 'introduction_references': intro_refs, 'normative_non_regression': normative_non_regression, 'individual_editorial_review': individual_review, 'graph_placement_review': graph_placement_review, 'summary_style': summary_style, 'introduction_review': introduction_review, 'creation_date_errors': date_migration_errors, 'traceability': trace, 'english_translation_status': english_translation_status(manifest), 'english_translation_deferred': english_deferred}
-    editorial_errors = any((f.level in {'ERROR', 'WARNING'} and (f.code.startswith('WDV-EDT-') or f.code == 'WDV-BIL-006') for f in ctx.report.findings))
+    semantic_convergence = _validate_semantic_convergence(ctx, editorial_controls, english_deferred)
+    ctx.report.metrics['editorial'] = {'active_nodes': len(nodes), 'canonical_display_copy_ratio': {k: v for k, v in title_metrics.items() if not k.endswith('dominant_keyword_set_ratio')}, 'dominant_keyword_set_ratio': {lang: title_metrics.get(f'{lang}_dominant_keyword_set_ratio') for lang in editorial_languages}, 'displayed_title_quality_errors': title_quality_counts, 'keyword_quality_errors': keyword_quality_counts, 'dominant_classification_ratio': classification_metrics, 'summary_auto_objections': summary_counts, 'summary_bilingual_ratio_errors': summary_ratio_errors, 'documentary_pagination_errors': pagination_errors, 'documentary_access_date_errors': date_errors, 'debate_documentation': docs, 'introduction_references': intro_refs, 'normative_non_regression': normative_non_regression, 'individual_editorial_review': individual_review, 'graph_placement_review': graph_placement_review, 'summary_style': summary_style, 'introduction_review': introduction_review, 'creation_date_errors': date_migration_errors, 'traceability': trace, 'semantic_convergence': semantic_convergence, 'english_translation_status': english_translation_status(manifest), 'english_translation_deferred': english_deferred}
+    editorial_errors = any((f.level in {'ERROR', 'WARNING'} and (f.code.startswith('WDV-EDT-') or f.code in {'WDV-BIL-006', 'WDV-BIL-009'}) for f in ctx.report.findings))
     if not editorial_errors:
         review_path = editorial_controls.get('individual_review_report_path')
         label = trace_controls.get('current_corrective_work_id', 'current')

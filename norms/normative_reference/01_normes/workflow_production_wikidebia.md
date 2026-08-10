@@ -268,3 +268,8 @@ Avant toute rédaction anglaise, chaque page Argument reçoit un profil de densi
 ## Résumé de publication des traductions anglaises
 
 Pour une page anglaise créée comme traduction d’une page française verrouillée, le résumé MediaWiki est individualisé : `Translation of the French page: [[:fr:X|X]]`, où `X` est le titre canonique français de la même `page_id`. Le plan signé conserve cette valeur page par page ; l’exécuteur la recalcule depuis le manifeste avant écriture et la relecture de la révision créée en vérifie l’identité exacte. Le résumé générique anglais reste réservé aux créations qui ne sont pas des traductions. Ce lien d’historique ne remplace pas le lien interlangue rendu dans la page française après passage à `ready`.
+
+
+## Étape de convergence sémantique 1.2.66
+
+Après finalisation de la revue anglaise et après toute dernière correction, exécuter deux passes sémantiques indépendantes consécutives sur exactement la même empreinte. Les méthodes déclarées doivent être distinctes et chaque passe doit conclure `new_certain_errors=0`. Une passe qui trouve une erreur ou toute mutation du contenu/review invalide la chaîne précédente. L'application de la traduction est bloquée tant que le reçu n'est pas `converged`. Le reçu et ses empreintes sont ensuite vérifiés lors du rendu, de la release et de l'extraction fraîche.

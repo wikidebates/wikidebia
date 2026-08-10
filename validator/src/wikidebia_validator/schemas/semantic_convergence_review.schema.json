@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "semantic_convergence_review.schema.json",
+  "title": "Wikidéb'IA — Reçu de convergence sémantique FR→EN",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "schema_version", "normative_revision", "kit_version", "debate_id", "work_id",
+    "translation_review_sha256", "semantic_content_sha256", "status", "passes", "receipt_sha256"
+  ],
+  "properties": {
+    "schema": {"const": "wikidebia-semantic-convergence-review-1.0"},
+    "schema_version": {"const": "1.0"},
+    "normative_revision": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "kit_version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "debate_id": {"type": "string", "minLength": 1},
+    "work_id": {"type": "string", "minLength": 1},
+    "translation_review_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "semantic_content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "status": {"enum": ["in_progress", "requires_revision", "converged"]},
+    "passes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["pass_id", "method", "reviewer", "reviewed_at", "note", "new_certain_errors", "translation_review_sha256", "semantic_content_sha256"],
+        "properties": {
+          "pass_id": {"type": "string", "pattern": "^P\\d{3,}$"},
+          "method": {"type": "string", "minLength": 8},
+          "reviewer": {"type": "string", "minLength": 3},
+          "reviewed_at": {"type": "string", "minLength": 10},
+          "note": {"type": "string", "minLength": 20},
+          "new_certain_errors": {"type": "integer", "minimum": 0},
+          "translation_review_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "semantic_content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "converged_at": {"type": ["string", "null"]},
+    "receipt_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

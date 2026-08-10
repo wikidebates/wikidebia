@@ -25,7 +25,7 @@ def _write_component_zip(path: Path, artifact: str, *, include_receipt: bool = F
         {"path": name, "size_bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
         for name, raw in sorted(payloads.items())
     ]
-    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.61", "wikidebia-kit": "2.15.49"}[artifact]
+    version = {"wikidebia-normes": "1.2.20", "wikidebia-validator": "0.4.61", "wikidebia-kit": "2.15.50"}[artifact]
     manifest = {
         "artifact": artifact,
         "version": version,
@@ -155,7 +155,7 @@ def test_generated_config_is_relative_and_debate_first(tmp_path: Path):
     assert config["pywikibot_dir"] == "private/pywikibot"
     assert config["corpus_root"] == "corpus/demo"
     assert config["operation"]["page_type_order"] == ["debate", "argument"]
-    assert config["validator"]["required_version"] == "0.4.68"
+    assert config["validator"]["required_version"] == "0.4.69"
     assert config["manifest_requirements"] == {}
     assert str(tmp_path) not in path.read_text(encoding="utf-8")
 

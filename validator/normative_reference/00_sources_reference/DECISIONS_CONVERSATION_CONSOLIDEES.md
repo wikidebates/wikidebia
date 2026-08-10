@@ -337,3 +337,17 @@ Le propriétaire renomme exclusivement le deuxième paramètre top-level du mod�
 ## Décision de réconciliation du 10 août 2026 — fusion des deux lignées
 
 La lignée de traduction/validation 1.2.61 et la lignée de publication GitHub `8b46816` sont fusionnées sans réécriture de leur histoire. Les conventions de publication déjà utilisées sur le wiki anglais et pour les liens interlangues français sont conservées. Les renforcements différentiels, documentaires, sémantiques et de scellement de la lignée 1.2.61 restent actifs. Les collisions d'identifiants normatifs sont résolues par de nouveaux identifiants dans 1.2.62, sans réaffecter rétroactivement un identifiant déjà publié.
+
+## Décision du 10 août 2026 — équivalence propositionnelle et convergence sémantique
+
+1. Le `displayed-title` anglais traduit directement le `titre-affiché` français ; il n'est pas régénéré depuis le titre canonique anglais. Une variation du motif d'identité canonique/affiché entre les langues déclenche une revue explicite.
+2. Lorsqu'un titre affiché source est propositionnel, sa traduction anglaise possède un prédicat de proposition principale. Un verbe situé uniquement dans une proposition relative ne suffit pas.
+3. La revue d'un résumé traduit atteste séparément la conservation de la proposition d'ouverture, de la conclusion, des conditions et exclusivités, et des prémisses décisives.
+4. Un métadiscours ajouté seulement en anglais (`the argument`, `this reasoning`, etc.) est une régression ; un métadiscours réellement présent dans le français peut être conservé par traduction fidèle.
+5. Le moteur de risques sémantiques intègre les familles d'erreurs réellement observées : hypothèse ou interprétation transformée en fait, force probatoire modifiée, pluralité ou quantificateur perdu, causalité devenue condition, ancrage concret de portée supprimé et glissements lexicaux conceptuels récurrents. Ces signaux imposent une revue et n'effectuent aucune correction automatique.
+6. La revue de traduction conserve des empreintes SHA-256 par champ et des extraits ou notes de preuve lorsque des risques sont détectés ; des booléens génériques ne suffisent pas à eux seuls.
+7. Après la dernière correction, la finalisation exige deux passes sémantiques indépendantes consécutives, selon des méthodes distinctes, sur exactement la même empreinte sémantique, chacune avec zéro nouvelle erreur certaine. Toute modification ultérieure invalide le reçu de convergence.
+8. Le reçu de convergence est propagé dans les verrous, l'inventaire de release et les preuves d'extraction fraîche afin que l'archive auditée soit identifiable et immuable.
+9. Le vocabulaire bilingue peut porter un `concept_id` stable. Les nouvelles productions du kit en assignent un déterministe et les deux langues partagent le même identifiant ; la valeur d'une appellation consacrée n'est jamais injectée comme keyword par implication.
+10. Les contrôles critiques du wikicode multiligne doivent analyser la valeur complète de `summary=` et `quote=` ; les parseurs ou regex ligne-à-ligne simplistes ne constituent pas une preuve de complétude.
+11. Les erreurs réelles corrigées servent de cas de non-régression positifs et négatifs afin qu'une ancienne mauvaise traduction ne puisse redevenir silencieusement admissible.

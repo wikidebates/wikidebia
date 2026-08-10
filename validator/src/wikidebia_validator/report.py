@@ -39,7 +39,7 @@ LAYER_SCOPES = {
 def finding_layer(code: str) -> str:
     if code.startswith("WDV-SRC-") or code.startswith("WDV-DOC-") or code in {"WDV-MWK-012", "WDV-MWK-014", "WDV-MWK-021", "WDV-MWK-024"}:
         return "documentary"
-    if code.startswith("WDV-EDT-") or code in {"WDV-BIL-006", "WDV-BIL-007"}:
+    if code.startswith("WDV-EDT-") or code in {"WDV-BIL-006", "WDV-BIL-007", "WDV-BIL-008", "WDV-BIL-009"}:
         return "semantic_review"
     return "structural"
 

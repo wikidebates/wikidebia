@@ -1,3 +1,14 @@
+## 1.2.66 — 10 août 2026 — équivalence propositionnelle et convergence sémantique
+
+- impose la filiation directe `titre-affiché` → `displayed-title` ;
+- exige un prédicat principal pour les titres affichés propositionnels ;
+- renforce la revue différentielle des résumés et du métadiscours ;
+- étend les signaux sémantiques à des erreurs réellement observées ;
+- lie la revue à des empreintes et preuves de champ ;
+- exige deux passes sémantiques indépendantes propres avant application ;
+- propage le reçu de convergence jusqu'à la release et l'extraction fraîche ;
+- ajoute des `concept_id` stables pour les nouveaux vocabulaires et des régressions multiligne.
+
 ## 1.2.65 — 10 août 2026 — cohérence des documents actifs
 
 - corrige le guide actif de traduction pour employer `nom-consacré=` / `established-name=` dans les nouvelles recherches et sous-titres ;

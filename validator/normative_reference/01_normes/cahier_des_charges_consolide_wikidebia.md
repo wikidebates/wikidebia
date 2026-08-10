@@ -578,3 +578,13 @@ La revue ne se limite pas aux séries de notions comparables. Chaque sous-partie
 - **VAL-050 — ACTIVE — automatic+human review** : le moteur sémantique FR→EN compare les marqueurs de négation, modalité, attribution, quantification, fréquence, nécessité/possibilité, restriction, condition, causalité, conséquence, concession, comparaison, intensité et immédiateté dans les titres canoniques, titres affichés et résumés; ses sorties sont des signaux de revue et non des verdicts automatiques.
 - **ARCH-005 — ACTIVE — automatic** : le statut `fresh_archive` n’est scellé qu’après création, empreinte, contrôle, extraction vierge et revalidation de l’archive exacte, dans un reçu externe lié au SHA-256 de l’archive.
 
+
+
+## Exigences actives 1.2.66 — équivalence propositionnelle et convergence
+
+- **TRN-020** : `displayed-title` traduit directement `titre-affiché`; il n'est jamais reconstruit depuis le titre canonique anglais.
+- **TRN-021** : lorsqu'une proposition est attendue, le titre anglais possède un prédicat principal; un verbe uniquement relatif ne suffit pas.
+- **TRN-022 / TRN-025** : la revue des résumés atteste ouverture, conclusion, conditions/exclusivités et prémisses décisives, avec empreintes de champs et preuves concrètes.
+- **TRN-023 / TRN-026** : le métadiscours ajouté uniquement en anglais et les glissements sémantiques observés sont des régressions ou signaux différentiels; aucune réécriture automatique n'est permise.
+- **TRN-024 / TRN-027** : l'application d'une traduction exige deux passes sémantiques indépendantes propres sur la même empreinte exacte; le reçu est lié jusqu'à la release et l'extraction fraîche.
+- **EDT-066 / VAL-054** : les nouvelles entrées de vocabulaire disposent d'un `concept_id` stable et les contrôles multiligne lisent la valeur complète de `summary=`/`quote=`.

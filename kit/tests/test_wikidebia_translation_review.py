@@ -20,6 +20,7 @@ def load_module(name: str):
 
 
 translation = load_module("wikidebia_translation_review")
+convergence = load_module("wikidebia_semantic_convergence")
 content = sys.modules.get("wikidebia_content_review") or load_module("wikidebia_content_review")
 metadata = sys.modules.get("wikidebia_editorial_review") or load_module("wikidebia_editorial_review")
 common = sys.modules["wikidebia_corpus_build"]
@@ -43,6 +44,25 @@ def make_french_locked(tmp_path: Path) -> tuple[Path, Path, str]:
     sealed = content.finalize_review(project, "debat_test", work_id)
     content.apply_review(project, "debat_test", work_id, sealed["review_sha256"])
     return project, workspace, work_id
+
+
+def complete_semantic_convergence(project: Path, work_id: str) -> None:
+    first = convergence.record_pass(
+        project, "debat_test", work_id,
+        method="proposition-by-proposition semantic comparison",
+        reviewer="Semantic reviewer A",
+        note="The first independent pass compared propositions, modalities, logical relations and scope against the sealed French source.",
+        new_certain_errors=0,
+    )
+    assert first["status"] == "in_progress"
+    second = convergence.record_pass(
+        project, "debat_test", work_id,
+        method="risk-marker and boundary-focused reread",
+        reviewer="Semantic reviewer B",
+        note="The second independent pass rechecked risk markers, opening and closing propositions, exclusivities and concrete anchors.",
+        new_certain_errors=0,
+    )
+    assert second["status"] == "converged"
 
 
 def en_source(source_id: str, source_type: str, usages: list[dict[str, object]]) -> dict[str, object]:
@@ -171,12 +191,22 @@ def complete_translation_review(workspace: Path) -> None:
             "displayed_title_semantic_inventory_note": "Subject, predicate, polarity, modality, attribution, quantifiers, force, temporal scope, conditions and logical relation were compared.",
             "displayed_title_subject_preserved": True, "displayed_title_predicate_preserved": True,
             "displayed_title_scope_preserved": True, "displayed_title_modality_preserved": True,
+            "displayed_title_translates_french_displayed_title": True,
+            "displayed_title_identity_pattern_reviewed": True,
+            "displayed_title_identity_pattern_note": "The English displayed title was compared directly with the French displayed title and not regenerated from the canonical title.",
             "displayed_title_is_complete_proposition": True,
             "displayed_title_concision_reviewed": True,
             "displayed_title_semantically_equivalent": True,
             "displayed_title_improves_readability_when_distinct": True,
             "summary_ratio_reviewed": True,
             "summary_subject_predicate_scope_modality_reviewed": True,
+            "summary_opening_proposition_preserved": True,
+            "summary_closing_proposition_preserved": True,
+            "summary_conditions_exclusivities_preserved": True,
+            "summary_decisive_premises_preserved": True,
+            "summary_semantic_evidence_note": "Opening and closing propositions, conditions, exclusivities and decisive premises were compared directly with the French source.",
+            "semantic_risk_reviewed": True,
+            "semantic_risk_note": "Any semantic marker differences were explicitly reviewed against the French source and judged equivalent.",
             "forceful_expression": expressions[nid], "quantitative_claims_verified": False,
             "quantitative_claims_note": "No quantitative claim appears in this English summary.",
             "documentation_rationale": "The selected English source supports the central mechanism without imposing an artificial quota.",
@@ -322,6 +352,7 @@ def test_apply_translation_creates_distinct_bilingual_copy(tmp_path: Path):
     content_hash = common.full_tree_sha256(workspace / "content-reviewed-copy")
     fr_meta = (workspace / "content-reviewed-copy/data/fr_page_metadata_lock.json").read_bytes()
     fr_content = (workspace / "content-reviewed-copy/data/fr_content_lock.json").read_bytes()
+    complete_semantic_convergence(project, work_id)
     result = translation.apply_review(project, "debat_test", work_id, sealed["review_sha256"])
     target = workspace / "translated-copy"
     assert result["status"] == "en_translation_applied"
@@ -353,6 +384,7 @@ def test_finalize_translation_preserves_citation_metadata_and_appends_warning(tm
     translation.prepare_review(project, "debat_test", work_id)
     complete_translation_review(workspace)
     sealed = translation.finalize_review(project, "debat_test", work_id)
+    complete_semantic_convergence(project, work_id)
     translation.apply_review(project, "debat_test", work_id, sealed["review_sha256"])
     lock = json.loads((workspace / "translated-copy/data/en_content_lock.json").read_text(encoding="utf-8"))
     by_id = {row["id"]: row for row in lock["arguments"]}
@@ -413,6 +445,7 @@ def test_apply_requires_exact_translation_hash(tmp_path: Path):
     translation.prepare_review(project, "debat_test", work_id)
     complete_translation_review(workspace)
     translation.finalize_review(project, "debat_test", work_id)
+    complete_semantic_convergence(project, work_id)
     try:
         translation.apply_review(project, "debat_test", work_id, "0" * 64)
     except translation.TranslationReviewError as exc:
@@ -548,6 +581,9 @@ def test_validate_argument_preserves_historical_absent_summary(monkeypatch):
         "displayed_title_semantic_inventory_note": "The test explicitly reviews subject, predicate, polarity, modality, attribution and logical scope.",
         "displayed_title_subject_preserved": True, "displayed_title_predicate_preserved": True,
         "displayed_title_scope_preserved": True, "displayed_title_modality_preserved": True,
+        "displayed_title_translates_french_displayed_title": True,
+        "displayed_title_identity_pattern_reviewed": True,
+        "displayed_title_identity_pattern_note": "The displayed-title is directly tied to the French displayed-title in this historical-absence test.",
         "displayed_title_is_complete_proposition": True,
         "displayed_title_concision_reviewed": True, "displayed_title_semantically_equivalent": True,
         "displayed_title_improves_readability_when_distinct": True, "summary_ratio_reviewed": False,
@@ -586,6 +622,9 @@ def test_validate_argument_requires_canonical_semantic_review():
             "displayed_title_source_form_reviewed": True, "displayed_title_no_formal_regression": True,
             "displayed_title_semantic_inventory_reviewed": True,
             "displayed_title_semantic_inventory_note": "Subject, predicate, polarity, modality and scope were reviewed.",
+            "displayed_title_translates_french_displayed_title": True,
+            "displayed_title_identity_pattern_reviewed": True,
+            "displayed_title_identity_pattern_note": "The displayed-title is directly tied to its French source for this negative canonical-title test.",
             "displayed_title_is_complete_proposition": True, "displayed_title_concision_reviewed": True,
             "displayed_title_semantically_equivalent": True, "displayed_title_improves_readability_when_distinct": True,
             "summary_ratio_reviewed": False, "forceful_expression": "", "quantitative_claims_verified": False, "quantitative_claims_note": "",
@@ -646,3 +685,7 @@ def test_translation_risk_profile_keeps_simple_page_at_default_ten():
     simple = translation._translation_risk_profile({}, {"summary": "Une prémisse simple conduit à une conclusion simple.", "citations": [], "sources": {}})
     assert simple["level"] == "low"
     assert simple["recommended_unit_size"] == 10
+
+# Historical test-name alias retained for non-regression traceability.
+def test_english_argument_name_is_a_preserved_import_parameter():
+    assert 'name' in translation.EN_PAGE_LIFECYCLE_PARAMETERS['argument']

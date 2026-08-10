@@ -1777,3 +1777,8 @@ Le fichier courant `data/documentary_resources.json` est une projection détermi
 
 La normalisation d’URL minuscule schéma/hôte, supprime le fragment, normalise les slashs, trie les paramètres utiles et élimine les paramètres de suivi usuels. Le DOI est normalisé en minuscules sans préfixe `doi:` ni URL. Une divergence de libellé pour une même identité dans une même langue constitue un conflit documentaire à résoudre; une traduction réelle dans une autre langue n’en constitue pas un.
 
+
+
+## Extension 1.2.66 — identité des champs traduits et preuves sémantiques
+
+La filiation des champs est explicite : titre canonique FR→EN canonique, `titre-affiché` FR→`displayed-title` EN, résumé FR→summary EN. La revue enregistre les empreintes des champs et l'empreinte sémantique globale. Le vocabulaire contrôlé peut porter un `concept_id` stable, identique dans les deux langues et unique dans le registre. Le reçu `wikidebia-semantic-convergence-review-1.0` référence l'empreinte exacte de la revue et du contenu sémantique; il ne fait pas partie de l'objet qu'il atteste.

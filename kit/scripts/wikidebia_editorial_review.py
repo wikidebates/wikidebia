@@ -59,7 +59,7 @@ from wikidebia_editorial_workspace import (
     workspace_receipt_hash,
 )
 
-KIT_VERSION = "2.15.49"
+KIT_VERSION = "2.15.50"
 REVIEW_SCHEMA = "wikidebia-fr-page-metadata-review-1.1"
 METADATA_LOCK_SCHEMA = "wikidebia-fr-page-metadata-lock-1.0"
 CHANGESET_SCHEMA = "wikidebia-editorial-changeset-1.1"
@@ -430,7 +430,15 @@ def _validate_vocabulary(vocabulary: Mapping[str, Any], final_items: Sequence[Ma
         actual_usages = entry.get("usages")
         if actual_usages != expected_row["usages"]:
             raise EditorialReviewError(f"Usages divergents pour le mot-clé : {term}")
+        raw_concept_id = str(entry.get("concept_id") or "").strip()
+        if raw_concept_id:
+            if not re.fullmatch(r"KWD-[A-F0-9]{12,64}", raw_concept_id):
+                raise EditorialReviewError(f"concept_id invalide pour le mot-clé : {term}")
+            concept_id = raw_concept_id
+        else:
+            concept_id = "KWD-" + sha256_bytes(normalized_text(term).casefold().encode("utf-8"))[:16].upper()
         finalized.append({
+            "concept_id": concept_id,
             "fr": term,
             "en": entry.get("en") if isinstance(entry.get("en"), str) and entry.get("en").strip() else None,
             "definition": entry.get("definition").strip(),
@@ -449,6 +457,9 @@ def _validate_vocabulary(vocabulary: Mapping[str, Any], final_items: Sequence[Ma
             "status": "approved_fr",
             "rationale": entry.get("rationale").strip(),
         })
+    concept_ids = [row["concept_id"] for row in finalized]
+    if len(concept_ids) != len(set(concept_ids)):
+        raise EditorialReviewError("concept_id dupliqué dans le vocabulaire contrôlé")
     return finalized
 
 

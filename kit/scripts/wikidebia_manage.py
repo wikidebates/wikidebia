@@ -15,9 +15,9 @@ import zipfile
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
-NORM_VERSION = "1.2.65"
-VALIDATOR_VERSION = "0.4.68"
-KIT_VERSION = "2.15.49"
+NORM_VERSION = "1.2.66"
+VALIDATOR_VERSION = "0.4.69"
+KIT_VERSION = "2.15.50"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",
@@ -1783,6 +1783,23 @@ def corpus_workspace_translation_review(
     return result.returncode
 
 
+def corpus_workspace_semantic_convergence(
+    root: Path, debate_id: str, *, work_id: str, method: str, reviewer: str,
+    note: str, new_certain_errors: int,
+) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_semantic_convergence.py"
+    if not script.is_file():
+        raise ManagementError("Outil de convergence sémantique absent du kit")
+    command = [
+        python_command(root), str(script), debate_id,
+        "--work-id", work_id, "--project-root", str(root),
+        "--method", method, "--reviewer", reviewer, "--note", note,
+        "--new-certain-errors", str(new_certain_errors), "--machine-readable",
+    ]
+    result = run(command, cwd=root, check=False)
+    return result.returncode
+
+
 def corpus_workspace_render(
     root: Path, debate_id: str, *, work_id: str, confirm_translation_sha256: str,
 ) -> int:
@@ -2115,6 +2132,17 @@ def build_parser() -> argparse.ArgumentParser:
     corpus_translation_review_parser.add_argument("--overwrite-review", action="store_true", help="Régénérer les registres préparatoires non appliqués")
     corpus_translation_review_parser.add_argument("--confirm-review-sha256", help="Empreinte obligatoire avec --apply")
 
+    semantic_convergence_parser = sub.add_parser(
+        "corpus-workspace-semantic-convergence",
+        help="Enregistrer une passe indépendante de convergence sémantique sur la traduction scellée",
+    )
+    semantic_convergence_parser.add_argument("debate_id", help="Identifiant du corpus sous corpus/")
+    semantic_convergence_parser.add_argument("--work-id", required=True, help="Identifiant du workspace éditorial")
+    semantic_convergence_parser.add_argument("--method", required=True, help="Méthode ou angle de la passe sémantique")
+    semantic_convergence_parser.add_argument("--reviewer", required=True, help="Relecteur de la passe")
+    semantic_convergence_parser.add_argument("--note", required=True, help="Note concrète sur la passe effectuée")
+    semantic_convergence_parser.add_argument("--new-certain-errors", type=int, default=0, help="Nombre de nouvelles erreurs certaines trouvées")
+
     corpus_render_parser = sub.add_parser(
         "corpus-workspace-render",
         help="Rendre et valider les pages MediaWiki bilingues depuis la traduction verrouillée",
@@ -2285,6 +2313,12 @@ def main(argv: list[str] | None = None) -> int:
             root, args.debate_id, work_id=args.work_id, prepare=args.prepare, finalize=args.finalize,
             apply=args.apply, overwrite_review=args.overwrite_review,
             confirm_review_sha256=args.confirm_review_sha256,
+        )
+
+    if args.command == "corpus-workspace-semantic-convergence":
+        return corpus_workspace_semantic_convergence(
+            root, args.debate_id, work_id=args.work_id, method=args.method,
+            reviewer=args.reviewer, note=args.note, new_certain_errors=args.new_certain_errors,
         )
 
     if args.command == "corpus-workspace-render":

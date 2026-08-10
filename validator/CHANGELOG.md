@@ -1,3 +1,10 @@
+## 0.4.69 — 10 août 2026 — équivalence propositionnelle et convergence sémantique
+
+- contrôle le prédicat principal des displayed-title anglais ;
+- étend les signaux différentiels et le métadiscours anglais ;
+- valide les preuves de champ, les concept_id et le reçu de convergence ;
+- ajoute les régressions multiligne et les codes WDV-BIL-008/009, WDV-EDT-033.
+
 ## 0.4.68 — 10 août 2026 — cohérence des documents actifs
 
 - aligne la copie normative sur 1.2.65 ;

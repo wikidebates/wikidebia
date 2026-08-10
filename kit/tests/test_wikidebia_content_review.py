@@ -484,3 +484,7 @@ def test_specialized_term_inventory_rejects_undeclared_link():
 def test_argument_established_name_parameters_are_preserved_import_parameters():
     assert 'nom-consacré' in content.PAGE_LIFECYCLE_PARAMETERS['argument']
     assert 'nom' in content.PAGE_LIFECYCLE_PARAMETERS['argument']
+
+# Historical test-name alias retained for non-regression traceability.
+def test_argument_name_is_a_preserved_import_parameter():
+    assert 'nom' in content.PAGE_LIFECYCLE_PARAMETERS['argument']

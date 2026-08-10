@@ -29,3 +29,8 @@ Avant le premier contrôle du paquet final, le kit régénère `data/documentary
 ## Correctif 2.15.38 — provenance, Quote et inventaire final
 
 La recherche d’`established-name=` enregistre sa provenance réelle. Une nouvelle page anglaise utilise `actual_log` ou `fresh_recheck`; `historical_reconstruction` ne sert qu'à décrire honnêtement une décision ancienne. Chaque `Quote` est relue de début à fin contre la `Citation` source ; sous un ratio lexical de 0,60, une seconde revue explicite est requise. La release calcule `release/content_inventory.json`, en lie l'empreinte au reçu, puis le recalcule sur l'extraction fraîche.
+
+
+## Preuve sémantique 2.15.50
+
+Pour une traduction utilisant la revue sémantique 1.3, la release exige le reçu de convergence à deux passes et vérifie son SHA-256 contre le verrou anglais. L'inventaire transactionnel et le reçu externe recopient cette empreinte ; l'extraction fraîche la revérifie.

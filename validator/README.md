@@ -1,6 +1,6 @@
-# Wikidéb’IA — Validateur 0.4.68
+# Wikidéb’IA — Validateur 0.4.69
 
-Version de réconciliation pour la norme 1.2.65 et le kit 2.15.49.
+Version de réconciliation pour la norme 1.2.66 et le kit 2.15.50.
 
 Elle conserve les contrôles différentiels et sémantiques de la lignée traduction 0.4.64 et intègre les contrôles de la lignée publication GitHub : `nom-consacré` / `established-name`, `AI-translated quote`, absence d'`initialization` sur une nouvelle traduction anglaise, cohérence normative et préservation historique des alias.
 
@@ -8,4 +8,4 @@ Les heuristiques sémantiques restent des signaux de revue humaine ; elles ne r�
 
 Le correctif 0.4.67 ne retire aucun contrôle de 0.4.66 ; il rétablit la continuité des révisions normatives compatibles et ajoute le test de non-régression correspondant.
 
-Le correctif 0.4.68 aligne les diagnostics et la copie normative sur les documents actifs resynchronisés de 1.2.65.
+Le correctif 0.4.69 aligne les diagnostics et la copie normative sur les documents actifs resynchronisés de 1.2.66.

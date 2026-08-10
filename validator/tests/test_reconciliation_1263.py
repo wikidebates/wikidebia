@@ -12,7 +12,7 @@ def test_active_contract_uses_current_publication_terminology():
     assert "established-name=" in by_id["EDT-065"]["statement"]
     assert "AI-translated quote" in by_id["RND-004"]["statement"]
     assert "AI-translated quote" in by_id["RND-006"]["statement"]
-    active = (NORM / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.65.md").read_text(encoding="utf-8")
+    active = (NORM / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.66.md").read_text(encoding="utf-8")
     assert "|warnings=AI-translated quote" in active
     assert "### `established-name=` : recherche propre à la langue anglaise" in active
     assert "Révision 1.2.61 — cohérence inter-composants et archivage normatif" in active

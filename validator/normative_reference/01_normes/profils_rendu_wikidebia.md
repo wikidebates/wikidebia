@@ -1036,3 +1036,8 @@ Pour une nouvelle page `Argument`, le paramètre d'appellation consacrée rendu 
 Une nouvelle traduction anglaise d'`Argument` n'émet pas `initialization=`. Toute nouvelle page anglaise traduite conserve localement un `creation-date=` provisoire si le paquet en a besoin pour sa validation ; au plan de publication, seule cette valeur est remplacée par le jour civil réel de création distante. Le jour est revérifié avant chaque écriture.
 
 Toute `Quote` nouvellement traduite utilise l'avertissement `AI-translated quote`. Les modèles historiques contenant l'ancienne formulation restent préservés lorsqu'ils sont attestés comme existants.
+
+
+## Profil de traduction 1.2.66 — preuve et convergence
+
+Le rendu anglais consomme exclusivement des champs déjà revus. `displayed-title` provient du `titre-affiché` français de la même page, jamais d'une nouvelle dérivation du titre canonique. La revue courante lie chaque champ source/cible par SHA-256, conserve les propositions d'ouverture et de clôture utiles et les risques détectés. Avant application du rendu, deux passes sémantiques indépendantes de méthodes distinctes doivent porter sur le même `semantic_content_sha256` et conclure à zéro nouvelle erreur certaine. Le reçu de convergence accompagne le verrou de traduction et la release; toute mutation l'invalide.

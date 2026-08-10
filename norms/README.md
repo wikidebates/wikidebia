@@ -1,4 +1,4 @@
-# Wikidéb’IA — Normes 1.2.65
+# Wikidéb’IA — Normes 1.2.66
 
 Révision de réconciliation entre :
 
@@ -13,3 +13,6 @@ Les historiques de branches qui ont réutilisé les mêmes numéros de version p
 La révision 1.2.64 corrige deux défauts de preuve supplémentaires découverts après le scellement de 1.2.63, sans modifier les décisions éditoriales ou de publication.
 
 La révision 1.2.65 corrige uniquement des contradictions résiduelles dans les documents actifs : terminologie des appellations consacrées, interlangue différée et rendu des citations verrouillées.
+
+
+La révision 1.2.66 ajoute la preuve propositionnelle et la convergence sémantique finale sans modifier les règles de publication déjà actives.

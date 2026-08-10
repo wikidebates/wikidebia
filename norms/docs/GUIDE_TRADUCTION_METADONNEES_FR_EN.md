@@ -105,3 +105,8 @@ La validation finale de traduction est exécutée sur une extraction neuve de l�
 ### Correctif 1.2.59 — preuve de recherche et complétude de citation
 
 Pour toute nouvelle recherche de `nom-consacré=` / `established-name=`, conserver la provenance réelle (`actual_log` ou `fresh_recheck`) ; une décision historique reconstruite est marquée `historical_reconstruction` et ne remplace jamais une recherche obligatoire d'une nouvelle page anglaise. Chaque `Quote` est comparée intégralement à la `Citation` source ; un ratio lexical inférieur à 0,60 impose une seconde revue explicite, sans réécriture automatique. La release finale génère et revalide `release/content_inventory.json` sur l'archive exacte.
+
+
+## Complément 1.2.66 — revue sémantique
+
+La table de métadonnées ne constitue jamais un patron de rédaction. Le `displayed-title` anglais traduit directement le `titre-affiché` français. Les résumés et titres sont liés par leurs empreintes de revue; les risques sémantiques nécessitent une justification concrète. Après toute dernière correction, deux passes sémantiques indépendantes propres sur la même empreinte sont obligatoires avant application.

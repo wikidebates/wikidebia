@@ -43,7 +43,7 @@ from wikidebia_documentary_resources import build_file as build_documentary_reso
 from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
 from wikidebia_render import RenderError, _load_workspace
 
-KIT_VERSION = "2.15.49"
+KIT_VERSION = "2.15.50"
 RELEASE_MANIFEST_SCHEMA = "1.0"
 RELEASE_RECEIPT_SCHEMA = "wikidebia-local-release-receipt-1.1"
 REMOTE_INPUT_SCHEMA = "wikidebia-remote-comparison-input-1.0"
@@ -88,6 +88,16 @@ def _assert_rendered_copy(workspace: Path, meta: Mapping[str, Any], confirmed: s
     final_report = load_json(path / "reports/final_validation.json", "validation finale du rendu")
     if final_report.get("result") not in {"passed", "passed_with_warnings"}:
         raise ReleaseError("La validation finale du rendu n’est pas réussie")
+    controls = manifest.get("editorial_controls") or {}
+    convergence_rel = controls.get("semantic_convergence_review_path")
+    if convergence_rel:
+        convergence_path = path / str(convergence_rel)
+        if not convergence_path.is_file():
+            raise ReleaseError("Le reçu de convergence sémantique est absent du rendu")
+        convergence = load_json(convergence_path, "reçu de convergence sémantique")
+        translation_lock = load_json(path / "data/en_translation_lock.json", "verrou de traduction")
+        if convergence.get("status") != "converged" or convergence.get("receipt_sha256") != translation_lock.get("semantic_convergence_receipt_sha256"):
+            raise ReleaseError("Le reçu de convergence sémantique ne correspond pas au verrou de traduction")
     return path
 
 
@@ -223,6 +233,7 @@ def _write_content_inventory(package_root: Path, timestamp: str) -> dict[str, An
         "en_content_lock_sha256": sha256_file(package_root / "data/en_content_lock.json") if (package_root / "data/en_content_lock.json").is_file() else None,
         "argument_name_review_sha256": None,
         "documentary_resources_sha256": None,
+        "semantic_convergence_review_sha256": None,
     }
     name_rel = controls.get("argument_name_discovery_path")
     if name_rel and (package_root / str(name_rel)).is_file():
@@ -230,6 +241,9 @@ def _write_content_inventory(package_root: Path, timestamp: str) -> dict[str, An
     resource_rel = controls.get("documentary_resource_registry_path") or "data/documentary_resources.json"
     if (package_root / str(resource_rel)).is_file():
         sources["documentary_resources_sha256"] = sha256_file(package_root / str(resource_rel))
+    convergence_rel = controls.get("semantic_convergence_review_path")
+    if convergence_rel and (package_root / str(convergence_rel)).is_file():
+        sources["semantic_convergence_review_sha256"] = sha256_file(package_root / str(convergence_rel))
     inventory = {
         "schema": "wikidebia-release-content-inventory-1.0",
         "created_at": timestamp,
@@ -259,6 +273,9 @@ def _verify_content_inventory(package_root: Path) -> dict[str, Any]:
         checks["argument_name_review_sha256"] = package_root / str(name_rel)
     resource_rel = controls.get("documentary_resource_registry_path") or "data/documentary_resources.json"
     checks["documentary_resources_sha256"] = package_root / str(resource_rel)
+    convergence_rel = controls.get("semantic_convergence_review_path")
+    if convergence_rel:
+        checks["semantic_convergence_review_sha256"] = package_root / str(convergence_rel)
     declared = inventory.get("source_sha256") or {}
     for key, source_path in checks.items():
         expected = declared.get(key)
@@ -305,7 +322,7 @@ def _build_release_copy(project_root: Path, source: Path, target: Path, *, debat
     controls = manifest.setdefault("editorial_controls", {})
     controls["documentary_resource_registry_path"] = resources_rel
     controls["documentary_resource_registry_schema_version"] = "1.0"
-    controls.setdefault("semantic_marker_engine_version", "1.1")
+    controls.setdefault("semantic_marker_engine_version", "1.2")
     structural = structural_sha256(registry)
     gate = {
         "local_release_status": "release_ready",
@@ -399,6 +416,8 @@ def _build_release_copy(project_root: Path, source: Path, target: Path, *, debat
         "publication_logs": ["logs/publication/not_started.json"],
         "content_inventory": "release/content_inventory.json",
         "content_inventory_sha256": sha256_file(target / "release/content_inventory.json"),
+        "semantic_convergence_review": controls.get("semantic_convergence_review_path"),
+        "semantic_convergence_review_sha256": sha256_file(target / str(controls.get("semantic_convergence_review_path"))) if controls.get("semantic_convergence_review_path") else None,
         "finalized_at": timestamp,
         "self_excluded": True,
         "publication_gate": copy.deepcopy(gate),
@@ -480,6 +499,10 @@ def release_workspace(project_root: Path, debate_id: str, work_id: str, confirm_
             "content_inventory_path": "release/content_inventory.json",
             "content_inventory_sha256": sha256_file(temp_copy / "release/content_inventory.json"),
             "content_inventory_counts": copy.deepcopy(_verify_content_inventory(temp_copy).get("counts") or {}),
+            "semantic_convergence_review_path": (load_json(temp_copy / "manifest.json", "manifest de release").get("editorial_controls") or {}).get("semantic_convergence_review_path"),
+            "semantic_convergence_review_sha256": sha256_file(temp_copy / str((load_json(temp_copy / "manifest.json", "manifest de release").get("editorial_controls") or {}).get("semantic_convergence_review_path"))) if (load_json(temp_copy / "manifest.json", "manifest de release").get("editorial_controls") or {}).get("semantic_convergence_review_path") else None,
+            "semantic_content_sha256": load_json(temp_copy / "data/en_translation_lock.json", "verrou de traduction").get("semantic_content_sha256"),
+            "semantic_convergence_passes": load_json(temp_copy / "data/en_translation_lock.json", "verrou de traduction").get("semantic_convergence_pass_count"),
             "archive_name": archive.name,
             "archive_sha256": archive_sha,
             "archive_size_bytes": archive.stat().st_size,

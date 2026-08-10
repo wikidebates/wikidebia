@@ -30,17 +30,18 @@ def fake_validator(*args, **kwargs):
 
 render._run_validator = fake_validator
 translation._run_validator = fake_validator
-from test_wikidebia_translation_review import make_french_locked, complete_translation_review  # noqa: E402
+from test_wikidebia_translation_review import make_french_locked, complete_translation_review, complete_semantic_convergence  # noqa: E402
 
 
 def make_translated(tmp_path: Path) -> tuple[Path, Path, str, str]:
     project, workspace, work_id = make_french_locked(tmp_path)
-    norm_path = project / "norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.65.md"
+    norm_path = project / "norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.66.md"
     norm_path.parent.mkdir(parents=True, exist_ok=True)
     norm_path.write_text("# Norme de test 1.2.27\n", encoding="utf-8")
     translation.prepare_review(project, "debat_test", work_id)
     complete_translation_review(workspace)
     sealed = translation.finalize_review(project, "debat_test", work_id)
+    complete_semantic_convergence(project, work_id)
     translation.apply_review(project, "debat_test", work_id, sealed["review_sha256"])
     translated = workspace / "translated-copy"
     registry = json.loads((translated / "data/registre_debat.json").read_text(encoding="utf-8"))

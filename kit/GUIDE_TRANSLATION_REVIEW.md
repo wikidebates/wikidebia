@@ -106,6 +106,24 @@ La finalisation vérifie notamment :
 
 La revue et le registre documentaire anglais sont scellés par SHA-256.
 
+### 3.1 Convergence sémantique obligatoire
+
+Après la dernière correction et avant l’application, exécuter **deux passes sémantiques indépendantes** sur la revue finalisée. Elles doivent employer des méthodes distinctes, porter sur le même `semantic_content_sha256` et déclarer chacune `new_certain_errors=0`. Une passe qui trouve une erreur certaine invalide la chaîne précédente ; toute mutation ultérieure de la revue ou du contenu invalide le reçu.
+
+Exemple :
+
+```bash
+./wikidebia corpus-workspace-semantic-convergence <debate_id> --work-id <work_id> \
+  --method "comparaison proposition par proposition" --reviewer "Relecteur A" \
+  --note "Comparaison indépendante du sujet, du prédicat, de la force, de la portée et des relations logiques."
+
+./wikidebia corpus-workspace-semantic-convergence <debate_id> --work-id <work_id> \
+  --method "relecture des marqueurs de risque et des propositions limites" --reviewer "Relecteur B" \
+  --note "Relecture indépendante des risques, de l'ouverture, de la conclusion, des conditions et des ancrages concrets."
+```
+
+Le reçu `reviews/en/semantic_convergence_review.json` doit atteindre `status=converged`. Il est ensuite lié au verrou de traduction, à l’inventaire transactionnel et au reçu de release.
+
 ## 4. Application
 
 ```bash

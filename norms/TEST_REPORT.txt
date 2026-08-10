@@ -1,6 +1,6 @@
-Wikidéb’IA Normes 1.2.65 — audit de cohérence documentaire active
+Wikidéb’IA Normes 1.2.66 — audit de cohérence normative
 Statut : PASSED
-484 exigences uniques ; 100 alias résolus ; 87 fichiers normatifs.
-Les trois références sont préservées : ancêtre 1.2.55, traduction/validation 1.2.61 et publication GitHub 1.2.60 (8b46816).
-Norme active unique : 1.2.65 ; norme 1.2.64 archivée exactement avant remplacement.
-Les guides actifs sont alignés sur established-name, translation_status.en=deferred et le rendu Citation→Quote.
+Exigences : 494 uniques
+Alias de provenance : 101
+Norme active unique : 1.2.66 ; norme 1.2.65 archivée exactement avant remplacement.
+Arbre normatif destiné au validateur : synchronisé octet pour octet.

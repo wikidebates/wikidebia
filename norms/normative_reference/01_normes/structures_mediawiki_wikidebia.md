@@ -607,3 +607,8 @@ La revue ne se limite pas aux séries de notions comparables. Chaque sous-partie
 ### Règle 1.2.59 — création d’une traduction anglaise
 
 Pour un `Argument` anglais **nouvellement créé par traduction FR→EN**, `initialization` est absent, même si la page française source possède `initialisation`. Pour toute nouvelle page anglaise traduite (`Debate` ou `Argument`), `creation-date` est remplacée au moment de la publication par la date civile du jour de création distante. Les structures ci-dessus continuent de décrire aussi les pages anglaises historiques préexistantes, pour lesquelles ces paramètres peuvent être préservés.
+
+
+## Contrat de traduction 1.2.66
+
+Les structures MediaWiki ne changent pas. Pour une page traduite, la valeur anglaise de `displayed-title` est toutefois issue du `titre-affiché` français correspondant, et non du titre canonique anglais. Les valeurs multiligne de `summary=` et `quotes=` sont analysées comme des paramètres complets, y compris lorsqu'elles contiennent des sous-modèles. `concept_id` est une donnée de registre et n'est jamais rendu comme paramètre MediaWiki.

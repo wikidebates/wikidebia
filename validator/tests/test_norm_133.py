@@ -147,7 +147,7 @@ def test_preexisting_french_page_may_gain_interlanguage_when_english_is_ready():
     page_manifest={'page_id':'A0001','page_type':'argument','page_origin':'preexisting','preserved_parameters':preserved(historical, 'argument')}
     ctx = PackageContext(
         root=Path('.'),
-        report=Report('0.4.68', '.', ['wikicode']),
+        report=Report('0.4.69', '.', ['wikicode']),
         cache={'manifest.json': {
             'normative_versions': {'consolidated_norm': '1.2.58'},
             'translation_status': {'en': 'ready'},

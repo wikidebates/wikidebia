@@ -3,7 +3,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 def test_norm_1259_records_english_creation_metadata_rules():
-    text = (ROOT / "normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.65.md").read_text(encoding="utf-8")
+    text = (ROOT / "normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.66.md").read_text(encoding="utf-8")
     assert "ne transporte jamais `|initialisation=`/`|initialization=`" in text
     assert "jour civil de la publication distante" in text
     assert "Europe/Paris" in text

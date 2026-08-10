@@ -109,6 +109,11 @@
       "title": "Wikidéb'IA — Cadrage d'un débat"
     },
     {
+      "path": "semantic_convergence_review.schema.json",
+      "id": "semantic_convergence_review.schema.json",
+      "title": "Wikidéb'IA — Reçu de convergence sémantique FR→EN"
+    },
+    {
       "path": "source_registry.schema.json",
       "id": "source_registry.schema.json",
       "title": "Wikidéb'IA — Registre documentaire"
