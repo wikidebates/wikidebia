@@ -1,3 +1,9 @@
+## 0.4.71 — 10 août 2026 — familles de convergence normalisées
+
+- accepte les reçus de convergence 1.0 et 1.1 ;
+- exige pour 1.1 deux `method_family` finales distinctes ;
+- conserve tous les contrôles de 0.4.70.
+
 ## 0.4.70 — 10 août 2026 — revue idiomatique et corpus réel de régressions
 
 - accepte la revue sémantique 1.4 et le moteur de marqueurs 1.3 ;

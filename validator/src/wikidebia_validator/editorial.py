@@ -1848,7 +1848,7 @@ def _validate_semantic_convergence(ctx: PackageContext, controls: dict[str, Any]
         if str(controls.get('translation_semantic_review_schema_version') or '') in {'1.3', '1.4'}:
             ctx.report.error('WDV-BIL-009', 'Reçu de convergence sémantique absent pour une traduction utilisant la revue 1.3', path='manifest.json')
         return {'required': False, 'status': 'absent'}
-    if schema_version != '1.0' or not ctx.exists(path):
+    if schema_version not in {'1.0', '1.1'} or not ctx.exists(path):
         ctx.report.error('WDV-BIL-009', 'Reçu de convergence sémantique déclaré mais absent ou de version incorrecte', path=path or 'manifest.json')
         return {'required': True, 'status': 'invalid'}
     receipt = ctx.load_json(path)
@@ -1877,6 +1877,13 @@ def _validate_semantic_convergence(ctx: PackageContext, controls: dict[str, Any]
             issues.append('final_passes_not_clean_or_not_bound')
         if isinstance(first, dict) and isinstance(second, dict) and str(first.get('method') or '').strip().casefold() == str(second.get('method') or '').strip().casefold():
             issues.append('final_methods_not_distinct')
+        if schema_version == '1.1' and isinstance(first, dict) and isinstance(second, dict):
+            allowed_families = {'proposition_by_proposition', 'risk_marker_review', 'reverse_source_target', 'field_boundary_review', 'independent_bilingual_reread'}
+            families = [str(first.get('method_family') or '').strip(), str(second.get('method_family') or '').strip()]
+            if any(family not in allowed_families for family in families):
+                issues.append('final_method_family_missing_or_invalid')
+            elif families[0] == families[1]:
+                issues.append('final_method_families_not_distinct')
     if issues:
         ctx.report.error('WDV-BIL-009', 'Convergence sémantique finale invalide', path=path, details={'reasons': issues})
     return {'required': True, 'status': receipt.get('status'), 'passes': len(passes) if isinstance(passes, list) else 0, 'issues': issues}

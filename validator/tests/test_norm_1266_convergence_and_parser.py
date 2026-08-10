@@ -43,19 +43,19 @@ def test_semantic_convergence_validator_accepts_two_distinct_clean_passes(tmp_pa
     }
     review["review_sha256"] = _canon_sha(review, "review_sha256")
     receipt = {
-        "schema": "wikidebia-semantic-convergence-review-1.0", "schema_version": "1.0",
+        "schema": "wikidebia-semantic-convergence-review-1.1", "schema_version": "1.1",
         "translation_review_sha256": review["review_sha256"], "semantic_content_sha256": review["semantic_content_sha256"],
         "status": "converged", "passes": [
-            {"method":"proposition comparison", "new_certain_errors":0, "translation_review_sha256":review["review_sha256"], "semantic_content_sha256":review["semantic_content_sha256"]},
-            {"method":"risk-marker reread", "new_certain_errors":0, "translation_review_sha256":review["review_sha256"], "semantic_content_sha256":review["semantic_content_sha256"]},
+            {"method_family":"proposition_by_proposition","method":"proposition comparison", "new_certain_errors":0, "translation_review_sha256":review["review_sha256"], "semantic_content_sha256":review["semantic_content_sha256"]},
+            {"method_family":"risk_marker_review","method":"risk-marker reread", "new_certain_errors":0, "translation_review_sha256":review["review_sha256"], "semantic_content_sha256":review["semantic_content_sha256"]},
         ], "receipt_sha256": None,
     }
     receipt["receipt_sha256"] = _canon_sha(receipt, "receipt_sha256")
     (tmp_path / "reviews/en").mkdir(parents=True)
     (tmp_path / "reviews/en/translation_review.json").write_text(json.dumps(review), encoding="utf-8")
     (tmp_path / "reviews/en/semantic_convergence_review.json").write_text(json.dumps(receipt), encoding="utf-8")
-    manifest={"editorial_controls":{"translation_semantic_review_schema_version":"1.3","semantic_convergence_review_path":"reviews/en/semantic_convergence_review.json","semantic_convergence_review_schema_version":"1.0"},"translation_status":{"en":"ready"}}
-    ctx=PackageContext(tmp_path, Report("0.4.70", str(tmp_path), ["editorial"]), cache={"manifest.json":manifest})
+    manifest={"editorial_controls":{"translation_semantic_review_schema_version":"1.3","semantic_convergence_review_path":"reviews/en/semantic_convergence_review.json","semantic_convergence_review_schema_version":"1.1"},"translation_status":{"en":"ready"}}
+    ctx=PackageContext(tmp_path, Report("0.4.71", str(tmp_path), ["editorial"]), cache={"manifest.json":manifest})
     metrics=_validate_semantic_convergence(ctx, manifest["editorial_controls"], False)
     assert metrics["status"] == "converged"
     assert not [f for f in ctx.report.findings if f.code == "WDV-BIL-009" and f.level == "ERROR"]
@@ -64,13 +64,31 @@ def test_semantic_convergence_validator_accepts_two_distinct_clean_passes(tmp_pa
 def test_semantic_convergence_validator_rejects_same_method(tmp_path: Path):
     review={"schema":"wikidebia-en-translation-review-1.1","schema_version":"1.1","status":"approved","semantic_content_sha256":"b"*64,"review_sha256":None}
     review["review_sha256"]=_canon_sha(review,"review_sha256")
-    row={"method":"same method repeated","new_certain_errors":0,"translation_review_sha256":review["review_sha256"],"semantic_content_sha256":review["semantic_content_sha256"]}
-    receipt={"schema":"wikidebia-semantic-convergence-review-1.0","schema_version":"1.0","translation_review_sha256":review["review_sha256"],"semantic_content_sha256":review["semantic_content_sha256"],"status":"converged","passes":[dict(row),dict(row)],"receipt_sha256":None}
+    row={"method_family":"risk_marker_review","method":"same method repeated","new_certain_errors":0,"translation_review_sha256":review["review_sha256"],"semantic_content_sha256":review["semantic_content_sha256"]}
+    receipt={"schema":"wikidebia-semantic-convergence-review-1.1","schema_version":"1.1","translation_review_sha256":review["review_sha256"],"semantic_content_sha256":review["semantic_content_sha256"],"status":"converged","passes":[dict(row),dict(row)],"receipt_sha256":None}
     receipt["receipt_sha256"]=_canon_sha(receipt,"receipt_sha256")
     (tmp_path/"reviews/en").mkdir(parents=True)
     (tmp_path/"reviews/en/translation_review.json").write_text(json.dumps(review),encoding="utf-8")
     (tmp_path/"reviews/en/semantic_convergence_review.json").write_text(json.dumps(receipt),encoding="utf-8")
-    manifest={"editorial_controls":{"translation_semantic_review_schema_version":"1.3","semantic_convergence_review_path":"reviews/en/semantic_convergence_review.json","semantic_convergence_review_schema_version":"1.0"},"translation_status":{"en":"ready"}}
-    ctx=PackageContext(tmp_path, Report("0.4.70", str(tmp_path), ["editorial"]), cache={"manifest.json":manifest})
+    manifest={"editorial_controls":{"translation_semantic_review_schema_version":"1.3","semantic_convergence_review_path":"reviews/en/semantic_convergence_review.json","semantic_convergence_review_schema_version":"1.1"},"translation_status":{"en":"ready"}}
+    ctx=PackageContext(tmp_path, Report("0.4.71", str(tmp_path), ["editorial"]), cache={"manifest.json":manifest})
     _validate_semantic_convergence(ctx, manifest["editorial_controls"], False)
     assert any(f.code == "WDV-BIL-009" and f.level == "ERROR" for f in ctx.report.findings)
+
+
+def test_semantic_convergence_validator_rejects_distinct_methods_from_same_family(tmp_path: Path):
+    review={"schema":"wikidebia-en-translation-review-1.1","schema_version":"1.1","status":"approved","semantic_content_sha256":"c"*64,"review_sha256":None}
+    review["review_sha256"]=_canon_sha(review,"review_sha256")
+    first={"method_family":"risk_marker_review","method":"risk marker checklist alpha","new_certain_errors":0,"translation_review_sha256":review["review_sha256"],"semantic_content_sha256":review["semantic_content_sha256"]}
+    second={"method_family":"risk_marker_review","method":"risk marker checklist beta","new_certain_errors":0,"translation_review_sha256":review["review_sha256"],"semantic_content_sha256":review["semantic_content_sha256"]}
+    receipt={"schema":"wikidebia-semantic-convergence-review-1.1","schema_version":"1.1","translation_review_sha256":review["review_sha256"],"semantic_content_sha256":review["semantic_content_sha256"],"status":"converged","passes":[first,second],"receipt_sha256":None}
+    receipt["receipt_sha256"]=_canon_sha(receipt,"receipt_sha256")
+    (tmp_path/"reviews/en").mkdir(parents=True)
+    (tmp_path/"reviews/en/translation_review.json").write_text(json.dumps(review),encoding="utf-8")
+    (tmp_path/"reviews/en/semantic_convergence_review.json").write_text(json.dumps(receipt),encoding="utf-8")
+    manifest={"editorial_controls":{"translation_semantic_review_schema_version":"1.4","semantic_convergence_review_path":"reviews/en/semantic_convergence_review.json","semantic_convergence_review_schema_version":"1.1"},"translation_status":{"en":"ready"}}
+    ctx=PackageContext(tmp_path, Report("0.4.71", str(tmp_path), ["editorial"]), cache={"manifest.json":manifest})
+    _validate_semantic_convergence(ctx, manifest["editorial_controls"], False)
+    errors=[f for f in ctx.report.findings if f.code == "WDV-BIL-009" and f.level == "ERROR"]
+    assert errors
+    assert any("final_method_families_not_distinct" in str(getattr(f, "details", "")) for f in errors)

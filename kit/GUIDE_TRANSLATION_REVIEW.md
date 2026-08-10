@@ -114,15 +114,17 @@ Exemple :
 
 ```bash
 ./wikidebia corpus-workspace-semantic-convergence <debate_id> --work-id <work_id> \
+  --method-family proposition_by_proposition \
   --method "comparaison proposition par proposition" --reviewer "Relecteur A" \
   --note "Comparaison indépendante du sujet, du prédicat, de la force, de la portée et des relations logiques."
 
 ./wikidebia corpus-workspace-semantic-convergence <debate_id> --work-id <work_id> \
+  --method-family risk_marker_review \
   --method "relecture des marqueurs de risque et des propositions limites" --reviewer "Relecteur B" \
   --note "Relecture indépendante des risques, de l'ouverture, de la conclusion, des conditions et des ancrages concrets."
 ```
 
-Le reçu `reviews/en/semantic_convergence_review.json` doit atteindre `status=converged`. Il est ensuite lié au verrou de traduction, à l’inventaire transactionnel et au reçu de release.
+Le reçu courant 1.1 `reviews/en/semantic_convergence_review.json` doit atteindre `status=converged`. Il est ensuite lié au verrou de traduction, à l’inventaire transactionnel et au reçu de release. Les deux dernières passes propres déclarent également des `method_family` différentes parmi `proposition_by_proposition`, `risk_marker_review`, `reverse_source_target`, `field_boundary_review` et `independent_bilingual_reread`; changer seulement le libellé libre de `method` ne suffit pas à établir l’indépendance.
 
 ## 4. Application
 

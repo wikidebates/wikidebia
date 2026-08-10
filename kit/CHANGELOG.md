@@ -1,3 +1,10 @@
+## 2.15.52 — 10 août 2026 — durcissement final des preuves
+
+- normalise les familles de méthodes des passes de convergence ;
+- ajoute la régression explicite `established-name=` → keyword ;
+- teste le parsing multiligne jusque dans `wikidebia_publish.py` ;
+- conserve tous les comportements éditoriaux de 2.15.51.
+
 ## 2.15.51 — 10 août 2026 — régressions réelles et changements idiomatiques revus
 
 - changement de forme du displayed-title autorisé seulement avec revue de l’acte de langage ;

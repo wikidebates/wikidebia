@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.51",
-  "validator_version": "0.4.70",
+  "version": "2.15.52",
+  "validator_version": "0.4.71",
   "scope": [
     "publish_archive",
     "github_init",
@@ -433,9 +433,11 @@
     "semantic_convergence_receipt",
     "semantic_review_field_evidence_hashes",
     "stable_keyword_concept_ids",
-    "multiline_mediawiki_parser_regressions"
+    "multiline_mediawiki_parser_regressions",
+    "semantic_convergence_method_families",
+    "publication_multiline_parser_conformance"
   ],
-  "normative_revision": "1.2.67",
+  "normative_revision": "1.2.68",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -543,7 +545,10 @@
     "active_document_contract_consistency",
     "propositional_translation_regressions",
     "semantic_convergence_and_multiline_parser_regressions",
-    "real_semantic_regression_corpus_and_reviewed_form_change"
+    "real_semantic_regression_corpus_and_reviewed_form_change",
+    "semantic_convergence_method_family_independence",
+    "established_name_keyword_contamination_regression",
+    "publication_multiline_parameter_parser_regression"
   ],
   "translation_change_tag": "translated-fr"
 }

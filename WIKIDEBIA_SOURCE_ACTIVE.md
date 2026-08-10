@@ -2,22 +2,25 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.67** ;
-- validateur actif : **0.4.70** ;
-- kit actif : **2.15.51**.
+- norme active : **1.2.68** ;
+- validateur actif : **0.4.71** ;
+- kit actif : **2.15.52**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 2971996 octets — SHA-256 `b60f21a722dc2115b111964e096941759287e12e7f08d8c59ebb95bb80da6f01`
-- `wikidebia-validator.zip` — 3101081 octets — SHA-256 `656d526af4ff08c64d22d02060611d0395eb076eb5e081e2bdeae83bd5135858`
-- `wikidebia-kit.zip` — 551791 octets — SHA-256 `8fe01de60556b5ae9cddb7b7921da98e10553e8105e30885fda77502fd4a5957`
+- `wikidebia-normes.zip` — 3037088 octets — SHA-256 `f8f33900e9770a3ea65fac6c3bb4c60ba5146b4e8219b504b363485bf92b6c13`
+- `wikidebia-validator.zip` — 3166771 octets — SHA-256 `e32a04c1000d95d061c856524806a06d6180594d6754004d447ba2b1a7e1441e`
+- `wikidebia-kit.zip` — 554698 octets — SHA-256 `4e8d5dfb461ffb0db9c23b58f96e5b5b5040bc5bbb704c1c28a02fd07732076e`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.67.md`  
-SHA-256 : `096955f76e67bfdb36a8fb305394185955924f5ac137b69337e9385ac2e26ed8`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.68.md`  
+SHA-256 : `7844786596befcc41cecbc46d47cac5685459ff120490de078c315a734262bbe`
 
-# Norme consolidée Wikidéb’IA 1.2.67
+# Norme consolidée Wikidéb’IA 1.2.68
+
+> **Révision 1.2.68 — durcissement de preuve sans changement éditorial.** Cette révision ne modifie aucune règle de contenu de 1.2.67. Elle formalise l’indépendance des deux passes finales de convergence par une `method_family` normalisée : les deux dernières passes propres doivent appartenir à deux familles distinctes, même si leur champ libre `method` diffère ; l’identité du relecteur n’est pas, à elle seule, le critère d’indépendance. Elle ajoute un test négatif explicite empêchant qu’un `established-name=` soit injecté comme keyword supplémentaire et étend les fixtures de parsing multiligne jusqu’au parseur de prépublication/publication, afin que `summary=` et `quotes=` imbriqués soient relus dans leur totalité. Les reçus historiques de convergence 1.0 restent lisibles ; toute nouvelle passe enregistrée utilise le format 1.1.
+
 
 
 > **Révision 1.2.67 — changements de forme idiomatiques, corpus réel de régressions et preuves de champ Debate.** Cette révision complète 1.2.66 sans relâcher l’autorité de la source française. Un `displayed-title` traduit peut changer de forme pour une raison idiomatique uniquement si ce changement est explicitement revu, que le même acte de langage, la même thèse et la même portée sont attestés et qu’une note substantielle justifie la transformation ; une proposition française ne peut jamais devenir un fragment ou une forme non propositionnelle. Le kit et le validateur utilisent le même catalogue conceptuel de marqueurs sémantiques et un corpus versionné de couples FR / mauvaise traduction / correction dérivés des erreurs réelles observées ; ces fixtures sont des garde-fous de non-régression et ne prétendent pas reconstruire verbatim les anciennes pages lorsque les rapports ne conservent qu’une famille d’erreur. Les risques détectés dans les titres et résumés Argument sont accompagnés d’extraits source/cible, et la page `Debate` reçoit désormais les mêmes empreintes par champ et preuves de risques pour son titre canonique, `topic`, `complete-topic` et son introduction.
@@ -1615,7 +1618,15 @@ Pour toute nouvelle page anglaise issue d’une traduction FR→EN, qu’il s’
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `594d10db673f8e9ac380a727468b2b6b4f2dd72604bb06a0d9ad633323c75c49`
+SHA-256 : `bbc408ca013b8af56bceeba897289e7e78dc10367503e251937817a56166bb58`
+
+## 1.2.68 — 10 août 2026 — durcissement des preuves de convergence et de parsing
+
+- ajoute `method_family` au reçu de convergence courant 1.1 et exige deux familles distinctes pour les deux dernières passes propres ;
+- conserve la lecture des reçus historiques 1.0 ;
+- ajoute un test négatif explicite `established-name=` → keyword ;
+- étend le test de parsing multiligne au parseur de publication/prépublication ;
+- ne modifie aucune règle éditoriale de 1.2.67.
 
 ## 1.2.67 — 10 août 2026 — corpus réel de régressions et changements idiomatiques revus
 
@@ -2249,11 +2260,11 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `4300e98f09edadf91349560a10b1b6ff8c8b6c20094346779f261992a2b42815`
+SHA-256 : `91135df6131e111601260685410dedb71d9ca328ea30c78c7bb90e16e0712702`
 
-# Wikidéb’IA — Validateur 0.4.70
+# Wikidéb’IA — Validateur 0.4.71
 
-Version courante pour la norme 1.2.67 et le kit 2.15.51.
+Version courante pour la norme 1.2.68 et le kit 2.15.52.
 
 Elle conserve les contrôles différentiels et sémantiques de la lignée traduction 0.4.64 et intègre les contrôles de la lignée publication GitHub : `nom-consacré` / `established-name`, `AI-translated quote`, absence d'`initialization` sur une nouvelle traduction anglaise, cohérence normative et préservation historique des alias.
 
@@ -2265,10 +2276,18 @@ Le correctif 0.4.69 aligne les diagnostics et la copie normative sur les documen
 
 Le correctif 0.4.70 accepte et contrôle les schémas sémantiques 1.4 / 1.3, les changements idiomatiques explicitement revus, le corpus réel de régressions et les preuves de champ scellées.
 
+Le correctif 0.4.71 formalise les familles de méthodes de convergence 1.1 tout en conservant la lecture 1.0.
+
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `6f53d9e809a598ce2b12ef322396d65a6063b658fb9a199e0ab239c995d11383`
+SHA-256 : `18f730c6d96285c6b3aec0732f4535a8005c15bd179e279b751f25d9efdc5437`
+
+## 0.4.71 — 10 août 2026 — familles de convergence normalisées
+
+- accepte les reçus de convergence 1.0 et 1.1 ;
+- exige pour 1.1 deux `method_family` finales distinctes ;
+- conserve tous les contrôles de 0.4.70.
 
 ## 0.4.70 — 10 août 2026 — revue idiomatique et corpus réel de régressions
 
@@ -2314,9 +2333,9 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `d7dfafa0f277e7157ff19c2703239d18c058ffa39f15f8c610b3f031c7294ca7`
+SHA-256 : `4a68893a7ea4f28046a0c7ef49ea6b7c92e01d44f7a8fd05dd1474c48bca88ef`
 
-# Wikidéb’IA — Kit 2.15.51
+# Wikidéb’IA — Kit 2.15.52
 
 Version de réconciliation entre la lignée traduction/validation 2.15.38 et la lignée de publication GitHub 2.15.45 (commit `8b46816`), issues du kit 2.15.32 commun.
 
@@ -2332,10 +2351,19 @@ La version 2.15.50 ajoute un garde-fou croisé empêchant le retour de formulati
 
 La version 2.15.51 étend la preuve propositionnelle : changement de forme idiomatique sous revue explicite, corpus versionné de régressions réelles, catalogue de marqueurs aligné avec le validateur et preuves sémantiques de champ pour Debate/Argument. Elle s’aligne sur 1.2.67 / 0.4.70.
 
+La version 2.15.52 durcit la preuve d’indépendance des passes et les régressions keyword/parsing, sans changer les règles éditoriales.
+
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `f8f5712d99cba19f763219413574acfa35631f2bb19bc05e8055d9a5483d6905`
+SHA-256 : `e7853b1b1922c7d596ed4caf7a1e778cdec9c042f48b0b3a138cbfe853571afc`
+
+## 2.15.52 — 10 août 2026 — durcissement final des preuves
+
+- normalise les familles de méthodes des passes de convergence ;
+- ajoute la régression explicite `established-name=` → keyword ;
+- teste le parsing multiligne jusque dans `wikidebia_publish.py` ;
+- conserve tous les comportements éditoriaux de 2.15.51.
 
 ## 2.15.51 — 10 août 2026 — régressions réelles et changements idiomatiques revus
 
@@ -2622,21 +2650,21 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `9324140c9c6e32defd02b42752c8aa97b6793715ec47a427ae63dc37e366a06f`
+SHA-256 : `48601e9e2a058568ec0775350d89300cd2477a100ac54a9d18e4493454569a60`
 
-Wikidéb’IA Kit 2.15.51 — rapport de tests
+Wikidéb’IA Kit 2.15.52 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 352
-Tests pytest : 352 réussis
-Norme : 1.2.67
-Validateur requis : 0.4.70
-Régressions sémantiques réelles, changements idiomatiques revus, preuves Debate/Argument, convergence, concept_id, release et parsing multiligne : PASSED.
+Tests pytest collectés : 355
+Tests pytest : 355 réussis
+Norme : 1.2.68
+Validateur requis : 0.4.71
+Convergence method_family, contamination established-name→keyword, publication multiligne et workflows hérités : PASSED.
 Ordre normal et ordre de fichiers inversé : PASSED ; modules historiquement sensibles exécutés isolément : PASSED.
 
 ## Guide de traduction anglaise
 
 Source interne : `kit/GUIDE_TRANSLATION_REVIEW.md`  
-SHA-256 : `5d7174f5fdd18861465dfb2d8db1a9e85754d431511a657e3847300840879c57`
+SHA-256 : `9dec8809e36d986a0ae9be121710f1bf2a213bb8740e23ba7a3a9c65163c4af7`
 
 # Guide de traduction anglaise contrôlée — Kit 2.15.48
 
@@ -2754,15 +2782,17 @@ Exemple :
 
 ```bash
 ./wikidebia corpus-workspace-semantic-convergence <debate_id> --work-id <work_id> \
+  --method-family proposition_by_proposition \
   --method "comparaison proposition par proposition" --reviewer "Relecteur A" \
   --note "Comparaison indépendante du sujet, du prédicat, de la force, de la portée et des relations logiques."
 
 ./wikidebia corpus-workspace-semantic-convergence <debate_id> --work-id <work_id> \
+  --method-family risk_marker_review \
   --method "relecture des marqueurs de risque et des propositions limites" --reviewer "Relecteur B" \
   --note "Relecture indépendante des risques, de l'ouverture, de la conclusion, des conditions et des ancrages concrets."
 ```
 
-Le reçu `reviews/en/semantic_convergence_review.json` doit atteindre `status=converged`. Il est ensuite lié au verrou de traduction, à l’inventaire transactionnel et au reçu de release.
+Le reçu courant 1.1 `reviews/en/semantic_convergence_review.json` doit atteindre `status=converged`. Il est ensuite lié au verrou de traduction, à l’inventaire transactionnel et au reçu de release. Les deux dernières passes propres déclarent également des `method_family` différentes parmi `proposition_by_proposition`, `risk_marker_review`, `reverse_source_target`, `field_boundary_review` et `independent_bilingual_reread`; changer seulement le libellé libre de `method` ne suffit pas à établir l’indépendance.
 
 ## 4. Application
 

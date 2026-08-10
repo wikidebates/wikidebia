@@ -668,9 +668,10 @@
         "semantic_convergence_review_schema_version": {
           "type": "string",
           "enum": [
-            "1.0"
+            "1.0",
+            "1.1"
           ],
-          "description": "Reçu de deux passes sémantiques indépendantes consécutives lié à la revue de traduction scellée."
+          "description": "Reçu de deux passes sémantiques indépendantes consécutives lié à la revue de traduction scellée. La version 1.1 ajoute une famille de méthode normalisée et exige deux familles distinctes pour les passes finales."
         }
       },
       "required": [

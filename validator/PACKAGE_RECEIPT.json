@@ -1,11 +1,11 @@
 {
   "artifact": "wikidebia-validator",
-  "version": "0.4.70",
-  "normative_revision": "1.2.67",
+  "version": "0.4.71",
+  "normative_revision": "1.2.68",
   "status": "passed",
-  "declared_file_count": 424,
-  "declared_test_count": 382,
-  "package_manifest_sha256": "a3fbae95bbd5ba4f15ecc75ea4be016abc8b2c64de8463bd0b7065bb026cbccb",
+  "declared_file_count": 428,
+  "declared_test_count": 383,
+  "package_manifest_sha256": "25f1420e4c669db076b193a857e42644eb7d4b35bbbcbfbf0de70fab1c488256",
   "generated_date": "2026-08-10",
-  "receipt_sha256": "4613b7b02b8279a4fdb7de176c8ea139a153fbb3d26e2bd2b4d66b97fd8dcfc0"
+  "receipt_sha256": "64f5bb80b4a565e394d9111180fdd01d9fc348e1ef894d94ff51662e58402c06"
 }

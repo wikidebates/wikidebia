@@ -48,7 +48,7 @@ from wikidebia_content_review import (
     META_DISCOURSE_EN,
 )
 
-KIT_VERSION = "2.15.51"
+KIT_VERSION = "2.15.52"
 DISPLAYED_TITLE_FORMS = {"proposition", "question", "imperative", "thematic_label", "nominal_phrase", "doctrinal_label", "other"}
 NAME_SEARCH_PROVENANCE = {"actual_log", "fresh_recheck", "historical_reconstruction"}
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.1"
@@ -57,7 +57,18 @@ EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
 EN_CONTENT_LOCK_SCHEMA = "wikidebia-en-content-lock-1.0"
 TRANSLATION_CHANGESET_SCHEMA = "wikidebia-en-translation-changeset-1.0"
 EN_SOURCES_WORKING_SCHEMA = "wikidebia-en-source-registry-working-1.0"
-SEMANTIC_CONVERGENCE_SCHEMA = "wikidebia-semantic-convergence-review-1.0"
+SEMANTIC_CONVERGENCE_SCHEMA = "wikidebia-semantic-convergence-review-1.1"
+SEMANTIC_CONVERGENCE_SUPPORTED = {
+    ("wikidebia-semantic-convergence-review-1.0", "1.0"),
+    ("wikidebia-semantic-convergence-review-1.1", "1.1"),
+}
+SEMANTIC_CONVERGENCE_METHOD_FAMILIES = {
+    "proposition_by_proposition",
+    "risk_marker_review",
+    "reverse_source_target",
+    "field_boundary_review",
+    "independent_bilingual_reread",
+}
 
 SEMANTIC_RISK_MARKERS = {
     # Keep these labels aligned with validator.editorial.SEMANTIC_MARKERS.
@@ -169,7 +180,8 @@ def semantic_convergence_receipt_sha256(receipt: Mapping[str, Any]) -> str:
 def verify_semantic_convergence_receipt(receipt: Mapping[str, Any], review: Mapping[str, Any]) -> None:
     review_sha = str(review.get("review_sha256") or "")
     semantic_sha = semantic_content_sha256(review)
-    if receipt.get("schema") != SEMANTIC_CONVERGENCE_SCHEMA or receipt.get("schema_version") != "1.0":
+    schema_pair = (str(receipt.get("schema") or ""), str(receipt.get("schema_version") or ""))
+    if schema_pair not in SEMANTIC_CONVERGENCE_SUPPORTED:
         raise TranslationReviewError("Schéma du reçu de convergence sémantique invalide")
     if receipt.get("translation_review_sha256") != review_sha or receipt.get("semantic_content_sha256") != semantic_sha:
         raise TranslationReviewError("Le reçu de convergence sémantique ne vise plus la revue scellée courante")
@@ -184,6 +196,12 @@ def verify_semantic_convergence_receipt(receipt: Mapping[str, Any], review: Mapp
             raise TranslationReviewError("Les deux dernières passes de convergence doivent viser le même contenu et constater zéro nouvelle erreur certaine")
     if str(first.get("method") or "").strip().casefold() == str(second.get("method") or "").strip().casefold():
         raise TranslationReviewError("Les deux passes finales de convergence doivent employer des méthodes distinctes")
+    if schema_pair[1] == "1.1":
+        families = [str(row.get("method_family") or "").strip() for row in (first, second)]
+        if any(family not in SEMANTIC_CONVERGENCE_METHOD_FAMILIES for family in families):
+            raise TranslationReviewError("Les passes de convergence 1.1 doivent déclarer une famille de méthode normalisée")
+        if families[0] == families[1]:
+            raise TranslationReviewError("Les deux passes finales de convergence doivent appartenir à des familles de méthodes distinctes")
 
 EN_PAGE_LIFECYCLE_PARAMETERS = {
     # Existing-page metadata is opaque.  These fields describe the imported
@@ -1722,7 +1740,7 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     controls["translation_semantic_review_schema_version"] = "1.4"
     controls["semantic_marker_engine_version"] = "1.3"
     controls["semantic_convergence_review_path"] = "reviews/en/semantic_convergence_review.json"
-    controls["semantic_convergence_review_schema_version"] = "1.0"
+    controls["semantic_convergence_review_schema_version"] = "1.1"
     controls["quote_completeness_review_schema_version"] = "1.0"
     controls["documentary_resource_registry_path"] = "data/documentary_resources.json"
     controls["documentary_resource_registry_schema_version"] = "1.0"

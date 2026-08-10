@@ -49,6 +49,7 @@ def make_french_locked(tmp_path: Path) -> tuple[Path, Path, str]:
 def complete_semantic_convergence(project: Path, work_id: str) -> None:
     first = convergence.record_pass(
         project, "debat_test", work_id,
+        method_family="proposition_by_proposition",
         method="proposition-by-proposition semantic comparison",
         reviewer="Semantic reviewer A",
         note="The first independent pass compared propositions, modalities, logical relations and scope against the sealed French source.",
@@ -57,6 +58,7 @@ def complete_semantic_convergence(project: Path, work_id: str) -> None:
     assert first["status"] == "in_progress"
     second = convergence.record_pass(
         project, "debat_test", work_id,
+        method_family="risk_marker_review",
         method="risk-marker and boundary-focused reread",
         reviewer="Semantic reviewer B",
         note="The second independent pass rechecked risk markers, opening and closing propositions, exclusivities and concrete anchors.",
@@ -343,6 +345,36 @@ def test_finalize_rejects_missing_vocabulary_equivalence(tmp_path: Path):
         assert "Équivalence lexicale" in str(exc)
     else:
         raise AssertionError("Équivalence lexicale incomplète acceptée")
+
+
+def test_finalize_rejects_established_name_injected_as_extra_keyword(tmp_path: Path):
+    project, workspace, work_id = make_french_locked(tmp_path)
+    translation.prepare_review(project, "debat_test", work_id)
+    complete_translation_review(workspace)
+    path = workspace / "reviews/en/translation_review.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    row = data["arguments"][0]["translation"]
+    row.update({
+        "argument_name_outcome": "known_name",
+        "argument_name": "Cosmological argument",
+        "argument_name_evidence": [{"source": "Academic reference", "note": "The source uses this exact label for the same reasoning."}],
+        "argument_name_same_reasoning_confirmed": True,
+        "argument_name_non_invented_label_confirmed": True,
+        "argument_name_language_fit_confirmed": True,
+        "argument_name_rationale": "The academic literature uses this exact established label for the reasoning on the page.",
+        "argument_name_page_reasoning_scope_summary": "The page presents the complete causal reasoning covered by the established label.",
+        "argument_name_literature_scope_summary": "The cited literature uses the label for the same complete causal reasoning.",
+        "argument_name_scope_relation": "exact_match",
+        "argument_name_scope_identity_confirmed": True,
+    })
+    row["keywords"].append("Cosmological argument")
+    common.write_json(path, data)
+    try:
+        translation.finalize_review(project, "debat_test", work_id)
+    except translation.TranslationReviewError as exc:
+        assert "Keywords anglais divergents" in str(exc)
+    else:
+        raise AssertionError("Un established-name injecté comme keyword supplémentaire aurait dû être refusé")
 
 
 def test_finalize_rejects_bad_summary_ratio(tmp_path: Path):

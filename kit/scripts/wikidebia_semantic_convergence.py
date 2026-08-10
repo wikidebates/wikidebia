@@ -19,6 +19,8 @@ from wikidebia_translation_review import (
     NORM_VERSION,
     TRANSLATION_REVIEW_SCHEMA,
     SEMANTIC_CONVERGENCE_SCHEMA,
+    SEMANTIC_CONVERGENCE_SUPPORTED,
+    SEMANTIC_CONVERGENCE_METHOD_FAMILIES,
     TranslationReviewError,
     _load_workspace,
     semantic_content_sha256,
@@ -50,7 +52,8 @@ def _assert_review(review: Mapping[str, Any]) -> tuple[str, str]:
 
 def verify_receipt(receipt: Mapping[str, Any], review: Mapping[str, Any], *, require_converged: bool = True) -> None:
     review_sha, semantic_sha = _assert_review(review)
-    if receipt.get("schema") != SEMANTIC_CONVERGENCE_SCHEMA or receipt.get("schema_version") != "1.0":
+    schema_pair = (str(receipt.get("schema") or ""), str(receipt.get("schema_version") or ""))
+    if schema_pair not in SEMANTIC_CONVERGENCE_SUPPORTED:
         raise TranslationReviewError("Schéma du reçu de convergence invalide")
     if receipt.get("translation_review_sha256") != review_sha or receipt.get("semantic_content_sha256") != semantic_sha:
         raise TranslationReviewError("Le reçu de convergence ne correspond plus à la revue scellée")
@@ -70,10 +73,16 @@ def verify_receipt(receipt: Mapping[str, Any], review: Mapping[str, Any], *, req
             raise TranslationReviewError("Les deux dernières passes doivent constater zéro nouvelle erreur certaine")
         if str(p1.get("method") or "").strip().casefold() == str(p2.get("method") or "").strip().casefold():
             raise TranslationReviewError("Les deux passes finales doivent employer des méthodes distinctes")
+        if schema_pair[1] == "1.1":
+            families = [str(row.get("method_family") or "").strip() for row in (p1, p2)]
+            if any(family not in SEMANTIC_CONVERGENCE_METHOD_FAMILIES for family in families):
+                raise TranslationReviewError("Les passes 1.1 doivent déclarer une famille de méthode normalisée")
+            if families[0] == families[1]:
+                raise TranslationReviewError("Les deux passes finales doivent appartenir à des familles de méthodes distinctes")
 
 
 def record_pass(
-    project_root: Path, debate_id: str, work_id: str, *, method: str, reviewer: str,
+    project_root: Path, debate_id: str, work_id: str, *, method_family: str, method: str, reviewer: str,
     note: str, new_certain_errors: int = 0,
 ) -> dict[str, Any]:
     workspace, meta = _load_workspace(project_root, debate_id, work_id)
@@ -81,9 +90,12 @@ def record_pass(
         raise TranslationReviewError(f"Statut incompatible avec la convergence sémantique : {meta.get('status')}")
     review = load_json(workspace / "reviews/en/translation_review.json", "revue anglaise")
     review_sha, semantic_sha = _assert_review(review)
+    method_family = str(method_family or "").strip()
     method = str(method or "").strip()
     reviewer = str(reviewer or "").strip()
     note = str(note or "").strip()
+    if method_family not in SEMANTIC_CONVERGENCE_METHOD_FAMILIES:
+        raise TranslationReviewError("Famille de méthode de convergence inconnue")
     if len(method) < 8 or len(reviewer) < 3 or len(note) < 20:
         raise TranslationReviewError("Méthode, relecteur ou note de convergence insuffisamment documentés")
     if not isinstance(new_certain_errors, int) or new_certain_errors < 0:
@@ -92,14 +104,19 @@ def record_pass(
     if path.is_file():
         receipt = load_json(path, "reçu de convergence")
         # Any previously valid receipt is only reusable for this exact immutable review.
-        if receipt.get("translation_review_sha256") != review_sha or receipt.get("semantic_content_sha256") != semantic_sha:
+        # A legacy 1.0 receipt is readable, but a new pass starts a fresh 1.1 proof chain
+        # so every current pass carries a normalized method family.
+        if (receipt.get("translation_review_sha256") != review_sha
+                or receipt.get("semantic_content_sha256") != semantic_sha
+                or receipt.get("schema") != SEMANTIC_CONVERGENCE_SCHEMA
+                or receipt.get("schema_version") != "1.1"):
             receipt = {}
     else:
         receipt = {}
     if not receipt:
         receipt = {
             "schema": SEMANTIC_CONVERGENCE_SCHEMA,
-            "schema_version": "1.0",
+            "schema_version": "1.1",
             "normative_revision": NORM_VERSION,
             "kit_version": KIT_VERSION,
             "debate_id": debate_id,
@@ -113,6 +130,7 @@ def record_pass(
         }
     pass_row = {
         "pass_id": f"P{len(receipt['passes']) + 1:03d}",
+        "method_family": method_family,
         "method": method,
         "reviewer": reviewer,
         "reviewed_at": now_iso(),
@@ -132,6 +150,8 @@ def record_pass(
         len(trailing) >= 2
         and str(trailing[-2].get("method") or "").strip().casefold()
             != str(trailing[-1].get("method") or "").strip().casefold()
+        and str(trailing[-2].get("method_family") or "").strip()
+            != str(trailing[-1].get("method_family") or "").strip()
     )
     receipt["status"] = "converged" if converged else ("requires_revision" if new_certain_errors else "in_progress")
     receipt["converged_at"] = pass_row["reviewed_at"] if converged else None
@@ -162,6 +182,7 @@ def main() -> int:
     parser.add_argument("debate_id")
     parser.add_argument("--work-id", required=True)
     parser.add_argument("--project-root", default=".")
+    parser.add_argument("--method-family", required=True, choices=sorted(SEMANTIC_CONVERGENCE_METHOD_FAMILIES))
     parser.add_argument("--method", required=True)
     parser.add_argument("--reviewer", required=True)
     parser.add_argument("--note", required=True)
@@ -170,7 +191,7 @@ def main() -> int:
     args = parser.parse_args()
     try:
         result = record_pass(Path(args.project_root).resolve(), args.debate_id, args.work_id,
-                             method=args.method, reviewer=args.reviewer, note=args.note,
+                             method_family=args.method_family, method=args.method, reviewer=args.reviewer, note=args.note,
                              new_certain_errors=args.new_certain_errors)
     except TranslationReviewError as exc:
         if args.machine_readable:

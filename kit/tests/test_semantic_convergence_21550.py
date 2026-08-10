@@ -33,11 +33,11 @@ def test_apply_is_blocked_before_two_convergent_passes(tmp_path: Path):
 def test_two_distinct_zero_error_passes_converge_and_apply(tmp_path: Path):
     project, workspace, work_id, sealed = _sealed(tmp_path)
     first = convergence.record_pass(project, "debat_test", work_id,
-        method="proposition-by-proposition semantic comparison", reviewer="Reviewer A",
+        method_family="proposition_by_proposition", method="proposition-by-proposition semantic comparison", reviewer="Reviewer A",
         note="The first pass compares every proposition and its modal and logical force against the immutable French source.")
     assert first["status"] == "in_progress"
     second = convergence.record_pass(project, "debat_test", work_id,
-        method="risk-marker and edge-proposition reread", reviewer="Reviewer B",
+        method_family="risk_marker_review", method="risk-marker and edge-proposition reread", reviewer="Reviewer B",
         note="The second pass focuses independently on semantic risk markers, first and last propositions, scope and concrete anchors.")
     assert second["status"] == "converged"
     receipt = json.loads((workspace / "reviews/en/semantic_convergence_review.json").read_text(encoding="utf-8"))
@@ -53,23 +53,34 @@ def test_same_method_twice_does_not_converge(tmp_path: Path):
     project, workspace, work_id, sealed = _sealed(tmp_path)
     for reviewer in ("Reviewer A", "Reviewer B"):
         result = convergence.record_pass(project, "debat_test", work_id,
-            method="same semantic reread method", reviewer=reviewer,
+            method_family="risk_marker_review", method="same semantic reread method", reviewer=reviewer,
             note="This intentionally repeats the same method to verify that independence is enforced by the convergence gate.")
+    assert result["status"] == "in_progress"
+
+
+def test_distinct_method_texts_in_same_family_do_not_converge(tmp_path: Path):
+    project, workspace, work_id, sealed = _sealed(tmp_path)
+    convergence.record_pass(project, "debat_test", work_id,
+        method_family="risk_marker_review", method="risk-marker checklist pass one", reviewer="Reviewer A",
+        note="The first pass uses the normalized risk-marker family and checks modal, quantifier and scope markers.")
+    result = convergence.record_pass(project, "debat_test", work_id,
+        method_family="risk_marker_review", method="different risk-marker checklist pass two", reviewer="Reviewer B",
+        note="The second pass uses different wording but the same normalized review family, so it is not independent enough.")
     assert result["status"] == "in_progress"
 
 
 def test_nonzero_error_pass_resets_convergence_chain(tmp_path: Path):
     project, workspace, work_id, sealed = _sealed(tmp_path)
     convergence.record_pass(project, "debat_test", work_id,
-        method="first semantic comparison method", reviewer="Reviewer A",
+        method_family="proposition_by_proposition", method="first semantic comparison method", reviewer="Reviewer A",
         note="This zero-error pass would qualify unless a subsequent pass finds a certain error.")
     bad = convergence.record_pass(project, "debat_test", work_id,
-        method="second independent semantic method", reviewer="Reviewer B",
+        method_family="risk_marker_review", method="second independent semantic method", reviewer="Reviewer B",
         note="This pass intentionally reports a newly detected certain translation error and therefore invalidates convergence.",
         new_certain_errors=1)
     assert bad["status"] == "requires_revision"
     zero = convergence.record_pass(project, "debat_test", work_id,
-        method="third independent semantic method", reviewer="Reviewer C",
+        method_family="field_boundary_review", method="third independent semantic method", reviewer="Reviewer C",
         note="A single clean pass after a certain error is not enough to restore two-pass convergence.")
     assert zero["status"] == "in_progress"
 
@@ -77,10 +88,10 @@ def test_nonzero_error_pass_resets_convergence_chain(tmp_path: Path):
 def test_receipt_is_bound_to_exact_semantic_content_hash(tmp_path: Path):
     project, workspace, work_id, sealed = _sealed(tmp_path)
     convergence.record_pass(project, "debat_test", work_id,
-        method="first independent semantic method", reviewer="Reviewer A",
+        method_family="proposition_by_proposition", method="first independent semantic method", reviewer="Reviewer A",
         note="The first pass is bound to the exact semantic content hash of the finalized translation review.")
     convergence.record_pass(project, "debat_test", work_id,
-        method="second independent semantic method", reviewer="Reviewer B",
+        method_family="risk_marker_review", method="second independent semantic method", reviewer="Reviewer B",
         note="The second pass is also bound to the exact same immutable semantic content hash.")
     receipt = json.loads((workspace / "reviews/en/semantic_convergence_review.json").read_text(encoding="utf-8"))
     review_path = workspace / "reviews/en/translation_review.json"

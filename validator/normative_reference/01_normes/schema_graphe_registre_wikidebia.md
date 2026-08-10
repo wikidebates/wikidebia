@@ -1,4 +1,4 @@
-## Extension 1.2.67 — preuves de forme et de risques
+## Extension 1.2.68 — preuves de forme et de risques
 
 La revue sémantique 1.4 ajoute, lorsque la forme d’un `displayed-title` change, `displayed_title_form_change_reviewed`, `displayed_title_speech_act_preserved` et `displayed_title_form_change_note`. Les risques sémantiques d’un Argument sont accompagnés de `semantic_risk_evidence[]` (`risk`, `source_excerpt`, `target_excerpt`, `note`). La revue Debate possède `debate_field_semantic_risks`, `debate_field_semantic_risk_reviewed`, `debate_field_semantic_risk_note`, `debate_field_semantic_risk_evidence` et un objet `field_sha256` couvrant les quatre champs traduits principaux.
 

@@ -15,8 +15,9 @@ from pathlib import Path
 from typing import Any, Protocol
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-KIT_VERSION = "2.15.51"
-REQUIRED_VALIDATOR_VERSION = "0.4.70"
+KIT_VERSION = "2.15.52"
+REQUIRED_VALIDATOR_VERSION = "0.4.71"
+PUBLICATION_PLAN_VERSION = "wikidebia-publication-plan-2.15.52"
 DIRECT_INTERLANGUAGE_PROFILE = "norm_1_2_direct_interlanguage"
 DEFERRED_TRANSLATION_PROFILE = "norm_1_2_deferred_translation"
 DIRECT_PROFILES = {DIRECT_INTERLANGUAGE_PROFILE, DEFERRED_TRANSLATION_PROFILE}
@@ -1217,7 +1218,7 @@ class GenericPublisher:
             }
             counts[language]["total"] = len(language_actions)
         plan: dict[str, Any] = {
-            "plan_version": "wikidebia-publication-plan-2.15.51",
+            "plan_version": PUBLICATION_PLAN_VERSION,
             "publication_profile": self.publication_profile,
             "kit_version": KIT_VERSION,
             "debate_id": self.config["debate_id"],

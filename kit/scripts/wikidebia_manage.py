@@ -15,9 +15,9 @@ import zipfile
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
-NORM_VERSION = "1.2.67"
-VALIDATOR_VERSION = "0.4.70"
-KIT_VERSION = "2.15.51"
+NORM_VERSION = "1.2.68"
+VALIDATOR_VERSION = "0.4.71"
+KIT_VERSION = "2.15.52"
 SCOPES = ("all", "fr", "en", "fr-debate", "en-debate")
 COMPONENTS = {
     "wikidebia-normes": "norms",
@@ -1784,7 +1784,7 @@ def corpus_workspace_translation_review(
 
 
 def corpus_workspace_semantic_convergence(
-    root: Path, debate_id: str, *, work_id: str, method: str, reviewer: str,
+    root: Path, debate_id: str, *, work_id: str, method_family: str, method: str, reviewer: str,
     note: str, new_certain_errors: int,
 ) -> int:
     script = root / "kit" / "scripts" / "wikidebia_semantic_convergence.py"
@@ -1793,7 +1793,7 @@ def corpus_workspace_semantic_convergence(
     command = [
         python_command(root), str(script), debate_id,
         "--work-id", work_id, "--project-root", str(root),
-        "--method", method, "--reviewer", reviewer, "--note", note,
+        "--method-family", method_family, "--method", method, "--reviewer", reviewer, "--note", note,
         "--new-certain-errors", str(new_certain_errors), "--machine-readable",
     ]
     result = run(command, cwd=root, check=False)
@@ -2138,7 +2138,8 @@ def build_parser() -> argparse.ArgumentParser:
     )
     semantic_convergence_parser.add_argument("debate_id", help="Identifiant du corpus sous corpus/")
     semantic_convergence_parser.add_argument("--work-id", required=True, help="Identifiant du workspace éditorial")
-    semantic_convergence_parser.add_argument("--method", required=True, help="Méthode ou angle de la passe sémantique")
+    semantic_convergence_parser.add_argument("--method-family", required=True, choices=["proposition_by_proposition", "risk_marker_review", "reverse_source_target", "field_boundary_review", "independent_bilingual_reread"], help="Famille normalisée de la passe sémantique")
+    semantic_convergence_parser.add_argument("--method", required=True, help="Méthode concrète ou angle de la passe sémantique")
     semantic_convergence_parser.add_argument("--reviewer", required=True, help="Relecteur de la passe")
     semantic_convergence_parser.add_argument("--note", required=True, help="Note concrète sur la passe effectuée")
     semantic_convergence_parser.add_argument("--new-certain-errors", type=int, default=0, help="Nombre de nouvelles erreurs certaines trouvées")
@@ -2317,7 +2318,7 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "corpus-workspace-semantic-convergence":
         return corpus_workspace_semantic_convergence(
-            root, args.debate_id, work_id=args.work_id, method=args.method,
+            root, args.debate_id, work_id=args.work_id, method_family=args.method_family, method=args.method,
             reviewer=args.reviewer, note=args.note, new_certain_errors=args.new_certain_errors,
         )
 

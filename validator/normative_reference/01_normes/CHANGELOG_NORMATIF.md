@@ -1,3 +1,11 @@
+## 1.2.68 — 10 août 2026 — durcissement des preuves de convergence et de parsing
+
+- ajoute `method_family` au reçu de convergence courant 1.1 et exige deux familles distinctes pour les deux dernières passes propres ;
+- conserve la lecture des reçus historiques 1.0 ;
+- ajoute un test négatif explicite `established-name=` → keyword ;
+- étend le test de parsing multiligne au parseur de publication/prépublication ;
+- ne modifie aucune règle éditoriale de 1.2.67.
+
 ## 1.2.67 — 10 août 2026 — corpus réel de régressions et changements idiomatiques revus
 
 - autorise un changement de forme du `displayed-title` uniquement sous revue explicite de l’acte de langage, de la thèse et de la portée ;

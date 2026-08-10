@@ -1,8 +1,8 @@
-Wikidéb’IA Kit 2.15.51 — rapport de tests
+Wikidéb’IA Kit 2.15.52 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 352
-Tests pytest : 352 réussis
-Norme : 1.2.67
-Validateur requis : 0.4.70
-Régressions sémantiques réelles, changements idiomatiques revus, preuves Debate/Argument, convergence, concept_id, release et parsing multiligne : PASSED.
+Tests pytest collectés : 355
+Tests pytest : 355 réussis
+Norme : 1.2.68
+Validateur requis : 0.4.71
+Convergence method_family, contamination established-name→keyword, publication multiligne et workflows hérités : PASSED.
 Ordre normal et ordre de fichiers inversé : PASSED ; modules historiquement sensibles exécutés isolément : PASSED.

@@ -1,9 +1,9 @@
-# Audit normatif du validateur 0.4.68
+# Audit normatif du validateur 0.4.71
 
-- norme active unique : 1.2.65 ;
-- 484 exigences uniques ;
-- 100 alias de provenance résolus ;
-- copie normative identique au paquet Normes sur 86 fichiers ;
+- norme active unique : 1.2.68 ;
+- 501 exigences uniques ;
+- 102 alias de provenance résolus ;
+- copie normative identique au paquet Normes sur 91 fichiers ;
 - terminologie active : `nom-consacré` / `established-name`, `AI-translated quote` ;
-- continuité de compatibilité : 1.2.62, 1.2.63 et 1.2.65 présentes une seule fois ;
-- exigences de publication et de traduction toutes conservées après fusion.
+- convergence courante : schéma 1.1 avec deux `method_family` finales distinctes ;
+- exigences de publication et traduction des lignées initiale, publication, traduction et parent 1.2.67 conservées.
