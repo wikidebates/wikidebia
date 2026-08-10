@@ -43,7 +43,7 @@ from wikidebia_documentary_resources import build_file as build_documentary_reso
 from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
 from wikidebia_render import RenderError, _load_workspace
 
-KIT_VERSION = "2.15.50"
+KIT_VERSION = "2.15.51"
 RELEASE_MANIFEST_SCHEMA = "1.0"
 RELEASE_RECEIPT_SCHEMA = "wikidebia-local-release-receipt-1.1"
 REMOTE_INPUT_SCHEMA = "wikidebia-remote-comparison-input-1.0"
@@ -322,7 +322,7 @@ def _build_release_copy(project_root: Path, source: Path, target: Path, *, debat
     controls = manifest.setdefault("editorial_controls", {})
     controls["documentary_resource_registry_path"] = resources_rel
     controls["documentary_resource_registry_schema_version"] = "1.0"
-    controls.setdefault("semantic_marker_engine_version", "1.2")
+    controls.setdefault("semantic_marker_engine_version", "1.3")
     structural = structural_sha256(registry)
     gate = {
         "local_release_status": "release_ready",

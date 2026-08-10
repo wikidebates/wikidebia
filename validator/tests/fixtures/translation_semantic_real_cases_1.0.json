@@ -1,0 +1,184 @@
+{
+  "schema": "wikidebia-real-translation-regressions-1.0",
+  "source": "Synthèses de vérification FR→EN fournies le 10 août 2026",
+  "note": "Les références Axxxx indiquent les pages citées dans les synthèses pour la famille d'erreur; les fragments de test sont des fixtures minimales dérivées des erreurs décrites, pas une reconstruction prétendument verbatim de chaque page historique.",
+  "cases": [
+    {
+      "id": "REG-HYPOTHESIS-STATUS",
+      "audit_examples": [
+        "A0083",
+        "A0343",
+        "A0345",
+        "A0363",
+        "A0537",
+        "A0557",
+        "A0659"
+      ],
+      "fr": "L'hypothèse de la réincarnation peut expliquer ces témoignages.",
+      "bad_en": "Reincarnation explains these testimonies.",
+      "good_en": "The reincarnation hypothesis may explain these testimonies.",
+      "expected": [
+        "marker_loss:hypothesis_status"
+      ]
+    },
+    {
+      "id": "REG-CAUSAL-TO-CONDITION",
+      "audit_examples": [
+        "A0118",
+        "A0568",
+        "A0592"
+      ],
+      "fr": "Puisque les témoignages concordent, cette conclusion est proposée.",
+      "bad_en": "If the testimonies agree, this conclusion is proposed.",
+      "good_en": "Since the testimonies agree, this conclusion is proposed.",
+      "expected": [
+        "causal_relation_shifted_to_condition"
+      ]
+    },
+    {
+      "id": "REG-PROBATIVE-FORCE",
+      "audit_examples": [
+        "A0222",
+        "A0236",
+        "A0405",
+        "A0406",
+        "A0575",
+        "A0577",
+        "A0634",
+        "A0662"
+      ],
+      "fr": "Ces observations prouvent que le phénomène existe.",
+      "bad_en": "These observations support the existence of the phenomenon.",
+      "good_en": "These observations prove that the phenomenon exists.",
+      "expected": [
+        "probative_force_weakened"
+      ]
+    },
+    {
+      "id": "REG-SEVERAL-SCOPE",
+      "audit_examples": [
+        "A0290",
+        "A0321",
+        "A0498",
+        "A0609",
+        "A0671"
+      ],
+      "fr": "Plusieurs cultures décrivent ce phénomène.",
+      "bad_en": "A culture describes this phenomenon.",
+      "good_en": "Several cultures describe this phenomenon.",
+      "expected": [
+        "marker_loss:several_quantifier"
+      ]
+    },
+    {
+      "id": "REG-EARTH-SCOPE",
+      "audit_examples": [
+        "A0290",
+        "A0321",
+        "A0498",
+        "A0609",
+        "A0671"
+      ],
+      "fr": "L'existence de la vie sur Terre pose cette question.",
+      "bad_en": "The existence of life raises this question.",
+      "good_en": "The existence of life on Earth raises this question.",
+      "expected": [
+        "earth_scope_anchor_lost"
+      ]
+    },
+    {
+      "id": "REG-LIFE-EXISTENCE-ORIGIN",
+      "audit_examples": [
+        "A0290",
+        "A0321",
+        "A0498",
+        "A0609",
+        "A0671"
+      ],
+      "fr": "L'existence de la vie reste difficile à expliquer.",
+      "bad_en": "The origin of life remains difficult to explain.",
+      "good_en": "The existence of life remains difficult to explain.",
+      "expected": [
+        "life_existence_shifted_to_origin"
+      ]
+    },
+    {
+      "id": "REG-INVARIANTS",
+      "audit_examples": [
+        "glissement lexical observé"
+      ],
+      "fr": "Ces invariants structurent les récits.",
+      "bad_en": "These common patterns structure the narratives.",
+      "good_en": "These invariants structure the narratives.",
+      "expected": [
+        "invariants_concept_lost"
+      ]
+    },
+    {
+      "id": "REG-ARRIERE-MONDE",
+      "audit_examples": [
+        "glissement lexical observé"
+      ],
+      "fr": "L'arrière-monde détourne l'attention du monde vécu.",
+      "bad_en": "The underlying world diverts attention from lived experience.",
+      "good_en": "The world beyond diverts attention from lived experience.",
+      "expected": [
+        "arriere_monde_mistranslated"
+      ]
+    },
+    {
+      "id": "REG-REGLAGE",
+      "audit_examples": [
+        "glissement lexical observé"
+      ],
+      "fr": "Le réglage de ce paramètre modifie le résultat.",
+      "bad_en": "The tuner changes the result.",
+      "good_en": "The setting of this parameter changes the result.",
+      "expected": [
+        "reglage_mistranslated_as_tuner"
+      ]
+    },
+    {
+      "id": "REG-TORDRE",
+      "audit_examples": [
+        "glissement lexical observé"
+      ],
+      "fr": "Cette lecture peut tordre les faits.",
+      "bad_en": "This reading may reinterpret the facts.",
+      "good_en": "This reading may distort the facts.",
+      "expected": [
+        "tordre_mistranslated_as_reinterpreting"
+      ]
+    },
+    {
+      "id": "REG-GENERIC-GOD",
+      "audit_examples": [
+        "distinction God/god observée"
+      ],
+      "fr": "Un dieu créateur serait une explication possible.",
+      "bad_en": "God would be a possible explanation.",
+      "good_en": "A creator god would be a possible explanation.",
+      "expected": [
+        "generic_deity_to_proper_God"
+      ]
+    },
+    {
+      "id": "REG-UNSUPPORTED-QUALIFIER",
+      "audit_examples": [
+        "A0507",
+        "A0522",
+        "A0620",
+        "A0644",
+        "A0653",
+        "A0670",
+        "A0734"
+      ],
+      "fr": "Une affirmation non étayée ne suffit pas.",
+      "bad_en": "A claim is not sufficient.",
+      "good_en": "An unsupported claim is not sufficient.",
+      "expected": [
+        "unsupported_qualifier_lost"
+      ]
+    }
+  ]
+}

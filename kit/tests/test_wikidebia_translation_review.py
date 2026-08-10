@@ -134,6 +134,24 @@ def complete_translation_review(workspace: Path) -> None:
         "reviewed_at": "2026-08-03T21:40:00+02:00",
         "note": "The Debate metadata, introduction and documentation are ready for the bilingual lock.",
     })
+    fr_dmeta = debate["french"]["metadata"]
+    fr_dcontent = debate["french"]["content"]
+    debate_pairs = {
+        "canonical_title": (str(fr_dmeta.get("canonical_title") or ""), debate["canonical_title"]),
+        "topic": (str(fr_dcontent.get("subject") or ""), debate["topic"]),
+        "complete_topic": (str(fr_dcontent.get("complete_topic") or ""), debate["complete_topic"]),
+        "introduction": (str(fr_dcontent.get("introduction") or ""), debate["introduction"]),
+    }
+    debate_risks = []
+    debate_evidence = []
+    for field_name, (source_text, target_text) in debate_pairs.items():
+        for risk in translation._semantic_risk_signals(source_text, target_text):
+            tagged = f"{field_name}:{risk}"
+            debate_risks.append(tagged)
+            debate_evidence.append({"risk": tagged, "source_excerpt": source_text, "target_excerpt": target_text, "note": "The source and target field were compared directly for this semantic-risk signal."})
+    debate["debate_field_semantic_risk_reviewed"] = bool(debate_risks)
+    debate["debate_field_semantic_risk_note"] = "All detected Debate field-level semantic risks were checked against the locked French source." if debate_risks else ""
+    debate["debate_field_semantic_risk_evidence"] = debate_evidence
     for field in translation.INTRO_TRUE_FIELDS:
         debate[field] = True
     titles = {
@@ -213,6 +231,23 @@ def complete_translation_review(workspace: Path) -> None:
             "reviewer": "English reviewer", "reviewed_at": "2026-08-03T21:45:00+02:00",
             "note": "The English title, summary, sections, keywords and documentation preserve the French node.",
         })
+        fr_row = row["french"]
+        fr_meta_row = fr_row["metadata"]
+        fr_content_row = fr_row["content"]
+        semantic_pairs = [
+            (str(fr_meta_row.get("canonical_title") or ""), row["canonical_title"]),
+            (str(fr_meta_row.get("displayed_title") or ""), row["displayed_title"]),
+            (str(fr_content_row.get("summary") or ""), row["summary"]),
+        ]
+        risks = sorted({risk for source_text, target_text in semantic_pairs for risk in translation._semantic_risk_signals(source_text, target_text)})
+        row["semantic_risk_reviewed"] = bool(risks)
+        row["semantic_risk_note"] = "All semantic-risk signals in this test fixture were compared directly with the French source." if risks else ""
+        row["semantic_risk_evidence"] = []
+        for risk in risks:
+            for source_text, target_text in semantic_pairs:
+                if risk in translation._semantic_risk_signals(source_text, target_text):
+                    row["semantic_risk_evidence"].append({"risk": risk, "source_excerpt": source_text, "target_excerpt": target_text, "note": "The source and target excerpts were checked directly for this semantic-risk signal."})
+                    break
         translated_quotes = {
             "A0001": ("Freedom consists in wanting what one wants.", "25 June 2012"),
             "A0002": ("A sufficient cause is not necessarily a constraint.", "June 2012"),

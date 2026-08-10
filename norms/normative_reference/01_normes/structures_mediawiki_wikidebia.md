@@ -1,3 +1,7 @@
+## Contrat de traduction 1.2.67
+
+Le contrat MediaWiki ne change pas les noms de modèles ou paramètres introduits en 1.2.66. La preuve éditoriale est renforcée : un changement idiomatique de forme d’un `displayed-title` doit être justifié et conserver le même acte propositionnel ; chaque risque sémantique détecté est relié à des extraits source/cible ; les champs traduits de Debate sont hachés et revus individuellement.
+
 # Structures MediaWiki autorisées de Wikidéb'IA
 
 - **Version du schéma :** 1.0

@@ -48,7 +48,7 @@ from wikidebia_content_review import (
     META_DISCOURSE_EN,
 )
 
-KIT_VERSION = "2.15.50"
+KIT_VERSION = "2.15.51"
 DISPLAYED_TITLE_FORMS = {"proposition", "question", "imperative", "thematic_label", "nominal_phrase", "doctrinal_label", "other"}
 NAME_SEARCH_PROVENANCE = {"actual_log", "fresh_recheck", "historical_reconstruction"}
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.1"
@@ -60,13 +60,28 @@ EN_SOURCES_WORKING_SCHEMA = "wikidebia-en-source-registry-working-1.0"
 SEMANTIC_CONVERGENCE_SCHEMA = "wikidebia-semantic-convergence-review-1.0"
 
 SEMANTIC_RISK_MARKERS = {
-    "negation": (re.compile(r"\b(?:ne|n['’])[^,.;:!?]{0,60}\b(?:pas|plus|jamais|aucun|aucune)\b|\bsans\b", re.I), re.compile(r"\b(?:not|no|never|without|cannot|can't|doesn't|don't|isn't|aren't)\b", re.I)),
-    "condition": (re.compile(r"\b(?:si|m[êe]me\s+si|[àa]\s+condition\s+que)\b", re.I), re.compile(r"\b(?:if|even\s+if|provided\s+that|assuming\s+that)\b", re.I)),
-    "causal": (re.compile(r"\b(?:car|parce\s+que|puisque)\b", re.I), re.compile(r"\b(?:because|since|due\s+to)\b", re.I)),
-    "restriction": (re.compile(r"\b(?:seulement|uniquement)\b|\bne\b[^,.;:!?]{0,80}\bque\b", re.I), re.compile(r"\b(?:only|merely|nothing\s+but)\b", re.I)),
-    "hypothesis": (re.compile(r"\bhypoth[èe]se\b", re.I), re.compile(r"\b(?:hypothesis|assumption)\b", re.I)),
-    "several": (re.compile(r"\b(?:plusieurs|divers|diverses|diff[ée]rents|diff[ée]rentes)\b", re.I), re.compile(r"\b(?:several|multiple|various|different|many|numerous)\b", re.I)),
+    # Keep these labels aligned with validator.editorial.SEMANTIC_MARKERS.
+    "attribution": (re.compile(r"\b(?:cens[ée]e?s?|pr[ée]tendu(?:e|es|s)?|attribu[ée]e?s?|imput[ée]e?s?|selon|d['’]apr[èe]s)\b", re.I), re.compile(r"\b(?:supposed|alleged|purported|attributed|ascribed|according\s+to)\b", re.I)),
+    "universal_quantifier": (re.compile(r"\b(?:tous|toutes|tout|chaque)\b", re.I), re.compile(r"\b(?:all|every|each)\b", re.I)),
+    "existential_quantifier": (re.compile(r"\b(?:certains|certaines|quelques)\b", re.I), re.compile(r"\b(?:some|certain|a\s+few)\b", re.I)),
+    "many_quantifier": (re.compile(r"\b(?:beaucoup|nombreux|nombreuses|innombrables)\b", re.I), re.compile(r"\b(?:many|numerous|countless|a\s+great\s+many|a\s+great\s+deal)\b", re.I)),
+    "several_quantifier": (re.compile(r"\b(?:plusieurs|divers|diverses|diff[ée]rents|diff[ée]rentes)\b", re.I), re.compile(r"\b(?:several|multiple|various|different)\b", re.I)),
+    "hypothesis_status": (re.compile(r"\b(?:hypoth[èe]se|supposition)\b", re.I), re.compile(r"\b(?:hypothesis|assumption|supposition)\b", re.I)),
+    "interpretation_status": (re.compile(r"\b(?:interpr[èeé]t\w*|consid[èeé]r\w*|vu(?:e)?s?|lu(?:e)?s?)\b[^.!?]{0,80}\bcomme\b", re.I), re.compile(r"\b(?:interpreted|regarded|viewed|seen|understood|read)\s+as\b", re.I)),
     "strong_probative_force": (re.compile(r"\b(?:prouve|prouvent|d[ée]montre|d[ée]montrent|[ée]tablit|[ée]tablissent)\b", re.I), re.compile(r"\b(?:prove|proves|demonstrate|demonstrates|establish|establishes)\b", re.I)),
+    "frequency_often": (re.compile(r"\bsouvent\b", re.I), re.compile(r"\b(?:often|frequently)\b", re.I)),
+    "frequency_always": (re.compile(r"\b(?:toujours|de\s+tous\s+temps)\b", re.I), re.compile(r"\b(?:always|throughout\s+history|at\s+all\s+times)\b", re.I)),
+    "necessity": (re.compile(r"\b(?:n[ée]cessaire|n[ée]cessairement|doit|doivent)\b", re.I), re.compile(r"\b(?:necessary|necessarily|must|has\s+to|have\s+to)\b", re.I)),
+    "possibility": (re.compile(r"\b(?:peut|peuvent|pourrait|pourraient|possible|possiblement)\b", re.I), re.compile(r"\b(?:can|could|may|might|possible|possibly)\b", re.I)),
+    "restriction_only": (re.compile(r"\b(?:seulement|uniquement|simplement)\b|\bne\b[^,.;:!?]{0,80}\bque\b", re.I), re.compile(r"\b(?:only|merely|simply|nothing\s+but)\b", re.I)),
+    "negation": (re.compile(r"\b(?:ne|n['’])[^,.;:!?]{0,60}\b(?:pas|plus|jamais|aucun|aucune)\b|\b(?:sans|impossible)\b", re.I), re.compile(r"\b(?:not|no|never|without|impossible|cannot|can't|doesn't|don't|isn't|aren't|won't|wouldn't|couldn't)\b", re.I)),
+    "condition": (re.compile(r"\b(?:si|m[êe]me\s+si|[àa]\s+condition\s+que)\b", re.I), re.compile(r"\b(?:if|even\s+if|provided\s+that|assuming\s+that)\b", re.I)),
+    "causal_link": (re.compile(r"\b(?:car|parce\s+que|puisque|en\s+raison\s+de)\b", re.I), re.compile(r"\b(?:because|since|because\s+of|due\s+to)\b", re.I)),
+    "consequence_link": (re.compile(r"\b(?:donc|par\s+cons[ée]quent|ce\s+qui|ainsi)\b", re.I), re.compile(r"\b(?:therefore|thus|hence|so|which)\b", re.I)),
+    "concession": (re.compile(r"\b(?:m[êe]me\s+si|bien\s+que|quoique|cependant|n[ée]anmoins)\b", re.I), re.compile(r"\b(?:even\s+if|although|though|however|nevertheless)\b", re.I)),
+    "comparison": (re.compile(r"\b(?:plus|moins|davantage|autant|mieux|pire)\b", re.I), re.compile(r"\b(?:more|less|fewer|greater|better|worse|as\s+much|as\s+many)\b", re.I)),
+    "strong_intensity": (re.compile(r"\b(?:tr[èe]s|parfaitement|[ée]norm[ée]ment|fortement|radicalement)\b", re.I), re.compile(r"\b(?:very|perfectly|enormously|strongly|radically|far\s+more)\b", re.I)),
+    "immediacy": (re.compile(r"\b(?:aussit[oô]t|imm[ée]diatement)\b", re.I), re.compile(r"\b(?:at\s+once|immediately|straightaway)\b", re.I)),
 }
 
 def _field_sha256(value: Any) -> str:
@@ -79,12 +94,40 @@ def _proposition_edges(value: Any) -> tuple[str, str]:
         return "", ""
     return parts[0], parts[-1]
 
+SEMANTIC_LEXICAL_RISK_PAIRS = (
+    ("unsupported_qualifier_lost", re.compile(r"\b(?:sans\s+soutien|non\s+[ée]tay[ée]e?|non\s+fond[ée]e?)\b", re.I), re.compile(r"\b(?:unsupported|unsubstantiated|unfounded)\b", re.I)),
+    ("inherent_qualifier_lost", re.compile(r"\bintrins[èe]quement\b", re.I), re.compile(r"\binherently\b", re.I)),
+    ("collective_scope_lost", re.compile(r"\bcollectivement\b", re.I), re.compile(r"\bcollectively\b", re.I)),
+    ("religious_diversity_qualifier_lost", re.compile(r"\bdiversit[ée]\s+religieuse\b", re.I), re.compile(r"\breligious\s+diversity\b", re.I)),
+    ("living_conditions_qualifier_lost", re.compile(r"\bconditions\s+de\s+vie\b", re.I), re.compile(r"\bliving\s+conditions\b", re.I)),
+    ("sensationalism_qualifier_lost", re.compile(r"\bsensationnalisme\b", re.I), re.compile(r"\bsensationalism\b", re.I)),
+    ("inexplicable_weakened_to_unexplained", re.compile(r"\binexplicable\b", re.I), re.compile(r"\binexplicable\b", re.I)),
+    ("invariants_concept_lost", re.compile(r"\binvariants?\b", re.I), re.compile(r"\binvariants?\b", re.I)),
+    ("arriere_monde_mistranslated", re.compile(r"\barri[èe]re-monde\b", re.I), re.compile(r"\b(?:otherworld|world\s+beyond|transcendent\s+world|metaphysical\s+world)\b", re.I)),
+    ("reglage_mistranslated_as_tuner", re.compile(r"\br[ée]glage\b", re.I), re.compile(r"\b(?:adjustment|setting|fine-tuning|tuning)\b", re.I)),
+    ("tordre_mistranslated_as_reinterpreting", re.compile(r"\btord(?:re|u|ue|ent)\b", re.I), re.compile(r"\b(?:distort|twist|warp|bend)\w*\b", re.I)),
+)
+
+
 def _semantic_risk_signals(fr_text: Any, en_text: Any) -> list[str]:
     fr = _plain(str(fr_text or ""))
     en = _plain(str(en_text or ""))
-    risks = [label for label, (fr_pattern, en_pattern) in SEMANTIC_RISK_MARKERS.items() if fr_pattern.search(fr) and not en_pattern.search(en)]
+    risks = [f"marker_loss:{label}" for label, (fr_pattern, en_pattern) in SEMANTIC_RISK_MARKERS.items() if fr_pattern.search(fr) and not en_pattern.search(en)]
     if META_DISCOURSE_EN.search(en) and not META_DISCOURSE_FR.search(fr):
         risks.append("metadiscourse_added_in_english")
+    if SEMANTIC_RISK_MARKERS["strong_probative_force"][0].search(fr) and re.search(r"\b(?:support|supports|suggest|suggests|indicate|indicates|show|shows|evidence)\b", en, re.I) and not SEMANTIC_RISK_MARKERS["strong_probative_force"][1].search(en):
+        risks.append("probative_force_weakened")
+    if SEMANTIC_RISK_MARKERS["causal_link"][0].search(fr) and SEMANTIC_RISK_MARKERS["condition"][1].search(en) and not SEMANTIC_RISK_MARKERS["causal_link"][1].search(en):
+        risks.append("causal_relation_shifted_to_condition")
+    if re.search(r"\bsur\s+Terre\b", fr, re.I) and not re.search(r"\bon\s+Earth\b", en, re.I):
+        risks.append("earth_scope_anchor_lost")
+    if re.search(r"\b(?:existence|pr[ée]sence)\s+de\s+la\s+vie\b", fr, re.I) and re.search(r"\borigin\s+of\s+life\b", en, re.I):
+        risks.append("life_existence_shifted_to_origin")
+    if re.search(r"\b(?:un|une|aucun|aucune|quelque|des)\s+dieu(?:x)?\b", fr, re.I) and re.search(r"\bGod\b", en) and not re.search(r"\b(?:a|an|no|any|some)\s+god\b|\bgods\b", en, re.I):
+        risks.append("generic_deity_to_proper_God")
+    for label, fr_pattern, en_pattern in SEMANTIC_LEXICAL_RISK_PAIRS:
+        if fr_pattern.search(fr) and not en_pattern.search(en):
+            risks.append(label)
     return sorted(set(risks))
 
 def semantic_content_payload(review: Mapping[str, Any]) -> dict[str, Any]:
@@ -521,6 +564,9 @@ def _blank_debate(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -> 
         "introduction_claim_inventory_reviewed": False,
         "introduction_claim_inventory_note": "",
         "subsection_structure_equivalence_reviewed": False,
+        "debate_field_semantic_risk_reviewed": False,
+        "debate_field_semantic_risk_note": "",
+        "debate_field_semantic_risk_evidence": [],
         "sections_exactly_mapped": False,
         "keywords_exactly_mapped": False,
         "keywords_order_preserved_by_relevance": False,
@@ -592,6 +638,9 @@ def _blank_argument(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -
         "displayed_title_translates_french_displayed_title": False,
         "displayed_title_identity_pattern_reviewed": False,
         "displayed_title_identity_pattern_note": "",
+        "displayed_title_form_change_reviewed": False,
+        "displayed_title_speech_act_preserved": False,
+        "displayed_title_form_change_note": "",
         "summary_ratio_reviewed": False,
         "summary_subject_predicate_scope_modality_reviewed": False,
         "summary_opening_proposition_preserved": False,
@@ -601,6 +650,7 @@ def _blank_argument(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -
         "summary_semantic_evidence_note": "",
         "semantic_risk_reviewed": False,
         "semantic_risk_note": "",
+        "semantic_risk_evidence": [],
         "forceful_expression": "",
         "quantitative_claims_verified": False,
         "quantitative_claims_note": "",
@@ -976,6 +1026,15 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
             raise TranslationReviewError(f"Attestation sémantique différentielle manquante pour Debate : {field}")
     canonical_inventory_note = _text(row.get("canonical_title_semantic_inventory_note"), "inventaire sémantique du titre canonique de Debate", 20)
     introduction_inventory_note = _text(row.get("introduction_claim_inventory_note"), "inventaire des affirmations de l’introduction anglaise", 30)
+    fr_canonical = str(fr_meta.get("canonical_title") or fr_meta.get("titre_canonique") or "").strip()
+    fr_topic = str(fr_content.get("subject") or fr_content.get("topic") or "").strip()
+    fr_complete = str(fr_content.get("complete_topic") or fr_content.get("sujet_complet") or "").strip()
+    fr_introduction = str(fr_content.get("introduction") or "").strip()
+    debate_risk_by_field = {
+        "canonical_title": _semantic_risk_signals(fr_canonical, title),
+        "topic": _semantic_risk_signals(fr_topic, topic),
+        "complete_topic": _semantic_risk_signals(fr_complete, complete),
+    }
     sections = _strings(row.get("sections"), "sections de Debate")
     expected_sections = _expected_sections(fr_meta.get("rubriques") or [])
     if sections != expected_sections or row.get("sections_exactly_mapped") is not True:
@@ -988,6 +1047,33 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
         raise TranslationReviewError("L’ordre de pertinence des keywords de Debate n’est pas attesté")
     introduction = _text(row.get("introduction"), "introduction anglaise", 40)
     _assert_english_wikicode_localized(introduction, "l’introduction anglaise")
+    debate_risk_by_field["introduction"] = _semantic_risk_signals(fr_introduction, introduction)
+    debate_semantic_risks = sorted({f"{field}:{risk}" for field, risks in debate_risk_by_field.items() for risk in risks})
+    debate_risk_note = str(row.get("debate_field_semantic_risk_note") or "").strip()
+    debate_risk_evidence = row.get("debate_field_semantic_risk_evidence") or []
+    if debate_semantic_risks:
+        if row.get("debate_field_semantic_risk_reviewed") is not True:
+            raise TranslationReviewError(f"Risques sémantiques de Debate non revus : {debate_semantic_risks}")
+        debate_risk_note = _text(debate_risk_note, "note de risque sémantique de Debate", 24)
+        if not isinstance(debate_risk_evidence, list):
+            raise TranslationReviewError("Preuves sémantiques de Debate invalides")
+        covered = set()
+        source_fields = {"canonical_title": fr_canonical, "topic": fr_topic, "complete_topic": fr_complete, "introduction": fr_introduction}
+        target_fields = {"canonical_title": title, "topic": topic, "complete_topic": complete, "introduction": introduction}
+        for evidence_row in debate_risk_evidence:
+            if not isinstance(evidence_row, dict) or str(evidence_row.get("risk") or "") not in debate_semantic_risks:
+                raise TranslationReviewError("Preuve sémantique de Debate inconnue")
+            risk = str(evidence_row.get("risk")); field = risk.split(":", 1)[0]
+            source_excerpt = _text(evidence_row.get("source_excerpt"), f"extrait source du risque {risk}", 3)
+            target_excerpt = _text(evidence_row.get("target_excerpt"), f"extrait cible du risque {risk}", 3)
+            _text(evidence_row.get("note"), f"note du risque {risk}", 12)
+            if _plain(source_excerpt).casefold() not in _plain(source_fields[field]).casefold() or _plain(target_excerpt).casefold() not in _plain(target_fields[field]).casefold():
+                raise TranslationReviewError(f"Extrait de preuve de Debate absent du champ {field}")
+            covered.add(risk)
+        if covered != set(debate_semantic_risks):
+            raise TranslationReviewError("Chaque risque sémantique de Debate doit avoir une preuve source/cible")
+    elif not isinstance(debate_risk_evidence, list):
+        raise TranslationReviewError("Preuves sémantiques de Debate invalides")
     subsections = row.get("subsections")
     if not isinstance(subsections, list) or not subsections:
         raise TranslationReviewError("L’introduction anglaise doit comporter des sous-parties")
@@ -1057,6 +1143,16 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
         "introduction_claim_inventory_reviewed": True,
         "introduction_claim_inventory_note": introduction_inventory_note,
         "subsection_structure_equivalence_reviewed": True,
+        "debate_field_semantic_risks": debate_semantic_risks,
+        "debate_field_semantic_risk_reviewed": bool(row.get("debate_field_semantic_risk_reviewed")) if debate_semantic_risks else True,
+        "debate_field_semantic_risk_note": debate_risk_note,
+        "debate_field_semantic_risk_evidence": copy.deepcopy(debate_risk_evidence),
+        "field_sha256": {
+            "fr_canonical_title": _field_sha256(fr_canonical), "en_canonical_title": _field_sha256(title),
+            "fr_topic": _field_sha256(fr_topic), "en_topic": _field_sha256(topic),
+            "fr_complete_topic": _field_sha256(fr_complete), "en_complete_topic": _field_sha256(complete),
+            "fr_introduction": _field_sha256(fr_introduction), "en_introduction": _field_sha256(introduction),
+        },
         "reviewer": row.get("reviewer"), "reviewed_at": row.get("reviewed_at"), "note": row.get("note"),
         "french_subject": fr_content.get("subject"), "french_complete_topic": fr_content.get("complete_topic"),
         **_validate_page_lifecycle(row, "debate", "Debate"),
@@ -1172,7 +1268,11 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         if row.get(field) is not True:
             raise TranslationReviewError(f"Attestation structurée du displayed-title absente pour {node_id} : {field}")
     if source_form != target_form:
-        raise TranslationReviewError(f"La traduction ne doit pas réparer ou dégrader silencieusement la forme du displayed-title source : {node_id} ({source_form} -> {target_form})")
+        if row.get("displayed_title_form_change_reviewed") is not True or row.get("displayed_title_speech_act_preserved") is not True:
+            raise TranslationReviewError(f"Le changement idiomatique de forme du displayed-title exige une revue explicite de l’acte de langage : {node_id} ({source_form} -> {target_form})")
+        _text(row.get("displayed_title_form_change_note"), f"justification du changement de forme du displayed-title de {node_id}", 24)
+        if source_form == "proposition" and target_form != "proposition":
+            raise TranslationReviewError(f"Une proposition française ne peut pas devenir un fragment ou une autre forme non propositionnelle : {node_id}")
     if source_form == "proposition" and row.get("displayed_title_is_complete_proposition") is not True:
         raise TranslationReviewError(f"Un displayed-title source propositionnel doit rester propositionnel en anglais : {node_id}")
     sections = _strings(row.get("sections"), f"sections de {node_id}")
@@ -1195,6 +1295,7 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         semantic_risks = []
         semantic_risk_note = ""
         semantic_evidence_note = ""
+        evidence_rows = []
         source_opening = source_closing = target_opening = target_closing = ""
         for field in ("metadata_equivalent_to_french", "summary_equivalent_to_french", "title_is_idiomatic", "displayed_title_concision_reviewed", "displayed_title_semantically_equivalent"):
             if row.get(field) is not True:
@@ -1228,8 +1329,27 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
             if row.get("semantic_risk_reviewed") is not True:
                 raise TranslationReviewError(f"Risques sémantiques non revus pour {node_id} : {semantic_risks}")
             semantic_risk_note = _text(row.get("semantic_risk_note"), f"note de risque sémantique de {node_id}", 24)
+            evidence_rows = row.get("semantic_risk_evidence")
+            if not isinstance(evidence_rows, list):
+                raise TranslationReviewError(f"Preuves des risques sémantiques invalides pour {node_id}")
+            covered = set()
+            source_blob = " ".join((fr_canonical, fr_displayed, fr_summary)).casefold()
+            target_blob = " ".join((canonical, displayed, summary)).casefold()
+            for evidence_row in evidence_rows:
+                if not isinstance(evidence_row, dict) or str(evidence_row.get("risk") or "") not in semantic_risks:
+                    raise TranslationReviewError(f"Preuve de risque sémantique inconnue pour {node_id}")
+                risk = str(evidence_row.get("risk"))
+                source_excerpt = _text(evidence_row.get("source_excerpt"), f"extrait source du risque {risk} de {node_id}", 3)
+                target_excerpt = _text(evidence_row.get("target_excerpt"), f"extrait cible du risque {risk} de {node_id}", 3)
+                _text(evidence_row.get("note"), f"note de preuve du risque {risk} de {node_id}", 12)
+                if _plain(source_excerpt).casefold() not in _plain(source_blob).casefold() or _plain(target_excerpt).casefold() not in _plain(target_blob).casefold():
+                    raise TranslationReviewError(f"Extrait de preuve sémantique absent du contenu pour {node_id} : {risk}")
+                covered.add(risk)
+            if covered != set(semantic_risks):
+                raise TranslationReviewError(f"Chaque risque sémantique doit avoir une preuve source/cible pour {node_id}")
         else:
             semantic_risk_note = str(row.get("semantic_risk_note") or "").strip()
+            evidence_rows = []
         source_opening, source_closing = _proposition_edges(fr_summary)
         target_opening, target_closing = _proposition_edges(summary)
         expression = _text(row.get("forceful_expression"), f"expression de force anglaise de {node_id}", 8)
@@ -1281,6 +1401,9 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         "displayed_title_translates_french_displayed_title": True,
         "displayed_title_identity_pattern_reviewed": bool(row.get("displayed_title_identity_pattern_reviewed")),
         "displayed_title_identity_pattern_note": str(row.get("displayed_title_identity_pattern_note") or "").strip(),
+        "displayed_title_form_change_reviewed": bool(row.get("displayed_title_form_change_reviewed")) if source_form != target_form else True,
+        "displayed_title_speech_act_preserved": bool(row.get("displayed_title_speech_act_preserved")) if source_form != target_form else True,
+        "displayed_title_form_change_note": str(row.get("displayed_title_form_change_note") or "").strip(),
         "summary_opening_proposition_preserved": bool(row.get("summary_opening_proposition_preserved")) if summary is not None else True,
         "summary_closing_proposition_preserved": bool(row.get("summary_closing_proposition_preserved")) if summary is not None else True,
         "summary_conditions_exclusivities_preserved": bool(row.get("summary_conditions_exclusivities_preserved")) if summary is not None else True,
@@ -1293,6 +1416,7 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         "semantic_risks": semantic_risks,
         "semantic_risk_reviewed": bool(row.get("semantic_risk_reviewed")) if semantic_risks else True,
         "semantic_risk_note": semantic_risk_note,
+        "semantic_risk_evidence": copy.deepcopy(evidence_rows),
         "field_sha256": {
             "fr_canonical_title": _field_sha256(fr_canonical), "en_canonical_title": _field_sha256(canonical),
             "fr_displayed_title": _field_sha256(fr_displayed), "en_displayed_title": _field_sha256(displayed),
@@ -1495,7 +1619,8 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
             "canonical_title_semantic_inventory_reviewed", "canonical_title_semantic_inventory_note",
             "topic_semantic_equivalence_reviewed", "complete_topic_semantic_equivalence_reviewed",
             "introduction_claim_inventory_reviewed", "introduction_claim_inventory_note",
-            "subsection_structure_equivalence_reviewed", "reviewer", "reviewed_at", "note"
+            "subsection_structure_equivalence_reviewed", "debate_field_semantic_risks", "debate_field_semantic_risk_reviewed",
+            "debate_field_semantic_risk_note", "debate_field_semantic_risk_evidence", "field_sha256", "reviewer", "reviewed_at", "note"
         )},
         "arguments": [{k: copy.deepcopy(row[k]) for k in (
             "id", "canonical_title", "displayed_title", "sections", "keywords",
@@ -1505,7 +1630,9 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
             "displayed_title_source_form_reviewed", "displayed_title_no_formal_regression",
             "displayed_title_semantic_inventory_reviewed", "displayed_title_semantic_inventory_note",
             "displayed_title_subject_preserved", "displayed_title_predicate_preserved", "displayed_title_scope_preserved", "displayed_title_modality_preserved",
-            "summary_subject_predicate_scope_modality_reviewed", "displayed_title_is_complete_proposition", "reviewer", "reviewed_at", "note"
+            "displayed_title_form_change_reviewed", "displayed_title_speech_act_preserved", "displayed_title_form_change_note",
+            "summary_subject_predicate_scope_modality_reviewed", "displayed_title_is_complete_proposition", "semantic_risks", "semantic_risk_reviewed",
+            "semantic_risk_note", "semantic_risk_evidence", "field_sha256", "reviewer", "reviewed_at", "note"
         )} for row in final["arguments"]],
     }
     content_lock = {
@@ -1592,8 +1719,8 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     manifest.setdefault("translation_status", {})["en"] = "ready"
     controls = manifest.setdefault("editorial_controls", {})
     controls["translation_validation_mode"] = "differential"
-    controls["translation_semantic_review_schema_version"] = "1.3"
-    controls["semantic_marker_engine_version"] = "1.2"
+    controls["translation_semantic_review_schema_version"] = "1.4"
+    controls["semantic_marker_engine_version"] = "1.3"
     controls["semantic_convergence_review_path"] = "reviews/en/semantic_convergence_review.json"
     controls["semantic_convergence_review_schema_version"] = "1.0"
     controls["quote_completeness_review_schema_version"] = "1.0"

@@ -89,6 +89,7 @@ def validate_coherence(ctx: PackageContext) -> None:
     validate_manual_remote_adoptions(ctx, manifest)
     validate_argument_name_assignments(ctx, manifest)
     validate_argument_name_discovery(ctx, manifest)
+    validate_en_semantic_evidence(ctx, manifest)
     validate_interlanguage_patch(ctx, manifest, registry)
     validate_operation_logs(ctx, manifest)
 
@@ -314,3 +315,60 @@ def validate_operation_logs(ctx: PackageContext, manifest: dict[str, Any]) -> No
                     ctx.report.error("WDV-FS-006", "Titre de journal divergent du manifeste de page", path=rel, pointer=f"ligne {line_no}")
                 if entry.get("source_path") == page.get("file_path") and entry.get("local_sha256") != page.get("sha256"):
                     ctx.report.error("WDV-FS-003", "Empreinte locale du journal divergente du manifeste", path=rel, pointer=f"ligne {line_no}")
+
+
+def semantic_evidence_lock_issues(lock: Any) -> list[dict[str, Any]]:
+    """Validate 1.4 field hashes and risk-evidence coverage in en_content_lock.
+
+    Source excerpts were already checked against the immutable French review by
+    the kit.  The validator independently verifies target hashes and that every
+    recorded semantic risk has exactly usable evidence in the sealed lock.
+    """
+    import hashlib
+    issues: list[dict[str, Any]] = []
+    if not isinstance(lock, dict):
+        return [{'reason': 'missing_or_invalid_en_content_lock'}]
+    def digest(value: Any) -> str:
+        return hashlib.sha256(str(value or '').encode('utf-8')).hexdigest()
+    debate = lock.get('debate') or {}
+    if not isinstance(debate, dict):
+        issues.append({'reason':'invalid_debate_evidence'})
+    else:
+        hashes = debate.get('field_sha256') or {}
+        for key, field in [('en_canonical_title','canonical_title'),('en_topic','topic'),('en_complete_topic','complete_topic'),('en_introduction','introduction')]:
+            if hashes.get(key) != digest(debate.get(field)):
+                issues.append({'reason':'debate_field_sha256', 'field':field})
+        risks = set(debate.get('debate_field_semantic_risks') or [])
+        evidence = debate.get('debate_field_semantic_risk_evidence') or []
+        covered = {str(row.get('risk')) for row in evidence if isinstance(row,dict) and str(row.get('source_excerpt') or '').strip() and str(row.get('target_excerpt') or '').strip() and len(str(row.get('note') or '').strip()) >= 12}
+        if risks != covered:
+            issues.append({'reason':'debate_semantic_risk_evidence_coverage','missing':sorted(risks-covered),'extra':sorted(covered-risks)})
+        if risks and debate.get('debate_field_semantic_risk_reviewed') is not True:
+            issues.append({'reason':'debate_semantic_risk_not_reviewed'})
+    for argument in lock.get('arguments') or []:
+        if not isinstance(argument,dict):
+            issues.append({'reason':'invalid_argument_evidence'}); continue
+        node_id=str(argument.get('id') or '')
+        hashes=argument.get('field_sha256') or {}
+        for key, field in [('en_canonical_title','canonical_title'),('en_displayed_title','displayed_title'),('en_summary','summary')]:
+            if hashes.get(key) != digest(argument.get(field) or ''):
+                issues.append({'reason':'argument_field_sha256','node_id':node_id,'field':field})
+        risks=set(argument.get('semantic_risks') or [])
+        evidence=argument.get('semantic_risk_evidence') or []
+        covered={str(row.get('risk')) for row in evidence if isinstance(row,dict) and str(row.get('source_excerpt') or '').strip() and str(row.get('target_excerpt') or '').strip() and len(str(row.get('note') or '').strip()) >= 12}
+        if risks != covered:
+            issues.append({'reason':'argument_semantic_risk_evidence_coverage','node_id':node_id,'missing':sorted(risks-covered),'extra':sorted(covered-risks)})
+        if risks and argument.get('semantic_risk_reviewed') is not True:
+            issues.append({'reason':'argument_semantic_risk_not_reviewed','node_id':node_id})
+    return issues
+
+
+def validate_en_semantic_evidence(ctx: PackageContext, manifest: dict[str, Any]) -> None:
+    controls=manifest.get('editorial_controls') or {}
+    if str(controls.get('translation_semantic_review_schema_version') or '') != '1.4':
+        return
+    lock=ctx.load_json('data/en_content_lock.json')
+    issues=semantic_evidence_lock_issues(lock)
+    if issues:
+        ctx.report.error('WDV-BIL-010','Preuves sémantiques de traduction 1.4 absentes, incomplètes ou désynchronisées',path='data/en_content_lock.json',details={'issue_count':len(issues),'issues':issues[:30]})
+    ctx.report.metrics.setdefault('coherence',{})['semantic_evidence_14_issues']=len(issues)

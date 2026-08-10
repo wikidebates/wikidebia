@@ -1,3 +1,7 @@
+## Workflow 1.2.67 — convergence après revue des changements de forme
+
+Avant la première passe de convergence, tout changement de forme d’un `displayed-title` est classé et justifié. Une proposition source devenue non-proposition bloque la revue ; une transformation idiomatique recevable ne passe qu’après attestation du même acte de langage, de la même thèse et de la même portée. Les risques sémantiques des Arguments et de Debate doivent tous posséder leurs preuves source/cible avant scellement. Les deux passes de convergence portent ensuite sur cet état exact.
+
 # Workflow de production Wikidéb’IA — norme 1.2.7
 
 **Statut :** workflow actif générique  

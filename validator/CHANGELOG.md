@@ -1,3 +1,10 @@
+## 0.4.70 — 10 août 2026 — revue idiomatique et corpus réel de régressions
+
+- accepte la revue sémantique 1.4 et le moteur de marqueurs 1.3 ;
+- distingue changement idiomatique revu et dégradation formelle ;
+- étend les risques lexicaux et le corpus de fixtures réelles ;
+- maintient la convergence obligatoire pour les revues 1.3 et 1.4.
+
 ## 0.4.69 — 10 août 2026 — équivalence propositionnelle et convergence sémantique
 
 - contrôle le prédicat principal des displayed-title anglais ;

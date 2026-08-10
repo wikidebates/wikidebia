@@ -25,8 +25,8 @@ def test_current_kit_emitted_schema_versions_are_accepted_by_current_sibling_val
     sibling=Path(__file__).resolve().parents[2]/"validator"/"src"/"wikidebia_validator"/"schemas"/"debate_package.schema.json"
     assert sibling.is_file(), f"validator sibling missing: {sibling}"
     schema=json.loads(sibling.read_text(encoding="utf-8")); props=_schema_props(schema)
-    assert "1.2" in props["translation_semantic_review_schema_version"]["enum"]
-    assert "1.1" in props["semantic_marker_engine_version"]["enum"]
+    assert "1.4" in props["translation_semantic_review_schema_version"]["enum"]
+    assert "1.3" in props["semantic_marker_engine_version"]["enum"]
 
 def test_render_test_is_independent_of_collection_order():
     text=(Path(__file__).resolve().parent/"test_wikidebia_render.py").read_text(encoding="utf-8")

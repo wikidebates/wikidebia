@@ -33,4 +33,4 @@ def test_1246_rejects_missing_subsection_inventory():
 
 def test_active_norm_is_1246():
     root=Path(__file__).parents[1]/'normative_reference'/'01_normes'
-    assert sorted(p.name for p in root.glob('WIKIDEBIA_NORME_CONSOLIDEE_*.md')) == ['WIKIDEBIA_NORME_CONSOLIDEE_1.2.66.md']
+    assert sorted(p.name for p in root.glob('WIKIDEBIA_NORME_CONSOLIDEE_*.md')) == ['WIKIDEBIA_NORME_CONSOLIDEE_1.2.67.md']

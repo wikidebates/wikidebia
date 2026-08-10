@@ -1,3 +1,11 @@
+## 2.15.51 — 10 août 2026 — régressions réelles et changements idiomatiques revus
+
+- changement de forme du displayed-title autorisé seulement avec revue de l’acte de langage ;
+- corpus versionné de régressions FR→EN réelles, mauvaises/corrigées ;
+- catalogue sémantique aligné avec le validateur ;
+- preuves source/cible obligatoires pour les risques ;
+- preuves par champ Debate propagées dans les verrous.
+
 ## 2.15.50 — 10 août 2026 — preuve sémantique et convergence finale
 
 - enrichit translation_review avec empreintes, preuves et risques ;

@@ -296,6 +296,9 @@ SEMANTIC_LEXICAL_RISK_PAIRS = (
     ("sensationalism_qualifier_lost", re.compile(r"\bsensationnalisme\b", re.I), re.compile(r"\bsensationalism\b", re.I)),
     ("inexplicable_weakened_to_unexplained", re.compile(r"\binexplicable\b", re.I), re.compile(r"\binexplicable\b", re.I)),
     ("invariants_concept_lost", re.compile(r"\binvariants?\b", re.I), re.compile(r"\binvariants?\b", re.I)),
+    ("arriere_monde_mistranslated", re.compile(r"\barri[èe]re-monde\b", re.I), re.compile(r"\b(?:otherworld|world\s+beyond|transcendent\s+world|metaphysical\s+world)\b", re.I)),
+    ("reglage_mistranslated_as_tuner", re.compile(r"\br[ée]glage\b", re.I), re.compile(r"\b(?:adjustment|setting|fine-tuning|tuning)\b", re.I)),
+    ("tordre_mistranslated_as_reinterpreting", re.compile(r"\btord(?:re|u|ue|ent)\b", re.I), re.compile(r"\b(?:distort|twist|warp|bend)\w*\b", re.I)),
 )
 
 
@@ -945,12 +948,12 @@ def validate_introduction_review_data(review: Any, actual_titles: dict[str, list
         policy_1245 = True
         policy_1246 = True
         required_intro_fields = INTRO_REVIEW_TRUE_FIELDS + ('information_density_reviewed', 'subsections_non_redundant', 'no_generic_stakes_filler', 'documentation_orientation_reviewed', 'youtube_authorship_reviewed', 'dedicated_stakes_subsection_present', 'stakes_consequences_concrete', 'stakes_not_argument_catalogue')
-        if translation_semantic_review_schema_version == '1.1' and lang == 'en':
+        if translation_semantic_review_schema_version in {'1.1', '1.2', '1.3', '1.4'} and lang == 'en':
             required_intro_fields += ('canonical_title_semantic_inventory_reviewed', 'topic_semantic_equivalence_reviewed', 'complete_topic_semantic_equivalence_reviewed', 'introduction_claim_inventory_reviewed', 'subsection_structure_equivalence_reviewed')
         for field in required_intro_fields:
             if entry.get(field) is not True:
                 issues.append({'reason': 'attestation_false_or_missing', 'language': lang, 'field': field})
-        if translation_semantic_review_schema_version == '1.1' and lang == 'en':
+        if translation_semantic_review_schema_version in {'1.1', '1.2', '1.3', '1.4'} and lang == 'en':
             if len(str(entry.get('canonical_title_semantic_inventory_note') or '').strip()) < 20:
                 issues.append({'reason': 'canonical_title_semantic_inventory_note', 'language': lang})
             if len(str(entry.get('introduction_claim_inventory_note') or '').strip()) < 30:
@@ -1314,16 +1317,21 @@ def validate_individual_review_data(review: Any, nodes: list[dict[str, Any]], no
             target_form_en = str(entry.get('displayed_title_target_form_en') or '')
             if source_form_fr not in allowed_forms or source_form_en not in allowed_forms or target_form_en not in allowed_forms:
                 issues.append({'reason': 'displayed_title_form_classification', 'node_id': node_id})
-            elif not (source_form_fr == source_form_en == target_form_en):
-                issues.append({'reason': 'displayed_title_form_regression', 'node_id': node_id, 'source_form_fr': source_form_fr, 'source_form_en': source_form_en, 'target_form_en': target_form_en})
-            if translation_semantic_review_schema_version in {'1.1', '1.2', '1.3'}:
+            elif source_form_en != target_form_en:
+                # A source-authoritative translation may change surface form for
+                # idiomatic reasons, but only under an explicit speech-act review.
+                if source_form_en == 'proposition' and target_form_en != 'proposition':
+                    issues.append({'reason': 'displayed_title_form_regression', 'node_id': node_id, 'source_form_fr': source_form_fr, 'source_form_en': source_form_en, 'target_form_en': target_form_en})
+                elif entry.get('displayed_title_form_change_reviewed_en') is not True or entry.get('displayed_title_speech_act_preserved_en') is not True or len(str(entry.get('displayed_title_form_change_note_en') or '').strip()) < 24:
+                    issues.append({'reason': 'displayed_title_form_change_unreviewed', 'node_id': node_id, 'source_form_fr': source_form_fr, 'source_form_en': source_form_en, 'target_form_en': target_form_en})
+            if translation_semantic_review_schema_version in {'1.1', '1.2', '1.3', '1.4'}:
                 if entry.get('canonical_title_semantic_inventory_reviewed_en') is not True:
                     issues.append({'reason': 'canonical_title_semantic_inventory_reviewed_en', 'node_id': node_id})
                 if entry.get('canonical_title_semantically_equivalent_en') is not True:
                     issues.append({'reason': 'canonical_title_semantically_equivalent_en', 'node_id': node_id})
                 if len(str(entry.get('canonical_title_semantic_inventory_note_en') or '').strip()) < 20:
                     issues.append({'reason': 'canonical_title_semantic_inventory_note_en', 'node_id': node_id})
-            if translation_semantic_review_schema_version in {'1.2', '1.3'}:
+            if translation_semantic_review_schema_version in {'1.2', '1.3', '1.4'}:
                 for field in (
                     'canonical_title_subject_preserved_en', 'canonical_title_predicate_preserved_en',
                     'canonical_title_scope_preserved_en', 'canonical_title_modality_preserved_en',
@@ -1785,7 +1793,7 @@ def _validate_summary_style(ctx: PackageContext, nodes: list[dict[str, Any]], ma
                 if len(node_ids) >= 4:
                     ctx.report.error('WDV-EDT-024', 'Une même phrase de résumé est répétée dans au moins quatre pages', path=review_rel or 'manifest.json', details={'language': language, 'occurrences': len(node_ids), 'node_ids': sorted(node_ids), 'normalized_sentence': sentence})
     differential_translation = bool((manifest.get('editorial_controls') or {}).get('translation_validation_mode') == 'differential')
-    marker_engine_active = str((manifest.get('editorial_controls') or {}).get('semantic_marker_engine_version') or '') in {'1.0', '1.1', '1.2'}
+    marker_engine_active = str((manifest.get('editorial_controls') or {}).get('semantic_marker_engine_version') or '') in {'1.0', '1.1', '1.2', '1.3'}
     if differential_translation and marker_engine_active:
         semantic_summary_signals = 0
         for node_id in sorted(node_map):
@@ -1837,7 +1845,7 @@ def _validate_semantic_convergence(ctx: PackageContext, controls: dict[str, Any]
     if english_deferred and not path:
         return {'required': False, 'status': 'deferred'}
     if not path:
-        if str(controls.get('translation_semantic_review_schema_version') or '') == '1.3':
+        if str(controls.get('translation_semantic_review_schema_version') or '') in {'1.3', '1.4'}:
             ctx.report.error('WDV-BIL-009', 'Reçu de convergence sémantique absent pour une traduction utilisant la revue 1.3', path='manifest.json')
         return {'required': False, 'status': 'absent'}
     if schema_version != '1.0' or not ctx.exists(path):
@@ -1957,7 +1965,7 @@ def validate_editorial(ctx: PackageContext) -> None:
             data = node.get(lang) or {}
             canonical_title = data.get('canonical_title') or ''
             differential_translation = bool((manifest.get('editorial_controls') or {}).get('translation_validation_mode') == 'differential')
-            marker_engine_active = str((manifest.get('editorial_controls') or {}).get('semantic_marker_engine_version') or '') in {'1.0', '1.1', '1.2'}
+            marker_engine_active = str((manifest.get('editorial_controls') or {}).get('semantic_marker_engine_version') or '') in {'1.0', '1.1', '1.2', '1.3'}
             if lang == 'en' and differential_translation and marker_engine_active:
                 fr_canonical = (node.get('fr') or {}).get('canonical_title') or ''
                 canonical_losses = bilingual_semantic_marker_losses(fr_canonical, canonical_title)

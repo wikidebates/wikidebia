@@ -19,8 +19,8 @@ def test_current_manifest_schema_accepts_versions_emitted_by_current_kit():
                 r=find(v)
                 if r: return r
     props=find(schema)
-    assert "1.2" in props["translation_semantic_review_schema_version"]["enum"]
-    assert "1.1" in props["semantic_marker_engine_version"]["enum"]
+    assert "1.4" in props["translation_semantic_review_schema_version"]["enum"]
+    assert "1.3" in props["semantic_marker_engine_version"]["enum"]
 
 def test_name_review_12_allows_empty_scope_fields_when_no_name_found():
     schema=json.loads((SCHEMAS/"argument_name_discovery_review.schema.json").read_text(encoding="utf-8"))
@@ -67,6 +67,6 @@ def test_name_discovery_uses_pre_render_content_lock_when_manifest_pages_are_emp
       "literature_name_scope_summary":"","scope_relation":"","scope_identity_confirmed":False
     }]}
     (tmp_path/"reviews/argument_name_discovery_review.json").write_text(json.dumps(review)+"\n",encoding="utf-8")
-    report=Report("0.4.69",str(tmp_path),["coherence"]); ctx=PackageContext(tmp_path,report)
+    report=Report("0.4.70",str(tmp_path),["coherence"]); ctx=PackageContext(tmp_path,report)
     validate_argument_name_discovery(ctx,manifest)
     assert report.errors==0, [f.to_dict() for f in report.findings]

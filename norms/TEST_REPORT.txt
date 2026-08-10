@@ -1,6 +1,7 @@
-Wikidéb’IA Normes 1.2.66 — audit de cohérence normative
+Wikidéb’IA Normes 1.2.67 — audit de cohérence normative
 Statut : PASSED
-Exigences : 494 uniques
-Alias de provenance : 101
-Norme active unique : 1.2.66 ; norme 1.2.65 archivée exactement avant remplacement.
+Exigences : 499 uniques
+Alias de provenance : 102
+Norme active unique : 1.2.67 ; norme 1.2.66 archivée exactement avant remplacement.
 Arbre normatif destiné au validateur : synchronisé octet pour octet.
+Corpus de régressions sémantiques réelles et contrats de preuve propositionnelle : intégrés.

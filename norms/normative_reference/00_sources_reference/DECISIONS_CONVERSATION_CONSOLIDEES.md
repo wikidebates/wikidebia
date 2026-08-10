@@ -351,3 +351,11 @@ La lignée de traduction/validation 1.2.61 et la lignée de publication GitHub `
 9. Le vocabulaire bilingue peut porter un `concept_id` stable. Les nouvelles productions du kit en assignent un déterministe et les deux langues partagent le même identifiant ; la valeur d'une appellation consacrée n'est jamais injectée comme keyword par implication.
 10. Les contrôles critiques du wikicode multiligne doivent analyser la valeur complète de `summary=` et `quote=` ; les parseurs ou regex ligne-à-ligne simplistes ne constituent pas une preuve de complétude.
 11. Les erreurs réelles corrigées servent de cas de non-régression positifs et négatifs afin qu'une ancienne mauvaise traduction ne puisse redevenir silencieusement admissible.
+
+## Décision du 10 août 2026 — dernière intégration des audits de traduction
+
+1. Un changement idiomatique de forme du `displayed-title` est admis uniquement sous revue explicite du même acte de langage, de la même thèse et de la même portée ; une proposition ne peut devenir un fragment.
+2. Les erreurs réellement observées pendant les vérifications FR→EN alimentent un corpus versionné de régressions avec mauvaise traduction et correction ; lorsque les rapports ne conservent qu’une famille d’erreur, la fixture minimale ne prétend pas être une citation verbatim de la page historique.
+3. Kit et validateur partagent le même catalogue conceptuel de marqueurs sémantiques et en vérifient la cohérence par test croisé.
+4. Tout risque détecté dans la revue finale possède des extraits français et anglais réellement présents et une note de revue.
+5. La page Debate est soumise aux mêmes empreintes par champ et à la même preuve de risque que les pages Argument pour son titre, son topic, son complete-topic et son introduction.

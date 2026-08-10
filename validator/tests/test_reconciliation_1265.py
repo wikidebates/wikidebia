@@ -15,6 +15,6 @@ def test_active_interlanguage_and_quote_docs_match_current_contract():
     assert "`citations=` / `quotes=`" in profile
 
 def test_current_norm_is_1265_and_1264_is_archived():
-    assert (NORM / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.66.md").is_file()
+    assert (NORM / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.67.md").is_file()
     assert (NORM / "history" / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.65.md").is_file()
     assert (NORM / "history" / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.64.md").is_file()

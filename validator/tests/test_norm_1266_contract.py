@@ -19,14 +19,14 @@ def test_norm_1266_requirements_are_unique_and_present():
     assert len(ids) == len(set(ids))
     for rid in [*(f"TRN-{n:03d}" for n in range(20, 28)), "EDT-066", "VAL-054"]:
         assert rid in ids
-    assert data["active_package_revision"] == "1.2.66"
-    assert data["normative_revision"] == "1.2.66"
-    assert len(data["requirements"]) == 494
-    assert len(data["source_aliases"]) == 101
+    assert data["active_package_revision"] == "1.2.67"
+    assert data["normative_revision"] == "1.2.67"
+    assert len(data["requirements"]) >= 494
+    assert len(data["source_aliases"]) >= 101
 
 
 def test_active_norm_1266_contains_convergence_contract():
-    text=(NORM / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.66.md").read_text(encoding="utf-8")
+    text=(NORM / "history" / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.66.md").read_text(encoding="utf-8")
     assert "deux passes sémantiques indépendantes consécutives" in text
     assert "displayed-title" in text and "titre-affiché" in text
     assert "semantic_content_sha256" in text

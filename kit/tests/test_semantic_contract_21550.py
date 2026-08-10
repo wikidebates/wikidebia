@@ -46,3 +46,39 @@ def test_keyword_concept_id_is_generated_and_must_match_in_english(tmp_path: Pat
     common.write_json(path, review)
     with pytest.raises(translation.TranslationReviewError, match="concept_id anglais divergent"):
         translation.finalize_review(project, "debat_test", work_id)
+
+
+def test_idiomatic_displayed_title_form_change_can_be_reviewed_explicitly(tmp_path: Path):
+    project, workspace, work_id, path, review = _prepared_complete(tmp_path)
+    row = review["arguments"][0]["translation"]
+    row["displayed_title_source_form"] = "question"
+    row["displayed_title_target_form"] = "proposition"
+    row["displayed_title_form_change_reviewed"] = True
+    row["displayed_title_speech_act_preserved"] = True
+    row["displayed_title_form_change_note"] = "The change is idiomatic and preserves exactly the same speech act, thesis and logical scope."
+    common.write_json(path, review)
+    result = translation.finalize_review(project, "debat_test", work_id)
+    assert result["status"] == "en_translation_review_finalized"
+
+
+def test_idiomatic_displayed_title_form_change_without_review_is_blocked(tmp_path: Path):
+    project, workspace, work_id, path, review = _prepared_complete(tmp_path)
+    row = review["arguments"][0]["translation"]
+    row["displayed_title_source_form"] = "question"
+    row["displayed_title_target_form"] = "proposition"
+    common.write_json(path, review)
+    with pytest.raises(translation.TranslationReviewError, match="changement idiomatique de forme"):
+        translation.finalize_review(project, "debat_test", work_id)
+
+
+def test_debate_field_semantic_proof_is_bound_to_source_and_target(tmp_path: Path):
+    project, workspace, work_id, path, review = _prepared_complete(tmp_path)
+    debate = review["debate"]
+    debate["french"]["content"]["subject"] = "Toujours le débat test"
+    debate["topic"] = "Test debate"
+    debate["debate_field_semantic_risk_reviewed"] = True
+    debate["debate_field_semantic_risk_note"] = "The missing frequency marker was reviewed directly against the French topic field."
+    debate["debate_field_semantic_risk_evidence"] = []
+    common.write_json(path, review)
+    with pytest.raises(translation.TranslationReviewError, match="Chaque risque sémantique de Debate"):
+        translation.finalize_review(project, "debat_test", work_id)

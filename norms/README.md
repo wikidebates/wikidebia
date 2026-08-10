@@ -1,4 +1,4 @@
-# Wikidéb’IA — Normes 1.2.66
+# Wikidéb’IA — Normes 1.2.67
 
 Révision de réconciliation entre :
 
@@ -15,4 +15,4 @@ La révision 1.2.64 corrige deux défauts de preuve supplémentaires découverts
 La révision 1.2.65 corrige uniquement des contradictions résiduelles dans les documents actifs : terminologie des appellations consacrées, interlangue différée et rendu des citations verrouillées.
 
 
-La révision 1.2.66 ajoute la preuve propositionnelle et la convergence sémantique finale sans modifier les règles de publication déjà actives.
+La révision 1.2.67 complète la preuve propositionnelle par la revue des changements idiomatiques, le corpus réel de régressions et les preuves de champ Debate.

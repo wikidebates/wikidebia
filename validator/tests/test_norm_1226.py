@@ -7,7 +7,7 @@ from wikidebia_validator import __version__
 
 
 def test_validator_version_is_0428_for_norm_1226():
-    assert __version__ == "0.4.69"
+    assert __version__ == "0.4.70"
 
 
 def test_package_schema_does_not_enumerate_norm_1226_as_feature_flag():
@@ -20,4 +20,4 @@ def test_package_schema_does_not_enumerate_norm_1226_as_feature_flag():
 def test_active_normative_source_is_uniquely_1226():
     base = Path(__file__).resolve().parents[1] / "normative_reference" / "01_normes"
     active = sorted(base.glob("WIKIDEBIA_NORME_CONSOLIDEE_*.md"))
-    assert [path.name for path in active] == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.66.md"]
+    assert [path.name for path in active] == ["WIKIDEBIA_NORME_CONSOLIDEE_1.2.67.md"]

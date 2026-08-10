@@ -1,3 +1,12 @@
+## 1.2.67 — 10 août 2026 — corpus réel de régressions et changements idiomatiques revus
+
+- autorise un changement de forme du `displayed-title` uniquement sous revue explicite de l’acte de langage, de la thèse et de la portée ;
+- interdit toujours la dégradation d’une proposition source en fragment/non-proposition ;
+- aligne le catalogue conceptuel des marqueurs sémantiques entre kit et validateur ;
+- versionne un corpus de régressions dérivé des erreurs réelles documentées, avec couples mauvaise/correcte traduction ;
+- exige des extraits de preuve source/cible pour chaque risque sémantique détecté ;
+- étend les empreintes et preuves de risques aux champs de la page `Debate`.
+
 ## 1.2.66 — 10 août 2026 — équivalence propositionnelle et convergence sémantique
 
 - impose la filiation directe `titre-affiché` → `displayed-title` ;
