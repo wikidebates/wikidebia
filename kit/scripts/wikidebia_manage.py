@@ -209,7 +209,19 @@ def inspect_component_zip(archive: Path) -> dict[str, Any]:
                 if hashlib.sha256(payload).hexdigest() != row.get("sha256"):
                     raise ManagementError(f"SHA-256 divergent : {archive.name}:{relative}")
             versions = json.loads(bundle.read("VERSIONS.json").decode("utf-8"))
-            return {"artifact": artifact, "manifest": manifest, "versions": versions}
+            compatibility = {}
+            capabilities = {}
+            if "COMPATIBILITY.json" in names:
+                compatibility = json.loads(bundle.read("COMPATIBILITY.json").decode("utf-8"))
+            if "CAPABILITIES.json" in names:
+                capabilities = json.loads(bundle.read("CAPABILITIES.json").decode("utf-8"))
+            return {
+                "artifact": artifact,
+                "manifest": manifest,
+                "versions": versions,
+                "compatibility": compatibility,
+                "capabilities": capabilities,
+            }
     except (zipfile.BadZipFile, KeyError, UnicodeDecodeError, json.JSONDecodeError) as exc:
         raise ManagementError(f"Composant illisible : {archive.name}") from exc
 
@@ -334,23 +346,65 @@ def current_versions(root: Path) -> dict[str, str]:
 
 
 def verify_version_set(components: dict[str, Path], root: Path, allow_downgrade: bool) -> dict[str, str]:
-    versions_by_artifact = {
-        artifact: {str(key): str(value) for key, value in inspect_component_zip(path)["versions"].items()}
-        for artifact, path in components.items()
+    """Resolve the active release from component-owned versions.
+
+    Historical packages repeat the whole norm/validator/kit triplet inside every
+    component.  Those foreign-version fields are provenance hints, not runtime
+    compatibility gates: otherwise a kit-only maintenance release would force
+    bytewise repackaging of unchanged norms and validator components.
+
+    Each component is therefore authoritative only for its own version.
+    Compatibility is checked through the component manifest's implemented
+    normative revision and, where available, schema/capability metadata.
+    """
+    metadata = {artifact: inspect_component_zip(path) for artifact, path in components.items()}
+    owner_key = {
+        "wikidebia-normes": "norm",
+        "wikidebia-validator": "validator",
+        "wikidebia-kit": "kit",
     }
-    unique = {json.dumps(value, sort_keys=True) for value in versions_by_artifact.values()}
-    if len(unique) != 1:
-        raise ManagementError("Les trois composants ne déclarent pas les mêmes versions")
-    versions = next(iter(versions_by_artifact.values()))
-    required = {"norm", "validator", "kit"}
-    if set(versions) != required:
-        raise ManagementError("VERSIONS.json doit contenir norm, validator et kit")
+    required_artifacts = set(owner_key)
+    if set(metadata) != required_artifacts:
+        raise ManagementError("Les trois composants norm/validator/kit sont requis")
+
+    selected: dict[str, str] = {}
+    required_version_fields = {"norm", "validator", "kit"}
+    for artifact, own_key in owner_key.items():
+        info = metadata[artifact]
+        versions = {str(key): str(value) for key, value in info["versions"].items()}
+        if set(versions) != required_version_fields:
+            raise ManagementError(f"{artifact}: VERSIONS.json doit contenir norm, validator et kit")
+        own_version = versions[own_key]
+        manifest_version = str((info.get("manifest") or {}).get("version") or "")
+        if manifest_version != own_version:
+            raise ManagementError(
+                f"{artifact}: version propre incohérente entre VERSIONS.json ({own_version}) "
+                f"et le manifeste ({manifest_version})"
+            )
+        selected[own_key] = own_version
+
+    active_norm = selected["norm"]
+    # A component that explicitly declares the normative revision it implements
+    # must match the active norm selected for this installation. This is a
+    # functional contract, unlike foreign producer-version hints.
+    for artifact in ("wikidebia-validator", "wikidebia-kit"):
+        implemented = str((metadata[artifact].get("manifest") or {}).get("normative_revision") or "")
+        if implemented and implemented != active_norm:
+            compat = metadata[artifact].get("compatibility") or {}
+            supported = {str(x) for x in compat.get("supported_normative_revisions") or []}
+            compatible = {str(x) for x in compat.get("compatible_normative_revisions") or []}
+            if active_norm not in supported and active_norm not in compatible:
+                raise ManagementError(
+                    f"{artifact}: la norme {active_norm} n'est pas déclarée compatible "
+                    f"(révision implémentée : {implemented})"
+                )
+
     previous = current_versions(root)
     if previous and not allow_downgrade:
-        for key in required:
-            if _version_tuple(versions[key]) < _version_tuple(previous.get(key, "0")):
-                raise ManagementError(f"Rétrogradation refusée pour {key}: {previous[key]} -> {versions[key]}")
-    return versions
+        for key in required_version_fields:
+            if _version_tuple(selected[key]) < _version_tuple(previous.get(key, "0")):
+                raise ManagementError(f"Rétrogradation refusée pour {key}: {previous[key]} -> {selected[key]}")
+    return selected
 
 
 def run(

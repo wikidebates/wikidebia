@@ -139,3 +139,21 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - laisse toute autre divergence de provenance bloquante, sans normalisation ni adoption silencieuse ;
 - exécute cette réparation étroite avant la création/reprise du workspace éditorial afin d’éviter le blocage `Empreinte de provenance divergente` sur une modification effectuée par le kit lui-même ;
 - ajoute des régressions couvrant la mise à jour immédiate de provenance, la reprise du défaut 2.16.5 et le maintien du blocage d’une dérive non attestée.
+
+
+## 2.16.7 — 11 août 2026 — reprise de provenance après plusieurs vagues de corrections du graphe
+
+- corrige la reprise 2.16.6 lorsque plusieurs séries d’actions structurelles ont été exécutées : `reviews/graph_action_decisions.json` ne conserve que la dernière série, tandis que les séries antérieures restent attestées dans `.state/graph-actions/<débat>/` ;
+- agrège, pour la réparation de compatibilité uniquement, les plans et reçus historiques dont les schémas, identifiants de débat et empreintes internes sont valides ;
+- exige que le contenu local corresponde exactement à `desired_sha256` et que la révision de provenance corresponde à la révision réellement écrite par le reçu avant de rafraîchir `sha256` et `size_bytes` ;
+- ne réexécute aucune écriture distante et laisse toute dérive non attestée bloquante ;
+- ajoute une régression reproduisant deux vagues de corrections où l’audit courant a écrasé l’attestation de la première vague.
+## 2.16.8 — 11 août 2026 — import de revue transactionnel et cohérence de release
+
+- `review-import` conserve désormais une sauvegarde transactionnelle jusqu’à la réussite de l’avancement mécanique suivant.
+- En cas d’échec local après acceptation d’une revue, la base, le workflow et les artefacts mécaniques nouvellement créés sont restaurés ; le même paquet de revue reste réimportable.
+- Les actions de graphe déjà écrites à distance sont traitées comme une frontière irréversible explicite et restent enregistrées pour reprise, sans faux rollback local.
+- La réparation de provenance est documentée et testée comme mécanisme fondé sur preuves/schémas plutôt que sur le numéro du kit producteur.
+- Pour les versions installées à partir de 2.16.8, `upgrade` ne requiert plus l’égalité du triplet répété dans les trois composants : chaque composant fait autorité pour sa propre version, les versions étrangères restant de la provenance.
+- La fabrication de release est assortie d’un contrôle explicite garantissant que les trois `VERSIONS.json` embarqués sont identiques.
+

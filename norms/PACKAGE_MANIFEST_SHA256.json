@@ -13,12 +13,12 @@
   "files": [
     {
       "path": "CAPABILITIES.json",
-      "sha256": "8a2800d931f362b0aa818fff891e93bf23826bf6849edfcb0b7d5fae413a14c7",
+      "sha256": "ffd46f231dca32c43dffe47f5feb76f788dea06351d29667f8e6ca5c357d2ae8",
       "size_bytes": 797
     },
     {
       "path": "COMPATIBILITY.json",
-      "sha256": "6bf52c00c1822ecf9cdc3290c36103150ea9d68a3a7bb048d5adc4451d69f5f6",
+      "sha256": "44a222dd986b0ed8caf819e7b4520c5263d0ac8e0e1e4da4807fc94d71673fa0",
       "size_bytes": 556
     },
     {
@@ -33,7 +33,7 @@
     },
     {
       "path": "VERSIONS.json",
-      "sha256": "cb5cbd8e74192921eb041887c722513f4ec83fc22a856f07bc1cf76c41b880e6",
+      "sha256": "911511110e9e4251fa16ea633e469d9a28afc9f7f8583f83f172dfdcaacb8196",
       "size_bytes": 67
     },
     {

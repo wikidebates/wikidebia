@@ -5,6 +5,8 @@ import hashlib
 import json
 import sys
 import zipfile
+
+import pytest
 from pathlib import Path
 
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "wikidebia_manage.py"
@@ -240,6 +242,7 @@ def test_identifier_must_not_include_zip_extension(tmp_path: Path):
 def test_single_legacy_named_zip_uses_manifest_debate_id(tmp_path: Path):
     import zipfile
 
+
     incoming = tmp_path / "incoming"
     incoming.mkdir()
     archive = incoming / "education_sexualite_ecole_fr_en_release_ready_repaired_2026-07-31.zip"
@@ -256,6 +259,7 @@ def test_single_legacy_named_zip_uses_manifest_debate_id(tmp_path: Path):
 
 def test_explicit_archive_stem_may_differ_from_manifest_debate_id(tmp_path: Path):
     import zipfile
+
 
     incoming = tmp_path / "incoming"
     incoming.mkdir()
@@ -1079,3 +1083,48 @@ def test_generated_sources_are_unified_and_legacy_names_are_obsolete(tmp_path: P
         "WIKIDEBIA_VALIDATEUR_ACTIF.md",
         "WIKIDEBIA_RECUS_ARCHIVES.json",
     }
+
+
+def test_verify_version_set_accepts_foreign_version_hints_from_older_release(tmp_path: Path, monkeypatch):
+    components = {
+        "wikidebia-normes": tmp_path / "norms.zip",
+        "wikidebia-validator": tmp_path / "validator.zip",
+        "wikidebia-kit": tmp_path / "kit.zip",
+    }
+    metadata = {
+        "norms.zip": {
+            "versions": {"norm": "1.2.77", "validator": "0.4.80", "kit": "2.16.6"},
+            "manifest": {"version": "1.2.77", "normative_revision": "1.2.77"},
+            "compatibility": {},
+        },
+        "validator.zip": {
+            "versions": {"norm": "1.2.77", "validator": "0.4.80", "kit": "2.16.6"},
+            "manifest": {"version": "0.4.80", "normative_revision": "1.2.77"},
+            "compatibility": {"supported_normative_revisions": ["1.2.77"]},
+        },
+        "kit.zip": {
+            "versions": {"norm": "1.2.77", "validator": "0.4.80", "kit": "2.16.8"},
+            "manifest": {"version": "2.16.8", "normative_revision": "1.2.77"},
+            "compatibility": {},
+        },
+    }
+    monkeypatch.setattr(module, "inspect_component_zip", lambda path: metadata[path.name])
+    assert module.verify_version_set(components, tmp_path, allow_downgrade=False) == {
+        "norm": "1.2.77", "validator": "0.4.80", "kit": "2.16.8"
+    }
+
+
+def test_verify_version_set_rejects_component_own_version_mismatch(tmp_path: Path, monkeypatch):
+    components = {
+        "wikidebia-normes": tmp_path / "norms.zip",
+        "wikidebia-validator": tmp_path / "validator.zip",
+        "wikidebia-kit": tmp_path / "kit.zip",
+    }
+    metadata = {
+        "norms.zip": {"versions": {"norm": "1.2.77", "validator": "0.4.80", "kit": "2.16.6"}, "manifest": {"version": "1.2.77", "normative_revision": "1.2.77"}, "compatibility": {}},
+        "validator.zip": {"versions": {"norm": "1.2.77", "validator": "0.4.80", "kit": "2.16.6"}, "manifest": {"version": "0.4.80", "normative_revision": "1.2.77"}, "compatibility": {}},
+        "kit.zip": {"versions": {"norm": "1.2.77", "validator": "0.4.80", "kit": "2.16.8"}, "manifest": {"version": "2.16.7", "normative_revision": "1.2.77"}, "compatibility": {}},
+    }
+    monkeypatch.setattr(module, "inspect_component_zip", lambda path: metadata[path.name])
+    with pytest.raises(module.ManagementError, match="version propre incohérente"):
+        module.verify_version_set(components, tmp_path, allow_downgrade=False)

@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.77** ;
 - validateur actif : **0.4.80** ;
-- kit actif : **2.16.6**.
+- kit actif : **2.16.8**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3394018 octets — SHA-256 `9fed2e52dafaa137b58b4a3c7da28ebb93011b7c2969ff31cd319ed40ad6a946`
-- `wikidebia-validator.zip` — 3548480 octets — SHA-256 `b57cbb2531f5e11f59971689c7404ea3536e4fe33de80624336cbae6a93b00b4`
-- `wikidebia-kit.zip` — 636168 octets — SHA-256 `7480dc9ce661a99fe9edf58732ee2d301244042e35ca7874338538ac10b586b0`
+- `wikidebia-normes.zip` — 3394024 octets — SHA-256 `ed4c595a184d1a350e3479f922b4e59bedc86b3ace734b21cb14debb8bdb08d9`
+- `wikidebia-validator.zip` — 3548524 octets — SHA-256 `069030e877292d2dc229885601cdfce3ee21e875f35eaa9d5f3060ddffb836da`
+- `wikidebia-kit.zip` — 645850 octets — SHA-256 `937bdae61ddf14791ac70415c96ce198f7076c494d00172a24abcb5345a91bc2`
 
 ## Norme consolidée active
 
@@ -1517,11 +1517,11 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `7a70974a0909dae4cc4bf40b128238edb3bf1a26ce7127d2d9201d4a22259c2d`
+SHA-256 : `519bfbeda3236d6cc9dffa123a46331310f9e8b4900bbef50b986974d6676c27`
 
 # Wikidéb’IA Validator 0.4.80
 
-Le validateur 0.4.80 s’aligne sur la norme 1.2.77 et le kit 2.16.6. Il conserve tous les contrôles existants et sert aussi à valider prospectivement le corpus reconstruit avant toute exécution distante d’une décision structurelle de revue.
+Le validateur 0.4.80 s’aligne sur la norme 1.2.77 et le kit 2.16.8. Il conserve tous les contrôles existants et sert aussi à valider prospectivement le corpus reconstruit avant toute exécution distante d’une décision structurelle de revue.
 
 ## Notes héritées du paquet parent 0.4.73
 
@@ -1661,11 +1661,12 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `9a3696777e8803835c573acbe91a6fe3bc4015235210459fb96f87050da70bc5`
+SHA-256 : `8d62c3a3d8848912fc9cec858c81df8de2fa4140e616f0712ab4e0a49bfa49d2`
 
-# Wikidéb’IA Kit 2.16.6
+# Wikidéb’IA Kit 2.16.8
+Le kit 2.16.8 rend `review-import` transactionnel pour toutes les transitions locales jusqu’au prochain arrêt éditorial : si l’avancement mécanique échoue, la revue reste réimportable et le workflow, la base et les artefacts créés pendant la tentative sont restaurés. Les écritures distantes de corrections du graphe restent une frontière irréversible explicite et sont conservées avec leurs plans/reçus pour une reprise déterministe. La réparation de provenance repose sur les preuves de contenu et les schémas/capacités, pas sur l’égalité du numéro de kit. `upgrade` donne aussi désormais le détail des jeux de versions divergents entre composants.
 
-Le kit 2.16.6 part du commit GitHub `5eca765` (1.2.77 / 0.4.80 / 2.16.5) et corrige la provenance locale après exécution des décisions structurelles du graphe. Les fichiers `imports/fr/**/*.wiki` modifiés par une action `update` ou `redirect` mettent désormais immédiatement à jour leur `sha256` et leur taille dans `data/import_provenance.json`. Pour les états déjà produits par 2.16.4/2.16.5, la reprise répare automatiquement uniquement les fichiers attestés par `reviews/graph_action_decisions.json`, dont le contenu courant correspond exactement à l’empreinte post-action prévue et dont la révision distante a avancé. Toute dérive non attestée reste bloquante.
+Le kit 2.16.7 part du commit GitHub `5eca765` (1.2.77 / 0.4.80 / 2.16.5) et corrige la provenance locale après exécution des décisions structurelles du graphe. Les fichiers `imports/fr/**/*.wiki` modifiés par une action `update` ou `redirect` mettent désormais immédiatement à jour leur `sha256` et leur taille dans `data/import_provenance.json`. Pour les états déjà produits par 2.16.4/2.16.5, la reprise répare automatiquement uniquement les fichiers attestés par `reviews/graph_action_decisions.json`, dont le contenu courant correspond exactement à l’empreinte post-action prévue et dont la révision distante a avancé. Toute dérive non attestée reste bloquante.
 
 Historique 2.16.1 : une anomalie éditoriale de titre importé ne bloque plus avant la revue qui doit précisément la corriger. Les incohérences structurelles restent bloquantes ; lorsqu’elles surviennent, `workflow` affiche leurs codes/messages et produit automatiquement un ZIP de diagnostic minimal sous `outgoing/`. Après correction, relancer la même commande reprend la phase sans reset manuel. Le mécanisme général de paquets de revue introduit en 2.16.0 reste inchangé.
 
@@ -1700,7 +1701,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `93ef6c7ff3d6d42c557b35ca0976f86a993241f7788ed11b19aed29c666702a7`
+SHA-256 : `337938fe7a11752956d48b8d8ba7c686a519741924df8e014bd4d5aee938704b`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1843,6 +1844,23 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - laisse toute autre divergence de provenance bloquante, sans normalisation ni adoption silencieuse ;
 - exécute cette réparation étroite avant la création/reprise du workspace éditorial afin d’éviter le blocage `Empreinte de provenance divergente` sur une modification effectuée par le kit lui-même ;
 - ajoute des régressions couvrant la mise à jour immédiate de provenance, la reprise du défaut 2.16.5 et le maintien du blocage d’une dérive non attestée.
+
+
+## 2.16.7 — 11 août 2026 — reprise de provenance après plusieurs vagues de corrections du graphe
+
+- corrige la reprise 2.16.6 lorsque plusieurs séries d’actions structurelles ont été exécutées : `reviews/graph_action_decisions.json` ne conserve que la dernière série, tandis que les séries antérieures restent attestées dans `.state/graph-actions/<débat>/` ;
+- agrège, pour la réparation de compatibilité uniquement, les plans et reçus historiques dont les schémas, identifiants de débat et empreintes internes sont valides ;
+- exige que le contenu local corresponde exactement à `desired_sha256` et que la révision de provenance corresponde à la révision réellement écrite par le reçu avant de rafraîchir `sha256` et `size_bytes` ;
+- ne réexécute aucune écriture distante et laisse toute dérive non attestée bloquante ;
+- ajoute une régression reproduisant deux vagues de corrections où l’audit courant a écrasé l’attestation de la première vague.
+## 2.16.8 — 11 août 2026 — import de revue transactionnel et cohérence de release
+
+- `review-import` conserve désormais une sauvegarde transactionnelle jusqu’à la réussite de l’avancement mécanique suivant.
+- En cas d’échec local après acceptation d’une revue, la base, le workflow et les artefacts mécaniques nouvellement créés sont restaurés ; le même paquet de revue reste réimportable.
+- Les actions de graphe déjà écrites à distance sont traitées comme une frontière irréversible explicite et restent enregistrées pour reprise, sans faux rollback local.
+- La réparation de provenance est documentée et testée comme mécanisme fondé sur preuves/schémas plutôt que sur le numéro du kit producteur.
+- Pour les versions installées à partir de 2.16.8, `upgrade` ne requiert plus l’égalité du triplet répété dans les trois composants : chaque composant fait autorité pour sa propre version, les versions étrangères restant de la provenance.
+- La fabrication de release est assortie d’un contrôle explicite garantissant que les trois `VERSIONS.json` embarqués sont identiques.
 
 ## Guide de publication
 
@@ -2102,22 +2120,21 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `296e9fb0e500392e2d1af1836d618c194514aa7d19afea801f12145b37bd413f`
+SHA-256 : `0ddd2bf290caa926b0a1a07ca138e3bfb56ea1c8d9cc869712d91cf248d443f0`
 
-Wikidéb’IA Kit 2.16.6 — rapport de tests
-Statut : PASSED
-Tests pytest collectés : 413
-Tests pytest : 413 réussis
-Norme : 1.2.77
-Validateur : 0.4.80
-Cohérence de provenance après actions structurelles, réparation étroite des états 2.16.4/2.16.5, relecture post-écriture bornée et reprise idempotente : PASSED.
+Wikidéb’IA Kit 2.16.8 — rapport de tests
+Date : 2026-08-11
+Résultat : 417 passed
+Commande : pytest -q
+Portée : suite complète du kit avec norme 1.2.77 et validateur 0.4.80 frères.
+Régression ciblée : reprise de provenance après plusieurs vagues d’actions structurelles dont l’audit courant a écrasé l’attestation antérieure.
 
 ## Guide d’orchestration éditoriale
 
 Source interne : `kit/GUIDE_EDITORIAL_ORCHESTRATION.md`  
-SHA-256 : `500d4fb472140b7a816093df37c424cf2763a3598142be9ffa556917299cc172`
+SHA-256 : `fddeab7aee9539646679e2764f671757539081221c72723760a0a0a11175d674`
 
-# Orchestration des revues éditoriales ChatGPT — Kit 2.16.6
+# Orchestration des revues éditoriales ChatGPT — Kit 2.16.7
 
 ## Usage normal
 
@@ -2207,6 +2224,17 @@ Lorsqu’un ZIP de revue rejetée contient des décisions structurelles explicit
 ```
 
 Cette commande valide d’abord la projection locale complète, préflight toutes les pages distantes concernées, puis applique dans l’ordre les modifications des pages mères, les redirections des doublons et les suppressions non fusionnées. Les actions possibles sont `remove`, `merge_redirect`, `move` et `relation_change`. Un doublon est remplacé par `#REDIRECTION [[Destination]]` et le résumé de la page mère mentionne `[[Destination]]`. Les résumés génériques `Corrections` ne sont pas utilisés. Après succès, une nouvelle revue complète du graphe est automatiquement préparée.
+
+
+## Transaction de réimport et reprise
+
+À partir du kit 2.16.8, un `review-import` qui ne comporte pas d’écriture distante irréversible reste une transaction jusqu’au prochain arrêt éditorial. La revue n’est donc pas considérée comme définitivement consommée tant que l’avancement mécanique suivant n’a pas réussi. En cas d’échec, le workflow, la base revue et les artefacts mécaniques créés pendant la tentative sont restaurés ; le même ZIP peut être réimporté.
+
+Les actions de graphe exécutées explicitement avec `--execute-graph-actions` constituent une frontière irréversible : si les écritures distantes ont réussi, leurs plans et reçus restent autoritatifs et le workflow reprend depuis l’état post-action au lieu de prétendre revenir avant les écritures.
+
+## Compatibilité des composants lors de `upgrade`
+
+À partir du gestionnaire 2.16.8, chaque composant est autoritatif pour sa propre version : `wikidebia-normes` pour `norm`, `wikidebia-validator` pour `validator`, et `wikidebia-kit` pour `kit`. Les autres numéros répétés dans leur `VERSIONS.json` sont des informations de provenance et ne doivent plus forcer le reconditionnement d’un composant inchangé. Les garde-fous portent sur la version propre du composant, l’anti-rétrogradation, la révision normative effectivement implémentée et les schémas/capacités déclarés.
 
 ## Guide de traduction anglaise
 

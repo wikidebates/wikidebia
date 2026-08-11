@@ -1,6 +1,6 @@
 {
   "package": "wikidebia-kit",
-  "kit_version": "2.16.6",
+  "kit_version": "2.16.8",
   "normative_revision": "1.2.77",
   "validator_version": "0.4.80",
   "version_source": "VERSIONS.json",
@@ -8,9 +8,10 @@
   "compatibility_scope": "schema_capability_workflows",
   "producer_versions": "provenance_only",
   "exact_release_checks_reserved_for": [
-    "upgrade_installation",
     "anti_downgrade",
     "release_reproducibility",
     "audit_provenance"
-  ]
+  ],
+  "component_owned_version_installation": true,
+  "foreign_version_hints": "provenance_only"
 }

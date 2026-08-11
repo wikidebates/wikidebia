@@ -331,3 +331,59 @@ def test_repair_legacy_2165_provenance_only_for_exact_attested_graph_action(tmp_
         assert "Empreinte de provenance divergente" in str(exc)
     else:
         raise AssertionError("unattested drift must remain blocked")
+
+
+def test_repair_legacy_multiround_provenance_uses_historical_state_plans(tmp_path: Path) -> None:
+    from wikidebia_editorial_workspace import read_import_metadata
+
+    project, build = make_project(tmp_path)
+    oid, nid, target = _prepare_single_occurrence_merge(build)
+    plan, desired, graph_result = ga.prepare_action_plan(build, "debat_test", [{
+        "action": "merge_redirect", "occurrence_id": oid, "node_id": nid, "target_node_id": target,
+    }])
+    parent = next(m for m in plan["mutations"] if m["page_type"] == "debate")
+    prov_before = json.loads((build / "data/import_provenance.json").read_text(encoding="utf-8"))
+    old_parent_sha = next(r["sha256"] for r in prov_before["pages"] if r["import_path"] == parent["source_path"])
+
+    receipt = _receipt_for_local_apply(plan)
+    ga.apply_local_result(build, plan, desired, graph_result, receipt)
+
+    # Persist the immutable first-round state artifacts, as real executions do.
+    run_dir = project / ".state/graph-actions/debat_test/20260811-120000"
+    run_dir.mkdir(parents=True)
+    common.write_json(run_dir / "plan.json", plan)
+    common.write_json(run_dir / "execution-receipt.json", receipt)
+
+    # Recreate the 2.16.5 hash omission for a page touched in round 1.
+    prov_path = build / "data/import_provenance.json"
+    provenance = json.loads(prov_path.read_text(encoding="utf-8"))
+    parent_row = next(r for r in provenance["pages"] if r["import_path"] == parent["source_path"])
+    parent_row["sha256"] = old_parent_sha
+    common.write_json(prov_path, provenance)
+
+    # Simulate a later correction round overwriting graph_action_decisions.json,
+    # which is exactly why 2.16.6 could no longer attest the first-round page.
+    common.write_json(build / "reviews/graph_action_decisions.json", {
+        "schema": ga.ACTION_DECISIONS_SCHEMA,
+        "schema_version": "1.0",
+        "debate_id": "debat_test",
+        "applied_at": common.now_iso(),
+        "plan_sha256": "later",
+        "receipt_sha256": "later",
+        "actions": [],
+        "mutations": [{
+            "operation": "update",
+            "source_path": "imports/fr/arguments/A0002.wiki",
+            "desired_sha256": "0" * 64,
+            "expected_revision_id": 999,
+        }],
+        "historical_snapshot_path": "history/graph-actions/later",
+    })
+
+    repaired = ga.repair_graph_action_import_provenance(
+        build, project_root=project, debate_id="debat_test"
+    )
+    assert parent["source_path"] in repaired["repaired_paths"]
+    provenance = json.loads(prov_path.read_text(encoding="utf-8"))
+    parent_row = next(r for r in provenance["pages"] if r["import_path"] == parent["source_path"])
+    read_import_metadata(build, parent_row)

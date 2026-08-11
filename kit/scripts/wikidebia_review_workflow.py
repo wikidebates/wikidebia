@@ -428,6 +428,97 @@ def _atomic_restore_dir(target: Path, backup: Path) -> None:
     shutil.rmtree(failed, ignore_errors=True)
 
 
+def _direct_children(path: Path) -> set[str]:
+    if not path.is_dir():
+        return set()
+    return {child.name for child in path.iterdir()}
+
+
+def _capture_import_transaction(project_root: Path, debate_id: str) -> dict[str, Any]:
+    workflow_path = _workflow_path(project_root, debate_id)
+    return {
+        "workflow_bytes": workflow_path.read_bytes(),
+        "build_existed": (project_root / ".state" / "corpus-builds" / debate_id).is_dir(),
+        "corpus_existed": (project_root / "corpus" / debate_id).is_dir(),
+        "editorial_root_existed": (project_root / ".state" / "editorial-workspaces" / debate_id).is_dir(),
+        "editorial_children": _direct_children(project_root / ".state" / "editorial-workspaces" / debate_id),
+        "promotion_root_existed": (project_root / ".state" / "corpus-promotions" / debate_id).is_dir(),
+        "promotion_children": _direct_children(project_root / ".state" / "corpus-promotions" / debate_id),
+        "release_root_existed": (project_root / ".state" / "corpus-releases" / debate_id).is_dir(),
+        "release_children": _direct_children(project_root / ".state" / "corpus-releases" / debate_id),
+        "outgoing_root_existed": (project_root / "outgoing").is_dir(),
+        "outgoing_children": _direct_children(project_root / "outgoing"),
+    }
+
+
+def _remove_new_children(path: Path, before: set[str], existed_before: bool) -> None:
+    if not path.exists():
+        return
+    if not path.is_dir() or path.is_symlink():
+        return
+    for child in list(path.iterdir()):
+        if child.name in before:
+            continue
+        if child.is_dir() and not child.is_symlink():
+            shutil.rmtree(child, ignore_errors=True)
+        else:
+            child.unlink(missing_ok=True)
+    if not existed_before:
+        try:
+            path.rmdir()
+        except OSError:
+            pass
+
+
+def _rollback_import_transaction(
+    project_root: Path, debate_id: str, base: Path, backup: Path, snapshot: Mapping[str, Any]
+) -> None:
+    """Restore a local review import if the following mechanical transition fails.
+
+    Review imports are local transactions up to the explicit remote graph-action
+    boundary.  This rollback restores the reviewed control tree, the orchestration
+    state, and any per-debate mechanical artifacts created after the review was
+    accepted (promotion/workspace/release/outgoing handoff).
+    """
+    build = project_root / ".state" / "corpus-builds" / debate_id
+    corpus = project_root / "corpus" / debate_id
+
+    # A graph approval may have atomically moved the reviewed build into corpus/.
+    # The backup is a complete pre-import copy, so remove only a corpus that did
+    # not exist before this transaction, then restore the original base path.
+    if bool(snapshot.get("build_existed")) and not bool(snapshot.get("corpus_existed")) and corpus.is_dir():
+        shutil.rmtree(corpus)
+    if backup.exists():
+        _atomic_restore_dir(base, backup)
+
+    _remove_new_children(
+        project_root / ".state" / "editorial-workspaces" / debate_id,
+        set(snapshot.get("editorial_children") or set()),
+        bool(snapshot.get("editorial_root_existed")),
+    )
+    _remove_new_children(
+        project_root / ".state" / "corpus-promotions" / debate_id,
+        set(snapshot.get("promotion_children") or set()),
+        bool(snapshot.get("promotion_root_existed")),
+    )
+    _remove_new_children(
+        project_root / ".state" / "corpus-releases" / debate_id,
+        set(snapshot.get("release_children") or set()),
+        bool(snapshot.get("release_root_existed")),
+    )
+    _remove_new_children(
+        project_root / "outgoing",
+        set(snapshot.get("outgoing_children") or set()),
+        bool(snapshot.get("outgoing_root_existed")),
+    )
+
+    workflow_path = _workflow_path(project_root, debate_id)
+    workflow_path.parent.mkdir(parents=True, exist_ok=True)
+    temp = workflow_path.with_name(workflow_path.name + ".rollback")
+    temp.write_bytes(bytes(snapshot["workflow_bytes"]))
+    os.replace(temp, workflow_path)
+
+
 def _install_editable_files(base: Path, manifest: Mapping[str, Any], files: Mapping[str, bytes]) -> None:
     for row in manifest.get("editable_files") or []:
         target_rel = str(row.get("target_path") or "")
@@ -707,10 +798,12 @@ def _mechanical_advance(project_root: Path, state: dict[str, Any]) -> dict[str, 
             source = build if build.is_dir() else corpus
             if not source.is_dir():
                 raise WorkflowError("Ni build validé ni corpus promu disponible pour reprendre le workflow")
-            # 2.16.4/2.16.5 updated graph-action import snapshots without refreshing
-            # their raw provenance hashes. Repair only exact, action-attested files
-            # before workspace creation; unrelated drift remains blocking.
-            repair_graph_action_import_provenance(source)
+            # Historical graph-action states may contain post-action import snapshots
+            # whose raw provenance hash was not refreshed. Repair only exact,
+            # action-attested files before workspace creation; unrelated drift
+            # remains blocking. Compatibility is evidence/schema based, not tied
+            # to the producer kit version.
+            repair_graph_action_import_provenance(source, project_root=project_root, debate_id=debate_id)
             review = load_json(source / REVIEW_ENVELOPE, "revue graphe")
             review_sha = str(review.get("review_sha256") or "")
             if not review_sha or review_sha != graph_review_sha256(review):
@@ -976,10 +1069,12 @@ def import_review(project_root: Path, debate_id: str, archive: Path, *, execute_
         if _sha256_file(local) != row.get("sha256_at_prepare"):
             raise WorkflowError(f"Un fichier éditable local a changé hors réimport : {row.get('target_path')}")
 
+    transaction = _capture_import_transaction(project_root, debate_id)
     backup = base.with_name(base.name + f".review-import-backup-{uuid.uuid4().hex[:8]}")
     if backup.exists():
         shutil.rmtree(backup)
     shutil.copytree(base, backup, symlinks=False)
+    irreversible_graph_actions = False
     try:
         _install_editable_files(base, manifest, files)
         review_type = str(manifest["review_type"])
@@ -996,16 +1091,19 @@ def import_review(project_root: Path, debate_id: str, archive: Path, *, execute_
                     "recorded_at": now_iso(),
                 })
                 if execute_graph_actions:
+                    # From the point at which this call returns, remote writes have
+                    # been committed and must never be hidden by a local rollback.
                     action_result = execute_graph_review_actions(
                         project_root, base, debate_id,
                         preflight_validator=lambda preview: run_initial_validator(project_root, preview),
                     )
-                    validation = run_initial_validator(project_root, base)
-                    if validation.get("status") == "failed":
-                        raise WorkflowError("Les décisions structurelles appliquées produisent un graphe local invalide")
+                    irreversible_graph_actions = True
                     state.setdefault("graph_action_executions", []).append(copy.deepcopy(action_result))
                     state["phase"] = "graph_review"
                     state["overwrite_graph_review"] = True
+                    validation = run_initial_validator(project_root, base)
+                    if validation.get("status") == "failed":
+                        raise WorkflowError("Les décisions structurelles appliquées produisent un graphe local invalide")
                 else:
                     state["phase"] = "graph_correction"
             else:
@@ -1068,17 +1166,33 @@ def import_review(project_root: Path, debate_id: str, archive: Path, *, execute_
                 state["phase"] = "apply_render_release"
         else:
             raise WorkflowError(f"Type de revue non pris en charge : {review_type}")
+
+        # The review is consumed only inside the transaction.  If the following
+        # local/mechanical transition fails, both this state change and the
+        # reviewed control tree are rolled back, so the same review package can
+        # safely be retried.  Remote graph actions are the explicit exception:
+        # once written, their post-action state is retained for deterministic resume.
+        state["pending_review"] = None
+        state["status"] = "running"
+        state["updated_at"] = now_iso()
+        _save_workflow(project_root, state)
+        advanced = _mechanical_advance(project_root, state)
     except Exception:
-        _atomic_restore_dir(base, backup)
+        if irreversible_graph_actions:
+            # Keep the exact local projection and action receipt that correspond
+            # to already committed remote writes.  The workflow remains resumable
+            # from its post-action phase and the old review cannot be replayed.
+            state["pending_review"] = None
+            state["status"] = "running"
+            state["updated_at"] = now_iso()
+            _save_workflow(project_root, state)
+            shutil.rmtree(backup, ignore_errors=True)
+        else:
+            _rollback_import_transaction(project_root, debate_id, base, backup, transaction)
         raise
     else:
         shutil.rmtree(backup, ignore_errors=True)
-
-    state["pending_review"] = None
-    state["status"] = "running"
-    state["updated_at"] = now_iso()
-    _save_workflow(project_root, state)
-    return _mechanical_advance(project_root, state)
+        return advanced
 
 
 def status_summary(project_root: Path, debate_id: str) -> dict[str, Any]:

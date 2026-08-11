@@ -5,7 +5,7 @@
   "status": "passed",
   "declared_file_count": 473,
   "declared_test_count": 406,
-  "package_manifest_sha256": "246f53883ada40aac7e197ea665a0e31f76dd19e3861577832456025cb21da9f",
-  "generated_date": "2026-08-11",
-  "receipt_sha256": "9b95a3098af5ad9a829ce0a9d711b7af7917bb479a1a1ae36257d7d0842d8e5b"
+  "package_manifest_sha256": "e3d3778208b68c736ad3c72b235d875b78a972756440abe5cd2a4a6a84a346c8",
+  "generated_date": "2026-08-12",
+  "receipt_sha256": "e2ebbb84ccb51f9dd05a4ef8969fe6aee45c3d8d0b301674fd2bcf4cf21f5e62"
 }

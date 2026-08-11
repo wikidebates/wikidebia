@@ -60,27 +60,122 @@ def _sha256_file_bytes(path: Path) -> str:
     return digest.hexdigest()
 
 
-def repair_graph_action_import_provenance(build: Path) -> dict[str, Any]:
-    """Repair the 2.16.4/2.16.5 local provenance omission after graph actions.
+def _verified_historical_graph_action_mutations(
+    project_root: Path, debate_id: str
+) -> list[dict[str, Any]]:
+    """Return mutations attested by immutable graph-action plans and receipts.
 
-    The repair is deliberately narrow: a provenance row is refreshed only when
-    ``graph_action_decisions.json`` attests the exact import path, the action was
-    an update/redirect, the current local wikicode has the exact normalized hash
-    planned by that action, and the provenance revision has already advanced past
-    the pre-action revision. Any unrelated or ambiguous drift is left untouched so
-    the normal provenance guard will still block it.
+    2.16.4/2.16.5 overwrote ``reviews/graph_action_decisions.json`` after every
+    correction round.  The per-run plan and execution receipt under
+    ``.state/graph-actions/<debate_id>/`` are therefore the durable source for
+    earlier rounds.  Only self-consistent plan/receipt pairs are accepted.
+    """
+    root = project_root / ".state/graph-actions" / debate_id
+    if not root.is_dir():
+        return []
+    attested: list[dict[str, Any]] = []
+    for run_dir in sorted(path for path in root.iterdir() if path.is_dir()):
+        plan_path = run_dir / "plan.json"
+        receipt_path = run_dir / "execution-receipt.json"
+        if not plan_path.is_file() or not receipt_path.is_file():
+            continue
+        try:
+            plan = load_json(plan_path, "plan historique d'actions du graphe")
+            receipt = load_json(receipt_path, "reçu historique d'actions du graphe")
+        except Exception:
+            continue
+        if plan.get("schema") != ACTION_PLAN_SCHEMA or receipt.get("schema") != ACTION_RECEIPT_SCHEMA:
+            continue
+        if str(plan.get("debate_id") or "") != debate_id or str(receipt.get("debate_id") or "") != debate_id:
+            continue
+        if plan.get("plan_sha256") != _sha_object(plan, "plan_sha256"):
+            continue
+        if receipt.get("receipt_sha256") != _sha_object(receipt, "receipt_sha256"):
+            continue
+        if receipt.get("plan_sha256") != plan.get("plan_sha256"):
+            continue
+        results = receipt.get("results") or []
+        if not isinstance(results, list):
+            continue
+        result_by_key: dict[tuple[str, str], Mapping[str, Any]] = {}
+        for result in results:
+            if not isinstance(result, Mapping):
+                continue
+            result_by_key[(str(result.get("title") or ""), str(result.get("operation") or ""))] = result
+        mutations = plan.get("mutations") or []
+        if not isinstance(mutations, list):
+            continue
+        for mutation in mutations:
+            if not isinstance(mutation, Mapping):
+                continue
+            operation = str(mutation.get("operation") or "")
+            if operation not in {"update", "redirect"}:
+                continue
+            result = result_by_key.get((str(mutation.get("title") or ""), operation))
+            if not result or str(result.get("status") or "") != "written":
+                continue
+            if result.get("revision_id") is None:
+                continue
+            expected = mutation.get("expected_revision_id")
+            old_revision = result.get("old_revision_id")
+            if expected is not None and old_revision is not None:
+                try:
+                    if int(expected) != int(old_revision):
+                        continue
+                except (TypeError, ValueError):
+                    continue
+            row = dict(mutation)
+            row["result_revision_id"] = result.get("revision_id")
+            row["attestation_source"] = plan_path.relative_to(project_root).as_posix()
+            attested.append(row)
+    return attested
+
+
+def repair_graph_action_import_provenance(
+    build: Path, *, project_root: Path | None = None, debate_id: str | None = None
+) -> dict[str, Any]:
+    """Repair historical local provenance omissions after graph actions.
+
+    The repair is deliberately narrow and version-agnostic. It accepts the latest
+    local decision audit and, when the project root is supplied, every
+    cryptographically self-consistent historical plan/receipt pair. This is
+    necessary because older workflows could overwrite ``graph_action_decisions.json``
+    after each correction round.  A row
+    is refreshed only when the current local wikicode exactly matches an attested
+    post-action hash and the recorded remote revision matches the attested written
+    revision (or, for the legacy latest-audit fallback, has advanced past the
+    pre-action revision).  Unrelated drift remains blocking.
     """
     decisions_path = build / "reviews/graph_action_decisions.json"
     provenance_path = build / "data/import_provenance.json"
-    if not decisions_path.is_file() or not provenance_path.is_file():
+    if not provenance_path.is_file():
         return {"status": "not_applicable", "repaired_paths": []}
 
-    decisions = load_json(decisions_path, "décisions d'actions du graphe")
+    mutations: list[dict[str, Any]] = []
+    if decisions_path.is_file():
+        decisions = load_json(decisions_path, "décisions d'actions du graphe")
+        latest = decisions.get("mutations") or []
+        if not isinstance(latest, list):
+            raise GraphActionError("Historique d'actions invalide pour la réparation")
+        mutations.extend(dict(row) for row in latest if isinstance(row, Mapping))
+
+    resolved_debate_id = str(debate_id or "").strip()
+    if not resolved_debate_id:
+        try:
+            registry = load_json(build / "data/registre_debat.json", "registre maître")
+            resolved_debate_id = str(registry.get("debate_id") or "").strip()
+        except Exception:
+            resolved_debate_id = ""
+    if project_root is not None and resolved_debate_id:
+        mutations.extend(_verified_historical_graph_action_mutations(project_root, resolved_debate_id))
+
+    if not mutations:
+        return {"status": "not_applicable", "repaired_paths": []}
+
     provenance = load_json(provenance_path, "provenance d'import")
-    mutations = decisions.get("mutations") or []
     prov_rows = provenance.get("pages") or []
-    if not isinstance(mutations, list) or not isinstance(prov_rows, list):
-        raise GraphActionError("Historique d'actions/provenance invalide pour la réparation")
+    if not isinstance(prov_rows, list):
+        raise GraphActionError("Provenance d'import invalide pour la réparation")
     by_path = {
         str(row.get("import_path")): row
         for row in prov_rows
@@ -88,15 +183,14 @@ def repair_graph_action_import_provenance(build: Path) -> dict[str, Any]:
     }
 
     repaired: list[str] = []
-    for mutation in mutations:
-        if not isinstance(mutation, Mapping):
-            continue
+    # Prefer later attestations when the same page was touched in several rounds.
+    for mutation in reversed(mutations):
         operation = str(mutation.get("operation") or "")
         if operation not in {"update", "redirect"}:
             continue
         rel = str(mutation.get("source_path") or "")
         desired_sha = str(mutation.get("desired_sha256") or "")
-        if not rel or not desired_sha:
+        if not rel or not desired_sha or rel in repaired:
             continue
         row = by_path.get(rel)
         path = build / rel
@@ -106,19 +200,26 @@ def repair_graph_action_import_provenance(build: Path) -> dict[str, Any]:
         raw_sha = _sha256_file_bytes(path)
         if str(row.get("sha256") or "") == raw_sha:
             continue
-        # Never bless arbitrary local drift: the exact post-action content and an
-        # advanced remote revision are both required.
         current_text = path.read_text(encoding="utf-8")
         if sha_text(current_text) != desired_sha:
             continue
-        old_revision = mutation.get("expected_revision_id")
+
         current_revision = row.get("revision_id")
-        try:
-            revision_advanced = old_revision is not None and current_revision is not None and int(current_revision) != int(old_revision)
-        except (TypeError, ValueError):
-            revision_advanced = False
-        if not revision_advanced:
+        result_revision = mutation.get("result_revision_id")
+        if result_revision is not None:
+            try:
+                revision_ok = current_revision is not None and int(current_revision) == int(result_revision)
+            except (TypeError, ValueError):
+                revision_ok = False
+        else:
+            old_revision = mutation.get("expected_revision_id")
+            try:
+                revision_ok = old_revision is not None and current_revision is not None and int(current_revision) != int(old_revision)
+            except (TypeError, ValueError):
+                revision_ok = False
+        if not revision_ok:
             continue
+
         row["sha256"] = raw_sha
         row["size_bytes"] = path.stat().st_size
         repaired.append(rel)

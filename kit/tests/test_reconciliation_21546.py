@@ -6,7 +6,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_reconciliation_manifest_and_publication_literals():
     manifest = json.loads((ROOT / 'KIT_MANIFEST.json').read_text(encoding='utf-8'))
-    assert manifest['version'] == '2.16.6'
+    assert manifest['version'] == '2.16.8'
     assert manifest['validator_version'] == '0.4.80'
     assert manifest['normative_revision'] == '1.2.77'
     assert manifest['translation_change_tag'] == 'translated-fr'
@@ -40,4 +40,4 @@ def test_reconciliation_versions_are_coherent():
     versions = json.loads((ROOT / 'VERSIONS.json').read_text(encoding='utf-8'))
     assert versions['norm'] == '1.2.77'
     assert versions['validator'] == '0.4.80'
-    assert versions['kit'] == '2.16.6'
+    assert versions['kit'] == '2.16.8'

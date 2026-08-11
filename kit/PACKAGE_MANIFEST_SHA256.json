@@ -1,6 +1,6 @@
 {
   "artifact": "wikidebia-kit",
-  "version": "2.16.6",
+  "version": "2.16.8",
   "normative_revision": "1.2.77",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
@@ -8,8 +8,8 @@
     "PACKAGE_MANIFEST_SHA256.json",
     "PACKAGE_RECEIPT.json"
   ],
-  "declared_file_count": 316,
-  "declared_test_count": 413,
+  "declared_file_count": 322,
+  "declared_test_count": 417,
   "files": [
     {
       "path": "AUDIT_INTERNAL_PARAMETER_NAMES_2.15.56.md",
@@ -17,19 +17,29 @@
       "size_bytes": 1443
     },
     {
+      "path": "AUDIT_RELEASE_VERSION_COHERENCE_2.16.8.md",
+      "sha256": "3e4f8ccab508df41c149cd75d465667f03d9cca6e475527fdbf8b019645dfb43",
+      "size_bytes": 575
+    },
+    {
+      "path": "AUDIT_REVIEW_IMPORT_TRANSACTION_2.16.8.md",
+      "sha256": "eaba4e4912d67fd704afd106f901d319caa424be09b5d20e253e292e9163d316",
+      "size_bytes": 951
+    },
+    {
       "path": "CAPABILITIES.json",
-      "sha256": "2c9aadbf94c78f4249496a2396d00825c94cf40f0728f403b051ee2a9f630b15",
+      "sha256": "38e50b8158685a4dc6b522f4ec1acfcc1d3e7e7d4e391b91b670309be8c7fc60",
       "size_bytes": 3889
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "93ef6c7ff3d6d42c557b35ca0976f86a993241f7788ed11b19aed29c666702a7",
-      "size_bytes": 11480
+      "sha256": "337938fe7a11752956d48b8d8ba7c686a519741924df8e014bd4d5aee938704b",
+      "size_bytes": 13611
     },
     {
       "path": "COMPATIBILITY.json",
-      "sha256": "4e40d3c239a4cf76e7751a4622c0538f4ccc291dd8a38d0823bad6fc7bcf4c03",
-      "size_bytes": 456
+      "sha256": "af1801d5db31682df6a49b3c5c83eb847a310b06928a31ec1bce30562c52717d",
+      "size_bytes": 522
     },
     {
       "path": "GUIDE_BILINGUAL_RENDER.md",
@@ -58,8 +68,8 @@
     },
     {
       "path": "GUIDE_EDITORIAL_ORCHESTRATION.md",
-      "sha256": "500d4fb472140b7a816093df37c424cf2763a3598142be9ffa556917299cc172",
-      "size_bytes": 5153
+      "sha256": "fddeab7aee9539646679e2764f671757539081221c72723760a0a0a11175d674",
+      "size_bytes": 6551
     },
     {
       "path": "GUIDE_EDITORIAL_REVIEW.md",
@@ -108,7 +118,7 @@
     },
     {
       "path": "KIT_MANIFEST.json",
-      "sha256": "e3d53f7143c58a3a0ed838d2a5cd1d9aed664a298440b84a6e5bd88ff8517650",
+      "sha256": "a90916622d6f89f77a2d32e77a641155f185272833c53e5dcb25420beb2cc9b7",
       "size_bytes": 25430
     },
     {
@@ -482,6 +492,16 @@
       "size_bytes": 751
     },
     {
+      "path": "MIGRATION_2.16.7.md",
+      "sha256": "273686f06276c1752bffc16914e6091996b3017939b8daced4a4d9f9176eb6c2",
+      "size_bytes": 799
+    },
+    {
+      "path": "MIGRATION_2.16.8.md",
+      "sha256": "42a0e751d184b607a1d68e2c4d372b11144f2ffdcbe6433e2dbbe791756028ea",
+      "size_bytes": 678
+    },
+    {
       "path": "MIGRATION_2.2.0.md",
       "sha256": "276554410c7a8864c2153bac6757732a294779a23e409976113db065e98b87c3",
       "size_bytes": 611
@@ -628,8 +648,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "9a3696777e8803835c573acbe91a6fe3bc4015235210459fb96f87050da70bc5",
-      "size_bytes": 4646
+      "sha256": "8d62c3a3d8848912fc9cec858c81df8de2fa4140e616f0712ab4e0a49bfa49d2",
+      "size_bytes": 5325
     },
     {
       "path": "REGRESSION_AUDIT_2.15.38.md",
@@ -712,13 +732,23 @@
       "size_bytes": 780
     },
     {
+      "path": "REGRESSION_AUDIT_2.16.7.md",
+      "sha256": "dc50b3e333eb3a2123c47c2562395882fabe65c8407cb337caf74a989c04795f",
+      "size_bytes": 991
+    },
+    {
+      "path": "REGRESSION_AUDIT_2.16.8.md",
+      "sha256": "4311f3820fe0401fad0b6140147ade06831afac0ce9e324149ff0b50c2dc59ea",
+      "size_bytes": 672
+    },
+    {
       "path": "TEST_REPORT.txt",
-      "sha256": "296e9fb0e500392e2d1af1836d618c194514aa7d19afea801f12145b37bd413f",
-      "size_bytes": 323
+      "sha256": "0ddd2bf290caa926b0a1a07ca138e3bfb56ea1c8d9cc869712d91cf248d443f0",
+      "size_bytes": 346
     },
     {
       "path": "VERSIONS.json",
-      "sha256": "cb5cbd8e74192921eb041887c722513f4ec83fc22a856f07bc1cf76c41b880e6",
+      "sha256": "911511110e9e4251fa16ea633e469d9a28afc9f7f8583f83f172dfdcaacb8196",
       "size_bytes": 67
     },
     {
@@ -838,7 +868,7 @@
     },
     {
       "path": "config.example.json",
-      "sha256": "b0491452191c4e972c587131fcf6cf643b0036bf60fb75ba3430e2ddc799577a",
+      "sha256": "2eb3887bd77aeff74ce02b4db3a0abc85852503d9df612d67e90f538e1e98b1a",
       "size_bytes": 1704
     },
     {
@@ -1198,7 +1228,7 @@
     },
     {
       "path": "pyproject.toml",
-      "sha256": "a18fbfde1f820733284faa4795aed160c59590aac1ab80e25968ff886e1dae2f",
+      "sha256": "964b1fe24737e00bf9997267fd8b21c079752b5c3edcb3d781a05627cce083ff",
       "size_bytes": 142
     },
     {
@@ -1273,8 +1303,8 @@
     },
     {
       "path": "scripts/wikidebia_graph_actions.py",
-      "sha256": "df17dca4dcd59b1b37e2a5f866fac0041fc16e788146950d620539c004f28d78",
-      "size_bytes": 51915
+      "sha256": "5889c6ba09fbcd9a9933d0c4699a2b56b7a0669735bcb42bf200b98226fb8a54",
+      "size_bytes": 56510
     },
     {
       "path": "scripts/wikidebia_graph_correction.py",
@@ -1288,8 +1318,8 @@
     },
     {
       "path": "scripts/wikidebia_manage.py",
-      "sha256": "704aa7f79bb0d6178566018aee0e1975b44d2cadfe9160e2f040807c06fb30d1",
-      "size_bytes": 112725
+      "sha256": "c8d47370853d418be4578a42c7349bcb35423f6b849c038593d23e58b543f4b6",
+      "size_bytes": 115463
     },
     {
       "path": "scripts/wikidebia_publish.py",
@@ -1333,8 +1363,8 @@
     },
     {
       "path": "scripts/wikidebia_review_workflow.py",
-      "sha256": "9c790714072429baceff2fea6c9bb4e2c4d34aebeee4c49b47eaf5aadbfe9baa",
-      "size_bytes": 56465
+      "sha256": "47d9d4b3a196185cf149db626048863f6bb1709d6a18bad3deba5a90547e3436",
+      "size_bytes": 62045
     },
     {
       "path": "scripts/wikidebia_semantic_convergence.py",
@@ -1378,8 +1408,8 @@
     },
     {
       "path": "tests/test_editorial_orchestration_2160.py",
-      "sha256": "d0c6b1a8cf1baea0c47bd3533f274e8015504261e8cad398e60ce98fe18c7e68",
-      "size_bytes": 34595
+      "sha256": "b7b0f35ca91a5621971fd40e6c59e36d5de8e18902b4eb33e3108a8fa3343979",
+      "size_bytes": 37426
     },
     {
       "path": "tests/test_future_translation_conventions_21541.py",
@@ -1393,8 +1423,8 @@
     },
     {
       "path": "tests/test_graph_review_actions_2164.py",
-      "sha256": "c0162ab2e7eebc6ca6ca43bf6eeb48c16d89f521ff8a7877de62ec3a6fedd2d6",
-      "size_bytes": 16615
+      "sha256": "11425311e6d3922d19a7f4a5c2010b48d6a5e13e65905386a85054f732563e55",
+      "size_bytes": 19331
     },
     {
       "path": "tests/test_multiline_parser_21550.py",
@@ -1423,7 +1453,7 @@
     },
     {
       "path": "tests/test_reconciliation_21546.py",
-      "sha256": "df5ff420bbb1aad285980b40c7841fe575e89dbc80cb4edded2792123ee74649",
+      "sha256": "d13d1267b672ed5c707f9f0eb059b076c41377cc6fdfa9a52edd9a8e7ea908a2",
       "size_bytes": 1943
     },
     {
@@ -1528,8 +1558,8 @@
     },
     {
       "path": "tests/test_wikidebia_manage.py",
-      "sha256": "9f7884de730e883e05ccbee7d2e4fa3a8774a2d570fe50ac013b4599c6bd82ec",
-      "size_bytes": 50033
+      "sha256": "3fe21de272b2e57bc384c30e8d3f3ec896096dc51ce667f8cba2b2f40b9f1353",
+      "size_bytes": 52460
     },
     {
       "path": "tests/test_wikidebia_norm_131.py",

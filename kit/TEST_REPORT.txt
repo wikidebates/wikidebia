@@ -1,7 +1,6 @@
-Wikidéb’IA Kit 2.16.6 — rapport de tests
-Statut : PASSED
-Tests pytest collectés : 413
-Tests pytest : 413 réussis
-Norme : 1.2.77
-Validateur : 0.4.80
-Cohérence de provenance après actions structurelles, réparation étroite des états 2.16.4/2.16.5, relecture post-écriture bornée et reprise idempotente : PASSED.
+Wikidéb’IA Kit 2.16.8 — rapport de tests
+Date : 2026-08-11
+Résultat : 417 passed
+Commande : pytest -q
+Portée : suite complète du kit avec norme 1.2.77 et validateur 0.4.80 frères.
+Régression ciblée : reprise de provenance après plusieurs vagues d’actions structurelles dont l’audit courant a écrasé l’attestation antérieure.

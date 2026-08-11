@@ -673,3 +673,59 @@ def test_existing_workflow_refuses_conflicting_explicit_short_code(tmp_path: Pat
             debate_id="revenu_de_base",
             short_code="OTHER",
         )
+
+
+def test_mechanical_failure_rolls_back_review_consumption_and_created_artifacts(tmp_path: Path, monkeypatch):
+    project = tmp_path / "project"
+    project.mkdir()
+    base = make_base(project)
+    state = make_state(project, base)
+    pending = wf.create_review_package(
+        project, state, review_type="graph_review", base=base,
+        editable_paths=["reviews/edit.json"], context_paths=["data/context.json"],
+    )
+    original = project / pending["package_path"]
+    returned = tmp_path / "returned-mechanical-failure.zip"
+    rewrite_zip(
+        original, returned,
+        lambda root: common.write_json(root / "editable/reviews/edit.json", {"debate_id": "debat_test", "value": "approved"}),
+    )
+
+    monkeypatch.setattr(
+        wf, "finalize_graph_review",
+        lambda project_root, base_path, debate_id: {"status": "approved", "review_sha256": "a" * 64},
+    )
+
+    def failing_advance(root: Path, current: dict):
+        # Reproduce the dangerous sequence that caused 2.16.5/2.16.6 to consume
+        # the review before a workspace failure: promotion + work allocation +
+        # persisted phase, followed by an exception.
+        corpus = root / "corpus/debat_test"
+        corpus.parent.mkdir(parents=True, exist_ok=True)
+        base.rename(corpus)
+        workspace = root / ".state/editorial-workspaces/debat_test/EDIT-20260811-001"
+        workspace.mkdir(parents=True)
+        common.write_json(workspace / "workspace.json", {"debate_id": "debat_test", "work_id": "EDIT-20260811-001"})
+        promotion = root / ".state/corpus-promotions/debat_test"
+        promotion.mkdir(parents=True)
+        common.write_json(promotion / "partial.receipt.json", {"status": "partial"})
+        (root / "outgoing/partial-next-review.zip").write_bytes(b"partial")
+        current["work_id"] = "EDIT-20260811-001"
+        current["phase"] = "fr_metadata_review"
+        wf._save_workflow(root, current)
+        raise RuntimeError("workspace creation failed")
+
+    monkeypatch.setattr(wf, "_mechanical_advance", failing_advance)
+    with pytest.raises(RuntimeError, match="workspace creation failed"):
+        wf.import_review(project, "debat_test", returned)
+
+    restored = wf._load_workflow(project, "debat_test")
+    assert restored["phase"] == "graph_review"
+    assert restored["pending_review"]["package_id"] == pending["package_id"]
+    assert restored["work_id"] is None
+    assert common.load_json(base / "reviews/edit.json", "edit")["value"] == "pending"
+    assert not (project / "corpus/debat_test").exists()
+    assert not (project / ".state/editorial-workspaces/debat_test/EDIT-20260811-001").exists()
+    assert not (project / ".state/corpus-promotions/debat_test/partial.receipt.json").exists()
+    assert not (project / "outgoing/partial-next-review.zip").exists()
+    assert original.is_file()
