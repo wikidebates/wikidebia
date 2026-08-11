@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.77** ;
 - validateur actif : **0.4.80** ;
-- kit actif : **2.16.5**.
+- kit actif : **2.16.6**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3394027 octets — SHA-256 `dd8e7c4d9ba2c9df4aafd0e33142155b3d4a0ffb80cebdef62c111ea80b6c669`
-- `wikidebia-validator.zip` — 3548486 octets — SHA-256 `6b9367ee28713f3554a1beaf648c888032a69127ebe0fac2b64ece6071d4895e`
-- `wikidebia-kit.zip` — 632627 octets — SHA-256 `2d84d5b7b9ae3ed5f89ec86aaf184b0d1344d976cbd8b6969913125c4055d9a6`
+- `wikidebia-normes.zip` — 3394018 octets — SHA-256 `9fed2e52dafaa137b58b4a3c7da28ebb93011b7c2969ff31cd319ed40ad6a946`
+- `wikidebia-validator.zip` — 3548480 octets — SHA-256 `b57cbb2531f5e11f59971689c7404ea3536e4fe33de80624336cbae6a93b00b4`
+- `wikidebia-kit.zip` — 636168 octets — SHA-256 `7480dc9ce661a99fe9edf58732ee2d301244042e35ca7874338538ac10b586b0`
 
 ## Norme consolidée active
 
@@ -1517,11 +1517,11 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `8fc8592feab24810731e922d59e6200de3bab843f408cbe74c6f2a7329a6742e`
+SHA-256 : `7a70974a0909dae4cc4bf40b128238edb3bf1a26ce7127d2d9201d4a22259c2d`
 
 # Wikidéb’IA Validator 0.4.80
 
-Le validateur 0.4.80 s’aligne sur la norme 1.2.77 et le kit 2.16.5. Il conserve tous les contrôles existants et sert aussi à valider prospectivement le corpus reconstruit avant toute exécution distante d’une décision structurelle de revue.
+Le validateur 0.4.80 s’aligne sur la norme 1.2.77 et le kit 2.16.6. Il conserve tous les contrôles existants et sert aussi à valider prospectivement le corpus reconstruit avant toute exécution distante d’une décision structurelle de revue.
 
 ## Notes héritées du paquet parent 0.4.73
 
@@ -1661,11 +1661,11 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `3c989e600af5bbe1c8b48d4e6ad847c87423d5498759ec0bae8bf8380e99000b`
+SHA-256 : `9a3696777e8803835c573acbe91a6fe3bc4015235210459fb96f87050da70bc5`
 
-# Wikidéb’IA Kit 2.16.5
+# Wikidéb’IA Kit 2.16.6
 
-Le kit 2.16.5 conserve l’exécution des décisions structurelles de 2.16.4 et corrige la vérification post-écriture : la révision exacte est désormais relue plusieurs fois de manière bornée afin de tolérer le retard temporaire des réplicas et des balises MediaWiki. Il permet d’exécuter en une commande les décisions structurelles explicites d’un ZIP de revue du graphe : retrait, fusion avec redirection, déplacement et changement de relation. Pour un doublon, le lien est retiré de la page mère puis la page doublon devient `#REDIRECTION [[page conservée]]`. Chaque écriture utilise un résumé MediaWiki individualisé, un préflight global et une garde de révision. La projection locale complète est validée avant toute écriture distante et une nouvelle revue du graphe reste obligatoire avant promotion.
+Le kit 2.16.6 part du commit GitHub `5eca765` (1.2.77 / 0.4.80 / 2.16.5) et corrige la provenance locale après exécution des décisions structurelles du graphe. Les fichiers `imports/fr/**/*.wiki` modifiés par une action `update` ou `redirect` mettent désormais immédiatement à jour leur `sha256` et leur taille dans `data/import_provenance.json`. Pour les états déjà produits par 2.16.4/2.16.5, la reprise répare automatiquement uniquement les fichiers attestés par `reviews/graph_action_decisions.json`, dont le contenu courant correspond exactement à l’empreinte post-action prévue et dont la révision distante a avancé. Toute dérive non attestée reste bloquante.
 
 Historique 2.16.1 : une anomalie éditoriale de titre importé ne bloque plus avant la revue qui doit précisément la corriger. Les incohérences structurelles restent bloquantes ; lorsqu’elles surviennent, `workflow` affiche leurs codes/messages et produit automatiquement un ZIP de diagnostic minimal sous `outgoing/`. Après correction, relancer la même commande reprend la phase sans reset manuel. Le mécanisme général de paquets de revue introduit en 2.16.0 reste inchangé.
 
@@ -1700,7 +1700,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `96eaf6e79e4a94e292d8fac1f3f9fd42c2edf4e20d8b7315230ee389be470260`
+SHA-256 : `93ef6c7ff3d6d42c557b35ca0976f86a993241f7788ed11b19aed29c666702a7`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1835,6 +1835,14 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - distingue les échecs de contenu, résumé, identifiant et balise au lieu d’un diagnostic générique ;
 - lors d’une relance après exécution partielle, accepte un état final déjà présent uniquement si la révision courante porte exactement le contenu, le résumé et la balise attendus ;
 - ajoute des tests de retard de réplica/balise et de reprise sans réécriture d’une page déjà correctement modifiée.
+
+## 2.16.6 — 11 août 2026 — cohérence de la provenance après actions structurelles
+
+- met à jour `sha256` et `size_bytes` de `data/import_provenance.json` après toute action de graphe qui réécrit un snapshot local (`update` ou `redirect`) ;
+- répare automatiquement les états 2.16.4/2.16.5 déjà exécutés uniquement lorsque `graph_action_decisions.json` atteste le chemin, l’empreinte post-action exacte et une révision distante avancée ;
+- laisse toute autre divergence de provenance bloquante, sans normalisation ni adoption silencieuse ;
+- exécute cette réparation étroite avant la création/reprise du workspace éditorial afin d’éviter le blocage `Empreinte de provenance divergente` sur une modification effectuée par le kit lui-même ;
+- ajoute des régressions couvrant la mise à jour immédiate de provenance, la reprise du défaut 2.16.5 et le maintien du blocage d’une dérive non attestée.
 
 ## Guide de publication
 
@@ -2094,22 +2102,22 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `1ad4fac8f1402939eed749092a0596fbaf482878fe2ce675b10aa7efa055e65a`
+SHA-256 : `296e9fb0e500392e2d1af1836d618c194514aa7d19afea801f12145b37bd413f`
 
-Wikidéb’IA Kit 2.16.5 — rapport de tests
+Wikidéb’IA Kit 2.16.6 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 411
-Tests pytest : 411 réussis
+Tests pytest collectés : 413
+Tests pytest : 413 réussis
 Norme : 1.2.77
 Validateur : 0.4.80
-Relecture post-écriture bornée, reprise idempotente après écriture partielle et actions structurelles de revue : PASSED.
+Cohérence de provenance après actions structurelles, réparation étroite des états 2.16.4/2.16.5, relecture post-écriture bornée et reprise idempotente : PASSED.
 
 ## Guide d’orchestration éditoriale
 
 Source interne : `kit/GUIDE_EDITORIAL_ORCHESTRATION.md`  
-SHA-256 : `62d4eecc2cb7f8fcb04fa9af4c473d0335600623eccdefd91e7efd881b1f934d`
+SHA-256 : `500d4fb472140b7a816093df37c424cf2763a3598142be9ffa556917299cc172`
 
-# Orchestration des revues éditoriales ChatGPT — Kit 2.16.5
+# Orchestration des revues éditoriales ChatGPT — Kit 2.16.6
 
 ## Usage normal
 

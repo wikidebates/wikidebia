@@ -131,3 +131,11 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - distingue les échecs de contenu, résumé, identifiant et balise au lieu d’un diagnostic générique ;
 - lors d’une relance après exécution partielle, accepte un état final déjà présent uniquement si la révision courante porte exactement le contenu, le résumé et la balise attendus ;
 - ajoute des tests de retard de réplica/balise et de reprise sans réécriture d’une page déjà correctement modifiée.
+
+## 2.16.6 — 11 août 2026 — cohérence de la provenance après actions structurelles
+
+- met à jour `sha256` et `size_bytes` de `data/import_provenance.json` après toute action de graphe qui réécrit un snapshot local (`update` ou `redirect`) ;
+- répare automatiquement les états 2.16.4/2.16.5 déjà exécutés uniquement lorsque `graph_action_decisions.json` atteste le chemin, l’empreinte post-action exacte et une révision distante avancée ;
+- laisse toute autre divergence de provenance bloquante, sans normalisation ni adoption silencieuse ;
+- exécute cette réparation étroite avant la création/reprise du workspace éditorial afin d’éviter le blocage `Empreinte de provenance divergente` sur une modification effectuée par le kit lui-même ;
+- ajoute des régressions couvrant la mise à jour immédiate de provenance, la reprise du défaut 2.16.5 et le maintien du blocage d’une dérive non attestée.

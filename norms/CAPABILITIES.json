@@ -6,7 +6,7 @@
   "release": {
     "norm": "1.2.77",
     "validator": "0.4.80",
-    "kit": "2.16.5"
+    "kit": "2.16.6"
   },
   "emits": {
     "active_normative_policy": [

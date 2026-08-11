@@ -238,3 +238,96 @@ def test_remote_executor_resumes_verified_partial_write_without_rewriting(tmp_pa
     assert parent_result["status"] == "already_done"
     # Only the duplicate page redirect is newly written during the restart.
     assert len(fake.writes) == prior_writes + 1
+
+
+def _receipt_for_local_apply(plan: dict) -> dict:
+    results = []
+    next_rev = 1000
+    for mutation in plan["mutations"]:
+        next_rev += 1
+        results.append({
+            "title": mutation["title"],
+            "operation": mutation["operation"],
+            "status": "written" if mutation["operation"] in {"update", "redirect"} else "deleted",
+            "old_revision_id": mutation.get("expected_revision_id"),
+            "revision_id": next_rev if mutation["operation"] != "delete" else None,
+            "edit_summary": mutation["edit_summary"],
+        })
+    receipt = {
+        "schema": ga.ACTION_RECEIPT_SCHEMA,
+        "schema_version": "1.0",
+        "debate_id": plan["debate_id"],
+        "plan_sha256": plan["plan_sha256"],
+        "executed_at": common.now_iso(),
+        "results": results,
+        "receipt_sha256": None,
+    }
+    receipt["receipt_sha256"] = ga._sha_object(receipt, "receipt_sha256")
+    return receipt
+
+
+def test_local_graph_action_refreshes_import_provenance_hash(tmp_path: Path) -> None:
+    _project, build = make_project(tmp_path)
+    oid, nid, target = _prepare_single_occurrence_merge(build)
+    plan, desired, graph_result = ga.prepare_action_plan(build, "debat_test", [{
+        "action": "merge_redirect", "occurrence_id": oid, "node_id": nid, "target_node_id": target,
+    }])
+    receipt = _receipt_for_local_apply(plan)
+    ga.apply_local_result(build, plan, desired, graph_result, receipt)
+    provenance = json.loads((build / "data/import_provenance.json").read_text(encoding="utf-8"))
+    rows = {row["import_path"]: row for row in provenance["pages"]}
+    for mutation in plan["mutations"]:
+        if mutation["operation"] not in {"update", "redirect"}:
+            continue
+        path = build / mutation["source_path"]
+        assert rows[mutation["source_path"]]["sha256"] == ga._sha256_file_bytes(path)
+        assert rows[mutation["source_path"]]["size_bytes"] == path.stat().st_size
+
+
+def test_repair_legacy_2165_provenance_only_for_exact_attested_graph_action(tmp_path: Path) -> None:
+    from wikidebia_editorial_workspace import read_import_metadata, WorkspaceError
+
+    _project, build = make_project(tmp_path)
+    oid, nid, target = _prepare_single_occurrence_merge(build)
+    plan, desired, graph_result = ga.prepare_action_plan(build, "debat_test", [{
+        "action": "merge_redirect", "occurrence_id": oid, "node_id": nid, "target_node_id": target,
+    }])
+    parent = next(m for m in plan["mutations"] if m["page_type"] == "debate")
+    prov_before = json.loads((build / "data/import_provenance.json").read_text(encoding="utf-8"))
+    old_parent_sha = next(r["sha256"] for r in prov_before["pages"] if r["import_path"] == parent["source_path"])
+
+    receipt = _receipt_for_local_apply(plan)
+    ga.apply_local_result(build, plan, desired, graph_result, receipt)
+
+    # Recreate the precise 2.16.5 defect: post-action file and remote revision are
+    # correct, but the raw import-provenance hash still points to the old snapshot.
+    prov_path = build / "data/import_provenance.json"
+    provenance = json.loads(prov_path.read_text(encoding="utf-8"))
+    parent_row = next(r for r in provenance["pages"] if r["import_path"] == parent["source_path"])
+    parent_row["sha256"] = old_parent_sha
+    common.write_json(prov_path, provenance)
+    try:
+        read_import_metadata(build, parent_row)
+    except WorkspaceError as exc:
+        assert "Empreinte de provenance divergente" in str(exc)
+    else:
+        raise AssertionError("the simulated 2.16.5 provenance defect must block")
+
+    repaired = ga.repair_graph_action_import_provenance(build)
+    assert parent["source_path"] in repaired["repaired_paths"]
+    provenance = json.loads(prov_path.read_text(encoding="utf-8"))
+    parent_row = next(r for r in provenance["pages"] if r["import_path"] == parent["source_path"])
+    read_import_metadata(build, parent_row)  # no exception after exact attested repair
+
+    # A different, non-attested local drift must remain blocked.
+    unrelated_row = next(r for r in provenance["pages"] if r.get("page_id") == "A0002")
+    unrelated_path = build / unrelated_row["import_path"]
+    unrelated_path.write_text(unrelated_path.read_text(encoding="utf-8") + "\nDérive locale\n", encoding="utf-8")
+    again = ga.repair_graph_action_import_provenance(build)
+    assert unrelated_row["import_path"] not in again["repaired_paths"]
+    try:
+        read_import_metadata(build, unrelated_row)
+    except WorkspaceError as exc:
+        assert "Empreinte de provenance divergente" in str(exc)
+    else:
+        raise AssertionError("unattested drift must remain blocked")

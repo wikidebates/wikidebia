@@ -51,6 +51,82 @@ ACTION_PLAN_SCHEMA = "wikidebia-graph-action-plan-1.0"
 ACTION_RECEIPT_SCHEMA = "wikidebia-graph-action-execution-receipt-1.0"
 ACTION_DECISIONS_SCHEMA = "wikidebia-graph-action-decisions-1.0"
 
+
+def _sha256_file_bytes(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def repair_graph_action_import_provenance(build: Path) -> dict[str, Any]:
+    """Repair the 2.16.4/2.16.5 local provenance omission after graph actions.
+
+    The repair is deliberately narrow: a provenance row is refreshed only when
+    ``graph_action_decisions.json`` attests the exact import path, the action was
+    an update/redirect, the current local wikicode has the exact normalized hash
+    planned by that action, and the provenance revision has already advanced past
+    the pre-action revision. Any unrelated or ambiguous drift is left untouched so
+    the normal provenance guard will still block it.
+    """
+    decisions_path = build / "reviews/graph_action_decisions.json"
+    provenance_path = build / "data/import_provenance.json"
+    if not decisions_path.is_file() or not provenance_path.is_file():
+        return {"status": "not_applicable", "repaired_paths": []}
+
+    decisions = load_json(decisions_path, "décisions d'actions du graphe")
+    provenance = load_json(provenance_path, "provenance d'import")
+    mutations = decisions.get("mutations") or []
+    prov_rows = provenance.get("pages") or []
+    if not isinstance(mutations, list) or not isinstance(prov_rows, list):
+        raise GraphActionError("Historique d'actions/provenance invalide pour la réparation")
+    by_path = {
+        str(row.get("import_path")): row
+        for row in prov_rows
+        if isinstance(row, dict) and row.get("import_path")
+    }
+
+    repaired: list[str] = []
+    for mutation in mutations:
+        if not isinstance(mutation, Mapping):
+            continue
+        operation = str(mutation.get("operation") or "")
+        if operation not in {"update", "redirect"}:
+            continue
+        rel = str(mutation.get("source_path") or "")
+        desired_sha = str(mutation.get("desired_sha256") or "")
+        if not rel or not desired_sha:
+            continue
+        row = by_path.get(rel)
+        path = build / rel
+        if row is None or not path.is_file():
+            continue
+
+        raw_sha = _sha256_file_bytes(path)
+        if str(row.get("sha256") or "") == raw_sha:
+            continue
+        # Never bless arbitrary local drift: the exact post-action content and an
+        # advanced remote revision are both required.
+        current_text = path.read_text(encoding="utf-8")
+        if sha_text(current_text) != desired_sha:
+            continue
+        old_revision = mutation.get("expected_revision_id")
+        current_revision = row.get("revision_id")
+        try:
+            revision_advanced = old_revision is not None and current_revision is not None and int(current_revision) != int(old_revision)
+        except (TypeError, ValueError):
+            revision_advanced = False
+        if not revision_advanced:
+            continue
+        row["sha256"] = raw_sha
+        row["size_bytes"] = path.stat().st_size
+        repaired.append(rel)
+
+    if repaired:
+        write_json(provenance_path, provenance)
+    return {"status": "repaired" if repaired else "unchanged", "repaired_paths": repaired}
+
 _MAIN_TEMPLATE = {"debate": "debat", "argument": "argument"}
 _RELATION_TEMPLATE = {
     ("debate", "pro"): "Argument pour",
@@ -876,6 +952,9 @@ def apply_local_result(build: Path, plan: Mapping[str, Any], desired_by_path: Ma
             if prov.get("import_path") == rel:
                 if remote.get("revision_id") is not None:
                     prov["revision_id"] = remote.get("revision_id")
+                if op in {"update", "redirect"} and source.is_file():
+                    prov["sha256"] = _sha256_file_bytes(source)
+                    prov["size_bytes"] = source.stat().st_size
                 if op == "redirect":
                     prov["status"] = "retired_redirect"; prov["redirect_target"] = row.get("redirect_target")
                 elif op == "delete":

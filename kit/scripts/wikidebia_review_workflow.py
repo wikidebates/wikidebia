@@ -44,7 +44,10 @@ from wikidebia_corpus_init import (
 )
 from wikidebia_corpus_review import make_review_template, finalize_review as finalize_graph_review
 from wikidebia_graph_correction import make_correction_template as make_graph_correction_template, apply_correction as apply_graph_correction
-from wikidebia_graph_actions import execute_review_actions as execute_graph_review_actions
+from wikidebia_graph_actions import (
+    execute_review_actions as execute_graph_review_actions,
+    repair_graph_action_import_provenance,
+)
 from wikidebia_corpus_promote import promote as promote_graph
 from wikidebia_editorial_workspace import create_workspace, validate_work_id, workspace_receipt_hash, next_work_id
 from wikidebia_editorial_review import (
@@ -704,6 +707,10 @@ def _mechanical_advance(project_root: Path, state: dict[str, Any]) -> dict[str, 
             source = build if build.is_dir() else corpus
             if not source.is_dir():
                 raise WorkflowError("Ni build validé ni corpus promu disponible pour reprendre le workflow")
+            # 2.16.4/2.16.5 updated graph-action import snapshots without refreshing
+            # their raw provenance hashes. Repair only exact, action-attested files
+            # before workspace creation; unrelated drift remains blocking.
+            repair_graph_action_import_provenance(source)
             review = load_json(source / REVIEW_ENVELOPE, "revue graphe")
             review_sha = str(review.get("review_sha256") or "")
             if not review_sha or review_sha != graph_review_sha256(review):

@@ -1,6 +1,6 @@
 # Wikidéb’IA Validator 0.4.80
 
-Le validateur 0.4.80 s’aligne sur la norme 1.2.77 et le kit 2.16.5. Il conserve tous les contrôles existants et sert aussi à valider prospectivement le corpus reconstruit avant toute exécution distante d’une décision structurelle de revue.
+Le validateur 0.4.80 s’aligne sur la norme 1.2.77 et le kit 2.16.6. Il conserve tous les contrôles existants et sert aussi à valider prospectivement le corpus reconstruit avant toute exécution distante d’une décision structurelle de revue.
 
 ## Notes héritées du paquet parent 0.4.73
 
