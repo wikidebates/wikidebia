@@ -23,6 +23,7 @@ import os
 import re
 import shutil
 import tempfile
+import time
 from collections import defaultdict
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
@@ -708,7 +709,57 @@ def _adapter(project_root: Path) -> tuple[UpdateAdapter, str]:
     return UpdateAdapter(base), expected_user
 
 
-def _verify_remote_preflight(adapter: UpdateAdapter, plan: Mapping[str, Any]) -> dict[str, dict[str, Any]]:
+def _verification_policy(project_root: Path) -> tuple[int, float]:
+    settings = _local_settings(project_root)
+    attempts = max(1, int(settings.get("verification_attempts", 8)))
+    delay = max(0.0, float(settings.get("verification_delay_seconds", 2)))
+    return attempts, delay
+
+
+def _verify_written_revision(
+    adapter: UpdateAdapter,
+    *,
+    title: str,
+    revision_id: int,
+    desired: str,
+    summary: str,
+    attempts: int,
+    delay: float,
+) -> dict[str, Any]:
+    """Verify the exact revision with bounded retries for MediaWiki replica/tag lag."""
+    observed: dict[str, Any] | None = None
+    for index in range(attempts):
+        observed = adapter.read_revision(title, int(revision_id))
+        if (
+            observed
+            and int(observed.get("revision_id") or 0) == int(revision_id)
+            and sha_text(str(observed.get("text") or "")) == sha_text(desired)
+            and str(observed.get("summary") or "") == str(summary)
+            and "chatgpt" in {str(value) for value in (observed.get("tags") or [])}
+        ):
+            return observed
+        if index + 1 < attempts and delay:
+            time.sleep(delay)
+    if not observed:
+        raise GraphActionError(f"Révision écrite introuvable après {attempts} relectures : {title}")
+    if int(observed.get("revision_id") or 0) != int(revision_id):
+        raise GraphActionError(f"Identifiant de révision divergent après écriture : {title}")
+    if sha_text(str(observed.get("text") or "")) != sha_text(desired):
+        raise GraphActionError(f"Contenu distant divergent après écriture : {title}")
+    if str(observed.get("summary") or "") != str(summary):
+        raise GraphActionError(f"Résumé de modification distant divergent après écriture : {title}")
+    if "chatgpt" not in {str(value) for value in (observed.get("tags") or [])}:
+        raise GraphActionError(f"Balise chatgpt absente après {attempts} relectures : {title}")
+    raise GraphActionError(f"Révision écrite non vérifiable après {attempts} relectures : {title}")
+
+
+def _verify_remote_preflight(
+    adapter: UpdateAdapter,
+    plan: Mapping[str, Any],
+    *,
+    attempts: int,
+    delay: float,
+) -> dict[str, dict[str, Any]]:
     snapshots: dict[str, dict[str, Any]] = {}
     for row in plan.get("mutations") or []:
         title = str(row["title"]); exists, revision_id, remote_text = adapter.read_page(title)
@@ -716,6 +767,14 @@ def _verify_remote_preflight(adapter: UpdateAdapter, plan: Mapping[str, Any]) ->
         if op == "delete" and not exists:
             snapshots[title] = {"status": "already_done", "exists": False, "revision_id": None, "text": ""}; continue
         if op != "delete" and exists and desired_sha and sha_text(remote_text) == desired_sha:
+            if revision_id is None:
+                raise GraphActionError(f"État final présent sans révision vérifiable : {title}")
+            # Idempotent restart after a partially successful previous execution:
+            # accept the desired content only if the exact current revision is ours.
+            _verify_written_revision(
+                adapter, title=title, revision_id=int(revision_id), desired=remote_text,
+                summary=str(row.get("edit_summary") or ""), attempts=attempts, delay=delay,
+            )
             snapshots[title] = {"status": "already_done", "exists": True, "revision_id": revision_id, "text": remote_text}; continue
         if not exists or revision_id is None:
             raise GraphActionError(f"Page distante attendue absente : {title}")
@@ -744,7 +803,8 @@ def execute_remote_plan(project_root: Path, build: Path, plan: Mapping[str, Any]
         tags = adapter.available_change_tags()
         if "chatgpt" not in tags:
             raise GraphActionError("La balise MediaWiki 'chatgpt' n'est pas disponible")
-        snapshots = _verify_remote_preflight(adapter, plan)
+        attempts, delay = _verification_policy(project_root)
+        snapshots = _verify_remote_preflight(adapter, plan, attempts=attempts, delay=delay)
 
         # Parent updates first, redirects second, actual deletions last.
         priority = {"update": 10, "redirect": 20, "delete": 30, "keep": 40}
@@ -763,14 +823,10 @@ def execute_remote_plan(project_root: Path, build: Path, plan: Mapping[str, Any]
                     title=title, text=desired, summary=str(row["edit_summary"]), tags=["chatgpt"],
                     expected_user=expected_user, create_only=False, base_revision_id=revision_id,
                 )
-                observed = adapter.read_revision(title, new_rev)
-                if (
-                    not observed
-                    or sha_text(str(observed.get("text") or "")) != sha_text(desired)
-                    or str(observed.get("summary") or "") != str(row["edit_summary"])
-                    or "chatgpt" not in set(observed.get("tags") or [])
-                ):
-                    raise GraphActionError(f"Révision écrite non vérifiable : {title}")
+                _verify_written_revision(
+                    adapter, title=title, revision_id=new_rev, desired=desired,
+                    summary=str(row["edit_summary"]), attempts=attempts, delay=delay,
+                )
                 results.append({"title": title, "operation": op, "status": "written", "old_revision_id": revision_id, "revision_id": new_rev, "edit_summary": row["edit_summary"]})
             elif op == "delete":
                 adapter.delete_page(title=title, reason=str(row["edit_summary"]), expected_user=expected_user)

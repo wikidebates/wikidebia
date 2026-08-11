@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "CAPABILITIES.json",
-      "sha256": "32d6478a39d2f28178d1aa5e8922360a8cfc0485a2c9148ff8647e0ef276e94a",
+      "sha256": "15c93feac5465c7646c1512c2fffc45acf4a7955592f23704d0d427d6a8968a3",
       "size_bytes": 2316
     },
     {
@@ -23,7 +23,7 @@
     },
     {
       "path": "COMPATIBILITY.json",
-      "sha256": "f982d57784cb9445bd038a22195018af425af044f1ab14a0f9393209bcfac139",
+      "sha256": "5e326a37ab092161b31553483532c5fcc7e0cdff8e3c2850dc7a95a87873cc11",
       "size_bytes": 2581
     },
     {
@@ -33,17 +33,17 @@
     },
     {
       "path": "README.md",
-      "sha256": "d8cbba2bf521dbfe41f03987df23350dfb9a7198974dd6ef6cb9918512e41e4b",
+      "sha256": "8fc8592feab24810731e922d59e6200de3bab843f408cbe74c6f2a7329a6742e",
       "size_bytes": 2295
     },
     {
       "path": "TEST_REPORT.txt",
-      "sha256": "3911adfbb96048173a1a214b3f3f9f11b267d40a9af0ffa5c8388df4565fd96e",
+      "sha256": "36570beb2ba5e4f4e55a5100ca3047560243415ac09c5155878b6508675925b5",
       "size_bytes": 257
     },
     {
       "path": "VERSIONS.json",
-      "sha256": "95a5486ecbdcbc685b02f58861702808cf3373062d2b0a4d711902734e1ae934",
+      "sha256": "e9f4b487ca4624796adb48c5f79b018df9ddd0653aeabc86fbf180b3e431d9f1",
       "size_bytes": 67
     },
     {
@@ -693,7 +693,7 @@
     },
     {
       "path": "docs/NORMATIVE_AUDIT.md",
-      "sha256": "da21afc85b3b91e0b207a7cc4bc4ce3bebe5d91724e69d70a588b8ecf50049c5",
+      "sha256": "a0623a231232033b6c39875ec6b7031c984fed115f95e73c95c1505ab7c51869",
       "size_bytes": 340
     },
     {
@@ -733,7 +733,7 @@
     },
     {
       "path": "docs/TEST_REPORT.txt",
-      "sha256": "3911adfbb96048173a1a214b3f3f9f11b267d40a9af0ffa5c8388df4565fd96e",
+      "sha256": "36570beb2ba5e4f4e55a5100ca3047560243415ac09c5155878b6508675925b5",
       "size_bytes": 257
     },
     {
@@ -1988,7 +1988,7 @@
     },
     {
       "path": "tests/test_editorial_orchestration_schemas_1273.py",
-      "sha256": "16358d89257a94d3f05c76b7629b6635e68ac3bfb95fc7c16173c116d14b83e3",
+      "sha256": "8d16c5844f5b5486382489748b84595a7400f950640ed83b3a73b43f6cdabf63",
       "size_bytes": 4214
     },
     {
@@ -2368,7 +2368,7 @@
     },
     {
       "path": "tests/test_versions_file.py",
-      "sha256": "861f97e6147b18411657442296b125bfc39254f798b403f9101715b227bb7eca",
+      "sha256": "34aacf14a6921b0e06cfde8ca0c84d2df29ff6b8f9ad9a22eaf533336e7768d2",
       "size_bytes": 1700
     },
     {

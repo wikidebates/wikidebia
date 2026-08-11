@@ -124,4 +124,10 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - relit contenu, résumé et balise `chatgpt` après chaque édition ;
 - accepte de façon étroite les décisions propriétaires déjà inscrites dans certains ZIP 2.16.2/2.16.3 ;
 - reconstruit le graphe et prépare une nouvelle revue complète sans promotion implicite.
+## 2.16.5 — 11 août 2026 — relecture post-écriture bornée et reprise idempotente
 
+- applique aux actions structurelles la même politique de relecture bornée déjà utilisée par la publication et les mises à jour ordinaires ;
+- tolère le retard temporaire de visibilité d’une nouvelle révision et de la balise `chatgpt` après `action=edit` ;
+- distingue les échecs de contenu, résumé, identifiant et balise au lieu d’un diagnostic générique ;
+- lors d’une relance après exécution partielle, accepte un état final déjà présent uniquement si la révision courante porte exactement le contenu, le résumé et la balise attendus ;
+- ajoute des tests de retard de réplica/balise et de reprise sans réécriture d’une page déjà correctement modifiée.

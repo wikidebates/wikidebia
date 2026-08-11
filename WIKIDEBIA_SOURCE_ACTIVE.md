@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.77** ;
 - validateur actif : **0.4.80** ;
-- kit actif : **2.16.4**.
+- kit actif : **2.16.5**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 10950372 octets — SHA-256 `798d22af51d0661d6251f356448ac52dd909a9f3c4a9b33f9b6338da1a09e238`
-- `wikidebia-validator.zip` — 11457020 octets — SHA-256 `572bee2338d0557ebeae04d48b2b9ea0ccc1f9520d864c93b0461d8bb0e08ae8`
-- `wikidebia-kit.zip` — 2207494 octets — SHA-256 `cb393ab01de27740fa226b62b314e501f499b8ede71288bdff15f2687057001e`
+- `wikidebia-normes.zip` — 3394027 octets — SHA-256 `dd8e7c4d9ba2c9df4aafd0e33142155b3d4a0ffb80cebdef62c111ea80b6c669`
+- `wikidebia-validator.zip` — 3548486 octets — SHA-256 `6b9367ee28713f3554a1beaf648c888032a69127ebe0fac2b64ece6071d4895e`
+- `wikidebia-kit.zip` — 632627 octets — SHA-256 `2d84d5b7b9ae3ed5f89ec86aaf184b0d1344d976cbd8b6969913125c4055d9a6`
 
 ## Norme consolidée active
 
@@ -1517,11 +1517,11 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `d8cbba2bf521dbfe41f03987df23350dfb9a7198974dd6ef6cb9918512e41e4b`
+SHA-256 : `8fc8592feab24810731e922d59e6200de3bab843f408cbe74c6f2a7329a6742e`
 
 # Wikidéb’IA Validator 0.4.80
 
-Le validateur 0.4.80 s’aligne sur la norme 1.2.77 et le kit 2.16.4. Il conserve tous les contrôles existants et sert aussi à valider prospectivement le corpus reconstruit avant toute exécution distante d’une décision structurelle de revue.
+Le validateur 0.4.80 s’aligne sur la norme 1.2.77 et le kit 2.16.5. Il conserve tous les contrôles existants et sert aussi à valider prospectivement le corpus reconstruit avant toute exécution distante d’une décision structurelle de revue.
 
 ## Notes héritées du paquet parent 0.4.73
 
@@ -1661,11 +1661,11 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `165ca26844f7e4668f0bbdbfb8d7eb371541d0a8d44ac86f24923e219cdb9f0c`
+SHA-256 : `3c989e600af5bbe1c8b48d4e6ad847c87423d5498759ec0bae8bf8380e99000b`
 
-# Wikidéb’IA Kit 2.16.4
+# Wikidéb’IA Kit 2.16.5
 
-Le kit 2.16.4 permet d’exécuter en une commande les décisions structurelles explicites d’un ZIP de revue du graphe : retrait, fusion avec redirection, déplacement et changement de relation. Pour un doublon, le lien est retiré de la page mère puis la page doublon devient `#REDIRECTION [[page conservée]]`. Chaque écriture utilise un résumé MediaWiki individualisé, un préflight global et une garde de révision. La projection locale complète est validée avant toute écriture distante et une nouvelle revue du graphe reste obligatoire avant promotion.
+Le kit 2.16.5 conserve l’exécution des décisions structurelles de 2.16.4 et corrige la vérification post-écriture : la révision exacte est désormais relue plusieurs fois de manière bornée afin de tolérer le retard temporaire des réplicas et des balises MediaWiki. Il permet d’exécuter en une commande les décisions structurelles explicites d’un ZIP de revue du graphe : retrait, fusion avec redirection, déplacement et changement de relation. Pour un doublon, le lien est retiré de la page mère puis la page doublon devient `#REDIRECTION [[page conservée]]`. Chaque écriture utilise un résumé MediaWiki individualisé, un préflight global et une garde de révision. La projection locale complète est validée avant toute écriture distante et une nouvelle revue du graphe reste obligatoire avant promotion.
 
 Historique 2.16.1 : une anomalie éditoriale de titre importé ne bloque plus avant la revue qui doit précisément la corriger. Les incohérences structurelles restent bloquantes ; lorsqu’elles surviennent, `workflow` affiche leurs codes/messages et produit automatiquement un ZIP de diagnostic minimal sous `outgoing/`. Après correction, relancer la même commande reprend la phase sans reset manuel. Le mécanisme général de paquets de revue introduit en 2.16.0 reste inchangé.
 
@@ -1700,7 +1700,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `b08d86767ac07760c858751b85abb0e72f60cd9377675168800176ec39242ad7`
+SHA-256 : `96eaf6e79e4a94e292d8fac1f3f9fd42c2edf4e20d8b7315230ee389be470260`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1828,6 +1828,13 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - relit contenu, résumé et balise `chatgpt` après chaque édition ;
 - accepte de façon étroite les décisions propriétaires déjà inscrites dans certains ZIP 2.16.2/2.16.3 ;
 - reconstruit le graphe et prépare une nouvelle revue complète sans promotion implicite.
+## 2.16.5 — 11 août 2026 — relecture post-écriture bornée et reprise idempotente
+
+- applique aux actions structurelles la même politique de relecture bornée déjà utilisée par la publication et les mises à jour ordinaires ;
+- tolère le retard temporaire de visibilité d’une nouvelle révision et de la balise `chatgpt` après `action=edit` ;
+- distingue les échecs de contenu, résumé, identifiant et balise au lieu d’un diagnostic générique ;
+- lors d’une relance après exécution partielle, accepte un état final déjà présent uniquement si la révision courante porte exactement le contenu, le résumé et la balise attendus ;
+- ajoute des tests de retard de réplica/balise et de reprise sans réécriture d’une page déjà correctement modifiée.
 
 ## Guide de publication
 
@@ -2087,22 +2094,22 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `79d075b41906f4fff7076a775ec466842d084df2673a00b12cc1dccaeb98ea7a`
+SHA-256 : `1ad4fac8f1402939eed749092a0596fbaf482878fe2ce675b10aa7efa055e65a`
 
-Wikidéb’IA Kit 2.16.4 — rapport de tests
+Wikidéb’IA Kit 2.16.5 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 409
-Tests pytest : 409 réussis
+Tests pytest collectés : 411
+Tests pytest : 411 réussis
 Norme : 1.2.77
 Validateur : 0.4.80
-Actions structurelles de revue, redirections de doublons, résumés individualisés, validation prospective et préflight distant : PASSED.
+Relecture post-écriture bornée, reprise idempotente après écriture partielle et actions structurelles de revue : PASSED.
 
 ## Guide d’orchestration éditoriale
 
 Source interne : `kit/GUIDE_EDITORIAL_ORCHESTRATION.md`  
-SHA-256 : `48449b51d4f19d3ef41f87f801d4fb9b6b6bddb91214c12d294adfe5d881327b`
+SHA-256 : `62d4eecc2cb7f8fcb04fa9af4c473d0335600623eccdefd91e7efd881b1f934d`
 
-# Orchestration des revues éditoriales ChatGPT — Kit 2.16.4
+# Orchestration des revues éditoriales ChatGPT — Kit 2.16.5
 
 ## Usage normal
 

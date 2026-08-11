@@ -1,7 +1,7 @@
-Wikidéb’IA Kit 2.16.4 — rapport de tests
+Wikidéb’IA Kit 2.16.5 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 409
-Tests pytest : 409 réussis
+Tests pytest collectés : 411
+Tests pytest : 411 réussis
 Norme : 1.2.77
 Validateur : 0.4.80
-Actions structurelles de revue, redirections de doublons, résumés individualisés, validation prospective et préflight distant : PASSED.
+Relecture post-écriture bornée, reprise idempotente après écriture partielle et actions structurelles de revue : PASSED.

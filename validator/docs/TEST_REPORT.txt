@@ -3,5 +3,5 @@ Statut : PASSED
 Tests pytest collectés : 406
 Tests pytest : 406 réussis
 Norme active : 1.2.77
-Kit recommandé : 2.16.4
+Kit recommandé : 2.16.5
 Contrôles structurels, éditoriaux, bilingues, documentaires et schémas : PASSED.

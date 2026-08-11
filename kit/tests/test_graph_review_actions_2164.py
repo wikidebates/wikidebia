@@ -175,3 +175,66 @@ def test_explicit_duplicate_parent_summary_must_link_destination(tmp_path: Path)
         assert "[[Titre]]" in str(exc)
     else:
         raise AssertionError("duplicate summary without target wikilink must be rejected")
+
+class LaggyRemote(FakeRemote):
+    def __init__(self, pages):
+        super().__init__(pages)
+        self.read_revision_calls = 0
+    def read_revision(self, title, revision_id):
+        self.read_revision_calls += 1
+        # Simulate MediaWiki replica/tag propagation after a successful edit:
+        # first the revision is not visible, then metadata lacks the tag, then complete.
+        if self.read_revision_calls == 1:
+            return None
+        observed = super().read_revision(title, revision_id)
+        if self.read_revision_calls == 2 and observed is not None:
+            observed = dict(observed)
+            observed["tags"] = []
+        return observed
+
+
+def test_remote_executor_retries_exact_revision_after_replica_lag(tmp_path: Path, monkeypatch) -> None:
+    project, build = make_project(tmp_path)
+    oid, nid, target = _prepare_single_occurrence_merge(build)
+    plan, desired, _ = ga.prepare_action_plan(build, "debat_test", [{
+        "action": "merge_redirect", "occurrence_id": oid, "node_id": nid, "target_node_id": target,
+    }])
+    pages = {}
+    for row in plan["mutations"]:
+        source = (build / row["source_path"]).read_text(encoding="utf-8")
+        pages[row["title"]] = (int(row["expected_revision_id"]), source)
+    fake = LaggyRemote(pages)
+    monkeypatch.setattr(ga, "_adapter", lambda _root: (fake, "ChatGPT"))
+    monkeypatch.setattr(ga.time, "sleep", lambda _seconds: None)
+    receipt = ga.execute_remote_plan(project, build, plan, desired)
+    assert receipt["schema"] == ga.ACTION_RECEIPT_SCHEMA
+    assert len(fake.writes) == 2
+    assert fake.read_revision_calls >= 4
+
+
+def test_remote_executor_resumes_verified_partial_write_without_rewriting(tmp_path: Path, monkeypatch) -> None:
+    project, build = make_project(tmp_path)
+    oid, nid, target = _prepare_single_occurrence_merge(build)
+    plan, desired, _ = ga.prepare_action_plan(build, "debat_test", [{
+        "action": "merge_redirect", "occurrence_id": oid, "node_id": nid, "target_node_id": target,
+    }])
+    pages = {}
+    for row in plan["mutations"]:
+        source = (build / row["source_path"]).read_text(encoding="utf-8")
+        pages[row["title"]] = (int(row["expected_revision_id"]), source)
+    fake = FakeRemote(pages)
+    parent = next(row for row in plan["mutations"] if row["page_type"] == "debate")
+    parent_desired = desired[parent["source_path"]]
+    # Simulate the first write having succeeded before the prior process aborted.
+    first_rev = fake.write_page(
+        title=parent["title"], text=parent_desired, summary=parent["edit_summary"], tags=["chatgpt"],
+        expected_user="ChatGPT", create_only=False, base_revision_id=int(parent["expected_revision_id"]),
+    )
+    assert first_rev > int(parent["expected_revision_id"])
+    prior_writes = len(fake.writes)
+    monkeypatch.setattr(ga, "_adapter", lambda _root: (fake, "ChatGPT"))
+    receipt = ga.execute_remote_plan(project, build, plan, desired)
+    parent_result = next(row for row in receipt["results"] if row["title"] == parent["title"])
+    assert parent_result["status"] == "already_done"
+    # Only the duplicate page redirect is newly written during the restart.
+    assert len(fake.writes) == prior_writes + 1
