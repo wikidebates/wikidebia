@@ -3,14 +3,14 @@
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
 - norme active : **1.2.78** ;
-- validateur actif : **0.4.81** ;
-- kit actif : **2.16.9**.
+- validateur actif : **0.4.82** ;
+- kit actif : **2.16.10**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3436863 octets — SHA-256 `df3950a2d458edd335dfbef864d40a189b537988ec00a7012aa1b98d7b8d9d99`
-- `wikidebia-validator.zip` — 3593448 octets — SHA-256 `04c8a059894b8b8dc2f93e714a07e61fcb9600b8df0d312e96df11b930f0c7ca`
-- `wikidebia-kit.zip` — 653533 octets — SHA-256 `f97ab5f0cc91c7dd03082b8ee7005a33d76e3d9ce2eca0475394c7b5f161a61a`
+- `wikidebia-normes.zip` — 3426470 octets — SHA-256 `9edbf990a86558bae36312db2d2323975388a516cf7b384a9588835cfe873278`
+- `wikidebia-validator.zip` — 3583054 octets — SHA-256 `42625249e25bb923d4ec66060336970f1c8dfdf5d2fef290d7c5afd68a216c5c`
+- `wikidebia-kit.zip` — 652489 octets — SHA-256 `9268ae9e1b62152f46c3899f0794abc9899348ef1f8606501192f8c821754bfa`
 
 ## Norme consolidée active
 
@@ -1532,9 +1532,11 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `ddd6c35b1a2d4ffe27dda247fb47e9eac770e174a2d3eb94124bcba82377320a`
+SHA-256 : `16ffbf08439a5140b44a837e85bf5c45f2b563fa32b787dc1038ba16d8688d54`
 
-# Wikidéb’IA Validator 0.4.81
+# Wikidéb’IA Validator 0.4.82
+
+Le validateur 0.4.82 corrige le contrôle `WDV-EDT-016` : les constructions impersonnelles françaises `Il faut…` et `Il ne faut…` ne constituent pas un référent contextuel. Un véritable pronom anaphorique initial reste bloquant.
 
 Le validateur 0.4.81 distingue désormais les pages `new` des pages `preexisting` pour les règles de création relatives aux titres affichés et au nombre de mots-clés. Une page préexistante peut conserver un titre affiché nominal et un nombre historique de mots-clés ; les autres contrôles de qualité restent actifs.
 
@@ -1569,7 +1571,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `acfa0352b4984be6dba6788fca01b92502585b801598b17a60778b1c07e0789b`
+SHA-256 : `01b94e9ade2ebdf7b8a13af7a3c5cd32aa0e1a11b5525af5b971c3efcfe91fd4`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1685,12 +1687,21 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - maintient les contrôles de forme flagrante, de vocabulaire, de capitalisation, de cohérence et tous les contrôles stricts pour les pages `new` ;
 - ajoute des régressions positives/négatives sur `new` vs `preexisting`.
 
+## 0.4.82 — 12 août 2026 — tournures impersonnelles françaises
+
+- corrige `contextual_title_issues` afin que `Il ne faut…` ne soit plus interprété comme un pronom anaphorique ;
+- conserve la détection des vrais référents contextuels initiaux ;
+- ajoute un test positif pour `Il faut…` / `Il ne faut…` et un test négatif pour `Il réduit…` ;
+- aucune modification de la norme éditoriale 1.2.78.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `2a12a3413f81c69c16fd7db9076aa6b03644998f166732432614f934e3fdf8a3`
+SHA-256 : `125ab627584de8913e7d7edb3daf5d9af1ca55c7d3cd45e0ecc50fbbff3e8b33`
 
-# Wikidéb’IA Kit 2.16.9
+# Wikidéb’IA Kit 2.16.10
+
+Le kit 2.16.10 corrige un faux positif de l’autonomie des titres canoniques français : les constructions impersonnelles « Il faut… » et « Il ne faut… » ne sont plus prises pour des pronoms anaphoriques. Il conserve intégralement la politique différentielle de 2.16.9.
 
 Le kit 2.16.9 applique la politique différentielle de reprise des métadonnées : les pages déjà présentes sur le wiki conservent par défaut leurs `titre-affiché` et mots-clés historiques. La propositionnalité complète et les cibles quantitatives restent des règles de création pour les nouvelles pages/titres générés par IA. Les titres canoniques restent corrigibles ; les mots-clés historiques peuvent être corrigés et complétés, et ne sont retirés qu’en cas de non-pertinence réelle explicitement justifiée.
 
@@ -1732,7 +1743,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `86b16f0e7ff17eaa2649a9476d6fe698e81afb654cdbecd9a454e7e562ceed58`
+SHA-256 : `20369dc9d5c018847fc887c4ba861fb9278f1e26ea30528d56e098450138628a`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1902,6 +1913,13 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - vérifie qu’aucun mot-clé historique n’a été retiré, sauf correction explicitement décrite ou suppression `clearly_irrelevant` accompagnée d’une justification ;
 - autorise corrections de casse/graphie, réordonnancement et ajouts de mots-clés ;
 - ajoute les consignes correspondantes directement dans les ZIP `fr_metadata_review` et des tests de non-régression.
+
+## 2.16.10 — 12 août 2026 — faux positif « Il ne faut »
+
+- corrige `WDV-EDT-016` via le validateur aligné : `Il ne faut…` est reconnu comme tournure impersonnelle, au même titre que `Il faut…` ;
+- maintient le blocage des pronoms réellement anaphoriques comme `Il réduit…` lorsque leur référent est extérieur au titre ;
+- ajoute une régression explicite sur le titre réel `Il ne faut pas instaurer plus de temps libre` ;
+- aucune règle éditoriale n’est assouplie et la norme reste 1.2.78.
 
 ## Guide de publication
 
@@ -2161,14 +2179,14 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `dd2c26843cfe7cc287ac89f0ede700f9263f882de77e2bbe1bc57efe10fd017a`
+SHA-256 : `3d99c38e5097d0946405ca97d909d25f71a374c0a6b6989377e7ce888bca91cb`
 
-Wikidéb’IA Kit 2.16.9 — rapport de tests
+Wikidéb’IA Kit 2.16.10 — rapport de tests
 Date : 2026-08-12
 Résultat : 421 passed
 Commande : pytest -q
-Portée : suite complète du kit avec norme 1.2.78 et validateur 0.4.81 frères.
-Régressions ciblées : reprise différentielle des métadonnées de pages préexistantes ; conservation des titres affichés historiques non propositionnels ; préservation des mots-clés historiques avec corrections et ajouts autorisés ; suppression uniquement sous justification de non-pertinence.
+Portée : suite complète du kit avec norme 1.2.78 et validateur 0.4.82 frères.
+Régressions ciblées : reprise différentielle des métadonnées préexistantes conservée ; faux positif WDV-EDT-016 sur « Il ne faut pas instaurer plus de temps libre » corrigé dans le validateur aligné.
 
 ## Guide d’orchestration éditoriale
 

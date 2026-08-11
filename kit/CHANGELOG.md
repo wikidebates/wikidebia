@@ -166,3 +166,10 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - vérifie qu’aucun mot-clé historique n’a été retiré, sauf correction explicitement décrite ou suppression `clearly_irrelevant` accompagnée d’une justification ;
 - autorise corrections de casse/graphie, réordonnancement et ajouts de mots-clés ;
 - ajoute les consignes correspondantes directement dans les ZIP `fr_metadata_review` et des tests de non-régression.
+
+## 2.16.10 — 12 août 2026 — faux positif « Il ne faut »
+
+- corrige `WDV-EDT-016` via le validateur aligné : `Il ne faut…` est reconnu comme tournure impersonnelle, au même titre que `Il faut…` ;
+- maintient le blocage des pronoms réellement anaphoriques comme `Il réduit…` lorsque leur référent est extérieur au titre ;
+- ajoute une régression explicite sur le titre réel `Il ne faut pas instaurer plus de temps libre` ;
+- aucune règle éditoriale n’est assouplie et la norme reste 1.2.78.

@@ -221,3 +221,9 @@ def test_norm_121_accepts_parentheses_in_french_intro(tmp_path: Path):
     ), encoding="utf-8")
     report = validate_package(root, scopes=["wikicode"])
     assert not any(f.code == "WDV-MWK-015" for f in report.findings), report.to_text()
+
+
+def test_french_impersonal_il_ne_faut_is_not_contextual():
+    assert contextual_title_issues("Il ne faut pas instaurer plus de temps libre", "fr") == []
+    assert contextual_title_issues("Il faut instaurer un revenu de base", "fr") == []
+    assert contextual_title_issues("Il réduit la liberté individuelle", "fr") == ["initial_contextual_referent"]

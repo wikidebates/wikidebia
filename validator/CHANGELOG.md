@@ -111,3 +111,10 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - n’applique plus le contrôle de quantité 2–4 aux keywords d’une page Argument `preexisting` ;
 - maintient les contrôles de forme flagrante, de vocabulaire, de capitalisation, de cohérence et tous les contrôles stricts pour les pages `new` ;
 - ajoute des régressions positives/négatives sur `new` vs `preexisting`.
+
+## 0.4.82 — 12 août 2026 — tournures impersonnelles françaises
+
+- corrige `contextual_title_issues` afin que `Il ne faut…` ne soit plus interprété comme un pronom anaphorique ;
+- conserve la détection des vrais référents contextuels initiaux ;
+- ajoute un test positif pour `Il faut…` / `Il ne faut…` et un test négatif pour `Il réduit…` ;
+- aucune modification de la norme éditoriale 1.2.78.

@@ -1,6 +1,6 @@
 {
   "artifact": "wikidebia-kit",
-  "version": "2.16.9",
+  "version": "2.16.10",
   "normative_revision": "1.2.78",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
@@ -8,9 +8,14 @@
     "PACKAGE_MANIFEST_SHA256.json",
     "PACKAGE_RECEIPT.json"
   ],
-  "declared_file_count": 324,
+  "declared_file_count": 326,
   "declared_test_count": 421,
   "files": [
+    {
+      "path": "AUDIT_IMPERSONAL_CANONICAL_TITLE_2.16.10.md",
+      "sha256": "f7bf1c2059374986a6982f499cbafa8cff7617afa62d49d014543270db280879",
+      "size_bytes": 719
+    },
     {
       "path": "AUDIT_INTERNAL_PARAMETER_NAMES_2.15.56.md",
       "sha256": "9ab9cdc3fe48396abb774acbe396a9a8ad7452ca066bc862058eb3ea3b16f894",
@@ -33,18 +38,18 @@
     },
     {
       "path": "CAPABILITIES.json",
-      "sha256": "c144855f6932f4e4d6851f50794e9ea8aa75e8b4846d97cecdbdfe65342b2ab5",
-      "size_bytes": 3889
+      "sha256": "6c89c9f5a68b3d89b62026d63e97c31ca0c6ef7609ff235b6a7b2780687ce45f",
+      "size_bytes": 3890
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "86b16f0e7ff17eaa2649a9476d6fe698e81afb654cdbecd9a454e7e562ceed58",
-      "size_bytes": 14540
+      "sha256": "20369dc9d5c018847fc887c4ba861fb9278f1e26ea30528d56e098450138628a",
+      "size_bytes": 15056
     },
     {
       "path": "COMPATIBILITY.json",
-      "sha256": "103a1c29d16ccdf446f4553098d8e45e76ecbf999954e3ea501dae1fc43c20fa",
-      "size_bytes": 522
+      "sha256": "e7ca9faa10170ef7884bd1d0e8a36be223a7664f2cc0a5a00226379ef4b889b6",
+      "size_bytes": 523
     },
     {
       "path": "GUIDE_BILINGUAL_RENDER.md",
@@ -123,8 +128,8 @@
     },
     {
       "path": "KIT_MANIFEST.json",
-      "sha256": "1a6cbc08b2e4fa9abfb4eac2ec76fb03851899374ee6395c9d448b8c9b3d7cd0",
-      "size_bytes": 25430
+      "sha256": "8d94bf462869d893c0614759b72d9b2552d7ec46186fb8791e829982434cb5cc",
+      "size_bytes": 25431
     },
     {
       "path": "MIGRATION_2.1.11.md",
@@ -472,6 +477,11 @@
       "size_bytes": 505
     },
     {
+      "path": "MIGRATION_2.16.10.md",
+      "sha256": "a5c978656f3da1f91cdf948d22f77ed38a73327bd354375d7aaba4f3b28634c0",
+      "size_bytes": 645
+    },
+    {
       "path": "MIGRATION_2.16.2.md",
       "sha256": "5f2306964a18f2876adce7bc5d314f60083da58a5ff603fec0d46e428fac6338",
       "size_bytes": 315
@@ -658,8 +668,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "2a12a3413f81c69c16fd7db9076aa6b03644998f166732432614f934e3fdf8a3",
-      "size_bytes": 5889
+      "sha256": "125ab627584de8913e7d7edb3daf5d9af1ca55c7d3cd45e0ecc50fbbff3e8b33",
+      "size_bytes": 6172
     },
     {
       "path": "REGRESSION_AUDIT_2.15.38.md",
@@ -753,13 +763,13 @@
     },
     {
       "path": "TEST_REPORT.txt",
-      "sha256": "dd2c26843cfe7cc287ac89f0ede700f9263f882de77e2bbe1bc57efe10fd017a",
-      "size_bytes": 491
+      "sha256": "3d99c38e5097d0946405ca97d909d25f71a374c0a6b6989377e7ce888bca91cb",
+      "size_bytes": 401
     },
     {
       "path": "VERSIONS.json",
-      "sha256": "8a7e136cd8de2e05e08fe9fa89673cc35e53e6d5de8b65d60f573324b08666b5",
-      "size_bytes": 67
+      "sha256": "227e3e5796347e12d4c3b051db5929e2baa5beb9ce487c45d443d647fc2d2f2b",
+      "size_bytes": 68
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/CHANGELOG.md",
@@ -1463,8 +1473,8 @@
     },
     {
       "path": "tests/test_reconciliation_21546.py",
-      "sha256": "3f1c6ff9e4627611bf4f317f584bcaa3a2049fada04643b07d5b76da7c577a09",
-      "size_bytes": 1943
+      "sha256": "2e35145ae8f35f347ed922f841142659bfb0effa4c45b4d7e47984a3a856888d",
+      "size_bytes": 1945
     },
     {
       "path": "tests/test_reconciliation_21547.py",

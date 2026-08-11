@@ -1,10 +1,10 @@
 {
   "package": "wikidebia-validator",
-  "validator_version": "0.4.81",
+  "validator_version": "0.4.82",
   "implemented_normative_revision": "1.2.78",
   "normative_revision": "1.2.78",
-  "kit_version": "2.16.9",
-  "recommended_kit_version": "2.16.9",
+  "kit_version": "2.16.10",
+  "recommended_kit_version": "2.16.10",
   "recommended_normative_archive": "wikidebia-normes.zip",
   "stable_archive_name": "wikidebia-validator.zip",
   "version_source": "VERSIONS.json",

@@ -36,7 +36,7 @@ def contextual_title_issues(title: str, language: str, revision: str | None = No
     if initial_match:
         # French impersonal constructions do not contain an anaphoric referent.
         impersonal_fr = language == "fr" and re.match(
-            r"^(?:Il\s+(?:existe|n['’]existe|faut|y\s+a|n['’]y\s+a|est|n['’]est|ne\s+devrait|reste)|Ce\s+(?:qu['’]|n['’]est))",
+            r"^(?:Il\s+(?:existe|n['’]existe|(?:ne\s+)?faut|y\s+a|n['’]y\s+a|est|n['’]est|ne\s+devrait|reste)|Ce\s+(?:qu['’]|n['’]est))",
             value, re.I,
         )
         if not impersonal_fr:
