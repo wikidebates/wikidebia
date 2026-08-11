@@ -1,30 +1,3 @@
-# Wikidéb’IA — Normes 1.2.73
+# Wikidéb’IA — Normes 1.2.74
 
-La révision 1.2.73 formalise l’orchestration ergonomique des interventions éditoriales externes : toutes les étapes mécaniques sont enchaînées jusqu’au prochain point de revue, les paquets ChatGPT sont minimaux, vérifiables et réimportables, et les primitives détaillées restent disponibles pour audit/debug. Elle ne réduit aucun garde-fou éditorial, documentaire, bilingue ou de publication.
-
-## Notes héritées du paquet parent 1.2.70
-
-Révision de réconciliation entre :
-
-- la lignée de traduction/validation 1.2.61 / 0.4.64 / 2.15.38 ;
-- la lignée de publication GitHub au commit `8b46816` (1.2.60 / 0.4.64 / 2.15.45) ;
-- l'ancêtre commun 1.2.55 / 0.4.58 / 2.15.32 (`654a51b`).
-
-La norme reste cumulative. Les renforcements de traduction différentielle, de revue sémantique, de provenance documentaire, de portée des appellations consacrées, de complétude des `Quote`, de validation multicouche et de scellement d'archive sont conservés. Les conventions opérationnelles déjà publiées de la branche GitHub sont également actives : résumés MediaWiki individualisés, balises `translated-fr`, reprise interlangue, `nom-consacré` / `established-name`, absence d'`initialization` sur une nouvelle traduction EN, et `creation-date` déterminée lors de la publication distante.
-
-Les historiques de branches qui ont réutilisé les mêmes numéros de version pour des changements différents sont archivés sous des chemins qualifiés ; ils ne sont jamais réécrits.
-
-La révision 1.2.64 corrige deux défauts de preuve supplémentaires découverts après le scellement de 1.2.63, sans modifier les décisions éditoriales ou de publication.
-
-La révision 1.2.65 corrige uniquement des contradictions résiduelles dans les documents actifs : terminologie des appellations consacrées, interlangue différée et rendu des citations verrouillées.
-
-
-La révision 1.2.67 complète la preuve propositionnelle par la revue des changements idiomatiques, le corpus réel de régressions et les preuves de champ Debate.
-
-La révision 1.2.69 renomme les paramètres MediaWiki de cadrage et de frontière : `sujet-développé` / `expanded-topic` et `débat-dédié` / `dedicated-debate`, avec lecture rétrocompatible des anciens noms.
-
-La révision 1.2.70 corrige l’alignement du validateur sur les métadonnées de première publication anglaise sans modifier les règles éditoriales : aucune projection cross-wiki d’`initialization` et aucune égalité imposée entre les dates de création française et anglaise.
-
-## Architecture de compatibilité 2026-08-10
-
-Les numéros de release sont une provenance. La compatibilité opérationnelle est pilotée par `CAPABILITIES.json` et les identifiants/version de schéma ; les égalités exactes sont réservées à l’installation, l’anti-downgrade, la reproductibilité et l’audit.
+La révision 1.2.74 corrige l’orchestration pré-revue : les défauts éditoriaux de titres importés restent des signaux non bloquants jusqu’au verrou de métadonnées correspondant, tandis que les incohérences structurelles restent bloquantes. Un blocage technique de `workflow` produit désormais automatiquement un paquet de diagnostic minimal sous `outgoing/` et peut être repris par simple relance. Toutes les règles éditoriales de fond et protections de publication restent actives.

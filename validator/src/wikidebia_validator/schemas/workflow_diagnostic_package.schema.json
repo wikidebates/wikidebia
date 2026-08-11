@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "workflow_diagnostic_package.schema.json",
+  "title": "Wikidéb'IA — Paquet de diagnostic de workflow",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "schema_version",
+    "debate_id",
+    "debate_title",
+    "phase",
+    "normative_revision",
+    "validator_version",
+    "kit_version",
+    "created_at",
+    "build_tree_sha256",
+    "error_count",
+    "errors",
+    "files"
+  ],
+  "properties": {
+    "schema": {
+      "const": "wikidebia-workflow-diagnostic-package-1.0"
+    },
+    "schema_version": {
+      "const": "1.0"
+    },
+    "debate_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "debate_title": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "phase": {
+      "const": "initial_validation"
+    },
+    "normative_revision": {
+      "type": "string"
+    },
+    "validator_version": {
+      "type": "string"
+    },
+    "kit_version": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "build_tree_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "error_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "errors": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object"
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256",
+          "size_bytes"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "pattern": "^context/"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}

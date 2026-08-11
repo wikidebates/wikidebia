@@ -89,3 +89,13 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - rouvre la traduction et recommence les deux passes sémantiques lorsqu’une erreur certaine est trouvée ;
 - ajoute `outgoing/` aux zones privées exclues de Git ;
 - conserve toutes les primitives détaillées et tous les garde-fous de publication existants.
+
+## 2.16.1 — 11 août 2026 — reprise ergonomique après validation initiale
+
+- n’interrompt plus l’orchestration avant la revue des métadonnées pour les seuls défauts de forme/autonomie de titres importés que cette revue peut corriger ;
+- conserve le blocage immédiat des incohérences réellement structurelles du graphe ;
+- remplace le message opaque de validation initiale par un état `blocked_technical` avec codes/messages concrets ;
+- produit automatiquement `outgoing/<debate_id>_initial_validation_diagnostic.zip`, limité aux rapports, graphe, registre, imports et contexte nécessaires, sans secret ;
+- une simple relance de `workflow` réessaie la validation bloquée après mise à jour/correction et poursuit ensuite normalement ;
+- ajoute des tests d’intégration sur le paquet de diagnostic et la reprise.
+

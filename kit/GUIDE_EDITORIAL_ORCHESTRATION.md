@@ -1,4 +1,4 @@
-# Orchestration des revues éditoriales ChatGPT — Kit 2.16.0
+# Orchestration des revues éditoriales ChatGPT — Kit 2.16.1
 
 ## Usage normal
 
@@ -68,3 +68,15 @@ Après deux passes propres et indépendantes, l'application, le rendu et la cons
 ## Commandes avancées
 
 Toutes les primitives existantes restent disponibles (`corpus-review-graph --prepare/--finalize`, `corpus-promote`, `corpus-workspace-review`, `corpus-workspace-content-review`, `corpus-workspace-translation`, `corpus-workspace-semantic-convergence`, etc.). Elles constituent la couche d'audit/debug et restent autoritatives ; l'orchestrateur ne fait que les enchaîner et résoudre automatiquement leurs confirmations mécaniques.
+## Blocage technique avant une revue
+
+La validation initiale distingue désormais les anomalies éditoriales différables des erreurs structurelles. Un titre importé à reformuler n’empêche pas la création du paquet de revue des métadonnées. En revanche, un cycle, une relation invalide ou une incohérence d’occurrence reste bloquant.
+
+Dans ce cas, l’utilisateur n’a pas à rechercher un rapport sous `.state/`. Le programme affiche les principaux diagnostics et crée automatiquement :
+
+```text
+outgoing/<debate_id>_initial_validation_diagnostic.zip
+```
+
+Ce fichier peut être envoyé tel quel à ChatGPT pour diagnostic. Après correction du kit ou des données, relancer exactement la même commande `./wikidebia workflow ...` : la validation bloquée est réessayée et le workflow reprend automatiquement.
+

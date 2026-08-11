@@ -4,9 +4,9 @@
   "component": "validator",
   "release_source": "VERSIONS.json",
   "release": {
-    "norm": "1.2.73",
-    "validator": "0.4.76",
-    "kit": "2.16.0"
+    "norm": "1.2.74",
+    "validator": "0.4.77",
+    "kit": "2.16.1"
   },
   "emits": {
     "validator_report": [
@@ -87,5 +87,9 @@
     "producer_versions": "provenance_only",
     "schema_and_capability_gate": true,
     "editorial_rules": "current_cumulative_version_independent"
+  },
+  "capabilities": {
+    "pre_review_editorial_deferral": "1.0",
+    "workflow_diagnostic_package": "wikidebia-workflow-diagnostic-package-1.0"
   }
 }

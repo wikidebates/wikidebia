@@ -1,7 +1,7 @@
 {
   "catalog_version": "1.2.0",
   "draft": "https://json-schema.org/draft/2020-12/schema",
-  "schema_count": 28,
+  "schema_count": 29,
   "schemas": [
     {
       "path": "archive_receipt.schema.json",
@@ -142,6 +142,11 @@
       "path": "validation_report.schema.json",
       "id": "wikidebia-validator-report.schema.json",
       "title": "Rapport structuré du validateur Wikidéb'IA"
+    },
+    {
+      "path": "workflow_diagnostic_package.schema.json",
+      "id": "workflow_diagnostic_package.schema.json",
+      "title": "Wikidéb'IA — Paquet de diagnostic de workflow"
     }
   ]
 }

@@ -1,12 +1,18 @@
-## Workflow 1.2.73 — convergence après revue des changements de forme
+## Workflow 1.2.74 — convergence après revue des changements de forme
 
 Avant la première passe de convergence, tout changement de forme d’un `displayed-title` est classé et justifié. Une proposition source devenue non-proposition bloque la revue ; une transformation idiomatique recevable ne passe qu’après attestation du même acte de langage, de la même thèse et de la même portée. Les risques sémantiques des Arguments et de Debate doivent tous posséder leurs preuves source/cible avant scellement. Les deux passes de convergence portent ensuite sur cet état exact.
 
-# Workflow de production Wikidéb’IA — norme 1.2.73
+# Workflow de production Wikidéb’IA — norme 1.2.74
 
 **Statut :** workflow actif générique  
 **Portée :** production bilingue français–anglais, validation et publication MediaWiki
 
+
+### Validation pré-revue et blocage technique
+
+Une validation précédant une revue ChatGPT ne bloque pas sur les défauts éditoriaux que la revue suivante est destinée à corriger. Avant présence du verrou `data/fr_page_metadata_lock.json` (ou de son équivalent anglais), les défauts de forme/autonomie des titres importés restent des avertissements de travail. Les incohérences structurelles du graphe restent en revanche bloquantes.
+
+Si un blocage technique subsiste, `workflow` affiche ses diagnostics et construit automatiquement `outgoing/<debate_id>_initial_validation_diagnostic.zip`. Ce ZIP est un paquet de diagnostic en lecture seule, sans secret, destiné à être envoyé à ChatGPT ; l’utilisateur n’a pas à ouvrir les rapports internes. Après correction, relancer la même commande `workflow` réessaie la phase bloquée et reprend automatiquement.
 
 ## 0. Orchestration utilisateur des points éditoriaux
 

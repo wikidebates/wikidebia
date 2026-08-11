@@ -1,4 +1,4 @@
-# Norme opérationnelle active Wikidéb’IA 1.2.73
+# Norme opérationnelle active Wikidéb’IA 1.2.74
 
 **Statut : source normative active unique.**  
 **Date d’effet :** 11 août 2026
@@ -744,6 +744,10 @@ La release standard contient à sa racine `WIKIDEBIA_SOURCE_ACTIVE.md`, `VERSION
 ## 22. Orchestration des interventions éditoriales externes
 
 Le workflow utilisateur normal applique le principe de **progression mécanique jusqu’au prochain point éditorial**. Lorsqu’une succession d’étapes ne nécessite aucune décision de contenu, le kit les exécute automatiquement dans l’ordre déjà défini par les primitives auditées. L’utilisateur n’a pas à connaître les chemins de `.state/`, les fichiers JSON internes, les empreintes de confirmation ni les sous-commandes `--prepare`, `--finalize` et `--apply`. Ces primitives restent disponibles sans changement pour le debug, l’audit, les tests et les usages avancés.
+
+La validation précédant un point de revue ne doit jamais rendre ce point inaccessible à cause d’une anomalie que cette revue est précisément destinée à corriger. En particulier, avant le verrouillage des métadonnées françaises ou anglaises, les défauts de forme ou d’autonomie référentielle des titres canoniques ou affichés déjà importés sont des **signaux éditoriaux différés** : ils sont signalés mais ne bloquent pas l’initialisation du graphe ni sa transmission à ChatGPT. Les schémas structurels d’entrée ne doivent pas réintroduire ces contraintes éditoriales comme erreurs de schéma avant ce verrou ; ils contrôlent alors seulement la structure et les contraintes syntaxiques indépendantes de la revue. Les défauts éditoriaux de titre redeviennent bloquants dès que le verrou de métadonnées de la langue concernée existe. Cette différenciation ne s’applique pas aux incohérences structurelles du graphe (cycle, auto-relation, relation ou occurrence invalide, collision d’identité, empreinte incohérente), qui restent bloquantes à tout stade applicable.
+
+Lorsqu’une validation mécanique rencontre une erreur réellement bloquante avant le prochain point éditorial, l’orchestrateur doit conserver les diagnostics détaillés, afficher les principaux codes et messages, et produire automatiquement dans `outgoing/` un paquet de diagnostic minimal sans secret. L’utilisateur ne doit pas avoir à rechercher lui-même le rapport interne sous `.state/`. Une relance de la même commande après correction du kit ou de la donnée reprend la validation et poursuit le workflow sans recréer inutilement les étapes déjà valides.
 
 Lorsqu’une intervention éditoriale externe devient nécessaire, le kit crée un paquet de revue au schéma stable `wikidebia-chatgpt-review-package-1.0` dans `outgoing/` et s’arrête. Ce paquet :
 

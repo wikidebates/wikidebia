@@ -2,22 +2,22 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.73** ;
-- validateur actif : **0.4.76** ;
-- kit actif : **2.16.0**.
+- norme active : **1.2.74** ;
+- validateur actif : **0.4.77** ;
+- kit actif : **2.16.1**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3279097 octets — SHA-256 `c610ef959572282ea70037873d98fd7015bdb051a37770cb98a885f5aed19cbf`
-- `wikidebia-validator.zip` — 3425737 octets — SHA-256 `15c05eb5d9a71f649568213d01c7e185c9e6611b7760aa7818f33842dd747e61`
-- `wikidebia-kit.zip` — 596134 octets — SHA-256 `c6e579101c3db03745031552e9ab9499042e07d97b8aa7b22e1b035512b7fdbd`
+- `wikidebia-normes.zip` — 3306616 octets — SHA-256 `502394fd908d3bf84e0cb84d2962c96ca02be105868b3d2a9bb10b1db6c42b1d`
+- `wikidebia-validator.zip` — 3457209 octets — SHA-256 `006cdafcc2e4ca1ad265581be04fb851061bba1db545d532e685a58b35d20fa8`
+- `wikidebia-kit.zip` — 599554 octets — SHA-256 `e5bd47f21d53db39017dbfad71982a466e5f2355b6ed959ebaa984cdf8664f32`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.73.md`  
-SHA-256 : `cf525499e2f7b72d886aa56b54e43ca0ee5715ac7fdfc05e305e47ba1e716c3f`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.74.md`  
+SHA-256 : `f1d771456ead8a7047fe8b43209ed47c1c9960430cfb119b3e6060f47e04b8d3`
 
-# Norme opérationnelle active Wikidéb’IA 1.2.73
+# Norme opérationnelle active Wikidéb’IA 1.2.74
 
 **Statut : source normative active unique.**  
 **Date d’effet :** 11 août 2026
@@ -764,6 +764,10 @@ La release standard contient à sa racine `WIKIDEBIA_SOURCE_ACTIVE.md`, `VERSION
 
 Le workflow utilisateur normal applique le principe de **progression mécanique jusqu’au prochain point éditorial**. Lorsqu’une succession d’étapes ne nécessite aucune décision de contenu, le kit les exécute automatiquement dans l’ordre déjà défini par les primitives auditées. L’utilisateur n’a pas à connaître les chemins de `.state/`, les fichiers JSON internes, les empreintes de confirmation ni les sous-commandes `--prepare`, `--finalize` et `--apply`. Ces primitives restent disponibles sans changement pour le debug, l’audit, les tests et les usages avancés.
 
+La validation précédant un point de revue ne doit jamais rendre ce point inaccessible à cause d’une anomalie que cette revue est précisément destinée à corriger. En particulier, avant le verrouillage des métadonnées françaises ou anglaises, les défauts de forme ou d’autonomie référentielle des titres canoniques ou affichés déjà importés sont des **signaux éditoriaux différés** : ils sont signalés mais ne bloquent pas l’initialisation du graphe ni sa transmission à ChatGPT. Les schémas structurels d’entrée ne doivent pas réintroduire ces contraintes éditoriales comme erreurs de schéma avant ce verrou ; ils contrôlent alors seulement la structure et les contraintes syntaxiques indépendantes de la revue. Les défauts éditoriaux de titre redeviennent bloquants dès que le verrou de métadonnées de la langue concernée existe. Cette différenciation ne s’applique pas aux incohérences structurelles du graphe (cycle, auto-relation, relation ou occurrence invalide, collision d’identité, empreinte incohérente), qui restent bloquantes à tout stade applicable.
+
+Lorsqu’une validation mécanique rencontre une erreur réellement bloquante avant le prochain point éditorial, l’orchestrateur doit conserver les diagnostics détaillés, afficher les principaux codes et messages, et produire automatiquement dans `outgoing/` un paquet de diagnostic minimal sans secret. L’utilisateur ne doit pas avoir à rechercher lui-même le rapport interne sous `.state/`. Une relance de la même commande après correction du kit ou de la donnée reprend la validation et poursuit le workflow sans recréer inutilement les étapes déjà valides.
+
 Lorsqu’une intervention éditoriale externe devient nécessaire, le kit crée un paquet de revue au schéma stable `wikidebia-chatgpt-review-package-1.0` dans `outgoing/` et s’arrête. Ce paquet :
 
 1. identifie le débat, le Work éventuel, le type de revue et la provenance locale exacte ;
@@ -788,7 +792,7 @@ Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. E
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `b7af925e23d8afc81d8f55143989a4f27362cb4e6298795977643ddaed7fbf7d`
+SHA-256 : `a315d908dd508a69adee2b7ff18eb18b8d17a7f3c50b963c26e6b27dc45cea2b`
 
 ## 1.2.70 — alignement du validateur sur la première publication anglaise
 
@@ -1469,18 +1473,25 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - classe `outgoing/` parmi les zones locales privées exclues de Git ;
 - conserve intégralement les garde-fous de validation, les verrous français, les empreintes, l’absence d’écriture distante et le contrat de publication W11.
 
+## 1.2.74 — 11 août 2026 — validation pré-revue et diagnostic ergonomique
+
+- différencie les anomalies éditoriales de titre, corrigeables lors de la revue des métadonnées, des incohérences structurelles réellement bloquantes ;
+- avant le verrou de métadonnées de la langue concernée, `WDV-GRA-016` et `WDV-EDT-016` liés aux titres importés sont des avertissements, puis redeviennent bloquants après verrouillage ;
+- impose à l’orchestrateur de produire un paquet de diagnostic minimal et d’afficher les erreurs concrètes lorsqu’une validation structurelle bloque réellement ;
+- rend la reprise idempotente par simple relance de `workflow` après correction, sans manipulation des rapports sous `.state/`.
+
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `d5b96153d9209487a8e712ee423723efbed0a28eb94624b4517f58d149fa1998`
+SHA-256 : `68d0037c182382a2c917d4a7a9129dc71514819eead51e3fcc9d9735cd94f996`
 
-# Wikidéb’IA Validator 0.4.76
+# Wikidéb’IA Validator 0.4.77
 
-Le validateur 0.4.76 reste fonctionnellement cumulatif et s’aligne sur la norme 1.2.73 / le kit 2.16.0. Il publie en plus les schémas stables des nouveaux artefacts d’orchestration : `wikidebia-chatgpt-review-package-1.0`, `wikidebia-editorial-orchestration-1.0` et `wikidebia-semantic-review-response-1.0`. Les contrôles éditoriaux existants ne sont ni retirés ni affaiblis.
+Le validateur 0.4.77 s’aligne sur la norme 1.2.74 / le kit 2.16.1. Il distingue désormais les défauts éditoriaux de titres importés, différables jusqu’au verrou de métadonnées correspondant, des incohérences structurelles du graphe qui restent immédiatement bloquantes. Les mêmes contrôles redeviennent stricts dès que les métadonnées de la langue sont verrouillées.
 
 ## Notes héritées du paquet parent 0.4.73
 
-Version courante pour la norme 1.2.73 et le kit 2.16.0.
+Version courante pour la norme 1.2.74 et le kit 2.16.1.
 
 Elle conserve les contrôles différentiels et sémantiques de la lignée traduction 0.4.64 et intègre les contrôles de la lignée publication GitHub : `nom-consacré` / `established-name`, `AI-translated quote`, absence d'`initialization` sur une nouvelle traduction anglaise, cohérence normative et préservation historique des alias.
 
@@ -1505,7 +1516,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `20d70631b193c202ed5d15fe3f1560187b1d15470f84c46a116c19fdb92368fb`
+SHA-256 : `c4e0d8fcd3559026ebd03aa2f46c55e76fe3fb2d193b87ae65d04853f600f9c1`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1589,14 +1600,21 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - déclare ces schémas dans `CAPABILITIES.json` ;
 - conserve l’intégralité des contrôles éditoriaux, différentiels, documentaires et de publication précédents.
 
+## 0.4.77 — 11 août 2026 — sévérité fonctionnelle des titres avant revue
+
+- `WDV-GRA-016` et `WDV-EDT-016` relatifs aux titres importés sont des avertissements tant que le verrou de métadonnées de la langue concernée n’existe pas ;
+- ces contrôles redeviennent bloquants dès présence de `data/fr_page_metadata_lock.json` ou `data/en_page_metadata_lock.json` ;
+- les collisions, cycles, auto-relations, relations/occurrences invalides et autres incohérences structurelles restent bloquantes sans assouplissement ;
+- ajoute des tests positif/négatif empêchant une nouvelle confusion entre signal éditorial pré-revue et erreur structurelle.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `aa15d05202b42652ee79e1815f2f850a3b5a3a19927e454d81f2722f9b21f09e`
+SHA-256 : `f8124c3a0c789576bf5049fb9da7838fff8258d125d2294d848cf56ec9225af0`
 
-# Wikidéb’IA Kit 2.16.0
+# Wikidéb’IA Kit 2.16.1
 
-Le kit 2.16.0 ajoute une orchestration de haut niveau des interventions éditoriales externes. `./wikidebia workflow "Titre du débat"` enchaîne toutes les opérations mécaniques jusqu’au prochain véritable point de revue, produit automatiquement un ZIP minimal sous `outgoing/`, puis `./wikidebia review-import <debate_id> <zip>` vérifie le retour, finalise/applique les primitives existantes et poursuit jusqu’au point éditorial suivant. Les commandes détaillées historiques restent disponibles pour audit, debug et usages avancés.
+Le kit 2.16.1 corrige le premier passage de l’orchestration : une anomalie éditoriale de titre importé ne bloque plus avant la revue qui doit précisément la corriger. Les incohérences structurelles restent bloquantes ; lorsqu’elles surviennent, `workflow` affiche leurs codes/messages et produit automatiquement un ZIP de diagnostic minimal sous `outgoing/`. Après correction, relancer la même commande reprend la phase sans reset manuel. Le mécanisme général de paquets de revue introduit en 2.16.0 reste inchangé.
 
 Les paquets de revue utilisent le schéma stable `wikidebia-chatgpt-review-package-1.0`, séparent `editable/` et `context/`, lient leur provenance à l’état local, refusent les fichiers supplémentaires et excluent les secrets. La convergence sémantique est elle aussi orchestrée : une erreur certaine rouvre la traduction, puis les deux passes indépendantes recommencent. Aucune publication distante n’est déclenchée par cette orchestration.
 
@@ -1629,7 +1647,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `80d94ac717d9628f969d0b24aba4688d342d857b35d5a0a853618870d0b4e804`
+SHA-256 : `685c017356570a0be310ef525c2515b6390e9fed1bc66fc264e46a8128c2d06d`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1722,6 +1740,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - rouvre la traduction et recommence les deux passes sémantiques lorsqu’une erreur certaine est trouvée ;
 - ajoute `outgoing/` aux zones privées exclues de Git ;
 - conserve toutes les primitives détaillées et tous les garde-fous de publication existants.
+
+## 2.16.1 — 11 août 2026 — reprise ergonomique après validation initiale
+
+- n’interrompt plus l’orchestration avant la revue des métadonnées pour les seuls défauts de forme/autonomie de titres importés que cette revue peut corriger ;
+- conserve le blocage immédiat des incohérences réellement structurelles du graphe ;
+- remplace le message opaque de validation initiale par un état `blocked_technical` avec codes/messages concrets ;
+- produit automatiquement `outgoing/<debate_id>_initial_validation_diagnostic.zip`, limité aux rapports, graphe, registre, imports et contexte nécessaires, sans secret ;
+- une simple relance de `workflow` réessaie la validation bloquée après mise à jour/correction et poursuit ensuite normalement ;
+- ajoute des tests d’intégration sur le paquet de diagnostic et la reprise.
 
 ## Guide de publication
 
@@ -1981,16 +2008,102 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `dbe86e6d3c9f116716b599a3b4781b668a7af2c625c7eada41ee68a6b92d51b0`
+SHA-256 : `1e7d45b24d9552b74cb934da2610a6e1a0e52630f45325eb2de7d9a2e1150238`
 
-Wikidéb’IA Kit 2.16.0 — rapport de tests
+Wikidéb’IA Kit 2.16.1 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 390
-Tests pytest : 390 réussis
-Norme : 1.2.73
-Validateur : 0.4.76
-Plans de publication : wikidebia-publication-plan-1.0
-Orchestration éditoriale, ZIP minimaux, reprise transactionnelle, boucle sémantique, commandes avancées et non-régression : PASSED.
+Tests pytest collectés : 391
+Tests pytest : 391 réussis
+Norme : 1.2.74
+Validateur : 0.4.77
+Validation pré-revue, diagnostic technique, reprise idempotente et orchestration éditoriale : PASSED.
+
+## Guide d’orchestration éditoriale
+
+Source interne : `kit/GUIDE_EDITORIAL_ORCHESTRATION.md`  
+SHA-256 : `56dfcdbc51eb928d6b264cb1ebee531fba686726f3cd60eb376a71dea321a787`
+
+# Orchestration des revues éditoriales ChatGPT — Kit 2.16.1
+
+## Usage normal
+
+Pour lancer ou reprendre la préparation bilingue d'un débat existant :
+
+```bash
+./wikidebia workflow "Un revenu de base doit-il être instauré ?"
+```
+
+La commande réutilise un snapshot `graph-extract` compatible déjà présent lorsque c'est possible ; sinon elle effectue l'extraction en lecture seule. Elle initialise le corpus, lance les validations mécaniques et s'arrête au premier point où une décision éditoriale externe est requise.
+
+Exemple :
+
+```text
+Revue du graphe préparée.
+191 placements doivent être analysés par ChatGPT.
+
+Envoyez ce fichier à ChatGPT :
+outgoing/revenu_de_base_graph_review.zip
+
+Après correction, réimportez le ZIP rendu avec :
+./wikidebia review-import revenu_de_base <fichier_corrige.zip>
+```
+
+Après le retour de ChatGPT :
+
+```bash
+./wikidebia review-import revenu_de_base fichier_corrige.zip
+```
+
+Le kit vérifie le paquet, installe uniquement les fichiers autorisés, finalise et applique la revue, puis poursuit automatiquement jusqu'au prochain point éditorial. Aucun SHA-256 n'est à recopier manuellement.
+
+L'état courant est consultable avec :
+
+```bash
+./wikidebia workflow-status revenu_de_base
+```
+
+## Contrat des paquets
+
+Un paquet de revue contient uniquement :
+
+- `REVIEW_PACKAGE.json` : provenance et empreintes ;
+- `INSTRUCTIONS.md` : consignes de la revue ;
+- `editable/` : seuls fichiers que ChatGPT peut modifier ;
+- `context/` : sources nécessaires en lecture seule.
+
+Le retour doit conserver exactement cette structure. Les fichiers de contexte, le manifeste et les instructions ne peuvent pas être modifiés. Les fichiers supplémentaires sont refusés. Les chemins dangereux, liens symboliques et paquets provenant d'un autre débat, d'un autre Work ou d'une ancienne revue sont refusés.
+
+`outgoing/` est une zone privée exclue de Git. Aucun secret, cookie, fichier Pywikibot privé, configuration locale ou état de publication n'est inclus par les listes blanches de revue.
+
+## Points éditoriaux orchestrés
+
+Le cycle courant couvre successivement :
+
+1. graphe et placements ;
+2. titres, rubriques et mots-clés français ;
+3. introduction, résumés et documentation française ;
+4. traduction et documentation anglaises, y compris la recherche d'`established-name=` lorsqu'elle s'applique ;
+5. première passe de convergence sémantique ;
+6. deuxième passe indépendante de convergence.
+
+Si une passe sémantique trouve une erreur certaine, la traduction est rouverte, les constatations sont fournies comme contexte dans un paquet de correction, puis les deux passes de convergence recommencent sur la nouvelle empreinte.
+
+Après deux passes propres et indépendantes, l'application, le rendu et la construction `release_ready` sont automatiques. L'orchestrateur n'exécute aucune publication distante.
+
+## Commandes avancées
+
+Toutes les primitives existantes restent disponibles (`corpus-review-graph --prepare/--finalize`, `corpus-promote`, `corpus-workspace-review`, `corpus-workspace-content-review`, `corpus-workspace-translation`, `corpus-workspace-semantic-convergence`, etc.). Elles constituent la couche d'audit/debug et restent autoritatives ; l'orchestrateur ne fait que les enchaîner et résoudre automatiquement leurs confirmations mécaniques.
+## Blocage technique avant une revue
+
+La validation initiale distingue désormais les anomalies éditoriales différables des erreurs structurelles. Un titre importé à reformuler n’empêche pas la création du paquet de revue des métadonnées. En revanche, un cycle, une relation invalide ou une incohérence d’occurrence reste bloquant.
+
+Dans ce cas, l’utilisateur n’a pas à rechercher un rapport sous `.state/`. Le programme affiche les principaux diagnostics et crée automatiquement :
+
+```text
+outgoing/<debate_id>_initial_validation_diagnostic.zip
+```
+
+Ce fichier peut être envoyé tel quel à ChatGPT pour diagnostic. Après correction du kit ou des données, relancer exactement la même commande `./wikidebia workflow ...` : la validation bloquée est réessayée et le workflow reprend automatiquement.
 
 ## Guide de traduction anglaise
 

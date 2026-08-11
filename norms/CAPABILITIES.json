@@ -4,9 +4,9 @@
   "component": "norms",
   "release_source": "VERSIONS.json",
   "release": {
-    "norm": "1.2.73",
-    "validator": "0.4.76",
-    "kit": "2.16.0"
+    "norm": "1.2.74",
+    "validator": "0.4.77",
+    "kit": "2.16.1"
   },
   "emits": {
     "active_normative_policy": [
@@ -20,5 +20,9 @@
     "editorial_rules": "current_cumulative_version_independent",
     "historical_snapshots": "immutable_provenance",
     "versions": "provenance_installation_migration_only"
+  },
+  "capabilities": {
+    "pre_review_editorial_deferral": "1.0",
+    "workflow_diagnostic_package": "wikidebia-workflow-diagnostic-package-1.0"
   }
 }

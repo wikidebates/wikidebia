@@ -532,3 +532,52 @@ def test_review_registry_covers_every_orchestrated_external_stop():
         "graph_review", "fr_metadata_review", "fr_content_review", "en_translation_review",
         "en_translation_correction", "semantic_convergence_1", "semantic_convergence_2",
     }
+
+
+def test_initial_validation_block_is_explained_packaged_and_retryable(tmp_path: Path, monkeypatch):
+    from test_wikidebia_corpus_init import make_extraction
+
+    project = tmp_path / "project"
+    project.mkdir()
+    source = make_extraction(tmp_path / "source")
+
+    def failed_validator(project_root: Path, package: Path):
+        reports = package / "reports"
+        reports.mkdir(parents=True, exist_ok=True)
+        report_json = reports / "initial_validation.json"
+        common.write_json(report_json, {
+            "schema": "wikidebia-validator-report-1.0",
+            "result": "failed",
+            "summary": {"errors": 1, "warnings": 0, "infos": 0},
+            "findings": [{
+                "code": "WDV-GRA-005", "level": "ERROR",
+                "message": "Cycle détecté : A0001 -> A0002 -> A0001",
+                "path": "data/registre_debat.json", "pointer": None, "details": {},
+            }],
+        })
+        (reports / "initial_validation.txt").write_text("cycle\n", encoding="utf-8")
+        common.write_json(reports / "initial_validation_execution.json", {"status": "failed"})
+        return {"status": "failed", "report_json": str(report_json)}
+
+    monkeypatch.setattr(wf, "run_initial_validator", failed_validator)
+    state = wf.start_workflow(project, "Débat test ?", debate_id="debat_test", short_code="TEST", snapshot=source)
+    assert state["status"] == "blocked_technical"
+    assert state["phase"] == "initial_validation_blocked"
+    assert state["last_block"]["errors"][0]["code"] == "WDV-GRA-005"
+    diagnostic = project / state["last_block"]["diagnostic_path"]
+    assert diagnostic.is_file()
+    with zipfile.ZipFile(diagnostic) as z:
+        names = set(z.namelist())
+        assert "DIAGNOSTIC_PACKAGE.json" in names
+        assert "context/reports/initial_validation.json" in names
+        assert "context/data/registre_debat.json" in names
+        assert not any("private" in name or "secret" in name for name in names)
+        manifest = json.loads(z.read("DIAGNOSTIC_PACKAGE.json"))
+        assert manifest["schema"] == wf.DIAGNOSTIC_SCHEMA
+        assert manifest["error_count"] == 1
+
+    monkeypatch.setattr(wf, "run_initial_validator", lambda project_root, package: {"status": "passed"})
+    resumed = wf.start_workflow(project, "Débat test ?", debate_id="debat_test")
+    assert resumed["status"] == "awaiting_review"
+    assert resumed["pending_review"]["review_type"] == "graph_review"
+    assert "last_block" not in resumed

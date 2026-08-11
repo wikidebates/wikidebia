@@ -1,6 +1,6 @@
-# Wikidéb’IA Kit 2.16.0
+# Wikidéb’IA Kit 2.16.1
 
-Le kit 2.16.0 ajoute une orchestration de haut niveau des interventions éditoriales externes. `./wikidebia workflow "Titre du débat"` enchaîne toutes les opérations mécaniques jusqu’au prochain véritable point de revue, produit automatiquement un ZIP minimal sous `outgoing/`, puis `./wikidebia review-import <debate_id> <zip>` vérifie le retour, finalise/applique les primitives existantes et poursuit jusqu’au point éditorial suivant. Les commandes détaillées historiques restent disponibles pour audit, debug et usages avancés.
+Le kit 2.16.1 corrige le premier passage de l’orchestration : une anomalie éditoriale de titre importé ne bloque plus avant la revue qui doit précisément la corriger. Les incohérences structurelles restent bloquantes ; lorsqu’elles surviennent, `workflow` affiche leurs codes/messages et produit automatiquement un ZIP de diagnostic minimal sous `outgoing/`. Après correction, relancer la même commande reprend la phase sans reset manuel. Le mécanisme général de paquets de revue introduit en 2.16.0 reste inchangé.
 
 Les paquets de revue utilisent le schéma stable `wikidebia-chatgpt-review-package-1.0`, séparent `editable/` et `context/`, lient leur provenance à l’état local, refusent les fichiers supplémentaires et excluent les secrets. La convergence sémantique est elle aussi orchestrée : une erreur certaine rouvre la traduction, puis les deux passes indépendantes recommencent. Aucune publication distante n’est déclenchée par cette orchestration.
 

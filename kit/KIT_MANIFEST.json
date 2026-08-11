@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.16.0",
-  "validator_version": "0.4.76",
+  "version": "2.16.1",
+  "validator_version": "0.4.77",
   "scope": [
     "publish_archive",
     "github_init",
@@ -452,7 +452,7 @@
     "editorial_workflow_status_resume",
     "minimal_editable_context_review_packages"
   ],
-  "normative_revision": "1.2.73",
+  "normative_revision": "1.2.74",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [

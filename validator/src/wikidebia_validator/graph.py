@@ -189,19 +189,53 @@ def validate_graph(ctx: PackageContext) -> None:
     edge_by_id = {e.get("id"): e for e in edges}
     occ_by_id = {o.get("id"): o for o in occurrences}
 
+    title_policy_locked = {
+        "fr": ctx.exists("data/fr_page_metadata_lock.json"),
+        "en": ctx.exists("data/en_page_metadata_lock.json"),
+    }
     for lang in ("fr", "en"):
         seen: dict[str, str] = {}
+        title_reporter = ctx.report.error if title_policy_locked[lang] else ctx.report.warning
+        debate_title = (((registry.get("debate") or {}).get("pages") or {}).get(lang) or {}).get("canonical_title")
+        if debate_title and (debate_title.endswith(".") or "’" in debate_title):
+            title_reporter(
+                "WDV-GRA-016",
+                f"Titre de débat {lang} non conforme : {debate_title}",
+                path=ctx.core_paths()["registry"],
+                pointer=f"/debate/pages/{lang}/canonical_title",
+                details={"deferred_until_metadata_lock": not title_policy_locked[lang]},
+            )
         for node in nodes:
-            title = (node.get(lang) or {}).get("canonical_title")
+            language_data = node.get(lang) or {}
+            title = language_data.get("canonical_title")
+            displayed_title = language_data.get("displayed_title")
+            for field_name, field_value in (("canonical_title", title), ("displayed_title", displayed_title)):
+                if field_value and (field_value.endswith(".") or "’" in field_value):
+                    title_reporter(
+                        "WDV-GRA-016",
+                        f"Titre {lang} non conforme : {field_value}",
+                        path=ctx.core_paths()["registry"],
+                        pointer=f"/graph/nodes/{node.get('id')}/{lang}/{field_name}",
+                        details={"deferred_until_metadata_lock": not title_policy_locked[lang], "title_field": field_name},
+                    )
             if not title:
                 continue
-            if title.endswith(".") or "’" in title:
-                ctx.report.error("WDV-GRA-016", f"Titre {lang} non conforme : {title}", path=ctx.core_paths()["registry"], pointer=f"/graph/nodes/{node.get('id')}/{lang}/canonical_title")
             contextual = contextual_title_issues(title, lang)
-            details = {"node_id": node.get("id"), "language": lang, "issues": contextual}
+            details = {
+                "node_id": node.get("id"),
+                "language": lang,
+                "issues": contextual,
+                "deferred_until_metadata_lock": not title_policy_locked[lang],
+            }
             manual_referent_ok = _canonical_referent_manually_verified(ctx, str(node.get('id')), lang)
             if ("implicit_referent" in contextual or "initial_contextual_referent" in contextual) and not manual_referent_ok:
-                ctx.report.error("WDV-EDT-016", f"Titre {lang} non autonome : le référent initial dépend du contexte extérieur : {title}", path=ctx.core_paths()["registry"], pointer=f"/graph/nodes/{node.get('id')}/{lang}/canonical_title", details=details)
+                title_reporter(
+                    "WDV-EDT-016",
+                    f"Titre {lang} non autonome : le référent initial dépend du contexte extérieur : {title}",
+                    path=ctx.core_paths()["registry"],
+                    pointer=f"/graph/nodes/{node.get('id')}/{lang}/canonical_title",
+                    details=details,
+                )
             elif "possible_contextual_referent" in contextual and not manual_referent_ok:
                 ctx.report.warning("WDV-EDT-016", f"Titre {lang} à vérifier : un démonstratif interne peut dépendre du contexte extérieur : {title}", path=ctx.core_paths()["registry"], pointer=f"/graph/nodes/{node.get('id')}/{lang}/canonical_title", details=details)
             key = normalized_title(title)

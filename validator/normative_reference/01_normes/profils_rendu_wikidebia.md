@@ -1,4 +1,4 @@
-## Profil de traduction 1.2.73 — changements idiomatiques revus et preuve de risques
+## Profil de traduction 1.2.74 — changements idiomatiques revus et preuve de risques
 
 Pour un `displayed-title`, la forme cible est normalement identique à la forme source. Une différence est admise seulement avec `displayed_title_form_change_reviewed=true`, `displayed_title_speech_act_preserved=true` et une note substantielle ; une proposition source ne devient jamais une non-proposition. Chaque risque détecté dans un Argument possède une entrée de preuve avec le libellé du risque, un extrait français réellement présent, un extrait anglais réellement présent et une note de revue. La page Debate consigne de même les SHA-256 et risques de `canonical_title`, `topic`, `complete_topic` et `introduction`.
 

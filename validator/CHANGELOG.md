@@ -79,3 +79,11 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ajoute les schémas JSON des paquets ChatGPT, de l’état d’orchestration et des réponses de convergence ;
 - déclare ces schémas dans `CAPABILITIES.json` ;
 - conserve l’intégralité des contrôles éditoriaux, différentiels, documentaires et de publication précédents.
+
+## 0.4.77 — 11 août 2026 — sévérité fonctionnelle des titres avant revue
+
+- `WDV-GRA-016` et `WDV-EDT-016` relatifs aux titres importés sont des avertissements tant que le verrou de métadonnées de la langue concernée n’existe pas ;
+- ces contrôles redeviennent bloquants dès présence de `data/fr_page_metadata_lock.json` ou `data/en_page_metadata_lock.json` ;
+- les collisions, cycles, auto-relations, relations/occurrences invalides et autres incohérences structurelles restent bloquantes sans assouplissement ;
+- ajoute des tests positif/négatif empêchant une nouvelle confusion entre signal éditorial pré-revue et erreur structurelle.
+

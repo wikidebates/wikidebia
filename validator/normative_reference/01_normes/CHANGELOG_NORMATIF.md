@@ -677,3 +677,10 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - classe `outgoing/` parmi les zones locales privées exclues de Git ;
 - conserve intégralement les garde-fous de validation, les verrous français, les empreintes, l’absence d’écriture distante et le contrat de publication W11.
 
+## 1.2.74 — 11 août 2026 — validation pré-revue et diagnostic ergonomique
+
+- différencie les anomalies éditoriales de titre, corrigeables lors de la revue des métadonnées, des incohérences structurelles réellement bloquantes ;
+- avant le verrou de métadonnées de la langue concernée, `WDV-GRA-016` et `WDV-EDT-016` liés aux titres importés sont des avertissements, puis redeviennent bloquants après verrouillage ;
+- impose à l’orchestrateur de produire un paquet de diagnostic minimal et d’afficher les erreurs concrètes lorsqu’une validation structurelle bloque réellement ;
+- rend la reprise idempotente par simple relance de `workflow` après correction, sans manipulation des rapports sous `.state/`.
+

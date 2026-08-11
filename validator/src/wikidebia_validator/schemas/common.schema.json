@@ -180,17 +180,7 @@
       "minLength": 1,
       "maxLength": 255,
       "not": {
-        "anyOf": [
-          {
-            "pattern": "\\.$"
-          },
-          {
-            "pattern": "’"
-          },
-          {
-            "pattern": "^\\s|\\s$"
-          }
-        ]
+        "pattern": "^\\s|\\s$"
       }
     },
     "nullableCanonicalTitle": {
@@ -208,17 +198,7 @@
       "minLength": 1,
       "maxLength": 255,
       "not": {
-        "anyOf": [
-          {
-            "pattern": "\\.$"
-          },
-          {
-            "pattern": "’"
-          },
-          {
-            "pattern": "^\\s|\\s$"
-          }
-        ]
+        "pattern": "^\\s|\\s$"
       }
     },
     "nullableDisplayedTitle": {

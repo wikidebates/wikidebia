@@ -1,8 +1,8 @@
 {
   "package": "wikidebia-kit",
-  "kit_version": "2.16.0",
-  "normative_revision": "1.2.73",
-  "validator_version": "0.4.76",
+  "kit_version": "2.16.1",
+  "normative_revision": "1.2.74",
+  "validator_version": "0.4.77",
   "version_source": "VERSIONS.json",
   "capability_source": "CAPABILITIES.json",
   "compatibility_scope": "schema_capability_workflows",

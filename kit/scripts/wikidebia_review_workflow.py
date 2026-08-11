@@ -65,6 +65,7 @@ from wikidebia_release import release_workspace
 PACKAGE_SCHEMA = "wikidebia-chatgpt-review-package-1.0"
 WORKFLOW_SCHEMA = "wikidebia-editorial-orchestration-1.0"
 SEMANTIC_RESPONSE_SCHEMA = "wikidebia-semantic-review-response-1.0"
+DIAGNOSTIC_SCHEMA = "wikidebia-workflow-diagnostic-package-1.0"
 ALLOWED_METHOD_FAMILIES = {
     "proposition_by_proposition",
     "risk_marker_review",
@@ -413,6 +414,98 @@ def _install_editable_files(base: Path, manifest: Mapping[str, Any], files: Mapp
         os.replace(temp, target)
 
 
+
+
+def _validation_errors(validation: Mapping[str, Any]) -> list[dict[str, Any]]:
+    report_path = validation.get("report_json")
+    if not report_path:
+        return []
+    path = Path(str(report_path))
+    if not path.is_file():
+        return []
+    try:
+        report = load_json(path, "rapport de validation initiale")
+    except Exception:
+        return []
+    return [
+        dict(item) for item in (report.get("findings") or report.get("issues") or [])
+        if str(item.get("level") or item.get("severity") or "").upper() == "ERROR"
+    ]
+
+
+def _create_initial_validation_diagnostic(
+    project_root: Path, state: dict[str, Any], build_dir: Path, validation: Mapping[str, Any]
+) -> dict[str, Any]:
+    debate_id = str(state["debate_id"])
+    outgoing = project_root / "outgoing"
+    outgoing.mkdir(parents=True, exist_ok=True)
+    target = outgoing / f"{debate_id}_initial_validation_diagnostic.zip"
+    explicit = [
+        "manifest.json",
+        "scope.json",
+        "data/registre_debat.json",
+        "graph/graphe_argumentatif.json",
+        "graph/graphe_argumentatif.md",
+        "reports/import_report.md",
+        "reports/initial_validation.json",
+        "reports/initial_validation.txt",
+        "reports/initial_validation_execution.json",
+    ]
+    files = _copy_context_files(build_dir, [rel for rel in explicit if (build_dir / rel).is_file()], ["imports/fr/**/*.wiki", "imports/fr/**/*.json"])
+    entries = []
+    staging = Path(tempfile.mkdtemp(prefix=f".{debate_id}-initial-validation-", dir=outgoing))
+    try:
+        for source in files:
+            rel = source.relative_to(build_dir).as_posix()
+            dest = staging / "context" / rel
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, dest)
+            entries.append({
+                "path": f"context/{rel}",
+                "sha256": _sha256_file(source),
+                "size_bytes": source.stat().st_size,
+            })
+        errors = _validation_errors(validation)
+        manifest = {
+            "schema": DIAGNOSTIC_SCHEMA,
+            "schema_version": "1.0",
+            "debate_id": debate_id,
+            "debate_title": state.get("debate_title"),
+            "phase": "initial_validation",
+            "normative_revision": NORM_VERSION,
+            "validator_version": VALIDATOR_VERSION,
+            "kit_version": KIT_VERSION,
+            "created_at": now_iso(),
+            "build_tree_sha256": full_tree_sha256(build_dir),
+            "error_count": len(errors),
+            "errors": errors,
+            "files": sorted(entries, key=lambda row: row["path"]),
+        }
+        write_json(staging / "DIAGNOSTIC_PACKAGE.json", manifest)
+        _write_deterministic_zip(staging, target)
+    finally:
+        shutil.rmtree(staging, ignore_errors=True)
+    return {
+        "diagnostic_path": _relative(target, project_root),
+        "diagnostic_sha256": _sha256_file(target),
+        "errors": _validation_errors(validation),
+    }
+
+
+def _record_initial_validation_block(
+    project_root: Path, state: dict[str, Any], build_dir: Path, validation: Mapping[str, Any]
+) -> None:
+    diagnostic = _create_initial_validation_diagnostic(project_root, state, build_dir, validation)
+    state["phase"] = "initial_validation_blocked"
+    state["status"] = "blocked_technical"
+    state["last_block"] = {
+        "kind": "initial_validation",
+        "created_at": now_iso(),
+        **diagnostic,
+    }
+    state["updated_at"] = now_iso()
+    _save_workflow(project_root, state)
+
 def _semantic_response_template(review_type: str) -> dict[str, Any]:
     pass_no = 1 if review_type.endswith("_1") else 2
     return {
@@ -553,6 +646,8 @@ def _mechanical_advance(project_root: Path, state: dict[str, Any]) -> dict[str, 
         if phase == "initialize_graph":
             _initialize_graph_stage(project_root, state)
             continue
+        if phase == "initial_validation_blocked":
+            return state
         if phase == "graph_review":
             _prepare_graph_package(project_root, state)
             return state
@@ -687,8 +782,11 @@ def _initialize_graph_stage(project_root: Path, state: dict[str, Any]) -> None:
         if manifest.get("global_status") == "graph_draft":
             validation = run_initial_validator(project_root, build_dir)
             if validation.get("status") == "failed":
-                raise WorkflowError("La validation structurelle initiale du corpus a échoué")
+                _record_initial_validation_block(project_root, state, build_dir, validation)
+                return
             state["phase"] = "graph_review"
+            state["status"] = "running"
+            state.pop("last_block", None)
         else:
             state["phase"] = "promote_and_workspace"
         state["updated_at"] = now_iso()
@@ -709,8 +807,11 @@ def _initialize_graph_stage(project_root: Path, state: dict[str, Any]) -> None:
     state["short_code"] = result.get("short_code")
     validation = run_initial_validator(project_root, build_dir)
     if validation.get("status") == "failed":
-        raise WorkflowError("La validation structurelle initiale du corpus a échoué")
+        _record_initial_validation_block(project_root, state, build_dir, validation)
+        return
     state["phase"] = "graph_review"
+    state["status"] = "running"
+    state.pop("last_block", None)
     state["updated_at"] = now_iso()
     _save_workflow(project_root, state)
 
@@ -729,6 +830,11 @@ def start_workflow(
         state = _load_workflow(project_root, selected_id)
         if state.get("debate_title") != debate_title:
             raise WorkflowError("Le debate_id demandé appartient déjà à un autre titre")
+        if state.get("phase") == "initial_validation_blocked":
+            state["phase"] = "initialize_graph"
+            state["status"] = "running"
+            state["updated_at"] = now_iso()
+            _save_workflow(project_root, state)
         return _mechanical_advance(project_root, state)
 
     state = {
@@ -887,6 +993,22 @@ def _print_user_result(state: Mapping[str, Any]) -> None:
         print(pending.get("package_path"))
         print("\nAprès correction, réimportez le ZIP rendu avec :")
         print(f"./wikidebia review-import {state.get('debate_id')} <fichier_corrige.zip>")
+        return
+    if state.get("status") == "blocked_technical":
+        block = state.get("last_block") or {}
+        print("Le workflow s’est arrêté sur une incohérence technique avant la prochaine revue éditoriale.")
+        errors = block.get("errors") or []
+        if errors:
+            print("\nErreurs détectées :")
+            for item in errors[:8]:
+                code = item.get("code") or "ERREUR"
+                message = item.get("message") or "Erreur sans libellé"
+                print(f"- {code} — {message}")
+            if len(errors) > 8:
+                print(f"- … {len(errors) - 8} autre(s) erreur(s)")
+        print("\nEnvoyez ce fichier à ChatGPT pour diagnostic :")
+        print(block.get("diagnostic_path"))
+        print("\nAprès mise à jour/correction du kit ou du corpus, relancez simplement la même commande workflow.")
         return
     if state.get("status") == "release_ready":
         release = state.get("release") or {}
