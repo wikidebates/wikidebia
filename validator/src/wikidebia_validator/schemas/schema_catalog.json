@@ -1,7 +1,7 @@
 {
   "catalog_version": "1.2.0",
   "draft": "https://json-schema.org/draft/2020-12/schema",
-  "schema_count": 29,
+  "schema_count": 30,
   "schemas": [
     {
       "path": "archive_receipt.schema.json",
@@ -52,6 +52,11 @@
       "path": "editorial_orchestration_state.schema.json",
       "id": "editorial_orchestration_state.schema.json",
       "title": "Wikidéb'IA — État d'orchestration éditoriale"
+    },
+    {
+      "path": "graph_correction.schema.json",
+      "id": "graph_correction.schema.json",
+      "title": "Wikidéb'IA — Correction structurelle d'un graphe après rejet"
     },
     {
       "path": "handoff.schema.json",

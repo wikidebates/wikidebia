@@ -1,10 +1,10 @@
-# Wikidéb’IA Validator 0.4.78
+# Wikidéb’IA Validator 0.4.79
 
-Le validateur 0.4.78 est une maintenance d’alignement sur la norme 1.2.75 / le kit 2.16.2. Aucun contrôle de validation n’est retiré ou assoupli par cette release. Il distingue désormais les défauts éditoriaux de titres importés, différables jusqu’au verrou de métadonnées correspondant, des incohérences structurelles du graphe qui restent immédiatement bloquantes. Les mêmes contrôles redeviennent stricts dès que les métadonnées de la langue sont verrouillées.
+Le validateur 0.4.79 aligne les schémas et capacités sur la norme 1.2.76 / le kit 2.16.3 et ajoute le contrat `wikidebia-graph-correction-1.0`. Aucun contrôle de corpus existant n’est retiré ou assoupli.
 
 ## Notes héritées du paquet parent 0.4.73
 
-Version courante pour la norme 1.2.75 et le kit 2.16.2.
+Version courante pour la norme 1.2.76 et le kit 2.16.3.
 
 Elle conserve les contrôles différentiels et sémantiques de la lignée traduction 0.4.64 et intègre les contrôles de la lignée publication GitHub : `nom-consacré` / `established-name`, `AI-translated quote`, absence d'`initialization` sur une nouvelle traduction anglaise, cohérence normative et préservation historique des alias.
 

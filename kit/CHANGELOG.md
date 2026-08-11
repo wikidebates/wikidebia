@@ -107,4 +107,12 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - accepte `--short-code` lors de cette reprise sans exiger la suppression de `.state/workflows/...` ;
 - conserve et protège un code déjà valide en refusant une valeur explicite contradictoire ;
 - ajoute des régressions sur le titre « Un revenu de base doit-il être instauré ? », le corpus-init direct et la reprise du workflow.
+## 2.16.3 — 11 août 2026 — correction de la boucle de rejet du graphe
+
+- corrige `review-import`, qui ne passe plus inconditionnellement à `promote_and_workspace` après `finalize_graph_review` ;
+- un résultat `rejected` ouvre désormais `graph_correction` et produit automatiquement un paquet ChatGPT ;
+- ajoute le contrat `wikidebia-graph-correction-1.0` et un moteur déterministe de reconstruction des placements, relations, profondeurs, branches, rôles et compteurs ;
+- valide la correction avant reprise et restaure transactionnellement le build en cas d’échec ;
+- prépare obligatoirement une nouvelle revue complète du graphe après correction, sans promotion implicite ;
+- ajoute des tests de rejet, correction valide, correction invalide/rollback et absence de promotion.
 

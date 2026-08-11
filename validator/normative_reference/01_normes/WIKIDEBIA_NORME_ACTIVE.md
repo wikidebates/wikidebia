@@ -1,4 +1,4 @@
-# Norme opérationnelle active Wikidéb’IA 1.2.75
+# Norme opérationnelle active Wikidéb’IA 1.2.76
 
 **Statut : source normative active unique.**  
 **Date d’effet :** 11 août 2026
@@ -765,6 +765,9 @@ La commande de réimport vérifie le schéma, l’identité du débat et du Work
 Après installation transactionnelle des seuls fichiers `editable/`, la primitive de finalisation correspondante est exécutée. En cas d’échec, le répertoire de contrôle concerné est restauré intégralement dans son état antérieur. En cas de succès, les confirmations SHA-256 requises par les primitives internes sont résolues automatiquement à partir de leurs reçus, puis le workflow reprend jusqu’au prochain point éditorial. La reprise est idempotente : un paquet déjà en attente est réutilisé, et une interruption entre deux étapes mécaniques ne doit ni dupliquer un Work ni permettre de sauter une validation.
 
 L’orchestration couvre au minimum : revue du graphe et des placements ; revue française des titres, rubriques et mots-clés ; revue du contenu, de l’introduction, des résumés et de la documentation française ; recherche d’appellations consacrées lorsqu’elle appartient au registre de la phase ; traduction et documentation anglaises ; recherche d’`established-name=` ; et deux passes indépendantes de convergence sémantique. Toute nouvelle phase nécessitant une décision éditoriale externe doit s’intégrer au même contrat de paquet plutôt que réintroduire une manipulation manuelle de fichiers internes.
+
+
+Lorsqu’une revue du graphe retourne `decision=rejected`, ce résultat est **non promouvable**. L’orchestrateur ne peut ni passer à `graph_validated`, ni appeler la promotion, ni ouvrir le Work éditorial suivant. Il enregistre le rejet et ses `blocking_issues`, prépare automatiquement une phase externe `graph_correction` au schéma `wikidebia-graph-correction-1.0`, puis s’arrête sur le paquet ChatGPT correspondant. La correction ne modifie que la structure encore déverrouillée du graphe : parenté des occurrences, relation `justification`/`objection`, branche des racines, ordre et choix de l’occurrence primaire. Le kit reconstruit ensuite mécaniquement les relations, profondeurs, branches, indicateurs `render_children`, compteurs dérivés et projection du graphe, puis exécute une validation structurelle. Une correction invalide est restaurée transactionnellement et reste au point de correction. Une correction valide prépare obligatoirement **une nouvelle revue complète du graphe** ; elle ne vaut jamais approbation implicite. La promotion n’est accessible qu’après le retour `approved` de cette nouvelle revue. Les rejets successifs répètent ce cycle autant de fois que nécessaire.
 
 Lorsqu’une passe de convergence détecte une erreur certaine, le workflow n’applique pas la traduction. Il rouvre proprement la revue anglaise sur la même base française verrouillée, conserve les constatations de convergence comme contexte, produit un nouveau paquet de correction et recommence ensuite les deux passes indépendantes sur la nouvelle empreinte sémantique. Deux passes propres de familles distinctes restent obligatoires avant le rendu et la libération.
 

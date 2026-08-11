@@ -92,4 +92,9 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - aucune modification des contrôles de validation ;
 - aligne les métadonnées de release sur la norme 1.2.75 et le kit 2.16.2 ;
 - conserve intégralement la sévérité fonctionnelle pré-revue introduite en 0.4.77.
+## 0.4.79 — 11 août 2026 — schéma de correction du graphe
+
+- ajoute et catalogue `graph_correction.schema.json` pour `wikidebia-graph-correction-1.0` ;
+- déclare la capacité de lecture du document de correction utilisé après rejet d’une revue de graphe ;
+- ne modifie aucun contrôle éditorial ou structurel existant du corpus.
 

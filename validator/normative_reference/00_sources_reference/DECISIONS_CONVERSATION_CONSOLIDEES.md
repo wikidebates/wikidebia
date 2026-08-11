@@ -370,3 +370,11 @@ La lignée de traduction/validation 1.2.61 et la lignée de publication GitHub `
 6. Lorsqu’un contenu historique utilisant un ancien nom est migré ou mis à jour vers le contrat courant, la valeur est conservée exactement et seul le nom du paramètre est normalisé. Les anciens et nouveaux noms d’une même paire ne peuvent pas coexister sur une sortie courante.
 7. Les clés internes de registre `complete_topic` et `detailed_debate` restent des identifiants techniques de schéma et ne constituent pas des paramètres MediaWiki ; elles ne sont pas renommées par cette décision.
 
+
+## Décision du 11 août 2026 — rejet d’une revue de graphe et boucle de correction
+
+1. Une revue du graphe avec `decision=rejected` ne peut jamais déclencher la promotion du corpus.
+2. Le rejet doit ouvrir automatiquement une phase de correction du graphe et produire un nouveau paquet ChatGPT, sans demander à l’utilisateur de manipuler les fichiers internes.
+3. La correction doit rester distincte de l’approbation : après application et validation mécanique de la correction, une nouvelle revue complète du graphe est obligatoire.
+4. Seule une nouvelle revue explicitement `approved` peut rendre la promotion accessible.
+5. Une correction invalide ou un nouveau rejet laisse le corpus en `graph_draft`, sans création de Work, sans promotion et sans écriture distante ; le cycle correction → nouvelle revue se répète autant que nécessaire.

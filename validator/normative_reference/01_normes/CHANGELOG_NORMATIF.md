@@ -690,4 +690,11 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - impose que le `short_code` automatique du workflow soit dérivé de l’identifiant canonique ASCII du débat, et non du titre Unicode ;
 - permet à un workflow initialisé mais incomplet de réparer automatiquement un `short_code` absent, ou d’accepter un `--short-code` explicite compatible sans reset manuel ;
 - conserve un `short_code` déjà valide et refuse une tentative explicite contradictoire après initialisation.
+## 1.2.76 — 11 août 2026 — boucle de correction après rejet du graphe
+
+- rend explicitement non promouvable toute revue du graphe `rejected` ;
+- impose une phase `graph_correction` avec paquet ChatGPT dédié et schéma stable `wikidebia-graph-correction-1.0` ;
+- reconstruit mécaniquement relations, profondeurs, branches, rôles et compteurs après correction, avec validation et rollback transactionnel ;
+- impose une nouvelle revue complète du graphe après chaque correction valide ;
+- répète correction → revue autant de fois que nécessaire, sans création de Work, promotion ni écriture distante avant une approbation explicite.
 

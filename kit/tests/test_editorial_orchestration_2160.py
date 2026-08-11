@@ -529,7 +529,7 @@ def test_outgoing_is_private_for_git_and_root_template():
 
 def test_review_registry_covers_every_orchestrated_external_stop():
     assert set(wf.REVIEW_TYPES) == {
-        "graph_review", "fr_metadata_review", "fr_content_review", "en_translation_review",
+        "graph_review", "graph_correction", "fr_metadata_review", "fr_content_review", "en_translation_review",
         "en_translation_correction", "semantic_convergence_1", "semantic_convergence_2",
     }
 

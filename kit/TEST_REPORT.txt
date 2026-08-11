@@ -1,7 +1,7 @@
-Wikidéb’IA Kit 2.16.2 — rapport de tests
+Wikidéb’IA Kit 2.16.3 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 397
-Tests pytest : 397 réussis
-Norme : 1.2.75
-Validateur : 0.4.78
-Correctif short_code ASCII et reprise sans reset : PASSED.
+Tests pytest collectés : 402
+Tests pytest : 402 réussis
+Norme : 1.2.76
+Validateur : 0.4.79
+Boucle rejet du graphe → correction → nouvelle revue, sans promotion implicite : PASSED.

@@ -1,6 +1,6 @@
-# Wikidéb’IA Kit 2.16.2
+# Wikidéb’IA Kit 2.16.3
 
-Le kit 2.16.2 corrige la génération et la reprise du `short_code`. Il dérive désormais automatiquement ce code depuis le `debate_id` canonique ASCII (`revenu_de_base` → `RDB`), ce qui élimine les accents invalides issus du titre. Un workflow incomplet avec un code absent est réparé à la simple relance, et un `--short-code` explicite compatible peut être adopté sans reset manuel. Le comportement de validation pré-revue de 2.16.1 reste inchangé.
+Le kit 2.16.3 corrige la transition après rejet d’une revue de graphe. Un résultat `rejected` reste en `graph_draft`, ouvre automatiquement une phase `graph_correction`, applique et valide transactionnellement la correction, puis génère une nouvelle revue complète du graphe. Aucune promotion ni création de Work n’est possible avant une revue ultérieure explicitement approuvée. Le correctif `short_code` de 2.16.2 reste inchangé.
 
 Historique 2.16.1 : une anomalie éditoriale de titre importé ne bloque plus avant la revue qui doit précisément la corriger. Les incohérences structurelles restent bloquantes ; lorsqu’elles surviennent, `workflow` affiche leurs codes/messages et produit automatiquement un ZIP de diagnostic minimal sous `outgoing/`. Après correction, relancer la même commande reprend la phase sans reset manuel. Le mécanisme général de paquets de revue introduit en 2.16.0 reste inchangé.
 

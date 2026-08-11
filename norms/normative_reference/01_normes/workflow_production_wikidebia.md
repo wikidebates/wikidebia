@@ -1,8 +1,8 @@
-## Workflow 1.2.75 — convergence après revue des changements de forme
+## Workflow 1.2.76 — convergence après revue des changements de forme
 
 Avant la première passe de convergence, tout changement de forme d’un `displayed-title` est classé et justifié. Une proposition source devenue non-proposition bloque la revue ; une transformation idiomatique recevable ne passe qu’après attestation du même acte de langage, de la même thèse et de la même portée. Les risques sémantiques des Arguments et de Debate doivent tous posséder leurs preuves source/cible avant scellement. Les deux passes de convergence portent ensuite sur cet état exact.
 
-# Workflow de production Wikidéb’IA — norme 1.2.75
+# Workflow de production Wikidéb’IA — norme 1.2.76
 
 **Statut :** workflow actif générique  
 **Portée :** production bilingue français–anglais, validation et publication MediaWiki
@@ -33,6 +33,10 @@ commande utilisateur
 ```
 
 Aucune publication distante n’est déclenchée par cette orchestration.
+
+### Rejet et correction du graphe
+
+Une revue du graphe rejetée ne déclenche jamais `corpus-promote`. `review-import` conserve le build en `graph_draft`, enregistre les motifs de rejet et produit automatiquement un paquet `graph_correction`. Après réimport d’une correction, le kit reconstruit et revalide la structure puis produit un **nouveau paquet `graph_review`**. La correction et l’approbation sont deux décisions distinctes : même une correction structurellement valide doit repasser par une revue complète avant toute promotion. Un rejet répété recommence le même cycle, sans création de Work ni écriture distante.
 
 ## 1. Principes
 

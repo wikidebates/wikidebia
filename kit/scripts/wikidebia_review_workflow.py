@@ -28,6 +28,7 @@ from wikidebia_release_info import KIT_VERSION, NORM_VERSION, VALIDATOR_VERSION
 from wikidebia_corpus_build import (
     REVIEW_ENVELOPE,
     PLACEMENT_REVIEW,
+    GRAPH_CORRECTION_REVIEW,
     build_payload_sha256,
     full_tree_sha256,
     load_json,
@@ -42,6 +43,7 @@ from wikidebia_corpus_init import (
     run_validator as run_initial_validator,
 )
 from wikidebia_corpus_review import make_review_template, finalize_review as finalize_graph_review
+from wikidebia_graph_correction import make_correction_template as make_graph_correction_template, apply_correction as apply_graph_correction
 from wikidebia_corpus_promote import promote as promote_graph
 from wikidebia_editorial_workspace import create_workspace, validate_work_id, workspace_receipt_hash, next_work_id
 from wikidebia_editorial_review import (
@@ -87,6 +89,7 @@ class ReviewTypeSpec:
 
 REVIEW_TYPES: dict[str, ReviewTypeSpec] = {
     "graph_review": ReviewTypeSpec("graph_review", "Revue du graphe et des placements", "Revue du graphe préparée."),
+    "graph_correction": ReviewTypeSpec("graph_correction", "Correction du graphe après rejet", "Correction du graphe préparée."),
     "fr_metadata_review": ReviewTypeSpec("fr_metadata_review", "Revue des titres, rubriques et mots-clés français", "Revue des titres, rubriques et mots-clés préparée."),
     "fr_content_review": ReviewTypeSpec("fr_content_review", "Revue du contenu et de la documentation française", "Revue du contenu français préparée."),
     "en_translation_review": ReviewTypeSpec("en_translation_review", "Traduction et revue documentaire anglaises", "Revue de traduction anglaise préparée."),
@@ -203,6 +206,16 @@ def _instructions(review_type: str, debate_id: str, work_id: str | None, editabl
         "Ne modifiez que les fichiers placés sous `editable/`. Les fichiers sous `context/` sont des sources en lecture seule.",
         "Ne renommez, n'ajoutez et ne supprimez aucun fichier du ZIP.",
         "Le fichier `REVIEW_PACKAGE.json` ne doit jamais être modifié.",
+    ]
+    if review_type == "graph_correction":
+        lines += [
+            "",
+            "Cette phase corrige le graphe après une revue rejetée. Elle ne constitue pas une approbation du graphe.",
+            "Modifiez uniquement les placements nécessaires à partir des motifs de rejet présents dans le contexte.",
+            "Renseignez le statut `corrected`, le relecteur, la date de revue et les notes dans le fichier de correction.",
+            "Après réimport, Wikidéb’IA reconstruira et validera mécaniquement le graphe puis préparera une nouvelle revue complète.",
+        ]
+    lines += [
         "",
         "## Fichiers à compléter",
         "",
@@ -551,12 +564,26 @@ def _prepare_semantic_package(project_root: Path, state: dict[str, Any], pass_nu
 
 def _prepare_graph_package(project_root: Path, state: dict[str, Any]) -> dict[str, Any]:
     build = resolve_build(project_root, str(state["debate_id"]))
-    result = make_review_template(build, str(state["debate_id"]), overwrite=False)
+    overwrite = bool(state.pop("overwrite_graph_review", False))
+    result = make_review_template(build, str(state["debate_id"]), overwrite=overwrite)
     return create_review_package(
         project_root, state,
         review_type="graph_review", base=build,
         editable_paths=[REVIEW_ENVELOPE, PLACEMENT_REVIEW],
         context_paths=["manifest.json", "scope.json", "data/registre_debat.json", "graph/graphe_argumentatif.json", "graph/graphe_argumentatif.md", "reports/import_report.md"],
+        context_globs=["imports/fr/**/*.wiki", "imports/fr/**/*.json"],
+        counts={"placements": result.get("occurrences")},
+    )
+
+
+def _prepare_graph_correction_package(project_root: Path, state: dict[str, Any]) -> dict[str, Any]:
+    build = resolve_build(project_root, str(state["debate_id"]))
+    result = make_graph_correction_template(build, str(state["debate_id"]))
+    return create_review_package(
+        project_root, state,
+        review_type="graph_correction", base=build,
+        editable_paths=[GRAPH_CORRECTION_REVIEW],
+        context_paths=[REVIEW_ENVELOPE, PLACEMENT_REVIEW, "reports/graph_build_review_report.json", "manifest.json", "scope.json", "data/registre_debat.json", "graph/graphe_argumentatif.json", "graph/graphe_argumentatif.md", "reports/import_report.md"],
         context_globs=["imports/fr/**/*.wiki", "imports/fr/**/*.json"],
         counts={"placements": result.get("occurrences")},
     )
@@ -653,6 +680,9 @@ def _mechanical_advance(project_root: Path, state: dict[str, Any]) -> dict[str, 
             return state
         if phase == "graph_review":
             _prepare_graph_package(project_root, state)
+            return state
+        if phase == "graph_correction":
+            _prepare_graph_correction_package(project_root, state)
             return state
         if phase == "promote_and_workspace":
             build = project_root / ".state" / "corpus-builds" / debate_id
@@ -936,7 +966,24 @@ def import_review(project_root: Path, debate_id: str, archive: Path) -> dict[str
         review_type = str(manifest["review_type"])
         if review_type == "graph_review":
             result = finalize_graph_review(project_root, base, debate_id)
-            state["phase"] = "promote_and_workspace"
+            if result.get("status") == "approved":
+                state["phase"] = "promote_and_workspace"
+            elif result.get("status") == "rejected":
+                state.setdefault("graph_rejections", []).append({
+                    "review_sha256": result.get("review_sha256"),
+                    "blocking_issues": copy.deepcopy(result.get("blocking_issues") or []),
+                    "recorded_at": now_iso(),
+                })
+                state["phase"] = "graph_correction"
+            else:
+                raise WorkflowError(f"Statut final de revue du graphe inattendu : {result.get('status')!r}")
+        elif review_type == "graph_correction":
+            result = apply_graph_correction(project_root, base, debate_id)
+            validation = run_initial_validator(project_root, base)
+            if validation.get("status") == "failed":
+                raise WorkflowError("La correction du graphe reste structurellement invalide; elle n'a pas été acceptée")
+            state["phase"] = "graph_review"
+            state["overwrite_graph_review"] = True
         elif review_type == "fr_metadata_review":
             result = finalize_metadata_review(project_root, debate_id, str(state["work_id"]))
             apply_metadata_review(project_root, debate_id, str(state["work_id"]), str(result["review_sha256"]))

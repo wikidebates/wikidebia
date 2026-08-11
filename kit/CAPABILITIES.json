@@ -4,9 +4,9 @@
   "component": "kit",
   "release_source": "VERSIONS.json",
   "release": {
-    "norm": "1.2.75",
-    "validator": "0.4.78",
-    "kit": "2.16.2"
+    "norm": "1.2.76",
+    "validator": "0.4.79",
+    "kit": "2.16.3"
   },
   "emits": {
     "publication_plan": [
@@ -48,6 +48,12 @@
     "semantic_review_response": [
       {
         "schema": "wikidebia-semantic-review-response-1.0",
+        "schema_version": "1.0"
+      }
+    ],
+    "graph_correction": [
+      {
+        "schema": "wikidebia-graph-correction-1.0",
         "schema_version": "1.0"
       }
     ]
@@ -116,6 +122,14 @@
           "1.0"
         ]
       }
+    ],
+    "graph_correction": [
+      {
+        "schema": "wikidebia-graph-correction-1.0",
+        "schema_versions": [
+          "1.0"
+        ]
+      }
     ]
   },
   "compatibility_policy": {
@@ -130,6 +144,7 @@
   },
   "capabilities": {
     "pre_review_editorial_deferral": "1.0",
-    "workflow_diagnostic_package": "wikidebia-workflow-diagnostic-package-1.0"
+    "workflow_diagnostic_package": "wikidebia-workflow-diagnostic-package-1.0",
+    "graph_review_rejection_correction_loop": "1.0"
   }
 }

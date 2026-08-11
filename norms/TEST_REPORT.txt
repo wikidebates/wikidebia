@@ -1,4 +1,4 @@
-Wikidéb’IA Normes 1.2.75 — audit de cohérence normative
+Wikidéb’IA Normes 1.2.76 — audit de cohérence normative
 Statut : PASSED
-Norme active unique : 1.2.75 ; norme 1.2.74 archivée exactement avant remplacement.
-Maintenance d’alignement short_code ; aucune règle éditoriale de fond supprimée.
+Norme active unique : 1.2.76 ; norme 1.2.75 archivée exactement avant remplacement.
+Boucle de rejet du graphe formalisée : rejet non promouvable, correction structurelle, nouvelle revue obligatoire.
