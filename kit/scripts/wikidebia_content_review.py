@@ -309,9 +309,32 @@ def _source_imports(reviewed: Path) -> tuple[dict[str, Any], dict[str, Any], lis
         if node.get("status") == "active"
     }
     arguments: list[dict[str, Any]] = []
-    rows = {str(row.get("page_id")): row for row in provenance.get("pages") or [] if row.get("kind") == "argument"}
-    if set(rows) != set(nodes):
-        raise ContentReviewError("La provenance ne couvre pas exactement les arguments actifs")
+    argument_rows = [
+        row for row in provenance.get("pages") or []
+        if isinstance(row, dict) and row.get("kind") == "argument" and row.get("page_id")
+    ]
+    row_ids = [str(row.get("page_id")) for row in argument_rows]
+    if len(row_ids) != len(set(row_ids)):
+        raise ContentReviewError("La provenance contient plusieurs lignes pour un même argument")
+    rows = {str(row.get("page_id")): row for row in argument_rows}
+    missing = set(nodes) - set(rows)
+    if missing:
+        raise ContentReviewError(
+            "La provenance ne couvre pas tous les arguments actifs : " + ", ".join(sorted(missing))
+        )
+    extras = set(rows) - set(nodes)
+    invalid_extras = sorted(
+        node_id for node_id in extras
+        if str(rows[node_id].get("status") or "") not in {"retired_redirect", "retired_deleted"}
+    )
+    if invalid_extras:
+        raise ContentReviewError(
+            "La provenance contient des arguments non actifs qui ne sont pas explicitement retirés : "
+            + ", ".join(invalid_extras)
+        )
+    # Retired provenance rows are intentionally retained for auditability after
+    # graph-owner actions.  They are not source pages for the active content
+    # review, whose coverage is defined by the active registry nodes only.
     for node_id in sorted(nodes):
         row = rows[node_id]
         path = reviewed / str(row.get("import_path"))

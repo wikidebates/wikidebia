@@ -173,3 +173,11 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - maintient le blocage des pronoms réellement anaphoriques comme `Il réduit…` lorsque leur référent est extérieur au titre ;
 - ajoute une régression explicite sur le titre réel `Il ne faut pas instaurer plus de temps libre` ;
 - aucune règle éditoriale n’est assouplie et la norme reste 1.2.78.
+
+## 2.16.11 — 12 août 2026 — provenance retirée et revue de contenu
+
+- conserve dans `import_provenance.json` les pages retirées du graphe afin de préserver leur traçabilité ;
+- exclut de la couverture active de la revue de contenu uniquement les lignes explicitement marquées `retired_redirect` ou `retired_deleted` ;
+- continue de bloquer toute ligne de provenance supplémentaire non explicitement retirée et toute absence de provenance pour un nœud actif ;
+- ajoute des tests positif et négatif de non-régression.
+

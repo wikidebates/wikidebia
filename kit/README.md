@@ -1,4 +1,6 @@
-# Wikidéb’IA Kit 2.16.10
+# Wikidéb’IA Kit 2.16.11
+
+Le kit 2.16.11 corrige la transition vers la revue de contenu après des actions structurelles : les lignes de provenance explicitement retirées (`retired_redirect` ou `retired_deleted`) restent conservées pour l’audit mais ne sont plus comptées comme arguments actifs. Une ligne supplémentaire non retirée reste bloquante.
 
 Le kit 2.16.10 corrige un faux positif de l’autonomie des titres canoniques français : les constructions impersonnelles « Il faut… » et « Il ne faut… » ne sont plus prises pour des pronoms anaphoriques. Il conserve intégralement la politique différentielle de 2.16.9.
 

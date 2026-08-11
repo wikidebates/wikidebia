@@ -1,7 +1,7 @@
 Wikidéb’IA Validator 0.4.82 — auto-audit
 Statut : PASSED
 Norme active unique : 1.2.78
-Kit aligné : 2.16.10
+Kit aligné : 2.16.11
 Tests : 410 réussis
 Contrôle des tournures impersonnelles françaises dans WDV-EDT-016 : contrôlé.
 Politique différentielle pages préexistantes / nouvelles générations : contrôlée.

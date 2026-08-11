@@ -13,7 +13,7 @@
   "files": [
     {
       "path": "CAPABILITIES.json",
-      "sha256": "f8d71d7b7d5b238bbbedbeb1e02c1b14e6ab055b73fb919d8155b7bf19047c0e",
+      "sha256": "a53c4b0822ec7b3e7bd4a38ebae6246a5edc3b883911da5b31e8c0e922535750",
       "size_bytes": 2317
     },
     {
@@ -23,7 +23,7 @@
     },
     {
       "path": "COMPATIBILITY.json",
-      "sha256": "a4f4a914c9c96cd066ce8615068523d94d4dc77f16f6913440a0073dacdf9452",
+      "sha256": "9b2179a138b13d4a3bfd76777d2f0b60db22d53b1f071095fa03766c90f4c5e8",
       "size_bytes": 2611
     },
     {
@@ -38,12 +38,12 @@
     },
     {
       "path": "TEST_REPORT.txt",
-      "sha256": "0737a773e0aadfa1b5689c9611a96a130a3594f72bb15bd16c1e4a2992cb31c2",
+      "sha256": "9d670f48de721319927c7643c44c0ea7967ae27a9e066b03db25e05f36ab4731",
       "size_bytes": 402
     },
     {
       "path": "VERSIONS.json",
-      "sha256": "227e3e5796347e12d4c3b051db5929e2baa5beb9ce487c45d443d647fc2d2f2b",
+      "sha256": "d34f8380c811413c523d98427d585264b4f3f091fbaeace679fd67d7a0dbf194",
       "size_bytes": 68
     },
     {
@@ -728,12 +728,12 @@
     },
     {
       "path": "docs/SELF_AUDIT_REPORT.txt",
-      "sha256": "6db80a84ce675f93d596441665f4b69c51b6a0d79b9f759429e26693f9a4c65c",
+      "sha256": "edca744ec88454cfb645ab8376020ed02dc0a9e2d55c619b331761d77facfc7f",
       "size_bytes": 304
     },
     {
       "path": "docs/TEST_REPORT.txt",
-      "sha256": "0737a773e0aadfa1b5689c9611a96a130a3594f72bb15bd16c1e4a2992cb31c2",
+      "sha256": "9d670f48de721319927c7643c44c0ea7967ae27a9e066b03db25e05f36ab4731",
       "size_bytes": 402
     },
     {
@@ -1993,7 +1993,7 @@
     },
     {
       "path": "tests/test_editorial_orchestration_schemas_1273.py",
-      "sha256": "e492863450cc8761f9da21d0efb8e69ca901f761fe3c1a30d7d4eef64ace907f",
+      "sha256": "35ca9fce43e10f708082fc45e3f3abecbcdbecc4a8b1b59863a1a73599e01c3b",
       "size_bytes": 4215
     },
     {
@@ -2378,7 +2378,7 @@
     },
     {
       "path": "tests/test_versions_file.py",
-      "sha256": "a03a5c4efcb304444419f814a676ba4fde750ffeceaff45055ecdec7dbf4ab01",
+      "sha256": "dd5ec7c0f78248d6b09fcb863376d82b8bd85343b2e1ed1cfb28447ef8a5142f",
       "size_bytes": 1701
     },
     {

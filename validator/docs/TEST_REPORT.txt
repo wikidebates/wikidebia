@@ -3,6 +3,6 @@ Statut : PASSED
 Tests pytest collectés : 410
 Tests pytest : 410 réussis
 Norme active : 1.2.78
-Kit recommandé : 2.16.10
+Kit recommandé : 2.16.11
 Contrôles structurels, éditoriaux, bilingues, documentaires et schémas : PASSED.
 Régression 0.4.82 : « Il ne faut… » reconnu comme tournure impersonnelle sans désactiver la détection des pronoms anaphoriques : PASSED.

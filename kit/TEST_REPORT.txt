@@ -1,6 +1,7 @@
-Wikidéb’IA Kit 2.16.10 — rapport de tests
-Date : 2026-08-12
-Résultat : 421 passed
-Commande : pytest -q
-Portée : suite complète du kit avec norme 1.2.78 et validateur 0.4.82 frères.
-Régressions ciblées : reprise différentielle des métadonnées préexistantes conservée ; faux positif WDV-EDT-016 sur « Il ne faut pas instaurer plus de temps libre » corrigé dans le validateur aligné.
+Wikidéb’IA Kit 2.16.11 — rapport de tests
+Statut : PASSED
+Tests pytest collectés : 423
+Tests pytest : 423 réussis
+Norme : 1.2.78
+Validateur : 0.4.82
+Provenance retirée exclue de la couverture active sans perte d’audit : PASSED.

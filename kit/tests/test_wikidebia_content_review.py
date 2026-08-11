@@ -488,3 +488,52 @@ def test_argument_established_name_parameters_are_preserved_import_parameters():
 # Historical test-name alias retained for non-regression traceability.
 def test_argument_name_is_a_preserved_import_parameter():
     assert 'nom' in content.PAGE_LIFECYCLE_PARAMETERS['argument']
+
+
+def test_prepare_content_review_accepts_explicitly_retired_provenance_rows(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    reviewed = workspace / "reviewed-copy"
+    provenance_path = reviewed / "data/import_provenance.json"
+    provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+    source = next(row for row in provenance["pages"] if row.get("kind") == "argument")
+    for page_id, status in (("A9001", "retired_redirect"), ("A9002", "retired_deleted")):
+        row = copy.deepcopy(source)
+        row["page_id"] = page_id
+        row["status"] = status
+        row["import_path"] = source["import_path"]
+        provenance["pages"].append(row)
+    common.write_json(provenance_path, provenance)
+    meta_path = workspace / "workspace.json"
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    meta["reviewed_copy"]["tree_sha256"] = common.full_tree_sha256(reviewed)
+    meta["workspace_sha256"] = None
+    meta["workspace_sha256"] = workspace_tool.workspace_receipt_hash(meta)
+    common.write_json(meta_path, meta)
+
+    result = content.prepare_review(project, "debat_test", work_id)
+    assert result["status"] == "fr_content_review_ready"
+    review = json.loads((workspace / "reviews/fr/content_review.json").read_text(encoding="utf-8"))
+    assert {item["id"] for item in review["arguments"]} == {"A0001", "A0002", "A0003", "A0004"}
+
+
+def test_prepare_content_review_rejects_unretired_extra_provenance_row(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    reviewed = workspace / "reviewed-copy"
+    provenance_path = reviewed / "data/import_provenance.json"
+    provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+    source = next(row for row in provenance["pages"] if row.get("kind") == "argument")
+    row = copy.deepcopy(source)
+    row["page_id"] = "A9001"
+    row["status"] = "active_import"
+    provenance["pages"].append(row)
+    common.write_json(provenance_path, provenance)
+    meta_path = workspace / "workspace.json"
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    meta["reviewed_copy"]["tree_sha256"] = common.full_tree_sha256(reviewed)
+    meta["workspace_sha256"] = None
+    meta["workspace_sha256"] = workspace_tool.workspace_receipt_hash(meta)
+    common.write_json(meta_path, meta)
+
+    import pytest
+    with pytest.raises(content.ContentReviewError, match="non actifs.*pas explicitement retirés"):
+        content.prepare_review(project, "debat_test", work_id)

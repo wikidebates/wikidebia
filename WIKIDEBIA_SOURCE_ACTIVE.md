@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.78** ;
 - validateur actif : **0.4.82** ;
-- kit actif : **2.16.10**.
+- kit actif : **2.16.11**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3426470 octets — SHA-256 `9edbf990a86558bae36312db2d2323975388a516cf7b384a9588835cfe873278`
-- `wikidebia-validator.zip` — 3583054 octets — SHA-256 `42625249e25bb923d4ec66060336970f1c8dfdf5d2fef290d7c5afd68a216c5c`
-- `wikidebia-kit.zip` — 652489 octets — SHA-256 `9268ae9e1b62152f46c3899f0794abc9899348ef1f8606501192f8c821754bfa`
+- `wikidebia-normes.zip` — 3426469 octets — SHA-256 `ebe573b664326bb0c2b5241fa99e1cee9fd09898b57938a4c5d6355417980179`
+- `wikidebia-validator.zip` — 3583053 octets — SHA-256 `eea5e7289ca6721a2ea3fb40b7132dd23eff07031438344e543ea66d58a925bb`
+- `wikidebia-kit.zip` — 654189 octets — SHA-256 `c87b15bbd4d675b6055f9a8dc19c6c8ce9680a01af88643846108875173ef5da`
 
 ## Norme consolidée active
 
@@ -1697,9 +1697,11 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `125ab627584de8913e7d7edb3daf5d9af1ca55c7d3cd45e0ecc50fbbff3e8b33`
+SHA-256 : `7943a10e22589b55ca6dce2b511e6f33115944153901179e0d5f897eaa2860f6`
 
-# Wikidéb’IA Kit 2.16.10
+# Wikidéb’IA Kit 2.16.11
+
+Le kit 2.16.11 corrige la transition vers la revue de contenu après des actions structurelles : les lignes de provenance explicitement retirées (`retired_redirect` ou `retired_deleted`) restent conservées pour l’audit mais ne sont plus comptées comme arguments actifs. Une ligne supplémentaire non retirée reste bloquante.
 
 Le kit 2.16.10 corrige un faux positif de l’autonomie des titres canoniques français : les constructions impersonnelles « Il faut… » et « Il ne faut… » ne sont plus prises pour des pronoms anaphoriques. Il conserve intégralement la politique différentielle de 2.16.9.
 
@@ -1743,7 +1745,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `20369dc9d5c018847fc887c4ba861fb9278f1e26ea30528d56e098450138628a`
+SHA-256 : `716eb5f65ac2498454e467d4c5517e5b60293fcf4dfb99e63899074e66779058`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1920,6 +1922,13 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - maintient le blocage des pronoms réellement anaphoriques comme `Il réduit…` lorsque leur référent est extérieur au titre ;
 - ajoute une régression explicite sur le titre réel `Il ne faut pas instaurer plus de temps libre` ;
 - aucune règle éditoriale n’est assouplie et la norme reste 1.2.78.
+
+## 2.16.11 — 12 août 2026 — provenance retirée et revue de contenu
+
+- conserve dans `import_provenance.json` les pages retirées du graphe afin de préserver leur traçabilité ;
+- exclut de la couverture active de la revue de contenu uniquement les lignes explicitement marquées `retired_redirect` ou `retired_deleted` ;
+- continue de bloquer toute ligne de provenance supplémentaire non explicitement retirée et toute absence de provenance pour un nœud actif ;
+- ajoute des tests positif et négatif de non-régression.
 
 ## Guide de publication
 
@@ -2179,14 +2188,15 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `3d99c38e5097d0946405ca97d909d25f71a374c0a6b6989377e7ce888bca91cb`
+SHA-256 : `342a35ae4443a4a2be52aa58c9e454793d86db44f9d7a97380f679c0cdb308aa`
 
-Wikidéb’IA Kit 2.16.10 — rapport de tests
-Date : 2026-08-12
-Résultat : 421 passed
-Commande : pytest -q
-Portée : suite complète du kit avec norme 1.2.78 et validateur 0.4.82 frères.
-Régressions ciblées : reprise différentielle des métadonnées préexistantes conservée ; faux positif WDV-EDT-016 sur « Il ne faut pas instaurer plus de temps libre » corrigé dans le validateur aligné.
+Wikidéb’IA Kit 2.16.11 — rapport de tests
+Statut : PASSED
+Tests pytest collectés : 423
+Tests pytest : 423 réussis
+Norme : 1.2.78
+Validateur : 0.4.82
+Provenance retirée exclue de la couverture active sans perte d’audit : PASSED.
 
 ## Guide d’orchestration éditoriale
 
