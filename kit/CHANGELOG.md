@@ -77,3 +77,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - ajoute des tests de régression sur `main()` et sur les deux noms d’option ;
 - aucune modification des formats de corpus, des règles éditoriales ou des contrats de publication.
 
+
+## 2.16.0 — 11 août 2026 — orchestration ergonomique des revues ChatGPT
+
+- ajoute `workflow`, `review-import` et `workflow-status` au lanceur principal ;
+- enchaîne automatiquement extraction, initialisation, validations, promotions, applications, rendu et release jusqu’au prochain point éditorial ;
+- produit des ZIP minimaux `wikidebia-chatgpt-review-package-1.0` avec séparation `editable/` / `context/` ;
+- vérifie provenance locale, manifeste, contexte, baseline locale, structure ZIP et absence de fichiers supplémentaires ;
+- restaure transactionnellement le répertoire de contrôle si la finalisation d’un retour échoue ;
+- orchestre graphe, métadonnées françaises, contenu/documentation française, traduction/documentation anglaise et convergence sémantique ;
+- rouvre la traduction et recommence les deux passes sémantiques lorsqu’une erreur certaine est trouvée ;
+- ajoute `outgoing/` aux zones privées exclues de Git ;
+- conserve toutes les primitives détaillées et tous les garde-fous de publication existants.

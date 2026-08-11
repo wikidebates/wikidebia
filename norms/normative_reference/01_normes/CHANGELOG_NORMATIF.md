@@ -666,3 +666,14 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - confirme que `complete_topic` et `detailed_debate` restent des clés techniques internes stables et ne doivent pas être renommées globalement ;
 - ajoute une régression d’intégration couvrant le trajet réel `argparse → main() → graph-extract`.
 
+## 1.2.73 — 11 août 2026 — orchestration ergonomique des revues ChatGPT
+
+- impose l’enchaînement automatique de toutes les étapes mécaniques jusqu’au prochain point éditorial ;
+- introduit le paquet de revue `wikidebia-chatgpt-review-package-1.0`, séparant `editable/` et `context/` ;
+- impose une provenance locale liée, l’intégrité SHA-256 du contexte, le refus des ZIP étrangers ou altérés et une restauration transactionnelle en cas d’échec ;
+- ajoute les commandes utilisateur de haut niveau `workflow`, `review-import` et `workflow-status` tout en conservant toutes les primitives avancées ;
+- généralise le mécanisme au graphe, aux métadonnées françaises, au contenu français, à la traduction anglaise et aux deux passes de convergence ;
+- rouvre automatiquement la traduction lorsqu’une passe sémantique trouve une erreur certaine ;
+- classe `outgoing/` parmi les zones locales privées exclues de Git ;
+- conserve intégralement les garde-fous de validation, les verrous français, les empreintes, l’absence d’écriture distante et le contrat de publication W11.
+

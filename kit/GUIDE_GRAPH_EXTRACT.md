@@ -123,3 +123,20 @@ Après une mise à niveau du kit, relancer la commande initiale sans `--force-re
 ## Compatibilité des champs historiques
 
 L’extracteur 1.0.2 conserve les champs historiques avec leur valeur 1.0.0 afin de ne pas casser les scripts existants. Ces champs sont dépréciés parce que leur nom employait « profondeur » pour un niveau commençant à 1. Les nouveaux développements doivent utiliser uniquement les champs explicites `niveau_*` et `*_en_aretes`.
+
+
+## Orchestration éditoriale de haut niveau
+
+Pour l'usage normal d'un débat qui doit être préparé puis traduit, préférer :
+
+```bash
+./wikidebia workflow "Titre exact du débat"
+```
+
+La commande enchaîne les opérations mécaniques et produit automatiquement les paquets de revue sous `outgoing/`. Après chaque retour de ChatGPT :
+
+```bash
+./wikidebia review-import <debate_id> <zip_corrigé>
+```
+
+Voir `GUIDE_EDITORIAL_ORCHESTRATION.md`. Les commandes détaillées restent disponibles pour audit/debug.

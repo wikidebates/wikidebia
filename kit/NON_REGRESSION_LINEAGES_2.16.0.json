@@ -1,0 +1,18 @@
+{
+  "schema": "wikidebia-non-regression-lineages-1.0",
+  "release": {
+    "norm": "1.2.73",
+    "validator": "0.4.76",
+    "kit": "2.16.0"
+  },
+  "inherits": [
+    "1.2.72/0.4.75/2.15.56"
+  ],
+  "new_scope": [
+    "editorial_orchestration",
+    "review_package",
+    "transactional_review_import",
+    "semantic_revision_loop"
+  ],
+  "removed_capabilities": []
+}

@@ -1,6 +1,8 @@
-# Wikidéb’IA Kit 2.15.56
+# Wikidéb’IA Kit 2.16.0
 
-Le kit 2.15.56 corrige une régression d’exécution dans `graph-extract` après le renommage `detailed-debate` → `dedicated-debate`. Le nouveau nom CLI et l’alias historique ciblent désormais le même attribut `argparse`; les clés techniques internes `complete_topic` et `detailed_debate` restent volontairement inchangées. Les contrats de schéma/capacité du kit 2.15.55 sont conservés.
+Le kit 2.16.0 ajoute une orchestration de haut niveau des interventions éditoriales externes. `./wikidebia workflow "Titre du débat"` enchaîne toutes les opérations mécaniques jusqu’au prochain véritable point de revue, produit automatiquement un ZIP minimal sous `outgoing/`, puis `./wikidebia review-import <debate_id> <zip>` vérifie le retour, finalise/applique les primitives existantes et poursuit jusqu’au point éditorial suivant. Les commandes détaillées historiques restent disponibles pour audit, debug et usages avancés.
+
+Les paquets de revue utilisent le schéma stable `wikidebia-chatgpt-review-package-1.0`, séparent `editable/` et `context/`, lient leur provenance à l’état local, refusent les fichiers supplémentaires et excluent les secrets. La convergence sémantique est elle aussi orchestrée : une erreur certaine rouvre la traduction, puis les deux passes indépendantes recommencent. Aucune publication distante n’est déclenchée par cette orchestration.
 
 ## Notes héritées du paquet parent 2.15.54
 

@@ -1,10 +1,10 @@
-# Wikidéb’IA Validator 0.4.75
+# Wikidéb’IA Validator 0.4.76
 
-Le validateur 0.4.75 émet le schéma stable `wikidebia-validator-report-1.0`, charge sa version depuis `VERSIONS.json` et applique la norme éditoriale active indépendamment de la release productrice des artefacts. Les formats historiques sont interprétés puis contrôlés selon l’état fonctionnel courant.
+Le validateur 0.4.76 reste fonctionnellement cumulatif et s’aligne sur la norme 1.2.73 / le kit 2.16.0. Il publie en plus les schémas stables des nouveaux artefacts d’orchestration : `wikidebia-chatgpt-review-package-1.0`, `wikidebia-editorial-orchestration-1.0` et `wikidebia-semantic-review-response-1.0`. Les contrôles éditoriaux existants ne sont ni retirés ni affaiblis.
 
 ## Notes héritées du paquet parent 0.4.73
 
-Version courante pour la norme 1.2.72 et le kit 2.15.56.
+Version courante pour la norme 1.2.73 et le kit 2.16.0.
 
 Elle conserve les contrôles différentiels et sémantiques de la lignée traduction 0.4.64 et intègre les contrôles de la lignée publication GitHub : `nom-consacré` / `established-name`, `AI-translated quote`, absence d'`initialization` sur une nouvelle traduction anglaise, cohérence normative et préservation historique des alias.
 

@@ -1,4 +1,4 @@
-# Norme opérationnelle active Wikidéb’IA 1.2.72
+# Norme opérationnelle active Wikidéb’IA 1.2.73
 
 **Statut : source normative active unique.**  
 **Date d’effet :** 11 août 2026
@@ -740,3 +740,29 @@ Chaque format opérationnel possède un identifiant de schéma stable. Le valida
 ## 21. Release canonique unique
 
 La release standard contient à sa racine `WIKIDEBIA_SOURCE_ACTIVE.md`, `VERSIONS.json`, le manifeste SHA-256, le rapport de validation, le README de release et les trois ZIP de composants. Elle contient également les rapports d’audit et de non-régression. Le workflow standard ne requiert aucun bundle minimal séparé. La construction est déterministe et la preuve finale porte sur le ZIP exact après réextraction et revalidation.
+
+## 22. Orchestration des interventions éditoriales externes
+
+Le workflow utilisateur normal applique le principe de **progression mécanique jusqu’au prochain point éditorial**. Lorsqu’une succession d’étapes ne nécessite aucune décision de contenu, le kit les exécute automatiquement dans l’ordre déjà défini par les primitives auditées. L’utilisateur n’a pas à connaître les chemins de `.state/`, les fichiers JSON internes, les empreintes de confirmation ni les sous-commandes `--prepare`, `--finalize` et `--apply`. Ces primitives restent disponibles sans changement pour le debug, l’audit, les tests et les usages avancés.
+
+Lorsqu’une intervention éditoriale externe devient nécessaire, le kit crée un paquet de revue au schéma stable `wikidebia-chatgpt-review-package-1.0` dans `outgoing/` et s’arrête. Ce paquet :
+
+1. identifie le débat, le Work éventuel, le type de revue et la provenance locale exacte ;
+2. sépare strictement les fichiers modifiables sous `editable/` des sources de contexte en lecture seule sous `context/` ;
+3. ne contient que les fichiers explicitement autorisés pour la revue concernée ;
+4. exclut les secrets, authentifications, cookies, configurations privées, états de publication et fichiers sans utilité éditoriale ;
+5. lie chaque fichier de contexte à une empreinte SHA-256 et lie le manifeste à l’instance locale du workflow ;
+6. fournit des instructions lisibles et une commande unique de réimport.
+
+Le dossier `outgoing/` est une zone locale sensible au même titre que `incoming/`, `.state/`, `corpus/` et `private/` : il est exclu de Git et ne peut jamais être ajouté à un paquet générique de sources.
+
+La commande de réimport vérifie le schéma, l’identité du débat et du Work, l’identifiant du paquet attendu, l’empreinte du manifeste, l’intégrité des fichiers de contexte, l’absence de fichiers supplémentaires, l’absence de liens ou chemins ZIP dangereux et l’immuabilité locale depuis la préparation. Un paquet provenant d’un autre corpus, d’un autre Work, d’une ancienne revue ou dont le contexte a changé est refusé.
+
+Après installation transactionnelle des seuls fichiers `editable/`, la primitive de finalisation correspondante est exécutée. En cas d’échec, le répertoire de contrôle concerné est restauré intégralement dans son état antérieur. En cas de succès, les confirmations SHA-256 requises par les primitives internes sont résolues automatiquement à partir de leurs reçus, puis le workflow reprend jusqu’au prochain point éditorial. La reprise est idempotente : un paquet déjà en attente est réutilisé, et une interruption entre deux étapes mécaniques ne doit ni dupliquer un Work ni permettre de sauter une validation.
+
+L’orchestration couvre au minimum : revue du graphe et des placements ; revue française des titres, rubriques et mots-clés ; revue du contenu, de l’introduction, des résumés et de la documentation française ; recherche d’appellations consacrées lorsqu’elle appartient au registre de la phase ; traduction et documentation anglaises ; recherche d’`established-name=` ; et deux passes indépendantes de convergence sémantique. Toute nouvelle phase nécessitant une décision éditoriale externe doit s’intégrer au même contrat de paquet plutôt que réintroduire une manipulation manuelle de fichiers internes.
+
+Lorsqu’une passe de convergence détecte une erreur certaine, le workflow n’applique pas la traduction. Il rouvre proprement la revue anglaise sur la même base française verrouillée, conserve les constatations de convergence comme contexte, produit un nouveau paquet de correction et recommence ensuite les deux passes indépendantes sur la nouvelle empreinte sémantique. Deux passes propres de familles distinctes restent obligatoires avant le rendu et la libération.
+
+Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. Elle peut réutiliser un snapshot `graph-extract` déjà présent ; sinon elle effectue l’extraction en lecture seule. Après la dernière revue convergée, le rendu et la construction du corpus `release_ready` sont mécaniques et sont enchaînés automatiquement sans effectuer aucune publication distante.
+

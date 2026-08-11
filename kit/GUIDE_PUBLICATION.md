@@ -94,3 +94,20 @@ Translation of the French page: [[:fr:X|X]]
 Après une publication anglaise FR→EN déjà effectuée avec seulement `chatgpt`, lancer d’abord `./wikidebia tag-translated-fr DEBAT --dry-run`. Si le plan ne contient aucun blocage, lancer `./wikidebia tag-translated-fr DEBAT`. Le kit utilise l’état publié anglais pour identifier les révisions de création, exige leur résumé individualisé de traduction et ajoute uniquement la balise `translated-fr` via l’API MediaWiki `action=tag`. Cette opération ne crée aucune révision et ne modifie aucun contenu.
 
 Pour les futures créations anglaises FR→EN, lorsque `translation_status.en` vaut `ready` ou `published`, le plan signé porte `change_tags: ["chatgpt", "translated-fr"]` pour chaque page anglaise et la relecture de la révision vérifie les deux balises.
+
+
+## Orchestration éditoriale de haut niveau
+
+Pour l'usage normal d'un débat qui doit être préparé puis traduit, préférer :
+
+```bash
+./wikidebia workflow "Titre exact du débat"
+```
+
+La commande enchaîne les opérations mécaniques et produit automatiquement les paquets de revue sous `outgoing/`. Après chaque retour de ChatGPT :
+
+```bash
+./wikidebia review-import <debate_id> <zip_corrigé>
+```
+
+Voir `GUIDE_EDITORIAL_ORCHESTRATION.md`. Les commandes détaillées restent disponibles pour audit/debug.

@@ -1,8 +1,8 @@
-Wikidéb’IA Kit 2.15.56 — rapport de tests
+Wikidéb’IA Kit 2.16.0 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 375
-Tests pytest : 375 réussis
-Norme : 1.2.72
-Validateur : 0.4.75
+Tests pytest collectés : 390
+Tests pytest : 390 réussis
+Norme : 1.2.73
+Validateur : 0.4.76
 Plans de publication : wikidebia-publication-plan-1.0
-Correctif graph-extract `dedicated-debate`, compatibilité des clés internes et non-régression : PASSED.
+Orchestration éditoriale, ZIP minimaux, reprise transactionnelle, boucle sémantique, commandes avancées et non-régression : PASSED.

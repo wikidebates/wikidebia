@@ -72,3 +72,10 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - conserve `complete_topic` et `detailed_debate` comme clés internes historiques ;
 - la régression CLI est corrigée et testée dans le kit.
 
+
+## 0.4.76 — 11 août 2026 — contrats d’orchestration éditoriale
+
+- s’aligne sur la norme 1.2.73 et le kit 2.16.0 ;
+- ajoute les schémas JSON des paquets ChatGPT, de l’état d’orchestration et des réponses de convergence ;
+- déclare ces schémas dans `CAPABILITIES.json` ;
+- conserve l’intégralité des contrôles éditoriaux, différentiels, documentaires et de publication précédents.

@@ -2,22 +2,22 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.72** ;
-- validateur actif : **0.4.75** ;
-- kit actif : **2.15.56**.
+- norme active : **1.2.73** ;
+- validateur actif : **0.4.76** ;
+- kit actif : **2.16.0**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3248508 octets — SHA-256 `939db411b47d3c542523347fd5f4edd286da5250e9c3af8812a749a362873891`
-- `wikidebia-validator.zip` — 3391382 octets — SHA-256 `a2ef7b947f7e6ab6c13ed5f2ae9e51903d82a22470fbe641cfb227bcd4a07554`
-- `wikidebia-kit.zip` — 574065 octets — SHA-256 `3446aeed16970cce0aa9f510d5d5ad035d8bc9230fb5b96fa03d8f5fff147641`
+- `wikidebia-normes.zip` — 3279097 octets — SHA-256 `c610ef959572282ea70037873d98fd7015bdb051a37770cb98a885f5aed19cbf`
+- `wikidebia-validator.zip` — 3425737 octets — SHA-256 `15c05eb5d9a71f649568213d01c7e185c9e6611b7760aa7818f33842dd747e61`
+- `wikidebia-kit.zip` — 596134 octets — SHA-256 `c6e579101c3db03745031552e9ab9499042e07d97b8aa7b22e1b035512b7fdbd`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.72.md`  
-SHA-256 : `06490c66e5cd54bf502cc059a0d30e9c4f1a78ff1ccfdc9a25b40e3541a2df13`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.73.md`  
+SHA-256 : `cf525499e2f7b72d886aa56b54e43ca0ee5715ac7fdfc05e305e47ba1e716c3f`
 
-# Norme opérationnelle active Wikidéb’IA 1.2.72
+# Norme opérationnelle active Wikidéb’IA 1.2.73
 
 **Statut : source normative active unique.**  
 **Date d’effet :** 11 août 2026
@@ -760,10 +760,35 @@ Chaque format opérationnel possède un identifiant de schéma stable. Le valida
 
 La release standard contient à sa racine `WIKIDEBIA_SOURCE_ACTIVE.md`, `VERSIONS.json`, le manifeste SHA-256, le rapport de validation, le README de release et les trois ZIP de composants. Elle contient également les rapports d’audit et de non-régression. Le workflow standard ne requiert aucun bundle minimal séparé. La construction est déterministe et la preuve finale porte sur le ZIP exact après réextraction et revalidation.
 
+## 22. Orchestration des interventions éditoriales externes
+
+Le workflow utilisateur normal applique le principe de **progression mécanique jusqu’au prochain point éditorial**. Lorsqu’une succession d’étapes ne nécessite aucune décision de contenu, le kit les exécute automatiquement dans l’ordre déjà défini par les primitives auditées. L’utilisateur n’a pas à connaître les chemins de `.state/`, les fichiers JSON internes, les empreintes de confirmation ni les sous-commandes `--prepare`, `--finalize` et `--apply`. Ces primitives restent disponibles sans changement pour le debug, l’audit, les tests et les usages avancés.
+
+Lorsqu’une intervention éditoriale externe devient nécessaire, le kit crée un paquet de revue au schéma stable `wikidebia-chatgpt-review-package-1.0` dans `outgoing/` et s’arrête. Ce paquet :
+
+1. identifie le débat, le Work éventuel, le type de revue et la provenance locale exacte ;
+2. sépare strictement les fichiers modifiables sous `editable/` des sources de contexte en lecture seule sous `context/` ;
+3. ne contient que les fichiers explicitement autorisés pour la revue concernée ;
+4. exclut les secrets, authentifications, cookies, configurations privées, états de publication et fichiers sans utilité éditoriale ;
+5. lie chaque fichier de contexte à une empreinte SHA-256 et lie le manifeste à l’instance locale du workflow ;
+6. fournit des instructions lisibles et une commande unique de réimport.
+
+Le dossier `outgoing/` est une zone locale sensible au même titre que `incoming/`, `.state/`, `corpus/` et `private/` : il est exclu de Git et ne peut jamais être ajouté à un paquet générique de sources.
+
+La commande de réimport vérifie le schéma, l’identité du débat et du Work, l’identifiant du paquet attendu, l’empreinte du manifeste, l’intégrité des fichiers de contexte, l’absence de fichiers supplémentaires, l’absence de liens ou chemins ZIP dangereux et l’immuabilité locale depuis la préparation. Un paquet provenant d’un autre corpus, d’un autre Work, d’une ancienne revue ou dont le contexte a changé est refusé.
+
+Après installation transactionnelle des seuls fichiers `editable/`, la primitive de finalisation correspondante est exécutée. En cas d’échec, le répertoire de contrôle concerné est restauré intégralement dans son état antérieur. En cas de succès, les confirmations SHA-256 requises par les primitives internes sont résolues automatiquement à partir de leurs reçus, puis le workflow reprend jusqu’au prochain point éditorial. La reprise est idempotente : un paquet déjà en attente est réutilisé, et une interruption entre deux étapes mécaniques ne doit ni dupliquer un Work ni permettre de sauter une validation.
+
+L’orchestration couvre au minimum : revue du graphe et des placements ; revue française des titres, rubriques et mots-clés ; revue du contenu, de l’introduction, des résumés et de la documentation française ; recherche d’appellations consacrées lorsqu’elle appartient au registre de la phase ; traduction et documentation anglaises ; recherche d’`established-name=` ; et deux passes indépendantes de convergence sémantique. Toute nouvelle phase nécessitant une décision éditoriale externe doit s’intégrer au même contrat de paquet plutôt que réintroduire une manipulation manuelle de fichiers internes.
+
+Lorsqu’une passe de convergence détecte une erreur certaine, le workflow n’applique pas la traduction. Il rouvre proprement la revue anglaise sur la même base française verrouillée, conserve les constatations de convergence comme contexte, produit un nouveau paquet de correction et recommence ensuite les deux passes indépendantes sur la nouvelle empreinte sémantique. Deux passes propres de familles distinctes restent obligatoires avant le rendu et la libération.
+
+Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. Elle peut réutiliser un snapshot `graph-extract` déjà présent ; sinon elle effectue l’extraction en lecture seule. Après la dernière revue convergée, le rendu et la construction du corpus `release_ready` sont mécaniques et sont enchaînés automatiquement sans effectuer aucune publication distante.
+
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `43ced13551ce17bbf522736672d34c2e87ea129cd5aa3237045d932fdccbb50b`
+SHA-256 : `b7af925e23d8afc81d8f55143989a4f27362cb4e6298795977643ddaed7fbf7d`
 
 ## 1.2.70 — alignement du validateur sur la première publication anglaise
 
@@ -1433,18 +1458,29 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - confirme que `complete_topic` et `detailed_debate` restent des clés techniques internes stables et ne doivent pas être renommées globalement ;
 - ajoute une régression d’intégration couvrant le trajet réel `argparse → main() → graph-extract`.
 
+## 1.2.73 — 11 août 2026 — orchestration ergonomique des revues ChatGPT
+
+- impose l’enchaînement automatique de toutes les étapes mécaniques jusqu’au prochain point éditorial ;
+- introduit le paquet de revue `wikidebia-chatgpt-review-package-1.0`, séparant `editable/` et `context/` ;
+- impose une provenance locale liée, l’intégrité SHA-256 du contexte, le refus des ZIP étrangers ou altérés et une restauration transactionnelle en cas d’échec ;
+- ajoute les commandes utilisateur de haut niveau `workflow`, `review-import` et `workflow-status` tout en conservant toutes les primitives avancées ;
+- généralise le mécanisme au graphe, aux métadonnées françaises, au contenu français, à la traduction anglaise et aux deux passes de convergence ;
+- rouvre automatiquement la traduction lorsqu’une passe sémantique trouve une erreur certaine ;
+- classe `outgoing/` parmi les zones locales privées exclues de Git ;
+- conserve intégralement les garde-fous de validation, les verrous français, les empreintes, l’absence d’écriture distante et le contrat de publication W11.
+
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `bfcaf97b5c7cd88df8cc3efeacd22d312201ed453604349b8ef7dfc833cb5d85`
+SHA-256 : `d5b96153d9209487a8e712ee423723efbed0a28eb94624b4517f58d149fa1998`
 
-# Wikidéb’IA Validator 0.4.75
+# Wikidéb’IA Validator 0.4.76
 
-Le validateur 0.4.75 émet le schéma stable `wikidebia-validator-report-1.0`, charge sa version depuis `VERSIONS.json` et applique la norme éditoriale active indépendamment de la release productrice des artefacts. Les formats historiques sont interprétés puis contrôlés selon l’état fonctionnel courant.
+Le validateur 0.4.76 reste fonctionnellement cumulatif et s’aligne sur la norme 1.2.73 / le kit 2.16.0. Il publie en plus les schémas stables des nouveaux artefacts d’orchestration : `wikidebia-chatgpt-review-package-1.0`, `wikidebia-editorial-orchestration-1.0` et `wikidebia-semantic-review-response-1.0`. Les contrôles éditoriaux existants ne sont ni retirés ni affaiblis.
 
 ## Notes héritées du paquet parent 0.4.73
 
-Version courante pour la norme 1.2.72 et le kit 2.15.56.
+Version courante pour la norme 1.2.73 et le kit 2.16.0.
 
 Elle conserve les contrôles différentiels et sémantiques de la lignée traduction 0.4.64 et intègre les contrôles de la lignée publication GitHub : `nom-consacré` / `established-name`, `AI-translated quote`, absence d'`initialization` sur une nouvelle traduction anglaise, cohérence normative et préservation historique des alias.
 
@@ -1469,7 +1505,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `ba0e26ecbcf2ee65ead6739144e40f65760d62deff77f6dc5dc30d8cde198ab8`
+SHA-256 : `20d70631b193c202ed5d15fe3f1560187b1d15470f84c46a116c19fdb92368fb`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1545,14 +1581,24 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - conserve `complete_topic` et `detailed_debate` comme clés internes historiques ;
 - la régression CLI est corrigée et testée dans le kit.
 
+
+## 0.4.76 — 11 août 2026 — contrats d’orchestration éditoriale
+
+- s’aligne sur la norme 1.2.73 et le kit 2.16.0 ;
+- ajoute les schémas JSON des paquets ChatGPT, de l’état d’orchestration et des réponses de convergence ;
+- déclare ces schémas dans `CAPABILITIES.json` ;
+- conserve l’intégralité des contrôles éditoriaux, différentiels, documentaires et de publication précédents.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `a2448c1772a9e053a963d8f2dd7f7222fc2a44d4b5711b33cd61dadfb0f11baa`
+SHA-256 : `aa15d05202b42652ee79e1815f2f850a3b5a3a19927e454d81f2722f9b21f09e`
 
-# Wikidéb’IA Kit 2.15.56
+# Wikidéb’IA Kit 2.16.0
 
-Le kit 2.15.56 corrige une régression d’exécution dans `graph-extract` après le renommage `detailed-debate` → `dedicated-debate`. Le nouveau nom CLI et l’alias historique ciblent désormais le même attribut `argparse`; les clés techniques internes `complete_topic` et `detailed_debate` restent volontairement inchangées. Les contrats de schéma/capacité du kit 2.15.55 sont conservés.
+Le kit 2.16.0 ajoute une orchestration de haut niveau des interventions éditoriales externes. `./wikidebia workflow "Titre du débat"` enchaîne toutes les opérations mécaniques jusqu’au prochain véritable point de revue, produit automatiquement un ZIP minimal sous `outgoing/`, puis `./wikidebia review-import <debate_id> <zip>` vérifie le retour, finalise/applique les primitives existantes et poursuit jusqu’au point éditorial suivant. Les commandes détaillées historiques restent disponibles pour audit, debug et usages avancés.
+
+Les paquets de revue utilisent le schéma stable `wikidebia-chatgpt-review-package-1.0`, séparent `editable/` et `context/`, lient leur provenance à l’état local, refusent les fichiers supplémentaires et excluent les secrets. La convergence sémantique est elle aussi orchestrée : une erreur certaine rouvre la traduction, puis les deux passes indépendantes recommencent. Aucune publication distante n’est déclenchée par cette orchestration.
 
 ## Notes héritées du paquet parent 2.15.54
 
@@ -1583,7 +1629,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `ee50661d7b1b14e7c3420224884d8772c729c0ef661b89e9b1a32670105293d2`
+SHA-256 : `80d94ac717d9628f969d0b24aba4688d342d857b35d5a0a853618870d0b4e804`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1664,10 +1710,23 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - ajoute des tests de régression sur `main()` et sur les deux noms d’option ;
 - aucune modification des formats de corpus, des règles éditoriales ou des contrats de publication.
 
+
+## 2.16.0 — 11 août 2026 — orchestration ergonomique des revues ChatGPT
+
+- ajoute `workflow`, `review-import` et `workflow-status` au lanceur principal ;
+- enchaîne automatiquement extraction, initialisation, validations, promotions, applications, rendu et release jusqu’au prochain point éditorial ;
+- produit des ZIP minimaux `wikidebia-chatgpt-review-package-1.0` avec séparation `editable/` / `context/` ;
+- vérifie provenance locale, manifeste, contexte, baseline locale, structure ZIP et absence de fichiers supplémentaires ;
+- restaure transactionnellement le répertoire de contrôle si la finalisation d’un retour échoue ;
+- orchestre graphe, métadonnées françaises, contenu/documentation française, traduction/documentation anglaise et convergence sémantique ;
+- rouvre la traduction et recommence les deux passes sémantiques lorsqu’une erreur certaine est trouvée ;
+- ajoute `outgoing/` aux zones privées exclues de Git ;
+- conserve toutes les primitives détaillées et tous les garde-fous de publication existants.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
-SHA-256 : `63d01c64fd5c96c5b77ba379e50bce53d333bfc3dfefa3eca47070fbaf482abf`
+SHA-256 : `1ce6e9ad80839f2678e30d383f60eff34daf884f71a1b02fd2ac681f694da38e`
 
 # Guide de publication et de reprise Wikidéb’IA 2.15.9
 
@@ -1765,6 +1824,23 @@ Translation of the French page: [[:fr:X|X]]
 Après une publication anglaise FR→EN déjà effectuée avec seulement `chatgpt`, lancer d’abord `./wikidebia tag-translated-fr DEBAT --dry-run`. Si le plan ne contient aucun blocage, lancer `./wikidebia tag-translated-fr DEBAT`. Le kit utilise l’état publié anglais pour identifier les révisions de création, exige leur résumé individualisé de traduction et ajoute uniquement la balise `translated-fr` via l’API MediaWiki `action=tag`. Cette opération ne crée aucune révision et ne modifie aucun contenu.
 
 Pour les futures créations anglaises FR→EN, lorsque `translation_status.en` vaut `ready` ou `published`, le plan signé porte `change_tags: ["chatgpt", "translated-fr"]` pour chaque page anglaise et la relecture de la révision vérifie les deux balises.
+
+
+## Orchestration éditoriale de haut niveau
+
+Pour l'usage normal d'un débat qui doit être préparé puis traduit, préférer :
+
+```bash
+./wikidebia workflow "Titre exact du débat"
+```
+
+La commande enchaîne les opérations mécaniques et produit automatiquement les paquets de revue sous `outgoing/`. Après chaque retour de ChatGPT :
+
+```bash
+./wikidebia review-import <debate_id> <zip_corrigé>
+```
+
+Voir `GUIDE_EDITORIAL_ORCHESTRATION.md`. Les commandes détaillées restent disponibles pour audit/debug.
 
 ## Guide de revue du contenu
 
@@ -1905,16 +1981,16 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `0bb34c54d8df24c4b5928654ec559124ac8852f917632eaad5c5fd5741a42bec`
+SHA-256 : `dbe86e6d3c9f116716b599a3b4781b668a7af2c625c7eada41ee68a6b92d51b0`
 
-Wikidéb’IA Kit 2.15.56 — rapport de tests
+Wikidéb’IA Kit 2.16.0 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 375
-Tests pytest : 375 réussis
-Norme : 1.2.72
-Validateur : 0.4.75
+Tests pytest collectés : 390
+Tests pytest : 390 réussis
+Norme : 1.2.73
+Validateur : 0.4.76
 Plans de publication : wikidebia-publication-plan-1.0
-Correctif graph-extract `dedicated-debate`, compatibilité des clés internes et non-régression : PASSED.
+Orchestration éditoriale, ZIP minimaux, reprise transactionnelle, boucle sémantique, commandes avancées et non-régression : PASSED.
 
 ## Guide de traduction anglaise
 

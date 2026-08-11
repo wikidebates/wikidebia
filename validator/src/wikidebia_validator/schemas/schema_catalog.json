@@ -1,7 +1,7 @@
 {
   "catalog_version": "1.2.0",
   "draft": "https://json-schema.org/draft/2020-12/schema",
-  "schema_count": 24,
+  "schema_count": 28,
   "schemas": [
     {
       "path": "archive_receipt.schema.json",
@@ -29,6 +29,11 @@
       "title": "Wikidéb'IA — Manifeste de lot de pages Argument"
     },
     {
+      "path": "chatgpt_review_package.schema.json",
+      "id": "chatgpt_review_package.schema.json",
+      "title": "Wikidéb'IA — Manifeste de paquet de revue ChatGPT"
+    },
+    {
       "path": "common.schema.json",
       "id": "common.schema.json",
       "title": "Wikidéb'IA — Définitions communes"
@@ -42,6 +47,11 @@
       "path": "documentary_resource_registry.schema.json",
       "id": "documentary_resource_registry.schema.json",
       "title": "Wikidéb'IA — Registre global normalisé des ressources documentaires"
+    },
+    {
+      "path": "editorial_orchestration_state.schema.json",
+      "id": "editorial_orchestration_state.schema.json",
+      "title": "Wikidéb'IA — État d'orchestration éditoriale"
     },
     {
       "path": "handoff.schema.json",
@@ -112,6 +122,11 @@
       "path": "semantic_convergence_review.schema.json",
       "id": "semantic_convergence_review.schema.json",
       "title": "Wikidéb'IA — Reçu de convergence sémantique FR→EN"
+    },
+    {
+      "path": "semantic_review_response.schema.json",
+      "id": "semantic_review_response.schema.json",
+      "title": "Wikidéb'IA — Réponse éditoriale de convergence sémantique"
     },
     {
       "path": "source_registry.schema.json",

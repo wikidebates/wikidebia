@@ -42,7 +42,7 @@ OBSOLETE_ROOT_SOURCE_FILES = (
 )
 
 REQUIRED_GITIGNORE_RULES = (
-    "/private/", "/corpus/", "/archives/", "/updates/", "/incoming/",
+    "/private/", "/corpus/", "/archives/", "/updates/", "/incoming/", "/outgoing/",
     "/logs/", "/plans/", "/.state/", "/.venv/",
     "/config/wikidebia.local.json", "/configs/", "/.gitconfig-wikidebia",
     "/user-config.py", "/user-password.cfg", "/apicache/",
@@ -50,7 +50,7 @@ REQUIRED_GITIGNORE_RULES = (
     "*.py[cod]", "*.egg-info/",
 )
 FORBIDDEN_GIT_PREFIXES = (
-    "private/", "corpus/", "archives/", "updates/", "incoming/",
+    "private/", "corpus/", "archives/", "updates/", "incoming/", "outgoing/",
     "logs/", "plans/", ".state/", ".venv/", "configs/", "apicache/",
 )
 FORBIDDEN_GIT_EXACT = {
@@ -592,6 +592,9 @@ def build_unified_source(
         if not path.is_file():
             raise ManagementError(f"Source active introuvable : {source_label}")
         _append_unified_source_section(lines, title, source_label, path)
+    orchestration_guide = staged["kit"] / "GUIDE_EDITORIAL_ORCHESTRATION.md"
+    if orchestration_guide.is_file():
+        _append_unified_source_section(lines, "Guide d’orchestration éditoriale", "kit/GUIDE_EDITORIAL_ORCHESTRATION.md", orchestration_guide)
     translation_guide = staged["kit"] / "GUIDE_TRANSLATION_REVIEW.md"
     if translation_guide.is_file():
         _append_unified_source_section(lines, "Guide de traduction anglaise", "kit/GUIDE_TRANSLATION_REVIEW.md", translation_guide)
@@ -1799,6 +1802,52 @@ def corpus_workspace_semantic_convergence(
     return result.returncode
 
 
+
+
+def editorial_workflow(
+    root: Path, debate_title: str, *, debate_id: str | None, short_code: str | None,
+    snapshot: Path | None, force_refresh: bool,
+) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_review_workflow.py"
+    if not script.is_file():
+        raise ManagementError("Orchestrateur éditorial absent du kit")
+    command = [
+        python_command(root), str(script), "--project-root", str(root), "workflow", debate_title,
+    ]
+    if debate_id:
+        command.extend(["--debate-id", debate_id])
+    if short_code:
+        command.extend(["--short-code", short_code])
+    if snapshot:
+        selected = snapshot if snapshot.is_absolute() else (root / snapshot)
+        command.extend(["--snapshot", str(selected.resolve())])
+    if force_refresh:
+        command.append("--force-refresh")
+    return run(command, cwd=root, check=False).returncode
+
+
+def review_import(root: Path, debate_id: str, archive: Path) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_review_workflow.py"
+    if not script.is_file():
+        raise ManagementError("Orchestrateur éditorial absent du kit")
+    selected = archive if archive.is_absolute() else (root / archive)
+    command = [
+        python_command(root), str(script), "--project-root", str(root),
+        "review-import", debate_id, str(selected.resolve()),
+    ]
+    return run(command, cwd=root, check=False).returncode
+
+
+def workflow_status(root: Path, debate_id: str) -> int:
+    script = root / "kit" / "scripts" / "wikidebia_review_workflow.py"
+    if not script.is_file():
+        raise ManagementError("Orchestrateur éditorial absent du kit")
+    command = [
+        python_command(root), str(script), "--project-root", str(root),
+        "workflow-status", debate_id,
+    ]
+    return run(command, cwd=root, check=False).returncode
+
 def corpus_workspace_render(
     root: Path, debate_id: str, *, work_id: str, confirm_translation_sha256: str,
 ) -> int:
@@ -2034,6 +2083,28 @@ def build_parser() -> argparse.ArgumentParser:
     upgrade.add_argument("--no-push", action="store_true", help="Créer le commit sans pousser vers origin")
     upgrade.add_argument("--no-git", action="store_true", help="Ne pas créer de commit Git")
 
+    workflow = sub.add_parser(
+        "workflow",
+        help="Piloter automatiquement le workflow éditorial jusqu'au prochain paquet ChatGPT",
+    )
+    workflow.add_argument("debate_title", help="Titre exact de la page Débat")
+    workflow.add_argument("--debate-id", help="Identifiant stable; par défaut dérivé du titre")
+    workflow.add_argument("--short-code", help="Code court du débat; par défaut dérivé automatiquement")
+    workflow.add_argument("--snapshot", type=Path, help="Snapshot graph-extract existant; sinon extraction automatique")
+    workflow.add_argument("--force-refresh", action="store_true", help="Forcer la relecture distante lors de l'extraction initiale")
+
+    review_import_parser = sub.add_parser(
+        "review-import",
+        help="Réimporter un ZIP corrigé par ChatGPT et reprendre automatiquement le workflow",
+    )
+    review_import_parser.add_argument("debate_id", help="Identifiant stable du corpus")
+    review_import_parser.add_argument("archive", type=Path, help="ZIP corrigé rendu par ChatGPT")
+
+    workflow_status_parser = sub.add_parser(
+        "workflow-status", help="Afficher l'état de l'orchestration éditoriale"
+    )
+    workflow_status_parser.add_argument("debate_id")
+
     graph = sub.add_parser(
         "graph-extract",
         help="Extraire récursivement un graphe argumentatif depuis le wiki, en lecture seule",
@@ -2251,6 +2322,15 @@ def main(argv: list[str] | None = None) -> int:
         )
         print(json.dumps(versions, ensure_ascii=False, sort_keys=True))
         return 0
+    if args.command == "workflow":
+        return editorial_workflow(
+            root, args.debate_title, debate_id=args.debate_id, short_code=args.short_code,
+            snapshot=args.snapshot, force_refresh=args.force_refresh,
+        )
+    if args.command == "review-import":
+        return review_import(root, args.debate_id, args.archive)
+    if args.command == "workflow-status":
+        return workflow_status(root, args.debate_id)
     if args.command == "graph-extract":
         return graph_extract_debate(
             root,

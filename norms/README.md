@@ -1,6 +1,6 @@
-# Wikidéb’IA — Normes 1.2.72
+# Wikidéb’IA — Normes 1.2.73
 
-La révision 1.2.72 est une maintenance sans changement éditorial. Elle corrige l’alignement du kit autour du renommage `dedicated-debate` dans le chemin d’exécution de `graph-extract`, tout en conservant les clés techniques internes historiques `complete_topic` et `detailed_debate`. `VERSIONS.json` reste la source de vérité de la release courante.
+La révision 1.2.73 formalise l’orchestration ergonomique des interventions éditoriales externes : toutes les étapes mécaniques sont enchaînées jusqu’au prochain point de revue, les paquets ChatGPT sont minimaux, vérifiables et réimportables, et les primitives détaillées restent disponibles pour audit/debug. Elle ne réduit aucun garde-fou éditorial, documentaire, bilingue ou de publication.
 
 ## Notes héritées du paquet parent 1.2.70
 

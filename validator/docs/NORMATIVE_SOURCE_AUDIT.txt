@@ -1,4 +1,3 @@
-Source normative active : WIKIDEBIA_NORME_CONSOLIDEE_1.2.72.md
-Révision : 1.2.72
-Statut : synchronisée avec le paquet Normes
-Architecture : norme active séparée de history/ ; historique immuable
+Source normative active : WIKIDEBIA_NORME_CONSOLIDEE_1.2.73.md
+Révision : 1.2.73
+Statut : synchronisée depuis le paquet Normes

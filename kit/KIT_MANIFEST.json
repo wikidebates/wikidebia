@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.15.56",
-  "validator_version": "0.4.75",
+  "version": "2.16.0",
+  "validator_version": "0.4.76",
   "scope": [
     "publish_archive",
     "github_init",
@@ -442,9 +442,17 @@
     "multiline_mediawiki_parser_regressions",
     "semantic_convergence_method_families",
     "publication_multiline_parser_conformance",
-    "canonical_expanded_topic_and_dedicated_debate_parameters"
+    "canonical_expanded_topic_and_dedicated_debate_parameters",
+    "high_level_editorial_workflow",
+    "chatgpt_review_package_1_0",
+    "transactional_review_import",
+    "automatic_mechanical_stage_chaining",
+    "semantic_revision_loop",
+    "outgoing_private_handoff_directory",
+    "editorial_workflow_status_resume",
+    "minimal_editable_context_review_packages"
   ],
-  "normative_revision": "1.2.72",
+  "normative_revision": "1.2.73",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -530,7 +538,12 @@
     "semantic_convergence_two_independent_passes",
     "semantic_field_evidence_bound_to_review_hash",
     "main_clause_predicate_gate",
-    "current_mediawiki_parameter_name_gate"
+    "current_mediawiki_parameter_name_gate",
+    "editorial_review_package_minimal_allowlist_regression",
+    "editorial_review_import_provenance_regression",
+    "editorial_workflow_resume_idempotence_regression",
+    "editorial_workflow_next_stop_regression",
+    "editorial_review_package_secret_exclusion_regression"
   ],
   "regression_gates": [
     "argument_reference_develops_argument_regression",
@@ -562,7 +575,10 @@
     "validator_english_initialization_source_projection_regression",
     "validator_english_creation_date_source_equality_regression",
     "historical_version_attribution_regression",
-    "graph_extract_dedicated_debate_cli_regression"
+    "graph_extract_dedicated_debate_cli_regression",
+    "advanced_editorial_primitives_preserved",
+    "semantic_review_reopens_translation_regression",
+    "orchestration_never_publishes_remote_regression"
   ],
   "translation_change_tag": "translated-fr"
 }

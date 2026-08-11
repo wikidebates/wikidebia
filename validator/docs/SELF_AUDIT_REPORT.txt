@@ -1,7 +1,7 @@
-Wikidéb’IA Validator 0.4.75 — auto-audit
-Statut : RÉUSSI
-Norme active unique : 1.2.72
-Tests : 399 réussis
-Exigences : 503 uniques ; alias de provenance : 103.
-Copie normative : 95 fichiers identiques au paquet Normes.
-Provenance normative, schémas, versions, documents actifs, compatibilité des formats historiques et absence de feature flags éditoriaux par release : vérifiés.
+Wikidéb’IA Validator 0.4.76 — auto-audit
+Statut : PASSED
+Norme active unique : 1.2.73
+Kit aligné : 2.16.0
+Tests : 403 réussis
+Schémas d’orchestration : PASSED
+Provenance normative et fichiers : PASSED.
