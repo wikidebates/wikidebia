@@ -1,3 +1,3 @@
-# Wikidéb’IA — Normes 1.2.76
+# Wikidéb’IA — Normes 1.2.77
 
-La révision 1.2.76 corrige la boucle d’orchestration après rejet d’une revue de graphe : le rejet est non promouvable, ouvre une correction structurelle, puis impose une nouvelle revue complète avant toute promotion. Aucune règle éditoriale de fond ni protection de publication n’est affaiblie.
+La révision 1.2.77 encadre l’exécution explicite des décisions structurelles issues d’une revue du graphe : retrait d’occurrence, fusion avec redirection, déplacement ou changement de relation, avec validation prospective, préflight distant, résumés MediaWiki individualisés et nouvelle revue obligatoire avant promotion.

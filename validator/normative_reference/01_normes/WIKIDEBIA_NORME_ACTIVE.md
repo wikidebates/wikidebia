@@ -1,4 +1,4 @@
-# Norme opérationnelle active Wikidéb’IA 1.2.76
+# Norme opérationnelle active Wikidéb’IA 1.2.77
 
 **Statut : source normative active unique.**  
 **Date d’effet :** 11 août 2026
@@ -637,7 +637,7 @@ Les longueurs indicatives des résumés restent des guides éditoriaux et non de
 
 ## 12. Publication W11
 
-Aucune écriture distante n’est autorisée pendant une reprise W10 corrective. Le kit W11 est livré sans exécution et sans secret.
+Hors application explicitement demandée d’actions structurelles issues d’une revue du graphe selon la section 22, aucune écriture distante n’est autorisée pendant une reprise W10 corrective. Le kit W11 est livré sans exécution et sans secret.
 
 Avant toute publication, W11 doit :
 
@@ -769,7 +769,15 @@ L’orchestration couvre au minimum : revue du graphe et des placements ; revue 
 
 Lorsqu’une revue du graphe retourne `decision=rejected`, ce résultat est **non promouvable**. L’orchestrateur ne peut ni passer à `graph_validated`, ni appeler la promotion, ni ouvrir le Work éditorial suivant. Il enregistre le rejet et ses `blocking_issues`, prépare automatiquement une phase externe `graph_correction` au schéma `wikidebia-graph-correction-1.0`, puis s’arrête sur le paquet ChatGPT correspondant. La correction ne modifie que la structure encore déverrouillée du graphe : parenté des occurrences, relation `justification`/`objection`, branche des racines, ordre et choix de l’occurrence primaire. Le kit reconstruit ensuite mécaniquement les relations, profondeurs, branches, indicateurs `render_children`, compteurs dérivés et projection du graphe, puis exécute une validation structurelle. Une correction invalide est restaurée transactionnellement et reste au point de correction. Une correction valide prépare obligatoirement **une nouvelle revue complète du graphe** ; elle ne vaut jamais approbation implicite. La promotion n’est accessible qu’après le retour `approved` de cette nouvelle revue. Les rejets successifs répètent ce cycle autant de fois que nécessaire.
 
+Lorsqu’une revue du graphe rejetée contient déjà des **décisions structurelles explicites et exécutables**, une voie d’application directe peut remplacer le paquet intermédiaire `graph_correction`, uniquement sur demande explicite de l’utilisateur. Les actions admises sont : retrait d’une occurrence et du nœud devenu sans occurrence ; fusion d’un doublon vers un nœud conservé ; déplacement d’une occurrence ; changement de relation ou de branche. Une formulation libre ou ambiguë ne peut jamais déclencher une écriture distante. Les paquets historiques dépourvus de champ structuré ne sont exécutables que si une formulation propriétaire explicitement reconnue identifie sans ambiguïté le nœud, l’occurrence et, pour un doublon, la destination conservée.
+
+Pour un retrait, le modèle de relation correspondant (`Argument pour`, `Argument contre`, `Justification` ou `Objection`) est retiré de la page mère avant le traitement de la page enfant. Lorsqu’il s’agit d’un doublon, la page enfant n’est normalement pas supprimée : son contenu est remplacé intégralement par `#REDIRECTION [[Titre canonique conservé]]`. Lorsqu’il ne s’agit pas d’un doublon et qu’aucune autre occurrence ni sous-branche ne dépend du nœud, la page peut être supprimée. Toute suppression d’un nœud possédant plusieurs occurrences ou des enfants est refusée tant qu’une décision plus précise n’a pas été fournie.
+
+Chaque page distante modifiée reçoit un **résumé MediaWiki individualisé décrivant la modification réelle**. Le résumé d’une page mère dont un doublon est retiré mentionne obligatoirement la page conservée sous forme de wikilien `[[Titre canonique conservé]]`. Les résumés génériques tels que `Corrections` ne sont pas utilisés pour ces opérations. Les écritures portent la balise `chatgpt` et leur contenu, résumé, balise et révision sont relus après écriture.
+
+Avant la première écriture distante, le kit construit et valide dans une copie temporaire le graphe exact résultant des décisions, puis effectue un préflight distant complet de toutes les pages concernées contre les révisions et empreintes du snapshot importé. L’ordre distant est : modifications des pages mères, créations de redirections, suppressions effectives. Chaque page est relue immédiatement avant sa mutation pour détecter une concurrence. Après succès, le corpus local est mis à jour, le graphe retourne à `graph_draft` et une **nouvelle revue complète** est automatiquement préparée ; l’exécution des décisions n’équivaut jamais à une approbation ni à une promotion.
+
 Lorsqu’une passe de convergence détecte une erreur certaine, le workflow n’applique pas la traduction. Il rouvre proprement la revue anglaise sur la même base française verrouillée, conserve les constatations de convergence comme contexte, produit un nouveau paquet de correction et recommence ensuite les deux passes indépendantes sur la nouvelle empreinte sémantique. Deux passes propres de familles distinctes restent obligatoires avant le rendu et la libération.
 
-Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. Elle peut réutiliser un snapshot `graph-extract` déjà présent ; sinon elle effectue l’extraction en lecture seule. Après la dernière revue convergée, le rendu et la construction du corpus `release_ready` sont mécaniques et sont enchaînés automatiquement sans effectuer aucune publication distante.
+Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. Elle peut réutiliser un snapshot `graph-extract` déjà présent ; sinon elle effectue l’extraction en lecture seule. Après la dernière revue convergée, le rendu et la construction du corpus `release_ready` sont mécaniques et sont enchaînés automatiquement sans effectuer de publication distante. La seule exception pré-W11 est la voie explicitement destructive `review-import ... --execute-graph-actions`, limitée aux mutations structurelles déjà décidées dans la revue du graphe et soumise aux garde-fous du présent article.
 

@@ -115,4 +115,13 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - valide la correction avant reprise et restaure transactionnellement le build en cas d’échec ;
 - prépare obligatoirement une nouvelle revue complète du graphe après correction, sans promotion implicite ;
 - ajoute des tests de rejet, correction valide, correction invalide/rollback et absence de promotion.
+## 2.16.4 — 11 août 2026 — exécution des décisions structurelles de revue
+
+- ajoute `--execute-graph-actions` à `review-import` pour appliquer en une commande les décisions explicites `remove`, `merge_redirect`, `move` et `relation_change` ;
+- retire les modèles de relation des pages mères et transforme les doublons en `#REDIRECTION [[page conservée]]` ;
+- produit un résumé MediaWiki individualisé par page, avec `[[destination]]` obligatoire dans le résumé de retrait d’un doublon ;
+- valide la projection locale complète avant la première écriture distante, puis préflight toutes les pages et revérifie chaque révision avant mutation ;
+- relit contenu, résumé et balise `chatgpt` après chaque édition ;
+- accepte de façon étroite les décisions propriétaires déjà inscrites dans certains ZIP 2.16.2/2.16.3 ;
+- reconstruit le graphe et prépare une nouvelle revue complète sans promotion implicite.
 

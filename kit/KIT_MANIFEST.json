@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.16.3",
-  "validator_version": "0.4.79",
+  "version": "2.16.4",
+  "validator_version": "0.4.80",
   "scope": [
     "publish_archive",
     "github_init",
@@ -452,9 +452,14 @@
     "outgoing_private_handoff_directory",
     "editorial_workflow_status_resume",
     "minimal_editable_context_review_packages",
-    "graph_review_rejection_correction_loop"
+    "graph_review_rejection_correction_loop",
+    "reviewed_graph_action_execution",
+    "duplicate_redirect_instead_of_delete",
+    "individualized_graph_action_edit_summaries",
+    "prospective_local_validation_before_graph_remote_writes",
+    "full_graph_action_remote_preflight"
   ],
-  "normative_revision": "1.2.76",
+  "normative_revision": "1.2.77",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -545,7 +550,11 @@
     "editorial_review_import_provenance_regression",
     "editorial_workflow_resume_idempotence_regression",
     "editorial_workflow_next_stop_regression",
-    "editorial_review_package_secret_exclusion_regression"
+    "editorial_review_package_secret_exclusion_regression",
+    "graph_review_action_legacy_package_regression",
+    "graph_duplicate_redirect_summary_regression",
+    "graph_action_remote_preflight_regression",
+    "graph_action_prospective_validation_regression"
   ],
   "regression_gates": [
     "argument_reference_develops_argument_regression",

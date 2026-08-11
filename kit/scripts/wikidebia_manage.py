@@ -1826,7 +1826,7 @@ def editorial_workflow(
     return run(command, cwd=root, check=False).returncode
 
 
-def review_import(root: Path, debate_id: str, archive: Path) -> int:
+def review_import(root: Path, debate_id: str, archive: Path, *, execute_graph_actions: bool = False) -> int:
     script = root / "kit" / "scripts" / "wikidebia_review_workflow.py"
     if not script.is_file():
         raise ManagementError("Orchestrateur éditorial absent du kit")
@@ -1835,6 +1835,8 @@ def review_import(root: Path, debate_id: str, archive: Path) -> int:
         python_command(root), str(script), "--project-root", str(root),
         "review-import", debate_id, str(selected.resolve()),
     ]
+    if execute_graph_actions:
+        command.append("--execute-graph-actions")
     return run(command, cwd=root, check=False).returncode
 
 
@@ -2099,6 +2101,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     review_import_parser.add_argument("debate_id", help="Identifiant stable du corpus")
     review_import_parser.add_argument("archive", type=Path, help="ZIP corrigé rendu par ChatGPT")
+    review_import_parser.add_argument("--execute-graph-actions", action="store_true", help="Après une revue de graphe rejetée, exécuter en une commande les suppressions, redirections, déplacements et requalifications explicitement décidés")
 
     workflow_status_parser = sub.add_parser(
         "workflow-status", help="Afficher l'état de l'orchestration éditoriale"
@@ -2328,7 +2331,7 @@ def main(argv: list[str] | None = None) -> int:
             snapshot=args.snapshot, force_refresh=args.force_refresh,
         )
     if args.command == "review-import":
-        return review_import(root, args.debate_id, args.archive)
+        return review_import(root, args.debate_id, args.archive, execute_graph_actions=args.execute_graph_actions)
     if args.command == "workflow-status":
         return workflow_status(root, args.debate_id)
     if args.command == "graph-extract":

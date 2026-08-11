@@ -2,22 +2,22 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.76** ;
-- validateur actif : **0.4.79** ;
-- kit actif : **2.16.3**.
+- norme active : **1.2.77** ;
+- validateur actif : **0.4.80** ;
+- kit actif : **2.16.4**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 10852425 octets — SHA-256 `2e8a2750f41ec07aed02d14690a32a3834afe1add9e1563529980aa7ca6fd8da`
-- `wikidebia-validator.zip` — 11358073 octets — SHA-256 `0d9e8acf2ab08fa2ee1ed20e4a58341522803922ff6fc12e8787bbd5aa1716fe`
-- `wikidebia-kit.zip` — 2141076 octets — SHA-256 `c8581dc089dea68572ff865b75d2a1d10cbf1a3a68ff56a7b0f9f7b6226c808a`
+- `wikidebia-normes.zip` — 10950372 octets — SHA-256 `798d22af51d0661d6251f356448ac52dd909a9f3c4a9b33f9b6338da1a09e238`
+- `wikidebia-validator.zip` — 11457020 octets — SHA-256 `572bee2338d0557ebeae04d48b2b9ea0ccc1f9520d864c93b0461d8bb0e08ae8`
+- `wikidebia-kit.zip` — 2207494 octets — SHA-256 `cb393ab01de27740fa226b62b314e501f499b8ede71288bdff15f2687057001e`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.76.md`  
-SHA-256 : `b45828071be55702ea022c5b54b07de11f67652e5a09d09eb572950321782e7f`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.77.md`  
+SHA-256 : `4b8844b56eee53d61af100d441186196b3363ec33fbaf259d89248674095ab95`
 
-# Norme opérationnelle active Wikidéb’IA 1.2.76
+# Norme opérationnelle active Wikidéb’IA 1.2.77
 
 **Statut : source normative active unique.**  
 **Date d’effet :** 11 août 2026
@@ -656,7 +656,7 @@ Les longueurs indicatives des résumés restent des guides éditoriaux et non de
 
 ## 12. Publication W11
 
-Aucune écriture distante n’est autorisée pendant une reprise W10 corrective. Le kit W11 est livré sans exécution et sans secret.
+Hors application explicitement demandée d’actions structurelles issues d’une revue du graphe selon la section 22, aucune écriture distante n’est autorisée pendant une reprise W10 corrective. Le kit W11 est livré sans exécution et sans secret.
 
 Avant toute publication, W11 doit :
 
@@ -788,14 +788,22 @@ L’orchestration couvre au minimum : revue du graphe et des placements ; revue 
 
 Lorsqu’une revue du graphe retourne `decision=rejected`, ce résultat est **non promouvable**. L’orchestrateur ne peut ni passer à `graph_validated`, ni appeler la promotion, ni ouvrir le Work éditorial suivant. Il enregistre le rejet et ses `blocking_issues`, prépare automatiquement une phase externe `graph_correction` au schéma `wikidebia-graph-correction-1.0`, puis s’arrête sur le paquet ChatGPT correspondant. La correction ne modifie que la structure encore déverrouillée du graphe : parenté des occurrences, relation `justification`/`objection`, branche des racines, ordre et choix de l’occurrence primaire. Le kit reconstruit ensuite mécaniquement les relations, profondeurs, branches, indicateurs `render_children`, compteurs dérivés et projection du graphe, puis exécute une validation structurelle. Une correction invalide est restaurée transactionnellement et reste au point de correction. Une correction valide prépare obligatoirement **une nouvelle revue complète du graphe** ; elle ne vaut jamais approbation implicite. La promotion n’est accessible qu’après le retour `approved` de cette nouvelle revue. Les rejets successifs répètent ce cycle autant de fois que nécessaire.
 
+Lorsqu’une revue du graphe rejetée contient déjà des **décisions structurelles explicites et exécutables**, une voie d’application directe peut remplacer le paquet intermédiaire `graph_correction`, uniquement sur demande explicite de l’utilisateur. Les actions admises sont : retrait d’une occurrence et du nœud devenu sans occurrence ; fusion d’un doublon vers un nœud conservé ; déplacement d’une occurrence ; changement de relation ou de branche. Une formulation libre ou ambiguë ne peut jamais déclencher une écriture distante. Les paquets historiques dépourvus de champ structuré ne sont exécutables que si une formulation propriétaire explicitement reconnue identifie sans ambiguïté le nœud, l’occurrence et, pour un doublon, la destination conservée.
+
+Pour un retrait, le modèle de relation correspondant (`Argument pour`, `Argument contre`, `Justification` ou `Objection`) est retiré de la page mère avant le traitement de la page enfant. Lorsqu’il s’agit d’un doublon, la page enfant n’est normalement pas supprimée : son contenu est remplacé intégralement par `#REDIRECTION [[Titre canonique conservé]]`. Lorsqu’il ne s’agit pas d’un doublon et qu’aucune autre occurrence ni sous-branche ne dépend du nœud, la page peut être supprimée. Toute suppression d’un nœud possédant plusieurs occurrences ou des enfants est refusée tant qu’une décision plus précise n’a pas été fournie.
+
+Chaque page distante modifiée reçoit un **résumé MediaWiki individualisé décrivant la modification réelle**. Le résumé d’une page mère dont un doublon est retiré mentionne obligatoirement la page conservée sous forme de wikilien `[[Titre canonique conservé]]`. Les résumés génériques tels que `Corrections` ne sont pas utilisés pour ces opérations. Les écritures portent la balise `chatgpt` et leur contenu, résumé, balise et révision sont relus après écriture.
+
+Avant la première écriture distante, le kit construit et valide dans une copie temporaire le graphe exact résultant des décisions, puis effectue un préflight distant complet de toutes les pages concernées contre les révisions et empreintes du snapshot importé. L’ordre distant est : modifications des pages mères, créations de redirections, suppressions effectives. Chaque page est relue immédiatement avant sa mutation pour détecter une concurrence. Après succès, le corpus local est mis à jour, le graphe retourne à `graph_draft` et une **nouvelle revue complète** est automatiquement préparée ; l’exécution des décisions n’équivaut jamais à une approbation ni à une promotion.
+
 Lorsqu’une passe de convergence détecte une erreur certaine, le workflow n’applique pas la traduction. Il rouvre proprement la revue anglaise sur la même base française verrouillée, conserve les constatations de convergence comme contexte, produit un nouveau paquet de correction et recommence ensuite les deux passes indépendantes sur la nouvelle empreinte sémantique. Deux passes propres de familles distinctes restent obligatoires avant le rendu et la libération.
 
-Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. Elle peut réutiliser un snapshot `graph-extract` déjà présent ; sinon elle effectue l’extraction en lecture seule. Après la dernière revue convergée, le rendu et la construction du corpus `release_ready` sont mécaniques et sont enchaînés automatiquement sans effectuer aucune publication distante.
+Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. Elle peut réutiliser un snapshot `graph-extract` déjà présent ; sinon elle effectue l’extraction en lecture seule. Après la dernière revue convergée, le rendu et la construction du corpus `release_ready` sont mécaniques et sont enchaînés automatiquement sans effectuer de publication distante. La seule exception pré-W11 est la voie explicitement destructive `review-import ... --execute-graph-actions`, limitée aux mutations structurelles déjà décidées dans la revue du graphe et soumise aux garde-fous du présent article.
 
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `221c4f6ac40014e46976c36b8fda3d1341f84348e21327ac0b6fc947d2d4041e`
+SHA-256 : `45d754786f043bbd5513714a01915efea0f922b33bcedde32b7bf80b3dfb17e9`
 
 ## 1.2.70 — alignement du validateur sur la première publication anglaise
 
@@ -1496,19 +1504,28 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - reconstruit mécaniquement relations, profondeurs, branches, rôles et compteurs après correction, avec validation et rollback transactionnel ;
 - impose une nouvelle revue complète du graphe après chaque correction valide ;
 - répète correction → revue autant de fois que nécessaire, sans création de Work, promotion ni écriture distante avant une approbation explicite.
+## 1.2.77 — 11 août 2026 — décisions structurelles exécutables depuis une revue du graphe
+
+- permet à une revue rejetée de porter des actions explicites `remove`, `merge_redirect`, `move` et `relation_change` ;
+- retire le modèle de relation de la page mère avant tout retrait de l’enfant ;
+- transforme par défaut les doublons supprimés du graphe en `#REDIRECTION [[page conservée]]` plutôt qu’en suppression distante ;
+- exige des résumés MediaWiki individualisés, avec `[[page conservée]]` dans le résumé de la page mère lors d’un doublon ;
+- impose validation locale prospective, préflight distant global, garde de révision avant chaque écriture et relecture du contenu/résumé/balise ;
+- impose une nouvelle revue complète du graphe après application et interdit toute promotion implicite ;
+- conserve une compatibilité étroite avec les ZIP 2.16.2/2.16.3 déjà revus lorsqu’ils contiennent la formulation propriétaire explicite attendue.
 
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `20010356e8c2518a2bdb63abf5912a7b9ab3ec654d1051c03db230c0ab05e7ca`
+SHA-256 : `d8cbba2bf521dbfe41f03987df23350dfb9a7198974dd6ef6cb9918512e41e4b`
 
-# Wikidéb’IA Validator 0.4.79
+# Wikidéb’IA Validator 0.4.80
 
-Le validateur 0.4.79 aligne les schémas et capacités sur la norme 1.2.76 / le kit 2.16.3 et ajoute le contrat `wikidebia-graph-correction-1.0`. Aucun contrôle de corpus existant n’est retiré ou assoupli.
+Le validateur 0.4.80 s’aligne sur la norme 1.2.77 et le kit 2.16.4. Il conserve tous les contrôles existants et sert aussi à valider prospectivement le corpus reconstruit avant toute exécution distante d’une décision structurelle de revue.
 
 ## Notes héritées du paquet parent 0.4.73
 
-Version courante pour la norme 1.2.76 et le kit 2.16.3.
+Socle hérité de 0.4.73, ensuite complété par les révisions suivantes.
 
 Elle conserve les contrôles différentiels et sémantiques de la lignée traduction 0.4.64 et intègre les contrôles de la lignée publication GitHub : `nom-consacré` / `established-name`, `AI-translated quote`, absence d'`initialization` sur une nouvelle traduction anglaise, cohérence normative et préservation historique des alias.
 
@@ -1533,7 +1550,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `0d018f147018419fe730c41a90729aca233feb3c36ce7b11ba84ee71e2f0bec2`
+SHA-256 : `a403c3ee98ebd70543a1a408853b2234b36953378b4d2dc6cf628ed5b61b9e22`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1635,18 +1652,24 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - déclare la capacité de lecture du document de correction utilisé après rejet d’une revue de graphe ;
 - ne modifie aucun contrôle éditorial ou structurel existant du corpus.
 
+## 0.4.80 — 11 août 2026 — alignement sur les actions structurelles de revue
+
+- aligne la copie normative sur 1.2.77 et le kit recommandé sur 2.16.4 ;
+- conserve tous les contrôles structurels et éditoriaux existants ;
+- permet au kit de valider prospectivement le corpus reconstruit avant l’exécution distante des actions de graphe.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `ec1ded7c250d0bd01e30d89a57801aa0a75db6f446160bafbe9083daaf2ab946`
+SHA-256 : `165ca26844f7e4668f0bbdbfb8d7eb371541d0a8d44ac86f24923e219cdb9f0c`
 
-# Wikidéb’IA Kit 2.16.3
+# Wikidéb’IA Kit 2.16.4
 
-Le kit 2.16.3 corrige la transition après rejet d’une revue de graphe. Un résultat `rejected` reste en `graph_draft`, ouvre automatiquement une phase `graph_correction`, applique et valide transactionnellement la correction, puis génère une nouvelle revue complète du graphe. Aucune promotion ni création de Work n’est possible avant une revue ultérieure explicitement approuvée. Le correctif `short_code` de 2.16.2 reste inchangé.
+Le kit 2.16.4 permet d’exécuter en une commande les décisions structurelles explicites d’un ZIP de revue du graphe : retrait, fusion avec redirection, déplacement et changement de relation. Pour un doublon, le lien est retiré de la page mère puis la page doublon devient `#REDIRECTION [[page conservée]]`. Chaque écriture utilise un résumé MediaWiki individualisé, un préflight global et une garde de révision. La projection locale complète est validée avant toute écriture distante et une nouvelle revue du graphe reste obligatoire avant promotion.
 
 Historique 2.16.1 : une anomalie éditoriale de titre importé ne bloque plus avant la revue qui doit précisément la corriger. Les incohérences structurelles restent bloquantes ; lorsqu’elles surviennent, `workflow` affiche leurs codes/messages et produit automatiquement un ZIP de diagnostic minimal sous `outgoing/`. Après correction, relancer la même commande reprend la phase sans reset manuel. Le mécanisme général de paquets de revue introduit en 2.16.0 reste inchangé.
 
-Les paquets de revue utilisent le schéma stable `wikidebia-chatgpt-review-package-1.0`, séparent `editable/` et `context/`, lient leur provenance à l’état local, refusent les fichiers supplémentaires et excluent les secrets. La convergence sémantique est elle aussi orchestrée : une erreur certaine rouvre la traduction, puis les deux passes indépendantes recommencent. Aucune publication distante n’est déclenchée par cette orchestration.
+Les paquets de revue utilisent le schéma stable `wikidebia-chatgpt-review-package-1.0`, séparent `editable/` et `context/`, lient leur provenance à l’état local, refusent les fichiers supplémentaires et excluent les secrets. La convergence sémantique est elle aussi orchestrée : une erreur certaine rouvre la traduction, puis les deux passes indépendantes recommencent. Le workflow normal ne publie rien à distance. L’unique exception pré-W11 est l’option explicite `review-import ... --execute-graph-actions`, réservée aux décisions structurelles déjà inscrites dans une revue du graphe.
 
 ## Notes héritées du paquet parent 2.15.54
 
@@ -1677,7 +1700,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `2f3fd984b5942d1d289ae0823e9ac11da5abf02c7b80a2729715659cc9b141bc`
+SHA-256 : `b08d86767ac07760c858751b85abb0e72f60cd9377675168800176ec39242ad7`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1796,6 +1819,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - valide la correction avant reprise et restaure transactionnellement le build en cas d’échec ;
 - prépare obligatoirement une nouvelle revue complète du graphe après correction, sans promotion implicite ;
 - ajoute des tests de rejet, correction valide, correction invalide/rollback et absence de promotion.
+## 2.16.4 — 11 août 2026 — exécution des décisions structurelles de revue
+
+- ajoute `--execute-graph-actions` à `review-import` pour appliquer en une commande les décisions explicites `remove`, `merge_redirect`, `move` et `relation_change` ;
+- retire les modèles de relation des pages mères et transforme les doublons en `#REDIRECTION [[page conservée]]` ;
+- produit un résumé MediaWiki individualisé par page, avec `[[destination]]` obligatoire dans le résumé de retrait d’un doublon ;
+- valide la projection locale complète avant la première écriture distante, puis préflight toutes les pages et revérifie chaque révision avant mutation ;
+- relit contenu, résumé et balise `chatgpt` après chaque édition ;
+- accepte de façon étroite les décisions propriétaires déjà inscrites dans certains ZIP 2.16.2/2.16.3 ;
+- reconstruit le graphe et prépare une nouvelle revue complète sans promotion implicite.
 
 ## Guide de publication
 
@@ -2055,22 +2087,22 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `b028dfa738e8480c7a9d41adb1729d0cc35c958922e7769be621eccd72b925ab`
+SHA-256 : `79d075b41906f4fff7076a775ec466842d084df2673a00b12cc1dccaeb98ea7a`
 
-Wikidéb’IA Kit 2.16.3 — rapport de tests
+Wikidéb’IA Kit 2.16.4 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 402
-Tests pytest : 402 réussis
-Norme : 1.2.76
-Validateur : 0.4.79
-Boucle rejet du graphe → correction → nouvelle revue, sans promotion implicite : PASSED.
+Tests pytest collectés : 409
+Tests pytest : 409 réussis
+Norme : 1.2.77
+Validateur : 0.4.80
+Actions structurelles de revue, redirections de doublons, résumés individualisés, validation prospective et préflight distant : PASSED.
 
 ## Guide d’orchestration éditoriale
 
 Source interne : `kit/GUIDE_EDITORIAL_ORCHESTRATION.md`  
-SHA-256 : `6a5723e35daa1fe9a3965e4cc714c21a1e3a2a50c758abe69c6dc543c560cc34`
+SHA-256 : `48449b51d4f19d3ef41f87f801d4fb9b6b6bddb91214c12d294adfe5d881327b`
 
-# Orchestration des revues éditoriales ChatGPT — Kit 2.16.3
+# Orchestration des revues éditoriales ChatGPT — Kit 2.16.4
 
 ## Usage normal
 
@@ -2135,7 +2167,7 @@ Le cycle courant couvre successivement :
 
 Si une passe sémantique trouve une erreur certaine, la traduction est rouverte, les constatations sont fournies comme contexte dans un paquet de correction, puis les deux passes de convergence recommencent sur la nouvelle empreinte.
 
-Après deux passes propres et indépendantes, l'application, le rendu et la construction `release_ready` sont automatiques. L'orchestrateur n'exécute aucune publication distante.
+Après deux passes propres et indépendantes, l'application, le rendu et la construction `release_ready` sont automatiques. Le workflow normal n'exécute aucune publication distante ; l'exception explicite `review-import ... --execute-graph-actions` ne concerne que les mutations structurelles déjà décidées pendant la revue du graphe.
 
 ## Commandes avancées
 
@@ -2151,6 +2183,15 @@ outgoing/<debate_id>_initial_validation_diagnostic.zip
 ```
 
 Ce fichier peut être envoyé tel quel à ChatGPT pour diagnostic. Après correction du kit ou des données, relancer exactement la même commande `./wikidebia workflow ...` : la validation bloquée est réessayée et le workflow reprend automatiquement.
+## Appliquer une revue du graphe avec actions distantes
+
+Lorsqu’un ZIP de revue rejetée contient des décisions structurelles explicites, utilisez :
+
+```bash
+./wikidebia review-import <debate_id> <zip_revu> --execute-graph-actions
+```
+
+Cette commande valide d’abord la projection locale complète, préflight toutes les pages distantes concernées, puis applique dans l’ordre les modifications des pages mères, les redirections des doublons et les suppressions non fusionnées. Les actions possibles sont `remove`, `merge_redirect`, `move` et `relation_change`. Un doublon est remplacé par `#REDIRECTION [[Destination]]` et le résumé de la page mère mentionne `[[Destination]]`. Les résumés génériques `Corrections` ne sont pas utilisés. Après succès, une nouvelle revue complète du graphe est automatiquement préparée.
 
 ## Guide de traduction anglaise
 

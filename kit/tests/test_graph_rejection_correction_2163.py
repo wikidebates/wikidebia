@@ -235,3 +235,23 @@ def test_pending_rejected_package_from_2162_remains_importable_after_upgrade(tmp
     assert resumed["phase"] == "graph_correction"
     assert resumed["pending_review"]["review_type"] == "graph_correction"
     assert not (project / "corpus/debat_test").exists()
+
+
+def test_rejected_review_with_execute_graph_actions_uses_direct_action_bridge(tmp_path: Path, monkeypatch) -> None:
+    project, _build = make_project(tmp_path)
+    state = _state(project)
+    pending = wf._prepare_graph_package(project, state)
+    returned = tmp_path / "rejected-direct-actions.zip"
+    _rewrite_zip(project / pending["package_path"], returned, _complete_rejected_graph_review)
+
+    called = {"value": False}
+    def fake_actions(project_root, base, debate_id, **kwargs):
+        called["value"] = True
+        return {"status": "graph_actions_applied", "removed_nodes": ["A9999"], "remaining_occurrences": 3}
+    monkeypatch.setattr(wf, "execute_graph_review_actions", fake_actions)
+    monkeypatch.setattr(wf, "run_initial_validator", lambda project_root, package: {"status": "passed"})
+    resumed = wf.import_review(project, "debat_test", returned, execute_graph_actions=True)
+    assert called["value"] is True
+    assert resumed["phase"] == "graph_review"
+    assert resumed["pending_review"]["review_type"] == "graph_review"
+    assert resumed["graph_action_executions"][-1]["status"] == "graph_actions_applied"

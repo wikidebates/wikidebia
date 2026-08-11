@@ -32,11 +32,13 @@ commande utilisateur
 → rendu + release_ready
 ```
 
-Aucune publication distante n’est déclenchée par cette orchestration.
+Par défaut, aucune publication distante n’est déclenchée par cette orchestration. Seul `review-import ... --execute-graph-actions`, demandé explicitement par l’utilisateur pour une revue du graphe contenant des décisions structurelles, peut effectuer les mutations distantes limitées prévues par la norme.
 
 ### Rejet et correction du graphe
 
-Une revue du graphe rejetée ne déclenche jamais `corpus-promote`. `review-import` conserve le build en `graph_draft`, enregistre les motifs de rejet et produit automatiquement un paquet `graph_correction`. Après réimport d’une correction, le kit reconstruit et revalide la structure puis produit un **nouveau paquet `graph_review`**. La correction et l’approbation sont deux décisions distinctes : même une correction structurellement valide doit repasser par une revue complète avant toute promotion. Un rejet répété recommence le même cycle, sans création de Work ni écriture distante.
+Une revue du graphe rejetée ne déclenche jamais `corpus-promote`. `review-import` conserve le build en `graph_draft`, enregistre les motifs de rejet et produit automatiquement un paquet `graph_correction`. Après réimport d’une correction, le kit reconstruit et revalide la structure puis produit un **nouveau paquet `graph_review`**. La correction et l’approbation sont deux décisions distinctes : même une correction structurellement valide doit repasser par une revue complète avant toute promotion. Un rejet répété recommence le même cycle, sans création de Work. Il reste sans écriture distante sauf si l’utilisateur choisit explicitement la voie `--execute-graph-actions` sur un ZIP comportant des décisions exécutables.
+
+Si le ZIP de revue rejetée contient déjà des décisions structurelles explicites, l’utilisateur peut les appliquer et les publier en une commande avec `./wikidebia review-import <debate_id> <zip> --execute-graph-actions`. Cette voie prend en charge retrait/suppression, fusion avec redirection, déplacement et changement de relation. Elle valide d’abord la projection locale complète, préflight toutes les pages distantes avant la première écriture, retire le modèle de relation de la page mère, crée `#REDIRECTION [[Destination]]` pour les doublons ou supprime la page lorsque le retrait n’est pas un doublon, puis reconstruit le graphe et prépare une nouvelle revue complète. Chaque écriture reçoit un résumé individualisé ; pour un doublon, le résumé de la page mère mentionne obligatoirement `[[Destination]]`. Cette voie reste explicitement destructive et n’est jamais déclenchée par un simple `review-import` sans drapeau.
 
 ## 1. Principes
 
@@ -44,7 +46,7 @@ Le registre maître et les fichiers individuels sont les sources de vérité. Le
 
 Aucune copie `staging/interlanguage/` ni ancien mécanisme de patch de corpus n’est utilisé. Lorsque l’anglais passe de `deferred` à `ready` ou `published`, l’ajout des liens français se fait par la reprise interlangue explicite et sûre prévue par le kit, sans modifier la date de création française.
 
-Chaque Work reçoit un handoff vérifié, modifie uniquement les champs autorisés et livre des rapports reproductibles. Aucune écriture distante n’est autorisée avant W11.
+Chaque Work reçoit un handoff vérifié, modifie uniquement les champs autorisés et livre des rapports reproductibles. Hors actions structurelles explicitement exécutées depuis une revue du graphe avant la création du Work, aucune écriture distante n’est autorisée avant W11.
 
 ## 2. États actifs
 

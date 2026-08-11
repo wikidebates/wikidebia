@@ -1,7 +1,8 @@
-# Audit normatif du validateur 0.4.79
+# Audit normatif du validateur 0.4.80
 
-- norme active unique : 1.2.76 ;
-- kit aligné : 2.16.3 ;
-- schéma `wikidebia-graph-correction-1.0` catalogué ;
-- arbres normatifs Normes/Validateur destinés à être comparés octet par octet avant scellement ;
-- aucun contrôle éditorial, documentaire, bilingue, graphe ou publication existant retiré.
+- norme active unique : 1.2.77 ;
+- kit aligné : 2.16.4 ;
+- copie active `normative_reference/01_normes/` synchronisée avec le paquet Normes ;
+- historique 1.2.76 archivé avant remplacement ;
+- exigences GR-052, PUB-048, PUB-049, GOV-014 et VAL-060 présentes ;
+- suite de tests : 406/406 réussis.

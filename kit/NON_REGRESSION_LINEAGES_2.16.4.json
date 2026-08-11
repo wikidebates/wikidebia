@@ -1,0 +1,15 @@
+{
+  "schema": "wikidebia-non-regression-lineages-1.0",
+  "release": {
+    "norm": "1.2.77",
+    "validator": "0.4.80",
+    "kit": "2.16.4"
+  },
+  "preserved": [
+    "translation_validation",
+    "publication_github",
+    "editorial_orchestration",
+    "graph_review_rejection_correction_loop",
+    "reviewed_graph_action_execution"
+  ]
+}

@@ -98,3 +98,9 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - déclare la capacité de lecture du document de correction utilisé après rejet d’une revue de graphe ;
 - ne modifie aucun contrôle éditorial ou structurel existant du corpus.
 
+## 0.4.80 — 11 août 2026 — alignement sur les actions structurelles de revue
+
+- aligne la copie normative sur 1.2.77 et le kit recommandé sur 2.16.4 ;
+- conserve tous les contrôles structurels et éditoriaux existants ;
+- permet au kit de valider prospectivement le corpus reconstruit avant l’exécution distante des actions de graphe.
+

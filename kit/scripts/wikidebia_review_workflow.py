@@ -44,6 +44,7 @@ from wikidebia_corpus_init import (
 )
 from wikidebia_corpus_review import make_review_template, finalize_review as finalize_graph_review
 from wikidebia_graph_correction import make_correction_template as make_graph_correction_template, apply_correction as apply_graph_correction
+from wikidebia_graph_actions import execute_review_actions as execute_graph_review_actions
 from wikidebia_corpus_promote import promote as promote_graph
 from wikidebia_editorial_workspace import create_workspace, validate_work_id, workspace_receipt_hash, next_work_id
 from wikidebia_editorial_review import (
@@ -207,6 +208,17 @@ def _instructions(review_type: str, debate_id: str, work_id: str | None, editabl
         "Ne renommez, n'ajoutez et ne supprimez aucun fichier du ZIP.",
         "Le fichier `REVIEW_PACKAGE.json` ne doit jamais être modifié.",
     ]
+    if review_type == "graph_review":
+        lines += [
+            "",
+            "Si la revue exige une modification structurelle, renseignez pour l'occurrence concernée l'objet `correction`.",
+            "Actions prises en charge : `remove`, `merge_redirect`, `move` et `relation_change`.",
+            "Pour `merge_redirect`, indiquez `target_node_id` : la page doublon deviendra `#REDIRECTION [[Titre de destination]]` et son lien sera retiré de la page mère.",
+            "Pour `remove`, indiquez `page_disposition=delete` : le lien sera retiré de la page mère avant suppression de la page.",
+            "Les résumés MediaWiki doivent être individualisés. Pour un doublon, le résumé de la page mère doit contenir le titre de destination sous la forme `[[Titre de destination]]`.",
+            "Une revue rejetée comportant ces décisions pourra être appliquée par `./wikidebia review-import <debate_id> <zip> --execute-graph-actions`.",
+            "Après application, Wikidéb’IA reconstruira le graphe et préparera une nouvelle revue complète avant toute promotion.",
+        ]
     if review_type == "graph_correction":
         lines += [
             "",
@@ -933,7 +945,7 @@ def _validate_pending_identity(state: Mapping[str, Any], manifest: Mapping[str, 
         raise WorkflowError("La provenance locale du paquet ne correspond pas")
 
 
-def import_review(project_root: Path, debate_id: str, archive: Path) -> dict[str, Any]:
+def import_review(project_root: Path, debate_id: str, archive: Path, *, execute_graph_actions: bool = False) -> dict[str, Any]:
     debate_id = validate_debate_id(debate_id)
     state = _load_workflow(project_root, debate_id)
     pending = state.get("pending_review")
@@ -964,6 +976,8 @@ def import_review(project_root: Path, debate_id: str, archive: Path) -> dict[str
     try:
         _install_editable_files(base, manifest, files)
         review_type = str(manifest["review_type"])
+        if execute_graph_actions and review_type != "graph_review":
+            raise WorkflowError("--execute-graph-actions est réservé aux paquets de revue du graphe")
         if review_type == "graph_review":
             result = finalize_graph_review(project_root, base, debate_id)
             if result.get("status") == "approved":
@@ -974,7 +988,19 @@ def import_review(project_root: Path, debate_id: str, archive: Path) -> dict[str
                     "blocking_issues": copy.deepcopy(result.get("blocking_issues") or []),
                     "recorded_at": now_iso(),
                 })
-                state["phase"] = "graph_correction"
+                if execute_graph_actions:
+                    action_result = execute_graph_review_actions(
+                        project_root, base, debate_id,
+                        preflight_validator=lambda preview: run_initial_validator(project_root, preview),
+                    )
+                    validation = run_initial_validator(project_root, base)
+                    if validation.get("status") == "failed":
+                        raise WorkflowError("Les décisions structurelles appliquées produisent un graphe local invalide")
+                    state.setdefault("graph_action_executions", []).append(copy.deepcopy(action_result))
+                    state["phase"] = "graph_review"
+                    state["overwrite_graph_review"] = True
+                else:
+                    state["phase"] = "graph_correction"
             else:
                 raise WorkflowError(f"Statut final de revue du graphe inattendu : {result.get('status')!r}")
         elif review_type == "graph_correction":
@@ -1106,6 +1132,7 @@ def build_parser() -> argparse.ArgumentParser:
     imp = sub.add_parser("review-import")
     imp.add_argument("debate_id")
     imp.add_argument("archive", type=Path)
+    imp.add_argument("--execute-graph-actions", action="store_true", help="Appliquer et publier immédiatement les décisions structurelles explicites de la revue du graphe")
     status = sub.add_parser("workflow-status")
     status.add_argument("debate_id")
     return parser
@@ -1122,7 +1149,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             state = start_workflow(root, args.debate_title, debate_id=args.debate_id, short_code=args.short_code, snapshot=snapshot, force_refresh=args.force_refresh)
         elif args.command == "review-import":
             archive = args.archive if args.archive.is_absolute() else (root / args.archive)
-            state = import_review(root, args.debate_id, archive.resolve())
+            state = import_review(root, args.debate_id, archive.resolve(), execute_graph_actions=args.execute_graph_actions)
         else:
             state = status_summary(root, args.debate_id)
     except Exception as exc:

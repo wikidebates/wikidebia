@@ -1,10 +1,10 @@
-# Wikidéb’IA Kit 2.16.3
+# Wikidéb’IA Kit 2.16.4
 
-Le kit 2.16.3 corrige la transition après rejet d’une revue de graphe. Un résultat `rejected` reste en `graph_draft`, ouvre automatiquement une phase `graph_correction`, applique et valide transactionnellement la correction, puis génère une nouvelle revue complète du graphe. Aucune promotion ni création de Work n’est possible avant une revue ultérieure explicitement approuvée. Le correctif `short_code` de 2.16.2 reste inchangé.
+Le kit 2.16.4 permet d’exécuter en une commande les décisions structurelles explicites d’un ZIP de revue du graphe : retrait, fusion avec redirection, déplacement et changement de relation. Pour un doublon, le lien est retiré de la page mère puis la page doublon devient `#REDIRECTION [[page conservée]]`. Chaque écriture utilise un résumé MediaWiki individualisé, un préflight global et une garde de révision. La projection locale complète est validée avant toute écriture distante et une nouvelle revue du graphe reste obligatoire avant promotion.
 
 Historique 2.16.1 : une anomalie éditoriale de titre importé ne bloque plus avant la revue qui doit précisément la corriger. Les incohérences structurelles restent bloquantes ; lorsqu’elles surviennent, `workflow` affiche leurs codes/messages et produit automatiquement un ZIP de diagnostic minimal sous `outgoing/`. Après correction, relancer la même commande reprend la phase sans reset manuel. Le mécanisme général de paquets de revue introduit en 2.16.0 reste inchangé.
 
-Les paquets de revue utilisent le schéma stable `wikidebia-chatgpt-review-package-1.0`, séparent `editable/` et `context/`, lient leur provenance à l’état local, refusent les fichiers supplémentaires et excluent les secrets. La convergence sémantique est elle aussi orchestrée : une erreur certaine rouvre la traduction, puis les deux passes indépendantes recommencent. Aucune publication distante n’est déclenchée par cette orchestration.
+Les paquets de revue utilisent le schéma stable `wikidebia-chatgpt-review-package-1.0`, séparent `editable/` et `context/`, lient leur provenance à l’état local, refusent les fichiers supplémentaires et excluent les secrets. La convergence sémantique est elle aussi orchestrée : une erreur certaine rouvre la traduction, puis les deux passes indépendantes recommencent. Le workflow normal ne publie rien à distance. L’unique exception pré-W11 est l’option explicite `review-import ... --execute-graph-actions`, réservée aux décisions structurelles déjà inscrites dans une revue du graphe.
 
 ## Notes héritées du paquet parent 2.15.54
 

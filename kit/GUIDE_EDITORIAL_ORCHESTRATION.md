@@ -1,4 +1,4 @@
-# Orchestration des revues éditoriales ChatGPT — Kit 2.16.3
+# Orchestration des revues éditoriales ChatGPT — Kit 2.16.4
 
 ## Usage normal
 
@@ -63,7 +63,7 @@ Le cycle courant couvre successivement :
 
 Si une passe sémantique trouve une erreur certaine, la traduction est rouverte, les constatations sont fournies comme contexte dans un paquet de correction, puis les deux passes de convergence recommencent sur la nouvelle empreinte.
 
-Après deux passes propres et indépendantes, l'application, le rendu et la construction `release_ready` sont automatiques. L'orchestrateur n'exécute aucune publication distante.
+Après deux passes propres et indépendantes, l'application, le rendu et la construction `release_ready` sont automatiques. Le workflow normal n'exécute aucune publication distante ; l'exception explicite `review-import ... --execute-graph-actions` ne concerne que les mutations structurelles déjà décidées pendant la revue du graphe.
 
 ## Commandes avancées
 
@@ -79,4 +79,13 @@ outgoing/<debate_id>_initial_validation_diagnostic.zip
 ```
 
 Ce fichier peut être envoyé tel quel à ChatGPT pour diagnostic. Après correction du kit ou des données, relancer exactement la même commande `./wikidebia workflow ...` : la validation bloquée est réessayée et le workflow reprend automatiquement.
+## Appliquer une revue du graphe avec actions distantes
+
+Lorsqu’un ZIP de revue rejetée contient des décisions structurelles explicites, utilisez :
+
+```bash
+./wikidebia review-import <debate_id> <zip_revu> --execute-graph-actions
+```
+
+Cette commande valide d’abord la projection locale complète, préflight toutes les pages distantes concernées, puis applique dans l’ordre les modifications des pages mères, les redirections des doublons et les suppressions non fusionnées. Les actions possibles sont `remove`, `merge_redirect`, `move` et `relation_change`. Un doublon est remplacé par `#REDIRECTION [[Destination]]` et le résumé de la page mère mentionne `[[Destination]]`. Les résumés génériques `Corrections` ne sont pas utilisés. Après succès, une nouvelle revue complète du graphe est automatiquement préparée.
 

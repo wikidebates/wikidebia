@@ -697,4 +697,13 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - reconstruit mécaniquement relations, profondeurs, branches, rôles et compteurs après correction, avec validation et rollback transactionnel ;
 - impose une nouvelle revue complète du graphe après chaque correction valide ;
 - répète correction → revue autant de fois que nécessaire, sans création de Work, promotion ni écriture distante avant une approbation explicite.
+## 1.2.77 — 11 août 2026 — décisions structurelles exécutables depuis une revue du graphe
+
+- permet à une revue rejetée de porter des actions explicites `remove`, `merge_redirect`, `move` et `relation_change` ;
+- retire le modèle de relation de la page mère avant tout retrait de l’enfant ;
+- transforme par défaut les doublons supprimés du graphe en `#REDIRECTION [[page conservée]]` plutôt qu’en suppression distante ;
+- exige des résumés MediaWiki individualisés, avec `[[page conservée]]` dans le résumé de la page mère lors d’un doublon ;
+- impose validation locale prospective, préflight distant global, garde de révision avant chaque écriture et relecture du contenu/résumé/balise ;
+- impose une nouvelle revue complète du graphe après application et interdit toute promotion implicite ;
+- conserve une compatibilité étroite avec les ZIP 2.16.2/2.16.3 déjà revus lorsqu’ils contiennent la formulation propriétaire explicite attendue.
 
