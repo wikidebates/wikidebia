@@ -21,4 +21,4 @@ def test_active_and_archived_consolidated_norms_are_coherent():
     assert active == [CURRENT_NORM_FILE]
     assert (NORM / "history" / "WIKIDEBIA_NORME_CONSOLIDEE_1.2.59.md").is_file()
     text = (NORM / active[0]).read_text(encoding="utf-8")
-    assert "**Date d’effet :** 10 août 2026" in text
+    assert "**Date d’effet :** 11 août 2026" in text

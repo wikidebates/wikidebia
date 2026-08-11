@@ -1553,7 +1553,7 @@ def graph_extract_debate(
     retries: int,
     retry_delay: float,
     progress_every: int,
-    follow_local_relations_at_detailed_debate: bool,
+    follow_local_relations_at_dedicated_debate: bool,
 ) -> int:
     script = root / "kit" / "scripts" / "wikidebia_graph_extract.py"
     family_file = root / "kit" / "families" / "wikidebates_family.py"
@@ -1609,7 +1609,7 @@ def graph_extract_debate(
         command.append("--force-refresh")
     if allow_missing:
         command.append("--allow-missing")
-    if follow_local_relations_at_detailed_debate:
+    if follow_local_relations_at_dedicated_debate:
         command.append("--follow-local-relations-at-dedicated-debate")
 
     result = run(command, cwd=root, check=False)
@@ -2268,7 +2268,7 @@ def main(argv: list[str] | None = None) -> int:
             retries=args.retries,
             retry_delay=args.retry_delay,
             progress_every=args.progress_every,
-            follow_local_relations_at_detailed_debate=args.follow_local_relations_at_detailed_debate,
+            follow_local_relations_at_dedicated_debate=args.follow_local_relations_at_dedicated_debate,
         )
     if args.command == "corpus-init-from-snapshot":
         return corpus_init_from_snapshot(

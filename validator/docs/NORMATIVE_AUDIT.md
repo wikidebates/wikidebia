@@ -1,6 +1,6 @@
-# Audit normatif du validateur 0.4.74
+# Audit normatif du validateur 0.4.75
 
-- norme active unique : 1.2.71 ;
+- norme active unique : 1.2.72 ;
 - copie normative identique au paquet Normes ;
 - rapport stable `wikidebia-validator-report-1.0` ;
 - listes de révisions historiques dérivées et informatives ;

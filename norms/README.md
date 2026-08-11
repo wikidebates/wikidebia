@@ -1,6 +1,6 @@
-# Wikidéb’IA — Normes 1.2.71
+# Wikidéb’IA — Normes 1.2.72
 
-La révision 1.2.71 sépare la norme opérationnelle active de son historique et formalise la compatibilité par schémas/capacités. `VERSIONS.json` est la source de vérité de la version courante ; les snapshots historiques et le changelog sont immuables et informatifs.
+La révision 1.2.72 est une maintenance sans changement éditorial. Elle corrige l’alignement du kit autour du renommage `dedicated-debate` dans le chemin d’exécution de `graph-extract`, tout en conservant les clés techniques internes historiques `complete_topic` et `detailed_debate`. `VERSIONS.json` reste la source de vérité de la release courante.
 
 ## Notes héritées du paquet parent 1.2.70
 

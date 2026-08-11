@@ -1,6 +1,6 @@
-# Wikidéb’IA Kit 2.15.55
+# Wikidéb’IA Kit 2.15.56
 
-Le kit 2.15.55 introduit une architecture de compatibilité fondée sur les schémas et capacités, avec `VERSIONS.json` comme source unique des versions courantes. Les numéros de producteur restent inscrits dans les plans, reçus et configurations pour la provenance et la reproductibilité, mais ne conditionnent plus la lecture d’un artefact dont le schéma est supporté. Les anciens formats de paramètres MediaWiki sont normalisés à l’entrée et les nouveaux plans de publication utilisent le schéma stable `wikidebia-publication-plan-1.0`.
+Le kit 2.15.56 corrige une régression d’exécution dans `graph-extract` après le renommage `detailed-debate` → `dedicated-debate`. Le nouveau nom CLI et l’alias historique ciblent désormais le même attribut `argparse`; les clés techniques internes `complete_topic` et `detailed_debate` restent volontairement inchangées. Les contrats de schéma/capacité du kit 2.15.55 sont conservés.
 
 ## Notes héritées du paquet parent 2.15.54
 

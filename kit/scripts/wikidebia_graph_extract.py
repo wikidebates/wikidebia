@@ -5,7 +5,7 @@ The script is strictly read-only. It follows:
 - Debate -> pro/con arguments
 - Argument -> justifications/objections
 
-A page containing a "débat détaillé" parameter is treated as a frontier by
+A page containing a "débat dédié" parameter is treated as a frontier by
  default: the linked debate is recorded but is not traversed.
 
 Designed for Pywikibot 11.x and the Wikidéb'IA ``wikidebates`` family file.
@@ -1499,7 +1499,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--follow-local-relations-at-detailed-debate",
         action="store_true",
         help=(
-            "Ne traite pas les pages 'débat détaillé' comme des feuilles. "
+            "Ne traite pas les pages 'débat dédié' comme des feuilles. "
             "Le débat sous-jacent n'est toutefois jamais ouvert automatiquement."
         ),
     )
@@ -1524,7 +1524,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     result = crawl_graph(
         client,
         debate_title=args.debate,
-        stop_on_detailed_debate=not args.follow_local_relations_at_detailed_debate,
+        stop_on_detailed_debate=not args.follow_local_relations_at_dedicated_debate,
         max_pages=args.max_pages,
         allow_missing=args.allow_missing,
         progress_every=args.progress_every,

@@ -752,7 +752,7 @@ def test_graph_extract_command_is_routed_read_only(monkeypatch, tmp_path: Path):
         retries=3,
         retry_delay=1.5,
         progress_every=10,
-        follow_local_relations_at_detailed_debate=False,
+        follow_local_relations_at_dedicated_debate=False,
     )
     assert code == 0
     assert len(commands) == 1
@@ -771,6 +771,35 @@ def test_graph_extract_parser_exposes_native_command():
     assert args.debate_title == "Débat test"
     assert args.max_pages == 50
 
+
+
+def test_graph_extract_main_routes_dedicated_debate_option_without_namespace_regression(monkeypatch, tmp_path: Path):
+    captured = {}
+
+    def fake_graph_extract(root, debate_title, **kwargs):
+        captured["root"] = root
+        captured["debate_title"] = debate_title
+        captured.update(kwargs)
+        return 0
+
+    monkeypatch.setattr(module, "graph_extract_debate", fake_graph_extract)
+    code = module.main([
+        "--root", str(tmp_path),
+        "graph-extract", "Débat test",
+        "--follow-local-relations-at-dedicated-debate",
+    ])
+    assert code == 0
+    assert captured["debate_title"] == "Débat test"
+    assert captured["follow_local_relations_at_dedicated_debate"] is True
+
+
+def test_graph_extract_legacy_option_alias_maps_to_dedicated_destination():
+    args = module.build_parser().parse_args([
+        "graph-extract", "Débat test",
+        "--follow-local-relations-at-detailed-debate",
+    ])
+    assert args.follow_local_relations_at_dedicated_debate is True
+    assert not hasattr(args, "follow_local_relations_at_detailed_debate")
 
 def test_graph_extract_rejects_output_outside_project(tmp_path: Path):
     script = tmp_path / "kit" / "scripts" / "wikidebia_graph_extract.py"
@@ -797,7 +826,7 @@ def test_graph_extract_rejects_output_outside_project(tmp_path: Path):
             retries=0,
             retry_delay=0,
             progress_every=0,
-            follow_local_relations_at_detailed_debate=False,
+            follow_local_relations_at_dedicated_debate=False,
         )
     except module.ManagementError as exc:
         assert "extérieur au projet" in str(exc)

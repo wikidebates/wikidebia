@@ -222,6 +222,17 @@ class CrawlTests(unittest.TestCase):
         self.assertTrue(graph["metadata"]["nœuds_dans_cycles"])
 
 
+
+class DedicatedDebateCliRegressionTests(unittest.TestCase):
+    def test_parser_uses_dedicated_destination_for_new_and_legacy_option_names(self):
+        for option in (
+            "--follow-local-relations-at-dedicated-debate",
+            "--follow-local-relations-at-detailed-debate",
+        ):
+            args = mod.build_parser().parse_args(["--debate", "Débat test", option])
+            self.assertTrue(args.follow_local_relations_at_dedicated_debate)
+            self.assertFalse(hasattr(args, "follow_local_relations_at_detailed_debate"))
+
 if __name__ == "__main__":
     unittest.main()
 

@@ -658,3 +658,11 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - pilote la compatibilité par schémas/capacités et normalise les alias historiques à l’entrée ;
 - centralise les versions courantes et rend les listes historiques compatibles dérivables ;
 - consacre une archive canonique unique pour upgrade, audit, conservation et handoff, avec `WIKIDEBIA_SOURCE_ACTIVE.md` à la racine.
+
+## 1.2.72 — 11 août 2026 — correctif d’exécution graph-extract
+
+- aucune modification des règles éditoriales actives ;
+- corrige l’alignement du chemin CLI `dedicated-debate` dans le kit ;
+- confirme que `complete_topic` et `detailed_debate` restent des clés techniques internes stables et ne doivent pas être renommées globalement ;
+- ajoute une régression d’intégration couvrant le trajet réel `argparse → main() → graph-extract`.
+

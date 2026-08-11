@@ -68,3 +68,12 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - remplace les égalités exactes kit/validateur des workflows par des contrats de schéma/capacité ;
 - normalise à l’entrée les labels historiques des plans et paramètres MediaWiki ;
 - fait de la release complète unique le format standard pour upgrade, audit, conservation et handoff.
+
+## 2.15.56 — 11 août 2026 — correction graph-extract dedicated-debate
+
+- corrige le `Namespace` de `graph-extract` : `args.follow_local_relations_at_dedicated_debate` est désormais utilisé de bout en bout ;
+- conserve `--follow-local-relations-at-detailed-debate` comme alias d’entrée historique ;
+- ne renomme pas les clés internes `complete_topic` et `detailed_debate`, conformément au contrat 1.2.69 ;
+- ajoute des tests de régression sur `main()` et sur les deux noms d’option ;
+- aucune modification des formats de corpus, des règles éditoriales ou des contrats de publication.
+

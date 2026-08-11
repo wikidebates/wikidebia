@@ -64,3 +64,11 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - centralise les versions courantes dans `VERSIONS.json` ;
 - remplace les listes manuelles de révisions compatibles par une dérivation historique informative ;
 - conserve les numéros de producteur comme provenance sans les utiliser comme feature flags.
+
+## 0.4.75 — 11 août 2026 — maintenance d’alignement graph-extract
+
+- aucune modification des règles de validation éditoriale ;
+- aligne la release sur la norme 1.2.72 et le kit 2.15.56 ;
+- conserve `complete_topic` et `detailed_debate` comme clés internes historiques ;
+- la régression CLI est corrigée et testée dans le kit.
+

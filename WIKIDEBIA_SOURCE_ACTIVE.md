@@ -2,25 +2,25 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.71** ;
-- validateur actif : **0.4.74** ;
-- kit actif : **2.15.55**.
+- norme active : **1.2.72** ;
+- validateur actif : **0.4.75** ;
+- kit actif : **2.15.56**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3220478 octets — SHA-256 `aeed34ec1f1e5bc4681fbd4fac88bab55574ac2cad73f8fcdeec457592eef028`
-- `wikidebia-validator.zip` — 3363500 octets — SHA-256 `838a0c460b808cff73c91f6c2d2aa1c41cd7d0a79e56e99a6ab17787a1cae942`
-- `wikidebia-kit.zip` — 570122 octets — SHA-256 `c274a91a325a5ea299cf322bdd08429e82fc744d239d9b036147f3f89e321b9a`
+- `wikidebia-normes.zip` — 3248508 octets — SHA-256 `939db411b47d3c542523347fd5f4edd286da5250e9c3af8812a749a362873891`
+- `wikidebia-validator.zip` — 3391382 octets — SHA-256 `a2ef7b947f7e6ab6c13ed5f2ae9e51903d82a22470fbe641cfb227bcd4a07554`
+- `wikidebia-kit.zip` — 574065 octets — SHA-256 `3446aeed16970cce0aa9f510d5d5ad035d8bc9230fb5b96fa03d8f5fff147641`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.71.md`  
-SHA-256 : `a288eae49294bca4a5788ad90095a95dc247abb930a4229ccf5350da3b46b09c`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.72.md`  
+SHA-256 : `06490c66e5cd54bf502cc059a0d30e9c4f1a78ff1ccfdc9a25b40e3541a2df13`
 
-# Norme opérationnelle active Wikidéb’IA 1.2.71
+# Norme opérationnelle active Wikidéb’IA 1.2.72
 
 **Statut : source normative active unique.**  
-**Date d’effet :** 10 août 2026
+**Date d’effet :** 11 août 2026
 
 Cette norme contient uniquement les règles actuellement applicables. Les textes de révisions remplacées, snapshots et anciennes formulations sont conservés dans `history/` et dans les changelogs, qui sont informatifs et immuables. Les numéros de norme, validateur, kit et producteur servent à la provenance, à la reproductibilité, à l’installation et aux migrations ; ils ne sélectionnent aucune règle éditoriale.
 
@@ -763,7 +763,7 @@ La release standard contient à sa racine `WIKIDEBIA_SOURCE_ACTIVE.md`, `VERSION
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `5f6ea79228f30269496a0a593dcbb1280b3660290096b249169f6aea1badb6dd`
+SHA-256 : `43ced13551ce17bbf522736672d34c2e87ea129cd5aa3237045d932fdccbb50b`
 
 ## 1.2.70 — alignement du validateur sur la première publication anglaise
 
@@ -1426,18 +1426,25 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - centralise les versions courantes et rend les listes historiques compatibles dérivables ;
 - consacre une archive canonique unique pour upgrade, audit, conservation et handoff, avec `WIKIDEBIA_SOURCE_ACTIVE.md` à la racine.
 
+## 1.2.72 — 11 août 2026 — correctif d’exécution graph-extract
+
+- aucune modification des règles éditoriales actives ;
+- corrige l’alignement du chemin CLI `dedicated-debate` dans le kit ;
+- confirme que `complete_topic` et `detailed_debate` restent des clés techniques internes stables et ne doivent pas être renommées globalement ;
+- ajoute une régression d’intégration couvrant le trajet réel `argparse → main() → graph-extract`.
+
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `21f108d050a5427697faeee642223fb957e420785ad4de7ab62567fd72bb96a1`
+SHA-256 : `bfcaf97b5c7cd88df8cc3efeacd22d312201ed453604349b8ef7dfc833cb5d85`
 
-# Wikidéb’IA Validator 0.4.74
+# Wikidéb’IA Validator 0.4.75
 
-Le validateur 0.4.74 émet le schéma stable `wikidebia-validator-report-1.0`, charge sa version depuis `VERSIONS.json` et applique la norme éditoriale active indépendamment de la release productrice des artefacts. Les formats historiques sont interprétés puis contrôlés selon l’état fonctionnel courant.
+Le validateur 0.4.75 émet le schéma stable `wikidebia-validator-report-1.0`, charge sa version depuis `VERSIONS.json` et applique la norme éditoriale active indépendamment de la release productrice des artefacts. Les formats historiques sont interprétés puis contrôlés selon l’état fonctionnel courant.
 
 ## Notes héritées du paquet parent 0.4.73
 
-Version courante pour la norme 1.2.71 et le kit 2.15.55.
+Version courante pour la norme 1.2.72 et le kit 2.15.56.
 
 Elle conserve les contrôles différentiels et sémantiques de la lignée traduction 0.4.64 et intègre les contrôles de la lignée publication GitHub : `nom-consacré` / `established-name`, `AI-translated quote`, absence d'`initialization` sur une nouvelle traduction anglaise, cohérence normative et préservation historique des alias.
 
@@ -1462,7 +1469,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `a6c5bd4e656b149ff9e191f31e3d29b32c9af2096115d9fc0fd4abd13726cf17`
+SHA-256 : `ba0e26ecbcf2ee65ead6739144e40f65760d62deff77f6dc5dc30d8cde198ab8`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1531,14 +1538,21 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - remplace les listes manuelles de révisions compatibles par une dérivation historique informative ;
 - conserve les numéros de producteur comme provenance sans les utiliser comme feature flags.
 
+## 0.4.75 — 11 août 2026 — maintenance d’alignement graph-extract
+
+- aucune modification des règles de validation éditoriale ;
+- aligne la release sur la norme 1.2.72 et le kit 2.15.56 ;
+- conserve `complete_topic` et `detailed_debate` comme clés internes historiques ;
+- la régression CLI est corrigée et testée dans le kit.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `9c96849ca907ba30427052ce6f4825bad7d5fe20ced62c6ff2eb25101e51693e`
+SHA-256 : `a2448c1772a9e053a963d8f2dd7f7222fc2a44d4b5711b33cd61dadfb0f11baa`
 
-# Wikidéb’IA Kit 2.15.55
+# Wikidéb’IA Kit 2.15.56
 
-Le kit 2.15.55 introduit une architecture de compatibilité fondée sur les schémas et capacités, avec `VERSIONS.json` comme source unique des versions courantes. Les numéros de producteur restent inscrits dans les plans, reçus et configurations pour la provenance et la reproductibilité, mais ne conditionnent plus la lecture d’un artefact dont le schéma est supporté. Les anciens formats de paramètres MediaWiki sont normalisés à l’entrée et les nouveaux plans de publication utilisent le schéma stable `wikidebia-publication-plan-1.0`.
+Le kit 2.15.56 corrige une régression d’exécution dans `graph-extract` après le renommage `detailed-debate` → `dedicated-debate`. Le nouveau nom CLI et l’alias historique ciblent désormais le même attribut `argparse`; les clés techniques internes `complete_topic` et `detailed_debate` restent volontairement inchangées. Les contrats de schéma/capacité du kit 2.15.55 sont conservés.
 
 ## Notes héritées du paquet parent 2.15.54
 
@@ -1569,7 +1583,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `5a75ebd3aafeee9eb5da43170931c8dc9ab2d517de82d78246d2027ab091faf5`
+SHA-256 : `ee50661d7b1b14e7c3420224884d8772c729c0ef661b89e9b1a32670105293d2`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1641,6 +1655,14 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - remplace les égalités exactes kit/validateur des workflows par des contrats de schéma/capacité ;
 - normalise à l’entrée les labels historiques des plans et paramètres MediaWiki ;
 - fait de la release complète unique le format standard pour upgrade, audit, conservation et handoff.
+
+## 2.15.56 — 11 août 2026 — correction graph-extract dedicated-debate
+
+- corrige le `Namespace` de `graph-extract` : `args.follow_local_relations_at_dedicated_debate` est désormais utilisé de bout en bout ;
+- conserve `--follow-local-relations-at-detailed-debate` comme alias d’entrée historique ;
+- ne renomme pas les clés internes `complete_topic` et `detailed_debate`, conformément au contrat 1.2.69 ;
+- ajoute des tests de régression sur `main()` et sur les deux noms d’option ;
+- aucune modification des formats de corpus, des règles éditoriales ou des contrats de publication.
 
 ## Guide de publication
 
@@ -1883,16 +1905,16 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `e55d030886ee159cf21a6a40664a1c1d2a2fb12e90d1aedafcd11fb5b97acb00`
+SHA-256 : `0bb34c54d8df24c4b5928654ec559124ac8852f917632eaad5c5fd5741a42bec`
 
-Wikidéb’IA Kit 2.15.55 — rapport de tests
+Wikidéb’IA Kit 2.15.56 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 372
-Tests pytest : 372 réussis
-Norme : 1.2.71
-Validateur : 0.4.74
+Tests pytest collectés : 375
+Tests pytest : 375 réussis
+Norme : 1.2.72
+Validateur : 0.4.75
 Plans de publication : wikidebia-publication-plan-1.0
-Compatibilité par schémas/capacités, normalisation des formats historiques et workflows hérités : PASSED.
+Correctif graph-extract `dedicated-debate`, compatibilité des clés internes et non-régression : PASSED.
 
 ## Guide de traduction anglaise
 

@@ -1,7 +1,7 @@
-# Norme opérationnelle active Wikidéb’IA 1.2.71
+# Norme opérationnelle active Wikidéb’IA 1.2.72
 
 **Statut : source normative active unique.**  
-**Date d’effet :** 10 août 2026
+**Date d’effet :** 11 août 2026
 
 Cette norme contient uniquement les règles actuellement applicables. Les textes de révisions remplacées, snapshots et anciennes formulations sont conservés dans `history/` et dans les changelogs, qui sont informatifs et immuables. Les numéros de norme, validateur, kit et producteur servent à la provenance, à la reproductibilité, à l’installation et aux migrations ; ils ne sélectionnent aucune règle éditoriale.
 
