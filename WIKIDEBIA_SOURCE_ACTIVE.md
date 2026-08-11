@@ -2,22 +2,22 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.74** ;
-- validateur actif : **0.4.77** ;
-- kit actif : **2.16.1**.
+- norme active : **1.2.75** ;
+- validateur actif : **0.4.78** ;
+- kit actif : **2.16.2**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3306616 octets — SHA-256 `502394fd908d3bf84e0cb84d2962c96ca02be105868b3d2a9bb10b1db6c42b1d`
-- `wikidebia-validator.zip` — 3457209 octets — SHA-256 `006cdafcc2e4ca1ad265581be04fb851061bba1db545d532e685a58b35d20fa8`
-- `wikidebia-kit.zip` — 599554 octets — SHA-256 `e5bd47f21d53db39017dbfad71982a466e5f2355b6ed959ebaa984cdf8664f32`
+- `wikidebia-normes.zip` — 3333830 octets — SHA-256 `80a72c9ddc581ee04db2aea675c3649dec826888d4d5694e830a63cea1c4d218`
+- `wikidebia-validator.zip` — 3485110 octets — SHA-256 `01d2f9fcb86381ee2a2f0cdc9b55ad390c5700def31752c1a6af7a5cf370cd65`
+- `wikidebia-kit.zip` — 602167 octets — SHA-256 `929b5fa50e25c944d33294d0bf0f7309f82f9963ffcb32822f2d96d2b9219a96`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.74.md`  
-SHA-256 : `f1d771456ead8a7047fe8b43209ed47c1c9960430cfb119b3e6060f47e04b8d3`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.75.md`  
+SHA-256 : `4931790977706bddf98256f50d34180c1b4970fa128de5f2ac730acc85d8dcf1`
 
-# Norme opérationnelle active Wikidéb’IA 1.2.74
+# Norme opérationnelle active Wikidéb’IA 1.2.75
 
 **Statut : source normative active unique.**  
 **Date d’effet :** 11 août 2026
@@ -792,7 +792,7 @@ Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. E
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `a315d908dd508a69adee2b7ff18eb18b8d17a7f3c50b963c26e6b27dc45cea2b`
+SHA-256 : `234080b5119df9fdb022e55637160421381c9a2f3c94bfaff94b7f8f15a48823`
 
 ## 1.2.70 — alignement du validateur sur la première publication anglaise
 
@@ -1480,18 +1480,25 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - impose à l’orchestrateur de produire un paquet de diagnostic minimal et d’afficher les erreurs concrètes lorsqu’une validation structurelle bloque réellement ;
 - rend la reprise idempotente par simple relance de `workflow` après correction, sans manipulation des rapports sous `.state/`.
 
+## 1.2.75 — 11 août 2026 — maintenance du code court d’orchestration
+
+- aucune modification des règles éditoriales de fond ni des protections de publication ;
+- impose que le `short_code` automatique du workflow soit dérivé de l’identifiant canonique ASCII du débat, et non du titre Unicode ;
+- permet à un workflow initialisé mais incomplet de réparer automatiquement un `short_code` absent, ou d’accepter un `--short-code` explicite compatible sans reset manuel ;
+- conserve un `short_code` déjà valide et refuse une tentative explicite contradictoire après initialisation.
+
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `68d0037c182382a2c917d4a7a9129dc71514819eead51e3fcc9d9735cd94f996`
+SHA-256 : `2946e4860407424da552e0f741fa5533849380058302dc53f1d9467bfd9e86ac`
 
-# Wikidéb’IA Validator 0.4.77
+# Wikidéb’IA Validator 0.4.78
 
-Le validateur 0.4.77 s’aligne sur la norme 1.2.74 / le kit 2.16.1. Il distingue désormais les défauts éditoriaux de titres importés, différables jusqu’au verrou de métadonnées correspondant, des incohérences structurelles du graphe qui restent immédiatement bloquantes. Les mêmes contrôles redeviennent stricts dès que les métadonnées de la langue sont verrouillées.
+Le validateur 0.4.78 est une maintenance d’alignement sur la norme 1.2.75 / le kit 2.16.2. Aucun contrôle de validation n’est retiré ou assoupli par cette release. Il distingue désormais les défauts éditoriaux de titres importés, différables jusqu’au verrou de métadonnées correspondant, des incohérences structurelles du graphe qui restent immédiatement bloquantes. Les mêmes contrôles redeviennent stricts dès que les métadonnées de la langue sont verrouillées.
 
 ## Notes héritées du paquet parent 0.4.73
 
-Version courante pour la norme 1.2.74 et le kit 2.16.1.
+Version courante pour la norme 1.2.75 et le kit 2.16.2.
 
 Elle conserve les contrôles différentiels et sémantiques de la lignée traduction 0.4.64 et intègre les contrôles de la lignée publication GitHub : `nom-consacré` / `established-name`, `AI-translated quote`, absence d'`initialization` sur une nouvelle traduction anglaise, cohérence normative et préservation historique des alias.
 
@@ -1516,7 +1523,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `c4e0d8fcd3559026ebd03aa2f46c55e76fe3fb2d193b87ae65d04853f600f9c1`
+SHA-256 : `980797e9e461f199a0c777c4fb9c9498d6f852c7d1f17d54d7bc8a8dc049881e`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1607,14 +1614,22 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - les collisions, cycles, auto-relations, relations/occurrences invalides et autres incohérences structurelles restent bloquantes sans assouplissement ;
 - ajoute des tests positif/négatif empêchant une nouvelle confusion entre signal éditorial pré-revue et erreur structurelle.
 
+## 0.4.78 — 11 août 2026 — maintenance d’alignement short_code
+
+- aucune modification des contrôles de validation ;
+- aligne les métadonnées de release sur la norme 1.2.75 et le kit 2.16.2 ;
+- conserve intégralement la sévérité fonctionnelle pré-revue introduite en 0.4.77.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `f8124c3a0c789576bf5049fb9da7838fff8258d125d2294d848cf56ec9225af0`
+SHA-256 : `e3123f60deb7f1b88f33c671eed19ebde0a7702496de95d23177d78fb5857bab`
 
-# Wikidéb’IA Kit 2.16.1
+# Wikidéb’IA Kit 2.16.2
 
-Le kit 2.16.1 corrige le premier passage de l’orchestration : une anomalie éditoriale de titre importé ne bloque plus avant la revue qui doit précisément la corriger. Les incohérences structurelles restent bloquantes ; lorsqu’elles surviennent, `workflow` affiche leurs codes/messages et produit automatiquement un ZIP de diagnostic minimal sous `outgoing/`. Après correction, relancer la même commande reprend la phase sans reset manuel. Le mécanisme général de paquets de revue introduit en 2.16.0 reste inchangé.
+Le kit 2.16.2 corrige la génération et la reprise du `short_code`. Il dérive désormais automatiquement ce code depuis le `debate_id` canonique ASCII (`revenu_de_base` → `RDB`), ce qui élimine les accents invalides issus du titre. Un workflow incomplet avec un code absent est réparé à la simple relance, et un `--short-code` explicite compatible peut être adopté sans reset manuel. Le comportement de validation pré-revue de 2.16.1 reste inchangé.
+
+Historique 2.16.1 : une anomalie éditoriale de titre importé ne bloque plus avant la revue qui doit précisément la corriger. Les incohérences structurelles restent bloquantes ; lorsqu’elles surviennent, `workflow` affiche leurs codes/messages et produit automatiquement un ZIP de diagnostic minimal sous `outgoing/`. Après correction, relancer la même commande reprend la phase sans reset manuel. Le mécanisme général de paquets de revue introduit en 2.16.0 reste inchangé.
 
 Les paquets de revue utilisent le schéma stable `wikidebia-chatgpt-review-package-1.0`, séparent `editable/` et `context/`, lient leur provenance à l’état local, refusent les fichiers supplémentaires et excluent les secrets. La convergence sémantique est elle aussi orchestrée : une erreur certaine rouvre la traduction, puis les deux passes indépendantes recommencent. Aucune publication distante n’est déclenchée par cette orchestration.
 
@@ -1647,7 +1662,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `685c017356570a0be310ef525c2515b6390e9fed1bc66fc264e46a8128c2d06d`
+SHA-256 : `c5efed188ade24765b0a9f5c1b9a019bf69ce24a1d6d62d3e8f95c08b9041842`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1749,6 +1764,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - produit automatiquement `outgoing/<debate_id>_initial_validation_diagnostic.zip`, limité aux rapports, graphe, registre, imports et contexte nécessaires, sans secret ;
 - une simple relance de `workflow` réessaie la validation bloquée après mise à jour/correction et poursuit ensuite normalement ;
 - ajoute des tests d’intégration sur le paquet de diagnostic et la reprise.
+
+## 2.16.2 — 11 août 2026 — short_code ASCII et reprise sans reset
+
+- dérive le `short_code` automatique depuis le `debate_id` canonique ASCII plutôt que depuis les initiales Unicode du titre ;
+- `revenu_de_base` produit déterministement `RDB` ;
+- répare automatiquement un workflow existant dont `short_code` est absent ou invalide avant l’initialisation du corpus ;
+- accepte `--short-code` lors de cette reprise sans exiger la suppression de `.state/workflows/...` ;
+- conserve et protège un code déjà valide en refusant une valeur explicite contradictoire ;
+- ajoute des régressions sur le titre « Un revenu de base doit-il être instauré ? », le corpus-init direct et la reprise du workflow.
 
 ## Guide de publication
 
@@ -2008,22 +2032,22 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `1e7d45b24d9552b74cb934da2610a6e1a0e52630f45325eb2de7d9a2e1150238`
+SHA-256 : `ede39d43d3b60f4b659fc9ce0c9474dec9d475e3de9c869f0fc21fdac8f6e2e6`
 
-Wikidéb’IA Kit 2.16.1 — rapport de tests
+Wikidéb’IA Kit 2.16.2 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 391
-Tests pytest : 391 réussis
-Norme : 1.2.74
-Validateur : 0.4.77
-Validation pré-revue, diagnostic technique, reprise idempotente et orchestration éditoriale : PASSED.
+Tests pytest collectés : 397
+Tests pytest : 397 réussis
+Norme : 1.2.75
+Validateur : 0.4.78
+Correctif short_code ASCII et reprise sans reset : PASSED.
 
 ## Guide d’orchestration éditoriale
 
 Source interne : `kit/GUIDE_EDITORIAL_ORCHESTRATION.md`  
-SHA-256 : `56dfcdbc51eb928d6b264cb1ebee531fba686726f3cd60eb376a71dea321a787`
+SHA-256 : `b5a366af82ae52ccecdf6c44a8dda096dc6a0ab830158a9ae5b43f29d43f6167`
 
-# Orchestration des revues éditoriales ChatGPT — Kit 2.16.1
+# Orchestration des revues éditoriales ChatGPT — Kit 2.16.2
 
 ## Usage normal
 

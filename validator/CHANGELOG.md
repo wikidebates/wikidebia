@@ -87,3 +87,9 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - les collisions, cycles, auto-relations, relations/occurrences invalides et autres incohérences structurelles restent bloquantes sans assouplissement ;
 - ajoute des tests positif/négatif empêchant une nouvelle confusion entre signal éditorial pré-revue et erreur structurelle.
 
+## 0.4.78 — 11 août 2026 — maintenance d’alignement short_code
+
+- aucune modification des contrôles de validation ;
+- aligne les métadonnées de release sur la norme 1.2.75 et le kit 2.16.2 ;
+- conserve intégralement la sévérité fonctionnelle pré-revue introduite en 0.4.77.
+

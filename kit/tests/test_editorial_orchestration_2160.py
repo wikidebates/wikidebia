@@ -581,3 +581,95 @@ def test_initial_validation_block_is_explained_packaged_and_retryable(tmp_path: 
     assert resumed["status"] == "awaiting_review"
     assert resumed["pending_review"]["review_type"] == "graph_review"
     assert "last_block" not in resumed
+
+
+def test_workflow_derives_rdb_short_code_from_explicit_debate_id(tmp_path: Path, monkeypatch):
+    from test_wikidebia_corpus_init import make_extraction
+    project = tmp_path / "project"
+    project.mkdir()
+    source = make_extraction(tmp_path / "source")
+    monkeypatch.setattr(wf, "run_initial_validator", lambda project_root, package: {"status": "passed"})
+
+    state = wf.start_workflow(
+        project,
+        "Un revenu de base doit-il être instauré ?",
+        debate_id="revenu_de_base",
+        snapshot=source,
+    )
+
+    assert state["short_code"] == "RDB"
+    manifest = common.load_json(project / ".state/corpus-builds/revenu_de_base/manifest.json", "manifest")
+    assert manifest["short_code"] == "RDB"
+    assert state["pending_review"]["review_type"] == "graph_review"
+
+
+def test_existing_incomplete_workflow_accepts_explicit_short_code_without_reset(tmp_path: Path, monkeypatch):
+    from test_wikidebia_corpus_init import make_extraction
+    project = tmp_path / "project"
+    project.mkdir()
+    source = make_extraction(project / "source")
+    state = {
+        "schema": wf.WORKFLOW_SCHEMA, "schema_version": "1.0", "debate_id": "revenu_de_base",
+        "debate_title": "Un revenu de base doit-il être instauré ?", "short_code": None,
+        "phase": "initialize_graph", "status": "running", "work_id": None, "pending_review": None,
+        "snapshot_path": "source", "force_refresh": False,
+        "created_at": "2026-08-11T12:00:00+02:00", "updated_at": "2026-08-11T12:00:00+02:00",
+    }
+    wf._save_workflow(project, state)
+    monkeypatch.setattr(wf, "run_initial_validator", lambda root, package: {"status": "passed"})
+
+    resumed = wf.start_workflow(
+        project,
+        "Un revenu de base doit-il être instauré ?",
+        debate_id="revenu_de_base",
+        short_code="RDB",
+    )
+
+    assert resumed["short_code"] == "RDB"
+    assert resumed["pending_review"]["review_type"] == "graph_review"
+
+
+def test_existing_incomplete_workflow_repairs_missing_short_code_automatically(tmp_path: Path, monkeypatch):
+    from test_wikidebia_corpus_init import make_extraction
+    project = tmp_path / "project"
+    project.mkdir()
+    source = make_extraction(project / "source")
+    state = {
+        "schema": wf.WORKFLOW_SCHEMA, "schema_version": "1.0", "debate_id": "revenu_de_base",
+        "debate_title": "Un revenu de base doit-il être instauré ?", "short_code": None,
+        "phase": "initialize_graph", "status": "running", "work_id": None, "pending_review": None,
+        "snapshot_path": "source", "force_refresh": False,
+        "created_at": "2026-08-11T12:00:00+02:00", "updated_at": "2026-08-11T12:00:00+02:00",
+    }
+    wf._save_workflow(project, state)
+    monkeypatch.setattr(wf, "run_initial_validator", lambda root, package: {"status": "passed"})
+
+    resumed = wf.start_workflow(
+        project,
+        "Un revenu de base doit-il être instauré ?",
+        debate_id="revenu_de_base",
+    )
+
+    assert resumed["short_code"] == "RDB"
+    assert resumed["pending_review"]["review_type"] == "graph_review"
+
+
+def test_existing_workflow_refuses_conflicting_explicit_short_code(tmp_path: Path):
+    project = tmp_path / "project"
+    project.mkdir()
+    state = {
+        "schema": wf.WORKFLOW_SCHEMA, "schema_version": "1.0", "debate_id": "revenu_de_base",
+        "debate_title": "Un revenu de base doit-il être instauré ?", "short_code": "RDB",
+        "phase": "initialize_graph", "status": "running", "work_id": None, "pending_review": None,
+        "snapshot_path": None, "force_refresh": False,
+        "created_at": "2026-08-11T12:00:00+02:00", "updated_at": "2026-08-11T12:00:00+02:00",
+    }
+    wf._save_workflow(project, state)
+
+    with pytest.raises(wf.WorkflowError, match="utilise déjà le short_code RDB"):
+        wf.start_workflow(
+            project,
+            "Un revenu de base doit-il être instauré ?",
+            debate_id="revenu_de_base",
+            short_code="OTHER",
+        )

@@ -1,4 +1,4 @@
-# Norme opérationnelle active Wikidéb’IA 1.2.74
+# Norme opérationnelle active Wikidéb’IA 1.2.75
 
 **Statut : source normative active unique.**  
 **Date d’effet :** 11 août 2026

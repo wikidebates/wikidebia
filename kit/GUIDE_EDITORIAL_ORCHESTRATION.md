@@ -1,4 +1,4 @@
-# Orchestration des revues éditoriales ChatGPT — Kit 2.16.1
+# Orchestration des revues éditoriales ChatGPT — Kit 2.16.2
 
 ## Usage normal
 

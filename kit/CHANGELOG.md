@@ -99,3 +99,12 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - une simple relance de `workflow` réessaie la validation bloquée après mise à jour/correction et poursuit ensuite normalement ;
 - ajoute des tests d’intégration sur le paquet de diagnostic et la reprise.
 
+## 2.16.2 — 11 août 2026 — short_code ASCII et reprise sans reset
+
+- dérive le `short_code` automatique depuis le `debate_id` canonique ASCII plutôt que depuis les initiales Unicode du titre ;
+- `revenu_de_base` produit déterministement `RDB` ;
+- répare automatiquement un workflow existant dont `short_code` est absent ou invalide avant l’initialisation du corpus ;
+- accepte `--short-code` lors de cette reprise sans exiger la suppression de `.state/workflows/...` ;
+- conserve et protège un code déjà valide en refusant une valeur explicite contradictoire ;
+- ajoute des régressions sur le titre « Un revenu de base doit-il être instauré ? », le corpus-init direct et la reprise du workflow.
+

@@ -1,3 +1,3 @@
-# Wikidéb’IA — Normes 1.2.74
+# Wikidéb’IA — Normes 1.2.75
 
-La révision 1.2.74 corrige l’orchestration pré-revue : les défauts éditoriaux de titres importés restent des signaux non bloquants jusqu’au verrou de métadonnées correspondant, tandis que les incohérences structurelles restent bloquantes. Un blocage technique de `workflow` produit désormais automatiquement un paquet de diagnostic minimal sous `outgoing/` et peut être repris par simple relance. Toutes les règles éditoriales de fond et protections de publication restent actives.
+La révision 1.2.75 est une maintenance d’alignement du workflow : le code court automatique est dérivé de l’identifiant canonique ASCII et une reprise incomplète peut réparer ce champ sans reset manuel. Aucune règle éditoriale de fond ni protection de publication n’est modifiée.

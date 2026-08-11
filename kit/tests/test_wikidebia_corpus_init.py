@@ -226,3 +226,24 @@ def test_cli_rejects_output_outside_corpus_builds(tmp_path: Path):
     else:
         raise AssertionError("sortie extérieure à .state/corpus-builds acceptée")
 
+
+
+def test_default_short_code_is_derived_from_ascii_debate_id(tmp_path: Path):
+    source = make_extraction(tmp_path / "source")
+    result = mod.build_corpus(
+        source,
+        tmp_path / "build",
+        debate_id="revenu_de_base",
+        short_code=None,
+        scope_summary=None,
+        overwrite=False,
+    )
+    assert result["short_code"] == "RDB"
+
+
+def test_short_code_derivation_never_reintroduces_title_accents():
+    debate_id = mod.canonical_debate_id("Un revenu de base doit-il être instauré ?")
+    assert debate_id == "un_revenu_de_base_doit_il_etre_instaure"
+    code = mod.derive_short_code(debate_id)
+    assert code == "URDBDIEI"
+    assert code.isascii()

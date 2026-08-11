@@ -1,4 +1,4 @@
-## Contrat de paramètres 1.2.74
+## Contrat de paramètres 1.2.75
 
 Les noms MediaWiki canoniques sont désormais `sujet-développé` / `expanded-topic` pour le cadrage développé du débat et `débat-dédié` / `dedicated-debate` pour la frontière vers un débat autonome. Les anciens noms sont des alias de lecture des formats historiques seulement et ne figurent dans aucune nouvelle sortie.
 

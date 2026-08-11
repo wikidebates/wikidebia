@@ -1,7 +1,6 @@
-# Audit normatif du validateur 0.4.77
+# Audit normatif du validateur 0.4.78
 
-- norme active unique : 1.2.74 ;
-- copie normative synchronisée octet par octet avec le paquet Normes ;
-- les contraintes éditoriales de forme des titres importés sont différées avant le verrou de métadonnées, y compris au niveau du schéma ;
-- les incohérences structurelles restent bloquantes ;
-- le paquet de diagnostic technique et la reprise idempotente restent couverts.
+- norme active unique : 1.2.75 ;
+- copie normative synchronisée octet par octet avec le composant Normes ;
+- aucun contrôle de 0.4.77 retiré ;
+- maintenance d’alignement pour le correctif `short_code` du kit 2.16.2.

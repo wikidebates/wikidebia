@@ -37,7 +37,10 @@ from wikidebia_corpus_build import (
     validate_debate_id,
     write_json,
 )
-from wikidebia_corpus_init import build_corpus, canonical_debate_id, run_validator as run_initial_validator
+from wikidebia_corpus_init import (
+    build_corpus, canonical_debate_id, derive_short_code, validate_short_code,
+    run_validator as run_initial_validator,
+)
 from wikidebia_corpus_review import make_review_template, finalize_review as finalize_graph_review
 from wikidebia_corpus_promote import promote as promote_graph
 from wikidebia_editorial_workspace import create_workspace, validate_work_id, workspace_receipt_hash, next_work_id
@@ -825,11 +828,35 @@ def start_workflow(
     force_refresh: bool = False,
 ) -> dict[str, Any]:
     selected_id = validate_debate_id(debate_id or canonical_debate_id(debate_title))
+    try:
+        requested_short_code = validate_short_code(short_code) if short_code else None
+        automatic_short_code = derive_short_code(selected_id)
+    except Exception as exc:
+        raise WorkflowError(str(exc)) from exc
     state_path = _workflow_path(project_root, selected_id)
     if state_path.is_file():
         state = _load_workflow(project_root, selected_id)
         if state.get("debate_title") != debate_title:
             raise WorkflowError("Le debate_id demandé appartient déjà à un autre titre")
+        existing_short_code = str(state.get("short_code") or "").strip()
+        try:
+            existing_valid = validate_short_code(existing_short_code) if existing_short_code else None
+        except Exception:
+            existing_valid = None
+        if requested_short_code:
+            if existing_valid and existing_valid != requested_short_code:
+                raise WorkflowError(
+                    f"Le workflow utilise déjà le short_code {existing_valid}; "
+                    f"le code demandé {requested_short_code} est différent"
+                )
+            if existing_valid != requested_short_code:
+                state["short_code"] = requested_short_code
+                state["updated_at"] = now_iso()
+                _save_workflow(project_root, state)
+        elif not existing_valid:
+            state["short_code"] = automatic_short_code
+            state["updated_at"] = now_iso()
+            _save_workflow(project_root, state)
         if state.get("phase") == "initial_validation_blocked":
             state["phase"] = "initialize_graph"
             state["status"] = "running"
@@ -845,7 +872,7 @@ def start_workflow(
         "kit_version": KIT_VERSION,
         "debate_id": selected_id,
         "debate_title": debate_title,
-        "short_code": short_code,
+        "short_code": requested_short_code or automatic_short_code,
         "phase": "initialize_graph",
         "status": "running",
         "work_id": None,

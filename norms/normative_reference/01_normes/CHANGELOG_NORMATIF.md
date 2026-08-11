@@ -684,3 +684,10 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - impose à l’orchestrateur de produire un paquet de diagnostic minimal et d’afficher les erreurs concrètes lorsqu’une validation structurelle bloque réellement ;
 - rend la reprise idempotente par simple relance de `workflow` après correction, sans manipulation des rapports sous `.state/`.
 
+## 1.2.75 — 11 août 2026 — maintenance du code court d’orchestration
+
+- aucune modification des règles éditoriales de fond ni des protections de publication ;
+- impose que le `short_code` automatique du workflow soit dérivé de l’identifiant canonique ASCII du débat, et non du titre Unicode ;
+- permet à un workflow initialisé mais incomplet de réparer automatiquement un `short_code` absent, ou d’accepter un `--short-code` explicite compatible sans reset manuel ;
+- conserve un `short_code` déjà valide et refuse une tentative explicite contradictoire après initialisation.
+

@@ -1,8 +1,7 @@
-Wikidéb’IA Validator 0.4.77 — rapport de tests
+Wikidéb’IA Validator 0.4.78 — rapport de tests
 Statut : PASSED
 Tests pytest collectés : 404
 Tests pytest : 404 réussis
-Norme active : 1.2.74
-Kit recommandé : 2.16.1
-Schéma de rapport : wikidebia-validator-report-1.0
-Validation pré-revue différée, diagnostic d’orchestration, contrôles cumulatifs, compatibilité historique et non-régression : PASSED.
+Norme active : 1.2.75
+Kit recommandé : 2.16.2
+Maintenance d’alignement : aucun contrôle de validation supprimé ou assoupli.

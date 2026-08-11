@@ -122,6 +122,29 @@ def canonical_debate_id(value: str) -> str:
     return result
 
 
+def validate_short_code(value: str) -> str:
+    candidate = str(value or "").strip().upper()
+    if not re.fullmatch(r"[A-Z0-9_-]{2,12}", candidate):
+        raise CorpusInitError("short_code doit contenir 2 à 12 caractères A-Z, 0-9, _ ou -")
+    return candidate
+
+
+def derive_short_code(debate_id: str) -> str:
+    """Derive a deterministic ASCII short code from the canonical debate id.
+
+    The title itself is deliberately not used here: canonical_debate_id has
+    already removed accents and punctuation, so the generated code can never
+    contain a character that the short-code validator subsequently rejects.
+    """
+    canonical = canonical_debate_id(debate_id)
+    parts = [part for part in re.split(r"[_-]+", canonical) if part]
+    initials = "".join(part[0] for part in parts).upper()[:8]
+    if len(initials) >= 2:
+        return validate_short_code(initials)
+    compact = re.sub(r"[^a-z0-9]", "", canonical).upper()[:8]
+    return validate_short_code(compact)
+
+
 def _split_metadata(value: str) -> list[str]:
     if not value.strip():
         return []
@@ -595,9 +618,7 @@ def build_corpus(
         debate_title_source = str(graph.get("metadata", {}).get("débat") or snapshot["debate"]["canonical_title"])
         debate_title, debate_title_changes = normalize_title(debate_title_source)
         debate_id = canonical_debate_id(debate_id or debate_title)
-        short_code = (short_code or "".join(part[0] for part in re.findall(r"[A-Za-zÀ-ÖØ-öø-ÿ0-9]+", debate_title))[:8] or debate_id[:8]).upper()
-        if not re.fullmatch(r"[A-Z0-9_-]{2,12}", short_code):
-            raise CorpusInitError("short_code doit contenir 2 à 12 caractères A-Z, 0-9, _ ou -")
+        short_code = validate_short_code(short_code) if short_code else derive_short_code(debate_id)
         output_dir = output_dir.expanduser().resolve()
         if output_dir.exists():
             if not overwrite:
