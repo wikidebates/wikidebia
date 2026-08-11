@@ -157,3 +157,12 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - Pour les versions installées à partir de 2.16.8, `upgrade` ne requiert plus l’égalité du triplet répété dans les trois composants : chaque composant fait autorité pour sa propre version, les versions étrangères restant de la provenance.
 - La fabrication de release est assortie d’un contrôle explicite garantissant que les trois `VERSIONS.json` embarqués sont identiques.
 
+## 2.16.9 — 12 août 2026 — revue différentielle des métadonnées préexistantes
+
+- propage `page_origin=preexisting` dans les paquets de revue issus d’un corpus extrait du wiki ;
+- ne requiert plus `displayed_title_complete_proposition=true` pour un `titre-affiché` historique préexistant et ne le réécrit pas pour la seule raison qu’il est nominal ;
+- conserve les exigences complètes de création pour les pages/titres nouveaux ;
+- ne bloque plus une page préexistante parce qu’elle dépasse la cible de mots-clés de création ;
+- vérifie qu’aucun mot-clé historique n’a été retiré, sauf correction explicitement décrite ou suppression `clearly_irrelevant` accompagnée d’une justification ;
+- autorise corrections de casse/graphie, réordonnancement et ajouts de mots-clés ;
+- ajoute les consignes correspondantes directement dans les ZIP `fr_metadata_review` et des tests de non-régression.

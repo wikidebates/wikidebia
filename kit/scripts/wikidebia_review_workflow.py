@@ -222,6 +222,16 @@ def _instructions(review_type: str, debate_id: str, work_id: str | None, editabl
             "Une revue rejetée comportant ces décisions pourra être appliquée par `./wikidebia review-import <debate_id> <zip> --execute-graph-actions`.",
             "Après application, Wikidéb’IA reconstruira le graphe et préparera une nouvelle revue complète avant toute promotion.",
         ]
+    if review_type == "fr_metadata_review":
+        lines += [
+            "",
+            "Règle de reprise des pages existantes : les contraintes de création ne doivent pas réécrire rétroactivement les métadonnées historiques.",
+            "Pour un Argument préexistant du wiki, conservez par défaut `titre-affiché`, même s’il est nominal ou non propositionnel. Ne le modifiez que pour une faute ou un problème flagrant, ou sur décision explicite du propriétaire.",
+            "Le titre canonique / nom de page reste à corriger lorsqu’il est incomplet, contextuel, ambigu ou fautif.",
+            "Conservez tous les mots-clés historiques par défaut. Vous pouvez corriger leur casse/graphie, les réordonner et en ajouter.",
+            "Ne supprimez un mot-clé historique que s’il est réellement non pertinent ; renseignez alors `removed_preexisting_keywords` avec `reason=clearly_irrelevant` et une justification spécifique.",
+            "La cible 2–4 mots-clés et l’attestation `displayed_title_complete_proposition` s’appliquent aux nouvelles pages / nouveaux titres générés, pas aux valeurs historiques préexistantes.",
+        ]
     if review_type == "graph_correction":
         lines += [
             "",

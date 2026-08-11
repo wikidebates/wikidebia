@@ -378,3 +378,8 @@ La lignée de traduction/validation 1.2.61 et la lignée de publication GitHub `
 3. La correction doit rester distincte de l’approbation : après application et validation mécanique de la correction, une nouvelle revue complète du graphe est obligatoire.
 4. Seule une nouvelle revue explicitement `approved` peut rendre la promotion accessible.
 5. Une correction invalide ou un nouveau rejet laisse le corpus en `graph_draft`, sans création de Work, sans promotion et sans écriture distante ; le cycle correction → nouvelle revue se répète autant que nécessaire.
+
+## Décision propriétaire — 12 août 2026 — reprise des métadonnées historiques
+
+- La règle exigeant un `titre-affiché` propositionnel s’applique aux titres générés par IA / aux pages nouvelles. Lorsqu’un corpus est repris depuis des pages déjà existantes sur le wiki, le `titre-affiché` historique est conservé par défaut, même non propositionnel. Il n’est normalement modifié que pour une faute d’orthographe, de grammaire ou de typographie, une troncation/corruption, un problème flagrant ou une décision explicite du propriétaire. Les noms de pages / titres canoniques restent, eux, à corriger lorsqu’ils sont incomplets, contextuels, ambigus ou fautifs.
+- Les mots-clés d’une page préexistante du wiki ne sont pas supprimés pour satisfaire les règles de génération ou un quota. Leur casse et leur graphie peuvent être corrigées, leur ordre peut être revu, et de nouveaux mots-clés pertinents peuvent être ajoutés. Un mot-clé historique n’est supprimé que s’il est réellement non pertinent, avec justification explicite.

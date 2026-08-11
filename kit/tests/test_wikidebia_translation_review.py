@@ -93,6 +93,7 @@ def complete_translation_review(workspace: Path) -> None:
         "argumentation": "argumentation", "cohérence": "coherence", "confirmation": "confirmation",
         "controverse": "controversy", "désaccord": "disagreement", "justification": "justification",
         "preuve": "evidence", "raisonnement": "reasoning", "réfutation": "refutation", "thèse": "thesis",
+        "test": "test",
     }
     for row in review["vocabulary"]:
         row.update({

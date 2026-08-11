@@ -1,6 +1,6 @@
-Wikidéb’IA Kit 2.16.8 — rapport de tests
-Date : 2026-08-11
-Résultat : 417 passed
+Wikidéb’IA Kit 2.16.9 — rapport de tests
+Date : 2026-08-12
+Résultat : 421 passed
 Commande : pytest -q
-Portée : suite complète du kit avec norme 1.2.77 et validateur 0.4.80 frères.
-Régression ciblée : reprise de provenance après plusieurs vagues d’actions structurelles dont l’audit courant a écrasé l’attestation antérieure.
+Portée : suite complète du kit avec norme 1.2.78 et validateur 0.4.81 frères.
+Régressions ciblées : reprise différentielle des métadonnées de pages préexistantes ; conservation des titres affichés historiques non propositionnels ; préservation des mots-clés historiques avec corrections et ajouts autorisés ; suppression uniquement sous justification de non-pertinence.

@@ -88,7 +88,7 @@ Règles :
 5. Les titres français de tous les nœuds sont normalisés et verrouillés dans le graphe avant la génération des pages françaises.
 6. Les titres anglais sont fixés et verrouillés après validation du graphe, avant la génération des pages françaises ; le contenu anglais est produit ensuite.
 7. `nom-consacré=`, `established-name=`, `initialisation=` et `initialization=` ne sont pas utilisés pour déterminer ou répéter le titre de la page.
-8. Le titre affiché n'est pas rendu identique au titre canonique par automatisme. Il peut être plus concis, mais demeure une proposition argumentative complète : sujet et prédicat sont explicites, et le lecteur comprend ce qui est affirmé sans ouvrir la page. Un groupe nominal ou un simple thème est interdit.
+8. Pour une page nouvelle ou un titre affiché généré par Wikidéb’IA, le titre affiché peut être plus concis mais demeure une proposition argumentative complète. Pour une page préexistante importée du wiki, le `titre-affiché` historique est conservé par défaut même s’il est nominal ou contextuel ; il n’est corrigé que pour une faute ou un problème flagrant, ou sur décision explicite du propriétaire.
 9. Les titres anglais évitent les contractions lorsqu'elles diminuent le ton encyclopédique.
 
 ## 2.5 Références et exactitude
@@ -661,7 +661,7 @@ La version 1.0 du profil couvre exclusivement le français et l'anglais. L'ajout
 # 8. Mots-clés et keywords
 
 1. Les mots-clés sont écrits en minuscules, sauf nom propre ou sigle exigeant une majuscule.
-2. Une page d’argument reçoit normalement deux à quatre thèmes simples.
+2. Une page d’argument nouvelle reçoit normalement deux à quatre thèmes simples. Une page préexistante conserve par défaut ses mots-clés historiques, même au-delà de cette cible ; ils peuvent être corrigés ou complétés, et ne sont supprimés qu’en cas de non-pertinence réelle explicitement justifiée.
 3. Un thème doit regrouper plusieurs arguments ; il ne résume pas une proposition unique ni un détail de protocole.
 4. Le vocabulaire contrôlé est limité, stable et effectivement réutilisé.
 5. Les verbes, adjectifs, adverbes, fragments et formulations de plus de quatre mots lexicaux sont évités.
@@ -843,7 +843,7 @@ Une évolution de ce profil exige :
 # Addendum intégré 1.1.0 — rendu correctif
 
 - Le résumé défend le nœud sans auto-objection, concession finale ni métadiscours.
-- Le titre affiché est revu individuellement, n’est pas copié mécaniquement depuis le titre canonique et forme une proposition argumentative complète plutôt qu’un intitulé nominal.
+- Pour une création IA, le titre affiché est revu individuellement et forme une proposition argumentative complète. Pour une page préexistante du wiki, le titre affiché historique est préservé par défaut et n’est pas réécrit du seul fait qu’il est nominal.
 - Une à trois rubriques centrales et des mots-clés spécifiques sont normalement rendus.
 - Les agrégats sont toujours régénérés depuis les pages individuelles validées.
 - Les décisions historiques propres à un corpus restent dans son profil local et ne constituent pas une règle universelle.
@@ -880,7 +880,7 @@ Les pages de débat utilisent uniquement des sources dans leur propre langue. Le
 
 # Addendum intégré 1.2.1 — titres et typographie française
 
-Le titre canonique est autonome hors contexte : un démonstratif ou un pronom ne peut renvoyer seulement au parent ou à la branche. Le titre affiché peut être plus court et contextuel lorsque son emplacement réel identifie le référent sans ambiguïté, mais il doit toujours exprimer une proposition complète et intelligible ; le contexte ne compense jamais l’absence de prédicat ou de conclusion argumentative. Dans les introductions, résumés et autres passages français générés, les incises explicatives et énumérations insérées sont placées entre parenthèses ; une paire de tirets cadratins utilisée comme parenthèse est interdite.
+Le titre canonique est autonome hors contexte : un démonstratif ou un pronom ne peut renvoyer seulement au parent ou à la branche. Pour un titre affiché nouvellement généré par Wikidéb’IA, la forme plus courte ou contextuelle reste une proposition complète et intelligible ; le contexte ne compense pas l’absence de prédicat ou de conclusion argumentative. Un titre affiché préexistant importé du wiki est au contraire conservé par défaut, même non propositionnel, sauf faute ou problème flagrant explicitement revu. Dans les introductions, résumés et autres passages français générés, les incises explicatives et énumérations insérées sont placées entre parenthèses ; une paire de tirets cadratins utilisée comme parenthèse est interdite.
 
 
 # Addendum intégré 1.2.2 — exemples et contrôles cohérents
@@ -962,7 +962,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 
 # Addendum actif 1.2.19 — titres affichés propositionnels
 
-Chaque `titre-affiché` et `displayed-title` énonce une proposition argumentative complète, sans point final. La concision est obtenue en supprimant un cadrage redondant, jamais en réduisant l’argument à un groupe nominal. La revue individuelle bilingue atteste explicitement la complétude de la phrase et l’intelligibilité de l’argument.
+Chaque `titre-affiché` / `displayed-title` nouvellement généré énonce une proposition argumentative complète. Cette exigence de création n’est pas réappliquée aux titres affichés préexistants importés du wiki : ceux-ci sont préservés sauf faute ou problème flagrant explicitement revu.
 
 
 # Addendum actif 1.2.20 — hiérarchie argumentative
@@ -975,7 +975,7 @@ Le fichier `graph_placement_review_path` couvre chaque occurrence active. Il enr
 
 ### Renforcement 1.2.22 — concision des titres affichés
 
-Pour chaque langue, le registre individuel contient `displayed_title_concision_reviewed_fr` ou `displayed_title_concision_reviewed_en` à `true`. Lorsqu’un titre affiché est exactement identique au titre canonique, le champ `displayed_title_identity_justification_fr` ou `displayed_title_identity_justification_en` fournit une justification spécifique, substantielle et non générique. Le taux global d’identités exactes ne dépasse pas 10 % des arguments actifs par langue. La concision ne dispense jamais des exigences de proposition complète, de prédicat explicite et d’intelligibilité autonome.
+Pour chaque langue, la concision et l’équivalence sémantique d’un titre affiché nouvellement généré sont revues explicitement. La proposition complète, le prédicat explicite et l’intelligibilité autonome sont des exigences de création. Pour un `titre-affiché` préexistant importé du wiki, la revue atteste au contraire sa préservation par défaut et ne le réécrit pas pour satisfaire ces seules exigences formelles ; seules une faute, une corruption, une ambiguïté flagrante ou une autre anomalie manifeste, ou une décision explicite du propriétaire, justifient normalement sa modification.
 
 
 ## Profil de rendu 1.2.23 — sujet du débat et métadonnées
@@ -1017,6 +1017,10 @@ La revue ne se limite pas aux séries de notions comparables. Chaque sous-partie
 ## 8.1 Principe
 
 Le profil de modification est distinct du profil de création. Il part de l’état attesté de la page et non d’un gabarit vide. Pour toute page `Débat`, `Debate` ou `Argument` préexistante :
+
+- le `titre-affiché` existant est conservé par défaut, même non propositionnel ; une correction n’est faite que pour orthographe, grammaire, typographie, troncation, corruption ou autre problème flagrant, ou décision explicite du propriétaire ;
+- les mots-clés existants sont conservés par défaut ; leur casse et leur graphie peuvent être corrigées et de nouveaux mots-clés peuvent être ajoutés ; un mot-clé historique n’est retiré que s’il est réellement non pertinent et si cette suppression est explicitement justifiée ;
+- les cibles quantitatives et formelles du profil de création ne servent jamais à imposer une réécriture rétroactive.
 
 - aucun paramètre top-level autorisé déjà présent ne peut disparaître par simple reconstruction ;
 - les paramètres d’avertissement et de cycle de vie ne reçoivent jamais les valeurs par défaut réservées à une création IA ;

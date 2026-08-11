@@ -1,5 +1,6 @@
-Wikidéb’IA Validator 0.4.80 — auto-audit
+Wikidéb’IA Validator 0.4.81 — auto-audit
 Statut : PASSED
-Norme active unique : 1.2.77
-Kit aligné : 2.16.4
-Tests : 406 réussis
+Norme active unique : 1.2.78
+Kit aligné : 2.16.9
+Tests : 409 réussis
+Politique différentielle pages préexistantes / nouvelles générations : contrôlée.

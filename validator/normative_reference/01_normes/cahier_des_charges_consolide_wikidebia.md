@@ -250,6 +250,9 @@ Le catalogue machine-readable complet est `requirements_catalog_wikidebia.json` 
 
 ## 12. Rubriques et mots-clés
 
+**Règle active de reprise des pages existantes.** Les contraintes de forme propres à la génération ne sont pas appliquées rétroactivement. Un `titre-affiché` déjà présent sur le wiki est conservé par défaut même s’il n’est pas propositionnel ; seules les fautes et anomalies flagrantes justifient normalement sa modification. Les mots-clés historiques sont conservés sauf non-pertinence réelle explicitement justifiée ; leur graphie peut être corrigée et des mots-clés utiles peuvent être ajoutés. La cible de deux à quatre mots-clés vaut pour les pages nouvelles et ne justifie aucune suppression sur une page préexistante.
+
+
 - **CAT-001 — ACTIVE — automatic** : Use only the 18 authorized French rubriques and their exact official English correspondences.
 - **CAT-002 — ACTIVE — automatic+human** : Argument pages normally use one to three genuinely relevant categories, exceptionally four.
 - **CAT-003 — ACTIVE — human+heuristics** : Argument keywords are two to four simple thematic navigation concepts reused across several pages; proposition-specific details, unique phrases and redundant synonyms are forbidden.
@@ -523,7 +526,7 @@ Le validateur contrôle localement les structures et la cohérence des plans, ma
 
 ### Renforcement 1.2.22 — concision des titres affichés
 
-Pour chaque langue, le registre individuel contient `displayed_title_concision_reviewed_fr` ou `displayed_title_concision_reviewed_en` à `true`. Lorsqu’un titre affiché est exactement identique au titre canonique, le champ `displayed_title_identity_justification_fr` ou `displayed_title_identity_justification_en` fournit une justification spécifique, substantielle et non générique. Le taux global d’identités exactes ne dépasse pas 10 % des arguments actifs par langue. La concision ne dispense jamais des exigences de proposition complète, de prédicat explicite et d’intelligibilité autonome.
+Pour chaque langue, la concision et l’équivalence sémantique d’un titre affiché nouvellement généré sont revues explicitement. La proposition complète, le prédicat explicite et l’intelligibilité autonome sont des exigences de création. Pour un `titre-affiché` préexistant importé du wiki, la revue atteste au contraire sa préservation par défaut et ne le réécrit pas pour satisfaire ces seules exigences formelles ; seules une faute, une corruption, une ambiguïté flagrante ou une autre anomalie manifeste, ou une décision explicite du propriétaire, justifient normalement sa modification.
 
 
 ## Décisions du 2 août 2026 — révision 1.2.24

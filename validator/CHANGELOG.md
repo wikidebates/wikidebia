@@ -104,3 +104,10 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - conserve tous les contrôles structurels et éditoriaux existants ;
 - permet au kit de valider prospectivement le corpus reconstruit avant l’exécution distante des actions de graphe.
 
+## 0.4.81 — 12 août 2026 — validation différentielle des métadonnées historiques
+
+- aligne le validateur sur la norme 1.2.78 ;
+- n’émet plus `WDV-EDT-021` pour le seul caractère non propositionnel d’un `displayed-title` appartenant à une page `preexisting` ;
+- n’applique plus le contrôle de quantité 2–4 aux keywords d’une page Argument `preexisting` ;
+- maintient les contrôles de forme flagrante, de vocabulaire, de capitalisation, de cohérence et tous les contrôles stricts pour les pages `new` ;
+- ajoute des régressions positives/négatives sur `new` vs `preexisting`.

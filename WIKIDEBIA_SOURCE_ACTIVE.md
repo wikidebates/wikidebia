@@ -2,25 +2,25 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.77** ;
-- validateur actif : **0.4.80** ;
-- kit actif : **2.16.8**.
+- norme active : **1.2.78** ;
+- validateur actif : **0.4.81** ;
+- kit actif : **2.16.9**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3394024 octets — SHA-256 `ed4c595a184d1a350e3479f922b4e59bedc86b3ace734b21cb14debb8bdb08d9`
-- `wikidebia-validator.zip` — 3548524 octets — SHA-256 `069030e877292d2dc229885601cdfce3ee21e875f35eaa9d5f3060ddffb836da`
-- `wikidebia-kit.zip` — 645850 octets — SHA-256 `937bdae61ddf14791ac70415c96ce198f7076c494d00172a24abcb5345a91bc2`
+- `wikidebia-normes.zip` — 3436863 octets — SHA-256 `df3950a2d458edd335dfbef864d40a189b537988ec00a7012aa1b98d7b8d9d99`
+- `wikidebia-validator.zip` — 3593448 octets — SHA-256 `04c8a059894b8b8dc2f93e714a07e61fcb9600b8df0d312e96df11b930f0c7ca`
+- `wikidebia-kit.zip` — 653533 octets — SHA-256 `f97ab5f0cc91c7dd03082b8ee7005a33d76e3d9ce2eca0475394c7b5f161a61a`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.77.md`  
-SHA-256 : `4b8844b56eee53d61af100d441186196b3363ec33fbaf259d89248674095ab95`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.78.md`  
+SHA-256 : `a08cb5af6a1aebc587326054eafdc7e7fc9fbd167d8e9e2ab1d95611afd6dfeb`
 
-# Norme opérationnelle active Wikidéb’IA 1.2.77
+# Norme opérationnelle active Wikidéb’IA 1.2.78
 
 **Statut : source normative active unique.**  
-**Date d’effet :** 11 août 2026
+**Date d’effet :** 12 août 2026
 
 Cette norme contient uniquement les règles actuellement applicables. Les textes de révisions remplacées, snapshots et anciennes formulations sont conservés dans `history/` et dans les changelogs, qui sont informatifs et immuables. Les numéros de norme, validateur, kit et producteur servent à la provenance, à la reproductibilité, à l’installation et aux migrations ; ils ne sélectionnent aucune règle éditoriale.
 
@@ -103,7 +103,9 @@ Avant le verrouillage du graphe, une revue sémantique couvre toutes les occurre
 
 Le titre canonique est le nom de page et la cible de relation. Il est complet, explicite, autonome et non ambigu. Il mentionne le sujet lorsque cela évite une collision avec d’autres débats.
 
-Le titre affiché est une formulation de lecture plus concise que le titre canonique lorsque cette concision améliore réellement le rendu. Il reste cependant une proposition argumentative complète et immédiatement intelligible : le lecteur doit pouvoir identifier ce qui est affirmé, et non seulement le thème auquel l’argument se rapporte. Un simple groupe nominal, une étiquette doctrinale ou l’intitulé d’un phénomène ne suffit pas. Le titre affiché comporte au minimum un sujet et un prédicat explicites, sans point final, et conserve le lien logique décisif de l’argument. Le contexte d’affichage peut permettre d’omettre un cadrage déjà évident, mais il ne peut jamais remplacer le verbe, la conclusion ou la relation argumentative qui rendent la phrase compréhensible.
+Pour une page **nouvelle ou dont le titre affiché est généré par Wikidéb’IA**, le titre affiché est une formulation de lecture plus concise que le titre canonique lorsque cette concision améliore réellement le rendu. Dans ce profil de création, il reste une proposition argumentative complète et immédiatement intelligible : le lecteur doit pouvoir identifier ce qui est affirmé, et non seulement le thème auquel l’argument se rapporte. Un simple groupe nominal, une étiquette doctrinale ou l’intitulé d’un phénomène ne suffit pas. Le titre affiché comporte au minimum un sujet et un prédicat explicites, sans point final, et conserve le lien logique décisif de l’argument. Le contexte d’affichage peut permettre d’omettre un cadrage déjà évident, mais il ne peut jamais remplacer le verbe, la conclusion ou la relation argumentative qui rendent la phrase compréhensible.
+
+Lorsqu’un corpus est **repris depuis des pages préexistantes du wiki**, cette exigence de proposition complète ne s’applique pas rétroactivement aux `titre-affiché` déjà publiés. Le titre affiché historique est conservé par défaut, y compris lorsqu’il s’agit d’un groupe nominal, d’une formule courte ou d’un intitulé dépendant de son contexte d’affichage. Son seul caractère non propositionnel ne constitue ni une erreur ni un motif de réécriture. Il n’est modifié que pour corriger une faute d’orthographe, de grammaire ou de typographie, une troncation, une corruption manifeste, une ambiguïté flagrante ou un autre problème éditorial évident, ou sur décision explicite du propriétaire. Une harmonisation stylistique, l’allongement en phrase complète ou la simple préférence de Wikidéb’IA ne suffisent jamais à modifier un titre affiché préexistant. Cette préservation du titre affiché ne réduit pas les exigences applicables au **titre canonique / nom de page**, qui reste autonome, explicite et corrigeable lorsqu’il est incomplet, contextuel, fautif ou ambigu.
 
 ### 4.1 Autonomie référentielle du titre canonique
 
@@ -120,9 +122,9 @@ Exemple :
 
 Les démonstratifs et pronoms ne sont pas interdits lorsqu’ils possèdent un antécédent explicite et non ambigu dans le titre lui-même. Ainsi, un possessif comme « sa fiabilité » peut reprendre la `méthode de contrôle croisé` déjà nommée dans la même proposition.
 
-Le titre affiché peut employer une expression contextuelle plus courte si son référent est immédiatement identifiable dans l’emplacement d’affichage, si aucune autre entité ne peut être visée et si le raisonnement reste strictement identique au titre canonique. Cette souplesse ne dispense jamais d’une phrase propositionnelle complète : « La convergence entre observateurs » est un thème, tandis que « La convergence entre observateurs indique l’existence d’objets publics » expose un argument. De même, « Les renversements de l’histoire des sciences » doit devenir une proposition telle que « Les renversements scientifiques montrent que le succès d’une théorie ne garantit pas sa vérité ».
+Pour un titre affiché nouvellement généré, une expression contextuelle plus courte est admise si son référent est immédiatement identifiable dans l’emplacement d’affichage, si aucune autre entité ne peut être visée et si le raisonnement reste strictement identique au titre canonique. Dans ce profil de création, cette souplesse ne dispense pas d’une phrase propositionnelle complète : « La convergence entre observateurs » est un thème, tandis que « La convergence entre observateurs indique l’existence d’objets publics » expose un argument. La règle ne sert pas à réécrire rétroactivement un `titre-affiché` historique déjà présent sur le wiki.
 
-Un titre affiché ne peut jamais être obtenu par une troncature aveugle ni réduit à un intitulé nominal. Sont notamment interdits :
+Un titre affiché nouvellement généré ne peut jamais être obtenu par une troncature aveugle ni réduit à un intitulé nominal. Sur une page préexistante, la liste ci-dessous sert à détecter les erreurs flagrantes réellement corrigeables, mais le caractère nominal historique n’est pas en lui-même un défaut. Sont notamment interdits pour une nouvelle génération :
 
 - les ellipses `...` ou `…` ;
 - la suppression d’un article, déterminant ou mot initial nécessaire à la grammaire ;
@@ -213,7 +215,9 @@ Les rubriques françaises autorisées sont : Aménagement, Culture, Droit, Écol
 
 Chaque nœud est classé individuellement. Une à trois rubriques réellement centrales sont normalement utilisées ; une quatrième est exceptionnelle et motivée. Une rubrique peut légitimement être présente sur tous les arguments d'un débat lorsque sa pertinence est démontrée page par page ; sa fréquence locale ne constitue ni une preuve de pertinence ni une anomalie automatique. Les décisions sont consignées dans un registre de revue. Dans chaque valeur MediaWiki et dans le registre correspondant, les rubriques françaises sont rangées par ordre alphabétique français et les sections anglaises par ordre alphabétique anglais. Les sections anglaises constituent le même ensemble conceptuel que les rubriques françaises, mais leur ordre est recalculé indépendamment dans la langue anglaise.
 
-Chaque page d’argument reçoit normalement **deux à quatre mots-clés thématiques**. Leur fonction principale est la navigation à l’échelle de l’ensemble du wiki : un clic doit pouvoir rapprocher des arguments relevant de débats différents autour d’un même phénomène, d’une même méthode, d’une même question épistémologique ou d’un même contexte institutionnel.
+Une page d’argument **nouvelle** reçoit normalement **deux à quatre mots-clés thématiques**. Leur fonction principale est la navigation à l’échelle de l’ensemble du wiki : un clic doit pouvoir rapprocher des arguments relevant de débats différents autour d’un même phénomène, d’une même méthode, d’une même question épistémologique ou d’un même contexte institutionnel.
+
+Lorsqu’une page existe déjà sur le wiki au début de la reprise, ses mots-clés sont **préservés par défaut**. Aucun mot-clé historique n’est supprimé uniquement pour respecter la cible de deux à quatre, uniformiser le vocabulaire ou simplifier la page. Wikidéb’IA peut corriger leur graphie canonique (notamment la capitalisation, l’orthographe, les espaces ou une normalisation lexicale évidente), les réordonner par pertinence et ajouter des mots-clés réellement utiles. La suppression d’un mot-clé préexistant n’est admise que lorsque la revue conclut explicitement qu’il est réellement non pertinent pour la page, avec une justification propre à ce mot-clé. Le dépassement historique de la cible de deux à quatre n’est donc pas un motif de suppression.
 
 Un mot-clé doit donc être :
 
@@ -392,6 +396,8 @@ Le manifeste de chaque page déclare `page_origin` (`new` ou `preexisting`) ains
 - `débats-connexes` / `related-debates` conserve exactement sa valeur antérieure et reste absent s’il était absent.
 
 Le moteur de mise à jour bloque toute opération qui modifierait l’un de ces paramètres sur une page existante.
+
+La même distinction création/reprise s’applique aux métadonnées éditoriales non protégées : un `titre-affiché` préexistant n’est pas réécrit pour satisfaire une règle de forme réservée aux créations IA, et un mot-clé préexistant n’est pas retiré pour satisfaire un quota de création. Les corrections évidentes, les ajouts utiles et les suppressions explicitement motivées par une non-pertinence réelle restent autorisés et traçables.
 
 **Exception de production éditoriale FR→EN :** les règles de préservation distante ci-dessus ne servent pas à choisir le contenu de la traduction. Pour produire la page anglaise, la source française prévaut et les métadonnées mappées sont traduites depuis elle. La préservation distante reste une contrainte technique distincte au moment d’une éventuelle publication.
 
@@ -699,7 +705,7 @@ Avant `release_ready`, le corpus doit présenter :
 1. zéro titre canonique ou affiché contenant une ellipse, une troncature grammaticale ou des guillemets non conformes ;
 2. zéro lettre initiale résiduelle issue d’une suppression d’article ;
 3. concordance exacte de tous les titres affichés entre registre, relations, agrégats et fichiers canoniques ;
-4. deux à quatre mots-clés nominaux par page, issus du vocabulaire contrôlé bilingue ;
+4. pour toute page nouvelle, deux à quatre mots-clés nominaux issus du vocabulaire contrôlé bilingue ; pour une page préexistante, préservation des mots-clés historiques sauf non-pertinence claire explicitement justifiée, avec correction de graphie et ajouts pertinents autorisés ;
 5. zéro mot-clé français non traduit dans la liste anglaise ;
 6. vocabulaire thématique évalué à l’échelle du wiki, sans exigence de répétition dans le débat courant ;
 7. revue page par page de la pertinence des mots-clés ;
@@ -803,7 +809,7 @@ Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. E
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `45d754786f043bbd5513714a01915efea0f922b33bcedde32b7bf80b3dfb17e9`
+SHA-256 : `4d8a01a42a09e2aaf5c730268f500c2532a2a3059fd7d358a774f59c287c29e9`
 
 ## 1.2.70 — alignement du validateur sur la première publication anglaise
 
@@ -1514,10 +1520,23 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - impose une nouvelle revue complète du graphe après application et interdit toute promotion implicite ;
 - conserve une compatibilité étroite avec les ZIP 2.16.2/2.16.3 déjà revus lorsqu’ils contiennent la formulation propriétaire explicite attendue.
 
+## 1.2.78 — 12 août 2026 — préservation différentielle des métadonnées préexistantes
+
+- limite l’exigence de `titre-affiché` propositionnel aux titres nouvellement générés par Wikidéb’IA ;
+- impose, pour une page préexistante importée du wiki, la conservation du `titre-affiché` historique même nominal ou contextuel, sauf faute, anomalie flagrante ou décision explicite du propriétaire ;
+- maintient intégralement les exigences d’autonomie et de correction des titres canoniques / noms de pages ;
+- réserve la cible de deux à quatre mots-clés aux pages nouvelles et interdit de supprimer un mot-clé historique pour satisfaire ce quota ;
+- autorise la correction de casse/graphie, le réordonnancement et l’ajout de mots-clés sur les pages préexistantes ; une suppression exige une non-pertinence réelle explicitement justifiée ;
+- exige que le kit et le validateur distinguent fonctionnellement `new` de `preexisting` au lieu d’appliquer rétroactivement le profil de création.
+
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `519bfbeda3236d6cc9dffa123a46331310f9e8b4900bbef50b986974d6676c27`
+SHA-256 : `ddd6c35b1a2d4ffe27dda247fb47e9eac770e174a2d3eb94124bcba82377320a`
+
+# Wikidéb’IA Validator 0.4.81
+
+Le validateur 0.4.81 distingue désormais les pages `new` des pages `preexisting` pour les règles de création relatives aux titres affichés et au nombre de mots-clés. Une page préexistante peut conserver un titre affiché nominal et un nombre historique de mots-clés ; les autres contrôles de qualité restent actifs.
 
 # Wikidéb’IA Validator 0.4.80
 
@@ -1550,7 +1569,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `a403c3ee98ebd70543a1a408853b2234b36953378b4d2dc6cf628ed5b61b9e22`
+SHA-256 : `acfa0352b4984be6dba6788fca01b92502585b801598b17a60778b1c07e0789b`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1658,10 +1677,22 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - conserve tous les contrôles structurels et éditoriaux existants ;
 - permet au kit de valider prospectivement le corpus reconstruit avant l’exécution distante des actions de graphe.
 
+## 0.4.81 — 12 août 2026 — validation différentielle des métadonnées historiques
+
+- aligne le validateur sur la norme 1.2.78 ;
+- n’émet plus `WDV-EDT-021` pour le seul caractère non propositionnel d’un `displayed-title` appartenant à une page `preexisting` ;
+- n’applique plus le contrôle de quantité 2–4 aux keywords d’une page Argument `preexisting` ;
+- maintient les contrôles de forme flagrante, de vocabulaire, de capitalisation, de cohérence et tous les contrôles stricts pour les pages `new` ;
+- ajoute des régressions positives/négatives sur `new` vs `preexisting`.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `8d62c3a3d8848912fc9cec858c81df8de2fa4140e616f0712ab4e0a49bfa49d2`
+SHA-256 : `2a12a3413f81c69c16fd7db9076aa6b03644998f166732432614f934e3fdf8a3`
+
+# Wikidéb’IA Kit 2.16.9
+
+Le kit 2.16.9 applique la politique différentielle de reprise des métadonnées : les pages déjà présentes sur le wiki conservent par défaut leurs `titre-affiché` et mots-clés historiques. La propositionnalité complète et les cibles quantitatives restent des règles de création pour les nouvelles pages/titres générés par IA. Les titres canoniques restent corrigibles ; les mots-clés historiques peuvent être corrigés et complétés, et ne sont retirés qu’en cas de non-pertinence réelle explicitement justifiée.
 
 # Wikidéb’IA Kit 2.16.8
 Le kit 2.16.8 rend `review-import` transactionnel pour toutes les transitions locales jusqu’au prochain arrêt éditorial : si l’avancement mécanique échoue, la revue reste réimportable et le workflow, la base et les artefacts créés pendant la tentative sont restaurés. Les écritures distantes de corrections du graphe restent une frontière irréversible explicite et sont conservées avec leurs plans/reçus pour une reprise déterministe. La réparation de provenance repose sur les preuves de contenu et les schémas/capacités, pas sur l’égalité du numéro de kit. `upgrade` donne aussi désormais le détail des jeux de versions divergents entre composants.
@@ -1701,7 +1732,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `337938fe7a11752956d48b8d8ba7c686a519741924df8e014bd4d5aee938704b`
+SHA-256 : `86b16f0e7ff17eaa2649a9476d6fe698e81afb654cdbecd9a454e7e562ceed58`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1861,6 +1892,16 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - La réparation de provenance est documentée et testée comme mécanisme fondé sur preuves/schémas plutôt que sur le numéro du kit producteur.
 - Pour les versions installées à partir de 2.16.8, `upgrade` ne requiert plus l’égalité du triplet répété dans les trois composants : chaque composant fait autorité pour sa propre version, les versions étrangères restant de la provenance.
 - La fabrication de release est assortie d’un contrôle explicite garantissant que les trois `VERSIONS.json` embarqués sont identiques.
+
+## 2.16.9 — 12 août 2026 — revue différentielle des métadonnées préexistantes
+
+- propage `page_origin=preexisting` dans les paquets de revue issus d’un corpus extrait du wiki ;
+- ne requiert plus `displayed_title_complete_proposition=true` pour un `titre-affiché` historique préexistant et ne le réécrit pas pour la seule raison qu’il est nominal ;
+- conserve les exigences complètes de création pour les pages/titres nouveaux ;
+- ne bloque plus une page préexistante parce qu’elle dépasse la cible de mots-clés de création ;
+- vérifie qu’aucun mot-clé historique n’a été retiré, sauf correction explicitement décrite ou suppression `clearly_irrelevant` accompagnée d’une justification ;
+- autorise corrections de casse/graphie, réordonnancement et ajouts de mots-clés ;
+- ajoute les consignes correspondantes directement dans les ZIP `fr_metadata_review` et des tests de non-régression.
 
 ## Guide de publication
 
@@ -2120,14 +2161,14 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `0ddd2bf290caa926b0a1a07ca138e3bfb56ea1c8d9cc869712d91cf248d443f0`
+SHA-256 : `dd2c26843cfe7cc287ac89f0ede700f9263f882de77e2bbe1bc57efe10fd017a`
 
-Wikidéb’IA Kit 2.16.8 — rapport de tests
-Date : 2026-08-11
-Résultat : 417 passed
+Wikidéb’IA Kit 2.16.9 — rapport de tests
+Date : 2026-08-12
+Résultat : 421 passed
 Commande : pytest -q
-Portée : suite complète du kit avec norme 1.2.77 et validateur 0.4.80 frères.
-Régression ciblée : reprise de provenance après plusieurs vagues d’actions structurelles dont l’audit courant a écrasé l’attestation antérieure.
+Portée : suite complète du kit avec norme 1.2.78 et validateur 0.4.81 frères.
+Régressions ciblées : reprise différentielle des métadonnées de pages préexistantes ; conservation des titres affichés historiques non propositionnels ; préservation des mots-clés historiques avec corrections et ajouts autorisés ; suppression uniquement sous justification de non-pertinence.
 
 ## Guide d’orchestration éditoriale
 

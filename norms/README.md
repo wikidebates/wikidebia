@@ -1,3 +1,3 @@
-# Wikidéb’IA — Normes 1.2.77
+# Wikidéb’IA — Normes 1.2.78
 
-La révision 1.2.77 encadre l’exécution explicite des décisions structurelles issues d’une revue du graphe : retrait d’occurrence, fusion avec redirection, déplacement ou changement de relation, avec validation prospective, préflight distant, résumés MediaWiki individualisés et nouvelle revue obligatoire avant promotion.
+La révision 1.2.78 distingue les règles de création IA des reprises de pages préexistantes : les titres affichés historiques sont conservés sauf faute ou problème manifeste, et les mots-clés historiques sont préservés sauf non-pertinence claire, tout en autorisant corrections de graphie, réordonnancement et ajouts pertinents.

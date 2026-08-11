@@ -1,0 +1,3 @@
+# Migration 2.16.9 — métadonnées historiques différentielles
+
+Le kit 2.16.9 aligne la revue française sur la norme 1.2.78. Les pages extraites d’un wiki sont marquées `preexisting` dans la revue. L’attestation `displayed_title_complete_proposition` et les quotas 5–8 / 2–4 ne bloquent plus les valeurs historiques. Les titres affichés préexistants sont conservés par défaut ; les mots-clés historiques doivent rester présents, modulo corrections explicites de casse/orthographe, sauf suppression `clearly_irrelevant` spécifiquement justifiée. Les pages nouvelles conservent les contrôles stricts de création.

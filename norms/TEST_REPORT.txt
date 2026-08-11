@@ -1,5 +1,6 @@
-Wikidéb’IA Normes 1.2.77 — audit de cohérence normative
+Wikidéb’IA Normes 1.2.78 — audit de cohérence normative
 Statut : PASSED
-Norme active unique : 1.2.77 ; norme 1.2.76 archivée exactement avant remplacement.
-Actions de graphe issues d’une revue explicite : retrait, fusion/redirection, déplacement et changement de relation.
-Résumés MediaWiki individualisés et nouvelle revue complète avant promotion : requis.
+Norme active unique : 1.2.78 ; norme 1.2.77 archivée exactement avant remplacement.
+Titres affichés : exigence de proposition complète réservée aux nouvelles générations ; préservation différentielle des valeurs préexistantes.
+Mots-clés : cible 2–4 réservée aux pages nouvelles ; mots-clés historiques préservés sauf non-pertinence claire, corrections et ajouts autorisés.
+Titres canoniques / noms de pages : exigences d’autonomie et de correction maintenues pour les pages préexistantes.

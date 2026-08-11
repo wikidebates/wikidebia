@@ -28,6 +28,19 @@ Chaque page reçoit une décision explicite sur :
 
 Le vocabulaire de travail couvre exactement les mots-clés finalement retenus. Chaque terme français possède une définition, une nature grammaticale, une justification de portée inter-débat et la liste exacte de ses usages. La traduction anglaise peut rester vide à ce stade.
 
+
+## Politique différentielle pour les pages déjà présentes sur le wiki
+
+La revue distingue le profil de création du profil de reprise. Pour une page `preexisting` issue de `import_provenance.json` :
+
+- le `titre-affiché` historique est conservé par défaut, même s’il est nominal ou non propositionnel ; la propositionnalité complète est une exigence de création pour les nouveaux titres générés par IA ;
+- un `titre-affiché` préexistant n’est modifié que pour une faute d’orthographe, de grammaire ou de typographie, une troncation/corruption, une ambiguïté flagrante ou autre problème évident, ou sur décision explicite du propriétaire ;
+- le titre canonique / nom de page reste soumis aux exigences d’autonomie, de précision et de correction ;
+- les mots-clés historiques sont conservés par défaut, même lorsque leur nombre dépasse la cible de création ; leur casse/graphie peut être corrigée, ils peuvent être réordonnés et complétés ;
+- toute suppression d’un mot-clé historique exige une non-pertinence réelle et une justification spécifique.
+
+Les cibles de cinq à huit mots-clés pour une nouvelle page Débat et de deux à quatre pour un nouvel Argument ne servent jamais à supprimer des mots-clés d’une page préexistante.
+
 ## 2. Finaliser sans modifier le corpus
 
 ```bash

@@ -1,7 +1,7 @@
-# Norme opérationnelle active Wikidéb’IA 1.2.77
+# Norme opérationnelle active Wikidéb’IA 1.2.78
 
 **Statut : source normative active unique.**  
-**Date d’effet :** 11 août 2026
+**Date d’effet :** 12 août 2026
 
 Cette norme contient uniquement les règles actuellement applicables. Les textes de révisions remplacées, snapshots et anciennes formulations sont conservés dans `history/` et dans les changelogs, qui sont informatifs et immuables. Les numéros de norme, validateur, kit et producteur servent à la provenance, à la reproductibilité, à l’installation et aux migrations ; ils ne sélectionnent aucune règle éditoriale.
 
@@ -84,7 +84,9 @@ Avant le verrouillage du graphe, une revue sémantique couvre toutes les occurre
 
 Le titre canonique est le nom de page et la cible de relation. Il est complet, explicite, autonome et non ambigu. Il mentionne le sujet lorsque cela évite une collision avec d’autres débats.
 
-Le titre affiché est une formulation de lecture plus concise que le titre canonique lorsque cette concision améliore réellement le rendu. Il reste cependant une proposition argumentative complète et immédiatement intelligible : le lecteur doit pouvoir identifier ce qui est affirmé, et non seulement le thème auquel l’argument se rapporte. Un simple groupe nominal, une étiquette doctrinale ou l’intitulé d’un phénomène ne suffit pas. Le titre affiché comporte au minimum un sujet et un prédicat explicites, sans point final, et conserve le lien logique décisif de l’argument. Le contexte d’affichage peut permettre d’omettre un cadrage déjà évident, mais il ne peut jamais remplacer le verbe, la conclusion ou la relation argumentative qui rendent la phrase compréhensible.
+Pour une page **nouvelle ou dont le titre affiché est généré par Wikidéb’IA**, le titre affiché est une formulation de lecture plus concise que le titre canonique lorsque cette concision améliore réellement le rendu. Dans ce profil de création, il reste une proposition argumentative complète et immédiatement intelligible : le lecteur doit pouvoir identifier ce qui est affirmé, et non seulement le thème auquel l’argument se rapporte. Un simple groupe nominal, une étiquette doctrinale ou l’intitulé d’un phénomène ne suffit pas. Le titre affiché comporte au minimum un sujet et un prédicat explicites, sans point final, et conserve le lien logique décisif de l’argument. Le contexte d’affichage peut permettre d’omettre un cadrage déjà évident, mais il ne peut jamais remplacer le verbe, la conclusion ou la relation argumentative qui rendent la phrase compréhensible.
+
+Lorsqu’un corpus est **repris depuis des pages préexistantes du wiki**, cette exigence de proposition complète ne s’applique pas rétroactivement aux `titre-affiché` déjà publiés. Le titre affiché historique est conservé par défaut, y compris lorsqu’il s’agit d’un groupe nominal, d’une formule courte ou d’un intitulé dépendant de son contexte d’affichage. Son seul caractère non propositionnel ne constitue ni une erreur ni un motif de réécriture. Il n’est modifié que pour corriger une faute d’orthographe, de grammaire ou de typographie, une troncation, une corruption manifeste, une ambiguïté flagrante ou un autre problème éditorial évident, ou sur décision explicite du propriétaire. Une harmonisation stylistique, l’allongement en phrase complète ou la simple préférence de Wikidéb’IA ne suffisent jamais à modifier un titre affiché préexistant. Cette préservation du titre affiché ne réduit pas les exigences applicables au **titre canonique / nom de page**, qui reste autonome, explicite et corrigeable lorsqu’il est incomplet, contextuel, fautif ou ambigu.
 
 ### 4.1 Autonomie référentielle du titre canonique
 
@@ -101,9 +103,9 @@ Exemple :
 
 Les démonstratifs et pronoms ne sont pas interdits lorsqu’ils possèdent un antécédent explicite et non ambigu dans le titre lui-même. Ainsi, un possessif comme « sa fiabilité » peut reprendre la `méthode de contrôle croisé` déjà nommée dans la même proposition.
 
-Le titre affiché peut employer une expression contextuelle plus courte si son référent est immédiatement identifiable dans l’emplacement d’affichage, si aucune autre entité ne peut être visée et si le raisonnement reste strictement identique au titre canonique. Cette souplesse ne dispense jamais d’une phrase propositionnelle complète : « La convergence entre observateurs » est un thème, tandis que « La convergence entre observateurs indique l’existence d’objets publics » expose un argument. De même, « Les renversements de l’histoire des sciences » doit devenir une proposition telle que « Les renversements scientifiques montrent que le succès d’une théorie ne garantit pas sa vérité ».
+Pour un titre affiché nouvellement généré, une expression contextuelle plus courte est admise si son référent est immédiatement identifiable dans l’emplacement d’affichage, si aucune autre entité ne peut être visée et si le raisonnement reste strictement identique au titre canonique. Dans ce profil de création, cette souplesse ne dispense pas d’une phrase propositionnelle complète : « La convergence entre observateurs » est un thème, tandis que « La convergence entre observateurs indique l’existence d’objets publics » expose un argument. La règle ne sert pas à réécrire rétroactivement un `titre-affiché` historique déjà présent sur le wiki.
 
-Un titre affiché ne peut jamais être obtenu par une troncature aveugle ni réduit à un intitulé nominal. Sont notamment interdits :
+Un titre affiché nouvellement généré ne peut jamais être obtenu par une troncature aveugle ni réduit à un intitulé nominal. Sur une page préexistante, la liste ci-dessous sert à détecter les erreurs flagrantes réellement corrigeables, mais le caractère nominal historique n’est pas en lui-même un défaut. Sont notamment interdits pour une nouvelle génération :
 
 - les ellipses `...` ou `…` ;
 - la suppression d’un article, déterminant ou mot initial nécessaire à la grammaire ;
@@ -194,7 +196,9 @@ Les rubriques françaises autorisées sont : Aménagement, Culture, Droit, Écol
 
 Chaque nœud est classé individuellement. Une à trois rubriques réellement centrales sont normalement utilisées ; une quatrième est exceptionnelle et motivée. Une rubrique peut légitimement être présente sur tous les arguments d'un débat lorsque sa pertinence est démontrée page par page ; sa fréquence locale ne constitue ni une preuve de pertinence ni une anomalie automatique. Les décisions sont consignées dans un registre de revue. Dans chaque valeur MediaWiki et dans le registre correspondant, les rubriques françaises sont rangées par ordre alphabétique français et les sections anglaises par ordre alphabétique anglais. Les sections anglaises constituent le même ensemble conceptuel que les rubriques françaises, mais leur ordre est recalculé indépendamment dans la langue anglaise.
 
-Chaque page d’argument reçoit normalement **deux à quatre mots-clés thématiques**. Leur fonction principale est la navigation à l’échelle de l’ensemble du wiki : un clic doit pouvoir rapprocher des arguments relevant de débats différents autour d’un même phénomène, d’une même méthode, d’une même question épistémologique ou d’un même contexte institutionnel.
+Une page d’argument **nouvelle** reçoit normalement **deux à quatre mots-clés thématiques**. Leur fonction principale est la navigation à l’échelle de l’ensemble du wiki : un clic doit pouvoir rapprocher des arguments relevant de débats différents autour d’un même phénomène, d’une même méthode, d’une même question épistémologique ou d’un même contexte institutionnel.
+
+Lorsqu’une page existe déjà sur le wiki au début de la reprise, ses mots-clés sont **préservés par défaut**. Aucun mot-clé historique n’est supprimé uniquement pour respecter la cible de deux à quatre, uniformiser le vocabulaire ou simplifier la page. Wikidéb’IA peut corriger leur graphie canonique (notamment la capitalisation, l’orthographe, les espaces ou une normalisation lexicale évidente), les réordonner par pertinence et ajouter des mots-clés réellement utiles. La suppression d’un mot-clé préexistant n’est admise que lorsque la revue conclut explicitement qu’il est réellement non pertinent pour la page, avec une justification propre à ce mot-clé. Le dépassement historique de la cible de deux à quatre n’est donc pas un motif de suppression.
 
 Un mot-clé doit donc être :
 
@@ -373,6 +377,8 @@ Le manifeste de chaque page déclare `page_origin` (`new` ou `preexisting`) ains
 - `débats-connexes` / `related-debates` conserve exactement sa valeur antérieure et reste absent s’il était absent.
 
 Le moteur de mise à jour bloque toute opération qui modifierait l’un de ces paramètres sur une page existante.
+
+La même distinction création/reprise s’applique aux métadonnées éditoriales non protégées : un `titre-affiché` préexistant n’est pas réécrit pour satisfaire une règle de forme réservée aux créations IA, et un mot-clé préexistant n’est pas retiré pour satisfaire un quota de création. Les corrections évidentes, les ajouts utiles et les suppressions explicitement motivées par une non-pertinence réelle restent autorisés et traçables.
 
 **Exception de production éditoriale FR→EN :** les règles de préservation distante ci-dessus ne servent pas à choisir le contenu de la traduction. Pour produire la page anglaise, la source française prévaut et les métadonnées mappées sont traduites depuis elle. La préservation distante reste une contrainte technique distincte au moment d’une éventuelle publication.
 
@@ -680,7 +686,7 @@ Avant `release_ready`, le corpus doit présenter :
 1. zéro titre canonique ou affiché contenant une ellipse, une troncature grammaticale ou des guillemets non conformes ;
 2. zéro lettre initiale résiduelle issue d’une suppression d’article ;
 3. concordance exacte de tous les titres affichés entre registre, relations, agrégats et fichiers canoniques ;
-4. deux à quatre mots-clés nominaux par page, issus du vocabulaire contrôlé bilingue ;
+4. pour toute page nouvelle, deux à quatre mots-clés nominaux issus du vocabulaire contrôlé bilingue ; pour une page préexistante, préservation des mots-clés historiques sauf non-pertinence claire explicitement justifiée, avec correction de graphie et ajouts pertinents autorisés ;
 5. zéro mot-clé français non traduit dans la liste anglaise ;
 6. vocabulaire thématique évalué à l’échelle du wiki, sans exigence de répétition dans le débat courant ;
 7. revue page par page de la pertinence des mots-clés ;

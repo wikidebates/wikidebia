@@ -707,3 +707,11 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - impose une nouvelle revue complète du graphe après application et interdit toute promotion implicite ;
 - conserve une compatibilité étroite avec les ZIP 2.16.2/2.16.3 déjà revus lorsqu’ils contiennent la formulation propriétaire explicite attendue.
 
+## 1.2.78 — 12 août 2026 — préservation différentielle des métadonnées préexistantes
+
+- limite l’exigence de `titre-affiché` propositionnel aux titres nouvellement générés par Wikidéb’IA ;
+- impose, pour une page préexistante importée du wiki, la conservation du `titre-affiché` historique même nominal ou contextuel, sauf faute, anomalie flagrante ou décision explicite du propriétaire ;
+- maintient intégralement les exigences d’autonomie et de correction des titres canoniques / noms de pages ;
+- réserve la cible de deux à quatre mots-clés aux pages nouvelles et interdit de supprimer un mot-clé historique pour satisfaire ce quota ;
+- autorise la correction de casse/graphie, le réordonnancement et l’ajout de mots-clés sur les pages préexistantes ; une suppression exige une non-pertinence réelle explicitement justifiée ;
+- exige que le kit et le validateur distinguent fonctionnellement `new` de `preexisting` au lieu d’appliquer rétroactivement le profil de création.

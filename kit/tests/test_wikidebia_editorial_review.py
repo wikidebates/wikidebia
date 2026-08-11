@@ -132,11 +132,11 @@ def complete_review(workspace: Path) -> None:
         ),
     }
     keyword_sets = {
-        "debate": ["raisonnement", "controverse", "preuve", "thèse", "réfutation"],
-        "A0001": ["preuve", "raisonnement"],
-        "A0002": ["réfutation", "désaccord"],
-        "A0003": ["justification", "cohérence"],
-        "A0004": ["confirmation", "argumentation"],
+        "debate": ["test", "raisonnement", "controverse", "preuve", "thèse", "réfutation"],
+        "A0001": ["test", "preuve", "raisonnement"],
+        "A0002": ["test", "réfutation", "désaccord"],
+        "A0003": ["test", "justification", "cohérence"],
+        "A0004": ["test", "confirmation", "argumentation"],
     }
     for item in data["items"]:
         entity_id = item["entity_id"]
@@ -231,18 +231,37 @@ def test_finalize_review_seals_complete_decisions_without_mutating_copies(tmp_pa
     assert len(sealed["finalized_vocabulary"]) >= 8
 
 
-def test_finalize_rejects_incomplete_page_review(tmp_path: Path):
+def test_finalize_accepts_nonpropositional_displayed_title_for_preexisting_page(tmp_path: Path):
     project, workspace, work_id = make_workspace(tmp_path)
     complete_review(workspace)
-    data = json.loads((workspace / "reviews/fr/page_metadata_review.json").read_text(encoding="utf-8"))
-    data["items"][1]["review"]["displayed_title_complete_proposition"] = False
-    common.write_json(workspace / "reviews/fr/page_metadata_review.json", data)
+    path = workspace / "reviews/fr/page_metadata_review.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    row = next(item for item in data["items"] if item["entity_id"] == "A0001")
+    row["review"]["displayed_title_decision"] = "keep"
+    row["review"]["proposed_displayed_title"] = row["source"]["displayed_title"]
+    row["review"]["displayed_title_rationale"] = "Titre affiché historique conservé conformément à la politique des pages préexistantes."
+    row["review"]["displayed_title_complete_proposition"] = False
+    row["review"]["displayed_title_improves_readability_when_distinct"] = False
+    common.write_json(path, data)
+    result = review_tool.finalize_review(project, "debat_test", work_id)
+    assert result["status"] == "fr_review_finalized"
+
+
+def test_finalize_rejects_nonpropositional_displayed_title_for_new_page(tmp_path: Path):
+    project, workspace, work_id = make_workspace(tmp_path)
+    complete_review(workspace)
+    path = workspace / "reviews/fr/page_metadata_review.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    row = next(item for item in data["items"] if item["entity_id"] == "A0001")
+    row["source"]["page_origin"] = "new"
+    row["review"]["displayed_title_complete_proposition"] = False
+    common.write_json(path, data)
     try:
         review_tool.finalize_review(project, "debat_test", work_id)
     except review_tool.EditorialReviewError as exc:
         assert "displayed_title_complete_proposition" in str(exc)
     else:
-        raise AssertionError("Revue incomplète acceptée")
+        raise AssertionError("Règle de création des titres affichés relâchée pour une page nouvelle")
 
 
 def test_finalize_rejects_title_collision(tmp_path: Path):
@@ -263,7 +282,7 @@ def test_finalize_rejects_dominant_exact_keyword_set(tmp_path: Path):
     project, workspace, work_id = make_workspace(tmp_path)
     complete_review(workspace)
     data = json.loads((workspace / "reviews/fr/page_metadata_review.json").read_text(encoding="utf-8"))
-    common_set = ["preuve", "raisonnement"]
+    common_set = ["test", "preuve", "raisonnement"]
     for item in data["items"]:
         if item["entity_type"] == "argument":
             item["review"]["proposed_keywords"] = common_set
@@ -439,12 +458,13 @@ def test_finalize_accepts_canonical_titles_as_displayed_titles(tmp_path: Path):
     assert sealed["summary"]["displayed_title_identity_ratio"] == 1.0
 
 
-def test_finalize_rejects_distinct_displayed_title_without_readability_gain(tmp_path: Path):
+def test_finalize_rejects_distinct_displayed_title_without_readability_gain_for_new_page(tmp_path: Path):
     project, workspace, work_id = make_workspace(tmp_path)
     complete_review(workspace)
     path = workspace / "reviews/fr/page_metadata_review.json"
     data = json.loads(path.read_text(encoding="utf-8"))
     first = next(item for item in data["items"] if item["entity_type"] == "argument")
+    first["source"]["page_origin"] = "new"
     first["review"]["displayed_title_improves_readability_when_distinct"] = False
     common.write_json(path, data)
     try:
@@ -452,4 +472,90 @@ def test_finalize_rejects_distinct_displayed_title_without_readability_gain(tmp_
     except review_tool.EditorialReviewError as exc:
         assert "n’améliore pas explicitement la lisibilité" in str(exc)
     else:
-        raise AssertionError("Titre affiché distinct sans gain de lisibilité accepté")
+        raise AssertionError("Titre affiché distinct sans gain de lisibilité accepté pour une page nouvelle")
+
+
+def _sync_vocabulary_to_review(workspace: Path) -> None:
+    review_path = workspace / "reviews/fr/page_metadata_review.json"
+    data = json.loads(review_path.read_text(encoding="utf-8"))
+    usages: dict[str, list[dict[str, str]]] = {}
+    for item in data["items"]:
+        values = item["review"].get("proposed_keywords") or item["source"].get("keywords") or []
+        for keyword in values:
+            usages.setdefault(keyword, []).append({"entity_type": item["entity_type"], "entity_id": item["entity_id"]})
+    vocabulary_path = workspace / "data/keyword_vocabulary_working.json"
+    vocabulary = json.loads(vocabulary_path.read_text(encoding="utf-8"))
+    by_key = {entry["fr"]: entry for entry in vocabulary["entries"]}
+    entries = []
+    for keyword, rows in sorted(usages.items(), key=lambda pair: pair[0].casefold()):
+        entry = copy.deepcopy(by_key.get(keyword) or {
+            "fr": keyword, "en": None,
+            "definition": f"Concept éditorial contrôlé correspondant au terme {keyword}.",
+            "kind": "noun" if " " not in keyword else "noun_phrase",
+            "capitalization_policy": "lowercase_common",
+            "capitalization_rationale": "",
+            "atomic_concept": True,
+            "compositional_intersection": False,
+            "multiword_exception": " " in keyword,
+            "scope": "site_navigation",
+            "cross_debate_reusable": True,
+            "local_frequency_is_validity_criterion": False,
+            "status": "approved_fr",
+            "decision": "approved",
+            "rationale": "Le terme peut regrouper des arguments appartenant à plusieurs débats distincts.",
+        })
+        if " " in keyword:
+            entry["multiword_exception_rationale"] = entry.get("multiword_exception_rationale") or f"Locution conventionnelle « {keyword} » conservée comme concept de navigation."
+        entry["usages"] = rows
+        entries.append(entry)
+    vocabulary["entries"] = entries
+    common.write_json(vocabulary_path, vocabulary)
+
+
+def test_finalize_allows_preexisting_keyword_count_above_creation_range(tmp_path: Path):
+    project, workspace, work_id = make_workspace(tmp_path)
+    complete_review(workspace)
+    path = workspace / "reviews/fr/page_metadata_review.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    row = next(item for item in data["items"] if item["entity_id"] == "A0001")
+    row["review"]["proposed_keywords"] = ["test", "preuve", "raisonnement", "logique", "débat"]
+    row["review"]["keywords_rationales"] = {k: "Mot-clé historique ou ajout pertinent pour la navigation." for k in row["review"]["proposed_keywords"]}
+    common.write_json(path, data)
+    _sync_vocabulary_to_review(workspace)
+    result = review_tool.finalize_review(project, "debat_test", work_id)
+    assert result["status"] == "fr_review_finalized"
+
+
+def test_finalize_rejects_unjustified_removal_of_preexisting_keyword(tmp_path: Path):
+    project, workspace, work_id = make_workspace(tmp_path)
+    complete_review(workspace)
+    path = workspace / "reviews/fr/page_metadata_review.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    row = next(item for item in data["items"] if item["entity_id"] == "A0001")
+    row["review"]["proposed_keywords"] = ["preuve", "raisonnement"]
+    row["review"]["keywords_rationales"] = {k: "Concept pertinent pour la page." for k in row["review"]["proposed_keywords"]}
+    common.write_json(path, data)
+    _sync_vocabulary_to_review(workspace)
+    try:
+        review_tool.finalize_review(project, "debat_test", work_id)
+    except review_tool.EditorialReviewError as exc:
+        assert "Mot-clé préexistant supprimé" in str(exc)
+    else:
+        raise AssertionError("Suppression silencieuse d'un mot-clé historique acceptée")
+
+
+def test_finalize_accepts_explicit_irrelevant_preexisting_keyword_removal(tmp_path: Path):
+    project, workspace, work_id = make_workspace(tmp_path)
+    complete_review(workspace)
+    path = workspace / "reviews/fr/page_metadata_review.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    row = next(item for item in data["items"] if item["entity_id"] == "A0001")
+    row["review"]["proposed_keywords"] = ["preuve", "raisonnement"]
+    row["review"]["keywords_rationales"] = {k: "Concept pertinent pour la page." for k in row["review"]["proposed_keywords"]}
+    row["review"]["removed_preexisting_keywords"] = {
+        "test": {"reason": "clearly_irrelevant", "rationale": "Le terme test est un artefact de fixture sans rapport avec le raisonnement de la page."}
+    }
+    common.write_json(path, data)
+    _sync_vocabulary_to_review(workspace)
+    result = review_tool.finalize_review(project, "debat_test", work_id)
+    assert result["status"] == "fr_review_finalized"

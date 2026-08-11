@@ -192,7 +192,7 @@ La commande `./wikidebia publish` est entièrement non interactive : après vali
 
 ## Contrôle 1.2.19 des titres affichés
 
-Avant le verrouillage du graphe et avant toute génération de page, chaque titre affiché est lu comme une phrase indépendante. La revue vérifie la présence d’un sujet, d’un prédicat et de la conclusion argumentative utile. Un intitulé nominal est reformulé, même lorsque le parent de l’occurrence permettrait d’en deviner le thème. Les quatre attestations bilingues de complétude et d’intelligibilité sont enregistrées dans le registre individuel ; une attestation absente ou fausse bloque la validation éditoriale.
+Avant toute génération d’un nouveau titre affiché, celui-ci est lu comme une phrase indépendante : la revue vérifie la présence d’un sujet, d’un prédicat et de la conclusion argumentative utile. Cette exigence ne sert pas à normaliser rétroactivement les `titre-affiché` déjà publiés dans un corpus importé du wiki. Pour ces pages préexistantes, le titre affiché est conservé par défaut, y compris lorsqu’il est nominal, et n’est corrigé que pour une faute ou un problème flagrant, ou sur décision explicite du propriétaire. Le titre canonique / nom de page reste, lui, soumis aux exigences d’autonomie et peut être corrigé.
 
 
 ## Contrôle 1.2.20 du placement des arguments
@@ -210,7 +210,7 @@ Le cas « les bouleversements de l’histoire des sciences » sert de test de r�
 
 ### Renforcement 1.2.22 — concision des titres affichés
 
-Pour chaque langue, le registre individuel contient `displayed_title_concision_reviewed_fr` ou `displayed_title_concision_reviewed_en` à `true`. Lorsqu’un titre affiché est exactement identique au titre canonique, le champ `displayed_title_identity_justification_fr` ou `displayed_title_identity_justification_en` fournit une justification spécifique, substantielle et non générique. Le taux global d’identités exactes ne dépasse pas 10 % des arguments actifs par langue. La concision ne dispense jamais des exigences de proposition complète, de prédicat explicite et d’intelligibilité autonome.
+Pour chaque langue, la concision et l’équivalence sémantique d’un titre affiché nouvellement généré sont revues explicitement. La proposition complète, le prédicat explicite et l’intelligibilité autonome sont des exigences de création. Pour un `titre-affiché` préexistant importé du wiki, la revue atteste au contraire sa préservation par défaut et ne le réécrit pas pour satisfaire ces seules exigences formelles ; seules une faute, une corruption, une ambiguïté flagrante ou une autre anomalie manifeste, ou une décision explicite du propriétaire, justifient normalement sa modification.
 
 
 ## Workflow 1.2.23
@@ -229,7 +229,7 @@ Un plan entièrement `skip` est attesté par une commande dédiée qui recharge 
 
 ## Contrôle création/modification — révision 1.2.33
 
-Avant rendu, chaque page est classée `new` ou `preexisting`. Toute page préexistante possède un instantané des paramètres protégés importés. Le rendu et le plan de mise à jour comparent cet instantané au wikicode proposé et bloquent toute mutation de `avancement`, `progress`, des avertissements IA et des débats connexes.
+Avant rendu, chaque page est classée `new` ou `preexisting`. Toute page préexistante possède un instantané des paramètres protégés importés. Cette origine gouverne aussi la revue des métadonnées : la propositionnalité du titre affiché et la cible quantitative de mots-clés sont des règles de création pour `new`, tandis que `preexisting` suit une politique différentielle de conservation. Un `titre-affiché` historique est conservé sauf faute/problème flagrant ; les mots-clés historiques sont conservés sauf non-pertinence réelle explicitement justifiée, avec correction de casse/graphie et ajouts autorisés. Le rendu et le plan de mise à jour comparent cet instantané au wikicode proposé et bloquent toute mutation de `avancement`, `progress`, des avertissements IA et des débats connexes.
 
 ## Traduction anglaise différée — révision 1.2.34
 
