@@ -1876,18 +1876,86 @@ def editorial_workflow(
     return run(command, cwd=root, check=False).returncode
 
 
-def review_import(root: Path, debate_id: str, archive: Path, *, execute_graph_actions: bool = False) -> int:
+def _review_package_identity(archive: Path) -> str | None:
+    try:
+        with zipfile.ZipFile(archive) as zf:
+            names = zf.namelist()
+            if names.count("REVIEW_PACKAGE.json") != 1:
+                return None
+            raw = zf.read("REVIEW_PACKAGE.json")
+            manifest = json.loads(raw.decode("utf-8"))
+    except (OSError, zipfile.BadZipFile, KeyError, UnicodeDecodeError, json.JSONDecodeError):
+        return None
+    if manifest.get("schema") != "wikidebia-chatgpt-review-package-1.0":
+        return None
+    debate_id = str(manifest.get("debate_id") or "").strip()
+    return debate_id if re.fullmatch(r"[A-Za-z0-9_.-]+", debate_id) else None
+
+
+def find_review_archive(root: Path, debate_identifier: str | None = None) -> tuple[str, Path]:
+    incoming = root / "incoming"
+    incoming.mkdir(parents=True, exist_ok=True)
+    candidates: list[tuple[str, Path]] = []
+    for path in sorted(incoming.iterdir()):
+        if not path.is_file() or path.suffix.casefold() != ".zip":
+            continue
+        debate_id = _review_package_identity(path)
+        if debate_id is not None:
+            candidates.append((debate_id, path))
+
+    if debate_identifier is not None:
+        identifier = debate_identifier.strip()
+        if identifier.casefold().endswith(".zip"):
+            raise ManagementError("Indiquez l’identifiant du débat, pas le nom du fichier ZIP")
+        if not re.fullmatch(r"[A-Za-z0-9_.-]+", identifier):
+            raise ManagementError("Identifiant de débat invalide; caractères admis : lettres, chiffres, _, - et .")
+        matches = [(debate_id, path) for debate_id, path in candidates if debate_id == identifier]
+        if len(matches) == 1:
+            return matches[0]
+        if not matches:
+            available = ", ".join(sorted({debate_id for debate_id, _ in candidates})) or "aucun"
+            raise ManagementError(
+                f"Aucun ZIP de revue pour {identifier} dans incoming/. Débats disponibles : {available}"
+            )
+        names = ", ".join(path.name for _, path in matches)
+        raise ManagementError(
+            f"Plusieurs ZIP de revue concernent {identifier} dans incoming/ : {names}. "
+            "Retirez ou archivez les doublons avant de relancer la commande."
+        )
+
+    if len(candidates) == 1:
+        return candidates[0]
+    if not candidates:
+        raise ManagementError(
+            "Aucun ZIP de revue ChatGPT valide trouvé dans incoming/. "
+            "Placez-y le ZIP corrigé puis relancez ./wikidebia review-import"
+        )
+    available = sorted({debate_id for debate_id, _ in candidates})
+    commands = "; ".join(f"./wikidebia review-import {debate_id}" for debate_id in available)
+    raise ManagementError(
+        "Plusieurs ZIP de revue sont présents dans incoming/. Précisez l’identifiant du débat. "
+        f"Commandes possibles : {commands}"
+    )
+
+
+def review_import(root: Path, debate_id: str | None, *, execute_graph_actions: bool = False) -> int:
     script = root / "kit" / "scripts" / "wikidebia_review_workflow.py"
     if not script.is_file():
         raise ManagementError("Orchestrateur éditorial absent du kit")
-    selected = archive if archive.is_absolute() else (root / archive)
+    selected_debate_id, selected = find_review_archive(root, debate_id)
     command = [
         python_command(root), str(script), "--project-root", str(root),
-        "review-import", debate_id, str(selected.resolve()),
+        "review-import", selected_debate_id, str(selected.resolve()),
     ]
     if execute_graph_actions:
         command.append("--execute-graph-actions")
-    return run(command, cwd=root, check=False).returncode
+    result = run(command, cwd=root, check=False)
+    if result.returncode == 0 and selected.exists():
+        destination = root / "archives" / "reviews" / f"{timestamp()}-{selected_debate_id}" / selected.name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.move(str(selected), destination)
+        print(f"ZIP de revue archivé : {portable_path(destination, root)}")
+    return result.returncode
 
 
 def workflow_status(root: Path, debate_id: str) -> int:
@@ -2149,8 +2217,7 @@ def build_parser() -> argparse.ArgumentParser:
         "review-import",
         help="Réimporter un ZIP corrigé par ChatGPT et reprendre automatiquement le workflow",
     )
-    review_import_parser.add_argument("debate_id", help="Identifiant stable du corpus")
-    review_import_parser.add_argument("archive", type=Path, help="ZIP corrigé rendu par ChatGPT")
+    review_import_parser.add_argument("debate_id", nargs="?", help="Identifiant du débat uniquement si plusieurs ZIP de revue sont présents dans incoming/")
     review_import_parser.add_argument("--execute-graph-actions", action="store_true", help="Après une revue de graphe rejetée, exécuter en une commande les suppressions, redirections, déplacements et requalifications explicitement décidés")
 
     workflow_status_parser = sub.add_parser(
@@ -2381,7 +2448,7 @@ def main(argv: list[str] | None = None) -> int:
             snapshot=args.snapshot, force_refresh=args.force_refresh,
         )
     if args.command == "review-import":
-        return review_import(root, args.debate_id, args.archive, execute_graph_actions=args.execute_graph_actions)
+        return review_import(root, args.debate_id, execute_graph_actions=args.execute_graph_actions)
     if args.command == "workflow-status":
         return workflow_status(root, args.debate_id)
     if args.command == "graph-extract":

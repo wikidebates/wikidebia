@@ -537,3 +537,20 @@ def test_prepare_content_review_rejects_unretired_extra_provenance_row(tmp_path:
     import pytest
     with pytest.raises(content.ContentReviewError, match="non actifs.*pas explicitement retirés"):
         content.prepare_review(project, "debat_test", work_id)
+
+
+def test_finalize_rejects_invalid_document_kind_in_working_registry(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    content.prepare_review(project, "debat_test", work_id)
+    complete_content_review(workspace)
+    path = workspace / "data/sources_working.json"
+    registry = json.loads(path.read_text(encoding="utf-8"))
+    registry["sources"][0]["document_kind"] = "website"
+    common.write_json(path, registry)
+    try:
+        content.finalize_review(project, "debat_test", work_id)
+    except content.ContentReviewError as exc:
+        assert "document_kind" in str(exc)
+        assert "website" in str(exc)
+    else:
+        raise AssertionError("document_kind hors schéma accepté dans sources_working.json")

@@ -136,7 +136,7 @@ Pour l'usage normal d'un débat qui doit être préparé puis traduit, préfére
 La commande enchaîne les opérations mécaniques et produit automatiquement les paquets de revue sous `outgoing/`. Après chaque retour de ChatGPT :
 
 ```bash
-./wikidebia review-import <debate_id> <zip_corrigé>
+./wikidebia review-import <debate_id>
 ```
 
 Voir `GUIDE_EDITORIAL_ORCHESTRATION.md`. Les commandes détaillées restent disponibles pour audit/debug.

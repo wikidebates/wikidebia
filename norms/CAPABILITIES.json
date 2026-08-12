@@ -4,9 +4,9 @@
   "component": "norms",
   "release_source": "VERSIONS.json",
   "release": {
-    "norm": "1.2.79",
-    "validator": "0.4.83",
-    "kit": "2.16.12"
+    "norm": "1.2.80",
+    "validator": "0.4.84",
+    "kit": "2.16.13"
   },
   "emits": {
     "active_normative_policy": [
@@ -24,6 +24,9 @@
   "capabilities": {
     "pre_review_editorial_deferral": "1.0",
     "workflow_diagnostic_package": "wikidebia-workflow-diagnostic-package-1.0",
-    "reviewed_graph_action_execution": "1.0"
+    "reviewed_graph_action_execution": "1.0",
+    "french_checkpoint_publication": "1.0",
+    "incoming_review_auto_selection": "1.0",
+    "sources_working_document_kind_prevalidation": "1.0"
   }
 }

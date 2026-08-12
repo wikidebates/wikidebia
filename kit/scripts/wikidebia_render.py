@@ -384,7 +384,7 @@ def _append_interlanguage_parameter(params: list[tuple[str, Any]], content: Mapp
 
 def _render_debate(
     *, lang: str, registry: Mapping[str, Any], metadata_lock: Mapping[str, Any], content_lock: Mapping[str, Any],
-    sources: Mapping[str, Mapping[str, Any]], creation_date: str,
+    sources: Mapping[str, Mapping[str, Any]], creation_date: str, include_interlanguage: bool = True,
 ) -> str:
     debate = content_lock.get("debate") or {}
     documentation = debate.get("documentation") or {}
@@ -419,7 +419,8 @@ def _render_debate(
             ("rubriques", ", ".join((metadata_lock.get("debate") or {}).get("rubriques") or [])),
             ("mots-clés", ", ".join((metadata_lock.get("debate") or {}).get("keywords") or [])),
         ])
-        _append_interlanguage_parameter(params, debate, "interlangue", _template("Lien interlangue", (("langue", "en"), ("page", target))))
+        if include_interlanguage:
+            _append_interlanguage_parameter(params, debate, "interlangue", _template("Lien interlangue", (("langue", "en"), ("page", target))))
         _append_lifecycle_parameter(params, debate, "date-création", creation_date)
         return _template("Débat", params) + "\n"
 
@@ -456,7 +457,7 @@ def _render_debate(
 
 def _render_argument(
     *, lang: str, node: Mapping[str, Any], content: Mapping[str, Any], registry: Mapping[str, Any],
-    sources: Mapping[str, Mapping[str, Any]], creation_date: str,
+    sources: Mapping[str, Mapping[str, Any]], creation_date: str, include_interlanguage: bool = True,
 ) -> str:
     node_id = str(node.get("id"))
     selected = content.get("sources") or {}
@@ -487,7 +488,8 @@ def _render_argument(
             ("rubriques", ", ".join((node.get("fr") or {}).get("rubriques") or [])),
             ("mots-clés", ", ".join((node.get("fr") or {}).get("keywords") or [])),
         ])
-        _append_interlanguage_parameter(params, content, "interlangue", _template("Lien interlangue", (("langue", "en"), ("page", target))))
+        if include_interlanguage:
+            _append_interlanguage_parameter(params, content, "interlangue", _template("Lien interlangue", (("langue", "en"), ("page", target))))
         _append_lifecycle_parameter(params, content, "date-création", creation_date)
     else:
         citations = _sequence(_citation_template(row, lang="en") for row in content.get("citations") or [])

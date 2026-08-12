@@ -2232,7 +2232,6 @@ class PlanExecutor:
         operation = row["operation"]
         title = row["title"]
         exists, revision_id, remote_text = self.adapter.read_page(title)
-        summary = self._expected_row_summary(row, operation, plan, remote_text)
         result = {"operation": operation, "language": row["language"], "page_id": row["page_id"], "title": title, "status": None}
         if operation == "create":
             desired = self._source_text(row)
@@ -2241,6 +2240,7 @@ class PlanExecutor:
                     result.update(status="already_done", revision_id=revision_id)
                     return result
                 raise PlanConflict(f"Collision apparue après le plan : {title}")
+            summary = self._expected_row_summary(row, operation, plan, remote_text)
             new_rev = self.adapter.write_page(title=title, text=desired, summary=summary, tags=["chatgpt"], expected_user=user, create_only=True, base_revision_id=None)
             self._verify_written_revision(title, new_rev, desired, summary)
             result.update(status="created", revision_id=new_rev, content_sha256=sha_text(desired), edit_summary=summary)
@@ -2254,6 +2254,7 @@ class PlanExecutor:
                 return result
             if revision_id != row.get("expected_revision_id") or sha_text(remote_text) != row.get("old_sha256"):
                 raise PlanConflict(f"Modification distante intervenue depuis le plan : {title}")
+            summary = self._expected_row_summary(row, operation, plan, remote_text)
             if row.get("edit_summary_policy") == "french_interlanguage_addition":
                 expected_title = self._english_title_for(str(row.get("page_id") or ""), str(row.get("page_type") or ""))
                 if not only_french_interlanguage_overlay(remote_text, desired, str(row.get("page_type") or ""), expected_title):
@@ -2271,11 +2272,23 @@ class PlanExecutor:
                 if target_exists and sha_text(target_text) == row["new_sha256"]:
                     result.update(status="already_done", title=new_title, revision_id=target_rev)
                     return result
+                if target_exists and sha_text(target_text) == row.get("old_sha256") and target_rev is not None:
+                    # Interrupted after the move itself but before the content
+                    # replacement. Finish the exact signed target update.
+                    summary = self._expected_row_summary(row, operation, plan, target_text)
+                    moved_rev = self.adapter.write_page(
+                        title=new_title, text=desired, summary=summary, tags=["chatgpt"],
+                        expected_user=user, create_only=False, base_revision_id=target_rev,
+                    )
+                    self._verify_written_revision(new_title, moved_rev, desired, summary)
+                    result.update(status="moved", title=new_title, revision_id=moved_rev, resumed_after_move=True)
+                    return result
                 raise PlanConflict(f"Source du déplacement absente : {old_title}")
             if target_exists:
                 raise PlanConflict(f"Cible du déplacement apparue : {new_title}")
             if source_rev != row.get("expected_revision_id") or sha_text(source_text) != row.get("old_sha256"):
                 raise PlanConflict(f"Source du déplacement modifiée : {old_title}")
+            summary = self._expected_row_summary(row, operation, plan, source_text)
             self.adapter.move_page(old_title=old_title, new_title=new_title, reason=summary, expected_user=user, leave_redirect=bool(row.get("leave_redirect", True)))
             moved_exists, moved_rev, moved_text = self.adapter.read_page(new_title)
             if not moved_exists or moved_rev is None:
@@ -2295,6 +2308,7 @@ class PlanExecutor:
                 return result
             if revision_id != row.get("expected_revision_id") or sha_text(remote_text) != row.get("old_sha256"):
                 raise PlanConflict(f"Page à rediriger modifiée depuis le plan : {title}")
+            summary = self._expected_row_summary(row, operation, plan, remote_text)
             new_rev = self.adapter.write_page(title=title, text=desired, summary=summary, tags=["chatgpt"], expected_user=user, create_only=False, base_revision_id=revision_id)
             result.update(status="redirected", revision_id=new_rev, target=row["redirect_target"])
             return result
@@ -2307,6 +2321,7 @@ class PlanExecutor:
             historical_authorized = bool(row.get("historical_page_without_generated_marker"))
             if not historical_authorized and not is_generated(remote_text, self.config.get("generated_markers") or ()):
                 raise PlanConflict(f"Marqueur Wikidéb’IA absent avant suppression : {title}")
+            summary = self._expected_row_summary(row, operation, plan, remote_text)
             self.adapter.delete_page(title=title, reason=summary, expected_user=user)
             after_exists, _, _ = self.adapter.read_page(title)
             if after_exists:

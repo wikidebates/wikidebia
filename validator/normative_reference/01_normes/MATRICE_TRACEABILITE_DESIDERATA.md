@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.79
+- **Révision :** 1.2.80
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -458,3 +458,12 @@ La revue des audits du 9 août 2026 montre que plusieurs pertes sémantiques ava
 | Dater la page EN au jour réel de publication | RND-009 | substitution signée de `creation-date` + invalidation au changement de jour |
 | Paramètre d'appellation consacrée actuel | règle 1.2.62 de rendu | `nom-consacré` / `established-name`, alias historiques préservés |
 | Avertissement des citations traduites | règle 1.2.62 `Quote` | `AI-translated quote` pour les nouvelles opérations |
+
+
+## Extension 1.2.80 — publication française avant traduction
+
+| Décision | Exigence | Contrôle |
+|---|---|---|
+| Publier le français scellé après `fr_content_review` et avant l’anglais | PUB-050 | checkpoint FR sans interlangue, plan de reprise signé, reçu obligatoire avant `en_translation_review` |
+| Sélectionner les ZIP de revue depuis `incoming/` sans nom de fichier | GOV-015 | paquet unique auto-sélectionné par `debate_id`; sélecteur de débat exigé en cas de pluralité |
+| Refuser tôt un `document_kind` invalide dans `sources_working.json` | VAL-061 | validation directe de l’enum avant projection vers `data/sources.json` |

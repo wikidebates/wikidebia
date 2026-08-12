@@ -1,4 +1,4 @@
-# Norme opérationnelle active Wikidéb’IA 1.2.79
+# Norme opérationnelle active Wikidéb’IA 1.2.80
 
 **Statut : source normative active unique.**  
 **Date d’effet :** 12 août 2026
@@ -625,7 +625,7 @@ Le retour à `release_ready` exige :
 - revue éditoriale humaine enregistrée ;
 - cohérence bilingue ;
 - manifeste de libération cohérent ;
-- preuve de l’absence d’écriture distante ;
+- preuve que toute écriture distante intermédiaire autorisée (actions structurelles explicites ou publication du checkpoint français après revue de contenu) possède son plan et son reçu, et qu’aucune autre écriture distante n’a eu lieu ;
 - audit de non-régression comparant la norme, le kit, les pages, les invariants, les fichiers et les exigences cumulées ;
 - kit de publication produit séparément, inclus dans la livraison complète et non exécuté.
 
@@ -643,7 +643,7 @@ Les longueurs indicatives des résumés restent des guides éditoriaux et non de
 
 ## 12. Publication W11
 
-Hors application explicitement demandée d’actions structurelles issues d’une revue du graphe selon la section 22, aucune écriture distante n’est autorisée pendant une reprise W10 corrective. Le kit W11 est livré sans exécution et sans secret.
+Pendant une reprise W10 corrective, les écritures distantes sont interdites sauf dans deux frontières explicitement prévues par le workflow : (1) l’application demandée d’actions structurelles de graphe selon la section 22 ; (2) la publication automatique du checkpoint français immédiatement après validation et application de la revue du contenu français, avant toute préparation de la traduction anglaise. Le kit W11 reste livré sans exécution et sans secret pour la publication bilingue finale.
 
 Avant toute publication, W11 doit :
 
@@ -681,7 +681,7 @@ Pour une mise à jour de contenu, le résumé est calculé à partir du différe
 
 Le plan signé porte un contrat explicite de résumés individualisés, ainsi que la politique et le texte attendus pour chaque mutation. L’exécuteur **recalcule** le résumé attendu à partir du contenu signé et de l’état distant relu immédiatement avant l’écriture ; une divergence bloque l’opération. Après écriture, la révision est relue et le contenu, le résumé, la balise et l’identifiant de révision sont vérifiés. Les anciens plans déjà signés avant l’introduction de ce contrat restent lisibles selon leur format historique, sans autoriser un nouveau plan à revenir au résumé générique.
 
-Cette règle concerne les opérations de publication d’un corpus rendu et validé. Les paquets intermédiaires de `review-import` qui ne contiennent pas encore de pages MediaWiki finales restent des étapes locales : ils ne déclenchent pas à eux seuls une écriture distante. Les actions structurelles du graphe explicitement exécutées conservent leur contrat distinct d’écriture immédiate et de résumés individualisés.
+Cette règle s’applique aussi au checkpoint français produit après validation de la revue de contenu. À ce point précis, `review-import` rend les pages françaises depuis les verrous approuvés, sans lien interlangue tant que les titres anglais ne sont pas verrouillés, construit un plan de reprise signé et publie automatiquement les mutations françaises avant de préparer le paquet de traduction anglaise. Chaque mutation reçoit le même contrat de résumé individualisé, de garde de révision, de balise `chatgpt` et de relecture post-écriture que `update`. Les autres paquets intermédiaires de `review-import` restent locaux, hors actions structurelles du graphe explicitement exécutées.
 
 ## 13. Profils locaux et invariants propres à un corpus
 
@@ -704,7 +704,7 @@ Avant `release_ready`, le corpus doit présenter :
 9. appels de référence inline placés sur les affirmations factuelles qui nécessitent une attribution, sans quota mécanique par sous-partie ;
 10. maintien de tous les invariants verrouillés du graphe ;
 11. recalcul explicite de toutes les empreintes de fichiers et, si nécessaire, de l’empreinte structurelle ;
-12. absence totale d’écriture distante ;
+12. absence d’écriture distante non autorisée ; les actions structurelles explicitement exécutées et le checkpoint français publié après revue de contenu sont admis uniquement avec leurs plans et reçus signés ;
 13. audit de non-régression des normes, du validateur et du kit W11.
 
 Le paquet déclare dans son manifeste les chemins du vocabulaire contrôlé, du registre individuel, des rapports requis et du handoff correctif courant. Le validateur ne déduit jamais ces chemins d’un sujet, d’un numéro de Work ou d’une rubrique particulière. Il ne peut jamais bloquer un mot-clé au seul motif qu’il n’apparaît qu’une fois dans le débat courant.
@@ -713,7 +713,7 @@ Le paquet déclare dans son manifeste les chemins du vocabulaire contrôlé, du 
 
 Les archives de normes, du validateur et du kit comportent un manifeste SHA-256 exhaustif. Tout fichier livré, y compris un manifeste historique placé dans un sous-dossier, est soit déclaré avec sa taille et son empreinte, soit explicitement exclu par un chemin précis. Le reçu externe indique des nombres exacts et reproductibles.
 
-La configuration de publication exécute toutes les portées applicables du validateur courant, notamment `wikicode` et `editorial` lorsque des pages sont publiées. Le kit refuse une configuration qui omet une portée obligatoire du profil actif.
+La configuration de publication finale exécute toutes les portées applicables du validateur courant, notamment `wikicode` et `editorial`. Le checkpoint français intermédiaire est un cas spécialisé : il réutilise les verrous et revues éditoriales françaises déjà finalisés, rend uniquement les pages françaises, puis réexécute avant planification les portées structurelles et de publication applicables (`schema`, `coherence`, `graph`, `files`, `batches`, `sources`, `wikicode`, `workflow`). La traduction anglaise reste `deferred` et aucune exigence bilingue finale n’est anticipée.
 
 La première écriture canonique de W11 est le test de l’unique page Débat française. La page doit être absente dans le plan et est créée avec `createonly`. Son reçu machine est lié au plan signé, au titre canonique, au fichier local, au contenu relu, à la révision distante, à l’identité vérifiée, au résumé et à la balise de modification. Avant toute autre écriture, le kit recharge ce reçu, en vérifie l’empreinte et confirme que la page courante reste exactement à la révision attestée. Aucune sous-page utilisateur n’est créée.
 
@@ -776,11 +776,15 @@ Lorsqu’une intervention éditoriale externe devient nécessaire, le kit crée 
 
 Le dossier `outgoing/` est une zone locale sensible au même titre que `incoming/`, `.state/`, `corpus/` et `private/` : il est exclu de Git et ne peut jamais être ajouté à un paquet générique de sources.
 
+Le ZIP corrigé rendu par ChatGPT est placé dans `incoming/`. La commande utilisateur normale est `./wikidebia review-import` : lorsqu’un seul ZIP de revue valide est présent, il est sélectionné automatiquement d’après son `REVIEW_PACKAGE.json`, indépendamment de son nom de fichier. S’il existe plusieurs ZIP de revue, la commande bloque et indique `./wikidebia review-import <debate_id>` ; le sélecteur est l’identifiant interne du débat, jamais le nom du ZIP. Plusieurs ZIP correspondant au même `debate_id` restent ambigus et doivent être désambiguïsés par retrait/archivage du doublon. Les ZIP qui ne sont pas des paquets de revue ChatGPT ne sont pas candidats à cette commande. Après succès, le ZIP consommé est archivé ; après échec il reste dans `incoming/` pour reprise.
+
 La commande de réimport vérifie le schéma, l’identité du débat et du Work, l’identifiant du paquet attendu, l’empreinte du manifeste, l’intégrité des fichiers de contexte, l’absence de fichiers supplémentaires, l’absence de liens ou chemins ZIP dangereux et l’immuabilité locale depuis la préparation. Un paquet provenant d’un autre corpus, d’un autre Work, d’une ancienne revue ou dont le contexte a changé est refusé.
 
-Après installation transactionnelle des seuls fichiers `editable/`, la primitive de finalisation correspondante est exécutée. En cas d’échec, le répertoire de contrôle concerné est restauré intégralement dans son état antérieur. En cas de succès, les confirmations SHA-256 requises par les primitives internes sont résolues automatiquement à partir de leurs reçus, puis le workflow reprend jusqu’au prochain point éditorial. La reprise est idempotente : un paquet déjà en attente est réutilisé, et une interruption entre deux étapes mécaniques ne doit ni dupliquer un Work ni permettre de sauter une validation.
+Après installation transactionnelle des seuls fichiers `editable/`, la primitive de finalisation correspondante est exécutée. Pour `fr_content_review`, la réussite de la finalisation et de l’application déclenche obligatoirement, avant le paquet anglais, la construction d’un checkpoint français sans interlangue puis sa reprise distante contrôlée. Si le préflight échoue avant écriture, la transaction locale est restaurée. Dès qu’une exécution distante a commencé, l’état local scellé, le plan et les reçus sont conservés pour une reprise idempotente ; la traduction anglaise n’est jamais préparée tant que cette publication n’est pas réussie ou attestée `no_changes`. En cas de succès, les confirmations SHA-256 requises par les primitives internes sont résolues automatiquement à partir de leurs reçus, puis le workflow reprend jusqu’au prochain point éditorial.
 
 L’orchestration couvre au minimum : revue du graphe et des placements ; revue française des titres, rubriques et mots-clés ; revue du contenu, de l’introduction, des résumés et de la documentation française ; recherche d’appellations consacrées lorsqu’elle appartient au registre de la phase ; traduction et documentation anglaises ; recherche d’`established-name=` ; et deux passes indépendantes de convergence sémantique. Toute nouvelle phase nécessitant une décision éditoriale externe doit s’intégrer au même contrat de paquet plutôt que réintroduire une manipulation manuelle de fichiers internes.
+
+Lors de la finalisation de `fr_content_review`, `data/sources_working.json` est contrôlé directement contre le vocabulaire documentaire du registre final, notamment `document_kind`. Une valeur hors enum est refusée à ce stade, avant projection vers `data/sources.json` et avant tout préflight de publication ; le workflow ne doit pas reporter cette erreur à une validation structurelle ultérieure.
 
 
 Lorsqu’une revue du graphe retourne `decision=rejected`, ce résultat est **non promouvable**. L’orchestrateur ne peut ni passer à `graph_validated`, ni appeler la promotion, ni ouvrir le Work éditorial suivant. Il enregistre le rejet et ses `blocking_issues`, prépare automatiquement une phase externe `graph_correction` au schéma `wikidebia-graph-correction-1.0`, puis s’arrête sur le paquet ChatGPT correspondant. La correction ne modifie que la structure encore déverrouillée du graphe : parenté des occurrences, relation `justification`/`objection`, branche des racines, ordre et choix de l’occurrence primaire. Le kit reconstruit ensuite mécaniquement les relations, profondeurs, branches, indicateurs `render_children`, compteurs dérivés et projection du graphe, puis exécute une validation structurelle. Une correction invalide est restaurée transactionnellement et reste au point de correction. Une correction valide prépare obligatoirement **une nouvelle revue complète du graphe** ; elle ne vaut jamais approbation implicite. La promotion n’est accessible qu’après le retour `approved` de cette nouvelle revue. Les rejets successifs répètent ce cycle autant de fois que nécessaire.
@@ -795,5 +799,5 @@ Avant la première écriture distante, le kit construit et valide dans une copie
 
 Lorsqu’une passe de convergence détecte une erreur certaine, le workflow n’applique pas la traduction. Il rouvre proprement la revue anglaise sur la même base française verrouillée, conserve les constatations de convergence comme contexte, produit un nouveau paquet de correction et recommence ensuite les deux passes indépendantes sur la nouvelle empreinte sémantique. Deux passes propres de familles distinctes restent obligatoires avant le rendu et la libération.
 
-Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. Elle peut réutiliser un snapshot `graph-extract` déjà présent ; sinon elle effectue l’extraction en lecture seule. Après la dernière revue convergée, le rendu et la construction du corpus `release_ready` sont mécaniques et sont enchaînés automatiquement sans effectuer de publication distante. La seule exception pré-W11 est la voie explicitement destructive `review-import ... --execute-graph-actions`, limitée aux mutations structurelles déjà décidées dans la revue du graphe et soumise aux garde-fous du présent article.
+Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. Elle peut réutiliser un snapshot `graph-extract` déjà présent ; sinon elle effectue l’extraction en lecture seule. Après la revue française de contenu, le checkpoint français est publié automatiquement et attesté avant la préparation anglaise. Après la dernière revue convergée, le rendu et la construction du corpus bilingue `release_ready` restent mécaniques ; la publication bilingue finale demeure une étape distincte. Les deux seules écritures distantes intermédiaires autorisées sont les actions structurelles explicitement demandées et ce checkpoint français scellé.
 

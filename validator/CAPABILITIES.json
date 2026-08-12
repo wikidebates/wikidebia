@@ -4,9 +4,9 @@
   "component": "validator",
   "release_source": "VERSIONS.json",
   "release": {
-    "norm": "1.2.79",
-    "validator": "0.4.83",
-    "kit": "2.16.12"
+    "norm": "1.2.80",
+    "validator": "0.4.84",
+    "kit": "2.16.13"
   },
   "emits": {
     "validator_report": [

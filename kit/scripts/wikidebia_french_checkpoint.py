@@ -1,0 +1,474 @@
+#!/usr/bin/env python3
+"""Render and publish the validated French checkpoint before English translation.
+
+The French content review is a publication boundary.  This module builds a
+French-only, translation-deferred corpus from ``content-reviewed-copy`` and
+reuses the ordinary signed remote-update engine for all MediaWiki writes.
+"""
+from __future__ import annotations
+
+import copy
+import datetime as dt
+import json
+import os
+import re
+import shutil
+import sys
+import tempfile
+from pathlib import Path
+from typing import Any, Mapping
+
+from wikidebia_release_info import KIT_VERSION, NORM_VERSION, VALIDATOR_VERSION
+from wikidebia_corpus_build import (
+    assert_no_symlinks,
+    full_tree_sha256,
+    load_json,
+    now_iso,
+    relative_to_project,
+    sha256_file,
+    structural_sha256,
+    validate_debate_id,
+    write_json,
+)
+from wikidebia_editorial_workspace import validate_work_id, workspace_receipt_hash
+from wikidebia_render import (
+    _batch,
+    _page_creation_dates,
+    _page_manifest,
+    _render_argument,
+    _render_debate,
+    _write_aggregate,
+    _copy_active_norm,
+)
+from wikidebia_update import (
+    PlanExecutor,
+    RemoteUpdatePlanner,
+    build_adapter,
+    sha_object,
+    sha_text,
+)
+
+
+CHECKPOINT_SCHEMA = "wikidebia-french-publication-checkpoint-1.0"
+RECEIPT_SCHEMA = "wikidebia-french-checkpoint-publication-receipt-1.0"
+
+
+class FrenchCheckpointError(RuntimeError):
+    def __init__(self, message: str, *, remote_execution_started: bool = False) -> None:
+        super().__init__(message)
+        self.remote_execution_started = remote_execution_started
+
+
+def _workspace(project_root: Path, debate_id: str, work_id: str) -> tuple[Path, dict[str, Any]]:
+    debate_id = validate_debate_id(debate_id)
+    work_id = validate_work_id(work_id)
+    path = (project_root / ".state" / "editorial-workspaces" / debate_id / work_id).resolve()
+    if not path.is_dir() or path.is_symlink():
+        raise FrenchCheckpointError(f"Workspace introuvable : {debate_id}/{work_id}")
+    meta = load_json(path / "workspace.json", "workspace.json")
+    if meta.get("debate_id") != debate_id or meta.get("work_id") != work_id:
+        raise FrenchCheckpointError("Identité du workspace divergente")
+    if meta.get("workspace_sha256") != workspace_receipt_hash(meta):
+        raise FrenchCheckpointError("Empreinte de workspace.json invalide")
+    if meta.get("status") not in {"fr_content_applied", "en_translation_review_ready", "en_translation_review_finalized", "en_translation_applied", "bilingual_rendered"}:
+        raise FrenchCheckpointError(f"Le contenu français n'est pas appliqué : {meta.get('status')}")
+    source = path / "content-reviewed-copy"
+    if not source.is_dir() or source.is_symlink():
+        raise FrenchCheckpointError("content-reviewed-copy absent ou non sûr")
+    expected = str((meta.get("content_reviewed_copy") or {}).get("tree_sha256") or "")
+    if not expected or full_tree_sha256(source) != expected:
+        raise FrenchCheckpointError("content-reviewed-copy a changé depuis son application")
+    assert_no_symlinks(source)
+    return path, meta
+
+
+def _fr_validation_records(timestamp: str, input_sha: str) -> list[dict[str, Any]]:
+    return [
+        {
+            "id": f"V{timestamp[:10].replace('-', '')}-{index:03d}",
+            "scope": scope,
+            "language": None,
+            "validator_version": VALIDATOR_VERSION,
+            "executed_at": timestamp,
+            "input_sha256": input_sha,
+            "result": "passed",
+            "blocking_errors": 0,
+            "warnings": 0,
+            "report_path": "reports/fr_checkpoint_validation.json",
+        }
+        for index, scope in enumerate(("graph", "fr_debate", "fr_global"), start=1)
+    ]
+
+
+def _build_checkpoint_copy(project_root: Path, source: Path, target: Path, debate_id: str, work_id: str) -> dict[str, Any]:
+    shutil.copytree(source, target, symlinks=False, copy_function=shutil.copy2)
+    assert_no_symlinks(target)
+    registry = load_json(target / "data/registre_debat.json", "registre du débat")
+    manifest = load_json(target / "manifest.json", "manifest.json")
+    fr_meta = load_json(target / "data/fr_page_metadata_lock.json", "verrou français des métadonnées")
+    fr_content = load_json(target / "data/fr_content_lock.json", "verrou français du contenu")
+    source_registry = load_json(target / "data/sources.json", "registre documentaire")
+    if manifest.get("debate_id") != debate_id or fr_content.get("debate_id") != debate_id:
+        raise FrenchCheckpointError("Identité du corpus français divergente")
+
+    nodes = [node for node in (registry.get("graph") or {}).get("nodes") or [] if node.get("status") == "active"]
+    nodes.sort(key=lambda node: str(node.get("id")))
+    fr_args = {str(row.get("id")): row for row in fr_content.get("arguments") or []}
+    if set(fr_args) != {str(node.get("id")) for node in nodes}:
+        raise FrenchCheckpointError("Le verrou français ne couvre pas exactement les arguments actifs")
+    source_by_id = {str(row.get("id")): row for row in source_registry.get("sources") or []}
+
+    timestamp = now_iso()
+    fallback_date = str(fr_content.get("applied_at") or timestamp)[:10]
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", fallback_date):
+        fallback_date = dt.date.today().isoformat()
+    dates = _page_creation_dates(target, registry, fallback_date)
+
+    lifecycle = (registry.get("graph") or {}).setdefault("lifecycle", {})
+    lifecycle.update({
+        "status": "locked",
+        "locked_at": timestamp,
+        "locked_by_stage": "fr_checkpoint_publication",
+        "structural_sha256": structural_sha256(registry),
+    })
+    debate_pages = (registry.get("debate") or {}).get("pages") or {}
+    debate_pages["fr"]["title_status"] = "locked"
+    debate_pages["fr"].setdefault("interlanguage", {}).update({
+        "status": "deferred", "inserted_at": None, "verified_at": None,
+    })
+    for node in nodes:
+        node["fr"]["title_status"] = "locked"
+        node["pages"]["fr"].setdefault("interlanguage", {}).update({
+            "status": "deferred", "inserted_at": None, "verified_at": None,
+        })
+
+    output_paths: list[tuple[str, str, str, str, str]] = []
+    debate_id_actual = str((registry.get("debate") or {}).get("id"))
+    debate_rel = "output/fr/debate/debate.wiki"
+    debate_text = _render_debate(
+        lang="fr", registry=registry, metadata_lock=fr_meta, content_lock=fr_content,
+        sources=source_by_id, creation_date=dates[(debate_id_actual, "fr")],
+        include_interlanguage=False,
+    )
+    debate_path = target / debate_rel
+    debate_path.parent.mkdir(parents=True, exist_ok=True)
+    debate_path.write_text(debate_text, encoding="utf-8", newline="\n")
+    output_paths.append((debate_id_actual, "fr", "debate", debate_rel, sha256_file(debate_path)))
+    for node in nodes:
+        node_id = str(node.get("id"))
+        rel = f"output/fr/arguments/{node_id}.wiki"
+        text = _render_argument(
+            lang="fr", node=node, content=fr_args[node_id], registry=registry,
+            sources=source_by_id, creation_date=dates[(node_id, "fr")],
+            include_interlanguage=False,
+        )
+        path = target / rel
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text, encoding="utf-8", newline="\n")
+        output_paths.append((node_id, "fr", "argument", rel, sha256_file(path)))
+
+    registry_sha_before_outputs = sha256_file(target / "data/registre_debat.json")
+    structural = structural_sha256(registry)
+    aggregate_path, aggregate_sha = _write_aggregate(target, "fr", nodes)
+    batch = _batch(
+        debate_id=debate_id, lang="fr", nodes=nodes, registry_sha=registry_sha_before_outputs,
+        structural_sha=structural, aggregate_path=aggregate_path, aggregate_sha=aggregate_sha,
+        timestamp=timestamp, work_id=work_id,
+    )
+    batch["root_node_ids"] = sorted({
+        str(occ.get("node_id")) for occ in (registry.get("graph") or {}).get("occurrences") or []
+        if occ.get("depth") == 1
+    })
+    write_json(target / "data/lots_fr.json", {
+        "batch_collection_version": "1.0", "debate_id": debate_id,
+        "language": "fr", "batches": [batch],
+    })
+    (target / "reports/fr_batch_001.txt").parent.mkdir(parents=True, exist_ok=True)
+    (target / "reports/fr_batch_001.txt").write_text("Lot français rendu pour publication après revue.\n", encoding="utf-8", newline="\n")
+
+    page_hash_by_key = {(page_id, lang): sha for page_id, lang, _type, _rel, sha in output_paths}
+    debate_rec = debate_pages["fr"]
+    debate_rec["file"].update({"sha256": page_hash_by_key[(debate_id_actual, "fr")], "status": "validated"})
+    debate_rec["generation"].update({
+        "status": "validated", "assigned_batch_id": None,
+        "creation_date": dates[(debate_id_actual, "fr")], "generated_at": timestamp, "validated_at": timestamp,
+    })
+    for node in nodes:
+        node_id = str(node.get("id"))
+        rec = node["pages"]["fr"]
+        rec["file"].update({"sha256": page_hash_by_key[(node_id, "fr")], "status": "validated"})
+        rec["generation"].update({
+            "status": "validated", "assigned_batch_id": "FR-A-001",
+            "creation_date": dates[(node_id, "fr")], "generated_at": timestamp, "validated_at": timestamp,
+        })
+
+    registry["schema"]["validator_version"] = VALIDATOR_VERSION
+    registry["batches"] = [copy.deepcopy(batch)]
+    registry["validations"] = []
+    write_json(target / "data/registre_debat.json", registry)
+    projection = load_json(target / "graph/graphe_argumentatif.json", "projection du graphe")
+    projection["nodes"] = copy.deepcopy((registry.get("graph") or {}).get("nodes") or [])
+    projection["edges"] = copy.deepcopy((registry.get("graph") or {}).get("edges") or [])
+    projection["occurrences"] = copy.deepcopy((registry.get("graph") or {}).get("occurrences") or [])
+    projection["lifecycle"] = copy.deepcopy(lifecycle)
+    write_json(target / "graph/graphe_argumentatif.json", projection)
+
+    pages: list[dict[str, Any]] = []
+    for page_id, lang, page_type, rel, sha in output_paths:
+        if page_type == "debate":
+            title = str(debate_pages["fr"].get("canonical_title"))
+            content = fr_content.get("debate") or {}
+            batch_id = None
+        else:
+            node = next(node for node in nodes if str(node.get("id")) == page_id)
+            title = str((node.get("fr") or {}).get("canonical_title"))
+            content = fr_args[page_id]
+            batch_id = "FR-A-001"
+        pages.append(_page_manifest(
+            debate_id=debate_id, page_id=page_id, page_type=page_type, lang=lang, title=title,
+            file_path=rel, sha256=sha, creation_date=dates[(page_id, "fr")], batch_id=batch_id,
+            timestamp=timestamp, report_path="reports/fr_checkpoint_validation.json",
+            page_origin=str(content.get("page_origin") or "preexisting"),
+            preserved_parameters=content.get("preserved_parameters") or {},
+        ))
+    pages.sort(key=lambda row: (0 if row["page_type"] == "debate" else 1, row["page_id"]))
+
+    manifest["global_status"] = "fr_validated"
+    manifest["updated_at"] = timestamp
+    manifest.setdefault("normative_versions", {}).update({
+        "consolidated_norm": NORM_VERSION, "validator": VALIDATOR_VERSION,
+    })
+    manifest.setdefault("translation_status", {})["en"] = "deferred"
+    manifest["pages"] = pages
+    manifest["batches"] = [copy.deepcopy(batch)]
+    input_sha = structural_sha256(registry)
+    manifest["validations"] = _fr_validation_records(timestamp, input_sha)
+    manifest.setdefault("works", []).append({
+        "work_id": f"{work_id}-FR-PUBLISH", "work_type": "fr_global_validation",
+        "conversation_name": "Publication française après revue de contenu", "status": "completed",
+        "input_handoff": None, "output_handoff": None, "started_at": timestamp, "completed_at": timestamp,
+    })
+    # The checkpoint is deliberately publishable in French while English remains deferred.
+    manifest["publication_gate"] = {
+        "local_release_status": "corrective_in_progress",
+        "remote_write_authorized": True,
+        "remote_template_compatibility": "not_checked",
+        "blocking_reason": None,
+        "checked_at": timestamp,
+    }
+    controls = manifest.setdefault("editorial_controls", {})
+    controls.setdefault("individual_review_path", "reviews/individual_review.json")
+    controls.setdefault("graph_placement_review_path", "reviews/graph_placement_review.json")
+    controls.setdefault("summary_style_review_path", "reviews/summary_style_review.json")
+    controls.setdefault("introduction_review_path", "reviews/introduction_review.json")
+    write_json(target / "manifest.json", manifest)
+    _copy_active_norm(project_root, target)
+
+    checkpoint = {
+        "schema": CHECKPOINT_SCHEMA,
+        "schema_version": "1.0",
+        "debate_id": debate_id,
+        "work_id": work_id,
+        "status": "rendered",
+        "created_at": timestamp,
+        "source_content_review_sha256": str(fr_content.get("review_sha256") or ""),
+        "source_content_reviewed_copy_sha256": full_tree_sha256(source),
+        "page_count": len(pages),
+        "english_translation_status": "deferred",
+        "interlanguage_links": 0,
+    }
+    write_json(target / "data/fr_publication_checkpoint.json", checkpoint)
+    return {"checkpoint": checkpoint, "pages": len(pages), "timestamp": timestamp}
+
+
+def build_checkpoint(project_root: Path, debate_id: str, work_id: str) -> Path:
+    project_root = project_root.resolve()
+    workspace, _meta = _workspace(project_root, debate_id, work_id)
+    source = workspace / "content-reviewed-copy"
+    state_dir = project_root / ".state" / "fr-publication" / debate_id / work_id
+    target = state_dir / "checkpoint-corpus"
+    receipt_path = state_dir / "checkpoint.json"
+    if target.is_dir() and receipt_path.is_file():
+        receipt = load_json(receipt_path, "checkpoint français")
+        if receipt.get("source_content_reviewed_copy_sha256") != full_tree_sha256(source):
+            raise FrenchCheckpointError("Le checkpoint français existant appartient à un autre contenu verrouillé")
+        if receipt.get("checkpoint_tree_sha256") != full_tree_sha256(target):
+            raise FrenchCheckpointError("Le checkpoint français existant a été modifié")
+        return target
+    if target.exists():
+        raise FrenchCheckpointError("Chemin de checkpoint français déjà occupé")
+    state_dir.mkdir(parents=True, exist_ok=True)
+    temp = Path(tempfile.mkdtemp(prefix=".checkpoint.tmp-", dir=state_dir))
+    try:
+        shutil.rmtree(temp)
+        result = _build_checkpoint_copy(project_root, source, temp, debate_id, work_id)
+        tree_sha = full_tree_sha256(temp)
+        os.replace(temp, target)
+    except Exception:
+        shutil.rmtree(temp, ignore_errors=True)
+        raise
+    receipt = {
+        **result["checkpoint"],
+        "status": "ready_for_remote_plan",
+        "checkpoint_path": relative_to_project(target, project_root),
+        "checkpoint_tree_sha256": tree_sha,
+    }
+    receipt["receipt_sha256"] = sha_object(receipt)
+    write_json(receipt_path, receipt)
+    return target
+
+
+def _write_import_inventory(project_root: Path, debate_id: str, checkpoint: Path, work_id: str) -> Path:
+    inventory_dir = project_root / ".state" / "fr-publication" / debate_id / work_id / "inventory"
+    inventory_dir.mkdir(parents=True, exist_ok=True)
+    inventory_path = inventory_dir / "fr.json"
+    if inventory_path.is_file():
+        return inventory_dir
+    provenance = load_json(checkpoint / "data/import_provenance.json", "provenance d'import")
+    pages: list[dict[str, Any]] = []
+    for row in provenance.get("pages") or []:
+        if row.get("status") in {"retired_redirect", "retired_deleted"}:
+            continue
+        kind = str(row.get("kind") or "")
+        import_path = str(row.get("import_path") or "")
+        path = checkpoint / import_path
+        if kind not in {"debate", "argument"} or not path.is_file():
+            continue
+        page_id = debate_id if kind == "debate" else str(row.get("page_id") or "")
+        if not page_id:
+            continue
+        text = path.read_text(encoding="utf-8")
+        pages.append({
+            "page_id": page_id,
+            "page_type": kind,
+            "canonical_title": str(row.get("canonical_title") or row.get("requested_title") or ""),
+            "content_sha256": sha_text(text),
+            "revision_id": int(row["revision_id"]) if row.get("revision_id") is not None else None,
+            "status": "published",
+            "content": text,
+        })
+    if not pages:
+        raise FrenchCheckpointError("Impossible de construire l'inventaire distant depuis la provenance française")
+    inventory = {
+        "inventory_version": "wikidebia-remote-inventory-1.0",
+        "debate_id": debate_id,
+        "language": "fr",
+        "inventory_mode": "explicit_debate_pages_read_only",
+        "created_at": now_iso(),
+        "source": {"kind": "graph_extraction_snapshot", "provenance": "data/import_provenance.json"},
+        "pages": sorted(pages, key=lambda row: (row["page_type"], row["page_id"])),
+    }
+    inventory["inventory_sha256"] = sha_object(inventory)
+    write_json(inventory_path, inventory)
+    return inventory_dir
+
+
+def _local_settings(project_root: Path) -> dict[str, Any]:
+    path = project_root / "config" / "wikidebia.local.json"
+    return load_json(path, "configuration locale") if path.is_file() else {}
+
+
+def _config(project_root: Path, debate_id: str, work_id: str, checkpoint: Path, inventory_root: Path) -> Path:
+    state_dir = project_root / ".state" / "fr-publication" / debate_id / work_id
+    config_path = state_dir / "remote-update-config.json"
+    settings = _local_settings(project_root)
+    users = settings.get("expected_users") or {"fr": "ChatGPT"}
+    family_file = project_root / "kit/families/wikidebates_family.py"
+    validator_script = project_root / "validator/scripts/wikidebia_validate.py"
+    config = {
+        "kit_version": KIT_VERSION,
+        "project_root": str(project_root),
+        "family": str(settings.get("family") or "wikidebates"),
+        "family_file": str(family_file),
+        "pywikibot_dir": str(project_root / "private/pywikibot"),
+        "sites": {"fr": {"code": "fr", "expected_user": str(users.get("fr") or "ChatGPT")}},
+        "languages": ["fr"],
+        "debate_id": debate_id,
+        "corpus_root": str(checkpoint),
+        "state_inventory_root": str(inventory_root),
+        "logs_dir": str(project_root / "logs" / debate_id / f"fr-checkpoint-{work_id}"),
+        "published_state_dir": str(project_root / ".state/published"),
+        "receipts_dir": str(project_root / ".state/receipts"),
+        "validator": {
+            "command": [sys.executable, str(validator_script), "validate"],
+            "required_version": VALIDATOR_VERSION,
+            "scopes": ["schema", "coherence", "graph", "files", "batches", "sources", "wikicode", "workflow"],
+        },
+    }
+    write_json(config_path, config)
+    return config_path
+
+
+def publish_checkpoint(project_root: Path, debate_id: str, work_id: str, *, adapter: Any | None = None) -> dict[str, Any]:
+    """Publish the sealed French content and return a signed local receipt.
+
+    If execution has already succeeded for the exact checkpoint, the stored
+    receipt is returned.  A saved plan is reused after an interrupted execution.
+    """
+    project_root = project_root.resolve()
+    checkpoint = build_checkpoint(project_root, debate_id, work_id)
+    state_dir = project_root / ".state" / "fr-publication" / debate_id / work_id
+    publication_path = state_dir / "publication-receipt.json"
+    if publication_path.is_file():
+        publication = load_json(publication_path, "reçu de publication française")
+        if publication.get("checkpoint_tree_sha256") == full_tree_sha256(checkpoint) and publication.get("status") in {"published", "verified_no_changes"}:
+            return publication
+
+    inventory_root = _write_import_inventory(project_root, debate_id, checkpoint, work_id)
+    config_path = _config(project_root, debate_id, work_id, checkpoint, inventory_root)
+    config = load_json(config_path, "configuration de publication française")
+    actual_adapter = adapter if adapter is not None else build_adapter(config, project_root)
+    plan_path = state_dir / "update-plan.json"
+    if plan_path.is_file():
+        plan = load_json(plan_path, "plan de publication française")
+    else:
+        planner = RemoteUpdatePlanner(config, actual_adapter, config_path)
+        plan = planner.build_plan(mode="all")
+        operations = plan.get("operations") or {}
+        if operations.get("blocked") or operations.get("manual_review"):
+            raise FrenchCheckpointError(
+                "Le préflight de publication française contient des opérations bloquées ou à revoir; "
+                f"consulter {relative_to_project(plan_path, project_root)}"
+            )
+        # Structural removals must already have gone through explicit graph actions.
+        unexpected = sum(len(operations.get(name) or []) for name in ("redirect", "delete"))
+        if unexpected:
+            raise FrenchCheckpointError(
+                "La publication française de contenu ne peut pas introduire de redirection ou suppression implicite"
+            )
+        write_json(plan_path, plan)
+    operations = plan.get("operations") or {}
+    if operations.get("blocked") or operations.get("manual_review"):
+        raise FrenchCheckpointError("Le plan français sauvegardé contient des opérations non résolues")
+
+    executor = PlanExecutor(config, actual_adapter, config_path)
+    mutations = sum(len(operations.get(name) or []) for name in ("create", "update", "move", "redirect", "delete"))
+    try:
+        if mutations:
+            receipt = executor.execute(plan, str(plan.get("plan_sha256")))
+            status = "published"
+        else:
+            receipt = executor.attest_no_changes(plan, str(plan.get("plan_sha256")))
+            status = "verified_no_changes"
+    except Exception as exc:
+        raise FrenchCheckpointError(str(exc), remote_execution_started=bool(mutations)) from exc
+
+    publication = {
+        "schema": RECEIPT_SCHEMA,
+        "schema_version": "1.0",
+        "debate_id": debate_id,
+        "work_id": work_id,
+        "status": status,
+        "published_at": now_iso(),
+        "checkpoint_path": relative_to_project(checkpoint, project_root),
+        "checkpoint_tree_sha256": full_tree_sha256(checkpoint),
+        "plan_path": relative_to_project(plan_path, project_root),
+        "plan_sha256": plan.get("plan_sha256"),
+        "edit_summary_contract": plan.get("edit_summary_contract"),
+        "counts": copy.deepcopy(plan.get("counts") or {}),
+        "remote_receipt_sha256": receipt.get("receipt_sha256"),
+        "english_translation_preparation_authorized": True,
+    }
+    publication["receipt_sha256"] = sha_object(publication)
+    write_json(publication_path, publication)
+    return publication

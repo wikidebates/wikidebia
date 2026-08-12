@@ -19,15 +19,17 @@ Revue du graphe préparée.
 Envoyez ce fichier à ChatGPT :
 outgoing/revenu_de_base_graph_review.zip
 
-Après correction, réimportez le ZIP rendu avec :
-./wikidebia review-import revenu_de_base <fichier_corrige.zip>
+Après correction, placez le ZIP rendu dans `incoming/`, puis lancez :
+./wikidebia review-import
 ```
 
-Après le retour de ChatGPT :
+Après le retour de ChatGPT, placer le ZIP corrigé dans `incoming/` puis lancer :
 
 ```bash
-./wikidebia review-import revenu_de_base fichier_corrige.zip
+./wikidebia review-import
 ```
+
+Si plusieurs paquets de revue valides sont présents, la commande indique les identifiants disponibles ; utiliser alors `./wikidebia review-import <debate_id>`.
 
 Le kit vérifie le paquet, installe uniquement les fichiers autorisés, finalise et applique la revue, puis poursuit automatiquement jusqu'au prochain point éditorial. Aucun SHA-256 n'est à recopier manuellement.
 
@@ -63,7 +65,7 @@ Le cycle courant couvre successivement :
 
 Si une passe sémantique trouve une erreur certaine, la traduction est rouverte, les constatations sont fournies comme contexte dans un paquet de correction, puis les deux passes de convergence recommencent sur la nouvelle empreinte.
 
-Après deux passes propres et indépendantes, l'application, le rendu et la construction `release_ready` sont automatiques. Le workflow normal n'exécute aucune publication distante ; l'exception explicite `review-import ... --execute-graph-actions` ne concerne que les mutations structurelles déjà décidées pendant la revue du graphe.
+Après validation de la revue française de contenu, le workflow rend et publie automatiquement le checkpoint français avec des résumés personnalisés avant de préparer la traduction anglaise. Après deux passes anglaises propres et indépendantes, l'application, le rendu et la construction `release_ready` restent automatiques. Les autres écritures pré-W11 sont limitées aux actions structurelles explicitement demandées.
 
 ## Commandes avancées
 
@@ -84,7 +86,7 @@ Ce fichier peut être envoyé tel quel à ChatGPT pour diagnostic. Après correc
 Lorsqu’un ZIP de revue rejetée contient des décisions structurelles explicites, utilisez :
 
 ```bash
-./wikidebia review-import <debate_id> <zip_revu> --execute-graph-actions
+./wikidebia review-import <debate_id> --execute-graph-actions
 ```
 
 Cette commande valide d’abord la projection locale complète, préflight toutes les pages distantes concernées, puis applique dans l’ordre les modifications des pages mères, les redirections des doublons et les suppressions non fusionnées. Les actions possibles sont `remove`, `merge_redirect`, `move` et `relation_change`. Un doublon est remplacé par `#REDIRECTION [[Destination]]` et le résumé de la page mère mentionne `[[Destination]]`. Les résumés génériques `Corrections` ne sont pas utilisés. Après succès, une nouvelle revue complète du graphe est automatiquement préparée.
@@ -92,10 +94,15 @@ Cette commande valide d’abord la projection locale complète, préflight toute
 
 ## Transaction de réimport et reprise
 
-À partir du kit 2.16.8, un `review-import` qui ne comporte pas d’écriture distante irréversible reste une transaction jusqu’au prochain arrêt éditorial. La revue n’est donc pas considérée comme définitivement consommée tant que l’avancement mécanique suivant n’a pas réussi. En cas d’échec, le workflow, la base revue et les artefacts mécaniques créés pendant la tentative sont restaurés ; le même ZIP peut être réimporté.
+À partir du kit 2.16.8, un `review-import` reste transactionnel jusqu’à une frontière distante. En 2.16.13, la publication française après `fr_content_review` constitue elle aussi une frontière distante irréversible attestée. La revue n’est donc pas considérée comme définitivement consommée tant que l’avancement mécanique suivant n’a pas réussi. En cas d’échec, le workflow, la base revue et les artefacts mécaniques créés pendant la tentative sont restaurés ; le même ZIP peut être réimporté.
 
 Les actions de graphe exécutées explicitement avec `--execute-graph-actions` constituent une frontière irréversible : si les écritures distantes ont réussi, leurs plans et reçus restent autoritatifs et le workflow reprend depuis l’état post-action au lieu de prétendre revenir avant les écritures.
 
 ## Compatibilité des composants lors de `upgrade`
 
 À partir du gestionnaire 2.16.8, chaque composant est autoritatif pour sa propre version : `wikidebia-normes` pour `norm`, `wikidebia-validator` pour `validator`, et `wikidebia-kit` pour `kit`. Les autres numéros répétés dans leur `VERSIONS.json` sont des informations de provenance et ne doivent plus forcer le reconditionnement d’un composant inchangé. Les garde-fous portent sur la version propre du composant, l’anti-rétrogradation, la révision normative effectivement implémentée et les schémas/capacités déclarés.
+
+
+## Publication française après la revue de contenu
+
+La réussite du paquet `fr_content_review` déclenche automatiquement le rendu d’un checkpoint français sans `interlangue`, son préflight distant et son exécution avec les résumés MediaWiki individualisés. Le paquet `en_translation_review` n’est créé qu’après succès ou attestation `no_changes`. Si le workflow a été préparé avec une version antérieure et possède déjà un paquet anglais sans reçu français, une reprise `workflow` publie d’abord le même contenu français scellé, sans invalider le paquet anglais lié à cette empreinte.

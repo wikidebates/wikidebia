@@ -70,6 +70,7 @@ from wikidebia_translation_review import (
 from wikidebia_semantic_convergence import record_pass as record_semantic_pass
 from wikidebia_render import render_workspace
 from wikidebia_release import release_workspace
+from wikidebia_french_checkpoint import publish_checkpoint, FrenchCheckpointError
 
 PACKAGE_SCHEMA = "wikidebia-chatgpt-review-package-1.0"
 WORKFLOW_SCHEMA = "wikidebia-editorial-orchestration-1.0"
@@ -219,7 +220,7 @@ def _instructions(review_type: str, debate_id: str, work_id: str | None, editabl
             "Pour `merge_redirect`, indiquez `target_node_id` : la page doublon deviendra `#REDIRECTION [[Titre de destination]]` et son lien sera retiré de la page mère.",
             "Pour `remove`, indiquez `page_disposition=delete` : le lien sera retiré de la page mère avant suppression de la page.",
             "Les résumés MediaWiki doivent être individualisés. Pour un doublon, le résumé de la page mère doit contenir le titre de destination sous la forme `[[Titre de destination]]`.",
-            "Une revue rejetée comportant ces décisions pourra être appliquée par `./wikidebia review-import <debate_id> <zip> --execute-graph-actions`.",
+            "Une revue rejetée comportant ces décisions pourra être appliquée par `./wikidebia review-import <debate_id> --execute-graph-actions`.",
             "Après application, Wikidéb’IA reconstruira le graphe et préparera une nouvelle revue complète avant toute promotion.",
         ]
     if review_type == "fr_metadata_review":
@@ -248,7 +249,7 @@ def _instructions(review_type: str, debate_id: str, work_id: str | None, editabl
     lines.extend(f"- `{path}`" for path in editable)
     lines += [
         "",
-        "Après la revue, rendez un ZIP conservant exactement la même structure. L'utilisateur lancera `./wikidebia review-import <debate_id> <zip>`.",
+        "Après la revue, rendez un ZIP conservant exactement la même structure, placez-le dans `incoming/`, puis lancez `./wikidebia review-import`. S'il y a plusieurs ZIP de revue dans `incoming/`, utilisez `./wikidebia review-import <debate_id>`.",
         "",
     ]
     return "\n".join(lines)
@@ -787,6 +788,19 @@ def _mechanical_advance(project_root: Path, state: dict[str, Any]) -> dict[str, 
     debate_id = str(state["debate_id"])
     while True:
         phase = str(state.get("phase") or "graph_review")
+        pending = state.get("pending_review")
+        # Migration/resume guard: workspaces produced by pre-2.16.13 may already
+        # have an English review package pending even though the sealed French
+        # content has never been published.  Publish that exact French lock now
+        # before allowing the workflow to continue; the existing English package
+        # remains bound to the same immutable French content.
+        if isinstance(pending, dict) and not state.get("french_publication"):
+            pending_type = str(pending.get("review_type") or "")
+            if pending_type in {"en_translation_review", "en_translation_correction", "semantic_convergence_1", "semantic_convergence_2"} and state.get("work_id"):
+                publication = publish_checkpoint(project_root, debate_id, str(state["work_id"]))
+                state["french_publication"] = copy.deepcopy(publication)
+                state["updated_at"] = now_iso()
+                _save_workflow(project_root, state)
         if state.get("pending_review"):
             return state
         if phase == "initialize_graph":
@@ -850,6 +864,13 @@ def _mechanical_advance(project_root: Path, state: dict[str, Any]) -> dict[str, 
             _prepare_content_package(project_root, state)
             return state
         if phase == "en_translation_review":
+            if not state.get("french_publication"):
+                if not state.get("work_id"):
+                    raise WorkflowError("Work éditorial absent avant la publication française")
+                publication = publish_checkpoint(project_root, debate_id, str(state["work_id"]))
+                state["french_publication"] = copy.deepcopy(publication)
+                state["updated_at"] = now_iso()
+                _save_workflow(project_root, state)
             _prepare_translation_package(project_root, state)
             return state
         if phase == "semantic_convergence_1":
@@ -1085,6 +1106,7 @@ def import_review(project_root: Path, debate_id: str, archive: Path, *, execute_
         shutil.rmtree(backup)
     shutil.copytree(base, backup, symlinks=False)
     irreversible_graph_actions = False
+    irreversible_french_publication = False
     try:
         _install_editable_files(base, manifest, files)
         review_type = str(manifest["review_type"])
@@ -1132,6 +1154,16 @@ def import_review(project_root: Path, debate_id: str, archive: Path, *, execute_
         elif review_type == "fr_content_review":
             result = finalize_content_review(project_root, debate_id, str(state["work_id"]))
             apply_content_review(project_root, debate_id, str(state["work_id"]), str(result["review_sha256"]))
+            try:
+                publication = publish_checkpoint(project_root, debate_id, str(state["work_id"]))
+            except FrenchCheckpointError as exc:
+                irreversible_french_publication = bool(exc.remote_execution_started)
+                raise
+            # From here onward remote French state is committed/attested.  Any
+            # later local failure (including English-package preparation) must
+            # preserve the sealed French review and resume idempotently.
+            irreversible_french_publication = True
+            state["french_publication"] = copy.deepcopy(publication)
             state["phase"] = "en_translation_review"
         elif review_type in {"en_translation_review", "en_translation_correction"}:
             result = finalize_translation_review(project_root, debate_id, str(state["work_id"]))
@@ -1187,13 +1219,25 @@ def import_review(project_root: Path, debate_id: str, archive: Path, *, execute_
         state["updated_at"] = now_iso()
         _save_workflow(project_root, state)
         advanced = _mechanical_advance(project_root, state)
-    except Exception:
+    except Exception as exc:
         if irreversible_graph_actions:
             # Keep the exact local projection and action receipt that correspond
             # to already committed remote writes.  The workflow remains resumable
             # from its post-action phase and the old review cannot be replayed.
             state["pending_review"] = None
             state["status"] = "running"
+            state["updated_at"] = now_iso()
+            _save_workflow(project_root, state)
+            shutil.rmtree(backup, ignore_errors=True)
+        elif irreversible_french_publication:
+            # A remote French execution may have written some pages.  Never roll
+            # back the sealed local review in that case: keep the same pending
+            # package and saved plan so the same `review-import` can resume
+            # idempotently.  The English package is not prepared until success.
+            state["status"] = "blocked_remote_publication"
+            state["phase"] = "fr_content_review"
+            state["pending_review"] = copy.deepcopy(pending)
+            state["last_remote_publication_error"] = str(exc)
             state["updated_at"] = now_iso()
             _save_workflow(project_root, state)
             shutil.rmtree(backup, ignore_errors=True)
@@ -1223,7 +1267,9 @@ def _print_user_result(state: Mapping[str, Any]) -> None:
         print("\nEnvoyez ce fichier à ChatGPT :")
         print(pending.get("package_path"))
         print("\nAprès correction, réimportez le ZIP rendu avec :")
-        print(f"./wikidebia review-import {state.get('debate_id')} <fichier_corrige.zip>")
+        print("Placez le ZIP corrigé dans incoming/, puis lancez :")
+        print("./wikidebia review-import")
+        print(f"S'il y a plusieurs ZIP de revue : ./wikidebia review-import {state.get('debate_id')}")
         return
     if state.get("status") == "blocked_technical":
         block = state.get("last_block") or {}

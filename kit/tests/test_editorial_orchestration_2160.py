@@ -383,6 +383,7 @@ def test_full_orchestration_reaches_release_ready_through_all_editorial_stops(tm
     monkeypatch.setattr(wf, "apply_metadata_review", lambda *a, **k: {"status": "applied"})
     monkeypatch.setattr(wf, "finalize_content_review", lambda *a, **k: {"review_sha256": "2" * 64})
     monkeypatch.setattr(wf, "apply_content_review", lambda *a, **k: {"status": "applied"})
+    monkeypatch.setattr(wf, "publish_checkpoint", lambda *a, **k: {"status": "published", "receipt_sha256": "9" * 64})
 
     def finalize_translation(*args, **kwargs):
         review = common.load_json(workspace / "reviews/en/translation_review.json", "translation")
@@ -729,3 +730,133 @@ def test_mechanical_failure_rolls_back_review_consumption_and_created_artifacts(
     assert not (project / ".state/corpus-promotions/debat_test/partial.receipt.json").exists()
     assert not (project / "outgoing/partial-next-review.zip").exists()
     assert original.is_file()
+
+
+def test_manage_review_import_selects_incoming_by_internal_debate_id(tmp_path: Path):
+    project = tmp_path / "project"
+    project.mkdir()
+    base = make_base(project)
+    state = make_state(project, base)
+    pending = wf.create_review_package(
+        project, state, review_type="graph_review", base=base,
+        editable_paths=["reviews/edit.json"], context_paths=["data/context.json"],
+    )
+    incoming = project / "incoming"
+    incoming.mkdir()
+    source = project / pending["package_path"]
+    renamed = incoming / "nom-totalement-libre.zip"
+    shutil.copy2(source, renamed)
+    debate_id, selected = manage.find_review_archive(project)
+    assert debate_id == "debat_test"
+    assert selected == renamed
+    debate_id2, selected2 = manage.find_review_archive(project, "debat_test")
+    assert (debate_id2, selected2) == (debate_id, selected)
+
+
+def test_manage_review_import_requires_debate_id_when_multiple_reviews(tmp_path: Path):
+    project = tmp_path / "project"
+    project.mkdir()
+    base = make_base(project)
+    state = make_state(project, base)
+    first = wf.create_review_package(
+        project, state, review_type="graph_review", base=base,
+        editable_paths=["reviews/edit.json"], context_paths=["data/context.json"],
+    )
+    incoming = project / "incoming"
+    incoming.mkdir()
+    shutil.copy2(project / first["package_path"], incoming / "a.zip")
+    # Clone the package and change only the internal debate identity + manifest hash.
+    second = incoming / "b.zip"
+    rewrite_zip(project / first["package_path"], second, lambda root: _rewrite_package_debate(root, "autre_debat"))
+    with pytest.raises(manage.ManagementError, match=r"review-import debat_test"):
+        manage.find_review_archive(project)
+    assert manage.find_review_archive(project, "autre_debat")[1] == second
+
+
+def _rewrite_package_debate(root: Path, debate_id: str) -> None:
+    path = root / "REVIEW_PACKAGE.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data["debate_id"] = debate_id
+    data["manifest_sha256"] = wf._package_manifest_hash(data)
+    common.write_json(path, data)
+
+
+def test_fr_content_import_publishes_before_preparing_english(tmp_path: Path, monkeypatch):
+    project = tmp_path / "project"
+    project.mkdir()
+    base = make_base(project)
+    state = make_state(project, base, "fr_content_review")
+    state["work_id"] = "EDIT-20260812-001"
+    wf._save_workflow(project, state)
+    pending = wf.create_review_package(
+        project, state, review_type="fr_content_review", base=base,
+        editable_paths=["reviews/edit.json"], context_paths=["data/context.json"],
+    )
+    returned = tmp_path / "returned.zip"
+    rewrite_zip(project / pending["package_path"], returned, lambda root: None)
+    calls = []
+    monkeypatch.setattr(wf, "finalize_content_review", lambda *a, **k: {"review_sha256": "a" * 64})
+    monkeypatch.setattr(wf, "apply_content_review", lambda *a, **k: calls.append("apply") or {"status": "fr_content_applied"})
+    monkeypatch.setattr(wf, "publish_checkpoint", lambda *a, **k: calls.append("publish") or {"status": "published", "receipt_sha256": "b" * 64})
+    def advance(_project, state):
+        calls.append("advance")
+        assert state["phase"] == "en_translation_review"
+        return state
+    monkeypatch.setattr(wf, "_mechanical_advance", advance)
+    result = wf.import_review(project, "debat_test", returned)
+    assert calls == ["apply", "publish", "advance"]
+    assert result["french_publication"]["status"] == "published"
+    assert result["pending_review"] is None
+
+
+def test_legacy_pending_english_review_publishes_french_checkpoint_before_resume(tmp_path: Path, monkeypatch):
+    project = tmp_path / "project"
+    project.mkdir()
+    base = make_base(project)
+    state = make_state(project, base, "en_translation_review")
+    state["work_id"] = "EDIT-20260812-001"
+    state["pending_review"] = {
+        "review_type": "en_translation_review",
+        "package_id": "legacy-en-package",
+        "package_path": "outgoing/debat_test_en_translation_review.zip",
+    }
+    state.pop("french_publication", None)
+    wf._save_workflow(project, state)
+    calls = []
+    monkeypatch.setattr(
+        wf,
+        "publish_checkpoint",
+        lambda *a, **k: calls.append("publish") or {"status": "published", "receipt_sha256": "c" * 64},
+    )
+    resumed = wf._mechanical_advance(project, state)
+    assert calls == ["publish"]
+    assert resumed["pending_review"]["review_type"] == "en_translation_review"
+    assert resumed["french_publication"]["status"] == "published"
+    saved = wf._load_workflow(project, "debat_test")
+    assert saved["french_publication"]["receipt_sha256"] == "c" * 64
+
+
+def test_failure_after_successful_french_publication_does_not_rollback_sealed_review(tmp_path: Path, monkeypatch):
+    project = tmp_path / "project"
+    project.mkdir()
+    base = make_base(project)
+    state = make_state(project, base, "fr_content_review")
+    state["work_id"] = "EDIT-20260812-001"
+    wf._save_workflow(project, state)
+    pending = wf.create_review_package(
+        project, state, review_type="fr_content_review", base=base,
+        editable_paths=["reviews/edit.json"], context_paths=["data/context.json"],
+    )
+    returned = tmp_path / "returned.zip"
+    rewrite_zip(project / pending["package_path"], returned, lambda root: None)
+    monkeypatch.setattr(wf, "finalize_content_review", lambda *a, **k: {"review_sha256": "a" * 64})
+    monkeypatch.setattr(wf, "apply_content_review", lambda *a, **k: {"status": "fr_content_applied"})
+    monkeypatch.setattr(wf, "publish_checkpoint", lambda *a, **k: {"status": "published", "receipt_sha256": "d" * 64})
+    monkeypatch.setattr(wf, "_mechanical_advance", lambda *a, **k: (_ for _ in ()).throw(wf.WorkflowError("english prepare failed")))
+    with pytest.raises(wf.WorkflowError, match="english prepare failed"):
+        wf.import_review(project, "debat_test", returned)
+    saved = wf._load_workflow(project, "debat_test")
+    assert saved["status"] == "blocked_remote_publication"
+    assert saved["phase"] == "fr_content_review"
+    assert saved["pending_review"]["review_type"] == "fr_content_review"
+    assert saved["french_publication"]["status"] == "published"

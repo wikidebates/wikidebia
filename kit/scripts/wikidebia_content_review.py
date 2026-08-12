@@ -586,6 +586,17 @@ def _validate_source_registry(data: Mapping[str, Any], debate_id: str) -> tuple[
         source_type = source.get("type")
         if source_type not in {"bibliography", "webliography", "videography"}:
             raise ContentReviewError(f"Type documentaire invalide pour {source_id}")
+        allowed_document_kinds = {
+            "book", "monograph", "handbook", "edited_volume", "synthesis_report",
+            "review_article", "journal_article", "book_chapter", "conference_paper",
+            "thesis", "legal_text", "other", None,
+        }
+        document_kind = source.get("document_kind")
+        if document_kind not in allowed_document_kinds:
+            allowed = ", ".join(sorted(value for value in allowed_document_kinds if value is not None))
+            raise ContentReviewError(
+                f"document_kind invalide pour {source_id} : {document_kind!r}; valeurs admises : {allowed} ou null"
+            )
         language = _text(source.get("language"), f"langue de {source_id}", 2)
         metadata = source.get("metadata")
         if not isinstance(metadata, dict) or set(metadata) != set(SOURCE_METADATA_FIELDS):

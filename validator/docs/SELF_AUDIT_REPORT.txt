@@ -1,7 +1,7 @@
-Wikidéb’IA Validator 0.4.83 — auto-audit
+Wikidéb’IA Validator 0.4.84 — auto-audit
 Statut : PASSED
-Norme active unique : 1.2.79
-Kit aligné : 2.16.12
+Norme active unique : 1.2.80
+Kit aligné : 2.16.13
 Tests : 413 réussis
 Contrat de résumés MediaWiki individualisés des reprises de corpus validés : contrôlé.
-Compatibilité de lecture des plans historiques dépourvus de ce contrat : contrôlée.
+Checkpoint français avant traduction : copie normative et contrôles structurels alignés.

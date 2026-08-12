@@ -126,3 +126,10 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ajoute `WDV-RMT-008` pour bloquer une mutation sans politique/résumé individualisés ou portant encore le résumé générique `Corrections` ;
 - conserve la lecture des plans historiques dépourvus de ce contrat ;
 - ne modifie aucun contrôle éditorial de contenu.
+
+## 0.4.84 — 12 août 2026 — alignement checkpoint français 1.2.80
+
+- aligne la copie normative sur la publication française automatique après `fr_content_review` ;
+- conserve `WDV-RMT-008` et tous les contrôles de résumés individualisés ;
+- reconnaît le checkpoint français comme corpus `translation_status.en=deferred` contrôlé avant reprise distante ;
+- ne modifie aucun contrôle sémantique FR→EN ni aucune règle de traduction.

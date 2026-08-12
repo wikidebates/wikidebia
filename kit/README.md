@@ -1,4 +1,8 @@
-# Wikidéb’IA Kit 2.16.12
+# Wikidéb’IA Kit 2.16.13
+
+Le kit 2.16.13 publie automatiquement le **checkpoint français** dès que `fr_content_review` est validée et appliquée, avant de préparer le ZIP de traduction anglaise. Le checkpoint rend les pages françaises sans lien interlangue prématuré, réutilise le moteur de reprise signé et applique à chaque mutation le résumé MediaWiki personnalisé `page_specific_v1`, la garde de révision et la balise `chatgpt`. La reprise est idempotente et un workflow déjà arrivé à la revue anglaise sous 2.16.12 publie d’abord le checkpoint manquant.
+
+Les ZIP de revue corrigés sont désormais placés dans `incoming/`. `./wikidebia review-import` sélectionne automatiquement l’unique paquet de revue valide ; en cas de pluralité, `./wikidebia review-import <debate_id>` suffit. Le nom du ZIP n’est jamais un sélecteur. `sources_working.json` valide aussi `document_kind` immédiatement afin d’éviter un échec tardif de `data/sources.json`.
 
 Le kit 2.16.12 remplace le résumé générique `Corrections` des nouveaux plans de reprise par des résumés MediaWiki individualisés. Chaque création, mise à jour, renommage, redirection ou suppression issue d’un corpus validé porte une politique et un résumé signés ; les mises à jour de contenu décrivent les familles de paramètres réellement modifiées. L’exécuteur recalcule le résumé avant l’écriture et la relecture post-écriture le vérifie comme auparavant.
 
@@ -15,7 +19,7 @@ Le kit 2.16.7 part du commit GitHub `5eca765` (1.2.77 / 0.4.80 / 2.16.5) et corr
 
 Historique 2.16.1 : une anomalie éditoriale de titre importé ne bloque plus avant la revue qui doit précisément la corriger. Les incohérences structurelles restent bloquantes ; lorsqu’elles surviennent, `workflow` affiche leurs codes/messages et produit automatiquement un ZIP de diagnostic minimal sous `outgoing/`. Après correction, relancer la même commande reprend la phase sans reset manuel. Le mécanisme général de paquets de revue introduit en 2.16.0 reste inchangé.
 
-Les paquets de revue utilisent le schéma stable `wikidebia-chatgpt-review-package-1.0`, séparent `editable/` et `context/`, lient leur provenance à l’état local, refusent les fichiers supplémentaires et excluent les secrets. La convergence sémantique est elle aussi orchestrée : une erreur certaine rouvre la traduction, puis les deux passes indépendantes recommencent. Le workflow normal ne publie rien à distance. L’unique exception pré-W11 est l’option explicite `review-import ... --execute-graph-actions`, réservée aux décisions structurelles déjà inscrites dans une revue du graphe.
+Les paquets de revue utilisent le schéma stable `wikidebia-chatgpt-review-package-1.0`, séparent `editable/` et `context/`, lient leur provenance à l’état local, refusent les fichiers supplémentaires et excluent les secrets. La convergence sémantique est elle aussi orchestrée : une erreur certaine rouvre la traduction, puis les deux passes indépendantes recommencent. Le workflow ne publie à distance qu’aux frontières déclarées : actions structurelles explicitement exécutées, puis checkpoint français automatique après la revue complète du contenu. La préparation anglaise reste interdite tant que ce checkpoint n’a pas de reçu.
 
 ## Notes héritées du paquet parent 2.15.54
 

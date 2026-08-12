@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.16.12",
-  "validator_version": "0.4.83",
+  "version": "2.16.13",
+  "validator_version": "0.4.84",
   "scope": [
     "publish_archive",
     "github_init",
@@ -461,9 +461,13 @@
     "full_graph_action_remote_preflight",
     "page_specific_remote_update_edit_summary",
     "signed_edit_summary_policy",
-    "prewrite_edit_summary_recalculation"
+    "prewrite_edit_summary_recalculation",
+    "french_checkpoint_publication_after_content_review",
+    "incoming_review_package_auto_selection",
+    "sources_working_document_kind_prevalidation",
+    "idempotent_french_checkpoint_resume"
   ],
-  "normative_revision": "1.2.79",
+  "normative_revision": "1.2.80",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -559,7 +563,10 @@
     "graph_duplicate_redirect_summary_regression",
     "graph_action_remote_preflight_regression",
     "graph_action_prospective_validation_regression",
-    "page_specific_remote_update_edit_summary"
+    "page_specific_remote_update_edit_summary",
+    "fr_content_review_remote_checkpoint_before_translation",
+    "incoming_review_import_by_internal_debate_id",
+    "sources_working_document_kind_prevalidation"
   ],
   "regression_gates": [
     "argument_reference_develops_argument_regression",
@@ -594,9 +601,11 @@
     "graph_extract_dedicated_debate_cli_regression",
     "advanced_editorial_primitives_preserved",
     "semantic_review_reopens_translation_regression",
-    "orchestration_never_publishes_remote_regression",
     "page_specific_remote_update_edit_summary_regression",
-    "generic_corrections_not_reemitted_regression"
+    "generic_corrections_not_reemitted_regression",
+    "orchestration_remote_writes_only_at_declared_boundaries_regression",
+    "french_checkpoint_precedes_english_review_regression",
+    "french_checkpoint_resume_after_partial_remote_write_regression"
   ],
   "translation_change_tag": "translated-fr"
 }

@@ -1,9 +1,11 @@
-Wikidéb’IA Kit 2.16.12 — rapport de tests
+Wikidéb’IA Kit 2.16.13 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 424
-Tests pytest : 424 réussis
-Norme : 1.2.79
-Validateur : 0.4.83
-Résumés MediaWiki individualisés pour create/update/move/redirect/delete lors des reprises de corpus validés : PASSED.
-Recalcul pré-écriture, refus de « Corrections » et vérification post-écriture : PASSED.
-Compatibilité des plans historiques : PASSED.
+Tests pytest collectés : 430
+Tests pytest : 430 réussis (111 + 319, deux groupes complets sans recouvrement)
+Norme : 1.2.80
+Validateur : 0.4.84
+Publication française après fr_content_review avant traduction anglaise : PASSED.
+Réimport depuis incoming/ avec sélection automatique/par debate_id : PASSED.
+Reprise idempotente après publication distante partielle ou préparation anglaise échouée : PASSED.
+Validation précoce de sources_working.json.document_kind : PASSED.
+Résumés MediaWiki individualisés page par page : PASSED.

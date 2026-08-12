@@ -725,3 +725,13 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - conserve la lecture des anciens plans dépourvus du nouveau contrat, sans réémettre ce comportement dans les nouveaux plans ;
 - précise que `review-import` reste local tant qu’aucune page MediaWiki finale n’est rendue ; les actions structurelles explicitement exécutées gardent leur voie distante séparée.
 
+
+## 1.2.80 — 12 août 2026 — publication française au point de validation et réimport depuis incoming
+
+- fait de la réussite de `fr_content_review` une frontière de publication : les pages françaises scellées sont rendues sans interlangue, préflightées et publiées avant toute préparation de la traduction anglaise ;
+- réutilise le moteur de reprise signé et les résumés MediaWiki individualisés page par page, avec garde de révision, balise `chatgpt` et relecture post-écriture ;
+- interdit la préparation du paquet anglais tant que le checkpoint français n’est pas publié ou attesté `no_changes` ;
+- rend la reprise idempotente après interruption partielle et conserve le plan/reçu dès qu’une exécution distante a commencé ;
+- simplifie l’UX : les ZIP de revue corrigés sont déposés dans `incoming/`, `./wikidebia review-import` sélectionne l’unique paquet valide et `./wikidebia review-import <debate_id>` ne devient nécessaire qu’en cas de pluralité ;
+- sélectionne les paquets par le `debate_id` interne de `REVIEW_PACKAGE.json`, jamais par leur nom de fichier, et archive le ZIP seulement après succès ;
+- impose la validation de `document_kind` directement dans `sources_working.json` avant application de la revue française.

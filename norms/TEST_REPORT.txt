@@ -1,6 +1,7 @@
-Wikidéb’IA Normes 1.2.79 — audit de cohérence normative
+Wikidéb’IA Normes 1.2.80 — audit de cohérence normative
 Statut : PASSED
-Norme active unique : 1.2.79 ; norme 1.2.78 archivée exactement avant remplacement.
-Reprises de corpus validés : chaque mutation distante reçoit un résumé MediaWiki individualisé ; le résumé générique « Corrections » n’est plus émis par les nouveaux plans.
-Plan/exécution : politique et résumé signés, recalcul pré-écriture et vérification post-écriture exigés.
-Compatibilité : les plans historiques restent lisibles ; les revues intermédiaires sans rendu MediaWiki final restent locales.
+Norme active unique : 1.2.80 ; norme 1.2.79 archivée exactement avant remplacement.
+Checkpoint français : publication après revue de contenu et avant traduction anglaise, sans interlangue prématuré.
+Réimport : ZIP sous incoming/, sélection automatique ou par debate_id.
+Sources : document_kind de sources_working.json contrôlé avant projection.
+Résumés MediaWiki : contrat page_specific_v1 conservé pour chaque mutation distante.

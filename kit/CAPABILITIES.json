@@ -4,9 +4,9 @@
   "component": "kit",
   "release_source": "VERSIONS.json",
   "release": {
-    "norm": "1.2.79",
-    "validator": "0.4.83",
-    "kit": "2.16.12"
+    "norm": "1.2.80",
+    "validator": "0.4.84",
+    "kit": "2.16.13"
   },
   "emits": {
     "publication_plan": [
@@ -72,6 +72,18 @@
     "graph_action_decisions": [
       {
         "schema": "wikidebia-graph-action-decisions-1.0",
+        "schema_version": "1.0"
+      }
+    ],
+    "french_publication_checkpoint": [
+      {
+        "schema": "wikidebia-french-publication-checkpoint-1.0",
+        "schema_version": "1.0"
+      }
+    ],
+    "french_checkpoint_publication_receipt": [
+      {
+        "schema": "wikidebia-french-checkpoint-publication-receipt-1.0",
         "schema_version": "1.0"
       }
     ]

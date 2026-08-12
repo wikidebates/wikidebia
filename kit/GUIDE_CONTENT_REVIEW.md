@@ -68,6 +68,8 @@ Après avoir complété le registre de contenu et le registre documentaire :
 
 La finalisation vérifie notamment :
 
+- que chaque `document_kind` de `data/sources_working.json` appartient directement à l’enum accepté par le registre documentaire final, afin de bloquer l’erreur avant la projection vers `data/sources.json` ;
+
 - l’inventaire exhaustif, sous-partie par sous-partie, des notions spécialisées, avec vérification de chaque lien, explication intégrée, traitement antérieur ou justification contextuelle ;
 
 - la couverture exacte de tous les arguments actifs ;
@@ -127,4 +129,4 @@ content-reviewed-copy/
 
 Le registre maître reçoit seulement les identifiants des sources françaises sélectionnées pour chaque argument. Le verrou de métadonnées françaises, les imports et le graphe restent inchangés. Après succès, la préparation anglaise passe à `ready_for_translation`.
 
-Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki et ne construit pas de plan de reprise distante.
+La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-import`, son succès déclenche ensuite le **checkpoint français 2.16.13** : rendu FR sans interlangue, plan de reprise signé, publication/attestation distante, puis seulement préparation de la traduction anglaise.

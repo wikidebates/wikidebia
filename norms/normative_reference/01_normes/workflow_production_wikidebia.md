@@ -16,7 +16,7 @@ Si un blocage technique subsiste, `workflow` affiche ses diagnostics et construi
 
 ## 0. Orchestration utilisateur des points éditoriaux
 
-Le mode normal utilise `./wikidebia workflow "Titre du débat"`. Le kit exécute les étapes mécaniques jusqu’à une revue externe, crée automatiquement `outgoing/<debate_id>_<type>.zip`, puis s’arrête. Le retour est réimporté par `./wikidebia review-import <debate_id> <zip>` ; les empreintes nécessaires aux primitives internes sont résolues automatiquement. Les commandes détaillées restent disponibles pour audit et debug.
+Le mode normal utilise `./wikidebia workflow "Titre du débat"`. Le kit exécute les étapes mécaniques jusqu’à une revue externe, crée automatiquement `outgoing/<debate_id>_<type>.zip`, puis s’arrête. Le ZIP corrigé est placé dans `incoming/`, puis réimporté par `./wikidebia review-import`. Lorsqu’un seul paquet de revue valide est présent il est choisi automatiquement d’après son `debate_id` interne ; s’il y en a plusieurs, `./wikidebia review-import <debate_id>` sélectionne le débat sans jamais dépendre du nom du ZIP. Les empreintes nécessaires aux primitives internes sont résolues automatiquement. Les commandes détaillées restent disponibles pour audit et debug.
 
 La chaîne de production devient :
 
@@ -32,13 +32,13 @@ commande utilisateur
 → rendu + release_ready
 ```
 
-Par défaut, aucune publication distante n’est déclenchée par cette orchestration. Seul `review-import ... --execute-graph-actions`, demandé explicitement par l’utilisateur pour une revue du graphe contenant des décisions structurelles, peut effectuer les mutations distantes limitées prévues par la norme.
+L’orchestration reste locale jusqu’à un point de publication explicitement défini. Deux frontières distantes existent : les actions structurelles du graphe demandées avec `--execute-graph-actions`, et le **checkpoint français automatique** qui suit la validation complète de `fr_content_review`. Ce checkpoint publie les pages françaises scellées avant toute préparation du paquet anglais, avec le plan signé et les résumés individualisés de la reprise ordinaire.
 
 ### Rejet et correction du graphe
 
 Une revue du graphe rejetée ne déclenche jamais `corpus-promote`. `review-import` conserve le build en `graph_draft`, enregistre les motifs de rejet et produit automatiquement un paquet `graph_correction`. Après réimport d’une correction, le kit reconstruit et revalide la structure puis produit un **nouveau paquet `graph_review`**. La correction et l’approbation sont deux décisions distinctes : même une correction structurellement valide doit repasser par une revue complète avant toute promotion. Un rejet répété recommence le même cycle, sans création de Work. Il reste sans écriture distante sauf si l’utilisateur choisit explicitement la voie `--execute-graph-actions` sur un ZIP comportant des décisions exécutables.
 
-Si le ZIP de revue rejetée contient déjà des décisions structurelles explicites, l’utilisateur peut les appliquer et les publier en une commande avec `./wikidebia review-import <debate_id> <zip> --execute-graph-actions`. Cette voie prend en charge retrait/suppression, fusion avec redirection, déplacement et changement de relation. Elle valide d’abord la projection locale complète, préflight toutes les pages distantes avant la première écriture, retire le modèle de relation de la page mère, crée `#REDIRECTION [[Destination]]` pour les doublons ou supprime la page lorsque le retrait n’est pas un doublon, puis reconstruit le graphe et prépare une nouvelle revue complète. Chaque écriture reçoit un résumé individualisé ; pour un doublon, le résumé de la page mère mentionne obligatoirement `[[Destination]]`. Cette voie reste explicitement destructive et n’est jamais déclenchée par un simple `review-import` sans drapeau.
+Si le ZIP de revue rejetée contient déjà des décisions structurelles explicites, l’utilisateur peut les appliquer et les publier en une commande avec `./wikidebia review-import <debate_id> --execute-graph-actions`. Cette voie prend en charge retrait/suppression, fusion avec redirection, déplacement et changement de relation. Elle valide d’abord la projection locale complète, préflight toutes les pages distantes avant la première écriture, retire le modèle de relation de la page mère, crée `#REDIRECTION [[Destination]]` pour les doublons ou supprime la page lorsque le retrait n’est pas un doublon, puis reconstruit le graphe et prépare une nouvelle revue complète. Chaque écriture reçoit un résumé individualisé ; pour un doublon, le résumé de la page mère mentionne obligatoirement `[[Destination]]`. Cette voie reste explicitement destructive et n’est jamais déclenchée par un simple `review-import` sans drapeau.
 
 ## 1. Principes
 
@@ -46,7 +46,7 @@ Le registre maître et les fichiers individuels sont les sources de vérité. Le
 
 Aucune copie `staging/interlanguage/` ni ancien mécanisme de patch de corpus n’est utilisé. Lorsque l’anglais passe de `deferred` à `ready` ou `published`, l’ajout des liens français se fait par la reprise interlangue explicite et sûre prévue par le kit, sans modifier la date de création française.
 
-Chaque Work reçoit un handoff vérifié, modifie uniquement les champs autorisés et livre des rapports reproductibles. Hors actions structurelles explicitement exécutées depuis une revue du graphe avant la création du Work, aucune écriture distante n’est autorisée avant W11.
+Chaque Work reçoit un handoff vérifié, modifie uniquement les champs autorisés et livre des rapports reproductibles. Hors actions structurelles explicitement exécutées et checkpoint français automatique après `fr_content_review`, aucune écriture distante n’est autorisée avant W11. Ces exceptions conservent un plan et un reçu signés et ne dispensent pas de la publication finale.
 
 ## 2. États actifs
 
@@ -310,3 +310,10 @@ Pour une page anglaise créée comme traduction d’une page française verrouil
 ## Étape de convergence sémantique 1.2.66
 
 Après finalisation de la revue anglaise et après toute dernière correction, exécuter deux passes sémantiques indépendantes consécutives sur exactement la même empreinte. Les méthodes déclarées doivent être distinctes et chaque passe doit conclure `new_certain_errors=0`. Une passe qui trouve une erreur ou toute mutation du contenu/review invalide la chaîne précédente. L'application de la traduction est bloquée tant que le reçu n'est pas `converged`. Le reçu et ses empreintes sont ensuite vérifiés lors du rendu, de la release et de l'extraction fraîche.
+
+
+## Checkpoint français avant traduction
+
+Après réussite de `fr_content_review`, l’orchestrateur rend un corpus français temporaire avec `translation_status.en=deferred` et sans `interlangue`, vérifie le corpus et construit un plan de reprise distante. Les mutations `create`, `update` et `move` sont exécutées avec les résumés MediaWiki individualisés et la balise `chatgpt`. Les redirections ou suppressions implicites sont refusées à ce stade car elles relèvent des décisions structurelles du graphe. La préparation de `en_translation_review` n’est autorisée qu’après un reçu `published` ou `verified_no_changes`. Une interruption réutilise le même plan ; une écriture déjà vérifiée n’est pas rejouée.
+
+La validation de `data/sources_working.json` contrôle directement `document_kind` contre l’enum du registre documentaire avant application. Une valeur invalide est donc signalée dans la revue de contenu plutôt que reportée au préflight structurel de `data/sources.json`.

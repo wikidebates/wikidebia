@@ -108,10 +108,17 @@ Pour l'usage normal d'un débat qui doit être préparé puis traduit, préfére
 ./wikidebia workflow "Titre exact du débat"
 ```
 
-La commande enchaîne les opérations mécaniques et produit automatiquement les paquets de revue sous `outgoing/`. Après chaque retour de ChatGPT :
+La commande enchaîne les opérations mécaniques et produit automatiquement les paquets de revue sous `outgoing/`. Après chaque retour de ChatGPT, placer le ZIP corrigé dans `incoming/`, puis :
 
 ```bash
-./wikidebia review-import <debate_id> <zip_corrigé>
+./wikidebia review-import
 ```
 
+Si plusieurs paquets de revue sont présents, utiliser uniquement l’identifiant du débat : `./wikidebia review-import <debate_id>`.
+
 Voir `GUIDE_EDITORIAL_ORCHESTRATION.md`. Les commandes détaillées restent disponibles pour audit/debug.
+
+
+### Checkpoint français automatique
+
+Après validation de la revue française de contenu, `review-import` publie automatiquement le français scellé avant de préparer la traduction anglaise. Cette publication utilise les mêmes plans signés, résumés individualisés, gardes de révision et relectures que `update`; elle ne nécessite pas une commande `update` séparée.

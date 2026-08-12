@@ -191,3 +191,13 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - l’exécuteur recalcule le résumé attendu avant chaque écriture, refuse une divergence ou `Corrections`, puis vérifie le résumé dans la révision relue ;
 - les plans historiques sans contrat individualisé conservent leur voie de compatibilité ;
 - les tests couvrent les cinq familles de mutations et le refus du résumé générique.
+
+## 2.16.13 — 12 août 2026 — publication française automatique avant traduction
+
+- fait de la réussite de `fr_content_review` une frontière distante : rendu FR sans interlangue, plan signé, publication/attestation, puis seulement préparation anglaise ;
+- réutilise le moteur de reprise 2.16.12 et ses résumés MediaWiki individualisés, gardes de révision et vérifications post-écriture ;
+- conserve le plan/reçu et reprend idempotemment après interruption, y compris si la publication a réussi mais que la préparation anglaise échoue ensuite ;
+- répare les workflows déjà arrêtés sur un paquet anglais produit avant cette règle en publiant d’abord le checkpoint français manquant ;
+- déplace l’UX de retour vers `incoming/` : `./wikidebia review-import` pour un seul paquet, `./wikidebia review-import <debate_id>` en cas de pluralité ;
+- sélectionne par `REVIEW_PACKAGE.json.debate_id`, archive le ZIP après succès et le conserve dans `incoming/` après échec ;
+- valide `document_kind` directement dans `sources_working.json` avant la projection finale.

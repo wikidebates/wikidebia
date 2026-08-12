@@ -895,7 +895,7 @@ Les règles 1.2.0 et 1.2.1 restent intégrées. Les exemples, profils et contrô
 
 # Addendum intégré 1.2.3 — test de publication
 
-Le test de publication porte directement sur la page Débat française canonique et non sur une sous-page utilisateur. La page doit être absente lors de la simulation ; sa création `createonly` constitue la première écriture distante. Les autres pages ne sont publiées qu’après revérification du reçu et de la révision courante de cette page.
+Le test de publication porte directement sur la page Débat française canonique et non sur une sous-page utilisateur. La page doit être absente lors de la simulation ; sa création `createonly` constitue la première écriture distante. Les autres pages ne sont publiées qu’après revérification du reçu et de la révision courante de cette page. Ce contrat concerne la publication W11 d’un débat nouveau. Il ne s’oppose pas au checkpoint correctif français de `fr_content_review` sur des pages préexistantes, qui utilise le moteur de reprise avec garde de révision et résumés individualisés.
 
 
 # Addendum intégré 1.2.4 — architecture des introductions
