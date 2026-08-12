@@ -52,6 +52,15 @@ def validate_remote_plan(path: str | Path) -> Report:
         if counts.get(name) != len(rows):
             report.error("WDV-RMT-002", f"Compteur incohérent pour {name}", path=portable_display_path(source), pointer=f"/counts/{name}")
 
+    individualized_contract = str(plan.get("edit_summary_contract") or "")
+    allowed_summary_policies = {
+        "create": {"corpus_page_creation"},
+        "update": {"content_diff_v1", "french_interlanguage_addition"},
+        "move": {"canonical_title_move_v1"},
+        "redirect": {"merge_redirect_v1"},
+        "delete": {"retirement_v1"},
+    }
+
     seen_mutating: dict[tuple[str, str], str] = {}
     for name in OPERATIONS:
         for index, row in enumerate(operations.get(name) or []):
@@ -63,6 +72,16 @@ def validate_remote_plan(path: str | Path) -> Report:
                 if previous:
                     report.error("WDV-RMT-003", f"Titre présent dans plusieurs opérations mutantes : {previous} et {name}", pointer=f"/operations/{name}/{index}")
                 seen_mutating[key] = name
+                if individualized_contract == "page_specific_v1":
+                    policy = str(row.get("edit_summary_policy") or "")
+                    summary = str(row.get("edit_summary") or "").strip()
+                    if policy not in allowed_summary_policies.get(name, set()) or not summary or summary.casefold() == "corrections":
+                        report.error(
+                            "WDV-RMT-008",
+                            "Opération mutante sans résumé MediaWiki individualisé conforme au contrat page_specific_v1",
+                            pointer=f"/operations/{name}/{index}",
+                            details={"operation": name, "policy": policy, "summary": summary},
+                        )
             if name == "delete":
                 required = {"attested_in_previous_state", "absent_from_new_corpus", "remote_matches_published_state", "generated_marker_present", "delete_right"}
                 if not row.get("old_sha256") or not required.issubset(set(row.get("preconditions") or [])):

@@ -44,5 +44,6 @@
     "effective_rights_checked_before_first_write",
     "remote_revision_rechecked_before_each_mutation"
   ],
-  "plan_sha256": "922c2aaeb1a3974965129331824401a07ba298275f25eb539d916ad108e7138f"
+  "plan_sha256": "922c2aaeb1a3974965129331824401a07ba298275f25eb539d916ad108e7138f",
+  "edit_summary_contract": "page_specific_v1"
 }

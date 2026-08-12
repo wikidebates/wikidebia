@@ -1,8 +1,8 @@
-Wikidéb’IA Validator 0.4.82 — rapport de tests
+Wikidéb’IA Validator 0.4.83 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 410
-Tests pytest : 410 réussis
-Norme active : 1.2.78
-Kit recommandé : 2.16.11
+Tests pytest collectés : 413
+Tests pytest : 413 réussis
+Norme active : 1.2.79
+Kit recommandé : 2.16.12
 Contrôles structurels, éditoriaux, bilingues, documentaires et schémas : PASSED.
-Régression 0.4.82 : « Il ne faut… » reconnu comme tournure impersonnelle sans désactiver la détection des pronoms anaphoriques : PASSED.
+Régression 0.4.83 : tout nouveau plan de reprise de corpus sous contrat page_specific_v1 exige un résumé MediaWiki individualisé compatible avec la mutation et refuse le résumé générique « Corrections » : PASSED.

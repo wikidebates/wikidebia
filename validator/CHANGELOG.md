@@ -118,3 +118,11 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - conserve la détection des vrais référents contextuels initiaux ;
 - ajoute un test positif pour `Il faut…` / `Il ne faut…` et un test négatif pour `Il réduit…` ;
 - aucune modification de la norme éditoriale 1.2.78.
+
+## 0.4.83 — 12 août 2026 — contrôle des résumés individualisés de reprise
+
+- aligne le validateur sur la norme 1.2.79 et le kit 2.16.12 ;
+- accepte le contrat additif `edit_summary_contract=page_specific_v1` dans les plans `wikidebia-remote-update-plan-1.0` ;
+- ajoute `WDV-RMT-008` pour bloquer une mutation sans politique/résumé individualisés ou portant encore le résumé générique `Corrections` ;
+- conserve la lecture des plans historiques dépourvus de ce contrat ;
+- ne modifie aucun contrôle éditorial de contenu.

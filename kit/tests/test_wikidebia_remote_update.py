@@ -164,6 +164,9 @@ def plan(tmp_path, *, remote_pages=None, rights=None, **fixture):
 def test_01_new_page_is_create(tmp_path):
     p, *_ = plan(tmp_path, old_pages=[], new_pages=[("fr","A1","Titre",argument("Nouveau"))])
     assert p["counts"]["create"] == 1
+    row = p["operations"]["create"][0]
+    assert row["edit_summary_policy"] == "corpus_page_creation"
+    assert row["edit_summary"] == "Création de l'argument à partir du corpus validé"
 
 
 def test_02_unchanged_page_is_skip(tmp_path):
@@ -189,6 +192,9 @@ def test_05_removed_argument_is_delete(tmp_path):
     old = argument("Ancien")
     p, *_ = plan(tmp_path, old_pages=[("fr","A1","Titre",old)], new_pages=[("fr","A2","Conservé",argument("Présent"))], remote_pages={("fr","Titre"):(10,old),("fr","Conservé"):(20,argument("Présent"))})
     assert p["counts"]["delete"] == 1
+    row = p["operations"]["delete"][0]
+    assert row["edit_summary_policy"] == "retirement_v1"
+    assert row["edit_summary"].startswith("Suppression de la page retirée du corpus")
 
 
 def test_06_already_deleted_is_idempotent_skip(tmp_path):
@@ -200,6 +206,9 @@ def test_07_renamed_argument_is_move(tmp_path):
     old, new = argument("Ancien"), argument("Nouveau")
     p, *_ = plan(tmp_path, old_pages=[("fr","A1","Ancien titre",old)], new_pages=[("fr","A1","Nouveau titre",new)], remote_pages={("fr","Ancien titre"):(10,old)})
     assert p["counts"]["move"] == 1
+    row = p["operations"]["move"][0]
+    assert row["edit_summary_policy"] == "canonical_title_move_v1"
+    assert row["edit_summary"] == "Renommage du titre canonique et mise à jour du résumé"
 
 
 def test_08_merged_argument_can_redirect(tmp_path):
@@ -207,7 +216,10 @@ def test_08_merged_argument_can_redirect(tmp_path):
     migrations=[{"language":"fr","old_page_id":"A1","kind":"merge","target_page_id":"A2","policy":"redirect"}]
     p, *_ = plan(tmp_path, old_pages=[("fr","A1","Ancien",old),("fr","A2","Cible",target)], new_pages=[("fr","A2","Cible",target)], migrations=migrations, remote_pages={("fr","Ancien"):(10,old),("fr","Cible"):(20,target)})
     assert p["counts"]["redirect"] == 1
-    assert p["operations"]["redirect"][0]["backlinks"] == ["Page entrante"]
+    row = p["operations"]["redirect"][0]
+    assert row["backlinks"] == ["Page entrante"]
+    assert row["edit_summary_policy"] == "merge_redirect_v1"
+    assert row["edit_summary"] == "Fusion en redirection vers [[Cible]]"
 
 
 def test_09_never_published_page_is_not_deleted(tmp_path):
@@ -688,7 +700,7 @@ def test_french_interlanguage_addition_gets_page_specific_summary_and_executes(t
     assert any(event[0] == "write" and event[3] == expected for event in adapter.events)
 
 
-def test_non_interlanguage_french_update_keeps_generic_summary(tmp_path):
+def test_non_interlanguage_french_update_gets_diff_specific_summary(tmp_path):
     old, new = argument("Ancien"), argument("Nouveau")
     p, config, path, adapter = plan(
         tmp_path,
@@ -696,11 +708,14 @@ def test_non_interlanguage_french_update_keeps_generic_summary(tmp_path):
         new_pages=[("fr", "A1", "Titre", new)],
         remote_pages={("fr", "Titre"): (10, old)},
     )
+    assert p["edit_summary_contract"] == "page_specific_v1"
     row = p["operations"]["update"][0]
-    assert "edit_summary" not in row
+    assert row["edit_summary_policy"] == "content_diff_v1"
+    assert row["edit_summary"] == "Mise à jour du résumé"
     executor = module.PlanExecutor(config, adapter, path)
     receipt = executor.execute(p, p["plan_sha256"])
-    assert receipt["results"][0]["edit_summary"] == "Corrections"
+    assert receipt["results"][0]["edit_summary"] == "Mise à jour du résumé"
+    assert receipt["results"][0]["edit_summary"] != "Corrections"
 
 
 def test_remote_page_without_expected_main_template_is_page_specific_manual_review(tmp_path):
@@ -831,3 +846,25 @@ def test_60_postwrite_verification_retries_until_chatgpt_tag_is_visible(tmp_path
     receipt = module.PlanExecutor(config, adapter, path).execute(planned, planned["plan_sha256"])
     assert receipt["counts"]["updated"] == 1
     assert adapter.postwrite_reads == 3
+
+
+def test_page_specific_summary_is_recomputed_and_tampering_is_blocked(tmp_path):
+    old, new = argument("Ancien"), argument("Nouveau")
+    planned, config, path, adapter = plan(
+        tmp_path,
+        old_pages=[("fr", "A1", "Titre", old)],
+        new_pages=[("fr", "A1", "Titre", new)],
+        remote_pages={("fr", "Titre"): (10, old)},
+    )
+    row = planned["operations"]["update"][0]
+    row["edit_summary"] = "Corrections"
+    unsigned = dict(planned)
+    unsigned.pop("plan_sha256", None)
+    planned["plan_sha256"] = module.sha_object(unsigned)
+    executor = module.PlanExecutor(config, adapter, path)
+    try:
+        executor.execute(planned, planned["plan_sha256"])
+    except module.PlanConflict as exc:
+        assert "Résumé individualisé divergent" in str(exc) or "Résumé générique interdit" in str(exc)
+    else:
+        raise AssertionError("Un résumé falsifié ne doit jamais être exécuté")

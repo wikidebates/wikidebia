@@ -2,22 +2,22 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.78** ;
-- validateur actif : **0.4.82** ;
-- kit actif : **2.16.11**.
+- norme active : **1.2.79** ;
+- validateur actif : **0.4.83** ;
+- kit actif : **2.16.12**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3426469 octets — SHA-256 `ebe573b664326bb0c2b5241fa99e1cee9fd09898b57938a4c5d6355417980179`
-- `wikidebia-validator.zip` — 3583053 octets — SHA-256 `eea5e7289ca6721a2ea3fb40b7132dd23eff07031438344e543ea66d58a925bb`
-- `wikidebia-kit.zip` — 654189 octets — SHA-256 `c87b15bbd4d675b6055f9a8dc19c6c8ce9680a01af88643846108875173ef5da`
+- `wikidebia-normes.zip` — 3459107 octets — SHA-256 `daf42cf150d12b0836afd22c9a9b57e7a083193ba7a24e08e7538decc492f1d0`
+- `wikidebia-validator.zip` — 3615514 octets — SHA-256 `d8ba9d02fbd5bb7580eccebf4d3980b1a407701d8e5013ffbeb5b01bc372a07d`
+- `wikidebia-kit.zip` — 659379 octets — SHA-256 `21a32c721779a66d2ac61977808037b688fc72ec2f1851b0e8bf3bd5d8d2e3cc`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.78.md`  
-SHA-256 : `a08cb5af6a1aebc587326054eafdc7e7fc9fbd167d8e9e2ab1d95611afd6dfeb`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.79.md`  
+SHA-256 : `612447862fbbf4d833657e033006b5747a2a166dff12e4f768e9bc24a8aae92b`
 
-# Norme opérationnelle active Wikidéb’IA 1.2.78
+# Norme opérationnelle active Wikidéb’IA 1.2.79
 
 **Statut : source normative active unique.**  
 **Date d’effet :** 12 août 2026
@@ -692,6 +692,16 @@ Avant toute publication, W11 doit :
 
 Les fichiers d’authentification, cookies, secrets et identifiants privés ne sont jamais inclus dans une archive publique.
 
+### 12.1 Résumés individualisés des reprises de corpus validés
+
+Lorsqu’une nouvelle archive de corpus est fournie à la commande de reprise distante (`update --archive`) puis effectivement exécutée après validation du plan, **chaque opération mutante reçoit un résumé MediaWiki individualisé décrivant la modification réelle de la page**. Cette exigence vaut pour les créations, mises à jour de contenu, renommages, transformations en redirection et suppressions. Un résumé générique tel que `Corrections` n’est pas émis par un nouveau plan de reprise.
+
+Pour une mise à jour de contenu, le résumé est calculé à partir du différentiel réel des paramètres de premier niveau de la page et regroupe les changements par fonction éditoriale (par exemple introduction, résumé, références, justifications, objections, rubriques ou mots-clés). Les cas possédant déjà une convention plus précise conservent cette convention : notamment l’ajout interlangue français et la création d’une traduction anglaise lorsque le chemin de publication correspondant s’applique.
+
+Le plan signé porte un contrat explicite de résumés individualisés, ainsi que la politique et le texte attendus pour chaque mutation. L’exécuteur **recalcule** le résumé attendu à partir du contenu signé et de l’état distant relu immédiatement avant l’écriture ; une divergence bloque l’opération. Après écriture, la révision est relue et le contenu, le résumé, la balise et l’identifiant de révision sont vérifiés. Les anciens plans déjà signés avant l’introduction de ce contrat restent lisibles selon leur format historique, sans autoriser un nouveau plan à revenir au résumé générique.
+
+Cette règle concerne les opérations de publication d’un corpus rendu et validé. Les paquets intermédiaires de `review-import` qui ne contiennent pas encore de pages MediaWiki finales restent des étapes locales : ils ne déclenchent pas à eux seuls une écriture distante. Les actions structurelles du graphe explicitement exécutées conservent leur contrat distinct d’écriture immédiate et de résumés individualisés.
+
 ## 13. Profils locaux et invariants propres à un corpus
 
 Les nombres de nœuds, relations, occurrences, lots et pages, les dates correctives, les chemins de rapports et les Work particuliers sont des données locales. Ils sont déclarés dans le manifeste, le profil de contrôle ou les rapports du corpus concerné. Ils ne deviennent jamais des constantes de la norme, du validateur ou du kit génériques.
@@ -809,7 +819,7 @@ Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. E
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `4d8a01a42a09e2aaf5c730268f500c2532a2a3059fd7d358a774f59c287c29e9`
+SHA-256 : `df8bbd8cd90486a8f9111dad1ec4784726ae3a27f6f9235134122e1e44f8afec`
 
 ## 1.2.70 — alignement du validateur sur la première publication anglaise
 
@@ -1529,12 +1539,23 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - autorise la correction de casse/graphie, le réordonnancement et l’ajout de mots-clés sur les pages préexistantes ; une suppression exige une non-pertinence réelle explicitement justifiée ;
 - exige que le kit et le validateur distinguent fonctionnellement `new` de `preexisting` au lieu d’appliquer rétroactivement le profil de création.
 
+## 1.2.79 — 12 août 2026 — résumés individualisés des reprises de corpus
+
+- remplace le résumé générique `Corrections` des nouveaux plans `update --archive` par un résumé MediaWiki calculé page par page à partir de la mutation réelle ;
+- couvre les créations, mises à jour de contenu, renommages, redirections et suppressions ;
+- conserve les conventions plus précises déjà existantes, notamment pour les ajouts interlangues ;
+- impose que la politique et le résumé soient incorporés au plan signé, recalculés avant écriture et vérifiés après écriture ;
+- conserve la lecture des anciens plans dépourvus du nouveau contrat, sans réémettre ce comportement dans les nouveaux plans ;
+- précise que `review-import` reste local tant qu’aucune page MediaWiki finale n’est rendue ; les actions structurelles explicitement exécutées gardent leur voie distante séparée.
+
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `16ffbf08439a5140b44a837e85bf5c45f2b563fa32b787dc1038ba16d8688d54`
+SHA-256 : `2883e4a4b0d496b5b6785848a64bf310b78ca5a774c3ab39cd826344735a2bc2`
 
-# Wikidéb’IA Validator 0.4.82
+# Wikidéb’IA Validator 0.4.83
+
+Le validateur 0.4.83 ajoute le contrôle `WDV-RMT-008` : lorsqu’un plan de reprise déclare le contrat `page_specific_v1`, chaque création, mise à jour, renommage, redirection ou suppression doit porter une politique et un résumé MediaWiki individualisés ; le résumé générique `Corrections` est refusé. Les plans historiques dépourvus de ce contrat restent lisibles.
 
 Le validateur 0.4.82 corrige le contrôle `WDV-EDT-016` : les constructions impersonnelles françaises `Il faut…` et `Il ne faut…` ne constituent pas un référent contextuel. Un véritable pronom anaphorique initial reste bloquant.
 
@@ -1571,7 +1592,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `01b94e9ade2ebdf7b8a13af7a3c5cd32aa0e1a11b5525af5b971c3efcfe91fd4`
+SHA-256 : `0d826ebb804736be7bfd2ccec165cb149791aa88927bfc6a5b696e5b12f0f363`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1694,12 +1715,22 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ajoute un test positif pour `Il faut…` / `Il ne faut…` et un test négatif pour `Il réduit…` ;
 - aucune modification de la norme éditoriale 1.2.78.
 
+## 0.4.83 — 12 août 2026 — contrôle des résumés individualisés de reprise
+
+- aligne le validateur sur la norme 1.2.79 et le kit 2.16.12 ;
+- accepte le contrat additif `edit_summary_contract=page_specific_v1` dans les plans `wikidebia-remote-update-plan-1.0` ;
+- ajoute `WDV-RMT-008` pour bloquer une mutation sans politique/résumé individualisés ou portant encore le résumé générique `Corrections` ;
+- conserve la lecture des plans historiques dépourvus de ce contrat ;
+- ne modifie aucun contrôle éditorial de contenu.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `7943a10e22589b55ca6dce2b511e6f33115944153901179e0d5f897eaa2860f6`
+SHA-256 : `2db8f3a6b1b0b3d1c471c4d8c91970e89a1824178b333741583517600164abd6`
 
-# Wikidéb’IA Kit 2.16.11
+# Wikidéb’IA Kit 2.16.12
+
+Le kit 2.16.12 remplace le résumé générique `Corrections` des nouveaux plans de reprise par des résumés MediaWiki individualisés. Chaque création, mise à jour, renommage, redirection ou suppression issue d’un corpus validé porte une politique et un résumé signés ; les mises à jour de contenu décrivent les familles de paramètres réellement modifiées. L’exécuteur recalcule le résumé avant l’écriture et la relecture post-écriture le vérifie comme auparavant.
 
 Le kit 2.16.11 corrige la transition vers la revue de contenu après des actions structurelles : les lignes de provenance explicitement retirées (`retired_redirect` ou `retired_deleted`) restent conservées pour l’audit mais ne sont plus comptées comme arguments actifs. Une ligne supplémentaire non retirée reste bloquante.
 
@@ -1745,7 +1776,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `716eb5f65ac2498454e467d4c5517e5b60293fcf4dfb99e63899074e66779058`
+SHA-256 : `96aec0fbde015be63fd99c58f0c7e7730a942e93074926ce0250704942b00c5f`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1930,10 +1961,21 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - continue de bloquer toute ligne de provenance supplémentaire non explicitement retirée et toute absence de provenance pour un nœud actif ;
 - ajoute des tests positif et négatif de non-régression.
 
+## 2.16.12 — 12 août 2026 — résumés individualisés des reprises de corpus
+
+- chaque nouveau plan `update --archive` déclare `edit_summary_contract=page_specific_v1` ;
+- les opérations `create`, `update`, `move`, `redirect` et `delete` portent toutes une politique et un résumé MediaWiki propres ;
+- une mise à jour ordinaire calcule son résumé à partir des paramètres réellement modifiés (`résumé`, références, rubriques, mots-clés, introduction, plan argumentatif, etc.) ;
+- l’ajout interlangue français conserve son résumé spécialisé avec wikilien anglais ;
+- les renommages, redirections et suppressions reçoivent des résumés spécifiques à leur opération ;
+- l’exécuteur recalcule le résumé attendu avant chaque écriture, refuse une divergence ou `Corrections`, puis vérifie le résumé dans la révision relue ;
+- les plans historiques sans contrat individualisé conservent leur voie de compatibilité ;
+- les tests couvrent les cinq familles de mutations et le refus du résumé générique.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
-SHA-256 : `1ce6e9ad80839f2678e30d383f60eff34daf884f71a1b02fd2ac681f694da38e`
+SHA-256 : `a28499f8db280cdd146e332632b3aa596cbac490838b292d8cba772efb12a23b`
 
 # Guide de publication et de reprise Wikidéb’IA 2.15.9
 
@@ -1998,6 +2040,10 @@ Utiliser explicitement :
 ./wikidebia update --archive <SÉLECTEUR> --dry-run
 ./wikidebia update --archive <SÉLECTEUR>
 ```
+
+À partir du kit 2.16.12, toute opération mutante issue de cette archive (`create`, `update`, `move`, `redirect` ou `delete`) reçoit dans le plan signé un **résumé MediaWiki individualisé**. Pour une mise à jour de contenu, ce résumé est calculé à partir du diff réel des paramètres de la page et regroupe les changements par fonction éditoriale (par exemple résumé, références, mots-clés, rubriques ou introduction). Un nouveau plan de cette génération ne publie jamais une mutation avec le résumé générique `Corrections`. L’exécuteur recalcule le résumé attendu immédiatement avant l’écriture à partir du contenu distant relu et du contenu désiré signé ; toute divergence bloque l’opération.
+
+Les conventions spécialisées restent prioritaires lorsqu’elles sont plus précises, notamment l’ajout d’un lien interlangue français, les renommages canoniques, les fusions en redirection et les retraits. Le résumé réellement enregistré par MediaWiki est relu avec le contenu, la balise `chatgpt` et la révision.
 
 L’archive est extraite dans une zone temporaire de staging. La simulation ne modifie pas `corpus/`, puis le staging est supprimé. Le corpus actif n’est remplacé qu’après une exécution réussie ou une attestation `no_changes` réussie.
 
@@ -2188,15 +2234,17 @@ Cette phase ne traduit rien, ne produit pas `output/`, ne contacte pas MediaWiki
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `342a35ae4443a4a2be52aa58c9e454793d86db44f9d7a97380f679c0cdb308aa`
+SHA-256 : `79488dfda4602a8f612bb3ba179414a2704b29c6a5ecd3a7794df1df459e610e`
 
-Wikidéb’IA Kit 2.16.11 — rapport de tests
+Wikidéb’IA Kit 2.16.12 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 423
-Tests pytest : 423 réussis
-Norme : 1.2.78
-Validateur : 0.4.82
-Provenance retirée exclue de la couverture active sans perte d’audit : PASSED.
+Tests pytest collectés : 424
+Tests pytest : 424 réussis
+Norme : 1.2.79
+Validateur : 0.4.83
+Résumés MediaWiki individualisés pour create/update/move/redirect/delete lors des reprises de corpus validés : PASSED.
+Recalcul pré-écriture, refus de « Corrections » et vérification post-écriture : PASSED.
+Compatibilité des plans historiques : PASSED.
 
 ## Guide d’orchestration éditoriale
 

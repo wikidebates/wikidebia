@@ -534,7 +534,7 @@ Pour chaque langue, la concision et l’équivalence sémantique d’un titre af
 - Le sujet court est un libellé nominal conventionnel quand un tel concept existe.
 - Le complément de sujet commence normalement par une minuscule en français et en anglais.
 - Le nettoyage auteur/site/page s’applique aux références des pages Argument et à la vidéographie. Une égalité auteur-site impose une nouvelle vérification d’attribution puis l’omission de l’auteur si aucune responsabilité distincte n’est trouvée.
-- Le résumé de reprise par défaut est « Corrections ».
+- La décision historique d’utiliser « Corrections » comme résumé de reprise par défaut est remplacée par la décision du 12 août 2026 : chaque mutation d’un corpus validé reçoit un résumé MediaWiki individualisé décrivant la modification réelle.
 - Une archive de livraison unique contient directement les trois composants et reste installable par les gestionnaires antérieurs.
 
 

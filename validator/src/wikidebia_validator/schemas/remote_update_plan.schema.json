@@ -169,6 +169,11 @@
     },
     "plan_sha256": {
       "$ref": "common.schema.json#/$defs/sha256"
+    },
+    "edit_summary_contract": {
+      "enum": [
+        "page_specific_v1"
+      ]
     }
   },
   "$defs": {
@@ -270,6 +275,21 @@
         "comparison_id": {
           "type": "string",
           "minLength": 1
+        },
+        "edit_summary_policy": {
+          "enum": [
+            "corpus_page_creation",
+            "content_diff_v1",
+            "french_interlanguage_addition",
+            "canonical_title_move_v1",
+            "merge_redirect_v1",
+            "retirement_v1"
+          ]
+        },
+        "edit_summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
         }
       },
       "additionalProperties": true

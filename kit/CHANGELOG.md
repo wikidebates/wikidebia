@@ -181,3 +181,13 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - continue de bloquer toute ligne de provenance supplémentaire non explicitement retirée et toute absence de provenance pour un nœud actif ;
 - ajoute des tests positif et négatif de non-régression.
 
+## 2.16.12 — 12 août 2026 — résumés individualisés des reprises de corpus
+
+- chaque nouveau plan `update --archive` déclare `edit_summary_contract=page_specific_v1` ;
+- les opérations `create`, `update`, `move`, `redirect` et `delete` portent toutes une politique et un résumé MediaWiki propres ;
+- une mise à jour ordinaire calcule son résumé à partir des paramètres réellement modifiés (`résumé`, références, rubriques, mots-clés, introduction, plan argumentatif, etc.) ;
+- l’ajout interlangue français conserve son résumé spécialisé avec wikilien anglais ;
+- les renommages, redirections et suppressions reçoivent des résumés spécifiques à leur opération ;
+- l’exécuteur recalcule le résumé attendu avant chaque écriture, refuse une divergence ou `Corrections`, puis vérifie le résumé dans la révision relue ;
+- les plans historiques sans contrat individualisé conservent leur voie de compatibilité ;
+- les tests couvrent les cinq familles de mutations et le refus du résumé générique.

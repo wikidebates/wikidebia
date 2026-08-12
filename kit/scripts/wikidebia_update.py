@@ -147,6 +147,193 @@ def top_level_parameter_map(text: str, language: str, page_type: str) -> tuple[s
     return parsed.name, list(parsed.positional), dict(parsed.params)
 
 
+
+EDIT_SUMMARY_CONTRACT = "page_specific_v1"
+EDIT_SUMMARY_POLICIES = {
+    "corpus_page_creation",
+    "content_diff_v1",
+    "french_interlanguage_addition",
+    "canonical_title_move_v1",
+    "merge_redirect_v1",
+    "retirement_v1",
+}
+
+
+def _canonical_top_level_parameters(text: str, language: str, page_type: str) -> tuple[str, list[str], dict[str, str]]:
+    model, positional, params = top_level_parameter_map(text, language, page_type)
+    canonical: dict[str, str] = {}
+    for raw_name, value in params.items():
+        name = _canonical_parameter_name(language, page_type, raw_name)
+        canonical[name] = value
+    return model, positional, canonical
+
+
+def changed_top_level_parameters(old_text: str, new_text: str, language: str, page_type: str) -> list[str]:
+    """Return canonical top-level parameters whose presence or value changed.
+
+    The list is deterministic and intentionally ignores parameter spelling aliases:
+    a historical ``nom=`` read as ``nom-consacré`` does not by itself fabricate a
+    semantic change. Structural changes outside named parameters are represented by
+    the synthetic ``__structure__`` marker.
+    """
+    old_model, old_positional, old_params = _canonical_top_level_parameters(old_text, language, page_type)
+    new_model, new_positional, new_params = _canonical_top_level_parameters(new_text, language, page_type)
+    changed = sorted(
+        name for name in (set(old_params) | set(new_params))
+        if old_params.get(name) != new_params.get(name)
+    )
+    if normalize_key(old_model) != normalize_key(new_model) or old_positional != new_positional:
+        changed.append("__structure__")
+    return changed
+
+
+def _join_summary_items(items: list[str], language: str) -> str:
+    if not items:
+        return ""
+    if len(items) == 1:
+        return items[0]
+    conjunction = " et " if language == "fr" else " and "
+    if len(items) == 2:
+        return conjunction.join(items)
+    return ", ".join(items[:-1]) + conjunction + items[-1]
+
+
+def _summary_groups(language: str, page_type: str, changed: Iterable[str]) -> list[str]:
+    names = set(changed)
+    groups: list[str] = []
+
+    if language == "fr" and page_type == "debate":
+        rules = [
+            ({"sujet", "sujet-développé"}, "du cadrage du débat"),
+            ({"introduction"}, "de l'introduction"),
+            ({"arguments-pour", "arguments-contre"}, "du plan argumentatif"),
+            ({"articles-Wikipédia"}, "des articles Wikipédia"),
+            ({
+                "bibliographie-pour", "bibliographie-contre", "bibliographie-ni-pour-ni-contre",
+                "sitographie-pour", "sitographie-contre", "sitographie-ni-pour-ni-contre",
+                "vidéographie-pour", "vidéographie-contre", "vidéographie-ni-pour-ni-contre",
+            }, "des références"),
+            ({"rubriques"}, "des rubriques"),
+            ({"mots-clés"}, "des mots-clés"),
+            ({"interlangue"}, "du lien interlangue"),
+        ]
+        metadata_label = "des métadonnées"
+        fallback = "du contenu de la page"
+    elif language == "fr":
+        rules = [
+            ({"nom-consacré"}, "du nom consacré"),
+            ({"résumé"}, "du résumé"),
+            ({"citations"}, "des citations"),
+            ({"références-bibliographiques", "références-sitographiques", "références-vidéographiques"}, "des références"),
+            ({"justifications"}, "des justifications"),
+            ({"objections"}, "des objections"),
+            ({"débat-dédié"}, "du débat dédié"),
+            ({"rubriques"}, "des rubriques"),
+            ({"mots-clés"}, "des mots-clés"),
+            ({"interlangue"}, "du lien interlangue"),
+        ]
+        metadata_label = "des métadonnées"
+        fallback = "du contenu de la page"
+    elif language == "en" and page_type == "debate":
+        rules = [
+            ({"topic", "expanded-topic"}, "the debate framing"),
+            ({"introduction"}, "the introduction"),
+            ({"pro-arguments", "con-arguments"}, "the argument map"),
+            ({"wikipedia-articles"}, "the Wikipedia articles"),
+            ({
+                "pro-bibliography", "con-bibliography", "bibliography",
+                "pro-webliography", "con-webliography", "webliography",
+                "pro-videography", "con-videography", "videography",
+            }, "the references"),
+            ({"sections"}, "the sections"),
+            ({"keywords"}, "the keywords"),
+        ]
+        metadata_label = "the metadata"
+        fallback = "the page content"
+    else:
+        rules = [
+            ({"established-name"}, "the established name"),
+            ({"summary"}, "the summary"),
+            ({"quotes"}, "the quotes"),
+            ({"bibliography", "webliography", "videography"}, "the references"),
+            ({"justifications"}, "the justifications"),
+            ({"objections"}, "the objections"),
+            ({"dedicated-debate"}, "the dedicated debate"),
+            ({"sections"}, "the sections"),
+            ({"keywords"}, "the keywords"),
+        ]
+        metadata_label = "the metadata"
+        fallback = "the page content"
+
+    consumed: set[str] = set()
+    for parameter_names, label in rules:
+        if names & parameter_names:
+            groups.append(label)
+            consumed |= parameter_names
+
+    lifecycle_prefixes = (
+        "avancement", "avertissements-", "date-création",
+        "progress", "title-warnings", "debate-warnings", "argument-warnings",
+        "summary-warnings", "reference-warnings", "justification-warnings",
+        "objection-warnings", "creation-date", "initialisation", "initialization",
+    )
+    unconsumed = {
+        name for name in names
+        if name not in consumed
+        and name != "__structure__"
+    }
+    if any(name.startswith(lifecycle_prefixes) for name in unconsumed):
+        groups.append(metadata_label)
+        unconsumed = {name for name in unconsumed if not name.startswith(lifecycle_prefixes)}
+
+    if "__structure__" in names or unconsumed:
+        groups.append(fallback)
+
+    # Ordered de-duplication in case multiple low-level parameters collapse to one label.
+    return list(dict.fromkeys(groups))
+
+
+def content_diff_edit_summary(old_text: str, new_text: str, language: str, page_type: str) -> str:
+    changed = changed_top_level_parameters(old_text, new_text, language, page_type)
+    groups = _summary_groups(language, page_type, changed)
+    if language == "fr":
+        return "Mise à jour " + _join_summary_items(groups or ["du contenu de la page"], language)
+    return "Update to " + _join_summary_items(groups or ["the page content"], language)
+
+
+def corpus_creation_edit_summary(language: str, page_type: str) -> str:
+    if language == "fr":
+        return "Création de la page de débat à partir du corpus validé" if page_type == "debate" else "Création de l'argument à partir du corpus validé"
+    return "Creation of the debate page from the validated corpus" if page_type == "debate" else "Creation of the argument from the validated corpus"
+
+
+def move_edit_summary(language: str, page_type: str, old_text: str, new_text: str) -> str:
+    changed = changed_top_level_parameters(old_text, new_text, language, page_type)
+    groups = _summary_groups(language, page_type, changed)
+    # The move log already shows the old and new titles. The summary therefore
+    # describes the semantic operation without repeating potentially long titles.
+    if language == "fr":
+        base = "Renommage du titre canonique"
+        return base if not groups else base + " et mise à jour " + _join_summary_items(groups, language)
+    base = "Canonical-title rename"
+    return base if not groups else base + " and update to " + _join_summary_items(groups, language)
+
+
+def redirect_edit_summary(language: str, target: str) -> str:
+    if language == "fr":
+        return f"Fusion en redirection vers [[{target}]]"
+    return f"Merge into redirect to [[{target}]]"
+
+
+def retirement_edit_summary(language: str, reason: str, target: str | None = None) -> str:
+    if target:
+        return f"Suppression après fusion vers [[{target}]]" if language == "fr" else f"Deletion after merge into [[{target}]]"
+    reason = (reason or "").strip()
+    if language == "fr":
+        return f"Suppression de la page retirée du corpus ({reason})" if reason else "Suppression de la page retirée du corpus"
+    return f"Deletion of the page removed from the corpus ({reason})" if reason else "Deletion of the page removed from the corpus"
+
+
 def argument_established_name_parameter(language: str, text: str | None = None) -> str:
     """Return the canonical established-name parameter, preserving legacy proposals when needed.
 
@@ -1049,17 +1236,54 @@ class RemoteUpdatePlanner:
         remote_text: str,
         proposed_text: str,
     ) -> None:
-        if str(op.get("language")) != "fr":
-            return
-        status = str(((self.manifest.get("translation_status") or {}).get("en") or "pending"))
-        if status not in {"ready", "published"}:
-            return
+        language = str(op.get("language") or "")
         page_id = str(op.get("page_id") or "")
         page_type = str(op.get("page_type") or "")
-        expected_title = self._english_title_for(page_id, page_type)
-        if only_french_interlanguage_addition(remote_text, proposed_text, page_type, expected_title):
-            op["edit_summary_policy"] = "french_interlanguage_addition"
-            op["edit_summary"] = self._interlanguage_edit_summary(page_id, page_type)
+
+        # Keep the stronger cross-wiki provenance summary when the change is
+        # strictly the expected French interlanguage addition.
+        if language == "fr":
+            status = str(((self.manifest.get("translation_status") or {}).get("en") or "pending"))
+            if status in {"ready", "published"}:
+                expected_title = self._english_title_for(page_id, page_type)
+                if only_french_interlanguage_addition(remote_text, proposed_text, page_type, expected_title):
+                    op["edit_summary_policy"] = "french_interlanguage_addition"
+                    op["edit_summary"] = self._interlanguage_edit_summary(page_id, page_type)
+                    return
+
+        op["edit_summary_policy"] = "content_diff_v1"
+        op["edit_summary"] = content_diff_edit_summary(remote_text, proposed_text, language, page_type)
+
+    def _apply_create_summary_policy(self, op: dict[str, Any]) -> None:
+        op["edit_summary_policy"] = "corpus_page_creation"
+        op["edit_summary"] = corpus_creation_edit_summary(
+            str(op.get("language") or ""),
+            str(op.get("page_type") or ""),
+        )
+
+    def _apply_move_summary_policy(self, op: dict[str, Any], old_text: str, new_text: str) -> None:
+        op["edit_summary_policy"] = "canonical_title_move_v1"
+        op["edit_summary"] = move_edit_summary(
+            str(op.get("language") or ""),
+            str(op.get("page_type") or ""),
+            old_text,
+            new_text,
+        )
+
+    def _apply_redirect_summary_policy(self, op: dict[str, Any]) -> None:
+        target = str(op.get("redirect_target") or "")
+        if not target:
+            raise UpdateError(f"Cible de redirection absente pour {op.get('page_id')}")
+        op["edit_summary_policy"] = "merge_redirect_v1"
+        op["edit_summary"] = redirect_edit_summary(str(op.get("language") or ""), target)
+
+    def _apply_retirement_summary_policy(self, op: dict[str, Any]) -> None:
+        op["edit_summary_policy"] = "retirement_v1"
+        op["edit_summary"] = retirement_edit_summary(
+            str(op.get("language") or ""),
+            str(op.get("retirement_reason") or ""),
+            str(op.get("target") or "") or None,
+        )
 
     def _materialize_remote_overlay(self, proposed: dict[str, Any], text: str) -> dict[str, Any]:
         digest = sha_text(text)
@@ -1304,6 +1528,7 @@ class RemoteUpdatePlanner:
             "corpus_version": content_version(self.manifest),
             "languages": list(self.languages),
             "scope_mode": mode,
+            "edit_summary_contract": EDIT_SUMMARY_CONTRACT,
             "state_source": self.state_source,
             "new_manifest_sha256": sha_file(self.manifest_path),
             "validator_report_sha256": sha_object(report),
@@ -1421,6 +1646,7 @@ class RemoteUpdatePlanner:
                 buckets["blocked"].append(op)
             elif not exists:
                 op["preconditions"] = ["title_absent_at_execution"]
+                self._apply_create_summary_policy(op)
                 buckets["create"].append(op)
             elif sha_text(remote_text) == effective["content_sha256"]:
                 op["justification"] = "Contenu distant déjà équivalent"
@@ -1584,6 +1810,7 @@ class RemoteUpdatePlanner:
         op["preconditions"].append("remote_lifecycle_parameters_preserved")
         if lifecycle_preservation is not None:
             op["justification"] = "Titre modifié avec préservation automatique des paramètres historiques"
+        self._apply_move_summary_policy(op, source_text, effective["content"])
         buckets["move"].append(op)
 
     def _plan_merge(self, prior: StatePage, migration: dict[str, Any], buckets: dict[str, list[dict[str, Any]]], comparisons: list[dict[str, Any]]) -> None:
@@ -1630,6 +1857,7 @@ class RemoteUpdatePlanner:
             op["phase"] = 0
             buckets["manual_review"].append(op)
         else:
+            self._apply_redirect_summary_policy(op)
             buckets["redirect"].append(op)
 
     def _plan_retirement(self, prior: StatePage, migration: dict[str, Any] | None, buckets: dict[str, list[dict[str, Any]]], comparisons: list[dict[str, Any]]) -> None:
@@ -1696,6 +1924,7 @@ class RemoteUpdatePlanner:
             op["backlinks"] = self.adapter.backlinks(prior.title)
         except Exception:
             op["backlinks"] = []
+        self._apply_retirement_summary_policy(op)
         buckets["delete"].append(op)
 
 
@@ -1926,20 +2155,68 @@ class PlanExecutor:
             return str(configured).format(debate_id=self.debate_id, corpus_version=plan.get("corpus_version"), operation=operation)
         return "Corrections"
 
-    def _expected_row_summary(self, row: dict[str, Any], operation: str, plan: dict[str, Any]) -> str:
+    def _expected_row_summary(
+        self,
+        row: dict[str, Any],
+        operation: str,
+        plan: dict[str, Any],
+        remote_text: str = "",
+    ) -> str:
         policy = str(row.get("edit_summary_policy") or "")
+        contract = str(plan.get("edit_summary_contract") or "")
         if not policy:
             if row.get("edit_summary"):
                 raise PlanConflict(f"Résumé individualisé sans politique signée : {row.get('page_id')}")
+            if contract == EDIT_SUMMARY_CONTRACT and operation in {"create", "update", "move", "redirect", "delete"}:
+                raise PlanConflict(f"Résumé individualisé absent d'une opération mutante : {row.get('page_id')}")
+            # Compatibility with already-signed historical plans. Newly-built
+            # plans always carry page_specific_v1 and never take this branch.
             return self._summary(str(row["language"]), operation, plan)
-        if policy != "french_interlanguage_addition":
+
+        if policy not in EDIT_SUMMARY_POLICIES:
             raise PlanConflict(f"Politique de résumé inconnue : {policy}")
-        if str(row.get("language")) != "fr" or operation != "update":
-            raise PlanConflict(f"Politique interlangue appliquée à une opération invalide : {row.get('page_id')}")
-        expected = self._interlanguage_edit_summary(str(row.get("page_id") or ""), str(row.get("page_type") or ""))
+
+        language = str(row.get("language") or "")
+        page_type = str(row.get("page_type") or "")
+        page_id = str(row.get("page_id") or "")
+        if policy == "french_interlanguage_addition":
+            if language != "fr" or operation != "update":
+                raise PlanConflict(f"Politique interlangue appliquée à une opération invalide : {page_id}")
+            expected = self._interlanguage_edit_summary(page_id, page_type)
+        elif policy == "corpus_page_creation":
+            if operation != "create":
+                raise PlanConflict(f"Politique de création appliquée à une opération invalide : {page_id}")
+            expected = corpus_creation_edit_summary(language, page_type)
+        elif policy == "content_diff_v1":
+            if operation != "update":
+                raise PlanConflict(f"Politique de diff appliquée à une opération invalide : {page_id}")
+            desired = self._source_text(row)
+            expected = content_diff_edit_summary(remote_text, desired, language, page_type)
+        elif policy == "canonical_title_move_v1":
+            if operation != "move":
+                raise PlanConflict(f"Politique de renommage appliquée à une opération invalide : {page_id}")
+            desired = self._source_text(row)
+            expected = move_edit_summary(language, page_type, remote_text, desired)
+        elif policy == "merge_redirect_v1":
+            if operation != "redirect":
+                raise PlanConflict(f"Politique de redirection appliquée à une opération invalide : {page_id}")
+            expected = redirect_edit_summary(language, str(row.get("redirect_target") or ""))
+        elif policy == "retirement_v1":
+            if operation != "delete":
+                raise PlanConflict(f"Politique de suppression appliquée à une opération invalide : {page_id}")
+            expected = retirement_edit_summary(
+                language,
+                str(row.get("retirement_reason") or ""),
+                str(row.get("target") or "") or None,
+            )
+        else:  # pragma: no cover - guarded by EDIT_SUMMARY_POLICIES
+            raise PlanConflict(f"Politique de résumé non implémentée : {policy}")
+
         planned = str(row.get("edit_summary") or "")
         if planned != expected:
-            raise PlanConflict(f"Résumé interlangue divergent dans le plan : {row.get('page_id')}")
+            raise PlanConflict(f"Résumé individualisé divergent dans le plan : {page_id}")
+        if planned.strip().casefold() == "corrections":
+            raise PlanConflict(f"Résumé générique interdit par le contrat individualisé : {page_id}")
         return planned
 
     def _source_text(self, row: dict[str, Any]) -> str:
@@ -1955,7 +2232,7 @@ class PlanExecutor:
         operation = row["operation"]
         title = row["title"]
         exists, revision_id, remote_text = self.adapter.read_page(title)
-        summary = self._expected_row_summary(row, operation, plan)
+        summary = self._expected_row_summary(row, operation, plan, remote_text)
         result = {"operation": operation, "language": row["language"], "page_id": row["page_id"], "title": title, "status": None}
         if operation == "create":
             desired = self._source_text(row)

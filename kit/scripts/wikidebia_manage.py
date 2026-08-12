@@ -1324,10 +1324,6 @@ def remote_update_config(root: Path, debate_id: str, scope: str, run_dir: Path, 
             "required_version": VALIDATOR_VERSION,
             "scopes": ["schema", "coherence", "graph", "files", "batches", "sources", "wikicode", "bilingual", "editorial", "workflow"],
         },
-        "edit_summaries": {
-            "fr": "Corrections",
-            "en": "Corrections",
-        },
     }
     path = run_dir / "config.json"
     write_json(path, config)

@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.78
+- **Révision :** 1.2.79
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -324,7 +324,7 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 |---|---|---|
 | Sujet nominal et complément en minuscule | TTL-015, TTL-016 | WDV-EDT-018 + revue d’introduction |
 | Métadonnées Argument et vidéographie | REF-033, VAL-031 | WDV-DOC-004 |
-| Résumé « Corrections » | PUB-036 | tests du kit |
+| Résumé individualisé des reprises de corpus validés | PUB-036 | tests du kit + WDV-RMT-008 |
 | Mise à niveau avec un seul ZIP | IMP-019 | tests du gestionnaire et du bundle |
 
 | Liens Wikipédia explicatifs dans les résumés | ARG-035, PRM-018 | `WDV-MWK-020` + revue humaine | première occurrence utile, sans valeur documentaire |

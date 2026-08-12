@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.16.11",
-  "validator_version": "0.4.82",
+  "version": "2.16.12",
+  "validator_version": "0.4.83",
   "scope": [
     "publish_archive",
     "github_init",
@@ -102,7 +102,8 @@
     "version_provenance_only_runtime",
     "historical_parameter_input_normalization",
     "single_canonical_release_archive",
-    "graph_review_rejection_correction_loop"
+    "graph_review_rejection_correction_loop",
+    "page_specific_remote_update_edit_summary"
   ],
   "debate_specific_code": false,
   "change_tag": "chatgpt",
@@ -457,9 +458,12 @@
     "duplicate_redirect_instead_of_delete",
     "individualized_graph_action_edit_summaries",
     "prospective_local_validation_before_graph_remote_writes",
-    "full_graph_action_remote_preflight"
+    "full_graph_action_remote_preflight",
+    "page_specific_remote_update_edit_summary",
+    "signed_edit_summary_policy",
+    "prewrite_edit_summary_recalculation"
   ],
-  "normative_revision": "1.2.78",
+  "normative_revision": "1.2.79",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -554,7 +558,8 @@
     "graph_review_action_legacy_package_regression",
     "graph_duplicate_redirect_summary_regression",
     "graph_action_remote_preflight_regression",
-    "graph_action_prospective_validation_regression"
+    "graph_action_prospective_validation_regression",
+    "page_specific_remote_update_edit_summary"
   ],
   "regression_gates": [
     "argument_reference_develops_argument_regression",
@@ -589,7 +594,9 @@
     "graph_extract_dedicated_debate_cli_regression",
     "advanced_editorial_primitives_preserved",
     "semantic_review_reopens_translation_regression",
-    "orchestration_never_publishes_remote_regression"
+    "orchestration_never_publishes_remote_regression",
+    "page_specific_remote_update_edit_summary_regression",
+    "generic_corrections_not_reemitted_regression"
   ],
   "translation_change_tag": "translated-fr"
 }

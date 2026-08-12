@@ -124,6 +124,7 @@ CODES = {'WDV-SCH-001': 'Fichier JSON illisible',
  'WDV-RMT-004': 'Suppression distante insuffisamment attestée',
  'WDV-RMT-005': 'Mise à jour distante insuffisamment attestée',
  'WDV-RMT-006': 'Revue manuelle sans comparaison correspondante',
+ 'WDV-RMT-008': 'Résumé MediaWiki individualisé absent ou incohérent',
  'WDV-INT-001': 'Erreur interne du validateur'}
 
 # Active catalogue shown by the current CLI and used for current reports.
@@ -250,5 +251,6 @@ ACTIVE_CODES = {'WDV-SCH-001': 'Fichier JSON illisible',
  'WDV-RMT-004': 'Suppression distante insuffisamment attestée',
  'WDV-RMT-005': 'Mise à jour distante insuffisamment attestée',
  'WDV-RMT-006': 'Revue manuelle sans comparaison correspondante',
+ 'WDV-RMT-008': 'Résumé MediaWiki individualisé absent ou incohérent',
  'WDV-INT-001': 'Erreur interne du validateur'}
 

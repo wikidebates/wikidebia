@@ -1,4 +1,4 @@
-# Norme opérationnelle active Wikidéb’IA 1.2.78
+# Norme opérationnelle active Wikidéb’IA 1.2.79
 
 **Statut : source normative active unique.**  
 **Date d’effet :** 12 août 2026
@@ -672,6 +672,16 @@ Avant toute publication, W11 doit :
 23. exiger pour la suite de la publication le reçu machine du test de la page Débat canonique, lié au plan signé et revérifié à distance immédiatement avant toute autre écriture.
 
 Les fichiers d’authentification, cookies, secrets et identifiants privés ne sont jamais inclus dans une archive publique.
+
+### 12.1 Résumés individualisés des reprises de corpus validés
+
+Lorsqu’une nouvelle archive de corpus est fournie à la commande de reprise distante (`update --archive`) puis effectivement exécutée après validation du plan, **chaque opération mutante reçoit un résumé MediaWiki individualisé décrivant la modification réelle de la page**. Cette exigence vaut pour les créations, mises à jour de contenu, renommages, transformations en redirection et suppressions. Un résumé générique tel que `Corrections` n’est pas émis par un nouveau plan de reprise.
+
+Pour une mise à jour de contenu, le résumé est calculé à partir du différentiel réel des paramètres de premier niveau de la page et regroupe les changements par fonction éditoriale (par exemple introduction, résumé, références, justifications, objections, rubriques ou mots-clés). Les cas possédant déjà une convention plus précise conservent cette convention : notamment l’ajout interlangue français et la création d’une traduction anglaise lorsque le chemin de publication correspondant s’applique.
+
+Le plan signé porte un contrat explicite de résumés individualisés, ainsi que la politique et le texte attendus pour chaque mutation. L’exécuteur **recalcule** le résumé attendu à partir du contenu signé et de l’état distant relu immédiatement avant l’écriture ; une divergence bloque l’opération. Après écriture, la révision est relue et le contenu, le résumé, la balise et l’identifiant de révision sont vérifiés. Les anciens plans déjà signés avant l’introduction de ce contrat restent lisibles selon leur format historique, sans autoriser un nouveau plan à revenir au résumé générique.
+
+Cette règle concerne les opérations de publication d’un corpus rendu et validé. Les paquets intermédiaires de `review-import` qui ne contiennent pas encore de pages MediaWiki finales restent des étapes locales : ils ne déclenchent pas à eux seuls une écriture distante. Les actions structurelles du graphe explicitement exécutées conservent leur contrat distinct d’écriture immédiate et de résumés individualisés.
 
 ## 13. Profils locaux et invariants propres à un corpus
 

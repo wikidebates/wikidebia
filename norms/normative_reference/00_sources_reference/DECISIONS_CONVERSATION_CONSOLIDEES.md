@@ -383,3 +383,8 @@ La lignée de traduction/validation 1.2.61 et la lignée de publication GitHub `
 
 - La règle exigeant un `titre-affiché` propositionnel s’applique aux titres générés par IA / aux pages nouvelles. Lorsqu’un corpus est repris depuis des pages déjà existantes sur le wiki, le `titre-affiché` historique est conservé par défaut, même non propositionnel. Il n’est normalement modifié que pour une faute d’orthographe, de grammaire ou de typographie, une troncation/corruption, un problème flagrant ou une décision explicite du propriétaire. Les noms de pages / titres canoniques restent, eux, à corriger lorsqu’ils sont incomplets, contextuels, ambigus ou fautifs.
 - Les mots-clés d’une page préexistante du wiki ne sont pas supprimés pour satisfaire les règles de génération ou un quota. Leur casse et leur graphie peuvent être corrigées, leur ordre peut être revu, et de nouveaux mots-clés pertinents peuvent être ajoutés. Un mot-clé historique n’est supprimé que s’il est réellement non pertinent, avec justification explicite.
+
+
+## Décision propriétaire du 12 août 2026 — résumés de reprise individualisés
+
+La décision antérieure fixant `Corrections` comme résumé distant par défaut est remplacée pour les nouveaux plans. Lorsqu’un corpus modifié est déposé puis validé pour une reprise distante, chaque mutation publiée doit porter un résumé MediaWiki propre à la modification réelle de la page. La politique et le résumé sont signés dans le plan, recalculés avant écriture et vérifiés après écriture. Les plans historiques déjà signés restent lisibles.

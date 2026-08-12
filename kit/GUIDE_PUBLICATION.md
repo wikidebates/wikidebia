@@ -62,6 +62,10 @@ Utiliser explicitement :
 ./wikidebia update --archive <SÉLECTEUR>
 ```
 
+À partir du kit 2.16.12, toute opération mutante issue de cette archive (`create`, `update`, `move`, `redirect` ou `delete`) reçoit dans le plan signé un **résumé MediaWiki individualisé**. Pour une mise à jour de contenu, ce résumé est calculé à partir du diff réel des paramètres de la page et regroupe les changements par fonction éditoriale (par exemple résumé, références, mots-clés, rubriques ou introduction). Un nouveau plan de cette génération ne publie jamais une mutation avec le résumé générique `Corrections`. L’exécuteur recalcule le résumé attendu immédiatement avant l’écriture à partir du contenu distant relu et du contenu désiré signé ; toute divergence bloque l’opération.
+
+Les conventions spécialisées restent prioritaires lorsqu’elles sont plus précises, notamment l’ajout d’un lien interlangue français, les renommages canoniques, les fusions en redirection et les retraits. Le résumé réellement enregistré par MediaWiki est relu avec le contenu, la balise `chatgpt` et la révision.
+
 L’archive est extraite dans une zone temporaire de staging. La simulation ne modifie pas `corpus/`, puis le staging est supprimé. Le corpus actif n’est remplacé qu’après une exécution réussie ou une attestation `no_changes` réussie.
 
 Un plan contenant `blocked` ou `manual_review` est bloquant et ne produit ni écriture MediaWiki, ni reçu de succès, ni nouvel état publié. Un plan entièrement `skip` déclenche une relecture distante complète, produit une attestation signée `no_changes` et actualise l’état publié sans éditer le wiki.

@@ -1,4 +1,6 @@
-# Wikidéb’IA Kit 2.16.11
+# Wikidéb’IA Kit 2.16.12
+
+Le kit 2.16.12 remplace le résumé générique `Corrections` des nouveaux plans de reprise par des résumés MediaWiki individualisés. Chaque création, mise à jour, renommage, redirection ou suppression issue d’un corpus validé porte une politique et un résumé signés ; les mises à jour de contenu décrivent les familles de paramètres réellement modifiées. L’exécuteur recalcule le résumé avant l’écriture et la relecture post-écriture le vérifie comme auparavant.
 
 Le kit 2.16.11 corrige la transition vers la revue de contenu après des actions structurelles : les lignes de provenance explicitement retirées (`retired_redirect` ou `retired_deleted`) restent conservées pour l’audit mais ne sont plus comptées comme arguments actifs. Une ligne supplémentaire non retirée reste bloquante.
 

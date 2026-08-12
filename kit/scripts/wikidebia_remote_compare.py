@@ -340,7 +340,6 @@ def _config(project_root: Path, release_copy: Path, run_dir: Path, debate_id: st
             "required_version": REQUIRED_VALIDATOR_VERSION,
             "scopes": ["schema", "coherence", "graph", "files", "batches", "sources", "wikicode", "bilingual", "editorial", "workflow"],
         },
-        "edit_summaries": {"fr": "Corrections", "en": "Corrections"},
         "comparison_mode": "read_only",
         "remote_write_authorized": False,
     }

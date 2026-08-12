@@ -1,7 +1,7 @@
 {
-  "normative_revision": "1.2.78",
-  "recommended_validator_version": "0.4.82",
-  "recommended_kit_version": "2.16.11",
+  "normative_revision": "1.2.79",
+  "recommended_validator_version": "0.4.83",
+  "recommended_kit_version": "2.16.12",
   "version_source": "VERSIONS.json",
   "compatibility_policy": "schema_and_capability_driven",
   "historical_revision_index": {

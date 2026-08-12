@@ -715,3 +715,13 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - réserve la cible de deux à quatre mots-clés aux pages nouvelles et interdit de supprimer un mot-clé historique pour satisfaire ce quota ;
 - autorise la correction de casse/graphie, le réordonnancement et l’ajout de mots-clés sur les pages préexistantes ; une suppression exige une non-pertinence réelle explicitement justifiée ;
 - exige que le kit et le validateur distinguent fonctionnellement `new` de `preexisting` au lieu d’appliquer rétroactivement le profil de création.
+
+## 1.2.79 — 12 août 2026 — résumés individualisés des reprises de corpus
+
+- remplace le résumé générique `Corrections` des nouveaux plans `update --archive` par un résumé MediaWiki calculé page par page à partir de la mutation réelle ;
+- couvre les créations, mises à jour de contenu, renommages, redirections et suppressions ;
+- conserve les conventions plus précises déjà existantes, notamment pour les ajouts interlangues ;
+- impose que la politique et le résumé soient incorporés au plan signé, recalculés avant écriture et vérifiés après écriture ;
+- conserve la lecture des anciens plans dépourvus du nouveau contrat, sans réémettre ce comportement dans les nouveaux plans ;
+- précise que `review-import` reste local tant qu’aucune page MediaWiki finale n’est rendue ; les actions structurelles explicitement exécutées gardent leur voie distante séparée.
+

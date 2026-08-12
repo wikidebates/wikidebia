@@ -215,7 +215,7 @@ Pour chaque langue, la concision et l’équivalence sémantique d’un titre af
 
 ## Workflow 1.2.23
 
-Avant validation, la revue choisit un sujet nominal conventionnel, contrôle la minuscule du complément, puis effectue une seconde recherche d’auteur chaque fois qu’une attribution provisoire reproduit le nom du site. Les reprises distantes utilisent « Corrections ». Le ZIP de livraison unique expose les trois composants à sa racine ; le gestionnaire courant sait également les découvrir dans un bundle imbriqué.
+Avant validation, la revue choisit un sujet nominal conventionnel, contrôle la minuscule du complément, puis effectue une seconde recherche d’auteur chaque fois qu’une attribution provisoire reproduit le nom du site. Les nouveaux plans de reprise distante utilisent un résumé MediaWiki individualisé, calculé page par page à partir de la mutation réelle ; le résumé générique « Corrections » n’est plus émis. Le ZIP de livraison unique expose les trois composants à sa racine ; le gestionnaire courant sait également les découvrir dans un bundle imbriqué.
 
 ## Reprise sûre depuis la révision 1.2.25
 
