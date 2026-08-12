@@ -884,3 +884,119 @@ def test_failure_after_successful_french_publication_does_not_rollback_sealed_re
     assert saved["phase"] == "fr_content_review"
     assert saved["pending_review"]["review_type"] == "fr_content_review"
     assert saved["french_publication"]["status"] == "published"
+
+
+def _make_french_stage(project: Path, work_id: str, stage: str, *, marker: str) -> Path:
+    root = project / ".state/fr-publication/debat_test" / work_id / stage
+    (root / "checkpoint-corpus").mkdir(parents=True, exist_ok=True)
+    (root / "checkpoint-corpus/marker.txt").write_text(marker, encoding="utf-8")
+    common.write_json(root / "checkpoint.json", {"stage": stage, "source_tree_sha256": marker})
+    return root
+
+
+def test_fr_content_prewrite_failure_rolls_back_provisional_checkpoint_and_keeps_graph(tmp_path: Path, monkeypatch):
+    project = tmp_path / "project"
+    project.mkdir()
+    base = make_base(project)
+    state = make_state(project, base, "fr_content_review")
+    state["work_id"] = "EDIT-20260812-001"
+    wf._save_workflow(project, state)
+    graph = _make_french_stage(project, state["work_id"], "graph", marker="published-graph")
+    common.write_json(graph / "publication-receipt.json", {"stage": "graph", "status": "published"})
+    graph_before = {p.relative_to(graph).as_posix(): p.read_bytes() for p in graph.rglob("*") if p.is_file()}
+    pending = wf.create_review_package(
+        project, state, review_type="fr_content_review", base=base,
+        editable_paths=["reviews/edit.json"], context_paths=["data/context.json"],
+    )
+    returned = tmp_path / "returned.zip"
+    rewrite_zip(project / pending["package_path"], returned, lambda root: None)
+    monkeypatch.setattr(wf, "finalize_content_review", lambda *a, **k: {"review_sha256": "a" * 64})
+    monkeypatch.setattr(wf, "apply_content_review", lambda *a, **k: {"status": "fr_content_applied"})
+
+    def fail_before_remote(project_root, debate_id, work_id, *, stage):
+        assert stage == "content"
+        content_stage = _make_french_stage(project_root, work_id, stage, marker="attempt-A")
+        common.write_json(content_stage / "remote-update-config.json", {"attempt": "A"})
+        # Reproduce RemoteUpdatePlanner.build_plan() failing during validator execution:
+        # there is deliberately no executable update-plan and no remote receipt.
+        raise RuntimeError("validation documentaire refusée")
+
+    monkeypatch.setattr(wf, "publish_checkpoint", fail_before_remote)
+    with pytest.raises(RuntimeError, match="validation documentaire refusée"):
+        wf.import_review(project, "debat_test", returned)
+
+    content_stage = project / ".state/fr-publication/debat_test" / state["work_id"] / "content"
+    assert not content_stage.exists()
+    graph_after = {p.relative_to(graph).as_posix(): p.read_bytes() for p in graph.rglob("*") if p.is_file()}
+    assert graph_after == graph_before
+    saved = wf._load_workflow(project, "debat_test")
+    assert saved["pending_review"]["review_type"] == "fr_content_review"
+
+
+def test_fr_content_two_local_failures_leave_no_false_checkpoint_lock(tmp_path: Path, monkeypatch):
+    project = tmp_path / "project"
+    project.mkdir()
+    base = make_base(project)
+    state = make_state(project, base, "fr_content_review")
+    state["work_id"] = "EDIT-20260812-001"
+    wf._save_workflow(project, state)
+    _make_french_stage(project, state["work_id"], "graph", marker="published-graph")
+    pending = wf.create_review_package(
+        project, state, review_type="fr_content_review", base=base,
+        editable_paths=["reviews/edit.json"], context_paths=["data/context.json"],
+    )
+    returned = tmp_path / "returned.zip"
+    rewrite_zip(project / pending["package_path"], returned, lambda root: None)
+    monkeypatch.setattr(wf, "finalize_content_review", lambda *a, **k: {"review_sha256": "a" * 64})
+    monkeypatch.setattr(wf, "apply_content_review", lambda *a, **k: {"status": "fr_content_applied"})
+    attempts = {"count": 0}
+
+    def fail_twice(project_root, debate_id, work_id, *, stage):
+        attempts["count"] += 1
+        content_stage = _make_french_stage(project_root, work_id, stage, marker=f"attempt-{attempts['count']}")
+        common.write_json(content_stage / "remote-update-config.json", {"attempt": attempts["count"]})
+        raise RuntimeError(f"local failure {attempts['count']}")
+
+    monkeypatch.setattr(wf, "publish_checkpoint", fail_twice)
+    for expected in (1, 2):
+        with pytest.raises(RuntimeError, match=f"local failure {expected}"):
+            wf.import_review(project, "debat_test", returned)
+        assert not (project / ".state/fr-publication/debat_test" / state["work_id"] / "content").exists()
+    assert attempts["count"] == 2
+
+
+def test_fr_content_remote_execution_failure_preserves_checkpoint_plan_and_receipt_state(tmp_path: Path, monkeypatch):
+    project = tmp_path / "project"
+    project.mkdir()
+    base = make_base(project)
+    state = make_state(project, base, "fr_content_review")
+    state["work_id"] = "EDIT-20260812-001"
+    wf._save_workflow(project, state)
+    _make_french_stage(project, state["work_id"], "graph", marker="published-graph")
+    pending = wf.create_review_package(
+        project, state, review_type="fr_content_review", base=base,
+        editable_paths=["reviews/edit.json"], context_paths=["data/context.json"],
+    )
+    returned = tmp_path / "returned.zip"
+    rewrite_zip(project / pending["package_path"], returned, lambda root: None)
+    monkeypatch.setattr(wf, "finalize_content_review", lambda *a, **k: {"review_sha256": "a" * 64})
+    monkeypatch.setattr(wf, "apply_content_review", lambda *a, **k: {"status": "fr_content_applied"})
+
+    def fail_after_remote_started(project_root, debate_id, work_id, *, stage):
+        content_stage = _make_french_stage(project_root, work_id, stage, marker="remote-started")
+        common.write_json(content_stage / "update-plan.json", {"plan_sha256": "p" * 64, "operations": {"update": [{"page_id": "A0001"}]}})
+        common.write_json(content_stage / "remote-execution-state.json", {"status": "started"})
+        raise wf.FrenchCheckpointError("remote write interrupted", remote_execution_started=True)
+
+    monkeypatch.setattr(wf, "publish_checkpoint", fail_after_remote_started)
+    with pytest.raises(wf.FrenchCheckpointError, match="remote write interrupted"):
+        wf.import_review(project, "debat_test", returned)
+
+    content_stage = project / ".state/fr-publication/debat_test" / state["work_id"] / "content"
+    assert (content_stage / "checkpoint-corpus/marker.txt").read_text(encoding="utf-8") == "remote-started"
+    assert (content_stage / "update-plan.json").is_file()
+    assert (content_stage / "remote-execution-state.json").is_file()
+    saved = wf._load_workflow(project, "debat_test")
+    assert saved["status"] == "blocked_remote_publication"
+    assert saved["phase"] == "fr_content_review"
+    assert saved["pending_review"]["review_type"] == "fr_content_review"

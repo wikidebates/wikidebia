@@ -1,13 +1,13 @@
-Wikidéb’IA Kit 2.16.20 — rapport de tests
+Wikidéb’IA Kit 2.16.21 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 468
-Tests pytest : 468 réussis
+Tests pytest collectés : 475
+Tests pytest : 475 réussis
 Norme : 1.2.86
 Validateur : 0.4.91
-Citation historique avec sous-paramètres facultatifs vides : acceptée ; valeurs vides omises du wikicode canonique.
-Nom de paramètre de citation vide : BLOQUÉ comme attendu.
-Paramètre obligatoire `citation` vide : BLOQUÉ en amont comme attendu.
-A0055-C001 / A0056-C001 : formes historiques à paramètres optionnels vides acceptées sans invention documentaire.
-Citation→Quote : `work`/`issue`/`location`/`page`/`publisher`/`place` vides conservés en provenance et omis du rendu anglais.
-Intégration vote électronique : autorisation historique → checkpoint français n°2 → préparation de la revue anglaise : PASSED.
-Toutes les régressions 2.16.19 (provenance éditoriale), 2.16.18 (valeur historique sélectionnée), deux checkpoints français, rollback transactionnel et résumés individualisés : PASSED.
+Rollback pré-écriture du checkpoint content : PASSED ; le stage provisoire est supprimé/restauré avec la transaction locale.
+Checkpoint graph déjà publié : PASSED ; conservé byte-for-byte lors d’un échec local du checkpoint content.
+Deux échecs locaux successifs : PASSED ; aucun faux verrou fr-publication ne subsiste.
+Frontière distante : PASSED ; checkpoint/plan/preuves conservés dès que remote_execution_started est signalé.
+Compatibilité 2.16.20 : PASSED ; un checkpoint divergent sans plan exécutable est reconstruit, mais un plan exécutable ou publication-receipt bloque tout auto-nettoyage.
+Intégration vote électronique v6→v7 : PASSED ; échec documentaire pré-écriture, rollback, nouvelle source SHA, reconstruction checkpoint 2, puis préparation de en_translation_review.
+Tous les contrôles 2.16.20 et antérieurs restent verts, y compris Citation/Quote à paramètres facultatifs vides.

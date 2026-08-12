@@ -169,3 +169,80 @@ def test_structured_scope_blocks_parasitic_change_to_unchanged_historical_subsec
     common.write_json(path, data)
     with pytest.raises(content.ContentReviewError, match="dépasse la portée structurée"):
         content.collect_historical_change_requests(data)
+
+
+def _refresh_content_reviewed_tree_receipt(workspace: Path) -> None:
+    meta_path = workspace / "workspace.json"
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    meta["content_reviewed_copy"]["tree_sha256"] = common.full_tree_sha256(workspace / "content-reviewed-copy")
+    meta["workspace_sha256"] = None
+    meta["workspace_sha256"] = checkpoint.workspace_receipt_hash(meta)
+    common.write_json(meta_path, meta)
+
+
+def test_stale_content_checkpoint_without_executable_plan_is_rebuilt_and_graph_is_untouched(tmp_path: Path):
+    project, workspace, work_id, review_path, _data, _auth = _prepare_authorized_vote_intro(tmp_path)
+    finalized = content.finalize_review(project, "debat_test", work_id)
+    content.apply_review(project, "debat_test", work_id, finalized["review_sha256"])
+
+    graph_stage = project / ".state/fr-publication/debat_test" / work_id / "graph"
+    (graph_stage / "checkpoint-corpus").mkdir(parents=True, exist_ok=True)
+    (graph_stage / "checkpoint-corpus/marker.txt").write_text("published graph", encoding="utf-8")
+    common.write_json(graph_stage / "checkpoint.json", {"stage": "graph", "source_tree_sha256": "g"})
+    common.write_json(graph_stage / "publication-receipt.json", {"stage": "graph", "status": "published"})
+    graph_before = {p.relative_to(graph_stage).as_posix(): p.read_bytes() for p in graph_stage.rglob("*") if p.is_file()}
+
+    first = checkpoint.build_checkpoint(project, "debat_test", work_id, stage="content")
+    first_receipt = json.loads((first.parent / "checkpoint.json").read_text(encoding="utf-8"))
+    common.write_json(first.parent / "remote-update-config.json", {"attempt": "v6-preflight"})
+    assert not (first.parent / "update-plan.json").exists()
+
+    marker = workspace / "content-reviewed-copy/reports/retry-v7.txt"
+    marker.parent.mkdir(parents=True, exist_ok=True)
+    marker.write_text("corrected documentary review", encoding="utf-8")
+    _refresh_content_reviewed_tree_receipt(workspace)
+
+    second = checkpoint.build_checkpoint(project, "debat_test", work_id, stage="content")
+    second_receipt = json.loads((second.parent / "checkpoint.json").read_text(encoding="utf-8"))
+    assert second_receipt["source_tree_sha256"] != first_receipt["source_tree_sha256"]
+    assert not (second.parent / "remote-update-config.json").exists()
+    graph_after = {p.relative_to(graph_stage).as_posix(): p.read_bytes() for p in graph_stage.rglob("*") if p.is_file()}
+    assert graph_after == graph_before
+
+
+def test_stale_content_checkpoint_with_execution_capable_plan_is_never_auto_cleaned(tmp_path: Path):
+    project, workspace, work_id, _review_path, _data, _auth = _prepare_authorized_vote_intro(tmp_path)
+    finalized = content.finalize_review(project, "debat_test", work_id)
+    content.apply_review(project, "debat_test", work_id, finalized["review_sha256"])
+    cp = checkpoint.build_checkpoint(project, "debat_test", work_id, stage="content")
+    stage = cp.parent
+    old_receipt = (stage / "checkpoint.json").read_bytes()
+    common.write_json(stage / "update-plan.json", {"plan_sha256": "p" * 64, "operations": {"update": [{"page_id": "A0001"}]}})
+
+    marker = workspace / "content-reviewed-copy/reports/retry-after-remote-risk.txt"
+    marker.parent.mkdir(parents=True, exist_ok=True)
+    marker.write_text("new source", encoding="utf-8")
+    _refresh_content_reviewed_tree_receipt(workspace)
+
+    with pytest.raises(checkpoint.FrenchCheckpointError, match="autre état verrouillé"):
+        checkpoint.build_checkpoint(project, "debat_test", work_id, stage="content")
+    assert (stage / "checkpoint.json").read_bytes() == old_receipt
+    assert (stage / "update-plan.json").is_file()
+
+
+def test_stale_content_checkpoint_with_publication_receipt_is_never_auto_cleaned(tmp_path: Path):
+    project, workspace, work_id, _review_path, _data, _auth = _prepare_authorized_vote_intro(tmp_path)
+    finalized = content.finalize_review(project, "debat_test", work_id)
+    content.apply_review(project, "debat_test", work_id, finalized["review_sha256"])
+    cp = checkpoint.build_checkpoint(project, "debat_test", work_id, stage="content")
+    stage = cp.parent
+    common.write_json(stage / "publication-receipt.json", {"stage": "content", "status": "published"})
+
+    marker = workspace / "content-reviewed-copy/reports/retry-after-published.txt"
+    marker.parent.mkdir(parents=True, exist_ok=True)
+    marker.write_text("new source", encoding="utf-8")
+    _refresh_content_reviewed_tree_receipt(workspace)
+
+    with pytest.raises(checkpoint.FrenchCheckpointError, match="autre état verrouillé"):
+        checkpoint.build_checkpoint(project, "debat_test", work_id, stage="content")
+    assert (stage / "publication-receipt.json").is_file()

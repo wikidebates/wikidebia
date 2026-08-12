@@ -261,3 +261,12 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - applique la même omission canonique à `work`, `issue`, `location`, `page`, `publisher` et `place` dans `{{Quote}}` ;
 - ajoute les régressions A0055-C001/A0056-C001 et un trajet d’intégration vote électronique allant de l’autorisation historique au checkpoint français n°2 puis à la préparation de la revue anglaise ;
 - conserve le contrôle amont qui bloque une valeur obligatoire `citation` vide.
+
+## 2.16.21 — 13 août 2026 — rollback transactionnel des checkpoints français pré-écriture
+
+- étend la sauvegarde transactionnelle de `review-import` au stage français concerné sous `.state/fr-publication/<debate>/<work>/` ;
+- supprime ou restaure `checkpoint-corpus/`, `checkpoint.json`, `remote-update-config.json`, `update-plan.json`, `inventory/` et les autres artefacts dérivés lorsque la tentative échoue avant toute exécution distante ;
+- préserve intégralement le checkpoint `graph` déjà publié lors d’un rollback du stage `content` ;
+- conserve sans rollback le checkpoint, le plan et les preuves dès qu’une exécution distante a commencé, afin de maintenir la reprise idempotente ;
+- autorise `build_checkpoint()` à reconstruire un checkpoint de source divergente laissé par 2.16.20 uniquement lorsque l’état est prouvablement pré-exécution (aucun plan, ou plan bloqué/non exécutable) ; un reçu de publication ou un plan exécutable bloque tout auto-nettoyage ;
+- ajoute les régressions sur deux échecs locaux successifs, conservation après début d’écriture et le scénario vote électronique v6 → v7 jusqu’au prochain handoff anglais.

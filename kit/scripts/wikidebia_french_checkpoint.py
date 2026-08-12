@@ -435,6 +435,39 @@ def _build_graph_checkpoint_copy(project_root: Path, source: Path, target: Path,
     return {"checkpoint":checkpoint,"pages":len(pages),"timestamp":timestamp}
 
 
+def _stale_checkpoint_is_provably_preexecution(state_dir: Path) -> bool:
+    """Return True only when a stale stage cannot have reached remote execution.
+
+    ``publish_checkpoint`` always materializes ``update-plan.json`` before creating
+    a ``PlanExecutor``.  Therefore a stage without a plan is provably preexecution.
+    A saved plan whose operations are already blocked/manual_review is likewise
+    non-executable: ``PlanExecutor.verify_plan`` rejects it before any write.
+    Any publication receipt or execution-capable plan makes automatic cleanup
+    unsafe and the caller must preserve the stage for explicit recovery.
+    """
+    if (state_dir / "publication-receipt.json").is_file():
+        return False
+    plan_path = state_dir / "update-plan.json"
+    if not plan_path.exists():
+        return True
+    if not plan_path.is_file() or plan_path.is_symlink():
+        return False
+    try:
+        plan = load_json(plan_path, "plan de checkpoint français périmé")
+    except Exception:
+        return False
+    operations = plan.get("operations") or {}
+    return bool(operations.get("blocked") or operations.get("manual_review"))
+
+
+def _discard_provably_stale_checkpoint(state_dir: Path) -> None:
+    for child in list(state_dir.iterdir()) if state_dir.is_dir() else []:
+        if child.is_dir() and not child.is_symlink():
+            shutil.rmtree(child, ignore_errors=True)
+        else:
+            child.unlink(missing_ok=True)
+
+
 def build_checkpoint(project_root: Path, debate_id: str, work_id: str, *, stage: str) -> Path:
     project_root = project_root.resolve()
     workspace, _meta, source = _workspace(project_root, debate_id, work_id, stage)
@@ -444,11 +477,17 @@ def build_checkpoint(project_root: Path, debate_id: str, work_id: str, *, stage:
     source_sha = full_tree_sha256(source)
     if target.is_dir() and receipt_path.is_file():
         receipt = load_json(receipt_path, "checkpoint français")
-        if receipt.get("stage") != stage or receipt.get("source_tree_sha256") != source_sha:
+        if receipt.get("stage") != stage:
             raise FrenchCheckpointError("Le checkpoint français existant appartient à un autre état verrouillé")
-        if receipt.get("checkpoint_tree_sha256") != full_tree_sha256(target):
-            raise FrenchCheckpointError("Le checkpoint français existant a été modifié")
-        return target
+        if receipt.get("source_tree_sha256") != source_sha:
+            if _stale_checkpoint_is_provably_preexecution(state_dir):
+                _discard_provably_stale_checkpoint(state_dir)
+            else:
+                raise FrenchCheckpointError("Le checkpoint français existant appartient à un autre état verrouillé")
+        else:
+            if receipt.get("checkpoint_tree_sha256") != full_tree_sha256(target):
+                raise FrenchCheckpointError("Le checkpoint français existant a été modifié")
+            return target
     if target.exists():
         raise FrenchCheckpointError("Chemin de checkpoint français déjà occupé")
     state_dir.mkdir(parents=True, exist_ok=True)

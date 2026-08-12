@@ -6,7 +6,7 @@
   "release": {
     "norm": "1.2.86",
     "validator": "0.4.91",
-    "kit": "2.16.20"
+    "kit": "2.16.21"
   },
   "emits": {
     "publication_plan": [
@@ -184,7 +184,8 @@
     "historical_selected_value_validation": "1.0",
     "editorial_source_provenance_translation": "1.0",
     "historical_classification_differential": "1.0",
-    "historical_citation_optional_empty_parameters": "1.0"
+    "historical_citation_optional_empty_parameters": "1.0",
+    "french_checkpoint_transactional_rollback": "1.0"
   },
   "features": [
     "page_specific_remote_update_edit_summary",

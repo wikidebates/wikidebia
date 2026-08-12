@@ -3,15 +3,15 @@
   "versions": {
     "norm": "1.2.86",
     "validator": "0.4.91",
-    "kit": "2.16.20"
+    "kit": "2.16.21"
   },
-  "created_at": "2026-08-12T20:55:02+00:00",
+  "created_at": "2026-08-12T23:35:52+00:00",
   "purpose": "Source textuelle unifiée et composants de mise à niveau",
   "files": [
     {
       "path": "WIKIDEBIA_SOURCE_ACTIVE.md",
-      "size_bytes": 273974,
-      "sha256": "e9410e8311ac426ae0324d973eaf07190b62a7615a93da8aa43e3bf5f4f66a5d"
+      "size_bytes": 276565,
+      "sha256": "8d6783c5757e665776b95635d1ab8d5730e5db33486061ec2e679f4ee1b77cf8"
     },
     {
       "path": "wikidebia-normes.zip",
@@ -25,8 +25,8 @@
     },
     {
       "path": "wikidebia-kit.zip",
-      "size_bytes": 729518,
-      "sha256": "84ff36de4985ab305e69d3ff9f0e6f1528a3a900f0b48786b988ff157e14c5e3"
+      "size_bytes": 734104,
+      "sha256": "20488c836476f76818a4bf5f12290a44103f96411943d184233b2ee22d113275"
     }
   ]
 }

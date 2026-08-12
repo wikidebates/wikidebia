@@ -485,8 +485,31 @@ def _direct_children(path: Path) -> set[str]:
     return {child.name for child in path.iterdir()}
 
 
-def _capture_import_transaction(project_root: Path, debate_id: str) -> dict[str, Any]:
+def _french_checkpoint_stage_for_review(review_type: str) -> str | None:
+    if review_type in {"graph_review", "fr_metadata_review"}:
+        return "graph"
+    if review_type == "fr_content_review":
+        return "content"
+    return None
+
+
+def _capture_import_transaction(
+    project_root: Path, debate_id: str, *, work_id: str | None = None, review_type: str = ""
+) -> dict[str, Any]:
     workflow_path = _workflow_path(project_root, debate_id)
+    fr_root = project_root / ".state" / "fr-publication" / debate_id
+    stage = _french_checkpoint_stage_for_review(review_type)
+    normalized_work_id = str(work_id or "").strip()
+    fr_stage = fr_root / normalized_work_id / stage if normalized_work_id and stage else None
+    transaction_temp_root: Path | None = None
+    fr_stage_backup: Path | None = None
+    fr_stage_existed = bool(fr_stage and fr_stage.is_dir() and not fr_stage.is_symlink())
+    if fr_stage_existed and fr_stage is not None:
+        temp_parent = project_root / ".state" / "review-import-transactions"
+        temp_parent.mkdir(parents=True, exist_ok=True)
+        transaction_temp_root = Path(tempfile.mkdtemp(prefix=f"{debate_id}-", dir=temp_parent))
+        fr_stage_backup = transaction_temp_root / "fr-publication-stage"
+        shutil.copytree(fr_stage, fr_stage_backup, symlinks=False)
     return {
         "workflow_bytes": workflow_path.read_bytes(),
         "build_existed": (project_root / ".state" / "corpus-builds" / debate_id).is_dir(),
@@ -499,6 +522,13 @@ def _capture_import_transaction(project_root: Path, debate_id: str) -> dict[str,
         "release_children": _direct_children(project_root / ".state" / "corpus-releases" / debate_id),
         "outgoing_root_existed": (project_root / "outgoing").is_dir(),
         "outgoing_children": _direct_children(project_root / "outgoing"),
+        "fr_publication_root_existed": fr_root.is_dir(),
+        "fr_publication_children": _direct_children(fr_root),
+        "fr_publication_work_id": normalized_work_id or None,
+        "fr_publication_stage": stage,
+        "fr_publication_stage_existed": fr_stage_existed,
+        "fr_publication_stage_backup": str(fr_stage_backup) if fr_stage_backup is not None else None,
+        "transaction_temp_root": str(transaction_temp_root) if transaction_temp_root is not None else None,
     }
 
 
@@ -521,15 +551,51 @@ def _remove_new_children(path: Path, before: set[str], existed_before: bool) -> 
             pass
 
 
+def _cleanup_import_transaction_snapshot(snapshot: Mapping[str, Any]) -> None:
+    temp_root = str(snapshot.get("transaction_temp_root") or "").strip()
+    if temp_root:
+        shutil.rmtree(Path(temp_root), ignore_errors=True)
+
+
+def _restore_french_publication_stage(
+    project_root: Path, debate_id: str, snapshot: Mapping[str, Any]
+) -> None:
+    fr_root = project_root / ".state" / "fr-publication" / debate_id
+    work_id = str(snapshot.get("fr_publication_work_id") or "").strip()
+    stage = str(snapshot.get("fr_publication_stage") or "").strip()
+    if work_id and stage:
+        stage_path = fr_root / work_id / stage
+        if stage_path.exists():
+            if stage_path.is_dir() and not stage_path.is_symlink():
+                shutil.rmtree(stage_path)
+            else:
+                stage_path.unlink(missing_ok=True)
+        if bool(snapshot.get("fr_publication_stage_existed")):
+            backup_value = str(snapshot.get("fr_publication_stage_backup") or "").strip()
+            backup_path = Path(backup_value) if backup_value else None
+            if backup_path is None or not backup_path.is_dir():
+                raise WorkflowError("Sauvegarde transactionnelle du checkpoint français introuvable")
+            stage_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copytree(backup_path, stage_path, symlinks=False)
+        work_root = fr_root / work_id
+        if work_root.is_dir() and not any(work_root.iterdir()):
+            work_root.rmdir()
+    _remove_new_children(
+        fr_root,
+        set(snapshot.get("fr_publication_children") or set()),
+        bool(snapshot.get("fr_publication_root_existed")),
+    )
+
+
 def _rollback_import_transaction(
     project_root: Path, debate_id: str, base: Path, backup: Path, snapshot: Mapping[str, Any]
 ) -> None:
     """Restore a local review import if the following mechanical transition fails.
 
-    Review imports are local transactions up to the explicit remote graph-action
-    boundary.  This rollback restores the reviewed control tree, the orchestration
-    state, and any per-debate mechanical artifacts created after the review was
-    accepted (promotion/workspace/release/outgoing handoff).
+    Review imports are local transactions until a remote write boundary is crossed.
+    This rollback restores the reviewed control tree, orchestration state, French
+    checkpoint stage, and per-debate mechanical artifacts created after the review
+    was accepted.  Callers must never invoke it after remote execution has begun.
     """
     build = project_root / ".state" / "corpus-builds" / debate_id
     corpus = project_root / "corpus" / debate_id
@@ -562,12 +628,14 @@ def _rollback_import_transaction(
         set(snapshot.get("outgoing_children") or set()),
         bool(snapshot.get("outgoing_root_existed")),
     )
+    _restore_french_publication_stage(project_root, debate_id, snapshot)
 
     workflow_path = _workflow_path(project_root, debate_id)
     workflow_path.parent.mkdir(parents=True, exist_ok=True)
     temp = workflow_path.with_name(workflow_path.name + ".rollback")
     temp.write_bytes(bytes(snapshot["workflow_bytes"]))
     os.replace(temp, workflow_path)
+    _cleanup_import_transaction_snapshot(snapshot)
 
 
 def _install_editable_files(base: Path, manifest: Mapping[str, Any], files: Mapping[str, bytes]) -> None:
@@ -1370,7 +1438,10 @@ def import_review(
         if _sha256_file(local) != row.get("sha256_at_prepare"):
             raise WorkflowError(f"Un fichier éditable local a changé hors réimport : {row.get('target_path')}")
 
-    transaction = _capture_import_transaction(project_root, debate_id)
+    transaction = _capture_import_transaction(
+        project_root, debate_id, work_id=str(state.get("work_id") or "") or None,
+        review_type=str(manifest.get("review_type") or ""),
+    )
     backup = base.with_name(base.name + f".review-import-backup-{uuid.uuid4().hex[:8]}")
     if backup.exists():
         shutil.rmtree(backup)
@@ -1538,6 +1609,7 @@ def import_review(
             state["updated_at"] = now_iso()
             _save_workflow(project_root, state)
             shutil.rmtree(backup, ignore_errors=True)
+            _cleanup_import_transaction_snapshot(transaction)
         elif irreversible_french_publication:
             # Never roll local state back across a remote write. For the first
             # combined graph/title checkpoint the review has already been
@@ -1558,11 +1630,13 @@ def import_review(
             state["updated_at"] = now_iso()
             _save_workflow(project_root, state)
             shutil.rmtree(backup, ignore_errors=True)
+            _cleanup_import_transaction_snapshot(transaction)
         else:
             _rollback_import_transaction(project_root, debate_id, base, backup, transaction)
         raise
     else:
         shutil.rmtree(backup, ignore_errors=True)
+        _cleanup_import_transaction_snapshot(transaction)
         return advanced
 
 

@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.86** ;
 - validateur actif : **0.4.91** ;
-- kit actif : **2.16.20**.
+- kit actif : **2.16.21**.
 
 ## Composants associés
 
 - `wikidebia-normes.zip` — 3683607 octets — SHA-256 `7a1256a6228a72fe7b901e26e9f48822acc9019f14fc918a528aef6d28f08afb`
 - `wikidebia-validator.zip` — 3849916 octets — SHA-256 `e1ae44804de9878545625a7abeca84d50245e5b5a17343684846b09d901a17f8`
-- `wikidebia-kit.zip` — 729518 octets — SHA-256 `84ff36de4985ab305e69d3ff9f0e6f1528a3a900f0b48786b988ff157e14c5e3`
+- `wikidebia-kit.zip` — 734104 octets — SHA-256 `20488c836476f76818a4bf5f12290a44103f96411943d184233b2ee22d113275`
 
 ## Norme consolidée active
 
@@ -1910,7 +1910,15 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `b0356aef78b0e7eed96470e5e12c1749085e6895d855cb754dd6701cca7bb877`
+SHA-256 : `71c94cbbb59df89d479578013033a18102be703667d4c04abadd91a39829da6b`
+
+# Wikidéb’IA Kit 2.16.21
+
+Le kit 2.16.21 étend la transaction de `review-import` aux artefacts de checkpoint français sous `.state/fr-publication/<debate>/<work>/<stage>`. Tant qu’aucune exécution distante n’a commencé, un échec de validation, préflight ou planification restaure exactement le stage qui existait avant la tentative, ou supprime le stage provisoire créé par cette tentative. Le checkpoint `graph` déjà publié reste intact lorsqu’un checkpoint `content` échoue localement.
+
+Dès qu’une exécution distante est signalée, le rollback local reste interdit : checkpoint, plan et preuves de reprise sont conservés pour la reprise idempotente. `build_checkpoint()` sait en outre remplacer un artefact 2.16.20 périmé de source différente uniquement lorsqu’il est **prouvablement pré-exécution** : absence de plan, ou plan explicitement bloqué/non exécutable. Un `publication-receipt.json` ou un plan exécutable interdit tout auto-nettoyage.
+
+Une régression d’intégration reproduit le vote électronique : tentative v6 rejetée par la validation documentaire avant écriture → rollback du checkpoint content → revue v7 différente → reconstruction du checkpoint 2 → préparation de la revue anglaise, sans manipulation manuelle de `.state/`.
 
 # Wikidéb’IA Kit 2.16.20
 
@@ -2002,7 +2010,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `36d398fe431ab32c11cc866a43b893a0dfa4b5e64d366277ea553956222c989d`
+SHA-256 : `8d5eea68edbad0d04a7316c51f02004f018f8accfdbc26fd6991fccc1bd2ca9e`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2267,6 +2275,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - applique la même omission canonique à `work`, `issue`, `location`, `page`, `publisher` et `place` dans `{{Quote}}` ;
 - ajoute les régressions A0055-C001/A0056-C001 et un trajet d’intégration vote électronique allant de l’autorisation historique au checkpoint français n°2 puis à la préparation de la revue anglaise ;
 - conserve le contrôle amont qui bloque une valeur obligatoire `citation` vide.
+
+## 2.16.21 — 13 août 2026 — rollback transactionnel des checkpoints français pré-écriture
+
+- étend la sauvegarde transactionnelle de `review-import` au stage français concerné sous `.state/fr-publication/<debate>/<work>/` ;
+- supprime ou restaure `checkpoint-corpus/`, `checkpoint.json`, `remote-update-config.json`, `update-plan.json`, `inventory/` et les autres artefacts dérivés lorsque la tentative échoue avant toute exécution distante ;
+- préserve intégralement le checkpoint `graph` déjà publié lors d’un rollback du stage `content` ;
+- conserve sans rollback le checkpoint, le plan et les preuves dès qu’une exécution distante a commencé, afin de maintenir la reprise idempotente ;
+- autorise `build_checkpoint()` à reconstruire un checkpoint de source divergente laissé par 2.16.20 uniquement lorsque l’état est prouvablement pré-exécution (aucun plan, ou plan bloqué/non exécutable) ; un reçu de publication ou un plan exécutable bloque tout auto-nettoyage ;
+- ajoute les régressions sur deux échecs locaux successifs, conservation après début d’écriture et le scénario vote électronique v6 → v7 jusqu’au prochain handoff anglais.
 
 ## Guide de publication
 
@@ -2560,21 +2577,21 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `997d875c9f23e8c0f20322452656572bb7240b440f5ccba6f2e6e9832618d900`
+SHA-256 : `3772e22e8c2d2232aff4dd2738c761db920feeefe8e926c0f00243f0837743a1`
 
-Wikidéb’IA Kit 2.16.20 — rapport de tests
+Wikidéb’IA Kit 2.16.21 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 468
-Tests pytest : 468 réussis
+Tests pytest collectés : 475
+Tests pytest : 475 réussis
 Norme : 1.2.86
 Validateur : 0.4.91
-Citation historique avec sous-paramètres facultatifs vides : acceptée ; valeurs vides omises du wikicode canonique.
-Nom de paramètre de citation vide : BLOQUÉ comme attendu.
-Paramètre obligatoire `citation` vide : BLOQUÉ en amont comme attendu.
-A0055-C001 / A0056-C001 : formes historiques à paramètres optionnels vides acceptées sans invention documentaire.
-Citation→Quote : `work`/`issue`/`location`/`page`/`publisher`/`place` vides conservés en provenance et omis du rendu anglais.
-Intégration vote électronique : autorisation historique → checkpoint français n°2 → préparation de la revue anglaise : PASSED.
-Toutes les régressions 2.16.19 (provenance éditoriale), 2.16.18 (valeur historique sélectionnée), deux checkpoints français, rollback transactionnel et résumés individualisés : PASSED.
+Rollback pré-écriture du checkpoint content : PASSED ; le stage provisoire est supprimé/restauré avec la transaction locale.
+Checkpoint graph déjà publié : PASSED ; conservé byte-for-byte lors d’un échec local du checkpoint content.
+Deux échecs locaux successifs : PASSED ; aucun faux verrou fr-publication ne subsiste.
+Frontière distante : PASSED ; checkpoint/plan/preuves conservés dès que remote_execution_started est signalé.
+Compatibilité 2.16.20 : PASSED ; un checkpoint divergent sans plan exécutable est reconstruit, mais un plan exécutable ou publication-receipt bloque tout auto-nettoyage.
+Intégration vote électronique v6→v7 : PASSED ; échec documentaire pré-écriture, rollback, nouvelle source SHA, reconstruction checkpoint 2, puis préparation de en_translation_review.
+Tous les contrôles 2.16.20 et antérieurs restent verts, y compris Citation/Quote à paramètres facultatifs vides.
 
 ## Guide d’orchestration éditoriale
 

@@ -1,6 +1,6 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.16.20",
+  "version": "2.16.21",
   "validator_version": "0.4.91",
   "scope": [
     "publish_archive",
@@ -480,7 +480,8 @@
     "owner_authorized_historical_text_in_fr_content_review",
     "legacy_fr_content_review_consent_migration",
     "historical_selected_final_value",
-    "structured_historical_introduction_scope"
+    "structured_historical_introduction_scope",
+    "transactional_french_checkpoint_stage_rollback"
   ],
   "normative_revision": "1.2.86",
   "stable_archive_name": "wikidebia-kit.zip",
@@ -584,7 +585,8 @@
     "sources_working_document_kind_prevalidation",
     "historical_text_owner_consent_receipt_gate",
     "authorized_historical_delta_checkpoint2_gate",
-    "selected_historical_value_gate"
+    "selected_historical_value_gate",
+    "fr_checkpoint_prewrite_transaction_rollback_regression"
   ],
   "regression_gates": [
     "argument_reference_develops_argument_regression",
@@ -629,8 +631,9 @@
     "legacy_21614_content_review_migration_regression",
     "authorized_historical_text_no_third_checkpoint_regression",
     "vote_electronique_authorized_intro_4_to_5_regression",
-    "historical_change_scope_parasite_rejection_regression"
+    "historical_change_scope_parasite_rejection_regression",
+    "vote_electronique_v6_v7_checkpoint_rebuild_regression"
   ],
   "translation_change_tag": "translated-fr",
-  "kit_version": "2.16.20"
+  "kit_version": "2.16.21"
 }

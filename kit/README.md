@@ -1,3 +1,11 @@
+# Wikidéb’IA Kit 2.16.21
+
+Le kit 2.16.21 étend la transaction de `review-import` aux artefacts de checkpoint français sous `.state/fr-publication/<debate>/<work>/<stage>`. Tant qu’aucune exécution distante n’a commencé, un échec de validation, préflight ou planification restaure exactement le stage qui existait avant la tentative, ou supprime le stage provisoire créé par cette tentative. Le checkpoint `graph` déjà publié reste intact lorsqu’un checkpoint `content` échoue localement.
+
+Dès qu’une exécution distante est signalée, le rollback local reste interdit : checkpoint, plan et preuves de reprise sont conservés pour la reprise idempotente. `build_checkpoint()` sait en outre remplacer un artefact 2.16.20 périmé de source différente uniquement lorsqu’il est **prouvablement pré-exécution** : absence de plan, ou plan explicitement bloqué/non exécutable. Un `publication-receipt.json` ou un plan exécutable interdit tout auto-nettoyage.
+
+Une régression d’intégration reproduit le vote électronique : tentative v6 rejetée par la validation documentaire avant écriture → rollback du checkpoint content → revue v7 différente → reconstruction du checkpoint 2 → préparation de la revue anglaise, sans manipulation manuelle de `.state/`.
+
 # Wikidéb’IA Kit 2.16.20
 
 Le kit 2.16.20 corrige le rendu des `Citation`/`Quote` importées lorsque leur inventaire historique contient des sous-paramètres facultatifs présents mais vides. Le registre et les verrous conservent ces lignes de provenance à l’identique, tandis que le wikicode canonique les omet conformément au profil de rendu ; aucune valeur documentaire n’est inventée.
