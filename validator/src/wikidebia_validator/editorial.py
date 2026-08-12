@@ -942,6 +942,71 @@ def validate_introduction_review_data(review: Any, actual_titles: dict[str, list
             issues.append({'reason': 'missing_language', 'language': lang})
             continue
         historical_status = str(entry.get('status') or '')
+        historical_translation = lang == 'en' and str(entry.get('source_page_origin') or '') == 'preexisting'
+        if historical_translation:
+            # A newly created English target may translate a historically human
+            # French source. Creation-profile requirements (notably the mandatory
+            # Stakes subsection) do not become applicable merely because the
+            # target page is technically new. The translation remains an
+            # autonomous, documented international adaptation.
+            for field in (
+                'historical_source_profile_respected',
+                'france_specific_context_reviewed',
+                'international_context_adaptation_reviewed',
+                'no_unjustified_substantive_addition',
+                'english_documentation_localized',
+                'canonical_title_semantic_inventory_reviewed',
+                'topic_semantic_equivalence_reviewed',
+                'complete_topic_semantic_equivalence_reviewed',
+                'introduction_claim_inventory_reviewed',
+                'subsection_structure_equivalence_reviewed',
+            ):
+                if entry.get(field) is not True:
+                    issues.append({'reason': 'historical_translation_attestation_false_or_missing', 'language': lang, 'field': field})
+            # Source provenance changes the creation profile, not the intrinsic
+            # quality bar for the English page. Documentation, inline citations,
+            # hover links and specialized-term review remain mandatory.
+            for field in (
+                'factual_claims_referenced',
+                'documentation_proportionate_to_literature',
+                'wikipedia_hover_links_reviewed',
+                'specialized_terms_linked_or_explained',
+                'documentation_orientation_reviewed',
+                'youtube_authorship_reviewed',
+                'reference_note_punctuation_reviewed',
+                'specialized_term_inventory_reviewed',
+            ):
+                if entry.get(field) is not True:
+                    issues.append({'reason': 'historical_translation_intrinsic_quality_missing', 'language': lang, 'field': field})
+            if len(str(entry.get('introduction_adaptation_rationale') or '').strip()) < 30:
+                issues.append({'reason': 'historical_translation_adaptation_rationale', 'language': lang})
+            if len(str(entry.get('canonical_title_semantic_inventory_note') or '').strip()) < 20:
+                issues.append({'reason': 'canonical_title_semantic_inventory_note', 'language': lang})
+            if len(str(entry.get('introduction_claim_inventory_note') or '').strip()) < 30:
+                issues.append({'reason': 'introduction_claim_inventory_note', 'language': lang})
+            family_notes = entry.get('documentation_family_notes')
+            if not isinstance(family_notes, dict) or set(family_notes) != {'bibliography', 'webliography', 'videography'}:
+                issues.append({'reason': 'documentation_family_notes', 'language': lang})
+            else:
+                for family, note in family_notes.items():
+                    if not isinstance(note, str) or len(note.strip()) < 20:
+                        issues.append({'reason': 'documentation_family_note', 'language': lang, 'family': family})
+            rows = entry.get('subsections')
+            if not isinstance(rows, list):
+                issues.append({'reason': 'missing_subsections', 'language': lang})
+            else:
+                ledger_titles = [row.get('title') for row in rows if isinstance(row, dict)]
+                if ledger_titles != titles:
+                    issues.append({'reason': 'subsection_titles_mismatch', 'language': lang, 'expected': titles, 'actual': ledger_titles})
+            inventory = entry.get('specialized_term_inventory')
+            if inventory is not None:
+                if not isinstance(inventory, list):
+                    issues.append({'reason': 'specialized_term_inventory_missing', 'language': lang})
+                else:
+                    inv_titles = [str(row.get('subsection_title') or '').strip() for row in inventory if isinstance(row, dict)]
+                    if inv_titles and (inv_titles != titles or len(inv_titles) != len(inventory)):
+                        issues.append({'reason': 'specialized_term_inventory_subsections_mismatch', 'language': lang, 'expected': titles, 'actual': inv_titles})
+            continue
         if historical_status in {'historical_existing', 'historical_absent', 'historical_authorized_change'}:
             # Historical introductions are protected by default.  A scoped
             # owner-authorized correction remains exempt from retroactive
@@ -1320,10 +1385,14 @@ def validate_individual_review_data(review: Any, nodes: list[dict[str, Any]], no
             issues.append({'reason': 'title_decision', 'node_id': node_id})
         if entry.get('canonical_referents_explicit_fr') is not True or (not english_deferred and entry.get('canonical_referents_explicit_en') is not True):
             issues.append({'reason': 'canonical_referents_explicit', 'node_id': node_id})
-        if entry.get('displayed_referents_explicit_fr') is not True or (not english_deferred and entry.get('displayed_referents_explicit_en') is not True):
-            issues.append({'reason': 'displayed_referents_explicit', 'node_id': node_id})
         current_differential = translation_validation_mode == 'differential'
         preexisting_fr = preexisting_node_ids is not None and str(node_id) in preexisting_node_ids
+        # Historical displayed titles may legitimately rely on their immediate
+        # rendering context.  Do not force a false explicit-referent attestation
+        # merely because an English target page is technically new.
+        if not preexisting_fr:
+            if entry.get('displayed_referents_explicit_fr') is not True or (not english_deferred and entry.get('displayed_referents_explicit_en') is not True):
+                issues.append({'reason': 'displayed_referents_explicit', 'node_id': node_id})
         if current_differential:
             # The French source is authoritative in translation mode: attest its
             # reviewed source form, but do not retroactively impose creation-form
@@ -2026,6 +2095,15 @@ def validate_editorial(ctx: PackageContext) -> None:
     title_quality_counts = {'fr': 0, 'en': 0}
     keyword_quality_counts = {'fr': 0, 'en': 0}
     page_map = {(p.get('page_id'), p.get('language')): p for p in manifest.get('pages', [])}
+    differential_translation = bool(editorial_controls.get('translation_validation_mode') == 'differential')
+
+    def source_page_preexisting(node_id: Any, language: str) -> bool:
+        target = page_map.get((node_id, language))
+        if language == 'en' and differential_translation:
+            source = page_map.get((node_id, 'fr'))
+            if source is not None:
+                return source.get('page_origin') == 'preexisting'
+        return bool(target and target.get('page_origin') == 'preexisting')
     vocab_fr, vocab_en = _load_keyword_vocabulary(ctx, editorial_controls)
     capitalization_vocabularies = (('fr', vocab_fr),) if english_deferred else (('fr', vocab_fr), ('en', vocab_en))
     for language, vocabulary in capitalization_vocabularies:
@@ -2073,17 +2151,27 @@ def validate_editorial(ctx: PackageContext) -> None:
         classification_metrics[lang] = cratio
         keyword_sets = [tuple((node.get(lang) or {}).get('keywords') or []) for node in nodes]
         dominant_keyword_set_ratio = Counter(keyword_sets).most_common(1)[0][1] / len(keyword_sets) if keyword_sets else 1.0
+        generated_keyword_sets = [
+            tuple((node.get(lang) or {}).get('keywords') or [])
+            for node in nodes if not source_page_preexisting(node.get('id'), lang)
+        ]
+        generated_dominant_keyword_set_ratio = (
+            Counter(generated_keyword_sets).most_common(1)[0][1] / len(generated_keyword_sets)
+            if generated_keyword_sets else 0.0
+        )
         threshold = 0.25
-        if dominant_keyword_set_ratio > threshold:
-            ctx.report.error('WDV-EDT-008', 'Un même jeu de mots-clés domine mécaniquement le corpus', path=ctx.core_paths()['registry'], details={'language': lang, 'ratio': dominant_keyword_set_ratio, 'threshold': threshold})
+        if generated_keyword_sets and generated_dominant_keyword_set_ratio > threshold:
+            ctx.report.error('WDV-EDT-008', 'Un même jeu de mots-clés attribué par Wikidéb’IA domine mécaniquement le corpus', path=ctx.core_paths()['registry'], details={'language': lang, 'ratio': generated_dominant_keyword_set_ratio, 'threshold': threshold, 'source_profile': 'generated'})
+        elif dominant_keyword_set_ratio > threshold:
+            ctx.report.info('WDV-EDT-008', 'Un même jeu historique de mots-clés dépasse 25 % du corpus ; signal de revue non bloquant', path=ctx.core_paths()['registry'], details={'language': lang, 'ratio': dominant_keyword_set_ratio, 'threshold': threshold, 'source_profile': 'historical'})
         bad_summary = 0
         for node in nodes:
             node_id = node.get('id')
             data = node.get(lang) or {}
             page = page_map.get((node_id, lang))
             preexisting_page = bool(page and page.get('page_origin') == 'preexisting')
+            source_preexisting = source_page_preexisting(node_id, lang)
             canonical_title = data.get('canonical_title') or ''
-            differential_translation = bool((manifest.get('editorial_controls') or {}).get('translation_validation_mode') == 'differential')
             marker_engine_active = str((manifest.get('editorial_controls') or {}).get('semantic_marker_engine_version') or '') in {'1.0', '1.1', '1.2', '1.3'}
             if lang == 'en' and differential_translation and marker_engine_active:
                 fr_canonical = (node.get('fr') or {}).get('canonical_title') or ''
@@ -2103,13 +2191,15 @@ def validate_editorial(ctx: PackageContext) -> None:
                 ctx.report.error('WDV-EDT-009', 'Guillemets non conformes dans un titre canonique', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'title': canonical_title, 'reasons': canonical_quote_reasons})
             title = data.get('displayed_title') or ''
             reasons = displayed_title_issues(title, lang)
+            if source_preexisting:
+                reasons = [reason for reason in reasons if reason not in {'too_short', 'lowercase_initial'}]
             if reasons:
                 title_quality_counts[lang] += 1
                 ctx.report.error('WDV-EDT-007', 'Titre affiché tronqué, mal formé ou grammaticalement incomplet', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'title': title, 'reasons': reasons})
             argument_reasons = displayed_title_argument_issues(title, lang)
             individual = _individual_review_entry(ctx, str(node_id))
             manual_argument_ok = isinstance(individual, dict) and individual.get(f'displayed_title_complete_proposition_{lang}') is True and individual.get(f'displayed_title_argument_intelligible_{lang}') is True
-            if (lang == 'fr' and differential_translation) or preexisting_page:
+            if (lang == 'fr' and differential_translation) or source_preexisting:
                 # Validated French source and pre-existing wiki pages are historical
                 # baselines, not targets for retroactive enforcement of creation-only
                 # complete-proposition rules. Obvious malformed-title checks above remain.
@@ -2132,27 +2222,21 @@ def validate_editorial(ctx: PackageContext) -> None:
                 ctx.report.error('WDV-EDT-021', 'Titre affiché non propositionnel ou argument incompréhensible', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'title': title, 'reasons': argument_reasons, 'validation_mode': 'differential' if (lang == 'en' and differential_translation) else 'absolute'})
             concision_reasons = [reason for reason in displayed_title_concision_issues(canonical_title, title) if reason != 'exact_copy']
             manual_concision_ok = isinstance(individual, dict) and individual.get(f'displayed_title_concision_reviewed_{lang}') is True and individual.get(f'displayed_title_semantic_equivalence_reviewed_{lang}') is True
-            if concision_reasons and not manual_concision_ok:
+            if concision_reasons and not manual_concision_ok and not source_preexisting:
                 title_quality_counts[lang] += 1
                 ctx.report.error('WDV-EDT-001', 'Titre affiché plus long que le titre canonique', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'canonical_title': canonical_title, 'displayed_title': title, 'reasons': concision_reasons})
             keywords = data.get('keywords') or []
             historical_keyword_values: set[str] = set()
-            if preexisting_page and lang == 'fr':
+            if source_preexisting and lang == 'fr':
                 lock_entry = _fr_metadata_lock_entry(ctx, str(node_id))
                 preservation = lock_entry.get('preexisting_keyword_preservation') if isinstance(lock_entry, dict) else None
                 if isinstance(preservation, dict) and isinstance(preservation.get('historical_final_keywords'), list):
                     historical_keyword_values = {str(value) for value in preservation.get('historical_final_keywords') or []}
                 elif not ctx.exists('data/fr_page_metadata_lock.json'):
-                    # Before the metadata lock exists, all imported French keywords
-                    # are historical input and creation-form rules are deferred to review.
                     historical_keyword_values = {str(value) for value in keywords}
-            if preexisting_page and lang == 'fr':
-                newly_added_keywords = [value for value in keywords if str(value) not in historical_keyword_values]
-                kw_reasons = [reason for reason in keyword_form_issues(newly_added_keywords, enforce_count=False) if reason != 'count']
-                if len({str(value).casefold() for value in keywords}) != len(keywords):
-                    kw_reasons.append('duplicates')
-            else:
-                kw_reasons = keyword_form_issues(keywords, enforce_count=not preexisting_page)
+            # Only the numerical creation quota is provenance-sensitive.
+            # Intrinsic quality rules apply to the complete final historical list too.
+            kw_reasons = keyword_form_issues(keywords, enforce_count=not source_preexisting)
             if kw_reasons:
                 keyword_quality_counts[lang] += 1
                 ctx.report.error('WDV-EDT-008', 'Jeu de mots-clés mal formé', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'keywords': keywords, 'reasons': kw_reasons})
@@ -2160,18 +2244,14 @@ def validate_editorial(ctx: PackageContext) -> None:
                 vocabulary = vocab_fr if lang == 'fr' else vocab_en
                 for keyword in keywords:
                     entry = vocabulary.get(keyword)
-                    is_historical_keyword = preexisting_page and lang == 'fr' and str(keyword) in historical_keyword_values
                     if not entry:
                         keyword_quality_counts[lang] += 1
                         ctx.report.error('WDV-EDT-008', 'Mot-clé absent du vocabulaire éditorial contrôlé', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'keyword': keyword})
-                    elif (not is_historical_keyword) and _localized_keyword_entry(entry, lang).get('kind') not in ALLOWED_KEYWORD_KINDS:
+                    elif _localized_keyword_entry(entry, lang).get('kind') not in ALLOWED_KEYWORD_KINDS:
                         keyword_quality_counts[lang] += 1
                         ctx.report.error('WDV-EDT-008', "Mot-clé qui n'est ni un nom ni un groupe nominal", path=editorial_controls.get('keyword_vocabulary_path'), details={'node_id': node_id, 'language': lang, 'keyword': keyword, 'kind': _localized_keyword_entry(entry, lang).get('kind')})
                 if keyword_quality_active:
                     for keyword in keywords:
-                        is_historical_keyword = preexisting_page and lang == 'fr' and str(keyword) in historical_keyword_values
-                        if is_historical_keyword:
-                            continue
                         entry = vocabulary.get(keyword)
                         atomicity_reasons = keyword_atomicity_issues(keyword, _localized_keyword_entry(entry, lang), lang, require_composition_attestation=True)
                         if atomicity_reasons:
@@ -2198,6 +2278,7 @@ def validate_editorial(ctx: PackageContext) -> None:
                 ctx.report.error('WDV-EDT-003', 'Le résumé se termine par une auto-objection, une concession ou du métadiscours', path=page.get('file_path'))
         summary_counts[lang] = bad_summary
         title_metrics[f'{lang}_dominant_keyword_set_ratio'] = dominant_keyword_set_ratio
+        title_metrics[f'{lang}_generated_dominant_keyword_set_ratio'] = generated_dominant_keyword_set_ratio
     if vocab_fr:
         vocab_path = editorial_controls.get('keyword_vocabulary_path')
         if len(vocab_fr) < 8:
@@ -2230,8 +2311,15 @@ def validate_editorial(ctx: PackageContext) -> None:
             en_summary = _summary(en_tmpl, 'en')
             ratio = summary_word_ratio(fr_summary, en_summary)
             if ratio < 0.6 or ratio > 1.45:
-                summary_ratio_errors += 1
-                ctx.report.error('WDV-BIL-006', 'Asymétrie substantielle probable entre les résumés français et anglais', details={'node_id': node_id, 'word_ratio_en_over_fr': ratio})
+                historical_source = source_page_preexisting(node_id, 'en') or (node_id, 'fr') in _protected_historical_summary_keys(ctx)
+                decision = _summary_review_decision(ctx, str(node_id), 'en')
+                ratio_reviewed = isinstance(decision, dict) and decision.get('summary_ratio_reviewed') is True
+                rationale = str((decision or {}).get('summary_ratio_exception_rationale') or '').strip() if isinstance(decision, dict) else ''
+                if historical_source and ratio_reviewed and len(rationale) >= 24:
+                    ctx.report.info('WDV-BIL-006', 'Ratio EN/FR atypique d’un résumé historique revu et explicitement justifié', details={'node_id': node_id, 'word_ratio_en_over_fr': ratio, 'historical_source': True, 'rationale': rationale})
+                else:
+                    summary_ratio_errors += 1
+                    ctx.report.error('WDV-BIL-006', 'Asymétrie substantielle probable entre les résumés français et anglais', details={'node_id': node_id, 'word_ratio_en_over_fr': ratio, 'historical_source': historical_source, 'ratio_reviewed': ratio_reviewed})
     pagination_errors, date_errors = _validate_documentary_registry(ctx)
     docs = _validate_debate_docs(ctx, manifest, editorial_controls, norm)
     intro_refs = _validate_intro_references(ctx, manifest, editorial_controls)
@@ -2243,7 +2331,7 @@ def validate_editorial(ctx: PackageContext) -> None:
     date_migration_errors = _validate_dates(ctx, manifest, editorial_controls.get('creation_date'), editorial_controls.get('creation_date_policy', 'per_page_preserved'))
     trace = _validate_traceability(ctx, manifest, editorial_controls, trace_controls)
     semantic_convergence = _validate_semantic_convergence(ctx, editorial_controls, english_deferred)
-    ctx.report.metrics['editorial'] = {'active_nodes': len(nodes), 'canonical_display_copy_ratio': {k: v for k, v in title_metrics.items() if not k.endswith('dominant_keyword_set_ratio')}, 'dominant_keyword_set_ratio': {lang: title_metrics.get(f'{lang}_dominant_keyword_set_ratio') for lang in editorial_languages}, 'displayed_title_quality_errors': title_quality_counts, 'keyword_quality_errors': keyword_quality_counts, 'dominant_classification_ratio': classification_metrics, 'summary_auto_objections': summary_counts, 'summary_bilingual_ratio_errors': summary_ratio_errors, 'documentary_pagination_errors': pagination_errors, 'documentary_access_date_errors': date_errors, 'debate_documentation': docs, 'introduction_references': intro_refs, 'normative_non_regression': normative_non_regression, 'individual_editorial_review': individual_review, 'graph_placement_review': graph_placement_review, 'summary_style': summary_style, 'introduction_review': introduction_review, 'creation_date_errors': date_migration_errors, 'traceability': trace, 'semantic_convergence': semantic_convergence, 'english_translation_status': english_translation_status(manifest), 'english_translation_deferred': english_deferred}
+    ctx.report.metrics['editorial'] = {'active_nodes': len(nodes), 'canonical_display_copy_ratio': {k: v for k, v in title_metrics.items() if not k.endswith('dominant_keyword_set_ratio')}, 'dominant_keyword_set_ratio': {lang: title_metrics.get(f'{lang}_dominant_keyword_set_ratio') for lang in editorial_languages}, 'generated_dominant_keyword_set_ratio': {lang: title_metrics.get(f'{lang}_generated_dominant_keyword_set_ratio') for lang in editorial_languages}, 'displayed_title_quality_errors': title_quality_counts, 'keyword_quality_errors': keyword_quality_counts, 'dominant_classification_ratio': classification_metrics, 'summary_auto_objections': summary_counts, 'summary_bilingual_ratio_errors': summary_ratio_errors, 'documentary_pagination_errors': pagination_errors, 'documentary_access_date_errors': date_errors, 'debate_documentation': docs, 'introduction_references': intro_refs, 'normative_non_regression': normative_non_regression, 'individual_editorial_review': individual_review, 'graph_placement_review': graph_placement_review, 'summary_style': summary_style, 'introduction_review': introduction_review, 'creation_date_errors': date_migration_errors, 'traceability': trace, 'semantic_convergence': semantic_convergence, 'english_translation_status': english_translation_status(manifest), 'english_translation_deferred': english_deferred}
     editorial_errors = any((f.level in {'ERROR', 'WARNING'} and (f.code.startswith('WDV-EDT-') or f.code in {'WDV-BIL-006', 'WDV-BIL-009'}) for f in ctx.report.findings))
     if not editorial_errors:
         review_path = editorial_controls.get('individual_review_report_path')

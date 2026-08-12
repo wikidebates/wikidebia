@@ -1,3 +1,11 @@
+# Wikidéb’IA Validator 0.4.90
+
+Le validateur 0.4.90 s’aligne sur la norme 1.2.86 et le kit 2.16.19. Il distingue désormais explicitement le cycle de vie de la page cible anglaise de la provenance éditoriale de sa source française : une page EN techniquement nouvelle issue d’une page FR préexistante n’est pas soumise aux quotas ni aux préférences de création IA.
+
+Les titres affichés historiques nominaux ou contextuels restent admissibles sans fausse attestation de proposition ou de référent explicite ; les mots-clés historiques échappent aux quotas mais restent soumis aux contrôles intrinsèques de qualité ; les ensembles historiques de rubriques ne sont pas rejetés pour leur seul nombre ; le ratio de résumé historique hors 0,60–1,45 devient un signal justifiable. L’introduction historique anglaise reste une adaptation autonome pouvant localiser le contexte franco-français, tout en conservant les contrôles documentaires et techniques intrinsèques.
+
+Le contrôle des rubriques utilise en outre un véritable ordre alphabétique accent-insensible cohérent avec la norme française.
+
 # Wikidéb’IA Validator 0.4.89
 
 Le validateur 0.4.89 s’aligne sur la norme 1.2.85 et le kit 2.16.18. `WDV-EDT-034` conserve la distinction `preserved` / `authorized_change`, mais ajoute le contrat de consentement v3 : pour `authorized_change`, le texte français final autorisé est la valeur éditoriale effective et le verrou, le reçu local et le rendu doivent porter exactement le même `change_type` et la même `change_scope` structurée.

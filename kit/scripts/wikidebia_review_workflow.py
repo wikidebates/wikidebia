@@ -261,6 +261,8 @@ def _instructions(review_type: str, debate_id: str, work_id: str | None, editabl
         lines += [
             "",
             "Cette revue porte sur les rubriques, mots-clés, documentation et autres contenus explicitement ouverts à la reprise.",
+            "Sur une page française préexistante, conservez les rubriques historiques autant que possible. Une correction (ajout/retrait) reste admise lorsqu’elle améliore réellement la classification ; consignez-la dans `preexisting_rubrique_change_rationale`. Le seul dépassement du profil 1–3/4 rubriques n’est pas un motif de correction.",
+            "Les quotas de mots-clés (2–4 pour un Argument, 5–8 pour un Débat) sont des profils de création et ne justifient jamais la suppression d’un mot-clé historique. En revanche, les règles qualitatives intrinsèques restent applicables : un mauvais mot-clé historique peut être corrigé, remplacé ou décomposé via `preexisting_keyword_corrections` avec une justification explicite.",
             "Pour toute page préexistante importée du wiki, l’introduction du débat et les résumés des arguments sont préservés par défaut ; un résumé historiquement absent reste absent par défaut.",
             "Vous pouvez signaler une anomalie et remplir `suggested_change` sans appliquer la suggestion : conservez alors `decision=keep`, `historical_text_status=preserved` et la valeur historique dans `proposed_*`.",
             "Si le propriétaire a explicitement approuvé un changement, renseignez `decision=change`, la valeur finale dans `proposed_*`, `historical_text_status=authorization_requested` et un objet `historical_change_request` limité à ce champ, avec `field_key`, `final_value`, `change_type`, `rationale` et `owner_instruction_reference`.",
@@ -269,6 +271,15 @@ def _instructions(review_type: str, debate_id: str, work_id: str | None, editabl
             "Une simple déclaration dans le ZIP ne vaut jamais consentement : sans preuve locale, `review-import` bloque. Après accord explicite du propriétaire, utilisez `./wikidebia review-import --authorize-historical-changes` (avec l’identifiant du débat seulement si nécessaire). Le kit scelle alors localement le ZIP exact et les SHA avant/après de chaque champ demandé.",
             "N’étendez jamais une autorisation à un autre résumé ou à l’introduction entière si la décision propriétaire ne le couvre pas. Une correction locale autorisée ne déclenche pas rétroactivement toutes les préférences stylistiques de création.",
             "Le checkpoint français n°2 publie normalement les rubriques, mots-clés, documentation et, lorsqu’ils sont autorisés, les deltas d’introduction/résumé ; aucune troisième frontière française n’est créée.",
+        ]
+    if review_type in {"en_translation_review", "en_translation_correction"}:
+        lines += [
+            "",
+            "Distinguez `page_origin` (cycle de vie de la page anglaise cible) de `source_page_origin` (provenance éditoriale de la source française). Ne modifiez jamais `source_page_origin` : il est dérivé des verrous français.",
+            "Lorsque `source_page_origin=preexisting`, ne ramenez pas les keywords historiques aux quotas de création et ne transformez pas un `displayed-title` historique nominal en proposition pour satisfaire une préférence de génération. Traduisez la classification et les mots-clés français finalement validés dans le même ordre conceptuel.",
+            "Les règles qualitatives intrinsèques des keywords restent applicables : la version anglaise doit utiliser les équivalents idiomatiques du vocabulaire français final, y compris après une correction ou une décomposition historique validée.",
+            "Pour une introduction française historique, produisez une adaptation anglaise autonome : examinez explicitement le contexte franco-français et condensez, contextualisez ou omettez ce qui ne doit pas être traduit mécaniquement, sans changer la substance du débat. `Stakes of the debate` et les autres contraintes de profil d’une introduction nouvellement créée ne sont pas obligatoires pour les sous-parties historiques inchangées.",
+            "Pour un résumé historique, un ratio EN/FR hors 0,60–1,45 est un signal de revue et non un objectif de réécriture ; attestez l’équivalence et fournissez `summary_ratio_exception_rationale` lorsque le ratio reste hors plage.",
         ]
     lines += [
         "",

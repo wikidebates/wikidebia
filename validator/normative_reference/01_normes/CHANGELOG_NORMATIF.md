@@ -774,3 +774,13 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - conserve la compatibilité des autorisations 1.2.84/2.16.17 à portée de champ entier, liées à la valeur finale exacte ;
 - confirme qu’un ajout explicitement autorisé de `Enjeux du débat` pendant `fr_content_review` est publié au checkpoint français n°2, sans troisième publication.
 
+## 1.2.86 — 12 août 2026 — provenance éditoriale de la source et métadonnées historiques différentielles
+
+- distingue `page_origin` de la page cible, `source_page_origin` de la source française autoritative et la provenance éventuelle du champ ;
+- réserve quotas et préférences de génération aux contenus réellement créés par Wikidéb’IA ;
+- conserve les contrôles intrinsèques de qualité sur les mots-clés historiques et autorise leur correction/décomposition tracée ;
+- préserve par défaut l’ensemble des rubriques historiques sans plafond rétroactif, avec corrections explicitement justifiées ;
+- transforme la domination historique d’un même jeu de keywords >25 % et le ratio de résumé historique hors 0,60–1,45 en signaux de revue plutôt qu’en objectifs de réécriture ;
+- maintient l’adaptation autonome des introductions historiques au lectorat anglophone, y compris la localisation du contexte franco-français, sans relâcher les contrôles documentaires intrinsèques ;
+- précise que les titres affichés historiques nominaux ou contextuels n’exigent ni proposition complète ni justification rétroactive de gain de lisibilité ;
+- aligne le tri des rubriques sur l’ordre alphabétique français accent-insensible.

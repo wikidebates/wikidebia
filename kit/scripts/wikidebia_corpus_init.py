@@ -115,6 +115,11 @@ def slugify(value: str) -> str:
     return value or "debat"
 
 
+def _alphabetical_key(value: str) -> str:
+    folded = unicodedata.normalize("NFKD", str(value).casefold())
+    return "".join(ch for ch in folded if not unicodedata.combining(ch))
+
+
 def canonical_debate_id(value: str) -> str:
     result = slugify(value)
     if not re.fullmatch(r"[a-z0-9][a-z0-9_-]{1,63}", result):
@@ -436,7 +441,10 @@ def build_graph_objects(graph: Mapping[str, Any], page_metadata: Mapping[str, di
                 "canonical_title": canonical,
                 "displayed_title": displayed,
                 "title_status": "draft",
-                "rubriques": sorted(dict.fromkeys(rubriques), key=str.casefold)[:4],
+                # A graph-extract import is a reprise of wiki content.  Preserve
+                # the complete historical rubric set; creation-count rules are
+                # reviewed later and must not truncate pre-existing metadata.
+                "rubriques": sorted(dict.fromkeys(rubriques), key=_alphabetical_key),
                 "keywords": list(dict.fromkeys(keywords)),
             },
             "en": {

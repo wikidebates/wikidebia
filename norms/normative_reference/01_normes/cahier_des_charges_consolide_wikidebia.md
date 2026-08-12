@@ -159,7 +159,7 @@ Le catalogue machine-readable complet est `requirements_catalog_wikidebia.json` 
 - **DFR-019 — ACTIVE — human+automatic heuristics** : Avoid exact and semantic duplication across bibliography, webliography and videography; an editor page or download page does not duplicate the underlying cited publication unless it adds autonomous substantive content.
 - **DFR-020 — ACTIVE — external check+human** : Related debates are included only when their page exists or creation is explicitly planned, and the relationship is directly thematic.
 - **DFR-021 — ACTIVE — human** : Select only central authorized sections; do not add a section solely for a secondary argument.
-- **DFR-022 — ACTIVE — human+automatic heuristics** : Debate keywords are lower-case reusable themes, normally five to eight, excluding generic action words, proposition-specific phrases and redundant synonyms.
+- **DFR-022 — ACTIVE — human+automatic heuristics** : A genuinely new Debate normally uses five to eight reusable keywords. A pre-existing Debate preserves its historical count by default; intrinsic keyword-quality rules remain active and traceable corrections are allowed.
 - **DFR-023 — ACTIVE — human** : A debate, cross-interview, round table or parliamentary hearing presenting several positions is neutral videography; a pro/con video requires an explicit identifiable position.
 - **DFR-024 — ACTIVE — human+automatic heuristics** : Do not duplicate the same video in several documentary positions and prefer a stable official source over an unidentified social repost.
 - **DFR-025 — ACTIVE — human+metadata** : For a French translation or edition, use the verified French title, publisher, publication date and direct French link; distinguish correctly article/chapter, containing work, authoring institution and publisher.
@@ -179,7 +179,7 @@ Le catalogue machine-readable complet est `requirements_catalog_wikidebia.json` 
 - **DFR-038 — ACTIVE — human** : The introduction follows a coherent progression for a reader discovering the subject; titles and opening sentences make each subsection's role clear.
 - **DFR-039 — ACTIVE — human+profile** : No universal minimum of five subsections or twenty references applies; any local minimum is justified by the breadth and complexity of the debate.
 - **DFR-040 — ACTIVE — automatic+human** : The introduction review confirms that no topic-specific checklist, corpus identifier or pilot-debate constant has been imported into the generic production rules.
-- **DFR-041 — ACTIVE — human** : The stakes of the debate are developed in a dedicated subsection titled « Enjeux du débat » in French or « Stakes of the debate » in English; at least two concrete consequences are recorded and the subsection does not reproduce the argument tree.
+- **DFR-041 — ACTIVE — human** : A dedicated « Enjeux du débat » / « Stakes of the debate » subsection is a creation-profile requirement for newly authored introductions when applicable; it is not imposed retroactively on unchanged historical introduction subsections or their English adaptation.
 
 ## 9. Page Debate anglaise
 
@@ -250,7 +250,7 @@ Le catalogue machine-readable complet est `requirements_catalog_wikidebia.json` 
 
 ## 12. Rubriques et mots-clés
 
-**Règle active de reprise des pages existantes.** Les contraintes de forme propres à la génération ne sont pas appliquées rétroactivement. Un `titre-affiché` déjà présent sur le wiki est conservé par défaut même s’il n’est pas propositionnel ; seules les fautes et anomalies flagrantes justifient normalement sa modification. Les mots-clés historiques sont conservés sauf non-pertinence réelle explicitement justifiée ; leur graphie peut être corrigée et des mots-clés utiles peuvent être ajoutés. La cible de deux à quatre mots-clés vaut pour les pages nouvelles et ne justifie aucune suppression sur une page préexistante.
+**Règle active de reprise des pages existantes.** Les contraintes de forme propres à la génération ne sont pas appliquées rétroactivement. Un `titre-affiché` déjà présent sur le wiki est conservé par défaut même s’il n’est pas propositionnel ; seules les fautes et anomalies flagrantes justifient normalement sa modification. Les quotas de mots-clés ne justifient aucune suppression historique, mais les règles intrinsèques de qualité (forme canonique, longueur, atomicité, vocabulaire) restent applicables : un terme historique réellement mauvais peut être corrigé, remplacé ou décomposé avec justification. Les rubriques historiques sont conservées autant que possible ; un delta de classification reste permis lorsqu’il corrige un défaut réel et est explicitement motivé.
 
 
 - **CAT-001 — ACTIVE — automatic** : Use only the 18 authorized French rubriques and their exact official English correspondences.
@@ -397,7 +397,7 @@ Chaque rubrique retenue est justifiée individuellement au moyen d’une structu
 ## 21. Exigences ajoutées par la norme 1.2.0
 
 - **TTL-012 — ACTIVE — automatic+human** : A canonical title is referentially autonomous: every expression needed to identify its subject has an antecedent inside the title itself. Context-dependent demonstratives or pronouns are allowed only in displayed titles whose immediate context makes the referent unambiguous.
-- **TTL-013 — ACTIVE — human+automatic heuristics** : Every displayed title states the argumentative claim as a complete proposition; immediate context may shorten redundant framing but cannot supply a missing predicate, conclusion or logical relation.
+- **TTL-013 — ACTIVE — human+automatic heuristics** : A displayed title newly generated by Wikidéb’IA states the argumentative claim as a complete proposition. A historical displayed title and its faithful English translation may remain nominal/contextual; creation form is not imposed retroactively.
 - **MW-016 — ACTIVE — automatic** : All French pages, including Débat, use `{{Lien interlangue}}` from their first valid generation.
 - **MW-017 — ACTIVE — automatic** : English Debate uses `topic` and `expanded-topic`; `type` is forbidden.
 - **DFR-035 — ACTIVE — automatic+human** : French Debate references, including inline introduction calls, are entirely available in French.

@@ -830,6 +830,7 @@ def _classification_review_template(reviewed: Path, debate_id: str, work_id: str
             "displayed_title_improves_readability_when_distinct": attest.get("displayed_title_improves_readability_when_distinct") if entity_type == "argument" else None,
             "displayed_title_identity_justification": str((row.get("rationales") or {}).get("displayed_title_identity") or ""),
             "fourth_rubrique_exception_rationale": "",
+            "preexisting_rubrique_change_rationale": "",
             "preexisting_keyword_corrections": {},
             "removed_preexisting_keywords": {},
             "reviewer": "",

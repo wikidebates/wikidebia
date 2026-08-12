@@ -626,7 +626,7 @@ locked
 
 Un titre `locked` ne peut être modifié qu'au moyen d'une migration.
 
-Le registre de revue individuelle associe à chaque nœud les attestations booléennes `displayed_title_complete_proposition_fr`, `displayed_title_argument_intelligible_fr`, `displayed_title_complete_proposition_en` et `displayed_title_argument_intelligible_en`. Elles valent toutes `true` avant verrouillage. Le validateur compare en outre les titres revus aux valeurs exactes du registre maître, indépendamment de la révision de provenance du corpus.
+Le registre de revue individuelle associe à chaque nœud les attestations de forme et d’intelligibilité des titres affichés. `displayed_title_complete_proposition_*` est exigé pour un titre nouvellement généré ; pour un titre historique préexistant et sa traduction fidèle, la provenance `source_page_origin=preexisting` autorise la forme historique nominale/contextuelle sans fausse attestation. L’intelligibilité, l’équivalence et l’absence de nouvelle dégradation restent revues. Le validateur compare les titres revus aux valeurs exactes du registre maître.
 
 ## 10.4 Règles des titres
 
@@ -1786,3 +1786,8 @@ La normalisation d’URL minuscule schéma/hôte, supprime le fragment, normalis
 ## Extension 1.2.66 — identité des champs traduits et preuves sémantiques
 
 La filiation des champs est explicite : titre canonique FR→EN canonique, `titre-affiché` FR→`displayed-title` EN, résumé FR→summary EN. La revue enregistre les empreintes des champs et l'empreinte sémantique globale. Le vocabulaire contrôlé peut porter un `concept_id` stable, identique dans les deux langues et unique dans le registre. Le reçu `wikidebia-semantic-convergence-review-1.0` référence l'empreinte exacte de la revue et du contenu sémantique; il ne fait pas partie de l'objet qu'il atteste.
+
+
+## Addendum 1.2.86 — origine cible et origine éditoriale source
+
+Les artefacts de traduction distinguent `page_origin` de la page anglaise cible et `source_page_origin` de la page française autoritative. Le second est dérivé des verrous français et ne peut être modifié par le paquet de revue. Les contrôles de quota/préférence de création suivent `source_page_origin`; les invariants structurels et contrôles sémantiques restent indépendants de cette provenance.

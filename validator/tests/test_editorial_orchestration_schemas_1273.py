@@ -72,5 +72,5 @@ def test_schema_catalog_and_capabilities_publish_orchestration_contracts():
     assert {"chatgpt_review_package.schema.json", "editorial_orchestration_state.schema.json", "semantic_review_response.schema.json", "workflow_diagnostic_package.schema.json"} <= paths
     assert catalog["schema_count"] == len(catalog["schemas"])
     caps = json.loads((ROOT / "CAPABILITIES.json").read_text(encoding="utf-8"))
-    assert caps["release"] == {"norm": "1.2.85", "validator": "0.4.89", "kit": "2.16.18"}
+    assert caps["release"] == {"norm": "1.2.86", "validator": "0.4.90", "kit": "2.16.19"}
     assert caps["accepts"]["chatgpt_review_package"][0]["schema"] == "wikidebia-chatgpt-review-package-1.0"

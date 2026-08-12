@@ -20,6 +20,7 @@ import os
 import re
 import shutil
 import tempfile
+import unicodedata
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
@@ -138,7 +139,7 @@ def title_diagnostics(canonical: str, displayed: str) -> list[dict[str, Any]]:
     return issues
 
 
-def rubrique_diagnostics(values: Iterable[str], fallback: bool) -> list[dict[str, Any]]:
+def rubrique_diagnostics(values: Iterable[str], fallback: bool, *, enforce_creation_count: bool = True) -> list[dict[str, Any]]:
     rows = [normalized_text(value) for value in values if normalized_text(value)]
     issues: list[dict[str, Any]] = []
     if not rows:
@@ -148,15 +149,20 @@ def rubrique_diagnostics(values: Iterable[str], fallback: bool) -> list[dict[str
         issues.append({"code": "RUBRIQUES_INVALID", "severity": "blocking", "field": "rubriques", "values": invalid})
     if len(rows) != len(set(rows)):
         issues.append({"code": "RUBRIQUES_DUPLICATE", "severity": "correction", "field": "rubriques"})
-    if rows != sorted(rows, key=str.casefold):
+    if rows != sorted(rows, key=_alphabetical_key):
         issues.append({"code": "RUBRIQUES_NOT_ALPHABETICAL", "severity": "correction", "field": "rubriques"})
-    if len(rows) > 4:
+    if enforce_creation_count and len(rows) > 4:
         issues.append({"code": "RUBRIQUES_TOO_MANY", "severity": "blocking", "field": "rubriques", "count": len(rows)})
-    elif len(rows) == 4:
+    elif enforce_creation_count and len(rows) == 4:
         issues.append({"code": "RUBRIQUES_FOUR_REQUIRE_JUSTIFICATION", "severity": "review", "field": "rubriques"})
     if fallback:
         issues.append({"code": "RUBRIQUES_IMPORTED_FALLBACK", "severity": "review", "field": "rubriques"})
     return issues
+
+
+def _alphabetical_key(value: str) -> str:
+    folded = unicodedata.normalize("NFKD", str(value).casefold())
+    return "".join(char for char in folded if not unicodedata.combining(char))
 
 
 def first_alphabetic(value: str) -> str:
@@ -275,7 +281,7 @@ def page_review_item(
     issues: list[dict[str, Any]] = []
     if entity_type == "argument":
         issues.extend(title_diagnostics(canonical_title, displayed_title or ""))
-    issues.extend(rubrique_diagnostics(rubriques, "rubrique" in fallback_kinds))
+    issues.extend(rubrique_diagnostics(rubriques, "rubrique" in fallback_kinds, enforce_creation_count=False))
     issues.extend(keyword_diagnostics(keywords, "mot-clé" in fallback_kinds, entity_type))
     return {
         "entity_type": entity_type,
@@ -320,6 +326,7 @@ def page_review_item(
             "displayed_title_improves_readability_when_distinct": False if entity_type == "argument" else None,
             "displayed_title_identity_justification": "",
             "fourth_rubrique_exception_rationale": "",
+            "preexisting_rubrique_change_rationale": "",
             "preexisting_keyword_corrections": {},
             "removed_preexisting_keywords": {},
             "reviewer": "",

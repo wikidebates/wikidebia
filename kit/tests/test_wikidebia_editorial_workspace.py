@@ -152,3 +152,8 @@ def test_invalid_explicit_work_id_is_rejected(tmp_path: Path):
         assert "work_id invalide" in str(exc)
     else:
         raise AssertionError("work_id invalide accepté")
+
+
+def test_rubrique_sort_uses_french_alphabetical_order_with_accents():
+    values = ["Droit", "Économie", "Éthique", "Politique", "Société"]
+    assert workspace.rubrique_diagnostics(values, False, enforce_creation_count=False) == []

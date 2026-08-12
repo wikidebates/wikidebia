@@ -157,6 +157,9 @@ def complete_translation_review(workspace: Path) -> None:
     debate["debate_field_semantic_risk_evidence"] = debate_evidence
     for field in translation.INTRO_TRUE_FIELDS:
         debate[field] = True
+    for field in translation.HISTORICAL_INTRO_TRANSLATION_TRUE_FIELDS:
+        debate[field] = True
+    debate["introduction_adaptation_rationale"] = "The historical French introduction was reviewed for France-specific context and adapted only where appropriate for an international English-speaking readership."
     titles = {
         "A0001": ("Demonstration A explicitly supports the proposition of the test debate", "Evidence A supports the thesis"),
         "A0002": ("Demonstration B directly challenges the proposition of the test debate", "Evidence B challenges the thesis"),
@@ -384,7 +387,7 @@ def test_finalize_accepts_short_historical_summary_without_rewriting_it(tmp_path
     assert first["forceful_expression"] is None
 
 
-def test_finalize_rejects_bad_summary_ratio(tmp_path: Path):
+def test_finalize_historical_summary_ratio_requires_explicit_exception_rationale(tmp_path: Path):
     project, workspace, work_id = make_french_locked(tmp_path)
     translation.prepare_review(project, "debat_test", work_id)
     complete_translation_review(workspace)
@@ -396,9 +399,15 @@ def test_finalize_rejects_bad_summary_ratio(tmp_path: Path):
     try:
         translation.finalize_review(project, "debat_test", work_id)
     except translation.TranslationReviewError as exc:
-        assert "Ratio anglais/français" in str(exc)
+        assert "Ratio anglais/français historique" in str(exc)
     else:
-        raise AssertionError("Ratio bilingue invalide accepté")
+        raise AssertionError("Historical out-of-range ratio without rationale accepted")
+
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data["arguments"][0]["translation"]["summary_ratio_exception_rationale"] = "The English phrase is longer because an idiomatic explicit subject is required, while the same one-letter historical proposition and scope are preserved."
+    common.write_json(path, data)
+    sealed = translation.finalize_review(project, "debat_test", work_id)
+    assert sealed["status"] == "en_translation_review_finalized"
 
 
 def test_finalize_rejects_non_english_debate_source(tmp_path: Path):
@@ -601,22 +610,55 @@ def test_vocabulary_accepts_justified_english_proper_name_and_rejects_common_cap
         raise AssertionError("Capitalized English common noun accepted")
 
 
-def test_finalize_translation_rejects_missing_stakes_subsection(tmp_path: Path):
+def test_finalize_translation_accepts_historical_introduction_without_stakes_subsection(tmp_path: Path):
     project, workspace, work_id = make_french_locked(tmp_path)
     translation.prepare_review(project, "debat_test", work_id)
     complete_translation_review(workspace)
     review_path = workspace / "reviews/en/translation_review.json"
     review = json.loads(review_path.read_text(encoding="utf-8"))
     debate = review["debate"]
-    debate["introduction"] = "{{Subsection|title=Definition and scope|content=This introduction defines the scope but deliberately omits the mandatory subsection devoted to the consequences of the debate.}}"
+    debate["introduction"] = "{{Subsection|title=Definition and scope|content=This historical introduction defines the scope and the precise disagreement for an international readership without adding a newly generated stakes subsection.}}"
     debate["subsections"] = [debate["subsections"][0]]
+    debate["introduction_claim_inventory_note"] = "The historical source claims and the localized English scope were reviewed without imposing a creation-only stakes subsection."
     common.write_json(review_path, review)
-    try:
-        translation.finalize_review(project, "debat_test", work_id)
-    except translation.TranslationReviewError as exc:
-        assert "Stakes of the debate" in str(exc)
-    else:
-        raise AssertionError("A missing Stakes of the debate subsection should have been rejected")
+    sealed = translation.finalize_review(project, "debat_test", work_id)
+    assert sealed["status"] == "en_translation_review_finalized"
+
+
+
+
+def test_historical_source_origin_allows_nominal_displayed_title_and_keyword_count():
+    row = {
+        "status": "approved", "page_origin": "new", "source_page_origin": "preexisting", "preserved_parameters": {},
+        "french": {
+            "metadata": {"page_origin": "preexisting", "canonical_title": "Titre canonique historique complet", "displayed_title": "Liberté et revenu", "rubriques": ["Économie"], "keywords": ["revenu", "liberté", "travail", "autonomie", "justice"]},
+            "content": {"page_origin": "preexisting", "summary": None, "summary_provenance": "historical_absent", "citations": []},
+        },
+        "canonical_title": "A complete historical canonical argument about basic income",
+        "displayed_title": "Freedom and income",
+        "sections": ["Economy"], "keywords": ["income", "freedom", "work", "autonomy", "justice"], "summary": "",
+        "citations": [], "sources": {"bibliography": [], "webliography": [], "videography": []},
+        "argument_name_search_queries": ["historical name one", "historical name two"], "argument_name_search_scope_note": "Not used for historical source provenance.",
+        "argument_name_search_provenance": "fresh_recheck", "argument_name_search_provenance_note": "Not used for historical source provenance.",
+        "argument_name_outcome": "none", "argument_name": None, "argument_name_evidence": [], "argument_name_same_reasoning_confirmed": False,
+        "argument_name_non_invented_label_confirmed": True, "argument_name_language_fit_confirmed": True, "argument_name_rationale": "No name needed for this provenance test.",
+        "argument_name_page_reasoning_scope_summary": "Historical page scope.", "argument_name_literature_scope_summary": "", "argument_name_scope_relation": "", "argument_name_scope_identity_confirmed": False,
+        "metadata_equivalent_to_french": True, "summary_equivalent_to_french": True, "canonical_title_semantic_inventory_reviewed": True,
+        "canonical_title_semantic_inventory_note": "Canonical subject, predicate, scope and modality were reviewed against the French source.", "canonical_title_equivalent_to_french": True,
+        "canonical_title_subject_preserved": True, "canonical_title_predicate_preserved": True, "canonical_title_scope_preserved": True, "canonical_title_modality_preserved": True,
+        "sections_exactly_mapped": True, "keywords_exactly_mapped": True, "keywords_order_preserved_by_relevance": True, "title_is_idiomatic": True,
+        "displayed_title_source_form": "nominal_phrase", "displayed_title_target_form": "nominal_phrase", "displayed_title_source_form_reviewed": True, "displayed_title_no_formal_regression": True,
+        "displayed_title_semantic_inventory_reviewed": True, "displayed_title_semantic_inventory_note": "Historical nominal form and meaning were reviewed directly.",
+        "displayed_title_subject_preserved": True, "displayed_title_predicate_preserved": True, "displayed_title_scope_preserved": True, "displayed_title_modality_preserved": True,
+        "displayed_title_translates_french_displayed_title": True, "displayed_title_identity_pattern_reviewed": True, "displayed_title_identity_pattern_note": "Historical canonical/display relation preserved.",
+        "displayed_title_is_complete_proposition": False, "displayed_title_concision_reviewed": True, "displayed_title_semantically_equivalent": True, "displayed_title_improves_readability_when_distinct": False,
+        "documentation_rationale": "No documentary source is selected in this focused provenance unit test.", "reviewer": "Reviewer", "reviewed_at": "2026-08-12T22:00:00+02:00", "note": "Historical source provenance test."
+    }
+    mapping = {"revenu": "income", "liberté": "freedom", "travail": "work", "autonomie": "autonomy", "justice": "justice"}
+    result = translation._validate_argument({"id": "A-HIST", "translation": row}, mapping, {}, authoritative_source_page_origin="preexisting")
+    assert result["source_page_origin"] == "preexisting"
+    assert len(result["keywords"]) == 5
+    assert result["displayed_title"] == "Freedom and income"
 
 
 def test_english_argument_established_name_parameters_are_preserved_import_parameters():

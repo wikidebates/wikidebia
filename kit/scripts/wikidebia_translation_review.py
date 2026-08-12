@@ -51,6 +51,23 @@ from wikidebia_content_review import (
 )
 
 DISPLAYED_TITLE_FORMS = {"proposition", "question", "imperative", "thematic_label", "nominal_phrase", "doctrinal_label", "other"}
+HISTORICAL_INTRO_TRANSLATION_TRUE_FIELDS = (
+    "historical_source_profile_respected",
+    "france_specific_context_reviewed",
+    "international_context_adaptation_reviewed",
+    "no_unjustified_substantive_addition",
+    "english_documentation_localized",
+)
+HISTORICAL_INTRO_UNIVERSAL_TRUE_FIELDS = (
+    "factual_claims_referenced",
+    "documentation_proportionate_to_literature",
+    "wikipedia_hover_links_reviewed",
+    "specialized_terms_linked_or_explained",
+    "documentation_orientation_reviewed",
+    "youtube_authorship_reviewed",
+    "reference_note_punctuation_reviewed",
+    "specialized_term_inventory_reviewed",
+)
 NAME_SEARCH_PROVENANCE = {"actual_log", "fresh_recheck", "historical_reconstruction"}
 TRANSLATION_REVIEW_SCHEMA = "wikidebia-en-translation-review-1.1"
 TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
@@ -551,6 +568,34 @@ def _assert_content_copy(workspace: Path, meta: Mapping[str, Any]) -> Path:
     return source
 
 
+def _french_source_page_origin(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -> str:
+    """Return the editorial origin of the authoritative French source page.
+
+    This is intentionally distinct from ``page_origin`` in the English review,
+    which describes the lifecycle of the target English page.  Creation-only
+    editorial rules follow the French source origin, not the fact that the
+    translated target will usually be a newly created page.
+    """
+    values = [
+        str(fr_meta.get("page_origin") or "").strip(),
+        str(fr_content.get("page_origin") or "").strip(),
+    ]
+    declared = [value for value in values if value in {"new", "preexisting"}]
+    if len(set(declared)) > 1:
+        raise TranslationReviewError("Provenance française incohérente entre verrous de métadonnées et de contenu")
+    if declared:
+        return declared[0]
+    # Compatibility for locks prepared before page_origin was propagated.
+    # Historical summary/introduction provenance is sufficient evidence that
+    # the source is a pre-existing wiki page; otherwise keep the creation
+    # profile rather than silently inventing historical provenance.
+    if str(fr_content.get("summary_provenance") or "").startswith("historical_"):
+        return "preexisting"
+    if str(fr_content.get("introduction_provenance") or "").startswith("historical_"):
+        return "preexisting"
+    return "new"
+
+
 def _source_snapshot(source: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], dict[str, Any]]:
     registry = load_json(source / "data/registre_debat.json", "registre du débat")
     metadata = load_json(source / "data/fr_page_metadata_lock.json", "verrou des métadonnées françaises")
@@ -563,6 +608,7 @@ def _blank_debate(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -> 
     return {
         "status": "pending",
         "page_origin": "new",
+        "source_page_origin": _french_source_page_origin(fr_meta, fr_content),
         "preserved_parameters": {},
         "canonical_title": "",
         "topic": "",
@@ -598,7 +644,10 @@ def _blank_debate(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -> 
         "reviewer": "",
         "reviewed_at": None,
         "note": "",
+        "introduction_adaptation_rationale": "",
         **{field: False for field in INTRO_TRUE_FIELDS},
+        **{field: False for field in HISTORICAL_INTRO_TRANSLATION_TRUE_FIELDS},
+        **{field: False for field in HISTORICAL_INTRO_UNIVERSAL_TRUE_FIELDS},
         "french": {"metadata": copy.deepcopy(fr_meta), "content": copy.deepcopy(fr_content)},
     }
 
@@ -607,6 +656,7 @@ def _blank_argument(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -
     return {
         "status": "pending",
         "page_origin": "new",
+        "source_page_origin": _french_source_page_origin(fr_meta, fr_content),
         "preserved_parameters": {},
         "canonical_title": "",
         "displayed_title": "",
@@ -664,6 +714,7 @@ def _blank_argument(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -
         "displayed_title_speech_act_preserved": False,
         "displayed_title_form_change_note": "",
         "summary_ratio_reviewed": False,
+        "summary_ratio_exception_rationale": "",
         "summary_subject_predicate_scope_modality_reviewed": False,
         "summary_opening_proposition_preserved": False,
         "summary_closing_proposition_preserved": False,
@@ -948,11 +999,9 @@ def _has_usage(source: Mapping[str, Any], page_id: str, roles: set[str]) -> bool
 
 
 def _validate_title(value: Any, label: str, *, displayed: bool = False) -> str:
-    text = _text(value, label, 8)
+    text = _text(value, label, 1 if displayed else 8)
     if BAD_QUOTES.search(text) or BAD_ELLIPSIS.search(text) or text.endswith("."):
         raise TranslationReviewError(f"Titre anglais non conforme : {label}")
-    if displayed and not VERB_HINT.search(text):
-        raise TranslationReviewError(f"Le titre affiché anglais n’est pas une proposition complète : {label}")
     return text
 
 
@@ -1031,11 +1080,17 @@ def _expected_keywords(fr: Sequence[str], mapping: Mapping[str, str]) -> list[st
         raise TranslationReviewError(f"Mot-clé français sans équivalent anglais : {exc.args[0]}") from exc
 
 
-def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources: Mapping[str, Mapping[str, Any]], debate_id: str) -> dict[str, Any]:
+def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources: Mapping[str, Mapping[str, Any]], debate_id: str, *, authoritative_source_page_origin: str | None = None) -> dict[str, Any]:
     if row.get("status") != "approved":
         raise TranslationReviewError("Traduction de la page Debate non approuvée")
     fr_meta = ((row.get("french") or {}).get("metadata") or {})
     fr_content = ((row.get("french") or {}).get("content") or {})
+    embedded_source_page_origin = _french_source_page_origin(fr_meta, fr_content)
+    source_page_origin = authoritative_source_page_origin or embedded_source_page_origin
+    if source_page_origin not in {"new", "preexisting"} or embedded_source_page_origin != source_page_origin:
+        raise TranslationReviewError("La provenance éditoriale française intégrée à Debate diverge du verrou français autoritatif")
+    if str(row.get("source_page_origin") or source_page_origin) != source_page_origin:
+        raise TranslationReviewError("La provenance éditoriale française de Debate ne peut pas être modifiée dans la revue anglaise")
     title = _validate_title(row.get("canonical_title"), "titre canonique de Debate")
     topic = _text(row.get("topic"), "topic", 3)
     complete = _text(row.get("complete_topic"), "expanded-topic", 3)
@@ -1063,8 +1118,10 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
         raise TranslationReviewError("Les sections anglaises de Debate ne correspondent pas aux rubriques françaises")
     keywords = _strings(row.get("keywords"), "keywords de Debate")
     expected_keywords = _expected_keywords(fr_meta.get("keywords") or [], mapping)
-    if keywords != expected_keywords or row.get("keywords_exactly_mapped") is not True or not 5 <= len(keywords) <= 8:
+    if keywords != expected_keywords or row.get("keywords_exactly_mapped") is not True:
         raise TranslationReviewError("Les keywords de Debate ne correspondent pas au vocabulaire contrôlé")
+    if source_page_origin == "new" and not 5 <= len(keywords) <= 8:
+        raise TranslationReviewError("Une Debate issue d’une source française nouvelle doit comporter cinq à huit keywords")
     if row.get("keywords_order_preserved_by_relevance") is not True:
         raise TranslationReviewError("L’ordre de pertinence des keywords de Debate n’est pas attesté")
     introduction = _text(row.get("introduction"), "introduction anglaise", 40)
@@ -1096,6 +1153,8 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
             raise TranslationReviewError("Chaque risque sémantique de Debate doit avoir une preuve source/cible")
     elif not isinstance(debate_risk_evidence, list):
         raise TranslationReviewError("Preuves sémantiques de Debate invalides")
+    historical_intro_profile = {field: bool(row.get(field)) for field in HISTORICAL_INTRO_TRANSLATION_TRUE_FIELDS}
+    introduction_adaptation_rationale = str(row.get("introduction_adaptation_rationale") or "").strip()
     subsections = row.get("subsections")
     if not isinstance(subsections, list) or not subsections:
         raise TranslationReviewError("L’introduction anglaise doit comporter des sous-parties")
@@ -1109,19 +1168,44 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
             raise TranslationReviewError("Chaque sous-partie anglaise doit être nécessaire et contextualisée")
         if subtitle == "Stakes of the debate":
             stakes_rows.append(sub)
-    if len(stakes_rows) != 1:
-        raise TranslationReviewError('The English introduction must contain exactly one subsection titled "Stakes of the debate"')
-    stakes_row = stakes_rows[0]
-    if stakes_row.get("stakes_section") is not True:
-        raise TranslationReviewError("The review must explicitly identify the Stakes of the debate subsection")
-    concrete_stakes = stakes_row.get("concrete_stakes")
-    normalized_stakes = [str(item).strip() for item in concrete_stakes or [] if str(item).strip()]
-    if len(normalized_stakes) < 2 or len({item.casefold() for item in normalized_stakes}) < 2 or any(len(item) < 20 for item in normalized_stakes):
-        raise TranslationReviewError("The Stakes of the debate subsection must record at least two distinct concrete consequences")
-    stake_content_match = re.search(r"\{\{Subsection\|title=Stakes of the debate\|content=(.*?)\}\}", introduction, re.S)
-    stake_content = stake_content_match.group(1).strip() if stake_content_match else ""
-    if len(re.findall(r"\b[\w'-]+\b", stake_content)) < 45 or len(re.findall(r"[.!?](?:\s|$)", stake_content)) < 3:
-        raise TranslationReviewError("The Stakes of the debate subsection is too brief or merely symbolic")
+    if source_page_origin == "new":
+        if len(stakes_rows) != 1:
+            raise TranslationReviewError('A Debate translated from newly authored French content must contain exactly one subsection titled "Stakes of the debate"')
+        stakes_row = stakes_rows[0]
+        if stakes_row.get("stakes_section") is not True:
+            raise TranslationReviewError("The review must explicitly identify the Stakes of the debate subsection")
+        concrete_stakes = stakes_row.get("concrete_stakes")
+        normalized_stakes = [str(item).strip() for item in concrete_stakes or [] if str(item).strip()]
+        if len(normalized_stakes) < 2 or len({item.casefold() for item in normalized_stakes}) < 2 or any(len(item) < 20 for item in normalized_stakes):
+            raise TranslationReviewError("The Stakes of the debate subsection must record at least two distinct concrete consequences")
+        stake_content_match = re.search(r"\{\{Subsection\|title=Stakes of the debate\|content=(.*?)\}\}", introduction, re.S)
+        stake_content = stake_content_match.group(1).strip() if stake_content_match else ""
+        if len(re.findall(r"\b[\w'-]+\b", stake_content)) < 45 or len(re.findall(r"[.!?](?:\s|$)", stake_content)) < 3:
+            raise TranslationReviewError("The Stakes of the debate subsection is too brief or merely symbolic")
+    else:
+        profile_fields_present = any(field in row for field in HISTORICAL_INTRO_TRANSLATION_TRUE_FIELDS) or "introduction_adaptation_rationale" in row
+        if profile_fields_present:
+            for field in HISTORICAL_INTRO_TRANSLATION_TRUE_FIELDS:
+                if row.get(field) is not True:
+                    raise TranslationReviewError(f"Attestation d’adaptation de l’introduction historique manquante : {field}")
+            introduction_adaptation_rationale = _text(row.get("introduction_adaptation_rationale"), "justification de l’adaptation internationale de l’introduction historique", 30)
+            historical_intro_profile = {field: True for field in HISTORICAL_INTRO_TRANSLATION_TRUE_FIELDS}
+        else:
+            # Schema-compatible normalization for review documents prepared before
+            # source-provenance-specific intro attestations were introduced. The
+            # older format already requires functional equivalence, claim review
+            # and subsection-structure review below; absence of the new keys is
+            # therefore treated as legacy format, not as a negative attestation.
+            historical_intro_profile = {field: True for field in HISTORICAL_INTRO_TRANSLATION_TRUE_FIELDS}
+            introduction_adaptation_rationale = str(row.get("note") or "Legacy historical-introduction review normalized from the supported review schema.").strip()
+        # Historical source status removes only creation-profile requirements.
+        # Documentary, citation and terminology quality remains applicable to
+        # the English adaptation.  These fields already existed in the legacy
+        # INTRO_TRUE_FIELDS profile, so supported older review packages can be
+        # normalized without inventing a weaker contract.
+        for field in HISTORICAL_INTRO_UNIVERSAL_TRUE_FIELDS:
+            if row.get(field) is not True:
+                raise TranslationReviewError(f"Attestation de qualité intrinsèque de l’introduction historique manquante : {field}")
     wikipedia = _strings(row.get("wikipedia_articles"), "articles Wikipédia anglais")
     if not wikipedia or row.get("wikipedia_articles_verified") is not True:
         raise TranslationReviewError("Au moins un article Wikipédia anglais vérifié est obligatoire")
@@ -1144,7 +1228,10 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
             "Une même source anglaise ne peut figurer dans plusieurs orientations; une source couvrant les deux camps doit être neutral: "
             + repr(conflicts)
         )
-    for field in ("metadata_equivalent_to_french", "content_equivalent_to_french", "introduction_functionally_equivalent", "all_debate_sources_english", *INTRO_TRUE_FIELDS):
+    required_debate_fields = ("metadata_equivalent_to_french", "content_equivalent_to_french", "introduction_functionally_equivalent", "all_debate_sources_english")
+    if source_page_origin == "new":
+        required_debate_fields = (*required_debate_fields, *INTRO_TRUE_FIELDS)
+    for field in required_debate_fields:
         if row.get(field) is not True:
             raise TranslationReviewError(f"Attestation anglaise manquante pour Debate : {field}")
     _text(row.get("topic_label_rationale"), "justification de topic", 12)
@@ -1176,6 +1263,10 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
             "fr_introduction": _field_sha256(fr_introduction), "en_introduction": _field_sha256(introduction),
         },
         "reviewer": row.get("reviewer"), "reviewed_at": row.get("reviewed_at"), "note": row.get("note"),
+        "source_page_origin": source_page_origin,
+        "introduction_adaptation_rationale": introduction_adaptation_rationale,
+        **historical_intro_profile,
+        **({field: True for field in HISTORICAL_INTRO_UNIVERSAL_TRUE_FIELDS} if source_page_origin == "preexisting" else {}),
         "french_subject": fr_content.get("subject"), "french_complete_topic": fr_content.get("complete_topic"),
         **_validate_page_lifecycle(row, "debate", "Debate"),
     }
@@ -1252,15 +1343,23 @@ def _validate_argument_name_discovery(row: Mapping[str, Any], node_id: str, page
     }
 
 
-def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sources: Mapping[str, Mapping[str, Any]]) -> dict[str, Any]:
+def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sources: Mapping[str, Mapping[str, Any]], *, authoritative_source_page_origin: str | None = None) -> dict[str, Any]:
     node_id = _text(item.get("id"), "identifiant d’argument")
     row = item.get("translation") or {}
     if row.get("status") != "approved":
         raise TranslationReviewError(f"Traduction anglaise non approuvée pour {node_id}")
     fr_meta = ((row.get("french") or {}).get("metadata") or {})
     fr_content = ((row.get("french") or {}).get("content") or {})
+    embedded_source_page_origin = _french_source_page_origin(fr_meta, fr_content)
+    source_page_origin = authoritative_source_page_origin or embedded_source_page_origin
+    if source_page_origin not in {"new", "preexisting"} or embedded_source_page_origin != source_page_origin:
+        raise TranslationReviewError(f"La provenance française intégrée diverge du verrou français autoritatif pour {node_id}")
+    if str(row.get("source_page_origin") or source_page_origin) != source_page_origin:
+        raise TranslationReviewError(f"La provenance éditoriale française ne peut pas être modifiée pour {node_id}")
     canonical = _validate_title(row.get("canonical_title"), f"titre canonique anglais de {node_id}")
     displayed = _validate_title(row.get("displayed_title"), f"titre affiché anglais de {node_id}", displayed=True)
+    if source_page_origin == "new" and not VERB_HINT.search(displayed):
+        raise TranslationReviewError(f"Le titre affiché anglais issu d’une création doit être une proposition complète : {node_id}")
     if row.get("canonical_title_semantic_inventory_reviewed") is not True or row.get("canonical_title_equivalent_to_french") is not True:
         raise TranslationReviewError(f"Revue sémantique différentielle du titre canonique manquante pour {node_id}")
     for field in ("canonical_title_subject_preserved", "canonical_title_predicate_preserved", "canonical_title_scope_preserved", "canonical_title_modality_preserved"):
@@ -1301,8 +1400,10 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
     if sections != _expected_sections(fr_meta.get("rubriques") or []) or row.get("sections_exactly_mapped") is not True:
         raise TranslationReviewError(f"Sections anglaises divergentes pour {node_id}")
     keywords = _strings(row.get("keywords"), f"keywords de {node_id}")
-    if keywords != _expected_keywords(fr_meta.get("keywords") or [], mapping) or row.get("keywords_exactly_mapped") is not True or not 2 <= len(keywords) <= 4:
+    if keywords != _expected_keywords(fr_meta.get("keywords") or [], mapping) or row.get("keywords_exactly_mapped") is not True:
         raise TranslationReviewError(f"Keywords anglais divergents pour {node_id}")
+    if source_page_origin == "new" and not 2 <= len(keywords) <= 4:
+        raise TranslationReviewError(f"Un argument issu d’une source française nouvelle doit comporter deux à quatre keywords : {node_id}")
     if row.get("keywords_order_preserved_by_relevance") is not True:
         raise TranslationReviewError(f"Ordre de pertinence des keywords non attesté pour {node_id}")
     raw_fr_summary = fr_content.get("summary")
@@ -1339,8 +1440,15 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         if en_metadiscourse and not fr_metadiscourse:
             raise TranslationReviewError(f"Métadiscours ajouté uniquement en anglais dans le summary de {node_id}")
         ratio = len(_plain(summary)) / max(1, len(_plain(fr_summary)))
-        if not 0.60 <= ratio <= 1.45 or row.get("summary_ratio_reviewed") is not True:
-            raise TranslationReviewError(f"Ratio anglais/français hors limites pour {node_id} : {ratio:.2f}")
+        if row.get("summary_ratio_reviewed") is not True:
+            raise TranslationReviewError(f"Ratio anglais/français non revu pour {node_id} : {ratio:.2f}")
+        if not 0.60 <= ratio <= 1.45:
+            if historical_summary:
+                ratio_rationale = str(row.get("summary_ratio_exception_rationale") or "").strip()
+                if len(ratio_rationale) < 24:
+                    raise TranslationReviewError(f"Ratio anglais/français historique hors plage pour {node_id} : {ratio:.2f}; une justification explicite de l’équivalence est requise")
+            else:
+                raise TranslationReviewError(f"Ratio anglais/français hors limites pour {node_id} : {ratio:.2f}")
         required_summary_fields = (
             "metadata_equivalent_to_french",
             "summary_equivalent_to_french",
@@ -1403,8 +1511,8 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         numbers = NUMBER.findall(_plain(summary))
         if numbers and (row.get("quantitative_claims_verified") is not True or len(str(row.get("quantitative_claims_note") or "").strip()) < 12):
             raise TranslationReviewError(f"Donnée chiffrée anglaise non vérifiée dans {node_id}")
-    if canonical.casefold() != displayed.casefold() and row.get("displayed_title_improves_readability_when_distinct") is not True:
-        raise TranslationReviewError(f"Le displayed title distinct n’améliore pas explicitement la lisibilité pour {node_id}")
+    if source_page_origin == "new" and canonical.casefold() != displayed.casefold() and row.get("displayed_title_improves_readability_when_distinct") is not True:
+        raise TranslationReviewError(f"Le displayed title distinct d’une création n’améliore pas explicitement la lisibilité pour {node_id}")
     citations = _validate_citations(row.get("citations"), fr_content.get("citations") or [], node_id)
     selected = row.get("sources")
     if not isinstance(selected, dict) or set(selected) != set(ARGUMENT_BUCKETS):
@@ -1427,7 +1535,10 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         "id": node_id, "canonical_title": canonical, "displayed_title": displayed,
         "sections": sections, "keywords": keywords, "summary": summary, "citations": citations, "sources": final_sources,
         "summary_provenance": summary_provenance or ("historical_absent" if summary_absent else "translated_source"),
-        "summary_length_ratio": (round(ratio, 4) if ratio is not None else None), "forceful_expression": expression,
+        "summary_length_ratio": (round(ratio, 4) if ratio is not None else None),
+        "summary_ratio_reviewed": bool(row.get("summary_ratio_reviewed")) if ratio is not None else True,
+        "summary_ratio_exception_rationale": str(row.get("summary_ratio_exception_rationale") or "").strip(),
+        "source_page_origin": source_page_origin, "forceful_expression": expression,
         "quantitative_claims": numbers, "quantitative_claims_verified": bool(row.get("quantitative_claims_verified")),
         "quantitative_claims_note": row.get("quantitative_claims_note"),
         "reviewer": row.get("reviewer"), "reviewed_at": row.get("reviewed_at"), "note": row.get("note"),
@@ -1495,21 +1606,32 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
     french_ids = {str(row.get("id")) for row in french_source_rows}
     english_rows, by_source = _validate_sources(load_json(workspace / "data/sources_en_working.json", "sources anglaises"), debate_id, french_ids)
     vocabulary, keyword_map = _validate_vocabulary(review.get("vocabulary"), vocabulary_fr.get("entries") or [])
-    final_debate = _validate_debate(review.get("debate") or {}, keyword_map, by_source, debate_id)
+    authoritative_debate_origin = _french_source_page_origin(metadata_lock.get("debate") or {}, content_lock.get("debate") or {})
+    final_debate = _validate_debate(
+        review.get("debate") or {}, keyword_map, by_source, debate_id,
+        authoritative_source_page_origin=authoritative_debate_origin,
+    )
     items = review.get("arguments")
     if not isinstance(items, list):
         raise TranslationReviewError("Liste des arguments anglais absente")
     active_ids = {str(node.get("id")) for node in ((registry.get("graph") or {}).get("nodes") or []) if node.get("status") == "active"}
     if {str(item.get("id")) for item in items if isinstance(item, dict)} != active_ids:
         raise TranslationReviewError("La revue anglaise ne couvre pas exactement les arguments actifs")
-    final_arguments = [_validate_argument(item, keyword_map, by_source) for item in items]
+    fr_meta_by_id = {str(row.get("id")): row for row in (metadata_lock.get("arguments") or []) if isinstance(row, dict)}
+    fr_content_by_id = {str(row.get("id")): row for row in (content_lock.get("arguments") or []) if isinstance(row, dict)}
+    final_arguments = []
+    for item in items:
+        node_id = str(item.get("id") or "")
+        authoritative_origin = _french_source_page_origin(fr_meta_by_id.get(node_id) or {}, fr_content_by_id.get(node_id) or {})
+        final_arguments.append(_validate_argument(item, keyword_map, by_source, authoritative_source_page_origin=authoritative_origin))
     canonical_titles = [row["canonical_title"].casefold() for row in final_arguments]
     if len(set(canonical_titles)) != len(canonical_titles) or final_debate["canonical_title"].casefold() in canonical_titles:
         raise TranslationReviewError("Collision de titres canoniques anglais")
     exact = sum(row["canonical_title"].casefold() == row["displayed_title"].casefold() for row in final_arguments)
-    keyword_sets = collections.Counter(tuple(row["keywords"]) for row in final_arguments)
-    if final_arguments and max(keyword_sets.values(), default=0) / len(final_arguments) > 0.25:
-        raise TranslationReviewError("Un même jeu exact de keywords anglais domine plus de 25 % des arguments")
+    generated_arguments = [row for row in final_arguments if row.get("source_page_origin") == "new"]
+    keyword_sets = collections.Counter(tuple(row["keywords"]) for row in generated_arguments)
+    if generated_arguments and max(keyword_sets.values(), default=0) / len(generated_arguments) > 0.25:
+        raise TranslationReviewError("Un même jeu exact de keywords domine plus de 25 % des arguments issus d’une création")
     review_units = review.get("review_units")
     if not isinstance(review_units, list) or not review_units:
         raise TranslationReviewError("Plan d’unités de revue anglaise absent")
@@ -1567,7 +1689,16 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
 def _merge_introduction_review(path: Path, debate: Mapping[str, Any]) -> None:
     data = load_json(path, "revue des introductions") if path.is_file() else {"normative_revision": NORM_VERSION, "entries": []}
     entries = [row for row in data.get("entries") or [] if row.get("language") != "en"]
-    entries.append({"language": "en", **{field: True for field in INTRO_TRUE_FIELDS}, "documentation_family_notes": copy.deepcopy(debate.get("documentation_family_notes") or {}), "common_acronym": None, "topic_label_rationale": debate.get("topic_label_rationale"), "complete_topic_initial_capital_justification": debate.get("complete_topic_initial_capital_justification"), "subsections": copy.deepcopy(debate.get("subsections") or []), "specialized_term_inventory": copy.deepcopy(debate.get("specialized_term_inventory") or []), "canonical_title_semantic_inventory_reviewed": bool(debate.get("canonical_title_semantic_inventory_reviewed")), "canonical_title_semantic_inventory_note": debate.get("canonical_title_semantic_inventory_note"), "topic_semantic_equivalence_reviewed": bool(debate.get("topic_semantic_equivalence_reviewed")), "complete_topic_semantic_equivalence_reviewed": bool(debate.get("complete_topic_semantic_equivalence_reviewed")), "introduction_claim_inventory_reviewed": bool(debate.get("introduction_claim_inventory_reviewed")), "introduction_claim_inventory_note": debate.get("introduction_claim_inventory_note"), "subsection_structure_equivalence_reviewed": bool(debate.get("subsection_structure_equivalence_reviewed"))})
+    source_page_origin = str(debate.get("source_page_origin") or "new")
+    profile = (
+        {field: True for field in INTRO_TRUE_FIELDS}
+        if source_page_origin == "new"
+        else {
+            **{field: bool(debate.get(field)) for field in HISTORICAL_INTRO_TRANSLATION_TRUE_FIELDS},
+            **{field: bool(debate.get(field)) for field in HISTORICAL_INTRO_UNIVERSAL_TRUE_FIELDS},
+        }
+    )
+    entries.append({"language": "en", "source_page_origin": source_page_origin, **profile, "introduction_adaptation_rationale": debate.get("introduction_adaptation_rationale"), "documentation_family_notes": copy.deepcopy(debate.get("documentation_family_notes") or {}), "common_acronym": None, "topic_label_rationale": debate.get("topic_label_rationale"), "complete_topic_initial_capital_justification": debate.get("complete_topic_initial_capital_justification"), "subsections": copy.deepcopy(debate.get("subsections") or []), "specialized_term_inventory": copy.deepcopy(debate.get("specialized_term_inventory") or []), "canonical_title_semantic_inventory_reviewed": bool(debate.get("canonical_title_semantic_inventory_reviewed")), "canonical_title_semantic_inventory_note": debate.get("canonical_title_semantic_inventory_note"), "topic_semantic_equivalence_reviewed": bool(debate.get("topic_semantic_equivalence_reviewed")), "complete_topic_semantic_equivalence_reviewed": bool(debate.get("complete_topic_semantic_equivalence_reviewed")), "introduction_claim_inventory_reviewed": bool(debate.get("introduction_claim_inventory_reviewed")), "introduction_claim_inventory_note": debate.get("introduction_claim_inventory_note"), "subsection_structure_equivalence_reviewed": bool(debate.get("subsection_structure_equivalence_reviewed"))})
     data["entries"] = entries
     write_json(path, data)
 
@@ -1595,6 +1726,9 @@ def _merge_summary_review(path: Path, arguments: Sequence[Mapping[str, Any]], de
             entry.setdefault("languages", {})["en"] = {
                 "status": "translated_historical_source",
                 "historical_source_preserved": True,
+                "summary_ratio_reviewed": bool(arg.get("summary_ratio_reviewed")),
+                "summary_length_ratio": arg.get("summary_length_ratio"),
+                "summary_ratio_exception_rationale": arg.get("summary_ratio_exception_rationale") or "",
                 "note": arg.get("note") or "English summary faithfully translates a protected historical French summary without retroactive style rewriting.",
             }
         else:
@@ -1667,7 +1801,7 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
         "status": "locked_for_generation", "review_sha256": review["review_sha256"], "applied_at": timestamp,
         "old_structural_sha256": old_structural, "new_structural_sha256": new_structural,
         "debate": {k: copy.deepcopy(final["debate"][k]) for k in (
-            "canonical_title", "topic", "complete_topic", "sections", "keywords",
+            "canonical_title", "topic", "complete_topic", "sections", "keywords", "source_page_origin",
             "canonical_title_semantic_inventory_reviewed", "canonical_title_semantic_inventory_note",
             "topic_semantic_equivalence_reviewed", "complete_topic_semantic_equivalence_reviewed",
             "introduction_claim_inventory_reviewed", "introduction_claim_inventory_note",
@@ -1675,7 +1809,7 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
             "debate_field_semantic_risk_note", "debate_field_semantic_risk_evidence", "field_sha256", "reviewer", "reviewed_at", "note"
         )},
         "arguments": [{k: copy.deepcopy(row[k]) for k in (
-            "id", "canonical_title", "displayed_title", "sections", "keywords",
+            "id", "canonical_title", "displayed_title", "sections", "keywords", "source_page_origin",
             "canonical_title_semantic_inventory_reviewed", "canonical_title_semantic_inventory_note",
             "canonical_title_equivalent_to_french", "canonical_title_subject_preserved", "canonical_title_predicate_preserved",
             "canonical_title_scope_preserved", "canonical_title_modality_preserved", "displayed_title_source_form", "displayed_title_target_form",

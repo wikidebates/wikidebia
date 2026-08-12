@@ -51,6 +51,7 @@ from wikidebia_editorial_workspace import (
     fsync_directory,
     keyword_diagnostics,
     capitalization_policy_for_kind,
+    _alphabetical_key,
     keyword_capitalization_issues,
     normalized_identity,
     normalized_text,
@@ -104,26 +105,35 @@ def _validate_preexisting_keyword_preservation(source_keywords: Sequence[str], f
         raise EditorialReviewError(f"Corrections de mots-clés préexistants invalides : {entity_id}")
     if not isinstance(removals, dict):
         raise EditorialReviewError(f"Suppressions de mots-clés préexistants invalides : {entity_id}")
-    corrected: dict[str, str] = {}
+    allowed_correction_reasons = {
+        "capitalization", "orthography", "typography", "canonical_spelling",
+        "atomicity", "non_atomic", "canonical_form", "lexicalization",
+        "length", "quality_rule",
+    }
+    corrected: dict[str, list[str]] = {}
     removed: list[str] = []
     for old in source_keywords:
         if _keyword_identity(old) in final_by_identity:
-            # Case/spacing normalization preserves the historical concept.
             continue
         spec = corrections.get(old)
         if isinstance(spec, dict):
-            replacement = str(spec.get("replacement") or "").strip()
+            replacements_raw = spec.get("replacements")
+            if replacements_raw is None and spec.get("replacement") not in (None, ""):
+                replacements_raw = [spec.get("replacement")]
+            replacements = [str(value).strip() for value in (replacements_raw or []) if str(value).strip()] if isinstance(replacements_raw, list) else []
             reason = str(spec.get("reason") or "").strip()
             rationale = str(spec.get("rationale") or "").strip()
-            if replacement in final_keywords and reason in {"capitalization", "orthography", "typography", "canonical_spelling"} and len(rationale) >= 12:
-                corrected[old] = replacement
+            if (replacements and len({_keyword_identity(value) for value in replacements}) == len(replacements)
+                    and all(value in final_keywords for value in replacements)
+                    and reason in allowed_correction_reasons and len(rationale) >= 20):
+                corrected[old] = replacements
                 continue
         removal = removals.get(old)
         if isinstance(removal, dict) and removal.get("reason") == "clearly_irrelevant" and _text_ok(removal.get("rationale"), 20):
             removed.append(old)
             continue
         raise EditorialReviewError(
-            f"Mot-clé préexistant supprimé sans non-pertinence explicitement justifiée ({old!r}) : {entity_id}"
+            f"Mot-clé préexistant supprimé ou remplacé sans correction qualitative/non-pertinence explicitement justifiée ({old!r}) : {entity_id}"
         )
     historical_final_keywords: list[str] = []
     for old in source_keywords:
@@ -131,12 +141,33 @@ def _validate_preexisting_keyword_preservation(source_keywords: Sequence[str], f
         if existing is not None:
             historical_final_keywords.append(existing)
         elif old in corrected:
-            historical_final_keywords.append(corrected[old])
+            historical_final_keywords.extend(corrected[old])
     return {
         "source_keywords": list(source_keywords),
         "historical_final_keywords": historical_final_keywords,
         "corrected": corrected,
         "removed_as_irrelevant": removed,
+    }
+
+
+def _validate_preexisting_rubrique_preservation(source_rubriques: Sequence[str], final_rubriques: Sequence[str], decision: Mapping[str, Any], entity_id: str) -> dict[str, Any]:
+    source = list(source_rubriques)
+    final = list(final_rubriques)
+    source_set, final_set = set(source), set(final)
+    added = sorted(final_set - source_set, key=_alphabetical_key)
+    removed = sorted(source_set - final_set, key=_alphabetical_key)
+    changed = bool(added or removed)
+    rationale = str(decision.get("preexisting_rubrique_change_rationale") or "").strip()
+    if changed:
+        if decision.get("rubriques_decision") != "change" or len(rationale) < 30:
+            raise EditorialReviewError(f"Correction des rubriques préexistantes insuffisamment justifiée : {entity_id}")
+    return {
+        "source_rubriques": source,
+        "final_rubriques": final,
+        "added": added,
+        "removed": removed,
+        "changed": changed,
+        "rationale": rationale,
     }
 
 
@@ -317,7 +348,7 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
             elif decision.get("displayed_title_decision") == "change" and not _text_ok(decision.get("displayed_title_rationale"), 20):
                 raise EditorialReviewError(f"Correction du titre affiché préexistant insuffisamment justifiée : {entity_id}")
 
-    rub_issues = rubrique_diagnostics(rubriques, False)
+    rub_issues = rubrique_diagnostics(rubriques, False, enforce_creation_count=(page_origin == "new"))
     if rub_issues:
         raise EditorialReviewError(f"Rubriques non conformes pour {entity_id} : {[row.get('code') for row in rub_issues]}")
     rub_rationales = decision.get("rubriques_rationales")
@@ -326,8 +357,13 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
     for rubric, rationale in rub_rationales.items():
         if not _text_ok(rationale, 12):
             raise EditorialReviewError(f"Justification insuffisante pour la rubrique {rubric!r} : {entity_id}")
-    if len(rubriques) == 4 and not _text_ok(decision.get("fourth_rubrique_exception_rationale"), 30):
+    if page_origin == "new" and len(rubriques) == 4 and not _text_ok(decision.get("fourth_rubrique_exception_rationale"), 30):
         raise EditorialReviewError(f"Quatrième rubrique non exceptionnellement justifiée : {entity_id}")
+    rubrique_preservation = {"source_rubriques": [], "final_rubriques": rubriques, "added": [], "removed": [], "changed": False, "rationale": ""}
+    if page_origin == "preexisting":
+        rubrique_preservation = _validate_preexisting_rubrique_preservation(
+            list(source.get("rubriques") or []), rubriques, decision, entity_id
+        )
 
     # Creation targets are enforced only on newly generated pages. Historical
     # wiki pages preserve their existing keywords by default, even outside the target.
@@ -340,18 +376,10 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
         keyword_preservation = _validate_preexisting_keyword_preservation(
             list(source.get("keywords") or []), keywords, decision, entity_id
         )
-    if page_origin == "new":
-        generic_kw_issues = [row for row in keyword_diagnostics(keywords, False, entity_type) if row.get("code") not in {"KEYWORDS_TOO_FEW", "KEYWORDS_TOO_MANY", "KEYWORDS_CAPITALIZATION_REVIEW"}]
-    else:
-        # Historical keywords are not retroactively deleted merely to satisfy
-        # creation-form constraints (length/word count). Only genuinely new
-        # additions are checked against those creation constraints; duplicates
-        # in the final list remain forbidden for every page.
-        historical_ids = {_keyword_identity(value) for value in keyword_preservation.get("historical_final_keywords") or []}
-        new_keywords = [value for value in keywords if _keyword_identity(value) not in historical_ids]
-        generic_kw_issues = [row for row in keyword_diagnostics(new_keywords, False, entity_type) if row.get("code") not in {"KEYWORDS_TOO_FEW", "KEYWORDS_TOO_MANY", "KEYWORDS_CAPITALIZATION_REVIEW"}]
-        if len({_keyword_identity(value) for value in keywords}) != len(keywords):
-            generic_kw_issues.append({"code": "KEYWORDS_DUPLICATE"})
+    # Intrinsic keyword-quality rules remain applicable to historical terms.
+    # Only the creation quota is provenance-sensitive; a genuinely bad
+    # historical keyword may be corrected/replaced/decomposed with traceability.
+    generic_kw_issues = [row for row in keyword_diagnostics(keywords, False, entity_type) if row.get("code") not in {"KEYWORDS_TOO_FEW", "KEYWORDS_TOO_MANY", "KEYWORDS_CAPITALIZATION_REVIEW"}]
     if generic_kw_issues:
         raise EditorialReviewError(f"Mots-clés non conformes pour {entity_id} : {[row.get('code') for row in generic_kw_issues]}")
     kw_rationales = decision.get("keywords_rationales")
@@ -390,6 +418,7 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
             "keyword_order": decision.get("keyword_order_rationale") or "",
             "displayed_title_identity": decision.get("displayed_title_identity_justification") or "",
             "fourth_rubrique_exception": decision.get("fourth_rubrique_exception_rationale") or "",
+            "preexisting_rubrique_change": decision.get("preexisting_rubrique_change_rationale") or "",
         },
         "attestations": {
             "canonical_referents_explicit": decision.get("canonical_referents_explicit") if entity_type == "argument" else None,
@@ -403,6 +432,7 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
             "preexisting_keyword_preservation_applied": page_origin == "preexisting",
         },
         "preexisting_keyword_preservation": keyword_preservation,
+        "preexisting_rubrique_preservation": rubrique_preservation,
     }
 
 

@@ -1,9 +1,11 @@
-Wikidéb’IA Normes 1.2.85 — audit de cohérence normative
+Wikidéb’IA Normes 1.2.86 — audit de cohérence normative
 Statut : PASSED
-Norme active unique : 1.2.85 ; norme 1.2.84 archivée avant remplacement.
-Principe : provenance historique distincte de la valeur éditoriale sélectionnée.
-`preserved` → historique ; `authorized_change` → valeur finale explicitement autorisée.
-Portée structurée d’introduction : added/modified/removed/reordered.
-Validation différentielle : règles de création limitées aux portions ajoutées ou substantiellement réécrites.
-Checkpoint français 2 : publie la valeur finale autorisée sans troisième publication.
-Exigences ajoutées : EDT-075, VAL-064, PUB-054.
+Norme active unique : 1.2.86 ; norme 1.2.85 archivée sans modification (SHA-256 06b01a271a3f15e23ee6c5d3b2734436034f6e46337e64f7140a4869d879fb16).
+Catalogue : 541 exigences, 541 identifiants uniques ; toutes les sources déclarées sont résolues.
+Provenance éditoriale : page cible EN (`page_origin`) distincte de la source française (`source_page_origin`).
+Titres affichés historiques : pas de propositionnalité/readability rétroactive ; fidélité, intelligibilité contextuelle et absence de nouvelle dégradation maintenues.
+Mots-clés historiques : quotas de création non rétroactifs ; qualité intrinsèque, atomicité, graphie, longueur et vocabulaire contrôlé maintenus.
+Rubriques historiques : préservation par défaut, cardinalité de création non rétroactive, corrections pertinentes justifiées autorisées.
+Introduction historique EN : adaptation autonome du contexte franco-français maintenue ; profil structurel de création non rétroactif ; contrôles documentaires intrinsèques maintenus.
+Résumés historiques traduits : ratio EN/FR hors plage traité comme signal de revue avec justification, pas comme objectif de réécriture.
+Exigences ajoutées : EDT-076, TRN-036, VAL-065.

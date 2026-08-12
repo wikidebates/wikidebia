@@ -1,3 +1,11 @@
+# Wikidéb’IA — Normes 1.2.86
+
+La révision 1.2.86 formalise la **provenance éditoriale de la source** dans les reprises bilingues. Le cycle de vie technique d’une page cible (`page_origin`) est distinct de la provenance de la source française (`source_page_origin`) et, lorsque nécessaire, de la provenance du champ. Une page anglaise techniquement nouvelle ne transforme donc pas en création IA les métadonnées historiques qu’elle traduit.
+
+Les quotas de keywords et les préférences de forme des titres affichés sont réservés aux contenus effectivement générés. Les mots-clés historiques restent soumis aux règles intrinsèques de qualité et peuvent être corrigés, remplacés ou décomposés avec traçabilité. Les rubriques historiques sont conservées par défaut sans plafond rétroactif, tout en restant corrigeables lorsqu’une classification est réellement inadéquate ou incomplète. Les introductions historiques anglaises restent des adaptations autonomes du contexte franco-français et conservent leurs contrôles documentaires et techniques intrinsèques. Le ratio EN/FR d’un résumé historique hors 0,60–1,45 devient un signal de revue explicitement justifiable.
+
+La mise en œuvre corrige également deux défauts de reprise : aucune troncature silencieuse des rubriques historiques à quatre et tri alphabétique français accent-insensible.
+
 # Wikidéb’IA — Normes 1.2.85
 
 La révision 1.2.85 précise la logique de consentement 1.2.84 : **l’historique est la provenance, la valeur finale autorisée devient la valeur éditoriale effective**. Avec `preserved`, le texte historique est sélectionné ; avec `authorized_change`, tous les contrôles structurels, le verrou, le changeset, le rendu, le checkpoint français n°2 et la traduction utilisent la valeur finale autorisée.

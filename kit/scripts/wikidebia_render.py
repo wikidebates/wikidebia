@@ -650,6 +650,7 @@ def _finalize_individual_review(
         fr_displayed = str(fr.get("displayed_title") or "")
         en_canonical = str(en.get("canonical_title") or "")
         en_displayed = str(en.get("displayed_title") or "")
+        historical_source = str(en.get("source_page_origin") or "new") == "preexisting"
         entries.append({
             "id": node_id,
             "title_decision": title_decision,
@@ -665,8 +666,8 @@ def _finalize_individual_review(
             "canonical_title_predicate_preserved_en": bool(en.get("canonical_title_predicate_preserved")),
             "canonical_title_scope_preserved_en": bool(en.get("canonical_title_scope_preserved")),
             "canonical_title_modality_preserved_en": bool(en.get("canonical_title_modality_preserved")),
-            "displayed_referents_explicit_fr": True,
-            "displayed_referents_explicit_en": True,
+            "displayed_referents_explicit_fr": None if historical_source else True,
+            "displayed_referents_explicit_en": None if historical_source else True,
             "displayed_title_complete_proposition_fr": en.get("displayed_title_source_form") == "proposition",
             "displayed_title_argument_intelligible_fr": True,
             "displayed_title_source_form_reviewed_fr": bool(en.get("displayed_title_source_form_reviewed")),
@@ -687,8 +688,8 @@ def _finalize_individual_review(
             "displayed_title_concision_reviewed_en": True,
             "displayed_title_semantically_equivalent_fr": True,
             "displayed_title_semantically_equivalent_en": True,
-            "displayed_title_improves_readability_when_distinct_fr": fr_canonical.casefold() != fr_displayed.casefold(),
-            "displayed_title_improves_readability_when_distinct_en": en_canonical.casefold() != en_displayed.casefold(),
+            "displayed_title_improves_readability_when_distinct_fr": None if historical_source else fr_canonical.casefold() != fr_displayed.casefold(),
+            "displayed_title_improves_readability_when_distinct_en": None if historical_source else en_canonical.casefold() != en_displayed.casefold(),
             "displayed_title_identity_justification_fr": "",
             "displayed_title_identity_justification_en": "",
             "new_rubriques": list(fr.get("rubriques") or []),

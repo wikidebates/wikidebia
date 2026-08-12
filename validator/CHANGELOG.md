@@ -166,3 +166,12 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ajoute une régression positive de portée structurée et une régression négative de divergence de portée ;
 - conserve tous les contrôles de non-régression, de traduction différentielle et des deux checkpoints français.
 
+## 0.4.90 — 12 août 2026 — provenance éditoriale de la source et validation historique différentielle
+
+- distingue `page_origin` cible et provenance française autoritative pour les contrôles EN ;
+- réserve quotas et préférences de création aux contenus effectivement générés ;
+- conserve les contrôles intrinsèques de mots-clés historiques et la fidélité FR→EN ;
+- rend non bloquants par provenance les jeux historiques de keywords >25 % et les ratios historiques explicitement revus ;
+- accepte les titres affichés historiques nominaux/contextuels sans fausse attestation de référent explicite ;
+- conserve les contrôles documentaires intrinsèques de l’introduction historique adaptée ;
+- ajoute les régressions de provenance correspondantes.

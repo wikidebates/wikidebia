@@ -1,3 +1,9 @@
+# Wikidéb’IA Kit 2.16.19
+
+Le kit 2.16.19 propage la provenance éditoriale française jusqu’à la traduction anglaise au moyen de `source_page_origin`, distinct du `page_origin` de la page cible. Une page EN nouvelle qui traduit un corpus français préexistant conserve donc le profil historique pour les quotas et préférences de génération sans affaiblir les contrôles de qualité intrinsèque, de documentation ni de fidélité.
+
+Les listes historiques de keywords ne sont plus ramenées à 2–4/5–8 et les titres affichés historiques ne sont plus forcés en propositions ; un mauvais mot-clé historique reste corrigeable, y compris par décomposition tracée. Les rubriques historiques sont conservées intégralement lors de `corpus-init` (suppression de la troncature silencieuse à quatre), puis peuvent être corrigées avec justification. L’ordre alphabétique français est désormais accent-insensible. L’introduction historique anglaise demeure une adaptation autonome du contexte franco-français, avec maintien des contrôles documentaires intrinsèques.
+
 # Wikidéb’IA Kit 2.16.18
 
 Le kit 2.16.18 corrige la sélection et la validation d’un texte historique après consentement propriétaire. L’historique reste la provenance, mais il n’est plus utilisé comme valeur effective lorsqu’un `authorized_change` valide existe : l’introduction ou le résumé final autorisé devient la valeur éditoriale sélectionnée utilisée par les contrôles structurels, `fr_content_lock.json`, le changeset, le rendu, le checkpoint français n°2 et la traduction.

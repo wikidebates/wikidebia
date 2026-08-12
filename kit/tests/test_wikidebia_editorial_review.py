@@ -559,3 +559,99 @@ def test_finalize_accepts_explicit_irrelevant_preexisting_keyword_removal(tmp_pa
     _sync_vocabulary_to_review(workspace)
     result = review_tool.finalize_review(project, "debat_test", work_id)
     assert result["status"] == "fr_review_finalized"
+
+
+def _preexisting_item(*, rubriques: list[str], keywords: list[str], final_rubriques: list[str] | None = None, final_keywords: list[str] | None = None) -> dict:
+    final_rubriques = list(rubriques if final_rubriques is None else final_rubriques)
+    final_keywords = list(keywords if final_keywords is None else final_keywords)
+    return {
+        "entity_type": "argument",
+        "entity_id": "AHIST",
+        "source": {
+            "page_origin": "preexisting",
+            "canonical_title": "Le revenu de base modifie les incitations économiques",
+            "displayed_title": "Incitations économiques",
+            "rubriques": list(rubriques),
+            "keywords": list(keywords),
+        },
+        "review": {
+            "status": "approved",
+            "reviewer": "Relecteur Wikidéb'IA",
+            "reviewed_at": "2026-08-12T21:00:00+02:00",
+            "canonical_title_decision": "keep",
+            "canonical_title_rationale": "Le titre canonique historique est autonome et décrit explicitement le mécanisme économique.",
+            "displayed_title_decision": "keep",
+            "displayed_title_rationale": "Le titre affiché historique est conservé dans son contexte de lecture sans réécriture stylistique.",
+            "canonical_referents_explicit": True,
+            "displayed_title_argument_intelligible": True,
+            "displayed_title_concision_reviewed": True,
+            "displayed_title_semantically_equivalent": True,
+            "rubriques_decision": "keep" if final_rubriques == rubriques else "change",
+            "proposed_rubriques": final_rubriques,
+            "rubriques_rationales": {value: "Cette rubrique décrit un domaine central ou réellement pertinent de la page." for value in final_rubriques},
+            "keywords_decision": "keep" if final_keywords == keywords else "change",
+            "proposed_keywords": final_keywords,
+            "keywords_rationales": {value: "Ce concept est central et utile à la navigation entre débats." for value in final_keywords},
+            "keywords_ordered_by_relevance": True,
+            "keyword_order_rationale": "L’ordre suit la pertinence réelle, du mécanisme le plus directement central au contexte plus large.",
+        },
+    }
+
+
+def test_preexisting_rubriques_above_creation_count_are_preserved_without_count_block():
+    item = _preexisting_item(
+        rubriques=["Droit", "Économie", "Éthique", "Politique", "Société"],
+        keywords=["revenu", "travail"],
+    )
+    result = review_tool._validate_item(item)
+    assert result["rubriques"] == ["Droit", "Économie", "Éthique", "Politique", "Société"]
+    assert result["preexisting_rubrique_preservation"]["changed"] is False
+
+
+def test_preexisting_rubrique_correction_requires_and_records_rationale():
+    item = _preexisting_item(
+        rubriques=["Économie", "Société"],
+        final_rubriques=["Droit", "Économie", "Société"],
+        keywords=["revenu", "travail"],
+    )
+    try:
+        review_tool._validate_item(item)
+    except review_tool.EditorialReviewError as exc:
+        assert "rubriques préexistantes" in str(exc)
+    else:
+        raise AssertionError("Correction de rubriques historiques acceptée sans justification propre")
+    item["review"]["preexisting_rubrique_change_rationale"] = (
+        "La page traite directement d’un droit opposable ; l’ajout de Droit corrige une classification historique incomplète."
+    )
+    result = review_tool._validate_item(item)
+    assert result["preexisting_rubrique_preservation"]["added"] == ["Droit"]
+
+
+def test_bad_historical_keyword_must_be_corrected_but_can_be_decomposed():
+    old = "psychologie de la religion et spiritualité"
+    item = _preexisting_item(
+        rubriques=["Psychologie", "Religion et spiritualité"],
+        keywords=[old, "croyance"],
+    )
+    try:
+        review_tool._validate_item(item)
+    except review_tool.EditorialReviewError as exc:
+        assert "Mots-clés non conformes" in str(exc)
+    else:
+        raise AssertionError("Mot-clé historique intrinsèquement non conforme accepté sans correction")
+
+    item["review"]["keywords_decision"] = "change"
+    item["review"]["proposed_keywords"] = ["psychologie", "religion", "spiritualité", "croyance"]
+    item["review"]["keywords_rationales"] = {
+        value: "Concept atomique central et réutilisable dans plusieurs débats du wiki."
+        for value in item["review"]["proposed_keywords"]
+    }
+    item["review"]["preexisting_keyword_corrections"] = {
+        old: {
+            "reason": "atomicity",
+            "replacements": ["psychologie", "religion", "spiritualité"],
+            "rationale": "L’ancienne expression juxtapose plusieurs concepts de navigation qui doivent rester cliquables séparément.",
+        }
+    }
+    result = review_tool._validate_item(item)
+    assert result["preexisting_keyword_preservation"]["corrected"][old] == ["psychologie", "religion", "spiritualité"]

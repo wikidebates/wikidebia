@@ -278,7 +278,7 @@ Une ressource bilingue ne compte comme française que si l'intégralité du cont
 
 Lors de la création d’une page de débat réellement nouvelle hors traduction, les paramètres `débats-connexes` et `related-debates` ne sont pas produits. Lors de la modification d’une page préexistante hors protocole de retraduction, leur présence ou leur absence et, s’ils existent, leur valeur sont conservées exactement. **Pendant une traduction FR→EN, `related-debates` constitue une exception : il est reconstruit uniquement à partir des débats connexes français dont la page anglaise correspondante est vérifiée comme existante.** Les rapprochements internes ne servent jamais à inventer une nouvelle valeur.
 
-Les rubriques d’une page Débat sont rangées par ordre alphabétique et choisies avec parcimonie : la précision prime sur l’exhaustivité, et une rubrique secondaire n’est pas ajoutée au seul motif qu’elle apparaît dans un argument ou une sous-partie. La liste des mots-clés d'une page Débat est resserrée, normalement de cinq à huit concepts réutilisables. Elle évite les mots d'action trop génériques (`interdiction`, `autorisation`, `obligation`), les formulations propres à une seule proposition et les synonymes redondants.
+Les rubriques d’une page Débat sont rangées par ordre alphabétique et choisies avec parcimonie : la précision prime sur l’exhaustivité, et une rubrique secondaire n’est pas ajoutée au seul motif qu’elle apparaît dans un argument ou une sous-partie. Pour une page Débat nouvelle ou une classification générée, la liste des mots-clés est resserrée, normalement de cinq à huit concepts réutilisables. Une page Débat préexistante conserve son nombre historique final ; le quota n'est pas rétroactif, mais les règles qualitatives intrinsèques restent actives. Elle évite les mots d'action trop génériques (`interdiction`, `autorisation`, `obligation`), les formulations propres à une seule proposition et les synonymes redondants.
 
 ---
 
@@ -356,7 +356,7 @@ English Debate pages never contain an interlanguage parameter.
 
 ## 4.4 Editorial profile
 
-The English page is not a mechanical translation of the French page.
+The English page is not a mechanical translation of the French page. When the French source is historical, the English introduction is an autonomous international adaptation: France-specific material is explicitly reviewed and may be condensed, contextualized or omitted when literal transfer would be misleading, without changing the substance of the debate. Creation-only subsection quotas are not imposed on unchanged historical material.
 
 It preserves:
 
@@ -1054,3 +1054,8 @@ Toute `Quote` nouvellement traduite utilise l'avertissement `AI-translated quote
 ## Profil de traduction 1.2.66 — preuve et convergence
 
 Le rendu anglais consomme exclusivement des champs déjà revus. `displayed-title` provient du `titre-affiché` français de la même page, jamais d'une nouvelle dérivation du titre canonique. La revue courante lie chaque champ source/cible par SHA-256, conserve les propositions d'ouverture et de clôture utiles et les risques détectés. Avant application du rendu, deux passes sémantiques indépendantes de méthodes distinctes doivent porter sur le même `semantic_content_sha256` et conclure à zéro nouvelle erreur certaine. Le reçu de convergence accompagne le verrou de traduction et la release; toute mutation l'invalide.
+
+
+## Addendum 1.2.86 — provenance éditoriale de traduction
+
+`page_origin` décrit le cycle de vie de la page cible ; `source_page_origin` décrit la provenance éditoriale de la source française. Une page anglaise techniquement nouvelle traduisant une page française préexistante reste soumise au profil historique pour les quotas et préférences de génération. Les rubriques historiques françaises sont conservées par défaut mais peuvent être corrigées avec justification ; les mots-clés historiques échappent aux quotas, non aux contrôles intrinsèques de qualité. Un ratio de résumé historique hors 0,60–1,45 est un signal de revue explicitement justifiable, pas une cible de réécriture.

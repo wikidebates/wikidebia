@@ -242,3 +242,13 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - conserve la compatibilité des reçus de consentement 2.16.17 à portée de champ entier ;
 - ajoute une régression d’intégration reproduisant le vote électronique : 4 sous-parties historiques + ajout autorisé de `Enjeux du débat` → verrou historique/final, changeset et checkpoint 2 à 5 sous-parties ; le même delta sans autorisation est bloqué.
 
+## 2.16.19 — 12 août 2026 — provenance éditoriale et reprise différentielle des métadonnées historiques
+
+- ajoute `source_page_origin` dérivé des verrous français et non modifiable par la revue anglaise ;
+- réserve aux sources nouvelles les quotas keywords et les préférences de titres affichés propositionnels/lisibilité ;
+- maintient atomicité, forme canonique, longueur et vocabulaire contrôlé pour les keywords historiques ;
+- transforme le ratio EN/FR historique hors plage en signal exigeant une justification bilingue ;
+- conserve l’adaptation autonome des introductions historiques et leurs contrôles documentaires intrinsèques sans imposer `Stakes of the debate` ;
+- autorise les corrections de rubriques historiques avec justification sans blocage par cardinalité ;
+- supprime la troncature `[:4]` des rubriques importées et corrige le tri alphabétique français accentué ;
+- normalise les anciens paquets de revue supportés dépourvus des nouvelles attestations de provenance.

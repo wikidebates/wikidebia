@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.85
+- **Révision :** 1.2.86
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -94,7 +94,7 @@ Les règles abandonnées ne sont pas supprimées de la traçabilité : elles fig
 
 | Décision | Mise en œuvre | Contrôle |
 |---|---|---|
-| Mots-clés conçus pour le regroupement thématique | vocabulaire contrôlé W10.R3, deux à quatre thèmes par argument | Wikidéb’IA 0.2.4 : longueur, cardinalité et alignement bilingue ; la fréquence locale est descriptive seulement |
+| Mots-clés conçus pour le regroupement thématique | vocabulaire contrôlé W10.R3 ; cible de deux à quatre thèmes pour une création, préservation différentielle des listes historiques | Wikidéb’IA : qualité intrinsèque et alignement bilingue pour tous ; cardinalité de création seulement pour les contenus générés ; fréquence historique descriptive |
 | Guillemets accessibles au clavier dans les noms de pages et titres affichés | guillemets droits doubles ASCII en français et en anglais | rejet automatique de `« »`, `“ ”`, `„ ”`, `‹ ›` |
 
 

@@ -2,22 +2,22 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.85** ;
-- validateur actif : **0.4.89** ;
-- kit actif : **2.16.18**.
+- norme active : **1.2.86** ;
+- validateur actif : **0.4.90** ;
+- kit actif : **2.16.19**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3632723 octets — SHA-256 `6d43979e936626b620b797f8a189f2d55c441479437c13f17cb92025ec726df0`
-- `wikidebia-validator.zip` — 3794171 octets — SHA-256 `5c7759a90906fa34d7272be70760e31b985d80d0b16ca277847d12efc25776ec`
-- `wikidebia-kit.zip` — 712544 octets — SHA-256 `a0caf87bae65d96da8d071e2bcdd569795378fd48ba0c00f45ae6c3e23e81326`
+- `wikidebia-normes.zip` — 3672487 octets — SHA-256 `4a04a8a52ffddd5192144c06689ed7847e13b651a0674e17bcd54a36dada7008`
+- `wikidebia-validator.zip` — 3837213 octets — SHA-256 `983c31f3fd16910fa7f192582c27e78640ec8041af4350a26b9ec6e27a478949`
+- `wikidebia-kit.zip` — 719826 octets — SHA-256 `3a110dac961d5b4bdaf3eee0216e7df1783d1caa0f601443e9d7d749576fe234`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.85.md`  
-SHA-256 : `06b01a271a3f15e23ee6c5d3b2734436034f6e46337e64f7140a4869d879fb16`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.86.md`  
+SHA-256 : `f55292d2c6565c930593c99595f51c693a11b3d8300838935aa9c403254e22e7`
 
-# Norme opérationnelle active Wikidéb’IA 1.2.85
+# Norme opérationnelle active Wikidéb’IA 1.2.86
 
 **Statut : source normative active unique.**  
 **Date d’effet :** 12 août 2026
@@ -146,9 +146,9 @@ Le critère est l’accessibilité sur un clavier d’ordinateur ordinaire, sans
 
 Les guillemets typographiques ou chevrons `« »`, `“ ”`, `„ ”`, `‹ ›` sont interdits dans les noms de pages et titres affichés. L’apostrophe droite ASCII `'` reste utilisée pour les élisions françaises et les contractions ou possessifs anglais ; elle ne remplace pas les guillemets d’une citation principale. Les guillemets droits doivent être équilibrés.
 
-Chaque titre affiché fait l'objet d'une décision éditoriale page par page. Le titre canonique est conservé à l'identique lorsqu'il est déjà clair, complet et suffisamment lisible : cette identité est un choix normal, non une exception statistique, et aucun quota n'impose de reformuler les titres. Un titre affiché distinct n'est retenu que si la nouvelle formulation améliore concrètement la lecture tout en conservant exactement le sujet, le prédicat, la modalité, la relation logique, la portée et le degré de force du titre canonique.
+Pour un titre affiché **nouvellement généré ou substantiellement réécrit par Wikidéb’IA**, la décision reste prise page par page. Le titre canonique est conservé à l'identique lorsqu'il est déjà clair, complet et suffisamment lisible : cette identité est un choix normal, non une exception statistique, et aucun quota n'impose de reformuler les titres. Un titre affiché distinct n'est retenu que si la nouvelle formulation améliore concrètement la lecture tout en conservant exactement le sujet, le prédicat, la modalité, la relation logique, la portée et le degré de force du titre canonique.
 
-Toute différence est consignée dans le registre individuel avec une justification propre au nœud et à la langue. La revue atteste l'équivalence sémantique et l'amélioration réelle de lisibilité. Une reformulation seulement plus courte, plus vague, plus catégorique ou plus imagée est refusée. La concision ne prime jamais sur la précision ; lorsqu'aucune meilleure formulation n'est évidente, le titre affiché reprend le titre canonique.
+Pour un `titre-affiché` historique préexistant et sa traduction anglaise, l'existence d'une différence avec le titre canonique n'a pas à être justifiée rétroactivement par une amélioration de lisibilité. La revue atteste en revanche la fidélité sémantique, l'intelligibilité et l'absence de nouvelle dégradation introduite par la traduction. Une anomalie historique manifeste reste corrigeable selon les règles de reprise ; le seul caractère court, nominal ou contextuel d'un titre humainement validé ne constitue pas une anomalie.
 
 ## 5. Résumés d’arguments
 
@@ -201,7 +201,7 @@ Les noms d'auteurs, d'études et de méthodes ne précèdent pas l'explication q
 
 Une revue page par page atteste, pour chaque langue produite : l'annonce directe de la thèse, l'accessibilité au grand public, le rythme des phrases et l'explication des termes techniques nécessaires. Le validateur peut signaler une accumulation de phrases longues, mais ce signal est heuristique et ne mesure ni la qualité logique ni la suffisance des définitions.
 
-Lorsqu’un résumé existe dans les deux langues, les résumés français et anglais d’un même nœud doivent être substantiellement équivalents : mêmes prémisses principales, mêmes éléments probants décisifs, même conclusion et même portée. Une différence de longueur n’est pas en soi une faute, mais un ratio anglais/français inférieur à 0,60 ou supérieur à 1,45 déclenche un blocage automatique et une reprise humaine. Cette règle de ratio ne s’applique pas à une absence historique de résumé attestée et conservée conformément à la présente norme.
+Lorsqu’un résumé existe dans les deux langues, les résumés français et anglais d’un même nœud doivent être substantiellement équivalents : mêmes prémisses principales, mêmes éléments probants décisifs, même conclusion et même portée. Une différence de longueur n’est pas en soi une faute. Pour un résumé nouvellement rédigé, un ratio anglais/français inférieur à 0,60 ou supérieur à 1,45 déclenche un blocage automatique et une reprise humaine. Pour la traduction d’un résumé historique préexistant, le même seuil constitue un **signal de revue** : la sortie peut être validée hors plage lorsque la revue bilingue atteste explicitement l’équivalence et justifie l’écart, sans allonger ni raccourcir artificiellement le texte pour atteindre le ratio. Une absence historique attestée reste exclue de ce contrôle.
 
 ### 5.2 Ouverture, concrétisation et force expressive
 
@@ -227,11 +227,11 @@ La revue humaine page par page atteste en outre que l’ouverture développe le 
 
 Les rubriques françaises autorisées sont : Aménagement, Culture, Droit, Écologie, Économie, Éducation, Éthique, Géopolitique, Histoire, Philosophie, Politique, Psychologie, Religion et spiritualité, Santé, Science, Société, Sport et loisirs, Technologie.
 
-Chaque nœud est classé individuellement. Une à trois rubriques réellement centrales sont normalement utilisées ; une quatrième est exceptionnelle et motivée. Une rubrique peut légitimement être présente sur tous les arguments d'un débat lorsque sa pertinence est démontrée page par page ; sa fréquence locale ne constitue ni une preuve de pertinence ni une anomalie automatique. Les décisions sont consignées dans un registre de revue. Dans chaque valeur MediaWiki et dans le registre correspondant, les rubriques françaises sont rangées par ordre alphabétique français et les sections anglaises par ordre alphabétique anglais. Les sections anglaises constituent le même ensemble conceptuel que les rubriques françaises, mais leur ordre est recalculé indépendamment dans la langue anglaise.
+Chaque nœud est classé individuellement. Pour une page nouvelle ou une classification générée par Wikidéb’IA, une à trois rubriques réellement centrales sont normalement utilisées ; une quatrième est exceptionnelle et motivée. Pour une page française préexistante, les rubriques historiques constituent le point de départ autoritatif et sont conservées autant que possible : leur seul nombre, y compris au-delà de quatre, n'est pas un motif de correction. Une rubrique historique peut néanmoins être ajoutée, retirée ou remplacée lorsque la revue constate une classification réellement inadéquate ou incomplète ; ce delta est explicitement motivé et traçable. Une rubrique peut légitimement être présente sur tous les arguments d'un débat lorsque sa pertinence est démontrée page par page ; sa fréquence locale ne constitue ni une preuve de pertinence ni une anomalie automatique. Les décisions sont consignées dans un registre de revue. Dans chaque valeur MediaWiki et dans le registre correspondant, les rubriques françaises sont rangées par ordre alphabétique français et les sections anglaises par ordre alphabétique anglais. Les sections anglaises constituent le même ensemble conceptuel que les rubriques françaises **finalement validées**, mais leur ordre est recalculé indépendamment dans la langue anglaise.
 
 Une page d’argument **nouvelle** reçoit normalement **deux à quatre mots-clés thématiques**. Leur fonction principale est la navigation à l’échelle de l’ensemble du wiki : un clic doit pouvoir rapprocher des arguments relevant de débats différents autour d’un même phénomène, d’une même méthode, d’une même question épistémologique ou d’un même contexte institutionnel.
 
-Lorsqu’une page existe déjà sur le wiki au début de la reprise, ses mots-clés sont **préservés par défaut**. Aucun mot-clé historique n’est supprimé uniquement pour respecter la cible de deux à quatre, uniformiser le vocabulaire ou simplifier la page. Wikidéb’IA peut corriger leur graphie canonique (notamment la capitalisation, l’orthographe, les espaces ou une normalisation lexicale évidente), les réordonner par pertinence et ajouter des mots-clés réellement utiles. La suppression d’un mot-clé préexistant n’est admise que lorsque la revue conclut explicitement qu’il est réellement non pertinent pour la page, avec une justification propre à ce mot-clé. Le dépassement historique de la cible de deux à quatre n’est donc pas un motif de suppression.
+Lorsqu’une page existe déjà sur le wiki au début de la reprise, ses mots-clés sont **préservés par défaut quant à leur présence**, sans être sanctuarisés quant à leur qualité. Aucun mot-clé historique n’est supprimé uniquement pour respecter la cible de deux à quatre, uniformiser le vocabulaire ou simplifier la page. En revanche, toutes les règles intrinsèques de qualité de la présente section restent applicables aux termes historiques : graphie canonique, forme nominale, longueur, atomicité, absence d'intersection compositionnelle artificielle et appartenance au vocabulaire contrôlé. Un mot-clé historique réellement défectueux peut donc être corrigé, remplacé ou décomposé en plusieurs concepts atomiques, avec une justification explicite propre au terme source et la liste exacte des remplacements. La suppression sans remplacement d’un mot-clé préexistant n’est admise que lorsque la revue conclut explicitement qu’il est réellement non pertinent pour la page. Le dépassement historique de la cible quantitative n’est jamais un motif de suppression.
 
 Un mot-clé doit donc être :
 
@@ -265,9 +265,9 @@ Les mots-clés d’une page sont ordonnés **du plus directement pertinent au mo
 
 **La fréquence dans un débat particulier n’est jamais un critère d’admissibilité.** Un mot-clé peut n’apparaître que sur un seul argument du débat courant lorsque le concept est suffisamment général pour concerner d’autres arguments du wiki ou d’autres débats. Il n’existe donc ni minimum d’occurrences locales, ni plafond de taille du vocabulaire calculé en proportion du nombre d’arguments du débat.
 
-La réutilisation effective à l’intérieur du débat reste une information utile pour la revue, mais elle ne doit pas conduire à supprimer un thème central ou à le remplacer par un terme artificiellement plus vague. Un même jeu exact dominant plus de 25 % du corpus demeure bloquant, car il signalerait une attribution mécanique et rendrait la navigation peu discriminante.
+La réutilisation effective à l’intérieur du débat reste une information utile pour la revue, mais elle ne doit pas conduire à supprimer un thème central ou à le remplacer par un terme artificiellement plus vague. Pour des mots-clés **nouvellement attribués par Wikidéb’IA**, un même jeu exact dominant plus de 25 % des arguments concernés demeure bloquant, car il signalerait une attribution mécanique. Lorsque cette domination provient d'une classification historique préexistante, elle constitue seulement un signal de revue et ne justifie ni suppression ni réécriture mécanique.
 
-Les keywords anglais sont des équivalents idiomatiques et conservent exactement le classement français par pertinence décroissante. Pour les rubriques et sections des pages Débat/Debate, la précision prime sur l’exhaustivité : seules les catégories qui caractérisent le débat dans son ensemble sont retenues, sans ajouter une catégorie parce qu’un argument secondaire, une méthode particulière ou une sous-partie de l’introduction la mentionne. Les pages Débat/Debate utilisent normalement cinq à huit mots-clés généraux.
+Les keywords anglais sont des équivalents idiomatiques et conservent exactement le classement français final par pertinence décroissante. Pour les rubriques et sections des pages Débat/Debate, la précision prime sur l’exhaustivité : seules les catégories qui caractérisent le débat dans son ensemble sont retenues, sans ajouter une catégorie parce qu’un argument secondaire, une méthode particulière ou une sous-partie de l’introduction la mentionne. Une page Débat réellement nouvelle ou dont les mots-clés sont générés par Wikidéb’IA utilise normalement cinq à huit mots-clés généraux ; une page Débat préexistante conserve son nombre historique final, sous réserve des mêmes corrections qualitatives intrinsèques que les autres mots-clés.
 
 ## 7. Documentation et références
 
@@ -312,6 +312,8 @@ Lorsqu’une page `Débat` est **préexistante sur le wiki et importée comme so
 Une modification de l’introduction historique devient légitime dès lors qu’une décision propriétaire explicite et traçable couvre précisément le delta. Si cette autorisation intervient avant la clôture de `fr_content_review`, la modification est appliquée dans cette même revue et publiée au checkpoint français n°2. Sont notamment autorisables de cette façon la suppression d’une balise `<references />`, une correction locale ou l’ajout explicitement demandé d’une sous-partie telle que `Enjeux du débat`. Le consentement ouvre uniquement le delta demandé et n’autorise aucune réécriture parasite. Pour une autorisation structurée, le workflow peut sceller la portée par sous-parties (`added`, `modified`, `removed`, `reordered`) afin qu’une autorisation limitée à l’ajout de `Enjeux du débat` ne couvre pas une modification silencieuse d’une sous-partie historique. Une autorisation de réécriture globale reste possible lorsqu’elle est explicitement demandée et liée à la valeur finale exacte.
 
 Après autorisation, **l’introduction finale autorisée devient l’introduction éditoriale effective**. L’introduction historique reste sa provenance. L’extraction des sous-parties, la comparaison avec `review.subsections`, les contrôles de structure et de références, les inventaires applicables, la construction du verrou et du changeset, le rendu, le checkpoint français n°2 et la traduction travaillent donc sur cette valeur finale sélectionnée. Les contrôles de création ou de réécriture sont différentiels : les sous-parties historiques inchangées ne sont pas requalifiées comme nouvelles ; une sous-partie nouvellement ajoutée ou substantiellement réécrite reçoit les contrôles pertinents à son propre périmètre. Le verrou français de contenu conserve l’empreinte historique, l’empreinte finale autorisée, le type et la portée du changement ainsi que la preuve locale de consentement.
+
+Lors de la traduction d'une introduction française historique, la page anglaise constitue une **adaptation éditoriale autonome** et non une transposition mécanique phrase à phrase. La revue examine explicitement les passages dont la pertinence dépend du seul contexte franco-français : ils peuvent être condensés, contextualisés, reformulés ou omis lorsqu'une reprise littérale serait trompeuse ou inutile pour un lectorat anglophone. Cette localisation ne peut ni changer la définition de la question, ni déplacer l'orientation du débat, ni supprimer un repère nécessaire à son intelligibilité, ni introduire un nouvel enjeu sans justification. Elle est documentée par une justification d'adaptation et reste soumise à la convergence sémantique. Les contraintes de structure propres à une **nouvelle introduction générée** (par exemple l'existence d'une sous-partie particulière ou un volume minimal de celle-ci) ne sont pas imposées rétroactivement aux sous-parties historiques inchangées. Les exigences intrinsèques de qualité de la version anglaise restent en revanche actives : documentation anglophone, attribution des affirmations factuelles, ponctuation des notes, revue des liens Wikipédia et des notions spécialisées, cohérence documentaire et autres contrôles techniques ne sont pas désactivés par la provenance historique.
 
 L’introduction apporte de manière synthétique les éléments nécessaires pour comprendre le débat avant la lecture des arguments. Elle permet au lecteur d’identifier le sujet, le sens exact de la question, son contexte et ses principaux enjeux. Elle ne constitue ni une revue exhaustive de la littérature, ni un résumé successif des arguments pour et contre, ni une reproduction des branches du graphe argumentatif.
 
@@ -779,6 +781,8 @@ La présence de ces éléments est vérifiée avant livraison. Leur absence cons
 
 `established-name=` fait l’objet d’une recherche documentaire propre à la littérature anglophone. Il n’est jamais obtenu par traduction mécanique de `nom-consacré=` ; la forme syntaxique attestée et la portée exacte du raisonnement doivent correspondre. En cas de doute, le paramètre est omis.
 
+La source française validée est autoritative pendant la traduction. La traduction distingue explicitement trois dimensions : `target_page_origin` / `page_origin`, qui décrit le cycle de vie technique de la page cible ; `source_page_origin`, qui décrit la provenance éditoriale de la page française autoritative (`new` ou `preexisting`) ; et, lorsque le champ le requiert, sa provenance propre (`historical_existing`, `historical_absent`, `authorized_change`, `ai_generated`, etc.). Le fait qu'une page anglaise soit techniquement `new` ne requalifie jamais comme création IA le contenu historique français qu'elle traduit. Les quotas et préférences de génération suivent la provenance de la source ou du champ ; les contrôles structurels, de qualité intrinsèque, de fidélité et d'intégrité restent applicables selon leur nature.
+
 La source française validée est autoritative pendant la traduction. Les titres canoniques, titres affichés, résumés et champs Debate font l’objet d’une comparaison structurée du sujet, prédicat, polarité, modalité, attribution, quantification, temporalité, conditions, causalité, concessions et portée. Les marqueurs automatiques sont des signaux de revue et ne réécrivent jamais le texte. Les preuves de revue sont liées par SHA-256 au contenu exact. Deux passes finales indépendantes de familles méthodologiques distinctes doivent conclure à zéro nouvelle erreur certaine sur la même empreinte avant scellement.
 
 ## 18. Identité documentaire et inventaire de release
@@ -844,7 +848,7 @@ Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. E
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `4678f8dbd8add8a9865fcec8256f72939d912376d35629a10278787a0decb495`
+SHA-256 : `3ad3290eec378a93206b86d77055648e22606503e9f365891520cb0de9614180`
 
 ## 1.2.70 — alignement du validateur sur la première publication anglaise
 
@@ -1622,10 +1626,29 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - conserve la compatibilité des autorisations 1.2.84/2.16.17 à portée de champ entier, liées à la valeur finale exacte ;
 - confirme qu’un ajout explicitement autorisé de `Enjeux du débat` pendant `fr_content_review` est publié au checkpoint français n°2, sans troisième publication.
 
+## 1.2.86 — 12 août 2026 — provenance éditoriale de la source et métadonnées historiques différentielles
+
+- distingue `page_origin` de la page cible, `source_page_origin` de la source française autoritative et la provenance éventuelle du champ ;
+- réserve quotas et préférences de génération aux contenus réellement créés par Wikidéb’IA ;
+- conserve les contrôles intrinsèques de qualité sur les mots-clés historiques et autorise leur correction/décomposition tracée ;
+- préserve par défaut l’ensemble des rubriques historiques sans plafond rétroactif, avec corrections explicitement justifiées ;
+- transforme la domination historique d’un même jeu de keywords >25 % et le ratio de résumé historique hors 0,60–1,45 en signaux de revue plutôt qu’en objectifs de réécriture ;
+- maintient l’adaptation autonome des introductions historiques au lectorat anglophone, y compris la localisation du contexte franco-français, sans relâcher les contrôles documentaires intrinsèques ;
+- précise que les titres affichés historiques nominaux ou contextuels n’exigent ni proposition complète ni justification rétroactive de gain de lisibilité ;
+- aligne le tri des rubriques sur l’ordre alphabétique français accent-insensible.
+
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `45990085cb8debff2ec8efffff74de623756654ac9e01a5fa5cbb4bca7917c16`
+SHA-256 : `03486ba0811e93f1a1289a028da9134957faefbe10ece0cd95cf95f0b776822b`
+
+# Wikidéb’IA Validator 0.4.90
+
+Le validateur 0.4.90 s’aligne sur la norme 1.2.86 et le kit 2.16.19. Il distingue désormais explicitement le cycle de vie de la page cible anglaise de la provenance éditoriale de sa source française : une page EN techniquement nouvelle issue d’une page FR préexistante n’est pas soumise aux quotas ni aux préférences de création IA.
+
+Les titres affichés historiques nominaux ou contextuels restent admissibles sans fausse attestation de proposition ou de référent explicite ; les mots-clés historiques échappent aux quotas mais restent soumis aux contrôles intrinsèques de qualité ; les ensembles historiques de rubriques ne sont pas rejetés pour leur seul nombre ; le ratio de résumé historique hors 0,60–1,45 devient un signal justifiable. L’introduction historique anglaise reste une adaptation autonome pouvant localiser le contexte franco-français, tout en conservant les contrôles documentaires et techniques intrinsèques.
+
+Le contrôle des rubriques utilise en outre un véritable ordre alphabétique accent-insensible cohérent avec la norme française.
 
 # Wikidéb’IA Validator 0.4.89
 
@@ -1690,7 +1713,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `99c128b528d83b9bd8b7916d532d2e2eb6e11123b4c8246fda24a9bc0557db60`
+SHA-256 : `cf619d5da9ffbe6c9e5125cfa3d228cdbddd12c55aaa5159df366f4f9e46e56a`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1860,10 +1883,26 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ajoute une régression positive de portée structurée et une régression négative de divergence de portée ;
 - conserve tous les contrôles de non-régression, de traduction différentielle et des deux checkpoints français.
 
+## 0.4.90 — 12 août 2026 — provenance éditoriale de la source et validation historique différentielle
+
+- distingue `page_origin` cible et provenance française autoritative pour les contrôles EN ;
+- réserve quotas et préférences de création aux contenus effectivement générés ;
+- conserve les contrôles intrinsèques de mots-clés historiques et la fidélité FR→EN ;
+- rend non bloquants par provenance les jeux historiques de keywords >25 % et les ratios historiques explicitement revus ;
+- accepte les titres affichés historiques nominaux/contextuels sans fausse attestation de référent explicite ;
+- conserve les contrôles documentaires intrinsèques de l’introduction historique adaptée ;
+- ajoute les régressions de provenance correspondantes.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `f9b1760779e7936eb96e83980a4ff24d92b60a86d63defac6e3b1a163bc36094`
+SHA-256 : `76bfc2e2d64c1ced5ce1349980bc4d626230a4e01b350dfee2f353b5ab71f497`
+
+# Wikidéb’IA Kit 2.16.19
+
+Le kit 2.16.19 propage la provenance éditoriale française jusqu’à la traduction anglaise au moyen de `source_page_origin`, distinct du `page_origin` de la page cible. Une page EN nouvelle qui traduit un corpus français préexistant conserve donc le profil historique pour les quotas et préférences de génération sans affaiblir les contrôles de qualité intrinsèque, de documentation ni de fidélité.
+
+Les listes historiques de keywords ne sont plus ramenées à 2–4/5–8 et les titres affichés historiques ne sont plus forcés en propositions ; un mauvais mot-clé historique reste corrigeable, y compris par décomposition tracée. Les rubriques historiques sont conservées intégralement lors de `corpus-init` (suppression de la troncature silencieuse à quatre), puis peuvent être corrigées avec justification. L’ordre alphabétique français est désormais accent-insensible. L’introduction historique anglaise demeure une adaptation autonome du contexte franco-français, avec maintien des contrôles documentaires intrinsèques.
 
 # Wikidéb’IA Kit 2.16.18
 
@@ -1943,7 +1982,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `a6127217637005e2efaa72dabc8425cf4fa8b9042d764e56d04c16ff73d334da`
+SHA-256 : `322c0d4ebfe30ce4e54cce4764947008edb3ddbce99b72d80b6406dd40477cf6`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2188,6 +2227,17 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - applique les contrôles de création/réécriture uniquement aux sous-parties ajoutées ou substantiellement modifiées, sans requalifier les sous-parties historiques inchangées ;
 - conserve la compatibilité des reçus de consentement 2.16.17 à portée de champ entier ;
 - ajoute une régression d’intégration reproduisant le vote électronique : 4 sous-parties historiques + ajout autorisé de `Enjeux du débat` → verrou historique/final, changeset et checkpoint 2 à 5 sous-parties ; le même delta sans autorisation est bloqué.
+
+## 2.16.19 — 12 août 2026 — provenance éditoriale et reprise différentielle des métadonnées historiques
+
+- ajoute `source_page_origin` dérivé des verrous français et non modifiable par la revue anglaise ;
+- réserve aux sources nouvelles les quotas keywords et les préférences de titres affichés propositionnels/lisibilité ;
+- maintient atomicité, forme canonique, longueur et vocabulaire contrôlé pour les keywords historiques ;
+- transforme le ratio EN/FR historique hors plage en signal exigeant une justification bilingue ;
+- conserve l’adaptation autonome des introductions historiques et leurs contrôles documentaires intrinsèques sans imposer `Stakes of the debate` ;
+- autorise les corrections de rubriques historiques avec justification sans blocage par cardinalité ;
+- supprime la troncature `[:4]` des rubriques importées et corrige le tri alphabétique français accentué ;
+- normalise les anciens paquets de revue supportés dépourvus des nouvelles attestations de provenance.
 
 ## Guide de publication
 
@@ -2481,22 +2531,24 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `2e8e0e90401e839ab6364a47562ea879c54c0a3bf3a2cbd6fbe014f2d95d5a93`
+SHA-256 : `234e93cfacd9407ecc0c19a065a29f5dc67865cd3ae22f5755bf4756b9eec3c8`
 
-Wikidéb’IA Kit 2.16.18 — rapport de tests
+Wikidéb’IA Kit 2.16.19 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 456
-Tests pytest : 456 réussis
-Norme : 1.2.85
-Validateur : 0.4.89
-Valeur historique sélectionnée : `preserved` → historique, `authorized_change` → final propriétaire : PASSED.
-Portée structurée d’introduction (`added`/`modified`/`removed`/`reordered`) : PASSED.
-Régression vote électronique 4→5 sous-parties avec `Enjeux du débat` autorisé : PASSED.
-Même delta sans consentement propriétaire : BLOQUÉ comme attendu.
-Modification parasite hors portée structurée : BLOQUÉE comme attendu.
-Checkpoint français n°2 rend et publie la valeur finale autorisée sans troisième publication : PASSED.
-Compatibilité des autorisations 2.16.17/v2 et des anciennes revues 2.16.14 supportées : PASSED.
-Deux checkpoints français, incoming/, rollback transactionnel, document_kind, classification et résumés MediaWiki individualisés : PASSED.
+Tests pytest collectés : 461
+Tests pytest : 461 réussis
+Norme : 1.2.86
+Validateur : 0.4.90
+`source_page_origin` dérivé des verrous français et distinct du `page_origin` de la cible EN : PASSED.
+Displayed-title historique nominal/contextuel sans règle de création rétroactive : PASSED.
+Quotas keywords historiques non rétroactifs ; corrections intrinsèques et décomposition d’un mauvais keyword historique : PASSED.
+Rubriques historiques >4 conservées ; correction de classification justifiée : PASSED.
+Troncature historique `[:4]` de `corpus-init` supprimée : PASSED.
+Tri alphabétique français accentué (`Droit`, `Économie`, `Éthique`, ...) : PASSED.
+Introduction historique EN : adaptation autonome/localisation du contexte franco-français sans `Stakes` obligatoire, contrôles documentaires maintenus : PASSED.
+Résumé historique hors ratio avec justification : PASSED ; source nouvelle reste soumise au blocage de ratio.
+Compatibilité des anciens paquets de revue supportés sans `source_page_origin` explicite : PASSED.
+Consentement historique v3, deux checkpoints français, incoming/, rollback transactionnel, document_kind et résumés MediaWiki individualisés : PASSED.
 
 ## Guide d’orchestration éditoriale
 
