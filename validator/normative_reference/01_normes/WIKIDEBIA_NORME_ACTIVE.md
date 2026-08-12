@@ -1,4 +1,4 @@
-# Norme opérationnelle active Wikidéb’IA 1.2.81
+# Norme opérationnelle active Wikidéb’IA 1.2.83
 
 **Statut : source normative active unique.**  
 **Date d’effet :** 12 août 2026
@@ -147,6 +147,18 @@ Les limites opposables sont portées par les pages d’objections reliées. Une 
 
 Une revue humaine bilingue est obligatoire avant `release_ready`. Les heuristiques automatiques détectent notamment les concessions finales et le métadiscours, mais ne remplacent pas cette revue.
 
+### 5.0 Préservation des résumés historiques lors d’une reprise
+
+Lorsqu’une page `Argument` est **préexistante sur le wiki et importée comme source d’une reprise**, la présence et la valeur de son `résumé` constituent un contenu historique protégé. La revue française ordinaire de contenu ne réécrit pas ce résumé, même si une formulation nouvelle satisferait mieux les règles de style applicables aux créations. Si le résumé historique est absent, cette absence est conservée : Wikidéb’IA n’en génère pas un pour remplir un champ, satisfaire un profil de longueur, améliorer l’homogénéité du corpus ou préparer la traduction.
+
+Les exigences des sections 5.1 et 5.2 gouvernent les résumés nouvellement créés et les résumés dont la réécriture a été **explicitement demandée par le propriétaire dans une opération corrective distincte**. Elles ne sont jamais appliquées rétroactivement pour justifier une réécriture silencieuse d’un résumé historique pendant `fr_content_review`.
+
+Une réécriture historique volontaire exige une autorisation propriétaire explicite, nominative et traçable, une opération corrective séparée du cycle ordinaire de reprise, ainsi qu’une preuve avant/après liée aux empreintes du texte. Le simple fait qu’un champ soit présent dans le paquet de revue de contenu, qu’un validateur signale une préférence stylistique ou qu’un second checkpoint français soit disponible ne constitue pas une telle autorisation.
+
+Le verrou français de contenu enregistre pour chaque page préexistante la provenance `historical_existing` ou `historical_absent`, l’empreinte du texte historique (chaîne vide pour l’absence) et l’attestation de préservation. Le rendu et le validateur comparent ce verrou au wikicode final ; toute création, suppression ou modification non autorisée d’un résumé historique est bloquante.
+
+Lors de la traduction FR→EN, un résumé français ainsi préservé reste la source éditoriale autoritative : la traduction peut adapter la langue mais ne doit pas servir à corriger rétroactivement sa longueur, son style ou sa structure. Les contrôles sémantiques différentiels restent applicables ; une source historiquement absente produit un `summary` anglais absent.
+
 ### 5.1 Style encyclopédique grand public
 
 Le résumé adopte un style encyclopédique destiné à un lectorat non spécialiste. Il présente l'idée centrale dès l'ouverture, puis explique le mécanisme utile à sa compréhension. Il privilégie des phrases courtes ou moyennes, de longueur variée, et évite les enchaînements de propositions longues qui donnent au texte l'allure d'un article universitaire.
@@ -273,6 +285,10 @@ Sur une page Argument française, une édition ou traduction française pertinen
 Les éditions ou traductions d’une même œuvre partagent un identifiant d’équivalence documentaire. Le validateur bloque l’emploi d’une source étrangère sur une page Argument lorsqu’un équivalent vérifié dans la langue de la page est disponible dans le registre.
 
 ### 7.5 Finalité et organisation des introductions Débat / Debate
+
+Lorsqu’une page `Débat` est **préexistante sur le wiki et importée comme source d’une reprise**, son `introduction` constitue un contenu historique protégé. La revue française ordinaire de contenu conserve exactement sa présence et sa valeur ; elle ne remplace pas l’introduction pour lui appliquer rétroactivement une structure, un style, une densité documentaire ou une sous-partie devenue obligatoire pour les nouvelles productions. Les exigences de la présente section restent applicables aux introductions nouvelles et à toute réécriture expressément demandée par le propriétaire dans une opération corrective distincte.
+
+Une réécriture volontaire d’une introduction historique exige une autorisation propriétaire explicite et traçable, séparée de `fr_content_review`, avec preuve avant/après liée aux empreintes. La revue ordinaire peut examiner l’introduction comme contexte, mais ses champs historiques sont en lecture seule. Le verrou français de contenu conserve l’empreinte de l’introduction historique et le validateur bloque toute divergence au rendu.
 
 L’introduction apporte de manière synthétique les éléments nécessaires pour comprendre le débat avant la lecture des arguments. Elle permet au lecteur d’identifier le sujet, le sens exact de la question, son contexte et ses principaux enjeux. Elle ne constitue ni une revue exhaustive de la littérature, ni un résumé successif des arguments pour et contre, ni une reproduction des branches du graphe argumentatif.
 
@@ -681,7 +697,7 @@ Pour une mise à jour de contenu, le résumé est calculé à partir du différe
 
 Le plan signé porte un contrat explicite de résumés individualisés, ainsi que la politique et le texte attendus pour chaque mutation. L’exécuteur **recalcule** le résumé attendu à partir du contenu signé et de l’état distant relu immédiatement avant l’écriture ; une divergence bloque l’opération. Après écriture, la révision est relue et le contenu, le résumé, la balise et l’identifiant de révision sont vérifiés. Les anciens plans déjà signés avant l’introduction de ce contrat restent lisibles selon leur format historique, sans autoriser un nouveau plan à revenir au résumé générique.
 
-Les deux checkpoints français réutilisent le moteur de reprise signé. Le premier est construit depuis le wikicode importé et n’autorise que les changements de structure et de titres validés : les rubriques, mots-clés, résumés, introduction et références restent identiques à la source distante. Le second part obligatoirement de l’état publié attesté par le premier et n’autorise plus de renommage, redirection ou suppression ; il applique les rubriques, mots-clés et autres contenus validés. Chaque mutation reçoit le contrat de résumé individualisé, la garde de révision, la balise `chatgpt` et la relecture post-écriture. Les décisions structurelles prises pendant une boucle de correction sont d’abord appliquées localement et ne sont écrites à distance qu’au premier checkpoint.
+Les deux checkpoints français réutilisent le moteur de reprise signé. Le premier est construit depuis le wikicode importé et n’autorise que les changements de structure et de titres validés : les rubriques, mots-clés, résumés, introduction et références restent identiques à la source distante. Le second part obligatoirement de l’état publié attesté par le premier et n’autorise plus de renommage, redirection ou suppression ; il applique les rubriques, mots-clés, la documentation et les autres contenus effectivement ouverts par la revue. **Dans une reprise ordinaire de pages préexistantes, il doit conserver exactement les résumés historiques et l’introduction historique, y compris l’absence historique de résumé : leur delta au checkpoint 2 est nul.** Un delta d’introduction ou de résumé n’est admis que pour un contenu réellement nouveau ou pour une opération corrective distincte explicitement autorisée par le propriétaire. Chaque mutation reçoit le contrat de résumé individualisé, la garde de révision, la balise `chatgpt` et la relecture post-écriture. Les décisions structurelles prises pendant une boucle de correction sont d’abord appliquées localement et ne sont écrites à distance qu’au premier checkpoint.
 
 ## 13. Profils locaux et invariants propres à un corpus
 
@@ -705,7 +721,8 @@ Avant `release_ready`, le corpus doit présenter :
 10. maintien de tous les invariants verrouillés du graphe ;
 11. recalcul explicite de toutes les empreintes de fichiers et, si nécessaire, de l’empreinte structurelle ;
 12. absence d’écriture distante non autorisée ; seuls les deux checkpoints français graphe/titres puis contenu/classification sont admis avant traduction, avec plans et reçus signés ;
-13. audit de non-régression des normes, du validateur et du kit W11.
+13. audit de non-régression des normes, du validateur et du kit W11 ;
+14. pour toute reprise de pages préexistantes, concordance exacte des résumés historiques et de l’introduction historique avec leur verrou de provenance, l’absence historique de résumé restant une absence.
 
 Le paquet déclare dans son manifeste les chemins du vocabulaire contrôlé, du registre individuel, des rapports requis et du handoff correctif courant. Le validateur ne déduit jamais ces chemins d’un sujet, d’un numéro de Work ou d’une rubrique particulière. Il ne peut jamais bloquer un mot-clé au seul motif qu’il n’apparaît qu’une fois dans le débat courant.
 
@@ -782,7 +799,7 @@ La commande de réimport vérifie le schéma, l’identité du débat et du Work
 
 Après installation transactionnelle des seuls fichiers `editable/`, la primitive de finalisation correspondante est exécutée. Le paquet de **revue du graphe** couvre conjointement placements/relations, décisions structurelles, titres canoniques et titres affichés. Le réimport approuvé de ce paquet unique déclenche immédiatement le premier checkpoint français. Après `fr_content_review`, qui comprend désormais aussi rubriques et mots-clés, `review-import` déclenche le second checkpoint français. Si le préflight échoue avant écriture, la transaction locale est restaurée. Dès qu’une exécution distante a commencé, l’état local scellé, le plan et les reçus sont conservés pour une reprise idempotente ; la traduction anglaise n’est jamais préparée tant que cette publication n’est pas réussie ou attestée `no_changes`. En cas de succès, les confirmations SHA-256 requises par les primitives internes sont résolues automatiquement à partir de leurs reçus, puis le workflow reprend jusqu’au prochain point éditorial.
 
-L’orchestration couvre au minimum : revue combinée du graphe, des placements et des titres canoniques/affichés ; revue française de contenu incluant rubriques, mots-clés, introduction, résumés et documentation ; recherche d’appellations consacrées lorsqu’elle appartient au registre de la phase ; traduction et documentation anglaises ; recherche d’`established-name=` ; et deux passes indépendantes de convergence sémantique. Toute nouvelle phase nécessitant une décision éditoriale externe doit s’intégrer au même contrat de paquet plutôt que réintroduire une manipulation manuelle de fichiers internes.
+L’orchestration couvre au minimum : revue combinée du graphe, des placements et des titres canoniques/affichés ; revue française de contenu incluant rubriques, mots-clés et documentation, **avec introduction et résumés historiques en lecture seule pour les pages préexistantes et conservation de leur absence historique**, tandis que les textes nouveaux ou séparément autorisés restent éditables ; recherche d’appellations consacrées lorsqu’elle appartient au registre de la phase ; traduction et documentation anglaises ; recherche d’`established-name=` ; et deux passes indépendantes de convergence sémantique. Toute nouvelle phase nécessitant une décision éditoriale externe doit s’intégrer au même contrat de paquet plutôt que réintroduire une manipulation manuelle de fichiers internes.
 
 Lors de la finalisation de `fr_content_review`, `data/sources_working.json` est contrôlé directement contre le vocabulaire documentaire du registre final, notamment `document_kind`. Une valeur hors enum est refusée à ce stade, avant projection vers `data/sources.json` et avant tout préflight de publication ; le workflow ne doit pas reporter cette erreur à une validation structurelle ultérieure.
 

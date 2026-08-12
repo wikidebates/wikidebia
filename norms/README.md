@@ -1,5 +1,7 @@
-# Wikidéb’IA — Normes 1.2.81
+# Wikidéb’IA — Normes 1.2.83
 
-La révision 1.2.81 fait de la validation complète du contenu français une frontière de publication : les corrections françaises scellées sont publiées avec des résumés MediaWiki individualisés avant la préparation de la traduction anglaise. Les ZIP de revue retournés sont désormais consommés depuis `incoming/` par `./wikidebia review-import` (sélection automatique s’il n’y en a qu’un, sinon par `debate_id`). `sources_working.json` valide aussi `document_kind` avant projection.
+La révision 1.2.83 corrige une régression critique de reprise : sur une page française préexistante, `fr_content_review` ne peut plus réécrire l’introduction historique ni les résumés historiques. Une absence historique de résumé reste une absence. Toute réécriture volontaire de ces champs exige une opération corrective distincte explicitement autorisée par le propriétaire.
 
-Elle conserve intégralement le contrat 1.2.79 de résumés individualisés et la politique différentielle 1.2.78 des métadonnées préexistantes.
+Le verrou français porte les empreintes des textes historiques et le validateur bloque toute divergence au rendu. Le second checkpoint français conserve donc un delta nul sur introduction/résumés lors d’une reprise ordinaire, tout en restant capable de publier classifications, documentation et autres champs effectivement ouverts.
+
+La révision conserve les deux checkpoints français de 1.2.81 et toutes les protections de reprise déjà actives.

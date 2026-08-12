@@ -57,7 +57,7 @@ Le retour doit conserver exactement cette structure. Les fichiers de contexte, l
 Le cycle courant couvre successivement :
 
 1. **revue combinée graphe + titres** : placements/relations, suppressions/fusions/déplacements, titres canoniques et titres affichés ; son réimport déclenche immédiatement le **checkpoint 1 graphe/titres** ;
-2. **revue de contenu** : rubriques, mots-clés, introduction, résumés et documentation française ; son réimport déclenche le **checkpoint 2 contenu** ;
+2. **revue de contenu** : rubriques, mots-clés et documentation française ; l’introduction et les résumés des pages `preexisting` sont fournis en contexte mais verrouillés à leur valeur historique (absence comprise), tandis que les textes nouveaux ou séparément autorisés restent éditables ; son réimport déclenche le **checkpoint 2 contenu** ;
 3. traduction et documentation anglaises, y compris la recherche d'`established-name=` lorsqu'elle s'applique ;
 4. première passe de convergence sémantique ;
 5. deuxième passe indépendante de convergence.
@@ -101,6 +101,10 @@ Les actions de graphe exécutées explicitement avec `--execute-graph-actions` c
 
 À partir du gestionnaire 2.16.8, chaque composant est autoritatif pour sa propre version : `wikidebia-normes` pour `norm`, `wikidebia-validator` pour `validator`, et `wikidebia-kit` pour `kit`. Les autres numéros répétés dans leur `VERSIONS.json` sont des informations de provenance et ne doivent plus forcer le reconditionnement d’un composant inchangé. Les garde-fous portent sur la version propre du composant, l’anti-rétrogradation, la révision normative effectivement implémentée et les schémas/capacités déclarés.
 
+
+### Protection des textes historiques dans `fr_content_review`
+
+Lors d’une reprise de pages existantes, le paquet de revue ne peut pas servir à réécrire l’introduction ou les résumés historiques. Les décisions restent `keep`, les empreintes sont scellées et une absence historique de résumé demeure une absence. Une modification propriétaire ultérieure doit utiliser une opération corrective distincte.
 
 ## Publication française après la revue de contenu
 

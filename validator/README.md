@@ -1,3 +1,9 @@
+# Wikidéb’IA Validator 0.4.87
+
+Le validateur 0.4.87 s’aligne sur la norme 1.2.83 et le kit 2.16.16. Il ajoute `WDV-EDT-034` pour protéger les textes français historiques pendant une reprise ordinaire : le verrou `fr_content_lock.json` porte l’empreinte de l’introduction historique et de chaque résumé historique, y compris l’état historiquement absent, et le rendu est bloqué si l’un de ces champs diverge.
+
+Les attestations `historical_existing` / `historical_absent` ne sont plus soumises rétroactivement aux règles de création d’une nouvelle introduction ou d’un nouveau résumé. Pour la traduction anglaise d’un résumé français historique protégé, le statut `translated_historical_source` applique la validation différentielle sans prétendre que le texte source satisfaisait un profil de création. Les autres contrôles de 0.4.85 sont conservés.
+
 # Wikidéb’IA Validator 0.4.85
 
 Le validateur 0.4.85 s’aligne sur la norme 1.2.81 et le kit 2.16.14. Il conserve tous les contrôles de 0.4.84, notamment `WDV-RMT-008`. Les deux checkpoints français utilisent les mêmes schémas de corpus et de plan ; leur séparation fonctionnelle est imposée par l’orchestrateur et ses tests de non-régression.

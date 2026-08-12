@@ -100,6 +100,8 @@ def complete_content_review(workspace: Path) -> None:
     review_path = workspace / "reviews/fr/content_review.json"
     review = json.loads(review_path.read_text(encoding="utf-8"))
     debate = review["debate"]["review"]
+    # Imported debate text is protected: content review may update headings,
+    # classification and documentation, but not the historical introduction.
     debate.update({
         "status": "approved",
         "subject_decision": "change",
@@ -109,59 +111,20 @@ def complete_content_review(workspace: Path) -> None:
         "topic_label_rationale": "Le libellé nominal désigne directement la controverse sans reprendre une question.",
         "common_acronym": None,
         "complete_topic_initial_capital_justification": None,
-        "introduction_decision": "change",
-        "proposed_introduction": "{{Sous-partie|titre=Définition et périmètre|contenu=La proposition du débat test oppose deux réponses clairement délimitées et précise ce qui est effectivement discuté.}}{{Sous-partie|titre=Enjeux du débat|contenu=La réponse retenue modifie la manière d’expliquer le phénomène étudié et les critères utilisés pour accepter une conclusion. Elle peut aussi orienter des décisions collectives, des pratiques institutionnelles et des choix individuels qui dépassent la seule formulation théorique. Une suspension du jugement déplace enfin l’attention vers les limites des preuves disponibles et vers le degré de confiance raisonnablement accordé à chaque position.}}",
-        "introduction_rationale": "Cette introduction définit le sujet et développe des conséquences concrètes sans recopier le graphe argumentatif.",
-        "subsections": [{
-            "title": "Définition et périmètre",
-            "purpose": "Définir la proposition et préciser le périmètre nécessaire à la compréhension du désaccord.",
-            "necessary_for_understanding": True,
-            "technical_or_specialized": False,
-            "relevance_to_debate_explained": True,
-            "stakes_section": False,
-            "concrete_stakes": [],
-        }, {
-            "title": "Enjeux du débat",
-            "purpose": "Expliquer les conséquences intellectuelles, institutionnelles et pratiques des réponses possibles.",
-            "necessary_for_understanding": True,
-            "technical_or_specialized": False,
-            "relevance_to_debate_explained": True,
-            "stakes_section": True,
-            "concrete_stakes": [
-                "Modification des cadres explicatifs et des critères de rationalité", 
-                "Conséquences sur les décisions collectives et les pratiques institutionnelles"
-            ],
-        }],
-        "specialized_term_inventory": [
-            {
-                "subsection_title": "Définition et périmètre",
-                "scan_complete": True,
-                "scan_note": "La sous-partie a été relue intégralement et ne contient aucune notion spécialisée exigeant un lien ou une définition supplémentaire.",
-                "terms": [],
-            },
-            {
-                "subsection_title": "Enjeux du débat",
-                "scan_complete": True,
-                "scan_note": "La sous-partie a été relue intégralement et son vocabulaire reste suffisamment explicite pour un lecteur non spécialiste.",
-                "terms": [],
-            },
-        ],
         "wikipedia_articles_decision": "change",
         "proposed_wikipedia_articles": ["Argumentation"],
         "wikipedia_articles_verified": True,
         "documentation_decisions": {bucket: "change" for bucket in content.DEBATE_BUCKETS},
-        "documentation_rationales": {bucket: "Ces deux références documentent spécifiquement la position et la famille concernées." for bucket in content.DEBATE_BUCKETS},
+        "documentation_rationales": {bucket: "Ces références documentent spécifiquement la position et la famille concernées." for bucket in content.DEBATE_BUCKETS},
         "documentation_family_notes": {
-            "bibliography": "Deux ouvrages de synthèse français couvrent chaque position et le cadrage général.",
-            "webliography": "Deux ressources web françaises vérifiées complètent chaque position et le contexte.",
-            "videography": "Deux ressources vidéo françaises vérifiées présentent chaque position et la synthèse.",
+            "bibliography": "Des ouvrages de synthèse français couvrent les positions et le cadrage général.",
+            "webliography": "Des ressources web françaises vérifiées complètent les positions et le contexte.",
+            "videography": "Des ressources vidéo françaises vérifiées présentent les positions et la synthèse.",
         },
         "reviewer": "Relecteur Wikidéb'IA",
         "reviewed_at": "2026-08-03T21:00:00+02:00",
-        "note": "La page Débat française est prête pour le verrouillage du contenu.",
+        "note": "Introduction historique conservée ; documentation et métadonnées françaises relues séparément.",
     })
-    for field in content.INTRO_TRUE_FIELDS:
-        debate[field] = True
     debate["proposed_documentation"] = {
         "bibliographie-pour": ["S00001"],
         "bibliographie-contre": ["S00002"],
@@ -173,32 +136,20 @@ def complete_content_review(workspace: Path) -> None:
         "vidéographie-contre": ["S00006"],
         "vidéographie-ni-pour-ni-contre": [],
     }
-    for index, item in enumerate(review["arguments"], start=1):
+    for item in review["arguments"]:
         node_id = item["id"]
-        label = ("première", "deuxième", "troisième", "quatrième")[index - 1]
-        expression = f"La {label} preuve donne au débat une base nettement plus solide"
-        summary = (
-            f"{expression} en reliant une prémisse explicite à la conclusion propre au nœud {node_id}. "
-            "Le mécanisme est présenté dans un langage accessible, sans anticiper l'objection qui lui sera opposée."
-        )
         decision = item["review"]
         decision.update({
             "status": "approved",
-            "summary_decision": "change",
-            "proposed_summary": summary,
-            "summary_rationale": "Le texte développe les prémisses, le mécanisme et la conclusion propres à ce nœud.",
+            # summary_decision/proposed_summary remain the exact protected
+            # values created by prepare_review.
             "documentation_decisions": {bucket: "change" for bucket in content.ARGUMENT_BUCKETS},
             "proposed_sources": {"bibliography": ["S00001"], "webliography": [], "videography": []},
-            "documentation_rationale": "La référence retenue soutient le cœur du résumé sans imposer de quota artificiel.",
-            "forceful_expression": expression,
-            "quantitative_claims_verified": False,
-            "quantitative_claims_note": "Aucune affirmation quantitative n’est présente dans ce résumé.",
+            "documentation_rationale": "La référence retenue soutient directement le contenu historique sans imposer de quota artificiel.",
             "reviewer": "Relecteur Wikidéb'IA",
             "reviewed_at": "2026-08-03T21:00:00+02:00",
-            "note": "Résumé français relu pour la fidélité logique, l’accessibilité et la force expressive.",
+            "note": "Résumé historique conservé exactement ; documentation française relue séparément.",
         })
-        for field in content.SUMMARY_TRUE_FIELDS:
-            decision[field] = True
     review["global_review"] = {
         "reviewer": "Relecteur Wikidéb'IA",
         "reviewed_at": "2026-08-03T21:15:00+02:00",
@@ -207,7 +158,7 @@ def complete_content_review(workspace: Path) -> None:
         "no_final_pages_generated": True,
         "english_translation_not_started": True,
         "blocking_issues": [],
-        "note": "Toutes les décisions françaises de contenu et de documentation ont été relues.",
+        "note": "Toutes les décisions françaises ouvertes à la reprise ont été relues ; les textes historiques protégés restent inchangés.",
     }
     common.write_json(review_path, review)
 
@@ -238,7 +189,7 @@ def complete_content_review(workspace: Path) -> None:
                 "language_fit": "native",
                 "preferred_equivalent_source_id": None,
                 "documentary_scope": "narrow_argument",
-                "selection_reason": "Cette source soutient directement le mécanisme exposé dans le résumé de l'argument.",
+                "selection_reason": "Cette source soutient directement le contenu historique de l'argument.",
             } for item in review["arguments"])
         sources.append(source_row(source_id, source_type, usages))
     working = {
@@ -262,6 +213,10 @@ def test_prepare_content_review_is_read_only_for_reviewed_copy(tmp_path: Path):
     review = json.loads((workspace / "reviews/fr/content_review.json").read_text(encoding="utf-8"))
     assert len(review["arguments"]) == 4
     assert review["debate"]["source"]["introduction"] == ""
+    assert review["debate"]["review"]["introduction_decision"] == "keep"
+    assert review["debate"]["review"]["proposed_introduction"] == ""
+    assert all(item["review"]["summary_decision"] == "keep" for item in review["arguments"])
+    assert all(item["review"]["proposed_summary"] == item["source"]["summary"] for item in review["arguments"])
     citations = {item["id"]: item["source"]["citations"] for item in review["arguments"]}
     assert citations["A0001"][0]["avertissements-citation"] == "Texte abrégé"
     assert citations["A0001"][0]["preserved_parameters"][0]["name"] == "auteurs"
@@ -321,20 +276,21 @@ def test_finalize_rejects_same_reference_in_pro_and_con_buckets(tmp_path: Path):
         raise AssertionError("Référence dupliquée entre pour et contre acceptée")
 
 
-def test_finalize_rejects_forceful_expression_not_in_summary(tmp_path: Path):
+def test_finalize_rejects_rewrite_of_historical_summary(tmp_path: Path):
     project, workspace, work_id = make_metadata_applied(tmp_path)
     content.prepare_review(project, "debat_test", work_id)
     complete_content_review(workspace)
     path = workspace / "reviews/fr/content_review.json"
     data = json.loads(path.read_text(encoding="utf-8"))
-    data["arguments"][0]["review"]["forceful_expression"] = "Une formule absente du texte final"
+    data["arguments"][0]["review"]["summary_decision"] = "change"
+    data["arguments"][0]["review"]["proposed_summary"] = "Un nouveau résumé qui ne doit pas être publié dans une reprise historique ordinaire."
     common.write_json(path, data)
     try:
         content.finalize_review(project, "debat_test", work_id)
     except content.ContentReviewError as exc:
-        assert "expression de force" in str(exc)
+        assert "résumé historique" in str(exc)
     else:
-        raise AssertionError("Expression absente acceptée")
+        raise AssertionError("Réécriture d’un résumé historique acceptée")
 
 
 def test_finalize_rejects_unverified_source(tmp_path: Path):
@@ -374,10 +330,55 @@ def test_apply_content_review_creates_distinct_copy(tmp_path: Path):
     lock = json.loads((target / "data/fr_content_lock.json").read_text(encoding="utf-8"))
     assert lock["status"] == "locked_for_translation_and_generation"
     assert len(lock["arguments"]) == 4
+    assert lock["historical_text_preservation"]["policy"] == content.HISTORICAL_TEXT_POLICY
+    assert lock["historical_text_preservation"]["debate"]["preserved"] is True
+    assert all(row["preserved"] is True for row in lock["historical_text_preservation"]["arguments"])
+    changes = json.loads((target / "changes/fr_content_changeset.json").read_text(encoding="utf-8"))
+    assert not any(op["field"] in {"summary", "introduction"} for op in changes["operations"])
     sources = json.loads((target / "data/sources.json").read_text(encoding="utf-8"))
     assert len(sources["sources"]) == 6
     translation = json.loads((workspace / "reviews/en/translation_readiness.json").read_text(encoding="utf-8"))
     assert translation["status"] == "ready_for_translation"
+
+
+def test_historically_absent_summary_stays_absent_through_apply(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    reviewed = workspace / "reviewed-copy"
+    provenance_path = reviewed / "data/import_provenance.json"
+    provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+    row = next(item for item in provenance["pages"] if item.get("page_id") == "A0001")
+    page = reviewed / row["import_path"]
+    text = page.read_text(encoding="utf-8")
+    assert "|résumé=A" in text
+    page.write_text(text.replace("|résumé=A", "", 1), encoding="utf-8")
+    import hashlib
+    row["sha256"] = hashlib.sha256(page.read_bytes()).hexdigest()
+    row["size_bytes"] = page.stat().st_size
+    common.write_json(provenance_path, provenance)
+    meta_path = workspace / "workspace.json"
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    meta["reviewed_copy"]["tree_sha256"] = common.full_tree_sha256(reviewed)
+    meta["workspace_sha256"] = None
+    meta["workspace_sha256"] = workspace_tool.workspace_receipt_hash(meta)
+    common.write_json(meta_path, meta)
+
+    content.prepare_review(project, "debat_test", work_id)
+    review = json.loads((workspace / "reviews/fr/content_review.json").read_text(encoding="utf-8"))
+    item = next(row for row in review["arguments"] if row["id"] == "A0001")
+    assert item["source"]["summary"] == ""
+    assert item["review"]["summary_decision"] == "keep"
+    assert item["review"]["historical_summary_present"] is False
+    complete_content_review(workspace)
+    finalized = content.finalize_review(project, "debat_test", work_id)
+    content.apply_review(project, "debat_test", work_id, finalized["review_sha256"])
+    target = workspace / "content-reviewed-copy"
+    lock = json.loads((target / "data/fr_content_lock.json").read_text(encoding="utf-8"))
+    final = next(row for row in lock["arguments"] if row["id"] == "A0001")
+    assert final["summary"] is None
+    assert final["summary_provenance"] == "historical_absent"
+    style = json.loads((target / "reviews/summary_style_review.json").read_text(encoding="utf-8"))
+    entry = next(row for row in style["entries"] if row["id"] == "A0001")
+    assert entry["languages"]["fr"]["status"] == "historical_absent"
 
 
 def test_apply_requires_exact_review_hash(tmp_path: Path):
@@ -425,39 +426,30 @@ def test_finalize_rejects_youtube_video_without_creator(tmp_path: Path):
         raise AssertionError("Vidéo YouTube sans créateur acceptée")
 
 
-def test_finalize_rejects_missing_mandatory_stakes_subsection(tmp_path: Path):
+def test_finalize_accepts_historical_introduction_without_current_stakes_section(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    content.prepare_review(project, "debat_test", work_id)
+    complete_content_review(workspace)
+    result = content.finalize_review(project, "debat_test", work_id)
+    assert result["status"] == "fr_content_review_finalized"
+
+
+def test_finalize_rejects_rewrite_of_historical_introduction(tmp_path: Path):
     project, workspace, work_id = make_metadata_applied(tmp_path)
     content.prepare_review(project, "debat_test", work_id)
     complete_content_review(workspace)
     review_path = workspace / "reviews/fr/content_review.json"
     review = json.loads(review_path.read_text(encoding="utf-8"))
     debate = review["debate"]["review"]
-    debate["proposed_introduction"] = "{{Sous-partie|titre=Définition et périmètre|contenu=Une introduction suffisamment développée mais privée de la rubrique obligatoire consacrée aux conséquences du désaccord.}}"
-    debate["subsections"] = [debate["subsections"][0]]
+    debate["introduction_decision"] = "change"
+    debate["proposed_introduction"] = "{{Sous-partie|titre=Nouvelle introduction|contenu=Cette introduction ne doit pas remplacer le texte historique dans la reprise ordinaire.}}"
     common.write_json(review_path, review)
     try:
         content.finalize_review(project, "debat_test", work_id)
     except content.ContentReviewError as exc:
-        assert "Enjeux du débat" in str(exc)
+        assert "introduction historique" in str(exc)
     else:
-        raise AssertionError("La rubrique Enjeux du débat manquante aurait dû être refusée")
-
-
-def test_finalize_rejects_symbolic_stakes_subsection(tmp_path: Path):
-    project, workspace, work_id = make_metadata_applied(tmp_path)
-    content.prepare_review(project, "debat_test", work_id)
-    complete_content_review(workspace)
-    review_path = workspace / "reviews/fr/content_review.json"
-    review = json.loads(review_path.read_text(encoding="utf-8"))
-    debate = review["debate"]["review"]
-    debate["proposed_introduction"] = "{{Sous-partie|titre=Définition et périmètre|contenu=Le périmètre du débat est défini.}}{{Sous-partie|titre=Enjeux du débat|contenu=Ce débat présente des enjeux philosophiques, sociaux et politiques importants.}}"
-    common.write_json(review_path, review)
-    try:
-        content.finalize_review(project, "debat_test", work_id)
-    except content.ContentReviewError as exc:
-        assert "trop brève ou symbolique" in str(exc)
-    else:
-        raise AssertionError("Une rubrique d’enjeux purement symbolique aurait dû être refusée")
+        raise AssertionError("Réécriture de l’introduction historique acceptée")
 
 
 

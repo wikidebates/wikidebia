@@ -211,3 +211,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - le checkpoint `content` utilise `.state/published` issu du premier comme baseline, ne republie que le delta de contenu/classification et refuse `move`, `redirect` et `delete` ;
 - la traduction anglaise n’est préparée qu’après les deux reçus français ;
 - conserve `incoming/`, la sélection par `debate_id`, les résumés personnalisés et la validation précoce de `sources_working.json.document_kind`.
+
+## 2.16.16 — 12 août 2026 — préservation des résumés et de l’introduction historiques
+
+- corrige la régression réelle où `fr_content_review` pouvait réécrire et publier l’introduction et les résumés de pages déjà existantes ;
+- initialise les décisions de ces champs à `keep` et refuse toute modification dans une reprise ordinaire ;
+- conserve l’absence historique de résumé au lieu de générer un texte de remplissage ;
+- exclut les règles de style de création pour les textes historiques simplement préservés ;
+- scelle les empreintes des textes historiques dans `fr_content_lock.json` et empêche leur apparition dans le changeset de contenu ;
+- précise dans le paquet ChatGPT que ces champs sont en lecture seule et qu’une réécriture nécessite une opération corrective propriétaire distincte ;
+- ajoute des tests de non-régression couvrant introduction, résumé existant et résumé historiquement absent.
+- aligne la traduction sur cette préservation : un résumé français historique reste une source différentielle et n’est pas allongé pour satisfaire les règles de création ; le registre de style anglais utilise `translated_historical_source`.
+

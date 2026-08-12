@@ -1,8 +1,8 @@
-Wikidéb’IA Normes 1.2.81 — audit de cohérence normative
+Wikidéb’IA Normes 1.2.83 — audit de cohérence normative
 Statut : PASSED
-Norme active unique : 1.2.81 ; norme 1.2.80 archivée exactement avant remplacement.
-Checkpoint français 1 : un seul paquet de revue graphe + positions + décisions structurelles + titres canoniques/affichés, puis publication immédiate sans modifier rubriques, mots-clés ni contenu.
-Checkpoint français 2 : rubriques, mots-clés, introduction, résumés et documentation, publié contre l’état attesté du checkpoint 1 sans mutation structurelle.
-Réimport : ZIP sous incoming/, sélection automatique ou par debate_id.
-Sources : document_kind de sources_working.json contrôlé avant projection.
-Résumés MediaWiki : contrat page_specific_v1 conservé pour chaque mutation distante.
+Norme active unique : 1.2.83 ; norme 1.2.81 archivée exactement avant remplacement.
+Préservation historique : introduction et résumés des pages preexisting verrouillés à leur valeur importée ; absence historique de résumé conservée.
+Checkpoint français 1 : graphe/titres uniquement, contenu historique inchangé.
+Checkpoint français 2 : classification, documentation et autres contenus ouverts ; delta introduction/résumé historique interdit dans une reprise ordinaire.
+Exigences ajoutées : EDT-073, PUB-052, VAL-062.
+Réécriture volontaire : uniquement par opération corrective distincte explicitement autorisée par le propriétaire.

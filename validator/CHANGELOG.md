@@ -140,3 +140,12 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - conserve `WDV-RMT-008` et tous les contrôles existants de plans/résumés individualisés ;
 - reconnaît les checkpoints français graphe/titres et contenu/classification comme deux usages successifs du même contrat de corpus/plan ;
 - aucune règle sémantique ou bilingue n’est assouplie.
+
+## 0.4.87 — 12 août 2026 — verrouillage des textes historiques français
+
+- s’aligne sur la norme 1.2.83 et le kit 2.16.16 ;
+- ajoute `WDV-EDT-034` pour détecter toute divergence entre les empreintes historiques scellées et l’introduction/résumé rendu ;
+- traite `historical_existing` et `historical_absent` comme états de préservation, sans imposer rétroactivement les règles de création ;
+- couvre par tests la conservation exacte, la réécriture interdite du résumé, la réécriture interdite de l’introduction et l’acceptation d’une introduction historique ne satisfaisant pas les contraintes de nouvelle création.
+- accepte `translated_historical_source` pour la traduction d’un résumé français historique protégé, sans appliquer les exigences de création à la source préexistante.
+

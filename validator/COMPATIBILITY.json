@@ -1,10 +1,10 @@
 {
   "package": "wikidebia-validator",
-  "validator_version": "0.4.85",
-  "implemented_normative_revision": "1.2.81",
-  "normative_revision": "1.2.81",
-  "kit_version": "2.16.14",
-  "recommended_kit_version": "2.16.14",
+  "validator_version": "0.4.87",
+  "implemented_normative_revision": "1.2.83",
+  "normative_revision": "1.2.83",
+  "kit_version": "2.16.16",
+  "recommended_kit_version": "2.16.16",
   "recommended_normative_archive": "wikidebia-normes.zip",
   "stable_archive_name": "wikidebia-validator.zip",
   "version_source": "VERSIONS.json",
@@ -101,7 +101,9 @@
     "1.2.78",
     "1.2.79",
     "1.2.80",
-    "1.2.81"
+    "1.2.81",
+    "1.2.82",
+    "1.2.83"
   ],
   "supported_normative_revisions": [
     "1.2.53",
@@ -132,7 +134,9 @@
     "1.2.78",
     "1.2.79",
     "1.2.80",
-    "1.2.81"
+    "1.2.81",
+    "1.2.82",
+    "1.2.83"
   ],
   "compatibility_scope": "schema_capability_reader_and_migration",
   "editorial_policy": "current_rules_are_cumulative_and_version_independent",
@@ -140,8 +144,8 @@
     "Producer release numbers are provenance; schema/capability contracts decide runtime compatibility."
   ],
   "compatibility_list_generation": {
-    "compatible_normative_revisions": "derived informational semver range 1.1.0..current",
-    "supported_normative_revisions": "derived informational semver range 1.2.53..current",
+    "compatible_normative_revisions": "derived from shipped historical snapshots plus current active norm",
+    "supported_normative_revisions": "derived from supported shipped 1.2.53+ snapshots plus current active norm",
     "used_as_feature_flag": false
   }
 }

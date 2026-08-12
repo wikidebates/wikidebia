@@ -745,3 +745,13 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - le second plan se calcule contre l’état publié attesté par le premier et interdit move/redirect/delete ;
 - les décisions structurelles de correction sont appliquées localement pendant la boucle de revue et ne sont publiées qu’au premier checkpoint ;
 - la traduction anglaise reste interdite tant que les deux reçus français ne sont pas acquis.
+
+## 1.2.83 — 12 août 2026 — préservation stricte des résumés et de l’introduction historiques
+
+- corrige la régression observée lors d’une reprise de corpus existant où `fr_content_review` pouvait réécrire puis publier des résumés historiques et l’introduction historique ;
+- rend ces champs en lecture seule dans la revue de contenu ordinaire pour toute page `preexisting` ;
+- conserve exactement l’absence historique d’un résumé et interdit toute génération de remplissage ;
+- réserve les règles de création/réécriture des résumés et introductions aux contenus nouveaux ou à une opération corrective distincte explicitement autorisée par le propriétaire ;
+- exige un verrou d’empreintes des textes historiques et un contrôle du rendu avant publication ;
+- précise que le second checkpoint français publie les autres deltas de contenu/classification mais possède un delta nul sur les résumés et l’introduction historiques dans une reprise ordinaire.
+

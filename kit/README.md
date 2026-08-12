@@ -1,3 +1,11 @@
+# Wikidéb’IA Kit 2.16.16
+
+Le kit 2.16.16 corrige une régression critique de `fr_content_review` observée sur un corpus historique : une reprise ordinaire ne peut plus proposer, accepter ni publier une nouvelle introduction ou de nouveaux résumés pour des pages françaises `preexisting`. L’introduction et chaque résumé historiques sont repris exactement ; l’absence historique de résumé reste une absence.
+
+Le paquet de revue marque ces champs comme protégés, la finalisation refuse leur modification, `fr_content_lock.json` scelle leurs empreintes et le checkpoint de contenu ordinaire doit présenter un delta nul sur ces champs. Une réécriture volontaire reste possible uniquement dans une opération corrective distincte explicitement autorisée par le propriétaire.
+
+Les deux checkpoints français, la classification/documentation, les résumés MediaWiki individualisés et toutes les protections de 2.16.14 sont conservés.
+
 # Wikidéb’IA Kit 2.16.14
 
 Le kit 2.16.14 scinde la publication française automatique en **deux checkpoints avant toute traduction**. La première revue externe combine le graphe et les titres canoniques/affichés dans un même ZIP ; son réimport déclenche le premier checkpoint : il publie uniquement les positions/relations, renommages, titres affichés et décisions structurelles validées (fusion/redirection, suppression), en conservant strictement le contenu, les rubriques et les mots-clés importés. Le second suit la revue de contenu : il publie rubriques, mots-clés, introduction, résumés et documentation contre l’état distant attesté par le premier checkpoint ; il refuse tout `move`, `redirect` ou `delete`.

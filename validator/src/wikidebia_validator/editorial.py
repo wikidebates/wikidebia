@@ -941,6 +941,31 @@ def validate_introduction_review_data(review: Any, actual_titles: dict[str, list
         if not entry:
             issues.append({'reason': 'missing_language', 'language': lang})
             continue
+        historical_status = str(entry.get('status') or '')
+        if historical_status in {'historical_existing', 'historical_absent'}:
+            # A pre-existing introduction is not retroactively rewritten to
+            # satisfy the current creation/rewrite profile.  The exact content
+            # is protected separately by the historical-text lock; this ledger
+            # records that the ordinary content review intentionally preserved
+            # it.  Structural/style requirements such as a newly generated
+            # "Enjeux du débat" section are therefore not applied here.
+            if entry.get('historical_content_preserved') is not True:
+                issues.append({'reason': 'historical_introduction_not_preserved', 'language': lang})
+            source_sha = entry.get('historical_source_sha256')
+            if not isinstance(source_sha, str) or not re.fullmatch('[0-9a-f]{64}', source_sha):
+                issues.append({'reason': 'historical_introduction_source_sha256', 'language': lang})
+            if historical_status == 'historical_absent' and entry.get('historical_absence_verified') is not True:
+                issues.append({'reason': 'historical_introduction_absence_unverified', 'language': lang})
+            if len(str(entry.get('note') or '').strip()) < 12:
+                issues.append({'reason': 'historical_introduction_note', 'language': lang})
+            rows = entry.get('subsections')
+            if not isinstance(rows, list):
+                issues.append({'reason': 'missing_subsections', 'language': lang})
+            else:
+                ledger_titles = [row.get('title') for row in rows if isinstance(row, dict)]
+                if ledger_titles != titles:
+                    issues.append({'reason': 'subsection_titles_mismatch', 'language': lang, 'expected': titles, 'actual': ledger_titles})
+            continue
         # Current introduction requirements are cumulative. Historical policy
         # revision fields are accepted as trace metadata but never activate rules.
         policy_1243 = True
@@ -1230,6 +1255,9 @@ def _validate_introduction_review(ctx: PackageContext, manifest: dict[str, Any],
         elif reason in {'missing_dedicated_stakes_subsection', 'stakes_subsection_too_thin', 'stakes_review_row_count', 'stakes_section_attestation', 'concrete_stakes_missing', 'invalid_concrete_stakes'}:
             code = 'WDV-EDT-017'
             message = 'La sous-partie obligatoire sur les enjeux du débat est absente, trop générale ou insuffisamment attestée'
+        elif reason in {'historical_introduction_not_preserved', 'historical_introduction_source_sha256', 'historical_introduction_absence_unverified', 'historical_introduction_note'}:
+            code = 'WDV-EDT-034'
+            message = 'La préservation de l’introduction historique n’est pas correctement attestée'
         else:
             code = 'WDV-EDT-017'
             message = 'Revue structurelle de l’introduction absente ou incohérente'
@@ -1556,6 +1584,17 @@ def validate_summary_style_review_data(review: Any, nodes: list[dict[str, Any]],
                 issues.append({'reason': 'language_decision', 'node_id': node_id, 'language': lang})
                 continue
             key_tuple = (node_id, lang)
+            translated_historical_source = (
+                lang == 'en'
+                and decision.get('status') == 'translated_historical_source'
+                and (node_id, 'fr') in protected
+            )
+            if translated_historical_source:
+                if decision.get('historical_source_preserved') is not True:
+                    issues.append({'reason': 'historical_source_preserved', 'node_id': node_id, 'language': lang})
+                if len(str(decision.get('note') or '').strip()) < 12:
+                    issues.append({'reason': 'note', 'node_id': node_id, 'language': lang})
+                continue
             if key_tuple in owner_removed:
                 if decision.get('status') != 'owner_removed':
                     issues.append({'reason': 'owner_removed_status', 'node_id': node_id, 'language': lang})
@@ -1577,9 +1616,15 @@ def validate_summary_style_review_data(review: Any, nodes: list[dict[str, Any]],
                     issues.append({'reason': 'historical_existing_status', 'node_id': node_id, 'language': lang})
                 if decision.get('historical_content_preserved') is not True:
                     issues.append({'reason': 'historical_content_preserved', 'node_id': node_id, 'language': lang})
+                if len(str(decision.get('note') or '').strip()) < 12:
+                    issues.append({'reason': 'note', 'node_id': node_id, 'language': lang})
+                # A protected historical summary is not retroactively forced
+                # through the quality profile for newly authored summaries.
+                # Exact preservation is verified by the historical-text lock.
+                continue
             elif decision.get('status') not in {'approved', 'revised'}:
                 issues.append({'reason': 'status', 'node_id': node_id, 'language': lang})
-            effective_required_true = [key for key in required_true if not (key_tuple in protected and key == 'originality_reviewed')]
+            effective_required_true = list(required_true)
             for key in effective_required_true:
                 if decision.get(key) is not True:
                     issues.append({'reason': key, 'node_id': node_id, 'language': lang})

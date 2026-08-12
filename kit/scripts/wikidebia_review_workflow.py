@@ -253,6 +253,17 @@ def _instructions(review_type: str, debate_id: str, work_id: str | None, editabl
             "Renseignez le statut `corrected`, le relecteur, la date de revue et les notes dans le fichier de correction.",
             "Après réimport, Wikidéb’IA reconstruira et validera mécaniquement le graphe puis préparera une nouvelle revue complète.",
         ]
+    if review_type == "fr_content_review":
+        lines += [
+            "",
+            "Cette revue porte sur les rubriques, mots-clés, documentation et autres contenus explicitement ouverts à la reprise.",
+            "Pour toute page préexistante importée du wiki, l’introduction du débat et les résumés des arguments sont des contenus historiques protégés.",
+            "Ne modifiez jamais `proposed_introduction`, `introduction_decision`, `proposed_summary` ni `summary_decision` dans le flux ordinaire : ils doivent conserver exactement les valeurs préparées avec `decision=keep`.",
+            "Un argument historiquement dépourvu de résumé doit rester sans résumé ; ne créez aucun texte de remplissage.",
+            "Les exigences stylistiques de création/réécriture des résumés et introductions ne s’appliquent pas rétroactivement à ces textes historiques conservés.",
+            "Si le propriétaire demande explicitement une réécriture d’un de ces champs, utilisez une opération corrective dédiée : ne contournez pas ce verrou dans le paquet de revue ordinaire.",
+            "Le second checkpoint français ne doit donc contenir un delta d’introduction ou de résumé que pour une page nouvelle ou une opération corrective propriétaire séparément autorisée.",
+        ]
     lines += [
         "",
         "## Fichiers à compléter",

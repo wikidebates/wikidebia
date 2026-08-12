@@ -1,8 +1,15 @@
-# Revue française des introductions, résumés et références
+# Revue française du contenu et de la documentation
 
 > Depuis 1.2.54, les normes éditoriales sont cumulatives : les anciennes métadonnées de révision ne servent plus à sélectionner les contrôles.
 
 La phase de contenu intervient après le verrouillage et la publication du graphe et des titres. Elle prend désormais aussi en charge les **rubriques et mots-clés**, afin qu’ils soient publiés au second checkpoint avec l’introduction, les résumés et la documentation. Elle part de `reviewed-copy/`, conserve toutes les copies antérieures et ne génère toujours aucune page MediaWiki finale.
+
+
+## Protection des textes historiques
+
+Pour une page importée avec `page_origin=preexisting`, l’introduction du Débat et les résumés des Arguments sont **en lecture seule dans la reprise ordinaire**. `--prepare` recopie leur valeur historique avec `decision=keep`; une absence historique de résumé reste absente. `--finalize` bloque toute tentative de modification de ces champs. Les règles de style de création ne sont pas appliquées rétroactivement à un texte simplement préservé.
+
+Une réécriture volontaire de l’introduction ou d’un résumé historique doit être effectuée plus tard par une opération corrective distincte explicitement autorisée par le propriétaire ; elle ne se débloque pas en modifiant le JSON de `fr_content_review`.
 
 ## 1. Préparer la revue
 
@@ -29,7 +36,7 @@ Le registre couvre :
 - l’introduction et chacune de ses sous-parties ;
 - les articles Wikipédia français vérifiés ;
 - les neuf paramètres documentaires de la page Débat ;
-- le résumé de chaque argument ;
+- le résumé de chaque argument comme contexte ; pour une page préexistante sa valeur et sa présence sont protégées et non réécrites ;
 - les données de contenu des arguments français importés ; les arguments réellement nouveaux ne sont pas créés par cette commande et doivent, lorsqu’un corpus en contient, être accompagnés de la revue documentaire 1.2.53 décrite ci-dessous ;
 - la bibliographie, la sitographie et la vidéographie de chaque argument ;
 - les attestations de lisibilité, de fidélité logique, de force expressive et de vérification documentaire.
@@ -75,7 +82,7 @@ La finalisation vérifie notamment :
 - l’inventaire exhaustif, sous-partie par sous-partie, des notions spécialisées, avec vérification de chaque lien, explication intégrée, traitement antérieur ou justification contextuelle ;
 
 - la couverture exacte de tous les arguments actifs ;
-- l’existence d’une introduction structurée en sous-parties ;
+- pour une introduction nouvellement créée ou explicitement réécrite, l’existence d’une structure conforme ; une introduction historique préservée n’est pas normalisée rétroactivement ;
 - la présence d’au moins un article Wikipédia français vérifié ;
 - l’absence de doublon entre les orientations pour, contre et neutre ;
 - le classement neutre des sources qui développent substantiellement les deux positions ;
@@ -88,8 +95,8 @@ La finalisation vérifie notamment :
 - la densité informative et la non-redondance des sous-parties ;
 - l’présence obligatoire d’une rubrique « Enjeux du débat » qui expose au moins deux conséquences concrètes sans recopier le graphe ;
 - l’absence de point final dans une simple notice `<ref>` ; toute note conservant un point doit être une phrase complète attestée par SHA-256 ;
-- l’absence de métadiscours et d’auto-objection dans les résumés ;
-- la présence réelle de l’expression attestant la force du résumé ;
+- pour les résumés nouveaux ou explicitement réécrits, l’absence de métadiscours et d’auto-objection ; les résumés historiques préservés ne sont pas réécrits pour ce motif ;
+- pour les résumés nouveaux ou explicitement réécrits, la présence réelle de l’expression attestant la force du résumé ;
 - la vérification explicite des affirmations chiffrées lorsqu’elles existent.
 
 La revue et le registre documentaire sont liés par SHA-256. La finalisation ne modifie pas `reviewed-copy/`.

@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.81
+- **Révision :** 1.2.83
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -476,3 +476,12 @@ La revue des audits du 9 août 2026 montre que plusieurs pertes sémantiques ava
 - Le réimport approuvé de ce paquet déclenche immédiatement le checkpoint français n°1 ; rubriques, mots-clés et contenu restent strictement inchangés.
 - La revue suivante couvre rubriques, mots-clés, introduction, résumés et documentation, puis déclenche le checkpoint français n°2.
 - La traduction ne commence qu'après le second reçu.
+
+
+## Ajout 1.2.83 — préservation des textes historiques
+
+| Exigence | Décision | Preuve attendue |
+|---|---|---|
+| EDT-073 | Préserver exactement introduction et résumés des pages préexistantes ; absence historique conservée | verrou de contenu + tests kit |
+| PUB-052 | Interdire tout delta intro/résumé au checkpoint 2 ordinaire | plan/checkpoint + tests |
+| VAL-062 | Comparer les empreintes historiques au wikicode rendu | WDV-EDT-034 + tests validateur |

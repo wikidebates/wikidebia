@@ -3,8 +3,12 @@
 
 This stage starts after the graph/title checkpoint has been applied and
 published. It reviews classification (rubriques and keywords), the debate
-heading, introduction, Wikipedia articles, documentary buckets, every French
-argument summary and its source selection. No English text is created.
+heading, Wikipedia articles, documentary buckets and source selection.  For a
+corpus imported from existing wiki pages, the historical debate introduction
+and argument summaries are protected inputs: the ordinary content-review flow
+may inspect them but never rewrites them.  A historically absent summary stays
+absent.  Any intentional rewrite must use a separate owner-authorized
+corrective operation. No English text is created.
 """
 
 from __future__ import annotations
@@ -60,6 +64,7 @@ CONTENT_LOCK_SCHEMA = "wikidebia-fr-content-lock-1.0"
 CONTENT_CHANGESET_SCHEMA = "wikidebia-fr-content-changeset-1.0"
 SOURCES_WORKING_SCHEMA = "wikidebia-source-registry-working-1.0"
 CLASSIFICATION_REVIEW_PATH = "reviews/fr/classification_review.json"
+HISTORICAL_TEXT_POLICY = "preserve_preexisting_exact_v1"
 
 PAGE_PARAMETER_ALIASES = {
     "débat-dédié": ("débat-dédié", "débat-détaillé"),
@@ -373,9 +378,15 @@ def _blank_intro_review(source: Mapping[str, Any]) -> dict[str, Any]:
         "topic_label_rationale": "",
         "common_acronym": None,
         "complete_topic_initial_capital_justification": None,
-        "introduction_decision": "pending",
+        # This workflow is a reprise of imported pages.  The historical
+        # introduction is therefore immutable here.  Keeping the source value
+        # in the editable ledger makes the preservation visible to reviewers,
+        # while finalization rejects any change to either the decision or the
+        # proposed value.
+        "historical_text_policy": HISTORICAL_TEXT_POLICY,
+        "introduction_decision": "keep",
         "proposed_introduction": source.get("introduction"),
-        "introduction_rationale": "",
+        "introduction_rationale": "Introduction historique conservée exactement ; toute réécriture exige une opération corrective explicitement autorisée par le propriétaire.",
         "subsections": [
             {
                 "title": row.get("title"),
@@ -405,11 +416,15 @@ def _blank_intro_review(source: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def _blank_summary_review(source: Mapping[str, Any]) -> dict[str, Any]:
+    historical_summary = str(source.get("summary") or "")
     return {
         "status": "pending",
-        "summary_decision": "pending",
+        "historical_text_policy": HISTORICAL_TEXT_POLICY,
+        "historical_summary_present": bool(historical_summary.strip()),
+        "historical_summary_sha256": hashlib.sha256(historical_summary.encode("utf-8")).hexdigest(),
+        "summary_decision": "keep",
         "proposed_summary": source.get("summary"),
-        "summary_rationale": "",
+        "summary_rationale": "Résumé historique conservé exactement ; son absence historique reste une absence et aucune génération de remplissage n’est autorisée.",
         "documentation_decisions": {bucket: "pending" for bucket in ARGUMENT_BUCKETS},
         "proposed_sources": {bucket: [] for bucket in ARGUMENT_BUCKETS},
         "documentation_rationale": "",
@@ -584,6 +599,8 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
             "subsections": len(debate_source["subsections"]),
             "wikipedia_articles": len(debate_source["wikipedia_articles"]),
             "documentary_buckets_nonempty": sum(bool(v) for v in debate_source["documentation_raw"].values()),
+            "historical_introduction_preserved_by_default": True,
+            "historical_introduction_sha256": hashlib.sha256(str(debate_source["introduction"] or "").encode("utf-8")).hexdigest(),
         },
         "arguments": {
             "count": len(arguments),
@@ -592,9 +609,13 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
             "arguments_with_any_documentation": sum(any(row["documentation_raw"].values()) for row in arguments),
             "citations": sum(len(row.get("citations") or []) for row in arguments),
             "arguments_with_citations": sum(bool(row.get("citations")) for row in arguments),
+            "historical_summaries_preserved_by_default": len(arguments),
         },
         "boundaries": {
             "automatic_rewriting": False,
+            "historical_introduction_rewriting": False,
+            "historical_summary_rewriting": False,
+            "historical_absent_summary_generation": False,
             "final_pages_generated": False,
             "english_translation_started": False,
         },
@@ -608,6 +629,7 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
         f"- Résumés absents : {audit['arguments']['summaries_missing']}",
         f"- Résumés de moins de 80 caractères : {audit['arguments']['summaries_under_80_chars']}",
         f"- Citations importées : {audit['arguments']['citations']}",
+        "", "L’introduction historique et les résumés historiques sont protégés : la revue ordinaire ne peut ni les réécrire ni créer un résumé historiquement absent.",
         "", "Aucune correction automatique n’a été appliquée.", "",
     ]
     (workspace / "audits/fr_content_inventory.md").write_text("\n".join(markdown), encoding="utf-8", newline="\n")
@@ -875,43 +897,64 @@ def _validate_debate(review: Mapping[str, Any], source: Mapping[str, Any], sourc
     first_alpha = next((char for char in complete if char.isalpha()), "")
     if first_alpha and first_alpha.isupper() and len(str(review.get("complete_topic_initial_capital_justification") or "").strip()) < 12:
         raise ContentReviewError("La majuscule initiale de sujet-développé n’est pas justifiée")
-    introduction = _text(_select(review, "introduction_decision", source.get("introduction"), "proposed_introduction"), "introduction", 30)
+    historical_intro = str(source.get("introduction") or "")
+    historical_intro_preserved = source.get("page_origin") == "preexisting"
+    if historical_intro_preserved:
+        if review.get("historical_text_policy") != HISTORICAL_TEXT_POLICY:
+            raise ContentReviewError("Politique de préservation de l’introduction historique absente ou invalide")
+        if review.get("introduction_decision") != "keep":
+            raise ContentReviewError(
+                "L’introduction historique est protégée dans la revue de contenu ordinaire ; "
+                "une réécriture exige une opération corrective explicitement autorisée par le propriétaire"
+            )
+        if str(review.get("proposed_introduction") or "") != historical_intro:
+            raise ContentReviewError("La valeur proposée de l’introduction historique a été modifiée")
+        introduction = historical_intro
+    else:
+        introduction = _text(_select(review, "introduction_decision", source.get("introduction"), "proposed_introduction"), "introduction", 30)
     subsection_values = _subsections(introduction)
-    if not subsection_values:
+    if not historical_intro_preserved and not subsection_values:
         raise ContentReviewError("L’introduction doit contenir au moins une Sous-partie")
     ledger = review.get("subsections")
     if not isinstance(ledger, list) or [row.get("title") for row in ledger if isinstance(row, dict)] != [row["title"] for row in subsection_values]:
         raise ContentReviewError("La revue des sous-parties ne correspond pas à l’introduction retenue")
-    stakes_title = "Enjeux du débat"
-    stakes_rows = []
-    stakes_contents = []
-    for index, (row, subsection) in enumerate(zip(ledger, subsection_values), start=1):
-        if len(str(row.get("purpose") or "").strip()) < 12 or row.get("necessary_for_understanding") is not True:
-            raise ContentReviewError(f"Sous-partie #{index} insuffisamment justifiée")
-        if row.get("technical_or_specialized") is True and row.get("relevance_to_debate_explained") is not True:
-            raise ContentReviewError(f"Pertinence technique non attestée pour la sous-partie #{index}")
-        if subsection["title"] == stakes_title:
-            stakes_rows.append(row)
-            stakes_contents.append(subsection["content"])
-    if len(stakes_rows) != 1:
-        raise ContentReviewError('L’introduction française doit contenir exactement une sous-partie intitulée "Enjeux du débat"')
-    stakes_row = stakes_rows[0]
-    if stakes_row.get("stakes_section") is not True:
-        raise ContentReviewError("La revue doit identifier explicitement la sous-partie Enjeux du débat")
-    concrete_stakes = stakes_row.get("concrete_stakes")
-    if not isinstance(concrete_stakes, list):
-        raise ContentReviewError("Les conséquences concrètes de la sous-partie Enjeux du débat sont absentes")
-    normalized_stakes = [str(item).strip() for item in concrete_stakes if str(item).strip()]
-    if len(normalized_stakes) < 2 or len({item.casefold() for item in normalized_stakes}) < 2 or any(len(item) < 20 for item in normalized_stakes):
-        raise ContentReviewError("La sous-partie Enjeux du débat doit consigner au moins deux conséquences concrètes distinctes")
-    stakes_content = stakes_contents[0]
-    if len(re.findall(r"\b[\wÀ-ÿ'-]+\b", stakes_content)) < 45 or len(re.findall(r"[.!?](?:\s|$)", stakes_content)) < 3:
-        raise ContentReviewError("La sous-partie Enjeux du débat est trop brève ou symbolique")
-    for field in INTRO_TRUE_FIELDS:
-        if review.get(field) is not True:
-            raise ContentReviewError(f"Attestation d’introduction manquante : {field}")
-    specialized_term_inventory = _validated_specialized_term_inventory(introduction, review.get("specialized_term_inventory"), ledger, "fr")
-    terminal_period_sentence_exceptions = _validated_terminal_period_exceptions(introduction, review.get("terminal_period_sentence_exceptions"))
+    if historical_intro_preserved:
+        # Current creation/rewrite quality gates are intentionally not applied
+        # retroactively to an imported introduction.  We only attest exact
+        # preservation here; documentation/classification remain reviewable.
+        specialized_term_inventory = []
+        terminal_period_sentence_exceptions = []
+    else:
+        stakes_title = "Enjeux du débat"
+        stakes_rows = []
+        stakes_contents = []
+        for index, (row, subsection) in enumerate(zip(ledger, subsection_values), start=1):
+            if len(str(row.get("purpose") or "").strip()) < 12 or row.get("necessary_for_understanding") is not True:
+                raise ContentReviewError(f"Sous-partie #{index} insuffisamment justifiée")
+            if row.get("technical_or_specialized") is True and row.get("relevance_to_debate_explained") is not True:
+                raise ContentReviewError(f"Pertinence technique non attestée pour la sous-partie #{index}")
+            if subsection["title"] == stakes_title:
+                stakes_rows.append(row)
+                stakes_contents.append(subsection["content"])
+        if len(stakes_rows) != 1:
+            raise ContentReviewError('L’introduction française doit contenir exactement une sous-partie intitulée "Enjeux du débat"')
+        stakes_row = stakes_rows[0]
+        if stakes_row.get("stakes_section") is not True:
+            raise ContentReviewError("La revue doit identifier explicitement la sous-partie Enjeux du débat")
+        concrete_stakes = stakes_row.get("concrete_stakes")
+        if not isinstance(concrete_stakes, list):
+            raise ContentReviewError("Les conséquences concrètes de la sous-partie Enjeux du débat sont absentes")
+        normalized_stakes = [str(item).strip() for item in concrete_stakes if str(item).strip()]
+        if len(normalized_stakes) < 2 or len({item.casefold() for item in normalized_stakes}) < 2 or any(len(item) < 20 for item in normalized_stakes):
+            raise ContentReviewError("La sous-partie Enjeux du débat doit consigner au moins deux conséquences concrètes distinctes")
+        stakes_content = stakes_contents[0]
+        if len(re.findall(r"\b[\wÀ-ÿ'-]+\b", stakes_content)) < 45 or len(re.findall(r"[.!?](?:\s|$)", stakes_content)) < 3:
+            raise ContentReviewError("La sous-partie Enjeux du débat est trop brève ou symbolique")
+        for field in INTRO_TRUE_FIELDS:
+            if review.get(field) is not True:
+                raise ContentReviewError(f"Attestation d’introduction manquante : {field}")
+        specialized_term_inventory = _validated_specialized_term_inventory(introduction, review.get("specialized_term_inventory"), ledger, "fr")
+        terminal_period_sentence_exceptions = _validated_terminal_period_exceptions(introduction, review.get("terminal_period_sentence_exceptions"))
     if len(str(review.get("topic_label_rationale") or "").strip()) < 12:
         raise ContentReviewError("Justification du libellé de sujet insuffisante")
     family_notes = review.get("documentation_family_notes")
@@ -978,9 +1021,18 @@ def _validate_debate(review: Mapping[str, Any], source: Mapping[str, Any], sourc
         "reviewer": review.get("reviewer"),
         "reviewed_at": review.get("reviewed_at"),
         "note": review.get("note"),
-        "attestations": {field: True for field in INTRO_TRUE_FIELDS},
+        "attestations": ({field: True for field in INTRO_TRUE_FIELDS} if not historical_intro_preserved else {}),
         "terminal_period_sentence_exceptions": terminal_period_sentence_exceptions,
         "specialized_term_inventory": specialized_term_inventory,
+        "introduction_provenance": (
+            "historical_existing" if historical_intro_preserved and bool(historical_intro.strip())
+            else "historical_absent" if historical_intro_preserved
+            else "reviewed_or_generated"
+        ),
+        "historical_introduction_sha256": (
+            hashlib.sha256(historical_intro.encode("utf-8")).hexdigest() if historical_intro_preserved else None
+        ),
+        "historical_content_preserved": historical_intro_preserved,
         "page_origin": source.get("page_origin", "preexisting"),
         "preserved_parameters": copy.deepcopy(source.get("preserved_parameters") or {}),
     }
@@ -992,19 +1044,40 @@ def _validate_argument(item: Mapping[str, Any], sources: Mapping[str, Mapping[st
     review = item.get("review") or {}
     if review.get("status") != "approved":
         raise ContentReviewError(f"Revue non approuvée pour {node_id}")
-    summary = _text(_select(review, "summary_decision", source.get("summary"), "proposed_summary"), f"résumé de {node_id}", 40)
-    if META_DISCOURSE.search(_plain(summary)):
-        raise ContentReviewError(f"Métadiscours interdit dans le résumé de {node_id}")
-    for field in SUMMARY_TRUE_FIELDS:
-        if review.get(field) is not True:
-            raise ContentReviewError(f"Attestation manquante pour {node_id} : {field}")
-    expression = _text(review.get("forceful_expression"), f"expression de force de {node_id}", 12)
-    if len(re.findall(r"[A-Za-zÀ-ÿ]+", expression)) < 3 or _plain(expression).casefold() not in _plain(summary).casefold():
-        raise ContentReviewError(f"L’expression de force n’est pas présente dans le résumé de {node_id}")
-    numbers = NUMBER.findall(_plain(summary))
-    if numbers:
-        if review.get("quantitative_claims_verified") is not True or len(str(review.get("quantitative_claims_note") or "").strip()) < 12:
-            raise ContentReviewError(f"Donnée chiffrée non documentée dans {node_id}")
+    historical_summary = str(source.get("summary") or "")
+    historical_summary_preserved = source.get("page_origin") == "preexisting"
+    if historical_summary_preserved:
+        if review.get("historical_text_policy") != HISTORICAL_TEXT_POLICY:
+            raise ContentReviewError(f"Politique de préservation du résumé historique absente ou invalide pour {node_id}")
+        if review.get("summary_decision") != "keep":
+            raise ContentReviewError(
+                f"Le résumé historique de {node_id} est protégé dans la revue de contenu ordinaire ; "
+                "une réécriture exige une opération corrective explicitement autorisée par le propriétaire"
+            )
+        if str(review.get("proposed_summary") or "") != historical_summary:
+            raise ContentReviewError(f"La valeur proposée du résumé historique a été modifiée pour {node_id}")
+        expected_hash = hashlib.sha256(historical_summary.encode("utf-8")).hexdigest()
+        if review.get("historical_summary_sha256") != expected_hash:
+            raise ContentReviewError(f"Empreinte du résumé historique divergente pour {node_id}")
+        if bool(review.get("historical_summary_present")) != bool(historical_summary.strip()):
+            raise ContentReviewError(f"Présence historique du résumé incohérente pour {node_id}")
+        summary = historical_summary if historical_summary.strip() else None
+        expression = None
+        numbers: list[str] = []
+    else:
+        summary = _text(_select(review, "summary_decision", source.get("summary"), "proposed_summary"), f"résumé de {node_id}", 40)
+        if META_DISCOURSE.search(_plain(summary)):
+            raise ContentReviewError(f"Métadiscours interdit dans le résumé de {node_id}")
+        for field in SUMMARY_TRUE_FIELDS:
+            if review.get(field) is not True:
+                raise ContentReviewError(f"Attestation manquante pour {node_id} : {field}")
+        expression = _text(review.get("forceful_expression"), f"expression de force de {node_id}", 12)
+        if len(re.findall(r"[A-Za-zÀ-ÿ]+", expression)) < 3 or _plain(expression).casefold() not in _plain(summary).casefold():
+            raise ContentReviewError(f"L’expression de force n’est pas présente dans le résumé de {node_id}")
+        numbers = NUMBER.findall(_plain(summary))
+        if numbers:
+            if review.get("quantitative_claims_verified") is not True or len(str(review.get("quantitative_claims_note") or "").strip()) < 12:
+                raise ContentReviewError(f"Donnée chiffrée non documentée dans {node_id}")
     decisions = review.get("documentation_decisions")
     proposed = review.get("proposed_sources")
     if not isinstance(decisions, dict) or not isinstance(proposed, dict):
@@ -1033,7 +1106,20 @@ def _validate_argument(item: Mapping[str, Any], sources: Mapping[str, Mapping[st
         "summary": summary,
         "citations": copy.deepcopy(source.get("citations") or []),
         "sources": selected_by_type,
-        "status": "revised" if review.get("summary_decision") == "change" else "approved",
+        "status": (
+            "historical_existing" if historical_summary_preserved and bool(historical_summary.strip())
+            else "historical_absent" if historical_summary_preserved
+            else "revised" if review.get("summary_decision") == "change" else "approved"
+        ),
+        "summary_provenance": (
+            "historical_existing" if historical_summary_preserved and bool(historical_summary.strip())
+            else "historical_absent" if historical_summary_preserved
+            else "reviewed_or_generated"
+        ),
+        "historical_summary_sha256": (
+            hashlib.sha256(historical_summary.encode("utf-8")).hexdigest() if historical_summary_preserved else None
+        ),
+        "historical_content_preserved": historical_summary_preserved,
         "forceful_expression": expression,
         "quantitative_claims": numbers,
         "quantitative_claims_verified": bool(numbers) and True or bool(review.get("quantitative_claims_verified")),
@@ -1041,7 +1127,7 @@ def _validate_argument(item: Mapping[str, Any], sources: Mapping[str, Mapping[st
         "reviewer": review.get("reviewer"),
         "reviewed_at": review.get("reviewed_at"),
         "note": review.get("note"),
-        "attestations": {field: True for field in SUMMARY_TRUE_FIELDS},
+        "attestations": ({field: True for field in SUMMARY_TRUE_FIELDS} if not historical_summary_preserved else {}),
         "page_origin": source.get("page_origin", "preexisting"),
         "preserved_parameters": copy.deepcopy(source.get("preserved_parameters") or {}),
     }
@@ -1182,19 +1268,40 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
 
 
 def _introduction_review(final: Mapping[str, Any]) -> dict[str, Any]:
+    provenance = str(final.get("introduction_provenance") or "reviewed_or_generated")
+    historical = provenance in {"historical_existing", "historical_absent"}
+    entry: dict[str, Any] = {
+        "language": "fr",
+        "status": provenance if historical else "approved",
+        "documentation_family_notes": copy.deepcopy(final["documentation_family_notes"]),
+        "common_acronym": final.get("common_acronym"),
+        "topic_label_rationale": "Le sujet retenu est le libellé nominal validé par la revue française.",
+        "complete_topic_initial_capital_justification": None,
+        "subsections": copy.deepcopy(final["subsections"]),
+        "terminal_period_sentence_exceptions": copy.deepcopy(final.get("terminal_period_sentence_exceptions") or []),
+        "specialized_term_inventory": copy.deepcopy(final.get("specialized_term_inventory") or []),
+    }
+    if historical:
+        entry.update({
+            "historical_content_preserved": True,
+            "historical_source_sha256": final.get("historical_introduction_sha256"),
+            "historical_absence_verified": provenance == "historical_absent",
+            "note": "Introduction française historique conservée exactement ; les règles de réécriture ne sont pas appliquées rétroactivement.",
+            # Non-introduction controls remain traceable and true because they
+            # were validated independently during content finalization.
+            "complete_topic_fits_heading": True,
+            "debate_sections_precise": True,
+            "documentation_proportionate_to_literature": True,
+            "common_acronym_used_or_not_applicable": True,
+            "topic_is_nominal_label": True,
+            "conventional_topic_label_used_or_not_applicable": True,
+            "complete_topic_lowercase_initial_or_justified": True,
+        })
+    else:
+        entry.update({field: True for field in INTRO_TRUE_FIELDS})
     return {
         "normative_revision": NORM_VERSION,
-        "entries": [{
-            "language": "fr",
-            **{field: True for field in INTRO_TRUE_FIELDS},
-            "documentation_family_notes": copy.deepcopy(final["documentation_family_notes"]),
-            "common_acronym": final.get("common_acronym"),
-            "topic_label_rationale": "Le sujet retenu est le libellé nominal validé par la revue française.",
-            "complete_topic_initial_capital_justification": None,
-            "subsections": copy.deepcopy(final["subsections"]),
-            "terminal_period_sentence_exceptions": copy.deepcopy(final.get("terminal_period_sentence_exceptions") or []),
-            "specialized_term_inventory": copy.deepcopy(final.get("specialized_term_inventory") or []),
-        }],
+        "entries": [entry],
     }
 
 
@@ -1211,9 +1318,26 @@ def _mechanism_excerpt(summary: Any) -> str:
 def _summary_style_review(arguments: Sequence[Mapping[str, Any]], debate_id: str) -> dict[str, Any]:
     entries = []
     for arg in arguments:
+        status = str(arg.get("status") or "")
+        if status == "historical_absent":
+            language = {
+                "status": "historical_absent",
+                "historical_absence_verified": True,
+                "note": arg.get("note") or "Absence historique du résumé vérifiée et conservée sans génération de remplissage.",
+            }
+            entries.append({"id": arg.get("id"), "languages": {"fr": language}})
+            continue
+        if status == "historical_existing":
+            language = {
+                "status": "historical_existing",
+                "historical_content_preserved": True,
+                "note": arg.get("note") or "Résumé historique conservé exactement sans réécriture stylistique rétroactive.",
+            }
+            entries.append({"id": arg.get("id"), "languages": {"fr": language}})
+            continue
         attestations = arg.get("attestations") or {}
         language = {
-            "status": arg.get("status"),
+            "status": status,
             "thesis_first": attestations.get("thesis_first") is True,
             "general_public_style": attestations.get("general_public_style") is True,
             "sentence_rhythm_reviewed": attestations.get("sentence_rhythm_reviewed") is True,
@@ -1307,6 +1431,25 @@ def _build_content_copy(project_root: Path, source: Path, target: Path, review: 
         "applied_at": timestamp,
         "debate": copy.deepcopy(final["debate"]),
         "arguments": copy.deepcopy(final["arguments"]),
+        "historical_text_preservation": {
+            "policy": HISTORICAL_TEXT_POLICY,
+            "debate": {
+                "page_origin": final["debate"].get("page_origin"),
+                "introduction_provenance": final["debate"].get("introduction_provenance"),
+                "source_sha256": final["debate"].get("historical_introduction_sha256"),
+                "preserved": final["debate"].get("historical_content_preserved") is True,
+            },
+            "arguments": [
+                {
+                    "id": arg.get("id"),
+                    "page_origin": arg.get("page_origin"),
+                    "summary_provenance": arg.get("summary_provenance"),
+                    "source_sha256": arg.get("historical_summary_sha256"),
+                    "preserved": arg.get("historical_content_preserved") is True,
+                }
+                for arg in final["arguments"]
+            ],
+        },
     }
     operations: list[dict[str, Any]] = []
     source_debate = (review.get("debate") or {}).get("source") or {}
@@ -1333,7 +1476,9 @@ def _build_content_copy(project_root: Path, source: Path, target: Path, review: 
     source_arguments = {str(item.get("id")): (item.get("source") or {}) for item in review.get("arguments") or []}
     for arg in final["arguments"]:
         src = source_arguments[arg["id"]]
-        if src.get("summary") != arg["summary"]:
+        before_summary = str(src.get("summary") or "")
+        after_summary = str(arg.get("summary") or "")
+        if before_summary != after_summary:
             operations.append({"entity_type": "argument", "entity_id": arg["id"], "field": "summary", "before": src.get("summary"), "after": arg["summary"]})
         operations.append({"entity_type": "argument", "entity_id": arg["id"], "field": "sources", "before": None, "after": copy.deepcopy(arg["sources"])})
     changeset = {

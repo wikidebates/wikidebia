@@ -238,6 +238,11 @@ Toutes les informations contemporaines sont vérifiées à la date de générati
 
 Les affirmations factuelles importantes sont accompagnées de références en ligne. Aucune sous-partie ne contient de balise `<references />` ou `<references>`. Aucun minimum global ou par sous-partie n’est imposé : une introduction sans affirmation factuelle externe à attribuer peut ne contenir aucun appel `<ref>`.
 
+
+### Préservation historique des textes lors d’une reprise
+
+Pour une page française `preexisting`, le rendu de reprise recopie exactement l’`introduction` historique du Débat et le `résumé` historique de chaque Argument. Si `résumé` était absent, il reste absent. Les profils de style applicables aux nouvelles introductions et aux nouveaux résumés ne déclenchent aucune réécriture rétroactive. Une modification de ces champs requiert une opération corrective séparée explicitement autorisée par le propriétaire et liée aux empreintes avant/après.
+
 Une revue bilingue de l'introduction relie chaque titre réel à une fonction explicite et atteste la définition du sujet, l'explication de la question, les repères historiques et actuels pertinents, les enjeux, la progression, la contextualisation des sections techniques et l'absence de reproduction mécanique du graphe ou d'une checklist de corpus.
 
 ### Liens Wikipédia explicatifs dans l’introduction

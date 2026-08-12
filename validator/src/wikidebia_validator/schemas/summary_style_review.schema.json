@@ -94,6 +94,25 @@
                   {
                     "properties": {
                       "status": {
+                        "const": "translated_historical_source"
+                      },
+                      "historical_source_preserved": {
+                        "const": true
+                      },
+                      "note": {
+                        "type": "string",
+                        "minLength": 12
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "historical_source_preserved",
+                      "note"
+                    ]
+                  },
+                  {
+                    "properties": {
+                      "status": {
                         "const": "owner_removed"
                       },
                       "owner_decision_verified": {

@@ -4,9 +4,9 @@
   "component": "kit",
   "release_source": "VERSIONS.json",
   "release": {
-    "norm": "1.2.81",
-    "validator": "0.4.85",
-    "kit": "2.16.14"
+    "norm": "1.2.83",
+    "validator": "0.4.87",
+    "kit": "2.16.16"
   },
   "emits": {
     "publication_plan": [
@@ -178,11 +178,13 @@
     "graph_review_rejection_correction_loop": "1.0",
     "reviewed_graph_action_execution": "1.0",
     "duplicate_redirect_with_individual_edit_summaries": "1.0",
-    "two_stage_french_checkpoint_publication": "1.0"
+    "two_stage_french_checkpoint_publication": "1.0",
+    "historical_french_text_preservation": "1.0"
   },
   "features": [
     "page_specific_remote_update_edit_summary",
     "signed_edit_summary_policy",
-    "prewrite_edit_summary_recalculation"
+    "prewrite_edit_summary_recalculation",
+    "historical_summary_introduction_preservation"
   ]
 }

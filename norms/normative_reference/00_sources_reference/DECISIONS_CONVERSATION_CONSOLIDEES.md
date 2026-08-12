@@ -397,3 +397,8 @@ La décision antérieure fixant `Corrections` comme résumé distant par défaut
 - La seconde revue française porte exclusivement sur le contenu et la classification : rubriques, mots-clés, introduction, résumés, références et autres contenus éditoriaux. Son réimport déclenche la seconde publication française.
 - La traduction anglaise ne commence qu'après ces deux publications.
 - Chaque page modifiée reçoit un résumé MediaWiki individualisé.
+
+## Décision propriétaire — 12 août 2026 — préservation des résumés et de l’introduction historiques
+
+Lors d’une reprise d’un corpus déjà existant sur le wiki, Wikidéb’IA ne réécrit pas automatiquement les résumés historiques ni l’introduction historique. Un argument historiquement dépourvu de résumé reste dépourvu de résumé. La revue de contenu ordinaire peut modifier les classifications, la documentation et les autres champs explicitement ouverts, mais les résumés et l’introduction historiques sont conservés exactement. Toute réécriture ultérieure de ces champs exige une demande propriétaire explicite et une opération corrective distincte et traçable. Cette décision fait suite à la restauration distante du débat « Un revenu de base doit-il être instauré ? », après publication indésirable de résumés réécrits et d’une nouvelle introduction.
+

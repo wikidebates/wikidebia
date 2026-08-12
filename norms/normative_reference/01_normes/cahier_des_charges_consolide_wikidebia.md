@@ -600,3 +600,9 @@ La revue ne se limite pas aux séries de notions comparables. Chaque sous-partie
 ## Compatibilité par schémas/capacités
 
 Les versions de producteur sont de la provenance. Les workflows actifs déterminent la compatibilité par identifiant/version de schéma et capacités déclarées ; aucune égalité de version de kit ou de validateur ne sert de feature flag éditorial. Les alias MediaWiki historiques sont normalisés à la frontière d’entrée et les sorties nouvelles utilisent exclusivement les noms canoniques.
+
+- **EDT-073 — ACTIVE — automatic+human** : Lors d’une reprise de pages préexistantes, la revue de contenu ordinaire préserve exactement l’introduction et les résumés historiques, y compris l’absence historique de résumé ; toute réécriture exige une opération corrective propriétaire distincte.
+
+- **PUB-052 — ACTIVE — automatic** : Le second checkpoint français d’une reprise ordinaire possède un delta nul sur l’introduction et les résumés historiques ; seuls les contenus nouveaux ou une opération corrective distincte explicitement autorisée peuvent produire un tel delta.
+
+- **VAL-062 — ACTIVE — automatic** : Le verrou français porte les empreintes de l’introduction et des résumés historiques et le validateur compare ces empreintes au wikicode rendu avant publication.

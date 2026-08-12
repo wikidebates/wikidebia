@@ -1793,6 +1793,7 @@ def validate_wikicode(ctx: PackageContext) -> None:
         if tmpl:
             parsed_by_key[page.get('page_id'), page.get('language')] = tmpl
     _validate_legacy_content_preservation(ctx, parsed_by_key)
+    _validate_fr_historical_text_preservation(ctx, parsed_by_key)
     patch = ctx.load_json('patches/interlanguage_fr.validated.json')
     validate_staging = state_at_least(manifest.get('global_status'), 'interlanguage_prepared') or (isinstance(patch, dict) and patch.get('status') in {'validated', 'partially_applied', 'applied'})
     for path in ctx.iter_files('output/*/arguments/*.wiki'):
@@ -1801,6 +1802,97 @@ def validate_wikicode(ctx: PackageContext) -> None:
             ctx.report.error('WDV-FS-006', 'Fichier de page Argument non déclaré dans le manifeste', path=rel)
     validate_aggregates(ctx, pages)
     ctx.report.metrics['wikicode'] = {'declared_pages': len(pages), 'parsed_pages': len(parsed_by_key)}
+
+
+def _validate_fr_historical_text_preservation(
+    ctx: PackageContext,
+    parsed_by_key: dict[tuple[str, str], Template],
+) -> None:
+    """Verify the exact historical introduction/summary hashes emitted by W10.
+
+    The normal French content review for an imported corpus is not an
+    authorization to rewrite these fields.  The content lock therefore records
+    the source hashes captured before the review.  This validator compares the
+    rendered MediaWiki values to those hashes and blocks any regression before
+    publication.
+    """
+    lock_rel = 'data/fr_content_lock.json'
+    if not ctx.exists(lock_rel):
+        return
+    lock = ctx.load_json(lock_rel)
+    if not isinstance(lock, dict):
+        return
+    preservation = lock.get('historical_text_preservation')
+    if not isinstance(preservation, dict):
+        return
+    if preservation.get('policy') != 'preserve_preexisting_exact_v1':
+        ctx.report.error('WDV-EDT-034', 'Politique de préservation des textes historiques inconnue', path=lock_rel)
+        return
+
+    manifest = ctx.manifest() or {}
+    debate_page = next(
+        (p for p in manifest.get('pages', []) if p.get('language') == 'fr' and p.get('page_type') == 'debate'),
+        None,
+    )
+    debate_row = preservation.get('debate')
+    if isinstance(debate_row, dict) and debate_row.get('page_origin') == 'preexisting':
+        if debate_row.get('preserved') is not True:
+            ctx.report.error('WDV-EDT-034', 'Introduction historique non marquée comme préservée', path=lock_rel)
+        source_sha = debate_row.get('source_sha256')
+        if not isinstance(source_sha, str) or not re.fullmatch('[0-9a-f]{64}', source_sha):
+            ctx.report.error('WDV-EDT-034', 'Empreinte source de l’introduction historique invalide', path=lock_rel)
+        elif isinstance(debate_page, dict):
+            tmpl = parsed_by_key.get((debate_page.get('page_id'), 'fr'))
+            actual = (tmpl.one('introduction') if tmpl else None) or ''
+            actual_sha = hashlib.sha256(actual.encode('utf-8')).hexdigest()
+            if actual_sha != source_sha:
+                ctx.report.error(
+                    'WDV-EDT-034',
+                    'Introduction historique modifiée pendant la reprise de contenu',
+                    path=debate_page.get('file_path') or lock_rel,
+                    details={'expected_sha256': source_sha, 'actual_sha256': actual_sha},
+                )
+
+    rows = preservation.get('arguments')
+    if not isinstance(rows, list):
+        ctx.report.error('WDV-EDT-034', 'Inventaire des résumés historiques absent', path=lock_rel)
+        return
+    by_page = {
+        str(p.get('page_id')): p
+        for p in manifest.get('pages', [])
+        if p.get('language') == 'fr' and p.get('page_type') == 'argument' and isinstance(p.get('page_id'), str)
+    }
+    seen: set[str] = set()
+    for row in rows:
+        if not isinstance(row, dict) or not isinstance(row.get('id'), str):
+            ctx.report.error('WDV-EDT-034', 'Entrée de résumé historique invalide', path=lock_rel)
+            continue
+        node_id = str(row['id'])
+        if node_id in seen:
+            ctx.report.error('WDV-EDT-034', 'Entrée de résumé historique dupliquée', path=lock_rel, details={'page_id': node_id})
+            continue
+        seen.add(node_id)
+        if row.get('page_origin') != 'preexisting':
+            continue
+        if row.get('preserved') is not True:
+            ctx.report.error('WDV-EDT-034', 'Résumé historique non marqué comme préservé', path=lock_rel, details={'page_id': node_id})
+        source_sha = row.get('source_sha256')
+        if not isinstance(source_sha, str) or not re.fullmatch('[0-9a-f]{64}', source_sha):
+            ctx.report.error('WDV-EDT-034', 'Empreinte source du résumé historique invalide', path=lock_rel, details={'page_id': node_id})
+            continue
+        page = by_page.get(node_id)
+        if not page:
+            continue
+        tmpl = parsed_by_key.get((node_id, 'fr'))
+        actual = (tmpl.one('résumé') if tmpl else None) or ''
+        actual_sha = hashlib.sha256(actual.encode('utf-8')).hexdigest()
+        if actual_sha != source_sha:
+            ctx.report.error(
+                'WDV-EDT-034',
+                'Résumé historique modifié ou créé pendant la reprise de contenu',
+                path=page.get('file_path') or lock_rel,
+                details={'page_id': node_id, 'expected_sha256': source_sha, 'actual_sha256': actual_sha},
+            )
 
 def validate_aggregates(ctx: PackageContext, pages: list[dict[str, Any]]) -> None:
     pages_by_batch: dict[str, list[dict[str, Any]]] = defaultdict(list)

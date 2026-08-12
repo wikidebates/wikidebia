@@ -4,9 +4,9 @@
   "component": "validator",
   "release_source": "VERSIONS.json",
   "release": {
-    "norm": "1.2.81",
-    "validator": "0.4.85",
-    "kit": "2.16.14"
+    "norm": "1.2.83",
+    "validator": "0.4.87",
+    "kit": "2.16.16"
   },
   "emits": {
     "validator_report": [
@@ -101,6 +101,7 @@
     "workflow_diagnostic_package": "wikidebia-workflow-diagnostic-package-1.0",
     "graph_review_rejection_correction_loop": "1.0",
     "page_specific_remote_update_edit_summary_validation": "1.0",
-    "two_stage_french_checkpoint_validation": "1.0"
+    "two_stage_french_checkpoint_validation": "1.0",
+    "historical_french_text_preservation_validation": "1.0"
   }
 }

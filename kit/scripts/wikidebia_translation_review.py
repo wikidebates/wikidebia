@@ -1306,6 +1306,8 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
     if row.get("keywords_order_preserved_by_relevance") is not True:
         raise TranslationReviewError(f"Ordre de pertinence des keywords non attesté pour {node_id}")
     raw_fr_summary = fr_content.get("summary")
+    summary_provenance = str(fr_content.get("summary_provenance") or "")
+    historical_summary = summary_provenance == "historical_existing"
     summary_absent = raw_fr_summary is None or not str(raw_fr_summary).strip()
     if summary_absent:
         if row.get("summary") not in (None, ""):
@@ -1323,9 +1325,15 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
             if row.get(field) is not True:
                 raise TranslationReviewError(f"Attestation anglaise manquante pour {node_id} : {field}")
     else:
-        summary = _text(row.get("summary"), f"summary de {node_id}", 40)
+        # A protected historical summary remains the authoritative source even
+        # when it would be too short or stylistically non-conforming under the
+        # rules for newly authored summaries.  Translation validation is
+        # differential: require a non-empty faithful target, but do not force
+        # creation-style minimum lengths onto the historical source.
+        summary_minimum = 1 if historical_summary else 40
+        summary = _text(row.get("summary"), f"summary de {node_id}", summary_minimum)
         _assert_english_wikicode_localized(summary, f"le summary de {node_id}")
-        fr_summary = _text(raw_fr_summary, f"résumé français verrouillé de {node_id}", 40)
+        fr_summary = _text(raw_fr_summary, f"résumé français verrouillé de {node_id}", summary_minimum)
         en_metadiscourse = bool(META_DISCOURSE_EN.search(_plain(summary)))
         fr_metadiscourse = bool(META_DISCOURSE_FR.search(_plain(fr_summary)))
         if en_metadiscourse and not fr_metadiscourse:
@@ -1333,7 +1341,19 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         ratio = len(_plain(summary)) / max(1, len(_plain(fr_summary)))
         if not 0.60 <= ratio <= 1.45 or row.get("summary_ratio_reviewed") is not True:
             raise TranslationReviewError(f"Ratio anglais/français hors limites pour {node_id} : {ratio:.2f}")
-        for field in ("metadata_equivalent_to_french", "summary_equivalent_to_french", "title_is_idiomatic", "displayed_title_concision_reviewed", "displayed_title_semantically_equivalent", *SUMMARY_TRUE_FIELDS):
+        required_summary_fields = (
+            "metadata_equivalent_to_french",
+            "summary_equivalent_to_french",
+            "title_is_idiomatic",
+            "displayed_title_concision_reviewed",
+            "displayed_title_semantically_equivalent",
+        )
+        # SUMMARY_TRUE_FIELDS describe the quality profile of newly authored
+        # summaries.  They are not retroactive constraints on an exact
+        # historical source carried into translation.
+        if not historical_summary:
+            required_summary_fields = (*required_summary_fields, *SUMMARY_TRUE_FIELDS)
+        for field in required_summary_fields:
             if row.get(field) is not True:
                 raise TranslationReviewError(f"Attestation anglaise manquante pour {node_id} : {field}")
         if row.get("summary_subject_predicate_scope_modality_reviewed") is not True:
@@ -1374,9 +1394,12 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
             evidence_rows = []
         source_opening, source_closing = _proposition_edges(fr_summary)
         target_opening, target_closing = _proposition_edges(summary)
-        expression = _text(row.get("forceful_expression"), f"expression de force anglaise de {node_id}", 8)
-        if _plain(expression).casefold() not in _plain(summary).casefold():
-            raise TranslationReviewError(f"L’expression de force anglaise est absente du summary de {node_id}")
+        if historical_summary:
+            expression = None
+        else:
+            expression = _text(row.get("forceful_expression"), f"expression de force anglaise de {node_id}", 8)
+            if _plain(expression).casefold() not in _plain(summary).casefold():
+                raise TranslationReviewError(f"L’expression de force anglaise est absente du summary de {node_id}")
         numbers = NUMBER.findall(_plain(summary))
         if numbers and (row.get("quantitative_claims_verified") is not True or len(str(row.get("quantitative_claims_note") or "").strip()) < 12):
             raise TranslationReviewError(f"Donnée chiffrée anglaise non vérifiée dans {node_id}")
@@ -1403,6 +1426,7 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
     return {
         "id": node_id, "canonical_title": canonical, "displayed_title": displayed,
         "sections": sections, "keywords": keywords, "summary": summary, "citations": citations, "sources": final_sources,
+        "summary_provenance": summary_provenance or ("historical_absent" if summary_absent else "translated_source"),
         "summary_length_ratio": (round(ratio, 4) if ratio is not None else None), "forceful_expression": expression,
         "quantitative_claims": numbers, "quantitative_claims_verified": bool(row.get("quantitative_claims_verified")),
         "quantitative_claims_note": row.get("quantitative_claims_note"),
@@ -1566,6 +1590,12 @@ def _merge_summary_review(path: Path, arguments: Sequence[Mapping[str, Any]], de
                 "status": "historical_absent",
                 "historical_absence_verified": True,
                 "note": arg.get("note") or "French source summary is historically absent and the English parameter is omitted.",
+            }
+        elif arg.get("summary_provenance") == "historical_existing":
+            entry.setdefault("languages", {})["en"] = {
+                "status": "translated_historical_source",
+                "historical_source_preserved": True,
+                "note": arg.get("note") or "English summary faithfully translates a protected historical French summary without retroactive style rewriting.",
             }
         else:
             entry.setdefault("languages", {})["en"] = {

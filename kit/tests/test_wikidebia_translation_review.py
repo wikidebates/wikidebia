@@ -163,18 +163,12 @@ def complete_translation_review(workspace: Path) -> None:
         "A0003": ("Demonstration C specifically strengthens argument A in the test debate", "Evidence C strengthens argument A"),
         "A0004": ("Demonstration D distinctly confirms the proposition of the test debate", "Evidence D confirms the thesis"),
     }
-    summaries = {
-        "A0001": "The first line of evidence gives the test debate firmer ground by connecting an explicit premise to the conclusion assigned to node A0001. The mechanism remains accessible and does not pre-empt the objection directed at it.",
-        "A0002": "The second line of evidence puts direct pressure on the test proposition by linking a clear premise to the conclusion assigned to node A0002. The mechanism remains accessible and leaves the opposing objection to its own page.",
-        "A0003": "The third line of evidence strengthens the parent argument by connecting a precise premise to the conclusion assigned to node A0003. The mechanism remains accessible and does not smuggle its own rebuttal into the summary.",
-        "A0004": "The fourth line of evidence gives the test proposition additional support by linking a distinct premise to the conclusion assigned to node A0004. The mechanism remains accessible and does not anticipate the objection against it.",
-    }
-    expressions = {
-        "A0001": "The first line of evidence gives the test debate firmer ground",
-        "A0002": "The second line of evidence puts direct pressure on the test proposition",
-        "A0003": "The third line of evidence strengthens the parent argument",
-        "A0004": "The fourth line of evidence gives the test proposition additional support",
-    }
+    # The French fixture deliberately contains historical one-letter summaries
+    # (A/B/C/D).  Since 2.16.16 preserves them instead of rewriting them in
+    # fr_content_review, the translation fixture must translate the exact source
+    # rather than silently expanding it.
+    summaries = {"A0001": "A", "A0002": "B", "A0003": "C", "A0004": "D"}
+    expressions = {"A0001": "", "A0002": "", "A0003": "", "A0004": ""}
     for item in review["arguments"]:
         nid = item["id"]
         row = item["translation"]
@@ -376,6 +370,18 @@ def test_finalize_rejects_established_name_injected_as_extra_keyword(tmp_path: P
         assert "Keywords anglais divergents" in str(exc)
     else:
         raise AssertionError("Un established-name injecté comme keyword supplémentaire aurait dû être refusé")
+
+
+def test_finalize_accepts_short_historical_summary_without_rewriting_it(tmp_path: Path):
+    project, workspace, work_id = make_french_locked(tmp_path)
+    translation.prepare_review(project, "debat_test", work_id)
+    complete_translation_review(workspace)
+    sealed = translation.finalize_review(project, "debat_test", work_id)
+    first = next(row for row in json.loads((workspace / "reviews/en/translation_review.json").read_text(encoding="utf-8"))["final_values"]["arguments"] if row["id"] == "A0001")
+    assert first["summary"] == "A"
+    assert first["summary_provenance"] == "historical_existing"
+    assert first["summary_length_ratio"] == 1.0
+    assert first["forceful_expression"] is None
 
 
 def test_finalize_rejects_bad_summary_ratio(tmp_path: Path):
