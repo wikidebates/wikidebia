@@ -7,9 +7,9 @@ La phase de contenu intervient après le verrouillage et la publication du graph
 
 ## Protection des textes historiques
 
-Pour une page importée avec `page_origin=preexisting`, l’introduction du Débat et les résumés des Arguments sont **en lecture seule dans la reprise ordinaire**. `--prepare` recopie leur valeur historique avec `decision=keep`; une absence historique de résumé reste absente. `--finalize` bloque toute tentative de modification de ces champs. Les règles de style de création ne sont pas appliquées rétroactivement à un texte simplement préservé.
+Pour une page importée avec `page_origin=preexisting`, l’introduction du Débat et les résumés des Arguments sont **protégés par défaut**. `--prepare` recopie leur valeur historique avec `decision=keep`; une absence historique de résumé reste absente. ChatGPT peut renseigner `suggested_change` sans modifier `proposed_*`. Les règles de style de création ne sont pas appliquées rétroactivement à un texte simplement préservé.
 
-Une réécriture volontaire de l’introduction ou d’un résumé historique doit être effectuée plus tard par une opération corrective distincte explicitement autorisée par le propriétaire ; elle ne se débloque pas en modifiant le JSON de `fr_content_review`.
+Si le propriétaire approuve une correction pendant que la revue est ouverte, le ZIP rendu peut porter `decision=change`, la valeur finale et un `historical_change_request` précis (`field_key`, `final_value`, `change_type`, `rationale`, `owner_instruction_reference`). Ce contenu ne s’autorise jamais lui-même : `./wikidebia review-import` bloque encore le delta. Après accord explicite du propriétaire, lancer le **même ZIP** avec `./wikidebia review-import --authorize-historical-changes` (ou avec le `debate_id` en cas d’ambiguïté). Le kit crée alors localement un reçu de consentement lié au ZIP exact et à chaque SHA avant/après, finalise la même `fr_content_review` et publie le delta au checkpoint français n°2. Une autorisation ne couvre aucun autre champ. Une opération corrective séparée n’est nécessaire que si la demande arrive après la clôture du checkpoint.
 
 ## 1. Préparer la revue
 

@@ -129,6 +129,6 @@ Après validation de la revue française de contenu, `review-import` publie auto
 Le workflow de reprise publie le français deux fois avant traduction :
 
 1. après graphe + titres : relations, placements, renommages, titres affichés et retraits/fusions validés ;
-2. après contenu : rubriques, mots-clés, références et autres champs ouverts ; sur des pages préexistantes, l’introduction et les résumés historiques restent strictement inchangés, absence historique comprise.
+2. après contenu : rubriques, mots-clés, références et autres champs ouverts ; sur des pages préexistantes, l’introduction et les résumés historiques restent inchangés par défaut, mais les deltas précisément autorisés par le propriétaire pendant `fr_content_review` sont publiés dans ce même checkpoint ; l’absence historique reste une absence sauf création nominativement autorisée.
 
 Le premier checkpoint préserve le contenu/classification importé ; le second se calcule contre l’état publié du premier et interdit les mutations structurelles. Les deux utilisent des résumés MediaWiki individualisés.

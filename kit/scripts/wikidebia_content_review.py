@@ -5,10 +5,11 @@ This stage starts after the graph/title checkpoint has been applied and
 published. It reviews classification (rubriques and keywords), the debate
 heading, Wikipedia articles, documentary buckets and source selection.  For a
 corpus imported from existing wiki pages, the historical debate introduction
-and argument summaries are protected inputs: the ordinary content-review flow
-may inspect them but never rewrites them.  A historically absent summary stays
-absent.  Any intentional rewrite must use a separate owner-authorized
-corrective operation. No English text is created.
+and argument summaries are protected by default.  The review may inspect them,
+record suggestions, and — only after an explicit owner authorization recorded by
+the orchestration layer — apply a scoped change during the same content-review
+phase.  A historically absent summary stays absent unless its creation is
+explicitly authorized. No English text is created.
 """
 
 from __future__ import annotations
@@ -64,7 +65,16 @@ CONTENT_LOCK_SCHEMA = "wikidebia-fr-content-lock-1.0"
 CONTENT_CHANGESET_SCHEMA = "wikidebia-fr-content-changeset-1.0"
 SOURCES_WORKING_SCHEMA = "wikidebia-source-registry-working-1.0"
 CLASSIFICATION_REVIEW_PATH = "reviews/fr/classification_review.json"
-HISTORICAL_TEXT_POLICY = "preserve_preexisting_exact_v1"
+HISTORICAL_TEXT_POLICY = "preserve_by_default_owner_authorized_v2"
+LEGACY_HISTORICAL_TEXT_POLICIES = {"preserve_preexisting_exact_v1"}
+HISTORICAL_AUTHORIZATION_SCHEMA = "wikidebia-owner-historical-text-authorization-1.0"
+HISTORICAL_AUTHORIZATION_PATH = "reviews/fr/historical_text_authorization.json"
+HISTORICAL_CHANGE_TYPES = {
+    "orthography", "grammar", "punctuation", "typography", "typo",
+    "mediawiki_syntax", "corruption", "structure", "active_rule",
+    "substantive_rewrite", "create_summary", "other",
+}
+
 
 PAGE_PARAMETER_ALIASES = {
     "débat-dédié": ("débat-dédié", "débat-détaillé"),
@@ -378,15 +388,17 @@ def _blank_intro_review(source: Mapping[str, Any]) -> dict[str, Any]:
         "topic_label_rationale": "",
         "common_acronym": None,
         "complete_topic_initial_capital_justification": None,
-        # This workflow is a reprise of imported pages.  The historical
-        # introduction is therefore immutable here.  Keeping the source value
-        # in the editable ledger makes the preservation visible to reviewers,
-        # while finalization rejects any change to either the decision or the
-        # proposed value.
+        # Historical text is preserved by default.  Reviewers may record a
+        # suggestion without applying it.  A changed proposed value is accepted
+        # only when an owner authorization receipt generated locally by the
+        # orchestration layer covers this exact field and before/after hash.
         "historical_text_policy": HISTORICAL_TEXT_POLICY,
+        "historical_text_status": "preserved",
+        "suggested_change": None,
+        "historical_change_request": None,
         "introduction_decision": "keep",
         "proposed_introduction": source.get("introduction"),
-        "introduction_rationale": "Introduction historique conservée exactement ; toute réécriture exige une opération corrective explicitement autorisée par le propriétaire.",
+        "introduction_rationale": "Introduction historique préservée par défaut ; une suggestion peut être enregistrée sans être appliquée, et toute modification exige un consentement propriétaire explicite et traçable.",
         "subsections": [
             {
                 "title": row.get("title"),
@@ -420,11 +432,14 @@ def _blank_summary_review(source: Mapping[str, Any]) -> dict[str, Any]:
     return {
         "status": "pending",
         "historical_text_policy": HISTORICAL_TEXT_POLICY,
+        "historical_text_status": "preserved",
+        "suggested_change": None,
+        "historical_change_request": None,
         "historical_summary_present": bool(historical_summary.strip()),
         "historical_summary_sha256": hashlib.sha256(historical_summary.encode("utf-8")).hexdigest(),
         "summary_decision": "keep",
         "proposed_summary": source.get("summary"),
-        "summary_rationale": "Résumé historique conservé exactement ; son absence historique reste une absence et aucune génération de remplissage n’est autorisée.",
+        "summary_rationale": "Résumé historique préservé par défaut ; son absence historique reste une absence sauf création explicitement autorisée pour ce champ.",
         "documentation_decisions": {bucket: "pending" for bucket in ARGUMENT_BUCKETS},
         "proposed_sources": {bucket: [] for bucket in ARGUMENT_BUCKETS},
         "documentation_rationale": "",
@@ -437,6 +452,211 @@ def _blank_summary_review(source: Mapping[str, Any]) -> dict[str, Any]:
         "note": "",
     }
 
+
+
+def _historical_text_sha256(value: Any) -> str:
+    return hashlib.sha256(str(value or "").encode("utf-8")).hexdigest()
+
+
+def _historical_change_request(
+    review: Mapping[str, Any], *, field_key: str, historical_value: Any, final_value: Any,
+) -> dict[str, Any] | None:
+    request = review.get("historical_change_request")
+    if request in (None, {}):
+        return None
+    if not isinstance(request, dict):
+        raise ContentReviewError(f"Demande de modification historique invalide pour {field_key}")
+    if str(request.get("field_key") or "") != field_key:
+        raise ContentReviewError(f"Portée de la demande historique invalide pour {field_key}")
+    change_type = str(request.get("change_type") or "")
+    if change_type not in HISTORICAL_CHANGE_TYPES:
+        raise ContentReviewError(f"Type de modification historique invalide pour {field_key} : {change_type!r}")
+    rationale = str(request.get("rationale") or "").strip()
+    owner_ref = str(request.get("owner_instruction_reference") or "").strip()
+    if len(rationale) < 12 or len(owner_ref) < 3:
+        raise ContentReviewError(f"Justification ou référence à la décision propriétaire absente pour {field_key}")
+    requested_final = request.get("final_value")
+    if str(requested_final or "") != str(final_value or ""):
+        raise ContentReviewError(f"La valeur finale demandée ne correspond pas à la proposition pour {field_key}")
+    historical_sha = _historical_text_sha256(historical_value)
+    final_sha = _historical_text_sha256(final_value)
+    if request.get("historical_sha256") not in (None, historical_sha):
+        raise ContentReviewError(f"Empreinte historique déclarée incohérente pour {field_key}")
+    if request.get("final_sha256") not in (None, final_sha):
+        raise ContentReviewError(f"Empreinte finale déclarée incohérente pour {field_key}")
+    return {
+        "field_key": field_key,
+        "change_type": change_type,
+        "rationale": rationale,
+        "owner_instruction_reference": owner_ref,
+        "historical_sha256": historical_sha,
+        "final_sha256": final_sha,
+        "historical_present": bool(str(historical_value or "").strip()),
+        "final_present": bool(str(final_value or "").strip()),
+    }
+
+
+def normalize_historical_review_document(review_doc: Mapping[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Normalize old content-review payloads without discarding editorial work.
+
+    A review prepared before the consent-aware format may contain proposed
+    introduction/summary deltas created by the old workflow.  Such deltas are
+    retained as ``suggested_change`` but are reset to ``keep`` unless the
+    returned payload contains a new explicit ``historical_change_request``.
+    New-format payloads are never silently normalized: arbitrary historical
+    deltas remain visible and will be rejected if not covered by a request and
+    a locally generated owner authorization.
+    """
+    doc = copy.deepcopy(dict(review_doc))
+    migration = {
+        "legacy_format_detected": False,
+        "suggestions_recovered": 0,
+        "requests_preserved": 0,
+        "fields_normalized": 0,
+    }
+
+    def normalize_one(
+        holder: dict[str, Any], source: Mapping[str, Any], *, decision_key: str,
+        proposed_key: str, historical_key: str, field_key: str,
+        present_key: str | None = None, hash_key: str | None = None,
+    ) -> None:
+        if str(source.get("page_origin") or "preexisting") != "preexisting":
+            return
+        historical = source.get(historical_key)
+        historical_text = str(historical or "")
+        legacy = not isinstance(holder.get("historical_text_status"), str)
+        if legacy:
+            migration["legacy_format_detected"] = True
+        holder["historical_text_policy"] = HISTORICAL_TEXT_POLICY
+        holder.setdefault("historical_text_status", "preserved")
+        holder.setdefault("suggested_change", None)
+        holder.setdefault("historical_change_request", None)
+        if present_key:
+            holder[present_key] = bool(historical_text.strip())
+        if hash_key:
+            holder[hash_key] = _historical_text_sha256(historical_text)
+
+        proposed = holder.get(proposed_key)
+        decision = str(holder.get(decision_key) or "")
+        delta = decision == "change" and str(proposed or "") != historical_text
+        request = holder.get("historical_change_request")
+        if legacy and delta and not isinstance(request, dict):
+            # Preserve the old proposal as a suggestion rather than silently
+            # applying a rewrite that predates the consent-aware contract.
+            holder["suggested_change"] = {
+                "value": proposed,
+                "change_type": "other",
+                "rationale": str(holder.get("summary_rationale") or holder.get("introduction_rationale") or "Proposition héritée d’une revue préparée avant le contrat de consentement explicite.").strip(),
+                "migrated_from_legacy_review": True,
+            }
+            holder[decision_key] = "keep"
+            holder[proposed_key] = historical
+            holder["historical_text_status"] = "preserved"
+            migration["suggestions_recovered"] += 1
+            migration["fields_normalized"] += 1
+        elif legacy and not delta:
+            # An old keep/pending decision is normalized to the safe default.
+            holder[decision_key] = "keep"
+            holder[proposed_key] = historical
+            holder["historical_text_status"] = "preserved"
+            migration["fields_normalized"] += 1
+        elif isinstance(request, dict):
+            migration["requests_preserved"] += 1
+
+    debate = doc.get("debate")
+    if isinstance(debate, dict) and isinstance(debate.get("source"), dict) and isinstance(debate.get("review"), dict):
+        normalize_one(
+            debate["review"], debate["source"], decision_key="introduction_decision",
+            proposed_key="proposed_introduction", historical_key="introduction",
+            field_key=f"debate:{doc.get('debate_id')}:introduction",
+        )
+    arguments = doc.get("arguments")
+    if isinstance(arguments, list):
+        for item in arguments:
+            if not isinstance(item, dict) or not isinstance(item.get("source"), dict) or not isinstance(item.get("review"), dict):
+                continue
+            node_id = str(item.get("id") or item["source"].get("id") or "")
+            normalize_one(
+                item["review"], item["source"], decision_key="summary_decision",
+                proposed_key="proposed_summary", historical_key="summary",
+                field_key=f"argument:{node_id}:summary",
+                present_key="historical_summary_present", hash_key="historical_summary_sha256",
+            )
+    return doc, migration
+
+
+def collect_historical_change_requests(review_doc: Mapping[str, Any]) -> list[dict[str, Any]]:
+    """Return exact historical deltas requested by the editable review payload."""
+    changes: list[dict[str, Any]] = []
+    debate = review_doc.get("debate") or {}
+    if isinstance(debate, dict):
+        source = debate.get("source") or {}
+        rev = debate.get("review") or {}
+        if isinstance(source, dict) and isinstance(rev, dict) and str(source.get("page_origin") or "preexisting") == "preexisting":
+            historical = source.get("introduction")
+            final = rev.get("proposed_introduction") if rev.get("introduction_decision") == "change" else historical
+            if str(final or "") != str(historical or ""):
+                field_key = f"debate:{review_doc.get('debate_id')}:introduction"
+                request = _historical_change_request(rev, field_key=field_key, historical_value=historical, final_value=final)
+                if request is None:
+                    raise ContentReviewError(f"Modification de l’introduction historique non couverte par une demande d’autorisation : {field_key}")
+                changes.append(request)
+    arguments = review_doc.get("arguments") or []
+    if isinstance(arguments, list):
+        for item in arguments:
+            if not isinstance(item, dict):
+                continue
+            source = item.get("source") or {}
+            rev = item.get("review") or {}
+            if not isinstance(source, dict) or not isinstance(rev, dict) or str(source.get("page_origin") or "preexisting") != "preexisting":
+                continue
+            node_id = str(item.get("id") or source.get("id") or "")
+            historical = source.get("summary")
+            final = rev.get("proposed_summary") if rev.get("summary_decision") == "change" else historical
+            if str(final or "") != str(historical or ""):
+                field_key = f"argument:{node_id}:summary"
+                request = _historical_change_request(rev, field_key=field_key, historical_value=historical, final_value=final)
+                if request is None:
+                    raise ContentReviewError(f"Modification du résumé historique non couverte par une demande d’autorisation : {field_key}")
+                changes.append(request)
+    return changes
+
+
+def _authorization_hash(value: Mapping[str, Any]) -> str:
+    body = copy.deepcopy(dict(value))
+    body.pop("authorization_sha256", None)
+    return sha256_bytes(canonical_json(body))
+
+
+def _load_historical_authorization(workspace: Path, review: Mapping[str, Any]) -> dict[str, dict[str, Any]]:
+    path = workspace / HISTORICAL_AUTHORIZATION_PATH
+    requested = collect_historical_change_requests(review)
+    if not requested:
+        return {}
+    if not path.is_file():
+        raise ContentReviewError(
+            "Une ou plusieurs modifications de texte historique ont été demandées sans autorisation propriétaire locale ; "
+            "réimportez le même paquet avec --authorize-historical-changes après accord explicite du propriétaire"
+        )
+    auth = load_json(path, "autorisation propriétaire des textes historiques")
+    if auth.get("schema") != HISTORICAL_AUTHORIZATION_SCHEMA or auth.get("debate_id") != review.get("debate_id") or auth.get("work_id") != review.get("work_id"):
+        raise ContentReviewError("Autorisation propriétaire de texte historique invalide")
+    if auth.get("authorization_sha256") != _authorization_hash(auth):
+        raise ContentReviewError("Empreinte de l’autorisation propriétaire invalide")
+    if auth.get("review_payload_sha256") != content_review_sha256(review):
+        raise ContentReviewError("L’autorisation propriétaire ne correspond plus au contenu exact de la revue")
+    auth_rows = auth.get("changes")
+    if not isinstance(auth_rows, list):
+        raise ContentReviewError("Portée de l’autorisation propriétaire absente")
+    by_key = {str(row.get("field_key")): row for row in auth_rows if isinstance(row, dict)}
+    if set(by_key) != {row["field_key"] for row in requested}:
+        raise ContentReviewError("La portée autorisée ne correspond pas exactement aux changements historiques demandés")
+    for req in requested:
+        row = by_key[req["field_key"]]
+        for key in ("historical_sha256", "final_sha256", "change_type"):
+            if row.get(key) != req.get(key):
+                raise ContentReviewError(f"Autorisation propriétaire divergente pour {req['field_key']} ({key})")
+    return by_key
 
 
 def _classification_review_template(reviewed: Path, debate_id: str, work_id: str) -> dict[str, Any]:
@@ -534,7 +754,7 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
     now = now_iso()
     review = {
         "schema": CONTENT_REVIEW_SCHEMA,
-        "schema_version": "1.0",
+        "schema_version": "1.1",
         "normative_revision": NORM_VERSION,
         "kit_version": KIT_VERSION,
         "debate_id": debate_id,
@@ -887,7 +1107,10 @@ def _validated_specialized_term_inventory(introduction: str, raw_inventory: Any,
         clean.append({'subsection_title':title,'scan_complete':True,'scan_note':str(inv['scan_note']).strip(),'terms':rows})
     return clean
 
-def _validate_debate(review: Mapping[str, Any], source: Mapping[str, Any], sources: Mapping[str, Mapping[str, Any]], debate_id: str) -> dict[str, Any]:
+def _validate_debate(
+    review: Mapping[str, Any], source: Mapping[str, Any], sources: Mapping[str, Mapping[str, Any]],
+    debate_id: str, authorization: Mapping[str, Mapping[str, Any]] | None = None,
+) -> dict[str, Any]:
     if review.get("status") != "approved":
         raise ContentReviewError("La revue de la page Débat n’est pas approuvée")
     subject = _text(_select(review, "subject_decision", source.get("subject"), "proposed_subject"), "sujet", 2)
@@ -898,30 +1121,49 @@ def _validate_debate(review: Mapping[str, Any], source: Mapping[str, Any], sourc
     if first_alpha and first_alpha.isupper() and len(str(review.get("complete_topic_initial_capital_justification") or "").strip()) < 12:
         raise ContentReviewError("La majuscule initiale de sujet-développé n’est pas justifiée")
     historical_intro = str(source.get("introduction") or "")
-    historical_intro_preserved = source.get("page_origin") == "preexisting"
-    if historical_intro_preserved:
+    historical_intro_protected = source.get("page_origin") == "preexisting"
+    historical_intro_authorized = False
+    authorization_row: Mapping[str, Any] | None = None
+    if historical_intro_protected:
         if review.get("historical_text_policy") != HISTORICAL_TEXT_POLICY:
-            raise ContentReviewError("Politique de préservation de l’introduction historique absente ou invalide")
-        if review.get("introduction_decision") != "keep":
-            raise ContentReviewError(
-                "L’introduction historique est protégée dans la revue de contenu ordinaire ; "
-                "une réécriture exige une opération corrective explicitement autorisée par le propriétaire"
+            raise ContentReviewError("Politique de consentement de l’introduction historique absente ou invalide")
+        decision = str(review.get("introduction_decision") or "")
+        field_key = f"debate:{debate_id}:introduction"
+        if decision == "keep":
+            if str(review.get("proposed_introduction") or "") != historical_intro:
+                raise ContentReviewError("Une introduction historique déclarée préservée doit rester identique à la source")
+            if review.get("historical_text_status") not in {"preserved", None}:
+                raise ContentReviewError("Statut de l’introduction historique incohérent avec decision=keep")
+            introduction = historical_intro
+        elif decision == "change":
+            introduction = str(review.get("proposed_introduction") or "")
+            request = _historical_change_request(
+                review, field_key=field_key, historical_value=historical_intro, final_value=introduction,
             )
-        if str(review.get("proposed_introduction") or "") != historical_intro:
-            raise ContentReviewError("La valeur proposée de l’introduction historique a été modifiée")
-        introduction = historical_intro
+            if request is None:
+                raise ContentReviewError("Modification d’introduction historique sans demande d’autorisation structurée")
+            authorization_row = (authorization or {}).get(field_key)
+            if not isinstance(authorization_row, Mapping):
+                raise ContentReviewError("Modification d’introduction historique sans consentement propriétaire local")
+            if authorization_row.get("historical_sha256") != request["historical_sha256"] or authorization_row.get("final_sha256") != request["final_sha256"]:
+                raise ContentReviewError("Le consentement propriétaire ne couvre pas la valeur exacte de l’introduction")
+            if review.get("historical_text_status") not in {"authorization_requested", "authorized_change"}:
+                raise ContentReviewError("Le statut d’une introduction historique modifiée doit signaler une autorisation demandée")
+            historical_intro_authorized = True
+        else:
+            raise ContentReviewError("Décision invalide pour l’introduction historique : keep ou change attendu")
     else:
         introduction = _text(_select(review, "introduction_decision", source.get("introduction"), "proposed_introduction"), "introduction", 30)
     subsection_values = _subsections(introduction)
-    if not historical_intro_preserved and not subsection_values:
+    if (not historical_intro_protected or historical_intro_authorized) and not subsection_values:
         raise ContentReviewError("L’introduction doit contenir au moins une Sous-partie")
     ledger = review.get("subsections")
     if not isinstance(ledger, list) or [row.get("title") for row in ledger if isinstance(row, dict)] != [row["title"] for row in subsection_values]:
         raise ContentReviewError("La revue des sous-parties ne correspond pas à l’introduction retenue")
-    if historical_intro_preserved:
-        # Current creation/rewrite quality gates are intentionally not applied
-        # retroactively to an imported introduction.  We only attest exact
-        # preservation here; documentation/classification remain reviewable.
+    if historical_intro_protected:
+        # Current creation-style gates are not retroactive.  This remains true
+        # for a scoped owner-authorized correction: consent opens the requested
+        # field, it does not force a wholesale rewrite to current preferences.
         specialized_term_inventory = []
         terminal_period_sentence_exceptions = []
     else:
@@ -1021,49 +1263,81 @@ def _validate_debate(review: Mapping[str, Any], source: Mapping[str, Any], sourc
         "reviewer": review.get("reviewer"),
         "reviewed_at": review.get("reviewed_at"),
         "note": review.get("note"),
-        "attestations": ({field: True for field in INTRO_TRUE_FIELDS} if not historical_intro_preserved else {}),
+        "attestations": ({field: True for field in INTRO_TRUE_FIELDS} if not historical_intro_protected else {}),
         "terminal_period_sentence_exceptions": terminal_period_sentence_exceptions,
         "specialized_term_inventory": specialized_term_inventory,
         "introduction_provenance": (
-            "historical_existing" if historical_intro_preserved and bool(historical_intro.strip())
-            else "historical_absent" if historical_intro_preserved
+            "historical_authorized_change" if historical_intro_protected and historical_intro_authorized
+            else "historical_existing" if historical_intro_protected and bool(historical_intro.strip())
+            else "historical_absent" if historical_intro_protected
             else "reviewed_or_generated"
         ),
+        "historical_introduction_present": bool(historical_intro.strip()) if historical_intro_protected else None,
         "historical_introduction_sha256": (
-            hashlib.sha256(historical_intro.encode("utf-8")).hexdigest() if historical_intro_preserved else None
+            hashlib.sha256(historical_intro.encode("utf-8")).hexdigest() if historical_intro_protected else None
         ),
-        "historical_content_preserved": historical_intro_preserved,
+        "historical_final_introduction_sha256": (
+            hashlib.sha256(str(introduction or "").encode("utf-8")).hexdigest() if historical_intro_protected else None
+        ),
+        "historical_text_decision": ("authorized_change" if historical_intro_authorized else "preserved") if historical_intro_protected else None,
+        "historical_authorization": copy.deepcopy(dict(authorization_row)) if historical_intro_authorized and authorization_row else None,
+        "historical_content_preserved": historical_intro_protected and not historical_intro_authorized,
         "page_origin": source.get("page_origin", "preexisting"),
         "preserved_parameters": copy.deepcopy(source.get("preserved_parameters") or {}),
     }
 
 
-def _validate_argument(item: Mapping[str, Any], sources: Mapping[str, Mapping[str, Any]]) -> dict[str, Any]:
+def _validate_argument(
+    item: Mapping[str, Any], sources: Mapping[str, Mapping[str, Any]],
+    authorization: Mapping[str, Mapping[str, Any]] | None = None,
+) -> dict[str, Any]:
     node_id = _text(item.get("id"), "identifiant d’argument")
     source = item.get("source") or {}
     review = item.get("review") or {}
     if review.get("status") != "approved":
         raise ContentReviewError(f"Revue non approuvée pour {node_id}")
     historical_summary = str(source.get("summary") or "")
-    historical_summary_preserved = source.get("page_origin") == "preexisting"
-    if historical_summary_preserved:
+    historical_summary_protected = source.get("page_origin") == "preexisting"
+    historical_summary_authorized = False
+    authorization_row: Mapping[str, Any] | None = None
+    if historical_summary_protected:
         if review.get("historical_text_policy") != HISTORICAL_TEXT_POLICY:
-            raise ContentReviewError(f"Politique de préservation du résumé historique absente ou invalide pour {node_id}")
-        if review.get("summary_decision") != "keep":
-            raise ContentReviewError(
-                f"Le résumé historique de {node_id} est protégé dans la revue de contenu ordinaire ; "
-                "une réécriture exige une opération corrective explicitement autorisée par le propriétaire"
-            )
-        if str(review.get("proposed_summary") or "") != historical_summary:
-            raise ContentReviewError(f"La valeur proposée du résumé historique a été modifiée pour {node_id}")
+            raise ContentReviewError(f"Politique de consentement du résumé historique absente ou invalide pour {node_id}")
         expected_hash = hashlib.sha256(historical_summary.encode("utf-8")).hexdigest()
         if review.get("historical_summary_sha256") != expected_hash:
             raise ContentReviewError(f"Empreinte du résumé historique divergente pour {node_id}")
         if bool(review.get("historical_summary_present")) != bool(historical_summary.strip()):
             raise ContentReviewError(f"Présence historique du résumé incohérente pour {node_id}")
-        summary = historical_summary if historical_summary.strip() else None
+        decision = str(review.get("summary_decision") or "")
+        field_key = f"argument:{node_id}:summary"
+        if decision == "keep":
+            if str(review.get("proposed_summary") or "") != historical_summary:
+                raise ContentReviewError(f"Un résumé historique déclaré préservé doit rester identique pour {node_id}")
+            if review.get("historical_text_status") not in {"preserved", None}:
+                raise ContentReviewError(f"Statut historique incohérent avec decision=keep pour {node_id}")
+            summary = historical_summary if historical_summary.strip() else None
+        elif decision == "change":
+            proposed_summary = str(review.get("proposed_summary") or "")
+            request = _historical_change_request(
+                review, field_key=field_key, historical_value=historical_summary, final_value=proposed_summary,
+            )
+            if request is None:
+                raise ContentReviewError(f"Modification du résumé historique sans demande d’autorisation structurée pour {node_id}")
+            authorization_row = (authorization or {}).get(field_key)
+            if not isinstance(authorization_row, Mapping):
+                raise ContentReviewError(f"Modification du résumé historique sans consentement propriétaire local pour {node_id}")
+            if authorization_row.get("historical_sha256") != request["historical_sha256"] or authorization_row.get("final_sha256") != request["final_sha256"]:
+                raise ContentReviewError(f"Le consentement propriétaire ne couvre pas la valeur exacte du résumé {node_id}")
+            if review.get("historical_text_status") not in {"authorization_requested", "authorized_change"}:
+                raise ContentReviewError(f"Le statut d’un résumé historique modifié doit signaler une autorisation demandée pour {node_id}")
+            historical_summary_authorized = True
+            summary = proposed_summary if proposed_summary.strip() else None
+        else:
+            raise ContentReviewError(f"Décision invalide pour le résumé historique {node_id} : keep ou change attendu")
+        # A scoped authorized correction does not retroactively activate the
+        # creation-style checklist for the whole historical summary.
         expression = None
-        numbers: list[str] = []
+        numbers = NUMBER.findall(_plain(summary or ""))
     else:
         summary = _text(_select(review, "summary_decision", source.get("summary"), "proposed_summary"), f"résumé de {node_id}", 40)
         if META_DISCOURSE.search(_plain(summary)):
@@ -1107,19 +1381,29 @@ def _validate_argument(item: Mapping[str, Any], sources: Mapping[str, Mapping[st
         "citations": copy.deepcopy(source.get("citations") or []),
         "sources": selected_by_type,
         "status": (
-            "historical_existing" if historical_summary_preserved and bool(historical_summary.strip())
-            else "historical_absent" if historical_summary_preserved
+            "historical_authorized_creation" if historical_summary_protected and historical_summary_authorized and not bool(historical_summary.strip()) and bool(str(summary or "").strip())
+            else "historical_authorized_change" if historical_summary_protected and historical_summary_authorized
+            else "historical_existing" if historical_summary_protected and bool(historical_summary.strip())
+            else "historical_absent" if historical_summary_protected
             else "revised" if review.get("summary_decision") == "change" else "approved"
         ),
         "summary_provenance": (
-            "historical_existing" if historical_summary_preserved and bool(historical_summary.strip())
-            else "historical_absent" if historical_summary_preserved
+            "historical_authorized_creation" if historical_summary_protected and historical_summary_authorized and not bool(historical_summary.strip()) and bool(str(summary or "").strip())
+            else "historical_authorized_change" if historical_summary_protected and historical_summary_authorized
+            else "historical_existing" if historical_summary_protected and bool(historical_summary.strip())
+            else "historical_absent" if historical_summary_protected
             else "reviewed_or_generated"
         ),
+        "historical_summary_present": bool(historical_summary.strip()) if historical_summary_protected else None,
         "historical_summary_sha256": (
-            hashlib.sha256(historical_summary.encode("utf-8")).hexdigest() if historical_summary_preserved else None
+            hashlib.sha256(historical_summary.encode("utf-8")).hexdigest() if historical_summary_protected else None
         ),
-        "historical_content_preserved": historical_summary_preserved,
+        "historical_final_summary_sha256": (
+            hashlib.sha256(str(summary or "").encode("utf-8")).hexdigest() if historical_summary_protected else None
+        ),
+        "historical_text_decision": ("authorized_change" if historical_summary_authorized else "preserved") if historical_summary_protected else None,
+        "historical_authorization": copy.deepcopy(dict(authorization_row)) if historical_summary_authorized and authorization_row else None,
+        "historical_content_preserved": historical_summary_protected and not historical_summary_authorized,
         "forceful_expression": expression,
         "quantitative_claims": numbers,
         "quantitative_claims_verified": bool(numbers) and True or bool(review.get("quantitative_claims_verified")),
@@ -1127,7 +1411,7 @@ def _validate_argument(item: Mapping[str, Any], sources: Mapping[str, Mapping[st
         "reviewer": review.get("reviewer"),
         "reviewed_at": review.get("reviewed_at"),
         "note": review.get("note"),
-        "attestations": ({field: True for field in SUMMARY_TRUE_FIELDS} if not historical_summary_preserved else {}),
+        "attestations": ({field: True for field in SUMMARY_TRUE_FIELDS} if not historical_summary_protected else {}),
         "page_origin": source.get("page_origin", "preexisting"),
         "preserved_parameters": copy.deepcopy(source.get("preserved_parameters") or {}),
     }
@@ -1185,8 +1469,11 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
         })
         classification_final["review_sha256"] = metadata_review_sha256(classification_final)
         write_json(classification_path, classification_final)
+    authorization = _load_historical_authorization(workspace, review)
     debate_block = review.get("debate") or {}
-    final_debate = _validate_debate(debate_block.get("review") or {}, debate_block.get("source") or {}, by_source, debate_id)
+    final_debate = _validate_debate(
+        debate_block.get("review") or {}, debate_block.get("source") or {}, by_source, debate_id, authorization,
+    )
     argument_items = review.get("arguments")
     if not isinstance(argument_items, list):
         raise ContentReviewError("Liste des arguments absente de la revue de contenu")
@@ -1196,7 +1483,7 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
     }
     if {str(item.get("id")) for item in argument_items if isinstance(item, dict)} != active_ids:
         raise ContentReviewError("La revue de contenu ne couvre pas exactement les arguments actifs")
-    final_arguments = [_validate_argument(item, by_source) for item in argument_items]
+    final_arguments = [_validate_argument(item, by_source, authorization) for item in argument_items]
     global_review = review.get("global_review")
     if not isinstance(global_review, dict):
         raise ContentReviewError("Revue globale absente")
@@ -1238,6 +1525,11 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
             "debate_documentary_references": sum(len(v) for v in final_debate["documentation"].values()),
             "argument_documentary_references": sum(len(ids) for arg in final_arguments for ids in arg["sources"].values()),
             "citations": sum(len(arg.get("citations") or []) for arg in final_arguments),
+            "authorized_historical_text_changes": len(authorization),
+        },
+        "historical_authorization": {
+            "path": HISTORICAL_AUTHORIZATION_PATH if authorization else None,
+            "changes": sorted(authorization),
         },
         "review_sha256": None,
     })
@@ -1269,7 +1561,7 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
 
 def _introduction_review(final: Mapping[str, Any]) -> dict[str, Any]:
     provenance = str(final.get("introduction_provenance") or "reviewed_or_generated")
-    historical = provenance in {"historical_existing", "historical_absent"}
+    historical = provenance in {"historical_existing", "historical_absent", "historical_authorized_change"}
     entry: dict[str, Any] = {
         "language": "fr",
         "status": provenance if historical else "approved",
@@ -1282,11 +1574,19 @@ def _introduction_review(final: Mapping[str, Any]) -> dict[str, Any]:
         "specialized_term_inventory": copy.deepcopy(final.get("specialized_term_inventory") or []),
     }
     if historical:
+        authorized = provenance == "historical_authorized_change"
         entry.update({
-            "historical_content_preserved": True,
+            "historical_content_preserved": not authorized,
+            "owner_authorized_change": authorized,
             "historical_source_sha256": final.get("historical_introduction_sha256"),
+            "authorized_final_sha256": final.get("historical_final_introduction_sha256") if authorized else None,
+            "authorization": copy.deepcopy(final.get("historical_authorization")) if authorized else None,
             "historical_absence_verified": provenance == "historical_absent",
-            "note": "Introduction française historique conservée exactement ; les règles de réécriture ne sont pas appliquées rétroactivement.",
+            "note": (
+                "Introduction française historique modifiée dans la portée exacte autorisée par le propriétaire ; les règles de création ne sont pas appliquées rétroactivement au reste du texte."
+                if authorized else
+                "Introduction française historique conservée exactement ; les règles de réécriture ne sont pas appliquées rétroactivement."
+            ),
             # Non-introduction controls remain traceable and true because they
             # were validated independently during content finalization.
             "complete_topic_fits_heading": True,
@@ -1324,6 +1624,17 @@ def _summary_style_review(arguments: Sequence[Mapping[str, Any]], debate_id: str
                 "status": "historical_absent",
                 "historical_absence_verified": True,
                 "note": arg.get("note") or "Absence historique du résumé vérifiée et conservée sans génération de remplissage.",
+            }
+            entries.append({"id": arg.get("id"), "languages": {"fr": language}})
+            continue
+        if status in {"historical_authorized_change", "historical_authorized_creation"}:
+            language = {
+                "status": status,
+                "owner_authorized_change": True,
+                "historical_source_sha256": arg.get("historical_summary_sha256"),
+                "authorized_final_sha256": arg.get("historical_final_summary_sha256"),
+                "authorization": copy.deepcopy(arg.get("historical_authorization")),
+                "note": arg.get("note") or "Résumé historique modifié uniquement dans la portée autorisée par le propriétaire, sans application rétroactive de la checklist de création.",
             }
             entries.append({"id": arg.get("id"), "languages": {"fr": language}})
             continue
@@ -1417,9 +1728,18 @@ def _build_content_copy(project_root: Path, source: Path, target: Path, review: 
         "sources": copy.deepcopy(final["sources"]),
     }
     timestamp = now_iso()
+    authorization_source = source.parent / HISTORICAL_AUTHORIZATION_PATH
+    authorization_receipt_sha256 = None
+    authorization_receipt = None
+    if authorization_source.is_file():
+        authorization_receipt = load_json(authorization_source, "autorisation propriétaire des textes historiques")
+        authorization_receipt_sha256 = sha256_bytes(authorization_source.read_bytes())
+        authorization_target = target / HISTORICAL_AUTHORIZATION_PATH
+        authorization_target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(authorization_source, authorization_target)
     content_lock = {
         "schema": CONTENT_LOCK_SCHEMA,
-        "schema_version": "1.0",
+        "schema_version": "1.1",
         "normative_revision": NORM_VERSION,
         "kit_version": KIT_VERSION,
         "debate_id": debate_id,
@@ -1431,21 +1751,39 @@ def _build_content_copy(project_root: Path, source: Path, target: Path, review: 
         "applied_at": timestamp,
         "debate": copy.deepcopy(final["debate"]),
         "arguments": copy.deepcopy(final["arguments"]),
-        "historical_text_preservation": {
+        "historical_text_decisions": {
             "policy": HISTORICAL_TEXT_POLICY,
+            "authorization_receipt_path": HISTORICAL_AUTHORIZATION_PATH if authorization_receipt else None,
+            "authorization_receipt_sha256": authorization_receipt_sha256,
             "debate": {
+                "field_key": f"debate:{debate_id}:introduction",
                 "page_origin": final["debate"].get("page_origin"),
-                "introduction_provenance": final["debate"].get("introduction_provenance"),
-                "source_sha256": final["debate"].get("historical_introduction_sha256"),
-                "preserved": final["debate"].get("historical_content_preserved") is True,
+                "historical_status": (
+                    "historical_existing" if final["debate"].get("historical_introduction_present")
+                    else "historical_absent"
+                ) if final["debate"].get("page_origin") == "preexisting" else None,
+                "historical_present": final["debate"].get("historical_introduction_present"),
+                "historical_sha256": final["debate"].get("historical_introduction_sha256"),
+                "final_present": bool(str(final["debate"].get("introduction") or "").strip()),
+                "final_sha256": final["debate"].get("historical_final_introduction_sha256"),
+                "decision": final["debate"].get("historical_text_decision"),
+                "authorization": copy.deepcopy(final["debate"].get("historical_authorization")),
             },
             "arguments": [
                 {
                     "id": arg.get("id"),
+                    "field_key": f"argument:{arg.get('id')}:summary",
                     "page_origin": arg.get("page_origin"),
-                    "summary_provenance": arg.get("summary_provenance"),
-                    "source_sha256": arg.get("historical_summary_sha256"),
-                    "preserved": arg.get("historical_content_preserved") is True,
+                    "historical_status": (
+                        "historical_existing" if arg.get("historical_summary_present")
+                        else "historical_absent"
+                    ) if arg.get("page_origin") == "preexisting" else None,
+                    "historical_present": arg.get("historical_summary_present"),
+                    "historical_sha256": arg.get("historical_summary_sha256"),
+                    "final_present": bool(str(arg.get("summary") or "").strip()),
+                    "final_sha256": arg.get("historical_final_summary_sha256"),
+                    "decision": arg.get("historical_text_decision"),
+                    "authorization": copy.deepcopy(arg.get("historical_authorization")),
                 }
                 for arg in final["arguments"]
             ],

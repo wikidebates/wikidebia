@@ -1,3 +1,9 @@
+# Wikidéb’IA Kit 2.16.17
+
+Le kit 2.16.17 remplace la protection absolue des textes historiques introduite en 2.16.16 par un contrat de **consentement explicite et scoped**. Sur une page `preexisting`, l’introduction et les résumés restent identiques par défaut et une absence historique de résumé reste une absence. ChatGPT peut toutefois enregistrer des suggestions. Si le propriétaire approuve précisément un ou plusieurs deltas pendant `fr_content_review`, le même paquet peut demander leur ouverture et `review-import --authorize-historical-changes` crée localement, hors du ZIP éditable, une preuve liée au paquet exact, aux champs et aux SHA avant/après.
+
+Le finaliseur accepte alors uniquement les valeurs couvertes par ce reçu, `fr_content_lock.json` distingue `preserved` et `authorized_change`, le checkpoint français n°2 publie les deltas autorisés avec les résumés MediaWiki individualisés normaux et aucune troisième publication française n’est créée. Les anciennes revues au schéma supporté sont normalisées par leurs données : les anciens deltas automatiques deviennent des suggestions, tandis qu’un delta explicitement demandé peut être autorisé sans refaire rubriques, mots-clés ni documentation. La traduction anglaise utilise ensuite la version française finale autorisée.
+
 # Wikidéb’IA Kit 2.16.16
 
 Le kit 2.16.16 corrige une régression critique de `fr_content_review` observée sur un corpus historique : une reprise ordinaire ne peut plus proposer, accepter ni publier une nouvelle introduction ou de nouveaux résumés pour des pages françaises `preexisting`. L’introduction et chaque résumé historiques sont repris exactement ; l’absence historique de résumé reste une absence.

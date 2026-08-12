@@ -223,3 +223,12 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - ajoute des tests de non-régression couvrant introduction, résumé existant et résumé historiquement absent.
 - aligne la traduction sur cette préservation : un résumé français historique reste une source différentielle et n’est pas allongé pour satisfaire les règles de création ; le registre de style anglais utilise `translated_historical_source`.
 
+## 2.16.17 — 12 août 2026 — consentement propriétaire scoped sur les textes historiques
+
+- remplace l’immutabilité absolue de 2.16.16 par « préservation par défaut → suggestion → décision explicite du propriétaire → modification autorisée et traçable » ;
+- ajoute `historical_change_request` et la distinction `preserved` / `authorized_change` ;
+- ajoute `review-import --authorize-historical-changes`, qui produit hors ZIP un reçu local lié à l’archive exacte, au paquet/manifeste et aux SHA avant/après ;
+- permet les corrections autorisées pendant la même `fr_content_review`, publiées au checkpoint n°2 sans troisième frontière ;
+- conserve l’absence historique d’un résumé sauf création nominativement autorisée et n’applique pas rétroactivement les règles stylistiques de création à une correction locale ;
+- normalise les anciennes revues supportées par schéma/données, conserve leurs autres décisions et transforme les deltas automatiques non autorisés en suggestions ;
+- traduit ensuite la version française finale effectivement autorisée.

@@ -66,6 +66,10 @@ from wikidebia_content_review import (
     finalize_review as finalize_content_review,
     apply_review as apply_content_review,
     content_review_sha256,
+    normalize_historical_review_document,
+    collect_historical_change_requests,
+    HISTORICAL_AUTHORIZATION_SCHEMA,
+    HISTORICAL_AUTHORIZATION_PATH,
 )
 from wikidebia_translation_review import (
     prepare_review as prepare_translation_review,
@@ -257,12 +261,12 @@ def _instructions(review_type: str, debate_id: str, work_id: str | None, editabl
         lines += [
             "",
             "Cette revue porte sur les rubriques, mots-clés, documentation et autres contenus explicitement ouverts à la reprise.",
-            "Pour toute page préexistante importée du wiki, l’introduction du débat et les résumés des arguments sont des contenus historiques protégés.",
-            "Ne modifiez jamais `proposed_introduction`, `introduction_decision`, `proposed_summary` ni `summary_decision` dans le flux ordinaire : ils doivent conserver exactement les valeurs préparées avec `decision=keep`.",
-            "Un argument historiquement dépourvu de résumé doit rester sans résumé ; ne créez aucun texte de remplissage.",
-            "Les exigences stylistiques de création/réécriture des résumés et introductions ne s’appliquent pas rétroactivement à ces textes historiques conservés.",
-            "Si le propriétaire demande explicitement une réécriture d’un de ces champs, utilisez une opération corrective dédiée : ne contournez pas ce verrou dans le paquet de revue ordinaire.",
-            "Le second checkpoint français ne doit donc contenir un delta d’introduction ou de résumé que pour une page nouvelle ou une opération corrective propriétaire séparément autorisée.",
+            "Pour toute page préexistante importée du wiki, l’introduction du débat et les résumés des arguments sont préservés par défaut ; un résumé historiquement absent reste absent par défaut.",
+            "Vous pouvez signaler une anomalie et remplir `suggested_change` sans appliquer la suggestion : conservez alors `decision=keep`, `historical_text_status=preserved` et la valeur historique dans `proposed_*`.",
+            "Si le propriétaire a explicitement approuvé un changement, renseignez `decision=change`, la valeur finale dans `proposed_*`, `historical_text_status=authorization_requested` et un objet `historical_change_request` limité à ce champ, avec `field_key`, `final_value`, `change_type`, `rationale` et `owner_instruction_reference`.",
+            "Une simple déclaration dans le ZIP ne vaut jamais consentement : sans preuve locale, `review-import` bloque. Après accord explicite du propriétaire, utilisez `./wikidebia review-import --authorize-historical-changes` (avec l’identifiant du débat seulement si nécessaire). Le kit scelle alors localement le ZIP exact et les SHA avant/après de chaque champ demandé.",
+            "N’étendez jamais une autorisation à un autre résumé ou à l’introduction entière si la décision propriétaire ne le couvre pas. Une correction locale autorisée ne déclenche pas rétroactivement toutes les préférences stylistiques de création.",
+            "Le checkpoint français n°2 publie normalement les rubriques, mots-clés, documentation et, lorsqu’ils sont autorisés, les deltas d’introduction/résumé ; aucune troisième frontière française n’est créée.",
         ]
     lines += [
         "",
@@ -1220,7 +1224,112 @@ def _validate_pending_identity(state: Mapping[str, Any], manifest: Mapping[str, 
         raise WorkflowError("La provenance locale du paquet ne correspond pas")
 
 
-def import_review(project_root: Path, debate_id: str, archive: Path, *, execute_graph_actions: bool = False) -> dict[str, Any]:
+
+def _review_editable_row(manifest: Mapping[str, Any], target_path: str) -> Mapping[str, Any] | None:
+    for row in manifest.get("editable_files") or []:
+        if isinstance(row, dict) and str(row.get("target_path") or "") == target_path:
+            return row
+    return None
+
+
+def _json_review_bytes(value: Mapping[str, Any]) -> bytes:
+    return (json.dumps(dict(value), ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+
+
+def _prepare_historical_consent_import(
+    archive: Path, state: Mapping[str, Any], manifest: Mapping[str, Any], files: dict[str, bytes],
+    *, authorize_historical_changes: bool,
+) -> tuple[dict[str, bytes], dict[str, Any] | None, dict[str, Any] | None]:
+    """Normalize a French content review and optionally create owner authorization.
+
+    The authorization is intentionally absent from the returned ZIP.  It is
+    generated only by the local kit when the owner invokes review-import with
+    ``--authorize-historical-changes``.  Therefore ChatGPT can request an exact
+    scope but cannot manufacture the proof that opens it.
+    """
+    if str(manifest.get("review_type") or "") != "fr_content_review":
+        if authorize_historical_changes:
+            raise WorkflowError("--authorize-historical-changes est réservé à une revue française de contenu")
+        return files, None, None
+    row = _review_editable_row(manifest, "reviews/fr/content_review.json")
+    if not isinstance(row, Mapping):
+        if authorize_historical_changes:
+            raise WorkflowError("Le paquet de revue de contenu ne contient pas reviews/fr/content_review.json ; aucun périmètre historique ne peut être autorisé")
+        return files, None, None
+    package_path = str(row.get("package_path") or "")
+    try:
+        raw = json.loads(files[package_path].decode("utf-8"))
+    except Exception as exc:
+        raise WorkflowError("reviews/fr/content_review.json est illisible dans le ZIP rendu") from exc
+    if not isinstance(raw, dict):
+        raise WorkflowError("reviews/fr/content_review.json doit être un objet JSON")
+    normalized, migration = normalize_historical_review_document(raw)
+    if migration.get("legacy_format_detected"):
+        normalized["compatibility_migration"] = {
+            "schema": "wikidebia-fr-content-review-compatibility-migration-1.0",
+            "normalized_by_kit": KIT_VERSION,
+            "normalized_at": now_iso(),
+            **migration,
+        }
+    mutable_files = dict(files)
+    mutable_files[package_path] = _json_review_bytes(normalized)
+    try:
+        requested = collect_historical_change_requests(normalized)
+    except Exception as exc:
+        raise WorkflowError(str(exc)) from exc
+    if requested and not authorize_historical_changes:
+        fields = ", ".join(row["field_key"] for row in requested[:6])
+        suffix = "…" if len(requested) > 6 else ""
+        raise WorkflowError(
+            "Le ZIP demande des modifications de textes historiques qui nécessitent le consentement explicite du propriétaire. "
+            f"Champs : {fields}{suffix}. Après accord, relancez exactement le même ZIP avec "
+            "./wikidebia review-import --authorize-historical-changes"
+        )
+    if authorize_historical_changes and not requested:
+        raise WorkflowError("Aucun changement historique explicitement demandé n’est présent dans ce ZIP ; rien à autoriser")
+    if not requested:
+        return mutable_files, normalized, None
+
+    authorization_id = str(uuid.uuid4())
+    package_id = str(manifest.get("package_id") or "")
+    manifest_sha = str(manifest.get("manifest_sha256") or "")
+    archive_sha = _sha256_file(archive)
+    changes = []
+    for change in requested:
+        enriched = copy.deepcopy(change)
+        enriched.update({
+            "authorization_id": authorization_id,
+            "package_id": package_id,
+            "manifest_sha256": manifest_sha,
+            "returned_archive_sha256": archive_sha,
+        })
+        changes.append(enriched)
+    authorization = {
+        "schema": HISTORICAL_AUTHORIZATION_SCHEMA,
+        "schema_version": "1.0",
+        "authorization_id": authorization_id,
+        "debate_id": state.get("debate_id"),
+        "work_id": state.get("work_id"),
+        "review_type": "fr_content_review",
+        "package_id": package_id,
+        "manifest_sha256": manifest_sha,
+        "returned_archive_sha256": archive_sha,
+        "review_payload_sha256": content_review_sha256(normalized),
+        "authorization_method": "owner_explicit_cli_flag",
+        "authorization_command": "review-import --authorize-historical-changes",
+        "authorized_at": now_iso(),
+        "changes": changes,
+        "authorization_sha256": None,
+    }
+    body = copy.deepcopy(authorization)
+    body.pop("authorization_sha256", None)
+    authorization["authorization_sha256"] = _sha256_bytes(_canonical_json(body))
+    return mutable_files, normalized, authorization
+
+def import_review(
+    project_root: Path, debate_id: str, archive: Path, *, execute_graph_actions: bool = False,
+    authorize_historical_changes: bool = False,
+) -> dict[str, Any]:
     debate_id = validate_debate_id(debate_id)
     state = _load_workflow(project_root, debate_id)
     pending = state.get("pending_review")
@@ -1231,6 +1340,10 @@ def import_review(project_root: Path, debate_id: str, archive: Path, *, execute_
     base = project_root / str(pending["base_path"])
     if not base.is_dir():
         raise WorkflowError("La base locale de la revue n'existe plus")
+
+    files, normalized_content_review, owner_authorization = _prepare_historical_consent_import(
+        archive, state, manifest, files, authorize_historical_changes=authorize_historical_changes,
+    )
 
     # Context is validated against both the returned package and current local files.
     for row in manifest.get("context_files") or []:
@@ -1254,6 +1367,13 @@ def import_review(project_root: Path, debate_id: str, archive: Path, *, execute_
     try:
         _install_editable_files(base, manifest, files)
         review_type = str(manifest["review_type"])
+        if review_type == "fr_content_review":
+            auth_path = base / HISTORICAL_AUTHORIZATION_PATH
+            if owner_authorization is not None:
+                write_json(auth_path, owner_authorization)
+            elif auth_path.exists():
+                # A stale authorization can never silently authorize a new ZIP.
+                auth_path.unlink()
         if execute_graph_actions and review_type != "graph_review":
             raise WorkflowError("--execute-graph-actions est réservé aux paquets de revue du graphe")
         if review_type == "graph_review":
@@ -1494,6 +1614,7 @@ def build_parser() -> argparse.ArgumentParser:
     imp.add_argument("debate_id")
     imp.add_argument("archive", type=Path)
     imp.add_argument("--execute-graph-actions", action="store_true", help="Appliquer et publier immédiatement les décisions structurelles explicites de la revue du graphe")
+    imp.add_argument("--authorize-historical-changes", action="store_true", help="Enregistrer le consentement propriétaire pour les seuls deltas historiques explicitement déclarés dans ce ZIP")
     status = sub.add_parser("workflow-status")
     status.add_argument("debate_id")
     return parser
@@ -1510,7 +1631,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             state = start_workflow(root, args.debate_title, debate_id=args.debate_id, short_code=args.short_code, snapshot=snapshot, force_refresh=args.force_refresh)
         elif args.command == "review-import":
             archive = args.archive if args.archive.is_absolute() else (root / args.archive)
-            state = import_review(root, args.debate_id, archive.resolve(), execute_graph_actions=args.execute_graph_actions)
+            state = import_review(
+                root, args.debate_id, archive.resolve(), execute_graph_actions=args.execute_graph_actions,
+                authorize_historical_changes=args.authorize_historical_changes,
+            )
         else:
             state = status_summary(root, args.debate_id)
     except Exception as exc:

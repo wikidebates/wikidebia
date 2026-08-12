@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.83
+- **Révision :** 1.2.84
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -482,6 +482,12 @@ La revue des audits du 9 août 2026 montre que plusieurs pertes sémantiques ava
 
 | Exigence | Décision | Preuve attendue |
 |---|---|---|
-| EDT-073 | Préserver exactement introduction et résumés des pages préexistantes ; absence historique conservée | verrou de contenu + tests kit |
-| PUB-052 | Interdire tout delta intro/résumé au checkpoint 2 ordinaire | plan/checkpoint + tests |
-| VAL-062 | Comparer les empreintes historiques au wikicode rendu | WDV-EDT-034 + tests validateur |
+| EDT-073 | Préserver par défaut introduction et résumés historiques ; toute modification exige un consentement propriétaire explicite et scoped | verrou de contenu + tests kit |
+| PUB-052 | Autoriser au checkpoint 2 uniquement les deltas intro/résumé historiques scellés par consentement propriétaire | plan/checkpoint + tests |
+| VAL-062 | Distinguer `preserved` et `authorized_change` et contrôler le SHA rendu correspondant | WDV-EDT-034 + tests validateur |
+
+| EDT-074 | Suggestions historiques non appliquées sans consentement ; portée nominative | revue contenu + tests |
+| GOV-016 | Preuve de consentement locale hors ZIP et liée au paquet exact | review-import + tests |
+| PUB-053 | Delta historique autorisé publié au checkpoint 2, sans checkpoint 3 | checkpoint + tests |
+| VAL-063 | Refuser fausse autorisation, SHA final divergent et hors-portée | WDV-EDT-034 + tests |
+| TRN-035 | Traduire la version française finale autorisée | traduction + tests |

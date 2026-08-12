@@ -149,3 +149,10 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - couvre par tests la conservation exacte, la réécriture interdite du résumé, la réécriture interdite de l’introduction et l’acceptation d’une introduction historique ne satisfaisant pas les contraintes de nouvelle création.
 - accepte `translated_historical_source` pour la traduction d’un résumé français historique protégé, sans appliquer les exigences de création à la source préexistante.
 
+## 0.4.88 — 12 août 2026 — validation du consentement propriétaire historique
+
+- aligne `WDV-EDT-034` sur `preserved` / `authorized_change` ;
+- vérifie le reçu local de workflow, son scellement et sa portée exacte ;
+- compare le rendu à l’empreinte historique pour `preserved` et à l’empreinte finale autorisée pour `authorized_change` ;
+- refuse une fausse autorisation, un delta hors portée et une création historique absente non autorisée ;
+- conserve la validation différentielle de la traduction à partir de la version française finale autorisée.

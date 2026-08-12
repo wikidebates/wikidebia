@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.16.16",
-  "validator_version": "0.4.87",
+  "version": "2.16.17",
+  "validator_version": "0.4.88",
   "scope": [
     "publish_archive",
     "github_init",
@@ -109,7 +109,8 @@
     "content_classification_checkpoint",
     "deferred_graph_action_publication",
     "historical_summary_introduction_preservation",
-    "historical_text_preservation_lock"
+    "historical_text_preservation_lock",
+    "historical_text_owner_consent"
   ],
   "debate_specific_code": false,
   "change_tag": "chatgpt",
@@ -303,7 +304,9 @@
     "differential_english_metadiscourse",
     "legacy_mediawiki_parameter_alias_migration",
     "historical_summary_hash_gate",
-    "historical_introduction_hash_gate"
+    "historical_introduction_hash_gate",
+    "historical_text_authorization_outside_review_zip",
+    "historical_text_authorization_exact_scope"
   ],
   "publication_profiles": [
     "norm_1_2_direct_interlanguage",
@@ -473,9 +476,11 @@
     "french_checkpoint_publication_after_content_review",
     "incoming_review_package_auto_selection",
     "sources_working_document_kind_prevalidation",
-    "idempotent_french_checkpoint_resume"
+    "idempotent_french_checkpoint_resume",
+    "owner_authorized_historical_text_in_fr_content_review",
+    "legacy_fr_content_review_consent_migration"
   ],
-  "normative_revision": "1.2.83",
+  "normative_revision": "1.2.84",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -574,7 +579,9 @@
     "page_specific_remote_update_edit_summary",
     "fr_content_review_remote_checkpoint_before_translation",
     "incoming_review_import_by_internal_debate_id",
-    "sources_working_document_kind_prevalidation"
+    "sources_working_document_kind_prevalidation",
+    "historical_text_owner_consent_receipt_gate",
+    "authorized_historical_delta_checkpoint2_gate"
   ],
   "regression_gates": [
     "argument_reference_develops_argument_regression",
@@ -613,8 +620,12 @@
     "generic_corrections_not_reemitted_regression",
     "orchestration_remote_writes_only_at_declared_boundaries_regression",
     "french_checkpoint_precedes_english_review_regression",
-    "french_checkpoint_resume_after_partial_remote_write_regression"
+    "french_checkpoint_resume_after_partial_remote_write_regression",
+    "historical_text_suggestion_without_consent_regression",
+    "historical_text_forged_authorization_regression",
+    "legacy_21614_content_review_migration_regression",
+    "authorized_historical_text_no_third_checkpoint_regression"
   ],
   "translation_change_tag": "translated-fr",
-  "kit_version": "2.16.16"
+  "kit_version": "2.16.17"
 }

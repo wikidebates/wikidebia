@@ -1307,7 +1307,7 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         raise TranslationReviewError(f"Ordre de pertinence des keywords non attesté pour {node_id}")
     raw_fr_summary = fr_content.get("summary")
     summary_provenance = str(fr_content.get("summary_provenance") or "")
-    historical_summary = summary_provenance == "historical_existing"
+    historical_summary = summary_provenance in {"historical_existing", "historical_authorized_change", "historical_authorized_creation"}
     summary_absent = raw_fr_summary is None or not str(raw_fr_summary).strip()
     if summary_absent:
         if row.get("summary") not in (None, ""):
@@ -1591,7 +1591,7 @@ def _merge_summary_review(path: Path, arguments: Sequence[Mapping[str, Any]], de
                 "historical_absence_verified": True,
                 "note": arg.get("note") or "French source summary is historically absent and the English parameter is omitted.",
             }
-        elif arg.get("summary_provenance") == "historical_existing":
+        elif arg.get("summary_provenance") in {"historical_existing", "historical_authorized_change", "historical_authorized_creation"}:
             entry.setdefault("languages", {})["en"] = {
                 "status": "translated_historical_source",
                 "historical_source_preserved": True,

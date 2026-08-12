@@ -1,3 +1,9 @@
+# Wikidéb’IA Validator 0.4.88
+
+Le validateur 0.4.88 s’aligne sur la norme 1.2.84 et le kit 2.16.17. `WDV-EDT-034` distingue désormais `preserved` de `authorized_change` : le premier exige l’identité avec l’empreinte historique ; le second exige un reçu de workflow propriétaire valide, l’empreinte historique, l’empreinte finale autorisée et l’identité du rendu avec cette valeur finale. Toute autorisation forgée dans le corpus, tout champ hors portée et toute création d’un résumé historiquement absent sans consentement nominatif restent bloquants.
+
+La traduction différentielle utilise la version française finale autorisée et les contrôles de création ne sont pas appliqués rétroactivement à une correction historique locale. Tous les contrôles antérieurs sont conservés.
+
 # Wikidéb’IA Validator 0.4.87
 
 Le validateur 0.4.87 s’aligne sur la norme 1.2.83 et le kit 2.16.16. Il ajoute `WDV-EDT-034` pour protéger les textes français historiques pendant une reprise ordinaire : le verrou `fr_content_lock.json` porte l’empreinte de l’introduction historique et de chaque résumé historique, y compris l’état historiquement absent, et le rendu est bloqué si l’un de ces champs diverge.

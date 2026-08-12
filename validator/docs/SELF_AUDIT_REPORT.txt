@@ -1,8 +1,8 @@
-Wikidéb’IA Validator 0.4.87 — auto-audit
+Wikidéb’IA Validator 0.4.88 — auto-audit
 Statut : PASSED
-Norme active unique : 1.2.83
-Kit aligné : 2.16.16
+Norme active unique : 1.2.84
+Kit aligné : 2.16.17
 Arbre normatif : identique au paquet des normes
-Tests : 419 réussis
-Contrôle WDV-EDT-034 de préservation des textes historiques : actif et testé.
+Tests : 425 réussis
+WDV-EDT-034 : consentement historique scoped actif et testé.
 Résultat : RÉUSSI

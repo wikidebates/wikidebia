@@ -601,8 +601,18 @@ La revue ne se limite pas aux séries de notions comparables. Chaque sous-partie
 
 Les versions de producteur sont de la provenance. Les workflows actifs déterminent la compatibilité par identifiant/version de schéma et capacités déclarées ; aucune égalité de version de kit ou de validateur ne sert de feature flag éditorial. Les alias MediaWiki historiques sont normalisés à la frontière d’entrée et les sorties nouvelles utilisent exclusivement les noms canoniques.
 
-- **EDT-073 — ACTIVE — automatic+human** : Lors d’une reprise de pages préexistantes, la revue de contenu ordinaire préserve exactement l’introduction et les résumés historiques, y compris l’absence historique de résumé ; toute réécriture exige une opération corrective propriétaire distincte.
+- **EDT-073 — ACTIVE — automatic+human** : Lors d’une reprise de pages préexistantes, la revue de contenu préserve par défaut l’introduction et les résumés historiques, y compris l’absence historique de résumé ; une suggestion seule n’est jamais appliquée, et toute modification exige une décision propriétaire explicite, précise et traçable couvrant le champ et la valeur finale.
 
-- **PUB-052 — ACTIVE — automatic** : Le second checkpoint français d’une reprise ordinaire possède un delta nul sur l’introduction et les résumés historiques ; seuls les contenus nouveaux ou une opération corrective distincte explicitement autorisée peuvent produire un tel delta.
+- **PUB-052 — ACTIVE — automatic** : Le second checkpoint français conserve l’introduction et les résumés historiques sans consentement, mais publie dans ce même checkpoint les deltas historiques explicitement autorisés et scellés pendant `fr_content_review`; aucune troisième publication française n’est créée.
 
-- **VAL-062 — ACTIVE — automatic** : Le verrou français porte les empreintes de l’introduction et des résumés historiques et le validateur compare ces empreintes au wikicode rendu avant publication.
+- **VAL-062 — ACTIVE — automatic** : Le verrou français porte état historique, présence, empreinte historique, décision `preserved`/`authorized_change`, empreinte finale et preuve de consentement ; le validateur exige l’identité historique pour `preserved` et l’identité avec la valeur finale autorisée pour `authorized_change`.
+
+- **EDT-074 — ACTIVE — automatic+human** : ChatGPT peut signaler et proposer des corrections sur un texte historique sans les appliquer ; l’autorisation propriétaire ouvre uniquement les champs et deltas explicitement désignés et ne vaut jamais dispense générale des autres contrôles.
+
+- **GOV-016 — ACTIVE — automatic** : Une autorisation de texte historique ne peut pas être fabriquée dans le ZIP de revue : le kit génère localement une preuve liée au paquet exact, au `package_id`, au manifeste, au champ et aux empreintes avant/après seulement après une action explicite du propriétaire.
+
+- **PUB-053 — ACTIVE — automatic** : Une modification historique autorisée avant la clôture de `fr_content_review` est intégrée au changeset et publiée au checkpoint français n°2 avec résumé MediaWiki individualisé ; elle n’ouvre aucune troisième frontière de publication.
+
+- **VAL-063 — ACTIVE — automatic** : Le validateur refuse `authorized_change` sans reçu de workflow valide, refuse un rendu divergent du SHA final autorisé et refuse toute modification de champ historique non couvert par la portée du reçu.
+
+- **TRN-035 — ACTIVE — automatic+human** : La traduction anglaise part du texte français final effectivement autorisé ; un résumé historique préservé est traduit tel quel, un résumé historique autorisé utilise sa version finale, et une absence historique reste absente sauf création française nominativement autorisée.

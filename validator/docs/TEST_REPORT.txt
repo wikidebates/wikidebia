@@ -1,10 +1,11 @@
-Wikidéb’IA Validator 0.4.87 — rapport de tests
+Wikidéb’IA Validator 0.4.88 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 419
-Tests pytest : 419 réussis
-Norme active : 1.2.83
-Kit recommandé : 2.16.16
+Tests pytest collectés : 425
+Tests pytest : 425 réussis
+Norme active : 1.2.84
+Kit recommandé : 2.16.17
 Contrôles structurels, éditoriaux, bilingues, documentaires et schémas : PASSED.
-WDV-EDT-034 : verrouillage de l’introduction et des résumés historiques au rendu : PASSED.
-États historical_existing / historical_absent : aucune application rétroactive des règles de création : PASSED.
+WDV-EDT-034 : `preserved` / `authorized_change`, reçu propriétaire et SHA final : PASSED.
+Absence historique et refus des autorisations forgées/hors portée : PASSED.
+Migration et traduction depuis la version française finale autorisée : PASSED.
 Deux checkpoints français avant traduction et WDV-RMT-008 : conservés.

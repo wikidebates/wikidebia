@@ -164,7 +164,7 @@ def complete_translation_review(workspace: Path) -> None:
         "A0004": ("Demonstration D distinctly confirms the proposition of the test debate", "Evidence D confirms the thesis"),
     }
     # The French fixture deliberately contains historical one-letter summaries
-    # (A/B/C/D).  Since 2.16.16 preserves them instead of rewriting them in
+    # (A/B/C/D).  Since 2.16.17 preserves them by default instead of rewriting them in
     # fr_content_review, the translation fixture must translate the exact source
     # rather than silently expanding it.
     summaries = {"A0001": "A", "A0002": "B", "A0003": "C", "A0004": "D"}

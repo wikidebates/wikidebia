@@ -1938,7 +1938,10 @@ def find_review_archive(root: Path, debate_identifier: str | None = None) -> tup
     )
 
 
-def review_import(root: Path, debate_id: str | None, *, execute_graph_actions: bool = False) -> int:
+def review_import(
+    root: Path, debate_id: str | None, *, execute_graph_actions: bool = False,
+    authorize_historical_changes: bool = False,
+) -> int:
     script = root / "kit" / "scripts" / "wikidebia_review_workflow.py"
     if not script.is_file():
         raise ManagementError("Orchestrateur éditorial absent du kit")
@@ -1949,6 +1952,8 @@ def review_import(root: Path, debate_id: str | None, *, execute_graph_actions: b
     ]
     if execute_graph_actions:
         command.append("--execute-graph-actions")
+    if authorize_historical_changes:
+        command.append("--authorize-historical-changes")
     result = run(command, cwd=root, check=False)
     if result.returncode == 0 and selected.exists():
         destination = root / "archives" / "reviews" / f"{timestamp()}-{selected_debate_id}" / selected.name
@@ -2219,6 +2224,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     review_import_parser.add_argument("debate_id", nargs="?", help="Identifiant du débat uniquement si plusieurs ZIP de revue sont présents dans incoming/")
     review_import_parser.add_argument("--execute-graph-actions", action="store_true", help="Après une revue de graphe rejetée, exécuter en une commande les suppressions, redirections, déplacements et requalifications explicitement décidés")
+    review_import_parser.add_argument("--authorize-historical-changes", action="store_true", help="Autoriser uniquement les deltas d’introduction/résumés historiques explicitement déclarés dans le ZIP de revue sélectionné")
 
     workflow_status_parser = sub.add_parser(
         "workflow-status", help="Afficher l'état de l'orchestration éditoriale"
@@ -2448,7 +2454,10 @@ def main(argv: list[str] | None = None) -> int:
             snapshot=args.snapshot, force_refresh=args.force_refresh,
         )
     if args.command == "review-import":
-        return review_import(root, args.debate_id, execute_graph_actions=args.execute_graph_actions)
+        return review_import(
+            root, args.debate_id, execute_graph_actions=args.execute_graph_actions,
+            authorize_historical_changes=args.authorize_historical_changes,
+        )
     if args.command == "workflow-status":
         return workflow_status(root, args.debate_id)
     if args.command == "graph-extract":

@@ -94,6 +94,42 @@
                   {
                     "properties": {
                       "status": {
+                        "enum": [
+                          "historical_authorized_change",
+                          "historical_authorized_creation"
+                        ]
+                      },
+                      "owner_authorized_change": {
+                        "const": true
+                      },
+                      "historical_source_sha256": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{64}$"
+                      },
+                      "authorized_final_sha256": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{64}$"
+                      },
+                      "authorization": {
+                        "type": "object"
+                      },
+                      "note": {
+                        "type": "string",
+                        "minLength": 12
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "owner_authorized_change",
+                      "historical_source_sha256",
+                      "authorized_final_sha256",
+                      "authorization",
+                      "note"
+                    ]
+                  },
+                  {
+                    "properties": {
+                      "status": {
                         "const": "translated_historical_source"
                       },
                       "historical_source_preserved": {

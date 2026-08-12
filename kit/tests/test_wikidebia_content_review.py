@@ -330,9 +330,10 @@ def test_apply_content_review_creates_distinct_copy(tmp_path: Path):
     lock = json.loads((target / "data/fr_content_lock.json").read_text(encoding="utf-8"))
     assert lock["status"] == "locked_for_translation_and_generation"
     assert len(lock["arguments"]) == 4
-    assert lock["historical_text_preservation"]["policy"] == content.HISTORICAL_TEXT_POLICY
-    assert lock["historical_text_preservation"]["debate"]["preserved"] is True
-    assert all(row["preserved"] is True for row in lock["historical_text_preservation"]["arguments"])
+    decisions = lock["historical_text_decisions"]
+    assert decisions["policy"] == content.HISTORICAL_TEXT_POLICY
+    assert decisions["debate"]["decision"] == "preserved"
+    assert all(row["decision"] == "preserved" for row in decisions["arguments"])
     changes = json.loads((target / "changes/fr_content_changeset.json").read_text(encoding="utf-8"))
     assert not any(op["field"] in {"summary", "introduction"} for op in changes["operations"])
     sources = json.loads((target / "data/sources.json").read_text(encoding="utf-8"))
@@ -546,3 +547,266 @@ def test_finalize_rejects_invalid_document_kind_in_working_registry(tmp_path: Pa
         assert "website" in str(exc)
     else:
         raise AssertionError("document_kind hors schéma accepté dans sources_working.json")
+
+
+def _set_reviewed_historical_text(workspace: Path, *, intro: str | None = None, summary_a0001: str | None = None) -> None:
+    reviewed = workspace / "reviewed-copy"
+    provenance_path = reviewed / "data/import_provenance.json"
+    provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+    for row in provenance["pages"]:
+        if intro is not None and row.get("page_type") == "debate":
+            page = reviewed / row["import_path"]
+            text = page.read_text(encoding="utf-8")
+            parsed = content.iter_templates(text)[0]
+            old = parsed.get("introduction") or ""
+            text = text.replace(f"|introduction={old}", f"|introduction={intro}", 1)
+            page.write_text(text, encoding="utf-8")
+            row["sha256"] = __import__("hashlib").sha256(page.read_bytes()).hexdigest()
+            row["size_bytes"] = page.stat().st_size
+        if summary_a0001 is not None and row.get("page_id") == "A0001":
+            page = reviewed / row["import_path"]
+            text = page.read_text(encoding="utf-8")
+            parsed = content.iter_templates(text)[0]
+            old = parsed.get("résumé") or ""
+            if old:
+                text = text.replace(f"|résumé={old}", f"|résumé={summary_a0001}", 1)
+            else:
+                text = text.replace("{{Argument\n", f"{{{{Argument\n|résumé={summary_a0001}\n", 1)
+            page.write_text(text, encoding="utf-8")
+            row["sha256"] = __import__("hashlib").sha256(page.read_bytes()).hexdigest()
+            row["size_bytes"] = page.stat().st_size
+    common.write_json(provenance_path, provenance)
+    meta_path = workspace / "workspace.json"
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    meta["reviewed_copy"]["tree_sha256"] = common.full_tree_sha256(reviewed)
+    meta["workspace_sha256"] = None
+    meta["workspace_sha256"] = workspace_tool.workspace_receipt_hash(meta)
+    common.write_json(meta_path, meta)
+
+
+def _request_historical_change(holder: dict, *, field_key: str, final_value: str, change_type: str = "typo", rationale: str = "Correction historique explicitement approuvée par le propriétaire.") -> None:
+    holder["historical_text_status"] = "authorization_requested"
+    holder["historical_change_request"] = {
+        "field_key": field_key,
+        "final_value": final_value,
+        "change_type": change_type,
+        "rationale": rationale,
+        "owner_instruction_reference": "conversation-owner-approval",
+    }
+
+
+def _write_direct_owner_authorization(workspace: Path, review: dict) -> dict:
+    requested = content.collect_historical_change_requests(review)
+    auth_id = "test-owner-auth"
+    changes = []
+    for row in requested:
+        item = copy.deepcopy(row)
+        item.update({
+            "authorization_id": auth_id,
+            "package_id": "test-package",
+            "manifest_sha256": "a" * 64,
+            "returned_archive_sha256": "b" * 64,
+        })
+        changes.append(item)
+    auth = {
+        "schema": content.HISTORICAL_AUTHORIZATION_SCHEMA,
+        "schema_version": "1.0",
+        "authorization_id": auth_id,
+        "debate_id": review["debate_id"],
+        "work_id": review["work_id"],
+        "review_type": "fr_content_review",
+        "package_id": "test-package",
+        "manifest_sha256": "a" * 64,
+        "returned_archive_sha256": "b" * 64,
+        "review_payload_sha256": content.content_review_sha256(review),
+        "authorization_method": "owner_explicit_cli_flag",
+        "authorization_command": "review-import --authorize-historical-changes",
+        "authorized_at": "2026-08-12T19:00:00+02:00",
+        "changes": changes,
+        "authorization_sha256": None,
+    }
+    auth["authorization_sha256"] = content._authorization_hash(auth)
+    common.write_json(workspace / content.HISTORICAL_AUTHORIZATION_PATH, auth)
+    return auth
+
+
+def test_historical_suggestion_without_consent_is_preserved(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    content.prepare_review(project, "debat_test", work_id)
+    complete_content_review(workspace)
+    path = workspace / "reviews/fr/content_review.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    row = data["arguments"][0]["review"]
+    row["suggested_change"] = {"value": "Suggestion non autorisée.", "change_type": "typo", "rationale": "Suggestion seulement, sans consentement propriétaire."}
+    common.write_json(path, data)
+    finalized = content.finalize_review(project, "debat_test", work_id)
+    assert finalized["status"] == "fr_content_review_finalized"
+    sealed = json.loads(path.read_text(encoding="utf-8"))
+    assert sealed["final_values"]["arguments"][0]["summary"] == data["arguments"][0]["source"]["summary"]
+
+
+def test_authorized_local_summary_correction_is_accepted_without_creation_style_rewrite(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    content.prepare_review(project, "debat_test", work_id)
+    complete_content_review(workspace)
+    path = workspace / "reviews/fr/content_review.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    item = data["arguments"][0]
+    final = "A corrigé."
+    item["review"]["summary_decision"] = "change"
+    item["review"]["proposed_summary"] = final
+    _request_historical_change(item["review"], field_key="argument:A0001:summary", final_value=final, change_type="grammar")
+    common.write_json(path, data)
+    _write_direct_owner_authorization(workspace, data)
+    result = content.finalize_review(project, "debat_test", work_id)
+    sealed = json.loads(path.read_text(encoding="utf-8"))
+    arg = next(x for x in sealed["final_values"]["arguments"] if x["id"] == "A0001")
+    assert result["authorized_historical_text_changes"] == 1
+    assert arg["summary"] == final
+    assert arg["historical_text_decision"] == "authorized_change"
+    assert arg["attestations"] == {}
+
+
+def test_authorized_substantive_summary_rewrite_is_scoped_and_traced(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    content.prepare_review(project, "debat_test", work_id)
+    complete_content_review(workspace)
+    path = workspace / "reviews/fr/content_review.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    item = data["arguments"][1]
+    final = "Réécriture substantielle explicitement demandée pour ce seul résumé historique."
+    item["review"]["summary_decision"] = "change"
+    item["review"]["proposed_summary"] = final
+    _request_historical_change(item["review"], field_key="argument:A0002:summary", final_value=final, change_type="substantive_rewrite")
+    common.write_json(path, data)
+    auth = _write_direct_owner_authorization(workspace, data)
+    content.finalize_review(project, "debat_test", work_id)
+    sealed = json.loads(path.read_text(encoding="utf-8"))
+    arg = next(x for x in sealed["final_values"]["arguments"] if x["id"] == "A0002")
+    assert arg["historical_authorization"]["authorization_id"] == auth["authorization_id"]
+    assert arg["summary"] == final
+
+
+def test_unauthorized_extra_historical_change_is_blocked_even_with_other_authorization(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    content.prepare_review(project, "debat_test", work_id)
+    complete_content_review(workspace)
+    path = workspace / "reviews/fr/content_review.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    first = data["arguments"][0]
+    first["review"]["summary_decision"] = "change"
+    first["review"]["proposed_summary"] = "Correction autorisée."
+    _request_historical_change(first["review"], field_key="argument:A0001:summary", final_value="Correction autorisée.")
+    common.write_json(path, data)
+    _write_direct_owner_authorization(workspace, data)
+    # Add a second unrequested delta after the authorization has been sealed.
+    second = data["arguments"][1]
+    second["review"]["summary_decision"] = "change"
+    second["review"]["proposed_summary"] = "Modification parasite."
+    common.write_json(path, data)
+    try:
+        content.finalize_review(project, "debat_test", work_id)
+    except content.ContentReviewError as exc:
+        assert "résumé historique" in str(exc) or "autorisation" in str(exc)
+    else:
+        raise AssertionError("Une modification historique hors portée a été acceptée")
+
+
+def test_historically_absent_summary_creation_requires_nominative_consent(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    _set_reviewed_historical_text(workspace, summary_a0001="")
+    # Explicitly remove the summary parameter after helper normalization.
+    reviewed = workspace / "reviewed-copy"
+    prov_path = reviewed / "data/import_provenance.json"
+    prov = json.loads(prov_path.read_text(encoding="utf-8"))
+    row = next(x for x in prov["pages"] if x.get("page_id") == "A0001")
+    page = reviewed / row["import_path"]
+    text = page.read_text(encoding="utf-8").replace("|résumé=\n", "", 1)
+    page.write_text(text, encoding="utf-8")
+    row["sha256"] = __import__("hashlib").sha256(page.read_bytes()).hexdigest(); row["size_bytes"] = page.stat().st_size
+    common.write_json(prov_path, prov)
+    meta_path = workspace / "workspace.json"; meta = json.loads(meta_path.read_text()); meta["reviewed_copy"]["tree_sha256"] = common.full_tree_sha256(reviewed); meta["workspace_sha256"] = None; meta["workspace_sha256"] = workspace_tool.workspace_receipt_hash(meta); common.write_json(meta_path, meta)
+    content.prepare_review(project, "debat_test", work_id); complete_content_review(workspace)
+    path = workspace / "reviews/fr/content_review.json"; data = json.loads(path.read_text())
+    item = data["arguments"][0]; item["review"]["summary_decision"] = "change"; item["review"]["proposed_summary"] = "Résumé créé sans autorisation."
+    common.write_json(path, data)
+    try:
+        content.finalize_review(project, "debat_test", work_id)
+    except content.ContentReviewError as exc:
+        assert "résumé historique" in str(exc)
+    else:
+        raise AssertionError("Création d’un résumé historiquement absent sans consentement acceptée")
+
+
+def test_historically_absent_summary_creation_with_nominative_consent_is_accepted(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    # Reuse the proven absent-summary setup from the existing regression.
+    reviewed = workspace / "reviewed-copy"; prov_path = reviewed / "data/import_provenance.json"; prov = json.loads(prov_path.read_text())
+    row = next(x for x in prov["pages"] if x.get("page_id") == "A0001"); page = reviewed / row["import_path"]
+    page.write_text(page.read_text().replace("|résumé=A", "", 1), encoding="utf-8")
+    row["sha256"] = __import__("hashlib").sha256(page.read_bytes()).hexdigest(); row["size_bytes"] = page.stat().st_size; common.write_json(prov_path, prov)
+    meta_path=workspace/"workspace.json"; meta=json.loads(meta_path.read_text()); meta["reviewed_copy"]["tree_sha256"]=common.full_tree_sha256(reviewed); meta["workspace_sha256"]=None; meta["workspace_sha256"]=workspace_tool.workspace_receipt_hash(meta); common.write_json(meta_path,meta)
+    content.prepare_review(project,"debat_test",work_id); complete_content_review(workspace)
+    path=workspace/"reviews/fr/content_review.json"; data=json.loads(path.read_text()); item=data["arguments"][0]
+    final="Résumé créé parce que le propriétaire a explicitement demandé la création de ce résumé précis."
+    item["review"]["summary_decision"]="change"; item["review"]["proposed_summary"]=final
+    _request_historical_change(item["review"], field_key="argument:A0001:summary", final_value=final, change_type="create_summary")
+    common.write_json(path,data); _write_direct_owner_authorization(workspace,data); content.finalize_review(project,"debat_test",work_id)
+    sealed=json.loads(path.read_text()); arg=next(x for x in sealed["final_values"]["arguments"] if x["id"]=="A0001")
+    assert arg["summary_provenance"] == "historical_authorized_creation" and arg["summary"] == final
+
+
+def test_authorized_introduction_removes_references_tag(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    old = "{{Sous-partie|titre=Contexte|contenu=Texte historique.<references />}}"
+    _set_reviewed_historical_text(workspace, intro=old)
+    content.prepare_review(project,"debat_test",work_id); complete_content_review(workspace)
+    path=workspace/"reviews/fr/content_review.json"; data=json.loads(path.read_text()); rev=data["debate"]["review"]
+    final=old.replace("<references />", "")
+    rev["introduction_decision"]="change"; rev["proposed_introduction"]=final; rev["subsections"]=[{"title":"Contexte"}]
+    _request_historical_change(rev, field_key="debate:debat_test:introduction", final_value=final, change_type="mediawiki_syntax")
+    common.write_json(path,data); _write_direct_owner_authorization(workspace,data); content.finalize_review(project,"debat_test",work_id)
+    sealed=json.loads(path.read_text()); assert "<references" not in sealed["final_values"]["debate"]["introduction"]
+
+
+def test_authorized_introduction_adds_stakes_subsection_without_third_publication_contract(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    old="{{Sous-partie|titre=Contexte|contenu=Texte historique.}}"; _set_reviewed_historical_text(workspace,intro=old)
+    content.prepare_review(project,"debat_test",work_id); complete_content_review(workspace)
+    path=workspace/"reviews/fr/content_review.json"; data=json.loads(path.read_text()); rev=data["debate"]["review"]
+    final=old+"{{Sous-partie|titre=Enjeux du débat|contenu=Incidences concrètes explicitement demandées par le propriétaire.}}"
+    rev["introduction_decision"]="change"; rev["proposed_introduction"]=final; rev["subsections"]=[{"title":"Contexte"},{"title":"Enjeux du débat"}]
+    _request_historical_change(rev, field_key="debate:debat_test:introduction", final_value=final, change_type="structure")
+    common.write_json(path,data); _write_direct_owner_authorization(workspace,data); content.finalize_review(project,"debat_test",work_id)
+    sealed=json.loads(path.read_text()); assert "Enjeux du débat" in sealed["final_values"]["debate"]["introduction"]
+
+
+def test_content_lock_records_history_final_and_owner_consent(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path); content.prepare_review(project,"debat_test",work_id); complete_content_review(workspace)
+    path=workspace/"reviews/fr/content_review.json"; data=json.loads(path.read_text()); item=data["arguments"][0]; old=item["source"]["summary"]; final="Correction autorisée et tracée."
+    item["review"]["summary_decision"]="change"; item["review"]["proposed_summary"]=final; _request_historical_change(item["review"],field_key="argument:A0001:summary",final_value=final)
+    common.write_json(path,data); auth=_write_direct_owner_authorization(workspace,data); finalized=content.finalize_review(project,"debat_test",work_id); content.apply_review(project,"debat_test",work_id,finalized["review_sha256"])
+    lock=json.loads((workspace/"content-reviewed-copy/data/fr_content_lock.json").read_text()); row=next(x for x in lock["historical_text_decisions"]["arguments"] if x["id"]=="A0001")
+    assert row["historical_sha256"] == content._historical_text_sha256(old)
+    assert row["final_sha256"] == content._historical_text_sha256(final)
+    assert row["decision"] == "authorized_change"
+    assert row["authorization"]["authorization_id"] == auth["authorization_id"]
+    changes=json.loads((workspace/"content-reviewed-copy/changes/fr_content_changeset.json").read_text())
+    assert any(op["entity_id"]=="A0001" and op["field"]=="summary" for op in changes["operations"])
+
+
+def test_legacy_review_delta_migrates_to_suggestion_without_losing_it():
+    legacy={"debate_id":"d","debate":{"source":{"page_origin":"preexisting","introduction":"Ancien"},"review":{"introduction_decision":"change","proposed_introduction":"Proposé","introduction_rationale":"Proposition historique héritée assez détaillée."}},"arguments":[]}
+    normalized,migration=content.normalize_historical_review_document(legacy)
+    rev=normalized["debate"]["review"]
+    assert migration["legacy_format_detected"] is True
+    assert rev["introduction_decision"]=="keep" and rev["proposed_introduction"]=="Ancien"
+    assert rev["suggested_change"]["value"]=="Proposé"
+
+
+def test_legacy_review_with_explicit_change_request_preserves_authorizable_delta():
+    legacy={"debate_id":"d","debate":{"source":{"page_origin":"preexisting","introduction":"Ancien"},"review":{"introduction_decision":"change","proposed_introduction":"Corrigé","historical_change_request":{"field_key":"debate:d:introduction","final_value":"Corrigé","change_type":"typo","rationale":"Correction précise explicitement proposée et approuvable.","owner_instruction_reference":"owner-msg"}}},"arguments":[]}
+    normalized,migration=content.normalize_historical_review_document(legacy)
+    assert normalized["debate"]["review"]["proposed_introduction"]=="Corrigé"
+    assert migration["requests_preserved"]==1
+    assert content.collect_historical_change_requests(normalized)[0]["field_key"]=="debate:d:introduction"

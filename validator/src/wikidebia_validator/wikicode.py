@@ -1378,6 +1378,17 @@ def _protected_historical_summary_keys(ctx: PackageContext) -> set[tuple[str, st
                     node_id, language = (entry.get('id'), entry.get('language'))
                     if isinstance(node_id, str) and language in {'fr', 'en'}:
                         result.add((node_id, language))
+    if ctx.exists('data/fr_content_lock.json'):
+        content_lock = ctx.load_json('data/fr_content_lock.json')
+        decisions = content_lock.get('historical_text_decisions') if isinstance(content_lock, dict) else None
+        if isinstance(decisions, dict):
+            for entry in decisions.get('arguments') or []:
+                if isinstance(entry, dict) and entry.get('page_origin') == 'preexisting' and isinstance(entry.get('id'), str):
+                    result.add((str(entry['id']), 'fr'))
+    status = str((((manifest.get('translation_status') or {}).get('en')) or ''))
+    if status in {'ready', 'published'}:
+        en_ids = {str(p.get('page_id')) for p in manifest.get('pages', []) if p.get('language') == 'en' and p.get('page_type') == 'argument'}
+        result.update((node_id, 'en') for node_id, language in list(result) if language == 'fr' and node_id in en_ids)
     setattr(ctx, '_protected_historical_summary_keys_cache', result)
     return result
 
@@ -1386,10 +1397,11 @@ def _historically_absent_summary_keys(ctx: PackageContext) -> set[tuple[str, str
     if isinstance(cached, set):
         return cached
     result: set[tuple[str, str]] = set()
+    exists = getattr(ctx, 'exists', lambda _path: False)
     manifest = ctx.manifest() or {}
     cfg = (manifest.get('editorial_controls') or {}).get('legacy_content_preservation') or {}
     rel = cfg.get('lock_path')
-    if cfg.get('enabled') is True and isinstance(rel, str) and ctx.exists(rel):
+    if cfg.get('enabled') is True and isinstance(rel, str) and exists(rel):
         lock = ctx.load_json(rel)
         if isinstance(lock, dict):
             for entry in lock.get('arguments') or []:
@@ -1397,6 +1409,15 @@ def _historically_absent_summary_keys(ctx: PackageContext) -> set[tuple[str, str
                     node_id, language = (entry.get('id'), entry.get('language'))
                     if isinstance(node_id, str) and language in {'fr', 'en'}:
                         result.add((node_id, language))
+    if exists('data/fr_content_lock.json'):
+        content_lock = ctx.load_json('data/fr_content_lock.json')
+        decisions = content_lock.get('historical_text_decisions') if isinstance(content_lock, dict) else None
+        if isinstance(decisions, dict):
+            for entry in decisions.get('arguments') or []:
+                if (isinstance(entry, dict) and entry.get('page_origin') == 'preexisting'
+                        and entry.get('historical_status') == 'historical_absent'
+                        and entry.get('decision') == 'preserved' and isinstance(entry.get('id'), str)):
+                    result.add((str(entry['id']), 'fr'))
     status = str(((manifest.get('translation_status') or {}).get('en') or ''))
     if status in {'ready', 'published'}:
         en_ids = {str(p.get('page_id')) for p in manifest.get('pages', []) if p.get('language') == 'en' and p.get('page_type') == 'argument'}
@@ -1804,23 +1825,160 @@ def validate_wikicode(ctx: PackageContext) -> None:
     ctx.report.metrics['wikicode'] = {'declared_pages': len(pages), 'parsed_pages': len(parsed_by_key)}
 
 
+
+def _canonical_object_sha256(value: dict[str, Any], excluded_key: str | None = None) -> str:
+    body = dict(value)
+    if excluded_key:
+        body.pop(excluded_key, None)
+    payload = json.dumps(body, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def _validate_fr_historical_text_decisions_v2(
+    ctx: PackageContext,
+    parsed_by_key: dict[tuple[str, str], Template],
+    lock: dict[str, Any],
+    decisions: dict[str, Any],
+) -> None:
+    lock_rel = 'data/fr_content_lock.json'
+    if decisions.get('policy') != 'preserve_by_default_owner_authorized_v2':
+        ctx.report.error('WDV-EDT-034', 'Politique de consentement des textes historiques inconnue', path=lock_rel)
+        return
+    manifest = ctx.manifest() or {}
+    debate_page = next((p for p in manifest.get('pages', []) if p.get('language') == 'fr' and p.get('page_type') == 'debate'), None)
+    argument_pages = {
+        str(p.get('page_id')): p for p in manifest.get('pages', [])
+        if p.get('language') == 'fr' and p.get('page_type') == 'argument' and isinstance(p.get('page_id'), str)
+    }
+
+    receipt = None
+    receipt_changes: dict[str, dict[str, Any]] = {}
+    receipt_path = decisions.get('authorization_receipt_path')
+    receipt_sha = decisions.get('authorization_receipt_sha256')
+    if receipt_path is not None:
+        if not isinstance(receipt_path, str) or not ctx.exists(receipt_path):
+            ctx.report.error('WDV-EDT-034', 'Reçu local d’autorisation propriétaire absent', path=lock_rel)
+        else:
+            raw = ctx.read_bytes(receipt_path)
+            actual_sha = hashlib.sha256(raw).hexdigest()
+            if receipt_sha != actual_sha:
+                ctx.report.error('WDV-EDT-034', 'Empreinte du reçu d’autorisation propriétaire invalide', path=receipt_path)
+            try:
+                receipt = json.loads(raw.decode('utf-8'))
+            except Exception:
+                receipt = None
+            if not isinstance(receipt, dict) or receipt.get('schema') != 'wikidebia-owner-historical-text-authorization-1.0':
+                ctx.report.error('WDV-EDT-034', 'Schéma du reçu d’autorisation propriétaire invalide', path=receipt_path)
+            elif receipt.get('authorization_sha256') != _canonical_object_sha256(receipt, 'authorization_sha256'):
+                ctx.report.error('WDV-EDT-034', 'Scellement du reçu d’autorisation propriétaire invalide', path=receipt_path)
+            elif receipt.get('debate_id') != lock.get('debate_id') or receipt.get('work_id') != lock.get('work_id'):
+                ctx.report.error('WDV-EDT-034', 'Le reçu d’autorisation appartient à un autre débat ou Work', path=receipt_path)
+            else:
+                rows = receipt.get('changes')
+                if isinstance(rows, list):
+                    receipt_changes = {str(row.get('field_key')): row for row in rows if isinstance(row, dict) and row.get('field_key')}
+    elif receipt_sha is not None:
+        ctx.report.error('WDV-EDT-034', 'Empreinte d’autorisation présente sans chemin de reçu', path=lock_rel)
+
+    authorized_keys: set[str] = set()
+
+    def validate_row(row: Any, *, field_key: str, actual: str, path: str) -> None:
+        if not isinstance(row, dict):
+            ctx.report.error('WDV-EDT-034', 'Décision historique absente ou invalide', path=path, details={'field_key': field_key})
+            return
+        if row.get('page_origin') != 'preexisting':
+            return
+        historical_status = row.get('historical_status')
+        if historical_status not in {'historical_existing', 'historical_absent'}:
+            ctx.report.error('WDV-EDT-034', 'État historique invalide', path=path, details={'field_key': field_key})
+        historical_sha = row.get('historical_sha256')
+        final_sha = row.get('final_sha256')
+        if not isinstance(historical_sha, str) or not re.fullmatch('[0-9a-f]{64}', historical_sha):
+            ctx.report.error('WDV-EDT-034', 'Empreinte historique invalide', path=path, details={'field_key': field_key})
+            return
+        if not isinstance(final_sha, str) or not re.fullmatch('[0-9a-f]{64}', final_sha):
+            ctx.report.error('WDV-EDT-034', 'Empreinte finale autorisée invalide', path=path, details={'field_key': field_key})
+            return
+        actual_sha = hashlib.sha256(actual.encode('utf-8')).hexdigest()
+        decision = row.get('decision')
+        if decision == 'preserved':
+            if row.get('authorization') not in (None, {}):
+                ctx.report.error('WDV-EDT-034', 'Un texte préservé ne doit pas porter d’autorisation de changement', path=path, details={'field_key': field_key})
+            if historical_sha != final_sha or actual_sha != historical_sha:
+                ctx.report.error('WDV-EDT-034', 'Texte historique modifié sans autorisation propriétaire', path=path, details={'field_key': field_key, 'historical_sha256': historical_sha, 'final_sha256': final_sha, 'actual_sha256': actual_sha})
+            if historical_status == 'historical_absent' and actual != '':
+                ctx.report.error('WDV-EDT-034', 'Un texte historiquement absent a été créé sans autorisation nominative', path=path, details={'field_key': field_key})
+            return
+        if decision != 'authorized_change':
+            ctx.report.error('WDV-EDT-034', 'Décision historique inconnue', path=path, details={'field_key': field_key, 'decision': decision})
+            return
+        authorized_keys.add(field_key)
+        auth = row.get('authorization')
+        if not isinstance(auth, dict):
+            ctx.report.error('WDV-EDT-034', 'Changement historique déclaré autorisé sans preuve de workflow', path=path, details={'field_key': field_key})
+            return
+        receipt_row = receipt_changes.get(field_key)
+        if not isinstance(receipt_row, dict):
+            ctx.report.error('WDV-EDT-034', 'Le reçu propriétaire ne couvre pas ce champ', path=path, details={'field_key': field_key})
+            return
+        for key, expected in (('historical_sha256', historical_sha), ('final_sha256', final_sha)):
+            if receipt_row.get(key) != expected or auth.get(key) != expected:
+                ctx.report.error('WDV-EDT-034', 'La preuve propriétaire ne correspond pas aux empreintes du champ', path=path, details={'field_key': field_key, 'component': key})
+        if receipt_row.get('authorization_id') != auth.get('authorization_id'):
+            ctx.report.error('WDV-EDT-034', 'Identifiant d’autorisation incohérent', path=path, details={'field_key': field_key})
+        if actual_sha != final_sha:
+            ctx.report.error('WDV-EDT-034', 'Le rendu ne correspond pas à la valeur finale autorisée', path=path, details={'field_key': field_key, 'expected_sha256': final_sha, 'actual_sha256': actual_sha})
+
+    debate_row = decisions.get('debate')
+    if isinstance(debate_page, dict):
+        tmpl = parsed_by_key.get((debate_page.get('page_id'), 'fr'))
+        actual_intro = (tmpl.one('introduction') if tmpl else None) or ''
+        validate_row(debate_row, field_key=f"debate:{lock.get('debate_id')}:introduction", actual=actual_intro, path=debate_page.get('file_path') or lock_rel)
+
+    rows = decisions.get('arguments')
+    if not isinstance(rows, list):
+        ctx.report.error('WDV-EDT-034', 'Inventaire des décisions de résumés historiques absent', path=lock_rel)
+        return
+    seen: set[str] = set()
+    for row in rows:
+        if not isinstance(row, dict) or not isinstance(row.get('id'), str):
+            ctx.report.error('WDV-EDT-034', 'Entrée de résumé historique invalide', path=lock_rel)
+            continue
+        node_id = str(row['id'])
+        if node_id in seen:
+            ctx.report.error('WDV-EDT-034', 'Entrée de résumé historique dupliquée', path=lock_rel, details={'page_id': node_id})
+            continue
+        seen.add(node_id)
+        page = argument_pages.get(node_id)
+        if not page:
+            continue
+        tmpl = parsed_by_key.get((node_id, 'fr'))
+        actual_summary = (tmpl.one('résumé') if tmpl else None) or ''
+        validate_row(row, field_key=f"argument:{node_id}:summary", actual=actual_summary, path=page.get('file_path') or lock_rel)
+
+    if receipt_changes and set(receipt_changes) != authorized_keys:
+        ctx.report.error('WDV-EDT-034', 'Le reçu propriétaire couvre des champs différents de ceux déclarés authorized_change', path=receipt_path or lock_rel, details={'receipt_fields': sorted(receipt_changes), 'authorized_fields': sorted(authorized_keys)})
+
 def _validate_fr_historical_text_preservation(
     ctx: PackageContext,
     parsed_by_key: dict[tuple[str, str], Template],
 ) -> None:
     """Verify the exact historical introduction/summary hashes emitted by W10.
 
-    The normal French content review for an imported corpus is not an
-    authorization to rewrite these fields.  The content lock therefore records
-    the source hashes captured before the review.  This validator compares the
-    rendered MediaWiki values to those hashes and blocks any regression before
-    publication.
+    Historical text is preserved by default. A scoped owner authorization may
+    open an exact field/value during the same French content review. The content
+    lock records historical and authorized-final hashes; validation requires the
+    rendered value to match the applicable decision before publication.
     """
     lock_rel = 'data/fr_content_lock.json'
     if not ctx.exists(lock_rel):
         return
     lock = ctx.load_json(lock_rel)
     if not isinstance(lock, dict):
+        return
+    decisions = lock.get('historical_text_decisions')
+    if isinstance(decisions, dict):
+        _validate_fr_historical_text_decisions_v2(ctx, parsed_by_key, lock, decisions)
         return
     preservation = lock.get('historical_text_preservation')
     if not isinstance(preservation, dict):

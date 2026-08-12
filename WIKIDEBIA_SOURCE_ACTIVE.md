@@ -2,22 +2,22 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.83** ;
-- validateur actif : **0.4.87** ;
-- kit actif : **2.16.16**.
+- norme active : **1.2.84** ;
+- validateur actif : **0.4.88** ;
+- kit actif : **2.16.17**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3561923 octets — SHA-256 `960aa6f1d2e3cf129857a06e4a37d269a8101908ade64aafa8f6585abd1d29d2`
-- `wikidebia-validator.zip` — 3719095 octets — SHA-256 `e55577e605ea0a35adcd64258d9dc341a995b2afeac1ab2eb1c53ee10b178939`
-- `wikidebia-kit.zip` — 689120 octets — SHA-256 `d51952df3860669246f1f2fda0f1bfe5e795b5197bf7b3caeaf7eee4cfedb853`
+- `wikidebia-normes.zip` — 3607804 octets — SHA-256 `8952d7d92565ed94ccf884d6e9348f5426feba1d08d19d7a3cd72336cd188b28`
+- `wikidebia-validator.zip` — 3768794 octets — SHA-256 `e3a8ad148be8c5b7b8bc3116bdfcb91c9d3025445a17255653af086dc5a3084b`
+- `wikidebia-kit.zip` — 705947 octets — SHA-256 `21d53d4d06bfda43e42a35cb7b7b65577fb2e7843c86849c9ad0bf48444e5ae9`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.83.md`  
-SHA-256 : `af9359809f4fdfa531b7207e1e07717b993c487505da336f3aafaa5db14ff0cf`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.84.md`  
+SHA-256 : `3d22cba45b4658fb49139cb640e0593123f6460ca6df7ecbde9c58eead7b4f95`
 
-# Norme opérationnelle active Wikidéb’IA 1.2.83
+# Norme opérationnelle active Wikidéb’IA 1.2.84
 
 **Statut : source normative active unique.**  
 **Date d’effet :** 12 août 2026
@@ -170,11 +170,13 @@ Une revue humaine bilingue est obligatoire avant `release_ready`. Les heuristiqu
 
 Lorsqu’une page `Argument` est **préexistante sur le wiki et importée comme source d’une reprise**, la présence et la valeur de son `résumé` constituent un contenu historique protégé. La revue française ordinaire de contenu ne réécrit pas ce résumé, même si une formulation nouvelle satisferait mieux les règles de style applicables aux créations. Si le résumé historique est absent, cette absence est conservée : Wikidéb’IA n’en génère pas un pour remplir un champ, satisfaire un profil de longueur, améliorer l’homogénéité du corpus ou préparer la traduction.
 
-Les exigences des sections 5.1 et 5.2 gouvernent les résumés nouvellement créés et les résumés dont la réécriture a été **explicitement demandée par le propriétaire dans une opération corrective distincte**. Elles ne sont jamais appliquées rétroactivement pour justifier une réécriture silencieuse d’un résumé historique pendant `fr_content_review`.
+Les exigences des sections 5.1 et 5.2 gouvernent les résumés nouvellement créés. Pour un résumé historique, elles ne sont jamais appliquées rétroactivement afin de justifier une réécriture silencieuse. ChatGPT peut toutefois relever une faute, une corruption, une anomalie MediaWiki, un problème au regard d’une règle active ou une amélioration possible et enregistrer une suggestion sans modifier la valeur finale.
 
-Une réécriture historique volontaire exige une autorisation propriétaire explicite, nominative et traçable, une opération corrective séparée du cycle ordinaire de reprise, ainsi qu’une preuve avant/après liée aux empreintes du texte. Le simple fait qu’un champ soit présent dans le paquet de revue de contenu, qu’un validateur signale une préférence stylistique ou qu’un second checkpoint français soit disponible ne constitue pas une telle autorisation.
+Toute modification d’un résumé historique exige une **décision explicite, précise et traçable du propriétaire**. Tant que cette décision n’existe pas, le résumé reste strictement identique à la source historique. Si l’autorisation est donnée pendant que `fr_content_review` est encore ouverte, le champ concerné devient éditable dans cette même phase et la modification autorisée peut être publiée au checkpoint français n°2 ; aucune opération corrective séparée ni troisième publication française n’est requise. Une opération corrective distincte reste disponible lorsque la demande intervient après la clôture de la revue ou du checkpoint.
 
-Le verrou français de contenu enregistre pour chaque page préexistante la provenance `historical_existing` ou `historical_absent`, l’empreinte du texte historique (chaîne vide pour l’absence) et l’attestation de préservation. Le rendu et le validateur comparent ce verrou au wikicode final ; toute création, suppression ou modification non autorisée d’un résumé historique est bloquante.
+L’autorisation est limitée aux champs et valeurs explicitement ouverts. Une suggestion de ChatGPT, un booléen librement éditable dans le ZIP, une préférence stylistique du validateur ou l’existence du checkpoint n°2 ne valent jamais consentement. Le workflow produit hors du ZIP éditable une preuve locale liée au paquet retourné, au champ, à l’empreinte historique et à l’empreinte finale. Un résumé historiquement absent ne peut être créé que si cette création est nominativement autorisée. Une correction locale autorisée n’active pas rétroactivement toutes les règles stylistiques destinées aux résumés nouveaux ; une réécriture substantielle explicitement demandée peut faire l’objet des contrôles supplémentaires pertinents sans autoriser d’autres modifications parasites.
+
+Le verrou français de contenu enregistre pour chaque page préexistante l’état `historical_existing` ou `historical_absent`, la présence et l’empreinte historiques, l’état de décision `preserved` ou `authorized_change`, l’empreinte finale et, pour `authorized_change`, la preuve de consentement propriétaire. Le rendu et le validateur exigent l’identité historique pour `preserved` et l’identité avec la valeur finale autorisée pour `authorized_change`.
 
 Lors de la traduction FR→EN, un résumé français ainsi préservé reste la source éditoriale autoritative : la traduction peut adapter la langue mais ne doit pas servir à corriger rétroactivement sa longueur, son style ou sa structure. Les contrôles sémantiques différentiels restent applicables ; une source historiquement absente produit un `summary` anglais absent.
 
@@ -305,9 +307,9 @@ Les éditions ou traductions d’une même œuvre partagent un identifiant d’�
 
 ### 7.5 Finalité et organisation des introductions Débat / Debate
 
-Lorsqu’une page `Débat` est **préexistante sur le wiki et importée comme source d’une reprise**, son `introduction` constitue un contenu historique protégé. La revue française ordinaire de contenu conserve exactement sa présence et sa valeur ; elle ne remplace pas l’introduction pour lui appliquer rétroactivement une structure, un style, une densité documentaire ou une sous-partie devenue obligatoire pour les nouvelles productions. Les exigences de la présente section restent applicables aux introductions nouvelles et à toute réécriture expressément demandée par le propriétaire dans une opération corrective distincte.
+Lorsqu’une page `Débat` est **préexistante sur le wiki et importée comme source d’une reprise**, son `introduction` constitue un contenu historique protégé **par défaut**. `fr_content_review` reprend exactement sa présence et sa valeur tant qu’aucune décision propriétaire ne l’ouvre. ChatGPT peut relever et enregistrer des suggestions (orthographe, grammaire, ponctuation, typographie, syntaxe MediaWiki, formulation corrompue, structure, règle active ou amélioration plus substantielle) sans les appliquer automatiquement. Les exigences de création de la présente section ne servent jamais, à elles seules, à réécrire rétroactivement une introduction historique.
 
-Une réécriture volontaire d’une introduction historique exige une autorisation propriétaire explicite et traçable, séparée de `fr_content_review`, avec preuve avant/après liée aux empreintes. La revue ordinaire peut examiner l’introduction comme contexte, mais ses champs historiques sont en lecture seule. Le verrou français de contenu conserve l’empreinte de l’introduction historique et le validateur bloque toute divergence au rendu.
+Une modification de l’introduction historique devient légitime dès lors qu’une décision propriétaire explicite et traçable couvre précisément le delta. Si cette autorisation intervient avant la clôture de `fr_content_review`, la modification est appliquée dans cette même revue et publiée au checkpoint français n°2. Sont notamment autorisables de cette façon la suppression d’une balise `<references />`, une correction locale ou l’ajout explicitement demandé d’une sous-partie telle que `Enjeux du débat`. Le consentement ouvre uniquement le delta demandé et n’autorise aucune réécriture parasite. Le verrou français de contenu conserve l’empreinte historique, l’empreinte finale autorisée et la preuve locale de consentement ; le validateur contrôle alors la valeur finale autorisée plutôt que d’exiger l’identité historique.
 
 L’introduction apporte de manière synthétique les éléments nécessaires pour comprendre le débat avant la lecture des arguments. Elle permet au lecteur d’identifier le sujet, le sens exact de la question, son contexte et ses principaux enjeux. Elle ne constitue ni une revue exhaustive de la littérature, ni un résumé successif des arguments pour et contre, ni une reproduction des branches du graphe argumentatif.
 
@@ -716,7 +718,7 @@ Pour une mise à jour de contenu, le résumé est calculé à partir du différe
 
 Le plan signé porte un contrat explicite de résumés individualisés, ainsi que la politique et le texte attendus pour chaque mutation. L’exécuteur **recalcule** le résumé attendu à partir du contenu signé et de l’état distant relu immédiatement avant l’écriture ; une divergence bloque l’opération. Après écriture, la révision est relue et le contenu, le résumé, la balise et l’identifiant de révision sont vérifiés. Les anciens plans déjà signés avant l’introduction de ce contrat restent lisibles selon leur format historique, sans autoriser un nouveau plan à revenir au résumé générique.
 
-Les deux checkpoints français réutilisent le moteur de reprise signé. Le premier est construit depuis le wikicode importé et n’autorise que les changements de structure et de titres validés : les rubriques, mots-clés, résumés, introduction et références restent identiques à la source distante. Le second part obligatoirement de l’état publié attesté par le premier et n’autorise plus de renommage, redirection ou suppression ; il applique les rubriques, mots-clés, la documentation et les autres contenus effectivement ouverts par la revue. **Dans une reprise ordinaire de pages préexistantes, il doit conserver exactement les résumés historiques et l’introduction historique, y compris l’absence historique de résumé : leur delta au checkpoint 2 est nul.** Un delta d’introduction ou de résumé n’est admis que pour un contenu réellement nouveau ou pour une opération corrective distincte explicitement autorisée par le propriétaire. Chaque mutation reçoit le contrat de résumé individualisé, la garde de révision, la balise `chatgpt` et la relecture post-écriture. Les décisions structurelles prises pendant une boucle de correction sont d’abord appliquées localement et ne sont écrites à distance qu’au premier checkpoint.
+Les deux checkpoints français réutilisent le moteur de reprise signé. Le premier est construit depuis le wikicode importé et n’autorise que les changements de structure et de titres validés : les rubriques, mots-clés, résumés, introduction et références restent identiques à la source distante. Le second part obligatoirement de l’état publié attesté par le premier et n’autorise plus de renommage, redirection ou suppression ; il applique les rubriques, mots-clés, la documentation et les autres contenus effectivement ouverts par la revue. **Dans une reprise de pages préexistantes, il conserve exactement les résumés historiques et l’introduction historique en l’absence d’autorisation propriétaire ; il publie en revanche les deltas historiques explicitement autorisés et scellés pendant `fr_content_review`.** Un résumé historiquement absent reste absent sauf création nominativement autorisée. Les deltas autorisés d’introduction/résumé appartiennent au même checkpoint n°2 et ne créent aucune troisième frontière de publication. Chaque mutation reçoit le contrat de résumé individualisé, la garde de révision, la balise `chatgpt` et la relecture post-écriture. Les décisions structurelles prises pendant une boucle de correction sont d’abord appliquées localement et ne sont écrites à distance qu’au premier checkpoint.
 
 ## 13. Profils locaux et invariants propres à un corpus
 
@@ -818,7 +820,7 @@ La commande de réimport vérifie le schéma, l’identité du débat et du Work
 
 Après installation transactionnelle des seuls fichiers `editable/`, la primitive de finalisation correspondante est exécutée. Le paquet de **revue du graphe** couvre conjointement placements/relations, décisions structurelles, titres canoniques et titres affichés. Le réimport approuvé de ce paquet unique déclenche immédiatement le premier checkpoint français. Après `fr_content_review`, qui comprend désormais aussi rubriques et mots-clés, `review-import` déclenche le second checkpoint français. Si le préflight échoue avant écriture, la transaction locale est restaurée. Dès qu’une exécution distante a commencé, l’état local scellé, le plan et les reçus sont conservés pour une reprise idempotente ; la traduction anglaise n’est jamais préparée tant que cette publication n’est pas réussie ou attestée `no_changes`. En cas de succès, les confirmations SHA-256 requises par les primitives internes sont résolues automatiquement à partir de leurs reçus, puis le workflow reprend jusqu’au prochain point éditorial.
 
-L’orchestration couvre au minimum : revue combinée du graphe, des placements et des titres canoniques/affichés ; revue française de contenu incluant rubriques, mots-clés et documentation, **avec introduction et résumés historiques en lecture seule pour les pages préexistantes et conservation de leur absence historique**, tandis que les textes nouveaux ou séparément autorisés restent éditables ; recherche d’appellations consacrées lorsqu’elle appartient au registre de la phase ; traduction et documentation anglaises ; recherche d’`established-name=` ; et deux passes indépendantes de convergence sémantique. Toute nouvelle phase nécessitant une décision éditoriale externe doit s’intégrer au même contrat de paquet plutôt que réintroduire une manipulation manuelle de fichiers internes.
+L’orchestration couvre au minimum : revue combinée du graphe, des placements et des titres canoniques/affichés ; revue française de contenu incluant rubriques, mots-clés et documentation, **avec introduction et résumés historiques préservés par défaut, suggestions possibles et édition limitée aux deltas couverts par une décision propriétaire explicite et scellée**, l’absence historique restant une absence sauf création nominativement autorisée ; recherche d’appellations consacrées lorsqu’elle appartient au registre de la phase ; traduction et documentation anglaises ; recherche d’`established-name=` ; et deux passes indépendantes de convergence sémantique. Toute nouvelle phase nécessitant une décision éditoriale externe doit s’intégrer au même contrat de paquet plutôt que réintroduire une manipulation manuelle de fichiers internes.
 
 Lors de la finalisation de `fr_content_review`, `data/sources_working.json` est contrôlé directement contre le vocabulaire documentaire du registre final, notamment `document_kind`. Une valeur hors enum est refusée à ce stade, avant projection vers `data/sources.json` et avant tout préflight de publication ; le workflow ne doit pas reporter cette erreur à une validation structurelle ultérieure.
 
@@ -840,7 +842,7 @@ Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. E
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `ec8dc13b575a0b59f492ee4f468b6a7175d4d3923e1b2a2919aefa6152489617`
+SHA-256 : `a50134f380be10ccad1666fb5544ab148689e6249efaa256b617f685c5505005`
 
 ## 1.2.70 — alignement du validateur sur la première publication anglaise
 
@@ -1599,10 +1601,26 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - exige un verrou d’empreintes des textes historiques et un contrôle du rendu avant publication ;
 - précise que le second checkpoint français publie les autres deltas de contenu/classification mais possède un delta nul sur les résumés et l’introduction historiques dans une reprise ordinaire.
 
+## 1.2.84 — 12 août 2026 — consentement explicite pour les textes historiques
+
+- remplace l’immutabilité absolue de 1.2.83 par la séquence « préservation par défaut → suggestion → décision explicite du propriétaire → modification autorisée et traçable » ;
+- permet d’autoriser pendant `fr_content_review` une correction ciblée ou une réécriture explicitement demandée de l’introduction ou d’un résumé historique, sans troisième checkpoint français ;
+- conserve l’absence historique de résumé sauf création nominativement autorisée ;
+- impose une preuve locale de consentement hors du ZIP éditable, liée au paquet exact, au champ et aux empreintes avant/après ;
+- fait évoluer `fr_content_lock.json` vers `preserved` / `authorized_change` avec historique, final et preuve ;
+- exige que la traduction anglaise parte de la version française finale effectivement autorisée ;
+- normalise les anciennes revues supportées par schéma et récupère leurs deltas comme suggestions tant qu’ils ne sont pas explicitement autorisés.
+
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `8e76a8710df2c8ca1186893d488773a088ec9af0eaba25a67e7ddf783b9b70b4`
+SHA-256 : `6a53d58850b14be3adf835be3e19311d8163fb9dd085efdcf0a20130df7796dc`
+
+# Wikidéb’IA Validator 0.4.88
+
+Le validateur 0.4.88 s’aligne sur la norme 1.2.84 et le kit 2.16.17. `WDV-EDT-034` distingue désormais `preserved` de `authorized_change` : le premier exige l’identité avec l’empreinte historique ; le second exige un reçu de workflow propriétaire valide, l’empreinte historique, l’empreinte finale autorisée et l’identité du rendu avec cette valeur finale. Toute autorisation forgée dans le corpus, tout champ hors portée et toute création d’un résumé historiquement absent sans consentement nominatif restent bloquants.
+
+La traduction différentielle utilise la version française finale autorisée et les contrôles de création ne sont pas appliqués rétroactivement à une correction historique locale. Tous les contrôles antérieurs sont conservés.
 
 # Wikidéb’IA Validator 0.4.87
 
@@ -1655,7 +1673,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `9147606521135b061d7313198e05e798d061104bf6b0ce98fd29779fadab38b8`
+SHA-256 : `3c6d75ea04483568872d36359902e7163d1cd9d2f522e9a970421525bdf5fff2`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1808,10 +1826,24 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - couvre par tests la conservation exacte, la réécriture interdite du résumé, la réécriture interdite de l’introduction et l’acceptation d’une introduction historique ne satisfaisant pas les contraintes de nouvelle création.
 - accepte `translated_historical_source` pour la traduction d’un résumé français historique protégé, sans appliquer les exigences de création à la source préexistante.
 
+## 0.4.88 — 12 août 2026 — validation du consentement propriétaire historique
+
+- aligne `WDV-EDT-034` sur `preserved` / `authorized_change` ;
+- vérifie le reçu local de workflow, son scellement et sa portée exacte ;
+- compare le rendu à l’empreinte historique pour `preserved` et à l’empreinte finale autorisée pour `authorized_change` ;
+- refuse une fausse autorisation, un delta hors portée et une création historique absente non autorisée ;
+- conserve la validation différentielle de la traduction à partir de la version française finale autorisée.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `d44a1fa15f8d3124571765ea91af1af5ba1893849626b6aba3c32f983c120ca9`
+SHA-256 : `f9a520a90880bdbe5804ca142d8d207b371d9d151a4e4b46157257d3f79e5e6f`
+
+# Wikidéb’IA Kit 2.16.17
+
+Le kit 2.16.17 remplace la protection absolue des textes historiques introduite en 2.16.16 par un contrat de **consentement explicite et scoped**. Sur une page `preexisting`, l’introduction et les résumés restent identiques par défaut et une absence historique de résumé reste une absence. ChatGPT peut toutefois enregistrer des suggestions. Si le propriétaire approuve précisément un ou plusieurs deltas pendant `fr_content_review`, le même paquet peut demander leur ouverture et `review-import --authorize-historical-changes` crée localement, hors du ZIP éditable, une preuve liée au paquet exact, aux champs et aux SHA avant/après.
+
+Le finaliseur accepte alors uniquement les valeurs couvertes par ce reçu, `fr_content_lock.json` distingue `preserved` et `authorized_change`, le checkpoint français n°2 publie les deltas autorisés avec les résumés MediaWiki individualisés normaux et aucune troisième publication française n’est créée. Les anciennes revues au schéma supporté sont normalisées par leurs données : les anciens deltas automatiques deviennent des suggestions, tandis qu’un delta explicitement demandé peut être autorisé sans refaire rubriques, mots-clés ni documentation. La traduction anglaise utilise ensuite la version française finale autorisée.
 
 # Wikidéb’IA Kit 2.16.16
 
@@ -1879,7 +1911,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `514cb3ba516bd8f7d95d617120c669e86629f2c436efc1fafd58e94f51cbd1d7`
+SHA-256 : `6e746fceaa10a471a371237fe39eb7038d93c829d4660df328bc979b485c3e7b`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2106,10 +2138,20 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - ajoute des tests de non-régression couvrant introduction, résumé existant et résumé historiquement absent.
 - aligne la traduction sur cette préservation : un résumé français historique reste une source différentielle et n’est pas allongé pour satisfaire les règles de création ; le registre de style anglais utilise `translated_historical_source`.
 
+## 2.16.17 — 12 août 2026 — consentement propriétaire scoped sur les textes historiques
+
+- remplace l’immutabilité absolue de 2.16.16 par « préservation par défaut → suggestion → décision explicite du propriétaire → modification autorisée et traçable » ;
+- ajoute `historical_change_request` et la distinction `preserved` / `authorized_change` ;
+- ajoute `review-import --authorize-historical-changes`, qui produit hors ZIP un reçu local lié à l’archive exacte, au paquet/manifeste et aux SHA avant/après ;
+- permet les corrections autorisées pendant la même `fr_content_review`, publiées au checkpoint n°2 sans troisième frontière ;
+- conserve l’absence historique d’un résumé sauf création nominativement autorisée et n’applique pas rétroactivement les règles stylistiques de création à une correction locale ;
+- normalise les anciennes revues supportées par schéma/données, conserve leurs autres décisions et transforme les deltas automatiques non autorisés en suggestions ;
+- traduit ensuite la version française finale effectivement autorisée.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
-SHA-256 : `d43ce2e9192f44eb432a8f9b6e3c538a594606b4dae60cc2379a68217753db51`
+SHA-256 : `6abdd194c7f1487d819cf36e02cc66cd62c9d0a40951637407e7e33eb68cbd56`
 
 # Guide de publication et de reprise Wikidéb’IA 2.15.9
 
@@ -2242,14 +2284,14 @@ Après validation de la revue française de contenu, `review-import` publie auto
 Le workflow de reprise publie le français deux fois avant traduction :
 
 1. après graphe + titres : relations, placements, renommages, titres affichés et retraits/fusions validés ;
-2. après contenu : rubriques, mots-clés, références et autres champs ouverts ; sur des pages préexistantes, l’introduction et les résumés historiques restent strictement inchangés, absence historique comprise.
+2. après contenu : rubriques, mots-clés, références et autres champs ouverts ; sur des pages préexistantes, l’introduction et les résumés historiques restent inchangés par défaut, mais les deltas précisément autorisés par le propriétaire pendant `fr_content_review` sont publiés dans ce même checkpoint ; l’absence historique reste une absence sauf création nominativement autorisée.
 
 Le premier checkpoint préserve le contenu/classification importé ; le second se calcule contre l’état publié du premier et interdit les mutations structurelles. Les deux utilisent des résumés MediaWiki individualisés.
 
 ## Guide de revue du contenu
 
 Source interne : `kit/GUIDE_CONTENT_REVIEW.md`  
-SHA-256 : `84c449ccf251716b3144b3e7e8f0b937064f2005fe96ce9219def01e81abbd4f`
+SHA-256 : `baa46f5f72944893b0ad70a3d4459d357b21b23a9cb0838197d1f878bce5c56c`
 
 # Revue française du contenu et de la documentation
 
@@ -2260,9 +2302,9 @@ La phase de contenu intervient après le verrouillage et la publication du graph
 
 ## Protection des textes historiques
 
-Pour une page importée avec `page_origin=preexisting`, l’introduction du Débat et les résumés des Arguments sont **en lecture seule dans la reprise ordinaire**. `--prepare` recopie leur valeur historique avec `decision=keep`; une absence historique de résumé reste absente. `--finalize` bloque toute tentative de modification de ces champs. Les règles de style de création ne sont pas appliquées rétroactivement à un texte simplement préservé.
+Pour une page importée avec `page_origin=preexisting`, l’introduction du Débat et les résumés des Arguments sont **protégés par défaut**. `--prepare` recopie leur valeur historique avec `decision=keep`; une absence historique de résumé reste absente. ChatGPT peut renseigner `suggested_change` sans modifier `proposed_*`. Les règles de style de création ne sont pas appliquées rétroactivement à un texte simplement préservé.
 
-Une réécriture volontaire de l’introduction ou d’un résumé historique doit être effectuée plus tard par une opération corrective distincte explicitement autorisée par le propriétaire ; elle ne se débloque pas en modifiant le JSON de `fr_content_review`.
+Si le propriétaire approuve une correction pendant que la revue est ouverte, le ZIP rendu peut porter `decision=change`, la valeur finale et un `historical_change_request` précis (`field_key`, `final_value`, `change_type`, `rationale`, `owner_instruction_reference`). Ce contenu ne s’autorise jamais lui-même : `./wikidebia review-import` bloque encore le delta. Après accord explicite du propriétaire, lancer le **même ZIP** avec `./wikidebia review-import --authorize-historical-changes` (ou avec le `debate_id` en cas d’ambiguïté). Le kit crée alors localement un reçu de consentement lié au ZIP exact et à chaque SHA avant/après, finalise la même `fr_content_review` et publie le delta au checkpoint français n°2. Une autorisation ne couvre aucun autre champ. Une opération corrective séparée n’est nécessaire que si la demande arrive après la clôture du checkpoint.
 
 ## 1. Préparer la revue
 
@@ -2396,25 +2438,26 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `55d6f79f41f89103534a50c45203dc707d43fdb9a39af3049874ba10ef3ba9ce`
+SHA-256 : `0cf7a7c1208a8e23e271a11e0321c63577e4ecfe3b5afc536c230b330464e2ac`
 
-Wikidéb’IA Kit 2.16.16 — rapport de tests
+Wikidéb’IA Kit 2.16.17 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 435
-Tests pytest : 435 réussis
-Norme : 1.2.83
-Validateur : 0.4.87
-Préservation introduction/résumés historiques dans fr_content_review : PASSED.
-Absence historique de résumé conservée sans génération : PASSED.
-Finalisation bloquant toute réécriture historique ordinaire : PASSED.
-fr_content_lock avec empreintes historiques + changeset sans delta intro/résumé : PASSED.
-Paquet ChatGPT : champs historiques déclarés en lecture seule : PASSED.
-Deux checkpoints français, incoming/, document_kind prévalidé et résumés MediaWiki individualisés : PASSED.
+Tests pytest collectés : 453
+Tests pytest : 453 réussis
+Norme : 1.2.84
+Validateur : 0.4.88
+Préservation par défaut + suggestions non appliquées : PASSED.
+Consentement local hors ZIP lié au paquet exact et aux SHA avant/après : PASSED.
+Corrections locales, réécriture substantielle, suppression <references /> et ajout Enjeux du débat autorisés : PASSED.
+Absence historique de résumé conservée sauf création nominative : PASSED.
+Migration de revue ancienne sans refaire rubriques/mots-clés/documentation : PASSED.
+Checkpoint français n°2 et traduction depuis la version finale autorisée : PASSED.
+Deux checkpoints, incoming/, rollback, document_kind et résumés MediaWiki individualisés : PASSED.
 
 ## Guide d’orchestration éditoriale
 
 Source interne : `kit/GUIDE_EDITORIAL_ORCHESTRATION.md`  
-SHA-256 : `5f7da411f2c286f19984b8793b3e6b6e18b77023c80cdb6caee99df9c883c08c`
+SHA-256 : `13fe39e3d1ea63de0fa1c20b7f21b22275dd21ded871b85f96733c4f14693f31`
 
 # Orchestration des revues éditoriales ChatGPT — Kit 2.16.7
 
@@ -2522,7 +2565,7 @@ Les actions de graphe exécutées explicitement avec `--execute-graph-actions` c
 
 ### Protection des textes historiques dans `fr_content_review`
 
-Lors d’une reprise de pages existantes, le paquet de revue ne peut pas servir à réécrire l’introduction ou les résumés historiques. Les décisions restent `keep`, les empreintes sont scellées et une absence historique de résumé demeure une absence. Une modification propriétaire ultérieure doit utiliser une opération corrective distincte.
+Lors d’une reprise de pages existantes, l’introduction et les résumés historiques sont préservés par défaut. Le paquet peut enregistrer des suggestions sans les appliquer. Lorsqu’un delta historique est précisément demandé dans le ZIP, `review-import` exige une action propriétaire explicite : relancer le même paquet avec `--authorize-historical-changes` crée hors du ZIP une preuve scoped et permet la modification dans la même `fr_content_review`. L’absence historique d’un résumé demeure une absence sauf création nominativement autorisée. Le delta autorisé est publié au checkpoint français n°2, sans troisième publication.
 
 ## Publication française après la revue de contenu
 

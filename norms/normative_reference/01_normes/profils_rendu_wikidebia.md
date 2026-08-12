@@ -241,7 +241,7 @@ Les affirmations factuelles importantes sont accompagnées de références en li
 
 ### Préservation historique des textes lors d’une reprise
 
-Pour une page française `preexisting`, le rendu de reprise recopie exactement l’`introduction` historique du Débat et le `résumé` historique de chaque Argument. Si `résumé` était absent, il reste absent. Les profils de style applicables aux nouvelles introductions et aux nouveaux résumés ne déclenchent aucune réécriture rétroactive. Une modification de ces champs requiert une opération corrective séparée explicitement autorisée par le propriétaire et liée aux empreintes avant/après.
+Pour une page française `preexisting`, le rendu de reprise recopie par défaut exactement l’`introduction` historique du Débat et le `résumé` historique de chaque Argument. Si `résumé` était absent, il reste absent sauf création nominativement autorisée. Les profils de style applicables aux nouvelles introductions et aux nouveaux résumés ne déclenchent aucune réécriture rétroactive. Lorsqu’une modification historique est explicitement autorisée pendant `fr_content_review`, le rendu emploie la valeur finale autorisée, liée à l’empreinte historique, à l’empreinte finale et à une preuve locale de consentement propriétaire ; les autres champs historiques restent protégés.
 
 Une revue bilingue de l'introduction relie chaque titre réel à une fonction explicite et atteste la définition du sujet, l'explication de la question, les repères historiques et actuels pertinents, les enjeux, la progression, la contextualisation des sections techniques et l'absence de reproduction mécanique du graphe ou d'une checklist de corpus.
 

@@ -942,14 +942,21 @@ def validate_introduction_review_data(review: Any, actual_titles: dict[str, list
             issues.append({'reason': 'missing_language', 'language': lang})
             continue
         historical_status = str(entry.get('status') or '')
-        if historical_status in {'historical_existing', 'historical_absent'}:
-            # A pre-existing introduction is not retroactively rewritten to
-            # satisfy the current creation/rewrite profile.  The exact content
-            # is protected separately by the historical-text lock; this ledger
-            # records that the ordinary content review intentionally preserved
-            # it.  Structural/style requirements such as a newly generated
-            # "Enjeux du débat" section are therefore not applied here.
-            if entry.get('historical_content_preserved') is not True:
+        if historical_status in {'historical_existing', 'historical_absent', 'historical_authorized_change'}:
+            # Historical introductions are protected by default.  A scoped
+            # owner-authorized correction remains exempt from retroactive
+            # creation-style requirements; the v2 historical-text lock checks
+            # the authorization chain and exact final hash.
+            authorized = historical_status == 'historical_authorized_change'
+            if authorized:
+                if entry.get('owner_authorized_change') is not True:
+                    issues.append({'reason': 'historical_introduction_authorization_missing', 'language': lang})
+                final_sha = entry.get('authorized_final_sha256')
+                if not isinstance(final_sha, str) or not re.fullmatch('[0-9a-f]{64}', final_sha):
+                    issues.append({'reason': 'historical_introduction_final_sha256', 'language': lang})
+                if not isinstance(entry.get('authorization'), dict):
+                    issues.append({'reason': 'historical_introduction_authorization_missing', 'language': lang})
+            elif entry.get('historical_content_preserved') is not True:
                 issues.append({'reason': 'historical_introduction_not_preserved', 'language': lang})
             source_sha = entry.get('historical_source_sha256')
             if not isinstance(source_sha, str) or not re.fullmatch('[0-9a-f]{64}', source_sha):
@@ -1255,7 +1262,7 @@ def _validate_introduction_review(ctx: PackageContext, manifest: dict[str, Any],
         elif reason in {'missing_dedicated_stakes_subsection', 'stakes_subsection_too_thin', 'stakes_review_row_count', 'stakes_section_attestation', 'concrete_stakes_missing', 'invalid_concrete_stakes'}:
             code = 'WDV-EDT-017'
             message = 'La sous-partie obligatoire sur les enjeux du débat est absente, trop générale ou insuffisamment attestée'
-        elif reason in {'historical_introduction_not_preserved', 'historical_introduction_source_sha256', 'historical_introduction_absence_unverified', 'historical_introduction_note'}:
+        elif reason in {'historical_introduction_not_preserved', 'historical_introduction_source_sha256', 'historical_introduction_absence_unverified', 'historical_introduction_note', 'historical_introduction_authorization_missing', 'historical_introduction_final_sha256'}:
             code = 'WDV-EDT-034'
             message = 'La préservation de l’introduction historique n’est pas correctement attestée'
         else:
@@ -1595,6 +1602,18 @@ def validate_summary_style_review_data(review: Any, nodes: list[dict[str, Any]],
                 if len(str(decision.get('note') or '').strip()) < 12:
                     issues.append({'reason': 'note', 'node_id': node_id, 'language': lang})
                 continue
+            if key_tuple in protected and decision.get('status') in {'historical_authorized_change', 'historical_authorized_creation'}:
+                if decision.get('owner_authorized_change') is not True:
+                    issues.append({'reason': 'historical_authorization_missing', 'node_id': node_id, 'language': lang})
+                for field in ('historical_source_sha256', 'authorized_final_sha256'):
+                    value = decision.get(field)
+                    if not isinstance(value, str) or not re.fullmatch('[0-9a-f]{64}', value):
+                        issues.append({'reason': field, 'node_id': node_id, 'language': lang})
+                if not isinstance(decision.get('authorization'), dict):
+                    issues.append({'reason': 'historical_authorization_missing', 'node_id': node_id, 'language': lang})
+                if len(str(decision.get('note') or '').strip()) < 12:
+                    issues.append({'reason': 'note', 'node_id': node_id, 'language': lang})
+                continue
             if key_tuple in owner_removed:
                 if decision.get('status') != 'owner_removed':
                     issues.append({'reason': 'owner_removed_status', 'node_id': node_id, 'language': lang})
@@ -1673,6 +1692,17 @@ def _protected_historical_summary_keys(ctx: PackageContext) -> set[tuple[str, st
                     node_id, language = (entry.get('id'), entry.get('language'))
                     if isinstance(node_id, str) and language in {'fr', 'en'}:
                         result.add((node_id, language))
+    if ctx.exists('data/fr_content_lock.json'):
+        content_lock = ctx.load_json('data/fr_content_lock.json')
+        decisions = content_lock.get('historical_text_decisions') if isinstance(content_lock, dict) else None
+        if isinstance(decisions, dict):
+            for entry in decisions.get('arguments') or []:
+                if isinstance(entry, dict) and entry.get('page_origin') == 'preexisting' and isinstance(entry.get('id'), str):
+                    result.add((str(entry['id']), 'fr'))
+    status = str((((manifest.get('translation_status') or {}).get('en')) or ''))
+    if status in {'ready', 'published'}:
+        en_ids = {str(p.get('page_id')) for p in manifest.get('pages', []) if p.get('language') == 'en' and p.get('page_type') == 'argument'}
+        result.update((node_id, 'en') for node_id, language in list(result) if language == 'fr' and node_id in en_ids)
     setattr(ctx, '_protected_historical_summary_keys_cache', result)
     return result
 
@@ -1681,10 +1711,11 @@ def _historically_absent_summary_keys(ctx: PackageContext) -> set[tuple[str, str
     if isinstance(cached, set):
         return cached
     result: set[tuple[str, str]] = set()
+    exists = getattr(ctx, 'exists', lambda _path: False)
     manifest = ctx.manifest() or {}
     cfg = (manifest.get('editorial_controls') or {}).get('legacy_content_preservation') or {}
     rel = cfg.get('lock_path')
-    if cfg.get('enabled') is True and isinstance(rel, str) and ctx.exists(rel):
+    if cfg.get('enabled') is True and isinstance(rel, str) and exists(rel):
         lock = ctx.load_json(rel)
         if isinstance(lock, dict):
             for entry in lock.get('arguments') or []:
@@ -1692,6 +1723,15 @@ def _historically_absent_summary_keys(ctx: PackageContext) -> set[tuple[str, str
                     node_id, language = (entry.get('id'), entry.get('language'))
                     if isinstance(node_id, str) and language in {'fr', 'en'}:
                         result.add((node_id, language))
+    if exists('data/fr_content_lock.json'):
+        content_lock = ctx.load_json('data/fr_content_lock.json')
+        decisions = content_lock.get('historical_text_decisions') if isinstance(content_lock, dict) else None
+        if isinstance(decisions, dict):
+            for entry in decisions.get('arguments') or []:
+                if (isinstance(entry, dict) and entry.get('page_origin') == 'preexisting'
+                        and entry.get('historical_status') == 'historical_absent'
+                        and entry.get('decision') == 'preserved' and isinstance(entry.get('id'), str)):
+                    result.add((str(entry['id']), 'fr'))
     status = english_translation_status(manifest)
     if status in {'ready', 'published'}:
         en_ids = {str(p.get('page_id')) for p in manifest.get('pages', []) if p.get('language') == 'en' and p.get('page_type') == 'argument'}

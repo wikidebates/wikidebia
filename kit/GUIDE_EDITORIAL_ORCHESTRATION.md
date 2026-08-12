@@ -104,7 +104,7 @@ Les actions de graphe exécutées explicitement avec `--execute-graph-actions` c
 
 ### Protection des textes historiques dans `fr_content_review`
 
-Lors d’une reprise de pages existantes, le paquet de revue ne peut pas servir à réécrire l’introduction ou les résumés historiques. Les décisions restent `keep`, les empreintes sont scellées et une absence historique de résumé demeure une absence. Une modification propriétaire ultérieure doit utiliser une opération corrective distincte.
+Lors d’une reprise de pages existantes, l’introduction et les résumés historiques sont préservés par défaut. Le paquet peut enregistrer des suggestions sans les appliquer. Lorsqu’un delta historique est précisément demandé dans le ZIP, `review-import` exige une action propriétaire explicite : relancer le même paquet avec `--authorize-historical-changes` crée hors du ZIP une preuve scoped et permet la modification dans la même `fr_content_review`. L’absence historique d’un résumé demeure une absence sauf création nominativement autorisée. Le delta autorisé est publié au checkpoint français n°2, sans troisième publication.
 
 ## Publication française après la revue de contenu
 

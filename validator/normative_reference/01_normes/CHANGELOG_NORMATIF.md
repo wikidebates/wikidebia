@@ -755,3 +755,12 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - exige un verrou d’empreintes des textes historiques et un contrôle du rendu avant publication ;
 - précise que le second checkpoint français publie les autres deltas de contenu/classification mais possède un delta nul sur les résumés et l’introduction historiques dans une reprise ordinaire.
 
+## 1.2.84 — 12 août 2026 — consentement explicite pour les textes historiques
+
+- remplace l’immutabilité absolue de 1.2.83 par la séquence « préservation par défaut → suggestion → décision explicite du propriétaire → modification autorisée et traçable » ;
+- permet d’autoriser pendant `fr_content_review` une correction ciblée ou une réécriture explicitement demandée de l’introduction ou d’un résumé historique, sans troisième checkpoint français ;
+- conserve l’absence historique de résumé sauf création nominativement autorisée ;
+- impose une preuve locale de consentement hors du ZIP éditable, liée au paquet exact, au champ et aux empreintes avant/après ;
+- fait évoluer `fr_content_lock.json` vers `preserved` / `authorized_change` avec historique, final et preuve ;
+- exige que la traduction anglaise parte de la version française finale effectivement autorisée ;
+- normalise les anciennes revues supportées par schéma et récupère leurs deltas comme suggestions tant qu’ils ne sont pas explicitement autorisés.
