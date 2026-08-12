@@ -1,6 +1,6 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.16.21",
+  "version": "2.16.22",
   "validator_version": "0.4.91",
   "scope": [
     "publish_archive",
@@ -110,7 +110,8 @@
     "deferred_graph_action_publication",
     "historical_summary_introduction_preservation",
     "historical_text_preservation_lock",
-    "historical_text_owner_consent"
+    "historical_text_owner_consent",
+    "historical_editorial_parameter_presence"
   ],
   "debate_specific_code": false,
   "change_tag": "chatgpt",
@@ -481,7 +482,8 @@
     "legacy_fr_content_review_consent_migration",
     "historical_selected_final_value",
     "structured_historical_introduction_scope",
-    "transactional_french_checkpoint_stage_rollback"
+    "transactional_french_checkpoint_stage_rollback",
+    "historical_editorial_parameter_presence"
   ],
   "normative_revision": "1.2.86",
   "stable_archive_name": "wikidebia-kit.zip",
@@ -586,7 +588,8 @@
     "historical_text_owner_consent_receipt_gate",
     "authorized_historical_delta_checkpoint2_gate",
     "selected_historical_value_gate",
-    "fr_checkpoint_prewrite_transaction_rollback_regression"
+    "fr_checkpoint_prewrite_transaction_rollback_regression",
+    "historical_top_level_parameter_presence_gate"
   ],
   "regression_gates": [
     "argument_reference_develops_argument_regression",
@@ -632,8 +635,9 @@
     "authorized_historical_text_no_third_checkpoint_regression",
     "vote_electronique_authorized_intro_4_to_5_regression",
     "historical_change_scope_parasite_rejection_regression",
-    "vote_electronique_v6_v7_checkpoint_rebuild_regression"
+    "vote_electronique_v6_v7_checkpoint_rebuild_regression",
+    "vote_electronique_v8_top_level_presence_preflight_regression"
   ],
   "translation_change_tag": "translated-fr",
-  "kit_version": "2.16.21"
+  "kit_version": "2.16.22"
 }

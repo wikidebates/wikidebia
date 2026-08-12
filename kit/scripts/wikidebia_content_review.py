@@ -102,6 +102,34 @@ PAGE_LIFECYCLE_PARAMETERS = {
     ),
 }
 
+# Presence of editorial top-level parameters is independent from their value.
+# On a preexisting page, an imported `|parameter=` must remain distinguishable
+# from a parameter that was absent altogether.  This snapshot is intentionally
+# separate from lifecycle preservation because editorial values may legitimately
+# change during fr_content_review while their historical presence is retained.
+PAGE_EDITORIAL_PARAMETERS = {
+    "debate": (
+        "introduction", "articles-Wikipédia", "arguments-pour", "arguments-contre",
+        "bibliographie-pour", "bibliographie-contre", "bibliographie-ni-pour-ni-contre",
+        "sitographie-pour", "sitographie-contre", "sitographie-ni-pour-ni-contre",
+        "vidéographie-pour", "vidéographie-contre", "vidéographie-ni-pour-ni-contre",
+        "rubriques", "mots-clés",
+    ),
+    "argument": (
+        "résumé", "citations", "références-bibliographiques",
+        "références-sitographiques", "références-vidéographiques",
+        "justifications", "objections", "rubriques", "mots-clés",
+    ),
+}
+
+
+def _page_parameter_presence_snapshot(template: Any, page_type: str) -> dict[str, Any]:
+    """Capture exact historical presence of editorial top-level parameters."""
+    result: dict[str, Any] = {}
+    for name in PAGE_EDITORIAL_PARAMETERS[page_type]:
+        result[name] = {"present": name in template.params}
+    return result
+
 
 def _page_lifecycle_snapshot(template: Any, page_type: str) -> dict[str, Any]:
     """Capture exact presence/value of protected parameters on an imported page."""
@@ -427,6 +455,7 @@ def _source_imports(reviewed: Path) -> tuple[dict[str, Any], dict[str, Any], lis
         "documentation_raw": {bucket: debate.get(bucket).strip() for bucket in DEBATE_BUCKETS},
         "page_origin": "preexisting",
         "preserved_parameters": _page_lifecycle_snapshot(debate, "debate"),
+        "source_parameter_presence": _page_parameter_presence_snapshot(debate, "debate"),
     }
     nodes = {
         str(node.get("id")): node
@@ -479,6 +508,7 @@ def _source_imports(reviewed: Path) -> tuple[dict[str, Any], dict[str, Any], lis
             },
             "page_origin": "preexisting",
             "preserved_parameters": _page_lifecycle_snapshot(tmpl, "argument"),
+            "source_parameter_presence": _page_parameter_presence_snapshot(tmpl, "argument"),
         })
     return registry, debate_source, arguments
 
@@ -1566,6 +1596,7 @@ def _validate_debate(
         "historical_content_preserved": historical_intro_protected and not historical_intro_authorized,
         "page_origin": source.get("page_origin", "preexisting"),
         "preserved_parameters": copy.deepcopy(source.get("preserved_parameters") or {}),
+        "source_parameter_presence": copy.deepcopy(source.get("source_parameter_presence") or {}),
     }
 
 
@@ -1700,6 +1731,7 @@ def _validate_argument(
         "attestations": ({field: True for field in SUMMARY_TRUE_FIELDS} if not historical_summary_protected else {}),
         "page_origin": source.get("page_origin", "preexisting"),
         "preserved_parameters": copy.deepcopy(source.get("preserved_parameters") or {}),
+        "source_parameter_presence": copy.deepcopy(source.get("source_parameter_presence") or {}),
     }
 
 

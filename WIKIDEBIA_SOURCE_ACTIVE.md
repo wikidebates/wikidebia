@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.86** ;
 - validateur actif : **0.4.91** ;
-- kit actif : **2.16.21**.
+- kit actif : **2.16.22**.
 
 ## Composants associés
 
 - `wikidebia-normes.zip` — 3683607 octets — SHA-256 `7a1256a6228a72fe7b901e26e9f48822acc9019f14fc918a528aef6d28f08afb`
 - `wikidebia-validator.zip` — 3849916 octets — SHA-256 `e1ae44804de9878545625a7abeca84d50245e5b5a17343684846b09d901a17f8`
-- `wikidebia-kit.zip` — 734104 octets — SHA-256 `20488c836476f76818a4bf5f12290a44103f96411943d184233b2ee22d113275`
+- `wikidebia-kit.zip` — 743892 octets — SHA-256 `955449b440e6bc12045dfce605bb5c1be22808f99d5cf8891fc06e662587b10b`
 
 ## Norme consolidée active
 
@@ -1910,7 +1910,15 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `71c94cbbb59df89d479578013033a18102be703667d4c04abadd91a39829da6b`
+SHA-256 : `d250de21224bcdb9511e3977ee21ab5218720d6a555de355e58d3c7a42bea2bc`
+
+# Wikidéb’IA Kit 2.16.22
+
+Le kit 2.16.22 préserve explicitement la **présence top-level** des paramètres éditoriaux historiques, indépendamment de leur valeur. Sur une page française `preexisting`, un paramètre attesté dans l’import qui devient vide après revue est rendu sous la forme `|paramètre=` ; un paramètre historiquement absent n’est jamais créé seulement parce que sa valeur logique est vide.
+
+Le renderer utilise un état interne `present-empty` distinct de `None` : `None` signifie toujours « omettre », tandis que l’état `present-empty` n’est produit que lorsque `source_parameter_presence` atteste la présence historique. Cette provenance est capturée pour les paramètres éditoriaux des pages Débat et Argument, propagée dans `fr_content_lock.json`, puis utilisée par le checkpoint français `content`. Les suppressions réellement autorisées restent gérées séparément par `allowed_parameter_deletions`.
+
+Une régression reproduit A0021 avec `|objections=`, les buckets historiques `bibliographie-pour` et `vidéographie-contre` devenant vides, les cas négatifs d’absence historique et de suppression autorisée, ainsi qu’un préflight synthétique de vote électronique à 100 mises à jour résolues sans `blocked` ni `manual_review`.
 
 # Wikidéb’IA Kit 2.16.21
 
@@ -2010,7 +2018,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `8d5eea68edbad0d04a7316c51f02004f018f8accfdbc26fd6991fccc1bd2ca9e`
+SHA-256 : `8d84f5a2c502602f1327059349f186db07cc9139ef88ca45c33d73222a67441c`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2284,6 +2292,14 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - conserve sans rollback le checkpoint, le plan et les preuves dès qu’une exécution distante a commencé, afin de maintenir la reprise idempotente ;
 - autorise `build_checkpoint()` à reconstruire un checkpoint de source divergente laissé par 2.16.20 uniquement lorsque l’état est prouvablement pré-exécution (aucun plan, ou plan bloqué/non exécutable) ; un reçu de publication ou un plan exécutable bloque tout auto-nettoyage ;
 - ajoute les régressions sur deux échecs locaux successifs, conservation après début d’écriture et le scénario vote électronique v6 → v7 jusqu’au prochain handoff anglais.
+## 2.16.22 — 13 août 2026 — préservation de présence des paramètres éditoriaux historiques
+
+- capture séparément la présence historique des paramètres top-level éditoriaux des pages Débat et Argument dans `source_parameter_presence` ;
+- propage cette présence de l’import vers la revue, `fr_content_lock.json` et le rendu du checkpoint `content` ;
+- introduit un état interne `present-empty` : `None` continue de signifier « absent », tandis qu’un paramètre historiquement présent dont la valeur finale est vide est émis sous la forme `|paramètre=` ;
+- n’ajoute jamais mécaniquement un paramètre vide historiquement absent et ne remplace aucune valeur par un espace ou une valeur factice ;
+- conserve l’omission spéciale des `justifications`/`objections` sur une page frontière `débat-dédié` et ne modifie pas le mécanisme explicite `allowed_parameter_deletions` ;
+- ajoute les régressions A0021 `|objections=`, Débat `bibliographie-pour=` / `vidéographie-contre=`, présence absente, suppression explicitement autorisée, non-vidage d’une valeur historique non vide et préflight synthétique de 100 mises à jour sans blocage.
 
 ## Guide de publication
 
@@ -2577,21 +2593,23 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `3772e22e8c2d2232aff4dd2738c761db920feeefe8e926c0f00243f0837743a1`
+SHA-256 : `fa9e502e1cf038387acbb3b460c72d7fbc60f12451aae21297e4b259c1e42b8d`
 
-Wikidéb’IA Kit 2.16.21 — rapport de tests
+Wikidéb’IA Kit 2.16.22 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 475
-Tests pytest : 475 réussis
+Tests pytest collectés : 482
+Tests pytest : 482 réussis
 Norme : 1.2.86
 Validateur : 0.4.91
-Rollback pré-écriture du checkpoint content : PASSED ; le stage provisoire est supprimé/restauré avec la transaction locale.
-Checkpoint graph déjà publié : PASSED ; conservé byte-for-byte lors d’un échec local du checkpoint content.
-Deux échecs locaux successifs : PASSED ; aucun faux verrou fr-publication ne subsiste.
-Frontière distante : PASSED ; checkpoint/plan/preuves conservés dès que remote_execution_started est signalé.
-Compatibilité 2.16.20 : PASSED ; un checkpoint divergent sans plan exécutable est reconstruit, mais un plan exécutable ou publication-receipt bloque tout auto-nettoyage.
-Intégration vote électronique v6→v7 : PASSED ; échec documentaire pré-écriture, rollback, nouvelle source SHA, reconstruction checkpoint 2, puis préparation de en_translation_review.
-Tous les contrôles 2.16.20 et antérieurs restent verts, y compris Citation/Quote à paramètres facultatifs vides.
+Présence top-level historique : PASSED ; un paramètre éditorial présent dans l’import reste distingué d’un paramètre historiquement absent.
+A0021 `|objections=` : PASSED ; le checkpoint content conserve `|objections=` et top_level_parameter_deletions() ne signale aucune suppression.
+Buckets Débat : PASSED ; `bibliographie-pour` et `vidéographie-contre` peuvent devenir vides tout en restant présents.
+Absence historique : PASSED ; aucun paramètre vide n’est créé mécaniquement lorsqu’il était absent.
+Suppression autorisée : PASSED ; allowed_parameter_deletions reste opérationnel et indépendant de la préservation de présence.
+Valeur historique non vide : PASSED ; jamais vidée par la seule logique de présence.
+Préflight vote électronique v8 synthétique : PASSED ; 100 update, 0 blocked, 0 manual_review, puis 100 mises à jour exécutées sur l’adaptateur de test.
+Propagation import → fr_content_lock → checkpoint content → en_translation_review : PASSED.
+Tous les contrôles 2.16.21 et antérieurs restent verts.
 
 ## Guide d’orchestration éditoriale
 

@@ -270,3 +270,12 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - conserve sans rollback le checkpoint, le plan et les preuves dès qu’une exécution distante a commencé, afin de maintenir la reprise idempotente ;
 - autorise `build_checkpoint()` à reconstruire un checkpoint de source divergente laissé par 2.16.20 uniquement lorsque l’état est prouvablement pré-exécution (aucun plan, ou plan bloqué/non exécutable) ; un reçu de publication ou un plan exécutable bloque tout auto-nettoyage ;
 - ajoute les régressions sur deux échecs locaux successifs, conservation après début d’écriture et le scénario vote électronique v6 → v7 jusqu’au prochain handoff anglais.
+## 2.16.22 — 13 août 2026 — préservation de présence des paramètres éditoriaux historiques
+
+- capture séparément la présence historique des paramètres top-level éditoriaux des pages Débat et Argument dans `source_parameter_presence` ;
+- propage cette présence de l’import vers la revue, `fr_content_lock.json` et le rendu du checkpoint `content` ;
+- introduit un état interne `present-empty` : `None` continue de signifier « absent », tandis qu’un paramètre historiquement présent dont la valeur finale est vide est émis sous la forme `|paramètre=` ;
+- n’ajoute jamais mécaniquement un paramètre vide historiquement absent et ne remplace aucune valeur par un espace ou une valeur factice ;
+- conserve l’omission spéciale des `justifications`/`objections` sur une page frontière `débat-dédié` et ne modifie pas le mécanisme explicite `allowed_parameter_deletions` ;
+- ajoute les régressions A0021 `|objections=`, Débat `bibliographie-pour=` / `vidéographie-contre=`, présence absente, suppression explicitement autorisée, non-vidage d’une valeur historique non vide et préflight synthétique de 100 mises à jour sans blocage.
+

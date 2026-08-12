@@ -1,3 +1,11 @@
+# Wikidéb’IA Kit 2.16.22
+
+Le kit 2.16.22 préserve explicitement la **présence top-level** des paramètres éditoriaux historiques, indépendamment de leur valeur. Sur une page française `preexisting`, un paramètre attesté dans l’import qui devient vide après revue est rendu sous la forme `|paramètre=` ; un paramètre historiquement absent n’est jamais créé seulement parce que sa valeur logique est vide.
+
+Le renderer utilise un état interne `present-empty` distinct de `None` : `None` signifie toujours « omettre », tandis que l’état `present-empty` n’est produit que lorsque `source_parameter_presence` atteste la présence historique. Cette provenance est capturée pour les paramètres éditoriaux des pages Débat et Argument, propagée dans `fr_content_lock.json`, puis utilisée par le checkpoint français `content`. Les suppressions réellement autorisées restent gérées séparément par `allowed_parameter_deletions`.
+
+Une régression reproduit A0021 avec `|objections=`, les buckets historiques `bibliographie-pour` et `vidéographie-contre` devenant vides, les cas négatifs d’absence historique et de suppression autorisée, ainsi qu’un préflight synthétique de vote électronique à 100 mises à jour résolues sans `blocked` ni `manual_review`.
+
 # Wikidéb’IA Kit 2.16.21
 
 Le kit 2.16.21 étend la transaction de `review-import` aux artefacts de checkpoint français sous `.state/fr-publication/<debate>/<work>/<stage>`. Tant qu’aucune exécution distante n’a commencé, un échec de validation, préflight ou planification restaure exactement le stage qui existait avant la tentative, ou supprime le stage provisoire créé par cette tentative. Le checkpoint `graph` déjà publié reste intact lorsqu’un checkpoint `content` échoue localement.
