@@ -231,8 +231,11 @@ def _citation_template(citation: Mapping[str, Any], *, lang: str) -> str:
             raise RenderError(f"Paramètre de citation invalide : {citation.get('id')}")
         name = str(parameter.get("name") or "").strip()
         value = str(parameter.get("value") or "").strip()
-        if not name or not value:
-            raise RenderError(f"Paramètre de citation vide : {citation.get('id')}")
+        if not name:
+            raise RenderError(f"Nom de paramètre de citation vide : {citation.get('id')}")
+        # L'inventaire historique conserve aussi les sous-paramètres facultatifs
+        # présents mais vides. Le rendu canonique ne doit ni les considérer
+        # comme une erreur ni leur inventer une valeur : _template() les omet.
         rows.append((name, value))
     return _template("Citation" if lang == "fr" else "Quote", rows)
 

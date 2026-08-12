@@ -5,8 +5,8 @@
   "release_source": "VERSIONS.json",
   "release": {
     "norm": "1.2.86",
-    "validator": "0.4.90",
-    "kit": "2.16.19"
+    "validator": "0.4.91",
+    "kit": "2.16.20"
   },
   "emits": {
     "validator_report": [
@@ -106,6 +106,7 @@
     "historical_french_text_owner_consent": "3.0",
     "historical_selected_value_validation": "1.0",
     "editorial_source_provenance_validation": "1.0",
-    "historical_classification_differential_validation": "1.0"
+    "historical_classification_differential_validation": "1.0",
+    "historical_citation_optional_empty_parameters": "1.0"
   }
 }

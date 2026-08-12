@@ -1065,8 +1065,13 @@ def _parameter_pairs(rows: Any) -> list[tuple[str, str]]:
             return []
         name = str(row.get('name') or '').strip()
         value = str(row.get('value') or '').strip()
-        if not name or not value:
+        if not name:
             return []
+        # Les verrous conservent fidèlement la provenance, y compris les
+        # sous-paramètres facultatifs historiquement présents mais vides. Le
+        # wikicode canonique les omet conformément au profil de rendu.
+        if not value:
+            continue
         out.append((name, value))
     return out
 

@@ -252,3 +252,12 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - autorise les corrections de rubriques historiques avec justification sans blocage par cardinalité ;
 - supprime la troncature `[:4]` des rubriques importées et corrige le tri alphabétique français accentué ;
 - normalise les anciens paquets de revue supportés dépourvus des nouvelles attestations de provenance.
+
+## 2.16.20 — 12 août 2026 — sous-paramètres facultatifs vides des Citation/Quote historiques
+
+- corrige `_citation_template()` : un nom de paramètre vide reste bloquant, mais une valeur facultative vide est conservée dans l’inventaire puis omise par le rendu canonique ;
+- n’invente aucune valeur pour `ouvrage`, `numéro`, `localisation`, `page`, `édition`, `lieu` ni leurs équivalents anglais ;
+- conserve la provenance historique exacte dans `source_parameters` et la projection anglaise dans `parameters` ;
+- applique la même omission canonique à `work`, `issue`, `location`, `page`, `publisher` et `place` dans `{{Quote}}` ;
+- ajoute les régressions A0055-C001/A0056-C001 et un trajet d’intégration vote électronique allant de l’autorisation historique au checkpoint français n°2 puis à la préparation de la revue anglaise ;
+- conserve le contrôle amont qui bloque une valeur obligatoire `citation` vide.

@@ -1,3 +1,9 @@
+# Wikidéb’IA Kit 2.16.20
+
+Le kit 2.16.20 corrige le rendu des `Citation`/`Quote` importées lorsque leur inventaire historique contient des sous-paramètres facultatifs présents mais vides. Le registre et les verrous conservent ces lignes de provenance à l’identique, tandis que le wikicode canonique les omet conformément au profil de rendu ; aucune valeur documentaire n’est inventée.
+
+Un nom de paramètre vide reste une erreur et la valeur obligatoire `citation` reste contrôlée en amont. Le même contrat est appliqué au trajet FR→EN : les paramètres vides peuvent rester dans `source_parameters` et dans l’inventaire mappé `parameters`, puis `work`, `issue`, `location`, `page`, `publisher` ou `place` vides sont omis de `{{Quote}}`. Une régression d’intégration reproduit le vote électronique jusqu’au checkpoint français n°2 puis jusqu’à la préparation de la revue anglaise.
+
 # Wikidéb’IA Kit 2.16.19
 
 Le kit 2.16.19 propage la provenance éditoriale française jusqu’à la traduction anglaise au moyen de `source_page_origin`, distinct du `page_origin` de la page cible. Une page EN nouvelle qui traduit un corpus français préexistant conserve donc le profil historique pour les quotas et préférences de génération sans affaiblir les contrôles de qualité intrinsèque, de documentation ni de fidélité.

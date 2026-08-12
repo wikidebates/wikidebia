@@ -175,3 +175,49 @@ def test_english_argument_rejects_french_relation_parameters(tmp_path: Path):
     tmpl = parse_template(raw)
     validate_template_shape(ctx, tmpl, "en", "argument", "output/en/arguments/A0001.wiki")
     assert any(item.code == "WDV-MWK-022" for item in ctx.report.findings)
+
+
+def test_quote_lock_may_retain_historically_empty_optional_parameters_while_render_omits_them(tmp_path: Path):
+    expected = _expected()
+    empty_fr_to_en = {
+        "ouvrage": "work",
+        "numéro": "issue",
+        "page": "page",
+        "localisation": "location",
+        "édition": "publisher",
+        "lieu": "place",
+    }
+    for row in expected["source"]["source_parameters"]:
+        if row["name"] in empty_fr_to_en:
+            row["value"] = ""
+    for row in expected["parameters"]:
+        if row["name"] in set(empty_fr_to_en.values()):
+            row["value"] = ""
+
+    (tmp_path / "data").mkdir(parents=True)
+    (tmp_path / "data/en_content_lock.json").write_text(
+        json.dumps({"arguments": [{"id": "A0001", "citations": [expected]}]}, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    (tmp_path / "manifest.json").write_text(
+        json.dumps({"normative_versions": {"consolidated_norm": "1.2.86"}}, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    ctx = PackageContext(
+        root=tmp_path,
+        report=Report("0.4.91", tmp_path.name, ["wikicode"]),
+        cache={"manifest.json": {"normative_versions": {"consolidated_norm": "1.2.86"}}},
+    )
+    raw = """{{Quote
+|quote=Translated text.
+|authors=Auteur inchangé
+|article=Original Article
+|volume=2
+|date=25 June 2012
+|link=https://example.org
+|warnings=Texte abrégé, AI-translated quote
+}}"""
+    tmpl = parse_template(_argument(raw))
+    validate_template_shape(ctx, tmpl, "en", "argument", "output/en/arguments/A0001.wiki")
+    _validate_citations_against_locks(ctx, tmpl, "output/en/arguments/A0001.wiki", "en", "A0001")
+    assert not any(item.code == "WDV-MWK-021" for item in ctx.report.findings)

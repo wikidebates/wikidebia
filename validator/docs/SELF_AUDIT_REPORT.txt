@@ -1,9 +1,7 @@
-Wikidéb’IA Validator 0.4.90 — auto-audit
+Wikidéb’IA Validator 0.4.91 — auto-audit
 Statut : PASSED
 Norme active unique : 1.2.86
-Kit aligné : 2.16.19
-Tests : 429 réussis
+Kit aligné : 2.16.20
+Tests : 430 réussis
 Copie normative : identique au paquet Normes 1.2.86.
-Provenance éditoriale source/cible : contrôlée sans requalifier une traduction de corpus historique en création IA.
-Contrôles intrinsèques historiques : conservés pour keywords, documentation, fidélité sémantique et structures techniques.
-Consentement historique v3 et valeur finale sélectionnée : conservés par WDV-EDT-034.
+Manifestes, versions, provenance normative et fichiers actifs : vérifiés après rescellement de la release.

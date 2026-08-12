@@ -175,3 +175,11 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - accepte les titres affichés historiques nominaux/contextuels sans fausse attestation de référent explicite ;
 - conserve les contrôles documentaires intrinsèques de l’introduction historique adaptée ;
 - ajoute les régressions de provenance correspondantes.
+
+## 0.4.91 — 12 août 2026 — validation des Citation/Quote à paramètres facultatifs vides
+
+- aligne la comparaison des verrous de citations sur le profil canonique d’omission des sous-paramètres facultatifs vides ;
+- conserve dans les verrous la provenance historique vide sans exiger son émission dans le wikicode final ;
+- maintient la comparaison exacte des paramètres documentaires non vides et le mapping FR→EN des noms de paramètres ;
+- ajoute une régression `Quote` où `work`, `issue`, `location`, `page`, `publisher` et `place` restent vides dans le verrou mais sont absents du wikicode rendu ;
+- ne modifie aucune règle normative : la norme active reste 1.2.86.

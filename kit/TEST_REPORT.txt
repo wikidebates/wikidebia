@@ -1,16 +1,13 @@
-Wikidéb’IA Kit 2.16.19 — rapport de tests
+Wikidéb’IA Kit 2.16.20 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 461
-Tests pytest : 461 réussis
+Tests pytest collectés : 468
+Tests pytest : 468 réussis
 Norme : 1.2.86
-Validateur : 0.4.90
-`source_page_origin` dérivé des verrous français et distinct du `page_origin` de la cible EN : PASSED.
-Displayed-title historique nominal/contextuel sans règle de création rétroactive : PASSED.
-Quotas keywords historiques non rétroactifs ; corrections intrinsèques et décomposition d’un mauvais keyword historique : PASSED.
-Rubriques historiques >4 conservées ; correction de classification justifiée : PASSED.
-Troncature historique `[:4]` de `corpus-init` supprimée : PASSED.
-Tri alphabétique français accentué (`Droit`, `Économie`, `Éthique`, ...) : PASSED.
-Introduction historique EN : adaptation autonome/localisation du contexte franco-français sans `Stakes` obligatoire, contrôles documentaires maintenus : PASSED.
-Résumé historique hors ratio avec justification : PASSED ; source nouvelle reste soumise au blocage de ratio.
-Compatibilité des anciens paquets de revue supportés sans `source_page_origin` explicite : PASSED.
-Consentement historique v3, deux checkpoints français, incoming/, rollback transactionnel, document_kind et résumés MediaWiki individualisés : PASSED.
+Validateur : 0.4.91
+Citation historique avec sous-paramètres facultatifs vides : acceptée ; valeurs vides omises du wikicode canonique.
+Nom de paramètre de citation vide : BLOQUÉ comme attendu.
+Paramètre obligatoire `citation` vide : BLOQUÉ en amont comme attendu.
+A0055-C001 / A0056-C001 : formes historiques à paramètres optionnels vides acceptées sans invention documentaire.
+Citation→Quote : `work`/`issue`/`location`/`page`/`publisher`/`place` vides conservés en provenance et omis du rendu anglais.
+Intégration vote électronique : autorisation historique → checkpoint français n°2 → préparation de la revue anglaise : PASSED.
+Toutes les régressions 2.16.19 (provenance éditoriale), 2.16.18 (valeur historique sélectionnée), deux checkpoints français, rollback transactionnel et résumés individualisés : PASSED.

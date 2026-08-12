@@ -1,3 +1,9 @@
+# Wikidéb’IA Validator 0.4.91
+
+Le validateur 0.4.91 s’aligne sur la norme 1.2.86 et le kit 2.16.20 pour les citations historiques comportant des sous-paramètres facultatifs vides. La provenance peut conserver ces lignes vides, mais la comparaison verrou↔wikicode les traite comme des paramètres omis dans le rendu canonique.
+
+Les valeurs documentaires non vides restent comparées exactement, la traduction des noms de paramètres `Citation`→`Quote` reste obligatoire et aucune valeur manquante ne peut être inventée. Les contrôles précédents, notamment `WDV-MWK-021`, le consentement historique et la validation différentielle FR→EN, sont conservés.
+
 # Wikidéb’IA Validator 0.4.90
 
 Le validateur 0.4.90 s’aligne sur la norme 1.2.86 et le kit 2.16.19. Il distingue désormais explicitement le cycle de vie de la page cible anglaise de la provenance éditoriale de sa source française : une page EN techniquement nouvelle issue d’une page FR préexistante n’est pas soumise aux quotas ni aux préférences de création IA.

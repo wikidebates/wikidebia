@@ -3,14 +3,14 @@
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
 - norme active : **1.2.86** ;
-- validateur actif : **0.4.90** ;
-- kit actif : **2.16.19**.
+- validateur actif : **0.4.91** ;
+- kit actif : **2.16.20**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3672487 octets — SHA-256 `4a04a8a52ffddd5192144c06689ed7847e13b651a0674e17bcd54a36dada7008`
-- `wikidebia-validator.zip` — 3837213 octets — SHA-256 `983c31f3fd16910fa7f192582c27e78640ec8041af4350a26b9ec6e27a478949`
-- `wikidebia-kit.zip` — 719826 octets — SHA-256 `3a110dac961d5b4bdaf3eee0216e7df1783d1caa0f601443e9d7d749576fe234`
+- `wikidebia-normes.zip` — 3683607 octets — SHA-256 `7a1256a6228a72fe7b901e26e9f48822acc9019f14fc918a528aef6d28f08afb`
+- `wikidebia-validator.zip` — 3849916 octets — SHA-256 `e1ae44804de9878545625a7abeca84d50245e5b5a17343684846b09d901a17f8`
+- `wikidebia-kit.zip` — 729518 octets — SHA-256 `84ff36de4985ab305e69d3ff9f0e6f1528a3a900f0b48786b988ff157e14c5e3`
 
 ## Norme consolidée active
 
@@ -1640,7 +1640,13 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `03486ba0811e93f1a1289a028da9134957faefbe10ece0cd95cf95f0b776822b`
+SHA-256 : `4b7bf4db6be78ed1d6ba9b6101bcfb203cf8d25e28be30026b80c9ba48c38250`
+
+# Wikidéb’IA Validator 0.4.91
+
+Le validateur 0.4.91 s’aligne sur la norme 1.2.86 et le kit 2.16.20 pour les citations historiques comportant des sous-paramètres facultatifs vides. La provenance peut conserver ces lignes vides, mais la comparaison verrou↔wikicode les traite comme des paramètres omis dans le rendu canonique.
+
+Les valeurs documentaires non vides restent comparées exactement, la traduction des noms de paramètres `Citation`→`Quote` reste obligatoire et aucune valeur manquante ne peut être inventée. Les contrôles précédents, notamment `WDV-MWK-021`, le consentement historique et la validation différentielle FR→EN, sont conservés.
 
 # Wikidéb’IA Validator 0.4.90
 
@@ -1713,7 +1719,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `cf619d5da9ffbe6c9e5125cfa3d228cdbddd12c55aaa5159df366f4f9e46e56a`
+SHA-256 : `ee77c628a5a64da0649d962abd5cb57c4416bdf5eab72869af9731da2fdf335b`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1893,10 +1899,24 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - conserve les contrôles documentaires intrinsèques de l’introduction historique adaptée ;
 - ajoute les régressions de provenance correspondantes.
 
+## 0.4.91 — 12 août 2026 — validation des Citation/Quote à paramètres facultatifs vides
+
+- aligne la comparaison des verrous de citations sur le profil canonique d’omission des sous-paramètres facultatifs vides ;
+- conserve dans les verrous la provenance historique vide sans exiger son émission dans le wikicode final ;
+- maintient la comparaison exacte des paramètres documentaires non vides et le mapping FR→EN des noms de paramètres ;
+- ajoute une régression `Quote` où `work`, `issue`, `location`, `page`, `publisher` et `place` restent vides dans le verrou mais sont absents du wikicode rendu ;
+- ne modifie aucune règle normative : la norme active reste 1.2.86.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `76bfc2e2d64c1ced5ce1349980bc4d626230a4e01b350dfee2f353b5ab71f497`
+SHA-256 : `b0356aef78b0e7eed96470e5e12c1749085e6895d855cb754dd6701cca7bb877`
+
+# Wikidéb’IA Kit 2.16.20
+
+Le kit 2.16.20 corrige le rendu des `Citation`/`Quote` importées lorsque leur inventaire historique contient des sous-paramètres facultatifs présents mais vides. Le registre et les verrous conservent ces lignes de provenance à l’identique, tandis que le wikicode canonique les omet conformément au profil de rendu ; aucune valeur documentaire n’est inventée.
+
+Un nom de paramètre vide reste une erreur et la valeur obligatoire `citation` reste contrôlée en amont. Le même contrat est appliqué au trajet FR→EN : les paramètres vides peuvent rester dans `source_parameters` et dans l’inventaire mappé `parameters`, puis `work`, `issue`, `location`, `page`, `publisher` ou `place` vides sont omis de `{{Quote}}`. Une régression d’intégration reproduit le vote électronique jusqu’au checkpoint français n°2 puis jusqu’à la préparation de la revue anglaise.
 
 # Wikidéb’IA Kit 2.16.19
 
@@ -1982,7 +2002,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `322c0d4ebfe30ce4e54cce4764947008edb3ddbce99b72d80b6406dd40477cf6`
+SHA-256 : `36d398fe431ab32c11cc866a43b893a0dfa4b5e64d366277ea553956222c989d`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2238,6 +2258,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - autorise les corrections de rubriques historiques avec justification sans blocage par cardinalité ;
 - supprime la troncature `[:4]` des rubriques importées et corrige le tri alphabétique français accentué ;
 - normalise les anciens paquets de revue supportés dépourvus des nouvelles attestations de provenance.
+
+## 2.16.20 — 12 août 2026 — sous-paramètres facultatifs vides des Citation/Quote historiques
+
+- corrige `_citation_template()` : un nom de paramètre vide reste bloquant, mais une valeur facultative vide est conservée dans l’inventaire puis omise par le rendu canonique ;
+- n’invente aucune valeur pour `ouvrage`, `numéro`, `localisation`, `page`, `édition`, `lieu` ni leurs équivalents anglais ;
+- conserve la provenance historique exacte dans `source_parameters` et la projection anglaise dans `parameters` ;
+- applique la même omission canonique à `work`, `issue`, `location`, `page`, `publisher` et `place` dans `{{Quote}}` ;
+- ajoute les régressions A0055-C001/A0056-C001 et un trajet d’intégration vote électronique allant de l’autorisation historique au checkpoint français n°2 puis à la préparation de la revue anglaise ;
+- conserve le contrôle amont qui bloque une valeur obligatoire `citation` vide.
 
 ## Guide de publication
 
@@ -2531,24 +2560,21 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `234e93cfacd9407ecc0c19a065a29f5dc67865cd3ae22f5755bf4756b9eec3c8`
+SHA-256 : `997d875c9f23e8c0f20322452656572bb7240b440f5ccba6f2e6e9832618d900`
 
-Wikidéb’IA Kit 2.16.19 — rapport de tests
+Wikidéb’IA Kit 2.16.20 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 461
-Tests pytest : 461 réussis
+Tests pytest collectés : 468
+Tests pytest : 468 réussis
 Norme : 1.2.86
-Validateur : 0.4.90
-`source_page_origin` dérivé des verrous français et distinct du `page_origin` de la cible EN : PASSED.
-Displayed-title historique nominal/contextuel sans règle de création rétroactive : PASSED.
-Quotas keywords historiques non rétroactifs ; corrections intrinsèques et décomposition d’un mauvais keyword historique : PASSED.
-Rubriques historiques >4 conservées ; correction de classification justifiée : PASSED.
-Troncature historique `[:4]` de `corpus-init` supprimée : PASSED.
-Tri alphabétique français accentué (`Droit`, `Économie`, `Éthique`, ...) : PASSED.
-Introduction historique EN : adaptation autonome/localisation du contexte franco-français sans `Stakes` obligatoire, contrôles documentaires maintenus : PASSED.
-Résumé historique hors ratio avec justification : PASSED ; source nouvelle reste soumise au blocage de ratio.
-Compatibilité des anciens paquets de revue supportés sans `source_page_origin` explicite : PASSED.
-Consentement historique v3, deux checkpoints français, incoming/, rollback transactionnel, document_kind et résumés MediaWiki individualisés : PASSED.
+Validateur : 0.4.91
+Citation historique avec sous-paramètres facultatifs vides : acceptée ; valeurs vides omises du wikicode canonique.
+Nom de paramètre de citation vide : BLOQUÉ comme attendu.
+Paramètre obligatoire `citation` vide : BLOQUÉ en amont comme attendu.
+A0055-C001 / A0056-C001 : formes historiques à paramètres optionnels vides acceptées sans invention documentaire.
+Citation→Quote : `work`/`issue`/`location`/`page`/`publisher`/`place` vides conservés en provenance et omis du rendu anglais.
+Intégration vote électronique : autorisation historique → checkpoint français n°2 → préparation de la revue anglaise : PASSED.
+Toutes les régressions 2.16.19 (provenance éditoriale), 2.16.18 (valeur historique sélectionnée), deux checkpoints français, rollback transactionnel et résumés individualisés : PASSED.
 
 ## Guide d’orchestration éditoriale
 

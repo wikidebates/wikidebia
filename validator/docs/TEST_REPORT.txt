@@ -1,14 +1,11 @@
-Wikidéb’IA Validator 0.4.90 — rapport de tests
+Wikidéb’IA Validator 0.4.91 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 429
-Tests pytest : 429 réussis
+Tests pytest collectés : 430
+Tests pytest : 430 réussis
 Norme active : 1.2.86
-Kit recommandé : 2.16.19
-Validation différentielle selon `source_page_origin` : PASSED.
-Titres affichés historiques contextuels/non propositionnels : acceptés sans faux positif ; dégradations FR→EN toujours bloquées.
-Keywords historiques : quota de création désactivé ; contrôles intrinsèques de forme/atomicité/vocabulaire maintenus.
-Jeu exact de keywords dominant : ERROR pour attribution nouvelle ; signal non bloquant pour provenance historique.
-Rubriques/sections historiques et corrections différentielles : PASSED.
-Résumé historique hors ratio 0,60–1,45 avec justification explicite : accepté comme revue ; création nouvelle hors ratio : bloquée.
-Introduction historique EN sans `Stakes of the debate` mais avec adaptation/documentation intrinsèque attestée : PASSED ; profil de création inchangé pour source nouvelle.
-WDV-EDT-034, consentement historique v3, deux checkpoints français et WDV-RMT-008 : conservés.
+Kit recommandé : 2.16.20
+Comparaison verrou↔wikicode des Citation/Quote : les sous-paramètres facultatifs vides conservés en provenance sont traités comme omis dans le rendu canonique.
+Paramètres documentaires non vides et mapping des noms FR→EN : contrôlés exactement.
+Régression Quote avec `work`/`issue`/`location`/`page`/`publisher`/`place` vides dans le verrou et absents du wikicode : PASSED.
+Validation différentielle selon `source_page_origin`, titres affichés historiques, keywords historiques, rubriques historiques et ratios de résumés : PASSED.
+WDV-EDT-034, consentement historique v3, deux checkpoints français, WDV-MWK-021 et WDV-RMT-008 : conservés.
