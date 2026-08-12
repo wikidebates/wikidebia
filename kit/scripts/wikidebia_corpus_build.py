@@ -18,6 +18,7 @@ from typing import Any, Iterable, Iterator, Mapping
 REVIEW_ENVELOPE = "reviews/graph_build_review.json"
 PLACEMENT_REVIEW = "reviews/graph_placement_review.json"
 GRAPH_CORRECTION_REVIEW = "reviews/graph_correction.json"
+GRAPH_TITLE_REVIEW = "reviews/fr/graph_title_review.json"
 REVIEW_REPORT_JSON = "reports/graph_build_review_report.json"
 REVIEW_REPORT_TXT = "reports/graph_build_review_report.txt"
 FINAL_VALIDATION_JSON = "reports/graph_review_validation.json"
@@ -30,6 +31,7 @@ REVIEW_MUTABLE_PATHS = {
     REVIEW_ENVELOPE,
     PLACEMENT_REVIEW,
     GRAPH_CORRECTION_REVIEW,
+    GRAPH_TITLE_REVIEW,
     REVIEW_REPORT_JSON,
     REVIEW_REPORT_TXT,
     FINAL_VALIDATION_JSON,

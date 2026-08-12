@@ -1,11 +1,11 @@
 {
   "artifact": "wikidebia-normes",
-  "version": "1.2.80",
-  "normative_revision": "1.2.80",
+  "version": "1.2.81",
+  "normative_revision": "1.2.81",
   "status": "passed",
-  "declared_file_count": 314,
+  "declared_file_count": 317,
   "declared_test_count": 0,
-  "package_manifest_sha256": "cb7a18e37b597e9f1cb5621c3fc9fdd66c2ffd3526409b4269f39a05247db923",
+  "package_manifest_sha256": "d19b3d62b5c381b3340f204250585bb90b2d4b2f8a51c99f3bcb691dbd974861",
   "generated_date": "2026-08-12",
-  "receipt_sha256": "7c23747a5521f58b5d53704938cf8a8c9f75500f6e03714b509806003ed1d6d0"
+  "receipt_sha256": "414a44d3b61f1c81c196652cc57413655044edd43f96caba914356a2aaf96e0c"
 }

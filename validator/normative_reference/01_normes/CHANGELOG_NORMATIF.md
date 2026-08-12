@@ -735,3 +735,13 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - simplifie l’UX : les ZIP de revue corrigés sont déposés dans `incoming/`, `./wikidebia review-import` sélectionne l’unique paquet valide et `./wikidebia review-import <debate_id>` ne devient nécessaire qu’en cas de pluralité ;
 - sélectionne les paquets par le `debate_id` interne de `REVIEW_PACKAGE.json`, jamais par leur nom de fichier, et archive le ZIP seulement après succès ;
 - impose la validation de `document_kind` directement dans `sources_working.json` avant application de la revue française.
+
+## 1.2.81 — 12 août 2026 — deux checkpoints français avant traduction
+
+- remplace le checkpoint unique de 1.2.80 par deux publications françaises successives ;
+- la revue du graphe inclut dans un même paquet les positions/relations, décisions structurelles, titres canoniques et titres affichés ; son réimport approuvé déclenche immédiatement le premier checkpoint ;
+- le premier checkpoint est construit depuis le wikicode importé et préserve strictement rubriques, mots-clés, résumés, introduction et documentation ;
+- second checkpoint après la revue de contenu : rubriques, mots-clés, introduction, résumés, références et autres contenus ;
+- le second plan se calcule contre l’état publié attesté par le premier et interdit move/redirect/delete ;
+- les décisions structurelles de correction sont appliquées localement pendant la boucle de revue et ne sont publiées qu’au premier checkpoint ;
+- la traduction anglaise reste interdite tant que les deux reçus français ne sont pas acquis.

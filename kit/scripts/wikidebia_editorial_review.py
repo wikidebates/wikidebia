@@ -406,6 +406,140 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+
+def _validate_title_item(item: Mapping[str, Any]) -> dict[str, Any]:
+    """Validate only canonical/displayed titles while preserving classification verbatim.
+
+    The first French publication checkpoint is intentionally restricted to graph
+    structure and titles. Rubriques and keywords are carried forward unchanged
+    and are reviewed later with the content checkpoint.
+    """
+    entity_type = str(item.get("entity_type") or "")
+    entity_id = str(item.get("entity_id") or "")
+    if entity_type not in {"debate", "argument"} or not entity_id:
+        raise EditorialReviewError("Entrée de revue de titres sans identité valide")
+    source = item.get("source")
+    decision = item.get("review")
+    if not isinstance(source, dict) or not isinstance(decision, dict):
+        raise EditorialReviewError(f"Entrée de revue de titres incomplète : {entity_id}")
+    page_origin = _source_page_origin(source)
+    if decision.get("status") != "approved":
+        raise EditorialReviewError(f"Entrée de titres non approuvée : {entity_id}")
+    if not _text_ok(decision.get("reviewer"), 2):
+        raise EditorialReviewError(f"Relecteur absent : {entity_id}")
+    if not _text_ok(decision.get("reviewed_at"), 10):
+        raise EditorialReviewError(f"Date de revue absente : {entity_id}")
+
+    canonical_raw = _decision_value(decision, source, "canonical_title", entity_type)
+    if not isinstance(canonical_raw, str) or canonical_raw != normalized_text(canonical_raw) or not canonical_raw:
+        raise EditorialReviewError(f"Titre canonique non normalisé : {entity_id}")
+    displayed_raw = _decision_value(decision, source, "displayed_title", entity_type)
+    if displayed_raw is not None and (not isinstance(displayed_raw, str) or displayed_raw != normalized_text(displayed_raw)):
+        raise EditorialReviewError(f"Titre affiché non normalisé : {entity_id}")
+
+    if entity_type == "argument":
+        if not displayed_raw:
+            raise EditorialReviewError(f"Titre affiché vide : {entity_id}")
+        blocking_codes = {
+            "TITLE_CANONICAL_MISSING", "TITLE_CANONICAL_SPACING", "TITLE_CANONICAL_TRAILING_PERIOD",
+            "TITLE_CANONICAL_NON_ASCII_QUOTES", "TITLE_CANONICAL_ELLIPSIS", "TITLE_DISPLAYED_MISSING",
+            "TITLE_DISPLAYED_SPACING", "TITLE_DISPLAYED_TRAILING_PERIOD", "TITLE_DISPLAYED_NON_ASCII_QUOTES",
+            "TITLE_DISPLAYED_ELLIPSIS", "TITLE_DISPLAYED_TRAILING_CONNECTOR",
+        }
+        remaining = [row for row in title_diagnostics(canonical_raw, displayed_raw) if row.get("code") in blocking_codes]
+        if remaining:
+            raise EditorialReviewError(f"Titres non conformes pour {entity_id} : {[row.get('code') for row in remaining]}")
+        if not _text_ok(decision.get("canonical_title_rationale"), 20):
+            raise EditorialReviewError(f"Justification du titre canonique insuffisante : {entity_id}")
+        if not _text_ok(decision.get("displayed_title_rationale"), 20):
+            raise EditorialReviewError(f"Justification du titre affiché insuffisante : {entity_id}")
+        required = [
+            "canonical_referents_explicit",
+            "displayed_title_argument_intelligible",
+            "displayed_title_concision_reviewed",
+            "displayed_title_semantically_equivalent",
+        ]
+        if page_origin == "new":
+            required.append("displayed_title_complete_proposition")
+        for attestation in required:
+            if decision.get(attestation) is not True:
+                raise EditorialReviewError(f"Attestation manquante ({attestation}) : {entity_id}")
+        if normalized_identity(canonical_raw) != normalized_identity(displayed_raw):
+            if page_origin == "new" and decision.get("displayed_title_improves_readability_when_distinct") is not True:
+                raise EditorialReviewError(f"Le titre affiché distinct n’améliore pas explicitement la lisibilité : {entity_id}")
+            if page_origin == "new" and not _text_ok(decision.get("displayed_title_rationale"), 40):
+                raise EditorialReviewError(f"Le raccourcissement du titre affiché n’est pas suffisamment justifié : {entity_id}")
+
+    rubriques = _clean_string_list(source.get("rubriques") or [], f"rubriques source de {entity_id}")
+    keywords = _clean_string_list(source.get("keywords") or [], f"mots-clés source de {entity_id}")
+    return {
+        "entity_type": entity_type,
+        "entity_id": entity_id,
+        "page_origin": page_origin,
+        "canonical_title": canonical_raw,
+        "displayed_title": displayed_raw,
+        "rubriques": rubriques,
+        "keywords": keywords,
+        "reviewer": decision.get("reviewer"),
+        "reviewed_at": decision.get("reviewed_at"),
+        "notes": decision.get("notes") or "",
+        "decisions": {
+            "canonical_title": decision.get("canonical_title_decision"),
+            "displayed_title": decision.get("displayed_title_decision"),
+            "rubriques": "deferred_to_content_review",
+            "keywords": "deferred_to_content_review",
+        },
+        "rationales": {
+            "canonical_title": decision.get("canonical_title_rationale") or "",
+            "displayed_title": decision.get("displayed_title_rationale") or "",
+            "rubriques": {},
+            "keywords": {},
+            "keyword_order": "",
+            "displayed_title_identity": decision.get("displayed_title_identity_justification") or "",
+            "fourth_rubrique_exception": "",
+        },
+        "attestations": {
+            "canonical_referents_explicit": decision.get("canonical_referents_explicit") if entity_type == "argument" else None,
+            "displayed_title_complete_proposition": decision.get("displayed_title_complete_proposition") if entity_type == "argument" else None,
+            "displayed_title_argument_intelligible": decision.get("displayed_title_argument_intelligible") if entity_type == "argument" else None,
+            "displayed_title_concision_reviewed": decision.get("displayed_title_concision_reviewed") if entity_type == "argument" else None,
+            "displayed_title_semantically_equivalent": decision.get("displayed_title_semantically_equivalent") if entity_type == "argument" else None,
+            "displayed_title_improves_readability_when_distinct": decision.get("displayed_title_improves_readability_when_distinct") if entity_type == "argument" else None,
+            "classification_review_deferred": True,
+        },
+        "preexisting_keyword_preservation": {
+            "source_keywords": list(keywords),
+            "historical_final_keywords": list(keywords),
+            "corrected": {},
+            "removed_as_irrelevant": [],
+        },
+    }
+
+
+def _validate_title_corpus_rules(final_items: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
+    debates = [item for item in final_items if item.get("entity_type") == "debate"]
+    arguments = [item for item in final_items if item.get("entity_type") == "argument"]
+    if len(debates) != 1 or not arguments:
+        raise EditorialReviewError("La revue de titres doit couvrir le débat et tous les arguments actifs")
+    ids = [str(item.get("entity_id")) for item in final_items]
+    if len(ids) != len(set(ids)):
+        raise EditorialReviewError("Identifiants dupliqués dans la revue de titres")
+    title_map: dict[str, str] = {}
+    for item in final_items:
+        title = str(item.get("canonical_title") or "")
+        key = normalized_identity(title)
+        if key in title_map:
+            raise EditorialReviewError(f"Collision de titres canoniques : {title_map[key]!r} et {title!r}")
+        title_map[key] = title
+    identical = sum(normalized_identity(item.get("canonical_title")) == normalized_identity(item.get("displayed_title")) for item in arguments)
+    return {
+        "pages": len(final_items),
+        "arguments": len(arguments),
+        "displayed_title_identity_count": identical,
+        "displayed_title_identity_ratio": round(identical / len(arguments), 6),
+        "classification_deferred_to_content_review": True,
+    }
+
 def _validate_corpus_rules(final_items: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
     debates = [item for item in final_items if item.get("entity_type") == "debate"]
     arguments = [item for item in final_items if item.get("entity_type") == "argument"]
@@ -559,6 +693,68 @@ def _coverage_against_registry(working: Path, final_items: Sequence[Mapping[str,
     if reviewed_ids != active_ids:
         raise EditorialReviewError(f"Couverture des arguments divergente; manquants={sorted(active_ids-reviewed_ids)}, extra={sorted(reviewed_ids-active_ids)}")
 
+
+
+def finalize_title_review(project_root: Path, debate_id: str, work_id: str) -> dict[str, Any]:
+    """Finalize the graph/title checkpoint review without validating classification."""
+    workspace_path, meta = _load_workspace(project_root, debate_id, work_id)
+    if meta.get("status") not in {"audit_ready", "fr_title_review_finalized"}:
+        raise EditorialReviewError(f"Statut de workspace incompatible avec la finalisation des titres : {meta.get('status')}")
+    _assert_source_unchanged(project_root, debate_id, meta)
+    working = _assert_pristine_working_copy(workspace_path, meta)
+    review_path = workspace_path / "reviews" / "fr" / "page_metadata_review.json"
+    review = load_json(review_path, "revue française des titres")
+    if review.get("status") == "approved" and review.get("review_scope") == "graph_and_titles" and review.get("review_sha256"):
+        if review.get("review_sha256") != review_sha256(review):
+            raise EditorialReviewError("Empreinte de revue de titres invalide")
+        return {"status": "fr_title_review_finalized", "debate_id": debate_id, "work_id": work_id, "review_sha256": review["review_sha256"], "idempotent": True}
+    if review.get("schema") not in {"wikidebia-fr-page-metadata-review-1.0", REVIEW_SCHEMA}:
+        raise EditorialReviewError("Schéma de revue française non pris en charge")
+    if review.get("debate_id") != debate_id or review.get("work_id") != work_id:
+        raise EditorialReviewError("Identité de la revue française divergente")
+    raw_items = review.get("items")
+    if not isinstance(raw_items, list):
+        raise EditorialReviewError("La revue française ne contient pas de liste items")
+    final_items = [_validate_title_item(item) for item in raw_items]
+    summary = _validate_title_corpus_rules(final_items)
+    _coverage_against_registry(working, final_items)
+    finalized = copy.deepcopy(review)
+    finalized.update({
+        "schema": REVIEW_SCHEMA,
+        "schema_version": "1.1",
+        "kit_version": KIT_VERSION,
+        "review_scope": "graph_and_titles",
+        "status": "approved",
+        "finalized_at": now_iso(),
+        "prepared_working_copy_sha256": full_tree_sha256(working),
+        "summary": summary,
+        "final_values": final_items,
+        "finalized_vocabulary": [],
+        "review_sha256": None,
+    })
+    finalized["review_sha256"] = review_sha256(finalized)
+    write_json(review_path, finalized)
+    meta = copy.deepcopy(meta)
+    meta["kit_version"] = KIT_VERSION
+    meta["status"] = "fr_title_review_finalized"
+    meta.setdefault("artifacts", {})["french_title_review"] = "reviews/fr/page_metadata_review.json"
+    meta["artifacts"]["french_metadata_lock"] = "data/fr_page_metadata_lock.json"
+    meta["artifacts"]["reviewed_copy"] = "reviewed-copy"
+    meta["french_review"] = {
+        "status": "titles_finalized",
+        "review_sha256": finalized["review_sha256"],
+        "finalized_at": finalized["finalized_at"],
+        "prepared_working_copy_sha256": finalized["prepared_working_copy_sha256"],
+    }
+    meta["workspace_sha256"] = None
+    meta["workspace_sha256"] = workspace_receipt_hash(meta)
+    write_json(workspace_path / "workspace.json", meta)
+    return {
+        "status": "fr_title_review_finalized", "debate_id": debate_id, "work_id": work_id,
+        "review_sha256": finalized["review_sha256"], "pages": summary["pages"], "arguments": summary["arguments"],
+        "classification_deferred_to_content_review": True, "working_copy_mutated": False,
+        "english_translation_started": False, "final_pages_generated": False,
+    }
 
 def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[str, Any]:
     workspace_path, meta = _load_workspace(project_root, debate_id, work_id)
@@ -861,6 +1057,86 @@ def _unlock_translation_registry(workspace_path: Path, applied_at: str) -> None:
     data["french_metadata_locked_at"] = applied_at
     write_json(path, data)
 
+
+
+def _update_tasks_after_title_apply(workspace_path: Path, applied_at: str) -> None:
+    path = workspace_path / "tasks" / "editorial_tasks.json"
+    data = load_json(path, "registre des tâches")
+    for task in data.get("tasks") or []:
+        area = task.get("area")
+        if area == "titles":
+            task["status"] = "completed"; task["completed_at"] = applied_at
+        elif area in {"rubriques", "keywords", "keyword_vocabulary"}:
+            task["status"] = "open"; task["completed_at"] = None
+        elif area == "english_translation_readiness":
+            task["status"] = "blocked_by_french_content_review"; task["completed_at"] = None
+    data["counts"] = dict(sorted(collections.Counter(task.get("status") for task in data.get("tasks") or []).items()))
+    data["updated_at"] = applied_at
+    write_json(path, data)
+
+
+def apply_title_review(project_root: Path, debate_id: str, work_id: str, confirm_review_sha256: str) -> dict[str, Any]:
+    """Apply only graph/title decisions to reviewed-copy; classification stays unchanged."""
+    workspace_path, meta = _load_workspace(project_root, debate_id, work_id)
+    if meta.get("status") not in {"fr_title_review_finalized", "fr_titles_applied"}:
+        raise EditorialReviewError(f"Statut de workspace incompatible avec l’application des titres : {meta.get('status')}")
+    _assert_source_unchanged(project_root, debate_id, meta)
+    working = _assert_pristine_working_copy(workspace_path, meta)
+    review = load_json(workspace_path / "reviews" / "fr" / "page_metadata_review.json", "revue française des titres")
+    if review.get("review_scope") != "graph_and_titles" or review.get("status") != "approved" or not review.get("review_sha256"):
+        raise EditorialReviewError("La revue de titres n’est pas finalisée")
+    if review.get("review_sha256") != review_sha256(review) or confirm_review_sha256 != review.get("review_sha256"):
+        raise EditorialReviewError("Empreinte de revue de titres invalide ou non confirmée")
+    reviewed = workspace_path / "reviewed-copy"
+    if reviewed.is_dir():
+        expected = str((meta.get("reviewed_copy") or {}).get("tree_sha256") or "")
+        actual = full_tree_sha256(reviewed)
+        if meta.get("status") != "fr_titles_applied" or not expected or expected != actual:
+            raise EditorialReviewError("reviewed-copy existe sans état de titres cohérent")
+        return {"status": "fr_titles_applied", "debate_id": debate_id, "work_id": work_id, "review_sha256": review["review_sha256"], "reviewed_copy_tree_sha256": actual, "idempotent": True}
+    if reviewed.exists() or reviewed.is_symlink():
+        raise EditorialReviewError("Chemin reviewed-copy déjà occupé")
+    temp = Path(tempfile.mkdtemp(prefix=".reviewed-copy.tmp-", dir=workspace_path))
+    try:
+        shutil.rmtree(temp)
+        result = _build_reviewed_copy(project_root, working, temp, review, debate_id, work_id)
+        assert_no_symlinks(temp)
+        reviewed_hash = full_tree_sha256(temp)
+        if full_tree_sha256(temp / "imports") != full_tree_sha256(working / "imports"):
+            raise EditorialReviewError("Les imports de provenance ont été modifiés pendant l’application des titres")
+        os.replace(temp, reviewed); fsync_directory(workspace_path)
+    except Exception:
+        shutil.rmtree(temp, ignore_errors=True); raise
+    applied_at = result["metadata_lock"]["applied_at"]
+    _update_tasks_after_title_apply(workspace_path, applied_at)
+    translation_path = workspace_path / "reviews" / "en" / "translation_readiness.json"
+    if translation_path.is_file():
+        translation = load_json(translation_path, "préparation de la traduction")
+        translation["status"] = "blocked_by_french_content_review"
+        for item in translation.get("items") or []:
+            item["french_metadata_review_status"] = "titles_locked"
+            item["translation_status"] = "blocked_by_french_content_review"
+        write_json(translation_path, translation)
+    meta = copy.deepcopy(meta)
+    meta["kit_version"] = KIT_VERSION
+    meta["status"] = "fr_titles_applied"
+    meta["working_copy"]["current_status"] = "preserved_pristine"
+    meta["reviewed_copy"] = {
+        "path": "reviewed-copy", "tree_sha256": reviewed_hash, "status": "fr_titles_locked",
+        "review_sha256": review["review_sha256"], "old_structural_sha256": result["old_structural_sha256"],
+        "new_structural_sha256": result["new_structural_sha256"], "applied_at": applied_at,
+    }
+    meta["french_review"] = {"status": "titles_applied", "applied_at": applied_at, "review_sha256": review["review_sha256"]}
+    meta["boundaries"]["final_pages_generated"] = False
+    meta["boundaries"]["english_translation_started"] = False
+    meta["workspace_sha256"] = None; meta["workspace_sha256"] = workspace_receipt_hash(meta)
+    write_json(workspace_path / "workspace.json", meta)
+    return {
+        "status": "fr_titles_applied", "debate_id": debate_id, "work_id": work_id,
+        "review_sha256": review["review_sha256"], "reviewed_copy": relative_to_project(reviewed, project_root),
+        "reviewed_copy_tree_sha256": reviewed_hash, "operations": result["operation_count"],
+        "classification_deferred_to_content_review": True, "validator_result": result["validator_result"],
+    }
 
 def apply_review(project_root: Path, debate_id: str, work_id: str, confirm_review_sha256: str) -> dict[str, Any]:
     workspace_path, meta = _load_workspace(project_root, debate_id, work_id)

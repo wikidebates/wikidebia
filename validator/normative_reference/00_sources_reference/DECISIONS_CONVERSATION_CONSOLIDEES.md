@@ -388,3 +388,12 @@ La lignée de traduction/validation 1.2.61 et la lignée de publication GitHub `
 ## Décision propriétaire du 12 août 2026 — résumés de reprise individualisés
 
 La décision antérieure fixant `Corrections` comme résumé distant par défaut est remplacée pour les nouveaux plans. Lorsqu’un corpus modifié est déposé puis validé pour une reprise distante, chaque mutation publiée doit porter un résumé MediaWiki propre à la modification réelle de la page. La politique et le résumé sont signés dans le plan, recalculés avant écriture et vérifiés après écriture. Les plans historiques déjà signés restent lisibles.
+
+
+## Décision propriétaire — 12 août 2026 — deux publications françaises avant traduction
+
+- La première revue externe française combine dans un même ZIP le graphe (positions/relations et décisions de suppression, fusion ou déplacement) avec les titres canoniques et les titres affichés.
+- Le réimport approuvé de ce ZIP déclenche immédiatement la première publication française ; rubriques, mots-clés, introduction, résumés et références restent inchangés à ce checkpoint.
+- La seconde revue française porte exclusivement sur le contenu et la classification : rubriques, mots-clés, introduction, résumés, références et autres contenus éditoriaux. Son réimport déclenche la seconde publication française.
+- La traduction anglaise ne commence qu'après ces deux publications.
+- Chaque page modifiée reçoit un résumé MediaWiki individualisé.

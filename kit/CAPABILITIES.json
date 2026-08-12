@@ -4,9 +4,9 @@
   "component": "kit",
   "release_source": "VERSIONS.json",
   "release": {
-    "norm": "1.2.80",
-    "validator": "0.4.84",
-    "kit": "2.16.13"
+    "norm": "1.2.81",
+    "validator": "0.4.85",
+    "kit": "2.16.14"
   },
   "emits": {
     "publication_plan": [
@@ -177,7 +177,8 @@
     "workflow_diagnostic_package": "wikidebia-workflow-diagnostic-package-1.0",
     "graph_review_rejection_correction_loop": "1.0",
     "reviewed_graph_action_execution": "1.0",
-    "duplicate_redirect_with_individual_edit_summaries": "1.0"
+    "duplicate_redirect_with_individual_edit_summaries": "1.0",
+    "two_stage_french_checkpoint_publication": "1.0"
   },
   "features": [
     "page_specific_remote_update_edit_summary",

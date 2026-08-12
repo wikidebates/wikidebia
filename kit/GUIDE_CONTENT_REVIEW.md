@@ -2,7 +2,7 @@
 
 > Depuis 1.2.54, les normes éditoriales sont cumulatives : les anciennes métadonnées de révision ne servent plus à sélectionner les contrôles.
 
-Le kit 2.15.35 applique une phase de contenu après le verrouillage des titres, rubriques et mots-clés. Elle part de `reviewed-copy/`, conserve toutes les copies antérieures et ne génère toujours aucune page MediaWiki finale.
+La phase de contenu intervient après le verrouillage et la publication du graphe et des titres. Elle prend désormais aussi en charge les **rubriques et mots-clés**, afin qu’ils soient publiés au second checkpoint avec l’introduction, les résumés et la documentation. Elle part de `reviewed-copy/`, conserve toutes les copies antérieures et ne génère toujours aucune page MediaWiki finale.
 
 ## 1. Préparer la revue
 
@@ -16,6 +16,8 @@ La commande lit le wikicode importé et crée :
 
 ```text
 reviews/fr/content_review.json
+reviews/fr/classification_review.json
+data/keyword_vocabulary_working.json
 data/sources_working.json
 audits/fr_content_inventory.json
 audits/fr_content_inventory.md

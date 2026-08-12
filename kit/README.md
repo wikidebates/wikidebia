@@ -1,3 +1,9 @@
+# Wikidéb’IA Kit 2.16.14
+
+Le kit 2.16.14 scinde la publication française automatique en **deux checkpoints avant toute traduction**. La première revue externe combine le graphe et les titres canoniques/affichés dans un même ZIP ; son réimport déclenche le premier checkpoint : il publie uniquement les positions/relations, renommages, titres affichés et décisions structurelles validées (fusion/redirection, suppression), en conservant strictement le contenu, les rubriques et les mots-clés importés. Le second suit la revue de contenu : il publie rubriques, mots-clés, introduction, résumés et documentation contre l’état distant attesté par le premier checkpoint ; il refuse tout `move`, `redirect` ou `delete`.
+
+Les décisions structurelles prises pendant une boucle de correction du graphe sont désormais appliquées localement et restent en attente jusqu’au premier checkpoint, au lieu d’être écrites au milieu de la revue. Les deux checkpoints conservent le contrat `page_specific_v1`, la garde de révision, la balise `chatgpt` et la relecture post-écriture. `review-import` reste alimenté par `incoming/` et `sources_working.json` conserve la validation précoce de `document_kind`.
+
 # Wikidéb’IA Kit 2.16.13
 
 Le kit 2.16.13 publie automatiquement le **checkpoint français** dès que `fr_content_review` est validée et appliquée, avant de préparer le ZIP de traduction anglaise. Le checkpoint rend les pages françaises sans lien interlangue prématuré, réutilise le moteur de reprise signé et applique à chaque mutation le résumé MediaWiki personnalisé `page_specific_v1`, la garde de révision et la balise `chatgpt`. La reprise est idempotente et un workflow déjà arrivé à la revue anglaise sous 2.16.12 publie d’abord le checkpoint manquant.

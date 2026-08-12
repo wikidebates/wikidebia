@@ -133,3 +133,10 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - conserve `WDV-RMT-008` et tous les contrôles de résumés individualisés ;
 - reconnaît le checkpoint français comme corpus `translation_status.en=deferred` contrôlé avant reprise distante ;
 - ne modifie aucun contrôle sémantique FR→EN ni aucune règle de traduction.
+
+## 0.4.85 — 12 août 2026 — alignement sur les deux checkpoints français
+
+- aligne la copie normative sur 1.2.81 et le kit recommandé sur 2.16.14 ;
+- conserve `WDV-RMT-008` et tous les contrôles existants de plans/résumés individualisés ;
+- reconnaît les checkpoints français graphe/titres et contenu/classification comme deux usages successifs du même contrat de corpus/plan ;
+- aucune règle sémantique ou bilingue n’est assouplie.

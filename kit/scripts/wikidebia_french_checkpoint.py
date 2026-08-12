@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Render and publish the validated French checkpoint before English translation.
+"""Render and publish the two validated French checkpoints before translation.
 
-The French content review is a publication boundary.  This module builds a
-French-only, translation-deferred corpus from ``content-reviewed-copy`` and
-reuses the ordinary signed remote-update engine for all MediaWiki writes.
+Stage ``graph`` publishes only graph/title changes from ``reviewed-copy``.
+Stage ``content`` publishes classification and content from ``content-reviewed-copy``.
+Both reuse the ordinary signed remote-update engine and page-specific summaries.
 """
 from __future__ import annotations
 
@@ -33,6 +33,8 @@ from wikidebia_corpus_build import (
 from wikidebia_editorial_workspace import validate_work_id, workspace_receipt_hash
 from wikidebia_render import (
     _batch,
+    _main_arguments,
+    _relations,
     _page_creation_dates,
     _page_manifest,
     _render_argument,
@@ -40,6 +42,8 @@ from wikidebia_render import (
     _write_aggregate,
     _copy_active_norm,
 )
+from wikidebia_graph_actions import _replace_parameter_value
+from wikidebia_content_review import _outer_template, _page_lifecycle_snapshot
 from wikidebia_update import (
     PlanExecutor,
     RemoteUpdatePlanner,
@@ -59,9 +63,11 @@ class FrenchCheckpointError(RuntimeError):
         self.remote_execution_started = remote_execution_started
 
 
-def _workspace(project_root: Path, debate_id: str, work_id: str) -> tuple[Path, dict[str, Any]]:
+def _workspace(project_root: Path, debate_id: str, work_id: str, stage: str) -> tuple[Path, dict[str, Any], Path]:
     debate_id = validate_debate_id(debate_id)
     work_id = validate_work_id(work_id)
+    if stage not in {"graph", "content"}:
+        raise FrenchCheckpointError(f"Checkpoint français inconnu : {stage}")
     path = (project_root / ".state" / "editorial-workspaces" / debate_id / work_id).resolve()
     if not path.is_dir() or path.is_symlink():
         raise FrenchCheckpointError(f"Workspace introuvable : {debate_id}/{work_id}")
@@ -70,17 +76,25 @@ def _workspace(project_root: Path, debate_id: str, work_id: str) -> tuple[Path, 
         raise FrenchCheckpointError("Identité du workspace divergente")
     if meta.get("workspace_sha256") != workspace_receipt_hash(meta):
         raise FrenchCheckpointError("Empreinte de workspace.json invalide")
-    if meta.get("status") not in {"fr_content_applied", "en_translation_review_ready", "en_translation_review_finalized", "en_translation_applied", "bilingual_rendered"}:
-        raise FrenchCheckpointError(f"Le contenu français n'est pas appliqué : {meta.get('status')}")
-    source = path / "content-reviewed-copy"
+    source_name = "reviewed-copy" if stage == "graph" else "content-reviewed-copy"
+    source = path / source_name
     if not source.is_dir() or source.is_symlink():
-        raise FrenchCheckpointError("content-reviewed-copy absent ou non sûr")
-    expected = str((meta.get("content_reviewed_copy") or {}).get("tree_sha256") or "")
+        raise FrenchCheckpointError(f"{source_name} absent ou non sûr")
+    meta_key = "reviewed_copy" if stage == "graph" else "content_reviewed_copy"
+    expected = str((meta.get(meta_key) or {}).get("tree_sha256") or "")
     if not expected or full_tree_sha256(source) != expected:
-        raise FrenchCheckpointError("content-reviewed-copy a changé depuis son application")
+        raise FrenchCheckpointError(f"{source_name} a changé depuis son application")
+    if stage == "graph" and meta.get("status") not in {
+        "fr_titles_applied", "fr_content_review_ready", "fr_content_review_finalized", "fr_content_applied",
+        "en_translation_review_ready", "en_translation_review_finalized", "en_translation_applied", "bilingual_rendered"
+    }:
+        raise FrenchCheckpointError(f"Les titres français ne sont pas appliqués : {meta.get('status')}")
+    if stage == "content" and meta.get("status") not in {
+        "fr_content_applied", "en_translation_review_ready", "en_translation_review_finalized", "en_translation_applied", "bilingual_rendered"
+    }:
+        raise FrenchCheckpointError(f"Le contenu français n'est pas appliqué : {meta.get('status')}")
     assert_no_symlinks(source)
-    return path, meta
-
+    return path, meta, source
 
 def _fr_validation_records(timestamp: str, input_sha: str) -> list[dict[str, Any]]:
     return [
@@ -100,7 +114,7 @@ def _fr_validation_records(timestamp: str, input_sha: str) -> list[dict[str, Any
     ]
 
 
-def _build_checkpoint_copy(project_root: Path, source: Path, target: Path, debate_id: str, work_id: str) -> dict[str, Any]:
+def _build_content_checkpoint_copy(project_root: Path, source: Path, target: Path, debate_id: str, work_id: str) -> dict[str, Any]:
     shutil.copytree(source, target, symlinks=False, copy_function=shutil.copy2)
     assert_no_symlinks(target)
     registry = load_json(target / "data/registre_debat.json", "registre du débat")
@@ -128,7 +142,7 @@ def _build_checkpoint_copy(project_root: Path, source: Path, target: Path, debat
     lifecycle.update({
         "status": "locked",
         "locked_at": timestamp,
-        "locked_by_stage": "fr_checkpoint_publication",
+        "locked_by_stage": "fr_content_checkpoint_publication",
         "structural_sha256": structural_sha256(registry),
     })
     debate_pages = (registry.get("debate") or {}).get("pages") or {}
@@ -270,6 +284,7 @@ def _build_checkpoint_copy(project_root: Path, source: Path, target: Path, debat
         "debate_id": debate_id,
         "work_id": work_id,
         "status": "rendered",
+        "stage": "content",
         "created_at": timestamp,
         "source_content_review_sha256": str(fr_content.get("review_sha256") or ""),
         "source_content_reviewed_copy_sha256": full_tree_sha256(source),
@@ -281,17 +296,156 @@ def _build_checkpoint_copy(project_root: Path, source: Path, target: Path, debat
     return {"checkpoint": checkpoint, "pages": len(pages), "timestamp": timestamp}
 
 
-def build_checkpoint(project_root: Path, debate_id: str, work_id: str) -> Path:
+def _import_rows(source: Path) -> list[dict[str, Any]]:
+    provenance = load_json(source / "data/import_provenance.json", "provenance d'import")
+    rows = [dict(row) for row in provenance.get("pages") or [] if isinstance(row, dict) and row.get("kind") in {"debate", "argument"}]
+    if not rows:
+        raise FrenchCheckpointError("Provenance française vide")
+    return rows
+
+
+def _graph_migrations(source: Path, debate_id: str) -> list[dict[str, Any]]:
+    path = source / "reviews/graph_action_decisions.json"
+    if not path.is_file():
+        return []
+    decisions = load_json(path, "décisions structurelles")
+    if decisions.get("debate_id") != debate_id:
+        raise FrenchCheckpointError("Décisions structurelles rattachées à un autre débat")
+    entries: list[dict[str, Any]] = []
+    for action in decisions.get("actions") or []:
+        kind = str(action.get("action") or "")
+        node_id = str(action.get("node_id") or "")
+        if kind == "merge_redirect" and node_id:
+            target_id = str(action.get("target_node_id") or "")
+            if not target_id:
+                raise FrenchCheckpointError(f"Fusion sans cible : {node_id}")
+            entries.append({"language": "fr", "old_page_id": node_id, "kind": "merge", "target_page_id": target_id, "policy": "redirect", "reason": "fusion validée lors de la revue du graphe"})
+        elif kind == "remove" and node_id:
+            entries.append({"language": "fr", "old_page_id": node_id, "kind": "remove", "reason": "retrait validé lors de la revue du graphe"})
+    return entries
+
+
+def _build_graph_checkpoint_copy(project_root: Path, source: Path, target: Path, debate_id: str, work_id: str) -> dict[str, Any]:
+    shutil.copytree(source, target, symlinks=False, copy_function=shutil.copy2)
+    assert_no_symlinks(target)
+    registry = load_json(target / "data/registre_debat.json", "registre du débat")
+    manifest = load_json(target / "manifest.json", "manifest.json")
+    if manifest.get("debate_id") != debate_id:
+        raise FrenchCheckpointError("Identité du corpus français divergente")
+    rows = _import_rows(target)
+    active_nodes = [node for node in (registry.get("graph") or {}).get("nodes") or [] if node.get("status") == "active"]
+    active_nodes.sort(key=lambda node: str(node.get("id")))
+    active_ids = {str(node.get("id")) for node in active_nodes}
+    row_by_id: dict[str, dict[str, Any]] = {}
+    debate_row = None
+    for row in rows:
+        if row.get("kind") == "debate":
+            debate_row = row
+        else:
+            pid = str(row.get("page_id") or "")
+            if pid in active_ids:
+                row_by_id[pid] = row
+    if debate_row is None or set(row_by_id) != active_ids:
+        raise FrenchCheckpointError("La provenance importée ne couvre pas exactement le graphe actif")
+
+    timestamp = now_iso()
+    lifecycle = (registry.get("graph") or {}).setdefault("lifecycle", {})
+    lifecycle.update({"status": "locked", "locked_at": timestamp, "locked_by_stage": "fr_graph_checkpoint_publication", "structural_sha256": structural_sha256(registry)})
+    debate_pages = (registry.get("debate") or {}).get("pages") or {}
+    if isinstance(debate_pages.get("fr"), dict):
+        debate_pages["fr"]["title_status"] = "locked"
+        debate_pages["fr"].setdefault("interlanguage", {}).update({"status":"deferred","inserted_at":None,"verified_at":None})
+    for node in active_nodes:
+        node.setdefault("fr", {})["title_status"] = "locked"
+        node.setdefault("pages", {}).setdefault("fr", {}).setdefault("interlanguage", {}).update({"status":"deferred","inserted_at":None,"verified_at":None})
+
+    output_rows: list[tuple[str,str,str,str,dict[str,Any]]] = []
+    debate_import = target / str(debate_row.get("import_path") or "")
+    if not debate_import.is_file():
+        raise FrenchCheckpointError("Import de la page Débat absent")
+    debate_text = debate_import.read_text(encoding="utf-8")
+    debate_text = _replace_parameter_value(debate_text, "debate", "arguments-pour", _main_arguments(registry, "pro", "fr"), create_if_missing=True)
+    debate_text = _replace_parameter_value(debate_text, "debate", "arguments-contre", _main_arguments(registry, "con", "fr"), create_if_missing=True)
+    debate_id_actual = str((registry.get("debate") or {}).get("id") or debate_id)
+    debate_rel = "output/fr/debate/debate.wiki"
+    debate_out = target / debate_rel; debate_out.parent.mkdir(parents=True, exist_ok=True); debate_out.write_text(debate_text, encoding="utf-8", newline="\n")
+    debate_template = _outer_template(debate_import, {"debat"})
+    output_rows.append((debate_id_actual, "debate", debate_rel, sha256_file(debate_out), {"page_origin":"preexisting", "preserved_parameters":_page_lifecycle_snapshot(debate_template,"debate")}))
+
+    for node in active_nodes:
+        node_id = str(node.get("id")); row = row_by_id[node_id]
+        imported = target / str(row.get("import_path") or "")
+        if not imported.is_file():
+            raise FrenchCheckpointError(f"Import Argument absent : {node_id}")
+        text = imported.read_text(encoding="utf-8")
+        template = _outer_template(imported, {"argument"})
+        dedicated = bool(template.get("débat-dédié", "débat-détaillé").strip())
+        if not dedicated:
+            text = _replace_parameter_value(text, "argument", "justifications", _relations(registry, node_id, "justification", "fr"), create_if_missing=True)
+            text = _replace_parameter_value(text, "argument", "objections", _relations(registry, node_id, "objection", "fr"), create_if_missing=True)
+        rel = f"output/fr/arguments/{node_id}.wiki"
+        out = target / rel; out.parent.mkdir(parents=True, exist_ok=True); out.write_text(text, encoding="utf-8", newline="\n")
+        output_rows.append((node_id, "argument", rel, sha256_file(out), {"page_origin":"preexisting", "preserved_parameters":_page_lifecycle_snapshot(template,"argument")}))
+
+    fallback_date = timestamp[:10]
+    dates = _page_creation_dates(target, registry, fallback_date)
+    pages: list[dict[str,Any]] = []
+    for page_id, page_type, rel, digest, metadata in output_rows:
+        if page_type == "debate":
+            title = str((registry.get("debate") or {}).get("pages",{}).get("fr",{}).get("canonical_title") or debate_row.get("canonical_title") or debate_row.get("requested_title") or "")
+            batch_id = None
+        else:
+            node = next(node for node in active_nodes if str(node.get("id")) == page_id)
+            title = str((node.get("fr") or {}).get("canonical_title") or "")
+            batch_id = "FR-A-001"
+        pages.append(_page_manifest(debate_id=debate_id,page_id=page_id,page_type=page_type,lang="fr",title=title,file_path=rel,sha256=digest,creation_date=dates.get((page_id,"fr"),fallback_date),batch_id=batch_id,timestamp=timestamp,report_path="reports/fr_checkpoint_validation.json",page_origin=metadata["page_origin"],preserved_parameters=metadata["preserved_parameters"]))
+    pages.sort(key=lambda row: (0 if row["page_type"] == "debate" else 1, row["page_id"]))
+
+    structural = structural_sha256(registry)
+    aggregate_path, aggregate_sha = _write_aggregate(target, "fr", active_nodes)
+    batch = _batch(debate_id=debate_id,lang="fr",nodes=active_nodes,registry_sha=sha256_file(target / "data/registre_debat.json"),structural_sha=structural,aggregate_path=aggregate_path,aggregate_sha=aggregate_sha,timestamp=timestamp,work_id=work_id)
+    batch["root_node_ids"] = sorted({str(o.get("node_id")) for o in (registry.get("graph") or {}).get("occurrences") or [] if o.get("depth") == 1})
+    write_json(target / "data/lots_fr.json", {"batch_collection_version":"1.0","debate_id":debate_id,"language":"fr","batches":[batch]})
+    (target / "reports/fr_batch_001.txt").parent.mkdir(parents=True,exist_ok=True)
+    (target / "reports/fr_batch_001.txt").write_text("Lot français rendu pour le checkpoint graphe et titres.\n",encoding="utf-8",newline="\n")
+
+    registry.setdefault("schema", {})["validator_version"] = VALIDATOR_VERSION
+    registry["batches"]=[copy.deepcopy(batch)]; registry["validations"]=[]
+    write_json(target / "data/registre_debat.json", registry)
+    projection_path=target / "graph/graphe_argumentatif.json"
+    if projection_path.is_file():
+        projection=load_json(projection_path,"projection du graphe")
+        for key in ("lifecycle","depth_policy","nodes","edges","occurrences","derived_counts"):
+            projection[key]=copy.deepcopy((registry.get("graph") or {}).get(key))
+        write_json(projection_path,projection)
+
+    manifest["global_status"]="fr_validated"; manifest["updated_at"]=timestamp
+    manifest.setdefault("normative_versions",{}).update({"consolidated_norm":NORM_VERSION,"validator":VALIDATOR_VERSION})
+    manifest.setdefault("translation_status",{})["en"]="deferred"
+    manifest["pages"]=pages; manifest["batches"]=[copy.deepcopy(batch)]
+    manifest["validations"]=_fr_validation_records(timestamp, structural_sha256(registry))
+    manifest["publication_gate"]={"local_release_status":"corrective_in_progress","remote_write_authorized":True,"remote_template_compatibility":"not_checked","blocking_reason":None,"checked_at":timestamp}
+    write_json(target / "manifest.json",manifest)
+    migrations=_graph_migrations(target,debate_id)
+    if migrations:
+        write_json(target / "data/remote_migrations.json", {"version":"1.0","debate_id":debate_id,"entries":migrations})
+    _copy_active_norm(project_root,target)
+    checkpoint={"schema":CHECKPOINT_SCHEMA,"schema_version":"1.0","debate_id":debate_id,"work_id":work_id,"stage":"graph","status":"rendered","created_at":timestamp,"source_reviewed_copy_sha256":full_tree_sha256(source),"page_count":len(pages),"english_translation_status":"deferred","interlanguage_links":0}
+    write_json(target / "data/fr_publication_checkpoint.json",checkpoint)
+    return {"checkpoint":checkpoint,"pages":len(pages),"timestamp":timestamp}
+
+
+def build_checkpoint(project_root: Path, debate_id: str, work_id: str, *, stage: str) -> Path:
     project_root = project_root.resolve()
-    workspace, _meta = _workspace(project_root, debate_id, work_id)
-    source = workspace / "content-reviewed-copy"
-    state_dir = project_root / ".state" / "fr-publication" / debate_id / work_id
+    workspace, _meta, source = _workspace(project_root, debate_id, work_id, stage)
+    state_dir = project_root / ".state" / "fr-publication" / debate_id / work_id / stage
     target = state_dir / "checkpoint-corpus"
     receipt_path = state_dir / "checkpoint.json"
+    source_sha = full_tree_sha256(source)
     if target.is_dir() and receipt_path.is_file():
         receipt = load_json(receipt_path, "checkpoint français")
-        if receipt.get("source_content_reviewed_copy_sha256") != full_tree_sha256(source):
-            raise FrenchCheckpointError("Le checkpoint français existant appartient à un autre contenu verrouillé")
+        if receipt.get("stage") != stage or receipt.get("source_tree_sha256") != source_sha:
+            raise FrenchCheckpointError("Le checkpoint français existant appartient à un autre état verrouillé")
         if receipt.get("checkpoint_tree_sha256") != full_tree_sha256(target):
             raise FrenchCheckpointError("Le checkpoint français existant a été modifié")
         return target
@@ -301,25 +455,20 @@ def build_checkpoint(project_root: Path, debate_id: str, work_id: str) -> Path:
     temp = Path(tempfile.mkdtemp(prefix=".checkpoint.tmp-", dir=state_dir))
     try:
         shutil.rmtree(temp)
-        result = _build_checkpoint_copy(project_root, source, temp, debate_id, work_id)
+        result = (_build_graph_checkpoint_copy if stage == "graph" else _build_content_checkpoint_copy)(project_root, source, temp, debate_id, work_id)
         tree_sha = full_tree_sha256(temp)
         os.replace(temp, target)
     except Exception:
         shutil.rmtree(temp, ignore_errors=True)
         raise
-    receipt = {
-        **result["checkpoint"],
-        "status": "ready_for_remote_plan",
-        "checkpoint_path": relative_to_project(target, project_root),
-        "checkpoint_tree_sha256": tree_sha,
-    }
+    receipt = {**result["checkpoint"], "status":"ready_for_remote_plan", "stage":stage, "source_tree_sha256":source_sha, "checkpoint_path":relative_to_project(target,project_root), "checkpoint_tree_sha256":tree_sha}
     receipt["receipt_sha256"] = sha_object(receipt)
     write_json(receipt_path, receipt)
     return target
 
 
-def _write_import_inventory(project_root: Path, debate_id: str, checkpoint: Path, work_id: str) -> Path:
-    inventory_dir = project_root / ".state" / "fr-publication" / debate_id / work_id / "inventory"
+def _write_import_inventory(project_root: Path, debate_id: str, checkpoint: Path, work_id: str, stage: str) -> Path:
+    inventory_dir = project_root / ".state" / "fr-publication" / debate_id / work_id / stage / "inventory"
     inventory_dir.mkdir(parents=True, exist_ok=True)
     inventory_path = inventory_dir / "fr.json"
     if inventory_path.is_file():
@@ -368,8 +517,8 @@ def _local_settings(project_root: Path) -> dict[str, Any]:
     return load_json(path, "configuration locale") if path.is_file() else {}
 
 
-def _config(project_root: Path, debate_id: str, work_id: str, checkpoint: Path, inventory_root: Path) -> Path:
-    state_dir = project_root / ".state" / "fr-publication" / debate_id / work_id
+def _config(project_root: Path, debate_id: str, work_id: str, checkpoint: Path, stage: str, inventory_root: Path | None) -> Path:
+    state_dir = project_root / ".state" / "fr-publication" / debate_id / work_id / stage
     config_path = state_dir / "remote-update-config.json"
     settings = _local_settings(project_root)
     users = settings.get("expected_users") or {"fr": "ChatGPT"}
@@ -385,8 +534,7 @@ def _config(project_root: Path, debate_id: str, work_id: str, checkpoint: Path, 
         "languages": ["fr"],
         "debate_id": debate_id,
         "corpus_root": str(checkpoint),
-        "state_inventory_root": str(inventory_root),
-        "logs_dir": str(project_root / "logs" / debate_id / f"fr-checkpoint-{work_id}"),
+        "logs_dir": str(project_root / "logs" / debate_id / f"fr-checkpoint-{work_id}-{stage}"),
         "published_state_dir": str(project_root / ".state/published"),
         "receipts_dir": str(project_root / ".state/receipts"),
         "validator": {
@@ -395,27 +543,36 @@ def _config(project_root: Path, debate_id: str, work_id: str, checkpoint: Path, 
             "scopes": ["schema", "coherence", "graph", "files", "batches", "sources", "wikicode", "workflow"],
         },
     }
+    if inventory_root is not None:
+        config["state_inventory_root"] = str(inventory_root)
     write_json(config_path, config)
     return config_path
 
 
-def publish_checkpoint(project_root: Path, debate_id: str, work_id: str, *, adapter: Any | None = None) -> dict[str, Any]:
-    """Publish the sealed French content and return a signed local receipt.
-
-    If execution has already succeeded for the exact checkpoint, the stored
-    receipt is returned.  A saved plan is reused after an interrupted execution.
-    """
+def publish_checkpoint(project_root: Path, debate_id: str, work_id: str, *, stage: str = "content", adapter: Any | None = None) -> dict[str, Any]:
+    """Publish one sealed French stage using the ordinary signed update engine."""
     project_root = project_root.resolve()
-    checkpoint = build_checkpoint(project_root, debate_id, work_id)
-    state_dir = project_root / ".state" / "fr-publication" / debate_id / work_id
+    if stage not in {"graph", "content"}:
+        raise FrenchCheckpointError(f"Checkpoint français inconnu : {stage}")
+    if stage == "content":
+        graph_receipt = project_root / ".state" / "fr-publication" / debate_id / work_id / "graph" / "publication-receipt.json"
+        # Legacy 2.16.13 workflows may already have a single full publication.
+        legacy_receipt = project_root / ".state" / "fr-publication" / debate_id / work_id / "publication-receipt.json"
+        if not graph_receipt.is_file() and not legacy_receipt.is_file():
+            raise FrenchCheckpointError("Le checkpoint de contenu exige d'abord la publication du graphe et des titres")
+    checkpoint = build_checkpoint(project_root, debate_id, work_id, stage=stage)
+    state_dir = project_root / ".state" / "fr-publication" / debate_id / work_id / stage
     publication_path = state_dir / "publication-receipt.json"
     if publication_path.is_file():
         publication = load_json(publication_path, "reçu de publication française")
-        if publication.get("checkpoint_tree_sha256") == full_tree_sha256(checkpoint) and publication.get("status") in {"published", "verified_no_changes"}:
+        if publication.get("stage") == stage and publication.get("checkpoint_tree_sha256") == full_tree_sha256(checkpoint) and publication.get("status") in {"published", "verified_no_changes"}:
             return publication
 
-    inventory_root = _write_import_inventory(project_root, debate_id, checkpoint, work_id)
-    config_path = _config(project_root, debate_id, work_id, checkpoint, inventory_root)
+    # First checkpoint is compared with the imported remote snapshot. The second
+    # checkpoint deliberately resolves .state/published, i.e. the exact state
+    # attested by checkpoint 1, so only the content delta is planned.
+    inventory_root = _write_import_inventory(project_root, debate_id, checkpoint, work_id, stage) if stage == "graph" else None
+    config_path = _config(project_root, debate_id, work_id, checkpoint, stage, inventory_root)
     config = load_json(config_path, "configuration de publication française")
     actual_adapter = adapter if adapter is not None else build_adapter(config, project_root)
     plan_path = state_dir / "update-plan.json"
@@ -426,16 +583,13 @@ def publish_checkpoint(project_root: Path, debate_id: str, work_id: str, *, adap
         plan = planner.build_plan(mode="all")
         operations = plan.get("operations") or {}
         if operations.get("blocked") or operations.get("manual_review"):
-            raise FrenchCheckpointError(
-                "Le préflight de publication française contient des opérations bloquées ou à revoir; "
-                f"consulter {relative_to_project(plan_path, project_root)}"
-            )
-        # Structural removals must already have gone through explicit graph actions.
-        unexpected = sum(len(operations.get(name) or []) for name in ("redirect", "delete"))
-        if unexpected:
-            raise FrenchCheckpointError(
-                "La publication française de contenu ne peut pas introduire de redirection ou suppression implicite"
-            )
+            write_json(plan_path, plan)
+            raise FrenchCheckpointError("Le préflight de publication française contient des opérations bloquées ou à revoir")
+        if stage == "content":
+            unexpected = sum(len(operations.get(name) or []) for name in ("move", "redirect", "delete"))
+            if unexpected:
+                write_json(plan_path, plan)
+                raise FrenchCheckpointError("Le second checkpoint français ne peut contenir ni renommage, ni redirection, ni suppression")
         write_json(plan_path, plan)
     operations = plan.get("operations") or {}
     if operations.get("blocked") or operations.get("manual_review"):
@@ -454,21 +608,15 @@ def publish_checkpoint(project_root: Path, debate_id: str, work_id: str, *, adap
         raise FrenchCheckpointError(str(exc), remote_execution_started=bool(mutations)) from exc
 
     publication = {
-        "schema": RECEIPT_SCHEMA,
-        "schema_version": "1.0",
-        "debate_id": debate_id,
-        "work_id": work_id,
-        "status": status,
-        "published_at": now_iso(),
-        "checkpoint_path": relative_to_project(checkpoint, project_root),
-        "checkpoint_tree_sha256": full_tree_sha256(checkpoint),
-        "plan_path": relative_to_project(plan_path, project_root),
-        "plan_sha256": plan.get("plan_sha256"),
-        "edit_summary_contract": plan.get("edit_summary_contract"),
-        "counts": copy.deepcopy(plan.get("counts") or {}),
-        "remote_receipt_sha256": receipt.get("receipt_sha256"),
-        "english_translation_preparation_authorized": True,
+        "schema": RECEIPT_SCHEMA, "schema_version":"1.0", "debate_id":debate_id, "work_id":work_id,
+        "stage":stage, "status":status, "published_at":now_iso(),
+        "checkpoint_path":relative_to_project(checkpoint,project_root), "checkpoint_tree_sha256":full_tree_sha256(checkpoint),
+        "plan_path":relative_to_project(plan_path,project_root), "plan_sha256":plan.get("plan_sha256"),
+        "edit_summary_contract":plan.get("edit_summary_contract"), "counts":copy.deepcopy(plan.get("counts") or {}),
+        "remote_receipt_sha256":receipt.get("receipt_sha256"),
+        "next_stage_authorized":"fr_content_review" if stage == "graph" else "en_translation_review",
     }
     publication["receipt_sha256"] = sha_object(publication)
     write_json(publication_path, publication)
     return publication
+

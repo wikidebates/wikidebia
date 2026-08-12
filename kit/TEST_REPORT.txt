@@ -1,11 +1,13 @@
-Wikidéb’IA Kit 2.16.13 — rapport de tests
+Wikidéb’IA Kit 2.16.14 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 430
-Tests pytest : 430 réussis (111 + 319, deux groupes complets sans recouvrement)
-Norme : 1.2.80
-Validateur : 0.4.84
-Publication française après fr_content_review avant traduction anglaise : PASSED.
+Tests pytest collectés : 433
+Tests pytest : 433 réussis
+Norme : 1.2.81
+Validateur : 0.4.85
+Paquet unique de revue graphe + titres avant checkpoint 1 : PASSED.
+Checkpoint 1 limité aux relations, positions, renommages, titres affichés, fusions/redirections et suppressions : PASSED.
+Checkpoint 2 limité aux rubriques, mots-clés, introduction, résumés et documentation : PASSED.
+Baseline du checkpoint 2 = état publié du checkpoint 1 ; move/redirect/delete interdits : PASSED.
 Réimport depuis incoming/ avec sélection automatique/par debate_id : PASSED.
-Reprise idempotente après publication distante partielle ou préparation anglaise échouée : PASSED.
 Validation précoce de sources_working.json.document_kind : PASSED.
 Résumés MediaWiki individualisés page par page : PASSED.

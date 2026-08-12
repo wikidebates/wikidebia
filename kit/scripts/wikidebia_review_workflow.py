@@ -29,6 +29,7 @@ from wikidebia_corpus_build import (
     REVIEW_ENVELOPE,
     PLACEMENT_REVIEW,
     GRAPH_CORRECTION_REVIEW,
+    GRAPH_TITLE_REVIEW,
     build_payload_sha256,
     full_tree_sha256,
     load_json,
@@ -46,13 +47,18 @@ from wikidebia_corpus_review import make_review_template, finalize_review as fin
 from wikidebia_graph_correction import make_correction_template as make_graph_correction_template, apply_correction as apply_graph_correction
 from wikidebia_graph_actions import (
     execute_review_actions as execute_graph_review_actions,
+    apply_review_actions_locally as apply_graph_review_actions_locally,
+    extract_actions_from_review,
     repair_graph_action_import_provenance,
 )
 from wikidebia_corpus_promote import promote as promote_graph
-from wikidebia_editorial_workspace import create_workspace, validate_work_id, workspace_receipt_hash, next_work_id
+from wikidebia_editorial_workspace import (
+    create_workspace, validate_work_id, workspace_receipt_hash, next_work_id,
+    page_review_item, read_import_metadata, fallback_map,
+)
 from wikidebia_editorial_review import (
-    finalize_review as finalize_metadata_review,
-    apply_review as apply_metadata_review,
+    finalize_title_review,
+    apply_title_review,
     review_sha256 as metadata_review_sha256,
 )
 from wikidebia_content_review import (
@@ -71,6 +77,11 @@ from wikidebia_semantic_convergence import record_pass as record_semantic_pass
 from wikidebia_render import render_workspace
 from wikidebia_release import release_workspace
 from wikidebia_french_checkpoint import publish_checkpoint, FrenchCheckpointError
+
+# Compatibility aliases: the historical CLI/tests used the metadata names.
+# Their semantics are now title-only; classification moved to the content review.
+finalize_metadata_review = finalize_title_review
+apply_metadata_review = apply_title_review
 
 PACKAGE_SCHEMA = "wikidebia-chatgpt-review-package-1.0"
 WORKFLOW_SCHEMA = "wikidebia-editorial-orchestration-1.0"
@@ -93,10 +104,10 @@ class ReviewTypeSpec:
 
 
 REVIEW_TYPES: dict[str, ReviewTypeSpec] = {
-    "graph_review": ReviewTypeSpec("graph_review", "Revue du graphe et des placements", "Revue du graphe préparée."),
+    "graph_review": ReviewTypeSpec("graph_review", "Revue du graphe, des positions et des titres", "Revue du graphe et des titres préparée."),
     "graph_correction": ReviewTypeSpec("graph_correction", "Correction du graphe après rejet", "Correction du graphe préparée."),
-    "fr_metadata_review": ReviewTypeSpec("fr_metadata_review", "Revue des titres, rubriques et mots-clés français", "Revue des titres, rubriques et mots-clés préparée."),
-    "fr_content_review": ReviewTypeSpec("fr_content_review", "Revue du contenu et de la documentation française", "Revue du contenu français préparée."),
+    "fr_metadata_review": ReviewTypeSpec("fr_metadata_review", "Revue du graphe et des titres français", "Revue des titres canoniques et affichés préparée."),
+    "fr_content_review": ReviewTypeSpec("fr_content_review", "Revue du contenu français, des rubriques et des mots-clés", "Revue du contenu français préparée."),
     "en_translation_review": ReviewTypeSpec("en_translation_review", "Traduction et revue documentaire anglaises", "Revue de traduction anglaise préparée."),
     "en_translation_correction": ReviewTypeSpec("en_translation_correction", "Correction de traduction après convergence sémantique", "Correction de traduction anglaise préparée."),
     "semantic_convergence_1": ReviewTypeSpec("semantic_convergence_1", "Première passe de convergence sémantique", "Première passe de convergence sémantique préparée."),
@@ -215,23 +226,24 @@ def _instructions(review_type: str, debate_id: str, work_id: str | None, editabl
     if review_type == "graph_review":
         lines += [
             "",
+            "Cette revue couvre en une seule étape les positions/relations du graphe, les suppressions/fusions/déplacements éventuels, les titres canoniques et les titres affichés.",
+            "Complétez aussi `reviews/fr/graph_title_review.json` pour tous les titres ; les rubriques, mots-clés, résumés et références restent hors de cette première revue.",
             "Si la revue exige une modification structurelle, renseignez pour l'occurrence concernée l'objet `correction`.",
             "Actions prises en charge : `remove`, `merge_redirect`, `move` et `relation_change`.",
             "Pour `merge_redirect`, indiquez `target_node_id` : la page doublon deviendra `#REDIRECTION [[Titre de destination]]` et son lien sera retiré de la page mère.",
             "Pour `remove`, indiquez `page_disposition=delete` : le lien sera retiré de la page mère avant suppression de la page.",
-            "Les résumés MediaWiki doivent être individualisés. Pour un doublon, le résumé de la page mère doit contenir le titre de destination sous la forme `[[Titre de destination]]`.",
-            "Une revue rejetée comportant ces décisions pourra être appliquée par `./wikidebia review-import <debate_id> --execute-graph-actions`.",
-            "Après application, Wikidéb’IA reconstruira le graphe et préparera une nouvelle revue complète avant toute promotion.",
+            "Les décisions structurelles sont d’abord appliquées localement au graphe puis soumises à une nouvelle revue complète. Aucune page distante n’est modifiée pendant cette boucle.",
+            "Après réimport approuvé de ce même ZIP, toutes les mutations structurelles et de titres validées sont publiées immédiatement au premier checkpoint français, avec un résumé MediaWiki individualisé par page.",
+            "Pour un doublon, le résumé de la page mère mentionne la page conservée sous la forme `[[Titre de destination]]`.",
         ]
     if review_type == "fr_metadata_review":
         lines += [
             "",
-            "Règle de reprise des pages existantes : les contraintes de création ne doivent pas réécrire rétroactivement les métadonnées historiques.",
+            "Cette revue clôt le premier ensemble français : graphe + titres. Elle porte exclusivement sur les titres canoniques / noms de pages et les titres affichés.",
             "Pour un Argument préexistant du wiki, conservez par défaut `titre-affiché`, même s’il est nominal ou non propositionnel. Ne le modifiez que pour une faute ou un problème flagrant, ou sur décision explicite du propriétaire.",
             "Le titre canonique / nom de page reste à corriger lorsqu’il est incomplet, contextuel, ambigu ou fautif.",
-            "Conservez tous les mots-clés historiques par défaut. Vous pouvez corriger leur casse/graphie, les réordonner et en ajouter.",
-            "Ne supprimez un mot-clé historique que s’il est réellement non pertinent ; renseignez alors `removed_preexisting_keywords` avec `reason=clearly_irrelevant` et une justification spécifique.",
-            "La cible 2–4 mots-clés et l’attestation `displayed_title_complete_proposition` s’appliquent aux nouvelles pages / nouveaux titres générés, pas aux valeurs historiques préexistantes.",
+            "Ne modifiez pas ici les rubriques ni les mots-clés : ils seront revus et publiés avec le contenu au second checkpoint français.",
+            "Après réimport validé, Wikidéb’IA publie automatiquement les changements structurels et de titres sur le wiki français avant de préparer la revue de contenu.",
         ]
     if review_type == "graph_correction":
         lines += [
@@ -679,17 +691,101 @@ def _prepare_semantic_package(project_root: Path, state: dict[str, Any], pass_nu
     )
 
 
+
+def _reserve_graph_review_work_id(project_root: Path, state: dict[str, Any]) -> str:
+    """Reserve the Work id before the combined graph/title handoff is created."""
+    existing = str(state.get("work_id") or "").strip()
+    if existing:
+        return validate_work_id(existing)
+    editorial_root = project_root / ".state" / "editorial-workspaces" / str(state["debate_id"])
+    editorial_root.mkdir(parents=True, exist_ok=True)
+    work_id = next_work_id(editorial_root)
+    state["work_id"] = work_id
+    state["updated_at"] = now_iso()
+    _save_workflow(project_root, state)
+    return work_id
+
+
+def _make_graph_title_review(build: Path, debate_id: str, work_id: str) -> dict[str, Any]:
+    """Prepare the title part of the combined graph review on graph_draft input.
+
+    Classification fields are present only as source context and are ignored by
+    the title finalizer. They are deliberately reviewed later with page content.
+    """
+    registry = load_json(build / "data" / "registre_debat.json", "registre du débat")
+    provenance = load_json(build / "data" / "import_provenance.json", "provenance d'import")
+    fallback_by_title = fallback_map(provenance)
+    page_rows = provenance.get("pages") or []
+    debate_rows = [row for row in page_rows if isinstance(row, dict) and row.get("kind") == "debate"]
+    if len(debate_rows) != 1:
+        raise WorkflowError(f"Une page Débat importée est requise, trouvée : {len(debate_rows)}")
+    argument_rows = {
+        str(row.get("page_id")): row for row in page_rows
+        if isinstance(row, dict) and row.get("kind") == "argument" and row.get("page_id")
+        and str(row.get("provenance_status") or "") not in {"retired_redirect", "retired_deleted", "pending_redirect", "pending_delete"}
+    }
+    items: list[dict[str, Any]] = []
+    debate_row = debate_rows[0]
+    debate_import = read_import_metadata(build, debate_row)
+    debate_title = str((((registry.get("debate") or {}).get("pages") or {}).get("fr") or {}).get("canonical_title") or debate_row.get("canonical_title") or "")
+    items.append(page_review_item(
+        entity_type="debate", entity_id="debate", canonical_title=debate_title,
+        displayed_title=None, rubriques=list(debate_import.get("rubriques") or []),
+        keywords=list(debate_import.get("keywords") or []), import_row=debate_row,
+        import_metadata=debate_import, fallback_kinds=fallback_by_title.get(debate_title, set()),
+    ))
+    active_nodes = [node for node in (registry.get("graph") or {}).get("nodes") or [] if node.get("status") == "active"]
+    for node in sorted(active_nodes, key=lambda row: str(row.get("id"))):
+        node_id = str(node.get("id"))
+        import_row = argument_rows.get(node_id)
+        if import_row is None:
+            raise WorkflowError(f"Provenance importée absente pour le nœud actif {node_id}")
+        import_metadata = read_import_metadata(build, import_row)
+        fr = ((node.get("pages") or {}).get("fr") or {})
+        canonical_title = str(fr.get("canonical_title") or import_row.get("canonical_title") or "")
+        displayed_title = str(fr.get("displayed_title") or canonical_title)
+        items.append(page_review_item(
+            entity_type="argument", entity_id=node_id, canonical_title=canonical_title,
+            displayed_title=displayed_title, rubriques=list(import_metadata.get("rubriques") or []),
+            keywords=list(import_metadata.get("keywords") or []), import_row=import_row,
+            import_metadata=import_metadata, fallback_kinds=fallback_by_title.get(canonical_title, set()),
+        ))
+    ledger = {
+        "schema": "wikidebia-fr-page-metadata-review-1.1",
+        "schema_version": "1.1",
+        "normative_revision": NORM_VERSION,
+        "debate_id": debate_id,
+        "work_id": work_id,
+        "review_scope": "graph_and_titles",
+        "status": "pending",
+        "generated_at": now_iso(),
+        "items": items,
+    }
+    write_json(build / GRAPH_TITLE_REVIEW, ledger)
+    return ledger
+
+
+def _install_combined_graph_title_review(workspace: Path, promoted_corpus: Path) -> None:
+    source = promoted_corpus / GRAPH_TITLE_REVIEW
+    if not source.is_file():
+        raise WorkflowError("La revue combinée du graphe ne contient pas le registre des titres")
+    target = workspace / "reviews" / "fr" / "page_metadata_review.json"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(source, target)
+
 def _prepare_graph_package(project_root: Path, state: dict[str, Any]) -> dict[str, Any]:
     build = resolve_build(project_root, str(state["debate_id"]))
     overwrite = bool(state.pop("overwrite_graph_review", False))
+    work_id = _reserve_graph_review_work_id(project_root, state)
+    title_review = _make_graph_title_review(build, str(state["debate_id"]), work_id)
     result = make_review_template(build, str(state["debate_id"]), overwrite=overwrite)
     return create_review_package(
         project_root, state,
         review_type="graph_review", base=build,
-        editable_paths=[REVIEW_ENVELOPE, PLACEMENT_REVIEW],
+        editable_paths=[REVIEW_ENVELOPE, PLACEMENT_REVIEW, GRAPH_TITLE_REVIEW],
         context_paths=["manifest.json", "scope.json", "data/registre_debat.json", "graph/graphe_argumentatif.json", "graph/graphe_argumentatif.md", "reports/import_report.md"],
         context_globs=["imports/fr/**/*.wiki", "imports/fr/**/*.json"],
-        counts={"placements": result.get("occurrences")},
+        counts={"placements": result.get("occurrences"), "pages": len(title_review.get("items") or [])},
     )
 
 
@@ -712,7 +808,7 @@ def _prepare_metadata_package(project_root: Path, state: dict[str, Any]) -> dict
     return create_review_package(
         project_root, state,
         review_type="fr_metadata_review", base=workspace,
-        editable_paths=["reviews/fr/page_metadata_review.json", "data/keyword_vocabulary_working.json"],
+        editable_paths=["reviews/fr/page_metadata_review.json"],
         context_paths=["audits/editorial_inventory.json", "audits/editorial_inventory.md", "tasks/editorial_tasks.json", "working-copy/scope.json", "working-copy/data/registre_debat.json", "working-copy/graph/graphe_argumentatif.json"],
         context_globs=["working-copy/imports/fr/**/*.wiki", "working-copy/imports/fr/**/*.json"],
         counts={"pages": len(review.get("items") or [])},
@@ -726,7 +822,7 @@ def _prepare_content_package(project_root: Path, state: dict[str, Any]) -> dict[
     return create_review_package(
         project_root, state,
         review_type="fr_content_review", base=workspace,
-        editable_paths=["reviews/fr/content_review.json", "data/sources_working.json"],
+        editable_paths=["reviews/fr/content_review.json", "data/sources_working.json", "reviews/fr/classification_review.json", "data/keyword_vocabulary_working.json"],
         context_paths=["audits/fr_content_inventory.json", "audits/fr_content_inventory.md", "reviewed-copy/data/fr_page_metadata_lock.json", "reviewed-copy/data/registre_debat.json", "reviewed-copy/data/sources.json", "reviewed-copy/scope.json"],
         context_globs=["reviewed-copy/imports/fr/**/*.wiki", "reviewed-copy/imports/fr/**/*.json"],
         counts={"arguments": len(review.get("arguments") or [])},
@@ -789,18 +885,26 @@ def _mechanical_advance(project_root: Path, state: dict[str, Any]) -> dict[str, 
     while True:
         phase = str(state.get("phase") or "graph_review")
         pending = state.get("pending_review")
-        # Migration/resume guard: workspaces produced by pre-2.16.13 may already
-        # have an English review package pending even though the sealed French
-        # content has never been published.  Publish that exact French lock now
-        # before allowing the workflow to continue; the existing English package
-        # remains bound to the same immutable French content.
-        if isinstance(pending, dict) and not state.get("french_publication"):
+        # Migration/resume guard for workflows created before the two-checkpoint
+        # contract. An already completed legacy French publication cannot be split
+        # retroactively; otherwise publish graph/title first, then content, before
+        # allowing any English review to continue.
+        if state.get("french_publication") and not state.get("french_content_publication"):
+            state["french_graph_publication"] = copy.deepcopy(state["french_publication"])
+            state["french_content_publication"] = copy.deepcopy(state["french_publication"])
+            state["updated_at"] = now_iso(); _save_workflow(project_root, state)
+        if isinstance(pending, dict):
             pending_type = str(pending.get("review_type") or "")
             if pending_type in {"en_translation_review", "en_translation_correction", "semantic_convergence_1", "semantic_convergence_2"} and state.get("work_id"):
-                publication = publish_checkpoint(project_root, debate_id, str(state["work_id"]))
-                state["french_publication"] = copy.deepcopy(publication)
-                state["updated_at"] = now_iso()
-                _save_workflow(project_root, state)
+                if not state.get("french_graph_publication"):
+                    publication = publish_checkpoint(project_root, debate_id, str(state["work_id"]), stage="graph")
+                    state["french_graph_publication"] = copy.deepcopy(publication)
+                    state["updated_at"] = now_iso(); _save_workflow(project_root, state)
+                if not state.get("french_content_publication"):
+                    publication = publish_checkpoint(project_root, debate_id, str(state["work_id"]), stage="content")
+                    state["french_content_publication"] = copy.deepcopy(publication)
+                    state["french_publication"] = copy.deepcopy(publication)  # legacy alias
+                    state["updated_at"] = now_iso(); _save_workflow(project_root, state)
         if state.get("pending_review"):
             return state
         if phase == "initialize_graph":
@@ -853,7 +957,32 @@ def _mechanical_advance(project_root: Path, state: dict[str, Any]) -> dict[str, 
                     raise WorkflowError("Le workspace de reprise ne correspond pas au workflow")
             else:
                 create_workspace(project_root, debate_id, str(work_id))
+            # New combined-review contract: the graph ZIP already contains the
+            # title decisions. Install them into the freshly promoted workspace,
+            # finalize/apply them, then cross the first French publication
+            # checkpoint immediately. Older workflows without this artifact keep
+            # the historical standalone title-review phase for compatibility.
+            if (corpus / GRAPH_TITLE_REVIEW).is_file():
+                _install_combined_graph_title_review(workspace, corpus)
+                title_result = finalize_metadata_review(project_root, debate_id, str(work_id))
+                apply_metadata_review(project_root, debate_id, str(work_id), str(title_result["review_sha256"]))
+                state["phase"] = "graph_publication_resume"
+                state["updated_at"] = now_iso()
+                _save_workflow(project_root, state)
+                continue
             state["phase"] = "fr_metadata_review"
+            state["updated_at"] = now_iso()
+            _save_workflow(project_root, state)
+            continue
+        if phase == "graph_publication_resume":
+            if not state.get("french_graph_publication"):
+                state["remote_publication_stage"] = "graph"
+                state["updated_at"] = now_iso()
+                _save_workflow(project_root, state)
+                publication = publish_checkpoint(project_root, debate_id, str(state["work_id"]), stage="graph")
+                state["french_graph_publication"] = copy.deepcopy(publication)
+                state.pop("remote_publication_stage", None)
+            state["phase"] = "fr_content_review"
             state["updated_at"] = now_iso()
             _save_workflow(project_root, state)
             continue
@@ -864,13 +993,17 @@ def _mechanical_advance(project_root: Path, state: dict[str, Any]) -> dict[str, 
             _prepare_content_package(project_root, state)
             return state
         if phase == "en_translation_review":
-            if not state.get("french_publication"):
-                if not state.get("work_id"):
-                    raise WorkflowError("Work éditorial absent avant la publication française")
-                publication = publish_checkpoint(project_root, debate_id, str(state["work_id"]))
-                state["french_publication"] = copy.deepcopy(publication)
-                state["updated_at"] = now_iso()
-                _save_workflow(project_root, state)
+            if not state.get("work_id"):
+                raise WorkflowError("Work éditorial absent avant les publications françaises")
+            if not state.get("french_graph_publication"):
+                publication = publish_checkpoint(project_root, debate_id, str(state["work_id"]), stage="graph")
+                state["french_graph_publication"] = copy.deepcopy(publication)
+                state["updated_at"] = now_iso(); _save_workflow(project_root, state)
+            if not state.get("french_content_publication"):
+                publication = publish_checkpoint(project_root, debate_id, str(state["work_id"]), stage="content")
+                state["french_content_publication"] = copy.deepcopy(publication)
+                state["french_publication"] = copy.deepcopy(publication)  # legacy alias
+                state["updated_at"] = now_iso(); _save_workflow(project_root, state)
             _prepare_translation_package(project_root, state)
             return state
         if phase == "semantic_convergence_1":
@@ -1122,9 +1255,10 @@ def import_review(project_root: Path, debate_id: str, archive: Path, *, execute_
                     "blocking_issues": copy.deepcopy(result.get("blocking_issues") or []),
                     "recorded_at": now_iso(),
                 })
+                actions = extract_actions_from_review(base)
                 if execute_graph_actions:
-                    # From the point at which this call returns, remote writes have
-                    # been committed and must never be hidden by a local rollback.
+                    # Legacy explicit path retained for compatibility. Normal workflows
+                    # defer all remote writes to the first French graph/title checkpoint.
                     action_result = execute_graph_review_actions(
                         project_root, base, debate_id,
                         preflight_validator=lambda preview: run_initial_validator(project_root, preview),
@@ -1133,9 +1267,14 @@ def import_review(project_root: Path, debate_id: str, archive: Path, *, execute_
                     state.setdefault("graph_action_executions", []).append(copy.deepcopy(action_result))
                     state["phase"] = "graph_review"
                     state["overwrite_graph_review"] = True
-                    validation = run_initial_validator(project_root, base)
-                    if validation.get("status") == "failed":
-                        raise WorkflowError("Les décisions structurelles appliquées produisent un graphe local invalide")
+                elif actions:
+                    action_result = apply_graph_review_actions_locally(
+                        project_root, base, debate_id,
+                        preflight_validator=lambda preview: run_initial_validator(project_root, preview),
+                    )
+                    state.setdefault("pending_graph_actions", []).append(copy.deepcopy(action_result))
+                    state["phase"] = "graph_review"
+                    state["overwrite_graph_review"] = True
                 else:
                     state["phase"] = "graph_correction"
             else:
@@ -1150,20 +1289,27 @@ def import_review(project_root: Path, debate_id: str, archive: Path, *, execute_
         elif review_type == "fr_metadata_review":
             result = finalize_metadata_review(project_root, debate_id, str(state["work_id"]))
             apply_metadata_review(project_root, debate_id, str(state["work_id"]), str(result["review_sha256"]))
+            try:
+                publication = publish_checkpoint(project_root, debate_id, str(state["work_id"]), stage="graph")
+            except FrenchCheckpointError as exc:
+                irreversible_french_publication = bool(exc.remote_execution_started)
+                state["remote_publication_stage"] = "graph"
+                raise
+            irreversible_french_publication = True
+            state["french_graph_publication"] = copy.deepcopy(publication)
             state["phase"] = "fr_content_review"
         elif review_type == "fr_content_review":
             result = finalize_content_review(project_root, debate_id, str(state["work_id"]))
             apply_content_review(project_root, debate_id, str(state["work_id"]), str(result["review_sha256"]))
             try:
-                publication = publish_checkpoint(project_root, debate_id, str(state["work_id"]))
+                publication = publish_checkpoint(project_root, debate_id, str(state["work_id"]), stage="content")
             except FrenchCheckpointError as exc:
                 irreversible_french_publication = bool(exc.remote_execution_started)
+                state["remote_publication_stage"] = "content"
                 raise
-            # From here onward remote French state is committed/attested.  Any
-            # later local failure (including English-package preparation) must
-            # preserve the sealed French review and resume idempotently.
             irreversible_french_publication = True
-            state["french_publication"] = copy.deepcopy(publication)
+            state["french_content_publication"] = copy.deepcopy(publication)
+            state["french_publication"] = copy.deepcopy(publication)  # legacy alias
             state["phase"] = "en_translation_review"
         elif review_type in {"en_translation_review", "en_translation_correction"}:
             result = finalize_translation_review(project_root, debate_id, str(state["work_id"]))
@@ -1220,6 +1366,25 @@ def import_review(project_root: Path, debate_id: str, archive: Path, *, execute_
         _save_workflow(project_root, state)
         advanced = _mechanical_advance(project_root, state)
     except Exception as exc:
+        # A French checkpoint can now be crossed by the mechanical continuation
+        # of the combined graph/title review. Detect that irreversible boundary
+        # even when it was not entered directly in the review-type branch.
+        try:
+            current_state = _load_workflow(project_root, debate_id)
+        except Exception:
+            current_state = state
+        if isinstance(exc, FrenchCheckpointError) and bool(exc.remote_execution_started):
+            irreversible_french_publication = True
+        try:
+            previous_state = json.loads(bytes(transaction["workflow_bytes"]).decode("utf-8"))
+        except Exception:
+            previous_state = {}
+        if current_state.get("french_graph_publication") and not previous_state.get("french_graph_publication"):
+            irreversible_french_publication = True
+            state = current_state
+        if current_state.get("french_content_publication") and not previous_state.get("french_content_publication"):
+            irreversible_french_publication = True
+            state = current_state
         if irreversible_graph_actions:
             # Keep the exact local projection and action receipt that correspond
             # to already committed remote writes.  The workflow remains resumable
@@ -1230,13 +1395,21 @@ def import_review(project_root: Path, debate_id: str, archive: Path, *, execute_
             _save_workflow(project_root, state)
             shutil.rmtree(backup, ignore_errors=True)
         elif irreversible_french_publication:
-            # A remote French execution may have written some pages.  Never roll
-            # back the sealed local review in that case: keep the same pending
-            # package and saved plan so the same `review-import` can resume
-            # idempotently.  The English package is not prepared until success.
+            # Never roll local state back across a remote write. For the first
+            # combined graph/title checkpoint the review has already been
+            # consumed and promotion completed, so resume from the signed remote
+            # checkpoint state. The content checkpoint keeps its historical
+            # retry-through-review-import behavior because its workspace base is
+            # still the same editable review base.
+            state = current_state
             state["status"] = "blocked_remote_publication"
-            state["phase"] = "fr_content_review"
-            state["pending_review"] = copy.deepcopy(pending)
+            failed_stage = str(state.get("remote_publication_stage") or ("content" if state.get("french_content_publication") or str((pending or {}).get("review_type") or "") == "fr_content_review" else "graph"))
+            if failed_stage == "graph":
+                state["phase"] = "graph_publication_resume" if not state.get("french_graph_publication") else "fr_content_review"
+                state["pending_review"] = None
+            else:
+                state["phase"] = "fr_content_review"
+                state["pending_review"] = copy.deepcopy(pending) if str((pending or {}).get("review_type") or "") == "fr_content_review" else None
             state["last_remote_publication_error"] = str(exc)
             state["updated_at"] = now_iso()
             _save_workflow(project_root, state)

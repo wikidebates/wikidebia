@@ -122,3 +122,13 @@ Voir `GUIDE_EDITORIAL_ORCHESTRATION.md`. Les commandes détaillées restent disp
 ### Checkpoint français automatique
 
 Après validation de la revue française de contenu, `review-import` publie automatiquement le français scellé avant de préparer la traduction anglaise. Cette publication utilise les mêmes plans signés, résumés individualisés, gardes de révision et relectures que `update`; elle ne nécessite pas une commande `update` séparée.
+
+
+## Deux checkpoints français dans le workflow éditorial
+
+Le workflow de reprise publie le français deux fois avant traduction :
+
+1. après graphe + titres : relations, placements, renommages, titres affichés et retraits/fusions validés ;
+2. après contenu : rubriques, mots-clés, introduction, résumés et références.
+
+Le premier checkpoint préserve le contenu/classification importé ; le second se calcule contre l’état publié du premier et interdit les mutations structurelles. Les deux utilisent des résumés MediaWiki individualisés.

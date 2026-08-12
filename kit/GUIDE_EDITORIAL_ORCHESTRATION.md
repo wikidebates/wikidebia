@@ -56,16 +56,15 @@ Le retour doit conserver exactement cette structure. Les fichiers de contexte, l
 
 Le cycle courant couvre successivement :
 
-1. graphe et placements ;
-2. titres, rubriques et mots-clés français ;
-3. introduction, résumés et documentation française ;
-4. traduction et documentation anglaises, y compris la recherche d'`established-name=` lorsqu'elle s'applique ;
-5. première passe de convergence sémantique ;
-6. deuxième passe indépendante de convergence.
+1. **revue combinée graphe + titres** : placements/relations, suppressions/fusions/déplacements, titres canoniques et titres affichés ; son réimport déclenche immédiatement le **checkpoint 1 graphe/titres** ;
+2. **revue de contenu** : rubriques, mots-clés, introduction, résumés et documentation française ; son réimport déclenche le **checkpoint 2 contenu** ;
+3. traduction et documentation anglaises, y compris la recherche d'`established-name=` lorsqu'elle s'applique ;
+4. première passe de convergence sémantique ;
+5. deuxième passe indépendante de convergence.
 
 Si une passe sémantique trouve une erreur certaine, la traduction est rouverte, les constatations sont fournies comme contexte dans un paquet de correction, puis les deux passes de convergence recommencent sur la nouvelle empreinte.
 
-Après validation de la revue française de contenu, le workflow rend et publie automatiquement le checkpoint français avec des résumés personnalisés avant de préparer la traduction anglaise. Après deux passes anglaises propres et indépendantes, l'application, le rendu et la construction `release_ready` restent automatiques. Les autres écritures pré-W11 sont limitées aux actions structurelles explicitement demandées.
+Après validation du paquet combiné graphe/titres, le workflow publie le premier checkpoint avec des résumés personnalisés. Après validation de la revue française de contenu, il publie le second checkpoint, également avec des résumés personnalisés, avant toute traduction anglaise. Après deux passes anglaises propres et indépendantes, l'application, le rendu et la construction `release_ready` restent automatiques. Les autres écritures pré-W11 sont limitées aux actions structurelles explicitement demandées.
 
 ## Commandes avancées
 

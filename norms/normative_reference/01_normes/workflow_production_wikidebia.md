@@ -32,7 +32,7 @@ commande utilisateur
 → rendu + release_ready
 ```
 
-L’orchestration reste locale jusqu’à un point de publication explicitement défini. Deux frontières distantes existent : les actions structurelles du graphe demandées avec `--execute-graph-actions`, et le **checkpoint français automatique** qui suit la validation complète de `fr_content_review`. Ce checkpoint publie les pages françaises scellées avant toute préparation du paquet anglais, avec le plan signé et les résumés individualisés de la reprise ordinaire.
+L’orchestration française comporte deux checkpoints distants avant traduction : **graphe + titres** après validation de la structure et des titres canoniques/affichés, puis **contenu + classification** après validation des rubriques, mots-clés, introduction, résumés et documentation. Les décisions structurelles de correction restent locales jusqu’au premier checkpoint. Chaque checkpoint utilise un plan signé et des résumés individualisés.
 
 ### Rejet et correction du graphe
 
@@ -46,7 +46,7 @@ Le registre maître et les fichiers individuels sont les sources de vérité. Le
 
 Aucune copie `staging/interlanguage/` ni ancien mécanisme de patch de corpus n’est utilisé. Lorsque l’anglais passe de `deferred` à `ready` ou `published`, l’ajout des liens français se fait par la reprise interlangue explicite et sûre prévue par le kit, sans modifier la date de création française.
 
-Chaque Work reçoit un handoff vérifié, modifie uniquement les champs autorisés et livre des rapports reproductibles. Hors actions structurelles explicitement exécutées et checkpoint français automatique après `fr_content_review`, aucune écriture distante n’est autorisée avant W11. Ces exceptions conservent un plan et un reçu signés et ne dispensent pas de la publication finale.
+Chaque Work reçoit un handoff vérifié, modifie uniquement les champs autorisés et livre des rapports reproductibles. Hors les deux checkpoints français déclarés (graphe/titres puis contenu/classification), aucune écriture distante n’est autorisée avant W11. Ces exceptions conservent un plan et un reçu signés et ne dispensent pas de la publication finale.
 
 ## 2. États actifs
 
@@ -314,6 +314,6 @@ Après finalisation de la revue anglaise et après toute dernière correction, e
 
 ## Checkpoint français avant traduction
 
-Après réussite de `fr_content_review`, l’orchestrateur rend un corpus français temporaire avec `translation_status.en=deferred` et sans `interlangue`, vérifie le corpus et construit un plan de reprise distante. Les mutations `create`, `update` et `move` sont exécutées avec les résumés MediaWiki individualisés et la balise `chatgpt`. Les redirections ou suppressions implicites sont refusées à ce stade car elles relèvent des décisions structurelles du graphe. La préparation de `en_translation_review` n’est autorisée qu’après un reçu `published` ou `verified_no_changes`. Une interruption réutilise le même plan ; une écriture déjà vérifiée n’est pas rejouée.
+Après validation du graphe et des titres, l’orchestrateur rend un premier corpus français temporaire à partir du wikicode importé : seules les relations et les cibles/titres validés changent. Après réussite de `fr_content_review`, il rend un second corpus français temporaire, toujours avec `translation_status.en=deferred` et sans `interlangue`, et construit un nouveau plan de reprise contre l’état publié par le premier checkpoint. Les mutations `create`, `update` et `move` sont exécutées avec les résumés MediaWiki individualisés et la balise `chatgpt`. Les redirections, suppressions et renommages sont admis uniquement au premier checkpoint lorsqu’ils sont issus de décisions structurelles/titres validées ; ils sont interdits au second checkpoint. La préparation de `en_translation_review` n’est autorisée qu’après les deux reçus `published` ou `verified_no_changes`. Une interruption réutilise le même plan ; une écriture déjà vérifiée n’est pas rejouée.
 
 La validation de `data/sources_working.json` contrôle directement `document_kind` contre l’enum du registre documentaire avant application. Une valeur invalide est donc signalée dans la revue de contenu plutôt que reportée au préflight structurel de `data/sources.json`.

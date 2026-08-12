@@ -257,15 +257,37 @@ def test_end_to_end_graph_handoff_resumes_to_metadata_handoff(tmp_path: Path, mo
         envelope["blocking_issues"] = []
         envelope["notes"] = "Revue complète des placements et de la cohérence argumentative du graphe."
         common.write_json(envelope_path, envelope)
+        titles_path = root / f"editable/{common.GRAPH_TITLE_REVIEW}"
+        titles = json.loads(titles_path.read_text(encoding="utf-8"))
+        for item in titles["items"]:
+            title_review = item["review"]
+            title_review["status"] = "approved"
+            title_review["reviewer"] = "ChatGPT review"
+            title_review["reviewed_at"] = "2026-08-11T14:00:00+02:00"
+            if item["entity_type"] == "argument":
+                title_review["canonical_title_decision"] = "keep"
+                title_review["displayed_title_decision"] = "keep"
+                title_review["canonical_title_rationale"] = "Le titre canonique source est autonome, explicite et identifie précisément le raisonnement de cette page."
+                title_review["displayed_title_rationale"] = "Le titre affiché source conserve fidèlement le raisonnement et reste adapté au contexte de lecture de la branche."
+                title_review["canonical_referents_explicit"] = True
+                title_review["displayed_title_complete_proposition"] = True
+                title_review["displayed_title_argument_intelligible"] = True
+                title_review["displayed_title_concision_reviewed"] = True
+                title_review["displayed_title_semantically_equivalent"] = True
+                title_review["displayed_title_improves_readability_when_distinct"] = True
+        common.write_json(titles_path, titles)
 
     rewrite_zip(graph_zip, returned, complete_graph)
+    monkeypatch.setattr(wf, "publish_checkpoint", lambda *a, **k: {"status": "published", "stage": "graph", "receipt_sha256": "d" * 64})
+    monkeypatch.setitem(wf.finalize_metadata_review.__globals__, "_run_validator", lambda *a, **k: {"result": "passed", "summary": {"errors": 0, "warnings": 0}, "report_sha256": "a" * 64})
     resumed = wf.import_review(project, "debat_test", returned)
     assert resumed["work_id"]
-    assert resumed["pending_review"]["review_type"] == "fr_metadata_review"
-    metadata_zip = project / resumed["pending_review"]["package_path"]
-    assert metadata_zip.is_file()
-    with zipfile.ZipFile(metadata_zip) as z:
-        assert "editable/reviews/fr/page_metadata_review.json" in z.namelist()
+    assert resumed["french_graph_publication"]["status"] == "published"
+    assert resumed["pending_review"]["review_type"] == "fr_content_review"
+    content_zip = project / resumed["pending_review"]["package_path"]
+    assert content_zip.is_file()
+    with zipfile.ZipFile(content_zip) as z:
+        assert "editable/reviews/fr/classification_review.json" in z.namelist()
         assert "editable/data/keyword_vocabulary_working.json" in z.namelist()
         assert not any(name.startswith("context/private/") for name in z.namelist())
 
@@ -320,6 +342,7 @@ def make_full_workspace(project: Path, debate_id: str = "debat_test", work_id: s
         "working-copy/graph/graphe_argumentatif.json": {"debate_id": debate_id},
         "reviews/fr/content_review.json": {"arguments": [{"id": "A0001"}]},
         "data/sources_working.json": {"sources": []},
+        "reviews/fr/classification_review.json": {"items": []},
         "audits/fr_content_inventory.json": {"arguments": []},
         "reviewed-copy/data/fr_page_metadata_lock.json": {"status": "locked"},
         "reviewed-copy/data/registre_debat.json": {"debate_id": debate_id},
@@ -829,9 +852,10 @@ def test_legacy_pending_english_review_publishes_french_checkpoint_before_resume
         lambda *a, **k: calls.append("publish") or {"status": "published", "receipt_sha256": "c" * 64},
     )
     resumed = wf._mechanical_advance(project, state)
-    assert calls == ["publish"]
+    assert calls == ["publish", "publish"]
     assert resumed["pending_review"]["review_type"] == "en_translation_review"
-    assert resumed["french_publication"]["status"] == "published"
+    assert resumed["french_graph_publication"]["status"] == "published"
+    assert resumed["french_content_publication"]["status"] == "published"
     saved = wf._load_workflow(project, "debat_test")
     assert saved["french_publication"]["receipt_sha256"] == "c" * 64
 

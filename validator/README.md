@@ -1,3 +1,7 @@
+# Wikidéb’IA Validator 0.4.85
+
+Le validateur 0.4.85 s’aligne sur la norme 1.2.81 et le kit 2.16.14. Il conserve tous les contrôles de 0.4.84, notamment `WDV-RMT-008`. Les deux checkpoints français utilisent les mêmes schémas de corpus et de plan ; leur séparation fonctionnelle est imposée par l’orchestrateur et ses tests de non-régression.
+
 # Wikidéb’IA Validator 0.4.84
 
 Le validateur 0.4.84 s’aligne sur la norme 1.2.80 et le kit 2.16.13. Il conserve `WDV-RMT-008` pour les résumés MediaWiki individualisés et tous les contrôles antérieurs. Le checkpoint français intermédiaire est validé avec les portées structurelles/documentaires applicables avant la publication distante ; les attestations éditoriales françaises proviennent des verrous déjà scellés.

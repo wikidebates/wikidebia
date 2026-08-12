@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.80
+- **Révision :** 1.2.81
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -464,6 +464,15 @@ La revue des audits du 9 août 2026 montre que plusieurs pertes sémantiques ava
 
 | Décision | Exigence | Contrôle |
 |---|---|---|
-| Publier le français scellé après `fr_content_review` et avant l’anglais | PUB-050 | checkpoint FR sans interlangue, plan de reprise signé, reçu obligatoire avant `en_translation_review` |
+| Publier graphe + titres avant la revue de contenu | PUB-051 | premier checkpoint FR, structure/titres uniquement, plan signé et reçu |
+| Publier ensuite rubriques, mots-clés et contenu avant l’anglais | PUB-050 | second checkpoint FR sans interlangue, delta contre le premier reçu, puis seulement `en_translation_review` |
 | Sélectionner les ZIP de revue depuis `incoming/` sans nom de fichier | GOV-015 | paquet unique auto-sélectionné par `debate_id`; sélecteur de débat exigé en cas de pluralité |
 | Refuser tôt un `document_kind` invalide dans `sources_working.json` | VAL-061 | validation directe de l’enum avant projection vers `data/sources.json` |
+
+
+## Extension 1.2.81 — revue combinée graphe/titres et deux publications françaises
+
+- La première intervention externe française combine placements/relations, décisions structurelles, titres canoniques et titres affichés dans un même paquet de revue.
+- Le réimport approuvé de ce paquet déclenche immédiatement le checkpoint français n°1 ; rubriques, mots-clés et contenu restent strictement inchangés.
+- La revue suivante couvre rubriques, mots-clés, introduction, résumés et documentation, puis déclenche le checkpoint français n°2.
+- La traduction ne commence qu'après le second reçu.

@@ -201,3 +201,13 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - déplace l’UX de retour vers `incoming/` : `./wikidebia review-import` pour un seul paquet, `./wikidebia review-import <debate_id>` en cas de pluralité ;
 - sélectionne par `REVIEW_PACKAGE.json.debate_id`, archive le ZIP après succès et le conserve dans `incoming/` après échec ;
 - valide `document_kind` directement dans `sources_working.json` avant la projection finale.
+
+## 2.16.14 — 12 août 2026 — deux publications françaises avant traduction
+
+- transforme le checkpoint français unique en deux checkpoints ordonnés : `graph` puis `content` ;
+- le paquet `graph_review` combine désormais dans un même ZIP placements/relations, décisions structurelles et revue des titres canoniques/affichés ; il n’existe plus de handoff de titres séparé dans un nouveau workflow ;
+- son réimport approuvé déclenche immédiatement le checkpoint `graph`, qui reconstruit les relations à partir du graphe validé mais conserve à l’identique résumés, introduction, références, rubriques et mots-clés du wikicode importé ;
+- les suppressions, fusions/redirections et déplacements décidés pendant la revue sont différés et publiés avec les titres au premier checkpoint ;
+- le checkpoint `content` utilise `.state/published` issu du premier comme baseline, ne republie que le delta de contenu/classification et refuse `move`, `redirect` et `delete` ;
+- la traduction anglaise n’est préparée qu’après les deux reçus français ;
+- conserve `incoming/`, la sélection par `debate_id`, les résumés personnalisés et la validation précoce de `sources_working.json.document_kind`.

@@ -4,9 +4,9 @@
   "component": "norms",
   "release_source": "VERSIONS.json",
   "release": {
-    "norm": "1.2.80",
-    "validator": "0.4.84",
-    "kit": "2.16.13"
+    "norm": "1.2.81",
+    "validator": "0.4.85",
+    "kit": "2.16.14"
   },
   "emits": {
     "active_normative_policy": [
@@ -27,6 +27,7 @@
     "reviewed_graph_action_execution": "1.0",
     "french_checkpoint_publication": "1.0",
     "incoming_review_auto_selection": "1.0",
-    "sources_working_document_kind_prevalidation": "1.0"
+    "sources_working_document_kind_prevalidation": "1.0",
+    "two_stage_french_checkpoint_publication": "1.0"
   }
 }

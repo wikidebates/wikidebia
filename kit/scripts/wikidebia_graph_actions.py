@@ -1092,6 +1092,110 @@ def apply_local_result(build: Path, plan: Mapping[str, Any], desired_by_path: Ma
     return {"status": "graph_actions_applied", "removed_nodes": graph_result.get("removed_nodes") or [], "remaining_occurrences": len(new_graph["occurrences"])}
 
 
+
+def apply_review_actions_locally(
+    project_root: Path,
+    build: Path,
+    debate_id: str,
+    *,
+    preflight_validator=None,
+) -> dict[str, Any]:
+    """Apply graph-owner decisions locally and defer every remote write.
+
+    The desired graph is rebuilt now, but imported wikicode remains the exact
+    remote snapshot. The first French graph/title checkpoint later materializes
+    relation/title changes and executes moves, redirects and deletions together.
+    """
+    actions = extract_actions_from_review(build)
+    if not actions:
+        raise GraphActionError("La revue rejetée ne contient aucune décision structurelle exécutable")
+    plan, _desired, graph_result = prepare_action_plan(build, debate_id, actions)
+
+    # Validate the prospective graph without mutating the remote snapshot files.
+    registry = load_json(build / "data/registre_debat.json", "registre maître")
+    projection = load_json(build / "graph/graphe_argumentatif.json", "projection graphe")
+    manifest = load_json(build / "manifest.json", "manifest")
+    provenance = load_json(build / "data/import_provenance.json", "provenance d'import")
+    old_registry = copy.deepcopy(registry)
+    old_projection = copy.deepcopy(projection)
+    old_manifest = copy.deepcopy(manifest)
+    old_provenance = copy.deepcopy(provenance)
+
+    new_graph = copy.deepcopy(graph_result["new_graph"])
+    lifecycle = copy.deepcopy((registry.get("graph") or {}).get("lifecycle") or {})
+    lifecycle.update({"status": "draft", "validated_at": None, "locked_at": None, "locked_by_stage": None, "structural_sha256": None})
+    depth_policy = copy.deepcopy((registry.get("graph") or {}).get("depth_policy") or {})
+    depth_policy["limit_policy"] = "unbounded"
+    depth_policy["maximum_observed"] = new_graph["derived_counts"]["maximum_depth"]
+    registry["graph"] = {"lifecycle": lifecycle, "depth_policy": depth_policy, **new_graph}
+    for key in ("lifecycle", "depth_policy", "nodes", "edges", "occurrences", "derived_counts"):
+        projection[key] = copy.deepcopy(registry["graph"][key])
+    manifest["global_status"] = "graph_draft"
+    manifest["updated_at"] = now_iso()
+
+    # Keep imported bytes/revisions untouched. Only label removed rows as pending
+    # so later active-content reviews do not mistake them for active arguments.
+    pending_by_page: dict[str, tuple[str, str | None]] = {}
+    for action in plan.get("actions") or []:
+        kind = str(action.get("action") or "")
+        node_id = str(action.get("node_id") or "")
+        if kind == "merge_redirect":
+            pending_by_page[node_id] = ("pending_redirect", str(action.get("target_node_id") or ""))
+        elif kind == "remove":
+            pending_by_page[node_id] = ("pending_delete", None)
+    for row in provenance.get("pages") or []:
+        if not isinstance(row, dict) or row.get("kind") != "argument":
+            continue
+        page_id = str(row.get("page_id") or "")
+        if page_id in pending_by_page:
+            status, target_node_id = pending_by_page[page_id]
+            row["status"] = status
+            row["pending_remote_graph_checkpoint"] = True
+            if target_node_id:
+                row["pending_redirect_target_node_id"] = target_node_id
+
+    write_json(build / "manifest.json", manifest)
+    write_json(build / "data/registre_debat.json", registry)
+    write_json(build / "data/import_provenance.json", provenance)
+    write_json(build / "graph/graphe_argumentatif.json", projection)
+    title = str((projection.get("debate") or {}).get("title_fr") or debate_id)
+    (build / "graph/graphe_argumentatif.md").write_text(
+        _markdown_graph(title, new_graph["nodes"], new_graph["edges"], new_graph["occurrences"], new_graph["derived_counts"]),
+        encoding="utf-8", newline="\n",
+    )
+    if preflight_validator is not None:
+        try:
+            validation = preflight_validator(build)
+            if not isinstance(validation, Mapping) or validation.get("status") == "failed":
+                raise GraphActionError("La projection locale des décisions structurelles échoue à la validation")
+        except Exception:
+            write_json(build / "manifest.json", old_manifest)
+            write_json(build / "data/registre_debat.json", old_registry)
+            write_json(build / "data/import_provenance.json", old_provenance)
+            write_json(build / "graph/graphe_argumentatif.json", old_projection)
+            raise
+
+    audit = {
+        "schema": ACTION_DECISIONS_SCHEMA,
+        "schema_version": "1.1",
+        "debate_id": debate_id,
+        "status": "pending_remote_graph_checkpoint",
+        "applied_locally_at": now_iso(),
+        "actions": copy.deepcopy(plan.get("actions") or []),
+        "mutations": copy.deepcopy(plan.get("mutations") or []),
+        "removed_nodes": copy.deepcopy(graph_result.get("removed_nodes") or []),
+        "remote_writes_performed": False,
+    }
+    audit["decision_sha256"] = _sha_object(audit)
+    write_json(build / "reviews/graph_action_decisions.json", audit)
+    return {
+        "status": "graph_actions_applied_locally",
+        "remote_writes_performed": False,
+        "removed_nodes": graph_result.get("removed_nodes") or [],
+        "remaining_occurrences": len(new_graph["occurrences"]),
+        "decision_sha256": audit["decision_sha256"],
+    }
+
 def execute_review_actions(
     project_root: Path,
     build: Path,

@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 """Prepare, finalize and apply the French content review of a workspace.
 
-This stage starts only after French titles, rubriques and keywords have been
-applied.  It reviews the debate heading, introduction, Wikipedia articles,
-the nine documentary buckets, every French argument summary and its source
-selection.  No final MediaWiki page is rendered and no English text is
-created.
+This stage starts after the graph/title checkpoint has been applied and
+published. It reviews classification (rubriques and keywords), the debate
+heading, introduction, Wikipedia articles, documentary buckets, every French
+argument summary and its source selection. No English text is created.
 """
 
 from __future__ import annotations
@@ -48,6 +47,11 @@ from wikidebia_editorial_review import (
     _assert_source_unchanged,
     _load_workspace,
     _run_validator,
+    _validate_item as _validate_metadata_item,
+    _validate_corpus_rules as _validate_metadata_corpus_rules,
+    _validate_vocabulary as _validate_metadata_vocabulary,
+    _coverage_against_registry as _metadata_coverage_against_registry,
+    review_sha256 as metadata_review_sha256,
 )
 from wikidebia_graph_extract import iter_templates, normalize_key
 
@@ -55,6 +59,7 @@ CONTENT_REVIEW_SCHEMA = "wikidebia-fr-content-review-1.0"
 CONTENT_LOCK_SCHEMA = "wikidebia-fr-content-lock-1.0"
 CONTENT_CHANGESET_SCHEMA = "wikidebia-fr-content-changeset-1.0"
 SOURCES_WORKING_SCHEMA = "wikidebia-source-registry-working-1.0"
+CLASSIFICATION_REVIEW_PATH = "reviews/fr/classification_review.json"
 
 PAGE_PARAMETER_ALIASES = {
     "débat-dédié": ("débat-dédié", "débat-détaillé"),
@@ -325,7 +330,7 @@ def _source_imports(reviewed: Path) -> tuple[dict[str, Any], dict[str, Any], lis
     extras = set(rows) - set(nodes)
     invalid_extras = sorted(
         node_id for node_id in extras
-        if str(rows[node_id].get("status") or "") not in {"retired_redirect", "retired_deleted"}
+        if str(rows[node_id].get("status") or "") not in {"retired_redirect", "retired_deleted", "pending_redirect", "pending_delete"}
     )
     if invalid_extras:
         raise ContentReviewError(
@@ -418,14 +423,86 @@ def _blank_summary_review(source: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+
+def _classification_review_template(reviewed: Path, debate_id: str, work_id: str) -> dict[str, Any]:
+    lock = load_json(reviewed / "data/fr_page_metadata_lock.json", "verrou français des titres")
+    rows = [copy.deepcopy(lock.get("debate") or {})] + [copy.deepcopy(row) for row in (lock.get("arguments") or [])]
+    items: list[dict[str, Any]] = []
+    for row in rows:
+        entity_type = str(row.get("entity_type") or "")
+        entity_id = str(row.get("entity_id") or "")
+        if entity_type not in {"debate", "argument"} or not entity_id:
+            raise ContentReviewError("Le verrou de titres ne couvre pas correctement les pages françaises")
+        source = {
+            "entity_type": entity_type,
+            "entity_id": entity_id,
+            "page_origin": row.get("page_origin") or "preexisting",
+            "canonical_title": row.get("canonical_title"),
+            "displayed_title": row.get("displayed_title"),
+            "rubriques": copy.deepcopy(row.get("rubriques") or []),
+            "keywords": copy.deepcopy(row.get("keywords") or []),
+        }
+        attest = row.get("attestations") or {}
+        review = {
+            "status": "pending",
+            "canonical_title_decision": "not_applicable" if entity_type == "debate" else "keep",
+            "proposed_canonical_title": None,
+            "canonical_title_rationale": "Titre canonique déjà validé et verrouillé lors du checkpoint graphe et titres.",
+            "displayed_title_decision": "not_applicable" if entity_type == "debate" else "keep",
+            "proposed_displayed_title": None,
+            "displayed_title_rationale": "Titre affiché déjà validé et verrouillé lors du checkpoint graphe et titres.",
+            "rubriques_decision": "pending",
+            "proposed_rubriques": [],
+            "rubriques_rationales": {},
+            "keywords_decision": "pending",
+            "proposed_keywords": [],
+            "keywords_rationales": {},
+            "keywords_ordered_by_relevance": False,
+            "keyword_order_rationale": "",
+            "canonical_referents_explicit": True if entity_type == "argument" else None,
+            "displayed_title_complete_proposition": attest.get("displayed_title_complete_proposition") if entity_type == "argument" else None,
+            "displayed_title_argument_intelligible": True if entity_type == "argument" else None,
+            "displayed_title_concision_reviewed": True if entity_type == "argument" else None,
+            "displayed_title_semantically_equivalent": True if entity_type == "argument" else None,
+            "displayed_title_improves_readability_when_distinct": attest.get("displayed_title_improves_readability_when_distinct") if entity_type == "argument" else None,
+            "displayed_title_identity_justification": str((row.get("rationales") or {}).get("displayed_title_identity") or ""),
+            "fourth_rubrique_exception_rationale": "",
+            "preexisting_keyword_corrections": {},
+            "removed_preexisting_keywords": {},
+            "reviewer": "",
+            "reviewed_at": None,
+            "notes": "",
+        }
+        # Historical displayed titles do not need the creation-only proposition attestation.
+        if source["page_origin"] == "new" and entity_type == "argument" and review["displayed_title_complete_proposition"] is not True:
+            review["displayed_title_complete_proposition"] = True
+        items.append({"entity_type": entity_type, "entity_id": entity_id, "source": source, "review": review})
+    return {
+        "schema": "wikidebia-fr-page-metadata-review-1.1",
+        "schema_version": "1.1",
+        "normative_revision": NORM_VERSION,
+        "kit_version": KIT_VERSION,
+        "debate_id": debate_id,
+        "work_id": work_id,
+        "review_scope": "classification_and_content",
+        "status": "draft",
+        "prepared_at": now_iso(),
+        "prepared_reviewed_copy_sha256": full_tree_sha256(reviewed),
+        "items": items,
+        "review_sha256": None,
+    }
+
 def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrite: bool = False) -> dict[str, Any]:
     workspace, meta = _load_workspace(project_root, debate_id, work_id)
-    if meta.get("status") not in {"fr_metadata_applied", "fr_content_review_ready"}:
+    if meta.get("status") not in {"fr_titles_applied", "fr_metadata_applied", "fr_content_review_ready"}:
         raise ContentReviewError(f"Statut incompatible avec la préparation du contenu : {meta.get('status')}")
+    legacy_classification_locked = meta.get("status") == "fr_metadata_applied"
     _assert_source_unchanged(project_root, debate_id, meta)
     reviewed = _assert_reviewed_copy(workspace, meta)
     review_path = workspace / "reviews/fr/content_review.json"
     sources_path = workspace / "data/sources_working.json"
+    classification_path = workspace / CLASSIFICATION_REVIEW_PATH
+    vocabulary_path = workspace / "data/keyword_vocabulary_working.json"
     if review_path.exists() and not overwrite:
         existing = load_json(review_path, "revue de contenu")
         return {
@@ -479,6 +556,22 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
         "sources": copy.deepcopy(current_sources.get("sources") or []),
     }
     write_json(sources_path, working_sources)
+    if not classification_path.is_file() or overwrite:
+        classification_doc = _classification_review_template(reviewed, debate_id, work_id)
+        if legacy_classification_locked:
+            lock = load_json(reviewed / "data/fr_page_metadata_lock.json", "verrou français des métadonnées")
+            final_values = [copy.deepcopy(lock.get("debate") or {})] + [copy.deepcopy(row) for row in (lock.get("arguments") or [])]
+            vocabulary_doc = load_json(reviewed / "data/keyword_vocabulary.json", "vocabulaire français")
+            classification_doc.update({
+                "status": "approved", "finalized_at": now,
+                "summary": {"pages": len(final_values), "arguments": max(0, len(final_values)-1), "legacy_metadata_lock_reused": True},
+                "final_values": final_values, "finalized_vocabulary": copy.deepcopy(vocabulary_doc.get("entries") or []),
+                "review_sha256": None,
+            })
+            classification_doc["review_sha256"] = metadata_review_sha256(classification_doc)
+        write_json(classification_path, classification_doc)
+    if not vocabulary_path.is_file():
+        raise ContentReviewError("data/keyword_vocabulary_working.json absent du workspace")
     audit = {
         "schema": "wikidebia-fr-content-inventory-1.0",
         "debate_id": debate_id,
@@ -523,6 +616,8 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
     meta["status"] = "fr_content_review_ready"
     meta.setdefault("artifacts", {})["french_content_review"] = "reviews/fr/content_review.json"
     meta["artifacts"]["sources_working"] = "data/sources_working.json"
+    meta["artifacts"]["classification_review"] = CLASSIFICATION_REVIEW_PATH
+    meta["artifacts"]["keyword_vocabulary_working"] = "data/keyword_vocabulary_working.json"
     meta["artifacts"]["content_reviewed_copy"] = "content-reviewed-copy"
     meta["french_content_review"] = {
         "status": "prepared",
@@ -546,6 +641,8 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
         "work_id": work_id,
         "review_path": relative_to_project(review_path, project_root),
         "sources_path": relative_to_project(sources_path, project_root),
+        "classification_review_path": relative_to_project(classification_path, project_root),
+        "keyword_vocabulary_path": relative_to_project(vocabulary_path, project_root),
         "arguments": len(arguments),
         "reviewed_copy_mutated": False,
         "final_pages_generated": False,
@@ -970,6 +1067,38 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
         raise ContentReviewError("reviewed-copy a changé depuis la préparation")
     working_sources = load_json(workspace / "data/sources_working.json", "sources de travail")
     source_rows, by_source = _validate_source_registry(working_sources, debate_id)
+    classification_path = workspace / CLASSIFICATION_REVIEW_PATH
+    classification = load_json(classification_path, "revue des rubriques et mots-clés")
+    if classification.get("review_scope") != "classification_and_content" or classification.get("debate_id") != debate_id or classification.get("work_id") != work_id:
+        raise ContentReviewError("Revue des rubriques et mots-clés invalide")
+    raw_classification_items = classification.get("items")
+    if not isinstance(raw_classification_items, list):
+        raise ContentReviewError("La revue des rubriques et mots-clés ne contient pas de liste items")
+    if classification.get("status") == "approved" and classification.get("review_sha256"):
+        if classification.get("review_sha256") != metadata_review_sha256(classification):
+            raise ContentReviewError("Empreinte de la classification française invalide")
+        final_classification_items = copy.deepcopy(classification.get("final_values") or [])
+        finalized_vocabulary = copy.deepcopy(classification.get("finalized_vocabulary") or [])
+        classification_summary = copy.deepcopy(classification.get("summary") or {})
+        _metadata_coverage_against_registry(reviewed, final_classification_items)
+        classification_final = copy.deepcopy(classification)
+    else:
+        try:
+            final_classification_items = [_validate_metadata_item(item) for item in raw_classification_items]
+            classification_summary = _validate_metadata_corpus_rules(final_classification_items)
+            _metadata_coverage_against_registry(reviewed, final_classification_items)
+            vocabulary_working = load_json(workspace / "data/keyword_vocabulary_working.json", "vocabulaire de travail")
+            finalized_vocabulary = _validate_metadata_vocabulary(vocabulary_working, final_classification_items)
+        except EditorialReviewError as exc:
+            raise ContentReviewError(str(exc)) from exc
+        classification_final = copy.deepcopy(classification)
+        classification_final.update({
+            "status": "approved", "finalized_at": now_iso(), "summary": classification_summary,
+            "final_values": final_classification_items, "finalized_vocabulary": finalized_vocabulary,
+            "review_sha256": None,
+        })
+        classification_final["review_sha256"] = metadata_review_sha256(classification_final)
+        write_json(classification_path, classification_final)
     debate_block = review.get("debate") or {}
     final_debate = _validate_debate(debate_block.get("review") or {}, debate_block.get("source") or {}, by_source, debate_id)
     argument_items = review.get("arguments")
@@ -1008,6 +1137,14 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
         "finalized_at": now_iso(),
         "prepared_reviewed_copy_sha256": full_tree_sha256(reviewed),
         "source_registry_sha256": sha256_bytes(canonical_json({"source_registry_version": working_sources.get("source_registry_version"), "debate_id": debate_id, "sources": source_rows})),
+        "classification_review_sha256": classification_final["review_sha256"],
+        "classification": {
+            "review_sha256": classification_final["review_sha256"],
+            "summary": copy.deepcopy(classification_final.get("summary") or {}),
+            "source_items": copy.deepcopy(raw_classification_items),
+            "final_values": copy.deepcopy(final_classification_items),
+            "finalized_vocabulary": copy.deepcopy(finalized_vocabulary),
+        },
         "final_values": {"debate": final_debate, "arguments": final_arguments, "sources": source_rows},
         "summary": {
             "arguments": len(final_arguments),
@@ -1109,6 +1246,39 @@ def _build_content_copy(project_root: Path, source: Path, target: Path, review: 
     shutil.copytree(source, target, symlinks=False, copy_function=shutil.copy2)
     final = review["final_values"]
     registry = load_json(target / "data/registre_debat.json", "registre du débat")
+    classification = review.get("classification") or {}
+    class_items = classification.get("final_values") or []
+    class_by_id = {str(item.get("entity_id")): item for item in class_items if item.get("entity_type") == "argument"}
+    class_debate = next((item for item in class_items if item.get("entity_type") == "debate"), None)
+    active_ids = {str(node.get("id")) for node in ((registry.get("graph") or {}).get("nodes") or []) if node.get("status") == "active"}
+    if set(class_by_id) != active_ids or class_debate is None:
+        raise ContentReviewError("La classification finalisée ne couvre pas exactement le corpus actif")
+    for node in ((registry.get("graph") or {}).get("nodes") or []):
+        if node.get("status") != "active":
+            continue
+        item = class_by_id[str(node.get("id"))]
+        fr = node.setdefault("fr", {})
+        fr["rubriques"] = copy.deepcopy(item.get("rubriques") or [])
+        fr["keywords"] = copy.deepcopy(item.get("keywords") or [])
+    metadata_lock_path = target / "data/fr_page_metadata_lock.json"
+    legacy_classification = bool((classification.get("summary") or {}).get("legacy_metadata_lock_reused"))
+    if not legacy_classification:
+        metadata_lock = load_json(metadata_lock_path, "verrou français des métadonnées")
+        metadata_lock["status"] = "locked_for_generation"
+        metadata_lock["classification_review_sha256"] = classification.get("review_sha256")
+        metadata_lock["debate"] = copy.deepcopy(class_debate)
+        metadata_lock["arguments"] = [copy.deepcopy(class_by_id[key]) for key in sorted(class_by_id)]
+        write_json(metadata_lock_path, metadata_lock)
+        vocabulary = {
+            "schema": "wikidebia-keyword-vocabulary-1.0",
+            "normative_revision": NORM_VERSION,
+            "debate_id": debate_id,
+            "status": "approved_fr",
+            "language_status": "fr_locked_en_pending",
+            "review_sha256": classification.get("review_sha256"),
+            "entries": copy.deepcopy(classification.get("finalized_vocabulary") or []),
+        }
+        write_json(target / "data/keyword_vocabulary.json", vocabulary)
     by_id = {arg["id"]: arg for arg in final["arguments"]}
     for node in ((registry.get("graph") or {}).get("nodes") or []):
         if node.get("status") != "active":
@@ -1149,6 +1319,17 @@ def _build_content_copy(project_root: Path, source: Path, target: Path, review: 
     ):
         if before != after:
             operations.append({"entity_type": "debate", "entity_id": debate_id, "field": field, "before": before, "after": after})
+    class_source_items = classification.get("source_items") or []
+    # Classification changes are recorded against the title-checkpoint values.
+    for item in class_items:
+        entity_id = str(item.get("entity_id"))
+        before = next((raw.get("source") for raw in class_source_items if str(raw.get("entity_id")) == entity_id), None)
+        if before is None:
+            # The source values are the rubriques/keywords carried by reviewed-copy.
+            before = {}
+        for field in ("rubriques", "keywords"):
+            if before.get(field) != item.get(field):
+                operations.append({"entity_type": item.get("entity_type"), "entity_id": entity_id, "field": field, "before": copy.deepcopy(before.get(field)), "after": copy.deepcopy(item.get(field))})
     source_arguments = {str(item.get("id")): (item.get("source") or {}) for item in review.get("arguments") or []}
     for arg in final["arguments"]:
         src = source_arguments[arg["id"]]
@@ -1166,7 +1347,7 @@ def _build_content_copy(project_root: Path, source: Path, target: Path, review: 
         "operation_count": len(operations),
         "operations": operations,
         "source_imports_mutated": False,
-        "metadata_lock_mutated": False,
+        "metadata_lock_mutated": not legacy_classification,
         "final_pages_generated": False,
         "english_translation_started": False,
     }
@@ -1180,6 +1361,18 @@ def _build_content_copy(project_root: Path, source: Path, target: Path, review: 
     write_json(target / "reviews/introduction_review.json", _introduction_review(final["debate"]))
     write_json(target / "reviews/summary_style_review.json", _summary_style_review(final["arguments"], debate_id))
     write_json(target / "reviews/fr/content_review.json", copy.deepcopy(review))
+    classification_doc = {
+        "schema": "wikidebia-fr-page-metadata-review-1.1",
+        "schema_version": "1.1",
+        "debate_id": debate_id,
+        "work_id": work_id,
+        "review_scope": "classification_and_content",
+        "status": "approved",
+        "review_sha256": classification.get("review_sha256"),
+        "final_values": copy.deepcopy(class_items),
+        "finalized_vocabulary": copy.deepcopy(classification.get("finalized_vocabulary") or []),
+    }
+    write_json(target / CLASSIFICATION_REVIEW_PATH, classification_doc)
     manifest = load_json(target / "manifest.json", "manifest.json")
     controls = manifest.setdefault("editorial_controls", {})
     controls["summary_style_review_path"] = "reviews/summary_style_review.json"
@@ -1249,8 +1442,9 @@ def apply_review(project_root: Path, debate_id: str, work_id: str, confirm_revie
         result = _build_content_copy(project_root, reviewed, temp, review, debate_id, work_id)
         if full_tree_sha256(temp / "imports") != full_tree_sha256(reviewed / "imports"):
             raise ContentReviewError("Les imports ont été modifiés pendant l’application du contenu")
-        if (temp / "data/fr_page_metadata_lock.json").read_bytes() != (reviewed / "data/fr_page_metadata_lock.json").read_bytes():
-            raise ContentReviewError("Le verrou de métadonnées françaises a été modifié")
+        legacy_classification = bool((((review.get("classification") or {}).get("summary") or {}).get("legacy_metadata_lock_reused")))
+        if legacy_classification and (temp / "data/fr_page_metadata_lock.json").read_bytes() != (reviewed / "data/fr_page_metadata_lock.json").read_bytes():
+            raise ContentReviewError("Le verrou de métadonnées françaises historique a été modifié")
         tree_hash = full_tree_sha256(temp)
         os.replace(temp, target)
         fsync_directory(workspace)

@@ -1,9 +1,9 @@
-Wikidéb’IA Validator 0.4.84 — rapport de tests
+Wikidéb’IA Validator 0.4.85 — rapport de tests
 Statut : PASSED
 Tests pytest collectés : 413
 Tests pytest : 413 réussis
-Norme active : 1.2.80
-Kit recommandé : 2.16.13
+Norme active : 1.2.81
+Kit recommandé : 2.16.14
 Contrôles structurels, éditoriaux, bilingues, documentaires et schémas : PASSED.
 Contrat WDV-RMT-008 des résumés MediaWiki individualisés : PASSED.
-Checkpoint français translation_status.en=deferred validable avant reprise distante : PASSED.
+Deux checkpoints français avant traduction : contrat structurel et schémas alignés.
