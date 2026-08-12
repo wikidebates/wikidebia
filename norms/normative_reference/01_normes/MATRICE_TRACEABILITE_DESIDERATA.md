@@ -1,6 +1,6 @@
 # Matrice de traçabilité des desiderata d'origine
 
-- **Révision :** 1.2.84
+- **Révision :** 1.2.85
 - **Objet :** montrer où chaque grande section des prompts d'origine est consolidée, modifiée ou remplacée.
 
 Les décisions ultérieures qui corrigent les prompts sont consignées dans `00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md`.
@@ -491,3 +491,12 @@ La revue des audits du 9 août 2026 montre que plusieurs pertes sémantiques ava
 | PUB-053 | Delta historique autorisé publié au checkpoint 2, sans checkpoint 3 | checkpoint + tests |
 | VAL-063 | Refuser fausse autorisation, SHA final divergent et hors-portée | WDV-EDT-034 + tests |
 | TRN-035 | Traduire la version française finale autorisée | traduction + tests |
+
+## Ajout 1.2.85 — valeur sélectionnée et portée différentielle
+
+| Exigence | Décision | Preuve attendue |
+|---|---|---|
+| EDT-075 | Distinguer provenance historique et valeur éditoriale sélectionnée (`preserved` → historique ; `authorized_change` → final autorisé) | verrou historique/final + tests |
+| VAL-064 | Contrôler la structure sur la valeur finale sélectionnée et limiter les règles de création au périmètre réellement ajouté/réécrit | WDV-EDT-034 + scope structuré + tests 4→5 sous-parties |
+| PUB-054 | Publier le delta historique autorisé au checkpoint 2 sans requalifier les portions inchangées ni créer un checkpoint 3 | changeset + rendu checkpoint 2 + tests |
+

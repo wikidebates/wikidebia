@@ -4,9 +4,9 @@
   "component": "validator",
   "release_source": "VERSIONS.json",
   "release": {
-    "norm": "1.2.84",
-    "validator": "0.4.88",
-    "kit": "2.16.17"
+    "norm": "1.2.85",
+    "validator": "0.4.89",
+    "kit": "2.16.18"
   },
   "emits": {
     "validator_report": [
@@ -102,6 +102,8 @@
     "graph_review_rejection_correction_loop": "1.0",
     "page_specific_remote_update_edit_summary_validation": "1.0",
     "two_stage_french_checkpoint_validation": "1.0",
-    "historical_french_text_preservation_validation": "1.0"
+    "historical_french_text_preservation_validation": "1.0",
+    "historical_french_text_owner_consent": "3.0",
+    "historical_selected_value_validation": "1.0"
   }
 }

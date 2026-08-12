@@ -1,11 +1,11 @@
 {
   "artifact": "wikidebia-kit",
-  "version": "2.16.17",
-  "normative_revision": "1.2.84",
+  "version": "2.16.18",
+  "normative_revision": "1.2.85",
   "status": "passed",
-  "declared_file_count": 341,
-  "declared_test_count": 453,
-  "package_manifest_sha256": "ac0407206ac50b3216af40096b4cf5ef257c7901876438c7876c188413065b8e",
+  "declared_file_count": 343,
+  "declared_test_count": 456,
+  "package_manifest_sha256": "f7d271b8cc855512f02aee2183072b996ada332f74d7fe36411aa6fd33c53005",
   "generated_date": "2026-08-12",
-  "receipt_sha256": "f0a3e0cf3b1a9730dbb22f336de8ca4b406a644b8e25b16bdf4fc0457d973c24"
+  "receipt_sha256": "7c194ac5a83a6d9026eb7dbf51e92f8fdc5e2ed89227906b424f06702d70d06f"
 }

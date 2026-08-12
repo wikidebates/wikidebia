@@ -764,3 +764,13 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - fait évoluer `fr_content_lock.json` vers `preserved` / `authorized_change` avec historique, final et preuve ;
 - exige que la traduction anglaise parte de la version française finale effectivement autorisée ;
 - normalise les anciennes revues supportées par schéma et récupère leurs deltas comme suggestions tant qu’ils ne sont pas explicitement autorisés.
+
+## 1.2.85 — 12 août 2026 — valeur éditoriale sélectionnée et validation différentielle des textes historiques
+
+- distingue explicitement la provenance historique de la valeur éditoriale effective : `preserved` sélectionne l’historique, `authorized_change` sélectionne la valeur finale autorisée ;
+- impose que tous les contrôles structurels, le registre des sous-parties, le verrou, le changeset, le rendu, le checkpoint français n°2 et la traduction utilisent la valeur finale sélectionnée ;
+- introduit une portée structurée des changements d’introduction (`added`, `modified`, `removed`, `reordered`) afin qu’une autorisation ciblée ne couvre aucune modification parasite ;
+- applique les règles de création/réécriture différentiellement aux seules sous-parties ajoutées ou substantiellement modifiées, sans requalifier les sous-parties historiques inchangées ;
+- conserve la compatibilité des autorisations 1.2.84/2.16.17 à portée de champ entier, liées à la valeur finale exacte ;
+- confirme qu’un ajout explicitement autorisé de `Enjeux du débat` pendant `fr_content_review` est publié au checkpoint français n°2, sans troisième publication.
+

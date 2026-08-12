@@ -1,1720 +1,1730 @@
 {
   "artifact": "wikidebia-kit",
-  "version": "2.16.17",
-  "normative_revision": "1.2.84",
+  "version": "2.16.18",
+  "normative_revision": "1.2.85",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "self_excluded": [
     "PACKAGE_MANIFEST_SHA256.json",
     "PACKAGE_RECEIPT.json"
   ],
-  "declared_file_count": 341,
-  "declared_test_count": 453,
+  "declared_file_count": 343,
+  "declared_test_count": 456,
   "files": [
     {
       "path": "AUDIT_FR_CHECKPOINT_PUBLICATION_2.16.13.md",
-      "sha256": "6c1967415b23da0910eb4670d37ad1f3c9ed65548d97d5ee3f6fef6b81df7f23",
-      "size_bytes": 766
+      "size_bytes": 766,
+      "sha256": "6c1967415b23da0910eb4670d37ad1f3c9ed65548d97d5ee3f6fef6b81df7f23"
+    },
+    {
+      "path": "AUDIT_HISTORICAL_SELECTED_VALUE_2.16.18.md",
+      "size_bytes": 1473,
+      "sha256": "02bff917f450c9b0e071e2ae8738f46acd9ad0a6a04b5fc6777a533c6482bfad"
     },
     {
       "path": "AUDIT_HISTORICAL_SUMMARY_INTRO_PRESERVATION_2.16.16.md",
-      "sha256": "e06237d9a8f049ed6b4eda9907e5ee7b6f6637efe8205e879a7786cc0d92f1d6",
-      "size_bytes": 743
+      "size_bytes": 743,
+      "sha256": "e06237d9a8f049ed6b4eda9907e5ee7b6f6637efe8205e879a7786cc0d92f1d6"
     },
     {
       "path": "AUDIT_HISTORICAL_TEXT_OWNER_CONSENT_2.16.17.md",
-      "sha256": "00792ae35a82c68dfade54ba932442f15e66df249ad3afea245730dfc6cc6d13",
-      "size_bytes": 1413
+      "size_bytes": 1413,
+      "sha256": "00792ae35a82c68dfade54ba932442f15e66df249ad3afea245730dfc6cc6d13"
     },
     {
       "path": "AUDIT_IMPERSONAL_CANONICAL_TITLE_2.16.10.md",
-      "sha256": "f7bf1c2059374986a6982f499cbafa8cff7617afa62d49d014543270db280879",
-      "size_bytes": 719
+      "size_bytes": 719,
+      "sha256": "f7bf1c2059374986a6982f499cbafa8cff7617afa62d49d014543270db280879"
     },
     {
       "path": "AUDIT_INTERNAL_PARAMETER_NAMES_2.15.56.md",
-      "sha256": "9ab9cdc3fe48396abb774acbe396a9a8ad7452ca066bc862058eb3ea3b16f894",
-      "size_bytes": 1443
+      "size_bytes": 1443,
+      "sha256": "9ab9cdc3fe48396abb774acbe396a9a8ad7452ca066bc862058eb3ea3b16f894"
     },
     {
       "path": "AUDIT_PREEXISTING_METADATA_POLICY_2.16.9.md",
-      "sha256": "90ef8e11e5c10bf970da1922e4846db3a6dd1cf37f69d32766c99d6c1a5aecc4",
-      "size_bytes": 1574
+      "size_bytes": 1574,
+      "sha256": "90ef8e11e5c10bf970da1922e4846db3a6dd1cf37f69d32766c99d6c1a5aecc4"
     },
     {
       "path": "AUDIT_RELEASE_VERSION_COHERENCE_2.16.8.md",
-      "sha256": "3e4f8ccab508df41c149cd75d465667f03d9cca6e475527fdbf8b019645dfb43",
-      "size_bytes": 575
+      "size_bytes": 575,
+      "sha256": "3e4f8ccab508df41c149cd75d465667f03d9cca6e475527fdbf8b019645dfb43"
     },
     {
       "path": "AUDIT_REVIEW_IMPORT_TRANSACTION_2.16.8.md",
-      "sha256": "eaba4e4912d67fd704afd106f901d319caa424be09b5d20e253e292e9163d316",
-      "size_bytes": 951
+      "size_bytes": 951,
+      "sha256": "eaba4e4912d67fd704afd106f901d319caa424be09b5d20e253e292e9163d316"
     },
     {
       "path": "AUDIT_TWO_FRENCH_CHECKPOINTS_2.16.14.md",
-      "sha256": "e6622b4c3f56cacc7a09407d5faeebae29c853069a6e2963e6563ca469bce5b8",
-      "size_bytes": 522
+      "size_bytes": 522,
+      "sha256": "e6622b4c3f56cacc7a09407d5faeebae29c853069a6e2963e6563ca469bce5b8"
     },
     {
       "path": "CAPABILITIES.json",
-      "sha256": "88db2d7c44a2c39266bb55bb3bf5f7faeb35ea726668b20bb2b695e0309817e7",
-      "size_bytes": 4525
+      "size_bytes": 4627,
+      "sha256": "1ae9bda1379541f17a4449bc2db68611fdc9dda750c1f5b9c210562b8eae7e32"
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "6e746fceaa10a471a371237fe39eb7038d93c829d4660df328bc979b485c3e7b",
-      "size_bytes": 21267
+      "size_bytes": 22413,
+      "sha256": "a6127217637005e2efaa72dabc8425cf4fa8b9042d764e56d04c16ff73d334da"
     },
     {
       "path": "COMPATIBILITY.json",
-      "sha256": "aa3e74bab31881bf1d55a7a17fd8b911bf2a02f23072ea9c0d937f8648b7344a",
-      "size_bytes": 523
+      "size_bytes": 523,
+      "sha256": "4947c072f57662269e06dfff32809d300a2acd92fbe859cfadec455cfabe7e39"
     },
     {
       "path": "GUIDE_BILINGUAL_RENDER.md",
-      "sha256": "cb7b5b62a68d548ddea9271453c76fd7b0aa787a64452b11204c2eb2b3c57d1b",
-      "size_bytes": 654
+      "size_bytes": 654,
+      "sha256": "cb7b5b62a68d548ddea9271453c76fd7b0aa787a64452b11204c2eb2b3c57d1b"
     },
     {
       "path": "GUIDE_CONTENT_REVIEW.md",
-      "sha256": "baa46f5f72944893b0ad70a3d4459d357b21b23a9cb0838197d1f878bce5c56c",
-      "size_bytes": 9144
+      "size_bytes": 9895,
+      "sha256": "ead8e97a8a509705ebc5e6b5675bad3c078f7635fe2b4c3d89b16f88b04fa50c"
     },
     {
       "path": "GUIDE_CORPUS_INIT.md",
-      "sha256": "594577e937dc26a73d499f8ce2c548e5c7e78086a882b1b22eff5a2dbb28234c",
-      "size_bytes": 3581
+      "size_bytes": 3581,
+      "sha256": "594577e937dc26a73d499f8ce2c548e5c7e78086a882b1b22eff5a2dbb28234c"
     },
     {
       "path": "GUIDE_CORPUS_RELEASE.md",
-      "sha256": "65de49d4c59e077abaafae7b4b598ba66519904d43bfb6406a21f7c665f0defc",
-      "size_bytes": 2805
+      "size_bytes": 2805,
+      "sha256": "65de49d4c59e077abaafae7b4b598ba66519904d43bfb6406a21f7c665f0defc"
     },
     {
       "path": "GUIDE_CORPUS_REVIEW.md",
-      "sha256": "fc3613ace88e4e02336173a8b9d6a337f09d49b747da0350469863d3dfa2eed0",
-      "size_bytes": 3130
+      "size_bytes": 3130,
+      "sha256": "fc3613ace88e4e02336173a8b9d6a337f09d49b747da0350469863d3dfa2eed0"
     },
     {
       "path": "GUIDE_EDITORIAL_ORCHESTRATION.md",
-      "sha256": "13fe39e3d1ea63de0fa1c20b7f21b22275dd21ded871b85f96733c4f14693f31",
-      "size_bytes": 8756
+      "size_bytes": 9199,
+      "sha256": "439d873ee5499b6b4aff9743022436c54d216e2c80752049908938fea6c45490"
     },
     {
       "path": "GUIDE_EDITORIAL_REVIEW.md",
-      "sha256": "6c195a12ff699464fe36c091640a7bfbc349a2e3d806385c7c3363d2ec77f2c6",
-      "size_bytes": 5021
+      "size_bytes": 5021,
+      "sha256": "6c195a12ff699464fe36c091640a7bfbc349a2e3d806385c7c3363d2ec77f2c6"
     },
     {
       "path": "GUIDE_EDITORIAL_WORKSPACE.md",
-      "sha256": "3bbd33738cb450a3b3101c507b93f5306ea8448234cbf5f6d68b7a6df57841b3",
-      "size_bytes": 3420
+      "size_bytes": 3420,
+      "sha256": "3bbd33738cb450a3b3101c507b93f5306ea8448234cbf5f6d68b7a6df57841b3"
     },
     {
       "path": "GUIDE_GRAPH_EXTRACT.md",
-      "sha256": "abe484c494e5a6cff741c564c3430690d8e468219867f5bcaddeb5bd2a09c078",
-      "size_bytes": 5781
+      "size_bytes": 5781,
+      "sha256": "abe484c494e5a6cff741c564c3430690d8e468219867f5bcaddeb5bd2a09c078"
     },
     {
       "path": "GUIDE_PUBLICATION.md",
-      "sha256": "6abdd194c7f1487d819cf36e02cc66cd62c9d0a40951637407e7e33eb68cbd56",
-      "size_bytes": 8170
+      "size_bytes": 8218,
+      "sha256": "c1799729c07ac6a64c15799c3446fa4b1b948105e3d51a74000e0b91c9036944"
     },
     {
       "path": "GUIDE_REMOTE_COMPARISON.md",
-      "sha256": "5ab4cda32a59db639447d720c910d0794bc31b38532418ff43541900ee1eeb0e",
-      "size_bytes": 1506
+      "size_bytes": 1506,
+      "sha256": "5ab4cda32a59db639447d720c910d0794bc31b38532418ff43541900ee1eeb0e"
     },
     {
       "path": "GUIDE_REMOTE_EXECUTION.md",
-      "sha256": "08e59f5d8eb62262d020bec379fceccf6cd5ef74b39a7b8807ca379d3da9f729",
-      "size_bytes": 2342
+      "size_bytes": 2342,
+      "sha256": "08e59f5d8eb62262d020bec379fceccf6cd5ef74b39a7b8807ca379d3da9f729"
     },
     {
       "path": "GUIDE_REMOTE_PLAN_REVIEW.md",
-      "sha256": "a0c2971ea4d6b41d361daaa6cddf3e82eb7f31ba8a196d2d6fed616fd5b497ae",
-      "size_bytes": 1644
+      "size_bytes": 1644,
+      "sha256": "a0c2971ea4d6b41d361daaa6cddf3e82eb7f31ba8a196d2d6fed616fd5b497ae"
     },
     {
       "path": "GUIDE_TRANSLATION_REVIEW.md",
-      "sha256": "5028da71e5707c66d1ff309293667175fee2d1782ab677c3e5897f2ef6d5e6f9",
-      "size_bytes": 21019
+      "size_bytes": 21274,
+      "sha256": "40fd85a9f186bae74552b8c8f83c492eda49315d32cd72bc5cde460183d63862"
     },
     {
       "path": "GUIDE_WORK_CLOSURE.md",
-      "sha256": "c96a1c4b8150beb3be105e62aed889c4c5937f35d41a9b343d66135023e7ac03",
-      "size_bytes": 1991
+      "size_bytes": 1991,
+      "sha256": "c96a1c4b8150beb3be105e62aed889c4c5937f35d41a9b343d66135023e7ac03"
     },
     {
       "path": "KIT_MANIFEST.json",
-      "sha256": "12b954bbd52969b9124a27de921b662febb426edbcc1d85847bba5f69231f73d",
-      "size_bytes": 27224
+      "size_bytes": 27470,
+      "sha256": "578f501ee17de0c504bb829a91cf72b355d5c868b6dfcdd1aac6f65b5f8a84db"
     },
     {
       "path": "MIGRATION_2.1.11.md",
-      "sha256": "a095c953cff89ab7ed0b9442a3de6a08f9ce646f8fe448557a057c726070dedd",
-      "size_bytes": 445
+      "size_bytes": 445,
+      "sha256": "a095c953cff89ab7ed0b9442a3de6a08f9ce646f8fe448557a057c726070dedd"
     },
     {
       "path": "MIGRATION_2.1.12.md",
-      "sha256": "1747ff8835079765940c9e09adcb7faaf316937d8fb06904715c4c46799f11b4",
-      "size_bytes": 751
+      "size_bytes": 751,
+      "sha256": "1747ff8835079765940c9e09adcb7faaf316937d8fb06904715c4c46799f11b4"
     },
     {
       "path": "MIGRATION_2.1.13.md",
-      "sha256": "2c672d1a1ae1bf966937a2a579f77e7121a649e60117310bd7992c9149d950b6",
-      "size_bytes": 854
+      "size_bytes": 854,
+      "sha256": "2c672d1a1ae1bf966937a2a579f77e7121a649e60117310bd7992c9149d950b6"
     },
     {
       "path": "MIGRATION_2.1.14.md",
-      "sha256": "83c9177f4e728e60193c0e5256c9a9efcddaa604ee2215a1a22613a9573335cd",
-      "size_bytes": 769
+      "size_bytes": 769,
+      "sha256": "83c9177f4e728e60193c0e5256c9a9efcddaa604ee2215a1a22613a9573335cd"
     },
     {
       "path": "MIGRATION_2.1.15.md",
-      "sha256": "0d1915d699d09dd03f895a8df9411dae5fe36a6eb5570a5afe6b513e79090be7",
-      "size_bytes": 616
+      "size_bytes": 616,
+      "sha256": "0d1915d699d09dd03f895a8df9411dae5fe36a6eb5570a5afe6b513e79090be7"
     },
     {
       "path": "MIGRATION_2.1.16.md",
-      "sha256": "354f7123edc742042f2028eb711477cb0153d0efeda5f722bf10c7354a47c4f0",
-      "size_bytes": 604
+      "size_bytes": 604,
+      "sha256": "354f7123edc742042f2028eb711477cb0153d0efeda5f722bf10c7354a47c4f0"
     },
     {
       "path": "MIGRATION_2.1.17.md",
-      "sha256": "2b323d892a31d503b18999c75e0172355d64793e118f2237e68ee805ba7c12a2",
-      "size_bytes": 945
+      "size_bytes": 945,
+      "sha256": "2b323d892a31d503b18999c75e0172355d64793e118f2237e68ee805ba7c12a2"
     },
     {
       "path": "MIGRATION_2.10.0.md",
-      "sha256": "05bc6965d874de28c026a22ae1dbc5cdb9bd554a99d81a0ab4e27e15eb56ce49",
-      "size_bytes": 385
+      "size_bytes": 385,
+      "sha256": "05bc6965d874de28c026a22ae1dbc5cdb9bd554a99d81a0ab4e27e15eb56ce49"
     },
     {
       "path": "MIGRATION_2.11.0.md",
-      "sha256": "ccc685112fd6147ffe44b45706f9458737e029f1ea453c59c9edc688e69ce60c",
-      "size_bytes": 564
+      "size_bytes": 564,
+      "sha256": "ccc685112fd6147ffe44b45706f9458737e029f1ea453c59c9edc688e69ce60c"
     },
     {
       "path": "MIGRATION_2.12.0.md",
-      "sha256": "e07fbbe115619425fd9836daa9cd9f746ad36ebf686ebfb56165b5f435f26b74",
-      "size_bytes": 456
+      "size_bytes": 456,
+      "sha256": "e07fbbe115619425fd9836daa9cd9f746ad36ebf686ebfb56165b5f435f26b74"
     },
     {
       "path": "MIGRATION_2.13.0.md",
-      "sha256": "5db2664e3750d0947c4ee7ae80739817254d51ddf221e67f6dbe7c4b68553907",
-      "size_bytes": 524
+      "size_bytes": 524,
+      "sha256": "5db2664e3750d0947c4ee7ae80739817254d51ddf221e67f6dbe7c4b68553907"
     },
     {
       "path": "MIGRATION_2.14.0.md",
-      "sha256": "3ccea073e6c0337a8373e839fb1ef521c58cb1c6e923b4adfca2a0ff5c767054",
-      "size_bytes": 616
+      "size_bytes": 616,
+      "sha256": "3ccea073e6c0337a8373e839fb1ef521c58cb1c6e923b4adfca2a0ff5c767054"
     },
     {
       "path": "MIGRATION_2.15.0.md",
-      "sha256": "fe85da458579f77295d03a3d384bbcc2cc04ccfcef443a2ac31892e7c43feb91",
-      "size_bytes": 586
+      "size_bytes": 586,
+      "sha256": "fe85da458579f77295d03a3d384bbcc2cc04ccfcef443a2ac31892e7c43feb91"
     },
     {
       "path": "MIGRATION_2.15.1.md",
-      "sha256": "1805f25da1c2997db72c18293a72f493c95253d71dbdc7eeb6fe1b64edecc140",
-      "size_bytes": 685
+      "size_bytes": 685,
+      "sha256": "1805f25da1c2997db72c18293a72f493c95253d71dbdc7eeb6fe1b64edecc140"
     },
     {
       "path": "MIGRATION_2.15.10.md",
-      "sha256": "9b97cf02f2cc060863890d5c5637115b061fbf5f4af638702fab39fa8d18ccb4",
-      "size_bytes": 288
+      "size_bytes": 288,
+      "sha256": "9b97cf02f2cc060863890d5c5637115b061fbf5f4af638702fab39fa8d18ccb4"
     },
     {
       "path": "MIGRATION_2.15.12.md",
-      "sha256": "cbf60b32a9ddcda60cf476931c12ff8fc52a875a6946d50778871a77a74b6d49",
-      "size_bytes": 465
+      "size_bytes": 465,
+      "sha256": "cbf60b32a9ddcda60cf476931c12ff8fc52a875a6946d50778871a77a74b6d49"
     },
     {
       "path": "MIGRATION_2.15.13.md",
-      "sha256": "40f5393f25f51401ef519a86c56854a9aafe33abe3340f23fef498060fe604a1",
-      "size_bytes": 322
+      "size_bytes": 322,
+      "sha256": "40f5393f25f51401ef519a86c56854a9aafe33abe3340f23fef498060fe604a1"
     },
     {
       "path": "MIGRATION_2.15.14.md",
-      "sha256": "de94f18f6034d680f4db6d4ed04cbc3c26933d738e3869d5387483cdd154ad4c",
-      "size_bytes": 281
+      "size_bytes": 281,
+      "sha256": "de94f18f6034d680f4db6d4ed04cbc3c26933d738e3869d5387483cdd154ad4c"
     },
     {
       "path": "MIGRATION_2.15.15.md",
-      "sha256": "e4c0717630e4ce69aafb53854b24491f66f00e63472742208917990987cde73d",
-      "size_bytes": 350
+      "size_bytes": 350,
+      "sha256": "e4c0717630e4ce69aafb53854b24491f66f00e63472742208917990987cde73d"
     },
     {
       "path": "MIGRATION_2.15.16.md",
-      "sha256": "0a12102b5211afaef672a05bcc02782ac2054b853ba93462355863896bb6b059",
-      "size_bytes": 340
+      "size_bytes": 340,
+      "sha256": "0a12102b5211afaef672a05bcc02782ac2054b853ba93462355863896bb6b059"
     },
     {
       "path": "MIGRATION_2.15.17.md",
-      "sha256": "d51171d0eae358e4c3cbc94ced95e90419117cad6a7d01b9ae80d6ca4639e201",
-      "size_bytes": 490
+      "size_bytes": 490,
+      "sha256": "d51171d0eae358e4c3cbc94ced95e90419117cad6a7d01b9ae80d6ca4639e201"
     },
     {
       "path": "MIGRATION_2.15.18.md",
-      "sha256": "0ac20926f73ab9b0f32248eac7fe0674c31e5736068fad1e35cd4fa6c01e0e0d",
-      "size_bytes": 651
+      "size_bytes": 651,
+      "sha256": "0ac20926f73ab9b0f32248eac7fe0674c31e5736068fad1e35cd4fa6c01e0e0d"
     },
     {
       "path": "MIGRATION_2.15.19.md",
-      "sha256": "37f9abda1dcbbe28d3b97f032a13b5b9c5518185e1880702a77c122a098ed399",
-      "size_bytes": 492
+      "size_bytes": 492,
+      "sha256": "37f9abda1dcbbe28d3b97f032a13b5b9c5518185e1880702a77c122a098ed399"
     },
     {
       "path": "MIGRATION_2.15.2.md",
-      "sha256": "344d41b23bd4950b913e6834cf965369930f794d640406627a5c3c44f2270682",
-      "size_bytes": 505
+      "size_bytes": 505,
+      "sha256": "344d41b23bd4950b913e6834cf965369930f794d640406627a5c3c44f2270682"
     },
     {
       "path": "MIGRATION_2.15.20.md",
-      "sha256": "f643738302a3ecec850460c8cff75faf1cf1009d848e66cbce3b30dbe5c69335",
-      "size_bytes": 420
+      "size_bytes": 420,
+      "sha256": "f643738302a3ecec850460c8cff75faf1cf1009d848e66cbce3b30dbe5c69335"
     },
     {
       "path": "MIGRATION_2.15.21.md",
-      "sha256": "e5e0fb3997e037092b8ae71e04cffe4cd31ff4475e4972cf906f61b1d79f2976",
-      "size_bytes": 162
+      "size_bytes": 162,
+      "sha256": "e5e0fb3997e037092b8ae71e04cffe4cd31ff4475e4972cf906f61b1d79f2976"
     },
     {
       "path": "MIGRATION_2.15.22.md",
-      "sha256": "2915d29019a09c12204950473cc9ada71e784102d701c9cd7a610bb6b7b689e9",
-      "size_bytes": 247
+      "size_bytes": 247,
+      "sha256": "2915d29019a09c12204950473cc9ada71e784102d701c9cd7a610bb6b7b689e9"
     },
     {
       "path": "MIGRATION_2.15.23.md",
-      "sha256": "0ad22b75d0d316643ce5e52851f7396b3c07546d8f1df8d1d38089ae2c466bfc",
-      "size_bytes": 492
+      "size_bytes": 492,
+      "sha256": "0ad22b75d0d316643ce5e52851f7396b3c07546d8f1df8d1d38089ae2c466bfc"
     },
     {
       "path": "MIGRATION_2.15.24.md",
-      "sha256": "295ce59955a5e71864905392ed0d178d6b29d5932cd0243deda2ea993801d38c",
-      "size_bytes": 329
+      "size_bytes": 329,
+      "sha256": "295ce59955a5e71864905392ed0d178d6b29d5932cd0243deda2ea993801d38c"
     },
     {
       "path": "MIGRATION_2.15.25.md",
-      "sha256": "69654bb801d0a2116a14c69471e47d48cd26e1116354447a68431c57c567abae",
-      "size_bytes": 373
+      "size_bytes": 373,
+      "sha256": "69654bb801d0a2116a14c69471e47d48cd26e1116354447a68431c57c567abae"
     },
     {
       "path": "MIGRATION_2.15.26.md",
-      "sha256": "b347cfaca417a259d5bf0c5ee72a5936e1e504cc4209cb432ac3054c5f717795",
-      "size_bytes": 300
+      "size_bytes": 300,
+      "sha256": "b347cfaca417a259d5bf0c5ee72a5936e1e504cc4209cb432ac3054c5f717795"
     },
     {
       "path": "MIGRATION_2.15.27.md",
-      "sha256": "6b17f3a4dc57914fcf67ae036191280e211ee9db3305f2af61e9be0e1d39f35b",
-      "size_bytes": 608
+      "size_bytes": 608,
+      "sha256": "6b17f3a4dc57914fcf67ae036191280e211ee9db3305f2af61e9be0e1d39f35b"
     },
     {
       "path": "MIGRATION_2.15.28.md",
-      "sha256": "9f9aa98eaa46cf42924d12506599b61fc5877b832cfff3d000a975d592beeadc",
-      "size_bytes": 362
+      "size_bytes": 362,
+      "sha256": "9f9aa98eaa46cf42924d12506599b61fc5877b832cfff3d000a975d592beeadc"
     },
     {
       "path": "MIGRATION_2.15.29.md",
-      "sha256": "85d3236f9abb4f9155285bc5ac5795bc47e1e7ac8b9c955bb88b938331dde6ee",
-      "size_bytes": 473
+      "size_bytes": 473,
+      "sha256": "85d3236f9abb4f9155285bc5ac5795bc47e1e7ac8b9c955bb88b938331dde6ee"
     },
     {
       "path": "MIGRATION_2.15.3.md",
-      "sha256": "cad64cc2d053ac909898fe11021722aa433146ca886fdf87c87d98b454ffa486",
-      "size_bytes": 391
+      "size_bytes": 391,
+      "sha256": "cad64cc2d053ac909898fe11021722aa433146ca886fdf87c87d98b454ffa486"
     },
     {
       "path": "MIGRATION_2.15.30.md",
-      "sha256": "ff9775ac6ef69e6e7e788b43698e2fe0cbcf01d5e3d7ffbae2d73258462b4b10",
-      "size_bytes": 746
+      "size_bytes": 746,
+      "sha256": "ff9775ac6ef69e6e7e788b43698e2fe0cbcf01d5e3d7ffbae2d73258462b4b10"
     },
     {
       "path": "MIGRATION_2.15.32.md",
-      "sha256": "fe5230d3f9cb5492d11207bc69f55b376683ce300e8caac0bea4edb9adf70ede",
-      "size_bytes": 387
+      "size_bytes": 387,
+      "sha256": "fe5230d3f9cb5492d11207bc69f55b376683ce300e8caac0bea4edb9adf70ede"
     },
     {
       "path": "MIGRATION_2.15.33.md",
-      "sha256": "70d191c30e47e86a9c987bbed0ec45a80da8355548b7d1191283e4cdfae6f999",
-      "size_bytes": 531
+      "size_bytes": 531,
+      "sha256": "70d191c30e47e86a9c987bbed0ec45a80da8355548b7d1191283e4cdfae6f999"
     },
     {
       "path": "MIGRATION_2.15.34.md",
-      "sha256": "f4737f6bce73b9b453c0b162ed982771251f70d7a5021dd1babc6f298dde5c4c",
-      "size_bytes": 576
+      "size_bytes": 576,
+      "sha256": "f4737f6bce73b9b453c0b162ed982771251f70d7a5021dd1babc6f298dde5c4c"
     },
     {
       "path": "MIGRATION_2.15.35.md",
-      "sha256": "b226abc3dbcd19e52b7df8f0e1a33c4e6481800bcf9ae2c69ff057828955df61",
-      "size_bytes": 514
+      "size_bytes": 514,
+      "sha256": "b226abc3dbcd19e52b7df8f0e1a33c4e6481800bcf9ae2c69ff057828955df61"
     },
     {
       "path": "MIGRATION_2.15.36.md",
-      "sha256": "e829d1da0ce83b6ee5b978e4ac68d257e32330478d06d1a709f843ae6c3244f5",
-      "size_bytes": 426
+      "size_bytes": 426,
+      "sha256": "e829d1da0ce83b6ee5b978e4ac68d257e32330478d06d1a709f843ae6c3244f5"
     },
     {
       "path": "MIGRATION_2.15.37.md",
-      "sha256": "cdcc68585fd7e0119b6c0bf0ce64ab4dfd92b2b4a01f1d2048d0b495430d1ee5",
-      "size_bytes": 279
+      "size_bytes": 279,
+      "sha256": "cdcc68585fd7e0119b6c0bf0ce64ab4dfd92b2b4a01f1d2048d0b495430d1ee5"
     },
     {
       "path": "MIGRATION_2.15.38.md",
-      "sha256": "143d271f01665abccb902d837962afc1af51098295aebaccdfa80d59934304f6",
-      "size_bytes": 295
+      "size_bytes": 295,
+      "sha256": "143d271f01665abccb902d837962afc1af51098295aebaccdfa80d59934304f6"
     },
     {
       "path": "MIGRATION_2.15.39.md",
-      "sha256": "470a5f4902f564bc6017a123df36332ace1006352e83c4656c411d8106d9fb10",
-      "size_bytes": 746
+      "size_bytes": 746,
+      "sha256": "470a5f4902f564bc6017a123df36332ace1006352e83c4656c411d8106d9fb10"
     },
     {
       "path": "MIGRATION_2.15.4.md",
-      "sha256": "957dbfa719583871b112f28212657ab05a5fcbcc8b6c3e57ca966fa12eaba074",
-      "size_bytes": 1217
+      "size_bytes": 1217,
+      "sha256": "957dbfa719583871b112f28212657ab05a5fcbcc8b6c3e57ca966fa12eaba074"
     },
     {
       "path": "MIGRATION_2.15.40.md",
-      "sha256": "531770d98d86fd28372b8f3e915563c78dd553a3265fc2093b618737b0f1fff8",
-      "size_bytes": 1075
+      "size_bytes": 1075,
+      "sha256": "531770d98d86fd28372b8f3e915563c78dd553a3265fc2093b618737b0f1fff8"
     },
     {
       "path": "MIGRATION_2.15.41.md",
-      "sha256": "80f2b3bb0125ad33d8884f218297d9fa32f62541063ab2caea3a0c89eed4250d",
-      "size_bytes": 576
+      "size_bytes": 576,
+      "sha256": "80f2b3bb0125ad33d8884f218297d9fa32f62541063ab2caea3a0c89eed4250d"
     },
     {
       "path": "MIGRATION_2.15.42.md",
-      "sha256": "2e84e8d9929b21e2d3fb6655aaa91765ea081d51a4783320598b1cb1f58ccb69",
-      "size_bytes": 959
+      "size_bytes": 959,
+      "sha256": "2e84e8d9929b21e2d3fb6655aaa91765ea081d51a4783320598b1cb1f58ccb69"
     },
     {
       "path": "MIGRATION_2.15.43.md",
-      "sha256": "68efc5a605cd9a5606e082f9d821c6eb3ffb3122c5357f443cb9a8332554140c",
-      "size_bytes": 1022
+      "size_bytes": 1022,
+      "sha256": "68efc5a605cd9a5606e082f9d821c6eb3ffb3122c5357f443cb9a8332554140c"
     },
     {
       "path": "MIGRATION_2.15.44.md",
-      "sha256": "6090ba0549defa59f9cfb835230235338e280eaa8b15addeb080233d6151873f",
-      "size_bytes": 1078
+      "size_bytes": 1078,
+      "sha256": "6090ba0549defa59f9cfb835230235338e280eaa8b15addeb080233d6151873f"
     },
     {
       "path": "MIGRATION_2.15.45.md",
-      "sha256": "2e2aff9bbce18d92ca7a84306deef431c8ddc0b643ec40fc05fadef14f1036f2",
-      "size_bytes": 456
+      "size_bytes": 456,
+      "sha256": "2e2aff9bbce18d92ca7a84306deef431c8ddc0b643ec40fc05fadef14f1036f2"
     },
     {
       "path": "MIGRATION_2.15.46.md",
-      "sha256": "2c265cd8ae3694b3962119757932a3ec5894cf294cf1f875308c56aea719c793",
-      "size_bytes": 773
+      "size_bytes": 773,
+      "sha256": "2c265cd8ae3694b3962119757932a3ec5894cf294cf1f875308c56aea719c793"
     },
     {
       "path": "MIGRATION_2.15.47.md",
-      "sha256": "fc2017ec1baca73fc53e39eac6d0a285c2978d3b9ef8ba18b90e64baaefe50b4",
-      "size_bytes": 219
+      "size_bytes": 219,
+      "sha256": "fc2017ec1baca73fc53e39eac6d0a285c2978d3b9ef8ba18b90e64baaefe50b4"
     },
     {
       "path": "MIGRATION_2.15.48.md",
-      "sha256": "8f1783e9b15ee7ac8e238a6f444f554e004d628b2218c57ea5361063200baa78",
-      "size_bytes": 350
+      "size_bytes": 350,
+      "sha256": "8f1783e9b15ee7ac8e238a6f444f554e004d628b2218c57ea5361063200baa78"
     },
     {
       "path": "MIGRATION_2.15.49.md",
-      "sha256": "727c298dadb6415d2860a95de8c9c4cb7e5d69f03a55e5556bb9d126dd8bd0ac",
-      "size_bytes": 298
+      "size_bytes": 298,
+      "sha256": "727c298dadb6415d2860a95de8c9c4cb7e5d69f03a55e5556bb9d126dd8bd0ac"
     },
     {
       "path": "MIGRATION_2.15.5.md",
-      "sha256": "1581bd7930df8fcf7762f1d20d3fe62672cac5787d6e267d655608f320a87d21",
-      "size_bytes": 1400
+      "size_bytes": 1400,
+      "sha256": "1581bd7930df8fcf7762f1d20d3fe62672cac5787d6e267d655608f320a87d21"
     },
     {
       "path": "MIGRATION_2.15.50.md",
-      "sha256": "d896d9df6abb01fd436488723b65cd18abbc00b861a4a87196d631dc4dc4c707",
-      "size_bytes": 321
+      "size_bytes": 321,
+      "sha256": "d896d9df6abb01fd436488723b65cd18abbc00b861a4a87196d631dc4dc4c707"
     },
     {
       "path": "MIGRATION_2.15.51.md",
-      "sha256": "f38d738dc2ac3fdcf2a4be128cded2bca10e276c4f2881695cc2d06da2c384d4",
-      "size_bytes": 299
+      "size_bytes": 299,
+      "sha256": "f38d738dc2ac3fdcf2a4be128cded2bca10e276c4f2881695cc2d06da2c384d4"
     },
     {
       "path": "MIGRATION_2.15.52.md",
-      "sha256": "2996813ae14f5e957f328cbaebc7819f11aaec78fc3430a888188d7aa3f6516e",
-      "size_bytes": 434
+      "size_bytes": 434,
+      "sha256": "2996813ae14f5e957f328cbaebc7819f11aaec78fc3430a888188d7aa3f6516e"
     },
     {
       "path": "MIGRATION_2.15.53.md",
-      "sha256": "5bd9b9746ff7c8c44ae576797cb932aa25ef6a75ddcdc58de4a8d3fe3372b3aa",
-      "size_bytes": 506
+      "size_bytes": 506,
+      "sha256": "5bd9b9746ff7c8c44ae576797cb932aa25ef6a75ddcdc58de4a8d3fe3372b3aa"
     },
     {
       "path": "MIGRATION_2.15.54.md",
-      "sha256": "159ad0529d6bdb28ae55bbdd010a168e84912a5db0cab2b7dfe7b6c4a2a3a6da",
-      "size_bytes": 552
+      "size_bytes": 552,
+      "sha256": "159ad0529d6bdb28ae55bbdd010a168e84912a5db0cab2b7dfe7b6c4a2a3a6da"
     },
     {
       "path": "MIGRATION_2.15.55.md",
-      "sha256": "7e2ba1695f674deb062cfd957b54fa138ecd278cfda36ff34dec3a7b73ae7958",
-      "size_bytes": 448
+      "size_bytes": 448,
+      "sha256": "7e2ba1695f674deb062cfd957b54fa138ecd278cfda36ff34dec3a7b73ae7958"
     },
     {
       "path": "MIGRATION_2.15.56.md",
-      "sha256": "eccc9c7e77b2e0f724ccc3ad560b0bd8f5d111dc62c87bf5a421a9e3f755cfa0",
-      "size_bytes": 404
+      "size_bytes": 404,
+      "sha256": "eccc9c7e77b2e0f724ccc3ad560b0bd8f5d111dc62c87bf5a421a9e3f755cfa0"
     },
     {
       "path": "MIGRATION_2.15.6.md",
-      "sha256": "7ade081b329df3ec23b1d35360831cd46f55cbcf7f92f0b473306096cf86a07d",
-      "size_bytes": 514
+      "size_bytes": 514,
+      "sha256": "7ade081b329df3ec23b1d35360831cd46f55cbcf7f92f0b473306096cf86a07d"
     },
     {
       "path": "MIGRATION_2.15.7.md",
-      "sha256": "f6e2c2a208534e413d8b17ad778926341c758e267e75bc3cbcc5fdfa6a67e0de",
-      "size_bytes": 505
+      "size_bytes": 505,
+      "sha256": "f6e2c2a208534e413d8b17ad778926341c758e267e75bc3cbcc5fdfa6a67e0de"
     },
     {
       "path": "MIGRATION_2.15.8.md",
-      "sha256": "1cb728094f338a16cc0dbace272f799a30e63432b93d2982960d2411272846d7",
-      "size_bytes": 915
+      "size_bytes": 915,
+      "sha256": "1cb728094f338a16cc0dbace272f799a30e63432b93d2982960d2411272846d7"
     },
     {
       "path": "MIGRATION_2.15.9.md",
-      "sha256": "810218e8ad5d58dc98f161326c7620d693a28184c77e8804bdea113ab7662fae",
-      "size_bytes": 431
+      "size_bytes": 431,
+      "sha256": "810218e8ad5d58dc98f161326c7620d693a28184c77e8804bdea113ab7662fae"
     },
     {
       "path": "MIGRATION_2.16.0.md",
-      "sha256": "89a7f4e19852a5a31ccda470d5daf2c762edddb11885bdb1e82c43e0be9f3325",
-      "size_bytes": 577
+      "size_bytes": 577,
+      "sha256": "89a7f4e19852a5a31ccda470d5daf2c762edddb11885bdb1e82c43e0be9f3325"
     },
     {
       "path": "MIGRATION_2.16.1.md",
-      "sha256": "1b0c4303ad1642ba5f9a1e5d3a9bbb08aec885882d0f2f6295542761d85f6c4f",
-      "size_bytes": 505
+      "size_bytes": 505,
+      "sha256": "1b0c4303ad1642ba5f9a1e5d3a9bbb08aec885882d0f2f6295542761d85f6c4f"
     },
     {
       "path": "MIGRATION_2.16.10.md",
-      "sha256": "a5c978656f3da1f91cdf948d22f77ed38a73327bd354375d7aaba4f3b28634c0",
-      "size_bytes": 645
+      "size_bytes": 645,
+      "sha256": "a5c978656f3da1f91cdf948d22f77ed38a73327bd354375d7aaba4f3b28634c0"
     },
     {
       "path": "MIGRATION_2.16.11.md",
-      "sha256": "ca97568e376d88fe67f780213476ed9439b23122eae3f32ef04dbf568b2c1492",
-      "size_bytes": 331
+      "size_bytes": 331,
+      "sha256": "ca97568e376d88fe67f780213476ed9439b23122eae3f32ef04dbf568b2c1492"
     },
     {
       "path": "MIGRATION_2.16.12.md",
-      "sha256": "abe9fe3c05319110345dd22f00e242d7a812f1a089add219ec53b32b66b2f0dd",
-      "size_bytes": 515
+      "size_bytes": 515,
+      "sha256": "abe9fe3c05319110345dd22f00e242d7a812f1a089add219ec53b32b66b2f0dd"
     },
     {
       "path": "MIGRATION_2.16.13.md",
-      "sha256": "138f8265b5c1b37dbcb6b8fd2e03a241df360979f5ffc72467ac62a1e3c05ac4",
-      "size_bytes": 608
+      "size_bytes": 608,
+      "sha256": "138f8265b5c1b37dbcb6b8fd2e03a241df360979f5ffc72467ac62a1e3c05ac4"
     },
     {
       "path": "MIGRATION_2.16.14.md",
-      "sha256": "59b8a2e37dd3cb4b56a96d94aba6932dfb18af9140b8df33fd69524059485177",
-      "size_bytes": 500
+      "size_bytes": 500,
+      "sha256": "59b8a2e37dd3cb4b56a96d94aba6932dfb18af9140b8df33fd69524059485177"
     },
     {
       "path": "MIGRATION_2.16.16.md",
-      "sha256": "4d2319c32aae6d0c69ab5d87d8b3226048b84ce9d81cde467fdb6af350be431e",
-      "size_bytes": 475
+      "size_bytes": 475,
+      "sha256": "4d2319c32aae6d0c69ab5d87d8b3226048b84ce9d81cde467fdb6af350be431e"
     },
     {
       "path": "MIGRATION_2.16.17.md",
-      "sha256": "9ddc5963c23476903d5e21e80a989d9572d1b6162b250e05e3e19bbdf37c935e",
-      "size_bytes": 1035
+      "size_bytes": 1035,
+      "sha256": "9ddc5963c23476903d5e21e80a989d9572d1b6162b250e05e3e19bbdf37c935e"
     },
     {
       "path": "MIGRATION_2.16.2.md",
-      "sha256": "5f2306964a18f2876adce7bc5d314f60083da58a5ff603fec0d46e428fac6338",
-      "size_bytes": 315
+      "size_bytes": 315,
+      "sha256": "5f2306964a18f2876adce7bc5d314f60083da58a5ff603fec0d46e428fac6338"
     },
     {
       "path": "MIGRATION_2.16.3.md",
-      "sha256": "59e69328ccbc502ade4324239da170c9b45d609727916153c06a9ae3f1826325",
-      "size_bytes": 385
+      "size_bytes": 385,
+      "sha256": "59e69328ccbc502ade4324239da170c9b45d609727916153c06a9ae3f1826325"
     },
     {
       "path": "MIGRATION_2.16.4.md",
-      "sha256": "5ab4265964fcb08c855795c46aacc7c5bea4943db4251580fad0e492be9c9868",
-      "size_bytes": 666
+      "size_bytes": 666,
+      "sha256": "5ab4265964fcb08c855795c46aacc7c5bea4943db4251580fad0e492be9c9868"
     },
     {
       "path": "MIGRATION_2.16.5.md",
-      "sha256": "bbdaaae34fa41155439be0faecc7b723a3e655c7b4735eb79d219855e541bbe4",
-      "size_bytes": 500
+      "size_bytes": 500,
+      "sha256": "bbdaaae34fa41155439be0faecc7b723a3e655c7b4735eb79d219855e541bbe4"
     },
     {
       "path": "MIGRATION_2.16.6.md",
-      "sha256": "377648751ddd364ee43398a2271fd72c4742a6e50e55cdab5ec4cf0212e4d758",
-      "size_bytes": 751
+      "size_bytes": 751,
+      "sha256": "377648751ddd364ee43398a2271fd72c4742a6e50e55cdab5ec4cf0212e4d758"
     },
     {
       "path": "MIGRATION_2.16.7.md",
-      "sha256": "273686f06276c1752bffc16914e6091996b3017939b8daced4a4d9f9176eb6c2",
-      "size_bytes": 799
+      "size_bytes": 799,
+      "sha256": "273686f06276c1752bffc16914e6091996b3017939b8daced4a4d9f9176eb6c2"
     },
     {
       "path": "MIGRATION_2.16.8.md",
-      "sha256": "42a0e751d184b607a1d68e2c4d372b11144f2ffdcbe6433e2dbbe791756028ea",
-      "size_bytes": 678
+      "size_bytes": 678,
+      "sha256": "42a0e751d184b607a1d68e2c4d372b11144f2ffdcbe6433e2dbbe791756028ea"
     },
     {
       "path": "MIGRATION_2.16.9.md",
-      "sha256": "95eea9ce3024a228176b059edce9ab0aa6029cf4e278281923122f673c6d2f94",
-      "size_bytes": 634
+      "size_bytes": 634,
+      "sha256": "95eea9ce3024a228176b059edce9ab0aa6029cf4e278281923122f673c6d2f94"
     },
     {
       "path": "MIGRATION_2.2.0.md",
-      "sha256": "276554410c7a8864c2153bac6757732a294779a23e409976113db065e98b87c3",
-      "size_bytes": 611
+      "size_bytes": 611,
+      "sha256": "276554410c7a8864c2153bac6757732a294779a23e409976113db065e98b87c3"
     },
     {
       "path": "MIGRATION_2.2.1.md",
-      "sha256": "44d0d09ae12477335ac2745f2601111794bb0d5f1802bb1b064ac2f9cfffb243",
-      "size_bytes": 321
+      "size_bytes": 321,
+      "sha256": "44d0d09ae12477335ac2745f2601111794bb0d5f1802bb1b064ac2f9cfffb243"
     },
     {
       "path": "MIGRATION_2.2.10.md",
-      "sha256": "9a98a54675824281c1cdb552f5ce44e539bf9b56fcd4904a92e097c01ec1394e",
-      "size_bytes": 621
+      "size_bytes": 621,
+      "sha256": "9a98a54675824281c1cdb552f5ce44e539bf9b56fcd4904a92e097c01ec1394e"
     },
     {
       "path": "MIGRATION_2.2.11.md",
-      "sha256": "aaf28ee905b9fb3ff6be0701367096966593e45f772fcf5c50ca1603f00be8b2",
-      "size_bytes": 254
+      "size_bytes": 254,
+      "sha256": "aaf28ee905b9fb3ff6be0701367096966593e45f772fcf5c50ca1603f00be8b2"
     },
     {
       "path": "MIGRATION_2.2.12.md",
-      "sha256": "9bc5daced4ef3780a43210271b96acc658505a9be55606931d52b7fcc3b3f3b6",
-      "size_bytes": 826
+      "size_bytes": 826,
+      "sha256": "9bc5daced4ef3780a43210271b96acc658505a9be55606931d52b7fcc3b3f3b6"
     },
     {
       "path": "MIGRATION_2.2.13.md",
-      "sha256": "938c66433019fa16a4eb4f252fd21598d99aa6945a763c5a531b88ddbe8fb9eb",
-      "size_bytes": 609
+      "size_bytes": 609,
+      "sha256": "938c66433019fa16a4eb4f252fd21598d99aa6945a763c5a531b88ddbe8fb9eb"
     },
     {
       "path": "MIGRATION_2.2.2.md",
-      "sha256": "fa8fa0805afa8529e3b9fc5f66552e8e15163097ee84535adac2c052801ef72a",
-      "size_bytes": 330
+      "size_bytes": 330,
+      "sha256": "fa8fa0805afa8529e3b9fc5f66552e8e15163097ee84535adac2c052801ef72a"
     },
     {
       "path": "MIGRATION_2.2.3.md",
-      "sha256": "d6eb440a8f9d10b7e1f90722bc9217ae1b2fd54941f6ba7ea301212558178665",
-      "size_bytes": 908
+      "size_bytes": 908,
+      "sha256": "d6eb440a8f9d10b7e1f90722bc9217ae1b2fd54941f6ba7ea301212558178665"
     },
     {
       "path": "MIGRATION_2.2.4.md",
-      "sha256": "5b55e36de594f4ec28eb4e5ee5350a7e16d098fe0f9e9e7bb24040ef0ef7d1bd",
-      "size_bytes": 554
+      "size_bytes": 554,
+      "sha256": "5b55e36de594f4ec28eb4e5ee5350a7e16d098fe0f9e9e7bb24040ef0ef7d1bd"
     },
     {
       "path": "MIGRATION_2.2.5.md",
-      "sha256": "c3d4f7b56d635ca367cd783a9e7efd8e02d853a99d231c14f302b973786778d2",
-      "size_bytes": 328
+      "size_bytes": 328,
+      "sha256": "c3d4f7b56d635ca367cd783a9e7efd8e02d853a99d231c14f302b973786778d2"
     },
     {
       "path": "MIGRATION_2.2.6.md",
-      "sha256": "9b77d77133d54475d43a33e4387b23c51cb1dad585c7e0b09b6b264886db17ff",
-      "size_bytes": 321
+      "size_bytes": 321,
+      "sha256": "9b77d77133d54475d43a33e4387b23c51cb1dad585c7e0b09b6b264886db17ff"
     },
     {
       "path": "MIGRATION_2.2.7.md",
-      "sha256": "b66b58e40e92deda0b9ee7a5d6df6d5e190199f7d7f6c2cf9d30b2df17822281",
-      "size_bytes": 477
+      "size_bytes": 477,
+      "sha256": "b66b58e40e92deda0b9ee7a5d6df6d5e190199f7d7f6c2cf9d30b2df17822281"
     },
     {
       "path": "MIGRATION_2.2.8.md",
-      "sha256": "d7f68de46cec833b1b12c1856fdd30f9a60e7c8d4a30e503eb93c9f77b34948e",
-      "size_bytes": 551
+      "size_bytes": 551,
+      "sha256": "d7f68de46cec833b1b12c1856fdd30f9a60e7c8d4a30e503eb93c9f77b34948e"
     },
     {
       "path": "MIGRATION_2.2.9.md",
-      "sha256": "398591181a3515336c620171a90552d684e2b1f63e71cd18a230457f6e4e9479",
-      "size_bytes": 396
+      "size_bytes": 396,
+      "sha256": "398591181a3515336c620171a90552d684e2b1f63e71cd18a230457f6e4e9479"
     },
     {
       "path": "MIGRATION_2.3.0.md",
-      "sha256": "b987d04e37902485b7a56c241528fa70bfa5f3a865d7de37a8c58e724cd1a3af",
-      "size_bytes": 745
+      "size_bytes": 745,
+      "sha256": "b987d04e37902485b7a56c241528fa70bfa5f3a865d7de37a8c58e724cd1a3af"
     },
     {
       "path": "MIGRATION_2.4.0.md",
-      "sha256": "e80f19fd6389dc08fb5531c5c0f09dec0ff976206357d18081a78f454498e814",
-      "size_bytes": 877
+      "size_bytes": 877,
+      "sha256": "e80f19fd6389dc08fb5531c5c0f09dec0ff976206357d18081a78f454498e814"
     },
     {
       "path": "MIGRATION_2.5.0.md",
-      "sha256": "7b8ae94e917a67c0bcb6b2a64709e09a11bff8506b6b00bcda87b5470b6865f3",
-      "size_bytes": 1232
+      "size_bytes": 1232,
+      "sha256": "7b8ae94e917a67c0bcb6b2a64709e09a11bff8506b6b00bcda87b5470b6865f3"
     },
     {
       "path": "MIGRATION_2.6.0.md",
-      "sha256": "15d1dbea7fd8a366bb250f56dbe0f22f4d246b9ed19188db775b2a1dc063fedd",
-      "size_bytes": 853
+      "size_bytes": 853,
+      "sha256": "15d1dbea7fd8a366bb250f56dbe0f22f4d246b9ed19188db775b2a1dc063fedd"
     },
     {
       "path": "MIGRATION_2.7.0.md",
-      "sha256": "6fc9dd5770d763e7a0bfa553dd74b0f34c9b341e6098ab6bc716301c4c86ecb3",
-      "size_bytes": 747
+      "size_bytes": 747,
+      "sha256": "6fc9dd5770d763e7a0bfa553dd74b0f34c9b341e6098ab6bc716301c4c86ecb3"
     },
     {
       "path": "MIGRATION_2.8.0.md",
-      "sha256": "91713c5ba06e8a9affb358383ed59f3df86be1d6d40aa28bf1c0592e5da3fabb",
-      "size_bytes": 668
+      "size_bytes": 668,
+      "sha256": "91713c5ba06e8a9affb358383ed59f3df86be1d6d40aa28bf1c0592e5da3fabb"
     },
     {
       "path": "MIGRATION_2.9.0.md",
-      "sha256": "42e76e4f53ce4346e77438cdd8e73df5e68e8fe55633166a5db81333d46cc201",
-      "size_bytes": 611
+      "size_bytes": 611,
+      "sha256": "42e76e4f53ce4346e77438cdd8e73df5e68e8fe55633166a5db81333d46cc201"
     },
     {
       "path": "MIGRATION_2.9.1.md",
-      "sha256": "bb6bcb94b7a9df9daa09580beacb6ec7acfb322a2e9588a05ebac957bd9671d5",
-      "size_bytes": 1118
+      "size_bytes": 1118,
+      "sha256": "bb6bcb94b7a9df9daa09580beacb6ec7acfb322a2e9588a05ebac957bd9671d5"
     },
     {
       "path": "NON_REGRESSION_LINEAGES_2.15.55.json",
-      "sha256": "278494381915a3d9914de1c1a52f9a6f027b10ced0df3bbaf196c13cd8fbbf73",
-      "size_bytes": 4865
+      "size_bytes": 4865,
+      "sha256": "278494381915a3d9914de1c1a52f9a6f027b10ced0df3bbaf196c13cd8fbbf73"
     },
     {
       "path": "NON_REGRESSION_LINEAGES_2.15.56.json",
-      "sha256": "2975c8820f8b4941b5ecd5bd57c7bb95701201c10b55042ddb8467bce1720902",
-      "size_bytes": 4865
+      "size_bytes": 4865,
+      "sha256": "2975c8820f8b4941b5ecd5bd57c7bb95701201c10b55042ddb8467bce1720902"
     },
     {
       "path": "NON_REGRESSION_LINEAGES_2.16.0.json",
-      "sha256": "42f9d5185dd915a0365ea0d84d1452ce0b6b2ffe59cbebfc4cf2908975f8a677",
-      "size_bytes": 363
+      "size_bytes": 363,
+      "sha256": "42f9d5185dd915a0365ea0d84d1452ce0b6b2ffe59cbebfc4cf2908975f8a677"
     },
     {
       "path": "NON_REGRESSION_LINEAGES_2.16.1.json",
-      "sha256": "0c8b27e5010fbc8c1a78d69dd9c1b49e9ccd824861858a26b4ac2be5b1ab8049",
-      "size_bytes": 222
+      "size_bytes": 222,
+      "sha256": "0c8b27e5010fbc8c1a78d69dd9c1b49e9ccd824861858a26b4ac2be5b1ab8049"
     },
     {
       "path": "NON_REGRESSION_LINEAGES_2.16.2.json",
-      "sha256": "67337e2691cddd9d1a27f7eb0c4bede0490c074adfcf70909e860ccde4cc7985",
-      "size_bytes": 236
+      "size_bytes": 236,
+      "sha256": "67337e2691cddd9d1a27f7eb0c4bede0490c074adfcf70909e860ccde4cc7985"
     },
     {
       "path": "NON_REGRESSION_LINEAGES_2.16.3.json",
-      "sha256": "99aeb94b2239a53878c69b0aef029e67d1be82d89ec2acbd3005f2f4ac1c7081",
-      "size_bytes": 299
+      "size_bytes": 299,
+      "sha256": "99aeb94b2239a53878c69b0aef029e67d1be82d89ec2acbd3005f2f4ac1c7081"
     },
     {
       "path": "NON_REGRESSION_LINEAGES_2.16.4.json",
-      "sha256": "d85af0b81590edc4ccc843ea63f92f1654f4e25bbfeb904b88e2ea937947c0f4",
-      "size_bytes": 338
+      "size_bytes": 338,
+      "sha256": "d85af0b81590edc4ccc843ea63f92f1654f4e25bbfeb904b88e2ea937947c0f4"
     },
     {
       "path": "README.md",
-      "sha256": "f9a520a90880bdbe5804ca142d8d207b371d9d151a4e4b46157257d3f79e5e6f",
-      "size_bytes": 11510
+      "size_bytes": 12626,
+      "sha256": "f9b1760779e7936eb96e83980a4ff24d92b60a86d63defac6e3b1a163bc36094"
     },
     {
       "path": "REGRESSION_AUDIT_2.15.38.md",
-      "sha256": "25b9a891c3d6a1e57ee0c554b93b8bfab4fadd65dd99079edf242e97822092da",
-      "size_bytes": 502
+      "size_bytes": 502,
+      "sha256": "25b9a891c3d6a1e57ee0c554b93b8bfab4fadd65dd99079edf242e97822092da"
     },
     {
       "path": "REGRESSION_AUDIT_2.15.46.md",
-      "sha256": "5e8bd1eb427d26a463a179ca0207fbd3d89a52175036acf496d2e2bed7772b8e",
-      "size_bytes": 488
+      "size_bytes": 488,
+      "sha256": "5e8bd1eb427d26a463a179ca0207fbd3d89a52175036acf496d2e2bed7772b8e"
     },
     {
       "path": "REGRESSION_AUDIT_2.15.50.md",
-      "sha256": "af6a998ff26b4e53b67335813cae4083d13bc0fe2e9e872dc6b1a86b45f88667",
-      "size_bytes": 375
+      "size_bytes": 375,
+      "sha256": "af6a998ff26b4e53b67335813cae4083d13bc0fe2e9e872dc6b1a86b45f88667"
     },
     {
       "path": "REGRESSION_AUDIT_2.15.51.md",
-      "sha256": "81208d2ca654f50cbad481e1bf2bfe3e26a7a4ddfda8cb58cfe9e6e0f8c6af8f",
-      "size_bytes": 229
+      "size_bytes": 229,
+      "sha256": "81208d2ca654f50cbad481e1bf2bfe3e26a7a4ddfda8cb58cfe9e6e0f8c6af8f"
     },
     {
       "path": "REGRESSION_AUDIT_2.15.52.md",
-      "sha256": "e965099356335c03210581bc4a39bf721d32415d9fbfb03337cacb9deece5b1a",
-      "size_bytes": 460
+      "size_bytes": 460,
+      "sha256": "e965099356335c03210581bc4a39bf721d32415d9fbfb03337cacb9deece5b1a"
     },
     {
       "path": "REGRESSION_AUDIT_2.15.53.md",
-      "sha256": "7dacdbec3dfb8c4e396d9d0a5146cceb33f1f5fec4e39ba6cd7e3d97e048c1e4",
-      "size_bytes": 903
+      "size_bytes": 903,
+      "sha256": "7dacdbec3dfb8c4e396d9d0a5146cceb33f1f5fec4e39ba6cd7e3d97e048c1e4"
     },
     {
       "path": "REGRESSION_AUDIT_2.15.54.md",
-      "sha256": "5818bb4ffe2aa42c99af807d42fb898da9a21b78d6e7be4f1eb5e3af8f7414c2",
-      "size_bytes": 531
+      "size_bytes": 531,
+      "sha256": "5818bb4ffe2aa42c99af807d42fb898da9a21b78d6e7be4f1eb5e3af8f7414c2"
     },
     {
       "path": "REGRESSION_AUDIT_2.15.55.md",
-      "sha256": "45b0b5bfdb1b9f865b4e8585c5a931767b2ce06336359dd76224a550c774176b",
-      "size_bytes": 697
+      "size_bytes": 697,
+      "sha256": "45b0b5bfdb1b9f865b4e8585c5a931767b2ce06336359dd76224a550c774176b"
     },
     {
       "path": "REGRESSION_AUDIT_2.15.56.md",
-      "sha256": "3b8b660018adc443da18e8d8502286018993dbb3e322eb5ef1503308d24a6a4a",
-      "size_bytes": 633
+      "size_bytes": 633,
+      "sha256": "3b8b660018adc443da18e8d8502286018993dbb3e322eb5ef1503308d24a6a4a"
     },
     {
       "path": "REGRESSION_AUDIT_2.16.0.md",
-      "sha256": "84e161c4c7bb43fbde05a5c92b8427cea21603948f6dabfec7d25b1483e82d0e",
-      "size_bytes": 310
+      "size_bytes": 310,
+      "sha256": "84e161c4c7bb43fbde05a5c92b8427cea21603948f6dabfec7d25b1483e82d0e"
     },
     {
       "path": "REGRESSION_AUDIT_2.16.1.md",
-      "sha256": "b94ea3bddf4c91fdf1a6d821d7620cd4ca74615ceb9723711f162aa685191e3e",
-      "size_bytes": 559
+      "size_bytes": 559,
+      "sha256": "b94ea3bddf4c91fdf1a6d821d7620cd4ca74615ceb9723711f162aa685191e3e"
     },
     {
       "path": "REGRESSION_AUDIT_2.16.11.md",
-      "sha256": "8091d812a816476e5787d5054663378d3bf45a1a3523488ffe525013bdf0d5cb",
-      "size_bytes": 490
+      "size_bytes": 490,
+      "sha256": "8091d812a816476e5787d5054663378d3bf45a1a3523488ffe525013bdf0d5cb"
     },
     {
       "path": "REGRESSION_AUDIT_2.16.12.md",
-      "sha256": "47ca3b890c7f688f6d3ddfa636fcfcbf7ba9e6458092fd041504ddbcd4150e83",
-      "size_bytes": 622
+      "size_bytes": 622,
+      "sha256": "47ca3b890c7f688f6d3ddfa636fcfcbf7ba9e6458092fd041504ddbcd4150e83"
     },
     {
       "path": "REGRESSION_AUDIT_2.16.2.md",
-      "sha256": "183f46c8739ad3618a213bdd7be0e8662e86fde8d4daf5e1b49fd3b34c28aabd",
-      "size_bytes": 377
+      "size_bytes": 377,
+      "sha256": "183f46c8739ad3618a213bdd7be0e8662e86fde8d4daf5e1b49fd3b34c28aabd"
     },
     {
       "path": "REGRESSION_AUDIT_2.16.3.md",
-      "sha256": "30db81d18f28cd97b336431296909967206b38d2c14ec5f8120ffae31f8d2c8b",
-      "size_bytes": 380
+      "size_bytes": 380,
+      "sha256": "30db81d18f28cd97b336431296909967206b38d2c14ec5f8120ffae31f8d2c8b"
     },
     {
       "path": "REGRESSION_AUDIT_2.16.4.md",
-      "sha256": "af9444f07ee7d59516b5e07675157dc641c590ab8525fc57804c5e8086b6751f",
-      "size_bytes": 1083
+      "size_bytes": 1083,
+      "sha256": "af9444f07ee7d59516b5e07675157dc641c590ab8525fc57804c5e8086b6751f"
     },
     {
       "path": "REGRESSION_AUDIT_2.16.5.md",
-      "sha256": "655bc7ed197c926e54d13051e2e1b87b6f016502233b9e075c4ed772142201cf",
-      "size_bytes": 502
+      "size_bytes": 502,
+      "sha256": "655bc7ed197c926e54d13051e2e1b87b6f016502233b9e075c4ed772142201cf"
     },
     {
       "path": "REGRESSION_AUDIT_2.16.6.md",
-      "sha256": "4f8492fafba9f57be2f657f0e6da96980d5d9f6678f1064e655e68eaefb6ce8e",
-      "size_bytes": 780
+      "size_bytes": 780,
+      "sha256": "4f8492fafba9f57be2f657f0e6da96980d5d9f6678f1064e655e68eaefb6ce8e"
     },
     {
       "path": "REGRESSION_AUDIT_2.16.7.md",
-      "sha256": "dc50b3e333eb3a2123c47c2562395882fabe65c8407cb337caf74a989c04795f",
-      "size_bytes": 991
+      "size_bytes": 991,
+      "sha256": "dc50b3e333eb3a2123c47c2562395882fabe65c8407cb337caf74a989c04795f"
     },
     {
       "path": "REGRESSION_AUDIT_2.16.8.md",
-      "sha256": "4311f3820fe0401fad0b6140147ade06831afac0ce9e324149ff0b50c2dc59ea",
-      "size_bytes": 672
+      "size_bytes": 672,
+      "sha256": "4311f3820fe0401fad0b6140147ade06831afac0ce9e324149ff0b50c2dc59ea"
     },
     {
       "path": "TEST_REPORT.txt",
-      "sha256": "0cf7a7c1208a8e23e271a11e0321c63577e4ecfe3b5afc536c230b330464e2ac",
-      "size_bytes": 780
+      "size_bytes": 947,
+      "sha256": "2e8e0e90401e839ab6364a47562ea879c54c0a3bf3a2cbd6fbe014f2d95d5a93"
     },
     {
       "path": "VERSIONS.json",
-      "sha256": "5a010be985ed4862fec5f48476941d0f8e67c4e5dcb700ea8d20842bfb9f5088",
-      "size_bytes": 68
+      "size_bytes": 68,
+      "sha256": "0c9dd2b76c9c91380bad370ec7e7b7432b4c586846833e97573945af5ff5c9e8"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/CHANGELOG.md",
-      "sha256": "0ffdb8a1a1ad3fdedef024d74bec8b325a93f183636e51c9296e171ac13176f6",
-      "size_bytes": 46922
+      "size_bytes": 46922,
+      "sha256": "0ffdb8a1a1ad3fdedef024d74bec8b325a93f183636e51c9296e171ac13176f6"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/GUIDE_PUBLICATION.md",
-      "sha256": "63d01c64fd5c96c5b77ba379e50bce53d333bfc3dfefa3eca47070fbaf482abf",
-      "size_bytes": 5180
+      "size_bytes": 5180,
+      "sha256": "63d01c64fd5c96c5b77ba379e50bce53d333bfc3dfefa3eca47070fbaf482abf"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/GUIDE_TRANSLATION_REVIEW.md",
-      "sha256": "8416e4d385e29410e2a4b5eeecddac295035012232080183ddf0b3655ace7c97",
-      "size_bytes": 13930
+      "size_bytes": 13930,
+      "sha256": "8416e4d385e29410e2a4b5eeecddac295035012232080183ddf0b3655ace7c97"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_2.15.33.md",
-      "sha256": "b286994a70f2bf3526822bd29cb5187eee046d26f2491fea59a4c8e0482ac68d",
-      "size_bytes": 474
+      "size_bytes": 474,
+      "sha256": "b286994a70f2bf3526822bd29cb5187eee046d26f2491fea59a4c8e0482ac68d"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_2.15.34.md",
-      "sha256": "e8ae0de3d1e85c89ade644028a7add8da9226a7273ec179ba2e4f3d82ab4ea6f",
-      "size_bytes": 243
+      "size_bytes": 243,
+      "sha256": "e8ae0de3d1e85c89ade644028a7add8da9226a7273ec179ba2e4f3d82ab4ea6f"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_2.15.35.md",
-      "sha256": "3bff199d60d6406624f89fa393fd9e01889e38b27104ad32aefb08fb545445d8",
-      "size_bytes": 839
+      "size_bytes": 839,
+      "sha256": "3bff199d60d6406624f89fa393fd9e01889e38b27104ad32aefb08fb545445d8"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_2.15.36.md",
-      "sha256": "49fbf43682a826cec8e0e3a387e785a1ef5cb02f0431ed6c93868f54cba5f02b",
-      "size_bytes": 571
+      "size_bytes": 571,
+      "sha256": "49fbf43682a826cec8e0e3a387e785a1ef5cb02f0431ed6c93868f54cba5f02b"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_2.15.37.md",
-      "sha256": "612bd16f635649e4ee48572fd2c8ebe98b6dc25830824c7865ee6cf4d14c9da2",
-      "size_bytes": 627
+      "size_bytes": 627,
+      "sha256": "612bd16f635649e4ee48572fd2c8ebe98b6dc25830824c7865ee6cf4d14c9da2"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_2.15.38.md",
-      "sha256": "102f6e167552248c51f7a47d8d4fb46595586e80b18639e3163f9559bbbac768",
-      "size_bytes": 877
+      "size_bytes": 877,
+      "sha256": "102f6e167552248c51f7a47d8d4fb46595586e80b18639e3163f9559bbbac768"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_2.15.39.md",
-      "sha256": "470a5f4902f564bc6017a123df36332ace1006352e83c4656c411d8106d9fb10",
-      "size_bytes": 746
+      "size_bytes": 746,
+      "sha256": "470a5f4902f564bc6017a123df36332ace1006352e83c4656c411d8106d9fb10"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_2.15.40.md",
-      "sha256": "531770d98d86fd28372b8f3e915563c78dd553a3265fc2093b618737b0f1fff8",
-      "size_bytes": 1075
+      "size_bytes": 1075,
+      "sha256": "531770d98d86fd28372b8f3e915563c78dd553a3265fc2093b618737b0f1fff8"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_2.15.41.md",
-      "sha256": "80f2b3bb0125ad33d8884f218297d9fa32f62541063ab2caea3a0c89eed4250d",
-      "size_bytes": 576
+      "size_bytes": 576,
+      "sha256": "80f2b3bb0125ad33d8884f218297d9fa32f62541063ab2caea3a0c89eed4250d"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_2.15.42.md",
-      "sha256": "2e84e8d9929b21e2d3fb6655aaa91765ea081d51a4783320598b1cb1f58ccb69",
-      "size_bytes": 959
+      "size_bytes": 959,
+      "sha256": "2e84e8d9929b21e2d3fb6655aaa91765ea081d51a4783320598b1cb1f58ccb69"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_2.15.43.md",
-      "sha256": "68efc5a605cd9a5606e082f9d821c6eb3ffb3122c5357f443cb9a8332554140c",
-      "size_bytes": 1022
+      "size_bytes": 1022,
+      "sha256": "68efc5a605cd9a5606e082f9d821c6eb3ffb3122c5357f443cb9a8332554140c"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_2.15.44.md",
-      "sha256": "6090ba0549defa59f9cfb835230235338e280eaa8b15addeb080233d6151873f",
-      "size_bytes": 1078
+      "size_bytes": 1078,
+      "sha256": "6090ba0549defa59f9cfb835230235338e280eaa8b15addeb080233d6151873f"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_2.15.45.md",
-      "sha256": "2e2aff9bbce18d92ca7a84306deef431c8ddc0b643ec40fc05fadef14f1036f2",
-      "size_bytes": 456
+      "size_bytes": 456,
+      "sha256": "2e2aff9bbce18d92ca7a84306deef431c8ddc0b643ec40fc05fadef14f1036f2"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/README.md",
-      "sha256": "6c2f6e37d6add36a63acbe32507f186decb3c819cc53497830ed5e2236c1de7e",
-      "size_bytes": 2714
+      "size_bytes": 2714,
+      "sha256": "6c2f6e37d6add36a63acbe32507f186decb3c819cc53497830ed5e2236c1de7e"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/VERSIONS.json",
-      "sha256": "d0cce84e176282df87ad83541a0f0df5f6ce45f31089fbb38c0f1daf1d728a59",
-      "size_bytes": 68
+      "size_bytes": 68,
+      "sha256": "d0cce84e176282df87ad83541a0f0df5f6ce45f31089fbb38c0f1daf1d728a59"
     },
     {
       "path": "branch_history/translation_branch_1.2.61_0.4.64_2.15.38/CHANGELOG.md",
-      "sha256": "04c929dd19427ed8257483b2432a3173bdea51d45a6f09a56b185ac193575923",
-      "size_bytes": 40620
+      "size_bytes": 40620,
+      "sha256": "04c929dd19427ed8257483b2432a3173bdea51d45a6f09a56b185ac193575923"
     },
     {
       "path": "branch_history/translation_branch_1.2.61_0.4.64_2.15.38/GUIDE_PUBLICATION.md",
-      "sha256": "8b44e531354fe399a04adfd38500961391448075f2b08f122ac716295fbd7741",
-      "size_bytes": 3740
+      "size_bytes": 3740,
+      "sha256": "8b44e531354fe399a04adfd38500961391448075f2b08f122ac716295fbd7741"
     },
     {
       "path": "branch_history/translation_branch_1.2.61_0.4.64_2.15.38/GUIDE_TRANSLATION_REVIEW.md",
-      "sha256": "8284638d229090a8218285981d3cfee3d1738b7f7c176dc1f50d5206d35badef",
-      "size_bytes": 17838
+      "size_bytes": 17838,
+      "sha256": "8284638d229090a8218285981d3cfee3d1738b7f7c176dc1f50d5206d35badef"
     },
     {
       "path": "branch_history/translation_branch_1.2.61_0.4.64_2.15.38/README.md",
-      "sha256": "ffa1ca63a71dd9e1f3eee79a76ce48cda55b3e64fd8a98924e992502f95653a0",
-      "size_bytes": 901
+      "size_bytes": 901,
+      "sha256": "ffa1ca63a71dd9e1f3eee79a76ce48cda55b3e64fd8a98924e992502f95653a0"
     },
     {
       "path": "branch_history/translation_branch_1.2.61_0.4.64_2.15.38/VERSIONS.json",
-      "sha256": "327d4925a85487654c4eff178db72f63658c6cf7aa97af68dc7806e2a6c3b425",
-      "size_bytes": 68
+      "size_bytes": 68,
+      "sha256": "327d4925a85487654c4eff178db72f63658c6cf7aa97af68dc7806e2a6c3b425"
     },
     {
       "path": "config.example.json",
-      "sha256": "2eb3887bd77aeff74ce02b4db3a0abc85852503d9df612d67e90f538e1e98b1a",
-      "size_bytes": 1704
+      "size_bytes": 1704,
+      "sha256": "2eb3887bd77aeff74ce02b4db3a0abc85852503d9df612d67e90f538e1e98b1a"
     },
     {
       "path": "config.schema.json",
-      "sha256": "efeea2a6453235e8b50bd17da0798134ae3b500dbf49ef40bc981f3e4f0e0d94",
-      "size_bytes": 2125
+      "size_bytes": 2125,
+      "sha256": "efeea2a6453235e8b50bd17da0798134ae3b500dbf49ef40bc981f3e4f0e0d94"
     },
     {
       "path": "configs/creation_bilingue_1.2.19.example.json",
-      "sha256": "ab116aa2b089ac668cacf507fc1b16d21d182917d0f2259d289b9741697f9f39",
-      "size_bytes": 1761
+      "size_bytes": 1761,
+      "sha256": "ab116aa2b089ac668cacf507fc1b16d21d182917d0f2259d289b9741697f9f39"
     },
     {
       "path": "configs/creation_bilingue_1.2.20.example.json",
-      "sha256": "79bf4b7f77e9a67eca0e2e26b0f10809f021f5867edeac30631373bff0bae8d0",
-      "size_bytes": 1761
+      "size_bytes": 1761,
+      "sha256": "79bf4b7f77e9a67eca0e2e26b0f10809f021f5867edeac30631373bff0bae8d0"
     },
     {
       "path": "configs/creation_bilingue_1.2.21.example.json",
-      "sha256": "c259ace4e3de9ae444f03a36275428424556a9b410de7208744ca67299394d7e",
-      "size_bytes": 1761
+      "size_bytes": 1761,
+      "sha256": "c259ace4e3de9ae444f03a36275428424556a9b410de7208744ca67299394d7e"
     },
     {
       "path": "configs/creation_bilingue_1.2.22.example.json",
-      "sha256": "0441acd93fba3ae34560a26624a8eab63384a6caaa516bc7a62e8a6b4d273373",
-      "size_bytes": 1761
+      "size_bytes": 1761,
+      "sha256": "0441acd93fba3ae34560a26624a8eab63384a6caaa516bc7a62e8a6b4d273373"
     },
     {
       "path": "configs/creation_bilingue_1.2.23.example.json",
-      "sha256": "7964dfa17e99091fbcbdbd65484178254c451e3b55f71a78728497fa5ba9764c",
-      "size_bytes": 1761
+      "size_bytes": 1761,
+      "sha256": "7964dfa17e99091fbcbdbd65484178254c451e3b55f71a78728497fa5ba9764c"
     },
     {
       "path": "configs/creation_bilingue_1.2.24.example.json",
-      "sha256": "093d690919f7b67629240bc2c5ca2281b18bf2cf6b5dbd2b4b67a3d46eda2e0d",
-      "size_bytes": 1761
+      "size_bytes": 1761,
+      "sha256": "093d690919f7b67629240bc2c5ca2281b18bf2cf6b5dbd2b4b67a3d46eda2e0d"
     },
     {
       "path": "configs/creation_bilingue_1.2.25.example.json",
-      "sha256": "39d0455db52fbf2d566b2235f8f0475d478852331161180121dce85161effd5f",
-      "size_bytes": 1761
+      "size_bytes": 1761,
+      "sha256": "39d0455db52fbf2d566b2235f8f0475d478852331161180121dce85161effd5f"
     },
     {
       "path": "configs/creation_bilingue_1.2.26.example.json",
-      "sha256": "8071a51d33da9803a33a88d3bed27366425f9974e2d7463f9d7574220fe7da5f",
-      "size_bytes": 1761
+      "size_bytes": 1761,
+      "sha256": "8071a51d33da9803a33a88d3bed27366425f9974e2d7463f9d7574220fe7da5f"
     },
     {
       "path": "configs/creation_bilingue_1.2.27.example.json",
-      "sha256": "dae4036c239e4b1deddee1a6ad3132246da0636f58ddbcf6c970a8947ad848aa",
-      "size_bytes": 1761
+      "size_bytes": 1761,
+      "sha256": "dae4036c239e4b1deddee1a6ad3132246da0636f58ddbcf6c970a8947ad848aa"
     },
     {
       "path": "configs/creation_bilingue_1.2.28.example.json",
-      "sha256": "ef463bad81c66b555106a782bdcc8d5d0f4e27d2e93e8389047d535c882a112b",
-      "size_bytes": 1761
+      "size_bytes": 1761,
+      "sha256": "ef463bad81c66b555106a782bdcc8d5d0f4e27d2e93e8389047d535c882a112b"
     },
     {
       "path": "configs/creation_bilingue_1.2.29.example.json",
-      "sha256": "4fa8853f9e19c1daf7091c6968444fc6e96388c876ecf6fdf7ee4234810133da",
-      "size_bytes": 1761
+      "size_bytes": 1761,
+      "sha256": "4fa8853f9e19c1daf7091c6968444fc6e96388c876ecf6fdf7ee4234810133da"
     },
     {
       "path": "configs/creation_bilingue_1.2.30.example.json",
-      "sha256": "024b763e641722c4832fff836e79ee5f6503bd4ed193e458ee8549c20a69a3d6",
-      "size_bytes": 1761
+      "size_bytes": 1761,
+      "sha256": "024b763e641722c4832fff836e79ee5f6503bd4ed193e458ee8549c20a69a3d6"
     },
     {
       "path": "configs/creation_bilingue_1.2.31.example.json",
-      "sha256": "1b28f28f2791cbebb0382870d623d550456bb67ee925c32e35344d5b01e2b658",
-      "size_bytes": 1761
+      "size_bytes": 1761,
+      "sha256": "1b28f28f2791cbebb0382870d623d550456bb67ee925c32e35344d5b01e2b658"
     },
     {
       "path": "configs/creation_bilingue_1.2.32.example.json",
-      "sha256": "8bfd8b9614a82fd3a93f3c5c2c0748bfe6df2716b99cbab652ab1c75aa89aad5",
-      "size_bytes": 1761
+      "size_bytes": 1761,
+      "sha256": "8bfd8b9614a82fd3a93f3c5c2c0748bfe6df2716b99cbab652ab1c75aa89aad5"
     },
     {
       "path": "configs/creation_bilingue_1.2.33.example.json",
-      "sha256": "7b0b4c2b566d5b664faad7cc2333cd076a0466d47ecb8cb281887493dcba57e8",
-      "size_bytes": 1761
+      "size_bytes": 1761,
+      "sha256": "7b0b4c2b566d5b664faad7cc2333cd076a0466d47ecb8cb281887493dcba57e8"
     },
     {
       "path": "configs/creation_bilingue_1.2.34.example.json",
-      "sha256": "8f8b6ad59fdfc8e772b8e5eee37dbb5005de773a8ae96d00e5fb39e1f0c86426",
-      "size_bytes": 1796
+      "size_bytes": 1796,
+      "sha256": "8f8b6ad59fdfc8e772b8e5eee37dbb5005de773a8ae96d00e5fb39e1f0c86426"
     },
     {
       "path": "configs/creation_bilingue_1.2.35.example.json",
-      "sha256": "3620c791cd8d1cffe95840fa89ea966e9ab98fa433112cf55eec2177466960ac",
-      "size_bytes": 1796
+      "size_bytes": 1796,
+      "sha256": "3620c791cd8d1cffe95840fa89ea966e9ab98fa433112cf55eec2177466960ac"
     },
     {
       "path": "configs/creation_bilingue_1.2.36.example.json",
-      "sha256": "31585d1cbf1023c009bac654f36a5593425169fe64cc37554ca7979b52841de8",
-      "size_bytes": 1796
+      "size_bytes": 1796,
+      "sha256": "31585d1cbf1023c009bac654f36a5593425169fe64cc37554ca7979b52841de8"
     },
     {
       "path": "configs/creation_bilingue_1.2.37.example.json",
-      "sha256": "ef42fe8695fd6e0cceb9b9ce22838ceda5617ab04515a0616fee87f5fedfb208",
-      "size_bytes": 1796
+      "size_bytes": 1796,
+      "sha256": "ef42fe8695fd6e0cceb9b9ce22838ceda5617ab04515a0616fee87f5fedfb208"
     },
     {
       "path": "configs/creation_bilingue_1.2.38.example.json",
-      "sha256": "1c77d9e2f43458cc56e1f5a99e9b5be0e5b5d1bff1da9906895db66094e0b1f9",
-      "size_bytes": 1796
+      "size_bytes": 1796,
+      "sha256": "1c77d9e2f43458cc56e1f5a99e9b5be0e5b5d1bff1da9906895db66094e0b1f9"
     },
     {
       "path": "configs/creation_bilingue_1.2.39.example.json",
-      "sha256": "5c94191b5c949cac32f5f923a91a03337b66aeb6c15defbb33ec8dda1fab9ce4",
-      "size_bytes": 1796
+      "size_bytes": 1796,
+      "sha256": "5c94191b5c949cac32f5f923a91a03337b66aeb6c15defbb33ec8dda1fab9ce4"
     },
     {
       "path": "configs/creation_bilingue_1.2.40.example.json",
-      "sha256": "6927eee3b92a0e785ec56876a6171e3845c04237e7e87b868e6e32a3d98a1501",
-      "size_bytes": 1796
+      "size_bytes": 1796,
+      "sha256": "6927eee3b92a0e785ec56876a6171e3845c04237e7e87b868e6e32a3d98a1501"
     },
     {
       "path": "configs/creation_bilingue_1.2.41.example.json",
-      "sha256": "b270b3618532a430c0f25947b0e084b4be0fa17601faf084e1917583ee2f0327",
-      "size_bytes": 1796
+      "size_bytes": 1796,
+      "sha256": "b270b3618532a430c0f25947b0e084b4be0fa17601faf084e1917583ee2f0327"
     },
     {
       "path": "configs/creation_bilingue_1.2.42.example.json",
-      "sha256": "186913034ad6bd920bd85b1a6fe650249e9fce1a9d840786a5ea0eef7be3b104",
-      "size_bytes": 1796
+      "size_bytes": 1796,
+      "sha256": "186913034ad6bd920bd85b1a6fe650249e9fce1a9d840786a5ea0eef7be3b104"
     },
     {
       "path": "configs/creation_bilingue_1.2.43.example.json",
-      "sha256": "b5fd9373edc0dd145898688ff4bdd57d7028d7a63b6bc2cbf9202f3bbd06039c",
-      "size_bytes": 1796
+      "size_bytes": 1796,
+      "sha256": "b5fd9373edc0dd145898688ff4bdd57d7028d7a63b6bc2cbf9202f3bbd06039c"
     },
     {
       "path": "configs/creation_bilingue_1.2.44.example.json",
-      "sha256": "589cfa56b338b4211b2beab0719d0a976b6422e8a251936139a4c78adf95d566",
-      "size_bytes": 1796
+      "size_bytes": 1796,
+      "sha256": "589cfa56b338b4211b2beab0719d0a976b6422e8a251936139a4c78adf95d566"
     },
     {
       "path": "configs/creation_bilingue_1.2.45.example.json",
-      "sha256": "0ae25cc96ea2bb2e8d261650574ff8f6e14b82a1b94c0a8453c7d76c1b463445",
-      "size_bytes": 1796
+      "size_bytes": 1796,
+      "sha256": "0ae25cc96ea2bb2e8d261650574ff8f6e14b82a1b94c0a8453c7d76c1b463445"
     },
     {
       "path": "configs/creation_bilingue_1.2.46.example.json",
-      "sha256": "8dfb79f4695a29a189ad085978dc391f962209d6e49ad8b3034c7357622e3aa8",
-      "size_bytes": 1796
+      "size_bytes": 1796,
+      "sha256": "8dfb79f4695a29a189ad085978dc391f962209d6e49ad8b3034c7357622e3aa8"
     },
     {
       "path": "configs/creation_bilingue_1.2.47.example.json",
-      "sha256": "d084ad5b139dd5486d74ef8cfe4f313a3cad33b3b49b2223633ec57f3fa16559",
-      "size_bytes": 1796
+      "size_bytes": 1796,
+      "sha256": "d084ad5b139dd5486d74ef8cfe4f313a3cad33b3b49b2223633ec57f3fa16559"
     },
     {
       "path": "configs/creation_francaise_1.2.19.example.json",
-      "sha256": "bf036f93f99fe7c09f6c4e7bec469fee15a7bd706c942e5f08b46aff5a607426",
-      "size_bytes": 1670
+      "size_bytes": 1670,
+      "sha256": "bf036f93f99fe7c09f6c4e7bec469fee15a7bd706c942e5f08b46aff5a607426"
     },
     {
       "path": "configs/creation_francaise_1.2.20.example.json",
-      "sha256": "a198c4bd5d6eeb02c9d806038ab100aa438308846745cb609e583316f5574f4f",
-      "size_bytes": 1670
+      "size_bytes": 1670,
+      "sha256": "a198c4bd5d6eeb02c9d806038ab100aa438308846745cb609e583316f5574f4f"
     },
     {
       "path": "configs/creation_francaise_1.2.21.example.json",
-      "sha256": "2449bfa37c2ecc0bae4ccf956cae7f85a2c09e042ab873e322d9d42779666b2c",
-      "size_bytes": 1670
+      "size_bytes": 1670,
+      "sha256": "2449bfa37c2ecc0bae4ccf956cae7f85a2c09e042ab873e322d9d42779666b2c"
     },
     {
       "path": "configs/creation_francaise_1.2.22.example.json",
-      "sha256": "2bf69fd72cd350c41ca465213b5794d08886ea274f2788fcebdcad1fa356d6fe",
-      "size_bytes": 1670
+      "size_bytes": 1670,
+      "sha256": "2bf69fd72cd350c41ca465213b5794d08886ea274f2788fcebdcad1fa356d6fe"
     },
     {
       "path": "configs/creation_francaise_1.2.23.example.json",
-      "sha256": "03f95e1f439540302db774ffba4a9e8084b692ed9f8f7aa87303bc97ec7f38ed",
-      "size_bytes": 1670
+      "size_bytes": 1670,
+      "sha256": "03f95e1f439540302db774ffba4a9e8084b692ed9f8f7aa87303bc97ec7f38ed"
     },
     {
       "path": "configs/creation_francaise_1.2.24.example.json",
-      "sha256": "877b608a01825cc461b8dc4e48bcb41e93dd59567eb10e6d49ec2bea43ce663b",
-      "size_bytes": 1670
+      "size_bytes": 1670,
+      "sha256": "877b608a01825cc461b8dc4e48bcb41e93dd59567eb10e6d49ec2bea43ce663b"
     },
     {
       "path": "configs/creation_francaise_1.2.25.example.json",
-      "sha256": "8052ebc80f018f7579c23d674dfdd3ed084578007f4a234dd6f4c941155e8471",
-      "size_bytes": 1670
+      "size_bytes": 1670,
+      "sha256": "8052ebc80f018f7579c23d674dfdd3ed084578007f4a234dd6f4c941155e8471"
     },
     {
       "path": "configs/creation_francaise_1.2.26.example.json",
-      "sha256": "4da34e72e27471c2df61f68cb65cbe94934695144a073998d72587c230e1b9ed",
-      "size_bytes": 1670
+      "size_bytes": 1670,
+      "sha256": "4da34e72e27471c2df61f68cb65cbe94934695144a073998d72587c230e1b9ed"
     },
     {
       "path": "configs/creation_francaise_1.2.27.example.json",
-      "sha256": "3a666c2bbfe2dbf9822551e21516b41a1923846cdf5fef8810dcb4353fd0b75b",
-      "size_bytes": 1670
+      "size_bytes": 1670,
+      "sha256": "3a666c2bbfe2dbf9822551e21516b41a1923846cdf5fef8810dcb4353fd0b75b"
     },
     {
       "path": "configs/creation_francaise_1.2.28.example.json",
-      "sha256": "97c5db7f0c79bf2c18a2f2af0b2939e4a2113f32c9a0264721205d17d62f9daf",
-      "size_bytes": 1670
+      "size_bytes": 1670,
+      "sha256": "97c5db7f0c79bf2c18a2f2af0b2939e4a2113f32c9a0264721205d17d62f9daf"
     },
     {
       "path": "configs/creation_francaise_1.2.29.example.json",
-      "sha256": "d00fc86a00fc341708a2f89f9ef671db40ecb87f318650ec8492b47557f29233",
-      "size_bytes": 1670
+      "size_bytes": 1670,
+      "sha256": "d00fc86a00fc341708a2f89f9ef671db40ecb87f318650ec8492b47557f29233"
     },
     {
       "path": "configs/creation_francaise_1.2.30.example.json",
-      "sha256": "c12e267a0ad45db516adc70ec40d3afde4e237ab1a7a9d62390e36c5c8fa4d2e",
-      "size_bytes": 1670
+      "size_bytes": 1670,
+      "sha256": "c12e267a0ad45db516adc70ec40d3afde4e237ab1a7a9d62390e36c5c8fa4d2e"
     },
     {
       "path": "configs/creation_francaise_1.2.31.example.json",
-      "sha256": "a81069d3ecc040e9c2038076cbfccf17f2e5b3b15d877e83665125ca31c8ccbb",
-      "size_bytes": 1670
+      "size_bytes": 1670,
+      "sha256": "a81069d3ecc040e9c2038076cbfccf17f2e5b3b15d877e83665125ca31c8ccbb"
     },
     {
       "path": "configs/creation_francaise_1.2.32.example.json",
-      "sha256": "b5d360ce59b6706bdb1e90b273494f1fae8d36f4a57e2f6736f4fea0087dcd63",
-      "size_bytes": 1670
+      "size_bytes": 1670,
+      "sha256": "b5d360ce59b6706bdb1e90b273494f1fae8d36f4a57e2f6736f4fea0087dcd63"
     },
     {
       "path": "configs/creation_francaise_1.2.33.example.json",
-      "sha256": "9b6c0dc24ec1724b3323fec184fa32e41e66583fc285992e569fefffa36ef85e",
-      "size_bytes": 1670
+      "size_bytes": 1670,
+      "sha256": "9b6c0dc24ec1724b3323fec184fa32e41e66583fc285992e569fefffa36ef85e"
     },
     {
       "path": "configs/creation_francaise_1.2.34.example.json",
-      "sha256": "ef69238ee2b4104a9b33ec69ca5732f234d53be095370d36747d5981e17f4b76",
-      "size_bytes": 1711
+      "size_bytes": 1711,
+      "sha256": "ef69238ee2b4104a9b33ec69ca5732f234d53be095370d36747d5981e17f4b76"
     },
     {
       "path": "configs/creation_francaise_1.2.35.example.json",
-      "sha256": "43d4724e987a74dafeb28145ce4e1a414c71fef6df2ea4e375daffa7e6700af1",
-      "size_bytes": 1711
+      "size_bytes": 1711,
+      "sha256": "43d4724e987a74dafeb28145ce4e1a414c71fef6df2ea4e375daffa7e6700af1"
     },
     {
       "path": "configs/creation_francaise_1.2.36.example.json",
-      "sha256": "baf88d611e64ab35678fb026be5c7f30f9a79ecf3af20e5b7680282b2957678d",
-      "size_bytes": 1711
+      "size_bytes": 1711,
+      "sha256": "baf88d611e64ab35678fb026be5c7f30f9a79ecf3af20e5b7680282b2957678d"
     },
     {
       "path": "configs/creation_francaise_1.2.37.example.json",
-      "sha256": "3ba5cec364046290d695bb73027c8a2a09fc582821edd2abe0233c8de5a2beec",
-      "size_bytes": 1711
+      "size_bytes": 1711,
+      "sha256": "3ba5cec364046290d695bb73027c8a2a09fc582821edd2abe0233c8de5a2beec"
     },
     {
       "path": "configs/creation_francaise_1.2.38.example.json",
-      "sha256": "de95e550fb0d94b411e3aad74708bd03cce3ee712b968644afbb2ffc92c8558d",
-      "size_bytes": 1711
+      "size_bytes": 1711,
+      "sha256": "de95e550fb0d94b411e3aad74708bd03cce3ee712b968644afbb2ffc92c8558d"
     },
     {
       "path": "configs/creation_francaise_1.2.39.example.json",
-      "sha256": "03d6b03b4e05e6e88c9cb6ccc55020c2c0c257400528f66766da96d2384c8132",
-      "size_bytes": 1711
+      "size_bytes": 1711,
+      "sha256": "03d6b03b4e05e6e88c9cb6ccc55020c2c0c257400528f66766da96d2384c8132"
     },
     {
       "path": "configs/creation_francaise_1.2.40.example.json",
-      "sha256": "b8c2486bad9dba866bdd549f6ae6fc2aed1831b627e8828b7ab4ad4999668b2e",
-      "size_bytes": 1711
+      "size_bytes": 1711,
+      "sha256": "b8c2486bad9dba866bdd549f6ae6fc2aed1831b627e8828b7ab4ad4999668b2e"
     },
     {
       "path": "configs/creation_francaise_1.2.41.example.json",
-      "sha256": "7fe0eef4a304279a20a5781814d703d21bbe5ff78c161a70031c9e295a448d54",
-      "size_bytes": 1711
+      "size_bytes": 1711,
+      "sha256": "7fe0eef4a304279a20a5781814d703d21bbe5ff78c161a70031c9e295a448d54"
     },
     {
       "path": "configs/creation_francaise_1.2.42.example.json",
-      "sha256": "4ff039ad7771ba1e077c4812aa822b5a83af27d13ec8b1f5f2443d4fdc007c40",
-      "size_bytes": 1711
+      "size_bytes": 1711,
+      "sha256": "4ff039ad7771ba1e077c4812aa822b5a83af27d13ec8b1f5f2443d4fdc007c40"
     },
     {
       "path": "configs/creation_francaise_1.2.43.example.json",
-      "sha256": "9066487cb87bc34cdc077e3fb298ff43a0c76e7e13ae5eaeb72b87b8fb6e52a6",
-      "size_bytes": 1711
+      "size_bytes": 1711,
+      "sha256": "9066487cb87bc34cdc077e3fb298ff43a0c76e7e13ae5eaeb72b87b8fb6e52a6"
     },
     {
       "path": "configs/creation_francaise_1.2.44.example.json",
-      "sha256": "78de484e8add1f2a9dd741426b2b55cf53d5270dde270959e129a41e9a4ba4be",
-      "size_bytes": 1711
+      "size_bytes": 1711,
+      "sha256": "78de484e8add1f2a9dd741426b2b55cf53d5270dde270959e129a41e9a4ba4be"
     },
     {
       "path": "configs/creation_francaise_1.2.45.example.json",
-      "sha256": "78edbf06cb2ed907e08cdbdf72d945e46528ce81421cb18c88b6e3db3fcd9b71",
-      "size_bytes": 1711
+      "size_bytes": 1711,
+      "sha256": "78edbf06cb2ed907e08cdbdf72d945e46528ce81421cb18c88b6e3db3fcd9b71"
     },
     {
       "path": "configs/creation_francaise_1.2.46.example.json",
-      "sha256": "10f52a0efaf46bf5f0c909ee5d46e4dbb13ecb04a1df4144c933712a64014876",
-      "size_bytes": 1711
+      "size_bytes": 1711,
+      "sha256": "10f52a0efaf46bf5f0c909ee5d46e4dbb13ecb04a1df4144c933712a64014876"
     },
     {
       "path": "configs/creation_francaise_1.2.47.example.json",
-      "sha256": "58f60710da1a94b2a42b6466d9e6abba6e7454aa30b46a3b3d609dc48d8c4dc2",
-      "size_bytes": 1711
+      "size_bytes": 1711,
+      "sha256": "58f60710da1a94b2a42b6466d9e6abba6e7454aa30b46a3b3d609dc48d8c4dc2"
     },
     {
       "path": "configs/reprise_interlangue_1.2.34.example.json",
-      "sha256": "11844876bdd8d3ee92ca63a7185b4a0efe6831b65b40129da0a0a95cacd936f1",
-      "size_bytes": 1754
+      "size_bytes": 1754,
+      "sha256": "11844876bdd8d3ee92ca63a7185b4a0efe6831b65b40129da0a0a95cacd936f1"
     },
     {
       "path": "configs/reprise_interlangue_1.2.35.example.json",
-      "sha256": "a89ba7ad1cf2cfd75c16edc16d39dccb1d1ec1ed31a8173627df0b2d748b917f",
-      "size_bytes": 1754
+      "size_bytes": 1754,
+      "sha256": "a89ba7ad1cf2cfd75c16edc16d39dccb1d1ec1ed31a8173627df0b2d748b917f"
     },
     {
       "path": "configs/reprise_interlangue_1.2.36.example.json",
-      "sha256": "dac4dc16c7c06bc8b5966d8ab52724cbf9682a25259d8caf02806b6ec2c9e596",
-      "size_bytes": 1754
+      "size_bytes": 1754,
+      "sha256": "dac4dc16c7c06bc8b5966d8ab52724cbf9682a25259d8caf02806b6ec2c9e596"
     },
     {
       "path": "configs/reprise_interlangue_1.2.37.example.json",
-      "sha256": "ed718115ba6161a474b37cdcdecd9522ee2afc2f1c71c59dc19e3f10363614c5",
-      "size_bytes": 1754
+      "size_bytes": 1754,
+      "sha256": "ed718115ba6161a474b37cdcdecd9522ee2afc2f1c71c59dc19e3f10363614c5"
     },
     {
       "path": "configs/reprise_interlangue_1.2.38.example.json",
-      "sha256": "6de5aba05eb288d19b28e63300d34605d34818aa70f653ec648fe69686db3720",
-      "size_bytes": 1754
+      "size_bytes": 1754,
+      "sha256": "6de5aba05eb288d19b28e63300d34605d34818aa70f653ec648fe69686db3720"
     },
     {
       "path": "configs/reprise_interlangue_1.2.39.example.json",
-      "sha256": "b46f32fb3c3b9c6b1424ba6c7210f8178ffd48d11c7b7ab30a21ed107d700fb9",
-      "size_bytes": 1754
+      "size_bytes": 1754,
+      "sha256": "b46f32fb3c3b9c6b1424ba6c7210f8178ffd48d11c7b7ab30a21ed107d700fb9"
     },
     {
       "path": "configs/reprise_interlangue_1.2.40.example.json",
-      "sha256": "1e5061080677a217110f2ab00729fabe5075466033974d52e7d6a8238d6bd878",
-      "size_bytes": 1754
+      "size_bytes": 1754,
+      "sha256": "1e5061080677a217110f2ab00729fabe5075466033974d52e7d6a8238d6bd878"
     },
     {
       "path": "configs/reprise_interlangue_1.2.41.example.json",
-      "sha256": "88f9ae41d3d656768d6718faffb32e503404b72a6cffbe0380cb53d7bbed2b86",
-      "size_bytes": 1754
+      "size_bytes": 1754,
+      "sha256": "88f9ae41d3d656768d6718faffb32e503404b72a6cffbe0380cb53d7bbed2b86"
     },
     {
       "path": "configs/reprise_interlangue_1.2.42.example.json",
-      "sha256": "944800f9a17d8da4751f31cf39d768ed7cd733e2ec0f6a0ec6134eaf2af7bf45",
-      "size_bytes": 1754
+      "size_bytes": 1754,
+      "sha256": "944800f9a17d8da4751f31cf39d768ed7cd733e2ec0f6a0ec6134eaf2af7bf45"
     },
     {
       "path": "configs/reprise_interlangue_1.2.43.example.json",
-      "sha256": "f75e3da3a6e1948ea61fdd868f146680c0ed79ed19fe5ccbaeef1a689da92abb",
-      "size_bytes": 1754
+      "size_bytes": 1754,
+      "sha256": "f75e3da3a6e1948ea61fdd868f146680c0ed79ed19fe5ccbaeef1a689da92abb"
     },
     {
       "path": "docs/BASELINE_FEATURES_2.4.0.json",
-      "sha256": "250a4637c67c31fa218cfd355156a949f1a19f034d6a1941f8644f63a7d93f59",
-      "size_bytes": 35970
+      "size_bytes": 35970,
+      "sha256": "250a4637c67c31fa218cfd355156a949f1a19f034d6a1941f8644f63a7d93f59"
     },
     {
       "path": "families/wikidebates_family.py",
-      "sha256": "115b15c09a098b8947a60dce938f510ceafbe104113a1c2c21f3a6e8ce7df90e",
-      "size_bytes": 529
+      "size_bytes": 529,
+      "sha256": "115b15c09a098b8947a60dce938f510ceafbe104113a1c2c21f3a6e8ce7df90e"
     },
     {
       "path": "pyproject.toml",
-      "sha256": "eaecf83f1f0fc2f710e77802b5c5a2098bd5de875af75a8a77ceffe36bd76dd7",
-      "size_bytes": 143
+      "size_bytes": 143,
+      "sha256": "e59704506ad2fd348d39af97fed6643541ce7a0d699aa87149cc8602afee9f02"
     },
     {
       "path": "root_template/.github/workflows/validate.yml",
-      "sha256": "7575853ace066321cfd4cd09ea619187765bc61de1e5f073801316f57b5a8dc3",
-      "size_bytes": 469
+      "size_bytes": 469,
+      "sha256": "7575853ace066321cfd4cd09ea619187765bc61de1e5f073801316f57b5a8dc3"
     },
     {
       "path": "root_template/.gitignore",
-      "sha256": "9cdbe05bff2336875a6c109efd326381a94c795a6997ad735c98d9aa60d75842",
-      "size_bytes": 490
+      "size_bytes": 490,
+      "sha256": "9cdbe05bff2336875a6c109efd326381a94c795a6997ad735c98d9aa60d75842"
     },
     {
       "path": "root_template/README.md",
-      "sha256": "f88e04d0efd3c4b9f8e920681163cd3ea99e1de1cfe1c76ba84255ab9cd48031",
-      "size_bytes": 1406
+      "size_bytes": 1406,
+      "sha256": "f88e04d0efd3c4b9f8e920681163cd3ea99e1de1cfe1c76ba84255ab9cd48031"
     },
     {
       "path": "root_template/config/wikidebia.example.json",
-      "sha256": "85db4a8cd517534487129e9484b520a8d705e58dc03f15f3866b5aab96d8b8c3",
-      "size_bytes": 312
+      "size_bytes": 312,
+      "sha256": "85db4a8cd517534487129e9484b520a8d705e58dc03f15f3866b5aab96d8b8c3"
     },
     {
       "path": "root_template/requirements-runtime.txt",
-      "sha256": "2a36eb307ac0dac6791353c12d546ee35918cef71f0ebfd8a6923baa18670e02",
-      "size_bytes": 128
+      "size_bytes": 128,
+      "sha256": "2a36eb307ac0dac6791353c12d546ee35918cef71f0ebfd8a6923baa18670e02"
     },
     {
       "path": "root_template/wikidebia",
-      "sha256": "27a8b3e2ace41d9319bfe803f850f3c16a7970e78fe28e0539c1202308b9f348",
-      "size_bytes": 2131
+      "size_bytes": 2131,
+      "sha256": "27a8b3e2ace41d9319bfe803f850f3c16a7970e78fe28e0539c1202308b9f348"
     },
     {
       "path": "scripts/wikidebia_content_review.py",
-      "sha256": "d84ad73b95f7bc469adac8c645604f7ac976c9f36b6264cafce5692831dfb742",
-      "size_bytes": 116385
+      "size_bytes": 133546,
+      "sha256": "f68d50ef33867aa1e546fb6324a3c77ffc191e805b05cb96ebbb45df91d43c44"
     },
     {
       "path": "scripts/wikidebia_corpus_build.py",
-      "sha256": "3cca4226300fbcd427c97f56d01b9fe545b091088d0e04d517df7d868c61e880",
-      "size_bytes": 22968
+      "size_bytes": 22968,
+      "sha256": "3cca4226300fbcd427c97f56d01b9fe545b091088d0e04d517df7d868c61e880"
     },
     {
       "path": "scripts/wikidebia_corpus_init.py",
-      "sha256": "25296c58f247aaa1a4233b91e427851ab975fc2cae1e91eb7eefec5374fbd360",
-      "size_bytes": 42689
+      "size_bytes": 42689,
+      "sha256": "25296c58f247aaa1a4233b91e427851ab975fc2cae1e91eb7eefec5374fbd360"
     },
     {
       "path": "scripts/wikidebia_corpus_promote.py",
-      "sha256": "95bd9c3a34ffda47031b184a265169a30ceadbd79c42e0461f4bfe3237ed3796",
-      "size_bytes": 10242
+      "size_bytes": 10242,
+      "sha256": "95bd9c3a34ffda47031b184a265169a30ceadbd79c42e0461f4bfe3237ed3796"
     },
     {
       "path": "scripts/wikidebia_corpus_review.py",
-      "sha256": "d9df79de497fb76a183d27866001cf9eceddd1416a209286b72b8d168278872d",
-      "size_bytes": 13155
+      "size_bytes": 13155,
+      "sha256": "d9df79de497fb76a183d27866001cf9eceddd1416a209286b72b8d168278872d"
     },
     {
       "path": "scripts/wikidebia_documentary_resources.py",
-      "sha256": "09bbe17b1e39571f5f742fa8ad434833cea95198f575ce712bb8f507ec055f28",
-      "size_bytes": 5801
+      "size_bytes": 5801,
+      "sha256": "09bbe17b1e39571f5f742fa8ad434833cea95198f575ce712bb8f507ec055f28"
     },
     {
       "path": "scripts/wikidebia_editorial_review.py",
-      "sha256": "bc5433802d230ab587a018ee2095c1254ee429427dbba3b7b16adca984f60835",
-      "size_bytes": 69945
+      "size_bytes": 69945,
+      "sha256": "bc5433802d230ab587a018ee2095c1254ee429427dbba3b7b16adca984f60835"
     },
     {
       "path": "scripts/wikidebia_editorial_workspace.py",
-      "sha256": "a1a5ef6928e04240d51cb8a01c2ad6407676860b0f703b47dec05df63d315964",
-      "size_bytes": 36784
+      "size_bytes": 36784,
+      "sha256": "a1a5ef6928e04240d51cb8a01c2ad6407676860b0f703b47dec05df63d315964"
     },
     {
       "path": "scripts/wikidebia_french_checkpoint.py",
-      "sha256": "c364d41841a6fbb5d4a2bff7cc217e9410abd1994b51cc2b6627f73096176a47",
-      "size_bytes": 35005
+      "size_bytes": 35005,
+      "sha256": "c364d41841a6fbb5d4a2bff7cc217e9410abd1994b51cc2b6627f73096176a47"
     },
     {
       "path": "scripts/wikidebia_graph_actions.py",
-      "sha256": "2814dc4d3c9208976f194882f721e362d956e12a274b405e01272b105e1c409c",
-      "size_bytes": 61839
+      "size_bytes": 61839,
+      "sha256": "2814dc4d3c9208976f194882f721e362d956e12a274b405e01272b105e1c409c"
     },
     {
       "path": "scripts/wikidebia_graph_correction.py",
-      "sha256": "8474691043932823d7c667ce549f5307b9d98af45435eca1d86c865ac0c08dd7",
-      "size_bytes": 14832
+      "size_bytes": 14832,
+      "sha256": "8474691043932823d7c667ce549f5307b9d98af45435eca1d86c865ac0c08dd7"
     },
     {
       "path": "scripts/wikidebia_graph_extract.py",
-      "sha256": "c1f9b350ea4c1ab679abb5cd4ec823074cd839016a9f3a845e64d2667845fc03",
-      "size_bytes": 61982
+      "size_bytes": 61982,
+      "sha256": "c1f9b350ea4c1ab679abb5cd4ec823074cd839016a9f3a845e64d2667845fc03"
     },
     {
       "path": "scripts/wikidebia_manage.py",
-      "sha256": "b267201263de337023722a5b80173943c5d86b78aeda0b32187098974dfed7f4",
-      "size_bytes": 119071
+      "size_bytes": 119071,
+      "sha256": "b267201263de337023722a5b80173943c5d86b78aeda0b32187098974dfed7f4"
     },
     {
       "path": "scripts/wikidebia_publish.py",
-      "sha256": "89b9abe8818f1f677029d74f9281d869ce1c769c150955ac43d1471e48f2a610",
-      "size_bytes": 91248
+      "size_bytes": 91248,
+      "sha256": "89b9abe8818f1f677029d74f9281d869ce1c769c150955ac43d1471e48f2a610"
     },
     {
       "path": "scripts/wikidebia_release.py",
-      "sha256": "1f6b4e23cd7381c4b502354075a37cd884eefcb728f61c57737672b06660ac59",
-      "size_bytes": 31587
+      "size_bytes": 31587,
+      "sha256": "1f6b4e23cd7381c4b502354075a37cd884eefcb728f61c57737672b06660ac59"
     },
     {
       "path": "scripts/wikidebia_release_info.py",
-      "sha256": "18ad1fef78bbc4d72a40e43f2effdc28f26641686a88cfa8d0f30fedc7d266b0",
-      "size_bytes": 3382
+      "size_bytes": 3382,
+      "sha256": "18ad1fef78bbc4d72a40e43f2effdc28f26641686a88cfa8d0f30fedc7d266b0"
     },
     {
       "path": "scripts/wikidebia_remote_compare.py",
-      "sha256": "cd54ddf2e6ad1cdd3b24370d61283467eea75cb62320e0aaa0a52932fe830285",
-      "size_bytes": 23786
+      "size_bytes": 23786,
+      "sha256": "cd54ddf2e6ad1cdd3b24370d61283467eea75cb62320e0aaa0a52932fe830285"
     },
     {
       "path": "scripts/wikidebia_remote_execute.py",
-      "sha256": "a7eabba318fb6fa52fab29ca36950a643d5422d21d428f03c6dcd4e8d07e8ee5",
-      "size_bytes": 36523
+      "size_bytes": 36523,
+      "sha256": "a7eabba318fb6fa52fab29ca36950a643d5422d21d428f03c6dcd4e8d07e8ee5"
     },
     {
       "path": "scripts/wikidebia_remote_plan_review.py",
-      "sha256": "26b618314e9822cfad329e0f8cf14d814e4c270d13039d64088fc102ab9739d8",
-      "size_bytes": 24918
+      "size_bytes": 24918,
+      "sha256": "26b618314e9822cfad329e0f8cf14d814e4c270d13039d64088fc102ab9739d8"
     },
     {
       "path": "scripts/wikidebia_render.py",
-      "sha256": "5d6c7d3c2af9d78f8983dbbdc9e02ab3daf6d5d4acbcf114176f98a8744bc2a3",
-      "size_bytes": 59804
+      "size_bytes": 59804,
+      "sha256": "5d6c7d3c2af9d78f8983dbbdc9e02ab3daf6d5d4acbcf114176f98a8744bc2a3"
     },
     {
       "path": "scripts/wikidebia_retro_tag.py",
-      "sha256": "e214946c37f1895ef461279aa46e7747872ad70ca48ae19f38393171746a6f45",
-      "size_bytes": 25153
+      "size_bytes": 25153,
+      "sha256": "e214946c37f1895ef461279aa46e7747872ad70ca48ae19f38393171746a6f45"
     },
     {
       "path": "scripts/wikidebia_review_workflow.py",
-      "sha256": "e736e68b655f8310de77d1ba7f3b59ae3a8ba9757f510c5edbb0140e9d8c3226",
-      "size_bytes": 84962
+      "size_bytes": 85764,
+      "sha256": "f9035175f96963e1e1c8dd90abfaaec7e522280fd5e4c598e8761203a670785f"
     },
     {
       "path": "scripts/wikidebia_semantic_convergence.py",
-      "sha256": "fd6390e30cf7a31b51fdcf9ea8b8f488755b26056fef85bed87659be603c61ea",
-      "size_bytes": 10315
+      "size_bytes": 10315,
+      "sha256": "fd6390e30cf7a31b51fdcf9ea8b8f488755b26056fef85bed87659be603c61ea"
     },
     {
       "path": "scripts/wikidebia_translation_review.py",
-      "sha256": "a1a2dcb3b9a57ef22bc0141c3eb503f65c54645a50f9efadac5b57eac84e8949",
-      "size_bytes": 125856
+      "size_bytes": 125856,
+      "sha256": "a1a2dcb3b9a57ef22bc0141c3eb503f65c54645a50f9efadac5b57eac84e8949"
     },
     {
       "path": "scripts/wikidebia_update.py",
-      "sha256": "571c0105a8f9e1f22e0d60a0892b9fd0454e4bdd48ee0f5640298b8201168465",
-      "size_bytes": 129937
+      "size_bytes": 129937,
+      "sha256": "571c0105a8f9e1f22e0d60a0892b9fd0454e4bdd48ee0f5640298b8201168465"
     },
     {
       "path": "scripts/wikidebia_work_close.py",
-      "sha256": "f08e2348f8099280bdf9c41a19674636c03b33806a63bcce5965fb165012c574",
-      "size_bytes": 29347
+      "size_bytes": 29347,
+      "sha256": "f08e2348f8099280bdf9c41a19674636c03b33806a63bcce5965fb165012c574"
     },
     {
       "path": "tests/conftest.py",
-      "sha256": "fc292cc82f785165837895d6cdcf5b4c87ddeae9a05f731cf6c6635a94013942",
-      "size_bytes": 560
+      "size_bytes": 560,
+      "sha256": "fc292cc82f785165837895d6cdcf5b4c87ddeae9a05f731cf6c6635a94013942"
     },
     {
       "path": "tests/fixtures/translation_semantic_real_cases_1.0.json",
-      "sha256": "75caff7907179e1524c9f641cae95c581b550e87590ee7f2203c1f243d9ab3eb",
-      "size_bytes": 5470
+      "size_bytes": 5470,
+      "sha256": "75caff7907179e1524c9f641cae95c581b550e87590ee7f2203c1f243d9ab3eb"
     },
     {
       "path": "tests/test_config_examples.py",
-      "sha256": "f27b4e7ed3652b4f01752f3216b1252f354fdbfa14dc5fa30f978657179ba7fb",
-      "size_bytes": 1269
+      "size_bytes": 1269,
+      "sha256": "f27b4e7ed3652b4f01752f3216b1252f354fdbfa14dc5fa30f978657179ba7fb"
     },
     {
       "path": "tests/test_current_validator_contract.py",
-      "sha256": "7d91aa792e2876767c31775d1450cf93309fb077797b9c7eaa7de294fc8a6783",
-      "size_bytes": 1519
+      "size_bytes": 1519,
+      "sha256": "7d91aa792e2876767c31775d1450cf93309fb077797b9c7eaa7de294fc8a6783"
     },
     {
       "path": "tests/test_editorial_orchestration_2160.py",
-      "sha256": "7664d608882e18453caf16a892eeb232064031c4ec91088affb9386696ce513c",
-      "size_bytes": 45776
+      "size_bytes": 45776,
+      "sha256": "7664d608882e18453caf16a892eeb232064031c4ec91088affb9386696ce513c"
     },
     {
       "path": "tests/test_future_translation_conventions_21541.py",
-      "sha256": "eea435752b16580a9bff7c58f188a5f748fdef60ecdcae944355a8d0ae9051ee",
-      "size_bytes": 977
+      "size_bytes": 977,
+      "sha256": "eea435752b16580a9bff7c58f188a5f748fdef60ecdcae944355a8d0ae9051ee"
     },
     {
       "path": "tests/test_graph_rejection_correction_2163.py",
-      "sha256": "477437d0c901b3854ce3bad0026fd85003229754c48a8ee46cb2229d0b8e4270",
-      "size_bytes": 12602
+      "size_bytes": 12602,
+      "sha256": "477437d0c901b3854ce3bad0026fd85003229754c48a8ee46cb2229d0b8e4270"
     },
     {
       "path": "tests/test_graph_review_actions_2164.py",
-      "sha256": "11425311e6d3922d19a7f4a5c2010b48d6a5e13e65905386a85054f732563e55",
-      "size_bytes": 19331
+      "size_bytes": 19331,
+      "sha256": "11425311e6d3922d19a7f4a5c2010b48d6a5e13e65905386a85054f732563e55"
+    },
+    {
+      "path": "tests/test_historical_selected_value_21618.py",
+      "size_bytes": 9528,
+      "sha256": "560fe2bf7dff9457ab71706fe490b6a99ea6b2239edca9c3353bb8a032554d6a"
     },
     {
       "path": "tests/test_historical_text_owner_consent_21617.py",
-      "sha256": "7d8fbba5e853475795d8f7a61485867b4f6bf7ebed789c0c1ef92abe1e5ebea5",
-      "size_bytes": 8185
+      "size_bytes": 8185,
+      "sha256": "7d8fbba5e853475795d8f7a61485867b4f6bf7ebed789c0c1ef92abe1e5ebea5"
     },
     {
       "path": "tests/test_multiline_parser_21550.py",
-      "sha256": "313042eab7e36095d359432bb7ff54a96b42cd7a2b3cb74419a720a0704403a2",
-      "size_bytes": 854
+      "size_bytes": 854,
+      "sha256": "313042eab7e36095d359432bb7ff54a96b42cd7a2b3cb74419a720a0704403a2"
     },
     {
       "path": "tests/test_norm_1238_atomic_keywords.py",
-      "sha256": "71e869a4f609f3ea7f3ee0e6ac76d9144ab4edd438c6cb2f39aafecaa9a11dec",
-      "size_bytes": 4607
+      "size_bytes": 4607,
+      "sha256": "71e869a4f609f3ea7f3ee0e6ac76d9144ab4edd438c6cb2f39aafecaa9a11dec"
     },
     {
       "path": "tests/test_package_file_modes.py",
-      "sha256": "18e6903f62ee9b182e3a448a6d2ba6248898b1d30bcc25e8fcaa57bf38b63f66",
-      "size_bytes": 1873
+      "size_bytes": 1873,
+      "sha256": "18e6903f62ee9b182e3a448a6d2ba6248898b1d30bcc25e8fcaa57bf38b63f66"
     },
     {
       "path": "tests/test_parameter_preservation_1250.py",
-      "sha256": "ac8784755c85d0afd2fc2be53bd0b952cd6d0273b4818f4b7a097a720096baac",
-      "size_bytes": 10960
+      "size_bytes": 10960,
+      "sha256": "ac8784755c85d0afd2fc2be53bd0b952cd6d0273b4818f4b7a097a720096baac"
     },
     {
       "path": "tests/test_parameter_renames_21553.py",
-      "sha256": "a00eabd1cd06503586f2ce333fa27fcd1748bcb1fa8c10c06f631968c5d378ed",
-      "size_bytes": 6038
+      "size_bytes": 6038,
+      "sha256": "a00eabd1cd06503586f2ce333fa27fcd1748bcb1fa8c10c06f631968c5d378ed"
     },
     {
       "path": "tests/test_reconciliation_21546.py",
-      "sha256": "19212571639e93802ebd087918c921f4b091aeb55e54bc8d212a24c81f6e8fd3",
-      "size_bytes": 1945
+      "size_bytes": 1945,
+      "sha256": "35307047859d2bc15ea959307618f427ac96ee5f730053de604e83c3bee069a2"
     },
     {
       "path": "tests/test_reconciliation_21547.py",
-      "sha256": "b70866ccf0999b35f94aa4277ad5f099d03f85c63a4cf85cfdf5fcdf87183c47",
-      "size_bytes": 2075
+      "size_bytes": 2075,
+      "sha256": "b70866ccf0999b35f94aa4277ad5f099d03f85c63a4cf85cfdf5fcdf87183c47"
     },
     {
       "path": "tests/test_reconciliation_21548.py",
-      "sha256": "155f60a5262989149511d40b4838033e0b16de07917b56b22094a593ed827125",
-      "size_bytes": 879
+      "size_bytes": 879,
+      "sha256": "155f60a5262989149511d40b4838033e0b16de07917b56b22094a593ed827125"
     },
     {
       "path": "tests/test_reconciliation_21549.py",
-      "sha256": "bf98e76e493c6bc7ed26e23825253f77daf44358ad27feea357273454edb644f",
-      "size_bytes": 734
+      "size_bytes": 734,
+      "sha256": "bf98e76e493c6bc7ed26e23825253f77daf44358ad27feea357273454edb644f"
     },
     {
       "path": "tests/test_reconciliation_21554.py",
-      "sha256": "403f14be137d341c171b79f587ef5942ec15ebf700c80caee93140ba4c724530",
-      "size_bytes": 705
+      "size_bytes": 705,
+      "sha256": "403f14be137d341c171b79f587ef5942ec15ebf700c80caee93140ba4c724530"
     },
     {
       "path": "tests/test_reference_note_punctuation_1244.py",
-      "sha256": "748cea9b52dc14ed479ad83d592b189df247868da98871a1687a453f7e5a2858",
-      "size_bytes": 1304
+      "size_bytes": 1304,
+      "sha256": "748cea9b52dc14ed479ad83d592b189df247868da98871a1687a453f7e5a2858"
     },
     {
       "path": "tests/test_semantic_contract_21550.py",
-      "sha256": "4293c26fa610f538919139ab7b22fd586f0499e4dca50b1676b51a22a54ce2d7",
-      "size_bytes": 4342
+      "size_bytes": 4342,
+      "sha256": "4293c26fa610f538919139ab7b22fd586f0499e4dca50b1676b51a22a54ce2d7"
     },
     {
       "path": "tests/test_semantic_convergence_21550.py",
-      "sha256": "f8bf73681ff09950ddb4606ac77d84083eff9697453fd722f45a7bd5cd253955",
-      "size_bytes": 6337
+      "size_bytes": 6337,
+      "sha256": "f8bf73681ff09950ddb4606ac77d84083eff9697453fd722f45a7bd5cd253955"
     },
     {
       "path": "tests/test_semantic_regression_corpus_21551.py",
-      "sha256": "f22b3980afb948061e2d429a7e7fc9c6d35cf9f0ded0e2a3fa2b48816eda445f",
-      "size_bytes": 1557
+      "size_bytes": 1557,
+      "sha256": "f22b3980afb948061e2d429a7e7fc9c6d35cf9f0ded0e2a3fa2b48816eda445f"
     },
     {
       "path": "tests/test_source_240_feature_baseline.py",
-      "sha256": "1b6ff2e0084492b92350897444ce7455be48210859770e12857a3456c5ebca9f",
-      "size_bytes": 7671
+      "size_bytes": 7671,
+      "sha256": "1b6ff2e0084492b92350897444ce7455be48210859770e12857a3456c5ebca9f"
     },
     {
       "path": "tests/test_two_french_checkpoints_21614.py",
-      "sha256": "d8c23a3e9963bd22ef3906b21523cc12f88e1b8bb1ec07e2b92c2f54e9a6dede",
-      "size_bytes": 5092
+      "size_bytes": 5092,
+      "sha256": "d8c23a3e9963bd22ef3906b21523cc12f88e1b8bb1ec07e2b92c2f54e9a6dede"
     },
     {
       "path": "tests/test_update_archive_autoselection_12141.py",
-      "sha256": "b6c73472b30d9f3623da854276a6802c70c6197953418828038efe84a0f7db27",
-      "size_bytes": 1503
+      "size_bytes": 1503,
+      "sha256": "b6c73472b30d9f3623da854276a6802c70c6197953418828038efe84a0f7db27"
     },
     {
       "path": "tests/test_version_agnostic_architecture.py",
-      "sha256": "ac082a10bdf970bc69dbddb5007b557182d508ef107e223eab5cf11340ef405d",
-      "size_bytes": 3844
+      "size_bytes": 3844,
+      "sha256": "ac082a10bdf970bc69dbddb5007b557182d508ef107e223eab5cf11340ef405d"
     },
     {
       "path": "tests/test_version_history_labels_21554.py",
-      "sha256": "4b8952d55dee3b213d32c420b7127716224e97bd49274a1b3b6a65ffff3cae6e",
-      "size_bytes": 1075
+      "size_bytes": 1075,
+      "sha256": "4b8952d55dee3b213d32c420b7127716224e97bd49274a1b3b6a65ffff3cae6e"
     },
     {
       "path": "tests/test_versions_file.py",
-      "sha256": "f6b78e50c6a51bb230639eef5ef19a1ada98fbbe281cedecbccdbff36a78bdef",
-      "size_bytes": 2648
+      "size_bytes": 2648,
+      "sha256": "f6b78e50c6a51bb230639eef5ef19a1ada98fbbe281cedecbccdbff36a78bdef"
     },
     {
       "path": "tests/test_wikidebia_content_review.py",
-      "sha256": "d89c237e1e849d928c1f70c40289f596512d6f6ece98927ecdfee3a2f4361316",
-      "size_bytes": 45646
+      "size_bytes": 47680,
+      "sha256": "97fcd3d1f8b636fdc70fdd27027cb94fcda9c0aba6b2384a7b9b34d09e2598be"
     },
     {
       "path": "tests/test_wikidebia_corpus_init.py",
-      "sha256": "188654dcf8d1c711a556825e5a2f4fd100caeb767f6d558981ae1cbfb0b1dae8",
-      "size_bytes": 12274
+      "size_bytes": 12274,
+      "sha256": "188654dcf8d1c711a556825e5a2f4fd100caeb767f6d558981ae1cbfb0b1dae8"
     },
     {
       "path": "tests/test_wikidebia_corpus_review.py",
-      "sha256": "7716ed571ea337a2cb92e123c7ede64264876b596178c48507d14de0baa6c79a",
-      "size_bytes": 11786
+      "size_bytes": 11786,
+      "sha256": "7716ed571ea337a2cb92e123c7ede64264876b596178c48507d14de0baa6c79a"
     },
     {
       "path": "tests/test_wikidebia_documentary_resources.py",
-      "sha256": "0d5bc8f41a5dec54db749e9f33993e5021ba92990367305c08749d9f701e49c8",
-      "size_bytes": 2000
+      "size_bytes": 2000,
+      "sha256": "0d5bc8f41a5dec54db749e9f33993e5021ba92990367305c08749d9f701e49c8"
     },
     {
       "path": "tests/test_wikidebia_editorial_review.py",
-      "sha256": "b9ed6f315439334205fdc38b520f6d08b1de8bb8c8c6b9049ea956df51698078",
-      "size_bytes": 28623
+      "size_bytes": 28623,
+      "sha256": "b9ed6f315439334205fdc38b520f6d08b1de8bb8c8c6b9049ea956df51698078"
     },
     {
       "path": "tests/test_wikidebia_editorial_workspace.py",
-      "sha256": "0f4866547246203625cee27992719f4cb2eba8399c857b290695c9512db79908",
-      "size_bytes": 6989
+      "size_bytes": 6989,
+      "sha256": "0f4866547246203625cee27992719f4cb2eba8399c857b290695c9512db79908"
     },
     {
       "path": "tests/test_wikidebia_graph_extract.py",
-      "sha256": "02fec9c6fe0402e8f737acb608583aad8867955bfcd97a142b487248667cd032",
-      "size_bytes": 12194
+      "size_bytes": 12194,
+      "sha256": "02fec9c6fe0402e8f737acb608583aad8867955bfcd97a142b487248667cd032"
     },
     {
       "path": "tests/test_wikidebia_manage.py",
-      "sha256": "3fe21de272b2e57bc384c30e8d3f3ec896096dc51ce667f8cba2b2f40b9f1353",
-      "size_bytes": 52460
+      "size_bytes": 52460,
+      "sha256": "3fe21de272b2e57bc384c30e8d3f3ec896096dc51ce667f8cba2b2f40b9f1353"
     },
     {
       "path": "tests/test_wikidebia_norm_131.py",
-      "sha256": "45b374340159137ff32f0976b64fbc8da87a3acb6b08bb369dc6f9e1a0bcdadd",
-      "size_bytes": 943
+      "size_bytes": 943,
+      "sha256": "45b374340159137ff32f0976b64fbc8da87a3acb6b08bb369dc6f9e1a0bcdadd"
     },
     {
       "path": "tests/test_wikidebia_norm_132.py",
-      "sha256": "cbe175774a820eeb6fc061234d3c3dc6f018b73bff232f78c008932c31a59175",
-      "size_bytes": 1451
+      "size_bytes": 1451,
+      "sha256": "cbe175774a820eeb6fc061234d3c3dc6f018b73bff232f78c008932c31a59175"
     },
     {
       "path": "tests/test_wikidebia_publish.py",
-      "sha256": "375230f62a6187a4e1cc55d14120d7f99806d3d40ac14f9ba6b8908d3e03df1c",
-      "size_bytes": 54665
+      "size_bytes": 54665,
+      "sha256": "375230f62a6187a4e1cc55d14120d7f99806d3d40ac14f9ba6b8908d3e03df1c"
     },
     {
       "path": "tests/test_wikidebia_release.py",
-      "sha256": "72c56187ca44e70c4a7bfca174715cd1c56578f43065a8d7bfe4fafb29226695",
-      "size_bytes": 6980
+      "size_bytes": 6980,
+      "sha256": "72c56187ca44e70c4a7bfca174715cd1c56578f43065a8d7bfe4fafb29226695"
     },
     {
       "path": "tests/test_wikidebia_remote_compare.py",
-      "sha256": "ac61b90ec7b7c438d4da01262546b9fbbe57989a32b205cbc6e95340ba178ea3",
-      "size_bytes": 11877
+      "size_bytes": 11877,
+      "sha256": "ac61b90ec7b7c438d4da01262546b9fbbe57989a32b205cbc6e95340ba178ea3"
     },
     {
       "path": "tests/test_wikidebia_remote_execute.py",
-      "sha256": "2d0841f9c45bf366df4518d225a7c649c2d84a4717a6f351c0f6c7b6d18e5229",
-      "size_bytes": 15408
+      "size_bytes": 15408,
+      "sha256": "2d0841f9c45bf366df4518d225a7c649c2d84a4717a6f351c0f6c7b6d18e5229"
     },
     {
       "path": "tests/test_wikidebia_remote_plan_review.py",
-      "sha256": "e28e6921d98e9534c11b9675b9f42301fe17cb19aa54b6d73d41805566b4f254",
-      "size_bytes": 10653
+      "size_bytes": 10653,
+      "sha256": "e28e6921d98e9534c11b9675b9f42301fe17cb19aa54b6d73d41805566b4f254"
     },
     {
       "path": "tests/test_wikidebia_remote_update.py",
-      "sha256": "1e62a651895aaf0f4878c646c0b2977c2e6316d1d22c0eeec04fc4e1959d884d",
-      "size_bytes": 46277
+      "size_bytes": 46277,
+      "sha256": "1e62a651895aaf0f4878c646c0b2977c2e6316d1d22c0eeec04fc4e1959d884d"
     },
     {
       "path": "tests/test_wikidebia_render.py",
-      "sha256": "75bdfb91d401b379ab9e4ecabe259af915a3679af5c6714ba1f1154998a28c24",
-      "size_bytes": 14134
+      "size_bytes": 14134,
+      "sha256": "75bdfb91d401b379ab9e4ecabe259af915a3679af5c6714ba1f1154998a28c24"
     },
     {
       "path": "tests/test_wikidebia_retro_tag.py",
-      "sha256": "cdf805717acf621b659f3bbcf8bde25f98b358f37d158e981e14accf1a43ebd2",
-      "size_bytes": 9592
+      "size_bytes": 9592,
+      "sha256": "cdf805717acf621b659f3bbcf8bde25f98b358f37d158e981e14accf1a43ebd2"
     },
     {
       "path": "tests/test_wikidebia_translation_review.py",
-      "sha256": "841cc4b72ab168caec3c480bfa0cc73bf5623f7e4a03c5b12f10819f448927c9",
-      "size_bytes": 49497
+      "size_bytes": 49497,
+      "sha256": "841cc4b72ab168caec3c480bfa0cc73bf5623f7e4a03c5b12f10819f448927c9"
     },
     {
       "path": "tests/test_wikidebia_work_close.py",
-      "sha256": "a4fdd52c5aeeb00e1413133a4a5b9f6dc8c9c32c6f8c524bec1cac231fbd0ca0",
-      "size_bytes": 7206
+      "size_bytes": 7206,
+      "sha256": "a4fdd52c5aeeb00e1413133a4a5b9f6dc8c9c32c6f8c524bec1cac231fbd0ca0"
     }
   ]
 }

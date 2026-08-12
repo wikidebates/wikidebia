@@ -214,3 +214,49 @@ def test_consent_lock_historical_absence_cannot_be_created_while_preserved(tmp_p
     dump(tmp_path/"data/fr_content_lock.json",lock)
     report=validate_package(tmp_path,scopes=["wikicode"])
     assert any(f.code=="WDV-EDT-034" for f in report.findings)
+
+
+def _upgrade_consent_lock_to_v3_scope(root: Path, field_key: str, scope: dict) -> None:
+    lock_path=root/"data/fr_content_lock.json"
+    lock=json.loads(lock_path.read_text(encoding="utf-8"))
+    decisions=lock["historical_text_decisions"]
+    decisions["policy"]="preserve_by_default_owner_authorized_v3"
+    if field_key.startswith("debate:"):
+        row=decisions["debate"]
+    else:
+        page_id=field_key.split(":",2)[1]
+        row=next(x for x in decisions["arguments"] if x["id"]==page_id)
+    row["change_scope"]=scope
+    receipt_path=decisions.get("authorization_receipt_path")
+    if receipt_path:
+        receipt=json.loads((root/receipt_path).read_text(encoding="utf-8"))
+        rr=next(x for x in receipt["changes"] if x["field_key"]==field_key)
+        rr["change_scope"]=scope
+        if isinstance(row.get("authorization"),dict):
+            row["authorization"]["change_scope"]=scope
+            row["authorization"]["change_type"]=rr.get("change_type")
+        receipt["authorization_sha256"]=_canonical_sha(receipt)
+        dump(root/receipt_path,receipt)
+        decisions["authorization_receipt_sha256"]=hashlib.sha256((root/receipt_path).read_bytes()).hexdigest()
+    dump(lock_path,lock)
+
+
+def test_consent_v3_authorized_introduction_requires_matching_structured_scope(tmp_path: Path):
+    create_fr_package(tmp_path); debate_page,_=_attach_consent_lock(tmp_path,authorize_intro=True)
+    field_key=f"debate:{json.loads((tmp_path/'manifest.json').read_text())['debate_id']}:introduction"
+    scope={
+        "mode":"subsections",
+        "historical_titles":["Contexte"],
+        "final_titles":["Contexte","Enjeux du débat"],
+        "added":[{"title":"Enjeux du débat","occurrence":1}],
+        "modified":[],"removed":[],"reordered":False,
+    }
+    _upgrade_consent_lock_to_v3_scope(tmp_path,field_key,scope)
+    report=validate_package(tmp_path,scopes=["wikicode"])
+    assert not any(f.code=="WDV-EDT-034" for f in report.findings)
+
+    lock=json.loads((tmp_path/"data/fr_content_lock.json").read_text())
+    lock["historical_text_decisions"]["debate"]["change_scope"]={"mode":"whole_field"}
+    dump(tmp_path/"data/fr_content_lock.json",lock)
+    report=validate_package(tmp_path,scopes=["wikicode"])
+    assert any(f.code=="WDV-EDT-034" and "Portée" in f.message for f in report.findings)

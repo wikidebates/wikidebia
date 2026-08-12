@@ -1,3 +1,9 @@
+# Wikidéb’IA Kit 2.16.18
+
+Le kit 2.16.18 corrige la sélection et la validation d’un texte historique après consentement propriétaire. L’historique reste la provenance, mais il n’est plus utilisé comme valeur effective lorsqu’un `authorized_change` valide existe : l’introduction ou le résumé final autorisé devient la valeur éditoriale sélectionnée utilisée par les contrôles structurels, `fr_content_lock.json`, le changeset, le rendu, le checkpoint français n°2 et la traduction.
+
+Pour l’introduction, le consentement v3 peut sceller un delta structuré de sous-parties (`added`, `modified`, `removed`, `reordered`). Une autorisation limitée à l’ajout de `Enjeux du débat` ne couvre donc aucune modification parasite d’une sous-partie historique. Les règles éditoriales de création sont appliquées différentiellement aux seules sous-parties ajoutées ou substantiellement réécrites ; les sous-parties historiques inchangées ne sont pas requalifiées comme nouvelles. Les reçus 2.16.17 à portée de champ entier restent lisibles et liés à leur valeur finale exacte.
+
 # Wikidéb’IA Kit 2.16.17
 
 Le kit 2.16.17 remplace la protection absolue des textes historiques introduite en 2.16.16 par un contrat de **consentement explicite et scoped**. Sur une page `preexisting`, l’introduction et les résumés restent identiques par défaut et une absence historique de résumé reste une absence. ChatGPT peut toutefois enregistrer des suggestions. Si le propriétaire approuve précisément un ou plusieurs deltas pendant `fr_content_review`, le même paquet peut demander leur ouverture et `review-import --authorize-historical-changes` crée localement, hors du ZIP éditable, une preuve liée au paquet exact, aux champs et aux SHA avant/après.

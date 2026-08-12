@@ -554,12 +554,23 @@ def _set_reviewed_historical_text(workspace: Path, *, intro: str | None = None, 
     provenance_path = reviewed / "data/import_provenance.json"
     provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
     for row in provenance["pages"]:
-        if intro is not None and row.get("page_type") == "debate":
+        if intro is not None and row.get("kind") == "debate":
             page = reviewed / row["import_path"]
             text = page.read_text(encoding="utf-8")
             parsed = content.iter_templates(text)[0]
             old = parsed.get("introduction") or ""
-            text = text.replace(f"|introduction={old}", f"|introduction={intro}", 1)
+            if "introduction" in parsed.params:
+                text = text.replace(f"|introduction={old}", f"|introduction={intro}", 1)
+            else:
+                # The compact fixture has no introduction parameter at all.
+                # Insert it into the outer Debate template instead of relying
+                # on a replacement of a non-existent empty parameter.
+                newline = "\n" if text.endswith("\n") else ""
+                body = text[:-1] if newline else text
+                if not body.endswith("}}"):
+                    raise AssertionError("Fixture Débat inattendue")
+                body = body[:-2] + "|introduction=" + intro + "}}"
+                text = body + newline
             page.write_text(text, encoding="utf-8")
             row["sha256"] = __import__("hashlib").sha256(page.read_bytes()).hexdigest()
             row["size_bytes"] = page.stat().st_size
@@ -774,9 +785,22 @@ def test_authorized_introduction_adds_stakes_subsection_without_third_publicatio
     old="{{Sous-partie|titre=Contexte|contenu=Texte historique.}}"; _set_reviewed_historical_text(workspace,intro=old)
     content.prepare_review(project,"debat_test",work_id); complete_content_review(workspace)
     path=workspace/"reviews/fr/content_review.json"; data=json.loads(path.read_text()); rev=data["debate"]["review"]
-    final=old+"{{Sous-partie|titre=Enjeux du débat|contenu=Incidences concrètes explicitement demandées par le propriétaire.}}"
-    rev["introduction_decision"]="change"; rev["proposed_introduction"]=final; rev["subsections"]=[{"title":"Contexte"},{"title":"Enjeux du débat"}]
+    stakes=(
+        "Le choix d’un dispositif de vote modifie concrètement la manière dont les citoyens peuvent participer et contrôler le scrutin. "
+        "Une panne ou une faille peut empêcher des électeurs de voter, retarder la proclamation des résultats ou fragiliser la confiance dans leur exactitude. "
+        "À l’inverse, un système accessible à distance peut faciliter la participation de personnes éloignées ou empêchées. "
+        "Le débat porte donc aussi sur la continuité du service électoral, l’accessibilité du vote et la confiance publique dans le résultat."
+    )
+    final=old+f"{{{{Sous-partie|titre=Enjeux du débat|contenu={stakes}}}}}"
+    rev["introduction_decision"]="change"; rev["proposed_introduction"]=final
+    rev["subsections"]=[
+        {"title":"Contexte"},
+        {"title":"Enjeux du débat","purpose":"Présenter les incidences concrètes nécessaires à la compréhension du désaccord.","necessary_for_understanding":True,"technical_or_specialized":False,"relevance_to_debate_explained":False,"stakes_section":True,"concrete_stakes":["Continuité et accessibilité concrète du service électoral pour les citoyens.","Confiance publique dans l’exactitude et la légitimité du résultat électoral."]},
+    ]
+    rev["specialized_term_inventory"]=[{"subsection_title":"Enjeux du débat","scan_complete":True,"scan_note":"La nouvelle sous-partie a été relue intégralement et ne contient pas de notion spécialisée nécessitant un traitement supplémentaire.","terms":[]}]
+    rev["terminal_period_sentence_exceptions"]=[]
     _request_historical_change(rev, field_key="debate:debat_test:introduction", final_value=final, change_type="structure")
+    rev["historical_change_request"]["change_scope"]=content._subsection_change_scope(old,final)
     common.write_json(path,data); _write_direct_owner_authorization(workspace,data); content.finalize_review(project,"debat_test",work_id)
     sealed=json.loads(path.read_text()); assert "Enjeux du débat" in sealed["final_values"]["debate"]["introduction"]
 

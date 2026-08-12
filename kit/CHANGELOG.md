@@ -232,3 +232,13 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - conserve l’absence historique d’un résumé sauf création nominativement autorisée et n’applique pas rétroactivement les règles stylistiques de création à une correction locale ;
 - normalise les anciennes revues supportées par schéma/données, conserve leurs autres décisions et transforme les deltas automatiques non autorisés en suggestions ;
 - traduit ensuite la version française finale effectivement autorisée.
+
+## 2.16.18 — 12 août 2026 — valeur finale sélectionnée et portée différentielle des textes historiques
+
+- utilise la valeur finale autorisée comme valeur éditoriale effective après `authorized_change`, l’historique restant uniquement la provenance ;
+- fait travailler `review.subsections`, les contrôles structurels, le verrou, le changeset, le rendu, le checkpoint français n°2 et la traduction sur cette valeur sélectionnée ;
+- ajoute une portée structurée des introductions historiques (`added`, `modified`, `removed`, `reordered`) et bloque tout delta parasite hors portée ;
+- applique les contrôles de création/réécriture uniquement aux sous-parties ajoutées ou substantiellement modifiées, sans requalifier les sous-parties historiques inchangées ;
+- conserve la compatibilité des reçus de consentement 2.16.17 à portée de champ entier ;
+- ajoute une régression d’intégration reproduisant le vote électronique : 4 sous-parties historiques + ajout autorisé de `Enjeux du débat` → verrou historique/final, changeset et checkpoint 2 à 5 sous-parties ; le même delta sans autorisation est bloqué.
+

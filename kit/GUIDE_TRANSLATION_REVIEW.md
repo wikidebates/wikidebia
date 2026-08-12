@@ -20,7 +20,7 @@ Ces tailles sont des bornes de qualité de travail, non des quotas de contenu. U
 
 Pour la rédaction de la traduction, **faire comme si la page anglaise cible n'existait pas**. Une éventuelle page anglaise déjà publiée ne sert pas de source pour le texte, les titres, le plan, `progress`, les avertissements, les références ou les relations. Le corpus français validé est la source éditoriale. Les contrôles techniques distants nécessaires à une future publication restent séparés de cette règle.
 
-Lorsqu’un résumé français est marqué `historical_existing`, sa forme historique préservée reste autoritative même si elle ne satisfait pas les règles de rédaction d’un nouveau résumé. La traduction anglaise doit rester fidèle à ce texte et les exigences de création ne doivent pas être utilisées pour l’allonger ou le réécrire silencieusement. Lorsqu’il est `historical_absent`, `summary=` reste absent en anglais.
+Lorsqu’un résumé français est marqué `historical_existing` avec décision `preserved`, sa forme historique préservée reste autoritative même si elle ne satisfait pas les règles de rédaction d’un nouveau résumé. Avec `authorized_change`, la valeur française finale autorisée dans `fr_content_lock.json` devient au contraire la source autoritative de la traduction, sans que cette autorisation ne requalifie les autres textes historiques. La traduction anglaise doit rester fidèle à ce texte et les exigences de création ne doivent pas être utilisées pour l’allonger ou le réécrire silencieusement. Lorsqu’il est `historical_absent`, `summary=` reste absent en anglais.
 
 Traduire les métadonnées réellement présentes, sans appliquer les valeurs de création par défaut :
 

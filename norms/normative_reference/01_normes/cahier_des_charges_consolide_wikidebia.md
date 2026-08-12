@@ -616,3 +616,9 @@ Les versions de producteur sont de la provenance. Les workflows actifs détermin
 - **VAL-063 — ACTIVE — automatic** : Le validateur refuse `authorized_change` sans reçu de workflow valide, refuse un rendu divergent du SHA final autorisé et refuse toute modification de champ historique non couvert par la portée du reçu.
 
 - **TRN-035 — ACTIVE — automatic+human** : La traduction anglaise part du texte français final effectivement autorisé ; un résumé historique préservé est traduit tel quel, un résumé historique autorisé utilise sa version finale, et une absence historique reste absente sauf création française nominativement autorisée.
+
+- **EDT-075 — ACTIVE — automatic+human** : Pour un texte historique protégé, l’historique est la provenance ; la valeur éditoriale effective est l’historique avec `preserved` et la valeur finale explicitement autorisée avec `authorized_change`.
+
+- **VAL-064 — ACTIVE — automatic** : Les contrôles structurels utilisent la valeur finale sélectionnée ; une portée structurée d’introduction doit correspondre exactement au delta, et les règles de création ne s’appliquent qu’aux portions ajoutées ou substantiellement réécrites.
+
+- **PUB-054 — ACTIVE — automatic** : Le checkpoint français n°2 publie la valeur finale historique autorisée et son delta individualisé, sans troisième frontière de publication et sans modifier les portions historiques hors portée.

@@ -1,8 +1,9 @@
-Wikidéb’IA Normes 1.2.83 — audit de cohérence normative
+Wikidéb’IA Normes 1.2.85 — audit de cohérence normative
 Statut : PASSED
-Norme active unique : 1.2.83 ; norme 1.2.81 archivée exactement avant remplacement.
-Préservation historique : introduction et résumés des pages preexisting verrouillés à leur valeur importée ; absence historique de résumé conservée.
-Checkpoint français 1 : graphe/titres uniquement, contenu historique inchangé.
-Checkpoint français 2 : classification, documentation et autres contenus ouverts ; delta introduction/résumé historique interdit dans une reprise ordinaire.
-Exigences ajoutées : EDT-073, PUB-052, VAL-062.
-Réécriture volontaire : uniquement par opération corrective distincte explicitement autorisée par le propriétaire.
+Norme active unique : 1.2.85 ; norme 1.2.84 archivée avant remplacement.
+Principe : provenance historique distincte de la valeur éditoriale sélectionnée.
+`preserved` → historique ; `authorized_change` → valeur finale explicitement autorisée.
+Portée structurée d’introduction : added/modified/removed/reordered.
+Validation différentielle : règles de création limitées aux portions ajoutées ou substantiellement réécrites.
+Checkpoint français 2 : publie la valeur finale autorisée sans troisième publication.
+Exigences ajoutées : EDT-075, VAL-064, PUB-054.

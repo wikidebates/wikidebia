@@ -156,3 +156,13 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - compare le rendu à l’empreinte historique pour `preserved` et à l’empreinte finale autorisée pour `authorized_change` ;
 - refuse une fausse autorisation, un delta hors portée et une création historique absente non autorisée ;
 - conserve la validation différentielle de la traduction à partir de la version française finale autorisée.
+
+## 0.4.89 — 12 août 2026 — validation de la valeur sélectionnée et de la portée structurée
+
+- aligne `WDV-EDT-034` sur le contrat de consentement v3 ;
+- exige, pour un nouveau `authorized_change`, la concordance exacte de `change_type` et `change_scope` entre verrou, autorisation et reçu local ;
+- vérifie que le rendu correspond à la valeur finale autorisée, l’historique restant la provenance ;
+- conserve la lecture tolérante des reçus 2.16.17/v2 dépourvus de portée structurée ;
+- ajoute une régression positive de portée structurée et une régression négative de divergence de portée ;
+- conserve tous les contrôles de non-régression, de traduction différentielle et des deux checkpoints français.
+

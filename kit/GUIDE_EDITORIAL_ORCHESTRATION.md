@@ -57,7 +57,7 @@ Le retour doit conserver exactement cette structure. Les fichiers de contexte, l
 Le cycle courant couvre successivement :
 
 1. **revue combinée graphe + titres** : placements/relations, suppressions/fusions/déplacements, titres canoniques et titres affichés ; son réimport déclenche immédiatement le **checkpoint 1 graphe/titres** ;
-2. **revue de contenu** : rubriques, mots-clés et documentation française ; l’introduction et les résumés des pages `preexisting` sont fournis en contexte mais verrouillés à leur valeur historique (absence comprise), tandis que les textes nouveaux ou séparément autorisés restent éditables ; son réimport déclenche le **checkpoint 2 contenu** ;
+2. **revue de contenu** : rubriques, mots-clés et documentation française ; l’introduction et les résumés des pages `preexisting` sont préservés par défaut, mais un delta explicitement autorisé sélectionne la valeur finale correspondante ; son réimport déclenche le **checkpoint 2 contenu** ;
 3. traduction et documentation anglaises, y compris la recherche d'`established-name=` lorsqu'elle s'applique ;
 4. première passe de convergence sémantique ;
 5. deuxième passe indépendante de convergence.
@@ -104,7 +104,7 @@ Les actions de graphe exécutées explicitement avec `--execute-graph-actions` c
 
 ### Protection des textes historiques dans `fr_content_review`
 
-Lors d’une reprise de pages existantes, l’introduction et les résumés historiques sont préservés par défaut. Le paquet peut enregistrer des suggestions sans les appliquer. Lorsqu’un delta historique est précisément demandé dans le ZIP, `review-import` exige une action propriétaire explicite : relancer le même paquet avec `--authorize-historical-changes` crée hors du ZIP une preuve scoped et permet la modification dans la même `fr_content_review`. L’absence historique d’un résumé demeure une absence sauf création nominativement autorisée. Le delta autorisé est publié au checkpoint français n°2, sans troisième publication.
+Lors d’une reprise de pages existantes, l’introduction et les résumés historiques sont préservés par défaut. Le paquet peut enregistrer des suggestions sans les appliquer. Après consentement valide, le texte final autorisé devient la valeur éditoriale sélectionnée pour tous les contrôles structurels, le verrou, le changeset, le rendu, le checkpoint 2 et la traduction ; l’historique demeure la provenance. Une portée structurée d’introduction peut limiter précisément les sous-parties ajoutées/modifiées/supprimées/réordonnées et les règles de création ne s’appliquent qu’aux portions réellement ajoutées ou substantiellement réécrites. Lorsqu’un delta historique est précisément demandé dans le ZIP, `review-import` exige une action propriétaire explicite : relancer le même paquet avec `--authorize-historical-changes` crée hors du ZIP une preuve scoped et permet la modification dans la même `fr_content_review`. L’absence historique d’un résumé demeure une absence sauf création nominativement autorisée. Le delta autorisé est publié au checkpoint français n°2, sans troisième publication.
 
 ## Publication française après la revue de contenu
 

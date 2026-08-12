@@ -1,3 +1,9 @@
+# Wikidéb’IA — Normes 1.2.85
+
+La révision 1.2.85 précise la logique de consentement 1.2.84 : **l’historique est la provenance, la valeur finale autorisée devient la valeur éditoriale effective**. Avec `preserved`, le texte historique est sélectionné ; avec `authorized_change`, tous les contrôles structurels, le verrou, le changeset, le rendu, le checkpoint français n°2 et la traduction utilisent la valeur finale autorisée.
+
+Pour une introduction, le consentement peut sceller une portée structurée par sous-parties (`added`, `modified`, `removed`, `reordered`). Les contrôles éditoriaux de création sont différentiels : une nouvelle sous-partie, par exemple `Enjeux du débat`, reçoit les contrôles pertinents sans transformer les sous-parties historiques inchangées en nouveau contenu. Une autorisation ciblée ne couvre aucune modification parasite.
+
 # Wikidéb’IA — Normes 1.2.84
 
 La révision 1.2.84 corrige la protection absolue introduite en 1.2.83. Pour une page préexistante, l’introduction et les résumés historiques sont **préservés par défaut**, mais ChatGPT peut signaler des anomalies et proposer des corrections. Une modification devient admissible seulement après une décision propriétaire explicite, précise et traçable couvrant le champ et la valeur finale.

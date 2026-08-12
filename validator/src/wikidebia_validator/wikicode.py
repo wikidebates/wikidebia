@@ -1841,9 +1841,10 @@ def _validate_fr_historical_text_decisions_v2(
     decisions: dict[str, Any],
 ) -> None:
     lock_rel = 'data/fr_content_lock.json'
-    if decisions.get('policy') != 'preserve_by_default_owner_authorized_v2':
+    if decisions.get('policy') not in {'preserve_by_default_owner_authorized_v2', 'preserve_by_default_owner_authorized_v3'}:
         ctx.report.error('WDV-EDT-034', 'Politique de consentement des textes historiques inconnue', path=lock_rel)
         return
+    consent_policy = str(decisions.get('policy'))
     manifest = ctx.manifest() or {}
     debate_page = next((p for p in manifest.get('pages', []) if p.get('language') == 'fr' and p.get('page_type') == 'debate'), None)
     argument_pages = {
@@ -1926,6 +1927,21 @@ def _validate_fr_historical_text_decisions_v2(
                 ctx.report.error('WDV-EDT-034', 'La preuve propriétaire ne correspond pas aux empreintes du champ', path=path, details={'field_key': field_key, 'component': key})
         if receipt_row.get('authorization_id') != auth.get('authorization_id'):
             ctx.report.error('WDV-EDT-034', 'Identifiant d’autorisation incohérent', path=path, details={'field_key': field_key})
+        if consent_policy == 'preserve_by_default_owner_authorized_v3':
+            if not isinstance(receipt_row.get('change_type'), str) or receipt_row.get('change_type') != auth.get('change_type'):
+                ctx.report.error('WDV-EDT-034', 'Type de changement incohérent entre le verrou et le reçu propriétaire', path=path, details={'field_key': field_key})
+        elif auth.get('change_type') is not None and receipt_row.get('change_type') != auth.get('change_type'):
+            ctx.report.error('WDV-EDT-034', 'Type de changement incohérent dans un artefact compatible', path=path, details={'field_key': field_key})
+        receipt_scope = receipt_row.get('change_scope')
+        auth_scope = auth.get('change_scope')
+        lock_scope = row.get('change_scope')
+        if consent_policy == 'preserve_by_default_owner_authorized_v3':
+            if not isinstance(receipt_scope, dict) or not isinstance(auth_scope, dict) or not isinstance(lock_scope, dict):
+                ctx.report.error('WDV-EDT-034', 'Portée structurée du changement historique absente', path=path, details={'field_key': field_key})
+            elif receipt_scope != auth_scope or receipt_scope != lock_scope:
+                ctx.report.error('WDV-EDT-034', 'Portée du changement historique divergente entre verrou et reçu propriétaire', path=path, details={'field_key': field_key})
+        elif any(scope is not None for scope in (receipt_scope, auth_scope, lock_scope)) and not (receipt_scope == auth_scope == lock_scope):
+            ctx.report.error('WDV-EDT-034', 'Portée du changement historique divergente dans un artefact compatible', path=path, details={'field_key': field_key})
         if actual_sha != final_sha:
             ctx.report.error('WDV-EDT-034', 'Le rendu ne correspond pas à la valeur finale autorisée', path=path, details={'field_key': field_key, 'expected_sha256': final_sha, 'actual_sha256': actual_sha})
 

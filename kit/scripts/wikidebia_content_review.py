@@ -65,8 +65,11 @@ CONTENT_LOCK_SCHEMA = "wikidebia-fr-content-lock-1.0"
 CONTENT_CHANGESET_SCHEMA = "wikidebia-fr-content-changeset-1.0"
 SOURCES_WORKING_SCHEMA = "wikidebia-source-registry-working-1.0"
 CLASSIFICATION_REVIEW_PATH = "reviews/fr/classification_review.json"
-HISTORICAL_TEXT_POLICY = "preserve_by_default_owner_authorized_v2"
-LEGACY_HISTORICAL_TEXT_POLICIES = {"preserve_preexisting_exact_v1"}
+HISTORICAL_TEXT_POLICY = "preserve_by_default_owner_authorized_v3"
+LEGACY_HISTORICAL_TEXT_POLICIES = {
+    "preserve_preexisting_exact_v1",
+    "preserve_by_default_owner_authorized_v2",
+}
 HISTORICAL_AUTHORIZATION_SCHEMA = "wikidebia-owner-historical-text-authorization-1.0"
 HISTORICAL_AUTHORIZATION_PATH = "reviews/fr/historical_text_authorization.json"
 HISTORICAL_CHANGE_TYPES = {
@@ -279,6 +282,108 @@ def _subsections(value: str) -> list[dict[str, Any]]:
     return result
 
 
+def _historical_policy_supported(value: Any) -> bool:
+    return value == HISTORICAL_TEXT_POLICY or value in LEGACY_HISTORICAL_TEXT_POLICIES
+
+
+def _subsection_change_scope(historical: str, final: str) -> dict[str, Any]:
+    """Describe the editorial delta between historical and selected introductions.
+
+    The scope is deliberately structural and deterministic.  Unchanged
+    historical subsections remain historical even when another subsection is
+    added or rewritten.  Duplicate subsection titles are handled by occurrence
+    number so historical corpora are not rejected merely because their titles
+    are imperfect.
+    """
+    before = _subsections(historical)
+    after = _subsections(final)
+
+    def keyed(rows: list[dict[str, Any]]) -> list[tuple[tuple[str, int], dict[str, Any]]]:
+        counts: dict[str, int] = {}
+        result: list[tuple[tuple[str, int], dict[str, Any]]] = []
+        for row in rows:
+            title = str(row.get("title") or "")
+            counts[title] = counts.get(title, 0) + 1
+            result.append(((title, counts[title]), row))
+        return result
+
+    b = keyed(before); a = keyed(after)
+    bmap = {key: row for key, row in b}; amap = {key: row for key, row in a}
+    bkeys = [key for key, _ in b]; akeys = [key for key, _ in a]
+    added = [key for key in akeys if key not in bmap]
+    removed = [key for key in bkeys if key not in amap]
+    modified = [key for key in akeys if key in bmap and str(amap[key].get("content") or "") != str(bmap[key].get("content") or "")]
+    common_before = [key for key in bkeys if key in amap]
+    common_after = [key for key in akeys if key in bmap]
+    reordered = common_before != common_after
+
+    def rows(keys: list[tuple[str, int]]) -> list[dict[str, Any]]:
+        return [{"title": title, "occurrence": occurrence} for title, occurrence in keys]
+
+    return {
+        "mode": "subsections",
+        "historical_titles": [row.get("title") for row in before],
+        "final_titles": [row.get("title") for row in after],
+        "added": rows(added),
+        "modified": rows(modified),
+        "removed": rows(removed),
+        "reordered": reordered,
+    }
+
+
+def _canonical_scope(value: Any) -> dict[str, Any] | None:
+    if value in (None, {}):
+        return None
+    if not isinstance(value, Mapping):
+        raise ContentReviewError("Portée structurée de modification historique invalide")
+    mode = str(value.get("mode") or "")
+    if mode == "whole_field":
+        return {"mode": "whole_field"}
+    if mode != "subsections":
+        raise ContentReviewError(f"Mode de portée historique inconnu : {mode!r}")
+    result = {"mode": "subsections"}
+    for key in ("historical_titles", "final_titles"):
+        raw = value.get(key)
+        if not isinstance(raw, list) or any(not isinstance(item, str) for item in raw):
+            raise ContentReviewError(f"Portée historique invalide : {key}")
+        result[key] = list(raw)
+    for key in ("added", "modified", "removed"):
+        raw = value.get(key)
+        if not isinstance(raw, list):
+            raise ContentReviewError(f"Portée historique invalide : {key}")
+        clean=[]
+        for item in raw:
+            if not isinstance(item, Mapping) or not isinstance(item.get("title"), str) or not isinstance(item.get("occurrence"), int) or int(item.get("occurrence")) < 1:
+                raise ContentReviewError(f"Portée historique invalide dans {key}")
+            clean.append({"title": str(item["title"]), "occurrence": int(item["occurrence"])})
+        result[key]=clean
+    if not isinstance(value.get("reordered"), bool):
+        raise ContentReviewError("Portée historique invalide : reordered")
+    result["reordered"] = bool(value["reordered"])
+    return result
+
+
+def _changed_final_subsection_keys(scope: Mapping[str, Any]) -> set[tuple[str, int]]:
+    if scope.get("mode") != "subsections":
+        return set()
+    result=set()
+    for key in ("added", "modified"):
+        for row in scope.get(key) or []:
+            if isinstance(row, Mapping):
+                result.add((str(row.get("title") or ""), int(row.get("occurrence") or 0)))
+    return result
+
+
+def _keyed_subsections(value: str) -> list[tuple[tuple[str, int], dict[str, Any]]]:
+    counts: dict[str, int] = {}
+    result=[]
+    for row in _subsections(value):
+        title=str(row.get("title") or "")
+        counts[title]=counts.get(title,0)+1
+        result.append(((title, counts[title]), row))
+    return result
+
+
 def _wikipedia_articles(value: str) -> list[str]:
     result: list[str] = []
     for call in iter_templates(value or ""):
@@ -484,6 +589,28 @@ def _historical_change_request(
         raise ContentReviewError(f"Empreinte historique déclarée incohérente pour {field_key}")
     if request.get("final_sha256") not in (None, final_sha):
         raise ContentReviewError(f"Empreinte finale déclarée incohérente pour {field_key}")
+
+    actual_scope: dict[str, Any]
+    if field_key.endswith(":introduction"):
+        actual_scope = _subsection_change_scope(str(historical_value or ""), str(final_value or ""))
+        declared_scope = _canonical_scope(request.get("change_scope"))
+        if declared_scope is not None:
+            if declared_scope.get("mode") == "subsections" and declared_scope != actual_scope:
+                raise ContentReviewError(
+                    f"Le delta réel de l’introduction dépasse la portée structurée déclarée pour {field_key}"
+                )
+            if declared_scope.get("mode") == "whole_field":
+                actual_scope = {"mode": "whole_field", "observed_subsection_delta": actual_scope}
+        else:
+            # Compatibility with 2.16.17: the exact final-value hash remains a
+            # valid broad field authorization when no narrower scope was declared.
+            actual_scope = {"mode": "whole_field", "observed_subsection_delta": actual_scope}
+    else:
+        declared_scope = _canonical_scope(request.get("change_scope"))
+        if declared_scope not in (None, {"mode": "whole_field"}):
+            raise ContentReviewError(f"Une portée de sous-parties ne peut pas viser {field_key}")
+        actual_scope = {"mode": "whole_field"}
+
     return {
         "field_key": field_key,
         "change_type": change_type,
@@ -493,6 +620,7 @@ def _historical_change_request(
         "final_sha256": final_sha,
         "historical_present": bool(str(historical_value or "").strip()),
         "final_present": bool(str(final_value or "").strip()),
+        "change_scope": actual_scope,
     }
 
 
@@ -653,7 +781,7 @@ def _load_historical_authorization(workspace: Path, review: Mapping[str, Any]) -
         raise ContentReviewError("La portée autorisée ne correspond pas exactement aux changements historiques demandés")
     for req in requested:
         row = by_key[req["field_key"]]
-        for key in ("historical_sha256", "final_sha256", "change_type"):
+        for key in ("historical_sha256", "final_sha256", "change_type", "change_scope"):
             if row.get(key) != req.get(key):
                 raise ContentReviewError(f"Autorisation propriétaire divergente pour {req['field_key']} ({key})")
     return by_key
@@ -1107,6 +1235,102 @@ def _validated_specialized_term_inventory(introduction: str, raw_inventory: Any,
         clean.append({'subsection_title':title,'scan_complete':True,'scan_note':str(inv['scan_note']).strip(),'terms':rows})
     return clean
 
+def _validated_specialized_term_inventory_differential(
+    introduction: str, raw_inventory: Any, subsection_ledger: Any,
+    changed_keys: set[tuple[str, int]], lang: str = "fr",
+) -> list[dict[str, Any]]:
+    """Validate inventories only for newly added/rewritten subsections.
+
+    The returned inventory is intentionally limited to the changed scope.
+    Historical subsections may still be represented in a legacy/full review
+    package, but incomplete attestations for those unchanged texts cannot make
+    an authorized local edit fail retroactively.
+    """
+    if not changed_keys:
+        return []
+    if not isinstance(raw_inventory, list):
+        raise ContentReviewError("L’inventaire des notions spécialisées est absent pour les sous-parties modifiées")
+    keyed = _keyed_subsections(introduction)
+    ledger_counts: dict[str, int] = {}
+    ledger_by_key: dict[tuple[str, int], Mapping[str, Any]] = {}
+    for row in subsection_ledger or []:
+        if not isinstance(row, Mapping):
+            continue
+        title=str(row.get("title") or "")
+        ledger_counts[title]=ledger_counts.get(title,0)+1
+        ledger_by_key[(title,ledger_counts[title])]=row
+    inventory_counts: dict[str, int] = {}
+    inventory_by_key: dict[tuple[str, int], Mapping[str, Any]] = {}
+    for row in raw_inventory:
+        if not isinstance(row, Mapping):
+            continue
+        title=str(row.get("subsection_title") or "").strip()
+        inventory_counts[title]=inventory_counts.get(title,0)+1
+        inventory_by_key[(title,inventory_counts[title])]=row
+    key_positions={key:index for index,(key,_row) in enumerate(keyed)}
+    clean=[]
+    for key, subsection in keyed:
+        if key not in changed_keys:
+            continue
+        inv=inventory_by_key.get(key)
+        title=key[0]
+        if not isinstance(inv, Mapping) or inv.get("scan_complete") is not True or len(str(inv.get("scan_note") or "").strip()) < 30 or not isinstance(inv.get("terms"), list):
+            raise ContentReviewError(f"Inventaire spécialisé incomplet pour la sous-partie modifiée {title}")
+        terms=inv.get("terms") or []
+        if (ledger_by_key.get(key) or {}).get("technical_or_specialized") is True and not terms:
+            raise ContentReviewError(f"La sous-partie technique modifiée {title} ne peut avoir un inventaire vide")
+        visible=_visible_text(str(subsection.get("content") or ""),lang)
+        hover=_hover_entries(str(subsection.get("content") or ""),lang)
+        actual={(x['article'],x['display']) for x in hover}; declared=set(); seen=set(); rows=[]
+        for term_index,row in enumerate(terms,start=1):
+            if not isinstance(row,Mapping):
+                raise ContentReviewError(f"Notion #{term_index} invalide dans {title}")
+            term=str(row.get('term') or '').strip(); nt=_normalize_visible(term); treatment=row.get('treatment')
+            if not term or nt in seen or treatment not in {'wikipedia_link','explained_inline','prior_treatment','context_sufficient'}:
+                raise ContentReviewError(f"Notion #{term_index} invalide dans {title}")
+            seen.add(nt)
+            if nt not in visible:
+                raise ContentReviewError(f"La notion {term} est absente de {title}")
+            out={'term':term,'treatment':treatment}
+            if treatment=='wikipedia_link':
+                article=str(row.get('article') or '').strip(); pair=(_normalize_hover_article(article),nt)
+                if not article or pair not in actual:
+                    raise ContentReviewError(f"Le lien déclaré pour {term} est absent de {title}")
+                out['article']=article; declared.add(pair)
+            elif treatment=='explained_inline':
+                excerpt=str(row.get('explanation_excerpt') or '').strip()
+                if len(excerpt)<20 or _normalize_visible(excerpt) not in visible:
+                    raise ContentReviewError(f"L’explication de {term} est absente de {title}")
+                out['explanation_excerpt']=excerpt
+            elif treatment=='prior_treatment':
+                pt=str(row.get('prior_subsection_title') or '').strip(); pterm=str(row.get('prior_term') or '').strip(); np=_normalize_visible(pterm)
+                current_position=key_positions[key]
+                prior_candidates=[r for pos,(k,r) in enumerate(keyed) if k[0]==pt and pos < current_position]
+                if not prior_candidates or not any(np in _visible_text(str(r.get('content') or ''),lang) for r in prior_candidates):
+                    raise ContentReviewError(f"Le traitement antérieur de {term} est invalide")
+                out.update({'prior_subsection_title':pt,'prior_term':pterm})
+            else:
+                justification=str(row.get('justification') or '').strip()
+                if len(justification)<30:
+                    raise ContentReviewError(f"Le contexte suffisant pour {term} n’est pas justifié")
+                out['justification']=justification
+            rows.append(out)
+        if actual-declared:
+            raise ContentReviewError(f"Des liens Wikipédia de {title} ne figurent pas dans l’inventaire : {sorted(actual-declared)!r}")
+        clean.append({'subsection_title':title,'scan_complete':True,'scan_note':str(inv['scan_note']).strip(),'terms':rows})
+    return clean
+
+
+def _validated_terminal_period_exceptions_differential(changed_content: str, raw_exceptions: Any) -> list[dict[str, Any]]:
+    if not changed_content:
+        return []
+    if not isinstance(raw_exceptions, list):
+        raise ContentReviewError("La liste terminal_period_sentence_exceptions est absente pour le contenu modifié")
+    relevant_hashes={hashlib.sha256(body.strip().encode("utf-8")).hexdigest() for body in REF_PAIR_RE.findall(changed_content) if body.strip().endswith(".")}
+    filtered=[row for row in raw_exceptions if isinstance(row, Mapping) and row.get("body_sha256") in relevant_hashes]
+    return _validated_terminal_period_exceptions(changed_content, filtered)
+
+
 def _validate_debate(
     review: Mapping[str, Any], source: Mapping[str, Any], sources: Mapping[str, Mapping[str, Any]],
     debate_id: str, authorization: Mapping[str, Mapping[str, Any]] | None = None,
@@ -1125,7 +1349,7 @@ def _validate_debate(
     historical_intro_authorized = False
     authorization_row: Mapping[str, Any] | None = None
     if historical_intro_protected:
-        if review.get("historical_text_policy") != HISTORICAL_TEXT_POLICY:
+        if not _historical_policy_supported(review.get("historical_text_policy")):
             raise ContentReviewError("Politique de consentement de l’introduction historique absente ou invalide")
         decision = str(review.get("introduction_decision") or "")
         field_key = f"debate:{debate_id}:introduction"
@@ -1160,14 +1384,70 @@ def _validate_debate(
     ledger = review.get("subsections")
     if not isinstance(ledger, list) or [row.get("title") for row in ledger if isinstance(row, dict)] != [row["title"] for row in subsection_values]:
         raise ContentReviewError("La revue des sous-parties ne correspond pas à l’introduction retenue")
-    if historical_intro_protected:
-        # Current creation-style gates are not retroactive.  This remains true
-        # for a scoped owner-authorized correction: consent opens the requested
-        # field, it does not force a wholesale rewrite to current preferences.
+    stakes_title = "Enjeux du débat"
+    if historical_intro_protected and not historical_intro_authorized:
+        # Pure preservation: the historical introduction remains provenance and
+        # selected value. Creation-only editorial gates are not retroactive.
         specialized_term_inventory = []
         terminal_period_sentence_exceptions = []
+        historical_change_scope = None
+        changed_final_keys: set[tuple[str, int]] = set()
+    elif historical_intro_protected and historical_intro_authorized:
+        # Once authorized, the selected final introduction is the effective
+        # editorial value. Global structural checks already use it. Creation
+        # gates apply only to subsections actually added/rewritten, never to
+        # unchanged historical subsections.
+        historical_change_scope = copy.deepcopy((authorization_row or {}).get("change_scope") or _subsection_change_scope(historical_intro, introduction))
+        observed_scope = historical_change_scope.get("observed_subsection_delta") if isinstance(historical_change_scope, Mapping) else None
+        if not isinstance(observed_scope, Mapping):
+            observed_scope = historical_change_scope if isinstance(historical_change_scope, Mapping) and historical_change_scope.get("mode") == "subsections" else _subsection_change_scope(historical_intro, introduction)
+        changed_final_keys = _changed_final_subsection_keys(observed_scope)
+        keyed_final = _keyed_subsections(introduction)
+        ledger_by_key: dict[tuple[str, int], Mapping[str, Any]] = {}
+        title_counts: dict[str, int] = {}
+        for row in ledger:
+            title = str((row or {}).get("title") or "") if isinstance(row, Mapping) else ""
+            title_counts[title] = title_counts.get(title, 0) + 1
+            if isinstance(row, Mapping):
+                ledger_by_key[(title, title_counts[title])] = row
+        changed_sections=[]
+        change_type = str((authorization_row or {}).get("change_type") or "")
+        creation_like_scope = change_type in {"structure", "substantive_rewrite"}
+        if creation_like_scope:
+            for index, (key, subsection) in enumerate(keyed_final, start=1):
+                if key not in changed_final_keys:
+                    continue
+                row = ledger_by_key.get(key) or {}
+                if len(str(row.get("purpose") or "").strip()) < 12 or row.get("necessary_for_understanding") is not True:
+                    raise ContentReviewError(f"Sous-partie modifiée #{index} insuffisamment justifiée")
+                if row.get("technical_or_specialized") is True and row.get("relevance_to_debate_explained") is not True:
+                    raise ContentReviewError(f"Pertinence technique non attestée pour la sous-partie modifiée #{index}")
+                if subsection["title"] == stakes_title:
+                    if row.get("stakes_section") is not True:
+                        raise ContentReviewError("La revue doit identifier explicitement la sous-partie Enjeux du débat ajoutée ou modifiée")
+                    concrete_stakes = row.get("concrete_stakes")
+                    if not isinstance(concrete_stakes, list):
+                        raise ContentReviewError("Les conséquences concrètes de la sous-partie Enjeux du débat sont absentes")
+                    normalized_stakes = [str(item).strip() for item in concrete_stakes if str(item).strip()]
+                    if len(normalized_stakes) < 2 or len({item.casefold() for item in normalized_stakes}) < 2 or any(len(item) < 20 for item in normalized_stakes):
+                        raise ContentReviewError("La sous-partie Enjeux du débat doit consigner au moins deux conséquences concrètes distinctes")
+                    stakes_content = subsection["content"]
+                    if len(re.findall(r"\b[\wÀ-ÿ'-]+\b", stakes_content)) < 45 or len(re.findall(r"[.!?](?:\s|$)", stakes_content)) < 3:
+                        raise ContentReviewError("La sous-partie Enjeux du débat est trop brève ou symbolique")
+                changed_sections.append(subsection)
+            specialized_term_inventory = _validated_specialized_term_inventory_differential(
+                introduction, review.get("specialized_term_inventory"), ledger, changed_final_keys, "fr"
+            )
+            changed_content = "".join(str(row.get("content") or "") for key, row in keyed_final if key in changed_final_keys)
+            terminal_period_sentence_exceptions = _validated_terminal_period_exceptions_differential(
+                changed_content, review.get("terminal_period_sentence_exceptions")
+            )
+        else:
+            specialized_term_inventory = []
+            terminal_period_sentence_exceptions = []
     else:
-        stakes_title = "Enjeux du débat"
+        historical_change_scope = None
+        changed_final_keys = set()
         stakes_rows = []
         stakes_contents = []
         for index, (row, subsection) in enumerate(zip(ledger, subsection_values), start=1):
@@ -1281,6 +1561,7 @@ def _validate_debate(
         ),
         "historical_text_decision": ("authorized_change" if historical_intro_authorized else "preserved") if historical_intro_protected else None,
         "historical_authorization": copy.deepcopy(dict(authorization_row)) if historical_intro_authorized and authorization_row else None,
+        "historical_change_scope": copy.deepcopy(historical_change_scope) if historical_intro_authorized else None,
         "historical_content_preserved": historical_intro_protected and not historical_intro_authorized,
         "page_origin": source.get("page_origin", "preexisting"),
         "preserved_parameters": copy.deepcopy(source.get("preserved_parameters") or {}),
@@ -1301,7 +1582,7 @@ def _validate_argument(
     historical_summary_authorized = False
     authorization_row: Mapping[str, Any] | None = None
     if historical_summary_protected:
-        if review.get("historical_text_policy") != HISTORICAL_TEXT_POLICY:
+        if not _historical_policy_supported(review.get("historical_text_policy")):
             raise ContentReviewError(f"Politique de consentement du résumé historique absente ou invalide pour {node_id}")
         expected_hash = hashlib.sha256(historical_summary.encode("utf-8")).hexdigest()
         if review.get("historical_summary_sha256") != expected_hash:
@@ -1335,7 +1616,10 @@ def _validate_argument(
         else:
             raise ContentReviewError(f"Décision invalide pour le résumé historique {node_id} : keep ou change attendu")
         # A scoped authorized correction does not retroactively activate the
-        # creation-style checklist for the whole historical summary.
+        # creation-style checklist for the whole historical summary. Even a
+        # substantive rewrite remains a historical field with explicit owner
+        # provenance; broader stylistic review may be recorded, but is not used
+        # as a pretext to rewrite unrelated historical wording.
         expression = None
         numbers = NUMBER.findall(_plain(summary or ""))
     else:
@@ -1403,6 +1687,7 @@ def _validate_argument(
         ),
         "historical_text_decision": ("authorized_change" if historical_summary_authorized else "preserved") if historical_summary_protected else None,
         "historical_authorization": copy.deepcopy(dict(authorization_row)) if historical_summary_authorized and authorization_row else None,
+        "historical_change_scope": copy.deepcopy((authorization_row or {}).get("change_scope")) if historical_summary_authorized else None,
         "historical_content_preserved": historical_summary_protected and not historical_summary_authorized,
         "forceful_expression": expression,
         "quantitative_claims": numbers,
@@ -1581,6 +1866,7 @@ def _introduction_review(final: Mapping[str, Any]) -> dict[str, Any]:
             "historical_source_sha256": final.get("historical_introduction_sha256"),
             "authorized_final_sha256": final.get("historical_final_introduction_sha256") if authorized else None,
             "authorization": copy.deepcopy(final.get("historical_authorization")) if authorized else None,
+            "change_scope": copy.deepcopy(final.get("historical_change_scope")) if authorized else None,
             "historical_absence_verified": provenance == "historical_absent",
             "note": (
                 "Introduction française historique modifiée dans la portée exacte autorisée par le propriétaire ; les règles de création ne sont pas appliquées rétroactivement au reste du texte."
@@ -1634,6 +1920,7 @@ def _summary_style_review(arguments: Sequence[Mapping[str, Any]], debate_id: str
                 "historical_source_sha256": arg.get("historical_summary_sha256"),
                 "authorized_final_sha256": arg.get("historical_final_summary_sha256"),
                 "authorization": copy.deepcopy(arg.get("historical_authorization")),
+                "change_scope": copy.deepcopy(arg.get("historical_change_scope")),
                 "note": arg.get("note") or "Résumé historique modifié uniquement dans la portée autorisée par le propriétaire, sans application rétroactive de la checklist de création.",
             }
             entries.append({"id": arg.get("id"), "languages": {"fr": language}})
@@ -1768,6 +2055,7 @@ def _build_content_copy(project_root: Path, source: Path, target: Path, review: 
                 "final_sha256": final["debate"].get("historical_final_introduction_sha256"),
                 "decision": final["debate"].get("historical_text_decision"),
                 "authorization": copy.deepcopy(final["debate"].get("historical_authorization")),
+                "change_scope": copy.deepcopy(final["debate"].get("historical_change_scope")),
             },
             "arguments": [
                 {
@@ -1784,6 +2072,7 @@ def _build_content_copy(project_root: Path, source: Path, target: Path, review: 
                     "final_sha256": arg.get("historical_final_summary_sha256"),
                     "decision": arg.get("historical_text_decision"),
                     "authorization": copy.deepcopy(arg.get("historical_authorization")),
+                    "change_scope": copy.deepcopy(arg.get("historical_change_scope")),
                 }
                 for arg in final["arguments"]
             ],

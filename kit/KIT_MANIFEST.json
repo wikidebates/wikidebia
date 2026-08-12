@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.16.17",
-  "validator_version": "0.4.88",
+  "version": "2.16.18",
+  "validator_version": "0.4.89",
   "scope": [
     "publish_archive",
     "github_init",
@@ -478,9 +478,11 @@
     "sources_working_document_kind_prevalidation",
     "idempotent_french_checkpoint_resume",
     "owner_authorized_historical_text_in_fr_content_review",
-    "legacy_fr_content_review_consent_migration"
+    "legacy_fr_content_review_consent_migration",
+    "historical_selected_final_value",
+    "structured_historical_introduction_scope"
   ],
-  "normative_revision": "1.2.84",
+  "normative_revision": "1.2.85",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
   "quality_gates": [
@@ -581,7 +583,8 @@
     "incoming_review_import_by_internal_debate_id",
     "sources_working_document_kind_prevalidation",
     "historical_text_owner_consent_receipt_gate",
-    "authorized_historical_delta_checkpoint2_gate"
+    "authorized_historical_delta_checkpoint2_gate",
+    "selected_historical_value_gate"
   ],
   "regression_gates": [
     "argument_reference_develops_argument_regression",
@@ -624,8 +627,10 @@
     "historical_text_suggestion_without_consent_regression",
     "historical_text_forged_authorization_regression",
     "legacy_21614_content_review_migration_regression",
-    "authorized_historical_text_no_third_checkpoint_regression"
+    "authorized_historical_text_no_third_checkpoint_regression",
+    "vote_electronique_authorized_intro_4_to_5_regression",
+    "historical_change_scope_parasite_rejection_regression"
   ],
   "translation_change_tag": "translated-fr",
-  "kit_version": "2.16.17"
+  "kit_version": "2.16.18"
 }

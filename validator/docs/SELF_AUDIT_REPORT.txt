@@ -1,8 +1,7 @@
-Wikidéb’IA Validator 0.4.88 — auto-audit
-Statut : PASSED
-Norme active unique : 1.2.84
-Kit aligné : 2.16.17
-Arbre normatif : identique au paquet des normes
-Tests : 425 réussis
-WDV-EDT-034 : consentement historique scoped actif et testé.
-Résultat : RÉUSSI
+Wikidéb’IA Validator 0.4.89 — auto-audit
+Statut : PASSED après rescellement
+Norme active unique : 1.2.85
+Kit aligné : 2.16.18
+Tests : 426 réussis
+Copie normative : doit être identique au paquet Normes 1.2.85.
+Consentement historique v3 : valeur finale sélectionnée et portée structurée contrôlées par WDV-EDT-034.

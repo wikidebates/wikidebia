@@ -11,6 +11,8 @@ Pour une page importée avec `page_origin=preexisting`, l’introduction du Déb
 
 Si le propriétaire approuve une correction pendant que la revue est ouverte, le ZIP rendu peut porter `decision=change`, la valeur finale et un `historical_change_request` précis (`field_key`, `final_value`, `change_type`, `rationale`, `owner_instruction_reference`). Ce contenu ne s’autorise jamais lui-même : `./wikidebia review-import` bloque encore le delta. Après accord explicite du propriétaire, lancer le **même ZIP** avec `./wikidebia review-import --authorize-historical-changes` (ou avec le `debate_id` en cas d’ambiguïté). Le kit crée alors localement un reçu de consentement lié au ZIP exact et à chaque SHA avant/après, finalise la même `fr_content_review` et publie le delta au checkpoint français n°2. Une autorisation ne couvre aucun autre champ. Une opération corrective séparée n’est nécessaire que si la demande arrive après la clôture du checkpoint.
 
+Après ce consentement, la valeur finale proposée est la **valeur éditoriale sélectionnée** : l’historique reste sa provenance, mais l’extraction de `review.subsections`, les contrôles structurels, le verrou, le changeset, le rendu, le checkpoint 2 et la traduction utilisent le texte final autorisé. Pour une modification structurelle d’introduction, `historical_change_request.change_scope` peut décrire précisément les sous-parties ajoutées, modifiées, supprimées et un éventuel réordonnancement. Les contrôles de création s’appliquent alors seulement aux sous-parties ajoutées ou substantiellement réécrites. Une portée « ajouter `Enjeux du débat` » bloque toute autre modification silencieuse de l’introduction.
+
 ## 1. Préparer la revue
 
 ```bash

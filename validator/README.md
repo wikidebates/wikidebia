@@ -1,3 +1,9 @@
+# Wikidéb’IA Validator 0.4.89
+
+Le validateur 0.4.89 s’aligne sur la norme 1.2.85 et le kit 2.16.18. `WDV-EDT-034` conserve la distinction `preserved` / `authorized_change`, mais ajoute le contrat de consentement v3 : pour `authorized_change`, le texte français final autorisé est la valeur éditoriale effective et le verrou, le reçu local et le rendu doivent porter exactement le même `change_type` et la même `change_scope` structurée.
+
+Une portée structurée d’introduction peut décrire les sous-parties `added`, `modified`, `removed` et un éventuel `reordered`. Une autorisation ciblée ne couvre donc aucune modification parasite. Les artefacts 2.16.17/v2 restent lisibles avec leur portée historique de champ entier. Les règles de création ne sont pas appliquées rétroactivement aux portions historiques inchangées.
+
 # Wikidéb’IA Validator 0.4.88
 
 Le validateur 0.4.88 s’aligne sur la norme 1.2.84 et le kit 2.16.17. `WDV-EDT-034` distingue désormais `preserved` de `authorized_change` : le premier exige l’identité avec l’empreinte historique ; le second exige un reçu de workflow propriétaire valide, l’empreinte historique, l’empreinte finale autorisée et l’identité du rendu avec cette valeur finale. Toute autorisation forgée dans le corpus, tout champ hors portée et toute création d’un résumé historiquement absent sans consentement nominatif restent bloquants.

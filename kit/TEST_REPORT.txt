@@ -1,13 +1,14 @@
-Wikidéb’IA Kit 2.16.17 — rapport de tests
+Wikidéb’IA Kit 2.16.18 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 453
-Tests pytest : 453 réussis
-Norme : 1.2.84
-Validateur : 0.4.88
-Préservation par défaut + suggestions non appliquées : PASSED.
-Consentement local hors ZIP lié au paquet exact et aux SHA avant/après : PASSED.
-Corrections locales, réécriture substantielle, suppression <references /> et ajout Enjeux du débat autorisés : PASSED.
-Absence historique de résumé conservée sauf création nominative : PASSED.
-Migration de revue ancienne sans refaire rubriques/mots-clés/documentation : PASSED.
-Checkpoint français n°2 et traduction depuis la version finale autorisée : PASSED.
-Deux checkpoints, incoming/, rollback, document_kind et résumés MediaWiki individualisés : PASSED.
+Tests pytest collectés : 456
+Tests pytest : 456 réussis
+Norme : 1.2.85
+Validateur : 0.4.89
+Valeur historique sélectionnée : `preserved` → historique, `authorized_change` → final propriétaire : PASSED.
+Portée structurée d’introduction (`added`/`modified`/`removed`/`reordered`) : PASSED.
+Régression vote électronique 4→5 sous-parties avec `Enjeux du débat` autorisé : PASSED.
+Même delta sans consentement propriétaire : BLOQUÉ comme attendu.
+Modification parasite hors portée structurée : BLOQUÉE comme attendu.
+Checkpoint français n°2 rend et publie la valeur finale autorisée sans troisième publication : PASSED.
+Compatibilité des autorisations 2.16.17/v2 et des anciennes revues 2.16.14 supportées : PASSED.
+Deux checkpoints français, incoming/, rollback transactionnel, document_kind, classification et résumés MediaWiki individualisés : PASSED.
