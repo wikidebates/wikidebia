@@ -1,7 +1,7 @@
-Wikidéb’IA Validator 0.4.92 — auto-audit
+Wikidéb’IA Validator 0.4.93 — auto-audit
 Statut : PASSED
-Norme active unique : 1.2.86
-Kit aligné : 2.16.23
+Norme active unique : 1.2.87
+Kit aligné : 2.16.24
 Tests : 432 réussis
-Copie normative : identique au paquet Normes 1.2.86.
+Copie normative : identique au paquet Normes 1.2.87.
 Manifestes, versions, provenance normative et fichiers actifs : vérifiés après rescellement de la release.

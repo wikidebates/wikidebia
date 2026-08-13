@@ -2,25 +2,25 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.86** ;
-- validateur actif : **0.4.92** ;
-- kit actif : **2.16.23**.
+- norme active : **1.2.87** ;
+- validateur actif : **0.4.93** ;
+- kit actif : **2.16.24**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3672515 octets — SHA-256 `4458a6940a2e606912b6ac4315671e774b8d45c4856705dc3c90196da663aa79`
-- `wikidebia-validator.zip` — 3840571 octets — SHA-256 `ec83682c2242ad087174283e36718efb62d0ab2a6337674216ba7acaf7e08554`
-- `wikidebia-kit.zip` — 743799 octets — SHA-256 `4e31e8ccb533b04f265f89a30652b73286322f8820663d449aa814c9da053370`
+- `wikidebia-normes.zip` — 3707633 octets — SHA-256 `ae30d537c517aed40132e355005ea286c42bd0a370131740c562597c7746c38f`
+- `wikidebia-validator.zip` — 3875656 octets — SHA-256 `c65267e453b6c7005f8b5451d1efa1c8bf01460e69a05cf0aed0159208076f33`
+- `wikidebia-kit.zip` — 744849 octets — SHA-256 `605967bdf6b379499380c420d11ae8ef938e05cdc48ebe045a9358ff8fc13390`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.86.md`  
-SHA-256 : `f55292d2c6565c930593c99595f51c693a11b3d8300838935aa9c403254e22e7`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.87.md`  
+SHA-256 : `1056b5535ac5afad68ef00b6db4744334fe0096ee31102b2c6017116b3358230`
 
-# Norme opérationnelle active Wikidéb’IA 1.2.86
+# Norme opérationnelle active Wikidéb’IA 1.2.87
 
 **Statut : source normative active unique.**  
-**Date d’effet :** 12 août 2026
+**Date d’effet :** 13 août 2026
 
 Cette norme contient uniquement les règles actuellement applicables. Les textes de révisions remplacées, snapshots et anciennes formulations sont conservés dans `history/` et dans les changelogs, qui sont informatifs et immuables. Les numéros de norme, validateur, kit et producteur servent à la provenance, à la reproductibilité, à l’installation et aux migrations ; ils ne sélectionnent aucune règle éditoriale.
 
@@ -362,7 +362,7 @@ Le rendu français repose sur le modèle MediaWiki suivant, fourni par le propri
 
 Cette implémentation confirme que le paramètre `article` détermine à la fois la cible Wikipédia et, par défaut, le texte visible. Le modèle anglais `Wikipedia link` suit la convention fonctionnelle correspondante avec `article` et `displayed-text`; son code interne n’est pas imposé par la norme tant que ce comportement est respecté.
 
-Le nombre de sous-parties et le volume documentaire dépendent de la complexité, de l’étendue du sujet et de l’abondance de la littérature disponible. Il n’existe pas de minimum universel de cinq sous-parties ni de vingt références. Le profil local peut déclarer des minima adaptés, accompagnés d’une justification non vide ; ces minima ne doivent jamais conduire à fragmenter artificiellement l’introduction ou à ajouter des sources sans apport réel. Inversement, une page portant sur une controverse abondamment documentée ne doit pas s’arrêter à une sélection symbolique ou minimale. Chaque famille applicable (bibliographie, sitographie et vidéographie) fait l’objet d’un examen séparé. Pour une page Débat ou Debate, les paramètres documentaires restent présents mais peuvent être vides lorsque l'orientation correspondante n'offre pas de source suffisamment pertinente. Le volume total reste proportionné à l'abondance et à la qualité de la littérature. La classification suit le contenu effectif de la ressource et non un objectif de symétrie numérique.
+Le nombre de sous-parties et le volume documentaire dépendent de la complexité, de l’étendue du sujet et de l’abondance de la littérature disponible. Il n’existe pas de minimum universel de cinq sous-parties ni de vingt références. Le profil local peut déclarer des minima adaptés, accompagnés d’une justification non vide ; ces minima ne doivent jamais conduire à fragmenter artificiellement l’introduction ou à ajouter des sources sans apport réel. Inversement, une page portant sur une controverse abondamment documentée ne doit pas s’arrêter à une sélection symbolique ou minimale. Chaque famille applicable (bibliographie, sitographie et vidéographie) fait l’objet d’un examen séparé. Pour une page Débat ou Debate, tout paramètre documentaire optionnel dont aucune source n’est finalement retenue est entièrement omis du wikicode ; une catégorie vide n’est jamais matérialisée par une ligne `|paramètre=`. Le volume total reste proportionné à l'abondance et à la qualité de la littérature. La classification suit le contenu effectif de la ressource et non un objectif de symétrie numérique.
 
 Chaque sous-partie substantielle contient les appels de référence inline nécessaires pour soutenir les affirmations factuelles qui exigent une attribution. Dans les introductions française et anglaise, chaque appel développé est rédigé directement en wikicode lisible à l’intérieur de `<ref>…</ref>`, sans passer par un modèle MediaWiki. Les modèles `{{Référence}}`, `{{Reference}}`, les modèles bibliographiques, sitographiques ou vidéographiques spécialisés et tout autre modèle de citation sont interdits dans le corps d’une note d’introduction. La note indique directement les éléments utiles à l’identification de la source — auteur, titre, publication ou site, date en langage naturel, pagination et lien selon le cas. Une simple notice documentaire est traitée comme une notice et non comme une phrase : elle ne se termine donc pas par un point avant `</ref>`. Le signe de ponctuation de la phrase principale vient après l’appel de note (`texte<ref>Notice sans point final</ref>.`). Un point final reste admis à l’intérieur de la balise uniquement si la note contient une véritable phrase explicative complète, et cette exception est consignée dans la revue de l’introduction. Une référence nommée peut être définie sous la forme `<ref name="…">contenu rédigé directement</ref>` puis réutilisée avec `<ref name="…" />`. Les appels français sont placés avant la ponctuation finale ; les appels anglais suivent la convention anglaise. Les balises `<references />` et `<references>` ne sont jamais ajoutées : l’affichage des notes est géré par le wiki. Les mêmes sources peuvent également figurer dans les listes documentaires structurées de la page lorsque l’appel inline attribue une affirmation précise.
 
@@ -446,15 +446,6 @@ La même distinction création/reprise s’applique aux métadonnées éditorial
 |page=Titre canonique complet
 |titre-affiché=Titre affiché
 }}
-|bibliographie-pour=
-|bibliographie-contre=
-|bibliographie-ni-pour-ni-contre=
-|sitographie-pour=
-|sitographie-contre=
-|sitographie-ni-pour-ni-contre=
-|vidéographie-pour=
-|vidéographie-contre=
-|vidéographie-ni-pour-ni-contre=
 |rubriques=
 |mots-clés=
 |interlangue={{Lien interlangue
@@ -466,6 +457,8 @@ La même distinction création/reprise s’applique aux métadonnées éditorial
 ```
 
 Les lignes `avancement=Débat construit` et `avertissements-débat=Débat généré par IA` de cet exemple valent uniquement pour une page nouvellement créée par Wikidéb’IA. Sur une page préexistante, elles sont remplacées par la conservation exacte de l’état antérieur.
+
+Les neuf paramètres documentaires (`bibliographie-*`, `sitographie-*`, `vidéographie-*`) sont ajoutés uniquement lorsqu’ils contiennent au moins une référence retenue. Ils sont omis lorsqu’ils seraient vides, y compris sur une page préexistante après une revue autorisée qui vide une catégorie.
 
 Le paramètre `interlangue` dépend de l'état de traduction anglaise. Avec `translation_status.en=deferred`, il est absent du wikicode français et aucun titre anglais n'est requis. Avec un état `ready` ou `published`, il contient exactement un `{{Lien interlangue}}` visant le titre canonique anglais verrouillé. Une page anglaise peut rester momentanément absente du wiki uniquement lorsque son titre est déjà verrouillé et que l'état déclaré autorise cette préparation.
 
@@ -845,10 +838,18 @@ Lorsqu’une passe de convergence détecte une erreur certaine, le workflow n’
 
 Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. Elle peut réutiliser un snapshot `graph-extract` déjà présent ; sinon elle effectue l’extraction en lecture seule. Le premier checkpoint publie graphe et titres ; le second publie rubriques, mots-clés et contenu. Après le second reçu seulement, la traduction peut commencer. Après la dernière revue convergée, le rendu et la construction du corpus bilingue `release_ready` restent mécaniques ; la publication bilingue finale demeure une étape distincte.
 
+## 1.2.87 — 13 août 2026 — omission canonique des paramètres optionnels vides
+
+- réaffirme la règle atomique déjà active selon laquelle tout paramètre optionnel sans contenu pertinent est omis du wikicode ;
+- supprime la formulation contradictoire qui demandait de conserver vides les neuf paramètres documentaires d’une page Débat / Debate ;
+- précise qu’une catégorie documentaire devenue vide après une revue autorisée disparaît entièrement au lieu d’être rendue sous la forme `|paramètre=` ;
+- conserve séparément la provenance historique de présence pour l’audit, sans lui donner d’effet sur le rendu ;
+- exige que le préflight distingue l’omission canonique d’un paramètre optionnel géré de la suppression non autorisée d’un paramètre protégé, inconnu ou hors contrat.
+
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `3ad3290eec378a93206b86d77055648e22606503e9f365891520cb0de9614180`
+SHA-256 : `90fa4eea6f00a2f01e3427b1e892b975ff6dfb4f83a3c7fc3a69f31b54c303f6`
 
 ## 1.2.70 — alignement du validateur sur la première publication anglaise
 
@@ -1637,20 +1638,23 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - précise que les titres affichés historiques nominaux ou contextuels n’exigent ni proposition complète ni justification rétroactive de gain de lisibilité ;
 - aligne le tri des rubriques sur l’ordre alphabétique français accent-insensible.
 
+## 1.2.87 — 13 août 2026 — omission canonique des paramètres optionnels vides
+
+- aligne le texte consolidé sur l’exigence atomique active : tout paramètre optionnel sans contenu pertinent est omis ;
+- retire l’ancienne exception contradictoire imposant des buckets documentaires Débat présents mais vides ;
+- la présence historique reste une provenance d’audit et ne commande plus le rendu ;
+- le préflight doit autoriser l’omission canonique des paramètres éditoriaux optionnels validés sans autoriser les suppressions de paramètres protégés ou inconnus.
+
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `c8e23a6df57ff08c14c38355fc19488163adb8c1b306fc70c169efe8185e51e5`
+SHA-256 : `73adcce5d44861dffda97df4c1e74efe579d0504b807c8c85d44c8d9411b1f46`
 
-# Wikidéb’IA Validator 0.4.92
+# Wikidéb’IA Validator 0.4.93
 
-Le validateur 0.4.92 aligne `WDV-MWK-005` sur la préservation top-level historique du kit 2.16.23. Un paramètre français top-level vide reste interdit par défaut ; il est accepté uniquement sur une page `preexisting` lorsque `data/fr_content_lock.json` scelle `source_parameter_presence[<paramètre>].present=true` pour cette page exacte.
+Le validateur 0.4.93 retire l’exception `present-empty` de 0.4.92. Conformément à la norme 1.2.87, `WDV-MWK-005` interdit toute valeur top-level vide dans une sortie canonique, y compris lorsqu’un paramètre était historiquement présent.
 
-Cette exception ne s’applique ni aux pages nouvelles, ni aux paramètres historiquement absents, ni aux sous-paramètres documentaires ordinaires. Elle couvre notamment les sorties canoniques `A0021|objections=`, `Débat|bibliographie-pour=` et `Débat|vidéographie-contre=` lorsqu’une revue autorisée vide leur valeur sans supprimer leur présence historique.
-
-La norme active reste 1.2.86 : il s’agit d’un correctif d’alignement du validateur avec un comportement déjà normatif et avec le renderer 2.16.22+.
-
-# Wikidéb’IA Validator 0.4.91
+`source_parameter_presence` reste une provenance d’audit dans le verrou mais n’autorise plus `|paramètre=`. Un paramètre optionnel sans contenu doit être absent du wikicode.
 
 Le validateur 0.4.91 s’aligne sur la norme 1.2.86 et le kit 2.16.20 pour les citations historiques comportant des sous-paramètres facultatifs vides. La provenance peut conserver ces lignes vides, mais la comparaison verrou↔wikicode les traite comme des paramètres omis dans le rendu canonique.
 
@@ -1727,7 +1731,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `25182bf5619f571c17b4c9ca805afaedf0699ce908b50d95f4e09c4451ebe95e`
+SHA-256 : `f399567f3ddef3d143cbb4518b7f4dfd0e81fccbc228fb05a61a660e4672fd20`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1923,18 +1927,25 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ajoute des régressions positive/négative sur `|objections=` ;
 - s’aligne sur le kit 2.16.23 ; la norme 1.2.86 reste inchangée.
 
+## 0.4.93 — 13 août 2026 — omission canonique des valeurs vides
+
+- retire l’exception 0.4.92 qui autorisait un paramètre top-level vide sur preuve de présence historique ;
+- `WDV-MWK-005` interdit de nouveau toute valeur top-level vide dans le rendu canonique ;
+- conserve `source_parameter_presence` comme provenance sans effet d’autorisation syntaxique ;
+- s’aligne sur la norme 1.2.87 et le kit 2.16.24.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `598f3011361fcbca44d17b7fc0b5b3bdd92fa20ab2d4cd0486ec208c78d0223c`
+SHA-256 : `2e3b4946dcbbbb3d30eb1877d8e5eb7c021473a5a1777051fd684832ea50855e`
 
-# Wikidéb’IA Kit 2.16.23
+# Wikidéb’IA Kit 2.16.24
 
-Le kit 2.16.23 complète la préservation top-level introduite en 2.16.22 par une **migration sûre des revues de contenu déjà finalisées et appliquées sous une version antérieure**. Lorsqu’un ancien `content-reviewed-copy` ne contient pas `source_parameter_presence`, `apply_review()` peut le reconstruire depuis le `reviewed-copy` immuable et la revue approuvée exacte, sans modifier le payload éditorial ni son empreinte.
+Le kit 2.16.24 corrige la régression `present-empty` introduite en 2.16.22. `source_parameter_presence` reste conservé comme provenance d’audit, mais le renderer omet désormais tout paramètre éditorial optionnel dont la valeur logique finale est vide, même si ce paramètre existait historiquement.
 
-La reconstruction n’est autorisée qu’avant l’existence de tout état de checkpoint français `content`. Si `.state/fr-publication/<débat>/<work>/content` existe déjà, la migration refuse de détruire ou de remplacer cet état et laisse la reprise transactionnelle du checkpoint décider. Les revues déjà migrées conservent leur voie idempotente normale.
+Le préflight distant traite la disparition des paramètres éditoriaux optionnels gérés comme une **omission canonique** après validation du corpus. Cette exception ne couvre ni les paramètres de cycle de vie, ni les paramètres inconnus, ni les paramètres hors contrat.
 
-Cette correction couvre le cas réel du vote électronique où un ZIP v8 avait été approuvé/appliqué avant 2.16.22 : la présence historique de `A0021|objections=`, `Débat|bibliographie-pour=` et `Débat|vidéographie-contre=` est redérivée depuis les imports puis propagée au verrou et au rendu.
+La migration 2.16.23 de `source_parameter_presence` est conservée pour l’audit et la compatibilité des artefacts historiques ; elle ne force plus aucune ligne `|paramètre=` dans le wikicode.
 
 # Wikidéb’IA Kit 2.16.22
 
@@ -2042,7 +2053,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `acae5a14ae8ae622fe7a344c94b4a2a3e72e651256dc6542cee81c4614777ab2`
+SHA-256 : `8e4a73d84f408c475248d3b2c4c8dcfa2075d970abfa0731b95a61e3c58de471`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2333,6 +2344,14 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - conserve l’idempotence des revues déjà migrées ;
 - ajoute une régression reproduisant une revue finalisée/appliquée pré-2.16.22 puis reprise sous le kit courant ;
 - s’aligne sur le validateur 0.4.92, qui accepte les paramètres top-level historiquement présents et scellés lorsqu’ils sont rendus vides.
+
+## 2.16.24 — 13 août 2026 — omission canonique des paramètres optionnels vides
+
+- retire le rendu `present-empty` introduit en 2.16.22 : un paramètre optionnel vide est toujours omis ;
+- conserve `source_parameter_presence` comme provenance d’audit sans effet sur le wikicode ;
+- autorise au préflight la disparition des paramètres éditoriaux optionnels gérés, après validation du corpus, sans affaiblir la protection des paramètres de cycle de vie, inconnus ou hors contrat ;
+- corrige les régressions réelles `A0021 |objections=` et Débat `|bibliographie-pour=` / `|vidéographie-contre=` ;
+- s’aligne sur la norme 1.2.87 et le validateur 0.4.93.
 
 ## Guide de publication
 
@@ -2626,24 +2645,24 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `714a3cda08a526624209b4270fd56118f3e8f72d177cede4e7feb8f046ca1127`
+SHA-256 : `d2a472d6b0f14a2fc49503c387ba669599d2738e7e9e0af8780553f8d43c162f`
 
-Wikidéb’IA Kit 2.16.23 — rapport de tests
+Wikidéb’IA Kit 2.16.24 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 483
-Tests pytest : 483 réussis
-Norme : 1.2.86
-Validateur : 0.4.92
-Présence top-level historique : PASSED ; un paramètre éditorial présent dans l’import reste distingué d’un paramètre historiquement absent.
-Migration pré-2.16.22 : PASSED ; un content-reviewed-copy ancien sans source_parameter_presence est reconstruit depuis reviewed-copy avant tout checkpoint content.
-A0021 `|objections=` : PASSED ; le checkpoint content conserve `|objections=` et top_level_parameter_deletions() ne signale aucune suppression.
-Buckets Débat : PASSED ; `bibliographie-pour` et `vidéographie-contre` peuvent devenir vides tout en restant présents.
-Absence historique : PASSED ; aucun paramètre vide n’est créé mécaniquement lorsqu’il était absent.
-Suppression autorisée : PASSED ; allowed_parameter_deletions reste opérationnel et indépendant de la préservation de présence.
-Valeur historique non vide : PASSED ; jamais vidée par la seule logique de présence.
-Préflight vote électronique v8 synthétique : PASSED ; 100 update, 0 blocked, 0 manual_review, puis 100 mises à jour exécutées sur l’adaptateur de test.
-Propagation import → fr_content_lock → checkpoint content → en_translation_review : PASSED.
-Tous les contrôles 2.16.22 et antérieurs restent verts.
+Tests pytest collectés : 484
+Tests pytest : 484 réussis
+Norme : 1.2.87
+Validateur : 0.4.93
+Omission canonique : PASSED ; tout paramètre éditorial optionnel sans contenu final est omis du wikicode, même s’il était historiquement présent.
+Provenance top-level : PASSED ; source_parameter_presence reste conservé dans les verrous comme preuve d’audit sans commander le rendu.
+A0021 objections : PASSED ; une valeur finale vide produit l’absence de |objections= et non un paramètre vide.
+Buckets Débat : PASSED ; bibliographie-pour et vidéographie-contre disparaissent du wikicode lorsque leur contenu final est vide.
+Préflight différentiel : PASSED ; l’omission canonique d’un paramètre éditorial optionnel géré n’est pas traitée comme une suppression éditoriale non autorisée.
+Protection des suppressions : PASSED ; une suppression de paramètre non omittable, protégé ou inconnu reste bloquée.
+Migration pré-2.16.22 : PASSED ; source_parameter_presence peut toujours être redérivé depuis reviewed-copy pour les anciens content-reviewed-copy, sans réintroduire de sortie present-empty.
+Sous-paramètres Citation/Quote facultatifs vides : PASSED ; la provenance historique peut les conserver, le rendu canonique les omet.
+Préflight vote électronique synthétique : PASSED ; les pages sont planifiables sans |bibliographie-pour=, |vidéographie-contre= ni |objections= vides.
+Tous les contrôles 2.16.23 et antérieurs restent verts hors comportement present-empty explicitement remplacé par 2.16.24.
 
 ## Guide d’orchestration éditoriale
 

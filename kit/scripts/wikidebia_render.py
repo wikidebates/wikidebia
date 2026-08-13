@@ -113,16 +113,12 @@ def _normalize_sequence(value: str) -> str:
     return re.sub(r"}}[ \t\r\n]+{{", "}}{{", text)
 
 
-_PRESENT_EMPTY = object()
 
 
 def _template(name: str, parameters: Iterable[tuple[str, Any]]) -> str:
     rows = [f"{{{{{name}"]
     for key, value in parameters:
         if value is None:
-            continue
-        if value is _PRESENT_EMPTY:
-            rows.append(f"|{key}=")
             continue
         text = str(value).strip()
         if not text:
@@ -391,35 +387,19 @@ def _append_interlanguage_parameter(params: list[tuple[str, Any]], content: Mapp
         params.append((name, new_value))
 
 
-def _source_parameter_was_present(content: Mapping[str, Any], name: str) -> bool | None:
-    states = content.get("source_parameter_presence")
-    if not isinstance(states, Mapping):
-        return None
-    state = states.get(name)
-    if not isinstance(state, Mapping) or not isinstance(state.get("present"), bool):
-        return None
-    return bool(state.get("present"))
-
-
 def _append_editorial_parameter(
     params: list[tuple[str, Any]], content: Mapping[str, Any], name: str, value: Any,
 ) -> None:
-    """Append an editorial parameter while preserving historical presence.
+    """Append a non-empty editorial parameter.
 
-    None remains the explicit omission marker.  For a preexisting page, an
-    empty logical value is emitted as ``|name=`` only when the imported page
-    attests that this top-level parameter was present.  Historical absence (or
-    a legacy artifact without presence evidence) never creates a new empty
-    parameter.  Non-empty values follow the ordinary canonical renderer.
+    ``source_parameter_presence`` remains provenance only. Canonical output
+    never materializes an optional empty value as ``|name=``: empty logical
+    values are omitted regardless of historical presence.
     """
     if value is None:
         return
-    text = str(value).strip()
-    if text:
+    if str(value).strip():
         params.append((name, value))
-        return
-    if _page_origin(content) == "preexisting" and _source_parameter_was_present(content, name) is True:
-        params.append((name, _PRESENT_EMPTY))
 
 
 def _render_debate(

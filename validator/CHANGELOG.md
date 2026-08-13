@@ -191,3 +191,10 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - conserve le blocage des paramètres vides historiquement absents, des pages nouvelles et des sous-paramètres non couverts ;
 - ajoute des régressions positive/négative sur `|objections=` ;
 - s’aligne sur le kit 2.16.23 ; la norme 1.2.86 reste inchangée.
+
+## 0.4.93 — 13 août 2026 — omission canonique des valeurs vides
+
+- retire l’exception 0.4.92 qui autorisait un paramètre top-level vide sur preuve de présence historique ;
+- `WDV-MWK-005` interdit de nouveau toute valeur top-level vide dans le rendu canonique ;
+- conserve `source_parameter_presence` comme provenance sans effet d’autorisation syntaxique ;
+- s’aligne sur la norme 1.2.87 et le kit 2.16.24.

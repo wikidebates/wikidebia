@@ -287,3 +287,11 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - conserve l’idempotence des revues déjà migrées ;
 - ajoute une régression reproduisant une revue finalisée/appliquée pré-2.16.22 puis reprise sous le kit courant ;
 - s’aligne sur le validateur 0.4.92, qui accepte les paramètres top-level historiquement présents et scellés lorsqu’ils sont rendus vides.
+
+## 2.16.24 — 13 août 2026 — omission canonique des paramètres optionnels vides
+
+- retire le rendu `present-empty` introduit en 2.16.22 : un paramètre optionnel vide est toujours omis ;
+- conserve `source_parameter_presence` comme provenance d’audit sans effet sur le wikicode ;
+- autorise au préflight la disparition des paramètres éditoriaux optionnels gérés, après validation du corpus, sans affaiblir la protection des paramètres de cycle de vie, inconnus ou hors contrat ;
+- corrige les régressions réelles `A0021 |objections=` et Débat `|bibliographie-pour=` / `|vidéographie-contre=` ;
+- s’aligne sur la norme 1.2.87 et le validateur 0.4.93.

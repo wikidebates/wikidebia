@@ -1,16 +1,16 @@
-Wikidéb’IA Kit 2.16.23 — rapport de tests
+Wikidéb’IA Kit 2.16.24 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 483
-Tests pytest : 483 réussis
-Norme : 1.2.86
-Validateur : 0.4.92
-Présence top-level historique : PASSED ; un paramètre éditorial présent dans l’import reste distingué d’un paramètre historiquement absent.
-Migration pré-2.16.22 : PASSED ; un content-reviewed-copy ancien sans source_parameter_presence est reconstruit depuis reviewed-copy avant tout checkpoint content.
-A0021 `|objections=` : PASSED ; le checkpoint content conserve `|objections=` et top_level_parameter_deletions() ne signale aucune suppression.
-Buckets Débat : PASSED ; `bibliographie-pour` et `vidéographie-contre` peuvent devenir vides tout en restant présents.
-Absence historique : PASSED ; aucun paramètre vide n’est créé mécaniquement lorsqu’il était absent.
-Suppression autorisée : PASSED ; allowed_parameter_deletions reste opérationnel et indépendant de la préservation de présence.
-Valeur historique non vide : PASSED ; jamais vidée par la seule logique de présence.
-Préflight vote électronique v8 synthétique : PASSED ; 100 update, 0 blocked, 0 manual_review, puis 100 mises à jour exécutées sur l’adaptateur de test.
-Propagation import → fr_content_lock → checkpoint content → en_translation_review : PASSED.
-Tous les contrôles 2.16.22 et antérieurs restent verts.
+Tests pytest collectés : 484
+Tests pytest : 484 réussis
+Norme : 1.2.87
+Validateur : 0.4.93
+Omission canonique : PASSED ; tout paramètre éditorial optionnel sans contenu final est omis du wikicode, même s’il était historiquement présent.
+Provenance top-level : PASSED ; source_parameter_presence reste conservé dans les verrous comme preuve d’audit sans commander le rendu.
+A0021 objections : PASSED ; une valeur finale vide produit l’absence de |objections= et non un paramètre vide.
+Buckets Débat : PASSED ; bibliographie-pour et vidéographie-contre disparaissent du wikicode lorsque leur contenu final est vide.
+Préflight différentiel : PASSED ; l’omission canonique d’un paramètre éditorial optionnel géré n’est pas traitée comme une suppression éditoriale non autorisée.
+Protection des suppressions : PASSED ; une suppression de paramètre non omittable, protégé ou inconnu reste bloquée.
+Migration pré-2.16.22 : PASSED ; source_parameter_presence peut toujours être redérivé depuis reviewed-copy pour les anciens content-reviewed-copy, sans réintroduire de sortie present-empty.
+Sous-paramètres Citation/Quote facultatifs vides : PASSED ; la provenance historique peut les conserver, le rendu canonique les omet.
+Préflight vote électronique synthétique : PASSED ; les pages sont planifiables sans |bibliographie-pour=, |vidéographie-contre= ni |objections= vides.
+Tous les contrôles 2.16.23 et antérieurs restent verts hors comportement present-empty explicitement remplacé par 2.16.24.

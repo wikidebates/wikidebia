@@ -1,7 +1,7 @@
-# Norme opérationnelle active Wikidéb’IA 1.2.86
+# Norme opérationnelle active Wikidéb’IA 1.2.87
 
 **Statut : source normative active unique.**  
-**Date d’effet :** 12 août 2026
+**Date d’effet :** 13 août 2026
 
 Cette norme contient uniquement les règles actuellement applicables. Les textes de révisions remplacées, snapshots et anciennes formulations sont conservés dans `history/` et dans les changelogs, qui sont informatifs et immuables. Les numéros de norme, validateur, kit et producteur servent à la provenance, à la reproductibilité, à l’installation et aux migrations ; ils ne sélectionnent aucune règle éditoriale.
 
@@ -343,7 +343,7 @@ Le rendu français repose sur le modèle MediaWiki suivant, fourni par le propri
 
 Cette implémentation confirme que le paramètre `article` détermine à la fois la cible Wikipédia et, par défaut, le texte visible. Le modèle anglais `Wikipedia link` suit la convention fonctionnelle correspondante avec `article` et `displayed-text`; son code interne n’est pas imposé par la norme tant que ce comportement est respecté.
 
-Le nombre de sous-parties et le volume documentaire dépendent de la complexité, de l’étendue du sujet et de l’abondance de la littérature disponible. Il n’existe pas de minimum universel de cinq sous-parties ni de vingt références. Le profil local peut déclarer des minima adaptés, accompagnés d’une justification non vide ; ces minima ne doivent jamais conduire à fragmenter artificiellement l’introduction ou à ajouter des sources sans apport réel. Inversement, une page portant sur une controverse abondamment documentée ne doit pas s’arrêter à une sélection symbolique ou minimale. Chaque famille applicable (bibliographie, sitographie et vidéographie) fait l’objet d’un examen séparé. Pour une page Débat ou Debate, les paramètres documentaires restent présents mais peuvent être vides lorsque l'orientation correspondante n'offre pas de source suffisamment pertinente. Le volume total reste proportionné à l'abondance et à la qualité de la littérature. La classification suit le contenu effectif de la ressource et non un objectif de symétrie numérique.
+Le nombre de sous-parties et le volume documentaire dépendent de la complexité, de l’étendue du sujet et de l’abondance de la littérature disponible. Il n’existe pas de minimum universel de cinq sous-parties ni de vingt références. Le profil local peut déclarer des minima adaptés, accompagnés d’une justification non vide ; ces minima ne doivent jamais conduire à fragmenter artificiellement l’introduction ou à ajouter des sources sans apport réel. Inversement, une page portant sur une controverse abondamment documentée ne doit pas s’arrêter à une sélection symbolique ou minimale. Chaque famille applicable (bibliographie, sitographie et vidéographie) fait l’objet d’un examen séparé. Pour une page Débat ou Debate, tout paramètre documentaire optionnel dont aucune source n’est finalement retenue est entièrement omis du wikicode ; une catégorie vide n’est jamais matérialisée par une ligne `|paramètre=`. Le volume total reste proportionné à l'abondance et à la qualité de la littérature. La classification suit le contenu effectif de la ressource et non un objectif de symétrie numérique.
 
 Chaque sous-partie substantielle contient les appels de référence inline nécessaires pour soutenir les affirmations factuelles qui exigent une attribution. Dans les introductions française et anglaise, chaque appel développé est rédigé directement en wikicode lisible à l’intérieur de `<ref>…</ref>`, sans passer par un modèle MediaWiki. Les modèles `{{Référence}}`, `{{Reference}}`, les modèles bibliographiques, sitographiques ou vidéographiques spécialisés et tout autre modèle de citation sont interdits dans le corps d’une note d’introduction. La note indique directement les éléments utiles à l’identification de la source — auteur, titre, publication ou site, date en langage naturel, pagination et lien selon le cas. Une simple notice documentaire est traitée comme une notice et non comme une phrase : elle ne se termine donc pas par un point avant `</ref>`. Le signe de ponctuation de la phrase principale vient après l’appel de note (`texte<ref>Notice sans point final</ref>.`). Un point final reste admis à l’intérieur de la balise uniquement si la note contient une véritable phrase explicative complète, et cette exception est consignée dans la revue de l’introduction. Une référence nommée peut être définie sous la forme `<ref name="…">contenu rédigé directement</ref>` puis réutilisée avec `<ref name="…" />`. Les appels français sont placés avant la ponctuation finale ; les appels anglais suivent la convention anglaise. Les balises `<references />` et `<references>` ne sont jamais ajoutées : l’affichage des notes est géré par le wiki. Les mêmes sources peuvent également figurer dans les listes documentaires structurées de la page lorsque l’appel inline attribue une affirmation précise.
 
@@ -427,15 +427,6 @@ La même distinction création/reprise s’applique aux métadonnées éditorial
 |page=Titre canonique complet
 |titre-affiché=Titre affiché
 }}
-|bibliographie-pour=
-|bibliographie-contre=
-|bibliographie-ni-pour-ni-contre=
-|sitographie-pour=
-|sitographie-contre=
-|sitographie-ni-pour-ni-contre=
-|vidéographie-pour=
-|vidéographie-contre=
-|vidéographie-ni-pour-ni-contre=
 |rubriques=
 |mots-clés=
 |interlangue={{Lien interlangue
@@ -447,6 +438,8 @@ La même distinction création/reprise s’applique aux métadonnées éditorial
 ```
 
 Les lignes `avancement=Débat construit` et `avertissements-débat=Débat généré par IA` de cet exemple valent uniquement pour une page nouvellement créée par Wikidéb’IA. Sur une page préexistante, elles sont remplacées par la conservation exacte de l’état antérieur.
+
+Les neuf paramètres documentaires (`bibliographie-*`, `sitographie-*`, `vidéographie-*`) sont ajoutés uniquement lorsqu’ils contiennent au moins une référence retenue. Ils sont omis lorsqu’ils seraient vides, y compris sur une page préexistante après une revue autorisée qui vide une catégorie.
 
 Le paramètre `interlangue` dépend de l'état de traduction anglaise. Avec `translation_status.en=deferred`, il est absent du wikicode français et aucun titre anglais n'est requis. Avec un état `ready` ou `published`, il contient exactement un `{{Lien interlangue}}` visant le titre canonique anglais verrouillé. Une page anglaise peut rester momentanément absente du wiki uniquement lorsque son titre est déjà verrouillé et que l'état déclaré autorise cette préparation.
 
@@ -826,3 +819,10 @@ Lorsqu’une passe de convergence détecte une erreur certaine, le workflow n’
 
 Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. Elle peut réutiliser un snapshot `graph-extract` déjà présent ; sinon elle effectue l’extraction en lecture seule. Le premier checkpoint publie graphe et titres ; le second publie rubriques, mots-clés et contenu. Après le second reçu seulement, la traduction peut commencer. Après la dernière revue convergée, le rendu et la construction du corpus bilingue `release_ready` restent mécaniques ; la publication bilingue finale demeure une étape distincte.
 
+## 1.2.87 — 13 août 2026 — omission canonique des paramètres optionnels vides
+
+- réaffirme la règle atomique déjà active selon laquelle tout paramètre optionnel sans contenu pertinent est omis du wikicode ;
+- supprime la formulation contradictoire qui demandait de conserver vides les neuf paramètres documentaires d’une page Débat / Debate ;
+- précise qu’une catégorie documentaire devenue vide après une revue autorisée disparaît entièrement au lieu d’être rendue sous la forme `|paramètre=` ;
+- conserve séparément la provenance historique de présence pour l’audit, sans lui donner d’effet sur le rendu ;
+- exige que le préflight distingue l’omission canonique d’un paramètre optionnel géré de la suppression non autorisée d’un paramètre protégé, inconnu ou hors contrat.

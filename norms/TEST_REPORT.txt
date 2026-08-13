@@ -1,11 +1,10 @@
-Wikidéb’IA Normes 1.2.86 — audit de cohérence normative
+Wikidéb’IA Normes 1.2.87 — audit de cohérence normative
 Statut : PASSED
-Norme active unique : 1.2.86 ; norme 1.2.85 archivée sans modification (SHA-256 06b01a271a3f15e23ee6c5d3b2734436034f6e46337e64f7140a4869d879fb16).
-Catalogue : 541 exigences, 541 identifiants uniques ; toutes les sources déclarées sont résolues.
-Provenance éditoriale : page cible EN (`page_origin`) distincte de la source française (`source_page_origin`).
-Titres affichés historiques : pas de propositionnalité/readability rétroactive ; fidélité, intelligibilité contextuelle et absence de nouvelle dégradation maintenues.
-Mots-clés historiques : quotas de création non rétroactifs ; qualité intrinsèque, atomicité, graphie, longueur et vocabulaire contrôlé maintenus.
-Rubriques historiques : préservation par défaut, cardinalité de création non rétroactive, corrections pertinentes justifiées autorisées.
-Introduction historique EN : adaptation autonome du contexte franco-français maintenue ; profil structurel de création non rétroactif ; contrôles documentaires intrinsèques maintenus.
-Résumés historiques traduits : ratio EN/FR hors plage traité comme signal de revue avec justification, pas comme objectif de réécriture.
-Exigences ajoutées : EDT-076, TRN-036, VAL-065.
+Norme active unique : 1.2.87 ; norme 1.2.86 archivée sans modification (SHA-256 f55292d2c6565c930593c99595f51c693a11b3d8300838935aa9c403254e22e7).
+Catalogue : 541 exigences, 541 identifiants uniques ; toutes les sources et alias déclarés sont résolus.
+Omission canonique : tout paramètre optionnel sans contenu pertinent est omis ; les anciens buckets documentaires Débat présents mais vides sont explicitement supersédés.
+Présence historique : source_parameter_presence reste une provenance d’audit et ne commande pas le wikicode final.
+Préflight : l’omission canonique d’un paramètre optionnel validé est distincte d’une suppression de paramètre protégé ou inconnu.
+Provenance éditoriale : page cible EN (page_origin) distincte de la source française (source_page_origin).
+Titres affichés, mots-clés, rubriques, introduction historique EN et résumés historiques traduits : politiques différentielles 1.2.86 conservées.
+Révision ajoutée : 1.2.87 — omission canonique des paramètres optionnels vides.

@@ -784,3 +784,10 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - maintient l’adaptation autonome des introductions historiques au lectorat anglophone, y compris la localisation du contexte franco-français, sans relâcher les contrôles documentaires intrinsèques ;
 - précise que les titres affichés historiques nominaux ou contextuels n’exigent ni proposition complète ni justification rétroactive de gain de lisibilité ;
 - aligne le tri des rubriques sur l’ordre alphabétique français accent-insensible.
+
+## 1.2.87 — 13 août 2026 — omission canonique des paramètres optionnels vides
+
+- aligne le texte consolidé sur l’exigence atomique active : tout paramètre optionnel sans contenu pertinent est omis ;
+- retire l’ancienne exception contradictoire imposant des buckets documentaires Débat présents mais vides ;
+- la présence historique reste une provenance d’audit et ne commande plus le rendu ;
+- le préflight doit autoriser l’omission canonique des paramètres éditoriaux optionnels validés sans autoriser les suppressions de paramètres protégés ou inconnus.

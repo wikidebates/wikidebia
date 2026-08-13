@@ -824,50 +824,6 @@ def _apply_page_lifecycle_contract(ctx: PackageContext, spec: dict[str, Any], tm
     if page_type == 'argument' and name_assignment is not None and (tmpl.one(name_parameter) != name_assignment.get('name')):
         ctx.report.error('WDV-EDT-031', 'Le nom d’argument rendu diverge de l’attribution éditoriale approuvée', path=rel, details={'expected': name_assignment.get('name'), 'actual': tmpl.one(name_parameter)})
 
-def _historical_present_empty_top_level_parameter(
-    ctx: PackageContext,
-    *,
-    lang: str,
-    page_type: str,
-    page_manifest: dict[str, Any] | None,
-    parameter: str,
-) -> bool:
-    """Allow present-empty only when historical presence is sealed in the FR lock."""
-    if (
-        lang != "fr"
-        or not isinstance(page_manifest, dict)
-        or page_manifest.get("page_origin") != "preexisting"
-        or not ctx.exists("data/fr_content_lock.json")
-    ):
-        return False
-    page_id = str(page_manifest.get("page_id") or "")
-    if not page_id:
-        return False
-    lock = ctx.load_json("data/fr_content_lock.json")
-    if not isinstance(lock, dict):
-        return False
-    if page_type == "debate":
-        row = lock.get("debate")
-    elif page_type == "argument":
-        row = next(
-            (
-                item
-                for item in (lock.get("arguments") or [])
-                if isinstance(item, dict) and str(item.get("id") or "") == page_id
-            ),
-            None,
-        )
-    else:
-        return False
-    if not isinstance(row, dict) or row.get("page_origin") != "preexisting":
-        return False
-    states = row.get("source_parameter_presence")
-    if not isinstance(states, dict):
-        return False
-    state = states.get(parameter)
-    return isinstance(state, dict) and state.get("present") is True
-
-
 def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page_type: str, rel: str, page_manifest: dict[str, Any] | None=None) -> None:
     base_spec = _top_spec_for_context(ctx, lang, page_type)
     if not _current_template_parameter_contract(ctx):
@@ -941,14 +897,6 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
             ctx.report.error('WDV-MWK-004', f'Paramètre obligatoire absent : {key}', path=rel)
     for key, value in tmpl.params:
         if not value.strip():
-            if _historical_present_empty_top_level_parameter(
-                ctx,
-                lang=lang,
-                page_type=page_type,
-                page_manifest=page_manifest,
-                parameter=key,
-            ):
-                continue
             ctx.report.error('WDV-MWK-005', f'Paramètre vide interdit : {key}', path=rel)
     positions = [allowed.index(k) for k in keys if k in allowed]
     if positions != sorted(positions):

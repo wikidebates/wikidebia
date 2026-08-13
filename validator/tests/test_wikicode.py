@@ -118,10 +118,10 @@ def _make_preexisting_empty_objections_fixture(tmp_path: Path, *, present: bool)
     return root
 
 
-def test_historical_present_empty_top_level_parameter_is_allowed(tmp_path: Path):
+def test_historical_present_empty_top_level_parameter_is_rejected(tmp_path: Path):
     root = _make_preexisting_empty_objections_fixture(tmp_path, present=True)
     report = validate_package(root, scopes=["wikicode"])
-    assert not any(
+    assert any(
         f.code == "WDV-MWK-005" and "objections" in f.message
         for f in report.findings
     ), report.to_text()

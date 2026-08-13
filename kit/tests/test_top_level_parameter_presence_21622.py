@@ -51,7 +51,7 @@ def _a0021_rendered() -> str:
     )
 
 
-def test_a0021_historical_empty_objections_remains_present_and_is_not_a_parameter_deletion():
+def test_a0021_historical_empty_objections_is_canonically_omitted():
     remote = """{{Argument
 |résumé=Résumé historique.
 |citations=
@@ -62,11 +62,11 @@ def test_a0021_historical_empty_objections_remains_present_and_is_not_a_paramete
 }}
 """
     proposed = _a0021_rendered()
-    assert "|objections=" in proposed
-    assert update.top_level_parameter_deletions(remote, proposed, "fr", "argument") == []
+    assert "|objections=" not in proposed
+    assert update.top_level_parameter_deletions(remote, proposed, "fr", "argument") == ["citations", "justifications", "objections"]
 
 
-def test_historical_debate_documentary_buckets_can_become_present_empty_without_deletion():
+def test_historical_debate_documentary_buckets_are_omitted_when_empty():
     registry = {"debate": {"pages": {"en": {"canonical_title": "Should electronic voting be generalized?"}}}, "graph": {"edges": [], "occurrences": [], "nodes": []}}
     present = {
         "introduction", "articles-Wikipédia", "arguments-pour", "arguments-contre",
@@ -86,8 +86,8 @@ def test_historical_debate_documentary_buckets_can_become_present_empty_without_
         lang="fr", registry=registry, metadata_lock={"debate": {"rubriques": ["Politique"], "keywords": ["vote électronique"]}},
         content_lock={"debate": debate}, sources={}, creation_date="2026-08-13", include_interlanguage=False,
     )
-    assert "|bibliographie-pour=" in text
-    assert "|vidéographie-contre=" in text
+    assert "|bibliographie-pour=" not in text
+    assert "|vidéographie-contre=" not in text
     # Historically absent + logically empty must remain absent.
     assert "|bibliographie-contre=" not in text
     assert "|sitographie-pour=" not in text
@@ -96,15 +96,13 @@ def test_historical_debate_documentary_buckets_can_become_present_empty_without_
 |sujet-développé=la généralisation du vote électronique
 |introduction={{Sous-partie|titre=Définition|contenu=Texte historique.}}
 |articles-Wikipédia={{Article Wikipédia|page=Vote électronique}}
-|arguments-pour=
-|arguments-contre=
 |bibliographie-pour={{Référence bibliographique pour|ouvrage=Elections Canada}}
 |vidéographie-contre={{Référence vidéographique contre|titre=Hacking Democracy}}
 |rubriques=Politique
 |mots-clés=vote électronique
 }}
 """
-    assert update.top_level_parameter_deletions(remote, text, "fr", "debate") == []
+    assert update.top_level_parameter_deletions(remote, text, "fr", "debate") == ["bibliographie-pour", "vidéographie-contre"]
 
 
 def test_new_page_does_not_gain_empty_parameters_from_logical_empty_values():
@@ -208,17 +206,18 @@ def test_vote_electronique_v8_presence_flows_import_to_lock_checkpoint_and_engli
     cp = checkpoint.build_checkpoint(project, "debat_test", work_id, stage="content")
     debate_wiki = (cp / "output/fr/debate/debate.wiki").read_text(encoding="utf-8")
     arg_wiki = (cp / "output/fr/arguments/A0001.wiki").read_text(encoding="utf-8")
-    assert "|bibliographie-pour=" in debate_wiki
-    assert "|vidéographie-contre=" in debate_wiki
-    assert "|objections=" in arg_wiki
+    assert "|bibliographie-pour=" not in debate_wiki
+    assert "|vidéographie-contre=" not in debate_wiki
+    assert "|objections=" not in arg_wiki
 
     reviewed = workspace / "reviewed-copy"
     provenance = json.loads((reviewed / "data/import_provenance.json").read_text(encoding="utf-8"))
     debate_src = reviewed / next(row["import_path"] for row in provenance["pages"] if row.get("kind") == "debate")
     arg_src = reviewed / next(row["import_path"] for row in provenance["pages"] if row.get("page_id") == "A0001")
-    assert "bibliographie-pour" not in update.top_level_parameter_deletions(debate_src.read_text(encoding="utf-8"), debate_wiki, "fr", "debate")
-    assert "vidéographie-contre" not in update.top_level_parameter_deletions(debate_src.read_text(encoding="utf-8"), debate_wiki, "fr", "debate")
-    assert update.top_level_parameter_deletions(arg_src.read_text(encoding="utf-8"), arg_wiki, "fr", "argument") == []
+    debate_deletions = update.top_level_parameter_deletions(debate_src.read_text(encoding="utf-8"), debate_wiki, "fr", "debate")
+    assert "bibliographie-pour" in debate_deletions
+    assert "vidéographie-contre" in debate_deletions
+    assert "objections" in update.top_level_parameter_deletions(arg_src.read_text(encoding="utf-8"), arg_wiki, "fr", "argument")
 
     prepared = translation.prepare_review(project, "debat_test", work_id)
     assert prepared["status"] == "en_translation_review_ready"
@@ -229,21 +228,19 @@ def test_vote_electronique_v8_remote_preflight_resolves_100_updates_without_para
     rows_new = []
     remote_pages = {}
 
-    # A0021 real regression shape: historical empty objections remains present.
+    # A0021 real regression shape: historical empty objections is canonically omitted.
     a0021_remote = "{{Argument\n|résumé=Ancien A0021\n|objections=\n|rubriques=Politique\n|mots-clés=vote électronique\n}}\n"
     a0021_new = _a0021_rendered().replace("Résumé final inchangé dans sa présence top-level.", "Nouveau A0021")
     rows_old.append(("fr", "A0021", "A0021", a0021_remote, "argument"))
     rows_new.append(("fr", "A0021", "A0021", a0021_new, "argument"))
     remote_pages[("fr", "A0021")] = (10, a0021_remote)
 
-    # Debate regression shape: two documentary buckets become present-empty.
+    # Debate regression shape: two documentary buckets become canonically absent when empty.
     debate_remote = """{{Débat
 |sujet=Vote électronique
 |sujet-développé=la généralisation du vote électronique
 |introduction=Texte historique
 |articles-Wikipédia={{Article Wikipédia|page=Vote électronique}}
-|arguments-pour=
-|arguments-contre=
 |bibliographie-pour={{Référence bibliographique pour|ouvrage=Elections Canada}}
 |vidéographie-contre={{Référence vidéographique contre|titre=Hacking Democracy}}
 |rubriques=Politique
@@ -329,3 +326,19 @@ def test_pre_21622_applied_review_is_migrated_from_immutable_reviewed_copy(tmp_p
     assert rebuilt_lock["debate"]["source_parameter_presence"]["vidéographie-contre"]["present"] is True
     a0001 = next(row for row in rebuilt_lock["arguments"] if row["id"] == "A0001")
     assert a0001["source_parameter_presence"]["objections"]["present"] is True
+
+
+def test_preflight_allows_canonical_optional_omission_but_blocks_non_omittable_deletion(tmp_path: Path):
+    remote = "{{Débat\n|sujet=Test\n|sujet-développé=le test\n|articles-Wikipédia={{Article Wikipédia|page=Test}}\n|bibliographie-pour=\n|rubriques=Société\n|mots-clés=test\n}}\n"
+    proposed = "{{Débat\n|sujet=Test\n|sujet-développé=le test\n|rubriques=Société\n|mots-clés=test\n}}\n"
+    config, path = make_fixture(
+        tmp_path,
+        old_pages=[("fr", "demo", "Titre", remote, "debate")],
+        new_pages=[("fr", "demo", "Titre", proposed, "debate")],
+    )
+    adapter = FakeAdapter({("fr", "Titre"): (10, remote)})
+    plan = update.RemoteUpdatePlanner(config, adapter, path).build_plan()
+    assert plan["counts"]["blocked"] == 1
+    blocked = plan["operations"]["blocked"][0]
+    assert blocked["unauthorized_parameter_deletions"] == ["articles-Wikipédia"]
+    assert "bibliographie-pour" not in blocked["unauthorized_parameter_deletions"]

@@ -1,10 +1,10 @@
-# Wikidéb’IA Kit 2.16.23
+# Wikidéb’IA Kit 2.16.24
 
-Le kit 2.16.23 complète la préservation top-level introduite en 2.16.22 par une **migration sûre des revues de contenu déjà finalisées et appliquées sous une version antérieure**. Lorsqu’un ancien `content-reviewed-copy` ne contient pas `source_parameter_presence`, `apply_review()` peut le reconstruire depuis le `reviewed-copy` immuable et la revue approuvée exacte, sans modifier le payload éditorial ni son empreinte.
+Le kit 2.16.24 corrige la régression `present-empty` introduite en 2.16.22. `source_parameter_presence` reste conservé comme provenance d’audit, mais le renderer omet désormais tout paramètre éditorial optionnel dont la valeur logique finale est vide, même si ce paramètre existait historiquement.
 
-La reconstruction n’est autorisée qu’avant l’existence de tout état de checkpoint français `content`. Si `.state/fr-publication/<débat>/<work>/content` existe déjà, la migration refuse de détruire ou de remplacer cet état et laisse la reprise transactionnelle du checkpoint décider. Les revues déjà migrées conservent leur voie idempotente normale.
+Le préflight distant traite la disparition des paramètres éditoriaux optionnels gérés comme une **omission canonique** après validation du corpus. Cette exception ne couvre ni les paramètres de cycle de vie, ni les paramètres inconnus, ni les paramètres hors contrat.
 
-Cette correction couvre le cas réel du vote électronique où un ZIP v8 avait été approuvé/appliqué avant 2.16.22 : la présence historique de `A0021|objections=`, `Débat|bibliographie-pour=` et `Débat|vidéographie-contre=` est redérivée depuis les imports puis propagée au verrou et au rendu.
+La migration 2.16.23 de `source_parameter_presence` est conservée pour l’audit et la compatibilité des artefacts historiques ; elle ne force plus aucune ligne `|paramètre=` dans le wikicode.
 
 # Wikidéb’IA Kit 2.16.22
 

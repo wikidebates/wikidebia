@@ -81,6 +81,31 @@ PARAMETER_RENAMES = {
     ("en", "argument"): {"detailed-debate": "dedicated-debate", "name": "established-name"},
 }
 
+# Optional editorial parameters are canonically omitted when their validated
+# logical value is empty. Their disappearance is not a destructive deletion.
+# Protected lifecycle/legacy parameters are deliberately excluded.
+CANONICALLY_OMITTABLE_PARAMETERS = {
+    ("fr", "debate"): frozenset({
+        "bibliographie-pour", "bibliographie-contre", "bibliographie-ni-pour-ni-contre",
+        "sitographie-pour", "sitographie-contre", "sitographie-ni-pour-ni-contre",
+        "vidéographie-pour", "vidéographie-contre", "vidéographie-ni-pour-ni-contre",
+    }),
+    ("en", "debate"): frozenset({
+        "pro-bibliography", "con-bibliography", "bibliography",
+        "pro-webliography", "con-webliography", "webliography",
+        "pro-videography", "con-videography", "videography",
+    }),
+    ("fr", "argument"): frozenset({
+        "résumé", "citations", "références-bibliographiques",
+        "références-sitographiques", "références-vidéographiques",
+        "justifications", "objections",
+    }),
+    ("en", "argument"): frozenset({
+        "summary", "quotes", "bibliography", "webliography", "videography",
+        "justifications", "objections",
+    }),
+}
+
 def _canonical_parameter_name(language: str, page_type: str, name: str) -> str:
     normalized = normalize_key(name)
     mapping = {normalize_key(old): new for old, new in PARAMETER_RENAMES.get((language, page_type), {}).items()}
@@ -1176,6 +1201,15 @@ class RemoteUpdatePlanner:
         allowed = self._historically_authorized_parameter_deletions(proposed["language"], proposed["page_id"])
         if adoption:
             allowed.update(str(name) for name in adoption.get("allowed_parameter_deletions") or [])
+        canonical_omissions = CANONICALLY_OMITTABLE_PARAMETERS.get(
+            (proposed["language"], proposed["page_type"]), frozenset()
+        )
+        for exact_name in deleted:
+            canonical = _canonical_parameter_name(
+                proposed["language"], proposed["page_type"], exact_name
+            )
+            if canonical in canonical_omissions:
+                allowed.add(exact_name)
         # A corpus validé peut réparer les métadonnées qui ont été ajoutées ou
         # écrasées par une ancienne génération. La restauration ne vaut que pour
         # le jeu opaque et seulement si l'état désiré est explicitement absent.

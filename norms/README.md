@@ -1,8 +1,8 @@
-# Wikidéb’IA — Normes 1.2.86
+# Wikidéb’IA — Normes 1.2.87
 
-La révision 1.2.86 formalise la **provenance éditoriale de la source** dans les reprises bilingues. Le cycle de vie technique d’une page cible (`page_origin`) est distinct de la provenance de la source française (`source_page_origin`) et, lorsque nécessaire, de la provenance du champ. Une page anglaise techniquement nouvelle ne transforme donc pas en création IA les métadonnées historiques qu’elle traduit.
+La révision 1.2.87 corrige une contradiction interne de 1.2.86 : le catalogue atomique imposait déjà l’omission de tout paramètre optionnel sans contenu pertinent, tandis qu’un paragraphe et l’exemple de page Débat demandaient encore de conserver des buckets documentaires vides. Désormais la règle est unique : une valeur optionnelle vide est omise du wikicode.
 
-Les quotas de keywords et les préférences de forme des titres affichés sont réservés aux contenus effectivement générés. Les mots-clés historiques restent soumis aux règles intrinsèques de qualité et peuvent être corrigés, remplacés ou décomposés avec traçabilité. Les rubriques historiques sont conservées par défaut sans plafond rétroactif, tout en restant corrigeables lorsqu’une classification est réellement inadéquate ou incomplète. Les introductions historiques anglaises restent des adaptations autonomes du contexte franco-français et conservent leurs contrôles documentaires et techniques intrinsèques. Le ratio EN/FR d’un résumé historique hors 0,60–1,45 devient un signal de revue explicitement justifiable.
+`source_parameter_presence` peut rester conservé comme provenance historique, mais n’a aucun effet sur la présence du paramètre dans la sortie.
 
 La mise en œuvre corrige également deux défauts de reprise : aucune troncature silencieuse des rubriques historiques à quatre et tri alphabétique français accent-insensible.
 
