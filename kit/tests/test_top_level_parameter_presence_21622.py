@@ -276,3 +276,56 @@ def test_vote_electronique_v8_remote_preflight_resolves_100_updates_without_para
     assert all(not row.get("unauthorized_parameter_deletions") for row in plan["operations"]["update"])
     receipt = update.PlanExecutor(config, adapter, path).execute(plan, plan["plan_sha256"])
     assert receipt["counts"]["updated"] == 100
+
+
+def test_pre_21622_applied_review_is_migrated_from_immutable_reviewed_copy(tmp_path: Path):
+    project, workspace, work_id = make_metadata_applied(tmp_path)
+    _inject_real_presence_shapes(workspace)
+    content.prepare_review(project, "debat_test", work_id)
+    complete_content_review(workspace)
+    finalized = content.finalize_review(project, "debat_test", work_id)
+    content.apply_review(project, "debat_test", work_id, finalized["review_sha256"])
+
+    # Simulate an approved/applied artifact produced before 2.16.22: the
+    # editorial review and the derived content lock both lack the new presence
+    # inventory, but the immutable reviewed-copy still contains the historical
+    # wikicode from which it can be reconstructed.
+    review_path = workspace / "reviews/fr/content_review.json"
+    review = json.loads(review_path.read_text(encoding="utf-8"))
+    review["final_values"]["debate"].pop("source_parameter_presence", None)
+    for row in review["final_values"]["arguments"]:
+        row.pop("source_parameter_presence", None)
+    review["review_sha256"] = content.content_review_sha256(review)
+    common.write_json(review_path, review)
+
+    target = workspace / "content-reviewed-copy"
+    lock_path = target / "data/fr_content_lock.json"
+    lock = json.loads(lock_path.read_text(encoding="utf-8"))
+    lock["debate"].pop("source_parameter_presence", None)
+    for row in lock["arguments"]:
+        row.pop("source_parameter_presence", None)
+    common.write_json(lock_path, lock)
+
+    meta_path = workspace / "workspace.json"
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    meta["content_reviewed_copy"]["tree_sha256"] = common.full_tree_sha256(target)
+    meta["content_reviewed_copy"]["review_sha256"] = review["review_sha256"]
+    meta["french_content_review"]["review_sha256"] = review["review_sha256"]
+    meta["workspace_sha256"] = None
+    meta["workspace_sha256"] = workspace_tool.workspace_receipt_hash(meta)
+    common.write_json(meta_path, meta)
+
+    migrated = content.apply_review(
+        project,
+        "debat_test",
+        work_id,
+        review["review_sha256"],
+    )
+    assert migrated["status"] == "fr_content_applied"
+    assert not migrated.get("idempotent", False)
+
+    rebuilt_lock = json.loads(lock_path.read_text(encoding="utf-8"))
+    assert rebuilt_lock["debate"]["source_parameter_presence"]["bibliographie-pour"]["present"] is True
+    assert rebuilt_lock["debate"]["source_parameter_presence"]["vidéographie-contre"]["present"] is True
+    a0001 = next(row for row in rebuilt_lock["arguments"] if row["id"] == "A0001")
+    assert a0001["source_parameter_presence"]["objections"]["present"] is True

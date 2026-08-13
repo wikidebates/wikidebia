@@ -1999,7 +1999,35 @@ def _summary_style_review(arguments: Sequence[Mapping[str, Any]], debate_id: str
 
 def _build_content_copy(project_root: Path, source: Path, target: Path, review: Mapping[str, Any], debate_id: str, work_id: str) -> dict[str, Any]:
     shutil.copytree(source, target, symlinks=False, copy_function=shutil.copy2)
-    final = review["final_values"]
+    final = copy.deepcopy(review["final_values"])
+
+    # A review finalized before 2.16.22 may not carry the historical top-level
+    # parameter-presence inventory in final_values.  Re-derive that evidence
+    # from reviewed-copy, which is immutable and already provenance-checked, so
+    # an old approved review can be reconstructed without changing its editorial
+    # decisions or review hash.
+    _, source_debate_presence, source_argument_presence_rows = _source_imports(source)
+    if final["debate"].get("page_origin") == "preexisting":
+        final["debate"]["source_parameter_presence"] = copy.deepcopy(
+            source_debate_presence.get("source_parameter_presence") or {}
+        )
+    source_argument_presence = {
+        str(row.get("id")): row
+        for row in source_argument_presence_rows
+        if isinstance(row, Mapping)
+    }
+    for argument in final["arguments"]:
+        if argument.get("page_origin") != "preexisting":
+            continue
+        argument_id = str(argument.get("id"))
+        source_row = source_argument_presence.get(argument_id)
+        if source_row is None:
+            raise ContentReviewError(
+                f"Présence des paramètres source introuvable pour {argument_id}"
+            )
+        argument["source_parameter_presence"] = copy.deepcopy(
+            source_row.get("source_parameter_presence") or {}
+        )
     registry = load_json(target / "data/registre_debat.json", "registre du débat")
     classification = review.get("classification") or {}
     class_items = classification.get("final_values") or []
@@ -2238,7 +2266,56 @@ def apply_review(project_root: Path, debate_id: str, work_id: str, confirm_revie
         actual = full_tree_sha256(target)
         if actual != expected:
             raise ContentReviewError("Empreinte de content-reviewed-copy divergente")
-        return {"status": "fr_content_applied", "debate_id": debate_id, "work_id": work_id, "review_sha256": review["review_sha256"], "content_reviewed_copy_tree_sha256": actual, "idempotent": True}
+
+        existing_lock = load_json(
+            target / "data/fr_content_lock.json",
+            "verrou français du contenu",
+        )
+
+        def presence_complete(row: Mapping[str, Any], page_type: str) -> bool:
+            if row.get("page_origin") != "preexisting":
+                return True
+            states = row.get("source_parameter_presence")
+            if not isinstance(states, Mapping):
+                return False
+            return all(
+                isinstance(states.get(name), Mapping)
+                and isinstance(states[name].get("present"), bool)
+                for name in PAGE_EDITORIAL_PARAMETERS[page_type]
+            )
+
+        needs_presence_migration = (
+            not presence_complete(existing_lock.get("debate") or {}, "debate")
+            or any(
+                not presence_complete(row, "argument")
+                for row in (existing_lock.get("arguments") or [])
+                if isinstance(row, Mapping)
+            )
+        )
+        if not needs_presence_migration:
+            return {
+                "status": "fr_content_applied",
+                "debate_id": debate_id,
+                "work_id": work_id,
+                "review_sha256": review["review_sha256"],
+                "content_reviewed_copy_tree_sha256": actual,
+                "idempotent": True,
+            }
+
+        content_stage = (
+            project_root / ".state" / "fr-publication" / debate_id / work_id / "content"
+        )
+        if content_stage.exists():
+            raise ContentReviewError(
+                "Migration de source_parameter_presence refusée : un état de checkpoint "
+                "français content existe déjà; le workflow doit d'abord le reprendre ou "
+                "le restaurer transactionnellement"
+            )
+
+        # content-reviewed-copy is a deterministic local derivative.  Before any
+        # content checkpoint state exists it is safe to rebuild it under the
+        # current kit from reviewed-copy + the exact approved review.
+        shutil.rmtree(target)
     if target.exists() or target.is_symlink():
         raise ContentReviewError("Chemin content-reviewed-copy déjà occupé")
     temp = Path(tempfile.mkdtemp(prefix=".content-reviewed-copy.tmp-", dir=workspace))

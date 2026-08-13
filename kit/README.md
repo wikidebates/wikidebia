@@ -1,3 +1,11 @@
+# Wikidéb’IA Kit 2.16.23
+
+Le kit 2.16.23 complète la préservation top-level introduite en 2.16.22 par une **migration sûre des revues de contenu déjà finalisées et appliquées sous une version antérieure**. Lorsqu’un ancien `content-reviewed-copy` ne contient pas `source_parameter_presence`, `apply_review()` peut le reconstruire depuis le `reviewed-copy` immuable et la revue approuvée exacte, sans modifier le payload éditorial ni son empreinte.
+
+La reconstruction n’est autorisée qu’avant l’existence de tout état de checkpoint français `content`. Si `.state/fr-publication/<débat>/<work>/content` existe déjà, la migration refuse de détruire ou de remplacer cet état et laisse la reprise transactionnelle du checkpoint décider. Les revues déjà migrées conservent leur voie idempotente normale.
+
+Cette correction couvre le cas réel du vote électronique où un ZIP v8 avait été approuvé/appliqué avant 2.16.22 : la présence historique de `A0021|objections=`, `Débat|bibliographie-pour=` et `Débat|vidéographie-contre=` est redérivée depuis les imports puis propagée au verrou et au rendu.
+
 # Wikidéb’IA Kit 2.16.22
 
 Le kit 2.16.22 préserve explicitement la **présence top-level** des paramètres éditoriaux historiques, indépendamment de leur valeur. Sur une page française `preexisting`, un paramètre attesté dans l’import qui devient vide après revue est rendu sous la forme `|paramètre=` ; un paramètre historiquement absent n’est jamais créé seulement parce que sa valeur logique est vide.

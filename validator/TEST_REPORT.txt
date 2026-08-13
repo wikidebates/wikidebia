@@ -1,11 +1,13 @@
-Wikidéb’IA Validator 0.4.91 — rapport de tests
+Wikidéb’IA Validator 0.4.92 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 430
-Tests pytest : 430 réussis
+Tests pytest collectés : 432
+Tests pytest : 432 réussis
 Norme active : 1.2.86
-Kit recommandé : 2.16.20
+Kit recommandé : 2.16.23
+WDV-MWK-005 : un paramètre top-level français vide est admis uniquement pour une page preexisting dont la présence historique exacte est scellée dans fr_content_lock.json.
+Régression positive `|objections=` historiquement présent : PASSED.
+Régression négative paramètre vide historiquement absent : PASSED ; WDV-MWK-005 reste bloquant.
 Comparaison verrou↔wikicode des Citation/Quote : les sous-paramètres facultatifs vides conservés en provenance sont traités comme omis dans le rendu canonique.
 Paramètres documentaires non vides et mapping des noms FR→EN : contrôlés exactement.
-Régression Quote avec `work`/`issue`/`location`/`page`/`publisher`/`place` vides dans le verrou et absents du wikicode : PASSED.
-Validation différentielle selon `source_page_origin`, titres affichés historiques, keywords historiques, rubriques historiques et ratios de résumés : PASSED.
+Validation différentielle selon source_page_origin, titres affichés historiques, keywords historiques, rubriques historiques et ratios de résumés : PASSED.
 WDV-EDT-034, consentement historique v3, deux checkpoints français, WDV-MWK-021 et WDV-RMT-008 : conservés.

@@ -1,10 +1,11 @@
-Wikidéb’IA Kit 2.16.22 — rapport de tests
+Wikidéb’IA Kit 2.16.23 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 482
-Tests pytest : 482 réussis
+Tests pytest collectés : 483
+Tests pytest : 483 réussis
 Norme : 1.2.86
-Validateur : 0.4.91
+Validateur : 0.4.92
 Présence top-level historique : PASSED ; un paramètre éditorial présent dans l’import reste distingué d’un paramètre historiquement absent.
+Migration pré-2.16.22 : PASSED ; un content-reviewed-copy ancien sans source_parameter_presence est reconstruit depuis reviewed-copy avant tout checkpoint content.
 A0021 `|objections=` : PASSED ; le checkpoint content conserve `|objections=` et top_level_parameter_deletions() ne signale aucune suppression.
 Buckets Débat : PASSED ; `bibliographie-pour` et `vidéographie-contre` peuvent devenir vides tout en restant présents.
 Absence historique : PASSED ; aucun paramètre vide n’est créé mécaniquement lorsqu’il était absent.
@@ -12,4 +13,4 @@ Suppression autorisée : PASSED ; allowed_parameter_deletions reste opérationne
 Valeur historique non vide : PASSED ; jamais vidée par la seule logique de présence.
 Préflight vote électronique v8 synthétique : PASSED ; 100 update, 0 blocked, 0 manual_review, puis 100 mises à jour exécutées sur l’adaptateur de test.
 Propagation import → fr_content_lock → checkpoint content → en_translation_review : PASSED.
-Tous les contrôles 2.16.21 et antérieurs restent verts.
+Tous les contrôles 2.16.22 et antérieurs restent verts.

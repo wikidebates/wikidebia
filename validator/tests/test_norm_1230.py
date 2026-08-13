@@ -205,7 +205,7 @@ def test_quote_lock_may_retain_historically_empty_optional_parameters_while_rend
     )
     ctx = PackageContext(
         root=tmp_path,
-        report=Report("0.4.91", tmp_path.name, ["wikicode"]),
+        report=Report("0.4.92", tmp_path.name, ["wikicode"]),
         cache={"manifest.json": {"normative_versions": {"consolidated_norm": "1.2.86"}}},
     )
     raw = """{{Quote

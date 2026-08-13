@@ -3,14 +3,14 @@
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
 - norme active : **1.2.86** ;
-- validateur actif : **0.4.91** ;
-- kit actif : **2.16.22**.
+- validateur actif : **0.4.92** ;
+- kit actif : **2.16.23**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3683607 octets — SHA-256 `7a1256a6228a72fe7b901e26e9f48822acc9019f14fc918a528aef6d28f08afb`
-- `wikidebia-validator.zip` — 3849916 octets — SHA-256 `e1ae44804de9878545625a7abeca84d50245e5b5a17343684846b09d901a17f8`
-- `wikidebia-kit.zip` — 743892 octets — SHA-256 `955449b440e6bc12045dfce605bb5c1be22808f99d5cf8891fc06e662587b10b`
+- `wikidebia-normes.zip` — 3672515 octets — SHA-256 `4458a6940a2e606912b6ac4315671e774b8d45c4856705dc3c90196da663aa79`
+- `wikidebia-validator.zip` — 3840571 octets — SHA-256 `ec83682c2242ad087174283e36718efb62d0ab2a6337674216ba7acaf7e08554`
+- `wikidebia-kit.zip` — 743799 octets — SHA-256 `4e31e8ccb533b04f265f89a30652b73286322f8820663d449aa814c9da053370`
 
 ## Norme consolidée active
 
@@ -1640,7 +1640,15 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `4b7bf4db6be78ed1d6ba9b6101bcfb203cf8d25e28be30026b80c9ba48c38250`
+SHA-256 : `c8e23a6df57ff08c14c38355fc19488163adb8c1b306fc70c169efe8185e51e5`
+
+# Wikidéb’IA Validator 0.4.92
+
+Le validateur 0.4.92 aligne `WDV-MWK-005` sur la préservation top-level historique du kit 2.16.23. Un paramètre français top-level vide reste interdit par défaut ; il est accepté uniquement sur une page `preexisting` lorsque `data/fr_content_lock.json` scelle `source_parameter_presence[<paramètre>].present=true` pour cette page exacte.
+
+Cette exception ne s’applique ni aux pages nouvelles, ni aux paramètres historiquement absents, ni aux sous-paramètres documentaires ordinaires. Elle couvre notamment les sorties canoniques `A0021|objections=`, `Débat|bibliographie-pour=` et `Débat|vidéographie-contre=` lorsqu’une revue autorisée vide leur valeur sans supprimer leur présence historique.
+
+La norme active reste 1.2.86 : il s’agit d’un correctif d’alignement du validateur avec un comportement déjà normatif et avec le renderer 2.16.22+.
 
 # Wikidéb’IA Validator 0.4.91
 
@@ -1719,7 +1727,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `ee77c628a5a64da0649d962abd5cb57c4416bdf5eab72869af9731da2fdf335b`
+SHA-256 : `25182bf5619f571c17b4c9ca805afaedf0699ce908b50d95f4e09c4451ebe95e`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1907,10 +1915,26 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ajoute une régression `Quote` où `work`, `issue`, `location`, `page`, `publisher` et `place` restent vides dans le verrou mais sont absents du wikicode rendu ;
 - ne modifie aucune règle normative : la norme active reste 1.2.86.
 
+## 0.4.92 — 13 août 2026 — paramètres top-level historiquement présents et vides
+
+- corrige `WDV-MWK-005`, qui rejetait encore les paramètres top-level français que le kit 2.16.22+ préserve volontairement sous la forme `|paramètre=` ;
+- exige simultanément `page_origin=preexisting`, la présence de `data/fr_content_lock.json` et `source_parameter_presence[paramètre].present=true` pour la page exacte ;
+- conserve le blocage des paramètres vides historiquement absents, des pages nouvelles et des sous-paramètres non couverts ;
+- ajoute des régressions positive/négative sur `|objections=` ;
+- s’aligne sur le kit 2.16.23 ; la norme 1.2.86 reste inchangée.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `d250de21224bcdb9511e3977ee21ab5218720d6a555de355e58d3c7a42bea2bc`
+SHA-256 : `598f3011361fcbca44d17b7fc0b5b3bdd92fa20ab2d4cd0486ec208c78d0223c`
+
+# Wikidéb’IA Kit 2.16.23
+
+Le kit 2.16.23 complète la préservation top-level introduite en 2.16.22 par une **migration sûre des revues de contenu déjà finalisées et appliquées sous une version antérieure**. Lorsqu’un ancien `content-reviewed-copy` ne contient pas `source_parameter_presence`, `apply_review()` peut le reconstruire depuis le `reviewed-copy` immuable et la revue approuvée exacte, sans modifier le payload éditorial ni son empreinte.
+
+La reconstruction n’est autorisée qu’avant l’existence de tout état de checkpoint français `content`. Si `.state/fr-publication/<débat>/<work>/content` existe déjà, la migration refuse de détruire ou de remplacer cet état et laisse la reprise transactionnelle du checkpoint décider. Les revues déjà migrées conservent leur voie idempotente normale.
+
+Cette correction couvre le cas réel du vote électronique où un ZIP v8 avait été approuvé/appliqué avant 2.16.22 : la présence historique de `A0021|objections=`, `Débat|bibliographie-pour=` et `Débat|vidéographie-contre=` est redérivée depuis les imports puis propagée au verrou et au rendu.
 
 # Wikidéb’IA Kit 2.16.22
 
@@ -2018,7 +2042,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `8d84f5a2c502602f1327059349f186db07cc9139ef88ca45c33d73222a67441c`
+SHA-256 : `acae5a14ae8ae622fe7a344c94b4a2a3e72e651256dc6542cee81c4614777ab2`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2300,6 +2324,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - n’ajoute jamais mécaniquement un paramètre vide historiquement absent et ne remplace aucune valeur par un espace ou une valeur factice ;
 - conserve l’omission spéciale des `justifications`/`objections` sur une page frontière `débat-dédié` et ne modifie pas le mécanisme explicite `allowed_parameter_deletions` ;
 - ajoute les régressions A0021 `|objections=`, Débat `bibliographie-pour=` / `vidéographie-contre=`, présence absente, suppression explicitement autorisée, non-vidage d’une valeur historique non vide et préflight synthétique de 100 mises à jour sans blocage.
+
+## 2.16.23 — 13 août 2026 — migration des revues appliquées avant la présence top-level
+
+- redérive `source_parameter_presence` depuis le `reviewed-copy` immuable lors de la reconstruction du contenu, même si une revue approuvée ancienne ne portait pas encore ce champ dans `final_values` ;
+- détecte un `content-reviewed-copy` appliqué ancien dont le verrou ne contient pas l’inventaire complet de présence et le reconstruit localement avant tout checkpoint `content` ;
+- refuse cette migration dès qu’un état `.state/fr-publication/<débat>/<work>/content` existe, afin de ne jamais effacer ou remplacer un plan/reçu potentiellement lié à une exécution distante ;
+- conserve l’idempotence des revues déjà migrées ;
+- ajoute une régression reproduisant une revue finalisée/appliquée pré-2.16.22 puis reprise sous le kit courant ;
+- s’aligne sur le validateur 0.4.92, qui accepte les paramètres top-level historiquement présents et scellés lorsqu’ils sont rendus vides.
 
 ## Guide de publication
 
@@ -2593,15 +2626,16 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `fa9e502e1cf038387acbb3b460c72d7fbc60f12451aae21297e4b259c1e42b8d`
+SHA-256 : `714a3cda08a526624209b4270fd56118f3e8f72d177cede4e7feb8f046ca1127`
 
-Wikidéb’IA Kit 2.16.22 — rapport de tests
+Wikidéb’IA Kit 2.16.23 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 482
-Tests pytest : 482 réussis
+Tests pytest collectés : 483
+Tests pytest : 483 réussis
 Norme : 1.2.86
-Validateur : 0.4.91
+Validateur : 0.4.92
 Présence top-level historique : PASSED ; un paramètre éditorial présent dans l’import reste distingué d’un paramètre historiquement absent.
+Migration pré-2.16.22 : PASSED ; un content-reviewed-copy ancien sans source_parameter_presence est reconstruit depuis reviewed-copy avant tout checkpoint content.
 A0021 `|objections=` : PASSED ; le checkpoint content conserve `|objections=` et top_level_parameter_deletions() ne signale aucune suppression.
 Buckets Débat : PASSED ; `bibliographie-pour` et `vidéographie-contre` peuvent devenir vides tout en restant présents.
 Absence historique : PASSED ; aucun paramètre vide n’est créé mécaniquement lorsqu’il était absent.
@@ -2609,7 +2643,7 @@ Suppression autorisée : PASSED ; allowed_parameter_deletions reste opérationne
 Valeur historique non vide : PASSED ; jamais vidée par la seule logique de présence.
 Préflight vote électronique v8 synthétique : PASSED ; 100 update, 0 blocked, 0 manual_review, puis 100 mises à jour exécutées sur l’adaptateur de test.
 Propagation import → fr_content_lock → checkpoint content → en_translation_review : PASSED.
-Tous les contrôles 2.16.21 et antérieurs restent verts.
+Tous les contrôles 2.16.22 et antérieurs restent verts.
 
 ## Guide d’orchestration éditoriale
 

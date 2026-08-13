@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 
 from wikidebia_validator.validator import validate_package
 from .helpers import create_fr_package
@@ -76,3 +77,60 @@ def test_french_debate_constructed_value_is_active(tmp_path):
     assert "|avancement=Débat construit" in debate.read_text(encoding="utf-8")
     report = validate_package(root, scopes=["wikicode"])
     assert not any(f.code == "WDV-MWK-003" and "avancement" in f.message for f in report.findings), report.to_text()
+
+
+
+def _make_preexisting_empty_objections_fixture(tmp_path: Path, *, present: bool) -> Path:
+    root = create_fr_package(tmp_path)
+    argument_path = root / "output/fr/arguments/A0001.wiki"
+    argument = argument_path.read_text(encoding="utf-8").replace(
+        "|rubriques=",
+        "|objections=\n|rubriques=",
+        1,
+    )
+    argument_path.write_text(argument, encoding="utf-8")
+
+    manifest_path = root / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    page = next(row for row in manifest["pages"] if row.get("page_id") == "A0001")
+    page["page_origin"] = "preexisting"
+    import hashlib
+    page["sha256"] = hashlib.sha256(argument_path.read_bytes()).hexdigest()
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    lock = {
+        "schema": "wikidebia-fr-content-lock-1.0",
+        "schema_version": "1.1",
+        "debate_id": "exemple",
+        "debate": {"page_origin": "new", "source_parameter_presence": {}},
+        "arguments": [
+            {
+                "id": "A0001",
+                "page_origin": "preexisting",
+                "source_parameter_presence": {
+                    "objections": {"present": present}
+                },
+            }
+        ],
+    }
+    lock_path = root / "data/fr_content_lock.json"
+    lock_path.write_text(json.dumps(lock, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return root
+
+
+def test_historical_present_empty_top_level_parameter_is_allowed(tmp_path: Path):
+    root = _make_preexisting_empty_objections_fixture(tmp_path, present=True)
+    report = validate_package(root, scopes=["wikicode"])
+    assert not any(
+        f.code == "WDV-MWK-005" and "objections" in f.message
+        for f in report.findings
+    ), report.to_text()
+
+
+def test_empty_top_level_parameter_without_historical_presence_remains_blocked(tmp_path: Path):
+    root = _make_preexisting_empty_objections_fixture(tmp_path, present=False)
+    report = validate_package(root, scopes=["wikicode"])
+    assert any(
+        f.code == "WDV-MWK-005" and "objections" in f.message
+        for f in report.findings
+    ), report.to_text()

@@ -279,3 +279,11 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - conserve l’omission spéciale des `justifications`/`objections` sur une page frontière `débat-dédié` et ne modifie pas le mécanisme explicite `allowed_parameter_deletions` ;
 - ajoute les régressions A0021 `|objections=`, Débat `bibliographie-pour=` / `vidéographie-contre=`, présence absente, suppression explicitement autorisée, non-vidage d’une valeur historique non vide et préflight synthétique de 100 mises à jour sans blocage.
 
+## 2.16.23 — 13 août 2026 — migration des revues appliquées avant la présence top-level
+
+- redérive `source_parameter_presence` depuis le `reviewed-copy` immuable lors de la reconstruction du contenu, même si une revue approuvée ancienne ne portait pas encore ce champ dans `final_values` ;
+- détecte un `content-reviewed-copy` appliqué ancien dont le verrou ne contient pas l’inventaire complet de présence et le reconstruit localement avant tout checkpoint `content` ;
+- refuse cette migration dès qu’un état `.state/fr-publication/<débat>/<work>/content` existe, afin de ne jamais effacer ou remplacer un plan/reçu potentiellement lié à une exécution distante ;
+- conserve l’idempotence des revues déjà migrées ;
+- ajoute une régression reproduisant une revue finalisée/appliquée pré-2.16.22 puis reprise sous le kit courant ;
+- s’aligne sur le validateur 0.4.92, qui accepte les paramètres top-level historiquement présents et scellés lorsqu’ils sont rendus vides.

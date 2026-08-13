@@ -1,3 +1,11 @@
+# Wikidéb’IA Validator 0.4.92
+
+Le validateur 0.4.92 aligne `WDV-MWK-005` sur la préservation top-level historique du kit 2.16.23. Un paramètre français top-level vide reste interdit par défaut ; il est accepté uniquement sur une page `preexisting` lorsque `data/fr_content_lock.json` scelle `source_parameter_presence[<paramètre>].present=true` pour cette page exacte.
+
+Cette exception ne s’applique ni aux pages nouvelles, ni aux paramètres historiquement absents, ni aux sous-paramètres documentaires ordinaires. Elle couvre notamment les sorties canoniques `A0021|objections=`, `Débat|bibliographie-pour=` et `Débat|vidéographie-contre=` lorsqu’une revue autorisée vide leur valeur sans supprimer leur présence historique.
+
+La norme active reste 1.2.86 : il s’agit d’un correctif d’alignement du validateur avec un comportement déjà normatif et avec le renderer 2.16.22+.
+
 # Wikidéb’IA Validator 0.4.91
 
 Le validateur 0.4.91 s’aligne sur la norme 1.2.86 et le kit 2.16.20 pour les citations historiques comportant des sous-paramètres facultatifs vides. La provenance peut conserver ces lignes vides, mais la comparaison verrou↔wikicode les traite comme des paramètres omis dans le rendu canonique.

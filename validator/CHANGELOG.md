@@ -183,3 +183,11 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - maintient la comparaison exacte des paramètres documentaires non vides et le mapping FR→EN des noms de paramètres ;
 - ajoute une régression `Quote` où `work`, `issue`, `location`, `page`, `publisher` et `place` restent vides dans le verrou mais sont absents du wikicode rendu ;
 - ne modifie aucune règle normative : la norme active reste 1.2.86.
+
+## 0.4.92 — 13 août 2026 — paramètres top-level historiquement présents et vides
+
+- corrige `WDV-MWK-005`, qui rejetait encore les paramètres top-level français que le kit 2.16.22+ préserve volontairement sous la forme `|paramètre=` ;
+- exige simultanément `page_origin=preexisting`, la présence de `data/fr_content_lock.json` et `source_parameter_presence[paramètre].present=true` pour la page exacte ;
+- conserve le blocage des paramètres vides historiquement absents, des pages nouvelles et des sous-paramètres non couverts ;
+- ajoute des régressions positive/négative sur `|objections=` ;
+- s’aligne sur le kit 2.16.23 ; la norme 1.2.86 reste inchangée.
