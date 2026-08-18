@@ -1,10 +1,11 @@
-Wikidéb’IA Kit 2.16.30 — rapport de tests
+Wikidéb’IA Kit 2.16.31 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 499
-Tests pytest : 499 réussis
+Tests pytest collectés : 501
+Tests pytest : 501 réussis
 Norme : 1.2.87
 Validateur : 0.4.98
-Rendu métadonnées FR→EN : PASSED ; présence et valeurs tirées de la source française autoritative, sans défaut de création injecté sur une cible anglaise `new`.
-Réconciliation documentaire 2.16.29 : PASSED ; en_documentation_correction, identité documentaire FR→EN et portée Debate conservées.
-Préservation différentielle du rendu historique 2.16.29 : PASSED ; les textes/absences historiques attestés sont reconnus sans affaiblir les pages nouvelles.
-Tous les contrôles 2.16.29 et antérieurs restent verts.
+Atomicité bilingue des mots-clés : PASSED ; les attestations dépendant de la forme linguistique sont localisées via les champs `en_*`, sans modification des concepts ni de leur ordre.
+Régression vote électronique : PASSED ; les 72 équivalents anglais contrôlés produisent zéro faux signal d’atomicité après localisation.
+Rendu métadonnées FR→EN 2.16.30 : PASSED ; présence et valeurs tirées de la source française autoritative.
+Réconciliation documentaire et préservation différentielle 2.16.29 : PASSED.
+Tous les contrôles 2.16.30 et antérieurs restent verts.

@@ -78,6 +78,44 @@ TRANSLATION_LOCK_SCHEMA = "wikidebia-en-translation-lock-1.0"
 EN_METADATA_LOCK_SCHEMA = "wikidebia-en-page-metadata-lock-1.0"
 EN_CONTENT_LOCK_SCHEMA = "wikidebia-en-content-lock-1.0"
 TRANSLATION_CHANGESET_SCHEMA = "wikidebia-en-translation-changeset-1.0"
+
+_KEYWORD_WORD_RE = re.compile(r"[A-Za-zÀ-ÿ0-9]+(?:['’][A-Za-zÀ-ÿ0-9]+)?")
+
+def _english_keyword_form_metadata(term: str, source_entry: Mapping[str, Any]) -> dict[str, Any]:
+    """Return English-localized form metadata for one controlled keyword.
+
+    Atomicity is a property of the controlled concept, while the need for a
+    multi-word exception depends on the *linguistic form in the target
+    language*.  A French locution such as ``bourrage d'urnes`` may therefore
+    legitimately become the ordinary two-word compound ``ballot stuffing``.
+    """
+    value = str(term or "").strip()
+    tokens = _KEYWORD_WORD_RE.findall(value)
+    source_kind = str(source_entry.get("kind") or "")
+    if source_kind in {"proper_name", "acronym"}:
+        kind = source_kind
+    else:
+        kind = "noun" if len(tokens) <= 1 else "noun_phrase"
+    capitalization_policy = {
+        "noun": "lowercase_common",
+        "noun_phrase": "lowercase_common",
+        "proper_name": "canonical_proper_name",
+        "acronym": "canonical_acronym",
+    }.get(kind)
+    has_connector = bool(re.search(r"\b(?:of|and|the)\b", value, flags=re.IGNORECASE))
+    requires_exception = len(tokens) > 2 or has_connector
+    rationale = (
+        f'English lexicalized navigation concept "{value}": this phrase names one atomic category rather than a compositional intersection.'
+        if requires_exception else ""
+    )
+    return {
+        "en_kind": kind,
+        "en_capitalization_policy": capitalization_policy,
+        "en_atomic_concept": source_entry.get("atomic_concept") is True,
+        "en_compositional_intersection": False if source_entry.get("compositional_intersection") is False else source_entry.get("compositional_intersection"),
+        "en_multiword_exception": requires_exception,
+        "en_multiword_exception_rationale": rationale,
+    }
 EN_SOURCES_WORKING_SCHEMA = "wikidebia-en-source-registry-working-1.0"
 SEMANTIC_CONVERGENCE_SCHEMA = "wikidebia-semantic-convergence-review-1.1"
 SEMANTIC_CONVERGENCE_SUPPORTED = {
@@ -2227,6 +2265,7 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
         merged = copy.deepcopy(row)
         translated = by_fr[str(row.get("fr"))]
         merged.update({"concept_id": translated.get("concept_id") or merged.get("concept_id"), "en": translated["en"], "definition_en": translated["definition_en"], "capitalization_rationale_en": translated.get("capitalization_rationale_en", ""), "status": "approved_bilingual", "english_review": {"reviewer": translated["reviewer"], "reviewed_at": translated["reviewed_at"], "note": translated["note"]}})
+        merged.update(_english_keyword_form_metadata(translated["en"], row))
         bilingual_entries.append(merged)
     changeset = {
         "schema": TRANSLATION_CHANGESET_SCHEMA, "schema_version": "1.0", "debate_id": debate_id,

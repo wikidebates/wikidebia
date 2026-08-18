@@ -3,7 +3,7 @@ Statut : PASSED
 Tests pytest collectés : 445
 Tests pytest : 445 réussis
 Norme : 1.2.87
-Kit recommandé : 2.16.30
+Kit recommandé : 2.16.31
 Schéma du rendu historique : PASSED ; historical_text_render_validation_mode=differential_preservation_v1 est accepté, toute valeur inconnue reste rejetée.
 WDV-MWK-024 : PASSED ; le ratio lexical des Quote est recalculé avec le tokenizer exact de la revue de traduction, y compris les apostrophes typographiques françaises, et une modification réelle du rendu reste détectée.
 WDV-SRC-005 et validation différentielle historique : PASSED ; les corrections 0.4.97 sont conservées.

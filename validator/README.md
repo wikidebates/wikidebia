@@ -2,7 +2,7 @@
 
 Le validateur 0.4.98 corrige deux incompatibilités de préflight sans relâcher les contrôles. Le schéma du manifeste accepte désormais le mode déjà émis par le kit `historical_text_render_validation_mode=differential_preservation_v1`, avec cet unique enum. `WDV-MWK-024` recalcule désormais le ratio lexical des `Quote` avec exactement la même tokenisation que la revue de traduction : apostrophes françaises typographiques incluses dans les mots, mêmes suppressions de notes et de balisage simple. Une modification réelle du texte rendu reste bloquante.
 
-Il conserve intégralement `WDV-MWK-023`, la réconciliation documentaire de 0.4.97 et tous les contrôles antérieurs. Norme active : 1.2.87. Kit associé : 2.16.30.
+Il conserve intégralement `WDV-MWK-023`, la réconciliation documentaire de 0.4.97 et tous les contrôles antérieurs. Norme active : 1.2.87. Kit associé : 2.16.31.
 
 Le validateur 0.4.97 réconcilie les deux variantes 0.4.96 développées en parallèle. Il conserve la correction documentaire de `WDV-SRC-005` : pour une référence bibliographique de Debate, l’admissibilité repose sur `documentary_scope=foundational_work` ou `broad_synthesis` et une justification substantielle ; un `legal_text` large et justifié n’est pas rejeté pour son seul type.
 

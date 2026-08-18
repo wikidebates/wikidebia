@@ -988,3 +988,44 @@ def test_21628_validate_sources_accepts_legal_text_for_broad_debate_bibliography
     rows, by_id = translation._validate_sources(data, "debat_test", set())
     assert rows[0]["id"] == "S10002"
     assert by_id["S10002"]["document_kind"] == "legal_text"
+
+
+def test_english_keyword_form_metadata_is_localized_per_target_form():
+    source = {
+        "kind": "noun_phrase",
+        "capitalization_policy": "lowercase_common",
+        "atomic_concept": True,
+        "compositional_intersection": False,
+        "multiword_exception": True,
+        "multiword_exception_rationale": "Locution française conventionnelle désignant un concept atomique.",
+    }
+    compact = translation._english_keyword_form_metadata("ballot stuffing", source)
+    assert compact["en_kind"] == "noun_phrase"
+    assert compact["en_atomic_concept"] is True
+    assert compact["en_compositional_intersection"] is False
+    assert compact["en_multiword_exception"] is False
+    assert compact["en_multiword_exception_rationale"] == ""
+
+    long_form = translation._english_keyword_form_metadata("overseas French voters", source)
+    assert long_form["en_kind"] == "noun_phrase"
+    assert long_form["en_multiword_exception"] is True
+    assert "concept" in long_form["en_multiword_exception_rationale"].casefold()
+    assert "overseas French voters" in long_form["en_multiword_exception_rationale"]
+
+
+def test_apply_translation_emits_english_localized_keyword_quality_metadata(tmp_path: Path):
+    project, workspace, work_id = make_french_locked(tmp_path)
+    translation.prepare_review(project, "debat_test", work_id)
+    complete_translation_review(workspace)
+    sealed = translation.finalize_review(project, "debat_test", work_id)
+    complete_semantic_convergence(project, work_id)
+    translation.apply_review(project, "debat_test", work_id, sealed["review_sha256"])
+    vocabulary = json.loads((workspace / "translated-copy/data/keyword_vocabulary_bilingual.json").read_text(encoding="utf-8"))
+    assert vocabulary["entries"]
+    for row in vocabulary["entries"]:
+        assert row["en_atomic_concept"] is True
+        assert row["en_compositional_intersection"] is False
+        assert "en_multiword_exception" in row
+        assert "en_multiword_exception_rationale" in row
+        assert row["en_kind"] in {"noun", "noun_phrase", "proper_name", "acronym"}
+        assert row["en_capitalization_policy"] in {"lowercase_common", "canonical_proper_name", "canonical_acronym"}

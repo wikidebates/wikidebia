@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.87** ;
 - validateur actif : **0.4.98** ;
-- kit actif : **2.16.30**.
+- kit actif : **2.16.31**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3710055 octets — SHA-256 `44b671840dc0fc7489efd36cc423786e2f5944f947a8a532e73fdbecc827af52`
-- `wikidebia-validator.zip` — 3887429 octets — SHA-256 `46423eebb6e890a35b3f95ebac3678a42636c240f14671fc2923636519f05924`
-- `wikidebia-kit.zip` — 765626 octets — SHA-256 `44dacd37685a48e05c69bc7ce7dc71c796336e4c838e90dd2a2e742a8c05d158`
+- `wikidebia-normes.zip` — 3710581 octets — SHA-256 `32eda93274961315b9ecee2ad4a4cc7cbe090db6c20e51c1c590c357b1d91039`
+- `wikidebia-validator.zip` — 3887430 octets — SHA-256 `02dd06a7dc597fec3e31872cc1f27b9bfd832ea83f220c38a8ea8fef83d626ac`
+- `wikidebia-kit.zip` — 768099 octets — SHA-256 `70b18b6d30074c0f38ff868e6b36db3400ff84e32e658c76fb7da0817b9e7fee`
 
 ## Norme consolidée active
 
@@ -1648,13 +1648,13 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `2afc06a39b7a0d63d5a61a6b27c457d08f45e2ad7a29482c558c02f03bf6bde5`
+SHA-256 : `365f089008340f5a46f5c8a5ca9d6b7d459d3243b3e0fa47f1984351c9c72a54`
 
 # Wikidéb’IA Validator 0.4.98
 
 Le validateur 0.4.98 corrige deux incompatibilités de préflight sans relâcher les contrôles. Le schéma du manifeste accepte désormais le mode déjà émis par le kit `historical_text_render_validation_mode=differential_preservation_v1`, avec cet unique enum. `WDV-MWK-024` recalcule désormais le ratio lexical des `Quote` avec exactement la même tokenisation que la revue de traduction : apostrophes françaises typographiques incluses dans les mots, mêmes suppressions de notes et de balisage simple. Une modification réelle du texte rendu reste bloquante.
 
-Il conserve intégralement `WDV-MWK-023`, la réconciliation documentaire de 0.4.97 et tous les contrôles antérieurs. Norme active : 1.2.87. Kit associé : 2.16.30.
+Il conserve intégralement `WDV-MWK-023`, la réconciliation documentaire de 0.4.97 et tous les contrôles antérieurs. Norme active : 1.2.87. Kit associé : 2.16.31.
 
 Le validateur 0.4.97 réconcilie les deux variantes 0.4.96 développées en parallèle. Il conserve la correction documentaire de `WDV-SRC-005` : pour une référence bibliographique de Debate, l’admissibilité repose sur `documentary_scope=foundational_work` ou `broad_synthesis` et une justification substantielle ; un `legal_text` large et justifié n’est pas rejeté pour son seul type.
 
@@ -1999,7 +1999,13 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `2883e6f86f414512767259fba1c3bfd784da36f172b1d225fd13e6a25723b385`
+SHA-256 : `f2eb78c88d75598adff7c21bedb0fa9ddced65568589e3c20991b0b4875dced8`
+
+# Wikidéb’IA Kit 2.16.31
+
+Le kit 2.16.31 localise les attestations de qualité du vocabulaire bilingue au niveau de chaque langue. Une traduction anglaise ne réutilise plus mécaniquement `multiword_exception`, `kind`, `atomic_concept` et `compositional_intersection` de la forme française : le fichier `keyword_vocabulary_bilingual.json` reçoit des champs `en_*` calculés pour la forme anglaise réellement validée. Ainsi une locution française comme `bourrage d'urnes` peut devenir le composé anglais `ballot stuffing` sans faux `WDV-EDT-025`, tandis qu’une forme anglaise réellement longue conserve une exception multi-mots et une justification propre.
+
+Le contrôle `WDV-EDT-025` reste strict et inchangé. Ce correctif ne modifie aucun mot-clé, aucun ordre de pertinence et aucune règle normative ; il corrige uniquement la projection bilingue des attestations déjà prévues par le validateur. Norme active : 1.2.87. Validateur associé : 0.4.98.
 
 # Wikidéb’IA Kit 2.16.30
 
@@ -2139,7 +2145,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `a1158366d0d6ceee7f51a12e3f43c70b4819f14c0cb42b648cd63cac161ccefe`
+SHA-256 : `ddf5b46d48bf4ca8dc90ab6d1e182b282974edd47581c959442f8eb9d8d9343d`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2494,6 +2500,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - conserve `WDV-MWK-023` inchangé comme garde de non-régression et ajoute des tests couvrant absence, traduction de valeurs présentes et source française nouvelle ;
 - conserve intégralement les réconciliations documentaire et historique de 2.16.29 ; norme 1.2.87 et validateur 0.4.97 inchangés.
 
+## 2.16.31 — 19 août 2026 — atomicité des mots-clés localisée par langue
+
+- renseigne dans `keyword_vocabulary_bilingual.json` les métadonnées anglaises `en_kind`, `en_capitalization_policy`, `en_atomic_concept`, `en_compositional_intersection`, `en_multiword_exception` et `en_multiword_exception_rationale` ;
+- empêche qu’une exception multi-mots requise par la forme française soit appliquée mécaniquement à une forme anglaise plus compacte ;
+- conserve une exception propre lorsque la forme anglaise comporte plus de deux mots ou un connecteur pertinent ;
+- ne modifie ni les mots-clés validés, ni leur ordre, ni `WDV-EDT-025` ;
+- ajoute des régressions sur `ballot stuffing`, une forme anglaise longue et l’émission effective des champs `en_*` ;
+- s’aligne sur la norme 1.2.87 et le validateur 0.4.98.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -2786,18 +2801,19 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `18555f5892d0a7db006b88edd6263fb40269674e06d583c84218d1884a782be5`
+SHA-256 : `42bf5df0e39c9887468e33fdd03981d32e33091abcf49f5320aefe62fe603bb7`
 
-Wikidéb’IA Kit 2.16.30 — rapport de tests
+Wikidéb’IA Kit 2.16.31 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 499
-Tests pytest : 499 réussis
+Tests pytest collectés : 501
+Tests pytest : 501 réussis
 Norme : 1.2.87
 Validateur : 0.4.98
-Rendu métadonnées FR→EN : PASSED ; présence et valeurs tirées de la source française autoritative, sans défaut de création injecté sur une cible anglaise `new`.
-Réconciliation documentaire 2.16.29 : PASSED ; en_documentation_correction, identité documentaire FR→EN et portée Debate conservées.
-Préservation différentielle du rendu historique 2.16.29 : PASSED ; les textes/absences historiques attestés sont reconnus sans affaiblir les pages nouvelles.
-Tous les contrôles 2.16.29 et antérieurs restent verts.
+Atomicité bilingue des mots-clés : PASSED ; les attestations dépendant de la forme linguistique sont localisées via les champs `en_*`, sans modification des concepts ni de leur ordre.
+Régression vote électronique : PASSED ; les 72 équivalents anglais contrôlés produisent zéro faux signal d’atomicité après localisation.
+Rendu métadonnées FR→EN 2.16.30 : PASSED ; présence et valeurs tirées de la source française autoritative.
+Réconciliation documentaire et préservation différentielle 2.16.29 : PASSED.
+Tous les contrôles 2.16.30 et antérieurs restent verts.
 
 ## Guide d’orchestration éditoriale
 
@@ -2921,9 +2937,9 @@ La réussite du paquet `fr_content_review` déclenche automatiquement le rendu d
 ## Guide de traduction anglaise
 
 Source interne : `kit/GUIDE_TRANSLATION_REVIEW.md`  
-SHA-256 : `d2db00de6ebc6acb306459970905f67e3882f2bd1181281f842e97bb110e4628`
+SHA-256 : `ca5d5cbd8806ece127c438ea6d293d637ea52e64b5164cb67b82afee805e979a`
 
-# Guide de traduction anglaise contrôlée — Kit 2.16.30
+# Guide de traduction anglaise contrôlée — Kit 2.16.31
 
 > Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 

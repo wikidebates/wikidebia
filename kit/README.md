@@ -1,3 +1,9 @@
+# Wikidéb’IA Kit 2.16.31
+
+Le kit 2.16.31 localise les attestations de qualité du vocabulaire bilingue au niveau de chaque langue. Une traduction anglaise ne réutilise plus mécaniquement `multiword_exception`, `kind`, `atomic_concept` et `compositional_intersection` de la forme française : le fichier `keyword_vocabulary_bilingual.json` reçoit des champs `en_*` calculés pour la forme anglaise réellement validée. Ainsi une locution française comme `bourrage d'urnes` peut devenir le composé anglais `ballot stuffing` sans faux `WDV-EDT-025`, tandis qu’une forme anglaise réellement longue conserve une exception multi-mots et une justification propre.
+
+Le contrôle `WDV-EDT-025` reste strict et inchangé. Ce correctif ne modifie aucun mot-clé, aucun ordre de pertinence et aucune règle normative ; il corrige uniquement la projection bilingue des attestations déjà prévues par le validateur. Norme active : 1.2.87. Validateur associé : 0.4.98.
+
 # Wikidéb’IA Kit 2.16.30
 
 Le kit 2.16.30 corrige le rendu des métadonnées protégées lors d’une traduction FR→EN. Une page anglaise cible est normalement techniquement `new`, mais ce statut ne doit jamais déclencher les valeurs de création lorsqu’elle traduit une page française autoritative. Le renderer projette désormais `avancement`, `avertissements-titre`, `avertissements-débat`, `avertissements-argument` et `avertissements-résumé` depuis la présence et la valeur françaises effectives. Une absence française reste donc une absence anglaise ; les valeurs présentes sont traduites par la table normative contrôlée.

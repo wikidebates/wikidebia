@@ -350,3 +350,13 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - une page française réellement nouvelle conserve ses valeurs de création, traduites par la table normative ;
 - conserve `WDV-MWK-023` inchangé comme garde de non-régression et ajoute des tests couvrant absence, traduction de valeurs présentes et source française nouvelle ;
 - conserve intégralement les réconciliations documentaire et historique de 2.16.29 ; norme 1.2.87 et validateur 0.4.97 inchangés.
+
+## 2.16.31 — 19 août 2026 — atomicité des mots-clés localisée par langue
+
+- renseigne dans `keyword_vocabulary_bilingual.json` les métadonnées anglaises `en_kind`, `en_capitalization_policy`, `en_atomic_concept`, `en_compositional_intersection`, `en_multiword_exception` et `en_multiword_exception_rationale` ;
+- empêche qu’une exception multi-mots requise par la forme française soit appliquée mécaniquement à une forme anglaise plus compacte ;
+- conserve une exception propre lorsque la forme anglaise comporte plus de deux mots ou un connecteur pertinent ;
+- ne modifie ni les mots-clés validés, ni leur ordre, ni `WDV-EDT-025` ;
+- ajoute des régressions sur `ballot stuffing`, une forme anglaise longue et l’émission effective des champs `en_*` ;
+- s’aligne sur la norme 1.2.87 et le validateur 0.4.98.
+
