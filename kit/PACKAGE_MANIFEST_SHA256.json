@@ -124,7 +124,7 @@
     {
       "path": "CAPABILITIES.json",
       "size_bytes": 5285,
-      "sha256": "a2af96a63ce56520e7fc4f4fa60964795edb9bbb2f7c61bbfcdaba8a183ae316"
+      "sha256": "743ea5ef7690954944f17718253e2af4447768f62c7ee533027a2ef3600ced8a"
     },
     {
       "path": "CHANGELOG.md",
@@ -134,7 +134,7 @@
     {
       "path": "COMPATIBILITY.json",
       "size_bytes": 523,
-      "sha256": "c437eb797b2511932da41b38dac9592ad4d7397b1d7b36e1125aff234ce785e6"
+      "sha256": "961431f137b226dff2755de8eb4365b1c315cfe63bd5b48037bb29e2e29f5cd9"
     },
     {
       "path": "GUIDE_BILINGUAL_RENDER.md",
@@ -214,7 +214,7 @@
     {
       "path": "KIT_MANIFEST.json",
       "size_bytes": 28791,
-      "sha256": "88257c934070ea56cb66a2a70020f3a2fb87386d87c3dd0ea771b2ad7d56fc73"
+      "sha256": "f069174bb232a596a9d97e5105bd705e5cf6cf9584626961fbe62a02f1c6ee16"
     },
     {
       "path": "MIGRATION_2.1.11.md",
@@ -783,8 +783,8 @@
     },
     {
       "path": "README.md",
-      "size_bytes": 21826,
-      "sha256": "a33fb33009891c765f7093ea5da86a326c12631a2cecbe382a132b9d91202fd5"
+      "size_bytes": 21855,
+      "sha256": "2883e6f86f414512767259fba1c3bfd784da36f172b1d225fd13e6a25723b385"
     },
     {
       "path": "REGRESSION_AUDIT_2.15.38.md",
@@ -889,12 +889,12 @@
     {
       "path": "TEST_REPORT.txt",
       "size_bytes": 685,
-      "sha256": "728a2672a07e2c99a5c311d4078bc017ceb69d8aa4b5bb4e7b9cf36da4073902"
+      "sha256": "18555f5892d0a7db006b88edd6263fb40269674e06d583c84218d1884a782be5"
     },
     {
       "path": "VERSIONS.json",
       "size_bytes": 68,
-      "sha256": "2b7fbc8e832a68bcf982ab87ceeadce5c45b3c7e40813113f8e321e6d0ecc30a"
+      "sha256": "11a95bc78a3b520345fff8cbc60181fd24c7ea4b5abbd8843ff52c1202ef5020"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/CHANGELOG.md",
@@ -1629,7 +1629,7 @@
     {
       "path": "tests/test_reconciliation_21546.py",
       "size_bytes": 1945,
-      "sha256": "7356e7667a72dff9fcb02b4e2f497a3c9ee9f661c390bcb620fe7fb9bfed9810"
+      "sha256": "c22f0f4f2a62a251d3a0ffa0a1f281704ad1a8e49f6ab6e4a100a8d299890aba"
     },
     {
       "path": "tests/test_reconciliation_21547.py",

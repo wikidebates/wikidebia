@@ -231,4 +231,11 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - conserve la validation différentielle des introductions/résumés historiques sous `differential_preservation_v1` ;
 - maintient les contrôles stricts sur les pages nouvelles et les contenus non attestés ;
 - s’aligne sur le kit 2.16.29 et la norme inchangée 1.2.87.
+## 0.4.98 — 19 août 2026 — schéma du rendu historique et ratio lexical des Quote
+
+- ajoute `editorial_controls.historical_text_render_validation_mode` au schéma courant avec l’unique valeur `differential_preservation_v1`, alignant le schéma sur le renderer et le contrôle historique déjà actifs ;
+- aligne le recalcul `WDV-MWK-024` sur le tokenizer exact utilisé lors du scellement de `lexical_ratio`, notamment pour les apostrophes typographiques françaises ;
+- conserve le blocage si le texte rendu diverge réellement du verrou ou si l’attestation de complétude manque ;
+- ajoute des régressions sur le schéma, la tokenisation de A0005 et une modification réelle de Quote ;
+- conserve la norme 1.2.87 et le kit 2.16.30.
 

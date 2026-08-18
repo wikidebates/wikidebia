@@ -170,3 +170,27 @@ def test_source_registry_accepts_null_primary_source_for_legacy_normalization(tm
     }
     assert not store.validate(source, "source_registry.schema.json")
 
+
+
+def test_schema_accepts_historical_text_render_validation_mode(tmp_path: Path):
+    create_graph_package(tmp_path)
+    manifest_path = tmp_path / "manifest.json"
+    manifest = json.loads(manifest_path.read_text())
+    controls = _editorial_controls_124()
+    controls["historical_text_render_validation_mode"] = "differential_preservation_v1"
+    manifest["editorial_controls"] = controls
+    dump(manifest_path, manifest)
+    report = validate_package(tmp_path, scopes=["schema"])
+    assert not any(f.code == "WDV-SCH-003" for f in report.findings), report.to_text()
+
+
+def test_schema_rejects_unknown_historical_text_render_validation_mode(tmp_path: Path):
+    create_graph_package(tmp_path)
+    manifest_path = tmp_path / "manifest.json"
+    manifest = json.loads(manifest_path.read_text())
+    controls = _editorial_controls_124()
+    controls["historical_text_render_validation_mode"] = "unknown_mode"
+    manifest["editorial_controls"] = controls
+    dump(manifest_path, manifest)
+    report = validate_package(tmp_path, scopes=["schema"])
+    assert any(f.code == "WDV-SCH-003" for f in report.findings), report.to_text()

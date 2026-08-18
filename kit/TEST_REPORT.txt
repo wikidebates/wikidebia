@@ -3,7 +3,7 @@ Statut : PASSED
 Tests pytest collectés : 499
 Tests pytest : 499 réussis
 Norme : 1.2.87
-Validateur : 0.4.97
+Validateur : 0.4.98
 Rendu métadonnées FR→EN : PASSED ; présence et valeurs tirées de la source française autoritative, sans défaut de création injecté sur une cible anglaise `new`.
 Réconciliation documentaire 2.16.29 : PASSED ; en_documentation_correction, identité documentaire FR→EN et portée Debate conservées.
 Préservation différentielle du rendu historique 2.16.29 : PASSED ; les textes/absences historiques attestés sont reconnus sans affaiblir les pages nouvelles.

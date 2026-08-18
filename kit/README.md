@@ -2,7 +2,7 @@
 
 Le kit 2.16.30 corrige le rendu des métadonnées protégées lors d’une traduction FR→EN. Une page anglaise cible est normalement techniquement `new`, mais ce statut ne doit jamais déclencher les valeurs de création lorsqu’elle traduit une page française autoritative. Le renderer projette désormais `avancement`, `avertissements-titre`, `avertissements-débat`, `avertissements-argument` et `avertissements-résumé` depuis la présence et la valeur françaises effectives. Une absence française reste donc une absence anglaise ; les valeurs présentes sont traduites par la table normative contrôlée.
 
-Le correctif conserve intégralement la réconciliation 2.16.29 : `en_documentation_correction`, identité documentaire FR→EN, sélection Debate fondée sur la portée, et `historical_text_render_validation_mode=differential_preservation_v1`. Le validateur 0.4.97 reste inchangé fonctionnellement et `WDV-MWK-023` demeure la garde qui bloque toute métadonnée anglaise ajoutée ou mal traduite. Norme active : 1.2.87.
+Le correctif conserve intégralement la réconciliation 2.16.29 : `en_documentation_correction`, identité documentaire FR→EN, sélection Debate fondée sur la portée, et `historical_text_render_validation_mode=differential_preservation_v1`. Le validateur 0.4.98 conserve cette garde et corrige le préflight de schéma/Quote et `WDV-MWK-023` demeure la garde qui bloque toute métadonnée anglaise ajoutée ou mal traduite. Norme active : 1.2.87.
 
 # Wikidéb’IA Kit 2.16.27
 

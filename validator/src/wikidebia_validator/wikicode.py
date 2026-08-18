@@ -1073,6 +1073,17 @@ def _quote_parameter_name(name: str) -> str | None:
     normalized = re.sub('[ _-]+', ' ', str(name).strip().casefold())
     return QUOTE_PARAMETER_MAP.get(normalized)
 
+def _plain_for_lexical_count(value: str) -> str:
+    value = re.sub(r"<ref\b[^>]*>.*?</ref>|<ref\b[^>]*/>", " ", value or "", flags=re.I | re.S)
+    value = re.sub(r"\{\{[^{}]*\}\}|\[\[[^\]]+\]\]", " ", value)
+    return re.sub(r"\s+", " ", value).strip()
+
+def _lexical_word_count(value: str) -> int:
+    # Must remain byte-for-byte equivalent in semantics to the tokenizer used by
+    # wikidebia_translation_review when lexical_ratio is sealed.  In particular,
+    # French typographic apostrophes belong inside lexical tokens.
+    return len(re.findall(r"[A-Za-zÀ-ÿ0-9]+(?:['’\-][A-Za-zÀ-ÿ0-9]+)*", _plain_for_lexical_count(value or "")))
+
 def _parameter_pairs(rows: Any) -> list[tuple[str, str]]:
     if not isinstance(rows, list):
         return []
@@ -1148,20 +1159,20 @@ def _validate_citations_against_locks(ctx: PackageContext, tmpl: Template, rel: 
                     ctx.report.error('WDV-MWK-024', 'La traduction complète de la valeur Citation→Quote n’est pas attestée par une revue humaine explicite', path=rel, pointer=f'{parameter}/{index}', details={'citation_id': expected.get('id')})
                 source_quote = next((value for name, value in source_params if name == 'citation'), '')
                 actual_quote = next((value for name, value in actual_params if name == 'quote'), '')
-                fr_words = re.findall(r"\b[\wÀ-ÿ'-]+\b", source_quote or '')
-                en_words = re.findall(r"\b[\w'-]+\b", actual_quote or '')
-                ratio = (len(en_words) / len(fr_words)) if fr_words else None
+                fr_word_count = _lexical_word_count(source_quote or '')
+                en_word_count = _lexical_word_count(actual_quote or '')
+                ratio = (en_word_count / fr_word_count) if fr_word_count else None
                 if ratio is not None:
                     stored_ratio = expected.get('lexical_ratio')
                     if isinstance(stored_ratio, (int, float)) and abs(float(stored_ratio) - ratio) > 0.02:
                         ctx.report.error('WDV-MWK-024', 'Le ratio lexical enregistré pour la Quote ne correspond plus au texte rendu', path=rel, pointer=f'{parameter}/{index}', details={'citation_id': expected.get('id'), 'stored_ratio': stored_ratio, 'actual_ratio': round(ratio, 3)})
-                    if len(fr_words) >= 8 and ratio < 0.60:
+                    if fr_word_count >= 8 and ratio < 0.60:
                         low_reviewed = expected.get('quote_low_ratio_reviewed') is True
                         low_note = str(expected.get('quote_low_ratio_note') or '').strip()
                         if not low_reviewed or len(low_note) < 12:
-                            ctx.report.error('WDV-MWK-024', 'Ratio lexical faible : la seconde revue explicite de complétude de la Quote est absente', path=rel, pointer=f'{parameter}/{index}', details={'citation_id': expected.get('id'), 'fr_words': len(fr_words), 'en_words': len(en_words), 'ratio': round(ratio, 3)})
+                            ctx.report.error('WDV-MWK-024', 'Ratio lexical faible : la seconde revue explicite de complétude de la Quote est absente', path=rel, pointer=f'{parameter}/{index}', details={'citation_id': expected.get('id'), 'fr_words': fr_word_count, 'en_words': en_word_count, 'ratio': round(ratio, 3)})
                         else:
-                            ctx.report.info('WDV-MWK-024', 'Ratio lexical faible mais seconde revue humaine de complétude attestée', path=rel, pointer=f'{parameter}/{index}', details={'citation_id': expected.get('id'), 'fr_words': len(fr_words), 'en_words': len(en_words), 'ratio': round(ratio, 3)})
+                            ctx.report.info('WDV-MWK-024', 'Ratio lexical faible mais seconde revue humaine de complétude attestée', path=rel, pointer=f'{parameter}/{index}', details={'citation_id': expected.get('id'), 'fr_words': fr_word_count, 'en_words': en_word_count, 'ratio': round(ratio, 3)})
             else:
                 preserved_source = [(name, value) for name, value in source_params if name not in {'citation', 'date', 'avertissements-citation'}]
                 preserved_actual = [(name, value) for name, value in actual_params if name not in {'citation', 'date', 'avertissements-citation'}]

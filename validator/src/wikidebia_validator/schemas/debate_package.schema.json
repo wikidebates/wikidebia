@@ -674,6 +674,13 @@
             "1.1"
           ],
           "description": "Reçu de deux passes sémantiques indépendantes consécutives lié à la revue de traduction scellée. La version 1.1 ajoute une famille de méthode normalisée et exige deux familles distinctes pour les passes finales."
+        },
+        "historical_text_render_validation_mode": {
+          "type": "string",
+          "enum": [
+            "differential_preservation_v1"
+          ],
+          "description": "Mode de validation différentielle du rendu des textes historiques attestés; ne s’applique pas aux contenus nouveaux ou non attestés."
         }
       },
       "required": [

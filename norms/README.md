@@ -1,6 +1,6 @@
 # Wikidéb’IA — Normes 1.2.87
 
-**Maintenance d’implémentation courante : validateur 0.4.97 / kit 2.16.30.** Cette maintenance ne modifie aucune règle normative : elle conserve la réconciliation documentaire et la validation différentielle du rendu historique, et aligne le renderer sur la règle déjà active selon laquelle les métadonnées d’une traduction anglaise proviennent de la source française réellement présente plutôt que des valeurs de création de la cible.
+**Maintenance d’implémentation courante : validateur 0.4.98 / kit 2.16.30.** Cette maintenance ne modifie aucune règle normative : elle conserve la réconciliation documentaire et la validation différentielle du rendu historique, et aligne le renderer sur la règle déjà active selon laquelle les métadonnées d’une traduction anglaise proviennent de la source française réellement présente plutôt que des valeurs de création de la cible.
 
 La révision 1.2.87 corrige une contradiction interne de 1.2.86 : le catalogue atomique imposait déjà l’omission de tout paramètre optionnel sans contenu pertinent, tandis qu’un paragraphe et l’exemple de page Débat demandaient encore de conserver des buckets documentaires vides. Désormais la règle est unique : une valeur optionnelle vide est omise du wikicode.
 

@@ -4,7 +4,7 @@
   "normative_revision": "1.2.87",
   "stable_archive_name": "wikidebia-normes.zip",
   "version_source": "VERSIONS.json",
-  "declared_file_count": 330,
+  "declared_file_count": 331,
   "declared_test_count": 0,
   "self_excluded": [
     "PACKAGE_MANIFEST_SHA256.json",
@@ -14,17 +14,17 @@
     {
       "path": "CAPABILITIES.json",
       "size_bytes": 1474,
-      "sha256": "9841fadd78aca3616a9712fe9bb3cbe6ebfe68db56b4bd0447ceea579ee09536"
+      "sha256": "f7032310b3a16a1064f5a9eba319c10b381a871b71ee9985f0e815c82aa7c58a"
     },
     {
       "path": "COMPATIBILITY.json",
       "size_bytes": 557,
-      "sha256": "c78ed542e05953e1624368c0c9f165d4b0c504f2c6001fb6a205d2dc6464b2ad"
+      "sha256": "4ebbea73183b801b89ac9653a6e263db90adae6da91d4170e7fcb92c9d174730"
     },
     {
       "path": "README.md",
       "size_bytes": 4119,
-      "sha256": "03f6fe8b1917c52cc85fffbb43d0a72ed9e0e7df1db844390566d56557a73cf8"
+      "sha256": "e7047457ff8299282b6b67783dfd38ae956d59036a8bf032fae7c6c6e565e556"
     },
     {
       "path": "TEST_REPORT.txt",
@@ -34,7 +34,7 @@
     {
       "path": "VERSIONS.json",
       "size_bytes": 68,
-      "sha256": "2b7fbc8e832a68bcf982ab87ceeadce5c45b3c7e40813113f8e321e6d0ecc30a"
+      "sha256": "11a95bc78a3b520345fff8cbc60181fd24c7ea4b5abbd8843ff52c1202ef5020"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_1.2.56.md",
@@ -475,6 +475,11 @@
       "path": "docs/MAINTENANCE_1.2.87_0.4.97_2.16.30.md",
       "size_bytes": 467,
       "sha256": "d01450ce8e13b8062ea4baf8d8b120c37ec31feadb745db5d1f2c60d9dee3a05"
+    },
+    {
+      "path": "docs/MAINTENANCE_1.2.87_0.4.98_2.16.30.md",
+      "size_bytes": 506,
+      "sha256": "ad6256ea2ba5ae88ebd40b8bd1a1de4ae6e76b51fc0c3b1c5c87a63016ad9f33"
     },
     {
       "path": "docs/MIGRATION_1.1.8.md",
