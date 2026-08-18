@@ -1,6 +1,6 @@
-Wikidéb’IA Validator 0.4.96 — auto-audit
+Wikidéb’IA Validator 0.4.97 — auto-audit
 Statut : PASSED
 Norme active unique : 1.2.87
-Kit aligné : 2.16.28
-Tests : 437 réussis
-WDV-SRC-005 aligné sur la portée documentaire ; aucun contrôle 0.4.95 supprimé.
+Kit aligné : 2.16.29
+Tests : 439 réussis
+Réconciliation 0.4.97 : WDV-SRC-005 documentaire et validation différentielle historique conservés ; aucun contrôle 0.4.96 supprimé.

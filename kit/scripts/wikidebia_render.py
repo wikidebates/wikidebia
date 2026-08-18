@@ -788,6 +788,7 @@ def _prepare_final_controls(
         "reports/render_preflight.json",
         "reports/final_validation.json",
     ]
+    controls["historical_text_render_validation_mode"] = "differential_preservation_v1"
 
     handoff_rel = f"handoffs/{work_id}-render.json"
     handoff = {

@@ -930,7 +930,17 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
         line = tmpl.raw.count('\n', 0, first.start()) + 1
         ctx.report.error('WDV-MWK-018', 'Deux modèles MediaWiki adjacents doivent être accolés sous la forme }}{{', path=rel, details={'occurrences': len(matches), 'first_line': line, 'replacement': '}}{{'})
     if re.search('<references\\b[^>]*(?:/\\s*)?>', tmpl.raw, flags=re.IGNORECASE):
-        ctx.report.error('WDV-EDT-010', 'La balise <references /> est interdite par la norme éditoriale courante', path=rel)
+        preserved_historical_intro = bool(
+            lang == 'fr' and page_type == 'debate' and _preserved_historical_french_introduction(ctx)
+        )
+        intro_value = (tmpl.one('introduction') or '') if page_type == 'debate' else ''
+        references_in_intro = bool(re.search('<references\\b[^>]*(?:/\\s*)?>', intro_value, flags=re.IGNORECASE))
+        raw_without_intro = tmpl.raw.replace(intro_value, '', 1) if intro_value else tmpl.raw
+        references_elsewhere = bool(re.search('<references\\b[^>]*(?:/\\s*)?>', raw_without_intro, flags=re.IGNORECASE))
+        if not (preserved_historical_intro and references_in_intro and not references_elsewhere):
+            ctx.report.error('WDV-EDT-010', 'La balise <references /> est interdite par la norme éditoriale courante', path=rel)
+        else:
+            ctx.report.info('WDV-EDT-010', 'Balise <references /> historique conservée dans une introduction française préexistante protégée', path=rel)
     for key, value in tmpl.params:
         if key not in SEQUENCE_PARAMS:
             continue
@@ -975,8 +985,15 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
                     ctx.report.error('WDV-MWK-005', f'Sous-paramètre vide interdit : {sub.name}.{skey}', path=rel)
                 if skey in {'avertissements', 'warnings'}:
                     allowed_quote_warning = sub.name == 'Quote' and skey == 'warnings'
-                    if not allowed_quote_warning:
+                    preserved_historical_subsection_warning = bool(
+                        key == 'introduction' and lang == 'fr' and page_type == 'debate'
+                        and sub.name == 'Sous-partie' and skey == 'avertissements'
+                        and _preserved_historical_french_introduction(ctx)
+                    )
+                    if not allowed_quote_warning and not preserved_historical_subsection_warning:
                         ctx.report.error('WDV-MWK-003', f"Sous-paramètre d'avertissement interdit dans une sortie générée : {sub.name}.{skey}", path=rel)
+                    elif preserved_historical_subsection_warning:
+                        ctx.report.info('WDV-MWK-003', f"Sous-paramètre d'avertissement historique conservé dans une introduction française préexistante : {sub.name}.{skey}", path=rel)
                 if skey in {'auteurs', 'authors'}:
                     candidate = sval.strip()
                     parsed_json = None
@@ -1367,6 +1384,22 @@ def _display_parameter_redundant(article: str, displayed: str) -> bool:
         return ' '.join(value.replace('_', ' ').split()).casefold()
     return norm(article) == norm(displayed)
 
+def _legacy_fr_content_lock_has_explicit_text_policy(lock: dict[str, Any]) -> bool:
+    return isinstance(lock.get('historical_text_decisions'), dict) or isinstance(lock.get('historical_text_preservation'), dict)
+
+
+def _legacy_render_differential_mode(ctx: PackageContext) -> bool:
+    controls = (ctx.manifest() or {}).get('editorial_controls') or {}
+    return controls.get('historical_text_render_validation_mode') == 'differential_preservation_v1'
+
+
+def _legacy_fr_content_argument_rows(lock: dict[str, Any]) -> list[dict[str, Any]]:
+    if _legacy_fr_content_lock_has_explicit_text_policy(lock):
+        return []
+    rows = lock.get('arguments')
+    return [row for row in rows if isinstance(row, dict)] if isinstance(rows, list) else []
+
+
 def _protected_historical_summary_keys(ctx: PackageContext) -> set[tuple[str, str]]:
     cached = getattr(ctx, '_protected_historical_summary_keys_cache', None)
     if isinstance(cached, set):
@@ -1388,8 +1421,25 @@ def _protected_historical_summary_keys(ctx: PackageContext) -> set[tuple[str, st
         decisions = content_lock.get('historical_text_decisions') if isinstance(content_lock, dict) else None
         if isinstance(decisions, dict):
             for entry in decisions.get('arguments') or []:
-                if isinstance(entry, dict) and entry.get('page_origin') == 'preexisting' and isinstance(entry.get('id'), str):
+                if (isinstance(entry, dict) and entry.get('page_origin') == 'preexisting'
+                        and entry.get('historical_status') == 'historical_existing'
+                        and entry.get('decision') == 'preserved' and isinstance(entry.get('id'), str)):
                     result.add((str(entry['id']), 'fr'))
+        elif isinstance(content_lock, dict) and _legacy_render_differential_mode(ctx):
+            # Compatibility with content locks emitted before the explicit
+            # historical_text_decisions contract.  At that stage a preexisting
+            # page carried its selected historical summary directly in the lock.
+            for entry in _legacy_fr_content_argument_rows(content_lock):
+                if (entry.get('page_origin') == 'preexisting' and isinstance(entry.get('id'), str)
+                        and isinstance(entry.get('summary'), str) and entry.get('summary').strip()):
+                    result.add((str(entry['id']), 'fr'))
+    if ctx.exists('data/en_content_lock.json'):
+        en_lock = ctx.load_json('data/en_content_lock.json')
+        if isinstance(en_lock, dict):
+            for entry in en_lock.get('arguments') or []:
+                if (isinstance(entry, dict) and entry.get('summary_provenance') == 'historical_existing'
+                        and isinstance(entry.get('id'), str)):
+                    result.add((str(entry['id']), 'en'))
     status = str((((manifest.get('translation_status') or {}).get('en')) or ''))
     if status in {'ready', 'published'}:
         en_ids = {str(p.get('page_id')) for p in manifest.get('pages', []) if p.get('language') == 'en' and p.get('page_type') == 'argument'}
@@ -1423,11 +1473,56 @@ def _historically_absent_summary_keys(ctx: PackageContext) -> set[tuple[str, str
                         and entry.get('historical_status') == 'historical_absent'
                         and entry.get('decision') == 'preserved' and isinstance(entry.get('id'), str)):
                     result.add((str(entry['id']), 'fr'))
+        elif isinstance(content_lock, dict) and _legacy_render_differential_mode(ctx):
+            for entry in _legacy_fr_content_argument_rows(content_lock):
+                if (entry.get('page_origin') == 'preexisting' and isinstance(entry.get('id'), str)
+                        and entry.get('summary') is None):
+                    result.add((str(entry['id']), 'fr'))
+    if exists('data/en_content_lock.json'):
+        en_lock = ctx.load_json('data/en_content_lock.json')
+        if isinstance(en_lock, dict):
+            for entry in en_lock.get('arguments') or []:
+                if (isinstance(entry, dict) and entry.get('summary_provenance') == 'historical_absent'
+                        and isinstance(entry.get('id'), str)):
+                    result.add((str(entry['id']), 'en'))
     status = str(((manifest.get('translation_status') or {}).get('en') or ''))
     if status in {'ready', 'published'}:
         en_ids = {str(p.get('page_id')) for p in manifest.get('pages', []) if p.get('language') == 'en' and p.get('page_type') == 'argument'}
         result.update((node_id, 'en') for node_id, language in list(result) if language == 'fr' and node_id in en_ids)
     setattr(ctx, '_historically_absent_summary_keys_cache', result)
+    return result
+
+
+def _preserved_historical_french_introduction(ctx: PackageContext) -> bool:
+    cached = getattr(ctx, '_preserved_historical_french_introduction_cache', None)
+    if isinstance(cached, bool):
+        return cached
+    if not ctx.exists('data/fr_content_lock.json'):
+        setattr(ctx, '_preserved_historical_french_introduction_cache', False)
+        return False
+    lock = ctx.load_json('data/fr_content_lock.json')
+    if not isinstance(lock, dict):
+        setattr(ctx, '_preserved_historical_french_introduction_cache', False)
+        return False
+    decisions = lock.get('historical_text_decisions')
+    if isinstance(decisions, dict):
+        row = decisions.get('debate')
+        result = bool(isinstance(row, dict) and row.get('page_origin') == 'preexisting'
+                      and row.get('historical_status') == 'historical_existing'
+                      and row.get('decision') == 'preserved')
+    else:
+        preservation = lock.get('historical_text_preservation')
+        if isinstance(preservation, dict):
+            row = preservation.get('debate')
+            result = bool(isinstance(row, dict) and row.get('page_origin') == 'preexisting'
+                          and row.get('preserved') is True
+                          and row.get('introduction_provenance') == 'historical_existing')
+        else:
+            debate = lock.get('debate')
+            result = bool(_legacy_render_differential_mode(ctx) and isinstance(debate, dict)
+                          and debate.get('page_origin') == 'preexisting'
+                          and isinstance(debate.get('introduction'), str) and debate.get('introduction').strip())
+    setattr(ctx, '_preserved_historical_french_introduction_cache', result)
     return result
 
 def _owner_removed_summary_keys(ctx: PackageContext) -> set[tuple[str, str]]:

@@ -334,3 +334,11 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - ajoute des régressions reproduisant le doublon DEF CON `S10003 → S00013` et l’acceptation d’un texte juridique large ;
 - s’aligne sur la norme 1.2.87 et le validateur 0.4.96.
 
+## 2.16.29 — 19 août 2026 — réconciliation documentaire + rendu historique
+
+- réconcilie les deux variantes 2.16.28 sans supprimer aucune capacité de branche ;
+- conserve `en_documentation_correction`, la réutilisation d’identité documentaire et le contrôle Debate fondé sur la portée documentaire ;
+- conserve `historical_text_render_validation_mode=differential_preservation_v1` au rendu final ;
+- conserve les audits et régressions des deux branches ;
+- s’aligne sur le validateur 0.4.97 et la norme inchangée 1.2.87.
+

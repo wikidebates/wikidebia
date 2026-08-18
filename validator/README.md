@@ -1,8 +1,8 @@
-# Wikidéb’IA Validator 0.4.96
+# Wikidéb’IA Validator 0.4.97
 
-Le validateur 0.4.96 corrige `WDV-SRC-005` afin de contrôler la fonction documentaire réellement définie par la norme. Pour une référence bibliographique de page Debate, la portée doit être `foundational_work` ou `broad_synthesis` et la justification de sélection doit être substantielle ; le `document_kind` n’est plus filtré par une liste fermée qui excluait notamment les textes juridiques officiels. Un `legal_text` large et justifié peut donc être conforme, tandis qu’une source `narrow_argument` ou insuffisamment justifiée reste bloquée.
+Le validateur 0.4.97 réconcilie les deux variantes 0.4.96 développées en parallèle. Il conserve la correction documentaire de `WDV-SRC-005` : pour une référence bibliographique de Debate, l’admissibilité repose sur `documentary_scope=foundational_work` ou `broad_synthesis` et une justification substantielle ; un `legal_text` large et justifié n’est pas rejeté pour son seul type.
 
-Tous les contrôles 0.4.95, notamment l’extraposition anglaise et les apostrophes ASCII dans les titres, restent actifs. Le kit aligné est 2.16.28.
+Il conserve simultanément la validation différentielle du rendu historique. Lorsque le kit 2.16.29 déclare `historical_text_render_validation_mode=differential_preservation_v1`, les valeurs historiques attestées par les verrous (y compris une absence historique de résumé ou une syntaxe historique déjà scellée) ne sont pas requalifiées rétroactivement comme nouvelle génération. Cette compatibilité reste bornée au mode déclaré et ne relâche pas les contrôles sur les pages nouvelles ou les contenus non attestés. Norme active : 1.2.87.
 
 # Wikidéb’IA Validator 0.4.95
 

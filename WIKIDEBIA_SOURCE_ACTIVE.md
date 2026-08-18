@@ -3,14 +3,14 @@
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
 - norme active : **1.2.87** ;
-- validateur actif : **0.4.96** ;
-- kit actif : **2.16.28**.
+- validateur actif : **0.4.97** ;
+- kit actif : **2.16.29**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3708302 octets — SHA-256 `18e8c5ca8c68de25becc3c900b331fb4ffa5bcb70bfbbbebc6a0e611519872a7`
-- `wikidebia-validator.zip` — 3880580 octets — SHA-256 `4fd2820641dbb0fe30a24dbbfa24db0776bae461bf7b2e713d2af24dd870f09a`
-- `wikidebia-kit.zip` — 761761 octets — SHA-256 `2ea830742d7f8cc176264e73aca4e8355ce38eeb3e5af23d59d4c2294c007f3a`
+- `wikidebia-normes.zip` — 3708958 octets — SHA-256 `de51baaa8fb72bd0dca7094d311b91572f461c107c5ed7b390b66d92355ee4b4`
+- `wikidebia-validator.zip` — 3884769 octets — SHA-256 `413176b60e83b92af50c4b095d4f548bf980274b4c93115904351bec3d078043`
+- `wikidebia-kit.zip` — 762531 octets — SHA-256 `5ad92c040489fbdbe9e5604db0ef8d2a7e6a26889ea74a68f91c9583a5b87b31`
 
 ## Norme consolidée active
 
@@ -1648,13 +1648,13 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `13d7132bd29b66631b9670df353573e8b06d64075607bf25ececaf860669b851`
+SHA-256 : `253a5e71071077990e003930112a8b3dd82d260a27265a7b172faa410d820126`
 
-# Wikidéb’IA Validator 0.4.96
+# Wikidéb’IA Validator 0.4.97
 
-Le validateur 0.4.96 corrige `WDV-SRC-005` afin de contrôler la fonction documentaire réellement définie par la norme. Pour une référence bibliographique de page Debate, la portée doit être `foundational_work` ou `broad_synthesis` et la justification de sélection doit être substantielle ; le `document_kind` n’est plus filtré par une liste fermée qui excluait notamment les textes juridiques officiels. Un `legal_text` large et justifié peut donc être conforme, tandis qu’une source `narrow_argument` ou insuffisamment justifiée reste bloquée.
+Le validateur 0.4.97 réconcilie les deux variantes 0.4.96 développées en parallèle. Il conserve la correction documentaire de `WDV-SRC-005` : pour une référence bibliographique de Debate, l’admissibilité repose sur `documentary_scope=foundational_work` ou `broad_synthesis` et une justification substantielle ; un `legal_text` large et justifié n’est pas rejeté pour son seul type.
 
-Tous les contrôles 0.4.95, notamment l’extraposition anglaise et les apostrophes ASCII dans les titres, restent actifs. Le kit aligné est 2.16.28.
+Il conserve simultanément la validation différentielle du rendu historique. Lorsque le kit 2.16.29 déclare `historical_text_render_validation_mode=differential_preservation_v1`, les valeurs historiques attestées par les verrous (y compris une absence historique de résumé ou une syntaxe historique déjà scellée) ne sont pas requalifiées rétroactivement comme nouvelle génération. Cette compatibilité reste bornée au mode déclaré et ne relâche pas les contrôles sur les pages nouvelles ou les contenus non attestés. Norme active : 1.2.87.
 
 # Wikidéb’IA Validator 0.4.95
 
@@ -1749,7 +1749,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `ab2bdaa0bcdab9140f47acd9c31f5c068dd3ff2a502bfafa55c2b265a1d0f478`
+SHA-256 : `4b2bbdfa41f52d79d3f7db3b8412961195c059be69289f2a6786e42bc1155064`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1977,16 +1977,24 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ajoute des régressions positive `legal_text/broad_synthesis` et négative `narrow_argument` ;
 - s’aligne sur le kit 2.16.28 et conserve tous les contrôles 0.4.95.
 
+## 0.4.97 — 19 août 2026 — réconciliation documentaire + validation différentielle historique
+
+- réconcilie les deux variantes 0.4.96 sans supprimer aucun contrôle ;
+- conserve l’alignement de `WDV-SRC-005` sur `foundational_work` / `broad_synthesis` et la justification substantielle ;
+- conserve la validation différentielle des introductions/résumés historiques sous `differential_preservation_v1` ;
+- maintient les contrôles stricts sur les pages nouvelles et les contenus non attestés ;
+- s’aligne sur le kit 2.16.29 et la norme inchangée 1.2.87.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `7bfcc679f52914185fc469ffe81b33f05ed1a90047e975325363b67f1508bd6f`
+SHA-256 : `fc8e89f40f8d6bdc658557c990ce5c6b254cd030e4622aa5fb49ee4c1413da03`
 
-# Wikidéb’IA Kit 2.16.28
+# Wikidéb’IA Kit 2.16.29
 
-Le kit 2.16.28 réconcilie les deux variantes 2.16.27 développées en parallèle. Il conserve intégralement la garde documentaire anglaise et la phase `en_documentation_correction` de la branche préflight, tout en corrigeant la projection documentaire FR→EN : lorsqu’une ressource anglophone sélectionnée par la traduction existe déjà dans le registre sous la même identité canonique (DOI, URL canonique ou clé de dédoublonnage), son identifiant historique est réutilisé et seuls les usages anglais sont ajoutés. Les métadonnées canoniques existantes sont préservées ; une divergence de famille documentaire ou de `document_kind` reste bloquante.
+Le kit 2.16.29 réconcilie les deux variantes 2.16.28 développées en parallèle. Il conserve la réconciliation documentaire de la branche utilisateur : garde `en_documentation_correction`, réutilisation de l’identité canonique d’une ressource anglophone déjà présente lors de la projection FR→EN, préservation de ses métadonnées et ajout des seuls usages anglais revus, avec blocage des divergences de famille ou de `document_kind`. La garde des bibliographies Debate reste fondée sur `documentary_scope=foundational_work` ou `broad_synthesis` et une justification substantielle, sans enum fermée de types documentaires.
 
-La garde des bibliographies de page Debate est également alignée sur la norme 1.2.87 : `document_kind` doit être un type réel du vocabulaire documentaire, mais l’admissibilité générale dépend de `documentary_scope=foundational_work` ou `broad_synthesis` et d’une justification substantielle. Un `legal_text` de portée générale n’est donc plus rejeté pour son seul type. Le validateur aligné est 0.4.96.
+Il conserve simultanément la branche de préservation différentielle du rendu historique : le manifeste rendu déclare `historical_text_render_validation_mode=differential_preservation_v1`, permettant au validateur 0.4.97 de reconnaître les introductions/résumés historiques scellés et les absences historiques sans les réécrire pour satisfaire des règles de nouvelle génération. Les pages nouvelles et les contenus non attestés restent strictement contrôlés. Norme active : 1.2.87.
 
 # Wikidéb’IA Kit 2.16.27
 
@@ -2120,7 +2128,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `730ee9115202d2a584cd20713deeb7ce35adead6353eb3cbd3dbef9bd440ac3b`
+SHA-256 : `911f1ae16e815cc557b71da787b7a30ebe57e2da9da97fefd9cb8c0b1ac6de6d`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2458,6 +2466,14 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - ajoute des régressions reproduisant le doublon DEF CON `S10003 → S00013` et l’acceptation d’un texte juridique large ;
 - s’aligne sur la norme 1.2.87 et le validateur 0.4.96.
 
+## 2.16.29 — 19 août 2026 — réconciliation documentaire + rendu historique
+
+- réconcilie les deux variantes 2.16.28 sans supprimer aucune capacité de branche ;
+- conserve `en_documentation_correction`, la réutilisation d’identité documentaire et le contrôle Debate fondé sur la portée documentaire ;
+- conserve `historical_text_render_validation_mode=differential_preservation_v1` au rendu final ;
+- conserve les audits et régressions des deux branches ;
+- s’aligne sur le validateur 0.4.97 et la norme inchangée 1.2.87.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -2750,19 +2766,18 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `fd30e5047d751fa6957446240e6696da8d7c160c7a72dde46b0bfec1d23bfc20`
+SHA-256 : `a52febd21300ee6ae41f23b2d6af9e40f2b561c06cf5ef31d10c3644dfa77f56`
 
-Wikidéb’IA Kit 2.16.28 — rapport de tests
+Wikidéb’IA Kit 2.16.29 — rapport de tests
 Statut : PASSED
 Tests pytest collectés : 496
 Tests pytest : 496 réussis
 Norme : 1.2.87
-Validateur : 0.4.96
-Réconciliation 2.16.27 : PASSED ; la garde en_documentation_correction est conservée.
-Identité documentaire FR→EN : PASSED ; une ressource anglophone déjà connue est réutilisée par DOI/URL/clé canonique et ses usages anglais sont ajoutés.
-Conflit documentaire réel : PASSED ; une divergence de famille ou de document_kind reste bloquante.
-Bibliographie Debate legal_text : PASSED ; le type est accepté lorsque la portée est foundational_work/broad_synthesis et la justification substantielle.
-Tous les contrôles 2.16.27 et antérieurs restent verts.
+Validateur : 0.4.97
+Réconciliation documentaire 2.16.28 : PASSED ; en_documentation_correction, identité documentaire FR→EN et portée Debate conservées.
+Préservation différentielle du rendu historique 2.16.28 : PASSED ; les textes/absences historiques attestés sont reconnus sans affaiblir les pages nouvelles.
+Réconciliation des branches : PASSED ; les deux audits et jeux de régressions sont présents simultanément.
+Tous les contrôles 2.16.28 et antérieurs restent verts.
 
 ## Guide d’orchestration éditoriale
 
@@ -2886,9 +2901,9 @@ La réussite du paquet `fr_content_review` déclenche automatiquement le rendu d
 ## Guide de traduction anglaise
 
 Source interne : `kit/GUIDE_TRANSLATION_REVIEW.md`  
-SHA-256 : `2d86d3ddd32d9c79a2e04f8ba7a550ce3f785e34e3162c615fe0bfa5a503f64e`
+SHA-256 : `c990c9dc4cbcdc471b90ccc3fa82c647b286d7a2b448c44493e22416c5abf73b`
 
-# Guide de traduction anglaise contrôlée — Kit 2.16.28
+# Guide de traduction anglaise contrôlée — Kit 2.16.29
 
 > Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 

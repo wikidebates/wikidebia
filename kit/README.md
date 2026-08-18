@@ -1,8 +1,8 @@
-# Wikidéb’IA Kit 2.16.28
+# Wikidéb’IA Kit 2.16.29
 
-Le kit 2.16.28 réconcilie les deux variantes 2.16.27 développées en parallèle. Il conserve intégralement la garde documentaire anglaise et la phase `en_documentation_correction` de la branche préflight, tout en corrigeant la projection documentaire FR→EN : lorsqu’une ressource anglophone sélectionnée par la traduction existe déjà dans le registre sous la même identité canonique (DOI, URL canonique ou clé de dédoublonnage), son identifiant historique est réutilisé et seuls les usages anglais sont ajoutés. Les métadonnées canoniques existantes sont préservées ; une divergence de famille documentaire ou de `document_kind` reste bloquante.
+Le kit 2.16.29 réconcilie les deux variantes 2.16.28 développées en parallèle. Il conserve la réconciliation documentaire de la branche utilisateur : garde `en_documentation_correction`, réutilisation de l’identité canonique d’une ressource anglophone déjà présente lors de la projection FR→EN, préservation de ses métadonnées et ajout des seuls usages anglais revus, avec blocage des divergences de famille ou de `document_kind`. La garde des bibliographies Debate reste fondée sur `documentary_scope=foundational_work` ou `broad_synthesis` et une justification substantielle, sans enum fermée de types documentaires.
 
-La garde des bibliographies de page Debate est également alignée sur la norme 1.2.87 : `document_kind` doit être un type réel du vocabulaire documentaire, mais l’admissibilité générale dépend de `documentary_scope=foundational_work` ou `broad_synthesis` et d’une justification substantielle. Un `legal_text` de portée générale n’est donc plus rejeté pour son seul type. Le validateur aligné est 0.4.96.
+Il conserve simultanément la branche de préservation différentielle du rendu historique : le manifeste rendu déclare `historical_text_render_validation_mode=differential_preservation_v1`, permettant au validateur 0.4.97 de reconnaître les introductions/résumés historiques scellés et les absences historiques sans les réécrire pour satisfaire des règles de nouvelle génération. Les pages nouvelles et les contenus non attestés restent strictement contrôlés. Norme active : 1.2.87.
 
 # Wikidéb’IA Kit 2.16.27
 

@@ -161,6 +161,7 @@ def test_render_is_idempotent_and_locks_graph(tmp_path: Path):
     manifest = json.loads((target / "manifest.json").read_text(encoding="utf-8"))
     registry = json.loads((target / "data/registre_debat.json").read_text(encoding="utf-8"))
     assert manifest["global_status"] == "bilingual_validated"
+    assert manifest["editorial_controls"]["historical_text_render_validation_mode"] == "differential_preservation_v1"
     assert registry["graph"]["lifecycle"]["status"] == "locked"
     assert all(page["status"] == "validated" for page in manifest["pages"])
     assert not any(path.name.endswith(".wiki") for path in (workspace / "translated-copy").rglob("*.wiki") if "imports" not in path.parts)

@@ -1,11 +1,10 @@
-Wikidéb’IA Kit 2.16.28 — rapport de tests
+Wikidéb’IA Kit 2.16.29 — rapport de tests
 Statut : PASSED
 Tests pytest collectés : 496
 Tests pytest : 496 réussis
 Norme : 1.2.87
-Validateur : 0.4.96
-Réconciliation 2.16.27 : PASSED ; la garde en_documentation_correction est conservée.
-Identité documentaire FR→EN : PASSED ; une ressource anglophone déjà connue est réutilisée par DOI/URL/clé canonique et ses usages anglais sont ajoutés.
-Conflit documentaire réel : PASSED ; une divergence de famille ou de document_kind reste bloquante.
-Bibliographie Debate legal_text : PASSED ; le type est accepté lorsque la portée est foundational_work/broad_synthesis et la justification substantielle.
-Tous les contrôles 2.16.27 et antérieurs restent verts.
+Validateur : 0.4.97
+Réconciliation documentaire 2.16.28 : PASSED ; en_documentation_correction, identité documentaire FR→EN et portée Debate conservées.
+Préservation différentielle du rendu historique 2.16.28 : PASSED ; les textes/absences historiques attestés sont reconnus sans affaiblir les pages nouvelles.
+Réconciliation des branches : PASSED ; les deux audits et jeux de régressions sont présents simultanément.
+Tous les contrôles 2.16.28 et antérieurs restent verts.

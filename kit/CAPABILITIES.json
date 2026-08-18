@@ -5,8 +5,8 @@
   "release_source": "VERSIONS.json",
   "release": {
     "norm": "1.2.87",
-    "validator": "0.4.96",
-    "kit": "2.16.28"
+    "validator": "0.4.97",
+    "kit": "2.16.29"
   },
   "emits": {
     "publication_plan": [
@@ -190,7 +190,8 @@
     "historical_editorial_parameter_presence_migration": "1.0",
     "canonical_optional_empty_parameter_omission": "1.0",
     "english_source_verification_normalization": "1.0",
-    "english_documentary_preconvergence_gate": "1.0"
+    "english_documentary_preconvergence_gate": "1.0",
+    "historical_render_differential_validation": "1.0"
   },
   "features": [
     "page_specific_remote_update_edit_summary",

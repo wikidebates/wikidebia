@@ -224,3 +224,11 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ajoute des régressions positive `legal_text/broad_synthesis` et négative `narrow_argument` ;
 - s’aligne sur le kit 2.16.28 et conserve tous les contrôles 0.4.95.
 
+## 0.4.97 — 19 août 2026 — réconciliation documentaire + validation différentielle historique
+
+- réconcilie les deux variantes 0.4.96 sans supprimer aucun contrôle ;
+- conserve l’alignement de `WDV-SRC-005` sur `foundational_work` / `broad_synthesis` et la justification substantielle ;
+- conserve la validation différentielle des introductions/résumés historiques sous `differential_preservation_v1` ;
+- maintient les contrôles stricts sur les pages nouvelles et les contenus non attestés ;
+- s’aligne sur le kit 2.16.29 et la norme inchangée 1.2.87.
+

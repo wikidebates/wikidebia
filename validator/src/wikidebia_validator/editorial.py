@@ -9,7 +9,7 @@ import unicodedata
 from typing import Any
 from .package import PackageContext
 from .translation import english_translation_deferred, english_translation_status
-from .wikicode import WikiParseError, get_subs, parse_template
+from .wikicode import WikiParseError, get_subs, parse_template, _preserved_historical_french_introduction
 AUTO_OBJECTION_FR = re.compile("^(?:cependant|toutefois|néanmoins|pourtant|mais|en revanche|inversement|une limite|cette limite|cet argument|l'argument)\\b", re.I)
 AUTO_OBJECTION_EN = re.compile('^(?:however|nevertheless|yet|but|by contrast|conversely|one limitation|this limitation|this argument|the argument)\\b', re.I)
 ACCESS_DATE = re.compile('\\b(?:consulté(?:e)?|accessed|retrieved)\\b', re.I)
@@ -854,6 +854,17 @@ def _validate_intro_references(ctx: PackageContext, manifest: dict[str, Any], co
         claim_driven_policy = True
         metrics[lang] = {'subsections': len(blocks), 'ref_calls': ref_calls, 'references_blocks': len(re.findall('<references\\b', intro, flags=re.I)), 'invalid_subsections': invalid, 'minimum': min_subsections, 'claim_driven_policy': claim_driven_policy, 'expected_inline_reference_model': None, 'inline_reference_body_mode': 'direct_wikicode_without_templates', 'invalid_inline_reference_models': invalid_models, 'invalid_direct_reference_notes': invalid_direct_notes, 'undefined_named_references': missing_named, 'machine_documentary_dates': machine_dates, 'terminal_period_reference_notes': terminal_period_notes, 'punctuation_policy_revision': '1.2.44' if punctuation_policy else None}
         minimum_failure = not claim_driven_policy and len(blocks) < min_subsections
+        preserved_historical_fr = bool(lang == 'fr' and _preserved_historical_french_introduction(ctx))
+        if preserved_historical_fr:
+            metrics[lang]['historical_preservation_exception'] = True
+            if invalid or invalid_direct_notes or missing_named or machine_dates or terminal_period_notes:
+                ctx.report.info(
+                    'WDV-EDT-010',
+                    'Contrôles de création des références inline non appliqués rétroactivement à une introduction française historique préservée',
+                    path=page.get('file_path'),
+                    details=metrics[lang],
+                )
+            continue
         if minimum_failure or invalid:
             if claim_driven_policy:
                 message = 'Balise <references /> présente dans l’introduction'

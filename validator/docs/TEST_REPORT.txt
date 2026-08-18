@@ -1,9 +1,10 @@
-Wikidéb’IA Validator 0.4.96 — rapport de tests
+Wikidéb’IA Validator 0.4.97 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 437
-Tests pytest : 437 réussis
+Tests pytest collectés : 439
+Tests pytest : 439 réussis
 Norme : 1.2.87
-Kit recommandé : 2.16.28
-WDV-SRC-005 : PASSED ; un legal_text de portée foundational_work ou broad_synthesis suffisamment justifiée n’est plus rejeté pour son seul document_kind.
-Régression négative : PASSED ; narrow_argument ou justification insuffisante reste bloquante.
-Tous les contrôles 0.4.95 et antérieurs restent verts.
+Kit recommandé : 2.16.29
+WDV-SRC-005 : PASSED ; la portée foundational_work/broad_synthesis et la justification substantielle gouvernent la sélection sans enum fermée de document_kind.
+Validation différentielle historique : PASSED ; differential_preservation_v1 reconnaît les valeurs et absences historiques attestées sans relâcher les contenus nouveaux.
+Réconciliation des branches 0.4.96 : PASSED ; les deux jeux de régressions sont présents simultanément.
+Tous les contrôles 0.4.96 et antérieurs restent verts.
