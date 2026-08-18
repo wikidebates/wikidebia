@@ -34,12 +34,25 @@ def contextual_title_issues(title: str, language: str, revision: str | None = No
     issues: list[str] = []
     initial_match = patterns.get("initial") and patterns["initial"].search(value)
     if initial_match:
-        # French impersonal constructions do not contain an anaphoric referent.
+        # Impersonal / extraposition constructions do not contain an anaphoric
+        # referent.  Keep this narrow: an English "It ..." is exempt only when
+        # the grammatical subject is supplied by a following infinitival or
+        # finite clause (for X to..., to..., that...).
         impersonal_fr = language == "fr" and re.match(
             r"^(?:Il\s+(?:existe|n['’]existe|(?:ne\s+)?faut|y\s+a|n['’]y\s+a|est|n['’]est|ne\s+devrait|reste)|Ce\s+(?:qu['’]|n['’]est))",
             value, re.I,
         )
-        if not impersonal_fr:
+        impersonal_en = language == "en" and (
+            re.match(
+                r"^It\s+(?:(?:is|was|will\s+be|would\s+be|can\s+be|could\s+be|should\s+be|must\s+be)\s+[^,;:!?]{0,100}?\s+for\s+[^,;:!?]{1,80}?\s+to\b)",
+                value, re.I,
+            )
+            or re.match(
+                r"^It\s+(?:(?:is|was|will\s+be|would\s+be|can\s+be|could\s+be|should\s+be|must\s+be)\s+(?:necessary|important|essential|possible|impossible|fair|unfair|right|wrong|reasonable|unreasonable|better|worse)\s+(?:to|that)\b)",
+                value, re.I,
+            )
+        )
+        if not (impersonal_fr or impersonal_en):
             issues.append("initial_contextual_referent")
     # Internal demonstratives remain a review signal. They are not automatically
     # blocking, but the title must explicitly name the referent or document the
@@ -197,7 +210,7 @@ def validate_graph(ctx: PackageContext) -> None:
         seen: dict[str, str] = {}
         title_reporter = ctx.report.error if title_policy_locked[lang] else ctx.report.warning
         debate_title = (((registry.get("debate") or {}).get("pages") or {}).get(lang) or {}).get("canonical_title")
-        if debate_title and (debate_title.endswith(".") or "’" in debate_title):
+        if debate_title and (debate_title.endswith(".") or any(ch in debate_title for ch in "’‘ʼ＇")):
             title_reporter(
                 "WDV-GRA-016",
                 f"Titre de débat {lang} non conforme : {debate_title}",
@@ -210,7 +223,7 @@ def validate_graph(ctx: PackageContext) -> None:
             title = language_data.get("canonical_title")
             displayed_title = language_data.get("displayed_title")
             for field_name, field_value in (("canonical_title", title), ("displayed_title", displayed_title)):
-                if field_value and (field_value.endswith(".") or "’" in field_value):
+                if field_value and (field_value.endswith(".") or any(ch in field_value for ch in "’‘ʼ＇")):
                     title_reporter(
                         "WDV-GRA-016",
                         f"Titre {lang} non conforme : {field_value}",

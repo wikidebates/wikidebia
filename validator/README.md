@@ -1,4 +1,10 @@
-# Wikidéb’IA Validator 0.4.94
+# Wikidéb’IA Validator 0.4.95
+
+Le validateur 0.4.95 corrige un faux positif d’autonomie référentielle dans les titres anglais : les extraposition impersonnelles comme `It is unfair for basic income to…` ne sont plus interprétées comme un pronom anaphorique. Un véritable `It` sans sujet explicite, par exemple `It reduces individual freedom` ou `It is harmful to democracy`, reste signalé.
+
+Le contrôle `WDV-GRA-016` reconnaît aussi les principales apostrophes typographiques non ASCII (`’`, `‘`, `ʼ`, `＇`) comme non conformes dans les titres. La norme active reste 1.2.87 et exige l’apostrophe droite ASCII. Tous les contrôles 0.4.94 restent actifs.
+
+## Wikidéb’IA Validator 0.4.94
 
 Le validateur 0.4.94 corrige le contrat de compatibilité du registre documentaire pour les revues anglaises déjà préparées. `verification.primary_source` reste obligatoire comme clé canonique, mais peut valoir `null` lorsqu'un artefact historique ne contenait aucune décision sur ce point. Une nouvelle revue doit toujours fournir un booléen explicite.
 

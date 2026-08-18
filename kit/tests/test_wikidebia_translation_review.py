@@ -832,3 +832,47 @@ def test_21625_legacy_english_source_verification_is_normalized_without_inventin
     assert "method" not in verification
     assert "note" not in verification
 
+
+
+def test_english_title_validation_rejects_non_ascii_apostrophes():
+    assert translation._validate_title("Basic income supports women's autonomy", "canonical") == "Basic income supports women's autonomy"
+    for bad in (
+        "Basic income supports women’s autonomy",
+        "Basic income supports women‘s autonomy",
+        "Basic income supports womenʼs autonomy",
+        "Basic income supports women＇s autonomy",
+    ):
+        try:
+            translation._validate_title(bad, "canonical")
+        except translation.TranslationReviewError as exc:
+            assert "non_ascii_apostrophe" in str(exc)
+        else:
+            raise AssertionError(f"non-ASCII apostrophe accepted: {bad!r}")
+
+
+def test_collect_title_format_findings_covers_all_argument_title_fields():
+    review = {
+        "debate_id": "debat_test",
+        "final_values": {
+            "debate": {"canonical_title": "Should basic income be introduced?"},
+            "arguments": [
+                {
+                    "id": "A0004",
+                    "canonical_title": "Basic income is good for the national economy",
+                    "displayed_title": "A good thing for the country’s economy",
+                },
+                {
+                    "id": "A0045",
+                    "canonical_title": "Basic income gives everyone a stake in the country’s wealth",
+                    "displayed_title": "Giving everyone a stake in the country’s wealth",
+                },
+            ],
+        },
+    }
+    findings = translation.collect_english_title_format_findings(review)
+    assert [(row["entity_id"], row["field"]) for row in findings] == [
+        ("A0004", "displayed_title"),
+        ("A0045", "canonical_title"),
+        ("A0045", "displayed_title"),
+    ]
+    assert all(row["issues"] == ["non_ascii_apostrophe"] for row in findings)

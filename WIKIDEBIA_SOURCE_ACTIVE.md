@@ -3,14 +3,14 @@
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
 - norme active : **1.2.87** ;
-- validateur actif : **0.4.94** ;
-- kit actif : **2.16.25**.
+- validateur actif : **0.4.95** ;
+- kit actif : **2.16.26**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3707633 octets — SHA-256 `ae30d537c517aed40132e355005ea286c42bd0a370131740c562597c7746c38f`
-- `wikidebia-validator.zip` — 3877473 octets — SHA-256 `e86bfaa3a5c3884ba99fb491f5c572c2e379487417670b0d660cb6beaf4c6262`
-- `wikidebia-kit.zip` — 748065 octets — SHA-256 `ad6ee6e748ffe2d629f91a95c8638bb2afbdc059edce90b55e27acac5ebda7a3`
+- `wikidebia-normes.zip` — 3707630 octets — SHA-256 `48a074a0361e707f52f1e746b56ac802ab56470c9d410f4cb73b4ff96ae76639`
+- `wikidebia-validator.zip` — 3879288 octets — SHA-256 `975cce88a30be162f536a58afb9bb2c478038e0979e6ff431a15fd0695e1eafa`
+- `wikidebia-kit.zip` — 751439 octets — SHA-256 `303d80bf2381f6990df55289891d83210e41207db2b3e8500006995d4e86883c`
 
 ## Norme consolidée active
 
@@ -1648,9 +1648,15 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `0999665e1bf179206508cb3801f19728e00df55ef63211f7545a9fe30716f0c7`
+SHA-256 : `b30d3c39bb2b054b627bbadfcea7dc1fff817f13306ebaf7e41792f56f4c2cba`
 
-# Wikidéb’IA Validator 0.4.94
+# Wikidéb’IA Validator 0.4.95
+
+Le validateur 0.4.95 corrige un faux positif d’autonomie référentielle dans les titres anglais : les extraposition impersonnelles comme `It is unfair for basic income to…` ne sont plus interprétées comme un pronom anaphorique. Un véritable `It` sans sujet explicite, par exemple `It reduces individual freedom` ou `It is harmful to democracy`, reste signalé.
+
+Le contrôle `WDV-GRA-016` reconnaît aussi les principales apostrophes typographiques non ASCII (`’`, `‘`, `ʼ`, `＇`) comme non conformes dans les titres. La norme active reste 1.2.87 et exige l’apostrophe droite ASCII. Tous les contrôles 0.4.94 restent actifs.
+
+## Wikidéb’IA Validator 0.4.94
 
 Le validateur 0.4.94 corrige le contrat de compatibilité du registre documentaire pour les revues anglaises déjà préparées. `verification.primary_source` reste obligatoire comme clé canonique, mais peut valoir `null` lorsqu'un artefact historique ne contenait aucune décision sur ce point. Une nouvelle revue doit toujours fournir un booléen explicite.
 
@@ -1737,7 +1743,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `3de05963f85fec8c50c3d932b8a4d832a55f9ce1185c3b4398af5b2539feab1c`
+SHA-256 : `865e42d9d7672de87573700449a1f49047e72eb07dfed922279c616a74c7d28a`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1948,12 +1954,27 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ajoute une régression de schéma couvrant la projection normalisée produite par le kit 2.16.25 ;
 - la norme active reste 1.2.87.
 
+
+## 0.4.95 — 18 août 2026 — extraposition anglaise et ponctuation des titres
+
+- reconnaît `It is unfair for X to…` et les extraposition comparables comme tournures impersonnelles non anaphoriques ;
+- maintient le blocage de `It` lorsqu’aucun sujet propositionnel explicite ne suit ;
+- étend `WDV-GRA-016` aux principales apostrophes typographiques non ASCII dans les titres ;
+- ajoute des régressions sur A0026/A0028 et sur l’apostrophe courbe ;
+- conserve la norme active 1.2.87 et tous les contrôles 0.4.94.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `70a27a23c02d2a613c62b70b130de299ccbf45498f6bde928ca8d74d186bde51`
+SHA-256 : `be113ab20d84c59bab38a341f8c36e2142d7844a20e076b24aef9e1022b379bc`
 
-# Wikidéb’IA Kit 2.16.25
+# Wikidéb’IA Kit 2.16.26
+
+Le kit 2.16.26 fait échouer la finalisation anglaise immédiatement lorsqu’un titre contient une apostrophe typographique non ASCII, au lieu de laisser cette non-conformité apparaître seulement après les deux passes de convergence. Aucune normalisation silencieuse n’est effectuée : la valeur éditoriale doit être corrigée explicitement.
+
+Pour les Work déjà convergés sous une version antérieure, `review-import` détecte avant l’application les titres ainsi scellés, invalide le reçu de convergence, rouvre automatiquement `en_translation_correction` avec la liste exhaustive des champs concernés, puis exige à nouveau deux passes indépendantes sur la nouvelle empreinte. Le validateur 0.4.95 corrige parallèlement le faux positif anglais `It is unfair for X to…`. La norme active reste 1.2.87.
+
+## Wikidéb’IA Kit 2.16.25
 
 Le kit 2.16.25 corrige la projection des vérifications documentaires anglaises vers `data/sources.json`. Les paquets déjà préparés avec le format historique `checked_at` / `method` / `note` sont normalisés à la frontière de sortie vers `verified_at` / `notes`; lorsqu'aucune classification `primary_source` n'avait été enregistrée, la valeur canonique devient explicitement `null` au lieu d'inventer un booléen. Les nouvelles revues doivent renseigner `primary_source` explicitement.
 
@@ -2073,7 +2094,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `c7bea2efdbfd8d193cb4fbe5f4d7d3a38ba4b138ca996e9784210ff619194b96`
+SHA-256 : `8add0f95b96af28f3909f3f0f6ca3109c6c9784eb588b810c1d679235bc3416e`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2382,6 +2403,16 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - préserve le `review_sha256`, le `semantic_content_sha256` et les deux passes de convergence, la migration ne touchant qu'aux métadonnées documentaires non sémantiques de sortie ;
 - s'aligne sur le validateur 0.4.94 ; la norme active reste 1.2.87.
 
+
+## 2.16.26 — 18 août 2026 — garde pré-convergence des titres anglais
+
+- refuse les apostrophes typographiques non ASCII dès la finalisation de `en_translation_review` / `en_translation_correction` ;
+- ne normalise jamais silencieusement un titre scellé ;
+- pour un Work déjà convergé sous une version antérieure, détecte avant application tous les champs de titre non conformes et rouvre automatiquement `en_translation_correction` ;
+- invalide alors le reçu de convergence afin que les deux passes indépendantes recommencent sur la nouvelle empreinte ;
+- ajoute les apostrophes ASCII aux instructions des paquets de traduction/correction et une régression d’orchestration sur la reprise post-convergence ;
+- s’aligne sur le validateur 0.4.95 ; la norme active reste 1.2.87.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -2674,28 +2705,23 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `ef15aa227943afe5f7f35a3903aecb705f48f792d77561bb166962907b5518c6`
+SHA-256 : `79683220275c0f45e4dfd127b72128925d62055b3f680993449cad9f2ed63676`
 
-Wikidéb’IA Kit 2.16.25 — rapport de tests
+Wikidéb’IA Kit 2.16.26 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 485
-Tests pytest : 485 réussis
+Tests pytest collectés : 488
+Tests pytest : 488 réussis
 Norme : 1.2.87
-Validateur : 0.4.94
+Validateur : 0.4.95
+Validation pré-convergence des titres anglais : PASSED ; les apostrophes typographiques non ASCII sont refusées à la finalisation de la traduction.
+Reprise post-convergence : PASSED ; une revue historique déjà convergée contenant un titre non conforme rouvre automatiquement `en_translation_correction`, supprime le reçu de convergence et n’applique aucun contenu.
+Inventaire exhaustif des champs : PASSED ; canonical_title et displayed_title sont contrôlés pour le débat et tous les arguments.
+Extraposition anglaise : PASSED via le validateur 0.4.95 ; A0026/A0028 ne sont plus de faux positifs.
 Normalisation des vérifications documentaires anglaises : PASSED ; `checked_at` / `method` / `note` sont normalisés vers `verified_at` / `notes` à la projection finale.
 Classification primaire historique absente : PASSED ; aucun booléen n’est inventé et `primary_source=null` est conservé comme état explicite de compatibilité.
-Nouvelles sources anglaises : PASSED ; le format canonique exige un `primary_source` booléen explicite.
-Convergence sémantique : PASSED ; la normalisation documentaire de sortie ne modifie ni `review_sha256` ni `semantic_content_sha256` et ne remet pas à zéro les deux passes propres.
-Omission canonique : PASSED ; tout paramètre éditorial optionnel sans contenu final est omis du wikicode, même s’il était historiquement présent.
-Provenance top-level : PASSED ; source_parameter_presence reste conservé dans les verrous comme preuve d’audit sans commander le rendu.
-A0021 objections : PASSED ; une valeur finale vide produit l’absence de |objections= et non un paramètre vide.
-Buckets Débat : PASSED ; bibliographie-pour et vidéographie-contre disparaissent du wikicode lorsque leur contenu final est vide.
-Préflight différentiel : PASSED ; l’omission canonique d’un paramètre éditorial optionnel géré n’est pas traitée comme une suppression éditoriale non autorisée.
-Protection des suppressions : PASSED ; une suppression de paramètre non omittable, protégé ou inconnu reste bloquée.
-Migration pré-2.16.22 : PASSED ; source_parameter_presence peut toujours être redérivé depuis reviewed-copy pour les anciens content-reviewed-copy, sans réintroduire de sortie present-empty.
-Sous-paramètres Citation/Quote facultatifs vides : PASSED ; la provenance historique peut les conserver, le rendu canonique les omet.
-Préflight vote électronique synthétique : PASSED ; les pages sont planifiables sans |bibliographie-pour=, |vidéographie-contre= ni |objections= vides.
-Tous les contrôles 2.16.24 et antérieurs restent verts.
+Convergence sémantique : PASSED ; toute mutation de titre après convergence invalide les passes précédentes et exige deux nouvelles passes sur la nouvelle empreinte.
+Omission canonique et protections des paramètres historiques : PASSED.
+Tous les contrôles 2.16.25 et antérieurs restent verts.
 
 ## Guide d’orchestration éditoriale
 

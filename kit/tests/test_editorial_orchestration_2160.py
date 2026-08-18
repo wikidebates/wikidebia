@@ -1000,3 +1000,82 @@ def test_fr_content_remote_execution_failure_preserves_checkpoint_plan_and_recei
     assert saved["status"] == "blocked_remote_publication"
     assert saved["phase"] == "fr_content_review"
     assert saved["pending_review"]["review_type"] == "fr_content_review"
+
+
+def test_post_convergence_title_preflight_reopens_translation_correction(tmp_path: Path, monkeypatch):
+    project = tmp_path / "project"
+    project.mkdir()
+    workspace = project / "workspace"
+    (workspace / "reviews/en").mkdir(parents=True)
+    common.write_json(workspace / "reviews/en/translation_review.json", {
+        "schema": "wikidebia-translation-review-1.4",
+        "debate_id": "debat_test",
+        "work_id": "W1",
+        "status": "approved",
+        "review_sha256": "sealed-review",
+        "semantic_content_sha256": "old-semantic-hash",
+        "finalized_at": "2026-08-18T20:00:00+02:00",
+        "final_values": {
+            "debate": {"canonical_title": "Should basic income be introduced?"},
+            "arguments": [{
+                "id": "A0004",
+                "canonical_title": "Basic income is good for the national economy",
+                "displayed_title": "A good thing for the country’s economy",
+            }],
+        },
+    })
+    common.write_json(workspace / "reviews/en/semantic_convergence_review.json", {
+        "schema": "wikidebia-semantic-convergence-review-1.1", "status": "converged"
+    })
+    common.write_json(workspace / "workspace.json", {
+        "status": "en_translation_review_finalized",
+        "english_translation_review": {"status": "finalized"},
+        "workspace_sha256": "old",
+    })
+
+    state = {
+        "schema": wf.WORKFLOW_SCHEMA,
+        "schema_version": "1.0",
+        "debate_id": "debat_test",
+        "debate_title": "Débat test ?",
+        "phase": "apply_render_release",
+        "status": "running",
+        "work_id": "W1",
+        "pending_review": None,
+        "french_graph_publication": {"status": "no_changes"},
+        "french_content_publication": {"status": "no_changes"},
+        "created_at": "2026-08-18T20:00:00+02:00",
+        "updated_at": "2026-08-18T20:00:00+02:00",
+    }
+    wf._save_workflow(project, state)
+
+    def fake_current_workspace_meta(_project, _state):
+        return workspace, common.load_json(workspace / "workspace.json", "workspace")
+
+    def fake_prepare_translation(_project, current_state, *, correction=False):
+        assert correction is True
+        current_state["pending_review"] = {
+            "review_type": "en_translation_correction",
+            "package_path": "outgoing/debat_test_en_translation_correction.zip",
+        }
+        wf._save_workflow(_project, current_state)
+        return current_state["pending_review"]
+
+    monkeypatch.setattr(wf, "_current_workspace_meta", fake_current_workspace_meta)
+    monkeypatch.setattr(wf, "workspace_receipt_hash", lambda meta: "new-workspace-hash")
+    monkeypatch.setattr(wf, "_prepare_translation_package", fake_prepare_translation)
+    monkeypatch.setattr(wf, "apply_translation_review", lambda *a, **k: (_ for _ in ()).throw(AssertionError("application must not run")))
+
+    result = wf._mechanical_advance(project, state)
+    assert result["phase"] == "en_translation_correction"
+    assert result["pending_review"]["review_type"] == "en_translation_correction"
+    reopened = common.load_json(workspace / "reviews/en/translation_review.json", "review")
+    assert reopened["status"] == "draft"
+    assert "review_sha256" not in reopened
+    assert "semantic_content_sha256" not in reopened
+    assert not (workspace / "reviews/en/semantic_convergence_review.json").exists()
+    findings = common.load_json(workspace / "reviews/en/semantic_convergence_findings.json", "findings")
+    assert findings["source_review_type"] == "post_convergence_title_preflight"
+    assert findings["new_certain_errors"] == 1
+    assert findings["findings"][0]["entity_id"] == "A0004"
+    assert findings["findings"][0]["field"] == "displayed_title"

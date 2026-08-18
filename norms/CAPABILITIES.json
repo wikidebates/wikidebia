@@ -5,8 +5,8 @@
   "release_source": "VERSIONS.json",
   "release": {
     "norm": "1.2.87",
-    "validator": "0.4.93",
-    "kit": "2.16.24"
+    "validator": "0.4.95",
+    "kit": "2.16.26"
   },
   "emits": {
     "active_normative_policy": [

@@ -227,3 +227,16 @@ def test_french_impersonal_il_ne_faut_is_not_contextual():
     assert contextual_title_issues("Il ne faut pas instaurer plus de temps libre", "fr") == []
     assert contextual_title_issues("Il faut instaurer un revenu de base", "fr") == []
     assert contextual_title_issues("Il réduit la liberté individuelle", "fr") == ["initial_contextual_referent"]
+
+
+def test_english_impersonal_it_extraposition_is_not_contextual():
+    assert contextual_title_issues(
+        "It is unfair for basic income to be identical for rich and poor people", "en"
+    ) == []
+    assert contextual_title_issues(
+        "It is unfair for basic income not to take account of the work people perform", "en"
+    ) == []
+    assert contextual_title_issues("It is necessary to introduce a basic income", "en") == []
+    assert contextual_title_issues("It reduces individual freedom", "en") == ["initial_contextual_referent"]
+    # Do not exempt an anaphoric subject merely because an adjective follows.
+    assert contextual_title_issues("It is harmful to democracy", "en") == ["initial_contextual_referent"]

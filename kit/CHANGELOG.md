@@ -304,3 +304,13 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - exige `verification.primary_source` booléen dans toute nouvelle vérification au format canonique ;
 - préserve le `review_sha256`, le `semantic_content_sha256` et les deux passes de convergence, la migration ne touchant qu'aux métadonnées documentaires non sémantiques de sortie ;
 - s'aligne sur le validateur 0.4.94 ; la norme active reste 1.2.87.
+
+
+## 2.16.26 — 18 août 2026 — garde pré-convergence des titres anglais
+
+- refuse les apostrophes typographiques non ASCII dès la finalisation de `en_translation_review` / `en_translation_correction` ;
+- ne normalise jamais silencieusement un titre scellé ;
+- pour un Work déjà convergé sous une version antérieure, détecte avant application tous les champs de titre non conformes et rouvre automatiquement `en_translation_correction` ;
+- invalide alors le reçu de convergence afin que les deux passes indépendantes recommencent sur la nouvelle empreinte ;
+- ajoute les apostrophes ASCII aux instructions des paquets de traduction/correction et une régression d’orchestration sur la reprise post-convergence ;
+- s’aligne sur le validateur 0.4.95 ; la norme active reste 1.2.87.

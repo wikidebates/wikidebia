@@ -290,6 +290,7 @@ DEBATE_BUCKETS = {
 SOURCE_ID = re.compile(r"^S[0-9]{5,}$")
 HTTP_URL = re.compile(r"^https?://", re.I)
 BAD_QUOTES = re.compile(r"[«»“”„‹›]")
+BAD_TITLE_APOSTROPHES = re.compile(r"[’‘ʼ＇]")
 BAD_ELLIPSIS = re.compile(r"\.\.\.|…")
 VERB_HINT = re.compile(r"\b(?:is|are|was|were|has|have|does|do|can|could|may|might|must|should|would|will|shows?|demonstrates?|proves?|supports?|challenges?|undermines?|refutes?|implies?|indicates?|prevents?|allows?|requires?|depends?|makes?|causes?|explains?|confirms?|weakens?|strengthens?)\b", re.I)
 QUESTION_TOPIC = re.compile(r"^(?:whether\b|should\b|must\b|is\b|are\b|does\b|do\b|can\b)", re.I)
@@ -1055,11 +1056,86 @@ def _has_usage(source: Mapping[str, Any], page_id: str, roles: set[str]) -> bool
     return any(u.get("page_id") == page_id and u.get("language") == "en" and u.get("role") in roles for u in source.get("usage") or [])
 
 
+def _title_format_issues(value: Any) -> list[str]:
+    text = str(value or "").strip()
+    issues: list[str] = []
+    if BAD_QUOTES.search(text):
+        issues.append("typographic_or_chevron_quote")
+    if BAD_TITLE_APOSTROPHES.search(text):
+        issues.append("non_ascii_apostrophe")
+    if BAD_ELLIPSIS.search(text):
+        issues.append("ellipsis")
+    if text.endswith("."):
+        issues.append("terminal_period")
+    return issues
+
+
 def _validate_title(value: Any, label: str, *, displayed: bool = False) -> str:
     text = _text(value, label, 1 if displayed else 8)
-    if BAD_QUOTES.search(text) or BAD_ELLIPSIS.search(text) or text.endswith("."):
-        raise TranslationReviewError(f"Titre anglais non conforme : {label}")
+    issues = _title_format_issues(text)
+    if issues:
+        raise TranslationReviewError(f"Titre anglais non conforme : {label} ({', '.join(issues)})")
     return text
+
+
+def collect_english_title_format_findings(review: Mapping[str, Any]) -> list[dict[str, Any]]:
+    """Collect title-format defects before applying a converged translation.
+
+    This is primarily a compatibility guard for reviews finalized by older kit
+    versions that did not reject non-ASCII apostrophes early enough.  It does
+    not normalize the content: any defect reopens the editorial translation so
+    that the exact reviewed value changes explicitly and semantic convergence
+    can restart on the new hash.
+    """
+    findings: list[dict[str, Any]] = []
+    final_values = review.get("final_values") if isinstance(review, Mapping) else None
+    if isinstance(final_values, Mapping):
+        debate = final_values.get("debate") or {}
+        value = debate.get("canonical_title") if isinstance(debate, Mapping) else None
+        issues = _title_format_issues(value)
+        if issues:
+            findings.append({
+                "entity_type": "debate", "entity_id": str(review.get("debate_id") or ""),
+                "field": "canonical_title", "current_value": str(value or ""),
+                "issues": issues,
+                "required_correction": "Replace typographic punctuation with the canonical ASCII title punctuation without changing semantics.",
+            })
+        arguments = final_values.get("arguments") or []
+        for row in arguments:
+            if not isinstance(row, Mapping):
+                continue
+            for field in ("canonical_title", "displayed_title"):
+                value = row.get(field)
+                issues = _title_format_issues(value)
+                if issues:
+                    findings.append({
+                        "entity_type": "argument", "entity_id": str(row.get("id") or ""),
+                        "field": field, "current_value": str(value or ""),
+                        "issues": issues,
+                        "required_correction": "Replace typographic punctuation with the canonical ASCII title punctuation without changing semantics.",
+                    })
+        return findings
+
+    # Draft-review fallback (useful to tests and future callers).
+    debate = review.get("debate") if isinstance(review, Mapping) else None
+    if isinstance(debate, Mapping):
+        translation = debate.get("translation") if isinstance(debate.get("translation"), Mapping) else debate
+        value = translation.get("canonical_title") if isinstance(translation, Mapping) else None
+        issues = _title_format_issues(value)
+        if issues:
+            findings.append({"entity_type": "debate", "entity_id": str(review.get("debate_id") or ""), "field": "canonical_title", "current_value": str(value or ""), "issues": issues})
+    for item in review.get("arguments") or [] if isinstance(review, Mapping) else []:
+        if not isinstance(item, Mapping):
+            continue
+        row = item.get("translation") or {}
+        if not isinstance(row, Mapping):
+            continue
+        for field in ("canonical_title", "displayed_title"):
+            value = row.get(field)
+            issues = _title_format_issues(value)
+            if issues:
+                findings.append({"entity_type": "argument", "entity_id": str(item.get("id") or ""), "field": field, "current_value": str(value or ""), "issues": issues})
+    return findings
 
 
 def _first_alphabetic(value: str) -> str:

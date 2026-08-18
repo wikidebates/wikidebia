@@ -1,4 +1,10 @@
-# Wikidéb’IA Kit 2.16.25
+# Wikidéb’IA Kit 2.16.26
+
+Le kit 2.16.26 fait échouer la finalisation anglaise immédiatement lorsqu’un titre contient une apostrophe typographique non ASCII, au lieu de laisser cette non-conformité apparaître seulement après les deux passes de convergence. Aucune normalisation silencieuse n’est effectuée : la valeur éditoriale doit être corrigée explicitement.
+
+Pour les Work déjà convergés sous une version antérieure, `review-import` détecte avant l’application les titres ainsi scellés, invalide le reçu de convergence, rouvre automatiquement `en_translation_correction` avec la liste exhaustive des champs concernés, puis exige à nouveau deux passes indépendantes sur la nouvelle empreinte. Le validateur 0.4.95 corrige parallèlement le faux positif anglais `It is unfair for X to…`. La norme active reste 1.2.87.
+
+## Wikidéb’IA Kit 2.16.25
 
 Le kit 2.16.25 corrige la projection des vérifications documentaires anglaises vers `data/sources.json`. Les paquets déjà préparés avec le format historique `checked_at` / `method` / `note` sont normalisés à la frontière de sortie vers `verified_at` / `notes`; lorsqu'aucune classification `primary_source` n'avait été enregistrée, la valeur canonique devient explicitement `null` au lieu d'inventer un booléen. Les nouvelles revues doivent renseigner `primary_source` explicitement.
 

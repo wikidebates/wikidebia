@@ -76,6 +76,7 @@ from wikidebia_translation_review import (
     finalize_review as finalize_translation_review,
     apply_review as apply_translation_review,
     translation_review_sha256,
+    collect_english_title_format_findings,
 )
 from wikidebia_semantic_convergence import record_pass as record_semantic_pass
 from wikidebia_render import render_workspace
@@ -280,6 +281,7 @@ def _instructions(review_type: str, debate_id: str, work_id: str | None, editabl
             "Les règles qualitatives intrinsèques des keywords restent applicables : la version anglaise doit utiliser les équivalents idiomatiques du vocabulaire français final, y compris après une correction ou une décomposition historique validée.",
             "Pour une introduction française historique, produisez une adaptation anglaise autonome : examinez explicitement le contexte franco-français et condensez, contextualisez ou omettez ce qui ne doit pas être traduit mécaniquement, sans changer la substance du débat. `Stakes of the debate` et les autres contraintes de profil d’une introduction nouvellement créée ne sont pas obligatoires pour les sous-parties historiques inchangées.",
             "Pour un résumé historique, un ratio EN/FR hors 0,60–1,45 est un signal de revue et non un objectif de réécriture ; attestez l’équivalence et fournissez `summary_ratio_exception_rationale` lorsque le ratio reste hors plage.",
+            "Dans tous les titres anglais, utilisez exclusivement l’apostrophe droite ASCII `'` pour les possessifs et contractions. Les apostrophes typographiques `’`, `‘`, `ʼ` ou `＇` sont non conformes, y compris dans la traduction d’un titre historique.",
             "Pour toute nouvelle source ajoutée dans `data/sources_en_working.json`, renseignez `verification.verified_at`, `verification.primary_source` (booléen explicite) et `verification.notes` en plus des attestations de langue/auteur. Les anciennes clés `checked_at`, `method` et `note` ne doivent plus être émises par un nouveau paquet ; elles restent lisibles uniquement pour compatibilité avec une revue déjà préparée.",
         ]
     lines += [
@@ -1115,6 +1117,27 @@ def _mechanical_advance(project_root: Path, state: dict[str, Any]) -> dict[str, 
         if phase == "apply_render_release":
             workspace, meta = _current_workspace_meta(project_root, state)
             review = load_json(workspace / "reviews/en/translation_review.json", "revue anglaise")
+            # Compatibility guard for already-finalized reviews produced by an
+            # older kit that allowed typographic apostrophes in English titles.
+            # Never silently normalize a converged value: reopen the translation
+            # explicitly, invalidate the old convergence receipt and let the two
+            # independent passes restart on the corrected semantic hash.
+            title_findings = collect_english_title_format_findings(review)
+            if title_findings:
+                _reopen_translation_after_findings(project_root, state, {
+                    "schema": "wikidebia-semantic-convergence-findings-1.0",
+                    "debate_id": debate_id,
+                    "work_id": state.get("work_id"),
+                    "recorded_at": now_iso(),
+                    "source_review_type": "post_convergence_title_preflight",
+                    "new_certain_errors": len(title_findings),
+                    "findings": title_findings,
+                })
+                state["phase"] = "en_translation_correction"
+                state["status"] = "running"
+                state["updated_at"] = now_iso()
+                _save_workflow(project_root, state)
+                continue
             review_sha = str(review.get("review_sha256") or "")
             apply_translation_review(project_root, debate_id, str(state["work_id"]), review_sha)
             render = render_workspace(project_root, debate_id, str(state["work_id"]), review_sha)

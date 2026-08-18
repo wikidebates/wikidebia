@@ -206,3 +206,12 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - n'autorise pas `checked_at`, `method` ni `note` dans le registre canonique final ;
 - ajoute une régression de schéma couvrant la projection normalisée produite par le kit 2.16.25 ;
 - la norme active reste 1.2.87.
+
+
+## 0.4.95 — 18 août 2026 — extraposition anglaise et ponctuation des titres
+
+- reconnaît `It is unfair for X to…` et les extraposition comparables comme tournures impersonnelles non anaphoriques ;
+- maintient le blocage de `It` lorsqu’aucun sujet propositionnel explicite ne suit ;
+- étend `WDV-GRA-016` aux principales apostrophes typographiques non ASCII dans les titres ;
+- ajoute des régressions sur A0026/A0028 et sur l’apostrophe courbe ;
+- conserve la norme active 1.2.87 et tous les contrôles 0.4.94.
