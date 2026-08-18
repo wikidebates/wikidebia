@@ -3,7 +3,7 @@ Statut : PASSED
 Tests pytest collectés : 439
 Tests pytest : 439 réussis
 Norme : 1.2.87
-Kit recommandé : 2.16.29
+Kit recommandé : 2.16.30
 WDV-SRC-005 : PASSED ; la portée foundational_work/broad_synthesis et la justification substantielle gouvernent la sélection sans enum fermée de document_kind.
 Validation différentielle historique : PASSED ; differential_preservation_v1 reconnaît les valeurs et absences historiques attestées sans relâcher les contenus nouveaux.
 Réconciliation des branches 0.4.96 : PASSED ; les deux jeux de régressions sont présents simultanément.

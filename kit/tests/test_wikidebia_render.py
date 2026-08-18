@@ -265,3 +265,110 @@ def test_render_new_english_argument_uses_established_name_not_legacy_name():
     assert '|established-name=Cosmological argument' in text
     assert '|name=Cosmological argument' not in text
     assert text.index('|established-name=') < text.index('|summary=')
+
+
+def test_render_translated_english_debate_uses_french_metadata_presence_and_values():
+    registry={
+        'debate': {'pages': {'en': {'canonical_title':'Should electronic voting be generalized?'}}},
+        'graph': {'occurrences': [], 'nodes': [], 'edges': []},
+    }
+    metadata={'debate': {'sections':['Politics'], 'keywords':['electronic voting']}}
+    english={'debate': {
+        'topic':'Electronic voting','complete_topic':'the generalization of electronic voting',
+        'introduction':'Text.','wikipedia_articles':[],'documentation':{},
+        'page_origin':'new','source_page_origin':'preexisting','preserved_parameters':{},
+    }}
+    french_absent={
+        'subject':'Vote électronique','complete_topic':'la généralisation du vote électronique',
+        'page_origin':'preexisting','preserved_parameters':{
+            'avancement':{'present':False,'value':None},
+            'avertissements-titre':{'present':False,'value':None},
+            'avertissements-débat':{'present':False,'value':None},
+        },
+    }
+    text=render._render_debate(
+        lang='en',registry=registry,metadata_lock=metadata,content_lock=english,sources={},
+        creation_date='2026-08-19',source_content=french_absent,
+    )
+    assert '|progress=' not in text
+    assert '|title-warnings=' not in text
+    assert '|debate-warnings=' not in text
+
+    french_present={
+        **french_absent,
+        'preserved_parameters':{
+            'avancement':{'present':True,'value':'Débat en construction'},
+            'avertissements-titre':{'present':True,'value':'Titre à expliciter'},
+            'avertissements-débat':{'present':True,'value':'Débat sensible'},
+        },
+    }
+    text=render._render_debate(
+        lang='en',registry=registry,metadata_lock=metadata,content_lock=english,sources={},
+        creation_date='2026-08-19',source_content=french_present,
+    )
+    assert '|progress=Debate under construction' in text
+    assert '|title-warnings=Title to be explained' in text
+    assert '|debate-warnings=Sensitive debate' in text
+
+
+def test_render_translated_english_argument_uses_french_warning_presence_and_values():
+    node={
+        'id':'A0001',
+        'fr':{'rubriques':['Politique'],'keywords':['vote électronique']},
+        'en':{'canonical_title':'Electronic voting can improve access','sections':['Politics'],'keywords':['electronic voting']},
+    }
+    registry={'graph':{'edges':[],'occurrences':[],'nodes':[node]}}
+    english={
+        'summary':'English historical summary.','citations':[],'sources':{},
+        'page_origin':'new','source_page_origin':'preexisting','preserved_parameters':{},
+    }
+    french_absent={
+        'summary':'Résumé historique français.','citations':[],'sources':{},'page_origin':'preexisting',
+        'preserved_parameters':{
+            'avertissements-titre':{'present':False,'value':None},
+            'avertissements-argument':{'present':False,'value':None},
+            'avertissements-résumé':{'present':False,'value':None},
+        },
+    }
+    text=render._render_argument(
+        lang='en',node=node,content=english,registry=registry,sources={},creation_date='2026-08-19',
+        source_content=french_absent,
+    )
+    assert '|title-warnings=' not in text
+    assert '|argument-warnings=' not in text
+    assert '|summary-warnings=' not in text
+
+    french_present={
+        **french_absent,
+        'preserved_parameters':{
+            'avertissements-titre':{'present':True,'value':'Titre peu clair'},
+            'avertissements-argument':{'present':True,'value':'Argument sensible'},
+            'avertissements-résumé':{'present':True,'value':'Résumé peu clair'},
+        },
+    }
+    text=render._render_argument(
+        lang='en',node=node,content=english,registry=registry,sources={},creation_date='2026-08-19',
+        source_content=french_present,
+    )
+    assert '|title-warnings=Unclear title' in text
+    assert '|argument-warnings=Sensitive argument' in text
+    assert '|summary-warnings=Unclear summary' in text
+
+
+def test_render_translated_english_metadata_uses_effective_defaults_for_new_french_source():
+    registry={
+        'debate': {'pages': {'en': {'canonical_title':'New debate'}}},
+        'graph': {'occurrences': [], 'nodes': [], 'edges': []},
+    }
+    metadata={'debate': {'sections':['Politics'], 'keywords':['test']}}
+    english={'debate': {
+        'topic':'Test','complete_topic':'the test', 'introduction':'Text.','wikipedia_articles':[],
+        'documentation':{},'page_origin':'new','source_page_origin':'new','preserved_parameters':{},
+    }}
+    french={'page_origin':'new','preserved_parameters':{}}
+    text=render._render_debate(
+        lang='en',registry=registry,metadata_lock=metadata,content_lock=english,sources={},
+        creation_date='2026-08-19',source_content=french,
+    )
+    assert '|progress=Constructed debate' in text
+    assert '|debate-warnings=Debate generated by AI' in text

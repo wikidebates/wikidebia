@@ -1,6 +1,6 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.16.29",
+  "version": "2.16.30",
   "validator_version": "0.4.97",
   "scope": [
     "publish_archive",
@@ -111,7 +111,8 @@
     "historical_summary_introduction_preservation",
     "historical_text_preservation_lock",
     "historical_text_owner_consent",
-    "historical_editorial_parameter_presence"
+    "historical_editorial_parameter_presence",
+    "source_authoritative_translated_metadata_render"
   ],
   "debate_specific_code": false,
   "change_tag": "chatgpt",
@@ -307,7 +308,8 @@
     "historical_summary_hash_gate",
     "historical_introduction_hash_gate",
     "historical_text_authorization_outside_review_zip",
-    "historical_text_authorization_exact_scope"
+    "historical_text_authorization_exact_scope",
+    "translated_metadata_source_presence_and_value_only"
   ],
   "publication_profiles": [
     "norm_1_2_direct_interlanguage",
@@ -488,7 +490,8 @@
     "english_documentary_preconvergence_gate",
     "english_documentary_identity_reuse",
     "debate_bibliography_scope_over_kind",
-    "historical_render_differential_validation"
+    "historical_render_differential_validation",
+    "source_authoritative_translated_metadata_render"
   ],
   "normative_revision": "1.2.87",
   "stable_archive_name": "wikidebia-kit.zip",
@@ -597,7 +600,8 @@
     "historical_top_level_parameter_presence_gate",
     "english_documentary_preconvergence_gate",
     "english_documentary_identity_reuse_gate",
-    "debate_bibliography_scope_over_kind_gate"
+    "debate_bibliography_scope_over_kind_gate",
+    "source_authoritative_translated_metadata_render_gate"
   ],
   "regression_gates": [
     "argument_reference_develops_argument_regression",
@@ -649,8 +653,9 @@
     "english_documentary_preconvergence_regression",
     "english_documentary_identity_reuse_regression",
     "legal_text_broad_synthesis_regression",
-    "historical_render_differential_validation_regression"
+    "historical_render_differential_validation_regression",
+    "translated_metadata_absence_preservation_regression"
   ],
   "translation_change_tag": "translated-fr",
-  "kit_version": "2.16.29"
+  "kit_version": "2.16.30"
 }

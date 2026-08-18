@@ -1,8 +1,8 @@
-# Wikidéb’IA Kit 2.16.29
+# Wikidéb’IA Kit 2.16.30
 
-Le kit 2.16.29 réconcilie les deux variantes 2.16.28 développées en parallèle. Il conserve la réconciliation documentaire de la branche utilisateur : garde `en_documentation_correction`, réutilisation de l’identité canonique d’une ressource anglophone déjà présente lors de la projection FR→EN, préservation de ses métadonnées et ajout des seuls usages anglais revus, avec blocage des divergences de famille ou de `document_kind`. La garde des bibliographies Debate reste fondée sur `documentary_scope=foundational_work` ou `broad_synthesis` et une justification substantielle, sans enum fermée de types documentaires.
+Le kit 2.16.30 corrige le rendu des métadonnées protégées lors d’une traduction FR→EN. Une page anglaise cible est normalement techniquement `new`, mais ce statut ne doit jamais déclencher les valeurs de création lorsqu’elle traduit une page française autoritative. Le renderer projette désormais `avancement`, `avertissements-titre`, `avertissements-débat`, `avertissements-argument` et `avertissements-résumé` depuis la présence et la valeur françaises effectives. Une absence française reste donc une absence anglaise ; les valeurs présentes sont traduites par la table normative contrôlée.
 
-Il conserve simultanément la branche de préservation différentielle du rendu historique : le manifeste rendu déclare `historical_text_render_validation_mode=differential_preservation_v1`, permettant au validateur 0.4.97 de reconnaître les introductions/résumés historiques scellés et les absences historiques sans les réécrire pour satisfaire des règles de nouvelle génération. Les pages nouvelles et les contenus non attestés restent strictement contrôlés. Norme active : 1.2.87.
+Le correctif conserve intégralement la réconciliation 2.16.29 : `en_documentation_correction`, identité documentaire FR→EN, sélection Debate fondée sur la portée, et `historical_text_render_validation_mode=differential_preservation_v1`. Le validateur 0.4.97 reste inchangé fonctionnellement et `WDV-MWK-023` demeure la garde qui bloque toute métadonnée anglaise ajoutée ou mal traduite. Norme active : 1.2.87.
 
 # Wikidéb’IA Kit 2.16.27
 

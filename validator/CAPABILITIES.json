@@ -6,7 +6,7 @@
   "release": {
     "norm": "1.2.87",
     "validator": "0.4.97",
-    "kit": "2.16.29"
+    "kit": "2.16.30"
   },
   "emits": {
     "validator_report": [

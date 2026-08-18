@@ -1,5 +1,6 @@
 # Wikidéb’IA Validator 0.4.97
 
+Maintenance d’implémentation : le validateur 0.4.97 reste inchangé fonctionnellement et s’aligne sur le kit 2.16.30 ; `WDV-MWK-023` demeure la garde source-authoritative des métadonnées FR→EN.
 Le validateur 0.4.97 réconcilie les deux variantes 0.4.96 développées en parallèle. Il conserve la correction documentaire de `WDV-SRC-005` : pour une référence bibliographique de Debate, l’admissibilité repose sur `documentary_scope=foundational_work` ou `broad_synthesis` et une justification substantielle ; un `legal_text` large et justifié n’est pas rejeté pour son seul type.
 
 Il conserve simultanément la validation différentielle du rendu historique. Lorsque le kit 2.16.29 déclare `historical_text_render_validation_mode=differential_preservation_v1`, les valeurs historiques attestées par les verrous (y compris une absence historique de résumé ou une syntaxe historique déjà scellée) ne sont pas requalifiées rétroactivement comme nouvelle génération. Cette compatibilité reste bornée au mode déclaré et ne relâche pas les contrôles sur les pages nouvelles ou les contenus non attestés. Norme active : 1.2.87.

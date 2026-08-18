@@ -14,7 +14,7 @@
     {
       "path": "CAPABILITIES.json",
       "size_bytes": 2955,
-      "sha256": "c435d2c41575f66d8bb242780686bef787021a09f5e001ba0929f20cdf442b55"
+      "sha256": "6fcae90c8acf94a90557cdfe7ee86b140f919a0c0216d1ac8887a74220a5c333"
     },
     {
       "path": "CHANGELOG.md",
@@ -24,7 +24,7 @@
     {
       "path": "COMPATIBILITY.json",
       "size_bytes": 2903,
-      "sha256": "03ca89d834639f1ca350ee89e97aab88bfacb04af342653499bc29bdfb815e80"
+      "sha256": "326c98bdbefb5f2d73d19397a1be8c4ce4fdf5b3a694b49427d94db4baf992ff"
     },
     {
       "path": "LICENSE",
@@ -33,18 +33,18 @@
     },
     {
       "path": "README.md",
-      "size_bytes": 11113,
-      "sha256": "253a5e71071077990e003930112a8b3dd82d260a27265a7b172faa410d820126"
+      "size_bytes": 11316,
+      "sha256": "fea140d097fa9ed9462987349d38867834e7bd7de7139a988f94984c8d00c61c"
     },
     {
       "path": "TEST_REPORT.txt",
       "size_bytes": 669,
-      "sha256": "b949f6cb98dd982d2603b458a9c8623cf69834f5ac6264fd6ea43a1f6c6de5a9"
+      "sha256": "afe3b3a30b6660d7cb7ea7ccd812b6225ca88383bee583c89e00dddd3d8a2584"
     },
     {
       "path": "VERSIONS.json",
       "size_bytes": 68,
-      "sha256": "141a270e2a0bcea001e83a5fd68c58a90507c912308179f152bf40f67c698f4c"
+      "sha256": "2b7fbc8e832a68bcf982ab87ceeadce5c45b3c7e40813113f8e321e6d0ecc30a"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/CHANGELOG.md",
@@ -774,12 +774,12 @@
     {
       "path": "docs/SELF_AUDIT_REPORT.txt",
       "size_bytes": 272,
-      "sha256": "dd0fede8c16bd0b07d6a09d00a5d49cca1ef2b2e2fd4a47e1704c1e8f0e75e09"
+      "sha256": "a288b19626c1010225ade3f746f23113938af5b21b59509e1e7478e6cd5c1704"
     },
     {
       "path": "docs/TEST_REPORT.txt",
       "size_bytes": 669,
-      "sha256": "b949f6cb98dd982d2603b458a9c8623cf69834f5ac6264fd6ea43a1f6c6de5a9"
+      "sha256": "afe3b3a30b6660d7cb7ea7ccd812b6225ca88383bee583c89e00dddd3d8a2584"
     },
     {
       "path": "docs/history/README.md",
@@ -2084,7 +2084,7 @@
     {
       "path": "tests/test_editorial_orchestration_schemas_1273.py",
       "size_bytes": 4215,
-      "sha256": "18ca65265ca747208487e5a0211b87c0c5400472cf667a7916d50abd2d7299a3"
+      "sha256": "acba335197003422ede75685a8ed7290e88b36dc4e05e1fa0b985f6b0c9af9ec"
     },
     {
       "path": "tests/test_files_batches_workflow.py",
@@ -2484,7 +2484,7 @@
     {
       "path": "tests/test_versions_file.py",
       "size_bytes": 1701,
-      "sha256": "86c9298ea05fa6c86f5cab28a7e8af0a22bf56c51e10e483f027eb453e537d0c"
+      "sha256": "b40c3132b3093eb8df8085b0c80f7bcc9431a7bbc032663483d3d94bcd40f3e8"
     },
     {
       "path": "tests/test_wikicode.py",

@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.87** ;
 - validateur actif : **0.4.97** ;
-- kit actif : **2.16.29**.
+- kit actif : **2.16.30**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3708958 octets — SHA-256 `de51baaa8fb72bd0dca7094d311b91572f461c107c5ed7b390b66d92355ee4b4`
-- `wikidebia-validator.zip` — 3884769 octets — SHA-256 `413176b60e83b92af50c4b095d4f548bf980274b4c93115904351bec3d078043`
-- `wikidebia-kit.zip` — 762531 octets — SHA-256 `5ad92c040489fbdbe9e5604db0ef8d2a7e6a26889ea74a68f91c9583a5b87b31`
+- `wikidebia-normes.zip` — 3709523 octets — SHA-256 `2c9333fc4ea6e44bd56e1d9c284de98e327a27bc2ed32d007db48a78b031d318`
+- `wikidebia-validator.zip` — 3884847 octets — SHA-256 `c9b5bcd7a5149807f737929ea61638eeaed9cd608024c9acd33eceb50434eda7`
+- `wikidebia-kit.zip` — 765610 octets — SHA-256 `80f23b84ab6f34f020386ba5c3fdf221106ff6718dde6ff5736772055a19819b`
 
 ## Norme consolidée active
 
@@ -1648,10 +1648,11 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `253a5e71071077990e003930112a8b3dd82d260a27265a7b172faa410d820126`
+SHA-256 : `fea140d097fa9ed9462987349d38867834e7bd7de7139a988f94984c8d00c61c`
 
 # Wikidéb’IA Validator 0.4.97
 
+Maintenance d’implémentation : le validateur 0.4.97 reste inchangé fonctionnellement et s’aligne sur le kit 2.16.30 ; `WDV-MWK-023` demeure la garde source-authoritative des métadonnées FR→EN.
 Le validateur 0.4.97 réconcilie les deux variantes 0.4.96 développées en parallèle. Il conserve la correction documentaire de `WDV-SRC-005` : pour une référence bibliographique de Debate, l’admissibilité repose sur `documentary_scope=foundational_work` ou `broad_synthesis` et une justification substantielle ; un `legal_text` large et justifié n’est pas rejeté pour son seul type.
 
 Il conserve simultanément la validation différentielle du rendu historique. Lorsque le kit 2.16.29 déclare `historical_text_render_validation_mode=differential_preservation_v1`, les valeurs historiques attestées par les verrous (y compris une absence historique de résumé ou une syntaxe historique déjà scellée) ne sont pas requalifiées rétroactivement comme nouvelle génération. Cette compatibilité reste bornée au mode déclaré et ne relâche pas les contrôles sur les pages nouvelles ou les contenus non attestés. Norme active : 1.2.87.
@@ -1988,13 +1989,13 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `fc8e89f40f8d6bdc658557c990ce5c6b254cd030e4622aa5fb49ee4c1413da03`
+SHA-256 : `a33fb33009891c765f7093ea5da86a326c12631a2cecbe382a132b9d91202fd5`
 
-# Wikidéb’IA Kit 2.16.29
+# Wikidéb’IA Kit 2.16.30
 
-Le kit 2.16.29 réconcilie les deux variantes 2.16.28 développées en parallèle. Il conserve la réconciliation documentaire de la branche utilisateur : garde `en_documentation_correction`, réutilisation de l’identité canonique d’une ressource anglophone déjà présente lors de la projection FR→EN, préservation de ses métadonnées et ajout des seuls usages anglais revus, avec blocage des divergences de famille ou de `document_kind`. La garde des bibliographies Debate reste fondée sur `documentary_scope=foundational_work` ou `broad_synthesis` et une justification substantielle, sans enum fermée de types documentaires.
+Le kit 2.16.30 corrige le rendu des métadonnées protégées lors d’une traduction FR→EN. Une page anglaise cible est normalement techniquement `new`, mais ce statut ne doit jamais déclencher les valeurs de création lorsqu’elle traduit une page française autoritative. Le renderer projette désormais `avancement`, `avertissements-titre`, `avertissements-débat`, `avertissements-argument` et `avertissements-résumé` depuis la présence et la valeur françaises effectives. Une absence française reste donc une absence anglaise ; les valeurs présentes sont traduites par la table normative contrôlée.
 
-Il conserve simultanément la branche de préservation différentielle du rendu historique : le manifeste rendu déclare `historical_text_render_validation_mode=differential_preservation_v1`, permettant au validateur 0.4.97 de reconnaître les introductions/résumés historiques scellés et les absences historiques sans les réécrire pour satisfaire des règles de nouvelle génération. Les pages nouvelles et les contenus non attestés restent strictement contrôlés. Norme active : 1.2.87.
+Le correctif conserve intégralement la réconciliation 2.16.29 : `en_documentation_correction`, identité documentaire FR→EN, sélection Debate fondée sur la portée, et `historical_text_render_validation_mode=differential_preservation_v1`. Le validateur 0.4.97 reste inchangé fonctionnellement et `WDV-MWK-023` demeure la garde qui bloque toute métadonnée anglaise ajoutée ou mal traduite. Norme active : 1.2.87.
 
 # Wikidéb’IA Kit 2.16.27
 
@@ -2128,7 +2129,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `911f1ae16e815cc557b71da787b7a30ebe57e2da9da97fefd9cb8c0b1ac6de6d`
+SHA-256 : `a1158366d0d6ceee7f51a12e3f43c70b4819f14c0cb42b648cd63cac161ccefe`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2474,6 +2475,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - conserve les audits et régressions des deux branches ;
 - s’aligne sur le validateur 0.4.97 et la norme inchangée 1.2.87.
 
+## 2.16.30 — 19 août 2026 — rendu FR→EN source-authoritative des métadonnées protégées
+
+- corrige le renderer bilingue qui appliquait encore les valeurs de création anglaises à une page cible `new` alors qu’elle traduisait une page française autoritative ;
+- projette `avancement→progress`, `avertissements-titre→title-warnings`, `avertissements-débat→debate-warnings`, `avertissements-argument→argument-warnings` et `avertissements-résumé→summary-warnings` depuis la présence et la valeur françaises effectives ;
+- une absence française reste une absence anglaise et aucune valeur `generated by AI` n’est ajoutée du seul fait que la page anglaise est techniquement nouvelle ;
+- une page française réellement nouvelle conserve ses valeurs de création, traduites par la table normative ;
+- conserve `WDV-MWK-023` inchangé comme garde de non-régression et ajoute des tests couvrant absence, traduction de valeurs présentes et source française nouvelle ;
+- conserve intégralement les réconciliations documentaire et historique de 2.16.29 ; norme 1.2.87 et validateur 0.4.97 inchangés.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -2766,18 +2776,18 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `a52febd21300ee6ae41f23b2d6af9e40f2b561c06cf5ef31d10c3644dfa77f56`
+SHA-256 : `728a2672a07e2c99a5c311d4078bc017ceb69d8aa4b5bb4e7b9cf36da4073902`
 
-Wikidéb’IA Kit 2.16.29 — rapport de tests
+Wikidéb’IA Kit 2.16.30 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 496
-Tests pytest : 496 réussis
+Tests pytest collectés : 499
+Tests pytest : 499 réussis
 Norme : 1.2.87
 Validateur : 0.4.97
-Réconciliation documentaire 2.16.28 : PASSED ; en_documentation_correction, identité documentaire FR→EN et portée Debate conservées.
-Préservation différentielle du rendu historique 2.16.28 : PASSED ; les textes/absences historiques attestés sont reconnus sans affaiblir les pages nouvelles.
-Réconciliation des branches : PASSED ; les deux audits et jeux de régressions sont présents simultanément.
-Tous les contrôles 2.16.28 et antérieurs restent verts.
+Rendu métadonnées FR→EN : PASSED ; présence et valeurs tirées de la source française autoritative, sans défaut de création injecté sur une cible anglaise `new`.
+Réconciliation documentaire 2.16.29 : PASSED ; en_documentation_correction, identité documentaire FR→EN et portée Debate conservées.
+Préservation différentielle du rendu historique 2.16.29 : PASSED ; les textes/absences historiques attestés sont reconnus sans affaiblir les pages nouvelles.
+Tous les contrôles 2.16.29 et antérieurs restent verts.
 
 ## Guide d’orchestration éditoriale
 
@@ -2901,9 +2911,9 @@ La réussite du paquet `fr_content_review` déclenche automatiquement le rendu d
 ## Guide de traduction anglaise
 
 Source interne : `kit/GUIDE_TRANSLATION_REVIEW.md`  
-SHA-256 : `c990c9dc4cbcdc471b90ccc3fa82c647b286d7a2b448c44493e22416c5abf73b`
+SHA-256 : `d2db00de6ebc6acb306459970905f67e3882f2bd1181281f842e97bb110e4628`
 
-# Guide de traduction anglaise contrôlée — Kit 2.16.29
+# Guide de traduction anglaise contrôlée — Kit 2.16.30
 
 > Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 
