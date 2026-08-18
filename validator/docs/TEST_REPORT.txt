@@ -3,7 +3,7 @@ Statut : PASSED
 Tests pytest collectés : 435
 Tests pytest : 435 réussis
 Norme active : 1.2.87
-Kit recommandé : 2.16.26
+Kit recommandé : 2.16.27
 Extraposition anglaise : PASSED ; `It is unfair for X to…` et `It is necessary to…` ne sont plus classés comme référents contextuels.
 Garde anaphorique : PASSED ; `It reduces individual freedom` et `It is harmful to democracy` restent signalés.
 Ponctuation des titres : PASSED ; les apostrophes typographiques non ASCII (`’`, `‘`, `ʼ`, `＇`) sont refusées après verrou anglais.

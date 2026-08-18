@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.87** ;
 - validateur actif : **0.4.95** ;
-- kit actif : **2.16.26**.
+- kit actif : **2.16.27**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3707630 octets — SHA-256 `48a074a0361e707f52f1e746b56ac802ab56470c9d410f4cb73b4ff96ae76639`
-- `wikidebia-validator.zip` — 3879288 octets — SHA-256 `975cce88a30be162f536a58afb9bb2c478038e0979e6ff431a15fd0695e1eafa`
-- `wikidebia-kit.zip` — 751439 octets — SHA-256 `303d80bf2381f6990df55289891d83210e41207db2b3e8500006995d4e86883c`
+- `wikidebia-normes.zip` — 3718821 octets — SHA-256 `8ced14c6c0cf65d29ca882d45de4474bdc81c804b271f25fccb490f93f9b616e`
+- `wikidebia-validator.zip` — 3890988 octets — SHA-256 `f34a2c7fe2220fd1b3dac8ee45ba01237236498bcb69ca436bc4bb9aef082f6f`
+- `wikidebia-kit.zip` — 760466 octets — SHA-256 `f07e6b37df5d2c91af4a2877929d193f3fcc41a24d0e8e4de0213e006e9fb631`
 
 ## Norme consolidée active
 
@@ -1966,7 +1966,13 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `be113ab20d84c59bab38a341f8c36e2142d7844a20e076b24aef9e1022b379bc`
+SHA-256 : `d8a4356db07dbf3b6204e6f7b0e0476068839c1d4051f6147d3980915c735bdc`
+
+# Wikidéb’IA Kit 2.16.27
+
+Le kit 2.16.27 ferme la dernière validation documentaire tardive observée dans la traduction anglaise. `sources_en_working.json` est désormais contrôlé avant `semantic_convergence_1` avec le même contrat que le registre final pour les bibliographies de Debate (`document_kind`, portée `foundational_work`/`broad_synthesis`, justification) et pour l’attribution des sources Web/vidéo (`authorship_verified`, absence de copie mécanique auteur=site).
+
+Pour les Work déjà convergés sous une version antérieure, la garde pré-application inventorie toutes les lacunes documentaires en une seule fois et ouvre automatiquement `en_documentation_correction`. Dans ce paquet, seul `data/sources_en_working.json` est modifiable : les titres, résumés, champs Debate et preuves sémantiques restent en lecture seule. La correction ne fabrique aucune classification documentaire ni preuve d’auteur ; elle requiert une décision éditoriale explicite. Après refinalisation, la convergence recommence conformément au lien du reçu précédent avec l’ancienne revue scellée. La norme reste 1.2.87 et le validateur reste 0.4.95.
 
 # Wikidéb’IA Kit 2.16.26
 
@@ -2094,7 +2100,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `8add0f95b96af28f3909f3f0f6ca3109c6c9784eb588b810c1d679235bc3416e`
+SHA-256 : `a3dc30f48c478084ba9c0bb68862ebb57293fd88d87801ea1b66ffe1151a1206`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2412,6 +2418,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - invalide alors le reçu de convergence afin que les deux passes indépendantes recommencent sur la nouvelle empreinte ;
 - ajoute les apostrophes ASCII aux instructions des paquets de traduction/correction et une régression d’orchestration sur la reprise post-convergence ;
 - s’aligne sur le validateur 0.4.95 ; la norme active reste 1.2.87.
+## 2.16.27 — 18 août 2026 — garde documentaire anglaise avant convergence
+
+- valide `sources_en_working.json` avant la première convergence avec le contrat documentaire réellement exigé par `data/sources.json` ;
+- exige `document_kind` et `documentary_scope=foundational_work|broad_synthesis` pour toute bibliographie de la page Debate ;
+- exige `authorship_verified=true` pour tout auteur Web/vidéo conservé et bloque la copie mécanique auteur=site ;
+- pour un Work ancien déjà convergé, inventorie toutes les lacunes en une seule fois et ouvre `en_documentation_correction`, avec seul `sources_en_working.json` éditable ;
+- laisse les valeurs sémantiques en lecture seule pendant cette correction et invalide proprement l’ancien reçu de convergence lors de la réouverture ;
+- ajoute des régressions sur le blocage précoce, l’inventaire documentaire exhaustif et l’orchestration post-convergence ;
+- conserve la norme 1.2.87 et le validateur 0.4.95.
 
 ## Guide de publication
 
@@ -2705,28 +2720,28 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `79683220275c0f45e4dfd127b72128925d62055b3f680993449cad9f2ed63676`
+SHA-256 : `444803276509d1c8e43c2860027d9a351c06afe0f87d6540d2b1474407dbf0b5`
 
-Wikidéb’IA Kit 2.16.26 — rapport de tests
+Wikidéb’IA Kit 2.16.27 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 488
-Tests pytest : 488 réussis
+Tests pytest collectés : 492
+Tests pytest : 492 réussis
 Norme : 1.2.87
 Validateur : 0.4.95
-Validation pré-convergence des titres anglais : PASSED ; les apostrophes typographiques non ASCII sont refusées à la finalisation de la traduction.
-Reprise post-convergence : PASSED ; une revue historique déjà convergée contenant un titre non conforme rouvre automatiquement `en_translation_correction`, supprime le reçu de convergence et n’applique aucun contenu.
-Inventaire exhaustif des champs : PASSED ; canonical_title et displayed_title sont contrôlés pour le débat et tous les arguments.
-Extraposition anglaise : PASSED via le validateur 0.4.95 ; A0026/A0028 ne sont plus de faux positifs.
-Normalisation des vérifications documentaires anglaises : PASSED ; `checked_at` / `method` / `note` sont normalisés vers `verified_at` / `notes` à la projection finale.
-Classification primaire historique absente : PASSED ; aucun booléen n’est inventé et `primary_source=null` est conservé comme état explicite de compatibilité.
-Convergence sémantique : PASSED ; toute mutation de titre après convergence invalide les passes précédentes et exige deux nouvelles passes sur la nouvelle empreinte.
-Omission canonique et protections des paramètres historiques : PASSED.
-Tous les contrôles 2.16.25 et antérieurs restent verts.
+Validation documentaire pré-convergence : PASSED ; les bibliographies Debate doivent renseigner document_kind et une portée foundational_work/broad_synthesis avant semantic_convergence_1.
+Attribution Web/vidéo : PASSED ; tout auteur conservé doit être explicitement vérifié et une collision auteur=site est bloquée avant convergence.
+Reprise post-convergence documentaire : PASSED ; un Work historique convergé avec des lacunes de registre ouvre automatiquement en_documentation_correction et expose uniquement sources_en_working.json en écriture.
+Inventaire exhaustif revenu_de_base : PASSED ; 13 constats documentaires sont détectés en une seule passe sur S10001–S10008, sans découverte séquentielle au préflight final.
+Validation pré-convergence des titres anglais : PASSED ; les apostrophes typographiques non ASCII restent refusées à la finalisation de la traduction.
+Normalisation des vérifications documentaires anglaises : PASSED ; checked_at / method / note restent normalisés vers verified_at / notes à la projection finale.
+Classification primaire historique absente : PASSED ; aucun booléen n’est inventé et primary_source=null reste un état explicite de compatibilité.
+Convergence sémantique : PASSED ; une correction documentaire refinalise la revue et repart sur deux passes parce que le reçu historique est lié à l’ancienne revue scellée.
+Tous les contrôles 2.16.26 et antérieurs restent verts.
 
 ## Guide d’orchestration éditoriale
 
 Source interne : `kit/GUIDE_EDITORIAL_ORCHESTRATION.md`  
-SHA-256 : `439d873ee5499b6b4aff9743022436c54d216e2c80752049908938fea6c45490`
+SHA-256 : `d300ca8a2a461df8cd336970859bc8a841f186b1878b1670f5b59fb450ef27b9`
 
 # Orchestration des revues éditoriales ChatGPT — Kit 2.16.7
 
@@ -2794,6 +2809,8 @@ Le cycle courant couvre successivement :
 
 Si une passe sémantique trouve une erreur certaine, la traduction est rouverte, les constatations sont fournies comme contexte dans un paquet de correction, puis les deux passes de convergence recommencent sur la nouvelle empreinte.
 
+Si un ancien Work arrive après convergence avec un registre documentaire anglais incomplet au regard du contrat final, l'orchestrateur n'attend plus l'échec de `translated-copy` : il rassemble toutes les lacunes dans un paquet `en_documentation_correction` où seul `sources_en_working.json` est modifiable. Cette reprise est également préventive pour les nouvelles revues : les mêmes champs sont contrôlés avant la première passe de convergence.
+
 Après validation du paquet combiné graphe/titres, le workflow publie le premier checkpoint avec des résumés personnalisés. Après validation de la revue française de contenu, il publie le second checkpoint, également avec des résumés personnalisés, avant toute traduction anglaise. Après deux passes anglaises propres et indépendantes, l'application, le rendu et la construction `release_ready` restent automatiques. Les autres écritures pré-W11 sont limitées aux actions structurelles explicitement demandées.
 
 ## Commandes avancées
@@ -2843,9 +2860,9 @@ La réussite du paquet `fr_content_review` déclenche automatiquement le rendu d
 ## Guide de traduction anglaise
 
 Source interne : `kit/GUIDE_TRANSLATION_REVIEW.md`  
-SHA-256 : `2a83384cae2d1dfcd48b25fb1cc13fc346eab1dffee293b408439a538bcd3496`
+SHA-256 : `9d79dbf2eabb9fcce0723cf50f996585694e96a872847550604d0e3273adb82c`
 
-# Guide de traduction anglaise contrôlée — Kit 2.15.48
+# Guide de traduction anglaise contrôlée — Kit 2.16.27
 
 > Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 
@@ -2923,6 +2940,10 @@ Si cet équivalent existe, enregistrer et citer **la version anglaise elle-même
 Chaque page anglaise fait en outre l'objet d'une **recherche indépendante de nouvelles références anglophones**. La documentation anglaise doit refléter la littérature réellement disponible en anglais et peut donc différer de la sélection française tout en conservant une profondeur et une qualité comparables. Pour la page Debate, toutes les références doivent être réellement disponibles en anglais. Pour les pages Argument, la politique linguistique générale demeure symétrique à celle du français ; une éventuelle source non anglaise est sélectionnée indépendamment selon cette politique, jamais produite par traduction artificielle d'une notice française.
 
 Pour toute source nouvellement enregistrée, `verification` utilise directement le format canonique du registre documentaire : `status`, `verified_at`, `primary_source`, `notes`, puis les attestations applicables (`language_verified`, `authorship_checked`, etc.). `primary_source` est une décision documentaire explicite et ne doit pas être inventé. Les anciens paquets déjà préparés qui utilisent `checked_at`, `method` et `note` restent lisibles ; au moment de la projection finale ces clés sont normalisées vers `verified_at` et `notes`, et l'absence historique de classification `primary_source` devient explicitement `null` au lieu d'être transformée arbitrairement en `true` ou `false`. Un nouveau paquet ne doit plus émettre ce format historique.
+
+La finalisation anglaise contrôle désormais directement les métadonnées qui seront exigées dans le registre final, avant toute convergence sémantique. Toute bibliographie utilisée sur la page Debate renseigne `document_kind` et classe son usage comme `foundational_work` ou `broad_synthesis`; une source trop étroite est retirée de la bibliographie générale au lieu d'être requalifiée artificiellement. Pour les sources Web et vidéo, tout auteur conservé doit avoir `authorship_verified=true`. Une égalité auteur/site est revue explicitement : le nom du site n'est pas recopié comme auteur en l'absence d'une responsabilité distinctement créditée.
+
+Pour compatibilité avec un Work déjà convergé sous une version plus ancienne, la garde pré-application inventorie toutes les lacunes documentaires en une seule fois et ouvre `en_documentation_correction`. Ce paquet rend uniquement `data/sources_en_working.json` éditable ; les textes et preuves sémantiques restent en lecture seule. Après correction, la revue est refinalisée et les deux passes sémantiques recommencent, car le reçu historique reste lié à l'ancienne empreinte complète de revue même si le `semantic_content_sha256` textuel n'a pas changé.
 
 ### Citations importées
 

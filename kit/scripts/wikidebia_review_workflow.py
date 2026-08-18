@@ -77,6 +77,7 @@ from wikidebia_translation_review import (
     apply_review as apply_translation_review,
     translation_review_sha256,
     collect_english_title_format_findings,
+    collect_english_documentary_findings,
 )
 from wikidebia_semantic_convergence import record_pass as record_semantic_pass
 from wikidebia_render import render_workspace
@@ -115,6 +116,7 @@ REVIEW_TYPES: dict[str, ReviewTypeSpec] = {
     "fr_content_review": ReviewTypeSpec("fr_content_review", "Revue du contenu français, des rubriques et des mots-clés", "Revue du contenu français préparée."),
     "en_translation_review": ReviewTypeSpec("en_translation_review", "Traduction et revue documentaire anglaises", "Revue de traduction anglaise préparée."),
     "en_translation_correction": ReviewTypeSpec("en_translation_correction", "Correction de traduction après convergence sémantique", "Correction de traduction anglaise préparée."),
+    "en_documentation_correction": ReviewTypeSpec("en_documentation_correction", "Correction documentaire anglaise après préflight", "Correction documentaire anglaise préparée."),
     "semantic_convergence_1": ReviewTypeSpec("semantic_convergence_1", "Première passe de convergence sémantique", "Première passe de convergence sémantique préparée."),
     "semantic_convergence_2": ReviewTypeSpec("semantic_convergence_2", "Deuxième passe indépendante de convergence sémantique", "Deuxième passe de convergence sémantique préparée."),
 }
@@ -273,7 +275,7 @@ def _instructions(review_type: str, debate_id: str, work_id: str | None, editabl
             "N’étendez jamais une autorisation à un autre résumé ou à l’introduction entière si la décision propriétaire ne le couvre pas. Une correction locale autorisée ne déclenche pas rétroactivement toutes les préférences stylistiques de création.",
             "Le checkpoint français n°2 publie normalement les rubriques, mots-clés, documentation et, lorsqu’ils sont autorisés, les deltas d’introduction/résumé ; aucune troisième frontière française n’est créée.",
         ]
-    if review_type in {"en_translation_review", "en_translation_correction"}:
+    if review_type in {"en_translation_review", "en_translation_correction", "en_documentation_correction"}:
         lines += [
             "",
             "Distinguez `page_origin` (cycle de vie de la page anglaise cible) de `source_page_origin` (provenance éditoriale de la source française). Ne modifiez jamais `source_page_origin` : il est dérivé des verrous français.",
@@ -283,6 +285,15 @@ def _instructions(review_type: str, debate_id: str, work_id: str | None, editabl
             "Pour un résumé historique, un ratio EN/FR hors 0,60–1,45 est un signal de revue et non un objectif de réécriture ; attestez l’équivalence et fournissez `summary_ratio_exception_rationale` lorsque le ratio reste hors plage.",
             "Dans tous les titres anglais, utilisez exclusivement l’apostrophe droite ASCII `'` pour les possessifs et contractions. Les apostrophes typographiques `’`, `‘`, `ʼ` ou `＇` sont non conformes, y compris dans la traduction d’un titre historique.",
             "Pour toute nouvelle source ajoutée dans `data/sources_en_working.json`, renseignez `verification.verified_at`, `verification.primary_source` (booléen explicite) et `verification.notes` en plus des attestations de langue/auteur. Les anciennes clés `checked_at`, `method` et `note` ne doivent plus être émises par un nouveau paquet ; elles restent lisibles uniquement pour compatibilité avec une revue déjà préparée.",
+            "Toute référence bibliographique utilisée sur la page Debate doit renseigner `document_kind` et, dans l’usage Debate, `documentary_scope=foundational_work` ou `broad_synthesis`, avec une justification de sélection spécifique. Une source trop étroite doit être retirée de la bibliographie générale plutôt que requalifiée artificiellement.",
+            "Pour une source Web ou vidéo ayant un auteur, renseignez `verification.authorship_verified=true` uniquement après vérification explicite. Si `authors` reproduit le nom du site, revérifiez l’attribution : omettez l’auteur lorsqu’aucune responsabilité distincte n’est créditée au lieu de recopier mécaniquement le site.",
+        ]
+    if review_type == "en_documentation_correction":
+        lines += [
+            "",
+            "Cette correction est strictement documentaire. Ne modifiez aucun titre, résumé, champ Debate, section, keyword, citation ou preuve sémantique.",
+            "Corrigez uniquement `data/sources_en_working.json` selon l’inventaire présent dans `context/reviews/en/semantic_convergence_findings.json`.",
+            "Le paquet rend `translation_review.json` en lecture seule. Après réimport, Wikidéb’IA refinalise la revue avec les mêmes valeurs sémantiques et redémarre la convergence parce que le reçu précédent était lié à l’ancienne empreinte complète de revue.",
         ]
     lines += [
         "",
@@ -953,6 +964,30 @@ def _prepare_translation_package(project_root: Path, state: dict[str, Any], *, c
     )
 
 
+def _prepare_documentation_correction_package(project_root: Path, state: dict[str, Any]) -> dict[str, Any]:
+    workspace, _ = _current_workspace_meta(project_root, state)
+    review = load_json(workspace / "reviews/en/translation_review.json", "revue anglaise")
+    return create_review_package(
+        project_root, state,
+        review_type="en_documentation_correction",
+        base=workspace,
+        editable_paths=["data/sources_en_working.json"],
+        context_paths=[
+            "reviews/en/translation_review.json",
+            "reviews/en/semantic_convergence_findings.json",
+            "audits/en_translation_inventory.json",
+            "content-reviewed-copy/data/fr_page_metadata_lock.json",
+            "content-reviewed-copy/data/fr_content_lock.json",
+            "content-reviewed-copy/data/registre_debat.json",
+            "content-reviewed-copy/data/sources.json",
+        ],
+        counts={
+            "arguments": len(review.get("arguments") or []),
+            "source_findings": len((load_json(workspace / "reviews/en/semantic_convergence_findings.json", "constats documentaires").get("findings") or [])),
+        },
+    )
+
+
 def _reopen_translation_after_findings(project_root: Path, state: dict[str, Any], findings: Mapping[str, Any]) -> None:
     workspace, meta = _current_workspace_meta(project_root, state)
     review_path = workspace / "reviews/en/translation_review.json"
@@ -994,7 +1029,7 @@ def _mechanical_advance(project_root: Path, state: dict[str, Any]) -> dict[str, 
             state["updated_at"] = now_iso(); _save_workflow(project_root, state)
         if isinstance(pending, dict):
             pending_type = str(pending.get("review_type") or "")
-            if pending_type in {"en_translation_review", "en_translation_correction", "semantic_convergence_1", "semantic_convergence_2"} and state.get("work_id"):
+            if pending_type in {"en_translation_review", "en_translation_correction", "en_documentation_correction", "semantic_convergence_1", "semantic_convergence_2"} and state.get("work_id"):
                 if not state.get("french_graph_publication"):
                     publication = publish_checkpoint(project_root, debate_id, str(state["work_id"]), stage="graph")
                     state["french_graph_publication"] = copy.deepcopy(publication)
@@ -1114,6 +1149,9 @@ def _mechanical_advance(project_root: Path, state: dict[str, Any]) -> dict[str, 
         if phase == "en_translation_correction":
             _prepare_translation_package(project_root, state, correction=True)
             return state
+        if phase == "en_documentation_correction":
+            _prepare_documentation_correction_package(project_root, state)
+            return state
         if phase == "apply_render_release":
             workspace, meta = _current_workspace_meta(project_root, state)
             review = load_json(workspace / "reviews/en/translation_review.json", "revue anglaise")
@@ -1123,17 +1161,28 @@ def _mechanical_advance(project_root: Path, state: dict[str, Any]) -> dict[str, 
             # explicitly, invalidate the old convergence receipt and let the two
             # independent passes restart on the corrected semantic hash.
             title_findings = collect_english_title_format_findings(review)
-            if title_findings:
+            documentary_findings = collect_english_documentary_findings(review)
+            if title_findings or documentary_findings:
+                all_findings = [*title_findings, *documentary_findings]
+                if title_findings and documentary_findings:
+                    source_review_type = "post_convergence_title_and_documentary_preflight"
+                elif title_findings:
+                    source_review_type = "post_convergence_title_preflight"
+                else:
+                    source_review_type = "post_convergence_documentary_preflight"
                 _reopen_translation_after_findings(project_root, state, {
                     "schema": "wikidebia-semantic-convergence-findings-1.0",
                     "debate_id": debate_id,
                     "work_id": state.get("work_id"),
                     "recorded_at": now_iso(),
-                    "source_review_type": "post_convergence_title_preflight",
-                    "new_certain_errors": len(title_findings),
-                    "findings": title_findings,
+                    "source_review_type": source_review_type,
+                    "new_certain_errors": len(all_findings),
+                    "findings": all_findings,
                 })
-                state["phase"] = "en_translation_correction"
+                # A title defect changes semantic content and therefore exposes the
+                # full translation correction.  A source-only defect gets a narrower
+                # package where translation_review.json is read-only.
+                state["phase"] = "en_translation_correction" if title_findings else "en_documentation_correction"
                 state["status"] = "running"
                 state["updated_at"] = now_iso()
                 _save_workflow(project_root, state)
@@ -1550,7 +1599,7 @@ def import_review(
             state["french_content_publication"] = copy.deepcopy(publication)
             state["french_publication"] = copy.deepcopy(publication)  # legacy alias
             state["phase"] = "en_translation_review"
-        elif review_type in {"en_translation_review", "en_translation_correction"}:
+        elif review_type in {"en_translation_review", "en_translation_correction", "en_documentation_correction"}:
             result = finalize_translation_review(project_root, debate_id, str(state["work_id"]))
             state["phase"] = "semantic_convergence_1"
         elif review_type in {"semantic_convergence_1", "semantic_convergence_2"}:

@@ -1,6 +1,6 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.16.26",
+  "version": "2.16.27",
   "validator_version": "0.4.95",
   "scope": [
     "publish_archive",
@@ -484,7 +484,8 @@
     "structured_historical_introduction_scope",
     "transactional_french_checkpoint_stage_rollback",
     "historical_editorial_parameter_presence",
-    "english_source_verification_normalization"
+    "english_source_verification_normalization",
+    "english_documentary_preconvergence_gate"
   ],
   "normative_revision": "1.2.87",
   "stable_archive_name": "wikidebia-kit.zip",
@@ -590,7 +591,8 @@
     "authorized_historical_delta_checkpoint2_gate",
     "selected_historical_value_gate",
     "fr_checkpoint_prewrite_transaction_rollback_regression",
-    "historical_top_level_parameter_presence_gate"
+    "historical_top_level_parameter_presence_gate",
+    "english_documentary_preconvergence_gate"
   ],
   "regression_gates": [
     "argument_reference_develops_argument_regression",
@@ -638,8 +640,9 @@
     "historical_change_scope_parasite_rejection_regression",
     "vote_electronique_v6_v7_checkpoint_rebuild_regression",
     "vote_electronique_v8_top_level_presence_preflight_regression",
-    "english_source_verification_normalization_regression"
+    "english_source_verification_normalization_regression",
+    "english_documentary_preconvergence_regression"
   ],
   "translation_change_tag": "translated-fr",
-  "kit_version": "2.16.26"
+  "kit_version": "2.16.27"
 }

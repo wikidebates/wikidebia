@@ -876,3 +876,84 @@ def test_collect_title_format_findings_covers_all_argument_title_fields():
         ("A0045", "displayed_title"),
     ]
     assert all(row["issues"] == ["non_ascii_apostrophe"] for row in findings)
+
+
+def test_21627_documentary_guard_reports_all_final_registry_requirements_before_apply():
+    def legacy_source(sid, stype, *, authors, site=None, debate_biblio=False):
+        metadata = {
+            "authors": authors, "article": None, "work": None, "volume": None, "issue": None,
+            "location": None, "publisher": None, "place": None, "date": None,
+            "link": f"https://example.org/{sid}", "page": None, "site": site, "title": None,
+        }
+        if stype == "bibliography":
+            metadata["work"] = f"Reference {sid}"
+        else:
+            metadata["title"] = f"Page {sid}"
+        usage = [{
+            "page_id": "debat_test", "language": "en", "role": "neutral_reference",
+            "selection_reason": "This source was selected for the English debate documentation.",
+        }]
+        return {
+            "id": sid, "type": stype, "language": "en", "metadata": metadata,
+            "verification": {
+                "status": "verified", "language_verified": True, "authorship_checked": True,
+                "checked_at": "2026-08-13T01:21:24+02:00", "method": "Direct check", "note": "Checked.",
+            },
+            "usage": usage, "deduplication_key": sid.lower(),
+        }
+
+    review = {
+        "debate_id": "debat_test",
+        "final_values": {"sources": [
+            legacy_source("S10001", "bibliography", authors=["Author One"], debate_biblio=True),
+            legacy_source("S10002", "webliography", authors=["Example Site"], site="Example Site"),
+            legacy_source("S10003", "webliography", authors=["Named Author"], site="Another Site"),
+        ]},
+    }
+    findings = translation.collect_english_documentary_findings(review)
+    keys = {(row["entity_id"], row["issue"]) for row in findings}
+    assert ("S10001", "debate_bibliography_document_kind_missing_or_invalid") in keys
+    assert ("S10001", "debate_bibliography_scope_missing_or_invalid") in keys
+    assert ("S10002", "authorship_not_explicitly_verified") in keys
+    assert ("S10002", "author_duplicates_site") in keys
+    assert ("S10003", "authorship_not_explicitly_verified") in keys
+
+
+def test_21627_validate_sources_rejects_late_debate_bibliography_contract():
+    source = en_source("S10001", "bibliography", [{
+        "page_id": "debat_test", "language": "en", "role": "neutral_reference",
+        "language_fit": "native", "preferred_equivalent_source_id": None,
+        "documentary_scope": None,
+        "selection_reason": "A long enough reason for selecting this debate bibliography source.",
+    }])
+    source.pop("document_kind", None)
+    data = {
+        "schema": translation.EN_SOURCES_WORKING_SCHEMA,
+        "debate_id": "debat_test", "sources": [source],
+    }
+    try:
+        translation._validate_sources(data, "debat_test", set())
+    except translation.TranslationReviewError as exc:
+        assert "document_kind" in str(exc)
+    else:
+        raise AssertionError("A Debate bibliography without document_kind was accepted")
+
+
+def test_21627_validate_sources_rejects_unverified_web_author():
+    source = en_source("S10003", "webliography", [{
+        "page_id": "debat_test", "language": "en", "role": "neutral_reference",
+        "language_fit": "native", "preferred_equivalent_source_id": None,
+        "documentary_scope": "context",
+        "selection_reason": "A long enough reason for selecting this English Web source.",
+    }])
+    source["verification"].pop("authorship_verified", None)
+    data = {
+        "schema": translation.EN_SOURCES_WORKING_SCHEMA,
+        "debate_id": "debat_test", "sources": [source],
+    }
+    try:
+        translation._validate_sources(data, "debat_test", set())
+    except translation.TranslationReviewError as exc:
+        assert "non explicitement vérifiée" in str(exc)
+    else:
+        raise AssertionError("A Web source with an unverified listed author was accepted")

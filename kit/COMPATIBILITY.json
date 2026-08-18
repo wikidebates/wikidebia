@@ -1,6 +1,6 @@
 {
   "package": "wikidebia-kit",
-  "kit_version": "2.16.26",
+  "kit_version": "2.16.27",
   "normative_revision": "1.2.87",
   "validator_version": "0.4.95",
   "version_source": "VERSIONS.json",

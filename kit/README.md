@@ -1,3 +1,9 @@
+# Wikidéb’IA Kit 2.16.27
+
+Le kit 2.16.27 ferme la dernière validation documentaire tardive observée dans la traduction anglaise. `sources_en_working.json` est désormais contrôlé avant `semantic_convergence_1` avec le même contrat que le registre final pour les bibliographies de Debate (`document_kind`, portée `foundational_work`/`broad_synthesis`, justification) et pour l’attribution des sources Web/vidéo (`authorship_verified`, absence de copie mécanique auteur=site).
+
+Pour les Work déjà convergés sous une version antérieure, la garde pré-application inventorie toutes les lacunes documentaires en une seule fois et ouvre automatiquement `en_documentation_correction`. Dans ce paquet, seul `data/sources_en_working.json` est modifiable : les titres, résumés, champs Debate et preuves sémantiques restent en lecture seule. La correction ne fabrique aucune classification documentaire ni preuve d’auteur ; elle requiert une décision éditoriale explicite. Après refinalisation, la convergence recommence conformément au lien du reçu précédent avec l’ancienne revue scellée. La norme reste 1.2.87 et le validateur reste 0.4.95.
+
 # Wikidéb’IA Kit 2.16.26
 
 Le kit 2.16.26 fait échouer la finalisation anglaise immédiatement lorsqu’un titre contient une apostrophe typographique non ASCII, au lieu de laisser cette non-conformité apparaître seulement après les deux passes de convergence. Aucune normalisation silencieuse n’est effectuée : la valeur éditoriale doit être corrigée explicitement.

@@ -554,7 +554,7 @@ def test_outgoing_is_private_for_git_and_root_template():
 def test_review_registry_covers_every_orchestrated_external_stop():
     assert set(wf.REVIEW_TYPES) == {
         "graph_review", "graph_correction", "fr_metadata_review", "fr_content_review", "en_translation_review",
-        "en_translation_correction", "semantic_convergence_1", "semantic_convergence_2",
+        "en_translation_correction", "en_documentation_correction", "semantic_convergence_1", "semantic_convergence_2",
     }
 
 
@@ -1079,3 +1079,64 @@ def test_post_convergence_title_preflight_reopens_translation_correction(tmp_pat
     assert findings["new_certain_errors"] == 1
     assert findings["findings"][0]["entity_id"] == "A0004"
     assert findings["findings"][0]["field"] == "displayed_title"
+
+
+def test_21627_post_convergence_documentary_preflight_opens_sources_only_correction(tmp_path: Path, monkeypatch):
+    project = tmp_path / "project"
+    project.mkdir()
+    workspace = project / "workspace"
+    (workspace / "reviews/en").mkdir(parents=True)
+    (workspace / "data").mkdir(parents=True)
+    common.write_json(workspace / "data/sources_en_working.json", {"schema": "wikidebia-en-source-registry-working-1.0", "debate_id": "debat_test", "sources": []})
+    common.write_json(workspace / "reviews/en/translation_review.json", {
+        "schema": "wikidebia-en-translation-review-1.1",
+        "debate_id": "debat_test", "work_id": "W1", "status": "approved",
+        "review_sha256": "sealed-review", "semantic_content_sha256": "same-semantic",
+        "finalized_at": "2026-08-18T23:00:00+02:00",
+        "arguments": [], "debate": {},
+        "final_values": {
+            "debate": {"canonical_title": "Should basic income be introduced?"},
+            "arguments": [],
+            "sources": [{
+                "id": "S10001", "type": "bibliography", "language": "en",
+                "metadata": {"authors": ["Author"], "work": "Broad work"},
+                "verification": {"status": "verified", "language_verified": True},
+                "usage": [{"page_id": "debat_test", "language": "en", "role": "neutral_reference", "selection_reason": "Broad source selected for the debate."}],
+                "deduplication_key": "s10001",
+            }],
+        },
+    })
+    common.write_json(workspace / "reviews/en/semantic_convergence_review.json", {"schema": "wikidebia-semantic-convergence-review-1.1", "status": "converged"})
+    common.write_json(workspace / "workspace.json", {"status": "en_translation_review_finalized", "english_translation_review": {"status": "finalized"}, "workspace_sha256": "old"})
+    state = {
+        "schema": wf.WORKFLOW_SCHEMA, "schema_version": "1.0", "debate_id": "debat_test",
+        "debate_title": "Débat test ?", "phase": "apply_render_release", "status": "running", "work_id": "W1",
+        "pending_review": None, "french_graph_publication": {"status": "no_changes"},
+        "french_content_publication": {"status": "no_changes"},
+        "created_at": "2026-08-18T23:00:00+02:00", "updated_at": "2026-08-18T23:00:00+02:00",
+    }
+    wf._save_workflow(project, state)
+
+    monkeypatch.setattr(wf, "_current_workspace_meta", lambda *_: (workspace, common.load_json(workspace / "workspace.json", "workspace")))
+    monkeypatch.setattr(wf, "workspace_receipt_hash", lambda meta: "new-workspace-hash")
+
+    def fake_prepare_docs(_project, current_state):
+        current_state["pending_review"] = {"review_type": "en_documentation_correction", "package_path": "outgoing/docs.zip"}
+        wf._save_workflow(_project, current_state)
+        return current_state["pending_review"]
+
+    monkeypatch.setattr(wf, "_prepare_documentation_correction_package", fake_prepare_docs)
+    monkeypatch.setattr(wf, "apply_translation_review", lambda *a, **k: (_ for _ in ()).throw(AssertionError("application must not run")))
+
+    result = wf._mechanical_advance(project, state)
+    assert result["phase"] == "en_documentation_correction"
+    assert result["pending_review"]["review_type"] == "en_documentation_correction"
+    findings = common.load_json(workspace / "reviews/en/semantic_convergence_findings.json", "findings")
+    assert findings["source_review_type"] == "post_convergence_documentary_preflight"
+    issues = {row["issue"] for row in findings["findings"]}
+    assert "debate_bibliography_document_kind_missing_or_invalid" in issues
+    assert "debate_bibliography_scope_missing_or_invalid" in issues
+    reopened = common.load_json(workspace / "reviews/en/translation_review.json", "review")
+    assert reopened["status"] == "draft"
+    assert "final_values" not in reopened
+    assert not (workspace / "reviews/en/semantic_convergence_review.json").exists()

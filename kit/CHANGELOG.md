@@ -314,3 +314,13 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - invalide alors le reçu de convergence afin que les deux passes indépendantes recommencent sur la nouvelle empreinte ;
 - ajoute les apostrophes ASCII aux instructions des paquets de traduction/correction et une régression d’orchestration sur la reprise post-convergence ;
 - s’aligne sur le validateur 0.4.95 ; la norme active reste 1.2.87.
+## 2.16.27 — 18 août 2026 — garde documentaire anglaise avant convergence
+
+- valide `sources_en_working.json` avant la première convergence avec le contrat documentaire réellement exigé par `data/sources.json` ;
+- exige `document_kind` et `documentary_scope=foundational_work|broad_synthesis` pour toute bibliographie de la page Debate ;
+- exige `authorship_verified=true` pour tout auteur Web/vidéo conservé et bloque la copie mécanique auteur=site ;
+- pour un Work ancien déjà convergé, inventorie toutes les lacunes en une seule fois et ouvre `en_documentation_correction`, avec seul `sources_en_working.json` éditable ;
+- laisse les valeurs sémantiques en lecture seule pendant cette correction et invalide proprement l’ancien reçu de convergence lors de la réouverture ;
+- ajoute des régressions sur le blocage précoce, l’inventaire documentaire exhaustif et l’orchestration post-convergence ;
+- conserve la norme 1.2.87 et le validateur 0.4.95.
+

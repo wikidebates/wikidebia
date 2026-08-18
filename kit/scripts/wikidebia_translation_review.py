@@ -937,6 +937,95 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
 
 
 LEGACY_SOURCE_VERIFICATION_KEYS = {"checked_at", "method", "note"}
+DEBATE_BIBLIOGRAPHY_KINDS = {"book", "monograph", "handbook", "edited_volume", "synthesis_report", "review_article"}
+DEBATE_BIBLIOGRAPHY_SCOPES = {"foundational_work", "broad_synthesis"}
+
+
+def _fold_documentary(value: Any) -> str:
+    return " ".join(str(value or "").split()).casefold()
+
+
+def collect_english_documentary_findings(review: Mapping[str, Any]) -> list[dict[str, Any]]:
+    """Collect documentary defects that would make the finalized source registry fail.
+
+    This guard exists for translation reviews finalized by older kit versions that
+    accepted a looser ``sources_en_working.json`` contract than the canonical
+    ``data/sources.json`` registry.  Findings are editorial tasks: the helper never
+    invents a document kind, a debate-level scope, or an authorship attestation.
+    """
+    final_values = review.get("final_values") if isinstance(review, Mapping) else None
+    sources = final_values.get("sources") if isinstance(final_values, Mapping) else None
+    if not isinstance(sources, list):
+        return []
+    debate_id = str(review.get("debate_id") or "")
+    findings: list[dict[str, Any]] = []
+    for source in sources:
+        if not isinstance(source, Mapping):
+            continue
+        sid = str(source.get("id") or "")
+        stype = str(source.get("type") or "")
+        metadata = source.get("metadata") or {}
+        verification = source.get("verification") or {}
+        usages = source.get("usage") or []
+        if stype == "bibliography":
+            debate_usages = [u for u in usages if isinstance(u, Mapping) and str(u.get("page_id") or "") == debate_id and u.get("language") == "en"]
+            if debate_usages:
+                kind = source.get("document_kind")
+                if kind not in DEBATE_BIBLIOGRAPHY_KINDS:
+                    findings.append({
+                        "entity_type": "source", "entity_id": sid, "field": "document_kind",
+                        "issue": "debate_bibliography_document_kind_missing_or_invalid",
+                        "current_value": kind,
+                        "required_correction": "Classify this debate bibliography explicitly as an allowed foundational/broad document kind; do not infer the value mechanically.",
+                    })
+                for index, usage in enumerate(usages):
+                    if not isinstance(usage, Mapping) or str(usage.get("page_id") or "") != debate_id or usage.get("language") != "en":
+                        continue
+                    scope = usage.get("documentary_scope")
+                    if scope not in DEBATE_BIBLIOGRAPHY_SCOPES:
+                        findings.append({
+                            "entity_type": "source", "entity_id": sid, "field": f"usage/{index}/documentary_scope",
+                            "issue": "debate_bibliography_scope_missing_or_invalid",
+                            "current_value": scope,
+                            "required_correction": "Review whether the source is a foundational work or broad synthesis. If it is too narrow for Debate bibliography, remove it from that Debate bibliography rather than fabricating a scope.",
+                        })
+                    if len(str(usage.get("selection_reason") or "").strip()) < 12:
+                        findings.append({
+                            "entity_type": "source", "entity_id": sid, "field": f"usage/{index}/selection_reason",
+                            "issue": "debate_bibliography_selection_reason_insufficient",
+                            "current_value": usage.get("selection_reason"),
+                            "required_correction": "Provide a specific selection rationale explaining why the source belongs in the Debate bibliography.",
+                        })
+        if stype in {"webliography", "videography"}:
+            authors = [str(value).strip() for value in (metadata.get("authors") or []) if str(value).strip()]
+            site = _fold_documentary(metadata.get("site"))
+            folded_authors = [_fold_documentary(value) for value in authors]
+            if verification.get("authorship_checked") is not True:
+                findings.append({
+                    "entity_type": "source", "entity_id": sid, "field": "verification/authorship_checked",
+                    "issue": "authorship_not_checked", "current_value": verification.get("authorship_checked"),
+                    "required_correction": "Verify the responsible person or organization for the Web/video content.",
+                })
+            if authors and verification.get("authorship_verified") is not True:
+                findings.append({
+                    "entity_type": "source", "entity_id": sid, "field": "verification/authorship_verified",
+                    "issue": "authorship_not_explicitly_verified", "current_value": verification.get("authorship_verified"),
+                    "required_correction": "Record explicit authorship verification for the listed author(s), or remove authors that are not explicitly responsible for the content.",
+                })
+            if site and site in folded_authors:
+                findings.append({
+                    "entity_type": "source", "entity_id": sid, "field": "metadata/authors",
+                    "issue": "author_duplicates_site", "current_value": authors,
+                    "required_correction": "Recheck attribution. Do not copy the site name mechanically as author; omit it if no distinct credited responsibility is shown, or replace it with the explicitly credited responsible author/organization.",
+                })
+            page_or_title = _fold_documentary(metadata.get("page") or metadata.get("title"))
+            if site and page_or_title and site == page_or_title:
+                findings.append({
+                    "entity_type": "source", "entity_id": sid, "field": "metadata/title",
+                    "issue": "page_or_title_duplicates_site", "current_value": metadata.get("page") or metadata.get("title"),
+                    "required_correction": "Omit the redundant page/title value when it merely duplicates the site name.",
+                })
+    return findings
 
 
 def _canonical_source_for_registry(source: Mapping[str, Any]) -> dict[str, Any]:
@@ -1030,6 +1119,19 @@ def _validate_sources(data: Mapping[str, Any], debate_id: str, french_ids: set[s
                 raise TranslationReviewError(f"notes doit être une liste pour {sid}")
         if stype in {"webliography", "videography"} and verification.get("authorship_checked") is not True:
             raise TranslationReviewError(f"Attribution anglaise non vérifiée : {sid}")
+        if stype in {"webliography", "videography"}:
+            folded_site = _fold_documentary(metadata.get("site"))
+            folded_authors = [_fold_documentary(value) for value in authors]
+            if authors and verification.get("authorship_verified") is not True:
+                raise TranslationReviewError(f"Attribution anglaise renseignée mais non explicitement vérifiée : {sid}")
+            if folded_site and folded_site in folded_authors:
+                raise TranslationReviewError(
+                    f"Le nom du site est encore utilisé comme auteur pour {sid}; "
+                    "revérifier l’attribution et omettre l’auteur si aucune responsabilité distincte n’est créditée"
+                )
+            page_or_title = _fold_documentary(metadata.get("page") or metadata.get("title"))
+            if folded_site and page_or_title and folded_site == page_or_title:
+                raise TranslationReviewError(f"Le titre/page duplique le nom du site pour {sid}")
         usages = row.get("usage")
         if not isinstance(usages, list) or not usages:
             raise TranslationReviewError(f"Aucun usage documentaire anglais pour {sid}")
@@ -1043,6 +1145,14 @@ def _validate_sources(data: Mapping[str, Any], debate_id: str, french_ids: set[s
                     raise TranslationReviewError(f"La couverture éventuelle d’objections doit être attestée pour {sid}")
             if len(str(usage.get("selection_reason") or "").strip()) < 12:
                 raise TranslationReviewError(f"Justification de sélection anglaise insuffisante pour {sid}")
+            if usage.get("page_id") == debate_id and stype == "bibliography":
+                if row.get("document_kind") not in DEBATE_BIBLIOGRAPHY_KINDS:
+                    raise TranslationReviewError(f"document_kind de bibliographie Debate absent ou inadéquat pour {sid}")
+                if usage.get("documentary_scope") not in DEBATE_BIBLIOGRAPHY_SCOPES:
+                    raise TranslationReviewError(
+                        f"Portée bibliographique Debate non revue pour {sid}: "
+                        "foundational_work ou broad_synthesis requis"
+                    )
         key = _text(row.get("deduplication_key"), f"clé de dédoublonnage de {sid}")
         if key in dedup:
             raise TranslationReviewError(f"Clé documentaire anglaise dupliquée : {key}")

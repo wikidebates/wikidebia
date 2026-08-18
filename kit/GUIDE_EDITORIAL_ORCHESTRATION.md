@@ -64,6 +64,8 @@ Le cycle courant couvre successivement :
 
 Si une passe sémantique trouve une erreur certaine, la traduction est rouverte, les constatations sont fournies comme contexte dans un paquet de correction, puis les deux passes de convergence recommencent sur la nouvelle empreinte.
 
+Si un ancien Work arrive après convergence avec un registre documentaire anglais incomplet au regard du contrat final, l'orchestrateur n'attend plus l'échec de `translated-copy` : il rassemble toutes les lacunes dans un paquet `en_documentation_correction` où seul `sources_en_working.json` est modifiable. Cette reprise est également préventive pour les nouvelles revues : les mêmes champs sont contrôlés avant la première passe de convergence.
+
 Après validation du paquet combiné graphe/titres, le workflow publie le premier checkpoint avec des résumés personnalisés. Après validation de la revue française de contenu, il publie le second checkpoint, également avec des résumés personnalisés, avant toute traduction anglaise. Après deux passes anglaises propres et indépendantes, l'application, le rendu et la construction `release_ready` restent automatiques. Les autres écritures pré-W11 sont limitées aux actions structurelles explicitement demandées.
 
 ## Commandes avancées

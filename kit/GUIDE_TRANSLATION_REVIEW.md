@@ -1,4 +1,4 @@
-# Guide de traduction anglaise contrôlée — Kit 2.15.48
+# Guide de traduction anglaise contrôlée — Kit 2.16.27
 
 > Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 
@@ -76,6 +76,10 @@ Si cet équivalent existe, enregistrer et citer **la version anglaise elle-même
 Chaque page anglaise fait en outre l'objet d'une **recherche indépendante de nouvelles références anglophones**. La documentation anglaise doit refléter la littérature réellement disponible en anglais et peut donc différer de la sélection française tout en conservant une profondeur et une qualité comparables. Pour la page Debate, toutes les références doivent être réellement disponibles en anglais. Pour les pages Argument, la politique linguistique générale demeure symétrique à celle du français ; une éventuelle source non anglaise est sélectionnée indépendamment selon cette politique, jamais produite par traduction artificielle d'une notice française.
 
 Pour toute source nouvellement enregistrée, `verification` utilise directement le format canonique du registre documentaire : `status`, `verified_at`, `primary_source`, `notes`, puis les attestations applicables (`language_verified`, `authorship_checked`, etc.). `primary_source` est une décision documentaire explicite et ne doit pas être inventé. Les anciens paquets déjà préparés qui utilisent `checked_at`, `method` et `note` restent lisibles ; au moment de la projection finale ces clés sont normalisées vers `verified_at` et `notes`, et l'absence historique de classification `primary_source` devient explicitement `null` au lieu d'être transformée arbitrairement en `true` ou `false`. Un nouveau paquet ne doit plus émettre ce format historique.
+
+La finalisation anglaise contrôle désormais directement les métadonnées qui seront exigées dans le registre final, avant toute convergence sémantique. Toute bibliographie utilisée sur la page Debate renseigne `document_kind` et classe son usage comme `foundational_work` ou `broad_synthesis`; une source trop étroite est retirée de la bibliographie générale au lieu d'être requalifiée artificiellement. Pour les sources Web et vidéo, tout auteur conservé doit avoir `authorship_verified=true`. Une égalité auteur/site est revue explicitement : le nom du site n'est pas recopié comme auteur en l'absence d'une responsabilité distinctement créditée.
+
+Pour compatibilité avec un Work déjà convergé sous une version plus ancienne, la garde pré-application inventorie toutes les lacunes documentaires en une seule fois et ouvre `en_documentation_correction`. Ce paquet rend uniquement `data/sources_en_working.json` éditable ; les textes et preuves sémantiques restent en lecture seule. Après correction, la revue est refinalisée et les deux passes sémantiques recommencent, car le reçu historique reste lié à l'ancienne empreinte complète de revue même si le `semantic_content_sha256` textuel n'a pas changé.
 
 ### Citations importées
 

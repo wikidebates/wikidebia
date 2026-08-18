@@ -1,0 +1,7 @@
+# Audit — garde documentaire anglaise — kit 2.16.27
+
+Le Work `revenu_de_base` avait terminé deux passes propres de convergence avant que le préflight de `translated-copy` ne révèle des lacunes documentaires dans les huit sources anglaises. Le schéma de travail et `_validate_sources()` acceptaient encore un sous-ensemble du contrat final : les bibliographies Debate pouvaient omettre `document_kind` et `documentary_scope`, et les sources Web/vidéo pouvaient conserver des auteurs sans `authorship_verified`. Les collisions auteur=site n’étaient pas bloquées au point de revue.
+
+Le correctif aligne la finalisation de la revue anglaise sur les exigences déjà actives du registre final. Les nouvelles revues sont donc bloquées avant `semantic_convergence_1`. Pour un Work historique déjà convergé, une garde de compatibilité collecte toutes les lacunes documentaires avant application et ouvre un paquet `en_documentation_correction` dont le seul fichier éditable est `data/sources_en_working.json`. Aucune classification, portée ou preuve d’auteur n’est inventée automatiquement.
+
+Sur le paquet réel ayant déclenché la régression, la garde détecte 13 constats répartis sur S10001–S10008 : six champs de bibliographie Debate, cinq attestations d’auteur manquantes supplémentaires et deux collisions auteur=site. Cette collecte exhaustive empêche la découverte séquentielle des erreurs par le validateur final.
