@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.16.27",
-  "validator_version": "0.4.95",
+  "version": "2.16.28",
+  "validator_version": "0.4.96",
   "scope": [
     "publish_archive",
     "github_init",
@@ -485,7 +485,9 @@
     "transactional_french_checkpoint_stage_rollback",
     "historical_editorial_parameter_presence",
     "english_source_verification_normalization",
-    "english_documentary_preconvergence_gate"
+    "english_documentary_preconvergence_gate",
+    "english_documentary_identity_reuse",
+    "debate_bibliography_scope_over_kind"
   ],
   "normative_revision": "1.2.87",
   "stable_archive_name": "wikidebia-kit.zip",
@@ -592,7 +594,9 @@
     "selected_historical_value_gate",
     "fr_checkpoint_prewrite_transaction_rollback_regression",
     "historical_top_level_parameter_presence_gate",
-    "english_documentary_preconvergence_gate"
+    "english_documentary_preconvergence_gate",
+    "english_documentary_identity_reuse_gate",
+    "debate_bibliography_scope_over_kind_gate"
   ],
   "regression_gates": [
     "argument_reference_develops_argument_regression",
@@ -641,8 +645,10 @@
     "vote_electronique_v6_v7_checkpoint_rebuild_regression",
     "vote_electronique_v8_top_level_presence_preflight_regression",
     "english_source_verification_normalization_regression",
-    "english_documentary_preconvergence_regression"
+    "english_documentary_preconvergence_regression",
+    "english_documentary_identity_reuse_regression",
+    "legal_text_broad_synthesis_regression"
   ],
   "translation_change_tag": "translated-fr",
-  "kit_version": "2.16.27"
+  "kit_version": "2.16.28"
 }

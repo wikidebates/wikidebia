@@ -81,8 +81,7 @@ def validate_sources(ctx: PackageContext) -> None:
                 kind = source.get("document_kind")
                 scope = use.get("documentary_scope")
                 reason = str(use.get("selection_reason") or "").strip()
-                allowed_kinds = {"book", "monograph", "handbook", "edited_volume", "synthesis_report", "review_article"}
-                if kind not in allowed_kinds or scope not in {"foundational_work", "broad_synthesis"} or len(reason) < 12:
+                if scope not in {"foundational_work", "broad_synthesis"} or len(reason) < 12:
                     ctx.report.error("WDV-SRC-005", f"Référence bibliographique du débat insuffisamment synthétique ou non justifiée : {sid}", path=ctx.core_paths()["sources"], details={"document_kind": kind, "documentary_scope": scope})
         vstatus = verification.get("status")
         if usage and vstatus != "verified":

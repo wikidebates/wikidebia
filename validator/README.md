@@ -1,3 +1,9 @@
+# Wikidéb’IA Validator 0.4.96
+
+Le validateur 0.4.96 corrige `WDV-SRC-005` afin de contrôler la fonction documentaire réellement définie par la norme. Pour une référence bibliographique de page Debate, la portée doit être `foundational_work` ou `broad_synthesis` et la justification de sélection doit être substantielle ; le `document_kind` n’est plus filtré par une liste fermée qui excluait notamment les textes juridiques officiels. Un `legal_text` large et justifié peut donc être conforme, tandis qu’une source `narrow_argument` ou insuffisamment justifiée reste bloquée.
+
+Tous les contrôles 0.4.95, notamment l’extraposition anglaise et les apostrophes ASCII dans les titres, restent actifs. Le kit aligné est 2.16.28.
+
 # Wikidéb’IA Validator 0.4.95
 
 Le validateur 0.4.95 corrige un faux positif d’autonomie référentielle dans les titres anglais : les extraposition impersonnelles comme `It is unfair for basic income to…` ne sont plus interprétées comme un pronom anaphorique. Un véritable `It` sans sujet explicite, par exemple `It reduces individual freedom` ou `It is harmful to democracy`, reste signalé.

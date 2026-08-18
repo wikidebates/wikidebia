@@ -4,7 +4,7 @@
   "normative_revision": "1.2.87",
   "version_source": "VERSIONS.json",
   "stable_archive_name": "wikidebia-normes.zip",
-  "declared_file_count": 327,
+  "declared_file_count": 328,
   "declared_test_count": 0,
   "self_excluded": [
     "PACKAGE_MANIFEST_SHA256.json",
@@ -14,17 +14,17 @@
     {
       "path": "CAPABILITIES.json",
       "size_bytes": 1418,
-      "sha256": "f0cceca3d1fbb6f86682ee8c5f133a82cd772426af21091beb224fc586666b1e"
+      "sha256": "eb0a3247d00f8c1701bf1a20914d829abd9b68a1272b0aa2cb96eaad3c893514"
     },
     {
       "path": "COMPATIBILITY.json",
       "size_bytes": 557,
-      "sha256": "c2aa7771e9b0e3ee595699567c9b6aa69f73fd1b7b21bbb42b9feecf2e81d419"
+      "sha256": "b9478dbe3c64035d024c6e79af92b5f885d6023affeee1b492cbc5a85fe7d515"
     },
     {
       "path": "README.md",
-      "size_bytes": 3663,
-      "sha256": "0f7d896c88aa70908e425afd8c51aa60145cd80796d8f783089b4edc73f095ba"
+      "size_bytes": 4011,
+      "sha256": "62d9cd5cbd89a96cd0de1d29ac8be70e28d22f7f9c655b7cbe8e0b290c06b113"
     },
     {
       "path": "TEST_REPORT.txt",
@@ -34,7 +34,7 @@
     {
       "path": "VERSIONS.json",
       "size_bytes": 68,
-      "sha256": "27c04494e4772018c9f416977bf56efa42d313a711e2a3aa6d78563b75efafd2"
+      "sha256": "12e02734fbabed9a5530dc0e991c8b33650c41b8a05d410ec35fdb527cf295a4"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_1.2.56.md",
@@ -460,6 +460,11 @@
       "path": "docs/MAINTENANCE_1.2.18_0.4.20_2.2.4.md",
       "size_bytes": 724,
       "sha256": "374649657b2a618e3654739d5883007db06e41dba62410396ca9ced192d6472f"
+    },
+    {
+      "path": "docs/MAINTENANCE_1.2.87_0.4.96_2.16.28.md",
+      "size_bytes": 378,
+      "sha256": "7243128812a0d83656fc2a53d7a9c5bc63601263a83a3ced0278c0e8a04b7cc9"
     },
     {
       "path": "docs/MIGRATION_1.1.8.md",

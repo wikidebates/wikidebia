@@ -37,7 +37,11 @@ from wikidebia_corpus_build import (
     structural_sha256,
     write_json,
 )
-from wikidebia_documentary_resources import build_file as build_documentary_resource_registry
+from wikidebia_documentary_resources import (
+    build_file as build_documentary_resource_registry,
+    normalize_doi,
+    normalize_url,
+)
 from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
 from wikidebia_editorial_review import EditorialReviewError, _assert_source_unchanged, _load_workspace, _run_validator
 from wikidebia_content_review import (
@@ -937,7 +941,10 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
 
 
 LEGACY_SOURCE_VERIFICATION_KEYS = {"checked_at", "method", "note"}
-DEBATE_BIBLIOGRAPHY_KINDS = {"book", "monograph", "handbook", "edited_volume", "synthesis_report", "review_article"}
+SOURCE_DOCUMENT_KINDS = {
+    "book", "monograph", "handbook", "edited_volume", "synthesis_report", "review_article",
+    "journal_article", "book_chapter", "conference_paper", "thesis", "legal_text", "other",
+}
 DEBATE_BIBLIOGRAPHY_SCOPES = {"foundational_work", "broad_synthesis"}
 
 
@@ -971,12 +978,12 @@ def collect_english_documentary_findings(review: Mapping[str, Any]) -> list[dict
             debate_usages = [u for u in usages if isinstance(u, Mapping) and str(u.get("page_id") or "") == debate_id and u.get("language") == "en"]
             if debate_usages:
                 kind = source.get("document_kind")
-                if kind not in DEBATE_BIBLIOGRAPHY_KINDS:
+                if kind not in SOURCE_DOCUMENT_KINDS:
                     findings.append({
                         "entity_type": "source", "entity_id": sid, "field": "document_kind",
                         "issue": "debate_bibliography_document_kind_missing_or_invalid",
                         "current_value": kind,
-                        "required_correction": "Classify this debate bibliography explicitly as an allowed foundational/broad document kind; do not infer the value mechanically.",
+                        "required_correction": "Record the resource's actual document_kind from the supported vocabulary. Debate-bibliography admissibility is determined by foundational/broad scope and justification, not by a closed subset of document kinds.",
                     })
                 for index, usage in enumerate(usages):
                     if not isinstance(usage, Mapping) or str(usage.get("page_id") or "") != debate_id or usage.get("language") != "en":
@@ -1068,6 +1075,122 @@ def _canonical_source_for_registry(source: Mapping[str, Any]) -> dict[str, Any]:
     return clean
 
 
+def _documentary_identity_key(source: Mapping[str, Any]) -> tuple[str, str] | None:
+    """Return the canonical same-language identity used to reuse an existing source.
+
+    An English translation review can independently select a resource already present
+    in the French registry because that resource was previously used cross-lingually.
+    The review keeps its temporary source id for provenance, while the canonical
+    registry must retain one source id for the same DOI/URL/resource identity.
+    """
+    language = str(source.get("language") or "").strip()
+    if not language:
+        return None
+    metadata = source.get("metadata") or {}
+    link = metadata.get("link")
+    doi = normalize_doi(link) or normalize_doi(source.get("deduplication_key"))
+    if doi:
+        return language, f"doi:{doi}"
+    url = normalize_url(link)
+    if url:
+        return language, f"url:{url}"
+    dedup = str(source.get("deduplication_key") or "").strip().casefold()
+    return (language, dedup) if dedup else None
+
+
+def _merge_translated_sources_with_existing(
+    existing_rows: Sequence[Mapping[str, Any]],
+    translated_rows: Sequence[Mapping[str, Any]],
+) -> tuple[list[dict[str, Any]], dict[str, str]]:
+    """Merge reviewed EN sources without duplicating an existing canonical resource.
+
+    Existing canonical metadata is preserved. Only reviewed English usages are added
+    when the same-language DOI/URL/dedup identity already exists. A disagreement in
+    documentary family or document_kind remains blocking rather than being normalized
+    silently.
+    """
+    merged = [_canonical_source_for_registry(row) for row in copy.deepcopy(list(existing_rows))]
+    identity_to_index: dict[tuple[str, str], int] = {}
+    for index, row in enumerate(merged):
+        identity = _documentary_identity_key(row)
+        if identity is not None:
+            identity_to_index.setdefault(identity, index)
+
+    remap: dict[str, str] = {}
+    for raw in translated_rows:
+        row = _canonical_source_for_registry(raw)
+        source_id = str(row.get("id") or "")
+        identity = _documentary_identity_key(row)
+        existing_index = identity_to_index.get(identity) if identity is not None else None
+        if existing_index is None:
+            merged.append(row)
+            if identity is not None:
+                identity_to_index[identity] = len(merged) - 1
+            continue
+
+        existing = merged[existing_index]
+        existing_id = str(existing.get("id") or "")
+        if not existing_id or existing_id == source_id:
+            raise TranslationReviewError(f"Identité documentaire canonique ambiguë pour {source_id or existing_id}")
+        if existing.get("type") != row.get("type"):
+            raise TranslationReviewError(
+                f"La ressource anglaise {source_id} existe déjà sous {existing_id} avec un autre type documentaire"
+            )
+        if existing.get("document_kind") != row.get("document_kind"):
+            raise TranslationReviewError(
+                f"La ressource anglaise {source_id} existe déjà sous {existing_id} avec un autre document_kind"
+            )
+
+        existing_usages = existing.setdefault("usage", [])
+        by_slot: dict[tuple[str, str, str], dict[str, Any]] = {}
+        for usage in existing_usages:
+            if not isinstance(usage, dict):
+                continue
+            slot = (str(usage.get("page_id") or ""), str(usage.get("language") or ""), str(usage.get("role") or ""))
+            by_slot[slot] = usage
+        for usage in row.get("usage") or []:
+            if not isinstance(usage, dict):
+                continue
+            slot = (str(usage.get("page_id") or ""), str(usage.get("language") or ""), str(usage.get("role") or ""))
+            previous = by_slot.get(slot)
+            if previous is not None:
+                if canonical_json(previous) != canonical_json(usage):
+                    raise TranslationReviewError(
+                        f"Usages documentaires incompatibles pour la ressource canonique {existing_id} ({slot[0]}/{slot[1]}/{slot[2]})"
+                    )
+                continue
+            copied = copy.deepcopy(usage)
+            existing_usages.append(copied)
+            by_slot[slot] = copied
+        remap[source_id] = existing_id
+
+    for row in merged:
+        for usage in row.get("usage") or []:
+            if not isinstance(usage, dict):
+                continue
+            preferred = usage.get("preferred_equivalent_source_id")
+            if isinstance(preferred, str) and preferred in remap:
+                usage["preferred_equivalent_source_id"] = remap[preferred]
+    return merged, remap
+
+
+def _remap_final_source_ids(final: Mapping[str, Any], remap: Mapping[str, str]) -> dict[str, Any]:
+    effective = copy.deepcopy(dict(final))
+    if not remap:
+        return effective
+    debate = effective.get("debate") or {}
+    for values in (debate.get("documentation") or {}).values():
+        if isinstance(values, list):
+            values[:] = [remap.get(str(source_id), str(source_id)) for source_id in values]
+    for argument in effective.get("arguments") or []:
+        if not isinstance(argument, dict):
+            continue
+        for values in (argument.get("sources") or {}).values():
+            if isinstance(values, list):
+                values[:] = [remap.get(str(source_id), str(source_id)) for source_id in values]
+    return effective
+
+
 def _validate_sources(data: Mapping[str, Any], debate_id: str, french_ids: set[str]) -> tuple[list[dict[str, Any]], dict[str, dict[str, Any]]]:
     if data.get("schema") != EN_SOURCES_WORKING_SCHEMA or data.get("debate_id") != debate_id:
         raise TranslationReviewError("Schéma ou identité du registre documentaire anglais invalide")
@@ -1146,8 +1269,8 @@ def _validate_sources(data: Mapping[str, Any], debate_id: str, french_ids: set[s
             if len(str(usage.get("selection_reason") or "").strip()) < 12:
                 raise TranslationReviewError(f"Justification de sélection anglaise insuffisante pour {sid}")
             if usage.get("page_id") == debate_id and stype == "bibliography":
-                if row.get("document_kind") not in DEBATE_BIBLIOGRAPHY_KINDS:
-                    raise TranslationReviewError(f"document_kind de bibliographie Debate absent ou inadéquat pour {sid}")
+                if row.get("document_kind") not in SOURCE_DOCUMENT_KINDS:
+                    raise TranslationReviewError(f"document_kind de bibliographie Debate absent ou invalide pour {sid}")
                 if usage.get("documentary_scope") not in DEBATE_BIBLIOGRAPHY_SCOPES:
                     raise TranslationReviewError(
                         f"Portée bibliographique Debate non revue pour {sid}: "
@@ -2006,7 +2129,12 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     convergence_target = target / "reviews/en/semantic_convergence_review.json"
     convergence_target.parent.mkdir(parents=True, exist_ok=True)
     write_json(convergence_target, convergence_receipt)
-    final = review["final_values"]
+    reviewed_final = review["final_values"]
+    french_sources = load_json(target / "data/sources.json", "sources françaises")
+    merged_sources, documentary_source_id_remap = _merge_translated_sources_with_existing(
+        french_sources.get("sources") or [], reviewed_final.get("sources") or []
+    )
+    final = _remap_final_source_ids(reviewed_final, documentary_source_id_remap)
     registry = load_json(target / "data/registre_debat.json", "registre du débat")
     old_structural = str((((registry.get("graph") or {}).get("lifecycle") or {}).get("structural_sha256") or ""))
     by_id = {row["id"]: row for row in final["arguments"]}
@@ -2035,11 +2163,6 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     projection = load_json(target / "graph/graphe_argumentatif.json", "projection du graphe")
     projection["nodes"] = copy.deepcopy((registry.get("graph") or {}).get("nodes") or [])
     projection["lifecycle"] = copy.deepcopy(lifecycle)
-    french_sources = load_json(target / "data/sources.json", "sources françaises")
-    merged_sources = [
-        _canonical_source_for_registry(row)
-        for row in (copy.deepcopy(french_sources.get("sources") or []) + copy.deepcopy(final["sources"]))
-    ]
     timestamp = now_iso()
     metadata_lock = {
         "schema": EN_METADATA_LOCK_SCHEMA, "schema_version": "1.0", "normative_revision": NORM_VERSION,

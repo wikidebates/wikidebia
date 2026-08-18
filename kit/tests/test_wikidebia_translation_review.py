@@ -957,3 +957,34 @@ def test_21627_validate_sources_rejects_unverified_web_author():
         assert "non explicitement vérifiée" in str(exc)
     else:
         raise AssertionError("A Web source with an unverified listed author was accepted")
+
+
+def test_21628_documentary_guard_accepts_legal_text_when_scope_is_broad_and_justified():
+    source = en_source("S10002", "bibliography", [{
+        "page_id": "debat_test", "language": "en", "role": "neutral_reference",
+        "language_fit": "native", "preferred_equivalent_source_id": None,
+        "documentary_scope": "broad_synthesis",
+        "selection_reason": "This official legal text provides the broad normative framework governing the debate.",
+    }])
+    source["document_kind"] = "legal_text"
+    review = {"debate_id": "debat_test", "final_values": {"sources": [source]}}
+    findings = translation.collect_english_documentary_findings(review)
+    assert not any(row["entity_id"] == "S10002" and row["field"] == "document_kind" for row in findings)
+    assert not any(row["entity_id"] == "S10002" and row["issue"] == "debate_bibliography_scope_missing_or_invalid" for row in findings)
+
+
+def test_21628_validate_sources_accepts_legal_text_for_broad_debate_bibliography():
+    source = en_source("S10002", "bibliography", [{
+        "page_id": "debat_test", "language": "en", "role": "neutral_reference",
+        "language_fit": "native", "preferred_equivalent_source_id": None,
+        "documentary_scope": "broad_synthesis",
+        "selection_reason": "This official legal text provides the broad normative framework governing the debate.",
+    }])
+    source["document_kind"] = "legal_text"
+    data = {
+        "schema": translation.EN_SOURCES_WORKING_SCHEMA,
+        "debate_id": "debat_test", "sources": [source],
+    }
+    rows, by_id = translation._validate_sources(data, "debat_test", set())
+    assert rows[0]["id"] == "S10002"
+    assert by_id["S10002"]["document_kind"] == "legal_text"

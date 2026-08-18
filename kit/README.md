@@ -1,3 +1,9 @@
+# Wikidéb’IA Kit 2.16.28
+
+Le kit 2.16.28 réconcilie les deux variantes 2.16.27 développées en parallèle. Il conserve intégralement la garde documentaire anglaise et la phase `en_documentation_correction` de la branche préflight, tout en corrigeant la projection documentaire FR→EN : lorsqu’une ressource anglophone sélectionnée par la traduction existe déjà dans le registre sous la même identité canonique (DOI, URL canonique ou clé de dédoublonnage), son identifiant historique est réutilisé et seuls les usages anglais sont ajoutés. Les métadonnées canoniques existantes sont préservées ; une divergence de famille documentaire ou de `document_kind` reste bloquante.
+
+La garde des bibliographies de page Debate est également alignée sur la norme 1.2.87 : `document_kind` doit être un type réel du vocabulaire documentaire, mais l’admissibilité générale dépend de `documentary_scope=foundational_work` ou `broad_synthesis` et d’une justification substantielle. Un `legal_text` de portée générale n’est donc plus rejeté pour son seul type. Le validateur aligné est 0.4.96.
+
 # Wikidéb’IA Kit 2.16.27
 
 Le kit 2.16.27 ferme la dernière validation documentaire tardive observée dans la traduction anglaise. `sources_en_working.json` est désormais contrôlé avant `semantic_convergence_1` avec le même contrat que le registre final pour les bibliographies de Debate (`document_kind`, portée `foundational_work`/`broad_synthesis`, justification) et pour l’attribution des sources Web/vidéo (`authorship_verified`, absence de copie mécanique auteur=site).

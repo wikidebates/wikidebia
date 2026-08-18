@@ -1,5 +1,7 @@
 # Wikidéb’IA — Normes 1.2.87
 
+**Maintenance d’implémentation courante : validateur 0.4.96 / kit 2.16.28.** Cette maintenance ne modifie aucune règle normative : elle réconcilie les deux branches 2.16.27, aligne `WDV-SRC-005` sur la fonction fondatrice/synthétique définie aux sections 7.1/7.6 et applique l’identité documentaire unique lors de la projection FR→EN.
+
 La révision 1.2.87 corrige une contradiction interne de 1.2.86 : le catalogue atomique imposait déjà l’omission de tout paramètre optionnel sans contenu pertinent, tandis qu’un paragraphe et l’exemple de page Débat demandaient encore de conserver des buckets documentaires vides. Désormais la règle est unique : une valeur optionnelle vide est omise du wikicode.
 
 `source_parameter_presence` peut rester conservé comme provenance historique, mais n’a aucun effet sur la présence du paramètre dans la sortie.

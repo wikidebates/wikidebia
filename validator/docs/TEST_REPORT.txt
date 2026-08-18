@@ -1,14 +1,9 @@
-Wikidéb’IA Validator 0.4.95 — rapport de tests
+Wikidéb’IA Validator 0.4.96 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 435
-Tests pytest : 435 réussis
-Norme active : 1.2.87
-Kit recommandé : 2.16.27
-Extraposition anglaise : PASSED ; `It is unfair for X to…` et `It is necessary to…` ne sont plus classés comme référents contextuels.
-Garde anaphorique : PASSED ; `It reduces individual freedom` et `It is harmful to democracy` restent signalés.
-Ponctuation des titres : PASSED ; les apostrophes typographiques non ASCII (`’`, `‘`, `ʼ`, `＇`) sont refusées après verrou anglais.
-Registre documentaire : `verification.primary_source` reste une clé obligatoire ; `null` est accepté uniquement comme état explicite de compatibilité lorsque l’ancienne revue n’avait enregistré aucune classification primaire/secondaire.
-Anciennes clés de vérification : `checked_at`, `method` et `note` restent interdites dans `data/sources.json` et doivent être normalisées avant validation.
-WDV-MWK-005 : toute valeur top-level vide dans le wikicode canonique est interdite, y compris lorsque la présence historique du paramètre est attestée.
-Validation différentielle selon source_page_origin, titres affichés historiques, keywords historiques, rubriques historiques et ratios de résumés : PASSED.
-WDV-EDT-034, consentement historique v3, deux checkpoints français, WDV-MWK-021 et WDV-RMT-008 : conservés.
+Tests pytest collectés : 437
+Tests pytest : 437 réussis
+Norme : 1.2.87
+Kit recommandé : 2.16.28
+WDV-SRC-005 : PASSED ; un legal_text de portée foundational_work ou broad_synthesis suffisamment justifiée n’est plus rejeté pour son seul document_kind.
+Régression négative : PASSED ; narrow_argument ou justification insuffisante reste bloquante.
+Tous les contrôles 0.4.95 et antérieurs restent verts.

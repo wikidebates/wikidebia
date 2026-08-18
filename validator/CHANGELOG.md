@@ -215,3 +215,12 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - étend `WDV-GRA-016` aux principales apostrophes typographiques non ASCII dans les titres ;
 - ajoute des régressions sur A0026/A0028 et sur l’apostrophe courbe ;
 - conserve la norme active 1.2.87 et tous les contrôles 0.4.94.
+
+## 0.4.96 — 19 août 2026 — portée documentaire des bibliographies de débat
+
+- corrige `WDV-SRC-005`, qui transformait à tort la liste préférentielle de la section 7.6 en enum exhaustive de `document_kind` ;
+- conserve les critères normatifs discriminants : `documentary_scope` doit être `foundational_work` ou `broad_synthesis` et la justification de sélection doit être substantielle ;
+- accepte notamment un `legal_text` officiel de portée générale sans affaiblir les contrôles de langue, identité documentaire ou justification ;
+- ajoute des régressions positive `legal_text/broad_synthesis` et négative `narrow_argument` ;
+- s’aligne sur le kit 2.16.28 et conserve tous les contrôles 0.4.95.
+

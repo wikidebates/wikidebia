@@ -324,3 +324,13 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - ajoute des régressions sur le blocage précoce, l’inventaire documentaire exhaustif et l’orchestration post-convergence ;
 - conserve la norme 1.2.87 et le validateur 0.4.95.
 
+## 2.16.28 — 19 août 2026 — réconciliation documentaire des branches 2.16.27
+
+- conserve la garde `en_documentation_correction` introduite dans la branche préflight 2.16.27 ;
+- réutilise l’identifiant canonique d’une ressource anglophone déjà présente dans le registre au lieu de recréer un doublon FR→EN ;
+- préserve les métadonnées historiques de la ressource réutilisée et ajoute uniquement les usages anglais revus ;
+- bloque toute fusion silencieuse si la famille documentaire ou `document_kind` diverge ;
+- aligne la garde Debate sur le vocabulaire documentaire complet : `legal_text` est valide lorsque la portée est `foundational_work`/`broad_synthesis` et la sélection suffisamment justifiée ;
+- ajoute des régressions reproduisant le doublon DEF CON `S10003 → S00013` et l’acceptation d’un texte juridique large ;
+- s’aligne sur la norme 1.2.87 et le validateur 0.4.96.
+

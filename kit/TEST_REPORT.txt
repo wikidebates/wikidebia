@@ -1,15 +1,11 @@
-Wikidéb’IA Kit 2.16.27 — rapport de tests
+Wikidéb’IA Kit 2.16.28 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 492
-Tests pytest : 492 réussis
+Tests pytest collectés : 496
+Tests pytest : 496 réussis
 Norme : 1.2.87
-Validateur : 0.4.95
-Validation documentaire pré-convergence : PASSED ; les bibliographies Debate doivent renseigner document_kind et une portée foundational_work/broad_synthesis avant semantic_convergence_1.
-Attribution Web/vidéo : PASSED ; tout auteur conservé doit être explicitement vérifié et une collision auteur=site est bloquée avant convergence.
-Reprise post-convergence documentaire : PASSED ; un Work historique convergé avec des lacunes de registre ouvre automatiquement en_documentation_correction et expose uniquement sources_en_working.json en écriture.
-Inventaire exhaustif revenu_de_base : PASSED ; 13 constats documentaires sont détectés en une seule passe sur S10001–S10008, sans découverte séquentielle au préflight final.
-Validation pré-convergence des titres anglais : PASSED ; les apostrophes typographiques non ASCII restent refusées à la finalisation de la traduction.
-Normalisation des vérifications documentaires anglaises : PASSED ; checked_at / method / note restent normalisés vers verified_at / notes à la projection finale.
-Classification primaire historique absente : PASSED ; aucun booléen n’est inventé et primary_source=null reste un état explicite de compatibilité.
-Convergence sémantique : PASSED ; une correction documentaire refinalise la revue et repart sur deux passes parce que le reçu historique est lié à l’ancienne revue scellée.
-Tous les contrôles 2.16.26 et antérieurs restent verts.
+Validateur : 0.4.96
+Réconciliation 2.16.27 : PASSED ; la garde en_documentation_correction est conservée.
+Identité documentaire FR→EN : PASSED ; une ressource anglophone déjà connue est réutilisée par DOI/URL/clé canonique et ses usages anglais sont ajoutés.
+Conflit documentaire réel : PASSED ; une divergence de famille ou de document_kind reste bloquante.
+Bibliographie Debate legal_text : PASSED ; le type est accepté lorsque la portée est foundational_work/broad_synthesis et la justification substantielle.
+Tous les contrôles 2.16.27 et antérieurs restent verts.
