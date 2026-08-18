@@ -280,6 +280,7 @@ def _instructions(review_type: str, debate_id: str, work_id: str | None, editabl
             "Les règles qualitatives intrinsèques des keywords restent applicables : la version anglaise doit utiliser les équivalents idiomatiques du vocabulaire français final, y compris après une correction ou une décomposition historique validée.",
             "Pour une introduction française historique, produisez une adaptation anglaise autonome : examinez explicitement le contexte franco-français et condensez, contextualisez ou omettez ce qui ne doit pas être traduit mécaniquement, sans changer la substance du débat. `Stakes of the debate` et les autres contraintes de profil d’une introduction nouvellement créée ne sont pas obligatoires pour les sous-parties historiques inchangées.",
             "Pour un résumé historique, un ratio EN/FR hors 0,60–1,45 est un signal de revue et non un objectif de réécriture ; attestez l’équivalence et fournissez `summary_ratio_exception_rationale` lorsque le ratio reste hors plage.",
+            "Pour toute nouvelle source ajoutée dans `data/sources_en_working.json`, renseignez `verification.verified_at`, `verification.primary_source` (booléen explicite) et `verification.notes` en plus des attestations de langue/auteur. Les anciennes clés `checked_at`, `method` et `note` ne doivent plus être émises par un nouveau paquet ; elles restent lisibles uniquement pour compatibilité avec une revue déjà préparée.",
         ]
     lines += [
         "",

@@ -295,3 +295,12 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - autorise au préflight la disparition des paramètres éditoriaux optionnels gérés, après validation du corpus, sans affaiblir la protection des paramètres de cycle de vie, inconnus ou hors contrat ;
 - corrige les régressions réelles `A0021 |objections=` et Débat `|bibliographie-pour=` / `|vidéographie-contre=` ;
 - s’aligne sur la norme 1.2.87 et le validateur 0.4.93.
+
+## 2.16.25 — 13 août 2026 — normalisation des vérifications documentaires anglaises
+
+- corrige le blocage tardif `WDV-SCH-003` où `sources_en_working.json` acceptait `checked_at` / `method` / `note` puis les recopiait tels quels dans `data/sources.json` ;
+- normalise ces clés historiques vers `verified_at` et `notes` au moment de la projection finale ;
+- conserve explicitement `primary_source=null` lorsqu'une revue déjà préparée n'avait jamais enregistré cette classification, sans fabriquer `true` ou `false` ;
+- exige `verification.primary_source` booléen dans toute nouvelle vérification au format canonique ;
+- préserve le `review_sha256`, le `semantic_content_sha256` et les deux passes de convergence, la migration ne touchant qu'aux métadonnées documentaires non sémantiques de sortie ;
+- s'aligne sur le validateur 0.4.94 ; la norme active reste 1.2.87.

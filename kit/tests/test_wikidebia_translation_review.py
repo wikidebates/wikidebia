@@ -805,3 +805,30 @@ def test_translation_risk_profile_keeps_simple_page_at_default_ten():
 # Historical test-name alias retained for non-regression traceability.
 def test_english_argument_name_is_a_preserved_import_parameter():
     assert 'name' in translation.EN_PAGE_LIFECYCLE_PARAMETERS['argument']
+
+def test_21625_legacy_english_source_verification_is_normalized_without_inventing_primary_source():
+    row = en_source("S10009", "webliography", [{
+        "page_id": "debat_test", "language": "en", "role": "neutral_reference",
+        "language_fit": "native", "preferred_equivalent_source_id": None,
+        "documentary_scope": "context", "selection_reason": "This source documents the historical context used in the debate."
+    }])
+    row["verification"] = {
+        "status": "verified",
+        "language_verified": True,
+        "authorship_checked": True,
+        "checked_at": "2026-08-13T01:21:24+02:00",
+        "method": "Direct recheck of the English-language publisher page.",
+        "note": "English-language availability and attribution were rechecked.",
+    }
+    normalized = translation._canonical_source_for_registry(row)
+    verification = normalized["verification"]
+    assert verification["verified_at"] == "2026-08-13T01:21:24+02:00"
+    assert verification["primary_source"] is None
+    assert verification["notes"] == [
+        "English-language availability and attribution were rechecked.",
+        "Verification method: Direct recheck of the English-language publisher page.",
+    ]
+    assert "checked_at" not in verification
+    assert "method" not in verification
+    assert "note" not in verification
+

@@ -1,4 +1,10 @@
-# Wikidéb’IA Kit 2.16.24
+# Wikidéb’IA Kit 2.16.25
+
+Le kit 2.16.25 corrige la projection des vérifications documentaires anglaises vers `data/sources.json`. Les paquets déjà préparés avec le format historique `checked_at` / `method` / `note` sont normalisés à la frontière de sortie vers `verified_at` / `notes`; lorsqu'aucune classification `primary_source` n'avait été enregistrée, la valeur canonique devient explicitement `null` au lieu d'inventer un booléen. Les nouvelles revues doivent renseigner `primary_source` explicitement.
+
+La normalisation intervient après la revue scellée et ne modifie ni le contenu sémantique FR→EN ni le reçu de convergence. Tous les contrôles 2.16.24 restent actifs.
+
+## Wikidéb’IA Kit 2.16.24
 
 Le kit 2.16.24 corrige la régression `present-empty` introduite en 2.16.22. `source_parameter_presence` reste conservé comme provenance d’audit, mais le renderer omet désormais tout paramètre éditorial optionnel dont la valeur logique finale est vide, même si ce paramètre existait historiquement.
 

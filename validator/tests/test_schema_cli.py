@@ -138,3 +138,35 @@ def test_old_1221_metadata_does_not_schema_gate_graph_placement_review_path(tmp_
     dump(tmp_path / "manifest.json", manifest)
     report = validate_package(tmp_path, scopes=["schema"])
     assert not any(f.code == "WDV-SCH-003" for f in report.findings)
+
+def test_source_registry_accepts_null_primary_source_for_legacy_normalization(tmp_path: Path):
+    from wikidebia_validator.schema_validation import SchemaStore
+
+    store = SchemaStore()
+    source = {
+        "source_registry_version": "1.0",
+        "debate_id": "debat_test",
+        "sources": [{
+            "id": "S10001",
+            "type": "webliography",
+            "language": "en",
+            "metadata": {
+                "authors": ["Example Organization"], "article": None, "work": None, "volume": None,
+                "issue": None, "location": None, "publisher": None, "place": None, "date": "2026",
+                "link": "https://example.org/source", "page": "Source", "site": "Example", "title": None
+            },
+            "verification": {
+                "status": "verified", "verified_at": "2026-08-13T01:21:24+02:00",
+                "primary_source": None, "notes": ["Legacy review did not record primary-source classification."],
+                "language_verified": True, "authorship_checked": True, "authorship_verified": True
+            },
+            "usage": [{
+                "page_id": "debat_test", "language": "en", "role": "context",
+                "selection_reason": "This verified source documents the context used in the debate."
+            }],
+            "deduplication_key": "https://example.org/source",
+            "document_kind": "other", "equivalence_group": None
+        }]
+    }
+    assert not store.validate(source, "source_registry.schema.json")
+

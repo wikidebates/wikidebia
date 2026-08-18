@@ -111,7 +111,10 @@
                 "$ref": "common.schema.json#/$defs/nullableDateTime"
               },
               "primary_source": {
-                "type": "boolean"
+                "type": [
+                  "boolean",
+                  "null"
+                ]
               },
               "notes": {
                 "type": "array",

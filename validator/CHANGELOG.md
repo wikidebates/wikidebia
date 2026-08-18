@@ -198,3 +198,11 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - `WDV-MWK-005` interdit de nouveau toute valeur top-level vide dans le rendu canonique ;
 - conserve `source_parameter_presence` comme provenance sans effet d’autorisation syntaxique ;
 - s’aligne sur la norme 1.2.87 et le kit 2.16.24.
+
+## 0.4.94 — 13 août 2026 — compatibilité des vérifications documentaires historiques
+
+- accepte `verification.primary_source=null` dans `source_registry.schema.json` comme état explicite d'une ancienne revue qui n'avait pas enregistré cette classification ;
+- conserve la clé `primary_source` requise et maintient le booléen comme forme normale des nouvelles revues ;
+- n'autorise pas `checked_at`, `method` ni `note` dans le registre canonique final ;
+- ajoute une régression de schéma couvrant la projection normalisée produite par le kit 2.16.25 ;
+- la norme active reste 1.2.87.

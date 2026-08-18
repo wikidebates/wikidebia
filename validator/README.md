@@ -1,4 +1,10 @@
-# Wikidéb’IA Validator 0.4.93
+# Wikidéb’IA Validator 0.4.94
+
+Le validateur 0.4.94 corrige le contrat de compatibilité du registre documentaire pour les revues anglaises déjà préparées. `verification.primary_source` reste obligatoire comme clé canonique, mais peut valoir `null` lorsqu'un artefact historique ne contenait aucune décision sur ce point. Une nouvelle revue doit toujours fournir un booléen explicite.
+
+Les clés historiques `checked_at`, `method` et `note` restent interdites dans `data/sources.json` : elles doivent être normalisées par le kit avant validation. Tous les contrôles 0.4.93 restent actifs et la norme demeure 1.2.87.
+
+## Wikidéb’IA Validator 0.4.93
 
 Le validateur 0.4.93 retire l’exception `present-empty` de 0.4.92. Conformément à la norme 1.2.87, `WDV-MWK-005` interdit toute valeur top-level vide dans une sortie canonique, y compris lorsqu’un paramètre était historiquement présent.
 

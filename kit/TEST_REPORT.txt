@@ -1,9 +1,13 @@
-Wikidéb’IA Kit 2.16.24 — rapport de tests
+Wikidéb’IA Kit 2.16.25 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 484
-Tests pytest : 484 réussis
+Tests pytest collectés : 485
+Tests pytest : 485 réussis
 Norme : 1.2.87
-Validateur : 0.4.93
+Validateur : 0.4.94
+Normalisation des vérifications documentaires anglaises : PASSED ; `checked_at` / `method` / `note` sont normalisés vers `verified_at` / `notes` à la projection finale.
+Classification primaire historique absente : PASSED ; aucun booléen n’est inventé et `primary_source=null` est conservé comme état explicite de compatibilité.
+Nouvelles sources anglaises : PASSED ; le format canonique exige un `primary_source` booléen explicite.
+Convergence sémantique : PASSED ; la normalisation documentaire de sortie ne modifie ni `review_sha256` ni `semantic_content_sha256` et ne remet pas à zéro les deux passes propres.
 Omission canonique : PASSED ; tout paramètre éditorial optionnel sans contenu final est omis du wikicode, même s’il était historiquement présent.
 Provenance top-level : PASSED ; source_parameter_presence reste conservé dans les verrous comme preuve d’audit sans commander le rendu.
 A0021 objections : PASSED ; une valeur finale vide produit l’absence de |objections= et non un paramètre vide.
@@ -13,4 +17,4 @@ Protection des suppressions : PASSED ; une suppression de paramètre non omittab
 Migration pré-2.16.22 : PASSED ; source_parameter_presence peut toujours être redérivé depuis reviewed-copy pour les anciens content-reviewed-copy, sans réintroduire de sortie present-empty.
 Sous-paramètres Citation/Quote facultatifs vides : PASSED ; la provenance historique peut les conserver, le rendu canonique les omet.
 Préflight vote électronique synthétique : PASSED ; les pages sont planifiables sans |bibliographie-pour=, |vidéographie-contre= ni |objections= vides.
-Tous les contrôles 2.16.23 et antérieurs restent verts hors comportement present-empty explicitement remplacé par 2.16.24.
+Tous les contrôles 2.16.24 et antérieurs restent verts.

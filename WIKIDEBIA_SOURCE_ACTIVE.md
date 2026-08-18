@@ -3,14 +3,14 @@
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
 - norme active : **1.2.87** ;
-- validateur actif : **0.4.93** ;
-- kit actif : **2.16.24**.
+- validateur actif : **0.4.94** ;
+- kit actif : **2.16.25**.
 
 ## Composants associés
 
 - `wikidebia-normes.zip` — 3707633 octets — SHA-256 `ae30d537c517aed40132e355005ea286c42bd0a370131740c562597c7746c38f`
-- `wikidebia-validator.zip` — 3875656 octets — SHA-256 `c65267e453b6c7005f8b5451d1efa1c8bf01460e69a05cf0aed0159208076f33`
-- `wikidebia-kit.zip` — 744849 octets — SHA-256 `605967bdf6b379499380c420d11ae8ef938e05cdc48ebe045a9358ff8fc13390`
+- `wikidebia-validator.zip` — 3877473 octets — SHA-256 `e86bfaa3a5c3884ba99fb491f5c572c2e379487417670b0d660cb6beaf4c6262`
+- `wikidebia-kit.zip` — 748065 octets — SHA-256 `ad6ee6e748ffe2d629f91a95c8638bb2afbdc059edce90b55e27acac5ebda7a3`
 
 ## Norme consolidée active
 
@@ -1648,9 +1648,15 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `73adcce5d44861dffda97df4c1e74efe579d0504b807c8c85d44c8d9411b1f46`
+SHA-256 : `0999665e1bf179206508cb3801f19728e00df55ef63211f7545a9fe30716f0c7`
 
-# Wikidéb’IA Validator 0.4.93
+# Wikidéb’IA Validator 0.4.94
+
+Le validateur 0.4.94 corrige le contrat de compatibilité du registre documentaire pour les revues anglaises déjà préparées. `verification.primary_source` reste obligatoire comme clé canonique, mais peut valoir `null` lorsqu'un artefact historique ne contenait aucune décision sur ce point. Une nouvelle revue doit toujours fournir un booléen explicite.
+
+Les clés historiques `checked_at`, `method` et `note` restent interdites dans `data/sources.json` : elles doivent être normalisées par le kit avant validation. Tous les contrôles 0.4.93 restent actifs et la norme demeure 1.2.87.
+
+## Wikidéb’IA Validator 0.4.93
 
 Le validateur 0.4.93 retire l’exception `present-empty` de 0.4.92. Conformément à la norme 1.2.87, `WDV-MWK-005` interdit toute valeur top-level vide dans une sortie canonique, y compris lorsqu’un paramètre était historiquement présent.
 
@@ -1731,7 +1737,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `f399567f3ddef3d143cbb4518b7f4dfd0e81fccbc228fb05a61a660e4672fd20`
+SHA-256 : `3de05963f85fec8c50c3d932b8a4d832a55f9ce1185c3b4398af5b2539feab1c`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1934,12 +1940,26 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - conserve `source_parameter_presence` comme provenance sans effet d’autorisation syntaxique ;
 - s’aligne sur la norme 1.2.87 et le kit 2.16.24.
 
+## 0.4.94 — 13 août 2026 — compatibilité des vérifications documentaires historiques
+
+- accepte `verification.primary_source=null` dans `source_registry.schema.json` comme état explicite d'une ancienne revue qui n'avait pas enregistré cette classification ;
+- conserve la clé `primary_source` requise et maintient le booléen comme forme normale des nouvelles revues ;
+- n'autorise pas `checked_at`, `method` ni `note` dans le registre canonique final ;
+- ajoute une régression de schéma couvrant la projection normalisée produite par le kit 2.16.25 ;
+- la norme active reste 1.2.87.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `2e3b4946dcbbbb3d30eb1877d8e5eb7c021473a5a1777051fd684832ea50855e`
+SHA-256 : `70a27a23c02d2a613c62b70b130de299ccbf45498f6bde928ca8d74d186bde51`
 
-# Wikidéb’IA Kit 2.16.24
+# Wikidéb’IA Kit 2.16.25
+
+Le kit 2.16.25 corrige la projection des vérifications documentaires anglaises vers `data/sources.json`. Les paquets déjà préparés avec le format historique `checked_at` / `method` / `note` sont normalisés à la frontière de sortie vers `verified_at` / `notes`; lorsqu'aucune classification `primary_source` n'avait été enregistrée, la valeur canonique devient explicitement `null` au lieu d'inventer un booléen. Les nouvelles revues doivent renseigner `primary_source` explicitement.
+
+La normalisation intervient après la revue scellée et ne modifie ni le contenu sémantique FR→EN ni le reçu de convergence. Tous les contrôles 2.16.24 restent actifs.
+
+## Wikidéb’IA Kit 2.16.24
 
 Le kit 2.16.24 corrige la régression `present-empty` introduite en 2.16.22. `source_parameter_presence` reste conservé comme provenance d’audit, mais le renderer omet désormais tout paramètre éditorial optionnel dont la valeur logique finale est vide, même si ce paramètre existait historiquement.
 
@@ -2053,7 +2073,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `8e4a73d84f408c475248d3b2c4c8dcfa2075d970abfa0731b95a61e3c58de471`
+SHA-256 : `c7bea2efdbfd8d193cb4fbe5f4d7d3a38ba4b138ca996e9784210ff619194b96`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2353,6 +2373,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - corrige les régressions réelles `A0021 |objections=` et Débat `|bibliographie-pour=` / `|vidéographie-contre=` ;
 - s’aligne sur la norme 1.2.87 et le validateur 0.4.93.
 
+## 2.16.25 — 13 août 2026 — normalisation des vérifications documentaires anglaises
+
+- corrige le blocage tardif `WDV-SCH-003` où `sources_en_working.json` acceptait `checked_at` / `method` / `note` puis les recopiait tels quels dans `data/sources.json` ;
+- normalise ces clés historiques vers `verified_at` et `notes` au moment de la projection finale ;
+- conserve explicitement `primary_source=null` lorsqu'une revue déjà préparée n'avait jamais enregistré cette classification, sans fabriquer `true` ou `false` ;
+- exige `verification.primary_source` booléen dans toute nouvelle vérification au format canonique ;
+- préserve le `review_sha256`, le `semantic_content_sha256` et les deux passes de convergence, la migration ne touchant qu'aux métadonnées documentaires non sémantiques de sortie ;
+- s'aligne sur le validateur 0.4.94 ; la norme active reste 1.2.87.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -2645,14 +2674,18 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `d2a472d6b0f14a2fc49503c387ba669599d2738e7e9e0af8780553f8d43c162f`
+SHA-256 : `ef15aa227943afe5f7f35a3903aecb705f48f792d77561bb166962907b5518c6`
 
-Wikidéb’IA Kit 2.16.24 — rapport de tests
+Wikidéb’IA Kit 2.16.25 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 484
-Tests pytest : 484 réussis
+Tests pytest collectés : 485
+Tests pytest : 485 réussis
 Norme : 1.2.87
-Validateur : 0.4.93
+Validateur : 0.4.94
+Normalisation des vérifications documentaires anglaises : PASSED ; `checked_at` / `method` / `note` sont normalisés vers `verified_at` / `notes` à la projection finale.
+Classification primaire historique absente : PASSED ; aucun booléen n’est inventé et `primary_source=null` est conservé comme état explicite de compatibilité.
+Nouvelles sources anglaises : PASSED ; le format canonique exige un `primary_source` booléen explicite.
+Convergence sémantique : PASSED ; la normalisation documentaire de sortie ne modifie ni `review_sha256` ni `semantic_content_sha256` et ne remet pas à zéro les deux passes propres.
 Omission canonique : PASSED ; tout paramètre éditorial optionnel sans contenu final est omis du wikicode, même s’il était historiquement présent.
 Provenance top-level : PASSED ; source_parameter_presence reste conservé dans les verrous comme preuve d’audit sans commander le rendu.
 A0021 objections : PASSED ; une valeur finale vide produit l’absence de |objections= et non un paramètre vide.
@@ -2662,7 +2695,7 @@ Protection des suppressions : PASSED ; une suppression de paramètre non omittab
 Migration pré-2.16.22 : PASSED ; source_parameter_presence peut toujours être redérivé depuis reviewed-copy pour les anciens content-reviewed-copy, sans réintroduire de sortie present-empty.
 Sous-paramètres Citation/Quote facultatifs vides : PASSED ; la provenance historique peut les conserver, le rendu canonique les omet.
 Préflight vote électronique synthétique : PASSED ; les pages sont planifiables sans |bibliographie-pour=, |vidéographie-contre= ni |objections= vides.
-Tous les contrôles 2.16.23 et antérieurs restent verts hors comportement present-empty explicitement remplacé par 2.16.24.
+Tous les contrôles 2.16.24 et antérieurs restent verts.
 
 ## Guide d’orchestration éditoriale
 
@@ -2784,7 +2817,7 @@ La réussite du paquet `fr_content_review` déclenche automatiquement le rendu d
 ## Guide de traduction anglaise
 
 Source interne : `kit/GUIDE_TRANSLATION_REVIEW.md`  
-SHA-256 : `40fd85a9f186bae74552b8c8f83c492eda49315d32cd72bc5cde460183d63862`
+SHA-256 : `2a83384cae2d1dfcd48b25fb1cc13fc346eab1dffee293b408439a538bcd3496`
 
 # Guide de traduction anglaise contrôlée — Kit 2.15.48
 
@@ -2862,6 +2895,8 @@ Une référence française n'est **jamais traduite comme notice anglaise**. Pour
 Si cet équivalent existe, enregistrer et citer **la version anglaise elle-même**, avec son titre publié, son éditeur/diffuseur, sa date, son lien et ses autres métadonnées vérifiées. Ne jamais traduire librement le titre ou recopier les métadonnées françaises comme si elles appartenaient à une édition anglaise. Si aucune version anglaise n'existe, ne pas transférer cette référence au seul motif qu'elle existe en français.
 
 Chaque page anglaise fait en outre l'objet d'une **recherche indépendante de nouvelles références anglophones**. La documentation anglaise doit refléter la littérature réellement disponible en anglais et peut donc différer de la sélection française tout en conservant une profondeur et une qualité comparables. Pour la page Debate, toutes les références doivent être réellement disponibles en anglais. Pour les pages Argument, la politique linguistique générale demeure symétrique à celle du français ; une éventuelle source non anglaise est sélectionnée indépendamment selon cette politique, jamais produite par traduction artificielle d'une notice française.
+
+Pour toute source nouvellement enregistrée, `verification` utilise directement le format canonique du registre documentaire : `status`, `verified_at`, `primary_source`, `notes`, puis les attestations applicables (`language_verified`, `authorship_checked`, etc.). `primary_source` est une décision documentaire explicite et ne doit pas être inventé. Les anciens paquets déjà préparés qui utilisent `checked_at`, `method` et `note` restent lisibles ; au moment de la projection finale ces clés sont normalisées vers `verified_at` et `notes`, et l'absence historique de classification `primary_source` devient explicitement `null` au lieu d'être transformée arbitrairement en `true` ou `false`. Un nouveau paquet ne doit plus émettre ce format historique.
 
 ### Citations importées
 

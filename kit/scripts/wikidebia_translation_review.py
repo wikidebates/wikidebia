@@ -935,6 +935,49 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
     return {"status": "en_translation_review_ready", "debate_id": debate_id, "work_id": work_id, "review_path": relative_to_project(review_path, project_root), "sources_path": relative_to_project(sources_path, project_root), "arguments": len(active_ids), "automatic_translation": False, "final_pages_generated": False}
 
 
+LEGACY_SOURCE_VERIFICATION_KEYS = {"checked_at", "method", "note"}
+
+
+def _canonical_source_for_registry(source: Mapping[str, Any]) -> dict[str, Any]:
+    """Normalize supported legacy source-verification metadata at the output boundary.
+
+    Older English review packages recorded verification provenance as
+    checked_at/method/note and had no primary-source classification.  The
+    canonical source registry uses verified_at/notes and keeps an explicit null
+    when that historical review never recorded primary_source; no boolean is
+    invented during compatibility migration.
+    """
+    clean = copy.deepcopy(dict(source))
+    verification = clean.get("verification")
+    if not isinstance(verification, dict):
+        return clean
+    verification = copy.deepcopy(verification)
+    legacy = any(key in verification for key in LEGACY_SOURCE_VERIFICATION_KEYS)
+    if legacy:
+        if "verified_at" not in verification:
+            verification["verified_at"] = verification.get("checked_at")
+        if "primary_source" not in verification:
+            verification["primary_source"] = None
+        notes = verification.get("notes")
+        if not isinstance(notes, list):
+            notes = []
+        else:
+            notes = [str(item) for item in notes if str(item).strip()]
+        note = str(verification.get("note") or "").strip()
+        method = str(verification.get("method") or "").strip()
+        if note and note not in notes:
+            notes.append(note)
+        if method:
+            method_note = f"Verification method: {method}"
+            if method_note not in notes:
+                notes.append(method_note)
+        verification["notes"] = notes
+        for key in LEGACY_SOURCE_VERIFICATION_KEYS:
+            verification.pop(key, None)
+    clean["verification"] = verification
+    return clean
+
+
 def _validate_sources(data: Mapping[str, Any], debate_id: str, french_ids: set[str]) -> tuple[list[dict[str, Any]], dict[str, dict[str, Any]]]:
     if data.get("schema") != EN_SOURCES_WORKING_SCHEMA or data.get("debate_id") != debate_id:
         raise TranslationReviewError("Schéma ou identité du registre documentaire anglais invalide")
@@ -970,6 +1013,20 @@ def _validate_sources(data: Mapping[str, Any], debate_id: str, french_ids: set[s
         verification = row.get("verification")
         if not isinstance(verification, dict) or verification.get("status") != "verified" or verification.get("language_verified") is not True:
             raise TranslationReviewError(f"Source anglaise non vérifiée : {sid}")
+        legacy_verification = any(key in verification for key in LEGACY_SOURCE_VERIFICATION_KEYS)
+        if legacy_verification:
+            if not str(verification.get("checked_at") or "").strip():
+                raise TranslationReviewError(f"Horodatage de vérification historique absent pour {sid}")
+        else:
+            if "verified_at" not in verification or "notes" not in verification or "primary_source" not in verification:
+                raise TranslationReviewError(
+                    f"Vérification documentaire canonique incomplète pour {sid} : "
+                    "verified_at, primary_source et notes sont requis"
+                )
+            if not isinstance(verification.get("primary_source"), bool):
+                raise TranslationReviewError(f"primary_source doit être booléen pour une nouvelle vérification documentaire : {sid}")
+            if not isinstance(verification.get("notes"), list):
+                raise TranslationReviewError(f"notes doit être une liste pour {sid}")
         if stype in {"webliography", "videography"} and verification.get("authorship_checked") is not True:
             raise TranslationReviewError(f"Attribution anglaise non vérifiée : {sid}")
         usages = row.get("usage")
@@ -1793,7 +1850,10 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
     projection["nodes"] = copy.deepcopy((registry.get("graph") or {}).get("nodes") or [])
     projection["lifecycle"] = copy.deepcopy(lifecycle)
     french_sources = load_json(target / "data/sources.json", "sources françaises")
-    merged_sources = copy.deepcopy(french_sources.get("sources") or []) + copy.deepcopy(final["sources"])
+    merged_sources = [
+        _canonical_source_for_registry(row)
+        for row in (copy.deepcopy(french_sources.get("sources") or []) + copy.deepcopy(final["sources"]))
+    ]
     timestamp = now_iso()
     metadata_lock = {
         "schema": EN_METADATA_LOCK_SCHEMA, "schema_version": "1.0", "normative_revision": NORM_VERSION,

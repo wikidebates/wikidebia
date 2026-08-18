@@ -1,9 +1,11 @@
-Wikidéb’IA Validator 0.4.93 — rapport de tests
+Wikidéb’IA Validator 0.4.94 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 432
-Tests pytest : 432 réussis
+Tests pytest collectés : 433
+Tests pytest : 433 réussis
 Norme active : 1.2.87
-Kit recommandé : 2.16.24
+Kit recommandé : 2.16.25
+Registre documentaire : `verification.primary_source` reste une clé obligatoire ; `null` est accepté uniquement comme état explicite de compatibilité lorsque l’ancienne revue n’avait enregistré aucune classification primaire/secondaire.
+Anciennes clés de vérification : `checked_at`, `method` et `note` restent interdites dans `data/sources.json` et doivent être normalisées avant validation.
 WDV-MWK-005 : toute valeur top-level vide dans le wikicode canonique est interdite, y compris lorsque la présence historique du paramètre est attestée.
 source_parameter_presence : conservé comme provenance d’audit ; ne constitue plus une exception syntaxique à WDV-MWK-005.
 Régression positive d’omission : PASSED ; le corpus canonique sans paramètre optionnel vide est accepté.
