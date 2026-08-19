@@ -846,14 +846,17 @@ def run_validator(project_root: Path, package: Path) -> dict[str, Any]:
     if not python.is_file():
         python = Path(sys.executable)
     validator_src = project_root / "validator/src"
-    if not validator_src.is_dir():
-        return {"status": "not_run", "reason": "validator/src absent"}
+    validator_script = project_root / "validator/scripts/wikidebia_validate.py"
+    if not validator_src.is_dir() or not validator_script.is_file():
+        return {"status": "not_run", "reason": "validateur local incomplet"}
     report_json = package / "reports/initial_validation.json"
     report_txt = package / "reports/initial_validation.txt"
     env = dict(**__import__("os").environ)
-    env["PYTHONPATH"] = str(validator_src) + (":" + env["PYTHONPATH"] if env.get("PYTHONPATH") else "")
+    env.pop("PYTHONPATH", None)
+    env["PYTHONNOUSERSITE"] = "1"
+    env.pop("PYTHONHOME", None)
     command = [
-        str(python), "-m", "wikidebia_validator.cli", "validate", str(package),
+        str(python), "-I", str(validator_script), "validate", str(package),
         "--scope", "schema", "--scope", "coherence", "--scope", "graph",
         "--scope", "files", "--scope", "workflow", "--format", "both",
         "--text-output", str(report_txt), "--json-output", str(report_json),

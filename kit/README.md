@@ -1,4 +1,12 @@
-# Wikidéb’IA Kit 2.16.35
+# Wikidéb’IA Kit 2.16.36
+
+Le kit 2.16.36 rend l’identité runtime du validateur **vérifiable et non contournable**. Les validations orchestrées ne passent plus par `python -m wikidebia_validator.cli` : elles exécutent le fichier physique `validator/scripts/wikidebia_validate.py` avec Python en mode isolé (`-I`). Ce lanceur insère `validator/src` après l’initialisation de Python et refuse tout module `cli` ou `editorial` chargé hors de ce composant.
+
+Chaque rapport produit par ce lanceur contient en outre une attestation `metrics.runtime_attestation` avec les SHA-256 effectifs de `cli.py` et `editorial.py`. `_run_validator` recalcule ces empreintes depuis les fichiers installés et bloque immédiatement toute divergence. Ce mécanisme ferme le cas réel du vote électronique où le rapport déclarait `0.4.101` tout en appliquant une logique différente à cinq résumés historiques autorisés.
+
+Les chemins de validation de l’initialisation, de la revue de graphe et de la promotion utilisent eux aussi le lanceur physique isolé. Aucun contrôle éditorial n’est assoupli. Norme active : 1.2.87. Validateur associé : 0.4.102.
+
+## Notes héritées du kit 2.16.35
 
 Le kit 2.16.35 isole l’exécution du validateur orchestré de toute copie Python parasite. `_run_validator` utilise désormais exclusivement `project_root/validator/src`, désactive le user-site, neutralise un `PYTHONHOME` hérité et exécute le sous-processus depuis le composant `validator/`. Une vieille copie de `wikidebia_validator` présente à la racine du projet ou dans un `PYTHONPATH` hérité ne peut donc plus masquer le validateur installé par `upgrade`.
 

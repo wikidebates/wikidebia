@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from typing import Any
 from pathlib import Path
+import os
 
 
 def portable_display_path(value: str | Path) -> str:
@@ -52,6 +53,15 @@ class Report:
         self.scopes = scopes
         self.findings: list[Finding] = []
         self.metrics: dict[str, Any] = {}
+        runtime_mode = str(os.environ.get("WIKIDEBIA_VALIDATOR_RUNTIME_MODE") or "").strip()
+        cli_sha = str(os.environ.get("WIKIDEBIA_VALIDATOR_RUNTIME_CLI_SHA256") or "").strip()
+        editorial_sha = str(os.environ.get("WIKIDEBIA_VALIDATOR_RUNTIME_EDITORIAL_SHA256") or "").strip()
+        if runtime_mode or cli_sha or editorial_sha:
+            self.metrics["runtime_attestation"] = {
+                "mode": runtime_mode,
+                "cli_sha256": cli_sha,
+                "editorial_sha256": editorial_sha,
+            }
 
     def add(self, code: str, level: str, message: str, *, path: str | None = None,
             pointer: str | None = None, details: dict[str, Any] | None = None) -> None:

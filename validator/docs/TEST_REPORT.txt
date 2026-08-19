@@ -1,9 +1,8 @@
-Wikidéb’IA Validator 0.4.101 — rapport de tests
+Wikidéb’IA Validator 0.4.102 — rapport de tests
 
-Statut : PASSED
+Tests pytest : 453 réussis
 Norme active : 1.2.87
-Kit recommandé : 2.16.33
-Tests pytest : 452 réussis
+Kit recommandé : 2.16.36
 
-WDV-EDT-013/014/015/020 : PASSED ; la provenance historique est lue directement dans les verrous FR/EN, indépendamment de `translation_status`, et les contrôles de création restent actifs pour les résumés nouveaux.
-Tous les contrôles antérieurs sont conservés.
+Runtime attestation : PASSED ; l’entrypoint physique scelle les SHA-256 de cli.py et editorial.py.
+Historical summary differential validation : PASSED ; les contrôles 0.4.101 sont inchangés.

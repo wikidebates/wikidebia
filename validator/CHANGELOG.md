@@ -265,3 +265,11 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ajoute des régressions positives sur des résumés historiques avec chiffres et des registres anciens, ainsi qu’une régression négative prouvant qu’un résumé nouveau incomplet reste bloqué ;
 - conserve la norme 1.2.87 et le kit 2.16.32.
 
+## 0.4.102 — 19 août 2026 — attestation cryptographique de l’identité runtime
+
+- le lanceur physique vérifie que `cli` et `editorial` sont chargés depuis `validator/src` ;
+- calcule les SHA-256 effectifs de ces deux modules ;
+- inscrit ces preuves dans `metrics.runtime_attestation` de chaque rapport lancé par cet entrypoint ;
+- ne modifie aucun contrôle éditorial, documentaire, structurel ou bilingue ;
+- ajoute une régression sur l’attestation du lanceur isolé ;
+- conserve la norme 1.2.87 et s’aligne sur le kit 2.16.36.

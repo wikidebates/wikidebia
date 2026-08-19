@@ -103,6 +103,7 @@ def make_workspace(tmp_path: Path) -> tuple[Path, Path, str]:
     workspace_tool.create_workspace(project, "debat_test", work_id)
     validator_root = Path(__file__).resolve().parents[2] / "validator"
     shutil.copytree(validator_root / "src", project / "validator" / "src")
+    shutil.copytree(validator_root / "scripts", project / "validator" / "scripts")
     # A validator installation is defined by its code plus release/capability
     # metadata; copying only src/ produced an order-dependent partial fixture.
     for name in ("VERSIONS.json", "CAPABILITIES.json"):

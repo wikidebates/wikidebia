@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import importlib.util
 import json
 import sys
@@ -26,7 +27,13 @@ review = load_module("wikidebia_editorial_review")
 def _project(tmp_path: Path) -> tuple[Path, Path]:
     project = tmp_path / "project"
     package = project / ".state" / "rendered-copy"
-    (project / "validator" / "src").mkdir(parents=True)
+    validator_pkg = project / "validator" / "src" / "wikidebia_validator"
+    validator_pkg.mkdir(parents=True)
+    (validator_pkg / "cli.py").write_text("# cli\n", encoding="utf-8")
+    (validator_pkg / "editorial.py").write_text("# editorial\n", encoding="utf-8")
+    validator_scripts = project / "validator" / "scripts"
+    validator_scripts.mkdir(parents=True)
+    (validator_scripts / "wikidebia_validate.py").write_text("# launcher\n", encoding="utf-8")
     (project / "outgoing").mkdir(parents=True)
     (package / "reports").mkdir(parents=True)
     (package / "reviews").mkdir(parents=True)
@@ -37,6 +44,15 @@ def _project(tmp_path: Path) -> tuple[Path, Path]:
     (package / "data" / "en_content_lock.json").write_text("{}\n", encoding="utf-8")
     (package / "output" / "en" / "arguments" / "A0001.wiki").write_text("{{Argument}}\n", encoding="utf-8")
     return project, package
+
+
+def _runtime(project: Path) -> dict[str, str]:
+    pkg = project / "validator" / "src" / "wikidebia_validator"
+    return {
+        "mode": "component_script_isolated_v1",
+        "cli_sha256": hashlib.sha256((pkg / "cli.py").read_bytes()).hexdigest(),
+        "editorial_sha256": hashlib.sha256((pkg / "editorial.py").read_bytes()).hexdigest(),
+    }
 
 
 def test_failed_validator_exports_complete_diagnostic_zip(tmp_path, monkeypatch):
@@ -59,6 +75,7 @@ def test_failed_validator_exports_complete_diagnostic_zip(tmp_path, monkeypatch)
             "validator_version": review.VALIDATOR_VERSION,
             "result": "failed",
             "summary": {"errors": 7, "warnings": 0},
+            "metrics": {"runtime_attestation": _runtime(project)},
             "findings": findings,
         }
         json_output.write_text(json.dumps(report), encoding="utf-8")
@@ -113,6 +130,7 @@ def test_diagnostic_export_failure_never_masks_validator_error(tmp_path, monkeyp
             "validator_version": review.VALIDATOR_VERSION,
             "result": "failed",
             "summary": {"errors": 1, "warnings": 0},
+            "metrics": {"runtime_attestation": _runtime(project)},
             "findings": [{"level": "ERROR", "code": "E001", "path": None, "pointer": None, "message": "boom"}],
         }
         json_output.write_text(json.dumps(report), encoding="utf-8")

@@ -395,3 +395,12 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - vérifie sur les fichiers exacts du diagnostic du vote électronique que le validateur 0.4.101 courant produit zéro `WDV-EDT-013/014/015/020` pour les résumés historiques scellés ;
 - conserve les diagnostics complets et leur persistance transactionnelle de 2.16.33/2.16.34 ; aucune règle éditoriale ni aucun contenu de corpus n’est modifié.
 
+## 2.16.36 — 19 août 2026 — entrypoint physique et attestation runtime du validateur
+
+- remplace les invocations orchestrées `python -m wikidebia_validator.cli` par le lanceur physique `validator/scripts/wikidebia_validate.py` exécuté avec `python -I` ;
+- le lanceur insère explicitement `validator/src` après l’initialisation Python et refuse `cli.py` ou `editorial.py` chargés hors de ce composant ;
+- les rapports portent `metrics.runtime_attestation` avec les SHA-256 de `cli.py` et `editorial.py`, et le kit recalcule ces empreintes avant d’accepter le rapport ;
+- étend le même mode isolé aux validations d’initialisation, de revue de graphe et de promotion ;
+- ajoute une régression avec copie hostile et `sitecustomize` injecteur ;
+- vérifie sur le diagnostic exact du vote électronique que les quatre codes `WDV-EDT-013/014/015/020` disparaissent avec le runtime attesté ;
+- conserve la norme 1.2.87 et le validateur 0.4.102.

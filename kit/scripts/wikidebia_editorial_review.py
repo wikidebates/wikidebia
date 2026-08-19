@@ -1071,12 +1071,13 @@ def _run_validator(
     project_root: Path, package: Path, *, scopes: Sequence[str], json_output: Path, text_output: Path,
 ) -> dict[str, Any]:
     validator_src = project_root / "validator" / "src"
-    if not validator_src.is_dir():
-        raise EditorialReviewError("validator/src absent; l’application de la revue ne peut pas être validée")
+    validator_script = project_root / "validator" / "scripts" / "wikidebia_validate.py"
+    if not validator_src.is_dir() or not validator_script.is_file():
+        raise EditorialReviewError("validateur local incomplet; l’application de la revue ne peut pas être validée")
     python = project_root / ".venv" / "bin" / "python"
     if not python.is_file():
         python = Path(sys.executable)
-    command = [str(python), "-m", "wikidebia_validator.cli", "validate", str(package)]
+    command = [str(python), "-I", str(validator_script), "validate", str(package)]
     for scope in scopes:
         command.extend(["--scope", scope])
     command.extend(["--format", "text", "--json-output", str(json_output), "--text-output", str(text_output)])
@@ -1084,7 +1085,7 @@ def _run_validator(
     # Do not inherit PYTHONPATH: a stale top-level checkout or an older validator
     # from another workspace must never shadow ``project_root/validator/src``.
     env = dict(os.environ)
-    env["PYTHONPATH"] = str(validator_src)
+    env.pop("PYTHONPATH", None)
     env["PYTHONNOUSERSITE"] = "1"
     env["PYTHONDONTWRITEBYTECODE"] = "1"
     env.pop("PYTHONHOME", None)
@@ -1095,6 +1096,17 @@ def _run_validator(
     if not json_output.is_file():
         raise EditorialReviewError(f"Le validateur n’a pas produit son rapport : {completed.stderr[-1000:]}")
     report = load_json(json_output, "rapport du validateur")
+    runtime = ((report.get("metrics") or {}).get("runtime_attestation") or {}) if isinstance(report, dict) else {}
+    expected_cli_sha = sha256_bytes((project_root / "validator" / "src" / "wikidebia_validator" / "cli.py").read_bytes())
+    expected_editorial_sha = sha256_bytes((project_root / "validator" / "src" / "wikidebia_validator" / "editorial.py").read_bytes())
+    if (
+        runtime.get("mode") != "component_script_isolated_v1"
+        or runtime.get("cli_sha256") != expected_cli_sha
+        or runtime.get("editorial_sha256") != expected_editorial_sha
+    ):
+        raise EditorialReviewError(
+            "Validateur runtime divergent : le rapport ne provient pas du code exact installé sous validator/src"
+        )
     if completed.returncode != 0 or report.get("result") == "failed":
         errors = [item for item in (report.get("findings") or report.get("issues") or []) if str(item.get("level") or item.get("severity") or "").upper() == "ERROR"]
         detail = "; ".join(f"{item.get('code')} [{item.get('path')} {item.get('pointer')}]: {item.get('message')}" for item in errors[:4])

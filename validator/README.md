@@ -1,4 +1,12 @@
-# Wikidéb’IA Validator 0.4.101
+# Wikidéb’IA Validator 0.4.102
+
+Le validateur 0.4.102 ajoute une **attestation de runtime** lorsqu’il est lancé par son entrypoint physique. `validator/scripts/wikidebia_validate.py` vérifie que `wikidebia_validator.cli` et `wikidebia_validator.editorial` proviennent réellement de `validator/src`, calcule leurs SHA-256 et les inscrit dans `metrics.runtime_attestation`.
+
+Cette attestation ne change aucune règle de validation. Elle permet au kit de détecter de manière bloquante une copie Python parasite ou un chargement incohérent même lorsqu’il annonce le même numéro de version. Le contrôle différentiel des résumés historiques de 0.4.101 reste inchangé.
+
+Norme active : 1.2.87. Kit associé : 2.16.36.
+
+## Notes héritées du validateur 0.4.101
 
 Le validateur 0.4.101 rend le registre `summary_style_review.json` explicitement **non autoritatif pour les résumés historiques**. Dès qu’un résumé est identifié par les verrous FR/EN comme `historical_existing`, `historical_authorized_change`, `historical_authorized_creation`, `historical_absent` ou retiré par décision propriétaire, les attestations de création (style grand public, ouverture, force expressive, exemple/chiffre) ne sont ni exigées ni reconstruites à partir de ce registre. La fidélité, l’absence et les autorisations restent contrôlées par les verrous historiques et les contrôles dédiés, notamment `WDV-EDT-034`.
 

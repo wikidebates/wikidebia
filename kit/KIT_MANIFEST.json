@@ -1,7 +1,7 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.16.35",
-  "validator_version": "0.4.101",
+  "version": "2.16.36",
+  "validator_version": "0.4.102",
   "scope": [
     "publish_archive",
     "github_init",
@@ -663,5 +663,5 @@
     "validator_runtime_shadowing_regression"
   ],
   "translation_change_tag": "translated-fr",
-  "kit_version": "2.16.35"
+  "kit_version": "2.16.36"
 }

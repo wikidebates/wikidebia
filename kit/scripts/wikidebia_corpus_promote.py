@@ -39,15 +39,18 @@ from wikidebia_corpus_build import (
 
 def run_validator(project_root: Path, package: Path, json_output: Path, text_output: Path) -> dict[str, Any]:
     validator_src = project_root / "validator" / "src"
-    if not validator_src.is_dir():
-        raise CorpusBuildError("validator/src absent; promotion interdite")
+    validator_script = project_root / "validator" / "scripts" / "wikidebia_validate.py"
+    if not validator_src.is_dir() or not validator_script.is_file():
+        raise CorpusBuildError("validateur local incomplet; promotion interdite")
     python = project_root / ".venv" / "bin" / "python"
     if not python.is_file():
         python = Path(sys.executable)
     env = dict(os.environ)
-    env["PYTHONPATH"] = str(validator_src) + (os.pathsep + env["PYTHONPATH"] if env.get("PYTHONPATH") else "")
+    env.pop("PYTHONPATH", None)
+    env["PYTHONNOUSERSITE"] = "1"
+    env.pop("PYTHONHOME", None)
     command = [
-        str(python), "-m", "wikidebia_validator.cli", "validate", str(package),
+        str(python), "-I", str(validator_script), "validate", str(package),
         "--scope", "schema", "--scope", "coherence", "--scope", "graph",
         "--scope", "files", "--scope", "workflow", "--format", "text",
         "--json-output", str(json_output), "--text-output", str(text_output),

@@ -1,6 +1,7 @@
-Wikidéb’IA Validator 0.4.101 — auto-audit
-Statut : PASSED
+Wikidéb’IA Validator 0.4.102 — auto-audit
 Norme active unique : 1.2.87
-Kit aligné : 2.16.33
-Tests : 452 réussis
-Maintenance 0.4.100 : provenance des résumés historiques déterminée par les verrous FR/EN autoritatifs ; contrôles de création inchangés pour les contenus nouveaux.
+Tests : 453 réussis
+Statut : RÉUSSI
+
+Attestation runtime du validateur : active et vérifiée.
+Aucun contrôle éditorial n’est supprimé ni assoupli par 0.4.102.
