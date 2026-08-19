@@ -360,3 +360,10 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - ajoute des régressions sur `ballot stuffing`, une forme anglaise longue et l’émission effective des champs `en_*` ;
 - s’aligne sur la norme 1.2.87 et le validateur 0.4.98.
 
+## 2.16.32 — 19 août 2026 — preuves historiques finales et dates documentaires inline
+
+- réconcilie `summary_style_review.json` au rendu depuis les verrous FR/EN pour les résumés historiques, absents ou explicitement autorisés, sans fabriquer d’attestations de création ;
+- propage dans `individual_review.json` les preuves de changement de forme idiomatique et les attestations de revue attendues par le validateur courant ;
+- localise les dates documentaires ISO présentes dans la prose des notes `<ref>` anglaises sans modifier les URL ;
+- conserve les deux passes de convergence et toutes les décisions sémantiques déjà scellées ;
+- s’aligne sur la norme 1.2.87 et le validateur 0.4.99.

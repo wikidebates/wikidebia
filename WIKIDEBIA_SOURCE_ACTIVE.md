@@ -3,14 +3,14 @@
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
 - norme active : **1.2.87** ;
-- validateur actif : **0.4.98** ;
-- kit actif : **2.16.31**.
+- validateur actif : **0.4.99** ;
+- kit actif : **2.16.32**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3710581 octets — SHA-256 `32eda93274961315b9ecee2ad4a4cc7cbe090db6c20e51c1c590c357b1d91039`
-- `wikidebia-validator.zip` — 3887430 octets — SHA-256 `02dd06a7dc597fec3e31872cc1f27b9bfd832ea83f220c38a8ea8fef83d626ac`
-- `wikidebia-kit.zip` — 768099 octets — SHA-256 `70b18b6d30074c0f38ff868e6b36db3400ff84e32e658c76fb7da0817b9e7fee`
+- `wikidebia-normes.zip` — 3722347 octets — SHA-256 `005ec11b10d03631f21da0bac298444e6f19da78c755f98a0b146c12a5fae760`
+- `wikidebia-validator.zip` — 3901488 octets — SHA-256 `5c1c02c41fd3c2e39c9e44310af60c957d8b646237410fc86e36ae6b498404f8`
+- `wikidebia-kit.zip` — 775779 octets — SHA-256 `b7ba14253b09e894fa3da985f2cef32ee5c0de24c2a6b75d8dc20600a7a73324`
 
 ## Norme consolidée active
 
@@ -1648,10 +1648,15 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `365f089008340f5a46f5c8a5ca9d6b7d459d3243b3e0fa47f1984351c9c72a54`
+SHA-256 : `55ca3f11fd858c5cab0a98275acc8aef1a0fa85ff117f01f1571865776d0c8f5`
 
-# Wikidéb’IA Validator 0.4.98
+# Wikidéb’IA Validator 0.4.99
 
+Le validateur 0.4.99 aligne le préflight final sur la provenance historique déjà prévue par la norme. En validation différentielle, un `titre-affiché` français préexistant n’est plus requalifié par une heuristique de proposition complète : sa forme source revue et l’absence de régression FR→EN font foi. Une forme source réellement propositionnelle reste protégée contre toute dégradation.
+
+`WDV-DOC-005` ignore désormais les segments ISO qui appartiennent à une URL dans une note `<ref>`, tout en continuant de bloquer une date documentaire machine présente dans la prose de la note. Les contrôles de style des résumés restent stricts pour les contenus nouveaux ; les résumés historiques continuent d’être validés selon leur provenance et leur verrou. Norme active : 1.2.87. Kit associé : 2.16.32.
+
+## État hérité de 0.4.98
 Le validateur 0.4.98 corrige deux incompatibilités de préflight sans relâcher les contrôles. Le schéma du manifeste accepte désormais le mode déjà émis par le kit `historical_text_render_validation_mode=differential_preservation_v1`, avec cet unique enum. `WDV-MWK-024` recalcule désormais le ratio lexical des `Quote` avec exactement la même tokenisation que la revue de traduction : apostrophes françaises typographiques incluses dans les mots, mêmes suppressions de notes et de balisage simple. Une modification réelle du texte rendu reste bloquante.
 
 Il conserve intégralement `WDV-MWK-023`, la réconciliation documentaire de 0.4.97 et tous les contrôles antérieurs. Norme active : 1.2.87. Kit associé : 2.16.31.
@@ -1753,7 +1758,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `132cfc473598c867ec9c9305ee8218e8aa959f8d9f693402ed8f29ea5b219c68`
+SHA-256 : `b32c1357b6440f2d448ab94a28cc68771fa31a6a835885ff68a12238bda046d8`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -1996,13 +2001,25 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ajoute des régressions sur le schéma, la tokenisation de A0005 et une modification réelle de Quote ;
 - conserve la norme 1.2.87 et le kit 2.16.30.
 
+## 0.4.99 — 19 août 2026 — validation différentielle des titres historiques et dates inline
+
+- n’impose plus rétroactivement la proposition complète à la traduction d’un `titre-affiché` préexistant lorsque sa forme historique revue est nominale ou contextuelle ;
+- conserve le blocage d’une dégradation d’une forme source propositionnelle vers une forme non propositionnelle ;
+- ignore les motifs ISO appartenant à une URL lors de `WDV-DOC-005`, tout en bloquant les dates machine présentes dans la prose des notes ;
+- conserve tous les contrôles de 0.4.98 et s’aligne sur le kit 2.16.32.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `f2eb78c88d75598adff7c21bedb0fa9ddced65568589e3c20991b0b4875dced8`
+SHA-256 : `9a4c7e5dc1950490eb9784889b1bbf8bca5d3b5edd5f1ab1e9bc959e272d8556`
 
-# Wikidéb’IA Kit 2.16.31
+# Wikidéb’IA Kit 2.16.32
 
+Le kit 2.16.32 corrige le préflight final des reprises historiques bilingues sans rouvrir les décisions éditoriales déjà scellées. Au rendu, `individual_review.json` propage désormais les preuves de changement de forme idiomatique des titres affichés et les attestations attendues par le validateur courant. `summary_style_review.json` est réconcilié depuis les verrous FR/EN autoritatifs pour les résumés `historical_existing`, `historical_absent` ou explicitement autorisés : aucune attestation de création, notamment `forceful_expression`, n’est inventée rétroactivement.
+
+Le renderer localise aussi les dates documentaires au format ISO qui subsistent dans la prose des notes `<ref>` anglaises (`2024-07-09` → `9 July 2024`) tout en préservant exactement les URL contenant un segment de date. Les contenus hors notes et les dates de création restent inchangés. Norme active : 1.2.87. Validateur associé : 0.4.99.
+
+## État hérité de 2.16.31
 Le kit 2.16.31 localise les attestations de qualité du vocabulaire bilingue au niveau de chaque langue. Une traduction anglaise ne réutilise plus mécaniquement `multiword_exception`, `kind`, `atomic_concept` et `compositional_intersection` de la forme française : le fichier `keyword_vocabulary_bilingual.json` reçoit des champs `en_*` calculés pour la forme anglaise réellement validée. Ainsi une locution française comme `bourrage d'urnes` peut devenir le composé anglais `ballot stuffing` sans faux `WDV-EDT-025`, tandis qu’une forme anglaise réellement longue conserve une exception multi-mots et une justification propre.
 
 Le contrôle `WDV-EDT-025` reste strict et inchangé. Ce correctif ne modifie aucun mot-clé, aucun ordre de pertinence et aucune règle normative ; il corrige uniquement la projection bilingue des attestations déjà prévues par le validateur. Norme active : 1.2.87. Validateur associé : 0.4.98.
@@ -2145,7 +2162,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `ddf5b46d48bf4ca8dc90ab6d1e182b282974edd47581c959442f8eb9d8d9343d`
+SHA-256 : `0dd0216aedeaa8d3af43ac621e7f600b0847570c13ad498d1c7f0e69a3fbf30a`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2509,6 +2526,14 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - ajoute des régressions sur `ballot stuffing`, une forme anglaise longue et l’émission effective des champs `en_*` ;
 - s’aligne sur la norme 1.2.87 et le validateur 0.4.98.
 
+## 2.16.32 — 19 août 2026 — preuves historiques finales et dates documentaires inline
+
+- réconcilie `summary_style_review.json` au rendu depuis les verrous FR/EN pour les résumés historiques, absents ou explicitement autorisés, sans fabriquer d’attestations de création ;
+- propage dans `individual_review.json` les preuves de changement de forme idiomatique et les attestations de revue attendues par le validateur courant ;
+- localise les dates documentaires ISO présentes dans la prose des notes `<ref>` anglaises sans modifier les URL ;
+- conserve les deux passes de convergence et toutes les décisions sémantiques déjà scellées ;
+- s’aligne sur la norme 1.2.87 et le validateur 0.4.99.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -2801,19 +2826,20 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `42bf5df0e39c9887468e33fdd03981d32e33091abcf49f5320aefe62fe603bb7`
+SHA-256 : `2b81174ed98b882a0c783f9020075bd3fe33909177b7f95511040a876668e6c1`
 
-Wikidéb’IA Kit 2.16.31 — rapport de tests
+Wikidéb’IA Kit 2.16.32 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 501
-Tests pytest : 501 réussis
+Tests pytest collectés : 504
+Tests pytest : 504 réussis
 Norme : 1.2.87
-Validateur : 0.4.98
-Atomicité bilingue des mots-clés : PASSED ; les attestations dépendant de la forme linguistique sont localisées via les champs `en_*`, sans modification des concepts ni de leur ordre.
-Régression vote électronique : PASSED ; les 72 équivalents anglais contrôlés produisent zéro faux signal d’atomicité après localisation.
-Rendu métadonnées FR→EN 2.16.30 : PASSED ; présence et valeurs tirées de la source française autoritative.
+Validateur : 0.4.99
+Rendu historique bilingue : PASSED ; individual_review.json propage les preuves de changement de forme et summary_style_review.json est réconcilié depuis les verrous FR/EN sans appliquer les règles de création aux résumés historiques.
+Dates documentaires inline : PASSED ; les dates ISO de la prose des notes anglaises sont localisées en langage naturel sans modifier les URL.
+Atomicité bilingue des mots-clés 2.16.31 : PASSED.
+Rendu métadonnées FR→EN 2.16.30 : PASSED.
 Réconciliation documentaire et préservation différentielle 2.16.29 : PASSED.
-Tous les contrôles 2.16.30 et antérieurs restent verts.
+Tous les contrôles 2.16.31 et antérieurs restent verts.
 
 ## Guide d’orchestration éditoriale
 
@@ -2937,9 +2963,9 @@ La réussite du paquet `fr_content_review` déclenche automatiquement le rendu d
 ## Guide de traduction anglaise
 
 Source interne : `kit/GUIDE_TRANSLATION_REVIEW.md`  
-SHA-256 : `ca5d5cbd8806ece127c438ea6d293d637ea52e64b5164cb67b82afee805e979a`
+SHA-256 : `843ab17cb3f3105756eddd9e906da44911d9f3e51807dfe3ab3d63318dd36ed8`
 
-# Guide de traduction anglaise contrôlée — Kit 2.16.31
+# Guide de traduction anglaise contrôlée — Kit 2.16.32
 
 > Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 

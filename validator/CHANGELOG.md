@@ -239,3 +239,9 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ajoute des régressions sur le schéma, la tokenisation de A0005 et une modification réelle de Quote ;
 - conserve la norme 1.2.87 et le kit 2.16.30.
 
+## 0.4.99 — 19 août 2026 — validation différentielle des titres historiques et dates inline
+
+- n’impose plus rétroactivement la proposition complète à la traduction d’un `titre-affiché` préexistant lorsque sa forme historique revue est nominale ou contextuelle ;
+- conserve le blocage d’une dégradation d’une forme source propositionnelle vers une forme non propositionnelle ;
+- ignore les motifs ISO appartenant à une URL lors de `WDV-DOC-005`, tout en bloquant les dates machine présentes dans la prose des notes ;
+- conserve tous les contrôles de 0.4.98 et s’aligne sur le kit 2.16.32.

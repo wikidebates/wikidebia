@@ -1,5 +1,10 @@
-# Wikidéb’IA Validator 0.4.98
+# Wikidéb’IA Validator 0.4.99
 
+Le validateur 0.4.99 aligne le préflight final sur la provenance historique déjà prévue par la norme. En validation différentielle, un `titre-affiché` français préexistant n’est plus requalifié par une heuristique de proposition complète : sa forme source revue et l’absence de régression FR→EN font foi. Une forme source réellement propositionnelle reste protégée contre toute dégradation.
+
+`WDV-DOC-005` ignore désormais les segments ISO qui appartiennent à une URL dans une note `<ref>`, tout en continuant de bloquer une date documentaire machine présente dans la prose de la note. Les contrôles de style des résumés restent stricts pour les contenus nouveaux ; les résumés historiques continuent d’être validés selon leur provenance et leur verrou. Norme active : 1.2.87. Kit associé : 2.16.32.
+
+## État hérité de 0.4.98
 Le validateur 0.4.98 corrige deux incompatibilités de préflight sans relâcher les contrôles. Le schéma du manifeste accepte désormais le mode déjà émis par le kit `historical_text_render_validation_mode=differential_preservation_v1`, avec cet unique enum. `WDV-MWK-024` recalcule désormais le ratio lexical des `Quote` avec exactement la même tokenisation que la revue de traduction : apostrophes françaises typographiques incluses dans les mots, mêmes suppressions de notes et de balisage simple. Une modification réelle du texte rendu reste bloquante.
 
 Il conserve intégralement `WDV-MWK-023`, la réconciliation documentaire de 0.4.97 et tous les contrôles antérieurs. Norme active : 1.2.87. Kit associé : 2.16.31.

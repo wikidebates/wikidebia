@@ -1,6 +1,6 @@
-Wikidéb’IA Validator 0.4.98 — auto-audit
+Wikidéb’IA Validator 0.4.99 — auto-audit
 Statut : PASSED
 Norme active unique : 1.2.87
-Kit aligné : 2.16.31
-Tests : 445 réussis
-Maintenance 0.4.98 : schéma differential_preservation_v1 et tokenizer lexical Quote alignés ; contrôles 0.4.97 conservés.
+Kit aligné : 2.16.32
+Tests : 447 réussis
+Maintenance 0.4.99 : validation différentielle des titres affichés historiques et détection des dates documentaires inline alignées ; contrôles 0.4.98 conservés.

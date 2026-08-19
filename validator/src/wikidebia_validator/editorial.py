@@ -841,7 +841,8 @@ def _validate_intro_references(ctx: PackageContext, manifest: dict[str, Any], co
                     invalid_direct_notes.append({'subsection': index + 1, 'reason': 'mediawiki_template_forbidden', 'templates': templates})
                 if not body:
                     invalid_direct_notes.append({'subsection': index + 1, 'reason': 'empty_reference_body'})
-                for dm in machine_date_re.finditer(body):
+                body_without_urls = re.sub(r'https?://[^\s<>\]]+', ' ', body, flags=re.I)
+                for dm in machine_date_re.finditer(body_without_urls):
                     machine_dates.append({'subsection': index + 1, 'value': dm.group(0)})
             for match in ref_self_re.finditer(block):
                 named = name_re.search(match.group('attrs') or '')
@@ -1423,7 +1424,7 @@ def validate_individual_review_data(review: Any, nodes: list[dict[str, Any]], no
                     'displayed_title_no_formal_regression_en',
                     'displayed_title_semantic_inventory_reviewed_en',
                 ]
-                if not displayed_title_argument_issues(str(fr.get('displayed_title') or ''), 'fr'):
+                if (not preexisting_fr) and (not displayed_title_argument_issues(str(fr.get('displayed_title') or ''), 'fr')):
                     required_title_attestations.append('displayed_title_complete_proposition_en')
             else:
                 required_title_attestations += ['displayed_title_complete_proposition_en', 'displayed_title_argument_intelligible_en']
