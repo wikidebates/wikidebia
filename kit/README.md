@@ -1,5 +1,10 @@
-# Wikidéb’IA Kit 2.16.34
+# Wikidéb’IA Kit 2.16.35
 
+Le kit 2.16.35 isole l’exécution du validateur orchestré de toute copie Python parasite. `_run_validator` utilise désormais exclusivement `project_root/validator/src`, désactive le user-site, neutralise un `PYTHONHOME` hérité et exécute le sous-processus depuis le composant `validator/`. Une vieille copie de `wikidebia_validator` présente à la racine du projet ou dans un `PYTHONPATH` hérité ne peut donc plus masquer le validateur installé par `upgrade`.
+
+Ce correctif répond au diagnostic réel du vote électronique : les fichiers exacts de `render_preflight` produisent zéro anomalie `WDV-EDT-013/014/015/020` lorsqu’ils sont validés avec le code 0.4.101 de la release, alors que le préflight utilisateur exécutait manifestement une autre copie logique du validateur. Aucun contrôle éditorial n’est assoupli. Norme active : 1.2.87. Validateur associé : 0.4.101.
+
+## État hérité de 2.16.34
 Le kit 2.16.34 conserve désormais les paquets de diagnostic complets à travers le rollback transactionnel de `review-import`. Le kit 2.16.33 les créait correctement, mais le nettoyage transactionnel de `outgoing/` pouvait ensuite les supprimer avant que l’utilisateur puisse les récupérer. Seuls les ZIP auto-identifiés par `DIAGNOSTIC_PACKAGE.json` et le schéma `wikidebia-workflow-diagnostic-package-1.0` sont exemptés du nettoyage ; les sorties partielles ordinaires restent supprimées.
 
 Le mécanisme 2.16.33 exporte automatiquement un paquet de diagnostic complet à chaque échec du validateur orchestré. Le terminal continue d'afficher un résumé compact, mais `outgoing/<debate_id>_<rapport>_diagnostic.zip` contient désormais **toutes** les erreurs bloquantes dans `ERRORS.json` / `ERRORS.txt`, le rapport complet et le contexte minimal directement utile. Le ZIP est conçu pour être transmis tel quel à ChatGPT afin d'analyser un blocage en une seule fois.

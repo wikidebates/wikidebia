@@ -14,7 +14,7 @@
     {
       "path": "CAPABILITIES.json",
       "size_bytes": 2956,
-      "sha256": "de9e0a2cb06c75ceed5dae69a0d0698be9a8c9aabe2554c52ebcba626186ae07"
+      "sha256": "f35e9e58fdddd245bd3679cbbcdee7e5b96441797e9c732d85601edf6e98e923"
     },
     {
       "path": "CHANGELOG.md",
@@ -24,7 +24,7 @@
     {
       "path": "COMPATIBILITY.json",
       "size_bytes": 2904,
-      "sha256": "90752e7c594e940ce7093afdb671f0ea81ac85e13c21760ffa831468e9dc8d9b"
+      "sha256": "ba26c5c800cff9649a223a9e5b1c65ce70eca04f8fd275354657a97d62e0cf6e"
     },
     {
       "path": "LICENSE",
@@ -34,17 +34,17 @@
     {
       "path": "README.md",
       "size_bytes": 13877,
-      "sha256": "1ceabac5c2abfcb8b05f452219d8cd2cc8c09486c92df56b082f891d281bfc90"
+      "sha256": "320287fe4f7e8e886ef1ff74df465fe45f9123c5427980be0fb157f0f755f6c4"
     },
     {
       "path": "TEST_REPORT.txt",
       "size_bytes": 416,
-      "sha256": "2b9bf5b2b983c608f3ca1d27b59c989ebed12490f40211d1681ff267fdbf3b42"
+      "sha256": "e18bc100f17589b5deeb4b72717a7d0bdedf84e551f481528917e0e975a0e0ca"
     },
     {
       "path": "VERSIONS.json",
       "size_bytes": 69,
-      "sha256": "e860f42bf08ceb878cc62604cc238946b81eb44ab7c8ee9aabd3b6a6fc2d5edf"
+      "sha256": "d67595cb11319c637cc82863321bac77b5e9cd3ee8234bafaf5a209ecaf71f63"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/CHANGELOG.md",
@@ -2084,7 +2084,7 @@
     {
       "path": "tests/test_editorial_orchestration_schemas_1273.py",
       "size_bytes": 4216,
-      "sha256": "3c70e050f3eda668c5be9ebab795534641fa2cf2cbe67b045c30da4a04759e11"
+      "sha256": "026a7a44e7695cf00c41c5cacea629d5a91c4ef7a115581aeeefdaa6ce969214"
     },
     {
       "path": "tests/test_files_batches_workflow.py",
@@ -2504,7 +2504,7 @@
     {
       "path": "tests/test_versions_file.py",
       "size_bytes": 1702,
-      "sha256": "24c64c71efa67dc8b53514ac8a1cd2ef28e75ed7bdfe26f9624e8ea5d7bc2567"
+      "sha256": "6ecf845fd4d61ea26e9c8ca7fb751f179c0ee88d7a30b0f49951b1e4b6f90e90"
     },
     {
       "path": "tests/test_wikicode.py",

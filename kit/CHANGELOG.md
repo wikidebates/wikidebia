@@ -386,3 +386,12 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - continue de supprimer les paquets de revue partiels, fichiers ordinaires et faux ZIP de diagnostic créés pendant une transaction échouée ;
 - ajoute des régressions couvrant la survie d’un diagnostic réel et la suppression d’un faux diagnostic ;
 - conserve la norme 1.2.87 et le validateur 0.4.101.
+
+## 2.16.35 — 19 août 2026 — isolation de la copie runtime du validateur
+
+- exécute `_run_validator` depuis le composant `validator/` avec un `PYTHONPATH` limité à `validator/src` ;
+- désactive le user-site Python, neutralise `PYTHONHOME` et empêche une copie ancienne de `wikidebia_validator` située à la racine du projet ou dans l’environnement hérité de masquer la release installée ;
+- ajoute une régression hostile où une fausse copie top-level du validateur retourne volontairement une erreur mais ne doit jamais être importée ;
+- vérifie sur les fichiers exacts du diagnostic du vote électronique que le validateur 0.4.101 courant produit zéro `WDV-EDT-013/014/015/020` pour les résumés historiques scellés ;
+- conserve les diagnostics complets et leur persistance transactionnelle de 2.16.33/2.16.34 ; aucune règle éditoriale ni aucun contenu de corpus n’est modifié.
+

@@ -1,9 +1,10 @@
-Wikidéb’IA Kit 2.16.34 — rapport de tests
+Wikidéb’IA Kit 2.16.35 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 508
-Tests pytest : 508 réussis
+Tests pytest collectés : 509
+Tests pytest : 509 réussis
 Norme : 1.2.87
 Validateur : 0.4.101
-Diagnostic automatique des validations : PASSED ; la liste exhaustive reste exportée dans ERRORS.json / ERRORS.txt.
-Persistance transactionnelle du diagnostic : PASSED ; un diagnostic complet survit au rollback de review-import, tandis que les sorties partielles et faux diagnostics restent supprimés.
-Tous les contrôles 2.16.33 et antérieurs restent verts.
+Isolation runtime du validateur : PASSED ; `_run_validator` utilise exclusivement `validator/src` depuis le répertoire du composant et ignore les copies Python parasites.
+Diagnostic réel du vote électronique : PASSED ; les fichiers exacts du diagnostic ne produisent plus WDV-EDT-013/014/015/020 avec le validateur 0.4.101 livré.
+Diagnostics complets et persistance transactionnelle : PASSED.
+Tous les contrôles 2.16.34 et antérieurs restent verts.

@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.87** ;
 - validateur actif : **0.4.101** ;
-- kit actif : **2.16.34**.
+- kit actif : **2.16.35**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3723439 octets — SHA-256 `ab3f7e51c0dac3af85251ad1d0a535a1d359c0940f5c6cca32aa6936ce32a2f8`
-- `wikidebia-validator.zip` — 3905332 octets — SHA-256 `af9adf2c816a0b983419e67e49b6649478fe8f3e19affacb3065454a47227846`
-- `wikidebia-kit.zip` — 784009 octets — SHA-256 `a28767dabab55cf61cb723981d384af1f20b14b9668411b870ae1b11a02c3683`
+- `wikidebia-normes.zip` — 3712246 octets — SHA-256 `9adfebc02366fc265e3b481866547ef519abfa341bb493fd8bc539362ab42b42`
+- `wikidebia-validator.zip` — 3893643 octets — SHA-256 `21bc5b970c8d03648013c9972e391eb1d1bd7328f8a76993eb6818e14ff955c7`
+- `wikidebia-kit.zip` — 783908 octets — SHA-256 `4f04ddc3153fbf7abb5962f2379e9e300944ff6573c10f1dff890444a47213ef`
 
 ## Norme consolidée active
 
@@ -1648,13 +1648,13 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `1ceabac5c2abfcb8b05f452219d8cd2cc8c09486c92df56b082f891d281bfc90`
+SHA-256 : `320287fe4f7e8e886ef1ff74df465fe45f9123c5427980be0fb157f0f755f6c4`
 
 # Wikidéb’IA Validator 0.4.101
 
 Le validateur 0.4.101 rend le registre `summary_style_review.json` explicitement **non autoritatif pour les résumés historiques**. Dès qu’un résumé est identifié par les verrous FR/EN comme `historical_existing`, `historical_authorized_change`, `historical_authorized_creation`, `historical_absent` ou retiré par décision propriétaire, les attestations de création (style grand public, ouverture, force expressive, exemple/chiffre) ne sont ni exigées ni reconstruites à partir de ce registre. La fidélité, l’absence et les autorisations restent contrôlées par les verrous historiques et les contrôles dédiés, notamment `WDV-EDT-034`.
 
-Un ancien registre peut donc conserver des lignes de provenance incomplètes, voire omettre les nœuds dont tous les résumés sont historiques, sans déclencher `WDV-EDT-013/014/015/020`. Les mêmes contrôles restent strictement applicables à chaque résumé réellement nouveau ou substantiellement réécrit hors profil historique. Norme active : 1.2.87. Kit associé : 2.16.34.
+Un ancien registre peut donc conserver des lignes de provenance incomplètes, voire omettre les nœuds dont tous les résumés sont historiques, sans déclencher `WDV-EDT-013/014/015/020`. Les mêmes contrôles restent strictement applicables à chaque résumé réellement nouveau ou substantiellement réécrit hors profil historique. Norme active : 1.2.87. Kit associé : 2.16.35.
 
 ## Notes héritées du validateur 0.4.100
 
@@ -2040,10 +2040,15 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `82d18fe741f5855c169a1e719f6d00353a3319114a86207e93e829ee993bdf94`
+SHA-256 : `0f844eb1941f05f146289a99f9d0b8c289946b85dbe941e494e71915c50b2208`
 
-# Wikidéb’IA Kit 2.16.34
+# Wikidéb’IA Kit 2.16.35
 
+Le kit 2.16.35 isole l’exécution du validateur orchestré de toute copie Python parasite. `_run_validator` utilise désormais exclusivement `project_root/validator/src`, désactive le user-site, neutralise un `PYTHONHOME` hérité et exécute le sous-processus depuis le composant `validator/`. Une vieille copie de `wikidebia_validator` présente à la racine du projet ou dans un `PYTHONPATH` hérité ne peut donc plus masquer le validateur installé par `upgrade`.
+
+Ce correctif répond au diagnostic réel du vote électronique : les fichiers exacts de `render_preflight` produisent zéro anomalie `WDV-EDT-013/014/015/020` lorsqu’ils sont validés avec le code 0.4.101 de la release, alors que le préflight utilisateur exécutait manifestement une autre copie logique du validateur. Aucun contrôle éditorial n’est assoupli. Norme active : 1.2.87. Validateur associé : 0.4.101.
+
+## État hérité de 2.16.34
 Le kit 2.16.34 conserve désormais les paquets de diagnostic complets à travers le rollback transactionnel de `review-import`. Le kit 2.16.33 les créait correctement, mais le nettoyage transactionnel de `outgoing/` pouvait ensuite les supprimer avant que l’utilisateur puisse les récupérer. Seuls les ZIP auto-identifiés par `DIAGNOSTIC_PACKAGE.json` et le schéma `wikidebia-workflow-diagnostic-package-1.0` sont exemptés du nettoyage ; les sorties partielles ordinaires restent supprimées.
 
 Le mécanisme 2.16.33 exporte automatiquement un paquet de diagnostic complet à chaque échec du validateur orchestré. Le terminal continue d'afficher un résumé compact, mais `outgoing/<debate_id>_<rapport>_diagnostic.zip` contient désormais **toutes** les erreurs bloquantes dans `ERRORS.json` / `ERRORS.txt`, le rapport complet et le contexte minimal directement utile. Le ZIP est conçu pour être transmis tel quel à ChatGPT afin d'analyser un blocage en une seule fois.
@@ -2198,7 +2203,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `4429b505b0b7a72b3c2d32cff1a243990a982bd5d55db668263f4a74f6d0eb49`
+SHA-256 : `62b1c012b148b4794540e9ceaff925b6fe12ef94fae81830fe94d449381a7bfd`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2589,6 +2594,14 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - ajoute des régressions couvrant la survie d’un diagnostic réel et la suppression d’un faux diagnostic ;
 - conserve la norme 1.2.87 et le validateur 0.4.101.
 
+## 2.16.35 — 19 août 2026 — isolation de la copie runtime du validateur
+
+- exécute `_run_validator` depuis le composant `validator/` avec un `PYTHONPATH` limité à `validator/src` ;
+- désactive le user-site Python, neutralise `PYTHONHOME` et empêche une copie ancienne de `wikidebia_validator` située à la racine du projet ou dans l’environnement hérité de masquer la release installée ;
+- ajoute une régression hostile où une fausse copie top-level du validateur retourne volontairement une erreur mais ne doit jamais être importée ;
+- vérifie sur les fichiers exacts du diagnostic du vote électronique que le validateur 0.4.101 courant produit zéro `WDV-EDT-013/014/015/020` pour les résumés historiques scellés ;
+- conserve les diagnostics complets et leur persistance transactionnelle de 2.16.33/2.16.34 ; aucune règle éditoriale ni aucun contenu de corpus n’est modifié.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -2881,17 +2894,18 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `a259b4691a9f5e7b6add18fb9414c26966e4498e926a54928ae1910f0a582761`
+SHA-256 : `b2a78c5592c158c36456a321d748350f12408f1c6138b9de594a29ebf633e4cb`
 
-Wikidéb’IA Kit 2.16.34 — rapport de tests
+Wikidéb’IA Kit 2.16.35 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 508
-Tests pytest : 508 réussis
+Tests pytest collectés : 509
+Tests pytest : 509 réussis
 Norme : 1.2.87
 Validateur : 0.4.101
-Diagnostic automatique des validations : PASSED ; la liste exhaustive reste exportée dans ERRORS.json / ERRORS.txt.
-Persistance transactionnelle du diagnostic : PASSED ; un diagnostic complet survit au rollback de review-import, tandis que les sorties partielles et faux diagnostics restent supprimés.
-Tous les contrôles 2.16.33 et antérieurs restent verts.
+Isolation runtime du validateur : PASSED ; `_run_validator` utilise exclusivement `validator/src` depuis le répertoire du composant et ignore les copies Python parasites.
+Diagnostic réel du vote électronique : PASSED ; les fichiers exacts du diagnostic ne produisent plus WDV-EDT-013/014/015/020 avec le validateur 0.4.101 livré.
+Diagnostics complets et persistance transactionnelle : PASSED.
+Tous les contrôles 2.16.34 et antérieurs restent verts.
 
 ## Guide d’orchestration éditoriale
 

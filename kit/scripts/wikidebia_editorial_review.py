@@ -1080,9 +1080,18 @@ def _run_validator(
     for scope in scopes:
         command.extend(["--scope", scope])
     command.extend(["--format", "text", "--json-output", str(json_output), "--text-output", str(text_output)])
+    # Execute the validator from the exact component installed under this project.
+    # Do not inherit PYTHONPATH: a stale top-level checkout or an older validator
+    # from another workspace must never shadow ``project_root/validator/src``.
     env = dict(os.environ)
-    env["PYTHONPATH"] = str(validator_src) + (os.pathsep + env["PYTHONPATH"] if env.get("PYTHONPATH") else "")
-    completed = subprocess.run(command, text=True, capture_output=True, env=env, check=False)
+    env["PYTHONPATH"] = str(validator_src)
+    env["PYTHONNOUSERSITE"] = "1"
+    env["PYTHONDONTWRITEBYTECODE"] = "1"
+    env.pop("PYTHONHOME", None)
+    completed = subprocess.run(
+        command, text=True, capture_output=True, env=env, check=False,
+        cwd=str((project_root / "validator").resolve()),
+    )
     if not json_output.is_file():
         raise EditorialReviewError(f"Le validateur n’a pas produit son rapport : {completed.stderr[-1000:]}")
     report = load_json(json_output, "rapport du validateur")
