@@ -1,3 +1,11 @@
+# Wikidéb’IA Validator 0.4.100
+
+Le validateur 0.4.100 rend la provenance des résumés historiques indépendante de l’état transitoire de l’orchestrateur. `fr_content_lock.json` et `en_content_lock.json` sont désormais les sources autoritatives pour reconnaître `historical_existing`, `historical_authorized_change`, `historical_authorized_creation` et `historical_absent`.
+
+Ainsi, un résumé historique ou explicitement autorisé n’est jamais requalifié comme résumé nouvellement rédigé au préflight final et n’est pas soumis rétroactivement aux attestations de création (`forceful_expression`, `opening_develops_title`, vérification quantitative). Les mêmes contrôles restent strictement applicables aux résumés réellement nouveaux. Norme active : 1.2.87. Kit associé : 2.16.32.
+
+## Notes héritées du validateur 0.4.99
+
 # Wikidéb’IA Validator 0.4.99
 
 Le validateur 0.4.99 aligne le préflight final sur la provenance historique déjà prévue par la norme. En validation différentielle, un `titre-affiché` français préexistant n’est plus requalifié par une heuristique de proposition complète : sa forme source revue et l’absence de régression FR→EN font foi. Une forme source réellement propositionnelle reste protégée contre toute dégradation.
@@ -102,3 +110,4 @@ Le correctif 0.4.73 aligne l’exécution du validateur sur les règles déjà a
 ## Architecture de compatibilité 2026-08-10
 
 Les numéros de release sont une provenance. La compatibilité opérationnelle est pilotée par `CAPABILITIES.json` et les identifiants/version de schéma ; les égalités exactes sont réservées à l’installation, l’anti-downgrade, la reproductibilité et l’audit.
+

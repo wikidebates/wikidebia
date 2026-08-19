@@ -5,7 +5,7 @@
   "release_source": "VERSIONS.json",
   "release": {
     "norm": "1.2.87",
-    "validator": "0.4.99",
+    "validator": "0.4.100",
     "kit": "2.16.32"
   },
   "emits": {

@@ -133,8 +133,8 @@
     },
     {
       "path": "CAPABILITIES.json",
-      "size_bytes": 5285,
-      "sha256": "07b577b20fd0a0ba2436505e8eb061d9c814129900e36ebdf710505725373192"
+      "size_bytes": 5286,
+      "sha256": "46b42ec433bba064f5484680c3506dbafbd468f728ce379c58ded3a551d9ae0c"
     },
     {
       "path": "CHANGELOG.md",
@@ -143,8 +143,8 @@
     },
     {
       "path": "COMPATIBILITY.json",
-      "size_bytes": 523,
-      "sha256": "836031343ee72bd0468f2cb951de0bad4459130894bf40f6a1e12548577218d8"
+      "size_bytes": 524,
+      "sha256": "59c41deb32c19dacc8083d812528e0825dddf46271948cd217665b74e0f4e8af"
     },
     {
       "path": "GUIDE_BILINGUAL_RENDER.md",
@@ -223,8 +223,8 @@
     },
     {
       "path": "KIT_MANIFEST.json",
-      "size_bytes": 28791,
-      "sha256": "6815d41252787568106f219d23e2b8323bda72cbc95abf86927f1a383cff97de"
+      "size_bytes": 28792,
+      "sha256": "5af7776a9cdd7f3bc44aa10862909e777f717f82fa16a44b32f72913b9ebc218"
     },
     {
       "path": "MIGRATION_2.1.11.md",
@@ -793,8 +793,8 @@
     },
     {
       "path": "README.md",
-      "size_bytes": 23796,
-      "sha256": "9a4c7e5dc1950490eb9784889b1bbf8bca5d3b5edd5f1ab1e9bc959e272d8556"
+      "size_bytes": 23797,
+      "sha256": "b664d2568420415d04b0f9c65ba29410c9b4a3a9cbd8bac3f13448fc6123ec01"
     },
     {
       "path": "REGRESSION_AUDIT_2.15.38.md",
@@ -898,13 +898,13 @@
     },
     {
       "path": "TEST_REPORT.txt",
-      "size_bytes": 777,
-      "sha256": "2b81174ed98b882a0c783f9020075bd3fe33909177b7f95511040a876668e6c1"
+      "size_bytes": 778,
+      "sha256": "3a0032ba457dee078009bdcbc8d09743a71f92ee5394cc2b2760becf3608f76b"
     },
     {
       "path": "VERSIONS.json",
-      "size_bytes": 68,
-      "sha256": "ff5ba17d25bd988a99276b8f8d2514e5f08f8b0b20a90b04dc0ae0173d09ea9a"
+      "size_bytes": 69,
+      "sha256": "e06e49194556b30abc9e958d24bd26f2e947ce0ed23b2a7325e3b27d7d14bef6"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/CHANGELOG.md",
@@ -1638,8 +1638,8 @@
     },
     {
       "path": "tests/test_reconciliation_21546.py",
-      "size_bytes": 1945,
-      "sha256": "416ef8ad4bd2b98fdf5e4a544104a64aff91b4278a1c32fbadfd44b633ccb32e"
+      "size_bytes": 1947,
+      "sha256": "b788e9f7d9e47fe7f5633fe0879b87be7650c3663ad8ddb721dc3c7054d2d6c7"
     },
     {
       "path": "tests/test_reconciliation_21547.py",

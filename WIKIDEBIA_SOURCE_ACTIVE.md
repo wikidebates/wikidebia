@@ -3,14 +3,14 @@
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
 - norme active : **1.2.87** ;
-- validateur actif : **0.4.99** ;
+- validateur actif : **0.4.100** ;
 - kit actif : **2.16.32**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3722347 octets — SHA-256 `005ec11b10d03631f21da0bac298444e6f19da78c755f98a0b146c12a5fae760`
-- `wikidebia-validator.zip` — 3901488 octets — SHA-256 `5c1c02c41fd3c2e39c9e44310af60c957d8b646237410fc86e36ae6b498404f8`
-- `wikidebia-kit.zip` — 775779 octets — SHA-256 `b7ba14253b09e894fa3da985f2cef32ee5c0de24c2a6b75d8dc20600a7a73324`
+- `wikidebia-normes.zip` — 3711650 octets — SHA-256 `f60eaf6531b9b4cb755b89fa072da137d6ca43cd22d5db5026cebb7453ca307a`
+- `wikidebia-validator.zip` — 3891786 octets — SHA-256 `b48c5831599212d0538d2b1e282202abfb32717f77dee1fc95db2dac9853df77`
+- `wikidebia-kit.zip` — 772661 octets — SHA-256 `c4e5671ab7c158094a9c7aa780d4471640cd00170e34bc97b1a51d32b9432cc8`
 
 ## Norme consolidée active
 
@@ -1648,7 +1648,15 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `55ca3f11fd858c5cab0a98275acc8aef1a0fa85ff117f01f1571865776d0c8f5`
+SHA-256 : `21723773a08a2da4288a559df7719a2d4a64602396a474d0e3ab8e068bcfec7a`
+
+# Wikidéb’IA Validator 0.4.100
+
+Le validateur 0.4.100 rend la provenance des résumés historiques indépendante de l’état transitoire de l’orchestrateur. `fr_content_lock.json` et `en_content_lock.json` sont désormais les sources autoritatives pour reconnaître `historical_existing`, `historical_authorized_change`, `historical_authorized_creation` et `historical_absent`.
+
+Ainsi, un résumé historique ou explicitement autorisé n’est jamais requalifié comme résumé nouvellement rédigé au préflight final et n’est pas soumis rétroactivement aux attestations de création (`forceful_expression`, `opening_develops_title`, vérification quantitative). Les mêmes contrôles restent strictement applicables aux résumés réellement nouveaux. Norme active : 1.2.87. Kit associé : 2.16.32.
+
+## Notes héritées du validateur 0.4.99
 
 # Wikidéb’IA Validator 0.4.99
 
@@ -1758,7 +1766,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `b32c1357b6440f2d448ab94a28cc68771fa31a6a835885ff68a12238bda046d8`
+SHA-256 : `e5ad6b12a4dda9cc519e1829b56dc8ba572eaa8a9e234efc516c1085c701ae6d`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2008,16 +2016,25 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ignore les motifs ISO appartenant à une URL lors de `WDV-DOC-005`, tout en bloquant les dates machine présentes dans la prose des notes ;
 - conserve tous les contrôles de 0.4.98 et s’aligne sur le kit 2.16.32.
 
+## 0.4.100 — 19 août 2026 — provenance historique autoritative des résumés
+
+- lit `summary_provenance` directement dans `fr_content_lock.json` et `en_content_lock.json` au préflight final ;
+- reconnaît `historical_existing`, `historical_authorized_change`, `historical_authorized_creation` et `historical_absent` sans dépendre d’un `translation_status` transitoire ;
+- empêche `WDV-EDT-013`, `WDV-EDT-014`, `WDV-EDT-015` et `WDV-EDT-020` d’appliquer rétroactivement le profil de création à un résumé historique dûment verrouillé ;
+- conserve ces quatre contrôles inchangés pour les résumés réellement nouveaux ;
+- ajoute des régressions sur un résumé historique autorisé comportant des données chiffrées et sur une absence historique bilingue ;
+- conserve la norme 1.2.87 et le kit 2.16.32.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `9a4c7e5dc1950490eb9784889b1bbf8bca5d3b5edd5f1ab1e9bc959e272d8556`
+SHA-256 : `b664d2568420415d04b0f9c65ba29410c9b4a3a9cbd8bac3f13448fc6123ec01`
 
 # Wikidéb’IA Kit 2.16.32
 
 Le kit 2.16.32 corrige le préflight final des reprises historiques bilingues sans rouvrir les décisions éditoriales déjà scellées. Au rendu, `individual_review.json` propage désormais les preuves de changement de forme idiomatique des titres affichés et les attestations attendues par le validateur courant. `summary_style_review.json` est réconcilié depuis les verrous FR/EN autoritatifs pour les résumés `historical_existing`, `historical_absent` ou explicitement autorisés : aucune attestation de création, notamment `forceful_expression`, n’est inventée rétroactivement.
 
-Le renderer localise aussi les dates documentaires au format ISO qui subsistent dans la prose des notes `<ref>` anglaises (`2024-07-09` → `9 July 2024`) tout en préservant exactement les URL contenant un segment de date. Les contenus hors notes et les dates de création restent inchangés. Norme active : 1.2.87. Validateur associé : 0.4.99.
+Le renderer localise aussi les dates documentaires au format ISO qui subsistent dans la prose des notes `<ref>` anglaises (`2024-07-09` → `9 July 2024`) tout en préservant exactement les URL contenant un segment de date. Les contenus hors notes et les dates de création restent inchangés. Norme active : 1.2.87. Validateur associé : 0.4.100.
 
 ## État hérité de 2.16.31
 Le kit 2.16.31 localise les attestations de qualité du vocabulaire bilingue au niveau de chaque langue. Une traduction anglaise ne réutilise plus mécaniquement `multiword_exception`, `kind`, `atomic_concept` et `compositional_intersection` de la forme française : le fichier `keyword_vocabulary_bilingual.json` reçoit des champs `en_*` calculés pour la forme anglaise réellement validée. Ainsi une locution française comme `bourrage d'urnes` peut devenir le composé anglais `ballot stuffing` sans faux `WDV-EDT-025`, tandis qu’une forme anglaise réellement longue conserve une exception multi-mots et une justification propre.
@@ -2826,14 +2843,14 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `2b81174ed98b882a0c783f9020075bd3fe33909177b7f95511040a876668e6c1`
+SHA-256 : `3a0032ba457dee078009bdcbc8d09743a71f92ee5394cc2b2760becf3608f76b`
 
 Wikidéb’IA Kit 2.16.32 — rapport de tests
 Statut : PASSED
 Tests pytest collectés : 504
 Tests pytest : 504 réussis
 Norme : 1.2.87
-Validateur : 0.4.99
+Validateur : 0.4.100
 Rendu historique bilingue : PASSED ; individual_review.json propage les preuves de changement de forme et summary_style_review.json est réconcilié depuis les verrous FR/EN sans appliquer les règles de création aux résumés historiques.
 Dates documentaires inline : PASSED ; les dates ISO de la prose des notes anglaises sont localisées en langage naturel sans modifier les URL.
 Atomicité bilingue des mots-clés 2.16.31 : PASSED.

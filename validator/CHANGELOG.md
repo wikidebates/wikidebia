@@ -245,3 +245,13 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - conserve le blocage d’une dégradation d’une forme source propositionnelle vers une forme non propositionnelle ;
 - ignore les motifs ISO appartenant à une URL lors de `WDV-DOC-005`, tout en bloquant les dates machine présentes dans la prose des notes ;
 - conserve tous les contrôles de 0.4.98 et s’aligne sur le kit 2.16.32.
+
+## 0.4.100 — 19 août 2026 — provenance historique autoritative des résumés
+
+- lit `summary_provenance` directement dans `fr_content_lock.json` et `en_content_lock.json` au préflight final ;
+- reconnaît `historical_existing`, `historical_authorized_change`, `historical_authorized_creation` et `historical_absent` sans dépendre d’un `translation_status` transitoire ;
+- empêche `WDV-EDT-013`, `WDV-EDT-014`, `WDV-EDT-015` et `WDV-EDT-020` d’appliquer rétroactivement le profil de création à un résumé historique dûment verrouillé ;
+- conserve ces quatre contrôles inchangés pour les résumés réellement nouveaux ;
+- ajoute des régressions sur un résumé historique autorisé comportant des données chiffrées et sur une absence historique bilingue ;
+- conserve la norme 1.2.87 et le kit 2.16.32.
+

@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_reconciliation_manifest_and_publication_literals():
     manifest = json.loads((ROOT / 'KIT_MANIFEST.json').read_text(encoding='utf-8'))
     assert manifest['version'] == '2.16.32'
-    assert manifest['validator_version'] == '0.4.99'
+    assert manifest['validator_version'] == '0.4.100'
     assert manifest['normative_revision'] == '1.2.87'
     assert manifest['translation_change_tag'] == 'translated-fr'
     publish = (ROOT / 'scripts' / 'wikidebia_publish.py').read_text(encoding='utf-8')
@@ -39,5 +39,5 @@ def test_reconciliation_preserves_translation_quality_tools_and_publication_tool
 def test_reconciliation_versions_are_coherent():
     versions = json.loads((ROOT / 'VERSIONS.json').read_text(encoding='utf-8'))
     assert versions['norm'] == '1.2.87'
-    assert versions['validator'] == '0.4.99'
+    assert versions['validator'] == '0.4.100'
     assert versions['kit'] == '2.16.32'

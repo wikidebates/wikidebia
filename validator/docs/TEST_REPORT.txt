@@ -1,11 +1,9 @@
-Wikidéb’IA Validator 0.4.99 — rapport de tests
+Wikidéb’IA Validator 0.4.100 — rapport de tests
+
 Statut : PASSED
-Tests pytest collectés : 447
-Tests pytest : 447 réussis
-Norme : 1.2.87
+Norme active : 1.2.87
 Kit recommandé : 2.16.32
-WDV-EDT-012 : PASSED ; la propositionnalité des titres affichés historiques est évaluée différentiellement selon la forme source revue, sans profil de création rétroactif.
-WDV-DOC-005 : PASSED ; les segments ISO appartenant aux URL sont ignorés, tandis qu’une date machine dans la prose d’une note reste bloquante.
-WDV-EDT-013/020 : PASSED ; les contrôles restent stricts pour les résumés nouveaux et respectent la provenance historique déjà scellée.
-Schéma du rendu historique et WDV-MWK-024 0.4.98 : PASSED.
-Tous les contrôles 0.4.98 et antérieurs restent verts.
+Tests pytest : 449 réussis
+
+WDV-EDT-013/014/015/020 : PASSED ; la provenance historique est lue directement dans les verrous FR/EN, indépendamment de `translation_status`, et les contrôles de création restent actifs pour les résumés nouveaux.
+Tous les contrôles antérieurs sont conservés.

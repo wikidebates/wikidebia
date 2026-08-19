@@ -3,7 +3,7 @@ Statut : PASSED
 Tests pytest collectés : 504
 Tests pytest : 504 réussis
 Norme : 1.2.87
-Validateur : 0.4.99
+Validateur : 0.4.100
 Rendu historique bilingue : PASSED ; individual_review.json propage les preuves de changement de forme et summary_style_review.json est réconcilié depuis les verrous FR/EN sans appliquer les règles de création aux résumés historiques.
 Dates documentaires inline : PASSED ; les dates ISO de la prose des notes anglaises sont localisées en langage naturel sans modifier les URL.
 Atomicité bilingue des mots-clés 2.16.31 : PASSED.
