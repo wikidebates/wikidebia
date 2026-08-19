@@ -24,6 +24,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import zipfile
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
@@ -884,6 +885,188 @@ def _next_validation_id(manifest: Mapping[str, Any]) -> str:
     return f"{prefix}{max(numbers, default=0) + 1:03d}"
 
 
+VALIDATION_DIAGNOSTIC_SCHEMA = "wikidebia-workflow-diagnostic-package-1.0"
+_VALIDATION_DIAGNOSTIC_CONTEXT = (
+    "manifest.json",
+    "scope.json",
+    "reviews/summary_style_review.json",
+    "reviews/individual_review.json",
+    "reviews/en/translation_review.json",
+    "data/fr_content_lock.json",
+    "data/en_content_lock.json",
+    "data/en_translation_lock.json",
+    "data/keyword_vocabulary_bilingual.json",
+    "data/sources.json",
+    "data/documentary_resources.json",
+    "data/registre_debat.json",
+)
+_DIAGNOSTIC_MAX_FILE_BYTES = 4 * 1024 * 1024
+_DIAGNOSTIC_MAX_TOTAL_BYTES = 24 * 1024 * 1024
+
+
+def _diagnostic_file_sha256(path: Path) -> str:
+    return sha256_bytes(path.read_bytes())
+
+
+def _safe_package_file(package: Path, rel: str) -> Path | None:
+    if not rel or rel.startswith("/"):
+        return None
+    candidate = (package / rel).resolve()
+    try:
+        candidate.relative_to(package.resolve())
+    except ValueError:
+        return None
+    if not candidate.is_file() or candidate.is_symlink():
+        return None
+    return candidate
+
+
+def _write_zip_member(bundle: zipfile.ZipFile, name: str, data: bytes) -> None:
+    info = zipfile.ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
+    info.compress_type = zipfile.ZIP_DEFLATED
+    info.external_attr = 0o100644 << 16
+    bundle.writestr(info, data)
+
+
+def _create_validation_diagnostic_archive(
+    project_root: Path,
+    package: Path,
+    *,
+    scopes: Sequence[str],
+    json_output: Path,
+    text_output: Path,
+    report: Mapping[str, Any],
+) -> Path | None:
+    """Export every validator error plus minimal referenced context to outgoing/.
+
+    This function is deliberately best-effort and read-only with respect to the
+    validated package.  A diagnostic failure must never mask the validator's
+    original blocking result.
+    """
+    findings = list(report.get("findings") or report.get("issues") or [])
+    errors = [
+        dict(item) for item in findings
+        if str((item or {}).get("level") or (item or {}).get("severity") or "").upper() == "ERROR"
+    ]
+    if not errors:
+        return None
+
+    manifest: dict[str, Any] = {}
+    manifest_path = package / "manifest.json"
+    if manifest_path.is_file():
+        try:
+            loaded = load_json(manifest_path, "manifest du paquet validé")
+            if isinstance(loaded, dict):
+                manifest = loaded
+        except Exception:
+            manifest = {}
+    debate_id = str(manifest.get("debate_id") or manifest.get("id") or package.name or "validation").strip()
+    safe_debate_id = re.sub(r"[^A-Za-z0-9_.-]+", "_", debate_id).strip("._") or "validation"
+    report_name = json_output.stem or "validation"
+    safe_report_name = re.sub(r"[^A-Za-z0-9_.-]+", "_", report_name).strip("._") or "validation"
+    outgoing = project_root / "outgoing"
+    outgoing.mkdir(parents=True, exist_ok=True)
+    target = outgoing / f"{safe_debate_id}_{safe_report_name}_diagnostic.zip"
+
+    requested: list[tuple[str, Path]] = []
+    seen: set[str] = set()
+
+    def add(rel: str, path: Path | None = None) -> None:
+        rel = rel.replace("\\", "/")
+        if rel in seen:
+            return
+        candidate = path if path is not None else _safe_package_file(package, rel)
+        if candidate is None or not candidate.is_file() or candidate.is_symlink():
+            return
+        seen.add(rel)
+        requested.append((rel, candidate))
+
+    try:
+        rel_json = json_output.resolve().relative_to(package.resolve()).as_posix()
+        add(rel_json, json_output)
+    except ValueError:
+        if json_output.is_file():
+            add(f"reports/{json_output.name}", json_output)
+    try:
+        rel_text = text_output.resolve().relative_to(package.resolve()).as_posix()
+        add(rel_text, text_output)
+    except ValueError:
+        if text_output.is_file():
+            add(f"reports/{text_output.name}", text_output)
+
+    for rel in _VALIDATION_DIAGNOSTIC_CONTEXT:
+        add(rel)
+    for item in errors:
+        rel = str(item.get("path") or "").strip()
+        if rel:
+            add(rel)
+
+    entries: list[dict[str, Any]] = []
+    skipped: list[dict[str, Any]] = []
+    total = 0
+    included_data: list[tuple[str, bytes]] = []
+    for rel, path in sorted(requested, key=lambda row: row[0]):
+        size = path.stat().st_size
+        if size > _DIAGNOSTIC_MAX_FILE_BYTES or total + size > _DIAGNOSTIC_MAX_TOTAL_BYTES:
+            skipped.append({"path": rel, "size_bytes": size, "reason": "diagnostic_size_limit"})
+            continue
+        data = path.read_bytes()
+        total += len(data)
+        entries.append({"path": f"context/{rel}", "size_bytes": len(data), "sha256": sha256_bytes(data)})
+        included_data.append((f"context/{rel}", data))
+
+    error_payload = {
+        "schema": "wikidebia-validation-errors-1.0",
+        "schema_version": "1.0",
+        "debate_id": debate_id,
+        "report": report_name,
+        "error_count": len(errors),
+        "errors": errors,
+    }
+    error_json = (json.dumps(error_payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode("utf-8")
+    error_text_lines = [f"{len(errors)} erreur(s) bloquante(s) dans {report_name}", ""]
+    for index, item in enumerate(errors, 1):
+        error_text_lines.append(
+            f"{index}. {item.get('code')} [{item.get('path')} {item.get('pointer')}]: {item.get('message')}"
+        )
+    error_text = ("\n".join(error_text_lines) + "\n").encode("utf-8")
+    diagnostic_manifest = {
+        "schema": VALIDATION_DIAGNOSTIC_SCHEMA,
+        "schema_version": "1.0",
+        "debate_id": debate_id,
+        "work_id": manifest.get("work_id"),
+        "phase": report_name,
+        "normative_revision": NORM_VERSION,
+        "validator_version": VALIDATOR_VERSION,
+        "kit_version": KIT_VERSION,
+        "created_at": now_iso(),
+        "validated_package": package.name,
+        "scopes": list(scopes),
+        "error_count": len(errors),
+        "errors_sha256": sha256_bytes(error_json),
+        "files": entries,
+        "skipped_files": skipped,
+        "instructions": "Envoyer ce ZIP tel quel à ChatGPT; ERRORS.json contient la liste exhaustive des erreurs bloquantes.",
+    }
+    diagnostic_bytes = (json.dumps(diagnostic_manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode("utf-8")
+    readme = (
+        "Wikidéb’IA — diagnostic automatique de validation\n\n"
+        "Ce ZIP est généré automatiquement après un échec du validateur.\n"
+        "Il ne contient aucun secret ni état d’authentification.\n"
+        "Envoyez simplement ce ZIP à ChatGPT pour analyser toutes les erreurs en une fois.\n"
+        "La liste exhaustive se trouve dans ERRORS.json et ERRORS.txt.\n"
+    ).encode("utf-8")
+
+    with zipfile.ZipFile(target, "w") as bundle:
+        _write_zip_member(bundle, "DIAGNOSTIC_PACKAGE.json", diagnostic_bytes)
+        _write_zip_member(bundle, "ERRORS.json", error_json)
+        _write_zip_member(bundle, "ERRORS.txt", error_text)
+        _write_zip_member(bundle, "README.txt", readme)
+        for name, data in included_data:
+            _write_zip_member(bundle, name, data)
+    return target
+
+
 def _run_validator(
     project_root: Path, package: Path, *, scopes: Sequence[str], json_output: Path, text_output: Path,
 ) -> dict[str, Any]:
@@ -906,9 +1089,27 @@ def _run_validator(
     if completed.returncode != 0 or report.get("result") == "failed":
         errors = [item for item in (report.get("findings") or report.get("issues") or []) if str(item.get("level") or item.get("severity") or "").upper() == "ERROR"]
         detail = "; ".join(f"{item.get('code')} [{item.get('path')} {item.get('pointer')}]: {item.get('message')}" for item in errors[:4])
+        diagnostic = None
+        try:
+            diagnostic = _create_validation_diagnostic_archive(
+                project_root, package, scopes=scopes, json_output=json_output, text_output=text_output, report=report
+            )
+        except Exception:
+            diagnostic = None
+        try:
+            report_hint = json_output.relative_to(package).as_posix()
+        except ValueError:
+            report_hint = str(json_output)
+        diagnostic_hint = ""
+        if diagnostic is not None:
+            try:
+                diagnostic_hint = f"; diagnostic complet : {diagnostic.relative_to(project_root).as_posix()}"
+            except ValueError:
+                diagnostic_hint = f"; diagnostic complet : {diagnostic}"
         raise EditorialReviewError(
-            f"Validation structurelle échouée; consulter {json_output.relative_to(package).as_posix()}"
+            f"Validation structurelle échouée; consulter {report_hint}"
             + (f"; {detail}" if detail else "")
+            + diagnostic_hint
         )
     require_validator_report(report, EditorialReviewError)
     return report

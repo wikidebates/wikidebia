@@ -16,3 +16,4 @@ Les secrets Pywikibot résident dans `private/pywikibot/`. Les corpus, plans, re
 ## Mise à niveau par bundle unique
 
 Vider les anciens ZIP de `updates/`, y déposer uniquement le bundle complet reçu, puis lancer `./wikidebia upgrade`. Le bundle contient les trois composants et le gestionnaire les extrait automatiquement.
+- En cas de validation bloquée, `outgoing/<debate_id>_<rapport>_diagnostic.zip` contient automatiquement la liste exhaustive des erreurs et le contexte minimal à transmettre à ChatGPT.

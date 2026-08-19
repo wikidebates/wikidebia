@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.87** ;
 - validateur actif : **0.4.101** ;
-- kit actif : **2.16.32**.
+- kit actif : **2.16.33**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3711789 octets — SHA-256 `ad4b06596adf58e845bf328677ef509355f222ead0914f249da628a78bfa6471`
-- `wikidebia-validator.zip` — 3893641 octets — SHA-256 `3db5c4311415bc14a7b978374f7daa82a18894aa3fe8b1e932514b3515dbebe7`
-- `wikidebia-kit.zip` — 772665 octets — SHA-256 `9e3bc1f9b0f2ac3fe8acf678188d4fe6a9d3ad1e3e0b7d6b12e447c74c444561`
+- `wikidebia-normes.zip` — 3712253 octets — SHA-256 `48df2a4ea874e72c1843346499c18d8c69d0f87daa67710193fc6aebd7f9d42c`
+- `wikidebia-validator.zip` — 3893606 octets — SHA-256 `01a1c5e95b30be9f7bfdb89087a1e3b9de7838b3b3613c31ed2f3c977a27dc50`
+- `wikidebia-kit.zip` — 778391 octets — SHA-256 `841033a14c76a686dad978a37695faa6b804bb73e843b9ba76eef0b210fd5513`
 
 ## Norme consolidée active
 
@@ -1648,13 +1648,13 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `a72d0ee00c1b4f832dcb1b407ee498d3317a10b0fcdf9c285f1ad5913eb56ef8`
+SHA-256 : `0ce03bb04805b0709c457d8f5296e731adc4d8e97bcfb5192857dc3884eeb59a`
 
 # Wikidéb’IA Validator 0.4.101
 
 Le validateur 0.4.101 rend le registre `summary_style_review.json` explicitement **non autoritatif pour les résumés historiques**. Dès qu’un résumé est identifié par les verrous FR/EN comme `historical_existing`, `historical_authorized_change`, `historical_authorized_creation`, `historical_absent` ou retiré par décision propriétaire, les attestations de création (style grand public, ouverture, force expressive, exemple/chiffre) ne sont ni exigées ni reconstruites à partir de ce registre. La fidélité, l’absence et les autorisations restent contrôlées par les verrous historiques et les contrôles dédiés, notamment `WDV-EDT-034`.
 
-Un ancien registre peut donc conserver des lignes de provenance incomplètes, voire omettre les nœuds dont tous les résumés sont historiques, sans déclencher `WDV-EDT-013/014/015/020`. Les mêmes contrôles restent strictement applicables à chaque résumé réellement nouveau ou substantiellement réécrit hors profil historique. Norme active : 1.2.87. Kit associé : 2.16.32.
+Un ancien registre peut donc conserver des lignes de provenance incomplètes, voire omettre les nœuds dont tous les résumés sont historiques, sans déclencher `WDV-EDT-013/014/015/020`. Les mêmes contrôles restent strictement applicables à chaque résumé réellement nouveau ou substantiellement réécrit hors profil historique. Norme active : 1.2.87. Kit associé : 2.16.33.
 
 ## Notes héritées du validateur 0.4.100
 
@@ -2040,10 +2040,15 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `f126d266bec2d75658f50e7931d5bb8fa5f59378567ed000d292d242adfc7f92`
+SHA-256 : `75a6d108ef6a51785af816b9718f8721d5024fda51437d561276258925c815ab`
 
-# Wikidéb’IA Kit 2.16.32
+# Wikidéb’IA Kit 2.16.33
 
+Le kit 2.16.33 exporte automatiquement un paquet de diagnostic complet à chaque échec du validateur orchestré. Le terminal continue d'afficher un résumé compact, mais `outgoing/<debate_id>_<rapport>_diagnostic.zip` contient désormais **toutes** les erreurs bloquantes dans `ERRORS.json` / `ERRORS.txt`, le rapport complet et le contexte minimal directement utile. Le ZIP est conçu pour être transmis tel quel à ChatGPT afin d'analyser un blocage en une seule fois.
+
+La génération est en lecture seule, n'inclut aucun secret ni état d'authentification, borne la taille du contexte et reste best-effort : une panne de diagnostic ne masque jamais l'échec original du validateur. Norme active : 1.2.87. Validateur associé : 0.4.101.
+
+## État hérité de 2.16.32
 Le kit 2.16.32 corrige le préflight final des reprises historiques bilingues sans rouvrir les décisions éditoriales déjà scellées. Au rendu, `individual_review.json` propage désormais les preuves de changement de forme idiomatique des titres affichés et les attestations attendues par le validateur courant. `summary_style_review.json` est réconcilié depuis les verrous FR/EN autoritatifs pour les résumés `historical_existing`, `historical_absent` ou explicitement autorisés : aucune attestation de création, notamment `forceful_expression`, n’est inventée rétroactivement.
 
 Le renderer localise aussi les dates documentaires au format ISO qui subsistent dans la prose des notes `<ref>` anglaises (`2024-07-09` → `9 July 2024`) tout en préservant exactement les URL contenant un segment de date. Les contenus hors notes et les dates de création restent inchangés. Norme active : 1.2.87. Validateur associé : 0.4.101.
@@ -2191,7 +2196,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `0dd0216aedeaa8d3af43ac621e7f600b0847570c13ad498d1c7f0e69a3fbf30a`
+SHA-256 : `9a10aec1d9659fdcd4fd27ed44e61ddfa8da030f72236053e9a81f9975453b19`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2563,6 +2568,17 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - conserve les deux passes de convergence et toutes les décisions sémantiques déjà scellées ;
 - s’aligne sur la norme 1.2.87 et le validateur 0.4.99.
 
+## 2.16.33 — 19 août 2026 — diagnostic complet automatique des validations bloquées
+
+- généralise le paquet de diagnostic de validation à tous les appels orchestrés du validateur via `_run_validator` ;
+- crée automatiquement `outgoing/<debate_id>_<rapport>_diagnostic.zip` lors d'un échec ;
+- inclut `ERRORS.json` et `ERRORS.txt` avec la liste exhaustive des erreurs, au-delà des quatre diagnostics affichés dans le terminal ;
+- joint le rapport JSON/TXT complet, les fichiers directement pointés par les erreurs et un contexte borné de manifestes, verrous et registres utiles ;
+- exclut les secrets et états d'authentification et limite la taille totale du contexte ;
+- garantit qu'une panne de génération du diagnostic ne masque jamais le blocage original ;
+- ajoute des régressions sur un rapport de sept erreurs et sur l'échec best-effort du diagnostic ;
+- conserve la norme 1.2.87 et le validateur 0.4.101.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -2855,25 +2871,26 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `3a0032ba457dee078009bdcbc8d09743a71f92ee5394cc2b2760becf3608f76b`
+SHA-256 : `76c2c2c95bc418f2c929fb173b33dc0759ca1c76de1bf84802519e6c67928b65`
 
-Wikidéb’IA Kit 2.16.32 — rapport de tests
+Wikidéb’IA Kit 2.16.33 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 504
-Tests pytest : 504 réussis
+Tests pytest collectés : 506
+Tests pytest : 506 réussis
 Norme : 1.2.87
-Validateur : 0.4.100
+Validateur : 0.4.101
 Rendu historique bilingue : PASSED ; individual_review.json propage les preuves de changement de forme et summary_style_review.json est réconcilié depuis les verrous FR/EN sans appliquer les règles de création aux résumés historiques.
 Dates documentaires inline : PASSED ; les dates ISO de la prose des notes anglaises sont localisées en langage naturel sans modifier les URL.
 Atomicité bilingue des mots-clés 2.16.31 : PASSED.
 Rendu métadonnées FR→EN 2.16.30 : PASSED.
 Réconciliation documentaire et préservation différentielle 2.16.29 : PASSED.
 Tous les contrôles 2.16.31 et antérieurs restent verts.
+Diagnostic automatique des validations : PASSED ; 7 erreurs simultanées sont exportées intégralement et une panne de diagnostic ne masque pas le blocage original.
 
 ## Guide d’orchestration éditoriale
 
 Source interne : `kit/GUIDE_EDITORIAL_ORCHESTRATION.md`  
-SHA-256 : `d300ca8a2a461df8cd336970859bc8a841f186b1878b1670f5b59fb450ef27b9`
+SHA-256 : `0e7daf3582debbc91a14530ace3acababcd9ef52bec08ff5d4a0d4e6ecad319d`
 
 # Orchestration des revues éditoriales ChatGPT — Kit 2.16.7
 
@@ -2988,6 +3005,10 @@ Lors d’une reprise de pages existantes, l’introduction et les résumés hist
 ## Publication française après la revue de contenu
 
 La réussite du paquet `fr_content_review` déclenche automatiquement le rendu d’un checkpoint français sans `interlangue`, son préflight distant et son exécution avec les résumés MediaWiki individualisés. Le paquet `en_translation_review` n’est créé qu’après succès ou attestation `no_changes`. Si le workflow a été préparé avec une version antérieure et possède déjà un paquet anglais sans reçu français, une reprise `workflow` publie d’abord le même contenu français scellé, sans invalider le paquet anglais lié à cette empreinte.
+
+## Diagnostic automatique des validations bloquées
+
+Tout échec du validateur lancé par le workflow produit automatiquement dans `outgoing/` un paquet `<debate_id>_<rapport>_diagnostic.zip`. Le terminal peut rester volontairement concis, mais ce ZIP contient l'inventaire **exhaustif** des erreurs (`ERRORS.json`, `ERRORS.txt`), le rapport complet et les fichiers de contexte directement référencés par les diagnostics. Il peut être transmis tel quel à ChatGPT ; aucune recherche manuelle sous `.state/` n'est requise.
 
 ## Guide de traduction anglaise
 

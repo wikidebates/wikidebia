@@ -1,6 +1,6 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.16.32",
+  "version": "2.16.33",
   "validator_version": "0.4.101",
   "scope": [
     "publish_archive",
@@ -491,7 +491,8 @@
     "english_documentary_identity_reuse",
     "debate_bibliography_scope_over_kind",
     "historical_render_differential_validation",
-    "source_authoritative_translated_metadata_render"
+    "source_authoritative_translated_metadata_render",
+    "automatic_complete_validation_diagnostic_zip"
   ],
   "normative_revision": "1.2.87",
   "stable_archive_name": "wikidebia-kit.zip",
@@ -657,5 +658,5 @@
     "translated_metadata_absence_preservation_regression"
   ],
   "translation_change_tag": "translated-fr",
-  "kit_version": "2.16.32"
+  "kit_version": "2.16.33"
 }

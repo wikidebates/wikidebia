@@ -367,3 +367,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - localise les dates documentaires ISO présentes dans la prose des notes `<ref>` anglaises sans modifier les URL ;
 - conserve les deux passes de convergence et toutes les décisions sémantiques déjà scellées ;
 - s’aligne sur la norme 1.2.87 et le validateur 0.4.99.
+
+## 2.16.33 — 19 août 2026 — diagnostic complet automatique des validations bloquées
+
+- généralise le paquet de diagnostic de validation à tous les appels orchestrés du validateur via `_run_validator` ;
+- crée automatiquement `outgoing/<debate_id>_<rapport>_diagnostic.zip` lors d'un échec ;
+- inclut `ERRORS.json` et `ERRORS.txt` avec la liste exhaustive des erreurs, au-delà des quatre diagnostics affichés dans le terminal ;
+- joint le rapport JSON/TXT complet, les fichiers directement pointés par les erreurs et un contexte borné de manifestes, verrous et registres utiles ;
+- exclut les secrets et états d'authentification et limite la taille totale du contexte ;
+- garantit qu'une panne de génération du diagnostic ne masque jamais le blocage original ;
+- ajoute des régressions sur un rapport de sept erreurs et sur l'échec best-effort du diagnostic ;
+- conserve la norme 1.2.87 et le validateur 0.4.101.
+

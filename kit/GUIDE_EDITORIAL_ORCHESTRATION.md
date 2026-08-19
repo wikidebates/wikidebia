@@ -111,3 +111,8 @@ Lors d’une reprise de pages existantes, l’introduction et les résumés hist
 ## Publication française après la revue de contenu
 
 La réussite du paquet `fr_content_review` déclenche automatiquement le rendu d’un checkpoint français sans `interlangue`, son préflight distant et son exécution avec les résumés MediaWiki individualisés. Le paquet `en_translation_review` n’est créé qu’après succès ou attestation `no_changes`. Si le workflow a été préparé avec une version antérieure et possède déjà un paquet anglais sans reçu français, une reprise `workflow` publie d’abord le même contenu français scellé, sans invalider le paquet anglais lié à cette empreinte.
+
+## Diagnostic automatique des validations bloquées
+
+Tout échec du validateur lancé par le workflow produit automatiquement dans `outgoing/` un paquet `<debate_id>_<rapport>_diagnostic.zip`. Le terminal peut rester volontairement concis, mais ce ZIP contient l'inventaire **exhaustif** des erreurs (`ERRORS.json`, `ERRORS.txt`), le rapport complet et les fichiers de contexte directement référencés par les diagnostics. Il peut être transmis tel quel à ChatGPT ; aucune recherche manuelle sous `.state/` n'est requise.
+
