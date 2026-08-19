@@ -134,7 +134,7 @@
     {
       "path": "CAPABILITIES.json",
       "size_bytes": 5286,
-      "sha256": "46b42ec433bba064f5484680c3506dbafbd468f728ce379c58ded3a551d9ae0c"
+      "sha256": "99b97d90d24af1c5529781252581f8939ca560ea224b6d5ed5fa9922f237ebbc"
     },
     {
       "path": "CHANGELOG.md",
@@ -224,7 +224,7 @@
     {
       "path": "KIT_MANIFEST.json",
       "size_bytes": 28792,
-      "sha256": "5af7776a9cdd7f3bc44aa10862909e777f717f82fa16a44b32f72913b9ebc218"
+      "sha256": "9449fb3999276faa0a3a28420032387341cdbc5af629a6ab4effc803032548ae"
     },
     {
       "path": "MIGRATION_2.1.11.md",
@@ -794,7 +794,7 @@
     {
       "path": "README.md",
       "size_bytes": 23797,
-      "sha256": "b664d2568420415d04b0f9c65ba29410c9b4a3a9cbd8bac3f13448fc6123ec01"
+      "sha256": "f126d266bec2d75658f50e7931d5bb8fa5f59378567ed000d292d242adfc7f92"
     },
     {
       "path": "REGRESSION_AUDIT_2.15.38.md",
@@ -904,7 +904,7 @@
     {
       "path": "VERSIONS.json",
       "size_bytes": 69,
-      "sha256": "e06e49194556b30abc9e958d24bd26f2e947ce0ed23b2a7325e3b27d7d14bef6"
+      "sha256": "18e33d2bf1d4ac07f26b52dee8058b3d8119f12a2c87dfcb802b41a54273e02a"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/CHANGELOG.md",
@@ -1639,7 +1639,7 @@
     {
       "path": "tests/test_reconciliation_21546.py",
       "size_bytes": 1947,
-      "sha256": "b788e9f7d9e47fe7f5633fe0879b87be7650c3663ad8ddb721dc3c7054d2d6c7"
+      "sha256": "69734e93925f36534a6eaeadd742b04a7ae4759c7fd6474fc5612465442d828f"
     },
     {
       "path": "tests/test_reconciliation_21547.py",

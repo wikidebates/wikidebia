@@ -13,7 +13,7 @@ from .helpers import dump
 
 
 def _ctx(root: Path) -> PackageContext:
-    return PackageContext(root, Report("0.4.100", root.name, ["editorial"]))
+    return PackageContext(root, Report("0.4.101", root.name, ["editorial"]))
 
 
 def test_content_locks_are_authoritative_even_during_transient_translation_status(tmp_path: Path):

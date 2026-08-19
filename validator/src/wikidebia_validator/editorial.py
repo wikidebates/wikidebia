@@ -1646,9 +1646,39 @@ def validate_summary_style_review_data(review: Any, nodes: list[dict[str, Any]],
         if node_id in by_id:
             issues.append({'reason': 'duplicate_entry', 'node_id': node_id})
         by_id[node_id] = entry
-    expected = {node_id for node_id in active_ids if page_languages.get(node_id)}
-    if set(by_id) != expected:
-        issues.append({'reason': 'coverage', 'missing': sorted(expected - set(by_id)), 'extra': sorted(set(by_id) - expected)})
+    # Summary-style attestations are creation/rewrite controls. Historical,
+    # historically absent and owner-removed summaries are governed by the
+    # authoritative FR/EN content locks instead (not by this style ledger).
+    # A legacy ledger may still contain rows for those summaries, but their
+    # presence, status or creation-style fields must never be required to
+    # validate the historical content.
+    def _style_exempt(node_id: str, lang: str) -> bool:
+        key = (node_id, lang)
+        if key in protected or key in absent or key in owner_removed:
+            return True
+        # Compatibility for direct/unit validation and legacy ledgers where
+        # only the French protected key was materialized: an English decision
+        # explicitly marked as a translation of that protected historical
+        # source is also outside the creation-style profile. Full package
+        # validation normally derives the English protected key from the
+        # content locks before reaching this function.
+        if lang == 'en' and (node_id, 'fr') in protected:
+            entry = by_id.get(node_id)
+            languages = entry.get('languages') if isinstance(entry, dict) else None
+            decision = languages.get('en') if isinstance(languages, dict) else None
+            if isinstance(decision, dict) and decision.get('status') == 'translated_historical_source':
+                return True
+        return False
+
+    def _style_required_languages(node_id: str) -> set[str]:
+        return {lang for lang in page_languages.get(node_id, set()) if not _style_exempt(node_id, lang)}
+
+    expected = {node_id for node_id in active_ids if _style_required_languages(str(node_id))}
+    active_with_pages = {node_id for node_id in active_ids if page_languages.get(node_id)}
+    missing = expected - set(by_id)
+    extra = set(by_id) - active_with_pages
+    if missing or extra:
+        issues.append({'reason': 'coverage', 'missing': sorted(missing), 'extra': sorted(extra)})
     required_true = ['thesis_first', 'general_public_style', 'sentence_rhythm_reviewed', 'technical_terms_reviewed']
     required_true += ['opening_develops_title', 'example_or_data_reviewed', 'assertive_tone_reviewed', 'no_artificial_example_or_number', 'no_polemical_overstatement']
     required_true += ['conviction_visible']
@@ -1663,66 +1693,20 @@ def validate_summary_style_review_data(review: Any, nodes: list[dict[str, Any]],
         if not isinstance(languages, dict):
             issues.append({'reason': 'languages', 'node_id': node_id})
             continue
-        expected_languages = page_languages.get(node_id, set())
-        if set(languages) != expected_languages:
-            issues.append({'reason': 'language_coverage', 'node_id': node_id, 'missing': sorted(expected_languages - set(languages)), 'extra': sorted(set(languages) - expected_languages)})
-        for lang in expected_languages:
+        all_languages = page_languages.get(node_id, set())
+        required_languages = _style_required_languages(node_id)
+        # Historical language rows may remain in a legacy ledger and are
+        # harmless; only unknown languages are invalid, while every language
+        # that actually requires style review must be present.
+        if not required_languages.issubset(set(languages)) or not set(languages).issubset(all_languages):
+            issues.append({'reason': 'language_coverage', 'node_id': node_id, 'missing': sorted(required_languages - set(languages)), 'extra': sorted(set(languages) - all_languages)})
+        for lang in required_languages:
             decision = languages.get(lang)
             if not isinstance(decision, dict):
                 issues.append({'reason': 'language_decision', 'node_id': node_id, 'language': lang})
                 continue
             key_tuple = (node_id, lang)
-            translated_historical_source = (
-                lang == 'en'
-                and decision.get('status') == 'translated_historical_source'
-                and (node_id, 'fr') in protected
-            )
-            if translated_historical_source:
-                if decision.get('historical_source_preserved') is not True:
-                    issues.append({'reason': 'historical_source_preserved', 'node_id': node_id, 'language': lang})
-                if len(str(decision.get('note') or '').strip()) < 12:
-                    issues.append({'reason': 'note', 'node_id': node_id, 'language': lang})
-                continue
-            if key_tuple in protected and decision.get('status') in {'historical_authorized_change', 'historical_authorized_creation'}:
-                if decision.get('owner_authorized_change') is not True:
-                    issues.append({'reason': 'historical_authorization_missing', 'node_id': node_id, 'language': lang})
-                for field in ('historical_source_sha256', 'authorized_final_sha256'):
-                    value = decision.get(field)
-                    if not isinstance(value, str) or not re.fullmatch('[0-9a-f]{64}', value):
-                        issues.append({'reason': field, 'node_id': node_id, 'language': lang})
-                if not isinstance(decision.get('authorization'), dict):
-                    issues.append({'reason': 'historical_authorization_missing', 'node_id': node_id, 'language': lang})
-                if len(str(decision.get('note') or '').strip()) < 12:
-                    issues.append({'reason': 'note', 'node_id': node_id, 'language': lang})
-                continue
-            if key_tuple in owner_removed:
-                if decision.get('status') != 'owner_removed':
-                    issues.append({'reason': 'owner_removed_status', 'node_id': node_id, 'language': lang})
-                if decision.get('owner_decision_verified') is not True:
-                    issues.append({'reason': 'owner_decision_verified', 'node_id': node_id, 'language': lang})
-                if len(str(decision.get('note') or '').strip()) < 12:
-                    issues.append({'reason': 'note', 'node_id': node_id, 'language': lang})
-                continue
-            if key_tuple in absent:
-                if decision.get('status') != 'historical_absent':
-                    issues.append({'reason': 'historical_absent_status', 'node_id': node_id, 'language': lang})
-                if decision.get('historical_absence_verified') is not True:
-                    issues.append({'reason': 'historical_absence_verified', 'node_id': node_id, 'language': lang})
-                if len(str(decision.get('note') or '').strip()) < 12:
-                    issues.append({'reason': 'note', 'node_id': node_id, 'language': lang})
-                continue
-            if key_tuple in protected:
-                if decision.get('status') != 'historical_existing':
-                    issues.append({'reason': 'historical_existing_status', 'node_id': node_id, 'language': lang})
-                if decision.get('historical_content_preserved') is not True:
-                    issues.append({'reason': 'historical_content_preserved', 'node_id': node_id, 'language': lang})
-                if len(str(decision.get('note') or '').strip()) < 12:
-                    issues.append({'reason': 'note', 'node_id': node_id, 'language': lang})
-                # A protected historical summary is not retroactively forced
-                # through the quality profile for newly authored summaries.
-                # Exact preservation is verified by the historical-text lock.
-                continue
-            elif decision.get('status') not in {'approved', 'revised'}:
+            if decision.get('status') not in {'approved', 'revised'}:
                 issues.append({'reason': 'status', 'node_id': node_id, 'language': lang})
             effective_required_true = list(required_true)
             for key in effective_required_true:

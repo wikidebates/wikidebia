@@ -255,3 +255,13 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ajoute des régressions sur un résumé historique autorisé comportant des données chiffrées et sur une absence historique bilingue ;
 - conserve la norme 1.2.87 et le kit 2.16.32.
 
+## 0.4.101 — 19 août 2026 — registre de style non autoritatif pour les résumés historiques
+
+- retire du registre `summary_style_review.json` toute autorité normative sur les résumés dont la provenance historique est déjà verrouillée ;
+- n’exige plus, pour ces résumés, les attestations de création `general_public_style`, `opening_develops_title`, `conviction_visible`, `forceful_expression` ou `quantitative_claims_verified` ;
+- autorise un registre historique ancien à conserver des lignes incomplètes ou à omettre les nœuds dont toutes les langues sont hors profil de création ;
+- conserve la couverture et toutes les attestations de style pour chaque résumé réellement nouveau ;
+- conserve `WDV-EDT-034` et les verrous FR/EN comme contrôles autoritatifs de présence, fidélité et consentement historique ;
+- ajoute des régressions positives sur des résumés historiques avec chiffres et des registres anciens, ainsi qu’une régression négative prouvant qu’un résumé nouveau incomplet reste bloqué ;
+- conserve la norme 1.2.87 et le kit 2.16.32.
+

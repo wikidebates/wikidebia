@@ -1,8 +1,10 @@
-# Wikidéb’IA Validator 0.4.100
+# Wikidéb’IA Validator 0.4.101
 
-Le validateur 0.4.100 rend la provenance des résumés historiques indépendante de l’état transitoire de l’orchestrateur. `fr_content_lock.json` et `en_content_lock.json` sont désormais les sources autoritatives pour reconnaître `historical_existing`, `historical_authorized_change`, `historical_authorized_creation` et `historical_absent`.
+Le validateur 0.4.101 rend le registre `summary_style_review.json` explicitement **non autoritatif pour les résumés historiques**. Dès qu’un résumé est identifié par les verrous FR/EN comme `historical_existing`, `historical_authorized_change`, `historical_authorized_creation`, `historical_absent` ou retiré par décision propriétaire, les attestations de création (style grand public, ouverture, force expressive, exemple/chiffre) ne sont ni exigées ni reconstruites à partir de ce registre. La fidélité, l’absence et les autorisations restent contrôlées par les verrous historiques et les contrôles dédiés, notamment `WDV-EDT-034`.
 
-Ainsi, un résumé historique ou explicitement autorisé n’est jamais requalifié comme résumé nouvellement rédigé au préflight final et n’est pas soumis rétroactivement aux attestations de création (`forceful_expression`, `opening_develops_title`, vérification quantitative). Les mêmes contrôles restent strictement applicables aux résumés réellement nouveaux. Norme active : 1.2.87. Kit associé : 2.16.32.
+Un ancien registre peut donc conserver des lignes de provenance incomplètes, voire omettre les nœuds dont tous les résumés sont historiques, sans déclencher `WDV-EDT-013/014/015/020`. Les mêmes contrôles restent strictement applicables à chaque résumé réellement nouveau ou substantiellement réécrit hors profil historique. Norme active : 1.2.87. Kit associé : 2.16.32.
+
+## Notes héritées du validateur 0.4.100
 
 ## Notes héritées du validateur 0.4.99
 
