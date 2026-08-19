@@ -1099,10 +1099,14 @@ def _run_validator(
     runtime = ((report.get("metrics") or {}).get("runtime_attestation") or {}) if isinstance(report, dict) else {}
     expected_cli_sha = sha256_bytes((project_root / "validator" / "src" / "wikidebia_validator" / "cli.py").read_bytes())
     expected_editorial_sha = sha256_bytes((project_root / "validator" / "src" / "wikidebia_validator" / "editorial.py").read_bytes())
+    expected_wikicode_sha = sha256_bytes((project_root / "validator" / "src" / "wikidebia_validator" / "wikicode.py").read_bytes())
+    expected_historical_summary_sha = sha256_bytes((project_root / "validator" / "src" / "wikidebia_validator" / "historical_summary.py").read_bytes())
     if (
-        runtime.get("mode") != "component_script_isolated_v1"
+        runtime.get("mode") != "component_script_isolated_v2"
         or runtime.get("cli_sha256") != expected_cli_sha
         or runtime.get("editorial_sha256") != expected_editorial_sha
+        or runtime.get("wikicode_sha256") != expected_wikicode_sha
+        or runtime.get("historical_summary_sha256") != expected_historical_summary_sha
     ):
         raise EditorialReviewError(
             "Validateur runtime divergent : le rapport ne provient pas du code exact installé sous validator/src"

@@ -273,3 +273,13 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ne modifie aucun contrôle éditorial, documentaire, structurel ou bilingue ;
 - ajoute une régression sur l’attestation du lanceur isolé ;
 - conserve la norme 1.2.87 et s’aligne sur le kit 2.16.36.
+
+## 0.4.103 — 19 août 2026 — provenance historique partagée entre wikicode et editorial
+
+- centralise la classification des résumés historiques dans `historical_summary.py` ;
+- supprime la collision de cache entre les anciens helpers indépendants de `wikicode.py` et `editorial.py` ;
+- reconnaît uniformément `historical_existing`, `historical_authorized_change`, `historical_authorized_creation`, `historical_absent` et `owner_removed` ;
+- reproduit et corrige le cas réel où `wikicode` cachait d’abord une liste incomplète puis faisait échouer `WDV-EDT-013/014/015/020` sur les cinq résumés autorisés du vote électronique ;
+- étend l’attestation runtime aux SHA-256 de `wikicode.py` et `historical_summary.py` ;
+- conserve tous les contrôles de création pour les résumés réellement nouveaux ;
+- conserve la norme 1.2.87 et s’aligne sur le kit 2.16.37.

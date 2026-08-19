@@ -3,14 +3,14 @@
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
 - norme active : **1.2.87** ;
-- validateur actif : **0.4.102** ;
-- kit actif : **2.16.36**.
+- validateur actif : **0.4.103** ;
+- kit actif : **2.16.37**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3723444 octets — SHA-256 `da12d28ae1e042c75dad4345591f0035e1c71edf803fe4222a1fe14e72cfb018`
-- `wikidebia-validator.zip` — 3907278 octets — SHA-256 `d260d749659d20c83782b93238708fb8cec02ed5f86298a2569520376dc1ab5e`
-- `wikidebia-kit.zip` — 789589 octets — SHA-256 `86a6ef79c88e01fbbd53d95b11bb8ffe7695a4f6ea1ec985f9abac43a17a599d`
+- `wikidebia-normes.zip` — 3712249 octets — SHA-256 `0bdf8d9a0f500f97d3a8c3708eb7fb0bd9dc00c6bb8a302007e00389086f968c`
+- `wikidebia-validator.zip` — 3898590 octets — SHA-256 `aa2d10a5eb850cf79212d091754702c2c95e1fe757febdb2f868d8af0ffefc21`
+- `wikidebia-kit.zip` — 787109 octets — SHA-256 `0402fd3552e7abf3c3e18546f7c23520e697a6c86cbf4225e41db6ad8d064aa4`
 
 ## Norme consolidée active
 
@@ -1648,15 +1648,17 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `ad5030658677a7063fe1617b2f668fe4ada999906f6e61d2f40265b3d192aaed`
+SHA-256 : `0a55374ec1c74d6cfd66c9a7c21743f8738a4f09becd39fd80b0c9d64251eb15`
 
-# Wikidéb’IA Validator 0.4.102
+# Wikidéb’IA Validator 0.4.103
 
-Le validateur 0.4.102 ajoute une **attestation de runtime** lorsqu’il est lancé par son entrypoint physique. `validator/scripts/wikidebia_validate.py` vérifie que `wikidebia_validator.cli` et `wikidebia_validator.editorial` proviennent réellement de `validator/src`, calcule leurs SHA-256 et les inscrit dans `metrics.runtime_attestation`.
+Le validateur 0.4.103 supprime une divergence interne de provenance historique qui se manifestait uniquement lorsque plusieurs portées étaient exécutées dans le même processus. `wikicode.py` et `editorial.py` possédaient chacun leur propre fonction `_protected_historical_summary_keys` tout en partageant le même nom de cache sur `PackageContext`. Comme `wikicode` s’exécute avant `editorial`, sa version plus ancienne du calcul pouvait mettre en cache une liste incomplète qui reconnaissait `historical_existing` mais pas `historical_authorized_change`; la portée éditoriale réutilisait ensuite ce cache et requalifiait à tort les résumés autorisés comme créations nouvelles.
 
-Cette attestation ne change aucune règle de validation. Elle permet au kit de détecter de manière bloquante une copie Python parasite ou un chargement incohérent même lorsqu’il annonce le même numéro de version. Le contrôle différentiel des résumés historiques de 0.4.101 reste inchangé.
+La provenance des résumés est désormais calculée dans un module unique `historical_summary.py`, utilisé par les deux portées. Le calcul reconnaît de façon identique `historical_existing`, `historical_authorized_change`, `historical_authorized_creation`, `historical_absent` et `owner_removed`, avec compatibilité pour les verrous historiques plus anciens. L’attestation runtime couvre aussi `wikicode.py` et `historical_summary.py`, en plus de `cli.py` et `editorial.py`.
 
-Norme active : 1.2.87. Kit associé : 2.16.36.
+La régression reproduit l’ordre réel `wikicode → editorial` et vérifie qu’un `historical_authorized_change` français et sa traduction anglaise restent hors du profil de création. Aucun contrôle n’est assoupli pour un résumé réellement nouveau.
+
+Norme active : 1.2.87. Kit associé : 2.16.37.
 
 ## Notes héritées du validateur 0.4.101
 
@@ -1776,7 +1778,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `3f6c212905a6d02c7508fc61924c4fd3fc28fbe710d52c685d6bb9a9a417c5b5`
+SHA-256 : `a1752f011a30c731addeca39f747185c6ccc6246568e1a8daedd9177bd54e101`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2054,18 +2056,28 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ajoute une régression sur l’attestation du lanceur isolé ;
 - conserve la norme 1.2.87 et s’aligne sur le kit 2.16.36.
 
+## 0.4.103 — 19 août 2026 — provenance historique partagée entre wikicode et editorial
+
+- centralise la classification des résumés historiques dans `historical_summary.py` ;
+- supprime la collision de cache entre les anciens helpers indépendants de `wikicode.py` et `editorial.py` ;
+- reconnaît uniformément `historical_existing`, `historical_authorized_change`, `historical_authorized_creation`, `historical_absent` et `owner_removed` ;
+- reproduit et corrige le cas réel où `wikicode` cachait d’abord une liste incomplète puis faisait échouer `WDV-EDT-013/014/015/020` sur les cinq résumés autorisés du vote électronique ;
+- étend l’attestation runtime aux SHA-256 de `wikicode.py` et `historical_summary.py` ;
+- conserve tous les contrôles de création pour les résumés réellement nouveaux ;
+- conserve la norme 1.2.87 et s’aligne sur le kit 2.16.37.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `0903ae79dd7546c5fe56fb933abe290ff59be1b24b4b5749e95dbed263f3215e`
+SHA-256 : `afd2b4ec08d61decfee3dfe3872492b7427c7c9ebd527727e939f1683899b695`
 
-# Wikidéb’IA Kit 2.16.36
+# Wikidéb’IA Kit 2.16.37
 
-Le kit 2.16.36 rend l’identité runtime du validateur **vérifiable et non contournable**. Les validations orchestrées ne passent plus par `python -m wikidebia_validator.cli` : elles exécutent le fichier physique `validator/scripts/wikidebia_validate.py` avec Python en mode isolé (`-I`). Ce lanceur insère `validator/src` après l’initialisation de Python et refuse tout module `cli` ou `editorial` chargé hors de ce composant.
+Le kit 2.16.37 accompagne le validateur 0.4.103, qui corrige la cause racine du blocage répété du vote électronique : la provenance historique des résumés était calculée deux fois, différemment, par `wikicode` et `editorial`, avec un cache partagé. Le rendu n’a pas besoin de réécrire les résumés ni leurs attestations ; le préflight utilise désormais une seule source de vérité interne.
 
-Chaque rapport produit par ce lanceur contient en outre une attestation `metrics.runtime_attestation` avec les SHA-256 effectifs de `cli.py` et `editorial.py`. `_run_validator` recalcule ces empreintes depuis les fichiers installés et bloque immédiatement toute divergence. Ce mécanisme ferme le cas réel du vote électronique où le rapport déclarait `0.4.101` tout en appliquant une logique différente à cinq résumés historiques autorisés.
+L’attestation `metrics.runtime_attestation` est étendue aux SHA-256 de `wikicode.py` et `historical_summary.py` en plus de `cli.py` et `editorial.py`. `_run_validator` recalcule les quatre empreintes avant d’accepter un rapport. Les diagnostics complets et leur persistance transactionnelle restent inchangés.
 
-Les chemins de validation de l’initialisation, de la revue de graphe et de la promotion utilisent eux aussi le lanceur physique isolé. Aucun contrôle éditorial n’est assoupli. Norme active : 1.2.87. Validateur associé : 0.4.102.
+Norme active : 1.2.87. Validateur associé : 0.4.103.
 
 ## Notes héritées du kit 2.16.35
 
@@ -2228,7 +2240,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `d7ed79c48b50de4213030c90935fd3b7aa657d769780bbba53d57ee54c941bbf`
+SHA-256 : `b842f174b1a07de61e72855ecbc23ab4a40cdd5d76d5188b8c9242fe63720f2a`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2637,6 +2649,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - vérifie sur le diagnostic exact du vote électronique que les quatre codes `WDV-EDT-013/014/015/020` disparaissent avec le runtime attesté ;
 - conserve la norme 1.2.87 et le validateur 0.4.102.
 
+## 2.16.37 — 19 août 2026 — provenance historique unifiée et attestation runtime étendue
+
+- s’aligne sur le validateur 0.4.103, qui centralise la provenance des résumés historiques entre `wikicode` et `editorial` ;
+- étend l’attestation runtime aux SHA-256 de `wikicode.py` et `historical_summary.py` ;
+- refuse tout rapport dont l’une des quatre empreintes critiques diverge de la copie installée ;
+- conserve le diagnostic complet automatique et sa persistance à travers le rollback ;
+- ne modifie aucun contenu, aucune traduction, aucun verrou ni aucune règle éditoriale du corpus ;
+- conserve la norme 1.2.87.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -2929,16 +2950,17 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `63f0414554b37d2d2e1b092e6d3ec6cbbd7f1debaabb1b5bbe472dae36532e15`
+SHA-256 : `b63dd23df555edc703279579dbf207b2ca94a57e0a902eace81f1f87882451f4`
 
-Wikidéb’IA Kit 2.16.36 — rapport de tests
+Wikidéb’IA Kit 2.16.37 — rapport de tests
 
 Tests pytest : 509 réussis
 Norme : 1.2.87
-Validateur : 0.4.102
+Validateur : 0.4.103
 
-Runtime validator isolation : PASSED ; lancement physique avec python -I, attestation SHA-256 de cli.py/editorial.py et refus des copies parasites.
-Diagnostic réel du vote électronique : PASSED ; WDV-EDT-013/014/015/020 absents avec le runtime attesté.
+Runtime validator attestation : PASSED ; quatre modules critiques sont scellés.
+Validation diagnostic export : PASSED ; liste exhaustive et persistance transactionnelle conservées.
+Historical summary provenance regression : PASSED via le validateur 0.4.103.
 
 ## Guide d’orchestration éditoriale
 

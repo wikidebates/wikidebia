@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_physical_launcher_attests_loaded_cli_and_editorial(tmp_path):
+def test_physical_launcher_attests_loaded_core_modules(tmp_path):
     package = tmp_path / "package"
     package.mkdir()
     # A deliberately incomplete package is sufficient: we only require that a
@@ -45,10 +45,16 @@ def test_physical_launcher_attests_loaded_cli_and_editorial(tmp_path):
     assert out.is_file(), completed.stderr
     report = json.loads(out.read_text(encoding="utf-8"))
     runtime = report["metrics"]["runtime_attestation"]
-    assert runtime["mode"] == "component_script_isolated_v1"
+    assert runtime["mode"] == "component_script_isolated_v2"
     assert runtime["cli_sha256"] == hashlib.sha256(
         (ROOT / "src" / "wikidebia_validator" / "cli.py").read_bytes()
     ).hexdigest()
     assert runtime["editorial_sha256"] == hashlib.sha256(
         (ROOT / "src" / "wikidebia_validator" / "editorial.py").read_bytes()
+    ).hexdigest()
+    assert runtime["wikicode_sha256"] == hashlib.sha256(
+        (ROOT / "src" / "wikidebia_validator" / "wikicode.py").read_bytes()
+    ).hexdigest()
+    assert runtime["historical_summary_sha256"] == hashlib.sha256(
+        (ROOT / "src" / "wikidebia_validator" / "historical_summary.py").read_bytes()
     ).hexdigest()

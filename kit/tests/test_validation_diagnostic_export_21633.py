@@ -31,6 +31,8 @@ def _project(tmp_path: Path) -> tuple[Path, Path]:
     validator_pkg.mkdir(parents=True)
     (validator_pkg / "cli.py").write_text("# cli\n", encoding="utf-8")
     (validator_pkg / "editorial.py").write_text("# editorial\n", encoding="utf-8")
+    (validator_pkg / "wikicode.py").write_text("# wikicode\n", encoding="utf-8")
+    (validator_pkg / "historical_summary.py").write_text("# historical summary\n", encoding="utf-8")
     validator_scripts = project / "validator" / "scripts"
     validator_scripts.mkdir(parents=True)
     (validator_scripts / "wikidebia_validate.py").write_text("# launcher\n", encoding="utf-8")
@@ -49,9 +51,11 @@ def _project(tmp_path: Path) -> tuple[Path, Path]:
 def _runtime(project: Path) -> dict[str, str]:
     pkg = project / "validator" / "src" / "wikidebia_validator"
     return {
-        "mode": "component_script_isolated_v1",
+        "mode": "component_script_isolated_v2",
         "cli_sha256": hashlib.sha256((pkg / "cli.py").read_bytes()).hexdigest(),
         "editorial_sha256": hashlib.sha256((pkg / "editorial.py").read_bytes()).hexdigest(),
+        "wikicode_sha256": hashlib.sha256((pkg / "wikicode.py").read_bytes()).hexdigest(),
+        "historical_summary_sha256": hashlib.sha256((pkg / "historical_summary.py").read_bytes()).hexdigest(),
     }
 
 

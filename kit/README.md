@@ -1,10 +1,10 @@
-# Wikidéb’IA Kit 2.16.36
+# Wikidéb’IA Kit 2.16.37
 
-Le kit 2.16.36 rend l’identité runtime du validateur **vérifiable et non contournable**. Les validations orchestrées ne passent plus par `python -m wikidebia_validator.cli` : elles exécutent le fichier physique `validator/scripts/wikidebia_validate.py` avec Python en mode isolé (`-I`). Ce lanceur insère `validator/src` après l’initialisation de Python et refuse tout module `cli` ou `editorial` chargé hors de ce composant.
+Le kit 2.16.37 accompagne le validateur 0.4.103, qui corrige la cause racine du blocage répété du vote électronique : la provenance historique des résumés était calculée deux fois, différemment, par `wikicode` et `editorial`, avec un cache partagé. Le rendu n’a pas besoin de réécrire les résumés ni leurs attestations ; le préflight utilise désormais une seule source de vérité interne.
 
-Chaque rapport produit par ce lanceur contient en outre une attestation `metrics.runtime_attestation` avec les SHA-256 effectifs de `cli.py` et `editorial.py`. `_run_validator` recalcule ces empreintes depuis les fichiers installés et bloque immédiatement toute divergence. Ce mécanisme ferme le cas réel du vote électronique où le rapport déclarait `0.4.101` tout en appliquant une logique différente à cinq résumés historiques autorisés.
+L’attestation `metrics.runtime_attestation` est étendue aux SHA-256 de `wikicode.py` et `historical_summary.py` en plus de `cli.py` et `editorial.py`. `_run_validator` recalcule les quatre empreintes avant d’accepter un rapport. Les diagnostics complets et leur persistance transactionnelle restent inchangés.
 
-Les chemins de validation de l’initialisation, de la revue de graphe et de la promotion utilisent eux aussi le lanceur physique isolé. Aucun contrôle éditorial n’est assoupli. Norme active : 1.2.87. Validateur associé : 0.4.102.
+Norme active : 1.2.87. Validateur associé : 0.4.103.
 
 ## Notes héritées du kit 2.16.35
 

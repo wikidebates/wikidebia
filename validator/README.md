@@ -1,10 +1,12 @@
-# Wikidéb’IA Validator 0.4.102
+# Wikidéb’IA Validator 0.4.103
 
-Le validateur 0.4.102 ajoute une **attestation de runtime** lorsqu’il est lancé par son entrypoint physique. `validator/scripts/wikidebia_validate.py` vérifie que `wikidebia_validator.cli` et `wikidebia_validator.editorial` proviennent réellement de `validator/src`, calcule leurs SHA-256 et les inscrit dans `metrics.runtime_attestation`.
+Le validateur 0.4.103 supprime une divergence interne de provenance historique qui se manifestait uniquement lorsque plusieurs portées étaient exécutées dans le même processus. `wikicode.py` et `editorial.py` possédaient chacun leur propre fonction `_protected_historical_summary_keys` tout en partageant le même nom de cache sur `PackageContext`. Comme `wikicode` s’exécute avant `editorial`, sa version plus ancienne du calcul pouvait mettre en cache une liste incomplète qui reconnaissait `historical_existing` mais pas `historical_authorized_change`; la portée éditoriale réutilisait ensuite ce cache et requalifiait à tort les résumés autorisés comme créations nouvelles.
 
-Cette attestation ne change aucune règle de validation. Elle permet au kit de détecter de manière bloquante une copie Python parasite ou un chargement incohérent même lorsqu’il annonce le même numéro de version. Le contrôle différentiel des résumés historiques de 0.4.101 reste inchangé.
+La provenance des résumés est désormais calculée dans un module unique `historical_summary.py`, utilisé par les deux portées. Le calcul reconnaît de façon identique `historical_existing`, `historical_authorized_change`, `historical_authorized_creation`, `historical_absent` et `owner_removed`, avec compatibilité pour les verrous historiques plus anciens. L’attestation runtime couvre aussi `wikicode.py` et `historical_summary.py`, en plus de `cli.py` et `editorial.py`.
 
-Norme active : 1.2.87. Kit associé : 2.16.36.
+La régression reproduit l’ordre réel `wikicode → editorial` et vérifie qu’un `historical_authorized_change` français et sa traduction anglaise restent hors du profil de création. Aucun contrôle n’est assoupli pour un résumé réellement nouveau.
+
+Norme active : 1.2.87. Kit associé : 2.16.37.
 
 ## Notes héritées du validateur 0.4.101
 

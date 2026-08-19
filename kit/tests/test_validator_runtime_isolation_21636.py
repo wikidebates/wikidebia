@@ -27,6 +27,8 @@ def _write_validator_package(base: Path, *, result: str, version: str) -> None:
     package.mkdir(parents=True, exist_ok=True)
     (package / "__init__.py").write_text("\n", encoding="utf-8")
     (package / "editorial.py").write_text("RUNTIME_MARKER='correct'\n", encoding="utf-8")
+    (package / "wikicode.py").write_text("RUNTIME_MARKER='correct-wikicode'\n", encoding="utf-8")
+    (package / "historical_summary.py").write_text("RUNTIME_MARKER='correct-history'\n", encoding="utf-8")
     cli = '''
 import json, os
 from pathlib import Path
@@ -56,6 +58,8 @@ def main(argv=None):
           'mode':os.environ.get('WIKIDEBIA_VALIDATOR_RUNTIME_MODE',''),
           'cli_sha256':os.environ.get('WIKIDEBIA_VALIDATOR_RUNTIME_CLI_SHA256',''),
           'editorial_sha256':os.environ.get('WIKIDEBIA_VALIDATOR_RUNTIME_EDITORIAL_SHA256',''),
+          'wikicode_sha256':os.environ.get('WIKIDEBIA_VALIDATOR_RUNTIME_WIKICODE_SHA256',''),
+          'historical_summary_sha256':os.environ.get('WIKIDEBIA_VALIDATOR_RUNTIME_HISTORICAL_SUMMARY_SHA256',''),
         }
       },
       'summary':{'errors':0 if result=='passed' else 1,'warnings':0},
@@ -82,13 +86,17 @@ PACKAGE=(SRC/'wikidebia_validator').resolve()
 sys.path.insert(0,str(SRC))
 from wikidebia_validator import cli as _cli
 from wikidebia_validator import editorial as _editorial
-for module in (_cli,_editorial):
+from wikidebia_validator import wikicode as _wikicode
+from wikidebia_validator import historical_summary as _historical_summary
+for module in (_cli,_editorial,_wikicode,_historical_summary):
     Path(module.__file__).resolve().relative_to(PACKAGE)
 def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
-os.environ['WIKIDEBIA_VALIDATOR_RUNTIME_MODE']='component_script_isolated_v1'
+os.environ['WIKIDEBIA_VALIDATOR_RUNTIME_MODE']='component_script_isolated_v2'
 os.environ['WIKIDEBIA_VALIDATOR_RUNTIME_CLI_SHA256']=sha(_cli.__file__)
 os.environ['WIKIDEBIA_VALIDATOR_RUNTIME_EDITORIAL_SHA256']=sha(_editorial.__file__)
+os.environ['WIKIDEBIA_VALIDATOR_RUNTIME_WIKICODE_SHA256']=sha(_wikicode.__file__)
+os.environ['WIKIDEBIA_VALIDATOR_RUNTIME_HISTORICAL_SUMMARY_SHA256']=sha(_historical_summary.__file__)
 raise SystemExit(_cli.main())
 ''',
         encoding="utf-8",
@@ -122,11 +130,17 @@ def test_run_validator_uses_physical_isolated_launcher_even_with_hostile_paths(t
     )
     assert report["result"] == "passed"
     runtime = report["metrics"]["runtime_attestation"]
-    assert runtime["mode"] == "component_script_isolated_v1"
+    assert runtime["mode"] == "component_script_isolated_v2"
     assert runtime["cli_sha256"] == hashlib.sha256(
         (project / "validator" / "src" / "wikidebia_validator" / "cli.py").read_bytes()
     ).hexdigest()
     assert runtime["editorial_sha256"] == hashlib.sha256(
         (project / "validator" / "src" / "wikidebia_validator" / "editorial.py").read_bytes()
+    ).hexdigest()
+    assert runtime["wikicode_sha256"] == hashlib.sha256(
+        (project / "validator" / "src" / "wikidebia_validator" / "wikicode.py").read_bytes()
+    ).hexdigest()
+    assert runtime["historical_summary_sha256"] == hashlib.sha256(
+        (project / "validator" / "src" / "wikidebia_validator" / "historical_summary.py").read_bytes()
     ).hexdigest()
     assert not (project / "outgoing").exists()

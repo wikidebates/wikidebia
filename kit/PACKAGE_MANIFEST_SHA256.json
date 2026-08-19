@@ -1,10 +1,10 @@
 {
   "artifact": "wikidebia-kit",
-  "version": "2.16.36",
+  "version": "2.16.37",
   "normative_revision": "1.2.87",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
-  "declared_file_count": 369,
+  "declared_file_count": 370,
   "declared_test_count": 509,
   "self_excluded": [
     "PACKAGE_MANIFEST_SHA256.json",
@@ -60,6 +60,11 @@
       "path": "AUDIT_HISTORICAL_SUMMARY_INTRO_PRESERVATION_2.16.16.md",
       "size_bytes": 743,
       "sha256": "e06237d9a8f049ed6b4eda9907e5ee7b6f6637efe8205e879a7786cc0d92f1d6"
+    },
+    {
+      "path": "AUDIT_HISTORICAL_SUMMARY_PROVENANCE_2.16.37.md",
+      "size_bytes": 304,
+      "sha256": "4aab357a526a045daefceff216bfaad68c65a11168be40e5cf16c849bc353313"
     },
     {
       "path": "AUDIT_HISTORICAL_TEXT_OWNER_CONSENT_2.16.17.md",
@@ -154,17 +159,17 @@
     {
       "path": "CAPABILITIES.json",
       "size_bytes": 5343,
-      "sha256": "e779fe414c9474f8ab7168a6760a4a34284d87561f9740d46e6d370a93569a24"
+      "sha256": "f91d36cf8841fb4a049f9f4a806332ce6dda059203c3d8ae5e678c7d6bc51f33"
     },
     {
       "path": "CHANGELOG.md",
-      "size_bytes": 38837,
-      "sha256": "d7ed79c48b50de4213030c90935fd3b7aa657d769780bbba53d57ee54c941bbf"
+      "size_bytes": 39472,
+      "sha256": "b842f174b1a07de61e72855ecbc23ab4a40cdd5d76d5188b8c9242fe63720f2a"
     },
     {
       "path": "COMPATIBILITY.json",
       "size_bytes": 524,
-      "sha256": "b15bdb38be22fb03834c63a41d05b9dd6ec739ef2e17da97aebb9d33c0941731"
+      "sha256": "cc25bf8b2b5dfb583bf5578269f1a5256a476ac68632383e1424dcdb2a2ee8cf"
     },
     {
       "path": "GUIDE_BILINGUAL_RENDER.md",
@@ -244,7 +249,7 @@
     {
       "path": "KIT_MANIFEST.json",
       "size_bytes": 29082,
-      "sha256": "7af37d3f1b40f20ab63a92be479e31dc49e1559619687f0fdda645a4916097f4"
+      "sha256": "a365dd1d2950fe588cd012a1e0e18db3db6b1945a59259d1d3650c8696c91cc6"
     },
     {
       "path": "MIGRATION_2.1.11.md",
@@ -813,8 +818,8 @@
     },
     {
       "path": "README.md",
-      "size_bytes": 27169,
-      "sha256": "0903ae79dd7546c5fe56fb933abe290ff59be1b24b4b5749e95dbed263f3215e"
+      "size_bytes": 26820,
+      "sha256": "afd2b4ec08d61decfee3dfe3872492b7427c7c9ebd527727e939f1683899b695"
     },
     {
       "path": "REGRESSION_AUDIT_2.15.38.md",
@@ -918,13 +923,13 @@
     },
     {
       "path": "TEST_REPORT.txt",
-      "size_bytes": 369,
-      "sha256": "63f0414554b37d2d2e1b092e6d3ec6cbbd7f1debaabb1b5bbe472dae36532e15"
+      "size_bytes": 373,
+      "sha256": "b63dd23df555edc703279579dbf207b2ca94a57e0a902eace81f1f87882451f4"
     },
     {
       "path": "VERSIONS.json",
       "size_bytes": 69,
-      "sha256": "0b9b3f69192a7edc11cbea03bbb1b9c45a791f6032c7c3e3d3a54b266f719cd6"
+      "sha256": "ece55a7433876f2adb7417747e98212e3cad8e92c36fdebc1638989ad5171b98"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/CHANGELOG.md",
@@ -1468,8 +1473,8 @@
     },
     {
       "path": "scripts/wikidebia_editorial_review.py",
-      "size_bytes": 80571,
-      "sha256": "f7459e03a1dd1641c5234b162dd70f7998a91b9ffc36ab9e789d35b727dcdac8"
+      "size_bytes": 81009,
+      "sha256": "1ac1907d24319315ac13cf0152d22cc28d3cc6f8dc84a8ba254c25ea86aa859f"
     },
     {
       "path": "scripts/wikidebia_editorial_workspace.py",
@@ -1659,7 +1664,7 @@
     {
       "path": "tests/test_reconciliation_21546.py",
       "size_bytes": 1947,
-      "sha256": "46d00a8761f33b7c11625e43b95469e81ec780f36907e88d19bc900c239bced4"
+      "sha256": "d40087a7587658dccfb0e72b47b80c1f9cb69db08878a5937405c633604f4ed8"
     },
     {
       "path": "tests/test_reconciliation_21547.py",
@@ -1723,8 +1728,8 @@
     },
     {
       "path": "tests/test_validation_diagnostic_export_21633.py",
-      "size_bytes": 6156,
-      "sha256": "ad5f26798c309b5344c70ee15370b5b4ece2ba83c06294e6c0c7b3bb811d1ff9"
+      "size_bytes": 6540,
+      "sha256": "6c70f27970d644563dc6f334f0f8422e264ccfa268f4f3776b62c432d083cdc8"
     },
     {
       "path": "tests/test_validation_diagnostic_rollback_21634.py",
@@ -1733,8 +1738,8 @@
     },
     {
       "path": "tests/test_validator_runtime_isolation_21636.py",
-      "size_bytes": 5121,
-      "sha256": "a8366fa3aa72a734171e29f3052a563f86b87cc37dc6ceb17f988403d35504df"
+      "size_bytes": 6232,
+      "sha256": "6de9ce56dee55b16edc1ee0c4f3bd1743f340db2b90678e553896becf2996898"
     },
     {
       "path": "tests/test_version_agnostic_architecture.py",

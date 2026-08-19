@@ -17,6 +17,8 @@ sys.path.insert(0, str(SRC))
 
 from wikidebia_validator import cli as _cli  # noqa: E402
 from wikidebia_validator import editorial as _editorial  # noqa: E402
+from wikidebia_validator import wikicode as _wikicode  # noqa: E402
+from wikidebia_validator import historical_summary as _historical_summary  # noqa: E402
 
 
 def _assert_component_module(module, label: str) -> Path:
@@ -39,8 +41,12 @@ def _sha256(path: Path) -> str:
 
 cli_path = _assert_component_module(_cli, "cli")
 editorial_path = _assert_component_module(_editorial, "editorial")
-os.environ["WIKIDEBIA_VALIDATOR_RUNTIME_MODE"] = "component_script_isolated_v1"
+wikicode_path = _assert_component_module(_wikicode, "wikicode")
+historical_summary_path = _assert_component_module(_historical_summary, "historical_summary")
+os.environ["WIKIDEBIA_VALIDATOR_RUNTIME_MODE"] = "component_script_isolated_v2"
 os.environ["WIKIDEBIA_VALIDATOR_RUNTIME_CLI_SHA256"] = _sha256(cli_path)
 os.environ["WIKIDEBIA_VALIDATOR_RUNTIME_EDITORIAL_SHA256"] = _sha256(editorial_path)
+os.environ["WIKIDEBIA_VALIDATOR_RUNTIME_WIKICODE_SHA256"] = _sha256(wikicode_path)
+os.environ["WIKIDEBIA_VALIDATOR_RUNTIME_HISTORICAL_SUMMARY_SHA256"] = _sha256(historical_summary_path)
 
 raise SystemExit(_cli.main())

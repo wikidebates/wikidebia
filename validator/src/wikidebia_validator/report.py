@@ -56,11 +56,15 @@ class Report:
         runtime_mode = str(os.environ.get("WIKIDEBIA_VALIDATOR_RUNTIME_MODE") or "").strip()
         cli_sha = str(os.environ.get("WIKIDEBIA_VALIDATOR_RUNTIME_CLI_SHA256") or "").strip()
         editorial_sha = str(os.environ.get("WIKIDEBIA_VALIDATOR_RUNTIME_EDITORIAL_SHA256") or "").strip()
-        if runtime_mode or cli_sha or editorial_sha:
+        wikicode_sha = str(os.environ.get("WIKIDEBIA_VALIDATOR_RUNTIME_WIKICODE_SHA256") or "").strip()
+        historical_summary_sha = str(os.environ.get("WIKIDEBIA_VALIDATOR_RUNTIME_HISTORICAL_SUMMARY_SHA256") or "").strip()
+        if runtime_mode or cli_sha or editorial_sha or wikicode_sha or historical_summary_sha:
             self.metrics["runtime_attestation"] = {
                 "mode": runtime_mode,
                 "cli_sha256": cli_sha,
                 "editorial_sha256": editorial_sha,
+                "wikicode_sha256": wikicode_sha,
+                "historical_summary_sha256": historical_summary_sha,
             }
 
     def add(self, code: str, level: str, message: str, *, path: str | None = None,

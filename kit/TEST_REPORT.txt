@@ -1,8 +1,9 @@
-Wikidéb’IA Kit 2.16.36 — rapport de tests
+Wikidéb’IA Kit 2.16.37 — rapport de tests
 
 Tests pytest : 509 réussis
 Norme : 1.2.87
-Validateur : 0.4.102
+Validateur : 0.4.103
 
-Runtime validator isolation : PASSED ; lancement physique avec python -I, attestation SHA-256 de cli.py/editorial.py et refus des copies parasites.
-Diagnostic réel du vote électronique : PASSED ; WDV-EDT-013/014/015/020 absents avec le runtime attesté.
+Runtime validator attestation : PASSED ; quatre modules critiques sont scellés.
+Validation diagnostic export : PASSED ; liste exhaustive et persistance transactionnelle conservées.
+Historical summary provenance regression : PASSED via le validateur 0.4.103.

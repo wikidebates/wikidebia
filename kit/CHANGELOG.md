@@ -404,3 +404,12 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - ajoute une régression avec copie hostile et `sitecustomize` injecteur ;
 - vérifie sur le diagnostic exact du vote électronique que les quatre codes `WDV-EDT-013/014/015/020` disparaissent avec le runtime attesté ;
 - conserve la norme 1.2.87 et le validateur 0.4.102.
+
+## 2.16.37 — 19 août 2026 — provenance historique unifiée et attestation runtime étendue
+
+- s’aligne sur le validateur 0.4.103, qui centralise la provenance des résumés historiques entre `wikicode` et `editorial` ;
+- étend l’attestation runtime aux SHA-256 de `wikicode.py` et `historical_summary.py` ;
+- refuse tout rapport dont l’une des quatre empreintes critiques diverge de la copie installée ;
+- conserve le diagnostic complet automatique et sa persistance à travers le rollback ;
+- ne modifie aucun contenu, aucune traduction, aucun verrou ni aucune règle éditoriale du corpus ;
+- conserve la norme 1.2.87.

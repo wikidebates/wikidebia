@@ -1,7 +1,8 @@
-Wikidéb’IA Validator 0.4.102 — auto-audit
+Wikidéb’IA Validator 0.4.103 — auto-audit
 Norme active unique : 1.2.87
-Tests : 453 réussis
+Tests : 454 réussis
 Statut : RÉUSSI
 
-Attestation runtime du validateur : active et vérifiée.
-Aucun contrôle éditorial n’est supprimé ni assoupli par 0.4.102.
+La provenance historique des résumés est désormais dérivée par un module partagé unique entre les portées wikicode et editorial, sans cache divergent.
+L’attestation runtime isolée couvre cli.py, editorial.py, wikicode.py et historical_summary.py.
+Aucun contrôle éditorial n’est supprimé ni assoupli par 0.4.103.

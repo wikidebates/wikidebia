@@ -9,6 +9,11 @@ from pathlib import Path
 from typing import Any
 from .graph import state_at_least
 from .package import PackageContext
+from .historical_summary import (
+    protected_historical_summary_keys as _shared_protected_historical_summary_keys,
+    historically_absent_summary_keys as _shared_historically_absent_summary_keys,
+    owner_removed_summary_keys as _shared_owner_removed_summary_keys,
+)
 from .translation import english_translation_deferred
 
 @dataclass
@@ -1412,97 +1417,10 @@ def _legacy_fr_content_argument_rows(lock: dict[str, Any]) -> list[dict[str, Any
 
 
 def _protected_historical_summary_keys(ctx: PackageContext) -> set[tuple[str, str]]:
-    cached = getattr(ctx, '_protected_historical_summary_keys_cache', None)
-    if isinstance(cached, set):
-        return cached
-    result: set[tuple[str, str]] = set()
-    manifest = ctx.manifest() or {}
-    cfg = (manifest.get('editorial_controls') or {}).get('legacy_content_preservation') or {}
-    rel = cfg.get('lock_path')
-    if cfg.get('enabled') is True and isinstance(rel, str) and ctx.exists(rel):
-        lock = ctx.load_json(rel)
-        if isinstance(lock, dict):
-            for entry in lock.get('arguments') or []:
-                if isinstance(entry, dict) and entry.get('summary_provenance') == 'historical_existing':
-                    node_id, language = (entry.get('id'), entry.get('language'))
-                    if isinstance(node_id, str) and language in {'fr', 'en'}:
-                        result.add((node_id, language))
-    if ctx.exists('data/fr_content_lock.json'):
-        content_lock = ctx.load_json('data/fr_content_lock.json')
-        decisions = content_lock.get('historical_text_decisions') if isinstance(content_lock, dict) else None
-        if isinstance(decisions, dict):
-            for entry in decisions.get('arguments') or []:
-                if (isinstance(entry, dict) and entry.get('page_origin') == 'preexisting'
-                        and entry.get('historical_status') == 'historical_existing'
-                        and entry.get('decision') == 'preserved' and isinstance(entry.get('id'), str)):
-                    result.add((str(entry['id']), 'fr'))
-        elif isinstance(content_lock, dict) and _legacy_render_differential_mode(ctx):
-            # Compatibility with content locks emitted before the explicit
-            # historical_text_decisions contract.  At that stage a preexisting
-            # page carried its selected historical summary directly in the lock.
-            for entry in _legacy_fr_content_argument_rows(content_lock):
-                if (entry.get('page_origin') == 'preexisting' and isinstance(entry.get('id'), str)
-                        and isinstance(entry.get('summary'), str) and entry.get('summary').strip()):
-                    result.add((str(entry['id']), 'fr'))
-    if ctx.exists('data/en_content_lock.json'):
-        en_lock = ctx.load_json('data/en_content_lock.json')
-        if isinstance(en_lock, dict):
-            for entry in en_lock.get('arguments') or []:
-                if (isinstance(entry, dict) and entry.get('summary_provenance') == 'historical_existing'
-                        and isinstance(entry.get('id'), str)):
-                    result.add((str(entry['id']), 'en'))
-    status = str((((manifest.get('translation_status') or {}).get('en')) or ''))
-    if status in {'ready', 'published'}:
-        en_ids = {str(p.get('page_id')) for p in manifest.get('pages', []) if p.get('language') == 'en' and p.get('page_type') == 'argument'}
-        result.update((node_id, 'en') for node_id, language in list(result) if language == 'fr' and node_id in en_ids)
-    setattr(ctx, '_protected_historical_summary_keys_cache', result)
-    return result
+    return _shared_protected_historical_summary_keys(ctx)
 
 def _historically_absent_summary_keys(ctx: PackageContext) -> set[tuple[str, str]]:
-    cached = getattr(ctx, '_historically_absent_summary_keys_cache', None)
-    if isinstance(cached, set):
-        return cached
-    result: set[tuple[str, str]] = set()
-    exists = getattr(ctx, 'exists', lambda _path: False)
-    manifest = ctx.manifest() or {}
-    cfg = (manifest.get('editorial_controls') or {}).get('legacy_content_preservation') or {}
-    rel = cfg.get('lock_path')
-    if cfg.get('enabled') is True and isinstance(rel, str) and exists(rel):
-        lock = ctx.load_json(rel)
-        if isinstance(lock, dict):
-            for entry in lock.get('arguments') or []:
-                if isinstance(entry, dict) and entry.get('summary_provenance') == 'historical_absent':
-                    node_id, language = (entry.get('id'), entry.get('language'))
-                    if isinstance(node_id, str) and language in {'fr', 'en'}:
-                        result.add((node_id, language))
-    if exists('data/fr_content_lock.json'):
-        content_lock = ctx.load_json('data/fr_content_lock.json')
-        decisions = content_lock.get('historical_text_decisions') if isinstance(content_lock, dict) else None
-        if isinstance(decisions, dict):
-            for entry in decisions.get('arguments') or []:
-                if (isinstance(entry, dict) and entry.get('page_origin') == 'preexisting'
-                        and entry.get('historical_status') == 'historical_absent'
-                        and entry.get('decision') == 'preserved' and isinstance(entry.get('id'), str)):
-                    result.add((str(entry['id']), 'fr'))
-        elif isinstance(content_lock, dict) and _legacy_render_differential_mode(ctx):
-            for entry in _legacy_fr_content_argument_rows(content_lock):
-                if (entry.get('page_origin') == 'preexisting' and isinstance(entry.get('id'), str)
-                        and entry.get('summary') is None):
-                    result.add((str(entry['id']), 'fr'))
-    if exists('data/en_content_lock.json'):
-        en_lock = ctx.load_json('data/en_content_lock.json')
-        if isinstance(en_lock, dict):
-            for entry in en_lock.get('arguments') or []:
-                if (isinstance(entry, dict) and entry.get('summary_provenance') == 'historical_absent'
-                        and isinstance(entry.get('id'), str)):
-                    result.add((str(entry['id']), 'en'))
-    status = str(((manifest.get('translation_status') or {}).get('en') or ''))
-    if status in {'ready', 'published'}:
-        en_ids = {str(p.get('page_id')) for p in manifest.get('pages', []) if p.get('language') == 'en' and p.get('page_type') == 'argument'}
-        result.update((node_id, 'en') for node_id, language in list(result) if language == 'fr' and node_id in en_ids)
-    setattr(ctx, '_historically_absent_summary_keys_cache', result)
-    return result
-
+    return _shared_historically_absent_summary_keys(ctx)
 
 def _preserved_historical_french_introduction(ctx: PackageContext) -> bool:
     cached = getattr(ctx, '_preserved_historical_french_introduction_cache', None)
@@ -1537,27 +1455,7 @@ def _preserved_historical_french_introduction(ctx: PackageContext) -> bool:
     return result
 
 def _owner_removed_summary_keys(ctx: PackageContext) -> set[tuple[str, str]]:
-    cached = getattr(ctx, '_owner_removed_summary_keys_cache', None)
-    if isinstance(cached, set):
-        return cached
-    result: set[tuple[str, str]] = set()
-    manifest = ctx.manifest() or {}
-    cfg = (manifest.get('editorial_controls') or {}).get('legacy_content_preservation') or {}
-    rel = cfg.get('lock_path')
-    if cfg.get('enabled') is True and isinstance(rel, str) and ctx.exists(rel):
-        lock = ctx.load_json(rel)
-        if isinstance(lock, dict):
-            for entry in lock.get('arguments') or []:
-                if isinstance(entry, dict) and entry.get('summary_provenance') == 'owner_removed':
-                    node_id, language = (entry.get('id'), entry.get('language'))
-                    if isinstance(node_id, str) and language in {'fr', 'en'}:
-                        result.add((node_id, language))
-    status = str(((manifest.get('translation_status') or {}).get('en') or ''))
-    if status in {'ready', 'published'}:
-        en_ids = {str(p.get('page_id')) for p in manifest.get('pages', []) if p.get('language') == 'en' and p.get('page_type') == 'argument'}
-        result.update((node_id, 'en') for node_id, language in list(result) if language == 'fr' and node_id in en_ids)
-    setattr(ctx, '_owner_removed_summary_keys_cache', result)
-    return result
+    return _shared_owner_removed_summary_keys(ctx)
 
 def _historical_detailed_debate_states(ctx: PackageContext) -> dict[tuple[str, str], dict[str, Any]]:
     cached = getattr(ctx, '_historical_detailed_debate_states_cache', None)
