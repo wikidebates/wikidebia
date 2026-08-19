@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.87** ;
 - validateur actif : **0.4.101** ;
-- kit actif : **2.16.33**.
+- kit actif : **2.16.34**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3712253 octets — SHA-256 `48df2a4ea874e72c1843346499c18d8c69d0f87daa67710193fc6aebd7f9d42c`
-- `wikidebia-validator.zip` — 3893606 octets — SHA-256 `01a1c5e95b30be9f7bfdb89087a1e3b9de7838b3b3613c31ed2f3c977a27dc50`
-- `wikidebia-kit.zip` — 778391 octets — SHA-256 `841033a14c76a686dad978a37695faa6b804bb73e843b9ba76eef0b210fd5513`
+- `wikidebia-normes.zip` — 3723439 octets — SHA-256 `ab3f7e51c0dac3af85251ad1d0a535a1d359c0940f5c6cca32aa6936ce32a2f8`
+- `wikidebia-validator.zip` — 3905332 octets — SHA-256 `af9adf2c816a0b983419e67e49b6649478fe8f3e19affacb3065454a47227846`
+- `wikidebia-kit.zip` — 784009 octets — SHA-256 `a28767dabab55cf61cb723981d384af1f20b14b9668411b870ae1b11a02c3683`
 
 ## Norme consolidée active
 
@@ -1648,13 +1648,13 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `0ce03bb04805b0709c457d8f5296e731adc4d8e97bcfb5192857dc3884eeb59a`
+SHA-256 : `1ceabac5c2abfcb8b05f452219d8cd2cc8c09486c92df56b082f891d281bfc90`
 
 # Wikidéb’IA Validator 0.4.101
 
 Le validateur 0.4.101 rend le registre `summary_style_review.json` explicitement **non autoritatif pour les résumés historiques**. Dès qu’un résumé est identifié par les verrous FR/EN comme `historical_existing`, `historical_authorized_change`, `historical_authorized_creation`, `historical_absent` ou retiré par décision propriétaire, les attestations de création (style grand public, ouverture, force expressive, exemple/chiffre) ne sont ni exigées ni reconstruites à partir de ce registre. La fidélité, l’absence et les autorisations restent contrôlées par les verrous historiques et les contrôles dédiés, notamment `WDV-EDT-034`.
 
-Un ancien registre peut donc conserver des lignes de provenance incomplètes, voire omettre les nœuds dont tous les résumés sont historiques, sans déclencher `WDV-EDT-013/014/015/020`. Les mêmes contrôles restent strictement applicables à chaque résumé réellement nouveau ou substantiellement réécrit hors profil historique. Norme active : 1.2.87. Kit associé : 2.16.33.
+Un ancien registre peut donc conserver des lignes de provenance incomplètes, voire omettre les nœuds dont tous les résumés sont historiques, sans déclencher `WDV-EDT-013/014/015/020`. Les mêmes contrôles restent strictement applicables à chaque résumé réellement nouveau ou substantiellement réécrit hors profil historique. Norme active : 1.2.87. Kit associé : 2.16.34.
 
 ## Notes héritées du validateur 0.4.100
 
@@ -2040,11 +2040,13 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `75a6d108ef6a51785af816b9718f8721d5024fda51437d561276258925c815ab`
+SHA-256 : `82d18fe741f5855c169a1e719f6d00353a3319114a86207e93e829ee993bdf94`
 
-# Wikidéb’IA Kit 2.16.33
+# Wikidéb’IA Kit 2.16.34
 
-Le kit 2.16.33 exporte automatiquement un paquet de diagnostic complet à chaque échec du validateur orchestré. Le terminal continue d'afficher un résumé compact, mais `outgoing/<debate_id>_<rapport>_diagnostic.zip` contient désormais **toutes** les erreurs bloquantes dans `ERRORS.json` / `ERRORS.txt`, le rapport complet et le contexte minimal directement utile. Le ZIP est conçu pour être transmis tel quel à ChatGPT afin d'analyser un blocage en une seule fois.
+Le kit 2.16.34 conserve désormais les paquets de diagnostic complets à travers le rollback transactionnel de `review-import`. Le kit 2.16.33 les créait correctement, mais le nettoyage transactionnel de `outgoing/` pouvait ensuite les supprimer avant que l’utilisateur puisse les récupérer. Seuls les ZIP auto-identifiés par `DIAGNOSTIC_PACKAGE.json` et le schéma `wikidebia-workflow-diagnostic-package-1.0` sont exemptés du nettoyage ; les sorties partielles ordinaires restent supprimées.
+
+Le mécanisme 2.16.33 exporte automatiquement un paquet de diagnostic complet à chaque échec du validateur orchestré. Le terminal continue d'afficher un résumé compact, mais `outgoing/<debate_id>_<rapport>_diagnostic.zip` contient désormais **toutes** les erreurs bloquantes dans `ERRORS.json` / `ERRORS.txt`, le rapport complet et le contexte minimal directement utile. Le ZIP est conçu pour être transmis tel quel à ChatGPT afin d'analyser un blocage en une seule fois.
 
 La génération est en lecture seule, n'inclut aucun secret ni état d'authentification, borne la taille du contexte et reste best-effort : une panne de diagnostic ne masque jamais l'échec original du validateur. Norme active : 1.2.87. Validateur associé : 0.4.101.
 
@@ -2196,7 +2198,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `9a10aec1d9659fdcd4fd27ed44e61ddfa8da030f72236053e9a81f9975453b19`
+SHA-256 : `4429b505b0b7a72b3c2d32cff1a243990a982bd5d55db668263f4a74f6d0eb49`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2579,6 +2581,14 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - ajoute des régressions sur un rapport de sept erreurs et sur l'échec best-effort du diagnostic ;
 - conserve la norme 1.2.87 et le validateur 0.4.101.
 
+## 2.16.34 — 19 août 2026 — persistance des diagnostics à travers le rollback de review-import
+
+- corrige le cas où `_run_validator` créait bien `outgoing/<debate>_<rapport>_diagnostic.zip`, puis où le rollback transactionnel de `review-import` supprimait ce nouveau fichier avec les autres sorties mécaniques ;
+- préserve uniquement les ZIP de diagnostic complets qui contiennent `DIAGNOSTIC_PACKAGE.json`, portent le schéma `wikidebia-workflow-diagnostic-package-1.0` et déclarent au moins une erreur ;
+- continue de supprimer les paquets de revue partiels, fichiers ordinaires et faux ZIP de diagnostic créés pendant une transaction échouée ;
+- ajoute des régressions couvrant la survie d’un diagnostic réel et la suppression d’un faux diagnostic ;
+- conserve la norme 1.2.87 et le validateur 0.4.101.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -2871,21 +2881,17 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `76c2c2c95bc418f2c929fb173b33dc0759ca1c76de1bf84802519e6c67928b65`
+SHA-256 : `a259b4691a9f5e7b6add18fb9414c26966e4498e926a54928ae1910f0a582761`
 
-Wikidéb’IA Kit 2.16.33 — rapport de tests
+Wikidéb’IA Kit 2.16.34 — rapport de tests
 Statut : PASSED
-Tests pytest collectés : 506
-Tests pytest : 506 réussis
+Tests pytest collectés : 508
+Tests pytest : 508 réussis
 Norme : 1.2.87
 Validateur : 0.4.101
-Rendu historique bilingue : PASSED ; individual_review.json propage les preuves de changement de forme et summary_style_review.json est réconcilié depuis les verrous FR/EN sans appliquer les règles de création aux résumés historiques.
-Dates documentaires inline : PASSED ; les dates ISO de la prose des notes anglaises sont localisées en langage naturel sans modifier les URL.
-Atomicité bilingue des mots-clés 2.16.31 : PASSED.
-Rendu métadonnées FR→EN 2.16.30 : PASSED.
-Réconciliation documentaire et préservation différentielle 2.16.29 : PASSED.
-Tous les contrôles 2.16.31 et antérieurs restent verts.
-Diagnostic automatique des validations : PASSED ; 7 erreurs simultanées sont exportées intégralement et une panne de diagnostic ne masque pas le blocage original.
+Diagnostic automatique des validations : PASSED ; la liste exhaustive reste exportée dans ERRORS.json / ERRORS.txt.
+Persistance transactionnelle du diagnostic : PASSED ; un diagnostic complet survit au rollback de review-import, tandis que les sorties partielles et faux diagnostics restent supprimés.
+Tous les contrôles 2.16.33 et antérieurs restent verts.
 
 ## Guide d’orchestration éditoriale
 

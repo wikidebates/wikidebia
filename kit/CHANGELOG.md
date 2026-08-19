@@ -379,3 +379,10 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - ajoute des régressions sur un rapport de sept erreurs et sur l'échec best-effort du diagnostic ;
 - conserve la norme 1.2.87 et le validateur 0.4.101.
 
+## 2.16.34 — 19 août 2026 — persistance des diagnostics à travers le rollback de review-import
+
+- corrige le cas où `_run_validator` créait bien `outgoing/<debate>_<rapport>_diagnostic.zip`, puis où le rollback transactionnel de `review-import` supprimait ce nouveau fichier avec les autres sorties mécaniques ;
+- préserve uniquement les ZIP de diagnostic complets qui contiennent `DIAGNOSTIC_PACKAGE.json`, portent le schéma `wikidebia-workflow-diagnostic-package-1.0` et déclarent au moins une erreur ;
+- continue de supprimer les paquets de revue partiels, fichiers ordinaires et faux ZIP de diagnostic créés pendant une transaction échouée ;
+- ajoute des régressions couvrant la survie d’un diagnostic réel et la suppression d’un faux diagnostic ;
+- conserve la norme 1.2.87 et le validateur 0.4.101.

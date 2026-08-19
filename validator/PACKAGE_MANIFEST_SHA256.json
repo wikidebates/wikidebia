@@ -14,7 +14,7 @@
     {
       "path": "CAPABILITIES.json",
       "size_bytes": 2956,
-      "sha256": "e89e81834f61988c8cbedfd73341835a440b06f82d627da655232563f298e460"
+      "sha256": "de9e0a2cb06c75ceed5dae69a0d0698be9a8c9aabe2554c52ebcba626186ae07"
     },
     {
       "path": "CHANGELOG.md",
@@ -24,7 +24,7 @@
     {
       "path": "COMPATIBILITY.json",
       "size_bytes": 2904,
-      "sha256": "1cfc0cac2be0e5ec35156779deffbf04f689764ac974e5ab580f0901132ecc17"
+      "sha256": "90752e7c594e940ce7093afdb671f0ea81ac85e13c21760ffa831468e9dc8d9b"
     },
     {
       "path": "LICENSE",
@@ -34,7 +34,7 @@
     {
       "path": "README.md",
       "size_bytes": 13877,
-      "sha256": "0ce03bb04805b0709c457d8f5296e731adc4d8e97bcfb5192857dc3884eeb59a"
+      "sha256": "1ceabac5c2abfcb8b05f452219d8cd2cc8c09486c92df56b082f891d281bfc90"
     },
     {
       "path": "TEST_REPORT.txt",
@@ -44,7 +44,7 @@
     {
       "path": "VERSIONS.json",
       "size_bytes": 69,
-      "sha256": "b3a5267bb6f5d29b262fa02a6081a2a853730b628b041a8d2cd3fabc9aa06e73"
+      "sha256": "e860f42bf08ceb878cc62604cc238946b81eb44ab7c8ee9aabd3b6a6fc2d5edf"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/CHANGELOG.md",
@@ -2084,7 +2084,7 @@
     {
       "path": "tests/test_editorial_orchestration_schemas_1273.py",
       "size_bytes": 4216,
-      "sha256": "4ee0938217d51e5cf7792904647a975818ea248a3c9b09563a3dde6439c70bbe"
+      "sha256": "3c70e050f3eda668c5be9ebab795534641fa2cf2cbe67b045c30da4a04759e11"
     },
     {
       "path": "tests/test_files_batches_workflow.py",
@@ -2504,7 +2504,7 @@
     {
       "path": "tests/test_versions_file.py",
       "size_bytes": 1702,
-      "sha256": "1be96df6d64e35d95a9bf08c5ef0897800e4c52000b3c0a720cfcc2abf1c7b11"
+      "sha256": "24c64c71efa67dc8b53514ac8a1cd2ef28e75ed7bdfe26f9624e8ea5d7bc2567"
     },
     {
       "path": "tests/test_wikicode.py",

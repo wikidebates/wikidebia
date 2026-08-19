@@ -546,13 +546,40 @@ def _capture_import_transaction(
     }
 
 
-def _remove_new_children(path: Path, before: set[str], existed_before: bool) -> None:
+def _is_persistent_validation_diagnostic(path: Path) -> bool:
+    """Return True only for a complete, self-identifying validation diagnostic ZIP.
+
+    review-import rolls local/mechanical work back on failure, but diagnostics are
+    deliberately user-facing evidence of that failure and must survive the
+    transaction cleanup.  Filename matching alone is not sufficient: require the
+    diagnostic manifest and schema before exempting a new file from rollback.
+    """
+    if not path.is_file() or path.is_symlink() or not path.name.endswith("_diagnostic.zip"):
+        return False
+    try:
+        with zipfile.ZipFile(path) as bundle:
+            payload = json.loads(bundle.read("DIAGNOSTIC_PACKAGE.json").decode("utf-8"))
+    except Exception:
+        return False
+    return (
+        isinstance(payload, dict)
+        and payload.get("schema") == DIAGNOSTIC_SCHEMA
+        and payload.get("schema_version") == "1.0"
+        and int(payload.get("error_count") or 0) > 0
+    )
+
+
+def _remove_new_children(
+    path: Path, before: set[str], existed_before: bool, *, preserve: Callable[[Path], bool] | None = None
+) -> None:
     if not path.exists():
         return
     if not path.is_dir() or path.is_symlink():
         return
     for child in list(path.iterdir()):
         if child.name in before:
+            continue
+        if preserve is not None and preserve(child):
             continue
         if child.is_dir() and not child.is_symlink():
             shutil.rmtree(child, ignore_errors=True)
@@ -641,6 +668,7 @@ def _rollback_import_transaction(
         project_root / "outgoing",
         set(snapshot.get("outgoing_children") or set()),
         bool(snapshot.get("outgoing_root_existed")),
+        preserve=_is_persistent_validation_diagnostic,
     )
     _restore_french_publication_stage(project_root, debate_id, snapshot)
 

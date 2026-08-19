@@ -1,11 +1,11 @@
 {
   "artifact": "wikidebia-kit",
-  "version": "2.16.33",
+  "version": "2.16.34",
   "normative_revision": "1.2.87",
   "stable_archive_name": "wikidebia-kit.zip",
   "version_source": "VERSIONS.json",
-  "declared_file_count": 364,
-  "declared_test_count": 506,
+  "declared_file_count": 366,
+  "declared_test_count": 508,
   "self_excluded": [
     "PACKAGE_MANIFEST_SHA256.json",
     "PACKAGE_RECEIPT.json"
@@ -137,19 +137,24 @@
       "sha256": "476d50b4230b6c81b723e0001b05cf40eaf780f817a2519b7da89afa34d4b803"
     },
     {
+      "path": "AUDIT_VALIDATION_DIAGNOSTIC_ROLLBACK_2.16.34.md",
+      "size_bytes": 897,
+      "sha256": "e9f464663fa1c68caf233990af67c9950f45165f0f77756ac8756f535fd6f715"
+    },
+    {
       "path": "CAPABILITIES.json",
-      "size_bytes": 5286,
-      "sha256": "a0fab3dbadbeddf302b4cd5c7033b03ccdd0ab74d31b05993ed9c84999377609"
+      "size_bytes": 5343,
+      "sha256": "ce3ee9522b9525b86bd1ecd0a7979fcf9d354850ca22a77fe3c470941e91604a"
     },
     {
       "path": "CHANGELOG.md",
-      "size_bytes": 36141,
-      "sha256": "9a10aec1d9659fdcd4fd27ed44e61ddfa8da030f72236053e9a81f9975453b19"
+      "size_bytes": 36969,
+      "sha256": "4429b505b0b7a72b3c2d32cff1a243990a982bd5d55db668263f4a74f6d0eb49"
     },
     {
       "path": "COMPATIBILITY.json",
       "size_bytes": 524,
-      "sha256": "c60230319e605fdff28b92f73e0f26441005e11ce7b9fb63ed28a0264b7ff7a2"
+      "sha256": "b1f65b559348a01188b5b3a5d35f0224f45d872988341a0276df01216a16d1d2"
     },
     {
       "path": "GUIDE_BILINGUAL_RENDER.md",
@@ -228,8 +233,8 @@
     },
     {
       "path": "KIT_MANIFEST.json",
-      "size_bytes": 28844,
-      "sha256": "60c66f618a6dcbee80945993509ba70179336631a01c955ba25207d7bc0b1066"
+      "size_bytes": 28994,
+      "sha256": "1edc1b9e63d22074def221cb184e7b5d69279c6e31c209c8ae1ca91fd128bce1"
     },
     {
       "path": "MIGRATION_2.1.11.md",
@@ -798,8 +803,8 @@
     },
     {
       "path": "README.md",
-      "size_bytes": 24570,
-      "sha256": "75a6d108ef6a51785af816b9718f8721d5024fda51437d561276258925c815ab"
+      "size_bytes": 25079,
+      "sha256": "82d18fe741f5855c169a1e719f6d00353a3319114a86207e93e829ee993bdf94"
     },
     {
       "path": "REGRESSION_AUDIT_2.15.38.md",
@@ -903,13 +908,13 @@
     },
     {
       "path": "TEST_REPORT.txt",
-      "size_bytes": 944,
-      "sha256": "76c2c2c95bc418f2c929fb173b33dc0759ca1c76de1bf84802519e6c67928b65"
+      "size_bytes": 519,
+      "sha256": "a259b4691a9f5e7b6add18fb9414c26966e4498e926a54928ae1910f0a582761"
     },
     {
       "path": "VERSIONS.json",
       "size_bytes": 69,
-      "sha256": "b3a5267bb6f5d29b262fa02a6081a2a853730b628b041a8d2cd3fabc9aa06e73"
+      "sha256": "e860f42bf08ceb878cc62604cc238946b81eb44ab7c8ee9aabd3b6a6fc2d5edf"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/CHANGELOG.md",
@@ -1528,8 +1533,8 @@
     },
     {
       "path": "scripts/wikidebia_review_workflow.py",
-      "size_bytes": 97839,
-      "sha256": "aa44ac2f0cc0cb09254fd770becd35960d363d8fa77fb6524e6ba0954010e60a"
+      "size_bytes": 99012,
+      "sha256": "7b288fc70ab69e3fa6d714c656c346bfef51d2c6cae6051e900e3fb7f0e83db1"
     },
     {
       "path": "scripts/wikidebia_semantic_convergence.py",
@@ -1644,7 +1649,7 @@
     {
       "path": "tests/test_reconciliation_21546.py",
       "size_bytes": 1947,
-      "sha256": "f665f59dffe6f63d58952e7974a36ea3ed32f59f84a9ee2fdddb7e58a4075096"
+      "sha256": "617ffcff315afcf1e1ddf6b85fee831552f4dd0f328507bffd649b5a04ceccb3"
     },
     {
       "path": "tests/test_reconciliation_21547.py",
@@ -1710,6 +1715,11 @@
       "path": "tests/test_validation_diagnostic_export_21633.py",
       "size_bytes": 5248,
       "sha256": "5856282ef477e25e3f90ba596c2675c68849861e7493ed273ec8055b4736a0df"
+    },
+    {
+      "path": "tests/test_validation_diagnostic_rollback_21634.py",
+      "size_bytes": 2392,
+      "sha256": "148aeeb5d13b1c0a6a7fc63a40da71ca913c26f4ecbb977f272a0978fddc297c"
     },
     {
       "path": "tests/test_version_agnostic_architecture.py",
