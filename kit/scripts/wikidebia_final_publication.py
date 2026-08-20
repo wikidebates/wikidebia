@@ -94,6 +94,8 @@ def _common_remote(project_root: Path, debate_id: str, corpus_root: Path, run_di
             "command": [str(project_root / ".venv/bin/python"), str(project_root / "validator/scripts/wikidebia_validate.py"), "validate"],
             "required_version": VALIDATOR_VERSION,
             "scopes": ["schema", "coherence", "graph", "files", "batches", "sources", "wikicode", "bilingual", "editorial", "workflow"],
+            "max_warnings": 0,
+            "fingerprint_path": str(project_root / "validator"),
         },
     }
 

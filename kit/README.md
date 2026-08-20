@@ -1,4 +1,6 @@
-# Wikidéb’IA Kit 2.16.43
+# Wikidéb’IA Kit 2.16.44
+Le kit 2.16.44 corrige la préparation de la publication finale anglaise : la configuration construite par `wikidebia_final_publication` transporte désormais explicitement `validator.fingerprint_path` et `max_warnings`, comme toutes les configurations `GenericPublisher` courantes. Sans ce champ, la construction du plan anglais atteignait `_package_fingerprints()` puis levait `KeyError('fingerprint_path')` après les connexions de préflight mais avant toute autorisation ou écriture distante. Le correctif ne modifie aucun corpus, plan français, convergence, contenu éditorial ni règle normative.
+
 
 Le kit 2.16.43 complète la réconciliation sûre des checkpoints français historiques non liés. Un ancien `workflow.json` déjà arrivé à `final_publication` peut avoir conservé un statut local obsolète (ou aucun statut canonique) en plus de l'absence de `receipt_sha256` et `plan_sha256`. Ce statut local est désormais remplacé par le reçu courant uniquement lorsque le workflow est totalement non lié, sans revue pendante, avant toute publication finale et sans état anglais, et lorsque le reçu auto-signé et l'état français signé attestent exactement le même plan. Un workflow déjà lié à un reçu ou un plan reste bloquant en cas de statut incohérent. Aucune revue, convergence, page ou donnée éditoriale n'est modifiée.
 

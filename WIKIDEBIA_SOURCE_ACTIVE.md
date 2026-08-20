@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.87** ;
 - validateur actif : **0.4.104** ;
-- kit actif : **2.16.43**.
+- kit actif : **2.16.44**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3723440 octets — SHA-256 `6b4248118f3f54977f00068522f2cbca2b831310e2b02f43aeb023feb702b860`
-- `wikidebia-validator.zip` — 3915435 octets — SHA-256 `2a0f6d45353596cb35e8f0868286953bdc7058ced8c0f12000338b1a463ded10`
-- `wikidebia-kit.zip` — 822135 octets — SHA-256 `8562082bb1366bbbfe0f8b1868493df08f6f618df708a973166e554fca8412ea`
+- `wikidebia-normes.zip` — 3712248 octets — SHA-256 `5e36d3be13328d05208d90c19ea52c143afe1561851153c3c0249d5cbe40a9dd`
+- `wikidebia-validator.zip` — 3903678 octets — SHA-256 `8a4a9c38826fb2b7e32833f3c3dc34c4e0b360f101d686977aa6edab57ea63de`
+- `wikidebia-kit.zip` — 821489 octets — SHA-256 `b24e6ab9dbf5bcbb573150fea7be37e87eb5dca2f9e86e09288de1522a88ce75`
 
 ## Norme consolidée active
 
@@ -1648,7 +1648,7 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `caf17ce78782f443f0adbf29b3de8c5f97af2f025b64c2bc853c40519eb1f498`
+SHA-256 : `74a07b1787aad6c57639f626fbd0e906fd3823f0d08a8cda305c0f61d0d98319`
 
 # Wikidéb’IA Validator 0.4.104
 
@@ -1663,7 +1663,7 @@ La provenance des résumés est désormais calculée dans un module unique `hist
 
 La régression reproduit l’ordre réel `wikicode → editorial` et vérifie qu’un `historical_authorized_change` français et sa traduction anglaise restent hors du profil de création. Aucun contrôle n’est assoupli pour un résumé réellement nouveau.
 
-Norme active : 1.2.87. Kit associé : 2.16.43.
+Norme active : 1.2.87. Kit associé : 2.16.44.
 
 ## Notes héritées du validateur 0.4.101
 
@@ -2084,9 +2084,11 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `85fa602c7295f9f5dec7d66d269ce90a600213d3dde8de9cdf8720954cb0929d`
+SHA-256 : `7b8fb4371516ffd27a503319716d2074867006219eb1e575317bfda908ea9c04`
 
-# Wikidéb’IA Kit 2.16.43
+# Wikidéb’IA Kit 2.16.44
+Le kit 2.16.44 corrige la préparation de la publication finale anglaise : la configuration construite par `wikidebia_final_publication` transporte désormais explicitement `validator.fingerprint_path` et `max_warnings`, comme toutes les configurations `GenericPublisher` courantes. Sans ce champ, la construction du plan anglais atteignait `_package_fingerprints()` puis levait `KeyError('fingerprint_path')` après les connexions de préflight mais avant toute autorisation ou écriture distante. Le correctif ne modifie aucun corpus, plan français, convergence, contenu éditorial ni règle normative.
+
 
 Le kit 2.16.43 complète la réconciliation sûre des checkpoints français historiques non liés. Un ancien `workflow.json` déjà arrivé à `final_publication` peut avoir conservé un statut local obsolète (ou aucun statut canonique) en plus de l'absence de `receipt_sha256` et `plan_sha256`. Ce statut local est désormais remplacé par le reçu courant uniquement lorsque le workflow est totalement non lié, sans revue pendante, avant toute publication finale et sans état anglais, et lorsque le reçu auto-signé et l'état français signé attestent exactement le même plan. Un workflow déjà lié à un reçu ou un plan reste bloquant en cas de statut incohérent. Aucune revue, convergence, page ou donnée éditoriale n'est modifiée.
 
@@ -2270,7 +2272,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `dde13483799055b88d923ab75039f7616cc57410ccb9186f33f2ebfc510f8b30`
+SHA-256 : `c4f96dc356035ed2284b83f8b8470e8766c6c978743a651ddc12ab5d6f7860cf`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2748,6 +2750,14 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - trace l'ancien statut et la réconciliation dans `compatibility_migrations` ;
 - conserve la norme 1.2.87 et le validateur 0.4.104.
 
+## 2.16.44 — 20 août 2026 — empreinte du validateur dans la publication finale
+
+- ajoute `validator.fingerprint_path` à la configuration commune de publication finale utilisée par le plan anglais `GenericPublisher` ;
+- aligne également `max_warnings=0` sur les autres chemins de publication ;
+- corrige le `KeyError('fingerprint_path')` observé après les connexions de préflight et avant toute autorisation/écriture distante ;
+- ajoute une régression qui construit la configuration anglaise finale puis calcule réellement les empreintes du paquet avec `GenericPublisher._package_fingerprints()` ;
+- ne modifie ni le corpus, ni les deux convergences, ni le checkpoint français, ni la norme 1.2.87, ni le validateur 0.4.104.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -3040,14 +3050,15 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `80e9875b7c94dbf0ab56f06fa90d7e7b6639d8a8602be60d101a8d09b957b55e`
+SHA-256 : `25926b6a78929e81f89767366075f18db2af85fe274161b58a6ce0ab5ae20719`
 
-Wikidéb’IA Kit 2.16.43 — rapport de tests
+Wikidéb’IA Kit 2.16.44 — rapport de tests
 
-Tests pytest : 527 réussis
+Tests pytest : 528 réussis
 Norme : 1.2.87
 Validateur : 0.4.104
 
+Final publication validator fingerprint : PASSED ; la configuration anglaise finale transporte `validator.fingerprint_path` et calcule réellement l’empreinte du validateur.
 Final checkpoint receipt-reference reconciliation : PASSED ; réparation uniquement à plan signé identique, avant publication finale.
 Legacy unbound checkpoint adoption : PASSED ; un workflow sans empreinte de reçu est rattaché uniquement au reçu courant attesté par l’état français signé.
 Render preflight evidence reconciliation : PASSED ; aucune valeur éditoriale n’est modifiée.

@@ -473,3 +473,11 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - refuse toute normalisation si le workflow est déjà lié à un ancien reçu ou plan, afin qu'un statut contradictoire reste bloquant dans ce cas ;
 - trace l'ancien statut et la réconciliation dans `compatibility_migrations` ;
 - conserve la norme 1.2.87 et le validateur 0.4.104.
+
+## 2.16.44 — 20 août 2026 — empreinte du validateur dans la publication finale
+
+- ajoute `validator.fingerprint_path` à la configuration commune de publication finale utilisée par le plan anglais `GenericPublisher` ;
+- aligne également `max_warnings=0` sur les autres chemins de publication ;
+- corrige le `KeyError('fingerprint_path')` observé après les connexions de préflight et avant toute autorisation/écriture distante ;
+- ajoute une régression qui construit la configuration anglaise finale puis calcule réellement les empreintes du paquet avec `GenericPublisher._package_fingerprints()` ;
+- ne modifie ni le corpus, ni les deux convergences, ni le checkpoint français, ni la norme 1.2.87, ni le validateur 0.4.104.

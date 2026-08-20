@@ -1,9 +1,10 @@
-Wikidéb’IA Kit 2.16.43 — rapport de tests
+Wikidéb’IA Kit 2.16.44 — rapport de tests
 
-Tests pytest : 527 réussis
+Tests pytest : 528 réussis
 Norme : 1.2.87
 Validateur : 0.4.104
 
+Final publication validator fingerprint : PASSED ; la configuration anglaise finale transporte `validator.fingerprint_path` et calcule réellement l’empreinte du validateur.
 Final checkpoint receipt-reference reconciliation : PASSED ; réparation uniquement à plan signé identique, avant publication finale.
 Legacy unbound checkpoint adoption : PASSED ; un workflow sans empreinte de reçu est rattaché uniquement au reçu courant attesté par l’état français signé.
 Render preflight evidence reconciliation : PASSED ; aucune valeur éditoriale n’est modifiée.

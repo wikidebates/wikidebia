@@ -1,6 +1,6 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.16.43",
+  "version": "2.16.44",
   "validator_version": "0.4.104",
   "scope": [
     "publish_archive",
@@ -676,5 +676,5 @@
     "workflow_scoped_english_empty_baseline_regression"
   ],
   "translation_change_tag": "translated-fr",
-  "kit_version": "2.16.43"
+  "kit_version": "2.16.44"
 }
