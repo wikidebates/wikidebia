@@ -947,3 +947,67 @@ def test_missing_english_state_still_blocks_without_deferred_prior_evidence(tmp_
         assert "Langue(s) sans preuve : en" in str(exc)
     else:
         raise AssertionError("une baseline anglaise inconnue a été acceptée sans preuve")
+
+
+def test_signed_plan_producer_versions_are_provenance_on_resume(tmp_path):
+    text = argument("Même")
+    p, config, path, adapter = plan(
+        tmp_path,
+        old_pages=[("fr", "A1", "Titre", text)],
+        new_pages=[("fr", "A1", "Titre", text)],
+        remote_pages={("fr", "Titre"): (10, text)},
+    )
+    # Simulate a plan signed by the immediately preceding installed components.
+    p["kit_version"] = "2.16.45"
+    p["required_validator_version"] = "0.4.104"
+    p.pop("plan_sha256", None)
+    p["plan_sha256"] = module.sha_object(p)
+
+    executor = module.PlanExecutor(config, adapter, path)
+    executor.verify_plan(p, p["plan_sha256"])
+
+
+def test_signed_plan_still_blocks_manifest_divergence_across_versions(tmp_path):
+    text = argument("Même")
+    p, config, path, adapter = plan(
+        tmp_path,
+        old_pages=[("fr", "A1", "Titre", text)],
+        new_pages=[("fr", "A1", "Titre", text)],
+        remote_pages={("fr", "Titre"): (10, text)},
+    )
+    p["kit_version"] = "2.16.45"
+    p["required_validator_version"] = "0.4.104"
+    p["new_manifest_sha256"] = "f" * 64
+    p.pop("plan_sha256", None)
+    p["plan_sha256"] = module.sha_object(p)
+
+    executor = module.PlanExecutor(config, adapter, path)
+    try:
+        executor.verify_plan(p, p["plan_sha256"])
+    except module.PlanConflict as exc:
+        assert "new_manifest_sha256" in str(exc)
+    else:
+        raise AssertionError("un plan signé pour un autre manifeste a été accepté")
+
+
+def test_signed_plan_still_blocks_config_divergence_across_versions(tmp_path):
+    text = argument("Même")
+    p, config, path, adapter = plan(
+        tmp_path,
+        old_pages=[("fr", "A1", "Titre", text)],
+        new_pages=[("fr", "A1", "Titre", text)],
+        remote_pages={("fr", "Titre"): (10, text)},
+    )
+    p["kit_version"] = "2.16.45"
+    p["required_validator_version"] = "0.4.104"
+    p["config_sha256"] = "e" * 64
+    p.pop("plan_sha256", None)
+    p["plan_sha256"] = module.sha_object(p)
+
+    executor = module.PlanExecutor(config, adapter, path)
+    try:
+        executor.verify_plan(p, p["plan_sha256"])
+    except module.PlanConflict as exc:
+        assert "config_sha256" in str(exc)
+    else:
+        raise AssertionError("un plan signé pour une autre configuration a été accepté")

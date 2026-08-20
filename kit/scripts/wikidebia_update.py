@@ -2154,10 +2154,14 @@ class PlanExecutor:
         claimed = unsigned.pop("plan_sha256", None)
         if not claimed or claimed != sha_object(unsigned) or confirmation != claimed:
             raise PlanConflict("Empreinte du plan divergente")
+        # Producer versions are provenance only. A signed plan remains executable
+        # across a component upgrade as long as its stable plan schema is supported
+        # and the content/configuration fingerprints it was signed against are
+        # unchanged. This is essential for idempotent resume after remote execution
+        # has begun: rebuilding a historical plan merely to rewrite producer version
+        # numbers would weaken, rather than strengthen, the audit trail.
         checks = {
             "plan_version": PLAN_VERSION,
-            "kit_version": KIT_VERSION,
-            "required_validator_version": REQUIRED_VALIDATOR_VERSION,
             "debate_id": self.debate_id,
             "new_manifest_sha256": sha_file(self.corpus_root / "manifest.json"),
             "config_sha256": sha_file(self.config_path),

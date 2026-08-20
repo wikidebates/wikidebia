@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.88** ;
 - validateur actif : **0.4.105** ;
-- kit actif : **2.16.46**.
+- kit actif : **2.16.47**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3747316 octets — SHA-256 `1fbb814a4776481e4f3590163c0f6a5b366599ca85a229a5eedce826e5de2cfb`
-- `wikidebia-validator.zip` — 3939233 octets — SHA-256 `88bd0df545011c8c437d8fbbeae0537d77d203ec9a7d32de3f2c5fba1dc2ffec`
-- `wikidebia-kit.zip` — 832741 octets — SHA-256 `8c8a2f3945c81d41beb44861eb8d0f4934ffd9c0759fa9ca22a3900ea7b26c5b`
+- `wikidebia-normes.zip` — 3758613 octets — SHA-256 `29bd6477d328669063881e37ab7394ca59d47cf439dbfe2b1736d8d1a9ef67b4`
+- `wikidebia-validator.zip` — 3951094 octets — SHA-256 `4bb75a6d04fc24b6c56e8826cb6c45a3c1cee02505dcedf2622e4eff3595057a`
+- `wikidebia-kit.zip` — 838414 octets — SHA-256 `152f063bcb88266d2c7192cd758b5d4c15e96eb86e1dc067c277ef98c6124df5`
 
 ## Norme consolidée active
 
@@ -1662,12 +1662,12 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `4a96336eefcbc83b17260302b04eed328116d20f3c84ebf918f04d4d472cd267`
+SHA-256 : `e6a83b12c2f1737de6225118c16593121564c27b6229e74acb6672513fa3ac20`
 
 # Wikidéb’IA Validator 0.4.105
-Le validateur 0.4.105 s’aligne sur la norme 1.2.88 et le kit 2.16.46. Il conserve tous les contrôles 0.4.104 ; la modification porte sur le contrat de publication finale, où la page anglaise `Debate` doit précéder les créations `Argument`.
+Le validateur 0.4.105 s’aligne sur la norme 1.2.88 et le kit 2.16.47. Il conserve tous les contrôles 0.4.104 ; la modification porte sur le contrat de publication finale, où la page anglaise `Debate` doit précéder les créations `Argument`.
 
-Norme active : 1.2.88. Kit associé : 2.16.46.
+Norme active : 1.2.88. Kit associé : 2.16.47.
 
 Il accepte en outre les deux formes légitimes de `documentation_family_notes` (trois familles agrégées ou neuf familles orientées), et la limite formelle de longueur d’un mot-clé ne s’applique plus lorsqu’une exception multi-mots valide du vocabulaire contrôlé atteste déjà le concept lexicalisé. Les contrôles restent stricts sur les contenus nouveaux, les introductions autorisées modifiées et les mots-clés sans attestation atomique.
 
@@ -1798,7 +1798,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `6181199a97d660f1d62c21a4e903ff6665d127ca685539f4fc5f99a020708e42`
+SHA-256 : `ca7446ed155d7c7c74172b88a144b0ec8cc4b8a2881d3f395c721c38abb9ada1`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2098,17 +2098,17 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 
 ## 0.4.105 — 21 août 2026 — alignement Debate avant Arguments
 
-- s’aligne sur la norme 1.2.88 et le kit 2.16.46 ;
+- s’aligne sur la norme 1.2.88 et le kit 2.16.47 ;
 - conserve sans modification tous les contrôles structurels, éditoriaux, documentaires et historiques de 0.4.104 ;
 - met à jour la copie normative active et les métadonnées de release pour le contrat de publication finale `Debate` avant `Argument`.
 
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `ebc0379879717d2f762d44735a07df9d69e4ab66d018cfeedc706aa155116147`
+SHA-256 : `0f3e280fe6ff5bfa71eb55227bc6d26f7e7d58c1bd9642962b1fd302a0cbf32c`
 
-# Wikidéb’IA Kit 2.16.46
-Le kit 2.16.46 applique la décision propriétaire de publier la page anglaise `Debate` avant les pages `Argument`. Un plan final nouveau est naturellement ordonné `Debate` puis `Argument`; un Work déjà partiellement exécuté sous l’ancien ordre est repris par un plan successeur audité qui conserve les pages déjà créées et place `Debate` avant toutes les créations restantes. Norme active : 1.2.88. Validateur associé : 0.4.105.
+# Wikidéb’IA Kit 2.16.47
+Le kit 2.16.47 conserve l’ordre final `Debate` puis `Argument` de 2.16.46 et corrige la reprise des plans distants signés après une mise à niveau : `kit_version` et `required_validator_version` sont traités comme provenance du producteur, tandis que la signature du plan, son schéma, le débat, le manifeste et la configuration exacts restent obligatoirement vérifiés. Norme active : 1.2.88. Validateur associé : 0.4.105.
 
 Le kit 2.16.44 corrige la préparation de la publication finale anglaise : la configuration construite par `wikidebia_final_publication` transporte désormais explicitement `validator.fingerprint_path` et `max_warnings`, comme toutes les configurations `GenericPublisher` courantes. Sans ce champ, la construction du plan anglais atteignait `_package_fingerprints()` puis levait `KeyError('fingerprint_path')` après les connexions de préflight mais avant toute autorisation ou écriture distante. Le correctif ne modifie aucun corpus, plan français, convergence, contenu éditorial ni règle normative.
 
@@ -2295,7 +2295,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `e8ade32bf01d0829d68e915edd8f04f83552c80db10944be989fc67c72efe9ed`
+SHA-256 : `98d160eaccddc6469319df28d9b50da3ed5e88c606d50909a3334fe3876b0f7b`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2798,6 +2798,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - rescellle préflight et autorisation et archive l’ancien état de planification, sans supprimer ni recréer une page déjà publiée ;
 - conserve intégralement le rollover de date 2.16.45.
 
+## 2.16.47 — 21 août 2026 — reprise des plans signés après mise à niveau
+
+- corrige `Plan divergent : kit_version` lors de la reprise d’une publication distante déjà commencée avec un plan signé par une version antérieure du kit ;
+- traite `kit_version` et `required_validator_version` du plan comme provenance du producteur, conformément au contrat version-agnostique déjà déclaré par `RemoteUpdatePlanner` et la norme active ;
+- conserve intégralement les contrôles bloquants sur `plan_version`, l’empreinte SHA-256 du plan, le `debate_id`, l’empreinte du manifeste et l’empreinte exacte de la configuration ;
+- conserve les gardes de révision/contenu immédiatement avant chaque mutation distante ;
+- ajoute des régressions positives de reprise inter-version et négatives sur divergence de manifeste/configuration ;
+- conserve la norme 1.2.88 et le validateur 0.4.105.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -3090,11 +3099,11 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `ddc8c9e7c7eea68084765615c9289b2a3686e267e65efbad30643fbf33b9abd3`
+SHA-256 : `9a12175c840382cf753194310e7ab104b8011a69aa03d8d07f700c85c2910b9f`
 
-Wikidéb’IA Kit 2.16.46 — rapport de tests
+Wikidéb’IA Kit 2.16.47 — rapport de tests
 
-Tests pytest : 536 réussis
+Tests pytest : 539 réussis
 Norme : 1.2.88
 Validateur : 0.4.105
 
@@ -3108,6 +3117,8 @@ Final publication orchestration : PASSED ; les capacités de 2.16.39 sont conser
 Legacy non-canonical checkpoint status : PASSED ; un statut local historique non canonique est normalisé uniquement pour un workflow totalement non lié et déjà en final_publication.
 Publication date rollover : PASSED ; les pages déjà créées gardent leur date réelle et seules les pages encore absentes sont replannifiées au nouveau jour civil avec plan/préflight/autorisation successeurs audités.
 Debate-first publication order : PASSED ; Debate précède les créations Argument, y compris après migration auditée d’un plan partiellement exécuté.
+
+Signed plan cross-version resume : PASSED ; les versions producteur restent de la provenance, tandis que signature, schéma, manifeste et configuration restent bloquants.
 
 ## Guide d’orchestration éditoriale
 

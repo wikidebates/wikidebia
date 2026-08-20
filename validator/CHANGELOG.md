@@ -296,7 +296,7 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 
 ## 0.4.105 — 21 août 2026 — alignement Debate avant Arguments
 
-- s’aligne sur la norme 1.2.88 et le kit 2.16.46 ;
+- s’aligne sur la norme 1.2.88 et le kit 2.16.47 ;
 - conserve sans modification tous les contrôles structurels, éditoriaux, documentaires et historiques de 0.4.104 ;
 - met à jour la copie normative active et les métadonnées de release pour le contrat de publication finale `Debate` avant `Argument`.
 

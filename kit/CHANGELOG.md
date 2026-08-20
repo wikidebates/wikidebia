@@ -499,3 +499,11 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - rescellle préflight et autorisation et archive l’ancien état de planification, sans supprimer ni recréer une page déjà publiée ;
 - conserve intégralement le rollover de date 2.16.45.
 
+## 2.16.47 — 21 août 2026 — reprise des plans signés après mise à niveau
+
+- corrige `Plan divergent : kit_version` lors de la reprise d’une publication distante déjà commencée avec un plan signé par une version antérieure du kit ;
+- traite `kit_version` et `required_validator_version` du plan comme provenance du producteur, conformément au contrat version-agnostique déjà déclaré par `RemoteUpdatePlanner` et la norme active ;
+- conserve intégralement les contrôles bloquants sur `plan_version`, l’empreinte SHA-256 du plan, le `debate_id`, l’empreinte du manifeste et l’empreinte exacte de la configuration ;
+- conserve les gardes de révision/contenu immédiatement avant chaque mutation distante ;
+- ajoute des régressions positives de reprise inter-version et négatives sur divergence de manifeste/configuration ;
+- conserve la norme 1.2.88 et le validateur 0.4.105.

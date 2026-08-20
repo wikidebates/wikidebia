@@ -1,5 +1,5 @@
-# Wikidéb’IA Kit 2.16.46
-Le kit 2.16.46 applique la décision propriétaire de publier la page anglaise `Debate` avant les pages `Argument`. Un plan final nouveau est naturellement ordonné `Debate` puis `Argument`; un Work déjà partiellement exécuté sous l’ancien ordre est repris par un plan successeur audité qui conserve les pages déjà créées et place `Debate` avant toutes les créations restantes. Norme active : 1.2.88. Validateur associé : 0.4.105.
+# Wikidéb’IA Kit 2.16.47
+Le kit 2.16.47 conserve l’ordre final `Debate` puis `Argument` de 2.16.46 et corrige la reprise des plans distants signés après une mise à niveau : `kit_version` et `required_validator_version` sont traités comme provenance du producteur, tandis que la signature du plan, son schéma, le débat, le manifeste et la configuration exacts restent obligatoirement vérifiés. Norme active : 1.2.88. Validateur associé : 0.4.105.
 
 Le kit 2.16.44 corrige la préparation de la publication finale anglaise : la configuration construite par `wikidebia_final_publication` transporte désormais explicitement `validator.fingerprint_path` et `max_warnings`, comme toutes les configurations `GenericPublisher` courantes. Sans ce champ, la construction du plan anglais atteignait `_package_fingerprints()` puis levait `KeyError('fingerprint_path')` après les connexions de préflight mais avant toute autorisation ou écriture distante. Le correctif ne modifie aucun corpus, plan français, convergence, contenu éditorial ni règle normative.
 

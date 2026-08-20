@@ -1,6 +1,6 @@
 # Wikidéb’IA — Normes 1.2.88
 
-**Maintenance d’implémentation courante : validateur 0.4.105 / kit 2.16.46.** La révision 1.2.88 consacre la décision propriétaire selon laquelle la page anglaise `Debate` doit être créée avant les pages `Argument` lors de la publication finale. Une publication partielle déjà commencée n’est jamais réécrite : le nouveau plan place `Debate` avant les seules créations restantes.
+**Maintenance d’implémentation courante : validateur 0.4.105 / kit 2.16.47.** La révision 1.2.88 consacre la décision propriétaire selon laquelle la page anglaise `Debate` doit être créée avant les pages `Argument` lors de la publication finale. Une publication partielle déjà commencée n’est jamais réécrite : le nouveau plan place `Debate` avant les seules créations restantes.
 
 # Wikidéb’IA — Normes 1.2.87
 
