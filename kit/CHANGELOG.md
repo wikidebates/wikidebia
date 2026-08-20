@@ -464,3 +464,12 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - refuse toujours un ancien hash de reçu déjà lié mais dépourvu de plan vérifiable, toute divergence du plan signé, tout état anglais existant et tout début de publication finale ;
 - trace l’adoption sous `legacy_unbound_fr_content_receipt_reference_adopted` sans modifier le corpus, les convergences ni les reçus ;
 - conserve la norme 1.2.87 et le validateur 0.4.104.
+
+## 2.16.43 — 20 août 2026 — statut historique non canonique du checkpoint final
+
+- complète 2.16.42 pour les Work historiques dont `french_content_publication` n'est lié à aucun `receipt_sha256` ni `plan_sha256`, mais conserve un ancien statut d'orchestration non canonique ;
+- autorise la normalisation de ce statut uniquement lorsque le workflow est déjà en `final_publication`, sans revue pendante, sans publication finale commencée et sans état anglais signé ;
+- exige toujours que le reçu courant soit auto-signé, appartienne au même débat/Work/stage et que son `plan_sha256` soit exactement attesté par l'état français signé ;
+- refuse toute normalisation si le workflow est déjà lié à un ancien reçu ou plan, afin qu'un statut contradictoire reste bloquant dans ce cas ;
+- trace l'ancien statut et la réconciliation dans `compatibility_migrations` ;
+- conserve la norme 1.2.87 et le validateur 0.4.104.

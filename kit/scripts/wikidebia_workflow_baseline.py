@@ -316,9 +316,24 @@ def _repair_stale_workflow_content_receipt_reference(
     if str(workflow_content.get("stage") or "content") != "content":
         raise WorkflowBaselineError("Le workflow ne référence pas le checkpoint français de contenu")
     workflow_status = str(workflow_content.get("status") or "")
-    if workflow_status not in {"published", "verified_no_changes", "no_changes"}:
-        raise WorkflowBaselineError("Le workflow ne référence pas un checkpoint français final publié")
     old_plan = str(workflow_content.get("plan_sha256") or "")
+    legacy_unbound_status = False
+    if workflow_status not in {"published", "verified_no_changes", "no_changes"}:
+        # Some pre-two-checkpoint workflow states reached final_publication with an
+        # orchestration-local status label (or no checkpoint status at all) and
+        # without ever binding receipt_sha256/plan_sha256 into workflow.json.  At
+        # this late boundary that local label is redundant: the current signed
+        # checkpoint receipt plus the independently signed FR published state are
+        # authoritative.  Never reinterpret an already-bound workflow, a workflow
+        # that has not reached final publication, or one with a pending review.
+        legacy_unbound_status = bool(
+            legacy_unbound_receipt
+            and not old_plan
+            and str(workflow.get("phase") or "") == "final_publication"
+            and not workflow.get("pending_review")
+        )
+        if not legacy_unbound_status:
+            raise WorkflowBaselineError("Le workflow ne référence pas un checkpoint français final publié")
     new_plan = str(current.get("plan_sha256") or "")
     if not new_plan:
         raise WorkflowBaselineError("Le reçu français courant ne référence aucun plan signé")
@@ -361,6 +376,8 @@ def _repair_stale_workflow_content_receipt_reference(
         "work_id": work_id,
         "old_receipt_sha256": old_sha or None,
         "old_plan_sha256": old_plan or None,
+        "old_status": workflow_status or None,
+        "legacy_status_reconciled": legacy_unbound_status,
         "new_receipt_sha256": new_sha,
         "plan_sha256": new_plan,
         "proof": "current_checkpoint_receipt_plus_signed_fr_published_state",

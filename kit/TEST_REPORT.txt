@@ -1,6 +1,6 @@
-Wikidéb’IA Kit 2.16.42 — rapport de tests
+Wikidéb’IA Kit 2.16.43 — rapport de tests
 
-Tests pytest : 525 réussis
+Tests pytest : 527 réussis
 Norme : 1.2.87
 Validateur : 0.4.104
 
@@ -10,3 +10,4 @@ Render preflight evidence reconciliation : PASSED ; aucune valeur éditoriale n�
 Historical keyword atomicity normalization : PASSED ; uniquement les métadonnées déjà attestées sont réconciliées.
 Historical introduction provenance : PASSED ; le verrou français reste autoritatif.
 Final publication orchestration : PASSED ; les capacités de 2.16.39 sont conservées.
+Legacy non-canonical checkpoint status : PASSED ; un statut local historique non canonique est normalisé uniquement pour un workflow totalement non lié et déjà en final_publication.

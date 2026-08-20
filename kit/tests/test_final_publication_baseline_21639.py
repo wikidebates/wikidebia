@@ -230,3 +230,39 @@ def test_seal_refuses_unbound_legacy_receipt_when_signed_fr_state_differs(tmp_pa
     _write_json(fr_state_path, fr_state)
     with pytest.raises(baseline.WorkflowBaselineError, match="état français signé"):
         baseline.seal_workflow_release_baseline(project, debate_id, work_id, release_copy)
+
+
+def test_seal_adopts_legacy_unbound_content_receipt_with_old_local_status(tmp_path: Path):
+    project, debate_id, work_id, release_copy = make_release_boundary(tmp_path)
+    workflow_path = project / ".state/workflows" / debate_id / "workflow.json"
+    workflow = json.loads(workflow_path.read_text(encoding="utf-8"))
+    workflow["phase"] = "final_publication"
+    workflow["status"] = "blocked_final_publication"
+    workflow["pending_review"] = None
+    workflow["french_content_publication"] = {"status": "completed"}
+    workflow["french_publication"] = {"status": "completed"}
+    _write_json(workflow_path, workflow)
+
+    value = baseline.seal_workflow_release_baseline(project, debate_id, work_id, release_copy)
+    receipt_path = project / ".state/fr-publication" / debate_id / work_id / "content/publication-receipt.json"
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    assert value["fr"]["checkpoint_receipt_sha256"] == receipt["receipt_sha256"]
+    repaired = json.loads(workflow_path.read_text(encoding="utf-8"))
+    assert repaired["french_content_publication"]["receipt_sha256"] == receipt["receipt_sha256"]
+    migration = repaired["compatibility_migrations"][-1]
+    assert migration["kind"] == "legacy_unbound_fr_content_receipt_reference_adopted"
+    assert migration["old_status"] == "completed"
+    assert migration["legacy_status_reconciled"] is True
+
+
+def test_seal_refuses_old_local_status_when_workflow_is_already_bound(tmp_path: Path):
+    project, debate_id, work_id, release_copy = make_release_boundary(tmp_path)
+    workflow_path = project / ".state/workflows" / debate_id / "workflow.json"
+    workflow = json.loads(workflow_path.read_text(encoding="utf-8"))
+    workflow["phase"] = "final_publication"
+    workflow["pending_review"] = None
+    workflow["french_content_publication"] = {"status": "completed", "receipt_sha256": "a" * 64}
+    workflow["french_publication"] = dict(workflow["french_content_publication"])
+    _write_json(workflow_path, workflow)
+    with pytest.raises(baseline.WorkflowBaselineError, match="checkpoint français final publié"):
+        baseline.seal_workflow_release_baseline(project, debate_id, work_id, release_copy)

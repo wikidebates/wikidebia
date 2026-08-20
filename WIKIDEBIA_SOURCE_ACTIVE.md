@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.87** ;
 - validateur actif : **0.4.104** ;
-- kit actif : **2.16.42**.
+- kit actif : **2.16.43**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3712246 octets — SHA-256 `16ce5b829a55cf25cb8c83bd0fa14d95bf8f313a31155892d8bf656d5b3caf05`
-- `wikidebia-validator.zip` — 3903675 octets — SHA-256 `f3f300414f92544dd8493e02247c0e8820d96326af13059d77c2ed10ba9ae020`
-- `wikidebia-kit.zip` — 816983 octets — SHA-256 `d34feb4fb0c8e593e5923221a05614a792514189716a23d78bc3d5a37f040706`
+- `wikidebia-normes.zip` — 3723440 octets — SHA-256 `6b4248118f3f54977f00068522f2cbca2b831310e2b02f43aeb023feb702b860`
+- `wikidebia-validator.zip` — 3915435 octets — SHA-256 `2a0f6d45353596cb35e8f0868286953bdc7058ced8c0f12000338b1a463ded10`
+- `wikidebia-kit.zip` — 822135 octets — SHA-256 `8562082bb1366bbbfe0f8b1868493df08f6f618df708a973166e554fca8412ea`
 
 ## Norme consolidée active
 
@@ -1648,7 +1648,7 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `5773703ce3b2009594784e01da31862b30d81d61008d94908bf818e3430ce13a`
+SHA-256 : `caf17ce78782f443f0adbf29b3de8c5f97af2f025b64c2bc853c40519eb1f498`
 
 # Wikidéb’IA Validator 0.4.104
 
@@ -1663,7 +1663,7 @@ La provenance des résumés est désormais calculée dans un module unique `hist
 
 La régression reproduit l’ordre réel `wikicode → editorial` et vérifie qu’un `historical_authorized_change` français et sa traduction anglaise restent hors du profil de création. Aucun contrôle n’est assoupli pour un résumé réellement nouveau.
 
-Norme active : 1.2.87. Kit associé : 2.16.42.
+Norme active : 1.2.87. Kit associé : 2.16.43.
 
 ## Notes héritées du validateur 0.4.101
 
@@ -2084,11 +2084,11 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `f3468969831460fe14f028d983f2fb11cbd8611d3c631457adc08a137ae86187`
+SHA-256 : `85fa602c7295f9f5dec7d66d269ce90a600213d3dde8de9cdf8720954cb0929d`
 
-# Wikidéb’IA Kit 2.16.42
+# Wikidéb’IA Kit 2.16.43
 
-Le kit 2.16.42 étend la réconciliation sûre du checkpoint français final aux Work historiques dont `workflow.json` atteste la fin du checkpoint de contenu mais ne contient encore ni `receipt_sha256` ni `plan_sha256`. Dans ce cas, le kit n'adopte le reçu courant qu'avant toute publication finale, sans état anglais signé, lorsque le reçu auto-signé appartient exactement au même débat/Work/stage et que l'état français signé courant atteste son `plan_sha256`. Un ancien hash déjà lié mais dépourvu de plan reste bloquant. Aucune revue, convergence, page ou donnée éditoriale n'est modifiée.
+Le kit 2.16.43 complète la réconciliation sûre des checkpoints français historiques non liés. Un ancien `workflow.json` déjà arrivé à `final_publication` peut avoir conservé un statut local obsolète (ou aucun statut canonique) en plus de l'absence de `receipt_sha256` et `plan_sha256`. Ce statut local est désormais remplacé par le reçu courant uniquement lorsque le workflow est totalement non lié, sans revue pendante, avant toute publication finale et sans état anglais, et lorsque le reçu auto-signé et l'état français signé attestent exactement le même plan. Un workflow déjà lié à un reçu ou un plan reste bloquant en cas de statut incohérent. Aucune revue, convergence, page ou donnée éditoriale n'est modifiée.
 
 Le kit 2.16.41 corrige la reprise de la publication finale lorsqu’une restauration transactionnelle a laissé dans `workflow.json` une ancienne empreinte du reçu du checkpoint français final. La référence n’est réparée que si le reçu courant et l’état français signé attestent exactement le même `plan_sha256` que le workflow, avant toute autorisation de publication finale et sans état anglais signé. Une divergence réelle de plan reste bloquante. Aucune revue, convergence, page ou donnée éditoriale n’est modifiée.
 
@@ -2270,7 +2270,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `c80b914fd17fa136182afc5d8d62b669fa179476d8b6747ec085b2565082b6ab`
+SHA-256 : `dde13483799055b88d923ab75039f7616cc57410ccb9186f33f2ebfc510f8b30`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2739,6 +2739,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - trace l’adoption sous `legacy_unbound_fr_content_receipt_reference_adopted` sans modifier le corpus, les convergences ni les reçus ;
 - conserve la norme 1.2.87 et le validateur 0.4.104.
 
+## 2.16.43 — 20 août 2026 — statut historique non canonique du checkpoint final
+
+- complète 2.16.42 pour les Work historiques dont `french_content_publication` n'est lié à aucun `receipt_sha256` ni `plan_sha256`, mais conserve un ancien statut d'orchestration non canonique ;
+- autorise la normalisation de ce statut uniquement lorsque le workflow est déjà en `final_publication`, sans revue pendante, sans publication finale commencée et sans état anglais signé ;
+- exige toujours que le reçu courant soit auto-signé, appartienne au même débat/Work/stage et que son `plan_sha256` soit exactement attesté par l'état français signé ;
+- refuse toute normalisation si le workflow est déjà lié à un ancien reçu ou plan, afin qu'un statut contradictoire reste bloquant dans ce cas ;
+- trace l'ancien statut et la réconciliation dans `compatibility_migrations` ;
+- conserve la norme 1.2.87 et le validateur 0.4.104.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -3031,11 +3040,11 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `8be6eb1e4af4056ad2285d48cf6ce0719fd50b27dc32ff57b9aa2f9dbb977209`
+SHA-256 : `80e9875b7c94dbf0ab56f06fa90d7e7b6639d8a8602be60d101a8d09b957b55e`
 
-Wikidéb’IA Kit 2.16.42 — rapport de tests
+Wikidéb’IA Kit 2.16.43 — rapport de tests
 
-Tests pytest : 525 réussis
+Tests pytest : 527 réussis
 Norme : 1.2.87
 Validateur : 0.4.104
 
@@ -3045,6 +3054,7 @@ Render preflight evidence reconciliation : PASSED ; aucune valeur éditoriale n�
 Historical keyword atomicity normalization : PASSED ; uniquement les métadonnées déjà attestées sont réconciliées.
 Historical introduction provenance : PASSED ; le verrou français reste autoritatif.
 Final publication orchestration : PASSED ; les capacités de 2.16.39 sont conservées.
+Legacy non-canonical checkpoint status : PASSED ; un statut local historique non canonique est normalisé uniquement pour un workflow totalement non lié et déjà en final_publication.
 
 ## Guide d’orchestration éditoriale
 
