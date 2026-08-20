@@ -2,25 +2,25 @@
 
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
-- norme active : **1.2.87** ;
-- validateur actif : **0.4.104** ;
-- kit actif : **2.16.45**.
+- norme active : **1.2.88** ;
+- validateur actif : **0.4.105** ;
+- kit actif : **2.16.46**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3712245 octets — SHA-256 `4a5cc2cb3ce4c40e49eee087574a05323ce4900fe496e420e547ff5c3dffa792`
-- `wikidebia-validator.zip` — 3903677 octets — SHA-256 `f554187c05ba9048ef04512cf64e0e89aa263ca445e0047b0efb9cbc3790435f`
-- `wikidebia-kit.zip` — 828662 octets — SHA-256 `10353f8201b22f41046ebd68d7d19be959ca5eca3a6bcd035a2b4679bbeaadff`
+- `wikidebia-normes.zip` — 3747316 octets — SHA-256 `1fbb814a4776481e4f3590163c0f6a5b366599ca85a229a5eedce826e5de2cfb`
+- `wikidebia-validator.zip` — 3939233 octets — SHA-256 `88bd0df545011c8c437d8fbbeae0537d77d203ec9a7d32de3f2c5fba1dc2ffec`
+- `wikidebia-kit.zip` — 832741 octets — SHA-256 `8c8a2f3945c81d41beb44861eb8d0f4934ffd9c0759fa9ca22a3900ea7b26c5b`
 
 ## Norme consolidée active
 
-Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.87.md`  
-SHA-256 : `1056b5535ac5afad68ef00b6db4744334fe0096ee31102b2c6017116b3358230`
+Source interne : `norms/normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.88.md`  
+SHA-256 : `4f174cd637977fcf10704cf377848eeecb57e30eb0dc7b8c34b5e961edbe57bd`
 
-# Norme opérationnelle active Wikidéb’IA 1.2.87
+# Norme opérationnelle active Wikidéb’IA 1.2.88
 
 **Statut : source normative active unique.**  
-**Date d’effet :** 13 août 2026
+**Date d’effet :** 21 août 2026
 
 Cette norme contient uniquement les règles actuellement applicables. Les textes de révisions remplacées, snapshots et anciennes formulations sont conservés dans `history/` et dans les changelogs, qui sont informatifs et immuables. Les numéros de norme, validateur, kit et producteur servent à la provenance, à la reproductibilité, à l’installation et aux migrations ; ils ne sélectionnent aucune règle éditoriale.
 
@@ -687,7 +687,7 @@ Avant toute publication, W11 doit :
 4. effectuer comme première écriture distante un test sur l’unique page Débat française canonique du plan ;
 5. exiger que cette page soit absente lors de la simulation, la créer avec `createonly`, relire la révision exacte et produire un reçu machine signé ;
 6. avant toute autre écriture, recharger le même plan et le reçu, vérifier leurs empreintes, puis confirmer que la page Débat est toujours à la révision attestée avec le même contenu, le même résumé et la même balise ;
-7. après ce test, créer les autres pages françaises, puis les pages anglaises, les pages Argument précédant la page Debate dans la phase anglaise ;
+7. après ce test, créer les autres pages françaises, puis les pages anglaises, la page Debate précédant toutes les pages Argument dans la phase anglaise ;
 8. réauthentifier et vérifier l’identité à chaque phase et avant chaque écriture ;
 9. utiliser `assert=user` et `assertuser` ;
 10. classifier chaque titre distant comme `absent`, `equivalent_existing`, `collision` ou `manual_review` ;
@@ -846,10 +846,17 @@ Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. E
 - conserve séparément la provenance historique de présence pour l’audit, sans lui donner d’effet sur le rendu ;
 - exige que le préflight distingue l’omission canonique d’un paramètre optionnel géré de la suppression non autorisée d’un paramètre protégé, inconnu ou hors contrat.
 
+## 1.2.88 — 21 août 2026 — page Debate anglaise publiée avant les Arguments
+
+- consacre la décision explicite du propriétaire : lors de la première publication anglaise finale, la page `Debate` est créée avant toute page `Argument` encore absente ;
+- remplace la règle active contradictoire qui imposait `Argument` avant `Debate` dans cette phase ;
+- conserve l’ordre des autres phases, les garde-fous de publication et la date civile réelle de chaque création anglaise ;
+- lorsqu’une publication a déjà commencé sous l’ancien ordre, les pages déjà créées restent intactes et un plan successeur audité place `Debate` avant les seules créations `Argument` restantes.
+
 ## Changelog normatif
 
 Source interne : `norms/normative_reference/01_normes/CHANGELOG_NORMATIF.md`  
-SHA-256 : `90fa4eea6f00a2f01e3427b1e892b975ff6dfb4f83a3c7fc3a69f31b54c303f6`
+SHA-256 : `5c07744a8d5d194ec1fac05cb758495026e311b6441a7ee2dcddcc243c45b6fa`
 
 ## 1.2.70 — alignement du validateur sur la première publication anglaise
 
@@ -1645,14 +1652,22 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - la présence historique reste une provenance d’audit et ne commande plus le rendu ;
 - le préflight doit autoriser l’omission canonique des paramètres éditoriaux optionnels validés sans autoriser les suppressions de paramètres protégés ou inconnus.
 
+## 1.2.88 — 21 août 2026 — page Debate anglaise publiée avant les Arguments
+
+- consacre la décision explicite du propriétaire : lors de la première publication anglaise finale, la page `Debate` est créée avant toute page `Argument` encore absente ;
+- remplace la règle active contradictoire qui imposait `Argument` avant `Debate` dans cette phase ;
+- conserve l’ordre des autres phases, les garde-fous de publication, les dates réelles de création et la reprise idempotente ;
+- pour une publication déjà partiellement exécutée sous l’ancien ordre, les pages déjà créées ne sont jamais supprimées ni recréées ; un plan successeur audité place `Debate` avant toutes les créations `Argument` restantes.
+
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `7e33c37cc32e87ddb4d4fc657e6a70ed54bb9e01095878dc9dc6e8a4a3e2f2cf`
+SHA-256 : `4a96336eefcbc83b17260302b04eed328116d20f3c84ebf918f04d4d472cd267`
 
-# Wikidéb’IA Validator 0.4.104
+# Wikidéb’IA Validator 0.4.105
+Le validateur 0.4.105 s’aligne sur la norme 1.2.88 et le kit 2.16.46. Il conserve tous les contrôles 0.4.104 ; la modification porte sur le contrat de publication finale, où la page anglaise `Debate` doit précéder les créations `Argument`.
 
-Le validateur 0.4.104 corrige le préflight final d’un corpus historique déjà scellé. Il étend la validation différentielle aux incises présentes dans un résumé historique, aux avertissements de sous-partie traduits depuis une introduction française préexistante et aux registres d’introduction anciens dont une proposition de réécriture n’a jamais été sélectionnée par le verrou français.
+Norme active : 1.2.88. Kit associé : 2.16.46.
 
 Il accepte en outre les deux formes légitimes de `documentation_family_notes` (trois familles agrégées ou neuf familles orientées), et la limite formelle de longueur d’un mot-clé ne s’applique plus lorsqu’une exception multi-mots valide du vocabulaire contrôlé atteste déjà le concept lexicalisé. Les contrôles restent stricts sur les contenus nouveaux, les introductions autorisées modifiées et les mots-clés sans attestation atomique.
 
@@ -1783,7 +1798,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `58ad5c28ed167e6e62d00fd514e06dd8ac2747bf3f2db392fd27703547c85f80`
+SHA-256 : `6181199a97d660f1d62c21a4e903ff6665d127ca685539f4fc5f99a020708e42`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2081,13 +2096,19 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - ajoute des régressions positives et négatives sur chacune de ces compatibilités ;
 - conserve la norme 1.2.87 et s’aligne sur le kit 2.16.40.
 
+## 0.4.105 — 21 août 2026 — alignement Debate avant Arguments
+
+- s’aligne sur la norme 1.2.88 et le kit 2.16.46 ;
+- conserve sans modification tous les contrôles structurels, éditoriaux, documentaires et historiques de 0.4.104 ;
+- met à jour la copie normative active et les métadonnées de release pour le contrat de publication finale `Debate` avant `Argument`.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `11f6b77cc36523bd9f4849dbf7fc7893fe8e30de0aa57bde2c9c3f5fe63e98cf`
+SHA-256 : `ebc0379879717d2f762d44735a07df9d69e4ab66d018cfeedc706aa155116147`
 
-# Wikidéb’IA Kit 2.16.45
-Le kit 2.16.45 rend la publication finale anglaise sûre à travers un changement de jour civil. Les pages déjà créées conservent leur `creation-date` réelle et sont reprises comme `skip` prouvés ; les pages encore absentes sont replannifiées avec le jour courant, avec un nouveau préflight et une nouvelle autorisation audités. Aucun contenu éditorial ni aucune page déjà publiée n'est modifié.
+# Wikidéb’IA Kit 2.16.46
+Le kit 2.16.46 applique la décision propriétaire de publier la page anglaise `Debate` avant les pages `Argument`. Un plan final nouveau est naturellement ordonné `Debate` puis `Argument`; un Work déjà partiellement exécuté sous l’ancien ordre est repris par un plan successeur audité qui conserve les pages déjà créées et place `Debate` avant toutes les créations restantes. Norme active : 1.2.88. Validateur associé : 0.4.105.
 
 Le kit 2.16.44 corrige la préparation de la publication finale anglaise : la configuration construite par `wikidebia_final_publication` transporte désormais explicitement `validator.fingerprint_path` et `max_warnings`, comme toutes les configurations `GenericPublisher` courantes. Sans ce champ, la construction du plan anglais atteignait `_package_fingerprints()` puis levait `KeyError('fingerprint_path')` après les connexions de préflight mais avant toute autorisation ou écriture distante. Le correctif ne modifie aucun corpus, plan français, convergence, contenu éditorial ni règle normative.
 
@@ -2274,7 +2295,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `0f9b13f7bf311deedb85d98838c1a1e764bea38a3e7ac8879a4ae1db1477252d`
+SHA-256 : `e8ade32bf01d0829d68e915edd8f04f83552c80db10944be989fc67c72efe9ed`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2769,6 +2790,14 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - reprend automatiquement le même mécanisme si le changement de jour est détecté pendant l'exécution elle-même ;
 - conserve la norme 1.2.87 et le validateur 0.4.104.
 
+## 2.16.46 — 21 août 2026 — Debate avant Arguments à la publication finale
+
+- applique la décision propriétaire et la norme 1.2.88 : la page anglaise `Debate` est ordonnée avant toute création `Argument` ;
+- supprime le réordonnancement final contradictoire introduit en 2.16.39 ;
+- pour un plan déjà autorisé et partiellement exécuté sous l’ancien ordre, reconstruit un plan successeur depuis l’état distant, conserve les créations déjà prouvées comme `skip` et place `Debate` avant les créations restantes ;
+- rescellle préflight et autorisation et archive l’ancien état de planification, sans supprimer ni recréer une page déjà publiée ;
+- conserve intégralement le rollover de date 2.16.45.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -3061,13 +3090,13 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `847bcd7100cd570c1de96dedb50ec565a3b42bf01975b62d069cb88f5dbea464`
+SHA-256 : `ddc8c9e7c7eea68084765615c9289b2a3686e267e65efbad30643fbf33b9abd3`
 
-Wikidéb’IA Kit 2.16.45 — rapport de tests
+Wikidéb’IA Kit 2.16.46 — rapport de tests
 
-Tests pytest : 532 réussis
-Norme : 1.2.87
-Validateur : 0.4.104
+Tests pytest : 536 réussis
+Norme : 1.2.88
+Validateur : 0.4.105
 
 Final publication validator fingerprint : PASSED ; la configuration anglaise finale transporte `validator.fingerprint_path` et calcule réellement l’empreinte du validateur.
 Final checkpoint receipt-reference reconciliation : PASSED ; réparation uniquement à plan signé identique, avant publication finale.
@@ -3078,6 +3107,7 @@ Historical introduction provenance : PASSED ; le verrou français reste autorita
 Final publication orchestration : PASSED ; les capacités de 2.16.39 sont conservées.
 Legacy non-canonical checkpoint status : PASSED ; un statut local historique non canonique est normalisé uniquement pour un workflow totalement non lié et déjà en final_publication.
 Publication date rollover : PASSED ; les pages déjà créées gardent leur date réelle et seules les pages encore absentes sont replannifiées au nouveau jour civil avec plan/préflight/autorisation successeurs audités.
+Debate-first publication order : PASSED ; Debate précède les créations Argument, y compris après migration auditée d’un plan partiellement exécuté.
 
 ## Guide d’orchestration éditoriale
 

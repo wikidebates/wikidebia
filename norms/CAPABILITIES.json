@@ -4,9 +4,9 @@
   "component": "norms",
   "release_source": "VERSIONS.json",
   "release": {
-    "norm": "1.2.87",
-    "validator": "0.4.104",
-    "kit": "2.16.45"
+    "norm": "1.2.88",
+    "validator": "0.4.105",
+    "kit": "2.16.46"
   },
   "emits": {
     "active_normative_policy": [

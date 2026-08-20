@@ -1,10 +1,11 @@
-Wikidéb’IA Validator 0.4.104 — rapport de tests
+Wikidéb’IA Validator 0.4.105 — rapport de tests
 
 Tests pytest : 464 réussis
-Norme active : 1.2.87
-Kit recommandé : 2.16.45
+Norme active : 1.2.88
+Kit recommandé : 2.16.46
 
 Render preflight historical evidence : PASSED ; provenance historique et contenu nouveau restent distingués.
 Keyword multiword exception : PASSED ; une exception contrôlée autorise la locution longue sans désactiver l’atomicité.
 Historical introduction ledger : PASSED ; le verrou sélectionné prévaut sur une proposition de réécriture non autorisée.
 Detailed documentation family notes : PASSED ; formes 3 familles et 9 orientations contrôlées.
+Final publication order : PASSED ; alignement normatif Debate avant Argument.

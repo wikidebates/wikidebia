@@ -123,9 +123,9 @@ def _english_config(project_root: Path, debate_id: str, corpus_root: Path, run_d
             "languages": ["en"],
             "page_types": ["debate", "argument"],
             "language_order": ["en"],
-            # GenericPublisher validates the historical declaration; the signed
-            # plan is reordered below to satisfy the active final-publication
-            # contract (Arguments before Debate) without changing other callers.
+            # GenericPublisher and final publication now share the active
+            # Debate-before-Arguments contract.  The plan is still explicitly
+            # ordered and resigned below so saved plans have a deterministic order.
             "page_type_order": ["debate", "argument"],
             "source_path_field": "file_path",
             "create_missing": True,
@@ -140,10 +140,11 @@ def _english_config(project_root: Path, debate_id: str, corpus_root: Path, run_d
 
 
 def _reorder_english_plan(plan: dict[str, Any]) -> dict[str, Any]:
+    """Return the signed English plan in the owner-mandated Debate-first order."""
     value = copy.deepcopy(plan)
     actions = list(value.get("actions") or [])
     actions.sort(key=lambda row: (
-        0 if row.get("page_type") == "argument" else 1,
+        0 if row.get("page_type") == "debate" else 1,
         str(row.get("page_id") or ""),
         str(row.get("title") or ""),
     ))
@@ -617,6 +618,118 @@ def _rollover_english_publication_date(
         raise
 
 
+def _english_plan_needs_debate_first_migration(plan: Mapping[str, Any]) -> bool:
+    creates = [row for row in (plan.get("actions") or []) if str(row.get("operation") or "") == "create"]
+    debate_indexes = [i for i, row in enumerate(creates) if str(row.get("page_type") or "") == "debate"]
+    if not debate_indexes:
+        return False
+    first_debate = debate_indexes[0]
+    return any(str(row.get("page_type") or "") == "argument" for row in creates[:first_debate])
+
+
+def _english_plan_order_transition(old_plan: Mapping[str, Any], new_plan: Mapping[str, Any]) -> dict[str, Any]:
+    def keyed(plan: Mapping[str, Any]) -> dict[tuple[str, str], Mapping[str, Any]]:
+        return {(str(row.get("language") or ""), str(row.get("page_id") or "")): row for row in (plan.get("actions") or [])}
+
+    old_actions = keyed(old_plan)
+    new_actions = keyed(new_plan)
+    if set(old_actions) != set(new_actions):
+        raise FinalPublicationError("Le plan successeur Debate-first ne couvre pas exactement les mêmes pages", remote_execution_started=True)
+    invariant_fields = (
+        "operation_id", "kind", "language", "page_id", "page_type", "title", "source_path",
+        "parameter", "local_file_sha256", "local_target_sha256", "edit_summary", "change_tags",
+        "publication_creation_date", "desired_sha256",
+    )
+    completed: list[dict[str, Any]] = []
+    remaining: list[dict[str, Any]] = []
+    unchanged_skips: list[dict[str, Any]] = []
+    for key in sorted(old_actions):
+        old = old_actions[key]
+        new = new_actions[key]
+        for field in invariant_fields:
+            if field == "desired_sha256" and str(old.get("operation") or "") == "create" and str(new.get("operation") or "") == "skip":
+                # An already-created translation must preserve exactly the old desired content.
+                if old.get(field) != new.get(field):
+                    raise FinalPublicationError(f"Une page déjà créée diverge pendant la migration d'ordre : {old.get('title')}", remote_execution_started=True)
+                continue
+            if old.get(field) != new.get(field):
+                raise FinalPublicationError(f"Le plan Debate-first modifie {field} pour {old.get('page_id')}", remote_execution_started=True)
+        old_op = str(old.get("operation") or "")
+        new_op = str(new.get("operation") or "")
+        if old_op == "skip":
+            if new_op != "skip":
+                raise FinalPublicationError(f"Une page skip redevient mutable pendant la migration d'ordre : {old.get('title')}", remote_execution_started=True)
+            unchanged_skips.append({"page_id": old.get("page_id"), "title": old.get("title")})
+        elif old_op == "create" and new_op == "skip":
+            completed.append({"page_id": old.get("page_id"), "title": old.get("title"), "desired_sha256": old.get("desired_sha256"), "remote_revision_id": new.get("remote_revision_id")})
+        elif old_op == "create" and new_op == "create":
+            remaining.append({"page_id": old.get("page_id"), "title": old.get("title"), "page_type": old.get("page_type")})
+        else:
+            raise FinalPublicationError("Le plan Debate-first contient une transition d'opération non autorisée", remote_execution_started=True)
+
+    pending_creates = [row for row in (new_plan.get("actions") or []) if str(row.get("operation") or "") == "create"]
+    if any(str(row.get("page_type") or "") == "debate" for row in pending_creates):
+        if str(pending_creates[0].get("page_type") or "") != "debate":
+            raise FinalPublicationError("Le plan successeur ne place pas Debate avant les Arguments restants", remote_execution_started=True)
+    return {"completed_before_order_migration": completed, "remaining_after_order_migration": remaining, "unchanged_skips": unchanged_skips}
+
+
+def _migrate_english_publication_order(
+    project_root: Path, debate_id: str, release_copy: Path, state_dir: Path, baseline: Mapping[str, Any],
+    plans: Mapping[str, Any], preflight: Mapping[str, Any], authorization: Mapping[str, Any],
+) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
+    old_plan = dict(plans["en_plan"])
+    if not _english_plan_needs_debate_first_migration(old_plan):
+        return dict(plans), dict(preflight), dict(authorization)
+    history_root = state_dir / "publication-order-migrations"
+    history_root.mkdir(parents=True, exist_ok=True)
+    index = 1
+    while (history_root / f"{index:03d}-arguments-before-debate-to-debate-first").exists():
+        index += 1
+    history = history_root / f"{index:03d}-arguments-before-debate-to-debate-first"
+    history.mkdir(parents=True)
+    tracked = ("english-publication-config.json", "english-publication-plan.json", "preflight.json", "authorization.json")
+    for name in tracked:
+        _copy_if_present(state_dir / name, history / name)
+    try:
+        en_config_path, en_config = _english_config(project_root, debate_id, release_copy, state_dir)
+        en_adapter = build_adapter(en_config, project_root)
+        publisher = GenericPublisher(en_config, en_adapter, en_config_path)
+        new_plan = _reorder_english_plan(publisher.build_plan())
+        _assert_safe_english_plan(new_plan)
+        transition = _english_plan_order_transition(old_plan, new_plan)
+        write_json(state_dir / "english-publication-plan.json", new_plan)
+        new_plans = dict(plans)
+        new_plans.update({"en_config_path": en_config_path, "en_config": en_config, "en_plan": new_plan})
+        new_preflight = _preflight(project_root, state_dir, new_plans)
+        new_authorization = _authorization(state_dir, baseline, new_preflight)
+        audit = {
+            "schema": "wikidebia-final-publication-order-migration-1.0", "schema_version": "1.0",
+            "debate_id": debate_id, "migrated_at": now_iso(),
+            "reason": "owner_decision_debate_before_arguments",
+            "previous_english_plan_sha256": old_plan.get("plan_sha256"),
+            "successor_english_plan_sha256": new_plan.get("plan_sha256"),
+            "previous_preflight_sha256": preflight.get("preflight_sha256"),
+            "successor_preflight_sha256": new_preflight.get("preflight_sha256"),
+            "previous_authorization_sha256": authorization.get("authorization_sha256"),
+            "successor_authorization_sha256": new_authorization.get("authorization_sha256"),
+            "remote_execution_already_started": True,
+            **transition,
+        }
+        audit["migration_sha256"] = _canonical(audit, "migration_sha256")
+        write_json(history / "migration.json", audit)
+        return new_plans, new_preflight, new_authorization
+    except Exception:
+        for name in tracked:
+            saved = history / name
+            target = state_dir / name
+            if saved.is_file():
+                shutil.copy2(saved, target)
+            elif target.exists():
+                target.unlink()
+        raise
+
+
 def _publication_day_change_error(exc: Exception) -> bool:
     text = str(exc)
     return "jour de publication a changé" in text or "day of publication" in text.lower()
@@ -678,6 +791,9 @@ def publish_final_release(
 
         en_receipt_path = state_dir / "english-publication-receipt.json"
         if not en_receipt_path.is_file():
+            plans, preflight, authorization = _migrate_english_publication_order(
+                project_root, debate_id, release_copy, state_dir, baseline, plans, preflight, authorization
+            )
             plans, preflight, authorization = _rollover_english_publication_date(
                 project_root, debate_id, release_copy, state_dir, baseline, plans, preflight, authorization
             )

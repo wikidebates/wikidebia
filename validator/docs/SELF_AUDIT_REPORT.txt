@@ -1,9 +1,10 @@
-Wikidéb’IA Validator 0.4.104 — auto-audit
+Wikidéb’IA Validator 0.4.105 — auto-audit
 
 Statut : PASSED
-Norme active unique : 1.2.87
+Norme active unique : 1.2.88
 Tests : 464 réussis
-Kit associé : 2.16.45
+Kit associé : 2.16.46
 
 Les contrôles historiques sont différentiels et bornés par les verrous autoritatifs.
 Les contrôles de création restent actifs pour les contenus nouveaux.
+La copie normative active consacre l’ordre final Debate puis Argument.

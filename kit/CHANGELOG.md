@@ -491,3 +491,11 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - reprend automatiquement le même mécanisme si le changement de jour est détecté pendant l'exécution elle-même ;
 - conserve la norme 1.2.87 et le validateur 0.4.104.
 
+## 2.16.46 — 21 août 2026 — Debate avant Arguments à la publication finale
+
+- applique la décision propriétaire et la norme 1.2.88 : la page anglaise `Debate` est ordonnée avant toute création `Argument` ;
+- supprime le réordonnancement final contradictoire introduit en 2.16.39 ;
+- pour un plan déjà autorisé et partiellement exécuté sous l’ancien ordre, reconstruit un plan successeur depuis l’état distant, conserve les créations déjà prouvées comme `skip` et place `Debate` avant les créations restantes ;
+- rescellle préflight et autorisation et archive l’ancien état de planification, sans supprimer ni recréer une page déjà publiée ;
+- conserve intégralement le rollover de date 2.16.45.
+

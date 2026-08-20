@@ -791,3 +791,11 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 - retire l’ancienne exception contradictoire imposant des buckets documentaires Débat présents mais vides ;
 - la présence historique reste une provenance d’audit et ne commande plus le rendu ;
 - le préflight doit autoriser l’omission canonique des paramètres éditoriaux optionnels validés sans autoriser les suppressions de paramètres protégés ou inconnus.
+
+## 1.2.88 — 21 août 2026 — page Debate anglaise publiée avant les Arguments
+
+- consacre la décision explicite du propriétaire : lors de la première publication anglaise finale, la page `Debate` est créée avant toute page `Argument` encore absente ;
+- remplace la règle active contradictoire qui imposait `Argument` avant `Debate` dans cette phase ;
+- conserve l’ordre des autres phases, les garde-fous de publication, les dates réelles de création et la reprise idempotente ;
+- pour une publication déjà partiellement exécutée sous l’ancien ordre, les pages déjà créées ne sont jamais supprimées ni recréées ; un plan successeur audité place `Debate` avant toutes les créations `Argument` restantes.
+

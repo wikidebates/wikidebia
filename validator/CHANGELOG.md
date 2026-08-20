@@ -293,3 +293,10 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - permet un mot-clé de plus de quatre mots lorsque son entrée de vocabulaire possède déjà une attestation atomique/multi-mots valide, sans réduire les contrôles d’atomicité ;
 - ajoute des régressions positives et négatives sur chacune de ces compatibilités ;
 - conserve la norme 1.2.87 et s’aligne sur le kit 2.16.40.
+
+## 0.4.105 — 21 août 2026 — alignement Debate avant Arguments
+
+- s’aligne sur la norme 1.2.88 et le kit 2.16.46 ;
+- conserve sans modification tous les contrôles structurels, éditoriaux, documentaires et historiques de 0.4.104 ;
+- met à jour la copie normative active et les métadonnées de release pour le contrat de publication finale `Debate` avant `Argument`.
+

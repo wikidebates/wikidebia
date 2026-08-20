@@ -1,8 +1,8 @@
-Wikidéb’IA Kit 2.16.45 — rapport de tests
+Wikidéb’IA Kit 2.16.46 — rapport de tests
 
-Tests pytest : 532 réussis
-Norme : 1.2.87
-Validateur : 0.4.104
+Tests pytest : 536 réussis
+Norme : 1.2.88
+Validateur : 0.4.105
 
 Final publication validator fingerprint : PASSED ; la configuration anglaise finale transporte `validator.fingerprint_path` et calcule réellement l’empreinte du validateur.
 Final checkpoint receipt-reference reconciliation : PASSED ; réparation uniquement à plan signé identique, avant publication finale.
@@ -13,3 +13,4 @@ Historical introduction provenance : PASSED ; le verrou français reste autorita
 Final publication orchestration : PASSED ; les capacités de 2.16.39 sont conservées.
 Legacy non-canonical checkpoint status : PASSED ; un statut local historique non canonique est normalisé uniquement pour un workflow totalement non lié et déjà en final_publication.
 Publication date rollover : PASSED ; les pages déjà créées gardent leur date réelle et seules les pages encore absentes sont replannifiées au nouveau jour civil avec plan/préflight/autorisation successeurs audités.
+Debate-first publication order : PASSED ; Debate précède les créations Argument, y compris après migration auditée d’un plan partiellement exécuté.

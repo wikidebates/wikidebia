@@ -1,6 +1,10 @@
+# Wikidéb’IA — Normes 1.2.88
+
+**Maintenance d’implémentation courante : validateur 0.4.105 / kit 2.16.46.** La révision 1.2.88 consacre la décision propriétaire selon laquelle la page anglaise `Debate` doit être créée avant les pages `Argument` lors de la publication finale. Une publication partielle déjà commencée n’est jamais réécrite : le nouveau plan place `Debate` avant les seules créations restantes.
+
 # Wikidéb’IA — Normes 1.2.87
 
-**Maintenance d’implémentation courante : validateur 0.4.104 / kit 2.16.45.** Cette maintenance ne modifie aucune règle normative : elle corrige uniquement la projection des preuves de revue historiques, la localisation technique des dates documentaires inline et l’application différentielle déjà prescrite par la norme 1.2.87.
+**Maintenance précédente 1.2.87 : validateur 0.4.104 / kit 2.16.45.** Cette maintenance ne modifie aucune règle normative : elle corrige uniquement la projection des preuves de revue historiques, la localisation technique des dates documentaires inline et l’application différentielle déjà prescrite par la norme 1.2.87.
 
 La révision 1.2.87 corrige une contradiction interne de 1.2.86 : le catalogue atomique imposait déjà l’omission de tout paramètre optionnel sans contenu pertinent, tandis qu’un paragraphe et l’exemple de page Débat demandaient encore de conserver des buckets documentaires vides. Désormais la règle est unique : une valeur optionnelle vide est omise du wikicode.
 

@@ -1,6 +1,7 @@
-# Wikidéb’IA Validator 0.4.104
+# Wikidéb’IA Validator 0.4.105
+Le validateur 0.4.105 s’aligne sur la norme 1.2.88 et le kit 2.16.46. Il conserve tous les contrôles 0.4.104 ; la modification porte sur le contrat de publication finale, où la page anglaise `Debate` doit précéder les créations `Argument`.
 
-Le validateur 0.4.104 corrige le préflight final d’un corpus historique déjà scellé. Il étend la validation différentielle aux incises présentes dans un résumé historique, aux avertissements de sous-partie traduits depuis une introduction française préexistante et aux registres d’introduction anciens dont une proposition de réécriture n’a jamais été sélectionnée par le verrou français.
+Norme active : 1.2.88. Kit associé : 2.16.46.
 
 Il accepte en outre les deux formes légitimes de `documentation_family_notes` (trois familles agrégées ou neuf familles orientées), et la limite formelle de longueur d’un mot-clé ne s’applique plus lorsqu’une exception multi-mots valide du vocabulaire contrôlé atteste déjà le concept lexicalisé. Les contrôles restent stricts sur les contenus nouveaux, les introductions autorisées modifiées et les mots-clés sans attestation atomique.
 
@@ -127,4 +128,3 @@ Le correctif 0.4.73 aligne l’exécution du validateur sur les règles déjà a
 ## Architecture de compatibilité 2026-08-10
 
 Les numéros de release sont une provenance. La compatibilité opérationnelle est pilotée par `CAPABILITIES.json` et les identifiants/version de schéma ; les égalités exactes sont réservées à l’installation, l’anti-downgrade, la reproductibilité et l’audit.
-

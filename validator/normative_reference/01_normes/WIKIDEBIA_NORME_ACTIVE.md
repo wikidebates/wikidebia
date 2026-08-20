@@ -1,7 +1,7 @@
-# Norme opérationnelle active Wikidéb’IA 1.2.87
+# Norme opérationnelle active Wikidéb’IA 1.2.88
 
 **Statut : source normative active unique.**  
-**Date d’effet :** 13 août 2026
+**Date d’effet :** 21 août 2026
 
 Cette norme contient uniquement les règles actuellement applicables. Les textes de révisions remplacées, snapshots et anciennes formulations sont conservés dans `history/` et dans les changelogs, qui sont informatifs et immuables. Les numéros de norme, validateur, kit et producteur servent à la provenance, à la reproductibilité, à l’installation et aux migrations ; ils ne sélectionnent aucune règle éditoriale.
 
@@ -668,7 +668,7 @@ Avant toute publication, W11 doit :
 4. effectuer comme première écriture distante un test sur l’unique page Débat française canonique du plan ;
 5. exiger que cette page soit absente lors de la simulation, la créer avec `createonly`, relire la révision exacte et produire un reçu machine signé ;
 6. avant toute autre écriture, recharger le même plan et le reçu, vérifier leurs empreintes, puis confirmer que la page Débat est toujours à la révision attestée avec le même contenu, le même résumé et la même balise ;
-7. après ce test, créer les autres pages françaises, puis les pages anglaises, les pages Argument précédant la page Debate dans la phase anglaise ;
+7. après ce test, créer les autres pages françaises, puis les pages anglaises, la page Debate précédant toutes les pages Argument dans la phase anglaise ;
 8. réauthentifier et vérifier l’identité à chaque phase et avant chaque écriture ;
 9. utiliser `assert=user` et `assertuser` ;
 10. classifier chaque titre distant comme `absent`, `equivalent_existing`, `collision` ou `manual_review` ;
@@ -826,3 +826,11 @@ Une commande d’orchestration de haut niveau pilote l’ensemble de ce cycle. E
 - précise qu’une catégorie documentaire devenue vide après une revue autorisée disparaît entièrement au lieu d’être rendue sous la forme `|paramètre=` ;
 - conserve séparément la provenance historique de présence pour l’audit, sans lui donner d’effet sur le rendu ;
 - exige que le préflight distingue l’omission canonique d’un paramètre optionnel géré de la suppression non autorisée d’un paramètre protégé, inconnu ou hors contrat.
+
+## 1.2.88 — 21 août 2026 — page Debate anglaise publiée avant les Arguments
+
+- consacre la décision explicite du propriétaire : lors de la première publication anglaise finale, la page `Debate` est créée avant toute page `Argument` encore absente ;
+- remplace la règle active contradictoire qui imposait `Argument` avant `Debate` dans cette phase ;
+- conserve l’ordre des autres phases, les garde-fous de publication et la date civile réelle de chaque création anglaise ;
+- lorsqu’une publication a déjà commencé sous l’ancien ordre, les pages déjà créées restent intactes et un plan successeur audité place `Debate` avant les seules créations `Argument` restantes.
+
