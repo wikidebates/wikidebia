@@ -991,14 +991,23 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
                 if skey in {'avertissements', 'warnings'}:
                     allowed_quote_warning = sub.name == 'Quote' and skey == 'warnings'
                     preserved_historical_subsection_warning = bool(
-                        key == 'introduction' and lang == 'fr' and page_type == 'debate'
-                        and sub.name == 'Sous-partie' and skey == 'avertissements'
-                        and _preserved_historical_french_introduction(ctx)
+                        key == 'introduction' and page_type == 'debate'
+                        and (
+                            (
+                                lang == 'fr' and sub.name == 'Sous-partie' and skey == 'avertissements'
+                                and _preserved_historical_french_introduction(ctx)
+                            )
+                            or
+                            (
+                                lang == 'en' and sub.name == 'Subsection' and skey == 'warnings'
+                                and _translated_historical_english_introduction(ctx)
+                            )
+                        )
                     )
                     if not allowed_quote_warning and not preserved_historical_subsection_warning:
                         ctx.report.error('WDV-MWK-003', f"Sous-paramètre d'avertissement interdit dans une sortie générée : {sub.name}.{skey}", path=rel)
                     elif preserved_historical_subsection_warning:
-                        ctx.report.info('WDV-MWK-003', f"Sous-paramètre d'avertissement historique conservé dans une introduction française préexistante : {sub.name}.{skey}", path=rel)
+                        ctx.report.info('WDV-MWK-003', f"Sous-paramètre d'avertissement historique conservé depuis une source préexistante : {sub.name}.{skey}", path=rel)
                 if skey in {'auteurs', 'authors'}:
                     candidate = sval.strip()
                     parsed_json = None
@@ -1347,7 +1356,22 @@ def _validate_interlanguage(ctx: PackageContext, tmpl: Template, rel: str, lang:
                 ctx.report.error('WDV-MWK-011', 'Cible interlangue incorrecte', path=rel, details={'expected': expected_title, 'actual': actual_title})
 PAIRED_EM_DASH_RE = re.compile('\\s—\\s[^—\\n]{1,500}?\\s—(?=\\s|[.,;:!?])')
 
-def _validate_french_parenthetical_dashes(ctx: PackageContext, tmpl: Template, rel: str, page_type: str) -> None:
+def _validate_french_parenthetical_dashes(
+    ctx: PackageContext,
+    tmpl: Template,
+    rel: str,
+    page_type: str,
+    page_id: str | None = None,
+) -> None:
+    # The rule applies to generated prose.  It must not be applied
+    # retroactively to an exactly preserved historical summary/introduction,
+    # nor to metadata carried inside an inline template (for example a legacy
+    # tooltip copied from Wikipedia).
+    if page_type == 'argument' and isinstance(page_id, str) and (page_id, 'fr') in _protected_historical_summary_keys(ctx):
+        return
+    if page_type == 'debate' and _preserved_historical_french_introduction(ctx):
+        return
+
     values: list[tuple[str, str]] = []
     if page_type == 'argument':
         values.append(('résumé', tmpl.one('résumé') or ''))
@@ -1359,6 +1383,8 @@ def _validate_french_parenthetical_dashes(ctx: PackageContext, tmpl: Template, r
             return
     for field, value in values:
         prose = re.sub('<ref\\b[^>]*>.*?</ref>', '', value, flags=re.IGNORECASE | re.DOTALL)
+        for span in _inline_template_spans(prose):
+            prose = prose.replace(span, ' ')
         match = PAIRED_EM_DASH_RE.search(prose)
         if match:
             excerpt = ' '.join(match.group(0).split())[:220]
@@ -1453,6 +1479,26 @@ def _preserved_historical_french_introduction(ctx: PackageContext) -> bool:
                           and isinstance(debate.get('introduction'), str) and debate.get('introduction').strip())
     setattr(ctx, '_preserved_historical_french_introduction_cache', result)
     return result
+
+def _translated_historical_english_introduction(ctx: PackageContext) -> bool:
+    cached = getattr(ctx, '_translated_historical_english_introduction_cache', None)
+    if isinstance(cached, bool):
+        return cached
+    if not _legacy_render_differential_mode(ctx) or not ctx.exists('data/en_content_lock.json'):
+        setattr(ctx, '_translated_historical_english_introduction_cache', False)
+        return False
+    lock = ctx.load_json('data/en_content_lock.json')
+    debate = lock.get('debate') if isinstance(lock, dict) else None
+    result = bool(
+        isinstance(debate, dict)
+        and debate.get('source_page_origin') == 'preexisting'
+        and isinstance(debate.get('introduction'), str)
+        and debate.get('introduction').strip()
+        and _preserved_historical_french_introduction(ctx)
+    )
+    setattr(ctx, '_translated_historical_english_introduction_cache', result)
+    return result
+
 
 def _owner_removed_summary_keys(ctx: PackageContext) -> set[tuple[str, str]]:
     return _shared_owner_removed_summary_keys(ctx)
@@ -1560,10 +1606,10 @@ def validate_page(ctx: PackageContext, page_manifest: dict[str, Any], *, overrid
     _check_reference_language_and_typography(ctx, tmpl, rel, lang)
     page_key = (page_manifest.get('page_id'), lang)
     _validate_wikipedia_hover_links(ctx, tmpl, rel, lang, page_type, skip_summary=page_key in _protected_historical_summary_keys(ctx) | _historically_absent_summary_keys(ctx) | _owner_removed_summary_keys(ctx))
-    if lang == 'fr':
-        _validate_french_parenthetical_dashes(ctx, tmpl, rel, page_type)
-    registry = ctx.registry() or {}
     page_id = page_manifest.get('page_id')
+    if lang == 'fr':
+        _validate_french_parenthetical_dashes(ctx, tmpl, rel, page_type, str(page_id) if page_id is not None else None)
+    registry = ctx.registry() or {}
     if page_type == 'argument':
         _validate_argument_content(ctx, tmpl, rel, lang, page_id, registry, page_manifest)
     else:

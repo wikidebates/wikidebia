@@ -3,14 +3,14 @@
 Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. Il remplace les anciennes sources séparées consacrées aux normes, au validateur et au kit.
 
 - norme active : **1.2.87** ;
-- validateur actif : **0.4.103** ;
-- kit actif : **2.16.39**.
+- validateur actif : **0.4.104** ;
+- kit actif : **2.16.40**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3712247 octets — SHA-256 `7b0c5439bf8acfad537cc5ef6ed60441cbc7ce2bc57e2c54c2f746a6252b8ca0`
-- `wikidebia-validator.zip` — 3898598 octets — SHA-256 `4e8681be93a5d35ca264af00ec8a07fbb48fad6d98c22a4c6c826290db2f19a4`
-- `wikidebia-kit.zip` — 806686 octets — SHA-256 `fc1d4542910e51b8350a6291388f77954898d79870d6b4c8042a6b24f5f0bbdd`
+- `wikidebia-normes.zip` — 3712247 octets — SHA-256 `ae2ad56cd6e91b712a9ce5802f58aba93b38a342e1e2796b5b91a55acd3bed3a`
+- `wikidebia-validator.zip` — 3903678 octets — SHA-256 `18613cc79f9c94e6be06b7d3ad2bf1fbfe80bd812516bad0f3aa6ab61deeaf61`
+- `wikidebia-kit.zip` — 811437 octets — SHA-256 `c16ca0308755e0ac386fa7682cd7690d6c0c16131bea16a00067da457c43212e`
 
 ## Norme consolidée active
 
@@ -1648,9 +1648,14 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `0c50c013c5836add360157ef595c0d68dd22de59311d10181d6ed7cc590da6c7`
+SHA-256 : `359d5a8b169c545f43d89617a1a6e1af137ec0454b90687600a0f92ab14ea99b`
 
-# Wikidéb’IA Validator 0.4.103
+# Wikidéb’IA Validator 0.4.104
+
+Le validateur 0.4.104 corrige le préflight final d’un corpus historique déjà scellé. Il étend la validation différentielle aux incises présentes dans un résumé historique, aux avertissements de sous-partie traduits depuis une introduction française préexistante et aux registres d’introduction anciens dont une proposition de réécriture n’a jamais été sélectionnée par le verrou français.
+
+Il accepte en outre les deux formes légitimes de `documentation_family_notes` (trois familles agrégées ou neuf familles orientées), et la limite formelle de longueur d’un mot-clé ne s’applique plus lorsqu’une exception multi-mots valide du vocabulaire contrôlé atteste déjà le concept lexicalisé. Les contrôles restent stricts sur les contenus nouveaux, les introductions autorisées modifiées et les mots-clés sans attestation atomique.
+
 
 Le validateur 0.4.103 supprime une divergence interne de provenance historique qui se manifestait uniquement lorsque plusieurs portées étaient exécutées dans le même processus. `wikicode.py` et `editorial.py` possédaient chacun leur propre fonction `_protected_historical_summary_keys` tout en partageant le même nom de cache sur `PackageContext`. Comme `wikicode` s’exécute avant `editorial`, sa version plus ancienne du calcul pouvait mettre en cache une liste incomplète qui reconnaissait `historical_existing` mais pas `historical_authorized_change`; la portée éditoriale réutilisait ensuite ce cache et requalifiait à tort les résumés autorisés comme créations nouvelles.
 
@@ -1658,7 +1663,7 @@ La provenance des résumés est désormais calculée dans un module unique `hist
 
 La régression reproduit l’ordre réel `wikicode → editorial` et vérifie qu’un `historical_authorized_change` français et sa traduction anglaise restent hors du profil de création. Aucun contrôle n’est assoupli pour un résumé réellement nouveau.
 
-Norme active : 1.2.87. Kit associé : 2.16.39.
+Norme active : 1.2.87. Kit associé : 2.16.40.
 
 ## Notes héritées du validateur 0.4.101
 
@@ -1778,7 +1783,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du validateur
 
 Source interne : `validator/CHANGELOG.md`  
-SHA-256 : `a1752f011a30c731addeca39f747185c6ccc6246568e1a8daedd9177bd54e101`
+SHA-256 : `58ad5c28ed167e6e62d00fd514e06dd8ac2747bf3f2db392fd27703547c85f80`
 
 ## 0.4.73 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2066,12 +2071,27 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - conserve tous les contrôles de création pour les résumés réellement nouveaux ;
 - conserve la norme 1.2.87 et s’aligne sur le kit 2.16.37.
 
+## 0.4.104 — 20 août 2026 — préflight différentiel des preuves historiques finales
+
+- n’applique plus `WDV-MWK-015` à un résumé français historiquement préservé et exclut les paramètres de modèles inline du contrôle des incises de prose ;
+- accepte `Subsection.warnings` en anglais uniquement lorsque l’introduction cible traduit une introduction française préexistante scellée sous `differential_preservation_v1` ;
+- traite le verrou français comme source autoritative de provenance pour une introduction historique, sans réactiver une ancienne proposition de réécriture restée dans `introduction_review.json` ;
+- accepte `documentation_family_notes` sous forme agrégée (3 familles) ou orientée (9 familles) lorsqu’elle est complète et substantielle ;
+- permet un mot-clé de plus de quatre mots lorsque son entrée de vocabulaire possède déjà une attestation atomique/multi-mots valide, sans réduire les contrôles d’atomicité ;
+- ajoute des régressions positives et négatives sur chacune de ces compatibilités ;
+- conserve la norme 1.2.87 et s’aligne sur le kit 2.16.40.
+
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `832811facfb65c0f9a5152104316f7e46456dd95423d3bea5abc8817eab4c336`
+SHA-256 : `184efd0c12c6fa8662d191a55c546f3fb3274da556bb17dfff3895f186dd7577`
 
-# Wikidéb’IA Kit 2.16.39
+# Wikidéb’IA Kit 2.16.40
+
+Le kit 2.16.40 corrige le préflight de rendu du revenu de base sans rouvrir le contenu éditorial. Avant validation finale, il réconcilie uniquement les métadonnées de preuve déjà attestées : les locutions historiques déclarées atomiques reçoivent le marqueur multi-mots correspondant, une exception anglaise copiée mécaniquement vers une forme compacte est retirée, l’introduction française est explicitement marquée comme historique depuis son verrou, et une note anglaise clairement explicative peut recevoir l’exception de ponctuation déjà couverte par la revue humaine globale.
+
+Aucun mot-clé, titre, résumé, introduction, source ou relation n’est modifié. Les normalisations ne s’appliquent pas aux concepts nouveaux non revus. Toutes les capacités de publication finale de 2.16.39 sont conservées.
+
 
 Le kit 2.16.39 prolonge automatiquement un Work bilingue déjà `release_ready` jusqu’à la publication MediaWiki finale. Il scelle une baseline liée au Work (`FR = dernier checkpoint signé`, `EN = never_published_by_this_work` uniquement sur preuve `deferred`), construit et relit tous les plans avant la première écriture, publie les nouvelles pages anglaises avec leurs métadonnées de première création puis ajoute les liens interlangues français, et installe le `release-copy` après succès. Un Work 2.16.37/2.16.38 déjà `release_ready` reprend directement cette phase sans refaire les deux convergences sémantiques.
 
@@ -2083,7 +2103,7 @@ Le kit 2.16.37 accompagne le validateur 0.4.103, qui corrige la cause racine du 
 
 L’attestation `metrics.runtime_attestation` est étendue aux SHA-256 de `wikicode.py` et `historical_summary.py` en plus de `cli.py` et `editorial.py`. `_run_validator` recalcule les quatre empreintes avant d’accepter un rapport. Les diagnostics complets et leur persistance transactionnelle restent inchangés.
 
-Norme active : 1.2.87. Validateur associé : 0.4.103.
+Norme active : 1.2.87. Validateur associé : 0.4.104.
 
 ## Notes héritées du kit 2.16.35
 
@@ -2246,7 +2266,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `e21868bbf53012ce2a88072163408d8eef24840ea58efd32c70e4612f35d1b72`
+SHA-256 : `ebbe745cdb26d5650561c6f3a97719eacb8a93b58051fc2878c5f8caad762a7d`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2686,6 +2706,16 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - conserve les plans et reçus pour une reprise idempotente après interruption et installe le `release-copy` seulement après succès ;
 - permet à `update --archive` de réutiliser la même preuve Work-scoped lorsqu’elle est disponible, tout en conservant le fallback sûr 2.16.38 pour les anciens corpus.
 
+## 2.16.40 — 20 août 2026 — réconciliation des preuves du render preflight
+
+- normalise, au rendu final, les seuls champs `multiword_exception*` contradictoires avec une attestation historique déjà `atomic_concept=true` / `compositional_intersection=false`, sans changer les mots-clés ;
+- localise la même normalisation en anglais et retire l’exception devenue inutile pour une forme compacte telle que `working-time reduction` ;
+- propage dans `introduction_review.json` la provenance historique autoritative de l’introduction française sans sélectionner une ancienne proposition de réécriture ;
+- transforme l’attestation globale de ponctuation d’une traduction historique en exception précise uniquement pour une note longue, sans URL et composée de plusieurs phrases explicatives ;
+- conserve le corpus sémantique, les deux convergences, les verrous et les capacités de publication finale 2.16.39 ;
+- ajoute des régressions empêchant toute normalisation automatique d’un concept nouveau non revu ;
+- s’aligne sur le validateur 0.4.104 et conserve la norme 1.2.87.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -2978,19 +3008,18 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `c8d5ab776470df6db95b535eb63956bccfd48130f7ad40912f90617124015687`
+SHA-256 : `441863d4d2231ed280c10b3c93cabfd8cee75352520cf5fb1f26d7f6bedfde5d`
 
-Wikidéb’IA Kit 2.16.39 — rapport de tests
+Wikidéb’IA Kit 2.16.40 — rapport de tests
 
-Tests pytest : 515 réussis
+Tests pytest : 519 réussis
 Norme : 1.2.87
-Validateur : 0.4.103
+Validateur : 0.4.104
 
-Final publication orchestration : PASSED ; reprise release_ready sans rerendu ni reconvergence, baseline Work-scoped et blocage pré-écriture.
-Runtime validator attestation : PASSED ; quatre modules critiques sont scellés.
-Validation diagnostic export : PASSED ; liste exhaustive et persistance transactionnelle conservées.
-Historical summary provenance regression : PASSED via le validateur 0.4.103.
-Remote update state resolution : PASSED ; preuve Work-scoped prioritaire, fallback 2.16.38 conservé pour les anciens corpus.
+Render preflight evidence reconciliation : PASSED ; aucune valeur éditoriale n’est modifiée.
+Historical keyword atomicity normalization : PASSED ; uniquement les métadonnées déjà attestées sont réconciliées.
+Historical introduction provenance : PASSED ; le verrou français reste autoritatif.
+Final publication orchestration : PASSED ; les capacités de 2.16.39 sont conservées.
 
 ## Guide d’orchestration éditoriale
 

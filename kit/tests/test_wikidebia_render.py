@@ -461,3 +461,161 @@ def test_finalize_individual_review_propagates_reviewed_historical_form_change(t
     assert row["displayed_title_form_change_reviewed_en"] is True
     assert row["displayed_title_speech_act_preserved_en"] is True
     assert "idiomatic English rendering" in row["displayed_title_form_change_note_en"]
+
+
+def test_finalize_keyword_vocabulary_reconciles_historical_atomicity_metadata(tmp_path: Path):
+    data = tmp_path / "data"
+    data.mkdir()
+    (data / "fr_content_lock.json").write_text(json.dumps({
+        "arguments": [
+            {"id": "A0073", "page_origin": "preexisting"},
+            {"id": "A0106", "page_origin": "preexisting"},
+        ]
+    }, ensure_ascii=False), encoding="utf-8")
+    (data / "en_content_lock.json").write_text(json.dumps({
+        "arguments": [
+            {"id": "A0073", "source_page_origin": "preexisting"},
+            {"id": "A0106", "source_page_origin": "preexisting"},
+        ]
+    }, ensure_ascii=False), encoding="utf-8")
+    vocab = {
+        "entries": [
+            {
+                "concept_id": "K1",
+                "fr": "partage du travail",
+                "en": "work sharing",
+                "atomic_concept": True,
+                "compositional_intersection": False,
+                "multiword_exception": False,
+                "multiword_exception_rationale": "",
+                "en_atomic_concept": True,
+                "en_compositional_intersection": False,
+                "en_multiword_exception": False,
+                "en_multiword_exception_rationale": "",
+                "usages": [{"entity_type": "argument", "entity_id": "A0073"}],
+            },
+            {
+                "concept_id": "K2",
+                "fr": "réduction du temps de travail",
+                "en": "working-time reduction",
+                "atomic_concept": True,
+                "compositional_intersection": False,
+                "multiword_exception": False,
+                "multiword_exception_rationale": "",
+                "en_atomic_concept": True,
+                "en_compositional_intersection": False,
+                "en_multiword_exception": True,
+                "en_multiword_exception_rationale": "Old mechanically copied exception.",
+                "usages": [
+                    {"entity_type": "argument", "entity_id": "A0073"},
+                    {"entity_type": "argument", "entity_id": "A0106"},
+                ],
+            },
+        ]
+    }
+    (data / "keyword_vocabulary_bilingual.json").write_text(json.dumps(vocab, ensure_ascii=False), encoding="utf-8")
+
+    render._finalize_keyword_vocabulary(tmp_path)
+    final = json.loads((data / "keyword_vocabulary_bilingual.json").read_text(encoding="utf-8"))
+    by_fr = {row["fr"]: row for row in final["entries"]}
+    assert by_fr["partage du travail"]["multiword_exception"] is True
+    assert "Locution conceptuelle historique" in by_fr["partage du travail"]["multiword_exception_rationale"]
+    assert by_fr["réduction du temps de travail"]["multiword_exception"] is True
+    assert by_fr["réduction du temps de travail"]["en_multiword_exception"] is False
+    assert by_fr["réduction du temps de travail"]["en_multiword_exception_rationale"] == ""
+
+
+def test_finalize_keyword_vocabulary_does_not_repair_new_unreviewed_concept(tmp_path: Path):
+    data = tmp_path / "data"
+    data.mkdir()
+    (data / "fr_content_lock.json").write_text(json.dumps({
+        "arguments": [{"id": "A0001", "page_origin": "new"}]
+    }), encoding="utf-8")
+    (data / "en_content_lock.json").write_text(json.dumps({
+        "arguments": [{"id": "A0001", "source_page_origin": "new"}]
+    }), encoding="utf-8")
+    vocab = {"entries": [{
+        "fr": "réduction du temps de travail",
+        "en": "working-time reduction",
+        "atomic_concept": True,
+        "compositional_intersection": False,
+        "multiword_exception": False,
+        "en_atomic_concept": True,
+        "en_compositional_intersection": False,
+        "en_multiword_exception": True,
+        "en_multiword_exception_rationale": "Incorrect exception on a new concept.",
+        "usages": [{"entity_type": "argument", "entity_id": "A0001"}],
+    }]}
+    path = data / "keyword_vocabulary_bilingual.json"
+    path.write_text(json.dumps(vocab, ensure_ascii=False), encoding="utf-8")
+    before = path.read_text(encoding="utf-8")
+    render._finalize_keyword_vocabulary(tmp_path)
+    assert path.read_text(encoding="utf-8") == before
+
+
+def test_finalize_introduction_review_adds_historical_provenance_and_clear_sentence_exception(tmp_path: Path):
+    (tmp_path / "data").mkdir()
+    (tmp_path / "reviews").mkdir()
+    (tmp_path / "output/en/debate").mkdir(parents=True)
+
+    fr_intro = "{{Sous-partie|titre=Historique|contenu=Texte}}"
+    (tmp_path / "data/fr_content_lock.json").write_text(json.dumps({
+        "debate": {"page_origin": "preexisting", "introduction": fr_intro}
+    }, ensure_ascii=False), encoding="utf-8")
+    review = {
+        "entries": [
+            {
+                "language": "fr",
+                "subsections": [{"title": "Ancienne proposition"}],
+            },
+            {
+                "language": "en",
+                "source_page_origin": "preexisting",
+                "reference_note_punctuation_reviewed": True,
+            },
+        ]
+    }
+    (tmp_path / "reviews/introduction_review.json").write_text(json.dumps(review, ensure_ascii=False), encoding="utf-8")
+    body = (
+        "Depending on the groups concerned, basic income is also called several other names. "
+        "These expressions are not identical, but they share enough characteristics to describe the same policy family."
+    )
+    (tmp_path / "output/en/debate/debate.wiki").write_text(
+        "{{Debate|introduction={{Subsection|title=Definition|content=Text<ref>" + body + "</ref>.}}}}",
+        encoding="utf-8",
+    )
+
+    render._finalize_introduction_review(tmp_path)
+    final = json.loads((tmp_path / "reviews/introduction_review.json").read_text(encoding="utf-8"))
+    fr = next(row for row in final["entries"] if row["language"] == "fr")
+    en = next(row for row in final["entries"] if row["language"] == "en")
+    assert fr["status"] == "historical_existing"
+    assert fr["historical_content_preserved"] is True
+    assert len(fr["historical_source_sha256"]) == 64
+    assert len(en["terminal_period_sentence_exceptions"]) == 1
+    exc = en["terminal_period_sentence_exceptions"][0]
+    assert exc["complete_sentence"] is True
+    assert exc["sentence_evidence"] in body
+
+
+def test_finalize_introduction_review_does_not_invent_exception_for_bibliographic_notice(tmp_path: Path):
+    (tmp_path / "data").mkdir()
+    (tmp_path / "reviews").mkdir()
+    (tmp_path / "output/en/debate").mkdir(parents=True)
+    (tmp_path / "data/fr_content_lock.json").write_text(json.dumps({
+        "debate": {"page_origin": "preexisting", "introduction": "{{Sous-partie|titre=Historique|contenu=Texte}}"}
+    }), encoding="utf-8")
+    (tmp_path / "reviews/introduction_review.json").write_text(json.dumps({
+        "entries": [
+            {"language": "fr"},
+            {"language": "en", "source_page_origin": "preexisting", "reference_note_punctuation_reviewed": True},
+        ]
+    }), encoding="utf-8")
+    (tmp_path / "output/en/debate/debate.wiki").write_text(
+        "{{Debate|introduction={{Subsection|title=Definition|content=Text<ref>Author, Title, Publisher, 2020.</ref>.}}}}",
+        encoding="utf-8",
+    )
+    render._finalize_introduction_review(tmp_path)
+    final = json.loads((tmp_path / "reviews/introduction_review.json").read_text(encoding="utf-8"))
+    en = next(row for row in final["entries"] if row["language"] == "en")
+    assert en.get("terminal_period_sentence_exceptions") == []

@@ -1,4 +1,9 @@
-# Wikidéb’IA Validator 0.4.103
+# Wikidéb’IA Validator 0.4.104
+
+Le validateur 0.4.104 corrige le préflight final d’un corpus historique déjà scellé. Il étend la validation différentielle aux incises présentes dans un résumé historique, aux avertissements de sous-partie traduits depuis une introduction française préexistante et aux registres d’introduction anciens dont une proposition de réécriture n’a jamais été sélectionnée par le verrou français.
+
+Il accepte en outre les deux formes légitimes de `documentation_family_notes` (trois familles agrégées ou neuf familles orientées), et la limite formelle de longueur d’un mot-clé ne s’applique plus lorsqu’une exception multi-mots valide du vocabulaire contrôlé atteste déjà le concept lexicalisé. Les contrôles restent stricts sur les contenus nouveaux, les introductions autorisées modifiées et les mots-clés sans attestation atomique.
+
 
 Le validateur 0.4.103 supprime une divergence interne de provenance historique qui se manifestait uniquement lorsque plusieurs portées étaient exécutées dans le même processus. `wikicode.py` et `editorial.py` possédaient chacun leur propre fonction `_protected_historical_summary_keys` tout en partageant le même nom de cache sur `PackageContext`. Comme `wikicode` s’exécute avant `editorial`, sa version plus ancienne du calcul pouvait mettre en cache une liste incomplète qui reconnaissait `historical_existing` mais pas `historical_authorized_change`; la portée éditoriale réutilisait ensuite ce cache et requalifiait à tort les résumés autorisés comme créations nouvelles.
 
@@ -6,7 +11,7 @@ La provenance des résumés est désormais calculée dans un module unique `hist
 
 La régression reproduit l’ordre réel `wikicode → editorial` et vérifie qu’un `historical_authorized_change` français et sa traduction anglaise restent hors du profil de création. Aucun contrôle n’est assoupli pour un résumé réellement nouveau.
 
-Norme active : 1.2.87. Kit associé : 2.16.39.
+Norme active : 1.2.87. Kit associé : 2.16.40.
 
 ## Notes héritées du validateur 0.4.101
 

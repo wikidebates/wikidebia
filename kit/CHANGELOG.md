@@ -436,3 +436,12 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - conserve les plans et reçus pour une reprise idempotente après interruption et installe le `release-copy` seulement après succès ;
 - permet à `update --archive` de réutiliser la même preuve Work-scoped lorsqu’elle est disponible, tout en conservant le fallback sûr 2.16.38 pour les anciens corpus.
 
+## 2.16.40 — 20 août 2026 — réconciliation des preuves du render preflight
+
+- normalise, au rendu final, les seuls champs `multiword_exception*` contradictoires avec une attestation historique déjà `atomic_concept=true` / `compositional_intersection=false`, sans changer les mots-clés ;
+- localise la même normalisation en anglais et retire l’exception devenue inutile pour une forme compacte telle que `working-time reduction` ;
+- propage dans `introduction_review.json` la provenance historique autoritative de l’introduction française sans sélectionner une ancienne proposition de réécriture ;
+- transforme l’attestation globale de ponctuation d’une traduction historique en exception précise uniquement pour une note longue, sans URL et composée de plusieurs phrases explicatives ;
+- conserve le corpus sémantique, les deux convergences, les verrous et les capacités de publication finale 2.16.39 ;
+- ajoute des régressions empêchant toute normalisation automatique d’un concept nouveau non revu ;
+- s’aligne sur le validateur 0.4.104 et conserve la norme 1.2.87.

@@ -1,4 +1,9 @@
-# Wikidéb’IA Kit 2.16.39
+# Wikidéb’IA Kit 2.16.40
+
+Le kit 2.16.40 corrige le préflight de rendu du revenu de base sans rouvrir le contenu éditorial. Avant validation finale, il réconcilie uniquement les métadonnées de preuve déjà attestées : les locutions historiques déclarées atomiques reçoivent le marqueur multi-mots correspondant, une exception anglaise copiée mécaniquement vers une forme compacte est retirée, l’introduction française est explicitement marquée comme historique depuis son verrou, et une note anglaise clairement explicative peut recevoir l’exception de ponctuation déjà couverte par la revue humaine globale.
+
+Aucun mot-clé, titre, résumé, introduction, source ou relation n’est modifié. Les normalisations ne s’appliquent pas aux concepts nouveaux non revus. Toutes les capacités de publication finale de 2.16.39 sont conservées.
+
 
 Le kit 2.16.39 prolonge automatiquement un Work bilingue déjà `release_ready` jusqu’à la publication MediaWiki finale. Il scelle une baseline liée au Work (`FR = dernier checkpoint signé`, `EN = never_published_by_this_work` uniquement sur preuve `deferred`), construit et relit tous les plans avant la première écriture, publie les nouvelles pages anglaises avec leurs métadonnées de première création puis ajoute les liens interlangues français, et installe le `release-copy` après succès. Un Work 2.16.37/2.16.38 déjà `release_ready` reprend directement cette phase sans refaire les deux convergences sémantiques.
 
@@ -10,7 +15,7 @@ Le kit 2.16.37 accompagne le validateur 0.4.103, qui corrige la cause racine du 
 
 L’attestation `metrics.runtime_attestation` est étendue aux SHA-256 de `wikicode.py` et `historical_summary.py` en plus de `cli.py` et `editorial.py`. `_run_validator` recalcule les quatre empreintes avant d’accepter un rapport. Les diagnostics complets et leur persistance transactionnelle restent inchangés.
 
-Norme active : 1.2.87. Validateur associé : 0.4.103.
+Norme active : 1.2.87. Validateur associé : 0.4.104.
 
 ## Notes héritées du kit 2.16.35
 

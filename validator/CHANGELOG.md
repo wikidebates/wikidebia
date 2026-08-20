@@ -283,3 +283,13 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 - étend l’attestation runtime aux SHA-256 de `wikicode.py` et `historical_summary.py` ;
 - conserve tous les contrôles de création pour les résumés réellement nouveaux ;
 - conserve la norme 1.2.87 et s’aligne sur le kit 2.16.37.
+
+## 0.4.104 — 20 août 2026 — préflight différentiel des preuves historiques finales
+
+- n’applique plus `WDV-MWK-015` à un résumé français historiquement préservé et exclut les paramètres de modèles inline du contrôle des incises de prose ;
+- accepte `Subsection.warnings` en anglais uniquement lorsque l’introduction cible traduit une introduction française préexistante scellée sous `differential_preservation_v1` ;
+- traite le verrou français comme source autoritative de provenance pour une introduction historique, sans réactiver une ancienne proposition de réécriture restée dans `introduction_review.json` ;
+- accepte `documentation_family_notes` sous forme agrégée (3 familles) ou orientée (9 familles) lorsqu’elle est complète et substantielle ;
+- permet un mot-clé de plus de quatre mots lorsque son entrée de vocabulaire possède déjà une attestation atomique/multi-mots valide, sans réduire les contrôles d’atomicité ;
+- ajoute des régressions positives et négatives sur chacune de ces compatibilités ;
+- conserve la norme 1.2.87 et s’aligne sur le kit 2.16.40.

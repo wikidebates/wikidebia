@@ -2,6 +2,7 @@ from __future__ import annotations
 from collections import Counter, defaultdict
 from difflib import SequenceMatcher
 from pathlib import Path
+import copy
 import hashlib
 import json
 import re
@@ -403,8 +404,14 @@ def keyword_capitalization_issues(keyword: str, kind: str) -> list[str]:
             return ['acronym_not_uppercase']
     return []
 
-def keyword_form_issues(keywords: list[str], *, enforce_count: bool = True) -> list[str]:
+def keyword_form_issues(
+    keywords: list[str],
+    *,
+    enforce_count: bool = True,
+    allowed_long_keywords: set[str] | None = None,
+) -> list[str]:
     issues: list[str] = []
+    allowed_long_keywords = allowed_long_keywords or set()
     if enforce_count and not 2 <= len(keywords) <= 4:
         issues.append('count')
     if len(keywords) != len(set(keywords)):
@@ -419,7 +426,9 @@ def keyword_form_issues(keywords: list[str], *, enforce_count: bool = True) -> l
             issues.append('ellipsis')
         if len(keyword) > 40:
             issues.append('too_long')
-        if len(WORD_TOKEN.findall(keyword)) > 4:
+        # A long lexicalized concept is permitted when the controlled
+        # vocabulary carries the explicit atomic/multiword attestation.
+        if len(WORD_TOKEN.findall(keyword)) > 4 and keyword not in allowed_long_keywords:
             issues.append('too_many_words')
     return sorted(set(issues))
 
@@ -1002,7 +1011,14 @@ def validate_introduction_review_data(review: Any, actual_titles: dict[str, list
             if len(str(entry.get('introduction_claim_inventory_note') or '').strip()) < 30:
                 issues.append({'reason': 'introduction_claim_inventory_note', 'language': lang})
             family_notes = entry.get('documentation_family_notes')
-            if not isinstance(family_notes, dict) or set(family_notes) != {'bibliography', 'webliography', 'videography'}:
+            aggregate_families = {'bibliography', 'webliography', 'videography'}
+            oriented_families = {
+                'pro-bibliography', 'con-bibliography', 'bibliography',
+                'pro-webliography', 'con-webliography', 'webliography',
+                'pro-videography', 'con-videography', 'videography',
+            }
+            note_keys = set(family_notes) if isinstance(family_notes, dict) else set()
+            if not isinstance(family_notes, dict) or not (note_keys == aggregate_families or note_keys == oriented_families):
                 issues.append({'reason': 'documentation_family_notes', 'language': lang})
             else:
                 for family, note in family_notes.items():
@@ -1047,13 +1063,20 @@ def validate_introduction_review_data(review: Any, actual_titles: dict[str, list
                 issues.append({'reason': 'historical_introduction_absence_unverified', 'language': lang})
             if len(str(entry.get('note') or '').strip()) < 12:
                 issues.append({'reason': 'historical_introduction_note', 'language': lang})
-            rows = entry.get('subsections')
-            if not isinstance(rows, list):
-                issues.append({'reason': 'missing_subsections', 'language': lang})
-            else:
-                ledger_titles = [row.get('title') for row in rows if isinstance(row, dict)]
-                if ledger_titles != titles:
-                    issues.append({'reason': 'subsection_titles_mismatch', 'language': lang, 'expected': titles, 'actual': ledger_titles})
+            # For an unchanged historical introduction the content lock is
+            # authoritative.  Older review ledgers may contain a proposed
+            # rewrite that was never owner-authorized; those stale subsection
+            # rows must not requalify the preserved source as newly generated.
+            # A genuinely owner-authorized change still has to describe the
+            # selected final structure.
+            if authorized:
+                rows = entry.get('subsections')
+                if not isinstance(rows, list):
+                    issues.append({'reason': 'missing_subsections', 'language': lang})
+                else:
+                    ledger_titles = [row.get('title') for row in rows if isinstance(row, dict)]
+                    if ledger_titles != titles:
+                        issues.append({'reason': 'subsection_titles_mismatch', 'language': lang, 'expected': titles, 'actual': ledger_titles})
             continue
         # Current introduction requirements are cumulative. Historical policy
         # revision fields are accepted as trace metadata but never activate rules.
@@ -1302,6 +1325,22 @@ def _validate_introduction_review(ctx: PackageContext, manifest: dict[str, Any],
         ctx.report.error('WDV-EDT-017', 'Registre bilingue de revue des introductions absent', path='manifest.json')
         return {'path': rel, 'issues': [{'reason': 'missing_path'}]}
     review = ctx.load_json(rel) if ctx.exists(rel) else None
+    if isinstance(review, dict) and isinstance(review.get('entries'), list) and _preserved_historical_french_introduction(ctx):
+        # The FR content lock is authoritative for historical provenance.
+        # Legacy introduction_review ledgers may predate the preservation
+        # contract and can contain an unselected proposed rewrite.  Annotate a
+        # copy for differential validation without mutating the package.
+        review = copy.deepcopy(review)
+        fr_entry = next((row for row in review.get('entries') or [] if isinstance(row, dict) and row.get('language') == 'fr'), None)
+        if isinstance(fr_entry, dict) and ctx.exists('data/fr_content_lock.json'):
+            fr_lock = ctx.load_json('data/fr_content_lock.json')
+            debate_lock = fr_lock.get('debate') if isinstance(fr_lock, dict) else None
+            historical_intro = debate_lock.get('introduction') if isinstance(debate_lock, dict) else None
+            if isinstance(historical_intro, str) and historical_intro.strip():
+                fr_entry['status'] = 'historical_existing'
+                fr_entry['historical_content_preserved'] = True
+                fr_entry['historical_source_sha256'] = hashlib.sha256(historical_intro.encode('utf-8')).hexdigest()
+                fr_entry.setdefault('note', 'Introduction française historique préservée ; les propositions de réécriture antérieures ne sont pas la valeur éditoriale sélectionnée.')
     if english_translation_deferred(manifest) and isinstance(review, dict) and isinstance(review.get('entries'), list):
         review = dict(review)
         review['entries'] = [entry for entry in review['entries'] if isinstance(entry, dict) and entry.get('language') == 'fr']
@@ -2160,7 +2199,23 @@ def validate_editorial(ctx: PackageContext) -> None:
                     historical_keyword_values = {str(value) for value in keywords}
             # Only the numerical creation quota is provenance-sensitive.
             # Intrinsic quality rules apply to the complete final historical list too.
-            kw_reasons = keyword_form_issues(keywords, enforce_count=not source_preexisting)
+            vocabulary = vocab_fr if lang == 'fr' else vocab_en
+            allowed_long_keywords: set[str] = set()
+            if vocabulary:
+                for keyword in keywords:
+                    entry = vocabulary.get(keyword)
+                    if entry and not keyword_atomicity_issues(
+                        keyword,
+                        _localized_keyword_entry(entry, lang),
+                        lang,
+                        require_composition_attestation=True,
+                    ):
+                        allowed_long_keywords.add(keyword)
+            kw_reasons = keyword_form_issues(
+                keywords,
+                enforce_count=not source_preexisting,
+                allowed_long_keywords=allowed_long_keywords,
+            )
             if kw_reasons:
                 keyword_quality_counts[lang] += 1
                 ctx.report.error('WDV-EDT-008', 'Jeu de mots-clés mal formé', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'keywords': keywords, 'reasons': kw_reasons})

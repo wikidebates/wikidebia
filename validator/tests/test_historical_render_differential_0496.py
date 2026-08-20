@@ -122,3 +122,103 @@ def test_new_content_still_blocks_references_subsection_warning_unknown_hover_pa
     assert any(f.level == "ERROR" and f.code == "WDV-MWK-003" and "Sous-partie.avertissements" in f.message for f in report.findings), report.to_text()
     assert any(f.level == "ERROR" and f.code == "WDV-MWK-020" for f in report.findings), report.to_text()
     assert any(f.level == "ERROR" and f.code == "WDV-MWK-004" and "résumé" in f.message for f in report.findings), report.to_text()
+
+
+def test_historical_summary_parenthetical_dash_is_not_retroactively_rewritten(tmp_path: Path):
+    _, arg1_path, _ = _legacy_preexisting_fixture(tmp_path)
+    text = arg1_path.read_text(encoding="utf-8")
+    text = text.replace(
+        "La {{Lien Wikipédia|article=marchandisation|infobulle=Ancienne infobulle historique}} peut modifier les échanges économiques.",
+        "Une notion historique — conservée telle quelle — peut modifier les échanges économiques.",
+    )
+    arg1_path.write_text(text, encoding="utf-8")
+    lock_path = tmp_path / "data/fr_content_lock.json"
+    lock = json.loads(lock_path.read_text(encoding="utf-8"))
+    lock["arguments"][0]["summary"] = "Une notion historique — conservée telle quelle — peut modifier les échanges économiques."
+    dump(lock_path, lock)
+
+    report = validate_package(tmp_path, scopes=["wikicode"])
+    assert not any(
+        f.level == "ERROR" and f.code == "WDV-MWK-015" and f.path == str(arg1_path.relative_to(tmp_path))
+        for f in report.findings
+    ), report.to_text()
+
+
+def test_generated_summary_parenthetical_dash_remains_blocking(tmp_path: Path):
+    create_fr_package(tmp_path)
+    arg1_path = tmp_path / "output/fr/arguments/A0001.wiki"
+    text = arg1_path.read_text(encoding="utf-8")
+    text = text.replace(
+        "La mesure X mutualiserait certains bénéfices et réduirait des coûts collectifs.",
+        "La mesure X — dans ce scénario — mutualiserait certains bénéfices et réduirait des coûts collectifs.",
+    )
+    arg1_path.write_text(text, encoding="utf-8")
+    report = validate_package(tmp_path, scopes=["wikicode"])
+    assert any(
+        f.level == "ERROR" and f.code == "WDV-MWK-015" and f.path == str(arg1_path.relative_to(tmp_path))
+        for f in report.findings
+    ), report.to_text()
+
+
+def test_translated_historical_subsection_warning_is_not_requalified_as_generated(tmp_path: Path):
+    from wikidebia_validator.package import PackageContext
+    from wikidebia_validator.report import Report
+    from wikidebia_validator.wikicode import parse_template, validate_template_shape
+
+    (tmp_path / "data").mkdir()
+    dump(tmp_path / "manifest.json", {
+        "editorial_controls": {"historical_text_render_validation_mode": "differential_preservation_v1"},
+        "pages": [],
+    })
+    dump(tmp_path / "data/fr_content_lock.json", {
+        "debate": {"page_origin": "preexisting", "introduction": "{{Sous-partie|titre=Historique|contenu=Texte|avertissements=À développer}}"},
+        "arguments": [],
+    })
+    dump(tmp_path / "data/en_content_lock.json", {
+        "debate": {"page_origin": "new", "source_page_origin": "preexisting", "introduction": "{{Subsection|title=History|content=Text|warnings=To be expanded}}"},
+        "arguments": [],
+    })
+    ctx = PackageContext(tmp_path, Report("0.4.104", str(tmp_path), ["wikicode"]))
+    tmpl = parse_template("""{{Debate
+|topic=Test
+|expanded-topic=test
+|introduction={{Subsection|title=History|content=Text|warnings=To be expanded}}
+|wikipedia-articles={{Wikipedia article|page=Test}}
+|pro-arguments={{Pro argument|page=Argument|displayed-title=Argument}}
+|con-arguments={{Con argument|page=Counterargument|displayed-title=Counterargument}}
+|sections=Society
+|keywords=test
+|creation-date=2026-08-20
+}}""")
+    page = {"page_id": "D1", "page_type": "debate", "language": "en", "page_origin": "new", "preserved_parameters": {}}
+    validate_template_shape(ctx, tmpl, "en", "debate", "debate.wiki", page)
+    assert not any(
+        f.level == "ERROR" and f.code == "WDV-MWK-003" and "Subsection.warnings" in f.message
+        for f in ctx.report.findings
+    ), ctx.report.to_text()
+
+
+def test_new_english_subsection_warning_remains_blocking(tmp_path: Path):
+    from wikidebia_validator.package import PackageContext
+    from wikidebia_validator.report import Report
+    from wikidebia_validator.wikicode import parse_template, validate_template_shape
+
+    dump(tmp_path / "manifest.json", {"editorial_controls": {"historical_text_render_validation_mode": "differential_preservation_v1"}})
+    ctx = PackageContext(tmp_path, Report("0.4.104", str(tmp_path), ["wikicode"]))
+    tmpl = parse_template("""{{Debate
+|topic=Test
+|expanded-topic=test
+|introduction={{Subsection|title=History|content=Text|warnings=To be expanded}}
+|wikipedia-articles={{Wikipedia article|page=Test}}
+|pro-arguments={{Pro argument|page=Argument|displayed-title=Argument}}
+|con-arguments={{Con argument|page=Counterargument|displayed-title=Counterargument}}
+|sections=Society
+|keywords=test
+|creation-date=2026-08-20
+}}""")
+    page = {"page_id": "D1", "page_type": "debate", "language": "en", "page_origin": "new", "preserved_parameters": {}}
+    validate_template_shape(ctx, tmpl, "en", "debate", "debate.wiki", page)
+    assert any(
+        f.level == "ERROR" and f.code == "WDV-MWK-003" and "Subsection.warnings" in f.message
+        for f in ctx.report.findings
+    ), ctx.report.to_text()

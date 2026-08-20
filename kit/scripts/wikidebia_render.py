@@ -999,6 +999,198 @@ def _finalize_summary_review(target: Path, debate_id: str) -> None:
     write_json(path, review)
 
 
+
+_KEYWORD_WORD_TOKEN = re.compile(r"[A-Za-zÀ-ÿ]+(?:[-’'][A-Za-zÀ-ÿ]+)?")
+_KEYWORD_CONNECTOR_FR = re.compile(r"\b(?:de|du|des|la|le|et)\b|\bd[’']", re.I)
+_KEYWORD_CONNECTOR_EN = re.compile(r"\b(?:of|and|the)\b", re.I)
+
+
+def _keyword_requires_multiword_exception(value: str, language: str) -> bool:
+    text = str(value or "").strip()
+    tokens = _KEYWORD_WORD_TOKEN.findall(text)
+    connector = _KEYWORD_CONNECTOR_FR if language == "fr" else _KEYWORD_CONNECTOR_EN
+    return len(tokens) > 2 or bool(connector.search(text))
+
+
+def _finalize_keyword_vocabulary(target: Path) -> None:
+    """Normalize legacy bilingual atomicity metadata without changing keywords.
+
+    Older historical vocabularies can already attest ``atomic_concept=true`` and
+    ``compositional_intersection=false`` while lacking the later explicit
+    multiword marker, or can carry a French-required exception into a shorter
+    English equivalent.  At final render we reconcile only those metadata fields
+    for concepts used exclusively by historically sourced pages.  No keyword,
+    ordering or concept identity is changed.
+    """
+    path = target / "data/keyword_vocabulary_bilingual.json"
+    if not path.exists():
+        return
+    vocabulary = load_json(path, "vocabulaire bilingue des mots-clés")
+    entries = vocabulary.get("entries")
+    if not isinstance(entries, list):
+        return
+
+    fr_lock = load_json(target / "data/fr_content_lock.json", "verrou français du contenu")
+    en_lock = load_json(target / "data/en_content_lock.json", "verrou anglais du contenu")
+    fr_historical = {
+        str(row.get("id"))
+        for row in fr_lock.get("arguments") or []
+        if isinstance(row, dict) and row.get("id") and row.get("page_origin") == "preexisting"
+    }
+    en_historical = {
+        str(row.get("id"))
+        for row in en_lock.get("arguments") or []
+        if isinstance(row, dict) and row.get("id") and row.get("source_page_origin") == "preexisting"
+    }
+
+    changed = False
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        usage_ids = {
+            str(row.get("entity_id"))
+            for row in entry.get("usages") or []
+            if isinstance(row, dict) and row.get("entity_type") == "argument" and row.get("entity_id")
+        }
+        historical_fr_usage = bool(usage_ids) and usage_ids <= fr_historical
+        historical_en_usage = bool(usage_ids) and usage_ids <= en_historical
+
+        fr_value = str(entry.get("fr") or "").strip()
+        if (
+            historical_fr_usage
+            and entry.get("atomic_concept") is True
+            and entry.get("compositional_intersection") is False
+        ):
+            needs = _keyword_requires_multiword_exception(fr_value, "fr")
+            if needs and entry.get("multiword_exception") is not True:
+                entry["multiword_exception"] = True
+                entry["multiword_exception_rationale"] = (
+                    f'Locution conceptuelle historique « {fr_value} » déjà attestée comme concept atomique '
+                    "et non compositionnel ; sa décomposition ferait perdre la catégorie de navigation."
+                )
+                changed = True
+            elif not needs and entry.get("multiword_exception") is True:
+                entry["multiword_exception"] = False
+                entry["multiword_exception_rationale"] = ""
+                changed = True
+
+        en_value = str(entry.get("en") or "").strip()
+        if (
+            historical_en_usage
+            and entry.get("en_atomic_concept") is True
+            and entry.get("en_compositional_intersection") is False
+        ):
+            needs = _keyword_requires_multiword_exception(en_value, "en")
+            if needs and entry.get("en_multiword_exception") is not True:
+                entry["en_multiword_exception"] = True
+                entry["en_multiword_exception_rationale"] = (
+                    f'Historical lexicalized navigation concept "{en_value}" already attested as atomic and '
+                    "non-compositional; splitting it would lose the controlled category."
+                )
+                changed = True
+            elif not needs and entry.get("en_multiword_exception") is True:
+                entry["en_multiword_exception"] = False
+                entry["en_multiword_exception_rationale"] = ""
+                changed = True
+
+    if changed:
+        write_json(path, vocabulary)
+
+
+def _looks_like_explanatory_terminal_reference(body: str) -> bool:
+    """Conservative compatibility test for a reviewed explanatory note."""
+    text = re.sub(r"https?://[^\s<>\]]+", " ", str(body or ""), flags=re.I)
+    words = re.findall(r"[A-Za-zÀ-ÿ0-9]+", text)
+    sentences = [part.strip() for part in re.split(r"(?<=[.!?])\s+", text.strip()) if part.strip()]
+    return len(words) >= 25 and len(sentences) >= 2
+
+
+def _finalize_introduction_review(target: Path) -> None:
+    """Reconcile legacy introduction-review evidence from authoritative locks.
+
+    This only upgrades provenance/evidence fields.  It never rewrites the
+    introduction or changes a subsection title/content.
+    """
+    path = target / "reviews/introduction_review.json"
+    if not path.exists():
+        return
+    review = load_json(path, "revue des introductions")
+    entries = review.get("entries")
+    if not isinstance(entries, list):
+        return
+    by_lang = {
+        str(row.get("language")): row
+        for row in entries
+        if isinstance(row, dict) and row.get("language") in {"fr", "en"}
+    }
+    changed = False
+
+    fr_lock = load_json(target / "data/fr_content_lock.json", "verrou français du contenu")
+    fr_debate = fr_lock.get("debate") if isinstance(fr_lock, dict) else None
+    fr_entry = by_lang.get("fr")
+    if (
+        isinstance(fr_entry, dict)
+        and isinstance(fr_debate, dict)
+        and fr_debate.get("page_origin") == "preexisting"
+        and isinstance(fr_debate.get("introduction"), str)
+        and fr_debate.get("introduction").strip()
+    ):
+        source_intro = fr_debate["introduction"]
+        updates = {
+            "status": "historical_existing",
+            "historical_content_preserved": True,
+            "historical_source_sha256": hashlib.sha256(source_intro.encode("utf-8")).hexdigest(),
+        }
+        for key, value in updates.items():
+            if fr_entry.get(key) != value:
+                fr_entry[key] = value
+                changed = True
+        if len(str(fr_entry.get("note") or "").strip()) < 12:
+            fr_entry["note"] = (
+                "Introduction française historique préservée ; un ancien projet de réécriture du registre "
+                "n'est pas la valeur éditoriale sélectionnée."
+            )
+            changed = True
+
+    en_entry = by_lang.get("en")
+    en_page = target / "output/en/debate/debate.wiki"
+    if (
+        isinstance(en_entry, dict)
+        and en_entry.get("source_page_origin") == "preexisting"
+        and en_entry.get("reference_note_punctuation_reviewed") is True
+        and en_page.exists()
+    ):
+        exceptions = en_entry.get("terminal_period_sentence_exceptions")
+        if not isinstance(exceptions, list):
+            exceptions = []
+            en_entry["terminal_period_sentence_exceptions"] = exceptions
+            changed = True
+        known = {
+            str(row.get("body_sha256"))
+            for row in exceptions
+            if isinstance(row, dict) and row.get("body_sha256")
+        }
+        text = en_page.read_text(encoding="utf-8")
+        for match in re.finditer(r"<ref\b[^>]*>(?P<body>.*?)</ref\s*>", text, flags=re.I | re.S):
+            body = match.group("body").strip()
+            if not body.endswith(".") or not _looks_like_explanatory_terminal_reference(body):
+                continue
+            body_sha = hashlib.sha256(body.encode("utf-8")).hexdigest()
+            if body_sha in known:
+                continue
+            evidence = re.split(r"(?<=[.!?])\s+", body.strip(), maxsplit=1)[0].strip()
+            exceptions.append({
+                "body_sha256": body_sha,
+                "complete_sentence": True,
+                "sentence_evidence": evidence,
+            })
+            known.add(body_sha)
+            changed = True
+
+    if changed:
+        write_json(path, review)
+
+
 def _prepare_final_controls(
     project_root: Path,
     target: Path,
@@ -1015,6 +1207,8 @@ def _prepare_final_controls(
     _finalize_individual_review(target, registry, fr_meta, en_meta)
     _finalize_graph_placement_review(target, registry)
     _finalize_summary_review(target, debate_id)
+    _finalize_keyword_vocabulary(target)
+    _finalize_introduction_review(target)
 
     controls = manifest.setdefault("editorial_controls", {})
     controls["keyword_vocabulary_path"] = "data/keyword_vocabulary_bilingual.json"

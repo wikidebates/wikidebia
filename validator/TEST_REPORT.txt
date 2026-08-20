@@ -1,9 +1,10 @@
-Wikidéb’IA Validator 0.4.103 — rapport de tests
+Wikidéb’IA Validator 0.4.104 — rapport de tests
 
-Tests pytest : 454 réussis
+Tests pytest : 464 réussis
 Norme active : 1.2.87
-Kit recommandé : 2.16.39
+Kit recommandé : 2.16.40
 
-Historical summary provenance unification : PASSED ; wikicode et editorial utilisent un calcul partagé et un cache unique.
-Authorized historical summary regression : PASSED ; l’ordre wikicode → editorial conserve historical_authorized_change en FR et EN.
-Runtime attestation : PASSED ; SHA-256 scellés pour cli.py, editorial.py, wikicode.py et historical_summary.py.
+Render preflight historical evidence : PASSED ; provenance historique et contenu nouveau restent distingués.
+Keyword multiword exception : PASSED ; une exception contrôlée autorise la locution longue sans désactiver l’atomicité.
+Historical introduction ledger : PASSED ; le verrou sélectionné prévaut sur une proposition de réécriture non autorisée.
+Detailed documentation family notes : PASSED ; formes 3 familles et 9 orientations contrôlées.

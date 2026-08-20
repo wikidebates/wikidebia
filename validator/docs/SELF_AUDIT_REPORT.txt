@@ -1,8 +1,9 @@
-Wikidéb’IA Validator 0.4.103 — auto-audit
-Norme active unique : 1.2.87
-Tests : 454 réussis
-Statut : RÉUSSI
+Wikidéb’IA Validator 0.4.104 — auto-audit
 
-La provenance historique des résumés est désormais dérivée par un module partagé unique entre les portées wikicode et editorial, sans cache divergent.
-L’attestation runtime isolée couvre cli.py, editorial.py, wikicode.py et historical_summary.py.
-Aucun contrôle éditorial n’est supprimé ni assoupli par 0.4.103.
+Statut : PASSED
+Norme active unique : 1.2.87
+Tests : 464 réussis
+Kit associé : 2.16.40
+
+Les contrôles historiques sont différentiels et bornés par les verrous autoritatifs.
+Les contrôles de création restent actifs pour les contenus nouveaux.

@@ -1,11 +1,10 @@
-Wikidéb’IA Kit 2.16.39 — rapport de tests
+Wikidéb’IA Kit 2.16.40 — rapport de tests
 
-Tests pytest : 515 réussis
+Tests pytest : 519 réussis
 Norme : 1.2.87
-Validateur : 0.4.103
+Validateur : 0.4.104
 
-Final publication orchestration : PASSED ; reprise release_ready sans rerendu ni reconvergence, baseline Work-scoped et blocage pré-écriture.
-Runtime validator attestation : PASSED ; quatre modules critiques sont scellés.
-Validation diagnostic export : PASSED ; liste exhaustive et persistance transactionnelle conservées.
-Historical summary provenance regression : PASSED via le validateur 0.4.103.
-Remote update state resolution : PASSED ; preuve Work-scoped prioritaire, fallback 2.16.38 conservé pour les anciens corpus.
+Render preflight evidence reconciliation : PASSED ; aucune valeur éditoriale n’est modifiée.
+Historical keyword atomicity normalization : PASSED ; uniquement les métadonnées déjà attestées sont réconciliées.
+Historical introduction provenance : PASSED ; le verrou français reste autoritatif.
+Final publication orchestration : PASSED ; les capacités de 2.16.39 sont conservées.
