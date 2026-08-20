@@ -454,3 +454,13 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - toute divergence de plan, tout état anglais existant ou tout début de publication finale reste bloquant ;
 - enregistre la migration dans `workflow.compatibility_migrations` avec anciennes/nouvelles empreintes et preuve utilisée ;
 - conserve intégralement le corpus, les deux convergences sémantiques, la release et le correctif de render preflight 2.16.40 ; norme 1.2.87 et validateur 0.4.104 inchangés.
+
+
+## 2.16.42 — 20 août 2026 — adoption sûre des checkpoints historiques non liés
+
+- étend la réconciliation 2.16.41 aux anciens `workflow.json` qui attestent le checkpoint français final mais ne portent encore ni `receipt_sha256` ni `plan_sha256` ;
+- adopte le reçu courant uniquement s’il est auto-signé, appartient au même débat/Work/stage, est publié, et si l’état français signé courant atteste exactement son `plan_sha256` ;
+- accepte le statut historique `no_changes` comme provenance d’un checkpoint achevé avant de le normaliser vers le reçu courant ;
+- refuse toujours un ancien hash de reçu déjà lié mais dépourvu de plan vérifiable, toute divergence du plan signé, tout état anglais existant et tout début de publication finale ;
+- trace l’adoption sous `legacy_unbound_fr_content_receipt_reference_adopted` sans modifier le corpus, les convergences ni les reçus ;
+- conserve la norme 1.2.87 et le validateur 0.4.104.

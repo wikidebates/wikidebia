@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.87** ;
 - validateur actif : **0.4.104** ;
-- kit actif : **2.16.41**.
+- kit actif : **2.16.42**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3712244 octets — SHA-256 `7db16dc25b9bbec03dddda9ac73bf13ce92893cbe9e3320580204fc9fed48247`
-- `wikidebia-validator.zip` — 3903678 octets — SHA-256 `f530986472e18a1c5f3909965c0a8e46e00a4b9fd0837083a54659e380f69f24`
-- `wikidebia-kit.zip` — 814633 octets — SHA-256 `72d1839bb38dd4da5df733a54faf2d84bd3ccc7f150adb62476b380a1f34397b`
+- `wikidebia-normes.zip` — 3712246 octets — SHA-256 `16ce5b829a55cf25cb8c83bd0fa14d95bf8f313a31155892d8bf656d5b3caf05`
+- `wikidebia-validator.zip` — 3903675 octets — SHA-256 `f3f300414f92544dd8493e02247c0e8820d96326af13059d77c2ed10ba9ae020`
+- `wikidebia-kit.zip` — 816983 octets — SHA-256 `d34feb4fb0c8e593e5923221a05614a792514189716a23d78bc3d5a37f040706`
 
 ## Norme consolidée active
 
@@ -1648,7 +1648,7 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `e81ddf18c544b7b44700a06dccefc40fbef58d1cf8ce3edcceb40a662693edc6`
+SHA-256 : `5773703ce3b2009594784e01da31862b30d81d61008d94908bf818e3430ce13a`
 
 # Wikidéb’IA Validator 0.4.104
 
@@ -1663,7 +1663,7 @@ La provenance des résumés est désormais calculée dans un module unique `hist
 
 La régression reproduit l’ordre réel `wikicode → editorial` et vérifie qu’un `historical_authorized_change` français et sa traduction anglaise restent hors du profil de création. Aucun contrôle n’est assoupli pour un résumé réellement nouveau.
 
-Norme active : 1.2.87. Kit associé : 2.16.41.
+Norme active : 1.2.87. Kit associé : 2.16.42.
 
 ## Notes héritées du validateur 0.4.101
 
@@ -2084,9 +2084,11 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `0fdfa7a2d4260d6b9be54f568dc1aeac251cca1ab53f827119cd664161a3be99`
+SHA-256 : `f3468969831460fe14f028d983f2fb11cbd8611d3c631457adc08a137ae86187`
 
-# Wikidéb’IA Kit 2.16.41
+# Wikidéb’IA Kit 2.16.42
+
+Le kit 2.16.42 étend la réconciliation sûre du checkpoint français final aux Work historiques dont `workflow.json` atteste la fin du checkpoint de contenu mais ne contient encore ni `receipt_sha256` ni `plan_sha256`. Dans ce cas, le kit n'adopte le reçu courant qu'avant toute publication finale, sans état anglais signé, lorsque le reçu auto-signé appartient exactement au même débat/Work/stage et que l'état français signé courant atteste son `plan_sha256`. Un ancien hash déjà lié mais dépourvu de plan reste bloquant. Aucune revue, convergence, page ou donnée éditoriale n'est modifiée.
 
 Le kit 2.16.41 corrige la reprise de la publication finale lorsqu’une restauration transactionnelle a laissé dans `workflow.json` une ancienne empreinte du reçu du checkpoint français final. La référence n’est réparée que si le reçu courant et l’état français signé attestent exactement le même `plan_sha256` que le workflow, avant toute autorisation de publication finale et sans état anglais signé. Une divergence réelle de plan reste bloquante. Aucune revue, convergence, page ou donnée éditoriale n’est modifiée.
 
@@ -2268,7 +2270,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `072c7f69210e6063048da0d287ea19e04119c7673bf1d671432e091e3949b3cb`
+SHA-256 : `c80b914fd17fa136182afc5d8d62b669fa179476d8b6747ec085b2565082b6ab`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2727,6 +2729,16 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - enregistre la migration dans `workflow.compatibility_migrations` avec anciennes/nouvelles empreintes et preuve utilisée ;
 - conserve intégralement le corpus, les deux convergences sémantiques, la release et le correctif de render preflight 2.16.40 ; norme 1.2.87 et validateur 0.4.104 inchangés.
 
+
+## 2.16.42 — 20 août 2026 — adoption sûre des checkpoints historiques non liés
+
+- étend la réconciliation 2.16.41 aux anciens `workflow.json` qui attestent le checkpoint français final mais ne portent encore ni `receipt_sha256` ni `plan_sha256` ;
+- adopte le reçu courant uniquement s’il est auto-signé, appartient au même débat/Work/stage, est publié, et si l’état français signé courant atteste exactement son `plan_sha256` ;
+- accepte le statut historique `no_changes` comme provenance d’un checkpoint achevé avant de le normaliser vers le reçu courant ;
+- refuse toujours un ancien hash de reçu déjà lié mais dépourvu de plan vérifiable, toute divergence du plan signé, tout état anglais existant et tout début de publication finale ;
+- trace l’adoption sous `legacy_unbound_fr_content_receipt_reference_adopted` sans modifier le corpus, les convergences ni les reçus ;
+- conserve la norme 1.2.87 et le validateur 0.4.104.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -3019,15 +3031,16 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `8a1eec6f420e4ecc09b205a00db2cbc34be1f7b8c720b18ef5e981e72b8efc3d`
+SHA-256 : `8be6eb1e4af4056ad2285d48cf6ce0719fd50b27dc32ff57b9aa2f9dbb977209`
 
-Wikidéb’IA Kit 2.16.41 — rapport de tests
+Wikidéb’IA Kit 2.16.42 — rapport de tests
 
-Tests pytest : 522 réussis
+Tests pytest : 525 réussis
 Norme : 1.2.87
 Validateur : 0.4.104
 
 Final checkpoint receipt-reference reconciliation : PASSED ; réparation uniquement à plan signé identique, avant publication finale.
+Legacy unbound checkpoint adoption : PASSED ; un workflow sans empreinte de reçu est rattaché uniquement au reçu courant attesté par l’état français signé.
 Render preflight evidence reconciliation : PASSED ; aucune valeur éditoriale n’est modifiée.
 Historical keyword atomicity normalization : PASSED ; uniquement les métadonnées déjà attestées sont réconciliées.
 Historical introduction provenance : PASSED ; le verrou français reste autoritatif.

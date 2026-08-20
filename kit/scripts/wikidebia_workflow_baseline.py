@@ -283,8 +283,9 @@ def _repair_stale_workflow_content_receipt_reference(
         return False
     old_sha = str(workflow_content.get("receipt_sha256") or "")
     new_sha = str(current.get("receipt_sha256") or "")
-    if not old_sha or not new_sha or old_sha == new_sha:
+    if not new_sha or old_sha == new_sha:
         return False
+    legacy_unbound_receipt = not old_sha
 
     # Never mutate the workflow once final publication has crossed its first-write
     # authorization boundary, or once any English published state exists.
@@ -314,13 +315,25 @@ def _repair_stale_workflow_content_receipt_reference(
         raise WorkflowBaselineError("Le workflow référence un checkpoint français d'un autre Work")
     if str(workflow_content.get("stage") or "content") != "content":
         raise WorkflowBaselineError("Le workflow ne référence pas le checkpoint français de contenu")
-    if str(workflow_content.get("status") or "") not in {"published", "verified_no_changes"}:
+    workflow_status = str(workflow_content.get("status") or "")
+    if workflow_status not in {"published", "verified_no_changes", "no_changes"}:
         raise WorkflowBaselineError("Le workflow ne référence pas un checkpoint français final publié")
     old_plan = str(workflow_content.get("plan_sha256") or "")
     new_plan = str(current.get("plan_sha256") or "")
-    if not old_plan or not new_plan or old_plan != new_plan:
+    if not new_plan:
+        raise WorkflowBaselineError("Le reçu français courant ne référence aucun plan signé")
+    if old_plan and old_plan != new_plan:
         raise WorkflowBaselineError(
             "Le workflow et le reçu du checkpoint français final divergent sur le plan signé"
+        )
+    # A legacy workflow may have recorded only that the content checkpoint
+    # completed, without copying either receipt_sha256 or plan_sha256.  That
+    # historical omission is repairable only when the workflow is truly
+    # unbound to a receipt hash; a stale *bound* hash without a plan cannot be
+    # adopted because its publication plan cannot be proven equivalent.
+    if not old_plan and not legacy_unbound_receipt:
+        raise WorkflowBaselineError(
+            "Le workflow référence un ancien reçu français sans plan signé vérifiable"
         )
 
     fr_state_entry = _load_signed_published_state(project_root, debate_id, "fr")
@@ -339,10 +352,15 @@ def _repair_stale_workflow_content_receipt_reference(
     if not isinstance(migrations, list):
         raise WorkflowBaselineError("Registre de migrations du workflow mal formé")
     migrations.append({
-        "kind": "stale_fr_content_receipt_reference_reconciled",
+        "kind": (
+            "legacy_unbound_fr_content_receipt_reference_adopted"
+            if legacy_unbound_receipt
+            else "stale_fr_content_receipt_reference_reconciled"
+        ),
         "reconciled_at": now_iso(),
         "work_id": work_id,
-        "old_receipt_sha256": old_sha,
+        "old_receipt_sha256": old_sha or None,
+        "old_plan_sha256": old_plan or None,
         "new_receipt_sha256": new_sha,
         "plan_sha256": new_plan,
         "proof": "current_checkpoint_receipt_plus_signed_fr_published_state",

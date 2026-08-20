@@ -171,3 +171,62 @@ def test_seal_refuses_receipt_reference_repair_after_final_authorization(tmp_pat
     _write_json(auth, {"schema": "wikidebia-final-publication-authorization-1.0"})
     with pytest.raises(baseline.WorkflowBaselineError, match="après le début"):
         baseline.seal_workflow_release_baseline(project, debate_id, work_id, release_copy)
+
+
+def test_seal_adopts_legacy_unbound_content_receipt_when_signed_state_matches(tmp_path: Path):
+    project, debate_id, work_id, release_copy = make_release_boundary(tmp_path)
+    workflow_path = project / ".state/workflows" / debate_id / "workflow.json"
+    workflow = json.loads(workflow_path.read_text(encoding="utf-8"))
+    # Historical orchestration states could remember only the checkpoint outcome,
+    # without copying the final receipt or plan hashes into workflow.json.
+    workflow["phase"] = "final_publication"
+    workflow["status"] = "blocked_final_publication"
+    workflow["french_content_publication"] = {"status": "no_changes"}
+    workflow["french_publication"] = {"status": "no_changes"}
+    _write_json(workflow_path, workflow)
+
+    value = baseline.seal_workflow_release_baseline(project, debate_id, work_id, release_copy)
+    receipt_path = project / ".state/fr-publication" / debate_id / work_id / "content/publication-receipt.json"
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    assert value["fr"]["checkpoint_receipt_sha256"] == receipt["receipt_sha256"]
+    repaired = json.loads(workflow_path.read_text(encoding="utf-8"))
+    assert repaired["french_content_publication"]["receipt_sha256"] == receipt["receipt_sha256"]
+    assert repaired["french_content_publication"]["plan_sha256"] == receipt["plan_sha256"]
+    migration = repaired["compatibility_migrations"][-1]
+    assert migration["kind"] == "legacy_unbound_fr_content_receipt_reference_adopted"
+    assert migration["old_receipt_sha256"] is None
+    assert migration["old_plan_sha256"] is None
+    assert migration["new_receipt_sha256"] == receipt["receipt_sha256"]
+    assert migration["plan_sha256"] == receipt["plan_sha256"]
+
+
+def test_seal_refuses_bound_legacy_receipt_without_plan(tmp_path: Path):
+    project, debate_id, work_id, release_copy = make_release_boundary(tmp_path)
+    workflow_path = project / ".state/workflows" / debate_id / "workflow.json"
+    workflow = json.loads(workflow_path.read_text(encoding="utf-8"))
+    workflow["phase"] = "final_publication"
+    workflow["status"] = "blocked_final_publication"
+    workflow["french_content_publication"] = {"status": "published", "receipt_sha256": "a" * 64}
+    workflow["french_publication"] = dict(workflow["french_content_publication"])
+    _write_json(workflow_path, workflow)
+    with pytest.raises(baseline.WorkflowBaselineError, match="sans plan signé vérifiable"):
+        baseline.seal_workflow_release_baseline(project, debate_id, work_id, release_copy)
+
+
+def test_seal_refuses_unbound_legacy_receipt_when_signed_fr_state_differs(tmp_path: Path):
+    project, debate_id, work_id, release_copy = make_release_boundary(tmp_path)
+    workflow_path = project / ".state/workflows" / debate_id / "workflow.json"
+    workflow = json.loads(workflow_path.read_text(encoding="utf-8"))
+    workflow["phase"] = "final_publication"
+    workflow["status"] = "blocked_final_publication"
+    workflow["french_content_publication"] = {"status": "published"}
+    workflow["french_publication"] = {"status": "published"}
+    _write_json(workflow_path, workflow)
+    fr_state_path = project / ".state/published" / debate_id / "fr/latest.json"
+    fr_state = json.loads(fr_state_path.read_text(encoding="utf-8"))
+    fr_state.pop("state_sha256", None)
+    fr_state["plan_sha256"] = "9" * 64
+    fr_state = _signed(fr_state, "state_sha256")
+    _write_json(fr_state_path, fr_state)
+    with pytest.raises(baseline.WorkflowBaselineError, match="état français signé"):
+        baseline.seal_workflow_release_baseline(project, debate_id, work_id, release_copy)

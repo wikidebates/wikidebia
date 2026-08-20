@@ -14,17 +14,17 @@
     {
       "path": "CAPABILITIES.json",
       "size_bytes": 1475,
-      "sha256": "8fffeb9336d77a0d0a3efe759339d2c1f1b8c4851011d9f8ae0665b63647dd83"
+      "sha256": "f2d2780256ef0d67ef2a42339c7c6ec50f920da7ea4b0b45732c37dd4107477e"
     },
     {
       "path": "COMPATIBILITY.json",
       "size_bytes": 558,
-      "sha256": "489ee115fe2dfee8fd78b6e315dd66bded5bffe77e1f65e9e85f99999a21065a"
+      "sha256": "58af2a03a886e28a70d79225e81c1260fd16f868e949ead77b3290617c95d381"
     },
     {
       "path": "README.md",
       "size_bytes": 4003,
-      "sha256": "ffddb698e46dd28d2d8f42583456b305117f0b996be567345389b6d6e4862de0"
+      "sha256": "684c831fe3d3222c297f19eb5abcf8c4574696d70c61d56ad490c8ae4165ee78"
     },
     {
       "path": "TEST_REPORT.txt",
@@ -34,7 +34,7 @@
     {
       "path": "VERSIONS.json",
       "size_bytes": 69,
-      "sha256": "1bf568ba108aa61f772022b9c69d4b4c2a39edb8892a5f6356b1a2e4a2f782f1"
+      "sha256": "cc4ff9aeb1daca0be35d323e87b12cc64a6ba937cab8880ca2343f2653b0204e"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_1.2.56.md",

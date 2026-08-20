@@ -1,4 +1,6 @@
-# Wikidéb’IA Kit 2.16.41
+# Wikidéb’IA Kit 2.16.42
+
+Le kit 2.16.42 étend la réconciliation sûre du checkpoint français final aux Work historiques dont `workflow.json` atteste la fin du checkpoint de contenu mais ne contient encore ni `receipt_sha256` ni `plan_sha256`. Dans ce cas, le kit n'adopte le reçu courant qu'avant toute publication finale, sans état anglais signé, lorsque le reçu auto-signé appartient exactement au même débat/Work/stage et que l'état français signé courant atteste son `plan_sha256`. Un ancien hash déjà lié mais dépourvu de plan reste bloquant. Aucune revue, convergence, page ou donnée éditoriale n'est modifiée.
 
 Le kit 2.16.41 corrige la reprise de la publication finale lorsqu’une restauration transactionnelle a laissé dans `workflow.json` une ancienne empreinte du reçu du checkpoint français final. La référence n’est réparée que si le reçu courant et l’état français signé attestent exactement le même `plan_sha256` que le workflow, avant toute autorisation de publication finale et sans état anglais signé. Une divergence réelle de plan reste bloquante. Aucune revue, convergence, page ou donnée éditoriale n’est modifiée.
 
