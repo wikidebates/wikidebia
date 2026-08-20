@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.87** ;
 - validateur actif : **0.4.103** ;
-- kit actif : **2.16.38**.
+- kit actif : **2.16.39**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3712248 octets — SHA-256 `12a95b8551bda6ed3bcf965bc6459273f69d10f3a0c57c97c90ffac8863946b5`
-- `wikidebia-validator.zip` — 3898597 octets — SHA-256 `ac3f0201c560e2f2808a0d7c0f7f909b8086016b6de7b9be2cb179fae5d2982c`
-- `wikidebia-kit.zip` — 790107 octets — SHA-256 `0b4ed79c3168853ed5d2dc5f4d9db36dbd7726220e7b68f2e0fd89bc2a72dd54`
+- `wikidebia-normes.zip` — 3712247 octets — SHA-256 `7b0c5439bf8acfad537cc5ef6ed60441cbc7ce2bc57e2c54c2f746a6252b8ca0`
+- `wikidebia-validator.zip` — 3898598 octets — SHA-256 `4e8681be93a5d35ca264af00ec8a07fbb48fad6d98c22a4c6c826290db2f19a4`
+- `wikidebia-kit.zip` — 806686 octets — SHA-256 `fc1d4542910e51b8350a6291388f77954898d79870d6b4c8042a6b24f5f0bbdd`
 
 ## Norme consolidée active
 
@@ -1648,7 +1648,7 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `adb3964b071dbcbdaef59fb5f7a8290db0e9433c95346ca95bd42082b9181485`
+SHA-256 : `0c50c013c5836add360157ef595c0d68dd22de59311d10181d6ed7cc590da6c7`
 
 # Wikidéb’IA Validator 0.4.103
 
@@ -1658,7 +1658,7 @@ La provenance des résumés est désormais calculée dans un module unique `hist
 
 La régression reproduit l’ordre réel `wikicode → editorial` et vérifie qu’un `historical_authorized_change` français et sa traduction anglaise restent hors du profil de création. Aucun contrôle n’est assoupli pour un résumé réellement nouveau.
 
-Norme active : 1.2.87. Kit associé : 2.16.38.
+Norme active : 1.2.87. Kit associé : 2.16.39.
 
 ## Notes héritées du validateur 0.4.101
 
@@ -2069,17 +2069,13 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `f714a44086258954fb067638f5f6447e98997d460507ea24a334199f564713ca`
+SHA-256 : `832811facfb65c0f9a5152104316f7e46456dd95423d3bea5abc8817eab4c336`
 
-# Wikidéb’IA Kit 2.16.38
+# Wikidéb’IA Kit 2.16.39
 
-Le kit 2.16.38 corrige la reprise `update` d’une première publication bilingue après les deux checkpoints français. La résolution du dernier état publié est désormais effectuée **langue par langue** : un reçu signé `.state/published/<débat>/fr/latest.json` reste autoritatif pour le français même si aucun état anglais n’existe encore. Pour la langue anglaise manquante, le corpus précédemment installé sous `corpus/<debate_id>` peut attester une baseline vide uniquement lorsque son manifeste déclare explicitement `translation_status.en=deferred`.
+Le kit 2.16.39 prolonge automatiquement un Work bilingue déjà `release_ready` jusqu’à la publication MediaWiki finale. Il scelle une baseline liée au Work (`FR = dernier checkpoint signé`, `EN = never_published_by_this_work` uniquement sur preuve `deferred`), construit et relit tous les plans avant la première écriture, publie les nouvelles pages anglaises avec leurs métadonnées de première création puis ajoute les liens interlangues français, et installe le `release-copy` après succès. Un Work 2.16.37/2.16.38 déjà `release_ready` reprend directement cette phase sans refaire les deux convergences sémantiques.
 
-Lorsqu’un ZIP est stagé sous `.state/update-staging`, le corpus actuellement installé est enfin reconnu comme l’« ancien manifeste installé » prévu par le contrat de reprise. Une baseline inconnue continue de bloquer : l’absence d’état anglais n’est jamais transformée en preuve par défaut. Les collisions distantes restent contrôlées par le préflight ordinaire, et aucun état publié artificiel n’est écrit.
-
-Le plan conserve le schéma historique `wikidebia-remote-update-plan-1.0`; en cas de sources différentes selon la langue, `state_source` enregistre `resolution=per_language_attested_v1` et détaille la provenance exacte sous `per_language`. Deux régressions couvrent le cas réel FR publié + EN différé et le maintien du blocage sans preuve de différé.
-
-Norme active : 1.2.87. Validateur associé : 0.4.103.
+Le correctif 2.16.38 reste intégralement conservé : `update --archive` résout le dernier état publié langue par langue et garde le fallback historique explicitement attesté `translation_status.en=deferred`.
 
 ## Notes héritées du kit 2.16.37
 
@@ -2250,7 +2246,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `e1b91aee2d0e60c675563bd7f41152b2649863e5fd71bc054e2203f74dc7bbf9`
+SHA-256 : `e21868bbf53012ce2a88072163408d8eef24840ea58efd32c70e4612f35d1b72`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2679,6 +2675,17 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - ajoute deux régressions reproduisant le cas FR publié + EN différé et le cas négatif sans preuve ;
 - conserve la norme 1.2.87 et le validateur 0.4.103.
 
+## 2.16.39 — 20 août 2026 — publication finale automatique du workflow
+
+- fait suivre `release_ready` par une phase `final_publication` au lieu de terminer le workflow localement ;
+- reprend directement les Work 2.16.37/2.16.38 déjà `release_ready`, sans refaire rendu, release ni convergence ;
+- introduit une baseline finale scellée et liée au Work : dernier checkpoint FR signé + attestation EN `never_published_by_this_work`, sans déduction d’absence distante ;
+- construit avant toute écriture un plan de sûreté bilingue, le plan exact de première publication EN et le plan FR d’ajout interlangue ;
+- bloque avant la première écriture toute collision, modification humaine, création FR, mise à jour EN, move/redirect/delete ou delta FR autre que l’interlangue ;
+- publie les pages EN avec la date réelle de création, le résumé source FR et `translated-fr`, puis les liens interlangues FR avec garde de révision ;
+- conserve les plans et reçus pour une reprise idempotente après interruption et installe le `release-copy` seulement après succès ;
+- permet à `update --archive` de réutiliser la même preuve Work-scoped lorsqu’elle est disponible, tout en conservant le fallback sûr 2.16.38 pour les anciens corpus.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -2971,23 +2978,24 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `f60741a737aded24a451b8a7633999a9dff365b475f321053ad3738b859fa605`
+SHA-256 : `c8d5ab776470df6db95b535eb63956bccfd48130f7ad40912f90617124015687`
 
-Wikidéb’IA Kit 2.16.38 — rapport de tests
+Wikidéb’IA Kit 2.16.39 — rapport de tests
 
-Tests pytest : 511 réussis
+Tests pytest : 515 réussis
 Norme : 1.2.87
 Validateur : 0.4.103
 
+Final publication orchestration : PASSED ; reprise release_ready sans rerendu ni reconvergence, baseline Work-scoped et blocage pré-écriture.
 Runtime validator attestation : PASSED ; quatre modules critiques sont scellés.
 Validation diagnostic export : PASSED ; liste exhaustive et persistance transactionnelle conservées.
 Historical summary provenance regression : PASSED via le validateur 0.4.103.
-Remote update per-language state resolution : PASSED ; reçu FR + baseline EN différée acceptés, absence de preuve toujours bloquante.
+Remote update state resolution : PASSED ; preuve Work-scoped prioritaire, fallback 2.16.38 conservé pour les anciens corpus.
 
 ## Guide d’orchestration éditoriale
 
 Source interne : `kit/GUIDE_EDITORIAL_ORCHESTRATION.md`  
-SHA-256 : `0e7daf3582debbc91a14530ace3acababcd9ef52bec08ff5d4a0d4e6ecad319d`
+SHA-256 : `69d0f65fd3dd2e3f63a53300d3fff1b4e4caa41c2631cf6dc1c830218cc66faa`
 
 # Orchestration des revues éditoriales ChatGPT — Kit 2.16.7
 
@@ -3057,7 +3065,7 @@ Si une passe sémantique trouve une erreur certaine, la traduction est rouverte,
 
 Si un ancien Work arrive après convergence avec un registre documentaire anglais incomplet au regard du contrat final, l'orchestrateur n'attend plus l'échec de `translated-copy` : il rassemble toutes les lacunes dans un paquet `en_documentation_correction` où seul `sources_en_working.json` est modifiable. Cette reprise est également préventive pour les nouvelles revues : les mêmes champs sont contrôlés avant la première passe de convergence.
 
-Après validation du paquet combiné graphe/titres, le workflow publie le premier checkpoint avec des résumés personnalisés. Après validation de la revue française de contenu, il publie le second checkpoint, également avec des résumés personnalisés, avant toute traduction anglaise. Après deux passes anglaises propres et indépendantes, l'application, le rendu et la construction `release_ready` restent automatiques. Les autres écritures pré-W11 sont limitées aux actions structurelles explicitement demandées.
+Après validation du paquet combiné graphe/titres, le workflow publie le premier checkpoint avec des résumés personnalisés. Après validation de la revue française de contenu, il publie le second checkpoint, également avec des résumés personnalisés, avant toute traduction anglaise. Après deux passes anglaises propres et indépendantes, l'application, le rendu et la construction `release_ready` restent automatiques. À partir de 2.16.39, `release_ready` ouvre immédiatement une phase distincte `final_publication` : le Work scelle sa baseline bilingue (dernier checkpoint FR signé et première publication EN explicitement attestée), construit et préflighte tous les plans distants avant la première écriture, publie les créations anglaises puis les seuls ajouts interlangues français, et installe le `release-copy` uniquement après succès. Un conflit ou une modification humaine bloque cette phase sans rouvrir la traduction ni les convergences déjà scellées. Les autres écritures pré-W11 restent limitées aux actions structurelles explicitement demandées.
 
 ## Commandes avancées
 

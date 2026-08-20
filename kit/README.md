@@ -1,12 +1,8 @@
-# Wikidéb’IA Kit 2.16.38
+# Wikidéb’IA Kit 2.16.39
 
-Le kit 2.16.38 corrige la reprise `update` d’une première publication bilingue après les deux checkpoints français. La résolution du dernier état publié est désormais effectuée **langue par langue** : un reçu signé `.state/published/<débat>/fr/latest.json` reste autoritatif pour le français même si aucun état anglais n’existe encore. Pour la langue anglaise manquante, le corpus précédemment installé sous `corpus/<debate_id>` peut attester une baseline vide uniquement lorsque son manifeste déclare explicitement `translation_status.en=deferred`.
+Le kit 2.16.39 prolonge automatiquement un Work bilingue déjà `release_ready` jusqu’à la publication MediaWiki finale. Il scelle une baseline liée au Work (`FR = dernier checkpoint signé`, `EN = never_published_by_this_work` uniquement sur preuve `deferred`), construit et relit tous les plans avant la première écriture, publie les nouvelles pages anglaises avec leurs métadonnées de première création puis ajoute les liens interlangues français, et installe le `release-copy` après succès. Un Work 2.16.37/2.16.38 déjà `release_ready` reprend directement cette phase sans refaire les deux convergences sémantiques.
 
-Lorsqu’un ZIP est stagé sous `.state/update-staging`, le corpus actuellement installé est enfin reconnu comme l’« ancien manifeste installé » prévu par le contrat de reprise. Une baseline inconnue continue de bloquer : l’absence d’état anglais n’est jamais transformée en preuve par défaut. Les collisions distantes restent contrôlées par le préflight ordinaire, et aucun état publié artificiel n’est écrit.
-
-Le plan conserve le schéma historique `wikidebia-remote-update-plan-1.0`; en cas de sources différentes selon la langue, `state_source` enregistre `resolution=per_language_attested_v1` et détaille la provenance exacte sous `per_language`. Deux régressions couvrent le cas réel FR publié + EN différé et le maintien du blocage sans preuve de différé.
-
-Norme active : 1.2.87. Validateur associé : 0.4.103.
+Le correctif 2.16.38 reste intégralement conservé : `update --archive` résout le dernier état publié langue par langue et garde le fallback historique explicitement attesté `translation_status.en=deferred`.
 
 ## Notes héritées du kit 2.16.37
 

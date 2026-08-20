@@ -425,3 +425,14 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - ajoute deux régressions reproduisant le cas FR publié + EN différé et le cas négatif sans preuve ;
 - conserve la norme 1.2.87 et le validateur 0.4.103.
 
+## 2.16.39 — 20 août 2026 — publication finale automatique du workflow
+
+- fait suivre `release_ready` par une phase `final_publication` au lieu de terminer le workflow localement ;
+- reprend directement les Work 2.16.37/2.16.38 déjà `release_ready`, sans refaire rendu, release ni convergence ;
+- introduit une baseline finale scellée et liée au Work : dernier checkpoint FR signé + attestation EN `never_published_by_this_work`, sans déduction d’absence distante ;
+- construit avant toute écriture un plan de sûreté bilingue, le plan exact de première publication EN et le plan FR d’ajout interlangue ;
+- bloque avant la première écriture toute collision, modification humaine, création FR, mise à jour EN, move/redirect/delete ou delta FR autre que l’interlangue ;
+- publie les pages EN avec la date réelle de création, le résumé source FR et `translated-fr`, puis les liens interlangues FR avec garde de révision ;
+- conserve les plans et reçus pour une reprise idempotente après interruption et installe le `release-copy` seulement après succès ;
+- permet à `update --archive` de réutiliser la même preuve Work-scoped lorsqu’elle est disponible, tout en conservant le fallback sûr 2.16.38 pour les anciens corpus.
+

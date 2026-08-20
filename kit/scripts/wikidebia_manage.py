@@ -2143,6 +2143,7 @@ def doctor(root: Path) -> dict[str, Any]:
         "wikidebia_render.py", "wikidebia_release.py",
         "wikidebia_remote_compare.py", "wikidebia_remote_plan_review.py",
         "wikidebia_remote_execute.py", "wikidebia_work_close.py",
+        "wikidebia_workflow_baseline.py", "wikidebia_final_publication.py",
         "wikidebia_retro_tag.py",
     )
     for script_name in required_scripts:

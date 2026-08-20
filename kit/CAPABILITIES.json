@@ -6,7 +6,7 @@
   "release": {
     "norm": "1.2.87",
     "validator": "0.4.103",
-    "kit": "2.16.38"
+    "kit": "2.16.39"
   },
   "emits": {
     "publication_plan": [
@@ -84,6 +84,24 @@
     "french_checkpoint_publication_receipt": [
       {
         "schema": "wikidebia-french-checkpoint-publication-receipt-1.0",
+        "schema_version": "1.0"
+      }
+    ],
+    "final_publication_baseline": [
+      {
+        "schema": "wikidebia-final-publication-baseline-1.0",
+        "schema_version": "1.0"
+      }
+    ],
+    "final_publication_preflight": [
+      {
+        "schema": "wikidebia-final-publication-preflight-1.0",
+        "schema_version": "1.0"
+      }
+    ],
+    "final_publication_receipt": [
+      {
+        "schema": "wikidebia-final-publication-receipt-1.0",
         "schema_version": "1.0"
       }
     ]

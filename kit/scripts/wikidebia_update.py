@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from wikidebia_graph_extract import iter_templates, normalize_key, parse_template
+from wikidebia_workflow_baseline import WorkflowBaselineError, resolve_workflow_release_baseline
 
 # Import the publication adapter without requiring installation as a package.
 _PUBLISH_PATH = Path(__file__).resolve().with_name("wikidebia_publish.py")
@@ -806,6 +807,13 @@ class StateResolver:
                 per_language[language] = source
                 continue
 
+            workflow_release = self._workflow_release_language_state(language)
+            if workflow_release is not None:
+                pages, source = workflow_release
+                result.update(pages)
+                per_language[language] = source
+                continue
+
             previous = self._previous_manifest_language_state(language)
             if previous is not None:
                 pages, source = previous
@@ -863,7 +871,7 @@ class StateResolver:
         # The plan schema historically enumerates the three evidence families in
         # ``state_source.kind``.  Keep that field backward compatible and expose
         # the exact mixed provenance in ``per_language``.
-        priority = ("published_state_receipt", "previous_installed_manifest", "remote_inventory")
+        priority = ("published_state_receipt", "workflow_release_baseline", "previous_installed_manifest", "remote_inventory")
         primary = next((kind for kind in priority if kind in kinds), "previous_installed_manifest")
         return result, {
             "kind": primary,
@@ -897,6 +905,36 @@ class StateResolver:
             )
             result[page_key(language, page.page_id)] = page
         return result, {"kind": "published_state_receipt", "paths": [portable(path, self.project_root)]}
+
+    def _workflow_release_language_state(self, language: str) -> tuple[dict[tuple[str, str], StatePage], dict[str, Any]] | None:
+        """Resolve the Work-scoped final-publication baseline when applicable.
+
+        The English empty baseline is accepted only from a verified workflow
+        release whose Work already published the final French checkpoint and
+        whose pre-final installed corpus explicitly kept English deferred.
+        Remote absence is never inferred from a missing local receipt.
+        """
+        if language != "en":
+            return None
+        try:
+            evidence = resolve_workflow_release_baseline(
+                self.project_root, self.debate_id, self.corpus_root
+            )
+        except WorkflowBaselineError as exc:
+            raise UpdateError(f"Baseline finale du Work invalide : {exc}") from exc
+        if evidence is None:
+            return None
+        en = evidence.get("en") or {}
+        if en.get("mode") != "never_published_by_this_work" or en.get("empty_baseline") is not True:
+            raise UpdateError("Baseline anglaise finale du Work non conforme")
+        return {}, {
+            "kind": "workflow_release_baseline",
+            "work_id": str(evidence.get("work_id") or ""),
+            "baseline_sha256": str(evidence.get("baseline_sha256") or ""),
+            "empty_baseline": True,
+            "reason": "never_published_by_this_work",
+            "remote_absence_not_assumed": True,
+        }
 
     def _remote_inventory_language_state(self, language: str) -> tuple[dict[tuple[str, str], StatePage], dict[str, Any]] | None:
         """Load a signed read-only inventory explicitly attached to this debate."""

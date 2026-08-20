@@ -82,6 +82,7 @@ from wikidebia_translation_review import (
 from wikidebia_semantic_convergence import record_pass as record_semantic_pass
 from wikidebia_render import render_workspace
 from wikidebia_release import release_workspace
+from wikidebia_final_publication import publish_final_release, FinalPublicationError
 from wikidebia_french_checkpoint import publish_checkpoint, FrenchCheckpointError
 
 # Compatibility aliases: the historical CLI/tests used the metadata names.
@@ -1042,7 +1043,7 @@ def _reopen_translation_after_findings(project_root: Path, state: dict[str, Any]
 
 
 def _mechanical_advance(project_root: Path, state: dict[str, Any]) -> dict[str, Any]:
-    """Advance until a ChatGPT review or release-ready terminal state is reached."""
+    """Advance until a ChatGPT review, a blocked final preflight, or publication completion."""
     debate_id = str(state["debate_id"])
     while True:
         phase = str(state.get("phase") or "graph_review")
@@ -1219,13 +1220,47 @@ def _mechanical_advance(project_root: Path, state: dict[str, Any]) -> dict[str, 
             apply_translation_review(project_root, debate_id, str(state["work_id"]), review_sha)
             render = render_workspace(project_root, debate_id, str(state["work_id"]), review_sha)
             release = release_workspace(project_root, debate_id, str(state["work_id"]), str(render["rendered_copy_tree_sha256"]))
-            state["phase"] = "release_ready"
-            state["status"] = "release_ready"
+            state["phase"] = "final_publication"
+            state["status"] = "final_publication"
             state["release"] = release
             state["updated_at"] = now_iso()
             _save_workflow(project_root, state)
-            return state
+            continue
         if phase == "release_ready":
+            # Resume Work states produced by 2.16.37/2.16.38 without rerunning
+            # rendering, release packaging or either semantic convergence pass.
+            state["phase"] = "final_publication"
+            state["status"] = "final_publication"
+            state["updated_at"] = now_iso()
+            _save_workflow(project_root, state)
+            continue
+        if phase in {"final_publication", "final_publication_resume"}:
+            workspace, meta = _current_workspace_meta(project_root, state)
+            release_copy = workspace / "release-copy"
+            try:
+                publication = publish_final_release(
+                    project_root, debate_id, str(state["work_id"]), release_copy
+                )
+            except FinalPublicationError as exc:
+                state["phase"] = "final_publication"
+                state["status"] = "blocked_final_publication"
+                state["final_publication"] = {
+                    "status": "blocked",
+                    "state_path": _relative(project_root / ".state/final-publication" / debate_id / str(state["work_id"]), project_root),
+                    "remote_execution_started": bool(exc.remote_execution_started),
+                    "error": str(exc),
+                    "recorded_at": now_iso(),
+                }
+                state["updated_at"] = now_iso()
+                _save_workflow(project_root, state)
+                return state
+            state["phase"] = "published"
+            state["status"] = "published"
+            state["final_publication"] = copy.deepcopy(publication)
+            state["updated_at"] = now_iso()
+            _save_workflow(project_root, state)
+            return state
+        if phase == "published":
             return state
         raise WorkflowError(f"Phase d'orchestration inconnue : {phase}")
 
@@ -1779,16 +1814,33 @@ def _print_user_result(state: Mapping[str, Any]) -> None:
         print(block.get("diagnostic_path"))
         print("\nAprès mise à jour/correction du kit ou du corpus, relancez simplement la même commande workflow.")
         return
+    if state.get("status") == "blocked_final_publication":
+        final = state.get("final_publication") or {}
+        print("Publication finale bloquée avant achèvement du workflow.")
+        print(f"État/diagnostic : {final.get('state_path')}")
+        print(f"Écriture distante déjà commencée : {'oui' if final.get('remote_execution_started') else 'non'}")
+        print(f"Cause : {final.get('error')}")
+        print("Après résolution du conflit ou correction du kit, relancez simplement ./wikidebia workflow avec le même débat.")
+        return
+    if state.get("status") == "published":
+        release = state.get("release") or {}
+        final = state.get("final_publication") or {}
+        print("Workflow Wikidéb’IA terminé : corpus bilingue publié.")
+        print(f"Archive release_ready conservée : {release.get('archive')}")
+        installed = final.get("installed_release") or {}
+        if installed.get("path"):
+            print(f"Corpus actif installé : {installed.get('path')}")
+        return
     if state.get("status") == "release_ready":
         release = state.get("release") or {}
-        print("Workflow éditorial terminé : corpus bilingue release_ready.")
+        print("Corpus bilingue release_ready; la publication finale reprendra automatiquement à la prochaine relance.")
         print(f"Archive : {release.get('archive')}")
         return
     print(json.dumps(dict(state), ensure_ascii=False, indent=2))
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Orchestration Wikidéb’IA jusqu'aux seuls points de revue éditoriale.")
+    parser = argparse.ArgumentParser(description="Orchestration Wikidéb’IA des revues éditoriales jusqu'à la publication finale sûre.")
     parser.add_argument("--project-root", type=Path, required=True)
     parser.add_argument("--machine-readable", action="store_true")
     sub = parser.add_subparsers(dest="command", required=True)

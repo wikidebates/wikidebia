@@ -2,7 +2,7 @@ Wikidéb’IA Validator 0.4.103 — rapport de tests
 
 Tests pytest : 454 réussis
 Norme active : 1.2.87
-Kit recommandé : 2.16.38
+Kit recommandé : 2.16.39
 
 Historical summary provenance unification : PASSED ; wikicode et editorial utilisent un calcul partagé et un cache unique.
 Authorized historical summary regression : PASSED ; l’ordre wikicode → editorial conserve historical_authorized_change en FR et EN.

@@ -385,7 +385,7 @@ def returned_semantic_zip(source: Path, target: Path, *, family: str, method: st
     rewrite_zip(source, target, edit)
 
 
-def test_full_orchestration_reaches_release_ready_through_all_editorial_stops(tmp_path: Path, monkeypatch):
+def test_full_orchestration_reaches_final_publication_through_all_editorial_stops(tmp_path: Path, monkeypatch):
     project = tmp_path / "project"
     project.mkdir()
     work_id = "EDIT-20260811-001"
@@ -432,6 +432,7 @@ def test_full_orchestration_reaches_release_ready_through_all_editorial_stops(tm
     monkeypatch.setattr(wf, "apply_translation_review", lambda *a, **k: calls.append("apply") or {"status": "applied"})
     monkeypatch.setattr(wf, "render_workspace", lambda *a, **k: calls.append("render") or {"rendered_copy_tree_sha256": "6" * 64})
     monkeypatch.setattr(wf, "release_workspace", lambda *a, **k: calls.append("release") or {"archive": "outgoing/debat_test_release.zip", "status": "release_ready"})
+    monkeypatch.setattr(wf, "publish_final_release", lambda *a, **k: calls.append("final_publish") or {"status": "published", "installed_release": {"path": "corpus/debat_test"}, "receipt_sha256": "7" * 64})
 
     # Metadata stop.
     state = wf._mechanical_advance(project, state)
@@ -462,10 +463,10 @@ def test_full_orchestration_reaches_release_ready_through_all_editorial_stops(tm
     sem2_return = tmp_path / "semantic-pass-2.zip"
     returned_semantic_zip(sem2, sem2_return, family="risk_marker_review", method="Relecture des marqueurs de risque", errors=0)
     state = wf.import_review(project, "debat_test", sem2_return)
-    assert state["status"] == "release_ready"
-    assert state["phase"] == "release_ready"
+    assert state["status"] == "published"
+    assert state["phase"] == "published"
     assert pass_calls == ["proposition_by_proposition", "risk_marker_review"]
-    assert calls == ["apply", "render", "release"]
+    assert calls == ["apply", "render", "release", "final_publish"]
     assert state["release"]["archive"] == "outgoing/debat_test_release.zip"
 
 
@@ -1140,3 +1141,57 @@ def test_21627_post_convergence_documentary_preflight_opens_sources_only_correct
     assert reopened["status"] == "draft"
     assert "final_values" not in reopened
     assert not (workspace / "reviews/en/semantic_convergence_review.json").exists()
+
+
+def test_release_ready_resume_enters_final_publication_without_rerunning_semantic_or_render(tmp_path: Path, monkeypatch):
+    project = tmp_path / "project"
+    project.mkdir()
+    work_id = "EDIT-20260811-001"
+    workspace = make_full_workspace(project, work_id=work_id)
+    (workspace / "release-copy").mkdir(exist_ok=True)
+    state = {
+        "schema": wf.WORKFLOW_SCHEMA, "schema_version": "1.0",
+        "normative_revision": wf.NORM_VERSION, "validator_version": wf.VALIDATOR_VERSION, "kit_version": wf.KIT_VERSION,
+        "debate_id": "debat_test", "debate_title": "Débat test ?", "short_code": "TEST",
+        "phase": "release_ready", "status": "release_ready", "work_id": work_id,
+        "pending_review": None, "snapshot_path": None, "force_refresh": False,
+        "release": {"archive": ".state/corpus-releases/debat_test/EDIT-20260811-001/debat_test.zip"},
+        "created_at": "2026-08-11T12:00:00+02:00", "updated_at": "2026-08-11T12:00:00+02:00",
+    }
+    wf._save_workflow(project, state)
+    calls = []
+    monkeypatch.setattr(wf, "publish_final_release", lambda *a, **k: calls.append("final") or {
+        "status": "published", "installed_release": {"path": "corpus/debat_test"}, "receipt_sha256": "8" * 64,
+    })
+    monkeypatch.setattr(wf, "render_workspace", lambda *a, **k: (_ for _ in ()).throw(AssertionError("render must not rerun")))
+    monkeypatch.setattr(wf, "release_workspace", lambda *a, **k: (_ for _ in ()).throw(AssertionError("release must not rerun")))
+    result = wf._mechanical_advance(project, state)
+    assert result["status"] == "published"
+    assert result["phase"] == "published"
+    assert calls == ["final"]
+
+
+def test_final_publication_conflict_is_persisted_without_reopening_reviews(tmp_path: Path, monkeypatch):
+    project = tmp_path / "project"
+    project.mkdir()
+    work_id = "EDIT-20260811-001"
+    workspace = make_full_workspace(project, work_id=work_id)
+    (workspace / "release-copy").mkdir(exist_ok=True)
+    state = {
+        "schema": wf.WORKFLOW_SCHEMA, "schema_version": "1.0",
+        "normative_revision": wf.NORM_VERSION, "validator_version": wf.VALIDATOR_VERSION, "kit_version": wf.KIT_VERSION,
+        "debate_id": "debat_test", "debate_title": "Débat test ?", "short_code": "TEST",
+        "phase": "final_publication", "status": "final_publication", "work_id": work_id,
+        "pending_review": None, "snapshot_path": None, "force_refresh": False,
+        "created_at": "2026-08-11T12:00:00+02:00", "updated_at": "2026-08-11T12:00:00+02:00",
+    }
+    wf._save_workflow(project, state)
+    monkeypatch.setattr(wf, "publish_final_release", lambda *a, **k: (_ for _ in ()).throw(
+        wf.FinalPublicationError("collision anglaise", remote_execution_started=False)
+    ))
+    result = wf._mechanical_advance(project, state)
+    assert result["status"] == "blocked_final_publication"
+    assert result["phase"] == "final_publication"
+    assert result["pending_review"] is None
+    assert result["final_publication"]["remote_execution_started"] is False
+    assert "collision anglaise" in result["final_publication"]["error"]

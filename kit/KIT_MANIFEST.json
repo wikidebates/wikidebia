@@ -1,6 +1,6 @@
 {
   "kit": "wikidebia-generic-publisher",
-  "version": "2.16.38",
+  "version": "2.16.39",
   "validator_version": "0.4.103",
   "scope": [
     "publish_archive",
@@ -112,7 +112,10 @@
     "historical_text_preservation_lock",
     "historical_text_owner_consent",
     "historical_editorial_parameter_presence",
-    "source_authoritative_translated_metadata_render"
+    "source_authoritative_translated_metadata_render",
+    "workflow_final_publication",
+    "work_scoped_bilingual_baseline",
+    "final_publication_prewrite_global_preflight"
   ],
   "debate_specific_code": false,
   "change_tag": "chatgpt",
@@ -494,7 +497,11 @@
     "source_authoritative_translated_metadata_render",
     "automatic_complete_validation_diagnostic_zip",
     "validation_diagnostic_rollback_persistence",
-    "validator_runtime_source_isolation"
+    "validator_runtime_source_isolation",
+    "automatic_final_mediawiki_publication",
+    "work_scoped_final_publication_baseline",
+    "first_english_publication_runtime_metadata_in_workflow",
+    "final_release_copy_installation"
   ],
   "normative_revision": "1.2.87",
   "stable_archive_name": "wikidebia-kit.zip",
@@ -605,7 +612,10 @@
     "english_documentary_identity_reuse_gate",
     "debate_bibliography_scope_over_kind_gate",
     "source_authoritative_translated_metadata_render_gate",
-    "validation_diagnostic_rollback_persistence"
+    "validation_diagnostic_rollback_persistence",
+    "final_publication_no_conflict_before_first_write",
+    "final_publication_french_interlanguage_only_gate",
+    "final_publication_english_create_or_skip_gate"
   ],
   "regression_gates": [
     "argument_reference_develops_argument_regression",
@@ -660,8 +670,11 @@
     "historical_render_differential_validation_regression",
     "translated_metadata_absence_preservation_regression",
     "validation_diagnostic_rollback_persistence",
-    "validator_runtime_shadowing_regression"
+    "validator_runtime_shadowing_regression",
+    "release_ready_resume_without_semantic_rerun_regression",
+    "final_publication_conflict_persistence_regression",
+    "workflow_scoped_english_empty_baseline_regression"
   ],
   "translation_change_tag": "translated-fr",
-  "kit_version": "2.16.36"
+  "kit_version": "2.16.39"
 }

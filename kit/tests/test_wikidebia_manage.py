@@ -963,6 +963,7 @@ def test_doctor_checks_every_pipeline_script(tmp_path: Path, monkeypatch):
         "wikidebia_content_review.py", "wikidebia_translation_review.py", "wikidebia_render.py",
         "wikidebia_release.py", "wikidebia_remote_compare.py", "wikidebia_remote_plan_review.py",
         "wikidebia_remote_execute.py", "wikidebia_work_close.py",
+        "wikidebia_workflow_baseline.py", "wikidebia_final_publication.py",
         "wikidebia_retro_tag.py",
     }
     monkeypatch.setattr(module, "runtime_environment_report", lambda root: {"requirements_sha256":"x","python_available":True,"missing_modules":[],"probe_error":None})
