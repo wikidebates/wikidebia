@@ -481,3 +481,13 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - corrige le `KeyError('fingerprint_path')` observé après les connexions de préflight et avant toute autorisation/écriture distante ;
 - ajoute une régression qui construit la configuration anglaise finale puis calcule réellement les empreintes du paquet avec `GenericPublisher._package_fingerprints()` ;
 - ne modifie ni le corpus, ni les deux convergences, ni le checkpoint français, ni la norme 1.2.87, ni le validateur 0.4.104.
+## 2.16.45 — 21 août 2026 — changement de jour pendant la publication finale anglaise
+
+- conserve la date réelle des pages anglaises déjà créées avant minuit et ne les redatte jamais ;
+- lorsqu'une publication partielle traverse minuit, reconstruit un plan anglais successeur où les créations déjà prouvées deviennent des `skip` et où les seules pages encore absentes reçoivent le nouveau jour civil ;
+- vérifie que le delta du contenu planifié des pages restantes porte exclusivement sur `creation-date`, sans changement de titre, résumé, balise, source ou contenu éditorial ;
+- rescellle le préflight et l'autorisation avant reprise, tout en archivant l'ancien plan, l'ancien préflight et l'ancienne autorisation dans un audit de rollover auto-signé ;
+- restaure l'état local précédent si la reconstruction ou le nouveau préflight échoue, sans écriture distante supplémentaire ;
+- reprend automatiquement le même mécanisme si le changement de jour est détecté pendant l'exécution elle-même ;
+- conserve la norme 1.2.87 et le validateur 0.4.104.
+

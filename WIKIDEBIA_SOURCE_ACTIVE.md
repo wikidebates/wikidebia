@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.87** ;
 - validateur actif : **0.4.104** ;
-- kit actif : **2.16.44**.
+- kit actif : **2.16.45**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3712248 octets — SHA-256 `5e36d3be13328d05208d90c19ea52c143afe1561851153c3c0249d5cbe40a9dd`
-- `wikidebia-validator.zip` — 3903678 octets — SHA-256 `8a4a9c38826fb2b7e32833f3c3dc34c4e0b360f101d686977aa6edab57ea63de`
-- `wikidebia-kit.zip` — 821489 octets — SHA-256 `b24e6ab9dbf5bcbb573150fea7be37e87eb5dca2f9e86e09288de1522a88ce75`
+- `wikidebia-normes.zip` — 3712245 octets — SHA-256 `4a5cc2cb3ce4c40e49eee087574a05323ce4900fe496e420e547ff5c3dffa792`
+- `wikidebia-validator.zip` — 3903677 octets — SHA-256 `f554187c05ba9048ef04512cf64e0e89aa263ca445e0047b0efb9cbc3790435f`
+- `wikidebia-kit.zip` — 828662 octets — SHA-256 `10353f8201b22f41046ebd68d7d19be959ca5eca3a6bcd035a2b4679bbeaadff`
 
 ## Norme consolidée active
 
@@ -1648,7 +1648,7 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `74a07b1787aad6c57639f626fbd0e906fd3823f0d08a8cda305c0f61d0d98319`
+SHA-256 : `7e33c37cc32e87ddb4d4fc657e6a70ed54bb9e01095878dc9dc6e8a4a3e2f2cf`
 
 # Wikidéb’IA Validator 0.4.104
 
@@ -1663,7 +1663,7 @@ La provenance des résumés est désormais calculée dans un module unique `hist
 
 La régression reproduit l’ordre réel `wikicode → editorial` et vérifie qu’un `historical_authorized_change` français et sa traduction anglaise restent hors du profil de création. Aucun contrôle n’est assoupli pour un résumé réellement nouveau.
 
-Norme active : 1.2.87. Kit associé : 2.16.44.
+Norme active : 1.2.87. Kit associé : 2.16.45.
 
 ## Notes héritées du validateur 0.4.101
 
@@ -2084,9 +2084,11 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `7b8fb4371516ffd27a503319716d2074867006219eb1e575317bfda908ea9c04`
+SHA-256 : `11f6b77cc36523bd9f4849dbf7fc7893fe8e30de0aa57bde2c9c3f5fe63e98cf`
 
-# Wikidéb’IA Kit 2.16.44
+# Wikidéb’IA Kit 2.16.45
+Le kit 2.16.45 rend la publication finale anglaise sûre à travers un changement de jour civil. Les pages déjà créées conservent leur `creation-date` réelle et sont reprises comme `skip` prouvés ; les pages encore absentes sont replannifiées avec le jour courant, avec un nouveau préflight et une nouvelle autorisation audités. Aucun contenu éditorial ni aucune page déjà publiée n'est modifié.
+
 Le kit 2.16.44 corrige la préparation de la publication finale anglaise : la configuration construite par `wikidebia_final_publication` transporte désormais explicitement `validator.fingerprint_path` et `max_warnings`, comme toutes les configurations `GenericPublisher` courantes. Sans ce champ, la construction du plan anglais atteignait `_package_fingerprints()` puis levait `KeyError('fingerprint_path')` après les connexions de préflight mais avant toute autorisation ou écriture distante. Le correctif ne modifie aucun corpus, plan français, convergence, contenu éditorial ni règle normative.
 
 
@@ -2272,7 +2274,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `c4f96dc356035ed2284b83f8b8470e8766c6c978743a651ddc12ab5d6f7860cf`
+SHA-256 : `0f9b13f7bf311deedb85d98838c1a1e764bea38a3e7ac8879a4ae1db1477252d`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2757,6 +2759,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - corrige le `KeyError('fingerprint_path')` observé après les connexions de préflight et avant toute autorisation/écriture distante ;
 - ajoute une régression qui construit la configuration anglaise finale puis calcule réellement les empreintes du paquet avec `GenericPublisher._package_fingerprints()` ;
 - ne modifie ni le corpus, ni les deux convergences, ni le checkpoint français, ni la norme 1.2.87, ni le validateur 0.4.104.
+## 2.16.45 — 21 août 2026 — changement de jour pendant la publication finale anglaise
+
+- conserve la date réelle des pages anglaises déjà créées avant minuit et ne les redatte jamais ;
+- lorsqu'une publication partielle traverse minuit, reconstruit un plan anglais successeur où les créations déjà prouvées deviennent des `skip` et où les seules pages encore absentes reçoivent le nouveau jour civil ;
+- vérifie que le delta du contenu planifié des pages restantes porte exclusivement sur `creation-date`, sans changement de titre, résumé, balise, source ou contenu éditorial ;
+- rescellle le préflight et l'autorisation avant reprise, tout en archivant l'ancien plan, l'ancien préflight et l'ancienne autorisation dans un audit de rollover auto-signé ;
+- restaure l'état local précédent si la reconstruction ou le nouveau préflight échoue, sans écriture distante supplémentaire ;
+- reprend automatiquement le même mécanisme si le changement de jour est détecté pendant l'exécution elle-même ;
+- conserve la norme 1.2.87 et le validateur 0.4.104.
 
 ## Guide de publication
 
@@ -3050,11 +3061,11 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `25926b6a78929e81f89767366075f18db2af85fe274161b58a6ce0ab5ae20719`
+SHA-256 : `847bcd7100cd570c1de96dedb50ec565a3b42bf01975b62d069cb88f5dbea464`
 
-Wikidéb’IA Kit 2.16.44 — rapport de tests
+Wikidéb’IA Kit 2.16.45 — rapport de tests
 
-Tests pytest : 528 réussis
+Tests pytest : 532 réussis
 Norme : 1.2.87
 Validateur : 0.4.104
 
@@ -3066,6 +3077,7 @@ Historical keyword atomicity normalization : PASSED ; uniquement les métadonné
 Historical introduction provenance : PASSED ; le verrou français reste autoritatif.
 Final publication orchestration : PASSED ; les capacités de 2.16.39 sont conservées.
 Legacy non-canonical checkpoint status : PASSED ; un statut local historique non canonique est normalisé uniquement pour un workflow totalement non lié et déjà en final_publication.
+Publication date rollover : PASSED ; les pages déjà créées gardent leur date réelle et seules les pages encore absentes sont replannifiées au nouveau jour civil avec plan/préflight/autorisation successeurs audités.
 
 ## Guide d’orchestration éditoriale
 

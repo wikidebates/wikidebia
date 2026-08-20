@@ -14,7 +14,7 @@
     {
       "path": "CAPABILITIES.json",
       "size_bytes": 2956,
-      "sha256": "1102714f1e8868a88fb2af3eb81e5642543b0a0e678d5cfde00e832175336e1f"
+      "sha256": "c2f1ee1ea0ad694d4c32ad7aa642d624d21144921c0aa04d2ea4d14342c178f3"
     },
     {
       "path": "CHANGELOG.md",
@@ -24,7 +24,7 @@
     {
       "path": "COMPATIBILITY.json",
       "size_bytes": 2904,
-      "sha256": "d875cf01d1c3ba4ec3dccb06cea1d406eb74d8c76b2222af6024e125d2767828"
+      "sha256": "f3fe802cd4f325d667c3ca9640f9bb790ff69183bf54f742f559c626b56862d0"
     },
     {
       "path": "LICENSE",
@@ -34,17 +34,17 @@
     {
       "path": "README.md",
       "size_bytes": 16284,
-      "sha256": "74a07b1787aad6c57639f626fbd0e906fd3823f0d08a8cda305c0f61d0d98319"
+      "sha256": "7e33c37cc32e87ddb4d4fc657e6a70ed54bb9e01095878dc9dc6e8a4a3e2f2cf"
     },
     {
       "path": "TEST_REPORT.txt",
       "size_bytes": 591,
-      "sha256": "798044702e6dd93ca675d1683ecf2db263594daea153e78e8c1fdeb1e975dba6"
+      "sha256": "f9ad1bddbd7c1efafe3f015fabd32526c9ae50ed612c0b57bd24a80f8c14b678"
     },
     {
       "path": "VERSIONS.json",
       "size_bytes": 69,
-      "sha256": "07b26614686dac6a04ef5b287424774f20f36eb082fed231d3ee3ba6b1acb421"
+      "sha256": "9a514c91ee48cee2cce5b311e28ab96172409e549822a1dcb08bd5c89c60cb04"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/CHANGELOG.md",
@@ -784,12 +784,12 @@
     {
       "path": "docs/SELF_AUDIT_REPORT.txt",
       "size_bytes": 297,
-      "sha256": "831287629d1253204a16c1aa9c07c96feb01c4a0d7bfc9d80c47aed11c87564d"
+      "sha256": "408cbc368ed299ef1370477e94d77a9e047909fc0cc3341a769193c819a53655"
     },
     {
       "path": "docs/TEST_REPORT.txt",
       "size_bytes": 591,
-      "sha256": "798044702e6dd93ca675d1683ecf2db263594daea153e78e8c1fdeb1e975dba6"
+      "sha256": "f9ad1bddbd7c1efafe3f015fabd32526c9ae50ed612c0b57bd24a80f8c14b678"
     },
     {
       "path": "docs/history/README.md",
@@ -2099,7 +2099,7 @@
     {
       "path": "tests/test_editorial_orchestration_schemas_1273.py",
       "size_bytes": 4216,
-      "sha256": "1a9f8a3a5e93f953b57d845895e2e5b2717f284374d2c5b92aadbdadaf0348ac"
+      "sha256": "41c9ebeeabf853ee85bb4801f8c6455a42f4240958eb466bdfb58503f6da7432"
     },
     {
       "path": "tests/test_files_batches_workflow.py",
@@ -2534,7 +2534,7 @@
     {
       "path": "tests/test_versions_file.py",
       "size_bytes": 1702,
-      "sha256": "c45cd94a96a2f41dbecfb757e298eda7bfbc7c909144b3485e58a269157be8b1"
+      "sha256": "181e110472fe9279baf26db15024654f51941bcde9db26e5f5a734e546941ae3"
     },
     {
       "path": "tests/test_wikicode.py",

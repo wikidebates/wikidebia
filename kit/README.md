@@ -1,4 +1,6 @@
-# Wikidéb’IA Kit 2.16.44
+# Wikidéb’IA Kit 2.16.45
+Le kit 2.16.45 rend la publication finale anglaise sûre à travers un changement de jour civil. Les pages déjà créées conservent leur `creation-date` réelle et sont reprises comme `skip` prouvés ; les pages encore absentes sont replannifiées avec le jour courant, avec un nouveau préflight et une nouvelle autorisation audités. Aucun contenu éditorial ni aucune page déjà publiée n'est modifié.
+
 Le kit 2.16.44 corrige la préparation de la publication finale anglaise : la configuration construite par `wikidebia_final_publication` transporte désormais explicitement `validator.fingerprint_path` et `max_warnings`, comme toutes les configurations `GenericPublisher` courantes. Sans ce champ, la construction du plan anglais atteignait `_package_fingerprints()` puis levait `KeyError('fingerprint_path')` après les connexions de préflight mais avant toute autorisation ou écriture distante. Le correctif ne modifie aucun corpus, plan français, convergence, contenu éditorial ni règle normative.
 
 
