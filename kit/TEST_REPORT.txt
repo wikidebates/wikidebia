@@ -1,9 +1,10 @@
-Wikidéb’IA Kit 2.16.40 — rapport de tests
+Wikidéb’IA Kit 2.16.41 — rapport de tests
 
-Tests pytest : 519 réussis
+Tests pytest : 522 réussis
 Norme : 1.2.87
 Validateur : 0.4.104
 
+Final checkpoint receipt-reference reconciliation : PASSED ; réparation uniquement à plan signé identique, avant publication finale.
 Render preflight evidence reconciliation : PASSED ; aucune valeur éditoriale n’est modifiée.
 Historical keyword atomicity normalization : PASSED ; uniquement les métadonnées déjà attestées sont réconciliées.
 Historical introduction provenance : PASSED ; le verrou français reste autoritatif.

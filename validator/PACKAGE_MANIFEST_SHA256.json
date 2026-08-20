@@ -34,7 +34,7 @@
     {
       "path": "README.md",
       "size_bytes": 16284,
-      "sha256": "359d5a8b169c545f43d89617a1a6e1af137ec0454b90687600a0f92ab14ea99b"
+      "sha256": "e81ddf18c544b7b44700a06dccefc40fbef58d1cf8ce3edcceb40a662693edc6"
     },
     {
       "path": "TEST_REPORT.txt",
@@ -44,7 +44,7 @@
     {
       "path": "VERSIONS.json",
       "size_bytes": 69,
-      "sha256": "32eb7845fc44ccd9f94ee6f1d4b7e72768629c7f7763ceb77f8c44c33fd0ab4e"
+      "sha256": "1bf568ba108aa61f772022b9c69d4b4c2a39edb8892a5f6356b1a2e4a2f782f1"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/CHANGELOG.md",
@@ -2534,7 +2534,7 @@
     {
       "path": "tests/test_versions_file.py",
       "size_bytes": 1702,
-      "sha256": "2347cb8fed295baa78ee161c04af1cc3107f153771d81bed694e9f9bbb4d2b72"
+      "sha256": "c3a4292b6c35e76e806c74ebea6d8b8a7e942e9221b0755cdf263b562c49b4ec"
     },
     {
       "path": "tests/test_wikicode.py",

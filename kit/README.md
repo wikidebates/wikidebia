@@ -1,4 +1,6 @@
-# Wikidéb’IA Kit 2.16.40
+# Wikidéb’IA Kit 2.16.41
+
+Le kit 2.16.41 corrige la reprise de la publication finale lorsqu’une restauration transactionnelle a laissé dans `workflow.json` une ancienne empreinte du reçu du checkpoint français final. La référence n’est réparée que si le reçu courant et l’état français signé attestent exactement le même `plan_sha256` que le workflow, avant toute autorisation de publication finale et sans état anglais signé. Une divergence réelle de plan reste bloquante. Aucune revue, convergence, page ou donnée éditoriale n’est modifiée.
 
 Le kit 2.16.40 corrige le préflight de rendu du revenu de base sans rouvrir le contenu éditorial. Avant validation finale, il réconcilie uniquement les métadonnées de preuve déjà attestées : les locutions historiques déclarées atomiques reçoivent le marqueur multi-mots correspondant, une exception anglaise copiée mécaniquement vers une forme compacte est retirée, l’introduction française est explicitement marquée comme historique depuis son verrou, et une note anglaise clairement explicative peut recevoir l’exception de ponctuation déjà couverte par la revue humaine globale.
 

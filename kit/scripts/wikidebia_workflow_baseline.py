@@ -253,12 +253,112 @@ def resolve_workflow_release_baseline(
     return evidence
 
 
+def _repair_stale_workflow_content_receipt_reference(
+    project_root: Path,
+    debate_id: str,
+    work_id: str,
+) -> bool:
+    """Repair only a stale workflow receipt hash for the already-published FR content checkpoint.
+
+    This compatibility repair is deliberately narrower than adopting a new checkpoint.
+    It is allowed only before any final-publication authorization exists, when the
+    workflow and the current checkpoint receipt identify the same Work, stage, status
+    and *same signed publication plan*, and when ``.state/published/fr/latest.json``
+    independently attests that plan.  Any plan divergence remains blocking.
+    """
+    project_root = project_root.resolve()
+    workflow_path = project_root / ".state/workflows" / debate_id / "workflow.json"
+    receipt_path = project_root / ".state/fr-publication" / debate_id / work_id / "content/publication-receipt.json"
+    if not receipt_path.is_file():
+        legacy = project_root / ".state/fr-publication" / debate_id / work_id / "publication-receipt.json"
+        receipt_path = legacy if legacy.is_file() else receipt_path
+    if not workflow_path.is_file() or not receipt_path.is_file():
+        return False
+
+    workflow = load_json(workflow_path, "workflow")
+    current = load_json(receipt_path, "reçu du checkpoint français final")
+    _verify_sha_object(current, "receipt_sha256", "du checkpoint français final")
+    workflow_content = workflow.get("french_content_publication") or workflow.get("french_publication")
+    if not isinstance(workflow_content, dict):
+        return False
+    old_sha = str(workflow_content.get("receipt_sha256") or "")
+    new_sha = str(current.get("receipt_sha256") or "")
+    if not old_sha or not new_sha or old_sha == new_sha:
+        return False
+
+    # Never mutate the workflow once final publication has crossed its first-write
+    # authorization boundary, or once any English published state exists.
+    final_dir = project_root / ".state/final-publication" / debate_id / work_id
+    if (final_dir / "authorization.json").exists() or (final_dir / "publication-receipt.json").exists():
+        raise WorkflowBaselineError(
+            "La référence du checkpoint français diverge après le début de la publication finale"
+        )
+    if (project_root / ".state/published" / debate_id / "en/latest.json").exists():
+        raise WorkflowBaselineError(
+            "La référence du checkpoint français diverge alors qu'un état anglais signé existe déjà"
+        )
+
+    if current.get("debate_id") != debate_id or current.get("work_id") != work_id:
+        raise WorkflowBaselineError("Checkpoint français final rattaché à un autre Work")
+    if str(current.get("stage") or "content") != "content":
+        raise WorkflowBaselineError("Le reçu français courant n'est pas le checkpoint de contenu")
+    if str(current.get("status") or "") not in {"published", "verified_no_changes"}:
+        raise WorkflowBaselineError("Le checkpoint français courant n'est pas attesté publié")
+
+    # The stale workflow entry itself must still describe the same final checkpoint
+    # identity.  Receipt timestamps/hashes may drift after a local transaction
+    # restoration, but the publication plan may not.
+    if workflow_content.get("debate_id") not in {None, debate_id}:
+        raise WorkflowBaselineError("Le workflow référence un checkpoint français d'un autre débat")
+    if workflow_content.get("work_id") not in {None, work_id}:
+        raise WorkflowBaselineError("Le workflow référence un checkpoint français d'un autre Work")
+    if str(workflow_content.get("stage") or "content") != "content":
+        raise WorkflowBaselineError("Le workflow ne référence pas le checkpoint français de contenu")
+    if str(workflow_content.get("status") or "") not in {"published", "verified_no_changes"}:
+        raise WorkflowBaselineError("Le workflow ne référence pas un checkpoint français final publié")
+    old_plan = str(workflow_content.get("plan_sha256") or "")
+    new_plan = str(current.get("plan_sha256") or "")
+    if not old_plan or not new_plan or old_plan != new_plan:
+        raise WorkflowBaselineError(
+            "Le workflow et le reçu du checkpoint français final divergent sur le plan signé"
+        )
+
+    fr_state_entry = _load_signed_published_state(project_root, debate_id, "fr")
+    if fr_state_entry is None:
+        raise WorkflowBaselineError("État publié français signé absent pendant la réconciliation du checkpoint")
+    _fr_state_path, fr_state = fr_state_entry
+    if str(fr_state.get("plan_sha256") or "") != new_plan:
+        raise WorkflowBaselineError(
+            "L'état français signé ne correspond pas au plan du checkpoint courant"
+        )
+
+    repaired = copy.deepcopy(current)
+    workflow["french_content_publication"] = repaired
+    workflow["french_publication"] = copy.deepcopy(repaired)  # legacy alias
+    migrations = workflow.setdefault("compatibility_migrations", [])
+    if not isinstance(migrations, list):
+        raise WorkflowBaselineError("Registre de migrations du workflow mal formé")
+    migrations.append({
+        "kind": "stale_fr_content_receipt_reference_reconciled",
+        "reconciled_at": now_iso(),
+        "work_id": work_id,
+        "old_receipt_sha256": old_sha,
+        "new_receipt_sha256": new_sha,
+        "plan_sha256": new_plan,
+        "proof": "current_checkpoint_receipt_plus_signed_fr_published_state",
+    })
+    workflow["updated_at"] = now_iso()
+    write_json(workflow_path, workflow)
+    return True
+
+
 def seal_workflow_release_baseline(
     project_root: Path,
     debate_id: str,
     work_id: str,
     corpus_root: Path,
 ) -> dict[str, Any]:
+    _repair_stale_workflow_content_receipt_reference(project_root, debate_id, work_id)
     evidence = resolve_workflow_release_baseline(
         project_root, debate_id, corpus_root, expected_work_id=work_id
     )

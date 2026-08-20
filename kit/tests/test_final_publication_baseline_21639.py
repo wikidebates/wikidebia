@@ -116,3 +116,58 @@ def test_work_scoped_empty_english_baseline_expires_after_signed_en_state(tmp_pa
     _write_json(project / ".state/published" / debate_id / "en/latest.json", en_state)
     with pytest.raises(baseline.WorkflowBaselineError, match="baseline EN vide"):
         baseline.resolve_workflow_release_baseline(project, debate_id, release_copy, expected_work_id=work_id)
+
+
+def _prepare_stale_receipt_reference(project: Path, debate_id: str, work_id: str, *, current_plan: str | None = None):
+    workflow_path = project / ".state/workflows" / debate_id / "workflow.json"
+    workflow = json.loads(workflow_path.read_text(encoding="utf-8"))
+    receipt_path = project / ".state/fr-publication" / debate_id / work_id / "content/publication-receipt.json"
+    old_receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    workflow["phase"] = "final_publication"
+    workflow["status"] = "blocked_final_publication"
+    workflow["french_content_publication"] = dict(old_receipt)
+    workflow["french_publication"] = dict(old_receipt)
+    _write_json(workflow_path, workflow)
+
+    new_receipt = dict(old_receipt)
+    new_receipt.pop("receipt_sha256", None)
+    new_receipt["published_at"] = "2026-08-20T21:09:36+02:00"
+    if current_plan is not None:
+        new_receipt["plan_sha256"] = current_plan
+    new_receipt = _signed(new_receipt, "receipt_sha256")
+    _write_json(receipt_path, new_receipt)
+    return old_receipt, new_receipt
+
+
+def test_seal_repairs_stale_workflow_receipt_hash_when_same_plan_is_signed(tmp_path: Path):
+    project, debate_id, work_id, release_copy = make_release_boundary(tmp_path)
+    old_receipt, new_receipt = _prepare_stale_receipt_reference(project, debate_id, work_id)
+    assert old_receipt["plan_sha256"] == new_receipt["plan_sha256"]
+    assert old_receipt["receipt_sha256"] != new_receipt["receipt_sha256"]
+
+    value = baseline.seal_workflow_release_baseline(project, debate_id, work_id, release_copy)
+    assert value["fr"]["checkpoint_receipt_sha256"] == new_receipt["receipt_sha256"]
+    workflow = json.loads((project / ".state/workflows" / debate_id / "workflow.json").read_text(encoding="utf-8"))
+    assert workflow["french_content_publication"]["receipt_sha256"] == new_receipt["receipt_sha256"]
+    assert workflow["french_publication"]["receipt_sha256"] == new_receipt["receipt_sha256"]
+    migration = workflow["compatibility_migrations"][-1]
+    assert migration["kind"] == "stale_fr_content_receipt_reference_reconciled"
+    assert migration["old_receipt_sha256"] == old_receipt["receipt_sha256"]
+    assert migration["new_receipt_sha256"] == new_receipt["receipt_sha256"]
+    assert migration["plan_sha256"] == new_receipt["plan_sha256"]
+
+
+def test_seal_refuses_stale_workflow_reference_when_plan_changed(tmp_path: Path):
+    project, debate_id, work_id, release_copy = make_release_boundary(tmp_path)
+    _old, _new = _prepare_stale_receipt_reference(project, debate_id, work_id, current_plan="4" * 64)
+    with pytest.raises(baseline.WorkflowBaselineError, match="plan signé"):
+        baseline.seal_workflow_release_baseline(project, debate_id, work_id, release_copy)
+
+
+def test_seal_refuses_receipt_reference_repair_after_final_authorization(tmp_path: Path):
+    project, debate_id, work_id, release_copy = make_release_boundary(tmp_path)
+    _prepare_stale_receipt_reference(project, debate_id, work_id)
+    auth = project / ".state/final-publication" / debate_id / work_id / "authorization.json"
+    _write_json(auth, {"schema": "wikidebia-final-publication-authorization-1.0"})
+    with pytest.raises(baseline.WorkflowBaselineError, match="après le début"):
+        baseline.seal_workflow_release_baseline(project, debate_id, work_id, release_copy)

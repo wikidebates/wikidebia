@@ -24,7 +24,7 @@
     {
       "path": "README.md",
       "size_bytes": 4003,
-      "sha256": "67d69681f93036f6e1c0e0cd0c92f189890aa9736d4f7dd07324dae9bd9c6895"
+      "sha256": "ffddb698e46dd28d2d8f42583456b305117f0b996be567345389b6d6e4862de0"
     },
     {
       "path": "TEST_REPORT.txt",
@@ -34,7 +34,7 @@
     {
       "path": "VERSIONS.json",
       "size_bytes": 69,
-      "sha256": "32eb7845fc44ccd9f94ee6f1d4b7e72768629c7f7763ceb77f8c44c33fd0ab4e"
+      "sha256": "1bf568ba108aa61f772022b9c69d4b4c2a39edb8892a5f6356b1a2e4a2f782f1"
     },
     {
       "path": "branch_history/publication_branch_github_8b46816_1.2.60_0.4.64_2.15.45/MIGRATION_1.2.56.md",

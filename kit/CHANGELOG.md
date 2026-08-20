@@ -445,3 +445,12 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - conserve le corpus sémantique, les deux convergences, les verrous et les capacités de publication finale 2.16.39 ;
 - ajoute des régressions empêchant toute normalisation automatique d’un concept nouveau non revu ;
 - s’aligne sur le validateur 0.4.104 et conserve la norme 1.2.87.
+
+## 2.16.41 — 20 août 2026 — réconciliation de la référence du checkpoint français final
+
+- corrige la reprise de `final_publication` lorsque `workflow.json` conserve une ancienne empreinte de reçu du checkpoint français de contenu après une restauration transactionnelle locale ;
+- autorise la réparation uniquement avant toute autorisation/écriture de publication finale, sans état anglais signé, lorsque l'ancien workflow et le reçu courant appartiennent au même débat/Work/stage, sont tous deux publiés et portent exactement le même `plan_sha256` ;
+- exige en plus que `.state/published/<débat>/fr/latest.json` atteste ce même plan signé avant de remplacer la référence périmée ;
+- toute divergence de plan, tout état anglais existant ou tout début de publication finale reste bloquant ;
+- enregistre la migration dans `workflow.compatibility_migrations` avec anciennes/nouvelles empreintes et preuve utilisée ;
+- conserve intégralement le corpus, les deux convergences sémantiques, la release et le correctif de render preflight 2.16.40 ; norme 1.2.87 et validateur 0.4.104 inchangés.
