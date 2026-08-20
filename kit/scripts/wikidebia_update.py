@@ -778,7 +778,13 @@ class StatePage:
 
 
 class StateResolver:
-    """Resolve the last attested published state without trusting the new manifest alone."""
+    """Resolve the last attested published state without trusting the new manifest alone.
+
+    Resolution is language-scoped.  This matters during the first bilingual release:
+    the French checkpoints may already have a signed published-state receipt while
+    the previously installed corpus still proves that English was deferred and
+    therefore had an intentionally empty baseline.
+    """
 
     def __init__(self, project_root: Path, debate_id: str, corpus_root: Path, inventory_root: Path | None = None) -> None:
         self.project_root = project_root.resolve()
@@ -787,89 +793,154 @@ class StateResolver:
         self.inventory_root = inventory_root.resolve() if inventory_root is not None else None
 
     def resolve(self, languages: Iterable[str]) -> tuple[dict[tuple[str, str], StatePage], dict[str, Any]]:
-        wanted = set(languages)
-        explicit = self._latest_state_files(wanted)
-        if explicit is not None:
-            return explicit, {"kind": "published_state_receipt", "paths": sorted({p.source_path for p in explicit.values() if p.source_path})}
-        previous = self._previous_manifest_state(wanted)
-        if previous:
-            return previous, {"kind": "previous_installed_manifest", "manifest": self._last_manifest_path}
-        inventory = self._remote_inventory_state(wanted)
-        if inventory is not None:
-            return inventory, {"kind": "remote_inventory", "paths": sorted({p.source_path for p in inventory.values() if p.source_path})}
-        raise UpdateError(
-            "Dernier état publié introuvable. Un reçu d’état, un ancien manifeste installé "
-            "ou un inventaire distant explicitement rattaché au débat est requis."
-        )
-
-    def _latest_state_files(self, languages: set[str]) -> dict[tuple[str, str], StatePage] | None:
+        wanted = sorted(set(languages))
         result: dict[tuple[str, str], StatePage] = {}
-        base = self.project_root / ".state" / "published" / self.debate_id
-        for language in sorted(languages):
-            path = base / language / "latest.json"
-            if not path.is_file():
-                return None
-            data = load_json(path)
-            unsigned = dict(data)
-            claimed = unsigned.pop("state_sha256", None)
-            if claimed != sha_object(unsigned):
-                raise UpdateError(f"Empreinte d’état publié divergente : {path}")
-            if data.get("debate_id") != self.debate_id or data.get("language") != language:
-                raise UpdateError(f"État publié rattaché à un autre débat ou une autre langue : {path}")
-            for row in data.get("pages") or []:
-                page = StatePage(
-                    language=language,
-                    page_id=str(row["page_id"]),
-                    page_type=str(row.get("page_type") or "unknown"),
-                    title=str(row["canonical_title"]),
-                    content_sha256=str(row["content_sha256"]),
-                    revision_id=int(row["revision_id"]) if row.get("revision_id") is not None else None,
-                    status=str(row.get("status") or "published"),
-                    source_path=portable(path, self.project_root),
-                    content=None,
-                )
-                result[page_key(language, page.page_id)] = page
-        return result
+        per_language: dict[str, dict[str, Any]] = {}
+        missing: list[str] = []
 
-    def _remote_inventory_state(self, languages: set[str]) -> dict[tuple[str, str], StatePage] | None:
-        """Load a signed read-only inventory explicitly attached to this debate.
+        for language in wanted:
+            explicit = self._latest_state_file(language)
+            if explicit is not None:
+                pages, source = explicit
+                result.update(pages)
+                per_language[language] = source
+                continue
 
-        The inventory is produced outside the validator from a constrained remote scan and
-        stored under .state/inventories/<debate_id>/<language>.json. It uses the same signed
-        page shape as a published state and is never inferred from all wiki pages.
-        """
+            previous = self._previous_manifest_language_state(language)
+            if previous is not None:
+                pages, source = previous
+                result.update(pages)
+                per_language[language] = source
+                continue
+
+            inventory = self._remote_inventory_language_state(language)
+            if inventory is not None:
+                pages, source = inventory
+                result.update(pages)
+                per_language[language] = source
+                continue
+
+            missing.append(language)
+
+        if missing:
+            suffix = ", ".join(missing)
+            raise UpdateError(
+                "Dernier état publié introuvable. Un reçu d’état, un ancien manifeste installé "
+                "ou un inventaire distant explicitement rattaché au débat est requis. "
+                f"Langue(s) sans preuve : {suffix}."
+            )
+
+        kinds = {str(row.get("kind") or "") for row in per_language.values()}
+        if len(kinds) == 1:
+            kind = next(iter(kinds))
+            source: dict[str, Any] = {"kind": kind}
+            if kind in {"published_state_receipt", "remote_inventory"}:
+                paths = sorted({
+                    path
+                    for row in per_language.values()
+                    for path in (row.get("paths") or [])
+                    if isinstance(path, str) and path
+                })
+                if paths:
+                    source["paths"] = paths
+            elif kind == "previous_installed_manifest":
+                manifests = sorted({
+                    str(row.get("manifest"))
+                    for row in per_language.values()
+                    if row.get("manifest")
+                })
+                if len(manifests) == 1:
+                    source["manifest"] = manifests[0]
+                elif manifests:
+                    source["manifests"] = manifests
+            # Keep exact language evidence whenever an empty deferred baseline or
+            # multiple files/manifests are involved.
+            if any(row.get("empty_baseline") for row in per_language.values()) or len(wanted) > 1:
+                source["resolution"] = "per_language_attested_v1"
+                source["per_language"] = per_language
+            return result, source
+
+        # The plan schema historically enumerates the three evidence families in
+        # ``state_source.kind``.  Keep that field backward compatible and expose
+        # the exact mixed provenance in ``per_language``.
+        priority = ("published_state_receipt", "previous_installed_manifest", "remote_inventory")
+        primary = next((kind for kind in priority if kind in kinds), "previous_installed_manifest")
+        return result, {
+            "kind": primary,
+            "resolution": "per_language_attested_v1",
+            "per_language": per_language,
+        }
+
+    def _latest_state_file(self, language: str) -> tuple[dict[tuple[str, str], StatePage], dict[str, Any]] | None:
+        path = self.project_root / ".state" / "published" / self.debate_id / language / "latest.json"
+        if not path.is_file():
+            return None
+        data = load_json(path)
+        unsigned = dict(data)
+        claimed = unsigned.pop("state_sha256", None)
+        if claimed != sha_object(unsigned):
+            raise UpdateError(f"Empreinte d’état publié divergente : {path}")
+        if data.get("debate_id") != self.debate_id or data.get("language") != language:
+            raise UpdateError(f"État publié rattaché à un autre débat ou une autre langue : {path}")
         result: dict[tuple[str, str], StatePage] = {}
+        for row in data.get("pages") or []:
+            page = StatePage(
+                language=language,
+                page_id=str(row["page_id"]),
+                page_type=str(row.get("page_type") or "unknown"),
+                title=str(row["canonical_title"]),
+                content_sha256=str(row["content_sha256"]),
+                revision_id=int(row["revision_id"]) if row.get("revision_id") is not None else None,
+                status=str(row.get("status") or "published"),
+                source_path=portable(path, self.project_root),
+                content=None,
+            )
+            result[page_key(language, page.page_id)] = page
+        return result, {"kind": "published_state_receipt", "paths": [portable(path, self.project_root)]}
+
+    def _remote_inventory_language_state(self, language: str) -> tuple[dict[tuple[str, str], StatePage], dict[str, Any]] | None:
+        """Load a signed read-only inventory explicitly attached to this debate."""
         base = self.inventory_root or (self.project_root / ".state" / "inventories" / self.debate_id)
-        for language in sorted(languages):
-            path = base / f"{language}.json"
-            if not path.is_file():
-                return None
-            data = load_json(path)
-            unsigned = dict(data)
-            claimed = unsigned.pop("inventory_sha256", None)
-            if claimed != sha_object(unsigned):
-                raise UpdateError(f"Empreinte d’inventaire distant divergente : {path}")
-            if data.get("debate_id") != self.debate_id or data.get("language") != language:
-                raise UpdateError(f"Inventaire distant rattaché à un autre débat ou une autre langue : {path}")
-            if data.get("inventory_mode") != "explicit_debate_pages_read_only":
-                raise UpdateError(f"Inventaire distant non borné au débat : {path}")
-            for row in data.get("pages") or []:
-                page = StatePage(
-                    language=language,
-                    page_id=str(row["page_id"]),
-                    page_type=str(row.get("page_type") or "unknown"),
-                    title=str(row["canonical_title"]),
-                    content_sha256=str(row["content_sha256"]),
-                    revision_id=int(row["revision_id"]) if row.get("revision_id") is not None else None,
-                    status=str(row.get("status") or "published"),
-                    source_path=portable(path, self.project_root),
-                    content=row.get("content") if isinstance(row.get("content"), str) else None,
-                )
-                result[page_key(language, page.page_id)] = page
-        return result
+        path = base / f"{language}.json"
+        if not path.is_file():
+            return None
+        data = load_json(path)
+        unsigned = dict(data)
+        claimed = unsigned.pop("inventory_sha256", None)
+        if claimed != sha_object(unsigned):
+            raise UpdateError(f"Empreinte d’inventaire distant divergente : {path}")
+        if data.get("debate_id") != self.debate_id or data.get("language") != language:
+            raise UpdateError(f"Inventaire distant rattaché à un autre débat ou une autre langue : {path}")
+        if data.get("inventory_mode") != "explicit_debate_pages_read_only":
+            raise UpdateError(f"Inventaire distant non borné au débat : {path}")
+        result: dict[tuple[str, str], StatePage] = {}
+        for row in data.get("pages") or []:
+            page = StatePage(
+                language=language,
+                page_id=str(row["page_id"]),
+                page_type=str(row.get("page_type") or "unknown"),
+                title=str(row["canonical_title"]),
+                content_sha256=str(row["content_sha256"]),
+                revision_id=int(row["revision_id"]) if row.get("revision_id") is not None else None,
+                status=str(row.get("status") or "published"),
+                source_path=portable(path, self.project_root),
+                content=row.get("content") if isinstance(row.get("content"), str) else None,
+            )
+            result[page_key(language, page.page_id)] = page
+        return result, {"kind": "remote_inventory", "paths": [portable(path, self.project_root)]}
 
-    def _previous_manifest_state(self, languages: set[str]) -> dict[tuple[str, str], StatePage]:
+    def _previous_manifest_candidates(self) -> list[Path]:
         candidates: list[Path] = []
+        current_manifest = (self.corpus_root / "manifest.json").resolve()
+
+        # When ``update`` stages a new ZIP under .state/update-staging, the corpus
+        # currently installed under corpus/<debate_id> is precisely the previous
+        # installed corpus named by the user-facing contract.  Older code omitted
+        # this candidate and only looked at archives created after a promotion.
+        installed = self.project_root / "corpus" / self.debate_id / "manifest.json"
+        if installed.is_file() and installed.resolve() != current_manifest:
+            candidates.append(installed)
+
         archive_root = self.project_root / "archives" / "debates"
         if archive_root.is_dir():
             candidates.extend(
@@ -878,21 +949,65 @@ class StateResolver:
                     reverse=True,
                 )
             )
-        # A user may keep an explicitly named previous corpus beside the installed corpus.
         candidates.extend(sorted(self.project_root.glob(f"corpus/{self.debate_id}.previous*/manifest.json"), reverse=True))
-        current_manifest = self.corpus_root / "manifest.json"
-        current_sha = sha_file(current_manifest) if current_manifest.is_file() else None
-        for manifest_path in candidates:
-            if current_sha and sha_file(manifest_path) == current_sha:
+
+        unique: list[Path] = []
+        seen: set[Path] = set()
+        for path in candidates:
+            resolved = path.resolve()
+            if resolved == current_manifest or resolved in seen:
                 continue
+            seen.add(resolved)
+            unique.append(path)
+        return unique
+
+    # Compatibility wrappers retained for the 2.4.0 feature baseline and for
+    # advanced callers that imported these helpers directly.  New resolution is
+    # language-scoped; these wrappers preserve the historical aggregate shapes.
+    def _latest_state_files(self, languages: set[str]) -> dict[tuple[str, str], StatePage] | None:
+        result: dict[tuple[str, str], StatePage] = {}
+        for language in sorted(languages):
+            resolved = self._latest_state_file(language)
+            if resolved is None:
+                return None
+            pages, _source = resolved
+            result.update(pages)
+        return result
+
+    def _remote_inventory_state(self, languages: set[str]) -> dict[tuple[str, str], StatePage] | None:
+        result: dict[tuple[str, str], StatePage] = {}
+        for language in sorted(languages):
+            resolved = self._remote_inventory_language_state(language)
+            if resolved is None:
+                return None
+            pages, _source = resolved
+            result.update(pages)
+        return result
+
+    def _previous_manifest_state(self, languages: set[str]) -> dict[tuple[str, str], StatePage]:
+        result: dict[tuple[str, str], StatePage] = {}
+        manifests: list[str] = []
+        for language in sorted(languages):
+            resolved = self._previous_manifest_language_state(language)
+            if resolved is None:
+                continue
+            pages, source = resolved
+            result.update(pages)
+            if source.get("manifest"):
+                manifests.append(str(source["manifest"]))
+        if manifests:
+            self._last_manifest_path = manifests[0]
+        return result
+
+    def _previous_manifest_language_state(self, language: str) -> tuple[dict[tuple[str, str], StatePage], dict[str, Any]] | None:
+        for manifest_path in self._previous_manifest_candidates():
             manifest = load_json(manifest_path)
             if manifest.get("debate_id") != self.debate_id:
                 continue
             pages: dict[tuple[str, str], StatePage] = {}
             root = manifest_path.parent
             for row in manifest.get("pages") or []:
-                language = str(row.get("language") or "")
-                if language not in languages:
+                if str(row.get("language") or "") != language:
                     continue
                 rel = str(row.get("file_path") or row.get("source_path") or "")
                 source = root / rel if rel else None
@@ -911,10 +1026,25 @@ class StateResolver:
                     content=text,
                 )
                 pages[page_key(language, page.page_id)] = page
+            source_meta: dict[str, Any] = {
+                "kind": "previous_installed_manifest",
+                "manifest": portable(manifest_path, self.project_root),
+            }
             if pages:
-                self._last_manifest_path = portable(manifest_path, self.project_root)
-                return pages
-        return {}
+                return pages, source_meta
+
+            # A previous corpus that explicitly kept English deferred is positive
+            # evidence that this workflow had no English corpus pages to retire.
+            # It is safe as an empty baseline because any pre-existing remote title
+            # is still detected as a collision by the ordinary create preflight.
+            translation = manifest.get("translation_status") or {}
+            if language == "en" and str(translation.get("en") or "") == "deferred":
+                source_meta.update({
+                    "empty_baseline": True,
+                    "reason": "previous_manifest_translation_status_en_deferred",
+                })
+                return {}, source_meta
+        return None
 
 
 class UpdateAdapter:

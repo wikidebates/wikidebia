@@ -413,3 +413,15 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - conserve le diagnostic complet automatique et sa persistance à travers le rollback ;
 - ne modifie aucun contenu, aucune traduction, aucun verrou ni aucune règle éditoriale du corpus ;
 - conserve la norme 1.2.87.
+
+## 2.16.38 — 20 août 2026 — résolution du dernier état publié par langue
+
+- corrige `./wikidebia update` lors de la première publication bilingue après les checkpoints français : l’absence normale de `.state/published/<débat>/en/latest.json` ne fait plus ignorer le reçu français valide ;
+- résout la provenance du dernier état langue par langue, selon la priorité reçu publié → ancien manifeste installé → inventaire distant explicitement rattaché ;
+- reconnaît `corpus/<debate_id>/manifest.json` comme ancien manifeste installé lorsque le nouveau corpus provient d’un ZIP stagé sous `.state/update-staging` ;
+- accepte une baseline anglaise vide depuis cet ancien manifeste uniquement lorsque `translation_status.en=deferred` l’atteste explicitement ; sans cette preuve, le blocage « Dernier état publié introuvable » est conservé ;
+- conserve le schéma de plan 1.0 et expose la composition exacte sous `state_source.resolution=per_language_attested_v1` / `per_language` ;
+- n’écrit aucun faux `en/latest.json`, n’adopte aucune page distante inconnue et conserve les collisions, gardes de révision et protections contre les modifications humaines ;
+- ajoute deux régressions reproduisant le cas FR publié + EN différé et le cas négatif sans preuve ;
+- conserve la norme 1.2.87 et le validateur 0.4.103.
+

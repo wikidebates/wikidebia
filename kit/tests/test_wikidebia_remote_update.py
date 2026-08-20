@@ -868,3 +868,82 @@ def test_page_specific_summary_is_recomputed_and_tampering_is_blocked(tmp_path):
         assert "Résumé individualisé divergent" in str(exc) or "Résumé générique interdit" in str(exc)
     else:
         raise AssertionError("Un résumé falsifié ne doit jamais être exécuté")
+
+
+def test_first_english_publication_uses_french_receipt_and_deferred_installed_manifest(tmp_path):
+    fr_text = argument("Français déjà publié")
+    en_text = argument("English first publication")
+    config, config_path = make_fixture(
+        tmp_path,
+        languages=("fr", "en"),
+        old_pages=[("fr", "A1", "Titre FR", fr_text)],
+        new_pages=[
+            ("fr", "A1", "Titre FR", fr_text),
+            ("en", "A1", "EN title", en_text),
+        ],
+    )
+
+    # Simulate ./wikidebia update with a new archive staged outside corpus/.
+    staged = tmp_path / ".state" / "update-staging" / "candidate"
+    staged.parent.mkdir(parents=True, exist_ok=True)
+    (tmp_path / "corpus" / "demo").rename(staged)
+    config["corpus_root"] = str(staged.relative_to(tmp_path))
+    config_path.write_text(json.dumps(config), encoding="utf-8")
+
+    # The currently installed corpus is the previous French-only release.  Its
+    # explicit deferred status is the attestation that the English baseline was
+    # intentionally empty before this first bilingual publication.
+    installed = tmp_path / "corpus" / "demo"
+    (installed / "output" / "fr").mkdir(parents=True)
+    installed_fr = installed / "output" / "fr" / "A1.wiki"
+    installed_fr.write_text(fr_text, encoding="utf-8")
+    (installed / "manifest.json").write_text(json.dumps({
+        "debate_id": "demo",
+        "release_version": "previous",
+        "translation_status": {"en": "deferred"},
+        "pages": [{
+            "language": "fr",
+            "page_id": "A1",
+            "page_type": "argument",
+            "canonical_title": "Titre FR",
+            "file_path": "output/fr/A1.wiki",
+            "sha256": module.sha_file(installed_fr),
+        }],
+    }), encoding="utf-8")
+
+    # French checkpoint state exists; English has never been published.
+    (tmp_path / ".state" / "published" / "demo" / "en" / "latest.json").unlink()
+    adapter = FakeAdapter({("fr", "Titre FR"): (10, fr_text)})
+    planner = module.RemoteUpdatePlanner(config, adapter, config_path)
+    plan_data = planner.build_plan()
+
+    assert plan_data["counts"]["skip"] == 1
+    assert plan_data["counts"]["create"] == 1
+    assert plan_data["counts"]["manual_review"] == 0
+    assert plan_data["counts"]["blocked"] == 0
+    source = plan_data["state_source"]
+    assert source["resolution"] == "per_language_attested_v1"
+    assert source["per_language"]["fr"]["kind"] == "published_state_receipt"
+    assert source["per_language"]["en"]["kind"] == "previous_installed_manifest"
+    assert source["per_language"]["en"]["empty_baseline"] is True
+
+
+def test_missing_english_state_still_blocks_without_deferred_prior_evidence(tmp_path):
+    fr_text = argument("Français")
+    en_text = argument("English")
+    config, config_path = make_fixture(
+        tmp_path,
+        languages=("fr", "en"),
+        old_pages=[("fr", "A1", "Titre FR", fr_text)],
+        new_pages=[
+            ("fr", "A1", "Titre FR", fr_text),
+            ("en", "A1", "EN title", en_text),
+        ],
+    )
+    (tmp_path / ".state" / "published" / "demo" / "en" / "latest.json").unlink()
+    try:
+        module.RemoteUpdatePlanner(config, FakeAdapter({("fr", "Titre FR"): (10, fr_text)}), config_path)
+    except module.UpdateError as exc:
+        assert "Langue(s) sans preuve : en" in str(exc)
+    else:
+        raise AssertionError("une baseline anglaise inconnue a été acceptée sans preuve")

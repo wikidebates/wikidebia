@@ -4,13 +4,13 @@ Ce fichier est la source textuelle active générée par `./wikidebia upgrade`. 
 
 - norme active : **1.2.87** ;
 - validateur actif : **0.4.103** ;
-- kit actif : **2.16.37**.
+- kit actif : **2.16.38**.
 
 ## Composants associés
 
-- `wikidebia-normes.zip` — 3712249 octets — SHA-256 `0bdf8d9a0f500f97d3a8c3708eb7fb0bd9dc00c6bb8a302007e00389086f968c`
-- `wikidebia-validator.zip` — 3898590 octets — SHA-256 `aa2d10a5eb850cf79212d091754702c2c95e1fe757febdb2f868d8af0ffefc21`
-- `wikidebia-kit.zip` — 787109 octets — SHA-256 `0402fd3552e7abf3c3e18546f7c23520e697a6c86cbf4225e41db6ad8d064aa4`
+- `wikidebia-normes.zip` — 3712248 octets — SHA-256 `12a95b8551bda6ed3bcf965bc6459273f69d10f3a0c57c97c90ffac8863946b5`
+- `wikidebia-validator.zip` — 3898597 octets — SHA-256 `ac3f0201c560e2f2808a0d7c0f7f909b8086016b6de7b9be2cb179fae5d2982c`
+- `wikidebia-kit.zip` — 790107 octets — SHA-256 `0b4ed79c3168853ed5d2dc5f4d9db36dbd7726220e7b68f2e0fd89bc2a72dd54`
 
 ## Norme consolidée active
 
@@ -1648,7 +1648,7 @@ Toutes les exigences 1.1.6 restent actives sauf contradiction explicite ci-dessu
 ## État actif du validateur
 
 Source interne : `validator/README.md`  
-SHA-256 : `0a55374ec1c74d6cfd66c9a7c21743f8738a4f09becd39fd80b0c9d64251eb15`
+SHA-256 : `adb3964b071dbcbdaef59fb5f7a8290db0e9433c95346ca95bd42082b9181485`
 
 # Wikidéb’IA Validator 0.4.103
 
@@ -1658,7 +1658,7 @@ La provenance des résumés est désormais calculée dans un module unique `hist
 
 La régression reproduit l’ordre réel `wikicode → editorial` et vérifie qu’un `historical_authorized_change` français et sa traduction anglaise restent hors du profil de création. Aucun contrôle n’est assoupli pour un résumé réellement nouveau.
 
-Norme active : 1.2.87. Kit associé : 2.16.37.
+Norme active : 1.2.87. Kit associé : 2.16.38.
 
 ## Notes héritées du validateur 0.4.101
 
@@ -2069,9 +2069,19 @@ Les changelogs complets des deux branches 0.4.64 sont conservés sous `branch_hi
 ## État actif du kit
 
 Source interne : `kit/README.md`  
-SHA-256 : `afd2b4ec08d61decfee3dfe3872492b7427c7c9ebd527727e939f1683899b695`
+SHA-256 : `f714a44086258954fb067638f5f6447e98997d460507ea24a334199f564713ca`
 
-# Wikidéb’IA Kit 2.16.37
+# Wikidéb’IA Kit 2.16.38
+
+Le kit 2.16.38 corrige la reprise `update` d’une première publication bilingue après les deux checkpoints français. La résolution du dernier état publié est désormais effectuée **langue par langue** : un reçu signé `.state/published/<débat>/fr/latest.json` reste autoritatif pour le français même si aucun état anglais n’existe encore. Pour la langue anglaise manquante, le corpus précédemment installé sous `corpus/<debate_id>` peut attester une baseline vide uniquement lorsque son manifeste déclare explicitement `translation_status.en=deferred`.
+
+Lorsqu’un ZIP est stagé sous `.state/update-staging`, le corpus actuellement installé est enfin reconnu comme l’« ancien manifeste installé » prévu par le contrat de reprise. Une baseline inconnue continue de bloquer : l’absence d’état anglais n’est jamais transformée en preuve par défaut. Les collisions distantes restent contrôlées par le préflight ordinaire, et aucun état publié artificiel n’est écrit.
+
+Le plan conserve le schéma historique `wikidebia-remote-update-plan-1.0`; en cas de sources différentes selon la langue, `state_source` enregistre `resolution=per_language_attested_v1` et détaille la provenance exacte sous `per_language`. Deux régressions couvrent le cas réel FR publié + EN différé et le maintien du blocage sans preuve de différé.
+
+Norme active : 1.2.87. Validateur associé : 0.4.103.
+
+## Notes héritées du kit 2.16.37
 
 Le kit 2.16.37 accompagne le validateur 0.4.103, qui corrige la cause racine du blocage répété du vote électronique : la provenance historique des résumés était calculée deux fois, différemment, par `wikicode` et `editorial`, avec un cache partagé. Le rendu n’a pas besoin de réécrire les résumés ni leurs attestations ; le préflight utilise désormais une seule source de vérité interne.
 
@@ -2240,7 +2250,7 @@ Les numéros de release sont une provenance. La compatibilité opérationnelle e
 ## Changelog du kit
 
 Source interne : `kit/CHANGELOG.md`  
-SHA-256 : `b842f174b1a07de61e72855ecbc23ab4a40cdd5d76d5188b8c9242fe63720f2a`
+SHA-256 : `e1b91aee2d0e60c675563bd7f41152b2649863e5fd71bc054e2203f74dc7bbf9`
 
 ## 2.15.54 — 10 août 2026 — alignement des métadonnées de première publication anglaise
 
@@ -2658,6 +2668,17 @@ L’historique exact des deux branches antérieures est conservé sous `branch_h
 - ne modifie aucun contenu, aucune traduction, aucun verrou ni aucune règle éditoriale du corpus ;
 - conserve la norme 1.2.87.
 
+## 2.16.38 — 20 août 2026 — résolution du dernier état publié par langue
+
+- corrige `./wikidebia update` lors de la première publication bilingue après les checkpoints français : l’absence normale de `.state/published/<débat>/en/latest.json` ne fait plus ignorer le reçu français valide ;
+- résout la provenance du dernier état langue par langue, selon la priorité reçu publié → ancien manifeste installé → inventaire distant explicitement rattaché ;
+- reconnaît `corpus/<debate_id>/manifest.json` comme ancien manifeste installé lorsque le nouveau corpus provient d’un ZIP stagé sous `.state/update-staging` ;
+- accepte une baseline anglaise vide depuis cet ancien manifeste uniquement lorsque `translation_status.en=deferred` l’atteste explicitement ; sans cette preuve, le blocage « Dernier état publié introuvable » est conservé ;
+- conserve le schéma de plan 1.0 et expose la composition exacte sous `state_source.resolution=per_language_attested_v1` / `per_language` ;
+- n’écrit aucun faux `en/latest.json`, n’adopte aucune page distante inconnue et conserve les collisions, gardes de révision et protections contre les modifications humaines ;
+- ajoute deux régressions reproduisant le cas FR publié + EN différé et le cas négatif sans preuve ;
+- conserve la norme 1.2.87 et le validateur 0.4.103.
+
 ## Guide de publication
 
 Source interne : `kit/GUIDE_PUBLICATION.md`  
@@ -2950,17 +2971,18 @@ La primitive basse `--apply` reste locale. Dans le workflow utilisateur `review-
 ## Rapport de tests du kit
 
 Source interne : `kit/TEST_REPORT.txt`  
-SHA-256 : `b63dd23df555edc703279579dbf207b2ca94a57e0a902eace81f1f87882451f4`
+SHA-256 : `f60741a737aded24a451b8a7633999a9dff365b475f321053ad3738b859fa605`
 
-Wikidéb’IA Kit 2.16.37 — rapport de tests
+Wikidéb’IA Kit 2.16.38 — rapport de tests
 
-Tests pytest : 509 réussis
+Tests pytest : 511 réussis
 Norme : 1.2.87
 Validateur : 0.4.103
 
 Runtime validator attestation : PASSED ; quatre modules critiques sont scellés.
 Validation diagnostic export : PASSED ; liste exhaustive et persistance transactionnelle conservées.
 Historical summary provenance regression : PASSED via le validateur 0.4.103.
+Remote update per-language state resolution : PASSED ; reçu FR + baseline EN différée acceptés, absence de preuve toujours bloquante.
 
 ## Guide d’orchestration éditoriale
 
