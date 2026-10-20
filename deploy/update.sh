@@ -29,11 +29,19 @@ target=$(git -C "$repo" rev-parse --verify 'FETCH_HEAD^{commit}')
 before=$(git -C "$repo" rev-parse HEAD)
 git -C "$repo" merge-base --is-ancestor "$before" "$target" || fail "historique divergent : aucun reset automatique"
 # Ne jamais remplacer les chemins réservés aux données locales par du code suivi.
+# ls-tree -r énumère les fichiers/liens, pas les répertoires ordinaires :
+# protéger aussi les parents (ex. config) et les racines (ex. corpus).
+reserved_paths=(
+  private corpus archives updates incoming outgoing logs plans .state .venv
+  configs apicache config/wikidebia.local.json .gitconfig-wikidebia
+  user-config.py user-password.cfg throttle.ctrl
+)
 while IFS= read -r -d '' tracked; do
-  case "$tracked" in
-    private/*|corpus/*|archives/*|updates/*|incoming/*|outgoing/*|logs/*|plans/*|.state/*|.venv/*|configs/*|apicache/*|config/wikidebia.local.json|.gitconfig-wikidebia|user-config.py|user-password.cfg|throttle.ctrl)
-      fail "le commit distant suit un chemin réservé aux données locales : $tracked" ;;
-  esac
+  for reserved in "${reserved_paths[@]}"; do
+    if [[ "$tracked" == "$reserved" || "$tracked" == "$reserved/"* || "$reserved" == "$tracked/"* ]]; then
+      fail "le commit distant suit un chemin réservé aux données locales : $tracked"
+    fi
+  done
 done < <(git -C "$repo" ls-tree -rz --name-only "$target")
 marker="$repo/.state/deployed-commit"
 if [[ "$before" == "$target" && -f "$marker" && $(cat "$marker") == "$target" ]]; then
@@ -49,6 +57,8 @@ git -C "$repo" archive "$target" | tar -x -C "$candidate"
 test_python="$candidate/.venv/bin/python"
 "$test_python" -m pip install --disable-pip-version-check -r "$candidate/requirements-runtime.txt" -r "$candidate/validator/requirements-dev.txt"
 "$test_python" -m pip check
+# Réutiliser exactement les versions validées lors de l'installation réelle.
+"$test_python" -m pip freeze > "$candidate/validated-requirements.txt"
 (
   cd "$candidate"
   PYTHONPATH=validator/src "$test_python" -m pytest -q validator/tests
@@ -63,7 +73,7 @@ git -C "$repo" merge --ff-only "$target"
 if [[ ! -x "$repo/.venv/bin/python" ]]; then
   "$python" -m venv "$repo/.venv"
 fi
-"$repo/.venv/bin/python" -m pip install --disable-pip-version-check -r "$repo/requirements-runtime.txt"
+"$repo/.venv/bin/python" -m pip install --disable-pip-version-check --constraint "$candidate/validated-requirements.txt" -r "$repo/requirements-runtime.txt"
 "$repo/.venv/bin/python" -m pip check
 "$repo/wikidebia" doctor
 mkdir -p -- "$repo/.state"

@@ -10,6 +10,12 @@ import unittest
 
 
 SCRIPT = Path(__file__).resolve().parents[1] / "update.sh"
+RESERVED_PATHS = (
+    "private", "corpus", "archives", "updates", "incoming", "outgoing",
+    "logs", "plans", ".state", ".venv", "configs", "apicache",
+    "config/wikidebia.local.json", ".gitconfig-wikidebia", "user-config.py",
+    "user-password.cfg", "throttle.ctrl",
+)
 
 
 class DeploymentTests(unittest.TestCase):
@@ -23,7 +29,9 @@ class DeploymentTests(unittest.TestCase):
         self.git("init", "-b", "main", str(self.source))
         self.git("-C", str(self.source), "config", "user.email", "deploy@example.invalid")
         self.git("-C", str(self.source), "config", "user.name", "Deployment test")
-        (self.source / ".gitignore").write_text(".venv/\n.state/\nprivate/\ncorpus/\n")
+        (self.source / ".gitignore").write_text(
+            "".join(f"/{path}\n" for path in RESERVED_PATHS)
+        )
         (self.source / "requirements-runtime.txt").write_text("")
         (self.source / "wikidebia").write_text(
             '#!/bin/bash\n[[ ! -e "$(dirname "$0")/fail-doctor" ]]\n'
@@ -40,6 +48,8 @@ class DeploymentTests(unittest.TestCase):
         # Le faux interpréteur crée un venv sans télécharger de dépendances.
         # Il rejette les tests lorsqu'un commit contient fail-validation.
         self.python = self.root / "python-fixture"
+        self.pip_constraints_log = self.root / "pip-constraints.log"
+        self.env["DEPLOY_TEST_CONSTRAINTS_LOG"] = str(self.pip_constraints_log)
         self.python.write_text(
             '#!/bin/bash\nset -eu\n'
             'if [[ "${1:-}" == -m && "${2:-}" == venv ]]; then\n'
@@ -47,6 +57,16 @@ class DeploymentTests(unittest.TestCase):
             '  cp "$0" "$3/bin/python"\n'
             'elif [[ "${1:-}" == -m && "${2:-}" == pytest ]]; then\n'
             '  [[ ! -e fail-validation ]]\n'
+            'elif [[ "${1:-}" == -m && "${2:-}" == pip && "${3:-}" == freeze ]]; then\n'
+            '  printf "fixture-dependency==1.0\\n"\n'
+            'elif [[ "${1:-}" == -m && "${2:-}" == pip && "${3:-}" == install ]]; then\n'
+            '  while [[ $# -gt 0 ]]; do\n'
+            '    if [[ "$1" == --constraint ]]; then\n'
+            '      cat "$2" >> "$DEPLOY_TEST_CONSTRAINTS_LOG"\n'
+            '      break\n'
+            '    fi\n'
+            '    shift\n'
+            '  done\n'
             'fi\n'
         )
         self.python.chmod(0o700)
@@ -98,6 +118,16 @@ class DeploymentTests(unittest.TestCase):
         self.assertEqual(self.head(), self.initial)
         self.assertFalse((self.repo / ".state/deployed-commit").exists())
 
+    def test_installation_reuses_validated_dependency_versions(self):
+        (self.source / "version").write_text("2")
+        target = self.commit("new version with validated dependencies")
+        result = self.update()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.head(), target)
+        self.assertEqual(
+            self.pip_constraints_log.read_text(), "fixture-dependency==1.0\n"
+        )
+
     def test_local_changes_are_preserved(self):
         (self.repo / "version").write_text("local edit")
         self.assertNotEqual(self.update().returncode, 0)
@@ -123,6 +153,69 @@ class DeploymentTests(unittest.TestCase):
         self.commit("forbidden private path")
         self.assertNotEqual(self.update().returncode, 0)
         self.assertEqual(self.head(), self.initial)
+
+    def assert_reserved_path_is_rejected(self, path, *, symlink=False):
+        # Le refus doit précéder toute installation ou exécution du candidat.
+        self.python.write_text("#!/bin/sh\nexit 99\n")
+        remote_path = self.source / path
+        remote_path.parent.mkdir(parents=True, exist_ok=True)
+        if symlink:
+            remote_path.symlink_to("replacement-target")
+        else:
+            remote_path.write_text("must not replace local data\n")
+        self.git("-C", str(self.source), "add", "-f", "--", path)
+        self.commit("forbidden reserved path")
+        try:
+            result = self.update()
+            self.assertNotEqual(result.returncode, 0, result.stdout)
+            self.assertIn(
+                f"chemin réservé aux données locales : {path}", result.stderr
+            )
+            self.assertEqual(self.head(), self.initial)
+            self.assertEqual(
+                (self.repo / "private/pywikibot/user-config.py").read_text(),
+                "secret sentinel",
+            )
+            self.assertEqual(
+                (self.repo / "corpus/example").read_text(), "corpus sentinel"
+            )
+            self.assertFalse((self.repo / ".state/deployed-commit").exists())
+        finally:
+            # Chaque sous-cas doit être le seul chemin interdit du commit distant.
+            self.git("-C", str(self.source), "rm", "--", path)
+            self.commit("remove forbidden test path")
+            if remote_path.parent != self.source and remote_path.parent.exists():
+                remote_path.parent.rmdir()
+
+    def test_reserved_roots_cannot_be_replaced_by_files(self):
+        for path in RESERVED_PATHS:
+            with self.subTest(path=path):
+                self.assert_reserved_path_is_rejected(path)
+
+    def test_reserved_roots_cannot_be_replaced_by_symlinks(self):
+        for path in RESERVED_PATHS:
+            with self.subTest(path=path):
+                self.assert_reserved_path_is_rejected(path, symlink=True)
+
+    def test_local_configuration_parent_cannot_be_replaced(self):
+        (self.repo / "config").mkdir()
+        local_config = self.repo / "config/wikidebia.local.json"
+        local_config.write_text("local configuration sentinel")
+        for symlink in (False, True):
+            with self.subTest(symlink=symlink):
+                self.assert_reserved_path_is_rejected("config", symlink=symlink)
+                self.assertEqual(local_config.read_text(), "local configuration sentinel")
+
+    def test_reserved_file_cannot_be_replaced_by_directory(self):
+        self.assert_reserved_path_is_rejected("user-config.py/child")
+
+    def test_tracked_configuration_example_remains_allowed(self):
+        (self.source / "config").mkdir()
+        (self.source / "config/wikidebia.example.json").write_text("{}\n")
+        target = self.commit("public configuration example")
+        result = self.update()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(self.head(), target)
 
     def test_doctor_failure_does_not_mark_success(self):
         (self.source / "fail-doctor").touch()
