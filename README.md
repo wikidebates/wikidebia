@@ -13,6 +13,9 @@
 
 Les secrets Pywikibot résident dans `private/pywikibot/`. Les corpus, plans, reçus, états, journaux et archives ne sont pas versionnés.
 
+Pour mettre à jour automatiquement une installation Debian après fusion sur GitHub,
+voir [le déploiement depuis Codex Web](deploy/README.md).
+
 ## Mise à niveau par bundle unique
 
 Vider les anciens ZIP de `updates/`, y déposer uniquement le bundle complet reçu, puis lancer `./wikidebia upgrade`. Le bundle contient les trois composants et le gestionnaire les extrait automatiquement.
