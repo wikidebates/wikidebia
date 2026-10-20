@@ -19,6 +19,8 @@ import time
 BRANCH = "wiki-fr-publication"
 SCHEMA = "wikidebia-fr-publication-request-1.0"
 SITE = "https://fr.wikidebates.org"
+VERIFICATION_ATTEMPTS = 8
+VERIFICATION_DELAY_SECONDS = 2
 
 
 class Blocked(RuntimeError):
@@ -130,6 +132,48 @@ def inspect_page(adapter, row: dict) -> dict:
     return {"title": old, "revision": revision, "text": text, "move": old != new}
 
 
+def update_summary(row: dict) -> str:
+    return f"Corrections des titres et liens d'arguments dans [[{row['new_title']}]]"
+
+
+def verify_update(adapter, row: dict, revision: int, base_revision: int, expected_user: str) -> None:
+    # Change tags and other revision metadata may briefly lag behind the edit.
+    # Retry reads of the exact revision, never the edit itself.
+    for attempt in range(VERIFICATION_ATTEMPTS):
+        actual = adapter.read_revision(row["new_title"], revision)
+        if not actual:
+            mismatches = ["révision introuvable"]
+        else:
+            checks = {
+                "identifiant de révision": actual.get("revision_id") == revision,
+                "révision parente": actual.get("parent_id") == base_revision,
+                "auteur": actual.get("user") == expected_user,
+                "résumé": actual.get("summary") == update_summary(row),
+                "balise chatgpt": "chatgpt" in (actual.get("tags") or []),
+                "contenu": digest(actual.get("text", "").encode()) == row["target_sha256"],
+            }
+            mismatches = [name for name, matches in checks.items() if not matches]
+        if not mismatches:
+            return
+        if attempt + 1 < VERIFICATION_ATTEMPTS:
+            time.sleep(VERIFICATION_DELAY_SECONDS)
+    raise Blocked(f"Relecture de la modification divergente : {row['new_title']} "
+                  f"(révision {revision}, après {VERIFICATION_ATTEMPTS} relectures) : {', '.join(mismatches)}")
+
+
+def pending_updates(events: list[dict]) -> dict[str, dict]:
+    pending = {}
+    for event in events:
+        operation, title = event.get("operation"), event.get("title")
+        if operation == "update_requested":
+            pending[title] = dict(event)
+        elif operation == "update_written" and title in pending:
+            pending[title]["revision_id"] = event["revision_id"]
+        elif operation == "update":
+            pending.pop(title, None)
+    return pending
+
+
 def publish_request(root: Path, request_dir: Path, adapter, expected_user: str, *, execute: bool = False, delay: float = 0.5) -> dict:
     request = load_request(request_dir)
     state_path = state_file(root, request["request_id"])
@@ -152,13 +196,27 @@ def publish_request(root: Path, request_dir: Path, adapter, expected_user: str, 
             raise Blocked("Droits MediaWiki insuffisants")
         if "chatgpt" not in adapter.available_change_tags():
             raise Blocked("Balise chatgpt indisponible")
-        # Validate the complete request before the first mutation.
+        # Validate the complete request, including interrupted writes, before
+        # the first new mutation. Older receipts only recorded update_requested.
+        pending = pending_updates(receipt["events"])
+        recovered = []
         for row in request["pages"]:
             adapter.assert_main_namespace(row["old_title"])
             adapter.assert_main_namespace(row["new_title"])
-            inspect_page(adapter, row)
+            current = inspect_page(adapter, row)
+            interrupted = pending.get(row["new_title"])
+            if interrupted:
+                at_target = digest(current["text"].encode()) == row["target_sha256"]
+                if interrupted.get("revision_id") is not None and not at_target:
+                    raise Blocked(f"Contenu modifié après une écriture interrompue : {row['new_title']}")
+                if at_target:
+                    revision = interrupted.get("revision_id", current["revision"])
+                    verify_update(adapter, row, revision, interrupted["base_revision_id"], expected_user)
+                    recovered.append({"operation": "update", "title": row["new_title"],
+                                      "revision_id": revision, "recovered": True})
         if not execute:
             return {**receipt, "status": "ready", "remote_write_performed": False}
+        receipt["events"].extend(recovered)
         receipt["status"] = "running"
         write_json(state_path, receipt)
         for row in sorted(request["pages"], key=lambda r: r["old_title"] == r["new_title"]):
@@ -182,16 +240,16 @@ def publish_request(root: Path, request_dir: Path, adapter, expected_user: str, 
             desired = safe_file(request_dir, row["after_file"]).read_text(encoding="utf-8")
             if digest(current["text"].encode()) == row["target_sha256"]:
                 continue
-            summary = f"Corrections des titres et liens d'arguments dans [[{row['new_title']}]]"
+            summary = update_summary(row)
             adapter.assert_identity(expected_user)
             receipt["events"].append({"operation": "update_requested", "title": row["new_title"], "base_revision_id": current["revision"]})
             write_json(state_path, receipt)
             revision = adapter.write_page(title=row["new_title"], text=desired, summary=summary,
                 tags=["chatgpt"], expected_user=expected_user, create_only=False, base_revision_id=current["revision"])
-            actual = adapter.read_revision(row["new_title"], revision)
-            if (not actual or actual.get("user") != expected_user or actual.get("summary") != summary
-                    or "chatgpt" not in actual.get("tags", []) or digest(actual.get("text", "").encode()) != row["target_sha256"]):
-                raise Blocked("Relecture de la modification divergente")
+            receipt["events"].append({"operation": "update_written", "title": row["new_title"],
+                                      "revision_id": revision})
+            write_json(state_path, receipt)
+            verify_update(adapter, row, revision, current["revision"], expected_user)
             receipt["events"].append({"operation": "update", "title": row["new_title"], "revision_id": revision})
             write_json(state_path, receipt)
             time.sleep(delay)

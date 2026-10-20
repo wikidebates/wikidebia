@@ -88,6 +88,19 @@ peut être repris au passage suivant ; les renommages déjà effectués sont rec
 par leurs redirections et leurs contenus. Un conflit éditorial exige une nouvelle
 revue ; il n'est pas retenté en boucle.
 
+Après une édition, le relais relit la révision exacte jusqu'à huit fois, avec deux
+secondes entre les lectures, pour attendre la visibilité des métadonnées MediaWiki.
+L'identifiant, la révision parente, le compte, le résumé, la balise `chatgpt` et le
+SHA-256 du contenu doivent tous correspondre. L'édition n'est pas répétée pendant
+ces vérifications ; une divergence persistante reste bloquante et son champ est
+indiqué dans le journal.
+
+Le reçu conserve aussi la révision renvoyée par chaque édition avant sa relecture.
+Lors d'une reprise explicite, une édition interrompue est vérifiée et ajoutée au
+journal avant toute nouvelle écriture, sans être répétée. Les anciens reçus qui
+n'avaient enregistré que `update_requested` sont conservés : le relais vérifie
+alors la révision courante et sa révision parente avant de poursuivre.
+
 Après diagnostic et résolution d'un conflit, une reprise explicite est possible :
 
 ```bash
