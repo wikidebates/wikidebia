@@ -5,6 +5,8 @@ import json
 import sys
 from pathlib import Path
 
+import pytest
+
 SCRIPTS = Path(__file__).resolve().parents[1] / "scripts"
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
@@ -94,7 +96,7 @@ def argument(text: str) -> str:
     return "{{Argument\n" + MARKER + f"|résumé={text}\n|rubriques=Société\n}}}}\n"
 
 
-def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages=None, migrations=None, remote_adoptions=None):
+def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages=None, migrations=None, remote_adoptions=None, authorize_summary_changes=True):
     root = tmp_path
     corpus = root / "corpus" / "demo"
     corpus.mkdir(parents=True)
@@ -114,6 +116,13 @@ def make_fixture(tmp_path: Path, *, languages=("fr",), old_pages=None, new_pages
             "file_path": path.relative_to(corpus).as_posix(),
             "sha256": module.sha_file(path),
         })
+        if authorize_summary_changes:
+            # Existing update tests deliberately change their argument prose.
+            # Scope regressions below explicitly omit this permission.
+            manifest_pages[-1]["summary_change_authorization"] = {
+                "decision": "explicit_user_request", "action": "edit",
+                "instruction": "Réécris le résumé de cet argument pour ce scénario de test.",
+            }
     manifest = {"debate_id": "demo", "release_version": "2026-07-31", "pages": manifest_pages}
     if remote_adoptions:
         manifest["editorial_controls"] = {
@@ -716,6 +725,63 @@ def test_non_interlanguage_french_update_gets_diff_specific_summary(tmp_path):
     receipt = executor.execute(p, p["plan_sha256"])
     assert receipt["results"][0]["edit_summary"] == "Mise à jour du résumé"
     assert receipt["results"][0]["edit_summary"] != "Corrections"
+
+
+@pytest.mark.parametrize("operation", ["update", "move"])
+@pytest.mark.parametrize("old,new", [
+    ("{{Argument|citations=Source}}", "{{Argument|résumé=Ajout|citations=Source}}"),
+    (argument(""), argument("Ajout")),
+    (argument("Ancien"), argument("Nouveau")),
+    (argument("Ancien"), argument("")),
+])
+def test_existing_summary_cannot_change_under_a_generic_update_scope(tmp_path, operation, old, new):
+    p, _, _, adapter = plan(
+        tmp_path, authorize_summary_changes=False,
+        old_pages=[("fr", "A1", "Titre", old)],
+        new_pages=[("fr", "A1", "Renommé" if operation == "move" else "Titre", new)],
+        remote_pages={("fr", "Titre"): (10, old)},
+    )
+    assert p["counts"]["blocked"] == 1
+    assert "résumé" in p["operations"]["blocked"][0]["justification"]
+    assert not any(e[0] in {"write", "move"} for e in adapter.events)
+
+
+def test_citation_fix_preserves_existing_summary_without_summary_permission(tmp_path):
+    old = "{{Argument|résumé=Résumé historique|citations=Ancienne source}}"
+    new = old.replace("Ancienne source", "Source corrigée")
+    p, config, path, adapter = plan(
+        tmp_path, authorize_summary_changes=False,
+        old_pages=[("fr", "A1", "Titre", old)], new_pages=[("fr", "A1", "Titre", new)],
+        remote_pages={("fr", "Titre"): (10, old)},
+    )
+    assert p["operations"]["update"][0]["edit_summary"] == "Mise à jour des citations"
+    module.PlanExecutor(config, adapter, path).execute(p, p["plan_sha256"])
+    assert module.top_level_parameter_map(adapter.pages[("fr", "Titre")][1], "fr", "argument")[2] == module.top_level_parameter_map(new, "fr", "argument")[2]
+
+
+def test_legacy_plan_without_specific_summary_permission_is_blocked_before_first_write(tmp_path):
+    old, new = argument("Ancien"), argument("Nouveau")
+    p, config, path, adapter = plan(
+        tmp_path, old_pages=[("fr", "A1", "Titre", old)],
+        new_pages=[("fr", "A1", "Titre", new), ("fr", "A0", "Nouvelle page", argument("Création"))],
+        remote_pages={("fr", "Titre"): (10, old)},
+    )
+    p["operations"]["update"][0].pop("summary_change_authorization")
+    p.pop("plan_sha256")
+    p["plan_sha256"] = module.sha_object(p)
+    with pytest.raises(module.PlanConflict, match="résumé"):
+        module.PlanExecutor(config, adapter, path).execute(p, p["plan_sha256"])
+    assert not any(e[0] in {"write", "move"} for e in adapter.events)
+
+
+def test_english_argument_summary_has_the_same_default_protection(tmp_path):
+    old, new = "{{Argument|summary=Original}}", "{{Argument|summary=Rewritten}}"
+    p, *_ = plan(
+        tmp_path, languages=("en",), authorize_summary_changes=False,
+        old_pages=[("en", "A1", "Title", old)], new_pages=[("en", "A1", "Title", new)],
+        remote_pages={("en", "Title"): (10, old)},
+    )
+    assert p["counts"]["blocked"] == 1
 
 
 def test_remote_page_without_expected_main_template_is_page_specific_manual_review(tmp_path):

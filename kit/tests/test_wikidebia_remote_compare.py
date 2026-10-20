@@ -71,7 +71,7 @@ def fake_validate_plan(project_root, plan_path, json_path, text_path):
     return report
 
 
-def make_release(tmp_path: Path):
+def make_release(tmp_path: Path, *, authorize_summary_changes=True):
     project = tmp_path / "project"
     work_id = "EDIT-REMOTE-001"
     workspace = project / ".state/editorial-workspaces/debat_test" / work_id
@@ -103,6 +103,11 @@ def make_release(tmp_path: Path):
         {"language": "en", "page_id": "debat_test", "page_type": "debate", "canonical_title": "Test debate", "file_path": "output/en/debate/debate.wiki"},
         {"language": "en", "page_id": "A0001", "page_type": "argument", "canonical_title": "Improved argument", "file_path": "output/en/arguments/A0001.wiki"},
     ]
+    if authorize_summary_changes:
+        pages[1]["summary_change_authorization"] = {
+            "decision": "explicit_user_request", "action": "edit",
+            "instruction": "Réécris le résumé de cet argument pour ce scénario de comparaison.",
+        }
     manifest = {
         "debate_id": "debat_test", "global_status": "release_ready", "version": "test-release",
         "publication_gate": {"remote_write_authorized": False}, "pages": pages,
