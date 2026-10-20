@@ -1,0 +1,18 @@
+{{Argument
+|citations={{Citation
+|citation=52% des Français jugent que la vente de cannabis sous le contrôle de l’Etat serait plus efficace que l’interdiction pour lutter contre le trafic.
+|auteurs=IPSOS
+|article=Une majorité de Français pour la légalisation du cannabis
+|date=11/10/2016
+|lien=https://www.newsweed.fr/francais-legalisation-cannabis/
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://www.ofdt.fr/cannabis-resine-herbe-huile-cbd-synthese-des-connaissances-1724
+|page=Cannabis (résine, herbe, huile, CBD) — Synthèse des connaissances
+|site=OFDT
+}}
+
+|rubriques=Société
+|mots-clés=Cannabis, Légalisation, Opinion publique
+|date-création=2021-02-16
+}}

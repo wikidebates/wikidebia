@@ -1,0 +1,20 @@
+{{Argument
+|citations={{Citation
+|citation=Les lois prohibitives ont fait du commerce illicite de drogues un marché florissant à l'échelle internationale.
+En effet, la façon d'opérer de ces vendeurs répond aux mêmes besoins que n'importe quel marché licite : repérer une clientèle potentielle, s'assurer de sa régularité, créer de nouvelles clientèles, etc. Toutefois, le commerce, la concentration et la qualité des produits n'étant pas réglementés, tous les coups sont permis pour accroître ce marché, que ce soit la vente de drogues aux enfants ou la mise sur le marché de produits extrêmement toxiques. L'objectif de certains vendeurs est de créer un acheteur à vie du produit en stimulant des modes de consommation qui peuvent créer plus facilement de la dépendance que d'autres modes de consommation plus sécuritaires. Egalement, on fait varier les produits dans le temps pour conserver l'intérêt de la clientèle en créant des modes, en lançant régulièrement sur le marché de nouveaux produits […]. On essaie aussi d'atteindre la clientèle la plus variée possible en ayant des drogues couvrant une large gamme de prix […]. On cherche de la même manière à étendre géographiquement le marché en faisant du dumping de drogues dans certaines régions jusque là peu atteintes pour attirer de nouvelles clientèles. Il n'y a pas lieu de s'étonner de cette situation. Le marché des drogues illicites est un marché très rentable qui couvre la planète. Cela vaut la peine pour les vendeurs d'utiliser les meilleures techniques possibles de distribution et de promotion de leurs produits.
+|auteurs=Lise Beauchesne
+|ouvrage=Les drogues. Les coûts cachés de la prohibition
+|édition= Lanctôt
+|date=2003
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://www.canada.ca/fr/sante-canada/services/publications/drogues-medicaments/examen-legislatif-loi-cannabis-rapport-final-comite-experts.html
+|page=Examen législatif de la Loi sur le cannabis : Rapport final du Comité d’experts
+|site=Santé Canada
+|date=2024
+}}
+
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

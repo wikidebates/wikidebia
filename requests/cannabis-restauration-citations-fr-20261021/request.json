@@ -1,0 +1,299 @@
+{
+  "schema": "wikidebia-fr-publication-request-1.2",
+  "request_id": "cannabis-restauration-citations-fr-20261021",
+  "language": "fr",
+  "site": "https://fr.wikidebates.org",
+  "authorization": "explicit_user_request",
+  "authorization_text": "Un autre problème, c'est que tu as supprimé des citations !!! N'importe quoi. Dis le dans le code et rétablis les",
+  "prepared_at": "2026-10-20T22:06:33.870453+00:00",
+  "repairs_request_id": "cannabis-relecture-fr-20261020",
+  "preserves_completed_summary_restoration": "cannabis-restauration-resumes-fr-20261020",
+  "pages": [
+    {
+      "page_id": "page-0002",
+      "old_title": "Avant de supprimer la loi de 1970 sur les drogues, il faut la faire appliquer",
+      "new_title": "Avant de supprimer la loi de 1970 sur les drogues, il faut la faire appliquer",
+      "source_revision_id": 245526,
+      "source_sha256": "168b950b58890fa917118642e1ed3d757165cbc530d207a142649f6bf693cfd5",
+      "target_sha256": "1071d412fe280e96595d8e1c4f96b0820f5ad69938570255ca170e4f69d8a71f",
+      "before_file": "before/page-0002.wiki",
+      "after_file": "after/page-0002.wiki",
+      "citation_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Un autre problème, c'est que tu as supprimé des citations !!! N'importe quoi. Dis le dans le code et rétablis les"
+      },
+      "edit_summary": "Restauration des citations antérieures ; annulation des retraits non demandés",
+      "reason": "Rétablir exactement le champ citations antérieur, avec le texte, les attributions et les références originales ; conserver tous les autres octets, y compris le résumé restauré.",
+      "historical_source_revision_id": 222170,
+      "historical_source_sha256": "1071d412fe280e96595d8e1c4f96b0820f5ad69938570255ca170e4f69d8a71f"
+    },
+    {
+      "page_id": "page-0047",
+      "old_title": "La loi de 1970 sur les drogues est difficilement applicable",
+      "new_title": "La loi de 1970 sur les drogues est difficilement applicable",
+      "source_revision_id": 245543,
+      "source_sha256": "f94e8bab38208cf5f2a3a13e105f404aff7495c169a95046b3f813aef1f37102",
+      "target_sha256": "4e2b90541eef813594421ceb715600382c60c862d438ff896edeccefd19bcde5",
+      "before_file": "before/page-0047.wiki",
+      "after_file": "after/page-0047.wiki",
+      "citation_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Un autre problème, c'est que tu as supprimé des citations !!! N'importe quoi. Dis le dans le code et rétablis les"
+      },
+      "edit_summary": "Restauration des citations antérieures ; annulation des retraits non demandés",
+      "reason": "Rétablir exactement le champ citations antérieur, avec le texte, les attributions et les références originales ; conserver tous les autres octets, y compris le résumé restauré.",
+      "historical_source_revision_id": 206576,
+      "historical_source_sha256": "4e2b90541eef813594421ceb715600382c60c862d438ff896edeccefd19bcde5"
+    },
+    {
+      "page_id": "page-0056",
+      "old_title": "La légalisation contrôlée par l'État fonctionne",
+      "new_title": "La légalisation contrôlée par l'État fonctionne",
+      "source_revision_id": 245606,
+      "source_sha256": "acae40d4e53cb13746e897da9ef5fe14d2fb0eefbf8358c8cc5131463496e1a7",
+      "target_sha256": "a4902b98dea640ad7f4478a8fdf95d95291b7e50b83fb4d865098ea0c6de72d8",
+      "before_file": "before/page-0056.wiki",
+      "after_file": "after/page-0056.wiki",
+      "citation_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Un autre problème, c'est que tu as supprimé des citations !!! N'importe quoi. Dis le dans le code et rétablis les"
+      },
+      "edit_summary": "Restauration des citations antérieures ; annulation des retraits non demandés",
+      "reason": "Rétablir exactement le champ citations antérieur, avec le texte, les attributions et les références originales ; conserver tous les autres octets, y compris le résumé restauré.",
+      "historical_source_revision_id": 245502,
+      "historical_source_sha256": "19889a8419bd2f5664c29e622a9fe8b3faf987b7736f10e61a25a51464d43c8f"
+    },
+    {
+      "page_id": "page-0060",
+      "old_title": "La légalisation du cannabis encourage une économie de dépendance",
+      "new_title": "La légalisation du cannabis encourage une économie de dépendance",
+      "source_revision_id": 245608,
+      "source_sha256": "16491df497154a5377c93fe02f61b3dda0f26f2d56d90a92572b87dd092cafb1",
+      "target_sha256": "ee7347e72491540d1a0a85480fe356021946c3ed8acdb5b6574f953be664a431",
+      "before_file": "before/page-0060.wiki",
+      "after_file": "after/page-0060.wiki",
+      "citation_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Un autre problème, c'est que tu as supprimé des citations !!! N'importe quoi. Dis le dans le code et rétablis les"
+      },
+      "edit_summary": "Restauration des citations antérieures ; annulation des retraits non demandés",
+      "reason": "Rétablir exactement le champ citations antérieur, avec le texte, les attributions et les références originales ; conserver tous les autres octets, y compris le résumé restauré.",
+      "historical_source_revision_id": 245476,
+      "historical_source_sha256": "cb07380e48f7b04911d05b6daa65d11573fb0641d50b31412a89e63cc9d80a94"
+    },
+    {
+      "page_id": "page-0067",
+      "old_title": "La légalisation du cannabis permet un contrôle qualité",
+      "new_title": "La légalisation du cannabis permet un contrôle qualité",
+      "source_revision_id": 245612,
+      "source_sha256": "bb8e86b2d88caa12af53bd1ff53a00d04429cbb4b35d95fad7085febc1c60c0f",
+      "target_sha256": "464a5dd10984246974d614c0d144588b28b5d5188eb0e65923c5f1a3b3285a15",
+      "before_file": "before/page-0067.wiki",
+      "after_file": "after/page-0067.wiki",
+      "citation_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Un autre problème, c'est que tu as supprimé des citations !!! N'importe quoi. Dis le dans le code et rétablis les"
+      },
+      "edit_summary": "Restauration des citations antérieures ; annulation des retraits non demandés",
+      "reason": "Rétablir exactement le champ citations antérieur, avec le texte, les attributions et les références originales ; conserver tous les autres octets, y compris le résumé restauré.",
+      "historical_source_revision_id": 245501,
+      "historical_source_sha256": "5884319c38c35a541aa798566bad6d16e3f53a1e4112db48cb4f10e4290c72a4"
+    },
+    {
+      "page_id": "page-0075",
+      "old_title": "La légalisation du cannabis risque d'accroître la consommation",
+      "new_title": "La légalisation du cannabis risque d'accroître la consommation",
+      "source_revision_id": 245616,
+      "source_sha256": "712dced15f86ac12bbc5673480ce21cdd5cd596d2e41f028a3c963e3e01abae0",
+      "target_sha256": "8a2dee0561cfb9cd264b35f9b721e2256120154b6c384291f3f200daaae07482",
+      "before_file": "before/page-0075.wiki",
+      "after_file": "after/page-0075.wiki",
+      "citation_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Un autre problème, c'est que tu as supprimé des citations !!! N'importe quoi. Dis le dans le code et rétablis les"
+      },
+      "edit_summary": "Restauration des citations antérieures ; annulation des retraits non demandés",
+      "reason": "Rétablir exactement le champ citations antérieur, avec le texte, les attributions et les références originales ; conserver tous les autres octets, y compris le résumé restauré.",
+      "historical_source_revision_id": 245474,
+      "historical_source_sha256": "4bedb6011ab30bfcf96c19c1aab41266523655631e5604eeb76cf148e7d66ad2"
+    },
+    {
+      "page_id": "page-0087",
+      "old_title": "La prohibition du cannabis dissuade une partie de la population d'en consommer",
+      "new_title": "La prohibition du cannabis dissuade une partie de la population d'en consommer",
+      "source_revision_id": 245620,
+      "source_sha256": "bc8a17b976e05f7cbc1195b17cb2163a4d4e3c18194f705e51060400595a5f0a",
+      "target_sha256": "25cb827b0afa1de60ca4f57c20c2ca4594367968b11f71fde9ac54bb9b901b3f",
+      "before_file": "before/page-0087.wiki",
+      "after_file": "after/page-0087.wiki",
+      "citation_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Un autre problème, c'est que tu as supprimé des citations !!! N'importe quoi. Dis le dans le code et rétablis les"
+      },
+      "edit_summary": "Restauration des citations antérieures ; annulation des retraits non demandés",
+      "reason": "Rétablir exactement le champ citations antérieur, avec le texte, les attributions et les références originales ; conserver tous les autres octets, y compris le résumé restauré.",
+      "historical_source_revision_id": 245472,
+      "historical_source_sha256": "59f30c7f6ceb1ff92533f18a9ed4eee0a4fc5eb08fd1e2312d5696845c0ef63a"
+    },
+    {
+      "page_id": "page-0090",
+      "old_title": "La prohibition du cannabis entraîne le développement d'une économie parallèle très lucrative avec ses conséquences : corruption, blanchiment d’argent, recrutement de jeunes, violence, insécurité, trafic d'armes",
+      "new_title": "La prohibition du cannabis entraîne le développement d'une économie parallèle très lucrative avec ses conséquences : corruption, blanchiment d’argent, recrutement de jeunes, violence, insécurité, trafic d'armes",
+      "source_revision_id": 245563,
+      "source_sha256": "f04db152577eca3dc022d413ba4adaae8f510fddd257fdc13eb6438021bd01cb",
+      "target_sha256": "bc0ef95ea4c6d6e9ef67663413e17677c4f8fdb345ad871fa58e0d66c655c9f1",
+      "before_file": "before/page-0090.wiki",
+      "after_file": "after/page-0090.wiki",
+      "citation_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Un autre problème, c'est que tu as supprimé des citations !!! N'importe quoi. Dis le dans le code et rétablis les"
+      },
+      "edit_summary": "Restauration des citations antérieures ; annulation des retraits non demandés",
+      "reason": "Rétablir exactement le champ citations antérieur, avec le texte, les attributions et les références originales ; conserver tous les autres octets, y compris le résumé restauré.",
+      "historical_source_revision_id": 232839,
+      "historical_source_sha256": "bc0ef95ea4c6d6e9ef67663413e17677c4f8fdb345ad871fa58e0d66c655c9f1"
+    },
+    {
+      "page_id": "page-0102",
+      "old_title": "La prohibition envoie un message sociétal clair",
+      "new_title": "La prohibition envoie un message sociétal clair",
+      "source_revision_id": 245621,
+      "source_sha256": "cf0b05897c0f3b3441e4713c5773081d90f8f2812530dc243f7c9d04d78c4065",
+      "target_sha256": "3e66232b5429e4c0963f36953454ba24bbacc997fd2601119f18fd976ccde524",
+      "before_file": "before/page-0102.wiki",
+      "after_file": "after/page-0102.wiki",
+      "citation_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Un autre problème, c'est que tu as supprimé des citations !!! N'importe quoi. Dis le dans le code et rétablis les"
+      },
+      "edit_summary": "Restauration des citations antérieures ; annulation des retraits non demandés",
+      "reason": "Rétablir exactement le champ citations antérieur, avec le texte, les attributions et les références originales ; conserver tous les autres octets, y compris le résumé restauré.",
+      "historical_source_revision_id": 223685,
+      "historical_source_sha256": "3e66232b5429e4c0963f36953454ba24bbacc997fd2601119f18fd976ccde524"
+    },
+    {
+      "page_id": "page-0107",
+      "old_title": "Les risques du cannabis sont particulièrement préoccupants lors d'une consommation précoce",
+      "new_title": "Les risques du cannabis sont particulièrement préoccupants lors d'une consommation précoce",
+      "source_revision_id": 245623,
+      "source_sha256": "8950977493cfdabf257feeb4608d283b36283f8950eddf8cc86cb60547acf67f",
+      "target_sha256": "8e5a34c567d69b7a6daf11dca74960710ca382997d6309ebce40113cb6fbc322",
+      "before_file": "before/page-0107.wiki",
+      "after_file": "after/page-0107.wiki",
+      "citation_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Un autre problème, c'est que tu as supprimé des citations !!! N'importe quoi. Dis le dans le code et rétablis les"
+      },
+      "edit_summary": "Restauration des citations antérieures ; annulation des retraits non demandés",
+      "reason": "Rétablir exactement le champ citations antérieur, avec le texte, les attributions et les références originales ; conserver tous les autres octets, y compris le résumé restauré.",
+      "historical_source_revision_id": 232857,
+      "historical_source_sha256": "669eeef7979dea16dad0ffe0814ea2a2f9a1706e8e02d55ab2a79396658ade31"
+    },
+    {
+      "page_id": "page-0121",
+      "old_title": "Le pouvoir addictif du cannabis n'est ni faible ni fort en soi, il dépend de son niveau d'usage",
+      "new_title": "Le pouvoir addictif du cannabis n'est ni faible ni fort en soi, il dépend de son niveau d'usage",
+      "source_revision_id": 245628,
+      "source_sha256": "9c2184c735b9838dda90f17fd14733db5558ca90c800a8758e53f9f8c0f40368",
+      "target_sha256": "61a49cdcc34d175d4a727d21b10a0c4504861b8e73e4c7d2630eb3207dbb65b1",
+      "before_file": "before/page-0121.wiki",
+      "after_file": "after/page-0121.wiki",
+      "citation_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Un autre problème, c'est que tu as supprimé des citations !!! N'importe quoi. Dis le dans le code et rétablis les"
+      },
+      "edit_summary": "Restauration des citations antérieures ; annulation des retraits non demandés",
+      "reason": "Rétablir exactement le champ citations antérieur, avec le texte, les attributions et les références originales ; conserver tous les autres octets, y compris le résumé restauré.",
+      "historical_source_revision_id": 206617,
+      "historical_source_sha256": "66d9143cfdc4f456b1452b615ac8176150e495df8851e606ee9b7f976ef1a547"
+    },
+    {
+      "page_id": "page-0124",
+      "old_title": "Le tabac et l'alcool sont attractifs parce que de nombreux intérêts s'emploient à les rendre attractifs",
+      "new_title": "Le tabac et l'alcool sont attractifs parce que de nombreux intérêts s'emploient à les rendre attractifs",
+      "source_revision_id": 245629,
+      "source_sha256": "b4a072b203bb67bc75dc356abda6d33dace8dfa9f105f9e829d60a07639d337b",
+      "target_sha256": "79b011374045f52aa7a8f2a6c229429d7c9202a41b930d65a7bf84cebee17891",
+      "before_file": "before/page-0124.wiki",
+      "after_file": "after/page-0124.wiki",
+      "citation_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Un autre problème, c'est que tu as supprimé des citations !!! N'importe quoi. Dis le dans le code et rétablis les"
+      },
+      "edit_summary": "Restauration des citations antérieures ; annulation des retraits non demandés",
+      "reason": "Rétablir exactement le champ citations antérieur, avec le texte, les attributions et les références originales ; conserver tous les autres octets, y compris le résumé restauré.",
+      "historical_source_revision_id": 206243,
+      "historical_source_sha256": "13b3315a3bf99c8a12bea5dea2c092009e8fff49b99533628f672592cbac7763"
+    },
+    {
+      "page_id": "page-0129",
+      "old_title": "Les Français sont favorables à ce que la vente et l'usage du cannabis soient autorisés sous certaines conditions",
+      "new_title": "Les Français sont favorables à ce que la vente et l'usage du cannabis soient autorisés sous certaines conditions",
+      "source_revision_id": 245630,
+      "source_sha256": "1dc3fb27d7f34cb9f0a61f198f2cb149fa13e08aae37f24095c91dbd8d52a135",
+      "target_sha256": "d4ac16ff0b541b1aad53c1d5729c495916b8e39e85544c37571c5c982f64422c",
+      "before_file": "before/page-0129.wiki",
+      "after_file": "after/page-0129.wiki",
+      "citation_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Un autre problème, c'est que tu as supprimé des citations !!! N'importe quoi. Dis le dans le code et rétablis les"
+      },
+      "edit_summary": "Restauration des citations antérieures ; annulation des retraits non demandés",
+      "reason": "Rétablir exactement le champ citations antérieur, avec le texte, les attributions et les références originales ; conserver tous les autres octets, y compris le résumé restauré.",
+      "historical_source_revision_id": 207534,
+      "historical_source_sha256": "b559dafc024871aaaa3055fe8aee87caac4b40145981be164b29ac6ef920e606"
+    },
+    {
+      "page_id": "page-0151",
+      "old_title": "Un marché noir du cannabis peut subsister après sa légalisation",
+      "new_title": "Un marché noir du cannabis peut subsister après sa légalisation",
+      "source_revision_id": 245641,
+      "source_sha256": "7e1a3b981762e058b13dc15d058fe22cf3f2bdd83ef9604532073e3c2275d61c",
+      "target_sha256": "413a2c99b6c247a0b77f8d14c045bc74fa66574623b6cf763f8248e024ff9849",
+      "before_file": "before/page-0151.wiki",
+      "after_file": "after/page-0151.wiki",
+      "citation_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Un autre problème, c'est que tu as supprimé des citations !!! N'importe quoi. Dis le dans le code et rétablis les"
+      },
+      "edit_summary": "Restauration des citations antérieures ; annulation des retraits non demandés",
+      "reason": "Rétablir exactement le champ citations antérieur, avec le texte, les attributions et les références originales ; conserver tous les autres octets, y compris le résumé restauré.",
+      "historical_source_revision_id": 245478,
+      "historical_source_sha256": "0a647506e16182b5f7211d363d09cc7c6bf6d028ff3f713df18b0edf91e04c53"
+    },
+    {
+      "page_id": "page-0152",
+      "old_title": "Une distribution réglementée peut imposer des limites aux stratégies commerciales",
+      "new_title": "Une distribution réglementée peut imposer des limites aux stratégies commerciales",
+      "source_revision_id": 245642,
+      "source_sha256": "7d5569f9e3d11807d0cc38e43ea655d544b0c9708bab0b8da8448e5b814d7e52",
+      "target_sha256": "4aee1b0f3daeab647e313ca431b9e516cfea22ce4cb75a031b03c05fac717e8b",
+      "before_file": "before/page-0152.wiki",
+      "after_file": "after/page-0152.wiki",
+      "citation_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Un autre problème, c'est que tu as supprimé des citations !!! N'importe quoi. Dis le dans le code et rétablis les"
+      },
+      "edit_summary": "Restauration des citations antérieures ; annulation des retraits non demandés",
+      "reason": "Rétablir exactement le champ citations antérieur, avec le texte, les attributions et les références originales ; conserver tous les autres octets, y compris le résumé restauré.",
+      "historical_source_revision_id": 206554,
+      "historical_source_sha256": "dc6ecfb75195dcdab3003a3c745cfa163847b54b741f3ec1e8fcf332a698a4ee"
+    }
+  ],
+  "request_sha256": "633b3b800325804963ed6fe7829ffdde7eddf9e513443b956e30283c29cdbe84"
+}

@@ -1,0 +1,12 @@
+{{Argument
+|citations=
+|références-sitographiques={{Référence sitographique
+|lien=https://www.who.int/fr/news-room/fact-sheets/detail/tobacco
+|page=Tabac
+|site=Organisation mondiale de la santé
+}}
+
+|rubriques=Société
+|mots-clés=Cannabis, Dépénalisation, Légalisation, Prohibition, Attractivité, Interdiction, Tabac, Alcool
+|date-création=2019-01-30
+}}

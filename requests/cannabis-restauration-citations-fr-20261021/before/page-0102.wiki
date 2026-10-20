@@ -1,0 +1,15 @@
+{{Argument
+|initialisation=Objection@2363
+|résumé=La prohibition envoie un message fort sur les dangers du cannabis, évitant de banaliser son usage.
+|citations=
+|objections={{Objection
+|page=L'interdit rend plus attractif
+|titre-affiché=L'interdit rend plus attractif
+}}{{Objection
+|page=L'interdit incite à chercher des moyens de contourner la loi
+|titre-affiché=L'interdit incite à chercher des moyens de contourner la loi
+}}
+|rubriques=Éducation, Éthique, Philosophie, Société
+|mots-clés=normes sociales, protection des vulnérables
+|date-création=2024-11-28
+}}

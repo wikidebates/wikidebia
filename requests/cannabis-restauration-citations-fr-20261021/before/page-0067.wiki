@@ -1,0 +1,19 @@
+{{Argument
+|initialisation=Argument pour@441
+|résumé=En légalisant le cannabis, l’État peut imposer des normes strictes de production et de distribution, garantissant l’absence de substances toxiques ou dangereuses ajoutées au produit. Cela protège les consommateurs des risques associés aux substances de coupe utilisées sur le marché noir, comme les solvants ou les métaux lourds.
+|citations=
+|références-sitographiques={{Référence sitographique
+|lien=https://www.canada.ca/fr/sante-canada/services/publications/drogues-medicaments/examen-legislatif-loi-cannabis-rapport-final-comite-experts.html
+|page=Examen législatif de la Loi sur le cannabis : Rapport final du Comité d’experts
+|site=Santé Canada
+|date=2024
+}}
+
+|objections={{Objection
+|page=Un marché noir du cannabis peut subsister après sa légalisation
+|titre-affiché=Maintien d’un marché noir
+}}
+|rubriques=Droit, Santé, Société
+|mots-clés=protection des consommateurs, Marché noir
+|date-création=2024-11-28
+}}
