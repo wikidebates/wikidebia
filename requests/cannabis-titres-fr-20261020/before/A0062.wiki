@@ -1,0 +1,20 @@
+{{Argument
+|initialisation=Justification@29804
+|résumé=La légalisation contrôlée par l’État canadien démontre qu’une régulation stricte du cannabis fonctionne mieux que la prohibition.
+
+* '''Description :''' Légalisation complète avec encadrement strict (âge minimum, restrictions sur la publicité, contrôle de la production et distribution par l'État).
+* '''Exemples :''' Canada, certains États américains.
+* '''Avantages :'''
+** Réduction significative du marché noir.
+** Revenus fiscaux élevés pour financer des programmes publics.
+** Contrôle de la qualité et des variétés disponibles.
+* '''Inconvénients :'''
+** Besoin d’une forte infrastructure législative et administrative.
+** Certains consommateurs continuent d’acheter sur le marché noir en raison des prix élevés.
+* '''Résultats :'''
+** '''Canada :''' Réduction du marché noir, amélioration de la qualité des produits, mais la consommation chez les jeunes reste un défi.
+** '''Évaluation globale :''' Meilleur modèle pour une approche nationale, mais nécessite un suivi et des ajustements constants.
+|rubriques=Droit, Économie, Politique, Santé, Société
+|mots-clés=Marché noir, fiscalité, problèmes de santé publique
+|date-création=2024-11-28
+}}

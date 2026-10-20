@@ -1,0 +1,38 @@
+{{Argument
+|résumé=La raison pour laquelle l'alcool est une des rares drogues légales, c'est parce que les fabricants d'alcool font appel à des lobbies financiers pour convaincre, via des pratiques à la limite de la corruption, les législateurs d'être les plus laxistes possibles.
+|citations={{Citation
+|citation=Sur l’alcool, l’État a abandonné, au nom d’enjeux financiers, la posture régulatrice qu’il semblait adopter avec la loi Evin dont nous avons célébré les trente ans.
+|auteurs=Jean-Pierre Couteron, Pierre-Yves Geoffard, Katia Dubreuil
+|article=Drogues: la prohibition, une efficacité illusoire
+|ouvrage=Le Figaro
+|date=05/05/2021
+|lien=https://www.lefigaro.fr/sciences/drogues-la-prohibition-une-efficacite-illusoire-20210505
+}}{{Citation
+|citation=Les enquêteurs de l’université du Connecticut ont rendu un rapport de 60 000 pages montrant que pas moins de 145 cas de fabrication ou de falsification de données ont été relevés. Cette enquête discrédite totalement non seulement ces études fausses mais également les autres car pourquoi truquer des études si l’effet bénéfique du vin était vraiment prouvé ? Certains scientifiques auraient t-ils perçu des pots-de-vin de la part des lobbies viticoles ? Cela semble être le cas.
+
+Un rapport de 60 000 pages tout de même, ce n’est pas rien, on imagine qu’il devait y avoir beaucoup de choses à dire.
+
+La [http://tempsreel.nouvelobs.com/les-Internets-vous-parlent/20120116.OBS8929/le-vin-bon-pour-la-sante-des-etudes-etaient-bidonnees.html révélation] de cette fraude scientifique est loin d’être un cas isolé, celle-ci est beaucoup plus répandue que l’on ne peut imaginer : un scientifique est un avant tout un être humain donc faible et corruptible : dis-moi qui te finance, je te dirais qui tu es.
+|article=Vin, santé, mensonges et propagande
+|ouvrage=Agoravox
+|date=13 juin 2013
+|lien=https://www.agoravox.fr/tribune-libre/article/vin-sante-mensonges-et-propagande-136873
+}}{{Citation
+|citation=Le gouvernement va laisser dans les cartons deux campagnes de prévention sur les dangers de l’alcool qu’il avait pourtant commandées à l’occasion de la Coupe du monde de rugby.
+
+Visiblement, le message « ne laissez pas l’alcool vous mettre KO » était trop brutal pour les poids lourds du secteur de l’alcool. Aux yeux du gouvernement, leur poids économique pèse bien plus lourd que la santé de la population.
+
+Décidément, il n’y a pas que l’alcool qui nuit à la santé, les profits des alcooliers aussi !
+|article=In vino veritas
+|ouvrage=Lutte ouvrière
+|date=12/09/2023
+|lien=https://www.lutte-ouvriere.org/breves/vino-veritas-726502.html
+}}{{Citation
+|citation=Entre la santé publique et les intérêts des groupements vinicoles, les parlementaires qui veulent amender la loi Evin ont choisi. Ils ont choisi la défense des lobbies viticoles tout en sachant que leur vote menaçait l'intérêt sanitaire de la collectivité.
+|article=Les lobbies vinicoles poussent à la consommation
+|ouvrage=Lutte ouvrière
+|date=21/10/2004
+|lien=https://lutte-ouvriere.org/portail/journal/2004-10-21-les-lobbies-vinicoles-poussent-la-consommation_9501.html
+}}
+|date-création=2021-11-07
+}}

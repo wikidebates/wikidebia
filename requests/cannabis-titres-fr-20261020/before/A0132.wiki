@@ -1,0 +1,14 @@
+{{Argument
+|citations={{Citation
+|citation=C'est ce qu'affirment des juristes comme le professeur Francis Caballero ou le Néerlandais Mario Lap.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=105
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|rubriques=Droit, Santé, Science, Société
+|mots-clés=Cannabis, Légalisation, Expérimentation scientifique
+|date-création=2021-02-16
+}}

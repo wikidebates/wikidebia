@@ -1,0 +1,264 @@
+{
+  "schema": "wikidebia-fr-publication-request-1.0",
+  "language": "fr",
+  "site": "https://fr.wikidebates.org",
+  "debate_title": "Le cannabis doit-il être légalisé ?",
+  "remote_preflight_completed": false,
+  "remote_publication_completed": false,
+  "source_extraction_date": "2026-10-20",
+  "required_preflight": [
+    "Vérifier le compte attendu et ses droits edit/move.",
+    "Relire toutes les pages et comparer révision et SHA-256 avant la première écriture.",
+    "Refuser les collisions et conserver les redirections après renommage.",
+    "Utiliser les gardes de révision puis relire les résultats."
+  ],
+  "renames": 10,
+  "reference_updates": 11,
+  "pages": [
+    {
+      "page_id": "debate",
+      "old_title": "Le cannabis doit-il être légalisé ?",
+      "new_title": "Le cannabis doit-il être légalisé ?",
+      "rename": false,
+      "reason": "Mettre à jour les liens vers les titres corrigés.",
+      "source_revision_id": 240531,
+      "source_sha256": "824c8f271dba86ea98af8f188834fadfc859f85a3e68a92d08a14ba644e82574",
+      "target_sha256": "2bf8ff7868e270ea9f2642cf077ef539c17ac932b2de2f1324078b23f7c6fcdc",
+      "before_file": "before/debate.wiki",
+      "after_file": "after/debate.wiki",
+      "references_updated": [
+        "A0007"
+      ]
+    },
+    {
+      "page_id": "A0001",
+      "old_title": "La prohibition du cannabis est inefficace",
+      "new_title": "La prohibition du cannabis est inefficace",
+      "rename": false,
+      "reason": "Mettre à jour les liens vers les titres corrigés.",
+      "source_revision_id": 206224,
+      "source_sha256": "4171afe0c9889faf121725c0403aba93bf26f324dd18c97abe0fed6e37fa22dd",
+      "target_sha256": "fc641715667775fd51077e3939f371b9f3d2e428ff93da46b3a24101d7bfb89f",
+      "before_file": "before/A0001.wiki",
+      "after_file": "after/A0001.wiki",
+      "references_updated": [
+        "A0017"
+      ]
+    },
+    {
+      "page_id": "A0006",
+      "old_title": "La légalisation du cannabis serait bénéfique",
+      "new_title": "La légalisation du cannabis serait bénéfique",
+      "rename": false,
+      "reason": "Mettre à jour les liens vers les titres corrigés.",
+      "source_revision_id": 206559,
+      "source_sha256": "1484a8d631b7e6e0185df64f21f11d744eb2ea2cd7c17867cf492df561d43b44",
+      "target_sha256": "505f2019d5e6cd2f713ec9e1811d0940ef50b346ef685696031915ad3a9cd91c",
+      "before_file": "before/A0006.wiki",
+      "after_file": "after/A0006.wiki",
+      "references_updated": [
+        "A0051",
+        "A0053",
+        "A0055"
+      ]
+    },
+    {
+      "page_id": "A0007",
+      "old_title": "La légalisation permet un contrôle qualité",
+      "new_title": "La légalisation du cannabis permet un contrôle qualité",
+      "rename": true,
+      "reason": "Expliciter le cannabis déjà identifié dans le résumé.",
+      "source_revision_id": 245469,
+      "source_sha256": "9c39f28bb0e931f11b9ab348298be37d3b45494f7ab1af107c3ab9d555b5e23a",
+      "target_sha256": "ada8f229dd4151acf293483d20daf7106b40d9311770e3108e4869839f1b4016",
+      "before_file": "before/A0007.wiki",
+      "after_file": "after/A0007.wiki",
+      "references_updated": [
+        "A0055"
+      ]
+    },
+    {
+      "page_id": "A0008",
+      "old_title": "La légalisation contrôlée par l'État fonctionne",
+      "new_title": "La légalisation contrôlée par l'État fonctionne",
+      "rename": false,
+      "reason": "Mettre à jour les liens vers les titres corrigés.",
+      "source_revision_id": 223692,
+      "source_sha256": "891d307c4b9869e28fa28fa825d0c19fff5d75548b7ba3de6de8e59925dade8e",
+      "target_sha256": "b9723a27bb2349e106ebabccd7b3230d08f42715001227c72e01cbdf7262c734",
+      "before_file": "before/A0008.wiki",
+      "after_file": "after/A0008.wiki",
+      "references_updated": [
+        "A0062",
+        "A0063"
+      ]
+    },
+    {
+      "page_id": "A0017",
+      "old_title": "Réduction de la consommation",
+      "new_title": "La prohibition du cannabis dissuade une partie de la population d'en consommer",
+      "rename": true,
+      "reason": "Conserver la dissuasion partielle exprimée par le résumé.",
+      "source_revision_id": 223684,
+      "source_sha256": "59f30c7f6ceb1ff92533f18a9ed4eee0a4fc5eb08fd1e2312d5696845c0ef63a",
+      "target_sha256": "59f30c7f6ceb1ff92533f18a9ed4eee0a4fc5eb08fd1e2312d5696845c0ef63a",
+      "before_file": "before/A0017.wiki",
+      "after_file": "after/A0017.wiki",
+      "references_updated": []
+    },
+    {
+      "page_id": "A0034",
+      "old_title": "La prohibition du cannabis entraîne une perte importante de recettes pour l'Etat et laisser se développer un marché échappant à toute taxe revient même à le subventionner",
+      "new_title": "La prohibition du cannabis entraîne une perte importante de recettes pour l'Etat et laisser se développer un marché échappant à toute taxe revient même à le subventionner",
+      "rename": false,
+      "reason": "Mettre à jour les liens vers les titres corrigés.",
+      "source_revision_id": 206555,
+      "source_sha256": "e4d6cbc8108d274c56d552ae5ff8022a287704bb30c519ad82ace5aba997796e",
+      "target_sha256": "a3310b0741da7b4644ee159fd7527a28b324b919bda87245f6085a36584af838",
+      "before_file": "before/A0034.wiki",
+      "after_file": "after/A0034.wiki",
+      "references_updated": [
+        "A0096"
+      ]
+    },
+    {
+      "page_id": "A0041",
+      "old_title": "De nombreuses substances bien plus dangereuses et addictives que le cannabis sont légales",
+      "new_title": "De nombreuses substances bien plus dangereuses et addictives que le cannabis sont légales",
+      "rename": false,
+      "reason": "Mettre à jour les liens vers les titres corrigés.",
+      "source_revision_id": 206572,
+      "source_sha256": "ad1b44832d6b0eccefdad6b7a23ac8e07049584610477c2f8214126488c00844",
+      "target_sha256": "53a33fc167b6aec3da01fa5226952310c48adafe2e97004079bd0357c15fd98f",
+      "before_file": "before/A0041.wiki",
+      "after_file": "after/A0041.wiki",
+      "references_updated": [
+        "A0100"
+      ]
+    },
+    {
+      "page_id": "A0051",
+      "old_title": "Augmentation de la consommation",
+      "new_title": "La légalisation du cannabis risque d'accroître la consommation",
+      "rename": true,
+      "reason": "Conserver la modalité de risque du résumé.",
+      "source_revision_id": 223686,
+      "source_sha256": "4bedb6011ab30bfcf96c19c1aab41266523655631e5604eeb76cf148e7d66ad2",
+      "target_sha256": "4bedb6011ab30bfcf96c19c1aab41266523655631e5604eeb76cf148e7d66ad2",
+      "before_file": "before/A0051.wiki",
+      "after_file": "after/A0051.wiki",
+      "references_updated": []
+    },
+    {
+      "page_id": "A0053",
+      "old_title": "Encouragement d’une économie de dépendance",
+      "new_title": "La légalisation du cannabis encourage une économie de dépendance",
+      "rename": true,
+      "reason": "Expliciter le sujet du titre nominal à partir du résumé.",
+      "source_revision_id": 223687,
+      "source_sha256": "cb07380e48f7b04911d05b6daa65d11573fb0641d50b31412a89e63cc9d80a94",
+      "target_sha256": "cb07380e48f7b04911d05b6daa65d11573fb0641d50b31412a89e63cc9d80a94",
+      "before_file": "before/A0053.wiki",
+      "after_file": "after/A0053.wiki",
+      "references_updated": []
+    },
+    {
+      "page_id": "A0055",
+      "old_title": "Maintien d’un marché noir",
+      "new_title": "Un marché noir du cannabis peut subsister après sa légalisation",
+      "rename": true,
+      "reason": "Conserver la modalité de possibilité du résumé.",
+      "source_revision_id": 223688,
+      "source_sha256": "0a647506e16182b5f7211d363d09cc7c6bf6d028ff3f713df18b0edf91e04c53",
+      "target_sha256": "0a647506e16182b5f7211d363d09cc7c6bf6d028ff3f713df18b0edf91e04c53",
+      "before_file": "before/A0055.wiki",
+      "after_file": "after/A0055.wiki",
+      "references_updated": []
+    },
+    {
+      "page_id": "A0062",
+      "old_title": "Légalisation contrôlée par l'État (Modèle canadien)",
+      "new_title": "La légalisation du cannabis au Canada fonctionne mieux que la prohibition",
+      "rename": true,
+      "reason": "Expliciter la proposition déjà formulée par le résumé.",
+      "source_revision_id": 223693,
+      "source_sha256": "51579aa7d26526f0cb480835ce3943a89dc9c0c2fd5e626c01f0e1b9ed2d0fc2",
+      "target_sha256": "51579aa7d26526f0cb480835ce3943a89dc9c0c2fd5e626c01f0e1b9ed2d0fc2",
+      "before_file": "before/A0062.wiki",
+      "after_file": "after/A0062.wiki",
+      "references_updated": []
+    },
+    {
+      "page_id": "A0063",
+      "old_title": "Régulation contrôlée du cannabis (Modèle Uruguayen)",
+      "new_title": "La régulation du cannabis en Uruguay fonctionne mieux que la prohibition",
+      "rename": true,
+      "reason": "Expliciter la proposition déjà formulée par le résumé.",
+      "source_revision_id": 223694,
+      "source_sha256": "58d87be16343c7ed353d509300da48faa7d6cdfcde09acaa634c3f66a3154ae3",
+      "target_sha256": "58d87be16343c7ed353d509300da48faa7d6cdfcde09acaa634c3f66a3154ae3",
+      "before_file": "before/A0063.wiki",
+      "after_file": "after/A0063.wiki",
+      "references_updated": []
+    },
+    {
+      "page_id": "A0071",
+      "old_title": "La légalisation du cannabis est impossible",
+      "new_title": "La légalisation du cannabis est impossible",
+      "rename": false,
+      "reason": "Mettre à jour les liens vers les titres corrigés.",
+      "source_revision_id": 207527,
+      "source_sha256": "c3f69310afbd45cb717448acb8d1286b8570c3f030ee37e6afb5e3c7967257c7",
+      "target_sha256": "b35d5cfd6803431c877894cc5934df4d5aabfb6456aa24cce6fe60ce0a0cf292",
+      "before_file": "before/A0071.wiki",
+      "after_file": "after/A0071.wiki",
+      "references_updated": [
+        "A0132"
+      ]
+    },
+    {
+      "page_id": "A0096",
+      "old_title": "Il serait irresponsable de taxer tous les marchés illicites",
+      "new_title": "Taxer tous les marchés illicites serait irresponsable",
+      "rename": true,
+      "reason": "Reformuler l'impersonnel en conservant le sens et la modalité.",
+      "source_revision_id": 217437,
+      "source_sha256": "74b6bc60a86d7ca13985e2361f5721a797fe28a0a79dfbf41fac752a5f141bc7",
+      "target_sha256": "74b6bc60a86d7ca13985e2361f5721a797fe28a0a79dfbf41fac752a5f141bc7",
+      "before_file": "before/A0096.wiki",
+      "after_file": "after/A0096.wiki",
+      "references_updated": []
+    },
+    {
+      "page_id": "A0100",
+      "old_title": "L'alccol et le tabac ne sont licites que grâce à l'action des lobbies concernés",
+      "new_title": "L'alcool et le tabac ne sont licites que grâce à l'action des lobbies concernés",
+      "rename": true,
+      "reason": "Corriger uniquement la coquille alccol.",
+      "source_revision_id": 208874,
+      "source_sha256": "56875975608029ca132cd38335591823cb657c12b6a2991ce135ef59ec4fac47",
+      "target_sha256": "56875975608029ca132cd38335591823cb657c12b6a2991ce135ef59ec4fac47",
+      "before_file": "before/A0100.wiki",
+      "after_file": "after/A0100.wiki",
+      "references_updated": []
+    },
+    {
+      "page_id": "A0132",
+      "old_title": "Il devrait être possible de légaliser le cannabis, sous couvert du principe d'opportunité ou d'une expérimentation scientifique",
+      "new_title": "La légalisation du cannabis serait possible au titre du principe d'opportunité ou d'une expérimentation scientifique",
+      "rename": true,
+      "reason": "Conserver les deux fondements et le caractère hypothétique de la possibilité exprimée.",
+      "source_revision_id": 207531,
+      "source_sha256": "58d2440f867965cec104a68b4cf6a2cac8c1cdceb11a26f04f434fac3d1aafe0",
+      "target_sha256": "58d2440f867965cec104a68b4cf6a2cac8c1cdceb11a26f04f434fac3d1aafe0",
+      "before_file": "before/A0132.wiki",
+      "after_file": "after/A0132.wiki",
+      "references_updated": []
+    }
+  ],
+  "request_id": "cannabis-titres-fr-20261020",
+  "authorization": "explicit_user_request",
+  "authorization_text": "Fais les modifs qui te semblent appropriées pour les pages françaises et publie les sur le wiki fr",
+  "prepared_at": "2026-10-20T19:31:32.807920+00:00",
+  "request_sha256": "fd278f51dafcae3c5bc2d38d67ff62f87b58f6dc91797cd1f8c5f30c8bffb417"
+}

@@ -1,0 +1,43 @@
+{{Argument
+|justifications={{Justification
+|page=La légalisation du cannabis permettrait de dégager des ressources pour la prévention
+|titre-affiché=La légalisation permettrait de dégager des ressources pour la prévention
+}}{{Justification
+|page=La légalisation du cannabis permettrait de vider les prisons, soulager les policiers, la justice
+|titre-affiché=Vider les prisons, soulager les policiers, la justice
+}}{{Justification
+|page=La légalisation du cannabis récréatif ouvrirait la voie à l'utilisation thérapeutique
+|titre-affiché=La légalisation du cannabis récréatif ouvrirait la voie à l'utilisation thérapeutique
+}}{{Justification
+|page=La légalisation du cannabis peut faire baisser la consommation d'alcool
+|titre-affiché=La légalisation peut faire baisser la consommation d'alcool
+}}{{Justification
+|page=La légalisation du cannabis peut faire baisser la mortalité par overdose de drogues plus dures
+|titre-affiché=La légalisation peut faire baisser la mortalité par overdose de drogues plus dures
+}}{{Justification
+|page=La légalisation du cannabis peut faire baisser la mortalité par overdose d'opiacés
+|titre-affiché=La légalisation peut faire baisser la mortalité par overdose d'opiacés
+}}{{Justification
+|page=La légalisation du cannabis mettrait fin aux trafics
+|titre-affiché=La légalisation mettrait fin aux trafics
+}}{{Justification
+|page=La légalisation du cannabis peut faire baisser la criminalité
+|titre-affiché=La légalisation peut faire baisser la criminalité
+}}{{Justification
+|page=Le modèle portugais a fait ses preuves
+|titre-affiché=Le modèle portugais a fait ses preuves
+}}
+|objections={{Objection
+|page=Augmentation de la consommation
+|titre-affiché=Augmentation de la consommation
+}}{{Objection
+|page=Encouragement d’une économie de dépendance
+|titre-affiché=Encouragement d’une économie de dépendance
+}}{{Objection
+|page=Maintien d’un marché noir
+|titre-affiché=Maintien d’un marché noir
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

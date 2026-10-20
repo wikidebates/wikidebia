@@ -1,0 +1,17 @@
+{{Argument
+|initialisation=Objection@2363
+|résumé=La prohibition dissuade une partie de la population, notamment les jeunes, de consommer en raison des risques légaux.
+|citations={{Citation
+|citation=La perception du risque joue un rôle crucial dans la diminution des comportements à risque, notamment chez les jeunes. Une interdiction légale renforce cette perception.
+|auteurs=Volkow
+|article=The Science of Addiction
+|ouvrage=National Institute on Drug Abuse
+}}
+|objections={{Objection
+|page=Interdire une drogue n'en fait pas baisser la consommation
+|titre-affiché=Interdire une drogue n'en fait pas baisser la consommation
+}}
+|rubriques=Éducation, Psychologie, Santé, Société
+|mots-clés=Perception du risque, Jeunesse, Prévention
+|date-création=2024-11-28
+}}

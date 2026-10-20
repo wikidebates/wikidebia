@@ -1,0 +1,209 @@
+{{Débat
+|sujet=Cannabis
+|sujet-développé=la légalisation du cannabis
+|avancement=Débat construit
+|avertissements-débat=Débat déséquilibré
+|introduction={{Sous-partie
+|contenu=[[Fichier:logo_debat_cannabis.jpg|85px|gauche]]'''Faut-il légaliser le cannabis ?''' La question revient sans cesse. Malgré l’échec de la prohibition à endiguer la consommation et malgré ses effets pervers, la France maintient l'interdiction totale du cannabis, alors qu'un mouvement de libéralisation se fait jour ailleurs dans le monde. Différentes solutions sont évoquées : contraventionnalisation, dépénalisation, légalisation… L'Uruguay, un certain nombre d'États américains et, en 2018, le Canada, ont sauté le pas de la légalisation.
+
+Le débat est centré sur la France, mais beaucoup d'arguments sont universels.
+}}{{Sous-partie
+|titre=Dépénalisation, légalisation, quelle différence ?
+|contenu='''Dépénalisation'''
+
+Dans le débat sur les drogues, dépénaliser signifie renoncer à punir pénalement l’acte de consommer des stupéfiants, considéré en France comme un délit et passible d’une peine pouvant aller jusqu'à un an de prison et assorti d’une amende pouvant aller jusqu'à 3750 €. Cette dépénalisation peut être de niveaux différents. Elle peut aller jusqu'à une déjudiciarisation : ce n’est alors plus une infraction. C’est le cas de l’ivresse alcoolique chez soi qui est déjudiciarisée (mais pas pour autant favorisée) alors que l’ivresse publique est une infraction. Mais elle peut aussi modifier le niveau de l’infraction du délit à la contravention. La contravention est l'infraction pénale la moins grave. Il s'agit d'une amende assortie parfois de peines complémentaires (ex : suspension du permis de conduire). Les contraventions sont réparties en 5 classes selon leur gravité et les peines qui leur sont applicables<ref>[https://www.federationaddiction.fr/app/uploads/2012/04/legalisation_elements_de_langage.pdf Débat sur légalisation, dépénalisation, décriminalisation, libéralisation des drogues. Éléments de langage pour sortir de la confusion et des malentendus], Fédération française d'addictologie (FFA)</ref>.
+
+'''Légalisation'''
+
+Légaliser signifie donner un cadre légal à quelque chose ou à un acte qui n’en avait pas. Cela signifie ouvrir un accès légal à la substance. Mais une légalisation peut prendre différentes formes, de la plus stricte à la plus libérale, selon les limitations et les contrôles mis en place pour produire, transporter, vendre la substance<ref>[https://www.federationaddiction.fr/app/uploads/2012/04/legalisation_elements_de_langage.pdf Débat sur légalisation, dépénalisation, décriminalisation, libéralisation des drogues. Éléments de langage pour sortir de la confusion et des malentendus], Fédération française d'addictologie (FFA)</ref>.
+
+La légalisation va plus loin que la dépénalisation. Elle autorise l'organisation d'un marché légal du cannabis, de la production à la distribution, alors que la dépénalisation rend l'usage libre mais ne donne pas les moyens à l'usager de s'approvisionner de manière légale.
+<references />
+}}{{Sous-partie
+|titre=Où en est la France ?
+|contenu='''Le cannabis est un produit classé stupéfiant et son usage est interdit''', conformément à la loi du 31 décembre 1970. En acheter, en consommer, en détenir, en donner, en revendre, en cultiver (chez soi ou à l'extérieur), en transporter ou conduire après en avoir consommé sont autant d'infractions à la loi, passibles d'une peine pouvant aller jusqu'à un an de prison et assorties d’une amende pouvant aller jusqu'à 3750 €, quelle que soit la quantité de cannabis incriminée. Les peines sont doublées quand le cannabis est vendu ou donné à des mineurs<ref>*[https://www.ofdt.fr/produits-et-addictions/de-z/cannabis/#lp Synthèse thématique : cannabis. Cadre légal et orientations publiques récentes], OFDT.
+*[http://www.drogues.gouv.fr/ce-que-dit-la-loi/en-matiere-stupefiant/usage# Ce que dit la loi en matière de stupéfiants. Usage]. Mildeca, 23/07/2015</ref>.
+
+'''Projet de contraventionnalisation'''
+
+L'Assemblée nationale a voté le 23 novembre 2018 la mise en place d'un système d’'''amende forfaitaire''' pour usage de stupéfiants, que pourront infliger directement les forces de l’ordre sur la voie publique. Son montant sera de 200 €. Cette « nouvelle procédure ne viendra pas se substituer aux autres types de réponses pénales déjà existantes ». Elle est censée offrir une solution plus rapide et efficace afin de dissuader la consommation mais également de faire gagner du temps aux forces de l'ordre et à la justice<ref>*[https://www.marianne.net/societe/cannabis-heroine-coke-comment-fonctionne-l-amende-de-300-euros-mise-prevue-par-le Cannabis, héroïne, coke… comment fonctionne l'amende de 300 euros mise prévue par le gouvernement]. Marianne, 4/04/2018.
+*[https://www.francetvinfo.fr/sante/drogue-addictions/cannabis/l-assemblee-nationale-vote-la-creation-d-une-amende-forfaitaire-de-200-euros-pour-les-consommateurs-de-cannabis_3048901.html L'Assemblée nationale vote la création d'une amende forfaitaire de 200 euros pour les consommateurs de cannabis]</ref>.
+<references />
+}}{{Sous-partie
+|titre=Où en sont les autres pays ?
+|contenu=Panorama des [https://fr.wikipedia.org/wiki/L%C3%A9gislation_sur_le_cannabis législations sur le cannabis] dans le monde (Wikipédia).
+}}
+|articles-Wikipédia={{Article Wikipédia
+|page=Libéralisation du cannabis
+}}
+|arguments-pour={{Argument pour
+|page=La prohibition du cannabis est inefficace
+|titre-affiché=La prohibition est inefficace
+}}{{Argument pour
+|page=La prohibition du cannabis est préjudiciable aux usagers
+|titre-affiché=La prohibition est préjudiciable aux usagers
+}}{{Argument pour
+|page=La prohibition du cannabis est préjudiciable à la société
+|titre-affiché=La prohibition est préjudiciable à la société
+}}{{Argument pour
+|page=La prohibition du cannabis manque de légitimité
+|titre-affiché=La prohibition manque de légitimité
+}}{{Argument pour
+|page=La loi de 1970 sur le cannabis est inadaptée
+|titre-affiché=La loi de 1970 est inadaptée
+}}{{Argument pour
+|page=La légalisation du cannabis serait bénéfique
+|titre-affiché=La légalisation serait bénéfique
+}}{{Argument pour
+|page=La légalisation permet un contrôle qualité
+|titre-affiché=La légalisation permet un contrôle qualité
+}}{{Argument pour
+|page=La légalisation contrôlée par l'État fonctionne
+|titre-affiché=La légalisation contrôlée par l'État fonctionne
+}}
+|arguments-contre={{Argument contre
+|page=La prohibition du cannabis est efficace
+|titre-affiché=La prohibition est efficace
+}}{{Argument contre
+|page=Il faut protéger l'individu contre les dangers du cannabis
+|titre-affiché=Il faut protéger l'individu
+}}{{Argument contre
+|page=La société doit se protéger contre les dangers du cannabis
+|titre-affiché=La société doit se protéger
+}}{{Argument contre
+|page=La légalisation du cannabis n'est ni possible ni souhaitable
+|titre-affiché=La légalisation n'est ni possible ni souhaitable
+}}{{Argument contre
+|page=La légalisation du cannabis serait préjudiciable
+|titre-affiché=La légalisation serait préjudiciable
+}}
+|bibliographie-pour={{Référence bibliographique pour
+|auteurs=Robin Reda
+|article=Rapport d'étape sur le cannabis récréatif
+|ouvrage=Assemblée nationale
+|date=5/05/2021
+|lien=https://www2.assemblee-nationale.fr/15/missions-d-information/missions-d-information-communes/reglementation-et-impact-des-differents-usages-du-cannabis/rapport-cannabis-recreatif/rapport-d-etape-cannabis-recreatif
+}}{{Référence bibliographique pour
+|auteurs=Jean-Pierre Couteron, Pierre-Yves Geoffard, Katia Dubreuil
+|article=Drogues: la prohibition, une efficacité illusoire
+|ouvrage=Le Figaro
+|date=5/05/2021
+|lien=https://www.lefigaro.fr/sciences/drogues-la-prohibition-une-efficacite-illusoire-20210505
+}}{{Référence bibliographique pour
+|auteurs=Bruno Laforestrie
+|article=Hasch, la honte de la République
+|édition=JC Lattès
+|date=2020
+}}{{Référence bibliographique pour
+|auteurs=Bernard Kouchner, Patrick Aeberhard, Jean-Pierre Daulouède, Bertrand Lebeau, William Lowenstein
+|ouvrage=Toxic
+|édition=Odile Jacob
+|date=2018
+}}{{Référence bibliographique pour
+|auteurs=Tom Decorte, Paul De Grauwe, Jan Tytgat
+|ouvrage=Le cannabis sous contrôle : comment ?
+|édition=Lannoo
+|date=2017
+}}{{Référence bibliographique pour
+|auteurs=Emmanuelle Auriol
+|ouvrage=Pour en finir avec les mafias
+|édition=Armand Colin
+|date=2016
+}}{{Référence bibliographique pour
+|auteurs=Christian Ben Lakhdar
+|ouvrage=De l'intérêt de sortir le cannabis des réseaux criminels
+|édition=Le Bord de l'eau
+|date=2016
+}}{{Référence bibliographique pour
+|auteurs=Anne Coppel, Olivier Doubre
+|ouvrage=Drogues : sortir de l'impasse
+|édition=La Découverte
+|date=2012
+}}{{Référence bibliographique pour
+|auteurs=Stéphane Gatignon, Serge Supersac
+|ouvrage=Pour en finir avec les dealers
+|édition=Grasset
+|date=2011
+}}{{Référence bibliographique pour
+|auteurs=Michel Henry
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|édition=Denoël
+|date=2011
+}}{{Référence bibliographique pour
+|auteurs=Lise Beauchesne
+|ouvrage=Les drogues. Les coûts cachés de la prohibition
+|lieu=Lanctôt
+|date=2003
+}}
+|bibliographie-contre={{Référence bibliographique contre
+|auteurs=Jean Costentin
+|ouvrage=Pourquoi il ne faut pas dépénaliser l'usage du cannabis
+|édition=Odile Jacob
+|date=2012
+}}
+|bibliographie-ni-pour-ni-contre={{Référence bibliographique
+|auteurs=Alexandre Marchant
+|ouvrage=L'impossible prohibition
+|édition=Perrin
+|date=2018
+}}{{Référence bibliographique
+|auteurs=Ivana Obradovic, Jean Costentin, Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|édition=Le Muscadier
+|date=2014
+}}{{Référence bibliographique
+|auteurs=Alain Morel, Jean-Pierre Couteron
+|ouvrage=Drogues : faut-il interdire ?
+|édition=Dunod
+|date=2011
+}}
+|sitographie-pour={{Référence sitographique pour
+|lien=https://www.stoplaprohibition.fr/manifeste/
+|page=Manifeste
+|site=Collectif Police contre la prohibition
+}}{{Référence sitographique pour
+|lien=https://www.lefigaro.fr/sciences/drogues-la-prohibition-une-efficacite-illusoire-20210505
+|page=Drogues: la prohibition, une efficacité illusoire
+|auteurs=Jean-Pierre Couteron, Pierre-Yves Geoffard, Katia Dubreuil
+|site=Le Figaro
+|date=05/05/2021
+}}
+|sitographie-contre={{Référence sitographique contre
+|lien=https://www.ofdt.fr/produits-et-addictions/de-z/cannabis
+|page=Synthèse thématique : cannabis
+|site=Observatoire français des drogues et des toxicomanies
+}}
+|sitographie-ni-pour-ni-contre={{Référence sitographique
+|lien=http://www.scoop.it/t/debat-cannabis
+|page=Revue de presse quotidienne : L'actualité du débat sur la légalisation du cannabis en France et dans le monde
+|auteurs=wikidebats
+|site=Scoop.it!
+}}{{Référence sitographique
+|lien=http://controverses.sciences-po.fr/archive/cannabis/index.html
+|page=Le cannabis est-il dangereux ? Comment construire une drogue ?
+|site=Controverses Sciences Po
+}}{{Référence sitographique
+|lien=http://hyperdebat.net/-faut-il-depenaliser-le-cannabis-.html
+|page=Faut-il dépénaliser le cannabis ?
+|site=Hyperdébat
+}}
+|vidéographie-pour={{Référence vidéographique pour
+|titre=Ensemble, luttons contre la drogue
+|auteurs=Usul
+|lien=https://videos.parleur.net/w/50779a25-b770-456d-b9ff-79a5fb56f84d
+}}{{Référence vidéographique pour
+|titre=3 Arguments Why Marijuana Should Stay Illegal Reviewed
+|auteurs=Kurzgesagt – In a Nutshell
+|lien=https://tube.blueben.net/w/7d5b4c7a-5c1f-44f6-9603-6dfadd444040
+}}
+|vidéographie-ni-pour-ni-contre={{Référence vidéographique
+|titre=Cannabis. Est-il urgent de légaliser ?
+|lien=https://www.youtube.com/watch?v=IvqBDdgrE10
+}}
+|débats-connexes={{Débat connexe
+|page=Faut-il dépénaliser toutes les drogues ?
+}}
+|rubriques=Droit, Économie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2016-12-29
+}}

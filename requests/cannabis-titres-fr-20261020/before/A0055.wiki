@@ -1,0 +1,13 @@
+{{Argument
+|initialisation=Objection@2820
+|résumé=Même avec une légalisation, un important marché noir peut persister en raison de la taxation élevée ou de la concurrence avec des producteurs non régulés.
+|citations={{Citation
+|citation=Le marché noir du cannabis représente encore 80 % des ventes dans des régions ayant légalisé, telles que la Californie.
+|article=UNODC
+|ouvrage=Cannabis Report
+|date=2021
+}}
+|rubriques=Droit, Économie, Géopolitique, Société
+|mots-clés=Contournement fiscal, économie informelle, criminalité
+|date-création=2024-11-28
+}}
