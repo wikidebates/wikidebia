@@ -334,7 +334,6 @@ HTTP_URL = re.compile(r"^https?://", re.I)
 BAD_QUOTES = re.compile(r"[«»“”„‹›]")
 BAD_TITLE_APOSTROPHES = re.compile(r"[’‘ʼ＇]")
 BAD_ELLIPSIS = re.compile(r"\.\.\.|…")
-VERB_HINT = re.compile(r"\b(?:is|are|was|were|has|have|does|do|can|could|may|might|must|should|would|will|shows?|demonstrates?|proves?|supports?|challenges?|undermines?|refutes?|implies?|indicates?|prevents?|allows?|requires?|depends?|makes?|causes?|explains?|confirms?|weakens?|strengthens?)\b", re.I)
 QUESTION_TOPIC = re.compile(r"^(?:whether\b|should\b|must\b|is\b|are\b|does\b|do\b|can\b)", re.I)
 
 FRENCH_TEMPLATE_NAMES = {
@@ -1762,8 +1761,9 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         raise TranslationReviewError(f"La provenance éditoriale française ne peut pas être modifiée pour {node_id}")
     canonical = _validate_title(row.get("canonical_title"), f"titre canonique anglais de {node_id}")
     displayed = _validate_title(row.get("displayed_title"), f"titre affiché anglais de {node_id}", displayed=True)
-    if source_page_origin == "new" and not VERB_HINT.search(displayed):
-        raise TranslationReviewError(f"Le titre affiché anglais issu d’une création doit être une proposition complète : {node_id}")
+    # Translation preserves the validated source form, regardless of the French
+    # source's origin or the English page's lifecycle. Creation rules belong to
+    # generation; the differential form and meaning checks below still apply.
     if row.get("canonical_title_semantic_inventory_reviewed") is not True or row.get("canonical_title_equivalent_to_french") is not True:
         raise TranslationReviewError(f"Revue sémantique différentielle du titre canonique manquante pour {node_id}")
     for field in ("canonical_title_subject_preserved", "canonical_title_predicate_preserved", "canonical_title_scope_preserved", "canonical_title_modality_preserved"):
@@ -1915,8 +1915,6 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         numbers = NUMBER.findall(_plain(summary))
         if numbers and (row.get("quantitative_claims_verified") is not True or len(str(row.get("quantitative_claims_note") or "").strip()) < 12):
             raise TranslationReviewError(f"Donnée chiffrée anglaise non vérifiée dans {node_id}")
-    if source_page_origin == "new" and canonical.casefold() != displayed.casefold() and row.get("displayed_title_improves_readability_when_distinct") is not True:
-        raise TranslationReviewError(f"Le displayed title distinct d’une création n’améliore pas explicitement la lisibilité pour {node_id}")
     citations = _validate_citations(row.get("citations"), fr_content.get("citations") or [], node_id)
     selected = row.get("sources")
     if not isinstance(selected, dict) or set(selected) != set(ARGUMENT_BUCKETS):

@@ -4,6 +4,7 @@ import importlib.util
 import json
 import sys
 from pathlib import Path
+import pytest
 
 SCRIPTS = Path(__file__).resolve().parents[1] / "scripts"
 sys.path.insert(0, str(SCRIPTS))
@@ -627,7 +628,7 @@ def test_finalize_translation_accepts_historical_introduction_without_stakes_sub
 
 
 
-def test_historical_source_origin_allows_nominal_displayed_title_and_keyword_count():
+def nominal_argument_translation():
     row = {
         "status": "approved", "page_origin": "new", "source_page_origin": "preexisting", "preserved_parameters": {},
         "french": {
@@ -655,10 +656,42 @@ def test_historical_source_origin_allows_nominal_displayed_title_and_keyword_cou
         "documentation_rationale": "No documentary source is selected in this focused provenance unit test.", "reviewer": "Reviewer", "reviewed_at": "2026-08-12T22:00:00+02:00", "note": "Historical source provenance test."
     }
     mapping = {"revenu": "income", "liberté": "freedom", "travail": "work", "autonomie": "autonomy", "justice": "justice"}
+    return row, mapping
+
+
+def test_historical_source_origin_allows_nominal_displayed_title_and_keyword_count():
+    row, mapping = nominal_argument_translation()
     result = translation._validate_argument({"id": "A-HIST", "translation": row}, mapping, {}, authoritative_source_page_origin="preexisting")
     assert result["source_page_origin"] == "preexisting"
     assert len(result["keywords"]) == 5
     assert result["displayed_title"] == "Freedom and income"
+
+
+@pytest.mark.parametrize("origin", ("new", "preexisting"))
+@pytest.mark.parametrize("source,target", [("Liberté", "Freedom"), ("Réduction de la consommation", "Reduced consumption")])
+def test_translation_preserves_short_nominal_source_for_any_source_origin(origin, source, target):
+    row, mapping = nominal_argument_translation()
+    row["source_page_origin"] = origin
+    row["french"]["metadata"].update(page_origin=origin, displayed_title=source, keywords=["revenu", "liberté"])
+    row["french"]["content"]["page_origin"] = origin
+    row.update(displayed_title=target, keywords=["income", "freedom"], displayed_title_improves_readability_when_distinct=False)
+    result = translation._validate_argument({"id": "A-HIST", "translation": row}, mapping, {}, authoritative_source_page_origin=origin)
+    assert result["displayed_title"] == target
+    assert result["displayed_title_is_complete_proposition"] is False
+    assert row["french"]["metadata"]["displayed_title"] == source
+
+
+@pytest.mark.parametrize("origin", ("new", "preexisting"))
+def test_translation_still_rejects_loss_of_source_proposition(origin):
+    row, mapping = nominal_argument_translation()
+    row["source_page_origin"] = origin
+    row["french"]["metadata"].update(page_origin=origin, displayed_title="Le revenu favorise la liberté")
+    row["french"]["content"]["page_origin"] = origin
+    row["displayed_title_source_form"] = "proposition"
+    row.update(displayed_title_form_change_reviewed=True, displayed_title_speech_act_preserved=True,
+               displayed_title_form_change_note="A manual attestation must not waive loss of the source proposition.")
+    with pytest.raises(translation.TranslationReviewError, match="proposition française"):
+        translation._validate_argument({"id": "A-HIST", "translation": row}, mapping, {}, authoritative_source_page_origin=origin)
 
 
 def test_english_argument_established_name_parameters_are_preserved_import_parameters():

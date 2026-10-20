@@ -97,7 +97,7 @@ def token_words(value: str) -> list[str]:
     return re.findall(r"[A-Za-zÀ-ÖØ-öø-ÿ0-9]+(?:['’-][A-Za-zÀ-ÖØ-öø-ÿ0-9]+)?", value)
 
 
-def title_diagnostics(canonical: str, displayed: str) -> list[dict[str, Any]]:
+def title_diagnostics(canonical: str, displayed: str, *, enforce_creation_form: bool = True) -> list[dict[str, Any]]:
     issues: list[dict[str, Any]] = []
     canonical = str(canonical or "")
     displayed = str(displayed or "")
@@ -129,7 +129,7 @@ def title_diagnostics(canonical: str, displayed: str) -> list[dict[str, Any]]:
         if words and words[-1].casefold() in TRAILING_CONNECTORS:
             issues.append({"code": "TITLE_DISPLAYED_TRAILING_CONNECTOR", "severity": "blocking", "field": "displayed_title"})
         lower_tokens = {word.casefold().replace("’", "'") for word in words}
-        if words and not (lower_tokens & COMMON_FINITE_VERBS):
+        if enforce_creation_form and words and not (lower_tokens & COMMON_FINITE_VERBS):
             issues.append({
                 "code": "TITLE_DISPLAYED_PROPOSITIONALITY_REVIEW",
                 "severity": "review",
@@ -280,7 +280,7 @@ def page_review_item(
 ) -> dict[str, Any]:
     issues: list[dict[str, Any]] = []
     if entity_type == "argument":
-        issues.extend(title_diagnostics(canonical_title, displayed_title or ""))
+        issues.extend(title_diagnostics(canonical_title, displayed_title or "", enforce_creation_form=False))
     issues.extend(rubrique_diagnostics(rubriques, "rubrique" in fallback_kinds, enforce_creation_count=False))
     issues.extend(keyword_diagnostics(keywords, "mot-clé" in fallback_kinds, entity_type))
     return {
@@ -307,8 +307,8 @@ def page_review_item(
             "canonical_title_decision": "pending" if entity_type == "argument" else "not_applicable",
             "proposed_canonical_title": None,
             "canonical_title_rationale": "",
-            "displayed_title_decision": "pending" if entity_type == "argument" else "not_applicable",
-            "proposed_displayed_title": None,
+            "displayed_title_decision": "keep" if entity_type == "argument" else "not_applicable",
+            "proposed_displayed_title": displayed_title,
             "displayed_title_rationale": "",
             "rubriques_decision": "pending",
             "proposed_rubriques": [],

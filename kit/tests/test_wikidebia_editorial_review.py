@@ -609,6 +609,19 @@ def test_preexisting_rubriques_above_creation_count_are_preserved_without_count_
     assert result["preexisting_rubrique_preservation"]["changed"] is False
 
 
+def test_canonical_rename_preserves_short_historical_displayed_title_in_both_reviews():
+    item = _preexisting_item(rubriques=["Économie"], keywords=["revenu", "travail"])
+    item["source"]["displayed_title"] = "Coûts"
+    item["review"].update(canonical_title_decision="change",
+        proposed_canonical_title="Le revenu de base entraîne des coûts économiques",
+        displayed_title_complete_proposition=False)
+    for validate in (review_tool._validate_item, review_tool._validate_title_item):
+        result = validate(item)
+        assert result["canonical_title"] == "Le revenu de base entraîne des coûts économiques"
+        assert result["displayed_title"] == "Coûts"
+        assert result["decisions"]["displayed_title"] == "keep"
+
+
 def test_preexisting_rubrique_correction_requires_and_records_rationale():
     item = _preexisting_item(
         rubriques=["Économie", "Société"],

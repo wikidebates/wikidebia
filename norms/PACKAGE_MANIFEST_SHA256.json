@@ -1163,8 +1163,8 @@
     },
     {
       "path": "normative_reference/01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.88.md",
-      "size_bytes": 108261,
-      "sha256": "4f174cd637977fcf10704cf377848eeecb57e30eb0dc7b8c34b5e961edbe57bd"
+      "size_bytes": 108837,
+      "sha256": "142ca3da134e6b7b4eda865f24a120257a9c5848711be41edebaa96cc7402a71"
     },
     {
       "path": "normative_reference/01_normes/cahier_des_charges_consolide_wikidebia.md",
@@ -1673,8 +1673,8 @@
     },
     {
       "path": "normative_reference/01_normes/requirements_catalog_wikidebia.json",
-      "size_bytes": 318334,
-      "sha256": "1685dbf219c823314393efc5317ac913805140fdc297ae75cc89f38d324c9206"
+      "size_bytes": 318981,
+      "sha256": "27a7310ed23d0b9323af480900caa7a24f5c8c895c46e5c60ff5cf2205b57b60"
     },
     {
       "path": "normative_reference/01_normes/schema_graphe_registre_wikidebia.md",
@@ -1688,8 +1688,8 @@
     },
     {
       "path": "normative_reference/01_normes/workflow_production_wikidebia.md",
-      "size_bytes": 39410,
-      "sha256": "00564fabe606b5e037f45fb9f6df970860e2a61493298f7e0ea1bc78fbe76a40"
+      "size_bytes": 39986,
+      "sha256": "e7d5d041d1db6f6aff4d5aac2e412591885a1983365e509c031da1437163d330"
     }
   ]
 }

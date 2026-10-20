@@ -54,6 +54,23 @@ def make_promoted_project(tmp_path: Path) -> tuple[Path, Path]:
     return project, corpus
 
 
+def test_imported_nominal_title_is_kept_without_creation_diagnostic():
+    item = workspace.page_review_item(entity_type="argument", entity_id="A0001",
+        canonical_title="La légalisation peut accroître la consommation", displayed_title="Consommation",
+        rubriques=["Société"], keywords=["cannabis"], import_row={}, import_metadata={}, fallback_kinds=set())
+    assert not any(d["code"] == "TITLE_DISPLAYED_PROPOSITIONALITY_REVIEW" for d in item["diagnostics"])
+    assert item["review"]["displayed_title_decision"] == "keep"
+    assert item["review"]["proposed_displayed_title"] == "Consommation"
+    assert item["review"]["status"] == "pending"
+
+
+def test_creation_form_diagnostic_still_applies_to_generated_titles():
+    diagnostics = workspace.title_diagnostics("Le cannabis peut être consommé", "Consommation")
+    assert any(d["code"] == "TITLE_DISPLAYED_PROPOSITIONALITY_REVIEW" for d in diagnostics)
+    diagnostics = workspace.title_diagnostics("Le cannabis peut être consommé", "Consommation…", enforce_creation_form=False)
+    assert any(d["code"] == "TITLE_DISPLAYED_ELLIPSIS" for d in diagnostics)
+
+
 def test_workspace_init_preserves_source_and_creates_complete_working_copy(tmp_path: Path):
     project, source = make_promoted_project(tmp_path)
     source_hash = common.full_tree_sha256(source)
