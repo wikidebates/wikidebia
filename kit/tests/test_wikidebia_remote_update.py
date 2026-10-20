@@ -784,6 +784,60 @@ def test_english_argument_summary_has_the_same_default_protection(tmp_path):
     assert p["counts"]["blocked"] == 1
 
 
+@pytest.mark.parametrize("language,model,field,text_key", [
+    ("fr","Citation","citations","citation"), ("en","Quote","quotes","quote"),
+])
+@pytest.mark.parametrize("operation", ["update","move"])
+def test_update_and_move_protect_existing_citations(tmp_path,language,model,field,text_key,operation):
+    quote="{{"+model+"|"+text_key+"=Citation historique}}"
+    old="{{Argument|"+field+"="+quote+"}}"
+    new="{{Argument|"+field+"=}}"
+    p,*_=plan(tmp_path,languages=(language,),
+        old_pages=[(language,"A1","Titre",old)],
+        new_pages=[(language,"A1","Renommé" if operation=="move" else "Titre",new)],
+        remote_pages={(language,"Titre"):(10,old)})
+    assert p["counts"]["blocked"]==1
+    assert "citation existante" in p["operations"]["blocked"][0]["justification"]
+
+
+def test_duplicate_or_unlocated_quote_is_not_a_deletion_permission():
+    quote="{{Citation|citation=Texte historique|auteurs=Auteur}}"
+    with pytest.raises(module.UpdateError,match="citation existante"):
+        module.assert_citation_change_authorized(quote+quote,quote)
+    with pytest.raises(module.UpdateError,match="citation existante"):
+        module.assert_citation_change_authorized(quote,"",{"decision":"explicit_user_request"})
+    module.assert_citation_change_authorized(quote,quote+"{{Citation|citation=Nouvelle source}}")
+
+
+def test_quote_protection_covers_quotes_inside_debate_introduction():
+    old="{{Débat|introduction={{Citation|citation=Historique}}}}"
+    with pytest.raises(module.UpdateError,match="citation existante"):
+        module.assert_citation_change_authorized(old,"{{Débat|introduction=Autre texte}}")
+
+
+def test_old_plan_cannot_remove_a_quote_before_or_after_other_page_creations(tmp_path):
+    old="{{Argument|citations={{Citation|citation=Historique}}}}"
+    new="{{Argument|citations=}}"
+    config,path=make_fixture(tmp_path,old_pages=[("fr","A1","Titre",old)],
+        new_pages=[("fr","A1","Titre",new),("fr","A0","Création",argument("Création"))])
+    manifest_path=tmp_path/"corpus/demo/manifest.json"
+    manifest=json.loads(manifest_path.read_text())
+    manifest["pages"][0]["citation_change_authorization"]={
+        "decision":"explicit_user_request","action":"edit","instruction":"Retire cette citation pour ce test."
+    }
+    manifest_path.write_text(json.dumps(manifest))
+    adapter=FakeAdapter({("fr","Titre"):(10,old)})
+    p=module.RemoteUpdatePlanner(config,adapter,path).build_plan()
+    manifest["pages"][0].pop("citation_change_authorization")
+    manifest_path.write_text(json.dumps(manifest))
+    p["operations"]["update"][0].pop("citation_change_authorization")
+    p["new_manifest_sha256"]=module.sha_file(manifest_path)
+    p.pop("plan_sha256");p["plan_sha256"]=module.sha_object(p)
+    with pytest.raises(module.PlanConflict,match="citation existante"):
+        module.PlanExecutor(config,adapter,path).execute(p,p["plan_sha256"])
+    assert not any(e[0] in {"write","move"} for e in adapter.events)
+
+
 def test_remote_page_without_expected_main_template_is_page_specific_manual_review(tmp_path):
     old = argument("Ancien")
     proposed = argument("Nouveau")

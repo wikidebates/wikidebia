@@ -229,6 +229,47 @@ def test_pending_legacy_request_cannot_bypass_summary_scope(tmp_path):
     assert not wiki.writes
 
 
+@pytest.mark.parametrize("after", [
+    "{{Argument}}",
+    "{{Argument|citations={{Citation|citation=Texte réécrit|auteurs=Auteur|lien=https://example.org}}}}",
+    "{{Argument|citations={{Citation|citation=Texte original|auteurs=Autre auteur|lien=https://example.org}}}}",
+    "{{Argument|citations={{Citation|citation=Texte original|auteurs=Auteur}}}}",
+])
+def test_existing_citations_cannot_be_removed_or_rewritten_without_permission(tmp_path, after):
+    directory = tmp_path / "request"
+    request, pages = request_fixture(directory)
+    row = request["pages"][0]
+    before = "{{Argument|citations={{Citation|citation=Texte original|auteurs=Auteur|lien=https://example.org}}}}"
+    replace_request_text(directory, request, row, before, after)
+    pages["Child"] = (10, before)
+    wiki = FakeWiki(pages)
+    with pytest.raises(relay.Blocked, match="citation existante"):
+        publish(tmp_path, directory, wiki)
+    assert not wiki.writes
+    with pytest.raises(relay.Blocked, match="citation existante"):
+        relay.enqueue(tmp_path, directory, request["request_sha256"])
+
+
+def test_citation_restoration_has_a_specific_accurate_edit_comment(tmp_path):
+    directory = tmp_path / "request"
+    request, pages = request_fixture(directory)
+    row = request["pages"][0]
+    row["citation_change_authorization"] = {
+        "decision":"explicit_user_request", "action":"restore",
+        "instruction":"Rétablis les citations supprimées sur cette page.",
+    }
+    before="{{Argument|résumé=Historique}}"
+    after="{{Argument|résumé=Historique|citations={{Citation|citation=Texte original|auteurs=Auteur}}}}"
+    replace_request_text(directory, request, row, before, after)
+    pages["Child"]=(10,before)
+    wiki=FakeWiki(pages)
+    assert publish(tmp_path,directory,wiki)["status"]=="completed"
+    assert wiki.pages["Renamed child"][1]==after
+    comments={revision["text"]:revision["summary"] for revision in wiki.revisions.values()}
+    assert comments[after] == "Restauration des citations antérieures ; annulation des retraits non demandés"
+    assert "Mise à jour des justifications" in comments.values()
+
+
 @pytest.mark.parametrize("problem", ("stale_parent", "changed_parent", "collision", "rights", "identity", "tag"))
 def test_all_pages_are_checked_before_any_write(tmp_path, problem):
     directory = tmp_path / "request"
