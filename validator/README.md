@@ -1,4 +1,11 @@
 # Wikidéb’IA Validator 0.4.105
+
+Correctif de validation des rubriques historiques : la limite de quatre ne bloque
+plus les pages préexistantes ni leurs traductions. Avant la création des manifestes
+de pages, la provenance d'import et les empreintes des fichiers sources sont
+vérifiées. Les catégories autorisées, l'unicité et les limites des pages nouvelles
+restent contrôlées.
+
 Le validateur 0.4.105 s’aligne sur la norme 1.2.88 et le kit 2.16.47. Il conserve tous les contrôles 0.4.104 ; la modification porte sur le contrat de publication finale, où la page anglaise `Debate` doit précéder les créations `Argument`.
 
 Norme active : 1.2.88. Kit associé : 2.16.47.
