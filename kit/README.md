@@ -1,4 +1,11 @@
 # Wikidéb’IA Kit 2.16.47
+
+La commande `fr-publication-relay` transporte des demandes françaises explicitement
+approuvées par Git vers un relais Debian distinct du déploiement du programme.
+Elle réutilise les accès Pywikibot du serveur, contrôle les révisions avant écriture
+et conserve un journal de reprise. Voir `deploy/README_PUBLICATION_FR.md` dans le
+dépôt complet ; le relais n'est pas activé par une simple mise à jour du kit.
+
 Le kit 2.16.47 conserve l’ordre final `Debate` puis `Argument` de 2.16.46 et corrige la reprise des plans distants signés après une mise à niveau : `kit_version` et `required_validator_version` sont traités comme provenance du producteur, tandis que la signature du plan, son schéma, le débat, le manifeste et la configuration exacts restent obligatoirement vérifiés. Norme active : 1.2.88. Validateur associé : 0.4.105.
 
 Le kit 2.16.44 corrige la préparation de la publication finale anglaise : la configuration construite par `wikidebia_final_publication` transporte désormais explicitement `validator.fingerprint_path` et `max_warnings`, comme toutes les configurations `GenericPublisher` courantes. Sans ce champ, la construction du plan anglais atteignait `_package_fingerprints()` puis levait `KeyError('fingerprint_path')` après les connexions de préflight mais avant toute autorisation ou écriture distante. Le correctif ne modifie aucun corpus, plan français, convergence, contenu éditorial ni règle normative.

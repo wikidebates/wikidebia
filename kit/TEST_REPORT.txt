@@ -1,6 +1,6 @@
 Wikidéb’IA Kit 2.16.47 — rapport de tests
 
-Tests pytest : 539 réussis
+Tests pytest : 565 réussis
 Norme : 1.2.88
 Validateur : 0.4.105
 
@@ -16,3 +16,5 @@ Publication date rollover : PASSED ; les pages déjà créées gardent leur date
 Debate-first publication order : PASSED ; Debate précède les créations Argument, y compris après migration auditée d’un plan partiellement exécuté.
 
 Signed plan cross-version resume : PASSED ; les versions producteur restent de la provenance, tandis que signature, schéma, manifeste et configuration restent bloquants.
+
+Explicit French Git publication relay : PASSED ; 26 tests du relais : préflight global, conflits, reprises, transport Git, relecture et idempotence sur wiki simulé. Aucune publication réelle effectuée par ces tests.

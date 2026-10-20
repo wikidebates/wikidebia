@@ -2209,6 +2209,12 @@ def build_parser() -> argparse.ArgumentParser:
     upgrade.add_argument("--no-push", action="store_true", help="Créer le commit sans pousser vers origin")
     upgrade.add_argument("--no-git", action="store_true", help="Ne pas créer de commit Git")
 
+    relay = sub.add_parser("fr-publication-relay", help="Relayer des demandes explicites vers le wiki français")
+    relay.add_argument("--execute", action="store_true", help="Exécuter les demandes de la branche dédiée")
+    relay.add_argument("--retry", help="Identifiant d'une demande bloquée à retenter")
+    relay.add_argument("--enqueue", type=Path, help="Dossier d'une demande approuvée à envoyer")
+    relay.add_argument("--confirm-request-sha256")
+
     workflow = sub.add_parser(
         "workflow",
         help="Piloter automatiquement le workflow éditorial jusqu'au prochain paquet ChatGPT",
@@ -2449,6 +2455,21 @@ def main(argv: list[str] | None = None) -> int:
         )
         print(json.dumps(versions, ensure_ascii=False, sort_keys=True))
         return 0
+    if args.command == "fr-publication-relay":
+        from wikidebia_fr_publication_relay import main as relay_main
+        command = ["--root", str(root)]
+        if args.execute:
+            command.append("--execute")
+        if args.retry:
+            command.extend(["--retry", args.retry])
+        if args.enqueue:
+            command.extend(["--enqueue", str(args.enqueue)])
+        if args.confirm_request_sha256:
+            command.extend(["--confirm-request-sha256", args.confirm_request_sha256])
+        try:
+            return relay_main(command)
+        except Exception as exc:
+            raise ManagementError(f"Relais de publication arrêté : {exc}") from exc
     if args.command == "workflow":
         return editorial_workflow(
             root, args.debate_title, debate_id=args.debate_id, short_code=args.short_code,
