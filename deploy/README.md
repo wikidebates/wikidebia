@@ -132,6 +132,10 @@ systemctl --user start wikidebia-deploy.timer
   Les modifications locales et les historiques divergents bloquent le déploiement.
 - Les fichiers ignorés (corpus, secrets, journaux, configurations locales) restent
   dans le checkout du serveur. Ils ne sont pas copiés dans le dossier des tests.
+  Un commit qui suit un chemin réservé, son contenu ou un fichier/lien remplaçant
+  un de ses parents est refusé avant les tests et la mise à jour Git. Cela protège
+  notamment `corpus` et `private` eux-mêmes, ainsi que le parent `config` de la
+  configuration locale ; les exemples publics dans `config/` restent autorisés.
 - Un verrou empêche deux déploiements simultanés. Il ne verrouille pas les autres
   commandes Wikidéb’IA : suspendre le minuteur pendant les opérations éditoriales.
 - Une erreur de tests laisse le code installé inchangé. Si `pip` ou `doctor`
@@ -140,10 +144,24 @@ systemctl --user start wikidebia-deploy.timer
   commit comme déployé, et retentera au passage suivant. Ce mécanisme n'est pas
   une bascule atomique avec retour arrière automatique. Consulter le journal,
   suspendre le minuteur puis corriger ; ne pas lancer de reset à l'aveugle.
-- Les versions de dépendances sont actuellement des plages, sans verrouillage.
-  Les résolutions entre la validation temporaire et l'installation peuvent varier.
+- Les versions de dépendances déclarées sont actuellement des plages. Chaque
+  déploiement enregistre les versions résolues dans l'environnement temporaire
+  avec `pip freeze`, puis les utilise comme contraintes pour l'installation réelle.
+  La validation et l'installation utilisent ainsi les mêmes versions pour les
+  dépendances du programme. Deux déploiements distincts peuvent encore résoudre
+  des versions différentes ; il n'y a pas de lockfile versionné.
 - Le déployeur installé est une copie stable du script. Après un changement de
   son fonctionnement, relancer explicitement `install-timer.sh` pour le remplacer.
+  Une fusion sur GitHub et la récupération du nouveau fichier `deploy/update.sh`
+  ne suffisent donc pas à activer une correction du déployeur. Après avoir vérifié
+  que le serveur a récupéré le commit corrigé, exécuter manuellement sous
+  **`webmaster` sur Debian**, depuis le checkout :
+
+  ```bash
+  bash deploy/install-timer.sh "$PWD" main
+  ```
+
+  Vérifier ensuite le journal du service et le prochain passage du minuteur.
 - Pour annuler une modification applicative, créer un commit de correction ou
   de revert sur GitHub, puis le fusionner. Les données privées ne sont pas
   sauvegardées par ce mécanisme ; conserver la sauvegarde habituelle du serveur.
