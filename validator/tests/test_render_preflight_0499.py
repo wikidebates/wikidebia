@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import pytest
 
 from wikidebia_validator.editorial import validate_individual_review_data
 from wikidebia_validator.validator import validate_package
@@ -81,6 +82,44 @@ def test_historical_nominal_displayed_title_does_not_require_english_creation_pr
         preexisting_node_ids={"A0001"},
     )
     assert not any(issue.get("reason") == "displayed_title_complete_proposition_en" for issue in issues), issues
+
+
+def test_translation_does_not_require_generation_readability_or_autonomy_attestations():
+    review, nodes = _historical_nominal_review()
+    entry = review["entries"][0]
+    entry.update(displayed_title_readability_improvement_reviewed_fr=False,
+                 displayed_title_readability_improvement_reviewed_en=False,
+                 displayed_referents_explicit_fr=False, displayed_referents_explicit_en=False,
+                 title_reason="Source form preserved.")
+    issues = validate_individual_review_data(review, nodes, translation_validation_mode="differential",
+        translation_semantic_review_schema_version="1.4", displayed_title_policy_node_ids={"A0001"})
+    generation_reasons = {"displayed_referents_explicit", "displayed_title_difference_reason",
+        "displayed_title_readability_improvement_reviewed_fr", "displayed_title_readability_improvement_reviewed_en"}
+    assert not any(issue.get("reason") in generation_reasons for issue in issues), issues
+
+
+@pytest.mark.parametrize("mode", ("absolute", "differential"))
+@pytest.mark.parametrize("fr,en", [("Coûts", "Costs"),
+    ("Des coûts supplémentaires pour les contribuables et pour les entreprises de chaque région",
+     "Additional costs for taxpayers and for businesses in every region of the country")])
+def test_displayed_title_length_and_form_are_generation_rules(tmp_path: Path, mode, fr, en):
+    create_fr_package(tmp_path)
+    manifest_path = tmp_path / "manifest.json"
+    manifest = json.loads(manifest_path.read_text())
+    manifest.setdefault("editorial_controls", {})["translation_validation_mode"] = mode
+    manifest_path.write_text(json.dumps(manifest))
+    registry_path = tmp_path / "data/registre_debat.json"
+    registry = json.loads(registry_path.read_text())
+    registry["graph"]["nodes"][0]["fr"]["displayed_title"] = fr
+    registry["graph"]["nodes"][0]["en"]["displayed_title"] = en
+    registry_path.write_text(json.dumps(registry))
+    report = validate_package(tmp_path, scopes=["editorial"])
+    form_errors = [f for f in report.findings if f.level == "ERROR" and f.code in {"WDV-EDT-007", "WDV-EDT-021", "WDV-EDT-001"}
+                   and f.details.get("node_id") == "A0001"]
+    if mode == "absolute":
+        assert form_errors, report.to_text()
+    else:
+        assert not form_errors, report.to_text()
 
 
 def test_inline_machine_date_scanner_ignores_iso_like_url_but_blocks_prose_date(tmp_path: Path):

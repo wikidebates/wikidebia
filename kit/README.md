@@ -189,3 +189,5 @@ La version 2.15.54 corrige l’alignement du validateur sur les métadonnées de
 ## Architecture de compatibilité 2026-08-10
 
 Les numéros de release sont une provenance. La compatibilité opérationnelle est pilotée par `CAPABILITIES.json` et les identifiants/version de schéma ; les égalités exactes sont réservées à l’installation, l’anti-downgrade, la reproductibilité et l’audit.
+
+La traduction des titres affichés respecte la source française validée : les critères de longueur et de forme propositionnelle appartiennent à la génération de débats. Un titre historique court ou nominal est conservé par défaut. Renommer une page modifie la cible des liens, sans recopier le nom canonique dans leurs libellés affichés.

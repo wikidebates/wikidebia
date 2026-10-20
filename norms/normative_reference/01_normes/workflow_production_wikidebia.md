@@ -195,6 +195,8 @@ La commande `./wikidebia publish` est entièrement non interactive : après vali
 Avant toute génération d’un nouveau titre affiché, celui-ci est lu comme une phrase indépendante : la revue vérifie la présence d’un sujet, d’un prédicat et de la conclusion argumentative utile. Cette exigence ne sert pas à normaliser rétroactivement les `titre-affiché` déjà publiés dans un corpus importé du wiki. Pour ces pages préexistantes, le titre affiché est conservé par défaut, y compris lorsqu’il est nominal, et n’est corrigé que pour une faute ou un problème flagrant, ou sur décision explicite du propriétaire. Le titre canonique / nom de page reste, lui, soumis aux exigences d’autonomie et peut être corrigé.
 
 
+En traduction, `displayed-title` traduit le `titre-affiché` français validé, quelle que soit la provenance de la source et même si la page cible anglaise est nouvelle. Une forme courte, nominale ou contextuelle ne doit pas être allongée ni transformée en proposition pour satisfaire une règle de génération. La fidélité du sens, de la portée et de l'acte de langage reste obligatoire : seule une dégradation introduite par la traduction est bloquante. Un renommage canonique change la cible `page=`, sans remplacer automatiquement le libellé `titre-affiché`.
+
 ## Contrôle 1.2.20 du placement des arguments
 
 Avant `graph_validated`, effectuer une passe indépendante qui ne juge ni le style des titres ni le nombre de nœuds, mais uniquement la fonction logique des occurrences.

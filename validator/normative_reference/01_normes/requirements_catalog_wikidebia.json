@@ -5226,11 +5226,12 @@
     {
       "id": "VAL-028",
       "domain": "validator",
-      "statement": "The validator rejects obviously nominal displayed titles and requires page-level bilingual attestations that each displayed title is a complete intelligible proposition.",
+      "statement": "Complete propositional displayed-title form and generation length preferences apply to newly generated debates only. Existing displayed titles are preserved by default, including short or nominal labels. Translation follows the validated French source regardless of source origin or target page lifecycle, and rejects introduced semantic/form regressions rather than inherited non-propositional form. Canonical renaming must not automatically replace displayed labels.",
       "disposition": "active",
       "enforcement": "automatic+human ledger",
       "sources": [
-        "owner decision 2026-08-01 — displayed-title intelligibility"
+        "owner decision 2026-08-01 — displayed-title intelligibility",
+        "owner clarification 2026-10-20 — generation rules do not rewrite translated or existing displayed titles"
       ],
       "normative_files": [
         "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.88.md",
@@ -8186,6 +8187,10 @@
     "owner decision 2026-08-12 — source-provenance-aware translation and historical classification": [
       "00_sources_reference/DECISIONS_CONVERSATION_CONSOLIDEES.md",
       "01_normes/history/WIKIDEBIA_NORME_CONSOLIDEE_1.2.86.md",
+      "01_normes/workflow_production_wikidebia.md"
+    ],
+    "owner clarification 2026-10-20 — generation rules do not rewrite translated or existing displayed titles": [
+      "01_normes/WIKIDEBIA_NORME_CONSOLIDEE_1.2.88.md",
       "01_normes/workflow_production_wikidebia.md"
     ]
   },

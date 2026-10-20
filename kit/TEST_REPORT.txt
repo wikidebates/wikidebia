@@ -1,6 +1,6 @@
 Wikidéb’IA Kit 2.16.47 — rapport de tests
 
-Tests pytest : 585 réussis
+Tests pytest : 594 réussis
 Norme : 1.2.88
 Validateur : 0.4.105
 
@@ -20,3 +20,5 @@ Signed plan cross-version resume : PASSED ; les versions producteur restent de l
 Explicit French Git publication relay : PASSED ; 46 tests du relais : préflight global, conflits, reprises, transport Git, relecture et idempotence sur wiki simulé. Aucune publication réelle effectuée par ces tests.
 
 French relay readback recovery : PASSED ; relectures bornées des métadonnées, contrôle de la révision parente, reprise des anciens reçus et absence de doublons après interruption.
+
+Displayed-title translation scope : PASSED ; titres courts et nominaux conservés, critères de génération séparés et régressions sémantiques de traduction toujours bloquantes.

@@ -1446,7 +1446,7 @@ def validate_individual_review_data(review: Any, nodes: list[dict[str, Any]], no
         # Historical displayed titles may legitimately rely on their immediate
         # rendering context.  Do not force a false explicit-referent attestation
         # merely because an English target page is technically new.
-        if not preexisting_fr:
+        if not preexisting_fr and not current_differential:
             if entry.get('displayed_referents_explicit_fr') is not True or (not english_deferred and entry.get('displayed_referents_explicit_en') is not True):
                 issues.append({'reason': 'displayed_referents_explicit', 'node_id': node_id})
         if current_differential:
@@ -1521,9 +1521,9 @@ def validate_individual_review_data(review: Any, nodes: list[dict[str, Any]], no
             if canonical and canonical != displayed and (displayed_title_policy_node_ids is None or node_id in displayed_title_policy_node_ids):
                 if entry.get(f'displayed_title_semantic_equivalence_reviewed_{lang}') is not True:
                     issues.append({'reason': f'displayed_title_semantic_equivalence_reviewed_{lang}', 'node_id': node_id})
-                if entry.get(f'displayed_title_readability_improvement_reviewed_{lang}') is not True:
+                if not current_differential and entry.get(f'displayed_title_readability_improvement_reviewed_{lang}') is not True:
                     issues.append({'reason': f'displayed_title_readability_improvement_reviewed_{lang}', 'node_id': node_id})
-                if len(str(entry.get('title_reason') or '').strip()) < 40:
+                if not current_differential and len(str(entry.get('title_reason') or '').strip()) < 40:
                     issues.append({'reason': 'displayed_title_difference_reason', 'node_id': node_id})
         if not str(entry.get('title_reason') or '').strip():
             issues.append({'reason': 'title_reason', 'node_id': node_id})
@@ -2154,7 +2154,7 @@ def validate_editorial(ctx: PackageContext) -> None:
                 ctx.report.error('WDV-EDT-009', 'Guillemets non conformes dans un titre canonique', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'title': canonical_title, 'reasons': canonical_quote_reasons})
             title = data.get('displayed_title') or ''
             reasons = displayed_title_issues(title, lang)
-            if source_preexisting:
+            if source_preexisting or differential_translation:
                 reasons = [reason for reason in reasons if reason not in {'too_short', 'lowercase_initial'}]
             if reasons:
                 title_quality_counts[lang] += 1
@@ -2162,7 +2162,7 @@ def validate_editorial(ctx: PackageContext) -> None:
             argument_reasons = displayed_title_argument_issues(title, lang)
             individual = _individual_review_entry(ctx, str(node_id))
             manual_argument_ok = isinstance(individual, dict) and individual.get(f'displayed_title_complete_proposition_{lang}') is True and individual.get(f'displayed_title_argument_intelligible_{lang}') is True
-            if (lang == 'fr' and differential_translation) or source_preexisting:
+            if (lang == 'fr' and differential_translation) or (source_preexisting and not differential_translation):
                 # Validated French source and pre-existing wiki pages are historical
                 # baselines, not targets for retroactive enforcement of creation-only
                 # complete-proposition rules. Obvious malformed-title checks above remain.
@@ -2185,7 +2185,7 @@ def validate_editorial(ctx: PackageContext) -> None:
                 ctx.report.error('WDV-EDT-021', 'Titre affiché non propositionnel ou argument incompréhensible', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'title': title, 'reasons': argument_reasons, 'validation_mode': 'differential' if (lang == 'en' and differential_translation) else 'absolute'})
             concision_reasons = [reason for reason in displayed_title_concision_issues(canonical_title, title) if reason != 'exact_copy']
             manual_concision_ok = isinstance(individual, dict) and individual.get(f'displayed_title_concision_reviewed_{lang}') is True and individual.get(f'displayed_title_semantic_equivalence_reviewed_{lang}') is True
-            if concision_reasons and not manual_concision_ok and not source_preexisting:
+            if concision_reasons and not manual_concision_ok and not source_preexisting and not differential_translation:
                 title_quality_counts[lang] += 1
                 ctx.report.error('WDV-EDT-001', 'Titre affiché plus long que le titre canonique', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'canonical_title': canonical_title, 'displayed_title': title, 'reasons': concision_reasons})
             keywords = data.get('keywords') or []

@@ -322,7 +322,7 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
             "TITLE_DISPLAYED_SPACING", "TITLE_DISPLAYED_TRAILING_PERIOD", "TITLE_DISPLAYED_NON_ASCII_QUOTES",
             "TITLE_DISPLAYED_ELLIPSIS", "TITLE_DISPLAYED_TRAILING_CONNECTOR",
         }
-        remaining = [row for row in title_diagnostics(canonical, displayed) if row.get("code") in blocking_codes]
+        remaining = [row for row in title_diagnostics(canonical, displayed, enforce_creation_form=(page_origin == "new")) if row.get("code") in blocking_codes]
         if remaining:
             raise EditorialReviewError(f"Titres non conformes pour {entity_id} : {[row.get('code') for row in remaining]}")
         if not _text_ok(decision.get("canonical_title_rationale"), 20):
@@ -477,7 +477,7 @@ def _validate_title_item(item: Mapping[str, Any]) -> dict[str, Any]:
             "TITLE_DISPLAYED_SPACING", "TITLE_DISPLAYED_TRAILING_PERIOD", "TITLE_DISPLAYED_NON_ASCII_QUOTES",
             "TITLE_DISPLAYED_ELLIPSIS", "TITLE_DISPLAYED_TRAILING_CONNECTOR",
         }
-        remaining = [row for row in title_diagnostics(canonical_raw, displayed_raw) if row.get("code") in blocking_codes]
+        remaining = [row for row in title_diagnostics(canonical_raw, displayed_raw, enforce_creation_form=(page_origin == "new")) if row.get("code") in blocking_codes]
         if remaining:
             raise EditorialReviewError(f"Titres non conformes pour {entity_id} : {[row.get('code') for row in remaining]}")
         if not _text_ok(decision.get("canonical_title_rationale"), 20):
