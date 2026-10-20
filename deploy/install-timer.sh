@@ -3,7 +3,7 @@
 set -euo pipefail
 umask 077
 [[ $# -ge 1 && $# -le 2 ]] || { echo 'Usage : bash install-timer.sh DOSSIER [BRANCHE]' >&2; exit 1; }
-[[ $(id -u) != 0 ]] || { echo 'Utiliser wikidebia-codex, pas root.' >&2; exit 1; }
+[[ $(id -u) != 0 ]] || { echo 'Utiliser le compte propriétaire du checkout, pas root.' >&2; exit 1; }
 repo=$(cd -- "$1" && pwd -P)
 branch=${2:-main}
 script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)

@@ -16,7 +16,9 @@ déclenche pas de déploiement.
 Les commandes ci-dessous sont destinées au **serveur Debian**, pas à Codex Cloud.
 Avant de les exécuter, fusionner les fichiers `deploy/` dans GitHub. Ne pas
 écraser une installation existante : relever d'abord son chemin et son compte
-propriétaire. Le compte `wikidebia-codex` doit pouvoir lire le dépôt GitHub et
+propriétaire. Sur le serveur actuel, le dossier est
+`/home/users/webmaster/files/Wikidéb'IA` et son propriétaire est `webmaster`.
+Le compte `webmaster` doit pouvoir lire le dépôt GitHub et
 écrire dans son checkout. Ne pas changer récursivement les droits d'une installation
 existante sans l'avoir examinée.
 
@@ -25,24 +27,38 @@ Préparer les paquets et le service utilisateur, depuis le compte root :
 ```bash
 apt-get update
 apt-get install -y git python3 python3-venv python3-pip util-linux dbus-user-session
-loginctl enable-linger wikidebia-codex
+loginctl enable-linger webmaster
 ```
 
-Depuis root, ouvrir une session sous `wikidebia-codex`. `su -` ne définit pas
+Depuis root, ouvrir une session sous `webmaster` (ignorer `su` si on utilise déjà
+ce compte). `su -` ne définit pas
 toujours le chemin du bus systemd utilisateur ; le préciser pour ce compte :
 
 ```bash
-su - wikidebia-codex
+su - webmaster
 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 systemctl --user show-environment >/dev/null
 ```
 
 Si la dernière commande échoue, ne pas continuer : vérifier que
-`dbus-user-session` est installé et que `loginctl enable-linger wikidebia-codex`
+`dbus-user-session` est installé et que `loginctl enable-linger webmaster`
 a bien démarré le gestionnaire utilisateur. Ne pas installer le minuteur en tant
 que root.
 
-Pour une **nouvelle installation seulement**, depuis `wikidebia-codex` :
+Pour l'**installation existante**, depuis `webmaster`, après fusion des scripts
+dans GitHub :
+
+```bash
+cd "/home/users/webmaster/files/Wikidéb'IA"
+git status --short --branch
+git pull --ff-only origin main
+```
+
+Le checkout doit être propre avant le pull. Si une modification locale est
+présente, l'examiner et la préserver avant de continuer. Ne pas réappliquer
+automatiquement un stash pendant les déploiements.
+
+Pour une **nouvelle installation seulement**, depuis le compte propriétaire :
 
 ```bash
 git clone --branch main https://github.com/wikidebates/wikidebia.git "$HOME/wikidebia"

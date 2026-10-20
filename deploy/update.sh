@@ -9,7 +9,7 @@ fail() { printf 'Déploiement arrêté : %s\n' "$*" >&2; exit 1; }
 repo=$(cd -- "$1" && pwd -P)
 branch=${2:-main}
 python=${DEPLOY_PYTHON:-python3}
-[[ $(id -u) != 0 ]] || fail "utiliser le compte wikidebia-codex, pas root"
+[[ $(id -u) != 0 ]] || fail "utiliser le compte propriétaire du checkout, pas root"
 git check-ref-format "refs/heads/$branch" >/dev/null
 [[ $(git -C "$repo" rev-parse --show-toplevel) == "$repo" ]] || fail "le dossier doit être la racine Git"
 [[ -x "$repo/wikidebia" ]] || fail "commande wikidebia absente"
