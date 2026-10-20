@@ -4,8 +4,8 @@
   "normative_revision": "1.2.88",
   "stable_archive_name": "wikidebia-validator.zip",
   "version_source": "VERSIONS.json",
-  "declared_file_count": 508,
-  "declared_test_count": 464,
+  "declared_file_count": 509,
+  "declared_test_count": 486,
   "self_excluded": [
     "PACKAGE_MANIFEST_SHA256.json",
     "PACKAGE_RECEIPT.json"
@@ -33,13 +33,13 @@
     },
     {
       "path": "README.md",
-      "size_bytes": 16164,
-      "sha256": "e6a83b12c2f1737de6225118c16593121564c27b6229e74acb6672513fa3ac20"
+      "size_bytes": 16521,
+      "sha256": "4f36f4accdcf8e68a551109b7b23093d7c2731038095e9ebf4e87e1d2e9265c3"
     },
     {
       "path": "TEST_REPORT.txt",
-      "size_bytes": 669,
-      "sha256": "585701071c97a7ee80fe04c20bfe285b93f740660767bd8b427fe64324327cbf"
+      "size_bytes": 793,
+      "sha256": "57888a34613c7a4b6030c2cce0a190e03f7f5e91e45df7c22e5f7bfb2d9f98be"
     },
     {
       "path": "VERSIONS.json",
@@ -789,12 +789,12 @@
     {
       "path": "docs/SELF_AUDIT_REPORT.txt",
       "size_bytes": 370,
-      "sha256": "d27f2e6525ffccd8a9248a49e0f9c2bd25988d040df66fe5da4b0754c5a37bb5"
+      "sha256": "952cc0bf89da0ad3d28533fead32a35de611d1cb5bc6c912e0c70d7473afb280"
     },
     {
       "path": "docs/TEST_REPORT.txt",
-      "size_bytes": 669,
-      "sha256": "585701071c97a7ee80fe04c20bfe285b93f740660767bd8b427fe64324327cbf"
+      "size_bytes": 793,
+      "sha256": "57888a34613c7a4b6030c2cce0a190e03f7f5e91e45df7c22e5f7bfb2d9f98be"
     },
     {
       "path": "docs/history/README.md",
@@ -1818,8 +1818,8 @@
     },
     {
       "path": "src/wikidebia_validator/schema_validation.py",
-      "size_bytes": 5856,
-      "sha256": "5214e06e07044b19ab33c60eeb52869fea067460ce00fcc988dd4f749ed16fcb"
+      "size_bytes": 8591,
+      "sha256": "1711f08875c66c7a64a6d6cd19b1b1b1eb31cbecbebce2f0c07cf05cfc462235"
     },
     {
       "path": "src/wikidebia_validator/schemas/archive_receipt.schema.json",
@@ -2130,6 +2130,11 @@
       "path": "tests/test_historical_render_differential_0496.py",
       "size_bytes": 11031,
       "sha256": "b550906015b6f7af3198aa833fafa07d227f5717f9228af7b1c91d0028afeda9"
+    },
+    {
+      "path": "tests/test_historical_rubric_schema.py",
+      "size_bytes": 4734,
+      "sha256": "f5aff819ebe591712c3e95a90ae4a7fa6f3d3d66e301ff38370becc2673bea0d"
     },
     {
       "path": "tests/test_historical_summary_shared_provenance_04103.py",

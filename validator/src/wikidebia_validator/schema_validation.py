@@ -56,6 +56,58 @@ def pointer(path: Any) -> str:
     return "/" + "/".join(parts) if parts else "/"
 
 
+def _historical_classification_ids(ctx: PackageContext, language: str) -> set[str]:
+    """Find historical arguments, including the import stage before page manifests."""
+    historical: set[str] = set()
+    provenance_path = "data/import_provenance.json"
+    provenance = ctx.load_json(provenance_path) if ctx.exists(provenance_path) else None
+    if isinstance(provenance, dict) and provenance.get("schema") == "wikidebia-import-provenance-1.0":
+        for row in provenance.get("pages") or []:
+            if not isinstance(row, dict) or row.get("kind") != "argument":
+                continue
+            node_id, path = row.get("page_id"), row.get("import_path")
+            revision = row.get("revision_id")
+            if (isinstance(node_id, str) and isinstance(path, str)
+                    and path.startswith("imports/fr/arguments/")
+                    and type(revision) is int and revision > 0
+                    and isinstance(row.get("sha256"), str)
+                    and ctx.sha256(path) == row["sha256"]):
+                historical.add(node_id)
+    for row in (ctx.manifest() or {}).get("pages") or []:
+        if not isinstance(row, dict) or row.get("page_type") != "argument" or row.get("language") != language:
+            continue
+        node_id = row.get("page_id")
+        if not isinstance(node_id, str):
+            continue
+        if row.get("page_origin") == "preexisting" or (language == "en" and row.get("source_page_origin") == "preexisting"):
+            historical.add(node_id)
+        elif language == "fr" and row.get("page_origin") == "new":
+            historical.discard(node_id)
+    return historical
+
+
+def _historical_classification_count(ctx: PackageContext, schema_name: str, instance: Any, err: Any) -> bool:
+    # Only cardinality is contextual. Enum, uniqueness, types and all other
+    # schema constraints remain mandatory, including for historical pages.
+    if err.validator != "maxItems" or err.validator_value != 4:
+        return False
+    path = list(err.absolute_path)
+    if schema_name == "argument_registry.schema.json" and path[:2] == ["graph", "nodes"]:
+        path = path[1:]
+        graph = instance.get("graph") or {}
+    elif schema_name == "argument_graph.schema.json":
+        graph = instance
+    else:
+        return False
+    if len(path) != 4 or path[0] != "nodes" or not isinstance(path[1], int):
+        return False
+    language, field = path[2:]
+    if (language, field) not in {("fr", "rubriques"), ("en", "sections")}:
+        return False
+    node = graph["nodes"][path[1]]
+    return node.get("id") in _historical_classification_ids(ctx, language)
+
+
 def validate_instance(ctx: PackageContext, store: SchemaStore, rel: str, schema_name: str, instance: Any | None = None) -> None:
     if instance is None:
         instance = ctx.load_json(rel)
@@ -67,6 +119,8 @@ def validate_instance(ctx: PackageContext, store: SchemaStore, rel: str, schema_
         ctx.report.error("WDV-SCH-002", f"Impossible d'appliquer {schema_name} : {exc}", path=rel)
         return
     for err in errors:
+        if _historical_classification_count(ctx, schema_name, instance, err):
+            continue
         ctx.report.error("WDV-SCH-003", err.message, path=rel, pointer=pointer(err.absolute_path), details={"schema": schema_name})
 
 
