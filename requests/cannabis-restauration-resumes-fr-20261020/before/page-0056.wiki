@@ -1,0 +1,22 @@
+{{Argument
+|initialisation=Argument pour@441
+|résumé=L'argument en faveur d'une légalisation encadrée repose sur la possibilité de déplacer la demande vers un approvisionnement contrôlé et de limiter certains dommages du marché clandestin. Le comité d'experts canadien constate en 2024 des progrès sur ces objectifs, mais souligne aussi des difficultés persistantes : protection des jeunes, produits fortement dosés, accès médical et offre illégale. L'existence d'un cadre légal ne suffit donc pas à démontrer une supériorité sur tous les critères.
+|citations=
+|références-sitographiques={{Référence sitographique
+|lien=https://www.canada.ca/fr/sante-canada/services/publications/drogues-medicaments/examen-legislatif-loi-cannabis-rapport-final-comite-experts.html
+|page=Examen législatif de la Loi sur le cannabis : Rapport final du Comité d’experts
+|site=Santé Canada
+|date=2024
+}}
+
+|justifications={{Justification
+|page=La légalisation du cannabis au Canada fonctionne mieux que la prohibition
+|titre-affiché=Légalisation contrôlée par l'État (Modèle canadien)
+}}{{Justification
+|page=La régulation du cannabis en Uruguay fonctionne mieux que la prohibition
+|titre-affiché=Régulation contrôlée du cannabis (Modèle Uruguayen)
+}}
+|rubriques=Droit, Économie, Politique, Santé, Société
+|mots-clés=Marché noir, problèmes de santé publique
+|date-création=2024-11-28
+}}

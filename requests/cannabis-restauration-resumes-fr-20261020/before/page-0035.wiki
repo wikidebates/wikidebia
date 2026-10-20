@@ -1,0 +1,6 @@
+{{Argument
+|initialisation=Objection@29795
+|résumé=Une interdiction peut inciter les vendeurs et les usagers à modifier leurs pratiques pour échapper au contrôle : nouveaux circuits, nouvelles présentations ou substances de remplacement. Ce mécanisme peut limiter l'efficacité d'une mesure et compliquer la prévention. Il ne permet pas, sans observation, de conclure que tout interdit est nécessairement contre-productif.
+
+|date-création=2025-04-15
+}}

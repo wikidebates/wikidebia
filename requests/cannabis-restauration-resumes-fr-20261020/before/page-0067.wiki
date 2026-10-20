@@ -1,0 +1,19 @@
+{{Argument
+|initialisation=Argument pour@441
+|résumé=Une légalisation permet d'imposer aux producteurs autorisés des règles de fabrication, des analyses, une traçabilité et des exigences d'information. Le comité d'experts canadien de 2024 retient l'existence d'un approvisionnement contrôlé parmi les progrès réalisés. Ce contrôle ne garantit pas l'absence de tout contaminant ni l'innocuité du cannabis : le dosage en THC, les caractéristiques des produits et la persistance d'une offre illégale restent des enjeux distincts.
+|citations=
+|références-sitographiques={{Référence sitographique
+|lien=https://www.canada.ca/fr/sante-canada/services/publications/drogues-medicaments/examen-legislatif-loi-cannabis-rapport-final-comite-experts.html
+|page=Examen législatif de la Loi sur le cannabis : Rapport final du Comité d’experts
+|site=Santé Canada
+|date=2024
+}}
+
+|objections={{Objection
+|page=Un marché noir du cannabis peut subsister après sa légalisation
+|titre-affiché=Maintien d’un marché noir
+}}
+|rubriques=Droit, Santé, Société
+|mots-clés=protection des consommateurs, Marché noir
+|date-création=2024-11-28
+}}

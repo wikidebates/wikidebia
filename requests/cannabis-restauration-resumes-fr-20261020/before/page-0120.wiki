@@ -1,0 +1,36 @@
+{{Argument
+|résumé=La citation historique conservée parle d'usage régulier, ce qui ne se confond pas avec un diagnostic de dépendance ou de trouble de l'usage. Le NIDA définit ce dernier par des symptômes et des conséquences cliniques, et souligne le rôle de la fréquence ainsi que d'autres facteurs de risque. Une comparaison du pouvoir addictif doit donc employer des critères et des populations comparables.
+
+|citations={{Citation
+|citation=Un sujet sur trois qui a expérimenté le cannabis en devient un usager régulier.
+|auteurs=Jean Costentin
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=54
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+|date=24/09/2024
+}}
+
+|objections={{Objection
+|page=Le pouvoir addictif du cannabis est assez faible
+|titre-affiché=Son pouvoir addictif est assez faible
+}}{{Objection
+|page=Le pouvoir addictif du cannabis n'est ni faible ni fort en soi, il dépend de son niveau d'usage
+|titre-affiché=Son pouvoir addictif n'est ni faible ni fort en soi, il dépend de son niveau d'usage
+}}{{Objection
+|page=La dépendance à une drogue ne se produit pas indépendamment de la personne et de son environnement. La drogue est un moyen d'adaptation à la vie, pas une cause
+|titre-affiché=La dépendance à une drogue ne se produit pas indépendamment de la personne et de son environnement. La drogue est un moyen d'adaptation à la vie, pas une cause
+}}{{Objection
+|page=L'alcool et le tabac sont autorisés alors qu’ils sont plus dangereux que le cannabis
+|titre-affiché=Il l'est moins que l'alcool, qui lui, est légal
+}}
+|rubriques=Philosophie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Santé, Addiction
+|date-création=2019-08-09
+}}

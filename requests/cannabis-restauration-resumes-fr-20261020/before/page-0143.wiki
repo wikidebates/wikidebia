@@ -1,0 +1,13 @@
+{{Argument
+|résumé=L'argument est qu'un point de vente réglementé pourrait être tenu de vérifier l'âge et de refuser la vente aux mineurs, contrairement à un vendeur clandestin. Cet effet dépendrait toutefois de l'application des règles et des autres sources d'approvisionnement, notamment sociales ou illégales. Il ne repose pas sur l'idée que le cannabis serait sans danger après un âge donné. Le NIDA souligne au contraire des risques variables selon les personnes et les usages, et une vulnérabilité particulière des jeunes.
+|références-sitographiques={{Référence sitographique
+|lien=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+|date=24/09/2024
+}}
+
+|rubriques=Économie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Marché noir
+|date-création=2021-02-16
+}}

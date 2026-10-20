@@ -1,0 +1,15 @@
+{{Argument
+|résumé=La fréquence et l'intensité de l'usage contribuent au risque de trouble de l'usage de cannabis, mais elles ne sont pas ses seuls déterminants. Le NIDA mentionne aussi l'âge, les antécédents et d'autres caractéristiques individuelles. L'argument est que le risque dépend des conditions d'usage et ne peut être réduit à une propriété identique pour toute personne ; cela ne signifie pas que le produit serait dépourvu de potentiel addictif.
+
+|citations=
+|références-sitographiques={{Référence sitographique
+|lien=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+|date=24/09/2024
+}}
+
+|rubriques=Philosophie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Santé, Addiction
+|date-création=2019-08-09
+}}

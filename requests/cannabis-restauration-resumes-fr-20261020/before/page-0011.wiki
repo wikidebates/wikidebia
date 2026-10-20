@@ -1,0 +1,13 @@
+{{Argument
+|initialisation=Justification@2835
+|résumé=La comparaison des dangers du cannabis, du tabac et de l'alcool doit distinguer l'intoxication aiguë, les effets chroniques, les accidents et les consommations associées. Elle ne peut pas être ramenée à l'existence ou à l'absence d'une surdose immédiatement mortelle. Le NIDA décrit notamment des risques respiratoires, cardiovasculaires, cognitifs et de dépendance liés au cannabis. Des profils de risque différents ne permettent donc pas de conclure que l'usage de cannabis serait dépourvu de tout risque mortel ou grave.
+
+|références-sitographiques={{Référence sitographique
+|lien=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+|date=24/09/2024
+}}
+
+|date-création=2025-09-16
+}}

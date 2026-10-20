@@ -1,0 +1,20 @@
+{{Argument
+|résumé=Les enquêtes présentées ici portent sur des questions différentes : vente libre, usage sous conditions ou efficacité supposée d'un contrôle de l'État contre le trafic. Elles doivent être lues avec leur date. La synthèse de l'OFDT indique notamment qu'en 2018, 62 % des répondants s'opposaient à la vente libre tandis que 91 % approuvaient une prescription dans certaines maladies. Ces positions ne sont pas contradictoires et ne mesurent pas automatiquement une adhésion à tout projet de légalisation.
+
+|citations={{Citation
+|citation=52% des Français jugent que la vente de cannabis sous le contrôle de l’Etat serait plus efficace que l’interdiction pour lutter contre le trafic.
+|auteurs=IPSOS
+|article=Une majorité de Français pour la légalisation du cannabis
+|date=11/10/2016
+|lien=https://www.newsweed.fr/francais-legalisation-cannabis/
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://www.ofdt.fr/cannabis-resine-herbe-huile-cbd-synthese-des-connaissances-1724
+|page=Cannabis (résine, herbe, huile, CBD) — Synthèse des connaissances
+|site=OFDT
+}}
+
+|rubriques=Société
+|mots-clés=Cannabis, Légalisation, Opinion publique
+|date-création=2021-02-16
+}}

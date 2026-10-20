@@ -1,0 +1,17 @@
+{{Argument
+|résumé=La carte présentée ici porte sur des règles de possession de cannabis et distingue notamment légalisation, dépénalisation et interdiction. Elle ne suffit pas à décrire l'organisation du marché de chaque pays et doit être lue avec sa date et sa source. Le Canada dispose d'un cadre légal depuis 2018 ; la réforme portugaise, quant à elle, relève de la décriminalisation de l'usage et de la possession pour consommation personnelle. Ces régimes ne sont pas interchangeables.
+|références-sitographiques={{Référence sitographique
+|lien=https://www.canada.ca/fr/sante-canada/services/drogues-medicaments/cannabis/recherches-donnees/enquete-canadienne-cannabis-2024-sommaire.html
+|page=Enquête canadienne sur le cannabis de 2024 : Sommaire
+|site=Santé Canada
+|date=2024
+}}
+
+|objections={{Objection
+|page=Les pays ayant dépénalisé le cannabis font marche arrière
+|titre-affiché=Les pays ayant dépénalisé le cannabis font marche arrière
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation
+|date-création=2021-02-16
+}}

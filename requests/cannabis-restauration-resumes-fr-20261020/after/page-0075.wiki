@@ -1,0 +1,19 @@
+{{Argument
+|initialisation=Objection@2820
+|résumé=La légalisation risque d’augmenter la consommation, notamment chez les jeunes, par normalisation sociale et baisse de la perception du risque.
+|citations=
+|références-sitographiques={{Référence sitographique
+|lien=https://www.canada.ca/fr/sante-canada/services/drogues-medicaments/cannabis/recherches-donnees/enquete-canadienne-cannabis-2024-sommaire.html
+|page=Enquête canadienne sur le cannabis de 2024 : Sommaire
+|site=Santé Canada
+|date=2024
+}}
+
+|objections={{Objection
+|page=Des expériences montrent que la légalisation d'une drogue ne s'accompagne pas d'une hausse de consommation
+|titre-affiché=Des expériences montrent que la légalisation d'une drogue ne s'accompagne pas d'une hausse de consommation
+}}
+|rubriques=Éducation, Psychologie, Santé, Société
+|mots-clés=Perception du risque, Jeunesse, Normalisation
+|date-création=2024-11-28
+}}

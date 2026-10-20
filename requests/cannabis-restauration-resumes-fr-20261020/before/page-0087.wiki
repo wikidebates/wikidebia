@@ -1,0 +1,19 @@
+{{Argument
+|initialisation=Objection@2363
+|résumé=Le risque de sanction peut constituer une raison de renoncer à consommer pour certaines personnes. Cela ne signifie ni qu'il suffise à prévenir toute consommation, ni qu'une préférence déclarée établisse l'effet global d'une politique. L'existence de peines pour l'usage est documentée par Service Public ; leur effet dissuasif doit être évalué séparément, en distinguant les populations et les comportements.
+|citations=
+|références-sitographiques={{Référence sitographique
+|lien=https://www.service-public.gouv.fr/particuliers/vosdroits/F33341
+|page=Que risque-t-on pour usage de drogues ?
+|site=Service Public / DILA
+|date=21/08/2026
+}}
+
+|objections={{Objection
+|page=Interdire une drogue n'en fait pas baisser la consommation
+|titre-affiché=Interdire une drogue n'en fait pas baisser la consommation
+}}
+|rubriques=Éducation, Psychologie, Santé, Société
+|mots-clés=Perception du risque, Jeunesse, Prévention
+|date-création=2024-11-28
+}}

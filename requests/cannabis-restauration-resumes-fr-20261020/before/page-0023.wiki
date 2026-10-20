@@ -1,0 +1,12 @@
+{{Argument
+|initialisation=Objection@29794
+|résumé=L'existence d'une interdiction n'empêche pas toute consommation. Cette persistance ne démontre cependant pas, à elle seule, que la loi n'a aucun effet dissuasif : il faut comparer ce qui se produit avec la situation qui aurait existé sous une autre politique. L'argument porte donc sur les limites de la prohibition, et doit être confronté à des données comparables plutôt qu'à la seule présence d'usagers dans un pays répressif.
+
+|références-sitographiques={{Référence sitographique
+|lien=https://www.ofdt.fr/cannabis-resine-herbe-huile-cbd-synthese-des-connaissances-1724
+|page=Cannabis (résine, herbe, huile, CBD) — Synthèse des connaissances
+|site=OFDT
+}}
+
+|date-création=2025-04-15
+}}

@@ -1,0 +1,19 @@
+{{Argument
+|initialisation=Objection@2363
+|résumé=La prohibition dissuade une partie de la population, notamment les jeunes, de consommer en raison des risques légaux.
+|citations=
+|références-sitographiques={{Référence sitographique
+|lien=https://www.service-public.gouv.fr/particuliers/vosdroits/F33341
+|page=Que risque-t-on pour usage de drogues ?
+|site=Service Public / DILA
+|date=21/08/2026
+}}
+
+|objections={{Objection
+|page=Interdire une drogue n'en fait pas baisser la consommation
+|titre-affiché=Interdire une drogue n'en fait pas baisser la consommation
+}}
+|rubriques=Éducation, Psychologie, Santé, Société
+|mots-clés=Perception du risque, Jeunesse, Prévention
+|date-création=2024-11-28
+}}

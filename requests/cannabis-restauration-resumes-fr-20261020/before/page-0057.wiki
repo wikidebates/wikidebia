@@ -1,0 +1,14 @@
+{{Argument
+|initialisation=Justification@29804
+|résumé=Au Canada, la légalisation repose sur des licences, des règles de production et des dispositifs de distribution qui ne se réduisent pas à une production intégralement assurée par l'État. Le rapport d'experts de 2024 constate des progrès dans l'offre contrôlée et le transfert de consommateurs vers le marché légal. Il relève également des problèmes persistants, notamment les produits fortement dosés en THC et la protection des jeunes. La comparaison avec la prohibition doit préciser l'indicateur et la période, sans qualifier ce modèle de meilleur sur tous les plans.
+|références-sitographiques={{Référence sitographique
+|lien=https://www.canada.ca/fr/sante-canada/services/publications/drogues-medicaments/examen-legislatif-loi-cannabis-rapport-final-comite-experts.html
+|page=Examen législatif de la Loi sur le cannabis : Rapport final du Comité d’experts
+|site=Santé Canada
+|date=2024
+}}
+
+|rubriques=Droit, Économie, Politique, Santé, Société
+|mots-clés=Marché noir, fiscalité, problèmes de santé publique
+|date-création=2024-11-28
+}}

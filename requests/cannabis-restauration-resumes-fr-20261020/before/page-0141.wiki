@@ -1,0 +1,11 @@
+{{Argument
+|résumé=Dépénaliser l'usage de plusieurs substances consiste à modifier la réponse à cet usage ; cela n'autorise pas nécessairement leur production ou leur vente. Le Portugal distingue ainsi certaines situations de consommation personnelle du trafic. Une politique peut proposer prévention, accompagnement ou soins selon les besoins, sans assimiler systématiquement tous les usagers à des malades. Les bénéfices et les risques doivent être examinés par substance et par contexte.
+|références-sitographiques={{Référence sitographique
+|lien=https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf
+|page=Portugal — Country Drug Report 2019
+|site=EMCDDA / EUDA
+|date=2019
+}}
+
+|date-création=2022-08-29
+}}

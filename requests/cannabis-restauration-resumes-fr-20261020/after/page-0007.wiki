@@ -1,0 +1,5 @@
+{{Argument
+|initialisation=Objection@10356
+|résumé=L'abolition de la peine de mort ainsi la dépénalisation de l'IVG ou de l'homosexualité ont été de vrais progrès sociétaux alors même que l'opinion publique n'y était pas favorable.
+|date-création=2022-08-01
+}}

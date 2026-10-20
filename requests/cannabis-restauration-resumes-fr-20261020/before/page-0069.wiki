@@ -1,0 +1,11 @@
+{{Argument
+|résumé=Si certaines activités liées au cannabis deviennent autorisées, elles ne donnent plus lieu aux mêmes procédures de police et de justice. Les moyens auparavant consacrés à ces seules infractions pourraient être réaffectés. Cela ne signifie pas que toutes les prisons se videraient ni que tout contrôle disparaîtrait : les ventes interdites, la protection des mineurs et le respect des règles continueraient de mobiliser des ressources.
+
+|références-sitographiques={{Référence sitographique
+|lien=https://www.service-public.gouv.fr/particuliers/vosdroits/F33341
+|page=Que risque-t-on pour usage de drogues ?
+|site=Service Public / DILA
+|date=21/08/2026
+}}
+|date-création=2022-12-19
+}}

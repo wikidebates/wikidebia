@@ -1,0 +1,1021 @@
+{
+  "schema": "wikidebia-fr-publication-request-1.1",
+  "request_id": "cannabis-restauration-resumes-fr-20261020",
+  "language": "fr",
+  "site": "https://fr.wikidebates.org",
+  "authorization": "explicit_user_request",
+  "authorization_text": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki.",
+  "prepared_at": "2026-10-20T21:49:00.387662+00:00",
+  "repairs_request_id": "cannabis-relecture-fr-20261020",
+  "repairs_request_sha256": "05fefd67fa5a26e2c1ff029af29f76dbd8b21b5101ae7003dc2be5f722a74684",
+  "pages": [
+    {
+      "page_id": "page-0001",
+      "old_title": "Les critiques de l'OICS n'ont pas empêché l'adoption de la légalisation du cannabis en Uruguay",
+      "new_title": "Les critiques de l'OICS n'ont pas empêché l'adoption de la légalisation du cannabis en Uruguay",
+      "source_revision_id": 245525,
+      "source_sha256": "771986c21b848af2f996f306eeed7880748adcd88f722ca9737b5d66f64f8e02",
+      "target_sha256": "ad96c2263571d373d4cd512bb3d27d0df79283acd25e73d0888ad745b28da363",
+      "before_file": "before/page-0001.wiki",
+      "after_file": "after/page-0001.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 207532,
+      "historical_source_sha256": "6bc3734f763bf29e9f67308fcc1a81d05b0e2f1a261e3d26e089b20cffba8834"
+    },
+    {
+      "page_id": "page-0003",
+      "old_title": "Avec la prohibition du cannabis, une partie des usagers subit les conséquences de séjours en prison et/ou d'une inscription au casier judiciaire",
+      "new_title": "Avec la prohibition du cannabis, une partie des usagers subit les conséquences de séjours en prison et/ou d'une inscription au casier judiciaire",
+      "source_revision_id": 245527,
+      "source_sha256": "4a1b779296b30f4d462d7b095021e5ad6d90847d5bb50cf258ec7c691eb6af51",
+      "target_sha256": "32cf89ecc879b1eee010cb28eb5c055fc6010d29f2766839cae866e9105e2293",
+      "before_file": "before/page-0003.wiki",
+      "after_file": "after/page-0003.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 206553,
+      "historical_source_sha256": "c33168ca1dbf241989dd1f978b04a9bd8ca558ea172fd68d46ff2880e1c21bc9"
+    },
+    {
+      "page_id": "page-0007",
+      "old_title": "Certaines lois prises contre la majorité ont été de vrais progrès sociétaux",
+      "new_title": "Certaines lois prises contre la majorité ont été de vrais progrès sociétaux",
+      "source_revision_id": 245528,
+      "source_sha256": "171c56e4b6f40ba7c8f34bde454118a9cf0e2eae5a5731db3eb6b0c56cf27397",
+      "target_sha256": "6093924ef4b248826b0d4be7a86ce9a9dcecb7f1765152e2ad35b6670c436844",
+      "before_file": "before/page-0007.wiki",
+      "after_file": "after/page-0007.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 211759,
+      "historical_source_sha256": "6093924ef4b248826b0d4be7a86ce9a9dcecb7f1765152e2ad35b6670c436844"
+    },
+    {
+      "page_id": "page-0008",
+      "old_title": "Certains pays comme l'Uruguay encadrent fortement le marché du cannabis",
+      "new_title": "Certains pays comme l'Uruguay encadrent fortement le marché du cannabis",
+      "source_revision_id": 245529,
+      "source_sha256": "8ad492d860a2366e28e5c0eeb192da1b7d8f6ad6aa3fc9b8756cc222c45849a5",
+      "target_sha256": "1ac8317616c5892fe10d1ea49cacaf8e6e49a44dc73c53288e85f74152860c32",
+      "before_file": "before/page-0008.wiki",
+      "after_file": "after/page-0008.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 237676,
+      "historical_source_sha256": "a938914cc294ca6839eee5341111c24ee5c530d4fd8bee5d04debfe78a840f52"
+    },
+    {
+      "page_id": "page-0011",
+      "old_title": "Les risques du cannabis doivent être distingués de ceux de l'alcool et du tabac",
+      "new_title": "Les risques du cannabis doivent être distingués de ceux de l'alcool et du tabac",
+      "source_revision_id": 245530,
+      "source_sha256": "b3d83f710fbbef01a9be5c1ac1a5703c5cb005a47a49538a65590046285c5d36",
+      "target_sha256": "5aaa82821511da311b8ded1f9ced7f3e438d7d19c4a4442e1ca2e724fbbc86bd",
+      "before_file": "before/page-0011.wiki",
+      "after_file": "after/page-0011.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 225975,
+      "historical_source_sha256": "c1266fb11ca013ac25e32deaf300548d17a3b04798a37d4397a113a1c7b117dc"
+    },
+    {
+      "page_id": "page-0013",
+      "old_title": "Des expériences montrent que la légalisation d'une drogue ne s'accompagne pas d'une hausse de consommation",
+      "new_title": "Des expériences montrent que la légalisation d'une drogue ne s'accompagne pas d'une hausse de consommation",
+      "source_revision_id": 245532,
+      "source_sha256": "ce83e46f7dec5bced3a2768d3ac43a6862916ecbcfe90b3fb28314597253e19a",
+      "target_sha256": "eddea60913d5e93fda4b01201ccbfdb99bbeece992182d6a2420e2a2404efc4e",
+      "before_file": "before/page-0013.wiki",
+      "after_file": "after/page-0013.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 229849,
+      "historical_source_sha256": "9b07a03b2dbc7d0b72950cbddb04b09617c68cd76ed59197fcc5c67ba751b42c"
+    },
+    {
+      "page_id": "page-0021",
+      "old_title": "Il y a des signes de fléchissement de la consommation de cannabis",
+      "new_title": "Il y a des signes de fléchissement de la consommation de cannabis",
+      "source_revision_id": 245533,
+      "source_sha256": "d8968a68eeab3788005db893489ce405efe15cc0be20b938ac9ae87f07a8a44e",
+      "target_sha256": "7d0b5057e1af7eed8d37f6ac4f3fa4db331d4d35ad8c6d05a7b92ff7df31780f",
+      "before_file": "before/page-0021.wiki",
+      "after_file": "after/page-0021.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 206247,
+      "historical_source_sha256": "9131ff02dbb7e67063388e20b3966dc7aeaf34dd456bbefa546ef432b2133c7b"
+    },
+    {
+      "page_id": "page-0023",
+      "old_title": "Interdire une drogue n'en fait pas baisser la consommation",
+      "new_title": "Interdire une drogue n'en fait pas baisser la consommation",
+      "source_revision_id": 245534,
+      "source_sha256": "79b3724cacd6f36d6bbd3127effbcdd4767034fd54d212fb559382b2c527c401",
+      "target_sha256": "d1645beacba1fbcc507ff3103c050c3d2ab3a9538a068bdb80b6689ad33c213f",
+      "before_file": "before/page-0023.wiki",
+      "after_file": "after/page-0023.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 224993,
+      "historical_source_sha256": "cf25848c799392b36ba1d542240708ea48a75f3d5d4b80bb7a097127a65edad5"
+    },
+    {
+      "page_id": "page-0026",
+      "old_title": "Les intérêts économiques des producteurs d'alcool peuvent peser sur la réglementation",
+      "new_title": "Les intérêts économiques des producteurs d'alcool peuvent peser sur la réglementation",
+      "source_revision_id": 245535,
+      "source_sha256": "6d2d2a694a4c7dafaf24a73517ea3c77ed825de713f417777c2af3abd7e7ebba",
+      "target_sha256": "59b597768a5fa9d299801a6c440af5ceafa11726c75a571f9c47ca8d9ac72cff",
+      "before_file": "before/page-0026.wiki",
+      "after_file": "after/page-0026.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 245486,
+      "historical_source_sha256": "56875975608029ca132cd38335591823cb657c12b6a2991ce135ef59ec4fac47"
+    },
+    {
+      "page_id": "page-0028",
+      "old_title": "L'alcool et le tabac sont parmi les substances les plus addictogènes et nocives",
+      "new_title": "L'alcool et le tabac sont parmi les substances les plus addictogènes et nocives",
+      "source_revision_id": 245536,
+      "source_sha256": "a50ba95b14fa9a2ba570a62c1541ece7cfdbdf685fe219aa0ffe2732d720601a",
+      "target_sha256": "2def55b9d457d7b46bd162177f84cc4c69fe4a3754eeda3d5e5d92b2b9632cfa",
+      "before_file": "before/page-0028.wiki",
+      "after_file": "after/page-0028.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 237797,
+      "historical_source_sha256": "a938914cc294ca6839eee5341111c24ee5c530d4fd8bee5d04debfe78a840f52"
+    },
+    {
+      "page_id": "page-0029",
+      "old_title": "L'approche répressive permet aux pouvoirs publics de se dédouaner de leur responsabilité dans sa consommation",
+      "new_title": "L'approche répressive permet aux pouvoirs publics de se dédouaner de leur responsabilité dans sa consommation",
+      "source_revision_id": 245537,
+      "source_sha256": "4199c7c65d6c366d8c5cef06b14a0ed3287a3602c1d90fc8d7710723bf312985",
+      "target_sha256": "47ddc41432ae7b72e4d675f3b972df006d3615f679bcbcf2d01eb26072fc1bcf",
+      "before_file": "before/page-0029.wiki",
+      "after_file": "after/page-0029.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 217374,
+      "historical_source_sha256": "3cab0300069ec8b4ffd1f9b946f4588a0c19db81daed7710b8f24a05bbaf8981"
+    },
+    {
+      "page_id": "page-0035",
+      "old_title": "L'interdit incite à chercher des moyens de contourner la loi",
+      "new_title": "L'interdit incite à chercher des moyens de contourner la loi",
+      "source_revision_id": 245538,
+      "source_sha256": "e02ef8fa14ef4b075e4d7f5e4da69ced13d03dcb72fff0eb9d03f114cd363e1a",
+      "target_sha256": "2a173cb23688789a7479705f05d6e94ab695a3b8759d8d32aec31129b267923c",
+      "before_file": "before/page-0035.wiki",
+      "after_file": "after/page-0035.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 224994,
+      "historical_source_sha256": "2a173cb23688789a7479705f05d6e94ab695a3b8759d8d32aec31129b267923c"
+    },
+    {
+      "page_id": "page-0037",
+      "old_title": "L'interdit rend plus attractif",
+      "new_title": "L'interdit rend plus attractif",
+      "source_revision_id": 245539,
+      "source_sha256": "3ccdc3d14e9a3de7ab42ca741e3bf7bee84a17e219c56a5bb20625d2d322664b",
+      "target_sha256": "a938914cc294ca6839eee5341111c24ee5c530d4fd8bee5d04debfe78a840f52",
+      "before_file": "before/page-0037.wiki",
+      "after_file": "after/page-0037.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 237736,
+      "historical_source_sha256": "a938914cc294ca6839eee5341111c24ee5c530d4fd8bee5d04debfe78a840f52"
+    },
+    {
+      "page_id": "page-0038",
+      "old_title": "Des enquêtes françaises montrent une opposition à la vente libre de cannabis",
+      "new_title": "Des enquêtes françaises montrent une opposition à la vente libre de cannabis",
+      "source_revision_id": 245540,
+      "source_sha256": "e0c84063dee69b8056e659cf837578da2a03a8e32e0e7525d8d95814fa5a574e",
+      "target_sha256": "ce5f02c5a0e4cf9e7e164309f6bf030c58ddc3be9e457c38db7dfb893ddb9238",
+      "before_file": "before/page-0038.wiki",
+      "after_file": "after/page-0038.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 207533,
+      "historical_source_sha256": "624a50b1ecdad94df304075df2764c91558110bca2c5cb66bd511f31ce30d3a0"
+    },
+    {
+      "page_id": "page-0041",
+      "old_title": "La consommation de cannabis augmente en France",
+      "new_title": "La consommation de cannabis augmente en France",
+      "source_revision_id": 245541,
+      "source_sha256": "d54d8084e904b89222409aacceacde286e74b75a5101f18d2d8eb8883ebf532b",
+      "target_sha256": "6f464c12f8442bec62fd3e7ec63a0ed22705395e1c2d97c501e1fdcc1ead3813",
+      "before_file": "before/page-0041.wiki",
+      "after_file": "after/page-0041.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 206225,
+      "historical_source_sha256": "a63909074b2b5793f8d74fb6327a3fe3ba71f48b5094eeec8b1df47ad75d2223"
+    },
+    {
+      "page_id": "page-0044",
+      "old_title": "La guerre contre la drogue exacerbe les persécutions des minorités",
+      "new_title": "La guerre contre la drogue exacerbe les persécutions des minorités",
+      "source_revision_id": 245542,
+      "source_sha256": "7fe0021fd5f61b68af355439c311923a97c84cc761c766399f568d35de4da6eb",
+      "target_sha256": "abf77bc0532494f62917597168e15151e0cf7406dfc04f38845b106d8e762a76",
+      "before_file": "before/page-0044.wiki",
+      "after_file": "after/page-0044.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 211080,
+      "historical_source_sha256": "abf77bc0532494f62917597168e15151e0cf7406dfc04f38845b106d8e762a76"
+    },
+    {
+      "page_id": "page-0056",
+      "old_title": "La légalisation contrôlée par l'État fonctionne",
+      "new_title": "La légalisation contrôlée par l'État fonctionne",
+      "source_revision_id": 245546,
+      "source_sha256": "a23abae44a899ea13c32fb3b536a06548ea405bbc821ffebd5be8b5f83cc1762",
+      "target_sha256": "acae40d4e53cb13746e897da9ef5fe14d2fb0eefbf8358c8cc5131463496e1a7",
+      "before_file": "before/page-0056.wiki",
+      "after_file": "after/page-0056.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 245502,
+      "historical_source_sha256": "19889a8419bd2f5664c29e622a9fe8b3faf987b7736f10e61a25a51464d43c8f"
+    },
+    {
+      "page_id": "page-0057",
+      "old_title": "La légalisation du cannabis au Canada fonctionne mieux que la prohibition",
+      "new_title": "La légalisation du cannabis au Canada fonctionne mieux que la prohibition",
+      "source_revision_id": 245547,
+      "source_sha256": "b1c226737d7bd9197673b492d338d3122ec0197d039630e92f14a885a6b81bd7",
+      "target_sha256": "947a4a013ae8f8cd56bab8c3e80bdfc7766c48eb1eff326868452fe8a1626d34",
+      "before_file": "before/page-0057.wiki",
+      "after_file": "after/page-0057.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 245480,
+      "historical_source_sha256": "51579aa7d26526f0cb480835ce3943a89dc9c0c2fd5e626c01f0e1b9ed2d0fc2"
+    },
+    {
+      "page_id": "page-0060",
+      "old_title": "La légalisation du cannabis encourage une économie de dépendance",
+      "new_title": "La légalisation du cannabis encourage une économie de dépendance",
+      "source_revision_id": 245549,
+      "source_sha256": "8d08d120c9c1ab4a821bad00d3c0c3c34632193f9fe0bd9b88d85f94db8580e4",
+      "target_sha256": "16491df497154a5377c93fe02f61b3dda0f26f2d56d90a92572b87dd092cafb1",
+      "before_file": "before/page-0060.wiki",
+      "after_file": "after/page-0060.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 245476,
+      "historical_source_sha256": "cb07380e48f7b04911d05b6daa65d11573fb0641d50b31412a89e63cc9d80a94"
+    },
+    {
+      "page_id": "page-0061",
+      "old_title": "La légalisation du cannabis est en vigueur dans de nombreux pays",
+      "new_title": "La légalisation du cannabis est en vigueur dans de nombreux pays",
+      "source_revision_id": 245550,
+      "source_sha256": "62aa8691ecf4ae6aad92337c0bb8ebf6ddf9d83a4c2cc42538c0efac20559f80",
+      "target_sha256": "fa7be0d0b6bd2a0b1c88b0d2c546bbcd11c56d03201c7b6d467d6f1cf550013e",
+      "before_file": "before/page-0061.wiki",
+      "after_file": "after/page-0061.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 207523,
+      "historical_source_sha256": "15413c5114892eded4565a90b29e0525edb2e9a84f04180f3f38e1295e43c0c0"
+    },
+    {
+      "page_id": "page-0062",
+      "old_title": "La légalisation du cannabis récréatif soulève des difficultés au regard des conventions internationales",
+      "new_title": "La légalisation du cannabis récréatif soulève des difficultés au regard des conventions internationales",
+      "source_revision_id": 245551,
+      "source_sha256": "710a22759fd652cd9e507a513230a9dc6ffe0a08020046aa388f124c1a5fd881",
+      "target_sha256": "92ea829f5a9cac25ac33e410ab1b9a00391cf61dafae21f70edaa762077fa20f",
+      "before_file": "before/page-0062.wiki",
+      "after_file": "after/page-0062.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 245497,
+      "historical_source_sha256": "b35d5cfd6803431c877894cc5934df4d5aabfb6456aa24cce6fe60ce0a0cf292"
+    },
+    {
+      "page_id": "page-0065",
+      "old_title": "La légalisation du cannabis multiplierait le nombre d'usagers",
+      "new_title": "La légalisation du cannabis multiplierait le nombre d'usagers",
+      "source_revision_id": 245552,
+      "source_sha256": "bd3f0bde1ae0f283c3d01145ef4d6f294861c078383b5a0921c32b00f59992c0",
+      "target_sha256": "e881d02c3a7c9d012bb3b6708f7408176e9bb75ae4576d6a3855efed3ff35bbf",
+      "before_file": "before/page-0065.wiki",
+      "after_file": "after/page-0065.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 207542,
+      "historical_source_sha256": "a99465d62794bf10674515d3c2ef46076b637cb60e71ea4145fba59de876cdf6"
+    },
+    {
+      "page_id": "page-0067",
+      "old_title": "La légalisation du cannabis permet un contrôle qualité",
+      "new_title": "La légalisation du cannabis permet un contrôle qualité",
+      "source_revision_id": 245554,
+      "source_sha256": "0730ad58050f6685ff0b94f1f795234a8bcefb56a239fbab8fe75a30e495a011",
+      "target_sha256": "bb8e86b2d88caa12af53bd1ff53a00d04429cbb4b35d95fad7085febc1c60c0f",
+      "before_file": "before/page-0067.wiki",
+      "after_file": "after/page-0067.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 245501,
+      "historical_source_sha256": "5884319c38c35a541aa798566bad6d16e3f53a1e4112db48cb4f10e4290c72a4"
+    },
+    {
+      "page_id": "page-0069",
+      "old_title": "La légalisation du cannabis permettrait de vider les prisons, soulager les policiers, la justice",
+      "new_title": "La légalisation du cannabis permettrait de vider les prisons, soulager les policiers, la justice",
+      "source_revision_id": 245555,
+      "source_sha256": "c7c21192323131d2fe5eefe459226691622c3aa3be8d82ac64a080d5a982298b",
+      "target_sha256": "2bf7daa75e2efce7fb561e1a3f0fa7450f1d7482e6f9fa57a01d3ae4388d3bb6",
+      "before_file": "before/page-0069.wiki",
+      "after_file": "after/page-0069.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 237582,
+      "historical_source_sha256": "a938914cc294ca6839eee5341111c24ee5c530d4fd8bee5d04debfe78a840f52"
+    },
+    {
+      "page_id": "page-0072",
+      "old_title": "La légalisation du cannabis peut faire baisser la mortalité par overdose d'opiacés",
+      "new_title": "La légalisation du cannabis peut faire baisser la mortalité par overdose d'opiacés",
+      "source_revision_id": 245556,
+      "source_sha256": "7ca92d21387b674477342faef655a63281c456bb9d8dd067e4e788f34de45b8f",
+      "target_sha256": "1f5c43d05eb0d542addf3b37296fab2594e855c3ca5b2bfdcc230fbd0f356531",
+      "before_file": "before/page-0072.wiki",
+      "after_file": "after/page-0072.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 206637,
+      "historical_source_sha256": "92da76811b8d582640c493b9e7751eb52f8be9a0f969616e04b8cf835cdc349a"
+    },
+    {
+      "page_id": "page-0073",
+      "old_title": "La légalisation du cannabis peut faire baisser la mortalité par overdose de drogues plus dures",
+      "new_title": "La légalisation du cannabis peut faire baisser la mortalité par overdose de drogues plus dures",
+      "source_revision_id": 245557,
+      "source_sha256": "46ea0305f99303324e51a94d2e34440cce669ea633cb7c0eec085a5190a31032",
+      "target_sha256": "600b456478fd5f6571057768046696edf9e0ee88ceb6adf6eef0e73ccb43bdaa",
+      "before_file": "before/page-0073.wiki",
+      "after_file": "after/page-0073.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 237386,
+      "historical_source_sha256": "a938914cc294ca6839eee5341111c24ee5c530d4fd8bee5d04debfe78a840f52"
+    },
+    {
+      "page_id": "page-0075",
+      "old_title": "La légalisation du cannabis risque d'accroître la consommation",
+      "new_title": "La légalisation du cannabis risque d'accroître la consommation",
+      "source_revision_id": 245558,
+      "source_sha256": "58cb8f1490df90ab26e5a9bdc0a43ae1d7ee4617a224d4edca6813af04088f28",
+      "target_sha256": "712dced15f86ac12bbc5673480ce21cdd5cd596d2e41f028a3c963e3e01abae0",
+      "before_file": "before/page-0075.wiki",
+      "after_file": "after/page-0075.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 245474,
+      "historical_source_sha256": "4bedb6011ab30bfcf96c19c1aab41266523655631e5604eeb76cf148e7d66ad2"
+    },
+    {
+      "page_id": "page-0078",
+      "old_title": "La légalisation du cannabis serait bénéfique",
+      "new_title": "La légalisation du cannabis serait bénéfique",
+      "source_revision_id": 245559,
+      "source_sha256": "ccfaa14bbd4f05fd9d48f4b623374a93b82f245d293c6cc0bffc0c82121fbcc9",
+      "target_sha256": "051a6c6dd35e852c2a7c421af7e5b1c90fe81b1e8a9963458605541e89e2fecb",
+      "before_file": "before/page-0078.wiki",
+      "after_file": "after/page-0078.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 245500,
+      "historical_source_sha256": "f10b1d38ce6a442c1f33ebdd0c5ba405f2d6434c410755d77586af4f1466b0a6"
+    },
+    {
+      "page_id": "page-0082",
+      "old_title": "La répression des drogues peut peser sur les personnes précaires et sur les prisons",
+      "new_title": "La répression des drogues peut peser sur les personnes précaires et sur les prisons",
+      "source_revision_id": 245560,
+      "source_sha256": "ae224b2442674094c80efd4d6698cf6c0c740e834541094a9f3ea169bd34637b",
+      "target_sha256": "bf98e57357cf09d482e424b2339eb7e0d5ea45a18bd3d86c4df728f7cbdc100d",
+      "before_file": "before/page-0082.wiki",
+      "after_file": "after/page-0082.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 213845,
+      "historical_source_sha256": "e5cbbfb089548039a177c65f868fd0320cd3db6bea5aa60caeae58d0837ac05c"
+    },
+    {
+      "page_id": "page-0084",
+      "old_title": "La prohibition aggrave le mal-être à l'origine de la consommation de drogues",
+      "new_title": "La prohibition aggrave le mal-être à l'origine de la consommation de drogues",
+      "source_revision_id": 245561,
+      "source_sha256": "ffc685da7ddb6957ff186e6a5dd51c4d42c712d053002bf9ea6823ecf5554062",
+      "target_sha256": "d7e8ec01b845041bacec13742123a182a9383d29755ad72258c4756db016b83b",
+      "before_file": "before/page-0084.wiki",
+      "after_file": "after/page-0084.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 217377,
+      "historical_source_sha256": "d7e8ec01b845041bacec13742123a182a9383d29755ad72258c4756db016b83b"
+    },
+    {
+      "page_id": "page-0087",
+      "old_title": "La prohibition du cannabis dissuade une partie de la population d'en consommer",
+      "new_title": "La prohibition du cannabis dissuade une partie de la population d'en consommer",
+      "source_revision_id": 245562,
+      "source_sha256": "7f5f479d9e07ef0687e2c9056cc51ab8e15fb7118360d84f9d1ce7828f22c701",
+      "target_sha256": "bc8a17b976e05f7cbc1195b17cb2163a4d4e3c18194f705e51060400595a5f0a",
+      "before_file": "before/page-0087.wiki",
+      "after_file": "after/page-0087.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 245472,
+      "historical_source_sha256": "59f30c7f6ceb1ff92533f18a9ed4eee0a4fc5eb08fd1e2312d5696845c0ef63a"
+    },
+    {
+      "page_id": "page-0102",
+      "old_title": "La prohibition envoie un message sociétal clair",
+      "new_title": "La prohibition envoie un message sociétal clair",
+      "source_revision_id": 245567,
+      "source_sha256": "04930cad60cea9de7e2b236140c572b0657da0b86b0639bef24e257dbc13663e",
+      "target_sha256": "cf0b05897c0f3b3441e4713c5773081d90f8f2812530dc243f7c9d04d78c4065",
+      "before_file": "before/page-0102.wiki",
+      "after_file": "after/page-0102.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 223685,
+      "historical_source_sha256": "3e66232b5429e4c0963f36953454ba24bbacc997fd2601119f18fd976ccde524"
+    },
+    {
+      "page_id": "page-0105",
+      "old_title": "La régulation du cannabis en Uruguay fonctionne mieux que la prohibition",
+      "new_title": "La régulation du cannabis en Uruguay fonctionne mieux que la prohibition",
+      "source_revision_id": 245568,
+      "source_sha256": "1a863807f131e67e78680dea2f10ce05fc223502c16c91f92149c26dde182961",
+      "target_sha256": "b2f997b43b65a3ef20ab6aa43f8ba359f05651bfe78668a3083891b3fdfc7af9",
+      "before_file": "before/page-0105.wiki",
+      "after_file": "after/page-0105.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 245482,
+      "historical_source_sha256": "58d87be16343c7ed353d509300da48faa7d6cdfcde09acaa634c3f66a3154ae3"
+    },
+    {
+      "page_id": "page-0107",
+      "old_title": "Les risques du cannabis sont particulièrement préoccupants lors d'une consommation précoce",
+      "new_title": "Les risques du cannabis sont particulièrement préoccupants lors d'une consommation précoce",
+      "source_revision_id": 245569,
+      "source_sha256": "90173d93fba67d15a7bfe4a8c42c83b1c4a7611a1ce1150edc5ab82ed68dc879",
+      "target_sha256": "8950977493cfdabf257feeb4608d283b36283f8950eddf8cc86cb60547acf67f",
+      "before_file": "before/page-0107.wiki",
+      "after_file": "after/page-0107.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 232857,
+      "historical_source_sha256": "669eeef7979dea16dad0ffe0814ea2a2f9a1706e8e02d55ab2a79396658ade31"
+    },
+    {
+      "page_id": "page-0113",
+      "old_title": "Le cannabis peut être utilisé pour calmer des douleurs et se relaxer",
+      "new_title": "Le cannabis peut être utilisé pour calmer des douleurs et se relaxer",
+      "source_revision_id": 245571,
+      "source_sha256": "24d6adfea9758f45761ea55ec58d321b7caa63f00629a20735ba5969483942d6",
+      "target_sha256": "9e42f05947ff5d0bb4430e6b94914bcf514b146c7fa49032afe2c1821a097089",
+      "before_file": "before/page-0113.wiki",
+      "after_file": "after/page-0113.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 238520,
+      "historical_source_sha256": "a938914cc294ca6839eee5341111c24ee5c530d4fd8bee5d04debfe78a840f52"
+    },
+    {
+      "page_id": "page-0117",
+      "old_title": "Le groupe pharmaceutique Purdue est responsable de l'addiction à l'oxycodone",
+      "new_title": "Le groupe pharmaceutique Purdue est responsable de l'addiction à l'oxycodone",
+      "source_revision_id": 245572,
+      "source_sha256": "e5531f86d9653a635763e07b38ed7867f30ef0782badf6d4bb7668b8e8a3bd33",
+      "target_sha256": "aedeb5069ac97299dc12b0f567db6e7977c0506476ac3f08c10dbba2f4b8edf0",
+      "before_file": "before/page-0117.wiki",
+      "after_file": "after/page-0117.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 208932,
+      "historical_source_sha256": "bb87a0192b75a42bf37bcec8b26a61464fd41c999bd3139e534a2a47bd2e299d"
+    },
+    {
+      "page_id": "page-0118",
+      "old_title": "Le modèle portugais a fait ses preuves",
+      "new_title": "Le modèle portugais a fait ses preuves",
+      "source_revision_id": 245573,
+      "source_sha256": "6b6267a856bf0159cc7c3be8a2913655c386878bea2b42a1bab75fb6ae9c6796",
+      "target_sha256": "8a1ae5566d0b93f571201a3530fefad2b16b89457550e15851f02cc2e33101b5",
+      "before_file": "before/page-0118.wiki",
+      "after_file": "after/page-0118.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 229848,
+      "historical_source_sha256": "3a89c8a1140ad21975046e8c1154775ff3552412c15fd8fa1d6e0a9c6f0fc2a2"
+    },
+    {
+      "page_id": "page-0120",
+      "old_title": "Le pouvoir addictif du cannabis est important",
+      "new_title": "Le pouvoir addictif du cannabis est important",
+      "source_revision_id": 245574,
+      "source_sha256": "77c08549f7bb7386b087cdb44f5e0cfe56cc981c9d098d7ac43194b71808586d",
+      "target_sha256": "51934987dc08b166d4d8a292c33f471e9f749c432aaa74bd7cdda4e112e9acb5",
+      "before_file": "before/page-0120.wiki",
+      "after_file": "after/page-0120.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 206615,
+      "historical_source_sha256": "34550e915324da5aae5252633bddce1ed1381937372f0e83488e4f65e66f545d"
+    },
+    {
+      "page_id": "page-0121",
+      "old_title": "Le pouvoir addictif du cannabis n'est ni faible ni fort en soi, il dépend de son niveau d'usage",
+      "new_title": "Le pouvoir addictif du cannabis n'est ni faible ni fort en soi, il dépend de son niveau d'usage",
+      "source_revision_id": 245575,
+      "source_sha256": "0eb8329a78ebbaf9bcee66b9b51fe588d68bd2ddd26816ea477689ff94bf0a5a",
+      "target_sha256": "9c2184c735b9838dda90f17fd14733db5558ca90c800a8758e53f9f8c0f40368",
+      "before_file": "before/page-0121.wiki",
+      "after_file": "after/page-0121.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 206617,
+      "historical_source_sha256": "66d9143cfdc4f456b1452b615ac8176150e495df8851e606ee9b7f976ef1a547"
+    },
+    {
+      "page_id": "page-0124",
+      "old_title": "Le tabac et l'alcool sont attractifs parce que de nombreux intérêts s'emploient à les rendre attractifs",
+      "new_title": "Le tabac et l'alcool sont attractifs parce que de nombreux intérêts s'emploient à les rendre attractifs",
+      "source_revision_id": 245576,
+      "source_sha256": "eecb830e3adf5a677aba5284ab47efc80be5798edfb9f2e93fd16fdbe04953b6",
+      "target_sha256": "b4a072b203bb67bc75dc356abda6d33dace8dfa9f105f9e829d60a07639d337b",
+      "before_file": "before/page-0124.wiki",
+      "after_file": "after/page-0124.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 206243,
+      "historical_source_sha256": "13b3315a3bf99c8a12bea5dea2c092009e8fff49b99533628f672592cbac7763"
+    },
+    {
+      "page_id": "page-0129",
+      "old_title": "Les Français sont favorables à ce que la vente et l'usage du cannabis soient autorisés sous certaines conditions",
+      "new_title": "Les Français sont favorables à ce que la vente et l'usage du cannabis soient autorisés sous certaines conditions",
+      "source_revision_id": 245577,
+      "source_sha256": "5d11ac8d4dc0065686450f2be0d0e2a80b9a094125251df7d933a907e6426933",
+      "target_sha256": "1dc3fb27d7f34cb9f0a61f198f2cb149fa13e08aae37f24095c91dbd8d52a135",
+      "before_file": "before/page-0129.wiki",
+      "after_file": "after/page-0129.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 207534,
+      "historical_source_sha256": "b559dafc024871aaaa3055fe8aee87caac4b40145981be164b29ac6ef920e606"
+    },
+    {
+      "page_id": "page-0131",
+      "old_title": "Les pays et états ayant dépénalisé le cannabis sont de plus en plus nombreux",
+      "new_title": "Les pays et états ayant dépénalisé le cannabis sont de plus en plus nombreux",
+      "source_revision_id": 245578,
+      "source_sha256": "f07d51a6e1240c3a41b9ba375f89236c1896954b96742b9dd84e18ceb012c152",
+      "target_sha256": "a27428eced69a7ebe95118c6416faf495cb29ecf9a77048d0800f57776ba0c9a",
+      "before_file": "before/page-0131.wiki",
+      "after_file": "after/page-0131.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 222917,
+      "historical_source_sha256": "fb3deb6b2d7c4b71c7773db749821216149780ad9017e30eb13156987833a5b5"
+    },
+    {
+      "page_id": "page-0138",
+      "old_title": "Légaliser les drogues dures serait bénéfique pour la société",
+      "new_title": "Légaliser les drogues dures serait bénéfique pour la société",
+      "source_revision_id": 245579,
+      "source_sha256": "37f61f5761f7b2dc8c62e645d6166458a2c1582707ab015a86486fd52d39fc5d",
+      "target_sha256": "a3ed70f582c71f1df1dfc795cefad5bdd79971255b3797b6863cd1cb816f3b05",
+      "before_file": "before/page-0138.wiki",
+      "after_file": "after/page-0138.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 217532,
+      "historical_source_sha256": "cb6273458471748ced6c92d57a0021a7f8eb35a9b0c7192b7dfa23d29ccc53cc"
+    },
+    {
+      "page_id": "page-0139",
+      "old_title": "On peut dissocier l'utilisation thérapeutique et l'utilisation récréative du cannabis",
+      "new_title": "On peut dissocier l'utilisation thérapeutique et l'utilisation récréative du cannabis",
+      "source_revision_id": 245580,
+      "source_sha256": "014705c1b4246aaeec0be551fa3123122c2b993f69f3ffdb03c7b8135635d382",
+      "target_sha256": "ddcbc3b6dbb2506eae71ac4371b485000c4d31a8a13787d1912def92d6f21b9e",
+      "before_file": "before/page-0139.wiki",
+      "after_file": "after/page-0139.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 239059,
+      "historical_source_sha256": "a938914cc294ca6839eee5341111c24ee5c530d4fd8bee5d04debfe78a840f52"
+    },
+    {
+      "page_id": "page-0141",
+      "old_title": "On peut tout à fait dépénaliser toutes les drogues",
+      "new_title": "On peut tout à fait dépénaliser toutes les drogues",
+      "source_revision_id": 245581,
+      "source_sha256": "489dc61378371b5216299398c1f12db7bae2728b90597582bc9a78fe7a94c648",
+      "target_sha256": "7dc249ab491f44a948c10187c153c181b243e6a7052b1a0770b330a3f2457a84",
+      "before_file": "before/page-0141.wiki",
+      "after_file": "after/page-0141.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 211953,
+      "historical_source_sha256": "876f0f88202722baa1aab8ccd67055ca80bfd70c0c33d2a5a98c023cd4c13221"
+    },
+    {
+      "page_id": "page-0143",
+      "old_title": "Pour un mineur, avec la légalisation du cannabis, il serait plus difficile de s'approvisionner en magasin qu'actuellement au marché noir",
+      "new_title": "Pour un mineur, avec la légalisation du cannabis, il serait plus difficile de s'approvisionner en magasin qu'actuellement au marché noir",
+      "source_revision_id": 245582,
+      "source_sha256": "3ef48a8b8ab626851b18a9ddaf8b84c002d6c20e2f208c367ad4b39eda05a56b",
+      "target_sha256": "8a7cdf081542c8ba5afe6f2e477c6f03428e16ab0119effabfc25a85215c121b",
+      "before_file": "before/page-0143.wiki",
+      "after_file": "after/page-0143.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 207546,
+      "historical_source_sha256": "a7e05b3b726af9bcae1e3d223b5b652bcab5bc247d41c4628042b47b641bb147"
+    },
+    {
+      "page_id": "page-0144",
+      "old_title": "Quand une loi aggrave un problème qu'elle était censée résoudre, il devient urgent de l'abolir",
+      "new_title": "Quand une loi aggrave un problème qu'elle était censée résoudre, il devient urgent de l'abolir",
+      "source_revision_id": 245583,
+      "source_sha256": "8823415a31834b78b2ade3cf2b8cd0513ca9c96dcf262cac1e2bcc65295ed6bd",
+      "target_sha256": "33d69e7b4aece35f4369b0d703608fc47200dd5af2a9d824ff46567ce1d8d6f2",
+      "before_file": "before/page-0144.wiki",
+      "after_file": "after/page-0144.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 211081,
+      "historical_source_sha256": "33d69e7b4aece35f4369b0d703608fc47200dd5af2a9d824ff46567ce1d8d6f2"
+    },
+    {
+      "page_id": "page-0145",
+      "old_title": "Si le cannabis est dangereux, pourquoi en confier la gestion au crime organisé ?",
+      "new_title": "Si le cannabis est dangereux, pourquoi en confier la gestion au crime organisé ?",
+      "source_revision_id": 245584,
+      "source_sha256": "cfe52a05e290e1c97b78068693c609b962d5927596127963e2f694d09f11e5e7",
+      "target_sha256": "ddcbc3b6dbb2506eae71ac4371b485000c4d31a8a13787d1912def92d6f21b9e",
+      "before_file": "before/page-0145.wiki",
+      "after_file": "after/page-0145.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 238461,
+      "historical_source_sha256": "a938914cc294ca6839eee5341111c24ee5c530d4fd8bee5d04debfe78a840f52"
+    },
+    {
+      "page_id": "page-0147",
+      "old_title": "Sophisme de la pente glissante",
+      "new_title": "Sophisme de la pente glissante",
+      "source_revision_id": 245585,
+      "source_sha256": "1fd672917129793e10cbb51eac29848f7e0de92eb2f2a3b1fff7caf24894d23d",
+      "target_sha256": "10618dbd912b46d6f9cb471a3936a64f42d3c410323d4b79019d197335972540",
+      "before_file": "before/page-0147.wiki",
+      "after_file": "after/page-0147.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 214397,
+      "historical_source_sha256": "10618dbd912b46d6f9cb471a3936a64f42d3c410323d4b79019d197335972540"
+    },
+    {
+      "page_id": "page-0149",
+      "old_title": "La prohibition de l'alcool et certaines guerres contre les drogues ont eu des effets contre-productifs",
+      "new_title": "La prohibition de l'alcool et certaines guerres contre les drogues ont eu des effets contre-productifs",
+      "source_revision_id": 245586,
+      "source_sha256": "b4f62bd73daba0301260e551932042b483bb3726d40fecd37458c784617c56e2",
+      "target_sha256": "4bd8dd6316b33bdd008d1456ece8d067ac59fbe80ed018d697f13bf6a5923dd4",
+      "before_file": "before/page-0149.wiki",
+      "after_file": "after/page-0149.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 221091,
+      "historical_source_sha256": "4bd8dd6316b33bdd008d1456ece8d067ac59fbe80ed018d697f13bf6a5923dd4"
+    },
+    {
+      "page_id": "page-0150",
+      "old_title": "Un contrôle d'État de la vente de cannabis est possible en France, à l'image de l'alcool",
+      "new_title": "Un contrôle d'État de la vente de cannabis est possible en France, à l'image de l'alcool",
+      "source_revision_id": 245587,
+      "source_sha256": "e5241815eb21a2265a9064dbcb0c1f9ac9370f09bdc2bbea9d51bea828711780",
+      "target_sha256": "4a4ebfd551e41556a1770a8eea36a684cf0671d36724cdfdc2986a2133210c84",
+      "before_file": "before/page-0150.wiki",
+      "after_file": "after/page-0150.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 207538,
+      "historical_source_sha256": "226d2c9163c696a8fc253c89b9ee3e6a6b62b774de06f48845662628eecc1620"
+    },
+    {
+      "page_id": "page-0151",
+      "old_title": "Un marché noir du cannabis peut subsister après sa légalisation",
+      "new_title": "Un marché noir du cannabis peut subsister après sa légalisation",
+      "source_revision_id": 245588,
+      "source_sha256": "4dd322693b7acb2fdb7bde45d56e5064311b82b4a83e086286a8682393ed02f1",
+      "target_sha256": "7e1a3b981762e058b13dc15d058fe22cf3f2bdd83ef9604532073e3c2275d61c",
+      "before_file": "before/page-0151.wiki",
+      "after_file": "after/page-0151.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 245478,
+      "historical_source_sha256": "0a647506e16182b5f7211d363d09cc7c6bf6d028ff3f713df18b0edf91e04c53"
+    },
+    {
+      "page_id": "page-0152",
+      "old_title": "Une distribution réglementée peut imposer des limites aux stratégies commerciales",
+      "new_title": "Une distribution réglementée peut imposer des limites aux stratégies commerciales",
+      "source_revision_id": 245589,
+      "source_sha256": "aa9c7bd05dec438f108762c8450d16484d86e575b6248eec90bb660a046a661c",
+      "target_sha256": "7d5569f9e3d11807d0cc38e43ea655d544b0c9708bab0b8da8448e5b814d7e52",
+      "before_file": "before/page-0152.wiki",
+      "after_file": "after/page-0152.wiki",
+      "summary_change_authorization": {
+        "decision": "explicit_user_request",
+        "action": "restore",
+        "instruction": "Je ne t'ai pas demandé de rajouter des résumés ou d'en réécrire ! De plus, tes résumés des modifications disent n'importe quoi, sans rapport avec la modif. Corrige le code du dépot pour que cela ne revienne pas et corrige tes merdes sur le wiki."
+      },
+      "edit_summary": "Restauration du résumé antérieur ; annulation des changements non demandés",
+      "reason": "Restaurer exactement le paramètre résumé antérieur, y compris son absence ou son état vide ; conserver tous les autres octets de la page.",
+      "historical_source_revision_id": 206554,
+      "historical_source_sha256": "dc6ecfb75195dcdab3003a3c745cfa163847b54b741f3ec1e8fcf332a698a4ee"
+    }
+  ],
+  "request_sha256": "0d947cb44c6f2c80cd0c5581f3a6665940058c750d76a6f9834c4e5f5ae4fd40"
+}

@@ -1,0 +1,21 @@
+{{Argument
+|résumé=La citation de Claude Guéant est datée de 2011. Des observations plus récentes doivent être distinguées de cette prise de position : la synthèse de l'OFDT indique qu'en 2022, 29,9 % des jeunes de 17 ans avaient expérimenté le cannabis, soit neuf points de moins qu'en 2017. Ce recul de l'expérimentation chez les adolescents ne signifie pas que tous les indicateurs baissent dans toutes les classes d'âge, et ne démontre pas à lui seul l'effet causal d'une politique.
+
+|citations={{Citation
+|citation=Les expérimentations du cannabis chez les jeunes de 17 ans diminuent en France depuis 2003, et le niveau de sa consommation a désormais été ramené à celui du début des années 2000.
+|auteurs=Claude Guéant, ministre de l'Intérieur (2011-12)
+|article=Dépénalisation du cannabis, un débat biaisé
+|ouvrage=Le Monde
+|date=15/6/2011
+|lien=https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://www.ofdt.fr/cannabis-resine-herbe-huile-cbd-synthese-des-connaissances-1724
+|page=Cannabis (résine, herbe, huile, CBD) — Synthèse des connaissances
+|site=OFDT
+}}
+
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Consommation
+|date-création=2019-01-30
+}}

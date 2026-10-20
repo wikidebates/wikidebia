@@ -1,0 +1,29 @@
+{{Argument
+|résumé=Les conventions internationales encadrent notamment la production, la distribution et l'offre de stupéfiants, et la compatibilité d'un marché récréatif avec ces conventions fait l'objet de désaccords. Dans son rapport 2013, l'OICS estimait que le projet uruguayen serait contraire à ces obligations. Il faut cependant distinguer les règles de l'offre des réponses nationales au seul usage : le cas portugais illustre une décriminalisation de certains comportements qui ne légalise pas le trafic. L'existence d'une difficulté conventionnelle n'est pas, à elle seule, une démonstration de l'impossibilité pratique de toute réforme.
+|références-sitographiques={{Référence sitographique
+|lien=https://www.incb.org/incb/uploads/documents/Publications/AnnualReports/AR2013/English/AR_2013_E.pdf
+|page=Rapport annuel 2013 — paragraphes 429 et 712, recommandation 15
+|site=Organe international de contrôle des stupéfiants
+|date=2013
+}}
+
+|objections={{Objection
+|page=Les conventions internationales n'imposent pas de pénaliser l'usage de cannabis
+|titre-affiché=Les conventions internationales n'imposent pas de pénaliser l'usage
+}}{{Objection
+|page=La légalisation du cannabis est préconisée par la Commission mondiale sur la politique des drogues
+|titre-affiché=La légalisation est préconisée par la Commission mondiale sur la politique des drogues
+}}{{Objection
+|page=Le strict respect des conventions sur les stupéfiants est contraire aux traités internationaux relatifs aux droits de l'homme
+|titre-affiché=Le strict respect des conventions sur les stupéfiants est contraire aux traités internationaux relatifs aux droits de l'homme
+}}{{Objection
+|page=La légalisation du cannabis serait possible au titre du principe d'opportunité ou d'une expérimentation scientifique
+|titre-affiché=Il devrait être possible de légaliser, sous couvert du principe d'opportunité ou d'une expérimentation scientifique
+}}{{Objection
+|page=Les critiques de l'OICS n'ont pas empêché l'adoption de la légalisation du cannabis en Uruguay
+|titre-affiché=L'Uruguay a légalisé le cannabis malgré les critiques de l'OICS
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Dépénalisation, Impossibilité
+|date-création=2021-02-16
+}}

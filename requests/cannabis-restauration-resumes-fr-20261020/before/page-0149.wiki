@@ -1,0 +1,26 @@
+{{Argument
+|initialisation=Justification@2363
+|résumé=Les exemples réunis ici concernent notamment la prohibition de l'alcool aux États-Unis et certaines politiques de lutte contre les drogues. Ils illustrent des limites et des effets indésirables possibles de la répression. Ils ne démontrent pas, à eux seuls, que toute mesure répressive aurait échoué sur tous ses objectifs et dans tous les contextes. Une évaluation doit préciser l'objectif, la période et les effets retenus.
+
+|citations={{Citation
+|citation=Onze ans sont passés depuis que l'ex-président mexicain Felipe Calderón déclarait, début décembre 2006, la guerre aux cartels de narcotrafiquants, déployant l'armée dans les zones les plus sensibles du pays. Plus de 200 000 personnes, selon les chiffres officiels, sont mortes dans cette guerre, un conflit sans victoire à l'horizon pour les autorités mexicaines''.'' Dopés par la demande croissante de drogues aux Etats-Unis, d'opiacés en particulier, les cartels mexicains sont plus puissants que jamais. Ils contrôlent pratiquement la totalité de la production d'héroïne et de drogues synthétiques consommée au nord de la frontière, ainsi que le trafic de la cocaïne sud-américaine destinée aux grandes villes des Etats-Unis, sans compter une partie des cargaisons envoyées en Europe. ''«Les organisations criminelles mexicaines montrent des signes continus de croissance et d'expansion»,'' signale le rapport annuel de la Drug Enforcement Administration (DEA), l'agence antidrogue américaine, publié fin octobre. Qui ajoute : ''«Aucun autre groupe n'est en mesure de les concurrencer.»''
+|auteurs=Emmanuelle Steels
+|article=Onze ans d’efforts, 200 000 morts… et des cartels au plus fort
+|ouvrage=Libération
+|date=25 décembre 2017
+|lien=https://www.liberation.fr/planete/2017/12/25/onze-ans-d-efforts-200-000-morts-et-des-cartels-au-plus-fort_1618862/
+}}
+|références-vidéographiques={{Référence vidéographique
+|titre=Why The War on Drugs Is a Huge Failure ?
+|auteurs=Kurzgesagt – In a Nutshell
+|lien=https://tube.blueben.net/w/4664d181-7148-4f41-bf0c-3dcdf69b1a52
+}}
+|justifications={{Justification
+|page=La prohibition de l'alcool au début du XXème siècle a été un échec
+|titre-affiché=La prohibition de l'alcool au début du XXème siècle a été un échec
+}}{{Justification
+|page=La lutte contre les trafics de cannabis coûte cher, et c'est un échec
+|titre-affiché=La lutte contre les trafics est un gaspillage de moyens
+}}
+|date-création=2024-04-24
+}}

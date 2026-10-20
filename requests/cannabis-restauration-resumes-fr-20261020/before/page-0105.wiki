@@ -1,0 +1,14 @@
+{{Argument
+|initialisation=Justification@29804
+|résumé=Le projet uruguayen confiait à l'État l'encadrement de la production et de la distribution du cannabis. L'intérêt invoqué est de rendre possible un contrôle de l'offre plutôt que de la laisser entièrement clandestine. Les sources disponibles ici ne permettent pas d'affirmer une élimination presque complète du marché noir ni une supériorité générale sur la prohibition. Ces résultats exigent des indicateurs, une période et une évaluation propres à l'Uruguay, distincts des données canadiennes.
+|références-sitographiques={{Référence sitographique
+|lien=https://www.incb.org/incb/uploads/documents/Publications/AnnualReports/AR2013/English/AR_2013_E.pdf
+|page=Rapport annuel 2013 — paragraphes 429 et 712, recommandation 15
+|site=Organe international de contrôle des stupéfiants
+|date=2013
+}}
+
+|rubriques=Droit, Économie, Politique, Santé, Société
+|mots-clés=Marché noir, problèmes de santé publique, fiscalité
+|date-création=2024-11-28
+}}

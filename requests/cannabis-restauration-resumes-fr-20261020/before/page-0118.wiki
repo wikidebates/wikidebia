@@ -1,0 +1,23 @@
+{{Argument
+|résumé=La réforme portugaise entrée en vigueur en 2001 a décriminalisé l'usage, l'acquisition et la possession pour consommation personnelle dans les conditions prévues par la loi. Elle n'a pas créé un marché légal de production et de vente des drogues. Les commissions de dissuasion peuvent examiner les situations et orienter vers une réponse adaptée ; cela n'implique pas que tout usager soit malade ni qu'un traitement soit imposé à tous. Le bilan de consommation doit être distingué du régime juridique.
+|citations={{Citation
+|citation=En décriminalisant la consommation de toutes les drogues il y a vingt-cinq ans, le pays a brisé un tabou et la consommation reste contenue à des niveaux parmi les plus faibles en Europe.
+|auteurs=François Musseau
+|article=Les 50 ans de l'Appel du 18 joint Au Portugal, le succès de la dépénalisation générale des drogues
+|ouvrage=Libération
+|date=17/06/2026
+|lien=https://www.liberation.fr/international/europe/au-portugal-le-succes-de-la-depenalisation-generale-des-drogues-20260617_PL2SYLOJTBCWXBSJ55WFL6TRWY/
+}}
+|références-vidéographiques={{Référence vidéographique
+|titre=ARTE Regards - Décriminaliser la drogue, le modèle portugais
+|lien=https://www.arte.tv/fr/videos/100834-005-A/arte-regards-decriminaliser-la-drogue-le-modele-portugais/
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf
+|page=Portugal — Country Drug Report 2019
+|site=EMCDDA / EUDA
+|date=2019
+}}
+
+|date-création=2022-02-16
+}}
