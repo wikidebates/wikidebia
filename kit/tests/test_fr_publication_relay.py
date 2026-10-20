@@ -9,6 +9,11 @@ import pytest
 import wikidebia_fr_publication_relay as relay
 
 
+@pytest.fixture(autouse=True)
+def no_verification_sleep(monkeypatch):
+    monkeypatch.setattr(relay.time, "sleep", lambda seconds: None)
+
+
 def request_fixture(directory: Path, request_id="cannabis-fr-test"):
     directory.mkdir(parents=True)
     originals = {"Child": (10, "{{Argument|résumé=Source conservée}}\n"),
@@ -89,7 +94,8 @@ class FakeWiki:
         assert not create_only and self.pages[title][0] == base_revision_id
         revision = 200 + len(self.writes)
         self.pages[title] = (revision, text)
-        self.revisions[revision] = {"text": text, "user": self.user, "summary": summary, "tags": tags}
+        self.revisions[revision] = {"revision_id": revision, "parent_id": base_revision_id,
+                                    "text": text, "user": self.user, "summary": summary, "tags": tags}
         self.writes.append(("update", title))
         return revision
 
@@ -280,6 +286,162 @@ def test_remote_readback_must_confirm_user_tag_and_content(tmp_path):
         publish(tmp_path, directory, wiki)
     state = json.loads((tmp_path / "server/.state/fr-publication-relay/cannabis-fr-test.json").read_text())
     assert state["status"] == "blocked"
+
+
+@pytest.mark.parametrize("lag", ("missing_revision", "missing_tag", "missing_summary"))
+def test_delayed_revision_metadata_retries_reads_without_repeating_the_edit(tmp_path, lag, monkeypatch):
+    directory = tmp_path / "request"
+    _, pages = request_fixture(directory)
+    wiki = FakeWiki(pages)
+    original_read = wiki.read_revision
+    reads, sleeps = [], []
+    monkeypatch.setattr(relay.time, "sleep", sleeps.append)
+
+    def delayed_read(title, revision):
+        reads.append((title, revision))
+        actual = original_read(title, revision)
+        if len(reads) <= 2:
+            if lag == "missing_revision":
+                return None
+            if lag == "missing_tag":
+                return {**actual, "tags": []}
+            return {**actual, "summary": ""}
+        return actual
+
+    wiki.read_revision = delayed_read
+    receipt = publish(tmp_path, directory, wiki)
+    assert receipt["status"] == "completed"
+    assert len(reads) == 3 and len(set(reads)) == 1
+    assert sleeps.count(relay.VERIFICATION_DELAY_SECONDS) == 2
+    assert sum(event[0] == "update" for event in wiki.writes) == 1
+    assert sum(event[0] == "move" for event in wiki.writes) == 1
+
+
+@pytest.mark.parametrize("field,value,label", [
+    ("revision_id", 999, "identifiant de révision"),
+    ("parent_id", 999, "révision parente"),
+    ("user", "Other", "auteur"),
+    ("summary", "Other summary", "résumé"),
+    ("tags", [], "balise chatgpt"),
+    ("text", "{{Argument|résumé=Divergence}}", "contenu"),
+])
+def test_persistent_readback_mismatch_is_bounded_and_preserves_written_revision(tmp_path, field, value, label):
+    directory = tmp_path / "request"
+    _, pages = request_fixture(directory)
+    wiki = FakeWiki(pages)
+    original_read = wiki.read_revision
+    reads = []
+
+    def divergent_read(title, revision):
+        reads.append(revision)
+        return {**original_read(title, revision), field: value}
+
+    wiki.read_revision = divergent_read
+    with pytest.raises(relay.Blocked, match=label):
+        publish(tmp_path, directory, wiki)
+    assert len(reads) == relay.VERIFICATION_ATTEMPTS
+    assert sum(event[0] == "update" for event in wiki.writes) == 1
+    state = json.loads(relay.state_file(tmp_path / "server", "cannabis-fr-test").read_text())
+    assert state["status"] == "blocked"
+    assert state["events"][-1] == {"operation": "update_written", "title": "Parent", "revision_id": reads[0]}
+
+
+def interrupt_after_edit(tmp_path, *, legacy):
+    directory = tmp_path / "request"
+    _, pages = request_fixture(directory)
+    wiki = FakeWiki(pages)
+    original_read = wiki.read_revision
+    wiki.read_revision = lambda title, revision: {**original_read(title, revision), "tags": []}
+    with pytest.raises(relay.Blocked, match="balise chatgpt"):
+        publish(tmp_path, directory, wiki)
+    wiki.read_revision = original_read
+    state_path = relay.state_file(tmp_path / "server", "cannabis-fr-test")
+    if legacy:
+        state = json.loads(state_path.read_text())
+        state["events"] = [e for e in state["events"] if e["operation"] != "update_written"]
+        state_path.write_text(json.dumps(state))
+    return directory, wiki, state_path
+
+
+@pytest.mark.parametrize("legacy", (False, True))
+def test_interrupted_edit_is_verified_and_journaled_without_duplicate_writes(tmp_path, legacy):
+    directory, wiki, state_path = interrupt_after_edit(tmp_path, legacy=legacy)
+    previous = json.loads(state_path.read_text())
+    writes = list(wiki.writes)
+    receipt = publish(tmp_path, directory, wiki)
+    assert receipt["status"] == "completed" and receipt["attempt"] == 2
+    assert wiki.writes == writes
+    assert receipt["events"][:len(previous["events"])] == previous["events"]
+    assert receipt["events"][-1] == {"operation": "update", "title": "Parent",
+                                     "revision_id": wiki.pages["Parent"][0], "recovered": True}
+
+
+@pytest.mark.parametrize("legacy", (False, True))
+@pytest.mark.parametrize("field,value", [("user", "Other"), ("tags", []), ("parent_id", 999)])
+def test_resume_cannot_skip_unverified_edit_metadata(tmp_path, legacy, field, value):
+    directory, wiki, _ = interrupt_after_edit(tmp_path, legacy=legacy)
+    writes = list(wiki.writes)
+    original_read = wiki.read_revision
+    wiki.read_revision = lambda title, revision: {**original_read(title, revision), field: value}
+    with pytest.raises(relay.Blocked, match="Relecture"):
+        publish(tmp_path, directory, wiki)
+    assert wiki.writes == writes
+
+
+def test_preflight_of_interrupted_edit_does_not_change_receipt(tmp_path):
+    directory, wiki, state_path = interrupt_after_edit(tmp_path, legacy=True)
+    previous = state_path.read_bytes()
+    writes = list(wiki.writes)
+    assert publish(tmp_path, directory, wiki, execute=False)["status"] == "ready"
+    assert state_path.read_bytes() == previous and wiki.writes == writes
+
+
+def test_lost_edit_response_recovers_without_duplicate_write(tmp_path):
+    directory = tmp_path / "request"
+    _, pages = request_fixture(directory)
+    wiki = FakeWiki(pages)
+    original_write = wiki.write_page
+
+    def lost_response(**kwargs):
+        original_write(**kwargs)
+        raise ConnectionError("Réponse perdue après édition")
+
+    wiki.write_page = lost_response
+    with pytest.raises(ConnectionError):
+        publish(tmp_path, directory, wiki)
+    wiki.write_page = original_write
+    writes = list(wiki.writes)
+    receipt = publish(tmp_path, directory, wiki)
+    assert receipt["status"] == "completed" and wiki.writes == writes
+    assert receipt["events"][-1]["recovered"] is True
+
+
+def test_resume_verifies_interrupted_edit_before_publishing_remaining_pages(tmp_path):
+    directory = tmp_path / "request"
+    request, pages = request_fixture(directory)
+    before = "{{Argument|justifications={{Justification|page=Child}}}}\n"
+    after = before.replace("page=Child", "page=Renamed child")
+    (directory / "before/Remaining.wiki").write_text(before)
+    (directory / "after/Remaining.wiki").write_text(after)
+    request["pages"].append({"page_id": "Remaining", "old_title": "Remaining", "new_title": "Remaining",
+        "source_revision_id": 12, "source_sha256": relay.digest(before.encode()),
+        "target_sha256": relay.digest(after.encode()), "before_file": "before/Remaining.wiki",
+        "after_file": "after/Remaining.wiki"})
+    save_request(directory, request)
+    wiki = FakeWiki({**pages, "Remaining": (12, before)})
+    original_read = wiki.read_revision
+    wiki.read_revision = lambda title, revision: {**original_read(title, revision), "tags": []}
+    with pytest.raises(relay.Blocked):
+        publish(tmp_path, directory, wiki)
+    writes = list(wiki.writes)
+    with pytest.raises(relay.Blocked):
+        publish(tmp_path, directory, wiki)
+    assert wiki.writes == writes and wiki.pages["Remaining"] == (12, before)
+    wiki.read_revision = original_read
+    receipt = publish(tmp_path, directory, wiki)
+    assert receipt["status"] == "completed"
+    assert wiki.pages["Remaining"][1] == after
+    assert wiki.writes == writes + [("update", "Remaining")]
 
 
 def test_worker_does_not_retry_editorial_conflicts_without_explicit_request(tmp_path, monkeypatch):

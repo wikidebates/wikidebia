@@ -1,6 +1,6 @@
 Wikidéb’IA Kit 2.16.47 — rapport de tests
 
-Tests pytest : 565 réussis
+Tests pytest : 585 réussis
 Norme : 1.2.88
 Validateur : 0.4.105
 
@@ -17,4 +17,6 @@ Debate-first publication order : PASSED ; Debate précède les créations Argume
 
 Signed plan cross-version resume : PASSED ; les versions producteur restent de la provenance, tandis que signature, schéma, manifeste et configuration restent bloquants.
 
-Explicit French Git publication relay : PASSED ; 26 tests du relais : préflight global, conflits, reprises, transport Git, relecture et idempotence sur wiki simulé. Aucune publication réelle effectuée par ces tests.
+Explicit French Git publication relay : PASSED ; 46 tests du relais : préflight global, conflits, reprises, transport Git, relecture et idempotence sur wiki simulé. Aucune publication réelle effectuée par ces tests.
+
+French relay readback recovery : PASSED ; relectures bornées des métadonnées, contrôle de la révision parente, reprise des anciens reçus et absence de doublons après interruption.
