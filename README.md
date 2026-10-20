@@ -19,6 +19,11 @@ voir [le déploiement depuis Codex Web](deploy/README.md).
 Pour publier des corrections françaises explicitement demandées depuis Codex,
 sans SSH, voir [le relais de publication Debian](deploy/README_PUBLICATION_FR.md).
 
+La correction de pages existantes préserve leurs résumés d’arguments : ne pas en
+ajouter, réécrire ou retirer sans demande utilisateur spécifique. Les permissions
+par page et les commentaires d’édition calculés à partir du contenu sont décrits
+dans [le périmètre éditorial du relais](deploy/README_PUBLICATION_FR.md#périmètre-des-résumés-et-commentaires-dédition).
+
 ## Mise à niveau par bundle unique
 
 Vider les anciens ZIP de `updates/`, y déposer uniquement le bundle complet reçu, puis lancer `./wikidebia upgrade`. Le bundle contient les trois composants et le gestionnaire les extrait automatiquement.

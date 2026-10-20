@@ -17,7 +17,8 @@ import time
 
 
 BRANCH = "wiki-fr-publication"
-SCHEMA = "wikidebia-fr-publication-request-1.0"
+SCHEMA = "wikidebia-fr-publication-request-1.1"
+SUPPORTED_SCHEMAS = {SCHEMA, "wikidebia-fr-publication-request-1.0"}
 SITE = "https://fr.wikidebates.org"
 VERIFICATION_ATTEMPTS = 8
 VERIFICATION_DELAY_SECONDS = 2
@@ -78,7 +79,7 @@ def load_request(root: Path) -> dict:
     if root.is_symlink():
         raise Blocked("Dossier de demande symbolique interdit")
     request = json.loads(safe_file(root, "request.json").read_text(encoding="utf-8"))
-    if request.get("schema") != SCHEMA or request.get("language") != "fr" or request.get("site") != SITE:
+    if request.get("schema") not in SUPPORTED_SCHEMAS or request.get("language") != "fr" or request.get("site") != SITE:
         raise Blocked("Seules les demandes françaises Wikidébates sont acceptées")
     if not re.fullmatch(r"[a-z0-9][a-z0-9_-]{2,79}", request.get("request_id", "")):
         raise Blocked("Identifiant de demande invalide")
@@ -132,11 +133,33 @@ def inspect_page(adapter, row: dict) -> dict:
     return {"title": old, "revision": revision, "text": text, "move": old != new}
 
 
-def update_summary(row: dict) -> str:
-    return f"Corrections des titres et liens d'arguments dans [[{row['new_title']}]]"
+def request_editorial_checks(request: dict, request_dir: Path) -> dict[str, str]:
+    from wikidebia_update import (
+        UpdateError, assert_summary_change_authorized, changed_top_level_parameters,
+        content_diff_edit_summary,
+    )
+    summaries = {}
+    for row in request["pages"]:
+        before = safe_file(request_dir, row["before_file"]).read_text(encoding="utf-8")
+        after = safe_file(request_dir, row["after_file"]).read_text(encoding="utf-8")
+        page_type = "debate" if re.match(r"\s*\{\{Débat\s*(?:\||\}\})", before) else "argument"
+        try:
+            assert_summary_change_authorized(
+                before, after, "fr", page_type, row.get("summary_change_authorization"),
+            )
+            summaries[row["page_id"]] = content_diff_edit_summary(before, after, "fr", page_type)
+            if (isinstance(row.get("summary_change_authorization"), dict)
+                    and row["summary_change_authorization"].get("action") == "restore"
+                    and changed_top_level_parameters(before, after, "fr", page_type) == ["résumé"]):
+                summaries[row["page_id"]] = "Restauration du résumé antérieur ; annulation des changements non demandés"
+        except UpdateError as exc:
+            raise Blocked(f"{row['new_title']} : {exc}") from exc
+        if "edit_summary" in row and row["edit_summary"] != summaries[row["page_id"]]:
+            raise Blocked(f"Commentaire d’édition divergent du contenu : {row['new_title']}")
+    return summaries
 
 
-def verify_update(adapter, row: dict, revision: int, base_revision: int, expected_user: str) -> None:
+def verify_update(adapter, row: dict, revision: int, base_revision: int, expected_user: str, summary: str) -> None:
     # Change tags and other revision metadata may briefly lag behind the edit.
     # Retry reads of the exact revision, never the edit itself.
     for attempt in range(VERIFICATION_ATTEMPTS):
@@ -148,7 +171,7 @@ def verify_update(adapter, row: dict, revision: int, base_revision: int, expecte
                 "identifiant de révision": actual.get("revision_id") == revision,
                 "révision parente": actual.get("parent_id") == base_revision,
                 "auteur": actual.get("user") == expected_user,
-                "résumé": actual.get("summary") == update_summary(row),
+                "résumé": actual.get("summary") == summary,
                 "balise chatgpt": "chatgpt" in (actual.get("tags") or []),
                 "contenu": digest(actual.get("text", "").encode()) == row["target_sha256"],
             }
@@ -187,6 +210,9 @@ def publish_request(root: Path, request_dir: Path, adapter, expected_user: str, 
                "attempt": int(previous.get("attempt", 0)) + 1,
                "started_at": dt.datetime.now(dt.timezone.utc).isoformat()}
     try:
+        # Completed immutable requests are skipped above, including historical
+        # requests created before this stricter editorial scope existed.
+        summaries = request_editorial_checks(request, request_dir)
         adapter.open_language("fr", expected_user)
         adapter.assert_identity(expected_user)
         required = {"edit"}
@@ -211,7 +237,7 @@ def publish_request(root: Path, request_dir: Path, adapter, expected_user: str, 
                     raise Blocked(f"Contenu modifié après une écriture interrompue : {row['new_title']}")
                 if at_target:
                     revision = interrupted.get("revision_id", current["revision"])
-                    verify_update(adapter, row, revision, interrupted["base_revision_id"], expected_user)
+                    verify_update(adapter, row, revision, interrupted["base_revision_id"], expected_user, summaries[row["page_id"]])
                     recovered.append({"operation": "update", "title": row["new_title"],
                                       "revision_id": revision, "recovered": True})
         if not execute:
@@ -240,7 +266,7 @@ def publish_request(root: Path, request_dir: Path, adapter, expected_user: str, 
             desired = safe_file(request_dir, row["after_file"]).read_text(encoding="utf-8")
             if digest(current["text"].encode()) == row["target_sha256"]:
                 continue
-            summary = update_summary(row)
+            summary = summaries[row["page_id"]]
             adapter.assert_identity(expected_user)
             receipt["events"].append({"operation": "update_requested", "title": row["new_title"], "base_revision_id": current["revision"]})
             write_json(state_path, receipt)
@@ -249,7 +275,7 @@ def publish_request(root: Path, request_dir: Path, adapter, expected_user: str, 
             receipt["events"].append({"operation": "update_written", "title": row["new_title"],
                                       "revision_id": revision})
             write_json(state_path, receipt)
-            verify_update(adapter, row, revision, current["revision"], expected_user)
+            verify_update(adapter, row, revision, current["revision"], expected_user, summary)
             receipt["events"].append({"operation": "update", "title": row["new_title"], "revision_id": revision})
             write_json(state_path, receipt)
             time.sleep(delay)
@@ -356,6 +382,7 @@ def enqueue(root: Path, request_dir: Path, confirmation: str) -> str:
     request = load_request(request_dir)
     if confirmation != request["request_sha256"]:
         raise Blocked("L'envoi exige l'empreinte exacte de la demande approuvée")
+    request_editorial_checks(request, request_dir)
     remote = git(root, "remote", "get-url", "origin")
     identity = re.fullmatch(r"(.+) <([^<>]+)> \d+ [+-]\d{4}", git(root, "var", "GIT_AUTHOR_IDENT"))
     if not identity:
