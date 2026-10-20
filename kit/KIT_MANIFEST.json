@@ -3,6 +3,7 @@
   "version": "2.16.47",
   "validator_version": "0.4.105",
   "scope": [
+    "explicit_french_publication_relay",
     "publish_archive",
     "github_init",
     "doctor",
