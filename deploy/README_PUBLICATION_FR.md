@@ -40,7 +40,7 @@ déploiement. Aucun changement de Tailscale ou de SSH n'est nécessaire.
 ## Envoi depuis Codex Cloud
 
 Un dossier de demande contient `request.json` et les fichiers `before/` et `after/`
-déclarés. Le schéma est `wikidebia-fr-publication-request-1.1` ; le site est fixé à
+déclarés. Le schéma est `wikidebia-fr-publication-request-1.2` ; le site est fixé à
 `https://fr.wikidebates.org` et la langue à `fr`. Les SHA-256 des textes et de la
 demande empêchent une modification silencieuse du paquet. Ils ne constituent pas
 une signature d'identité : l'autorisation de transport repose sur les droits Git
@@ -106,6 +106,42 @@ de l’exécuter avec l’ancien commentaire fixe. Déployer le code actuel avan
 traiter les nouvelles demandes. Les demandes 1.0 achevées et leurs reçus restent
 immuables et sont ignorés sans rejouer les écritures ; toute demande encore à
 traiter doit satisfaire aux nouveaux contrôles.
+
+### Conservation des citations existantes
+
+Une relecture ou une correction générale n’autorise pas la suppression ou la
+réécriture d’une citation existante. Une source non retrouvée ou non vérifiée,
+une référence ancienne, un désaccord avec son contenu ou un doublon ne permettent
+pas de la retirer, de la masquer ou de la remplacer par un résumé. Signaler le
+problème à l’utilisateur et attendre une demande spécifique. Les citations,
+attributions et références originales sont conservées entre-temps.
+
+Le relais et le moteur `update` comparent toutes les occurrences des modèles
+`Citation` et `Quote` avant la première mutation et avant chaque édition. Ce
+contrôle couvre également les citations placées hors du champ habituel
+`citations`/`quotes`, ainsi que le retrait d’un seul exemplaire d’une citation
+présente plusieurs fois. Un ajout ne permet pas de compenser la suppression
+d’une autre citation. L’ajout d’une nouvelle citation conserve les anciennes.
+
+Une modification expressément demandée nécessite sur chaque page concernée :
+
+```json
+"citation_change_authorization": {
+  "decision": "explicit_user_request",
+  "action": "restore",
+  "instruction": "Rétablis les citations que tu as supprimées."
+}
+```
+
+`instruction` cite la demande réelle. Comme pour les résumés, cet objet est
+porté par la page de la demande ou du manifeste et vérifié par l’exécuteur ;
+une autorisation de publication ou de modification du résumé ne le remplace pas.
+Une restauration limitée au champ `citations` porte le commentaire « Restauration
+des citations antérieures ; annulation des retraits non demandés ».
+
+Les nouvelles demandes 1.2 exigent le code comprenant ce contrôle et ce commentaire.
+Les demandes achevées 1.0 et 1.1 restent immuables et ne sont pas rejouées. Une
+demande ancienne encore à traiter ne peut pas contourner la protection des citations.
 
 ## Vérification sur Debian
 

@@ -17,8 +17,8 @@ import time
 
 
 BRANCH = "wiki-fr-publication"
-SCHEMA = "wikidebia-fr-publication-request-1.1"
-SUPPORTED_SCHEMAS = {SCHEMA, "wikidebia-fr-publication-request-1.0"}
+SCHEMA = "wikidebia-fr-publication-request-1.2"
+SUPPORTED_SCHEMAS = {SCHEMA, "wikidebia-fr-publication-request-1.1", "wikidebia-fr-publication-request-1.0"}
 SITE = "https://fr.wikidebates.org"
 VERIFICATION_ATTEMPTS = 8
 VERIFICATION_DELAY_SECONDS = 2
@@ -135,7 +135,7 @@ def inspect_page(adapter, row: dict) -> dict:
 
 def request_editorial_checks(request: dict, request_dir: Path) -> dict[str, str]:
     from wikidebia_update import (
-        UpdateError, assert_summary_change_authorized, changed_top_level_parameters,
+        UpdateError, assert_summary_change_authorized, assert_citation_change_authorized, changed_top_level_parameters,
         content_diff_edit_summary,
     )
     summaries = {}
@@ -147,11 +147,16 @@ def request_editorial_checks(request: dict, request_dir: Path) -> dict[str, str]
             assert_summary_change_authorized(
                 before, after, "fr", page_type, row.get("summary_change_authorization"),
             )
+            assert_citation_change_authorized(before, after, row.get("citation_change_authorization"))
             summaries[row["page_id"]] = content_diff_edit_summary(before, after, "fr", page_type)
             if (isinstance(row.get("summary_change_authorization"), dict)
                     and row["summary_change_authorization"].get("action") == "restore"
                     and changed_top_level_parameters(before, after, "fr", page_type) == ["résumé"]):
                 summaries[row["page_id"]] = "Restauration du résumé antérieur ; annulation des changements non demandés"
+            if (isinstance(row.get("citation_change_authorization"), dict)
+                    and row["citation_change_authorization"].get("action") == "restore"
+                    and changed_top_level_parameters(before, after, "fr", page_type) == ["citations"]):
+                summaries[row["page_id"]] = "Restauration des citations antérieures ; annulation des retraits non demandés"
         except UpdateError as exc:
             raise Blocked(f"{row['new_title']} : {exc}") from exc
         if "edit_summary" in row and row["edit_summary"] != summaries[row["page_id"]]:
