@@ -1,0 +1,23 @@
+{{Argument
+|initialisation=Argument pour@441
+|résumé=La légalisation contrôlée par l’État démontre qu’une régulation stricte du cannabis peut réduire les impacts négatifs associés à la prohibition tout en créant des bénéfices sociaux et économiques tangibles.
+
+Les modèles canadien et uruguayen, bien qu’imparfaits, prouvent que la légalisation contrôlée par l'État fonctionne en offrant un cadre efficace pour réduire la criminalité liée au cannabis, améliorer la sécurité des consommateurs et générer des revenus pour des programmes publics essentiels. Ces résultats surpassent largement ceux de la prohibition stricte.
+|citations={{Citation
+|citation=La régulation du cannabis au Canada et en Uruguay montre qu’une approche équilibrée, qui associe prévention, contrôle et accessibilité, peut non seulement réduire les méfaits associés au marché noir mais aussi générer des bénéfices mesurables pour la société.
+|auteurs=Kilmer B.
+|article=Global Perspectives on Cannabis Legalization
+|ouvrage=RAND Corporation
+|date=2022
+}}
+|justifications={{Justification
+|page=La légalisation du cannabis au Canada fonctionne mieux que la prohibition
+|titre-affiché=La légalisation du cannabis au Canada fonctionne mieux que la prohibition
+}}{{Justification
+|page=La régulation du cannabis en Uruguay fonctionne mieux que la prohibition
+|titre-affiché=La régulation du cannabis en Uruguay fonctionne mieux que la prohibition
+}}
+|rubriques=Droit, Économie, Politique, Santé, Société
+|mots-clés=Marché noir, problèmes de santé publique
+|date-création=2024-11-28
+}}

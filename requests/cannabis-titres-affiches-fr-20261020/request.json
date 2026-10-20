@@ -1,0 +1,132 @@
+{
+  "schema": "wikidebia-fr-publication-request-1.0",
+  "request_id": "cannabis-titres-affiches-fr-20261020",
+  "language": "fr",
+  "site": "https://fr.wikidebates.org",
+  "authorization": "explicit_user_request",
+  "authorization_text": "corrige le code mais aussi les pages que tu as revues",
+  "prepared_at": "2026-10-20T20:20:51.931829+00:00",
+  "renames": 0,
+  "displayed_title_updates": 9,
+  "source_request_id": "cannabis-titres-fr-20261020",
+  "source_request_sha256": "fd278f51dafcae3c5bc2d38d67ff62f87b58f6dc91797cd1f8c5f30c8bffb417",
+  "source_evidence": "Reçu Debian completed fourni par le propriétaire ; les révisions et SHA-256 seront revérifiés avant toute écriture.",
+  "remote_publication_completed": false,
+  "pages": [
+    {
+      "page_id": "debate",
+      "old_title": "Le cannabis doit-il être légalisé ?",
+      "new_title": "Le cannabis doit-il être légalisé ?",
+      "source_revision_id": 245490,
+      "source_sha256": "2bf8ff7868e270ea9f2642cf077ef539c17ac932b2de2f1324078b23f7c6fcdc",
+      "target_sha256": "a483ab21623542fbb0c74977535fb9a9a388c79bfc90a003e79dac80f55c90bb",
+      "before_file": "before/debate.wiki",
+      "after_file": "after/debate.wiki",
+      "reason": "Rétablir les titres affichés historiques remplacés à tort par des formulations de génération ; conserver les cibles des liens.",
+      "displayed_title_changes": [
+        {
+          "before": "|titre-affiché=La légalisation du cannabis permet un contrôle qualité",
+          "after": "|titre-affiché=La légalisation permet un contrôle qualité"
+        }
+      ]
+    },
+    {
+      "page_id": "A0001",
+      "old_title": "La prohibition du cannabis est inefficace",
+      "new_title": "La prohibition du cannabis est inefficace",
+      "source_revision_id": 245491,
+      "source_sha256": "fc641715667775fd51077e3939f371b9f3d2e428ff93da46b3a24101d7bfb89f",
+      "target_sha256": "df286c6b75141347ab625b235d8753e79d40aec833c7ce0ed763ea01e7d8ebf1",
+      "before_file": "before/A0001.wiki",
+      "after_file": "after/A0001.wiki",
+      "reason": "Rétablir les titres affichés historiques remplacés à tort par des formulations de génération ; conserver les cibles des liens.",
+      "displayed_title_changes": [
+        {
+          "before": "|titre-affiché=La prohibition du cannabis dissuade une partie de la population d'en consommer",
+          "after": "|titre-affiché=Réduction de la consommation"
+        }
+      ]
+    },
+    {
+      "page_id": "A0006",
+      "old_title": "La légalisation du cannabis serait bénéfique",
+      "new_title": "La légalisation du cannabis serait bénéfique",
+      "source_revision_id": 245492,
+      "source_sha256": "505f2019d5e6cd2f713ec9e1811d0940ef50b346ef685696031915ad3a9cd91c",
+      "target_sha256": "f10b1d38ce6a442c1f33ebdd0c5ba405f2d6434c410755d77586af4f1466b0a6",
+      "before_file": "before/A0006.wiki",
+      "after_file": "after/A0006.wiki",
+      "reason": "Rétablir les titres affichés historiques remplacés à tort par des formulations de génération ; conserver les cibles des liens.",
+      "displayed_title_changes": [
+        {
+          "before": "|titre-affiché=La légalisation du cannabis risque d'accroître la consommation",
+          "after": "|titre-affiché=Augmentation de la consommation"
+        },
+        {
+          "before": "|titre-affiché=La légalisation du cannabis encourage une économie de dépendance",
+          "after": "|titre-affiché=Encouragement d’une économie de dépendance"
+        },
+        {
+          "before": "|titre-affiché=Un marché noir du cannabis peut subsister après sa légalisation",
+          "after": "|titre-affiché=Maintien d’un marché noir"
+        }
+      ]
+    },
+    {
+      "page_id": "A0007",
+      "old_title": "La légalisation du cannabis permet un contrôle qualité",
+      "new_title": "La légalisation du cannabis permet un contrôle qualité",
+      "source_revision_id": 245493,
+      "source_sha256": "ada8f229dd4151acf293483d20daf7106b40d9311770e3108e4869839f1b4016",
+      "target_sha256": "5884319c38c35a541aa798566bad6d16e3f53a1e4112db48cb4f10e4290c72a4",
+      "before_file": "before/A0007.wiki",
+      "after_file": "after/A0007.wiki",
+      "reason": "Rétablir les titres affichés historiques remplacés à tort par des formulations de génération ; conserver les cibles des liens.",
+      "displayed_title_changes": [
+        {
+          "before": "|titre-affiché=Un marché noir du cannabis peut subsister après sa légalisation",
+          "after": "|titre-affiché=Maintien d’un marché noir"
+        }
+      ]
+    },
+    {
+      "page_id": "A0008",
+      "old_title": "La légalisation contrôlée par l'État fonctionne",
+      "new_title": "La légalisation contrôlée par l'État fonctionne",
+      "source_revision_id": 245494,
+      "source_sha256": "b9723a27bb2349e106ebabccd7b3230d08f42715001227c72e01cbdf7262c734",
+      "target_sha256": "19889a8419bd2f5664c29e622a9fe8b3faf987b7736f10e61a25a51464d43c8f",
+      "before_file": "before/A0008.wiki",
+      "after_file": "after/A0008.wiki",
+      "reason": "Rétablir les titres affichés historiques remplacés à tort par des formulations de génération ; conserver les cibles des liens.",
+      "displayed_title_changes": [
+        {
+          "before": "|titre-affiché=La légalisation du cannabis au Canada fonctionne mieux que la prohibition",
+          "after": "|titre-affiché=Légalisation contrôlée par l'État (Modèle canadien)"
+        },
+        {
+          "before": "|titre-affiché=La régulation du cannabis en Uruguay fonctionne mieux que la prohibition",
+          "after": "|titre-affiché=Régulation contrôlée du cannabis (Modèle Uruguayen)"
+        }
+      ]
+    },
+    {
+      "page_id": "A0034",
+      "old_title": "La prohibition du cannabis entraîne une perte importante de recettes pour l'Etat et laisser se développer un marché échappant à toute taxe revient même à le subventionner",
+      "new_title": "La prohibition du cannabis entraîne une perte importante de recettes pour l'Etat et laisser se développer un marché échappant à toute taxe revient même à le subventionner",
+      "source_revision_id": 245495,
+      "source_sha256": "a3310b0741da7b4644ee159fd7527a28b324b919bda87245f6085a36584af838",
+      "target_sha256": "c59e90a965fe11dcc3c4ecdf38fec86a1220879c3de642ce62f369eafe097233",
+      "before_file": "before/A0034.wiki",
+      "after_file": "after/A0034.wiki",
+      "reason": "Rétablir les titres affichés historiques remplacés à tort par des formulations de génération ; conserver les cibles des liens.",
+      "displayed_title_changes": [
+        {
+          "before": "|titre-affiché=Taxer tous les marchés illicites serait irresponsable",
+          "after": "|titre-affiché=Il serait irresponsable de taxer tous les marchés illicites"
+        }
+      ]
+    }
+  ],
+  "request_sha256": "abcd0a8446c0aeb2b3327b1ecd7c2124b5785c026f22756fea713e4c296b3d3d"
+}
