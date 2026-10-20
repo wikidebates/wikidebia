@@ -1,0 +1,18 @@
+{{Argument
+|citations={{Citation
+|citation=Plus de 13 millions de Français ont expérimenté au moins une fois du cannabis, avec une hausse progressive depuis le début des années 1990 – la proportion d'expérimentateurs parmi les 18-64 ans, qui atteignait les 24 % en 2000, est ainsi passée à 29 % en 2005, puis à 33 % en 2011.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=70
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|objections={{Objection
+|page=Il y a des signes de fléchissement de la consommation de cannabis
+|titre-affiché=Il y a des signes de fléchissement de la consommation
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Consommation
+|date-création=2019-01-07
+}}

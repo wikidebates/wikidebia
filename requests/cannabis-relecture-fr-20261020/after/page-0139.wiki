@@ -1,0 +1,11 @@
+{{Argument
+|résumé=L'accès médical poursuit un objectif thérapeutique pour une indication et un patient, tandis que l'usage récréatif relève d'un autre cadre. Il est possible de prévoir des règles distinctes concernant les produits, les doses, le suivi et la délivrance. Le rapport canadien de 2024 recommande précisément de maintenir un programme d'accès médical distinct et de l'améliorer. Autoriser ou évaluer une indication médicale ne tranche donc pas, à lui seul, le débat sur l'usage récréatif.
+
+|références-sitographiques={{Référence sitographique
+|lien=https://www.canada.ca/fr/sante-canada/services/publications/drogues-medicaments/examen-legislatif-loi-cannabis-rapport-final-comite-experts.html
+|page=Examen législatif de la Loi sur le cannabis : Rapport final du Comité d’experts
+|site=Santé Canada
+|date=2024
+}}
+|date-création=2022-12-19
+}}

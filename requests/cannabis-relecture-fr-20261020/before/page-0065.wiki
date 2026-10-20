@@ -1,0 +1,39 @@
+{{Argument
+|citations={{Citation
+|citation=La légalisation du cannabis serait interprétée comme un fallacieux signal d’innocuité.
+
+Beaucoup de ceux qui ne consomment pas de cannabis le font par respect de l’interdiction. Sa levée précipiterait beaucoup d’entre eux dans sa consommation.
+|auteurs=Jean Costentin
+|ouvrage=Pourquoi il ne faut pas dépénaliser l'usage du cannabis ?
+|page=24
+|édition=Odile Jacob
+|date=2011
+}}{{Citation
+|citation=Aligner la législation du cannabis sur celle du tabac multipliera par dix le nombre d'usagers, de 1 600 000 actuellement à 15 000 000, à égalité avec les sujets tabaco-dépendants.
+|auteurs=Jean Costentin
+|article=Peut-on envisager de légaliser le cannabis ?
+|ouvrage=Le Figaro
+|date=4/09/2011
+|lien=https://sante.lefigaro.fr/actualite/2011/09/04/11032-peut-on-envisager-legaliser-cannabis
+}}{{Citation
+|citation=Dépénalisation=banalisation. Si la consommation est dépénalisée, elle augmentera, car son accès sera plus facile.
+|auteurs=Claude Guéant
+|article=Dépénalisation du cannabis, un débat biaisé
+|ouvrage=Le Monde
+|date=15/6/2011
+|lien=https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html
+}}
+|objections={{Objection
+|page=L'exemple de certains pays montre que la légalisation du cannabis n'augmente pas son nombre d'usagers
+|titre-affiché=L'exemple de certains pays montre que la légalisation n'augmente pas le nombre d'usagers
+}}{{Objection
+|page=Le prix de vente est ce qui joue un rôle déterminant dans la consommation de cannabis
+|titre-affiché=Le prix de vente est la variable essentielle
+}}{{Objection
+|page=La consommation de cannabis augmente en France
+|titre-affiché=La prohibition ne fait pas baisser la consommation
+}}
+|rubriques=Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Consommation
+|date-création=2021-02-16
+}}

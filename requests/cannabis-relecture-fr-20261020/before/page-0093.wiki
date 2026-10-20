@@ -1,0 +1,31 @@
+{{Argument
+|résumé=L'interdit et les sanctions sont dissuasifs.
+|objections={{Objection
+|page=La consommation de cannabis augmente en France
+|titre-affiché=La consommation de cannabis augmente en France
+}}{{Objection
+|page=Le cannabis reste très accessible
+|titre-affiché=Le cannabis reste très accessible
+}}{{Objection
+|page=L'interdit rend le cannabis plus attractif
+|titre-affiché=L'interdit rend le cannabis plus attractif
+}}{{Objection
+|page=Les sanctions contre les consommateurs de cannabis ne sont pas dissuasives
+|titre-affiché=Les sanctions contre les consommateurs de cannabis ne sont pas dissuasives
+}}{{Objection
+|page=L'interdiction du cannabis peut être contournée
+|titre-affiché=L'interdiction du cannabis peut être contournée
+}}{{Objection
+|page=Les comportements addictifs sont très peu sensibles aux lois
+|titre-affiché=Les comportements addictifs sont très peu sensibles aux lois
+}}{{Objection
+|page=La prohibition passe à côté des motifs de la consommation
+|titre-affiché=La prohibition passe à côté des motifs de la consommation
+}}{{Objection
+|page=Toutes les guerres contre la drogues ont été, sans exception, des échecs cuisants
+|titre-affiché=Cela fait des décennies qu'on lutte contre les drogues sans que leur consommation et leur commerce ne diminuent significativement
+}}
+|rubriques=Philosophie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Prohibition
+|date-création=2019-08-07
+}}

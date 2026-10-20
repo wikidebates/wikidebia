@@ -1,0 +1,15 @@
+{{Argument
+|initialisation=Objection@2363
+|résumé=Une interdiction peut exprimer qu'une société souhaite décourager un comportement jugé dangereux et donner un repère aux familles ou aux institutions. C'est un argument sur la portée normative du droit, qui ne démontre pas à lui seul l'efficacité de la sanction. Il doit être distingué des données sur la consommation et confronté aux objections concernant la transgression ou la prévention.
+|citations=
+|objections={{Objection
+|page=L'interdit rend plus attractif
+|titre-affiché=L'interdit rend plus attractif
+}}{{Objection
+|page=L'interdit incite à chercher des moyens de contourner la loi
+|titre-affiché=L'interdit incite à chercher des moyens de contourner la loi
+}}
+|rubriques=Éducation, Éthique, Philosophie, Société
+|mots-clés=normes sociales, protection des vulnérables
+|date-création=2024-11-28
+}}

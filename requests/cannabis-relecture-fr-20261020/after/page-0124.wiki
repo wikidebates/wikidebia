@@ -1,0 +1,14 @@
+{{Argument
+|résumé=L'attractivité d'un produit légal ne dépend pas uniquement de son statut juridique. Sa publicité, son prix, sa disponibilité et sa présentation peuvent aussi influencer les consommations. Pour le tabac, l'OMS relève que la publicité, la promotion et le parrainage recrutent de nouveaux usagers et découragent l'arrêt. Ce constat ne permet pas d'attribuer tout usage de tabac ou d'alcool à une seule cause, mais justifie l'examen des intérêts et des stratégies commerciales.
+
+|citations=
+|références-sitographiques={{Référence sitographique
+|lien=https://www.who.int/fr/news-room/fact-sheets/detail/tobacco
+|page=Tabac
+|site=Organisation mondiale de la santé
+}}
+
+|rubriques=Société
+|mots-clés=Cannabis, Dépénalisation, Légalisation, Prohibition, Attractivité, Interdiction, Tabac, Alcool
+|date-création=2019-01-30
+}}

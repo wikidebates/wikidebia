@@ -1,0 +1,26 @@
+{{Argument
+|citations={{Citation
+|citation=Les milliards d’euros de bénéfices blanchis depuis des années gangrènent l’économie officielle, favorisent la corruption et bouleversent les valeurs. Ils potentialisent la dérive mafieuse des gangs de nos cités, ainsi que les risques de débordements dans la sphère publique. (…) Le contrôle des deals donne souvent lieu à des affrontements et des règlements de compte à l’arme automatique. Cette guerre de territoires a provoqué des dizaines de morts ces dernières années, principalement en région parisienne et à Marseille, sans oublier les séquestrations avec sévices et les disparitions. (…) Le business cannabique attire de nombreux jeunes au détriment de l’école et de l’insertion sociale. Il crée une tension palpable qui exacerbe toutes les relations humaines et favorise la violence et la peur. Les nuisances du trafic provoquent chez les habitants des quartiers les plus touchés une volonté de distinction, afin de ne pas être assimilés à ces gangs. (…) La tentation de l’autodéfense, de s’armer à l’américaine, se fait plus grande. D’autres penchent plutôt pour les patrouilles de vigilants ou les milices de défense, comme en Italie ou en Hongrie. Certains proposent des sociétés de sécurité avec gardes armées comme en Afrique du Sud, ou l’intervention d’une armée d’occupation des quartiers. La dérégulation sociale entraînée par la prohibition du cannabis nourrit les tentations extrémistes. Le principal dommage social du cannabis devient la violence liée à sa prohibition et à son marché clandestin.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=79
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}{{Citation
+|citation=Il est inacceptable pour le maire d’une commune de 51 000 habitants de laisser s’installer cette société de la peur, qui place des populations affaiblies socialement et économiquement sous l’emprise de bandes armées.
+|auteurs=Stéphane Gatigon
+|ouvrage=Le Monde
+|date=16/06/2011
+}}{{Citation
+|citation=La prohibition résulte en de multiples contrôles abusifs et ce, sans compter les violences que subissent les citoyens à l'échelle locale par la présence du marché noir. De plus, la puissance du marché noir issu de la prohibition permet aux acteurs à la tête de ce marché d’utiliser la fraude économique et la corruption politique et policière pour maintenir et accroître leurs profits. Clairement, la prohibition diminue la démocratie au nom d'un moralisme et d'un paternalisme juridique trompeurs. Ceci se fait insidieusement, et les réactions de la population à l'égard de cette diminution de la démocratie liée à la guerre à la drogue sont freinées par leur adhésion au discours de la prohibition.
+|auteurs=Lise Beauchesne
+|ouvrage=Les drogues. Les coûts cachés de la prohibition
+|page=289
+|édition= Lanctôt
+|date=2003
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Économie parallèle
+|date-création=2019-08-07
+}}

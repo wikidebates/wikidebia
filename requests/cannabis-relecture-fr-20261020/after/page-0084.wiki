@@ -1,0 +1,6 @@
+{{Argument
+|initialisation=Justification@2434
+|résumé=Quand une personne consomme pour faire face à une difficulté sociale ou psychique, une sanction peut s'ajouter à cette difficulté : stigmatisation, isolement ou obstacles à l'accès aux soins. L'argument est qu'un tel enchaînement risque d'entretenir les motifs de consommation au lieu de les réduire. Il ne signifie ni que toute consommation relève d'un mal-être, ni que tous les effets de la répression seraient identiques.
+
+|date-création=2023-07-08
+}}

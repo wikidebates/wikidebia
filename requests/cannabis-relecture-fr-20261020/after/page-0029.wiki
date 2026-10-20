@@ -1,0 +1,12 @@
+{{Argument
+|initialisation=Justification@2434
+|résumé=Une politique centrée sur la sanction peut détourner l'attention des déterminants sociaux et psychiques de certaines consommations. L'argument est qu'une réponse préventive doit aussi traiter ces difficultés, et ne peut se réduire à l'interpellation des usagers. Il ne suppose pas que les pouvoirs publics organisent volontairement la précarité ni que celle-ci explique toute consommation.
+|références-sitographiques={{Référence sitographique
+|lien=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+|date=24/09/2024
+}}
+
+|date-création=2023-07-08
+}}

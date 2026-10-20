@@ -1,0 +1,6 @@
+{{Argument
+|initialisation=Objection@2435
+|résumé=La persistance d'un problème ne suffit pas à prouver que la loi qui le combat est inutile. En revanche, si une évaluation montre que cette loi aggrave les dommages qu'elle devait réduire et qu'une autre politique ferait mieux, sa modification ou son abrogation devient un choix défendable. L'argument repose sur cette comparaison des effets et des solutions, non sur l'exigence qu'une politique élimine tout comportement indésirable.
+
+|date-création=2022-06-16
+}}

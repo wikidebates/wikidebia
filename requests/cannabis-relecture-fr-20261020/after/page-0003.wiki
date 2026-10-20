@@ -1,0 +1,14 @@
+{{Argument
+|résumé=Une réponse pénale à l'usage de cannabis peut produire des effets qui dépassent l'amende ou la durée de la peine : inscription au casier, contraintes sur le parcours professionnel, rupture des études ou difficultés de réinsertion. L'argument consiste à comparer ces effets avec le dommage que la politique entend prévenir. Il ne suppose pas que tous les usagers soient emprisonnés : les formes de sanction et leurs conséquences doivent être distinguées.
+
+|références-sitographiques={{Référence sitographique
+|lien=https://www.service-public.gouv.fr/particuliers/vosdroits/F33341
+|page=Que risque-t-on pour usage de drogues ?
+|site=Service Public / DILA
+|date=21/08/2026
+}}
+
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Prohibition, Prison, Justice
+|date-création=2019-08-07
+}}

@@ -1,0 +1,39 @@
+{{Argument
+|résumé=C'est l'argument clé de Jean Costentin, qu'il développe dans ses livres (voir Bibliographie) et ses articles.
+|citations={{Citation
+|citation=Lutter contre le cannabis est aussi légitime que lutter contre la tuberculose.
+|auteurs=Jean Costentin
+|ouvrage=Pourquoi il ne faut pas dépénaliser l'usage du cannabis ?
+|page=30
+|édition=Odile Jacob
+|date=2011
+}}
+|objections={{Objection
+|page=Le cannabis en lui-même n'est pas dangereux, c'est sa consommation précoce qui l'est
+|titre-affiché=Le cannabis en lui-même n'est pas dangereux, c'est sa consommation précoce qui l'est
+}}{{Objection
+|page=La dangerosité du cannabis est faible
+|titre-affiché=La dangerosité du cannabis est faible
+}}{{Objection
+|page=On peut réduire les risques du cannabis en jouant sur le mode de consommation
+|titre-affiché=On peut réduire les risques en jouant sur le mode de consommation
+}}{{Objection
+|page=Ce n'est pas le cannabis seul qui fait la dangerosité
+|titre-affiché=Ce n'est pas le produit seul qui fait la dangerosité
+}}{{Objection
+|page=Il n'est pas légitime de punir quelqu'un pour un dommage qu'il se fait à lui-même
+|titre-affiché=Il n'est pas légitime de punir quelqu'un pour un dommage qu'il se fait à lui-même
+}}{{Objection
+|page=Si le cannabis est dangereux, pourquoi en confier la gestion au crime organisé ?
+|titre-affiché=Si le cannabis est dangereux, pourquoi en confier la gestion au crime organisé ?
+}}{{Objection
+|page=L'absence de garantie sur la qualité du produit présente elle-même des risques
+|titre-affiché=L'absence de garantie sur la qualité du produit présente elle-même des risques
+}}{{Objection
+|page=L'alcool et le tabac sont autorisés alors qu’ils sont plus dangereux que le cannabis
+|titre-affiché=De nombreuses substances légales sont bien plus dangereuses pour la santé que le cannabis
+}}
+|rubriques=Philosophie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Overdose, Dangerosité
+|date-création=2019-08-09
+}}

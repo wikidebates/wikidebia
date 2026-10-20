@@ -1,0 +1,14 @@
+{{Argument
+|initialisation=Objection@29798
+|résumé=Une légalisation n'a pas nécessairement le même effet sur toutes les populations ni sur tous les indicateurs de consommation. L'Enquête canadienne sur le cannabis de 2024 ne relève pas de différence statistiquement significative entre 2018 et 2024 pour l'usage non médical dans l'année chez les 16-19 ans, alors que la proportion augmente de 22 % à 26 % pour l'ensemble des 16 ans et plus. Ces résultats ne prouvent ni une absence générale de hausse ni un effet causal de la loi. Le cas portugais, qui porte sur la dépénalisation de l'usage, doit être examiné séparément.
+
+|références-sitographiques={{Référence sitographique
+|lien=https://www.canada.ca/fr/sante-canada/services/drogues-medicaments/cannabis/recherches-donnees/enquete-canadienne-cannabis-2024-sommaire.html
+|page=Enquête canadienne sur le cannabis de 2024 : Sommaire
+|site=Santé Canada
+|date=2024
+}}
+
+|justifications=
+|date-création=2025-04-15
+}}

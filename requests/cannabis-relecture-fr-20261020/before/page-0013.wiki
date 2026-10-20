@@ -1,0 +1,8 @@
+{{Argument
+|initialisation=Objection@29798
+|justifications={{Justification
+|page=Le modèle portugais a fait ses preuves
+|titre-affiché=Le portugal, qui a dépénalisé le drogues, a un taux de consommation parmi les plus bas
+}}
+|date-création=2025-04-15
+}}

@@ -1,0 +1,45 @@
+{{Argument
+|résumé=Les sources de cette page examinent différentes formes de violence, de criminalisation ou de discrimination associées à des politiques de lutte contre les drogues, dans plusieurs pays et à plusieurs périodes. Elles peuvent étayer une critique de certains effets de ces politiques. Elles ne démontrent pas que toute intervention policière poursuive les mêmes objectifs, ni que les autres infractions seraient systématiquement ignorées en France.
+|citations={{Citation
+|citation=Le taux de féminicides a grimpé en flèche dans l'État [du Chihuahua] en 2008 à la suite de la guerre contre le trafic de drogue promue par [le président] Felipe Calderón. Entre 1993 et 2007, une femme a été assassinée tous les douze à quatorze jours. En 2010, année affichant les pires chiffres, il y a eu un féminicide toutes les vingt heures. Entre mars 2012 et mars 2013, le bureau du procureur de l'État a signalé soixante-treize femmes assassinées.
+|auteurs=Irene
+|article=Le féminisme n'a-t-il vraiment jamais tué personne?
+|ouvrage=Slate
+|date=13 février 2021
+|lien=http://www.slate.fr/story/201090/irene-terreur-feministe-bonnes-feuilles-violence-femmes-patriarcat-feminicides-viols-agressions
+}}{{Citation
+|citation=Elle pointe également le risque de casser la prévention contre le « chemsex » (sexe sous drogue) qui se développe dans le milieu gay et qui est tout juste considéré par les pouvoirs publics. ''« Leur politique ultra-répressive contre les drogues pourrait avoir un impact considérable »''
+|auteurs=David Perrotin
+|article=Derrière la « dédiabolisation » de Marine Le Pen, le véritable danger du RN pour les LGBTI+
+|ouvrage=Mediapart
+|date=19 avril 2022
+|lien=https://www.mediapart.fr/journal/france/190422/derriere-la-dediabolisation-de-marine-le-pen-le-veritable-danger-du-rn-pour-les-lgbti#at_medium=custom7&at_campaign=1047
+}}{{Citation
+|citation=En 1971, l’ancien président américain Richard Nixon déclara la guerre à la drogue, devenue son ''«ennemi public numéro 1»''. Il fut le premier président américain à octroyer des sommes importantes à la [http://www.pbs.org/wgbh/pages/frontline/shows/drugs/buyers/doitwork.html lutte contre l’addiction et aux traitements]. Mais il se pourrait bien que ces intentions, en mettant très clairement la priorité sur les drogues, aient été moins bonnes qu’elles ne le paraissaient. Un témoignage paru [https://harpers.org/archive/2016/04/legalize-it-all/ dans le magazine Harper’s d’avril,] repéré p[http://mic.com/articles/138664/the-war-on-drugs-horribly-racist-origins-have-finally-been-revealed?utm_source=policymicTWTR&utm_medium=main&utm_campaign=social#.Ox494vrNQ ar le magazine Mic], laisse penser que sa priorité réelle était de stigmatiser les noirs et les hippies et de légitimer une forte répression à leur encontre.
+
+Selon John Ehrlichman, un ancien conseiller de Richard Nixon, le discours de la Maison blanche sur la nocivité des drogues n’était que pur ''«mensonge»'', un mensonge fait pour pouvoir cibler directement les deux ennemis prioritaires à cette époque du président: les militants africains-américains, qui venaient juste d’arracher des victoires après plusieurs années de lutte pour leurs droits civiques, et les opposants à la guerre du Vietnam, dont certains s’étaient radicalisés au sein du mouvement [[frwikipedia:Weather_Underground|Weather Underground]].
+|auteurs=Aude Lorriaux
+|article=La guerre contre la drogue de Nixon était un «mensonge» qui visait à casser la communauté noire
+|ouvrage=Slate
+|date=27 mars 2016
+|lien=https://www.slate.fr/story/115991/guerre-contre-la-drogue-nixon-noirs-hippies
+}}{{Citation
+|citation=La guerre contre la drogue a été très efficace pour criminaliser systématiquement les communautés de personnes de couleur
+|auteurs=Marie Astier
+|article=Et si on vivait sans police ?
+|ouvrage=Reporterre
+|date=22 février 2022
+|lien=https://reporterre.net/Et-si-on-vivait-sans-police
+}}{{Citation
+|citation=Une première étape dans une procédure qui s'annonce longue. L'ex-président philippin Rodrigo Duterte a comparu en visioconférence pour sa première audience devant la Cour pénale internationale, vendredi 14 mars, pour répondre d'accusations de crimes contre l'humanité après les meurtres commis au nom de sa "guerre contre la drogue", qui a fait des dizaines de milliers de morts pendant qu'il était au pouvoir.
+|article=L'ex-président des Philippines Rodrigo Duterte, accusé de crimes contre l'humanité, a comparu devant la Cour pénale internationale
+|ouvrage=France Tv info
+|date=14/03/2025
+|lien=https://www.francetvinfo.fr/monde/asie/l-ex-president-des-philippines-rodrigo-duterte-accuse-de-crimes-contre-l-humanite-a-comparu-devant-la-cour-penale-internationale_7129974.html
+}}
+|références-vidéographiques={{Référence vidéographique
+|titre=Histoire de la prohibition des drogues avec Line Beauchesne (P.U. #16)
+|lien=https://www.youtube.com/watch?v=7TwVvboa3Vw
+}}
+|date-création=2022-06-16
+}}

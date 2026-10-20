@@ -1,0 +1,18 @@
+{{Argument
+|citations={{Citation
+|citation=Six Français sur dix estiment qu’on pourrait autoriser l’usage de cannabis sous certaines conditions (seulement les usagers majeurs) et l’interdire sous d’autres (avant de conduire ou pour les mineurs), contre trois sur dix en 2008. Cependant, une large majorité de la population continue d’être opposée à la vente libre de cannabis (78 %), proportion qui a toutefois reculé puisqu’ils étaient 85 % à partager cette opinion en 2008.
+|auteurs=Observatoire français des drogues et toxicomanies
+|article=Synthèse thématique : cannabis
+|ouvrage=OFDT
+|lien=https://www.ofdt.fr/produits-et-addictions/de-z/cannabis/#perc
+}}{{Citation
+|citation=52% des Français jugent que la vente de cannabis sous le contrôle de l’Etat serait plus efficace que l’interdiction pour lutter contre le trafic.
+|auteurs=IPSOS
+|article=Une majorité de Français pour la légalisation du cannabis
+|date=11/10/2016
+|lien=https://www.newsweed.fr/francais-legalisation-cannabis/
+}}
+|rubriques=Société
+|mots-clés=Cannabis, Légalisation, Opinion publique
+|date-création=2021-02-16
+}}

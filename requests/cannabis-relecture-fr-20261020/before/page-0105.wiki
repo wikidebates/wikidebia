@@ -1,0 +1,19 @@
+{{Argument
+|initialisation=Justification@29804
+|résumé=La légalisation contrôlée par l’État Uruguayen démontre qu’une régulation stricte du cannabis fonctionne mieux que la prohibition.
+
+* '''Description :''' Légalisation avec contrôle étatique sur la production et la distribution. L'achat est limité aux résidents, et des quantités maximales sont imposées.
+* '''Avantages :'''
+** Élimination presque complète du marché noir.
+** Contrôle de la qualité et des prix par l’État.
+** Revenus fiscaux pour financer des programmes de prévention.
+* '''Inconvénients :'''
+** Bureaucratie lourde et restrictions parfois dissuasives.
+** Difficulté à convaincre les consommateurs habitués au marché noir.
+* '''Résultats :'''
+** Réduction significative du marché noir, mais consommation globale en légère hausse.
+** '''Évaluation globale :''' Modèle viable et mieux que la prohibition stricte, avec des ajustements possibles.
+|rubriques=Droit, Économie, Politique, Santé, Société
+|mots-clés=Marché noir, problèmes de santé publique, fiscalité
+|date-création=2024-11-28
+}}

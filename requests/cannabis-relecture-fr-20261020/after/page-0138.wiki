@@ -1,0 +1,13 @@
+{{Argument
+|initialisation=Objection@4679
+|résumé=L'argument en faveur d'une régulation d'autres drogues est que l'autorisation sous conditions pourrait permettre un contrôle des produits, un suivi des usagers et une réduction de certaines activités clandestines. Ces bénéfices possibles doivent être mis en balance avec les risques propres à chaque substance et à chaque organisation du marché. L'exemple d'une dépénalisation de l'usage ne démontre pas à lui seul les effets d'une légalisation de la production et de la vente.
+
+|références-sitographiques={{Référence sitographique
+|lien=https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf
+|page=Portugal — Country Drug Report 2019
+|site=EMCDDA / EUDA
+|date=2019
+}}
+
+|date-création=2023-08-16
+}}

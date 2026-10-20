@@ -1,0 +1,16 @@
+{{Argument
+|résumé=L'hypothèse est qu'un accès au cannabis puisse modifier certaines consommations d'opioïdes, mais cela ne démontre pas une baisse des décès liés à toutes les autres drogues. Les résultats des études ne sont pas uniformes : Shover et ses collègues montrent en 2019 que l'association entre lois sur le cannabis médical et mortalité par overdose d'opioïdes change de sens lorsque la période étudiée est prolongée. Les auteurs mettent en garde contre l'interprétation causale de ces corrélations entre États. Il faut distinguer prescriptions, consommations conjointes et mortalité.
+|références-sitographiques={{Référence sitographique
+|lien=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+|date=24/09/2024
+}}
+{{Référence sitographique
+|lien=https://pubmed.ncbi.nlm.nih.gov/31182592/
+|page=Association between medical cannabis laws and opioid overdose mortality has reversed over time
+|site=Proceedings of the National Academy of Sciences / PubMed
+|date=2019
+}}
+|date-création=2022-12-19
+}}

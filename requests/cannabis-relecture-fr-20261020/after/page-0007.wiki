@@ -1,0 +1,5 @@
+{{Argument
+|initialisation=Objection@10356
+|résumé=L'impopularité d'une réforme ne suffit pas à établir qu'elle est injustifiée. Cet argument invoque des précédents tels que l'abolition de la peine de mort, la dépénalisation de l'IVG ou celle de l'homosexualité pour contester le recours à la seule opinion majoritaire. Pour soutenir une comparaison historique précise, il faut distinguer les dates, les réformes et les enquêtes d'opinion plutôt que supposer une situation identique dans tous ces cas.
+|date-création=2022-08-01
+}}

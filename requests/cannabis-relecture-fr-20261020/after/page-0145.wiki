@@ -1,0 +1,11 @@
+{{Argument
+|résumé=Si un produit présente des dangers, ses conditions de production, de vente et d'usage deviennent des enjeux de santé publique. L'argument pour une régulation est qu'un cadre légal permettrait d'imposer des contrôles, des règles d'information et des restrictions d'accès que le marché clandestin ne garantit pas. Cela ne prouve pas que toute légalisation réduise tous les dommages : son effet dépendrait des règles et de leur application.
+
+|références-sitographiques={{Référence sitographique
+|lien=https://www.canada.ca/fr/sante-canada/services/publications/drogues-medicaments/examen-legislatif-loi-cannabis-rapport-final-comite-experts.html
+|page=Examen législatif de la Loi sur le cannabis : Rapport final du Comité d’experts
+|site=Santé Canada
+|date=2024
+}}
+|date-création=2022-12-19
+}}

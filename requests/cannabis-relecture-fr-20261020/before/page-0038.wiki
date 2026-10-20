@@ -1,0 +1,30 @@
+{{Argument
+|avertissements-résumé=Résumé désavantageux
+|résumé=Selon un sondage IFOP-Atlantico, 70 % des français y étaient opposés en 2012, 63 % en 2011.
+|citations={{Citation
+|citation=Il ne pourra y avoir d’évolution et de réussite sans l’adhésion de la population à un tel projet.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=95
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}{{Citation
+|citation=Il n’y a pas d’adhésion collective à un système cohérent, car la drogue fait peur et nul ne connait les effets de ce qu’on va autoriser ou interdire. S’il y avait une certitude que cette régulation, par l’équivalent des coffee-shops, était positive, je pense qu’on l’adopterait. Mais on ne sait rien et on préfère jouer l’autruche (…) Reste à la justice à se débrouiller avec les moyens du bord.
+|auteurs=Eric de Montgolfier
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=218
+|édition=Denoël
+|date=2011
+}}
+|objections={{Objection
+|page=Les Français sont favorables à ce que la vente et l'usage du cannabis soient autorisés sous certaines conditions
+|titre-affiché=Les Français sont favorables à ce que la vente et l'usage du cannabis soient autorisés sous certaines conditions
+}}{{Objection
+|page=Certaines lois prises contre la majorité ont été de vrais progrès sociétaux
+|titre-affiché=La décriminalisation de l'homosexualité et de l'IVG n'était pas non plus soutenue par l'opinion
+}}
+|rubriques=Société
+|mots-clés=Cannabis, Légalisation, Opinion publique
+|date-création=2021-02-16
+}}

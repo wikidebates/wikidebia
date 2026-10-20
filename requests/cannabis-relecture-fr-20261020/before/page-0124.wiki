@@ -1,0 +1,12 @@
+{{Argument
+|citations={{Citation
+|citation=Le tabac et l'alcool sont attractifs aussi parce que de nombreux intérêts s'emploient à les rendre attractifs.
+|auteurs=Jean-Luc Ferry
+|page=9
+|date=24/01/2014
+|avertissements=Référence de la citation incomplète
+}}
+|rubriques=Société
+|mots-clés=Cannabis, Dépénalisation, Légalisation, Prohibition, Attractivité, Interdiction, Tabac, Alcool
+|date-création=2019-01-30
+}}

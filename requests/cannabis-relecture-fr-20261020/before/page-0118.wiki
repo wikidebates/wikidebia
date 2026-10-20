@@ -1,0 +1,16 @@
+{{Argument
+|résumé=Au Portugal, les consommateurs de drogues ne sont plus assimilés à des délinquants mais comme des malades à soigner.
+|citations={{Citation
+|citation=En décriminalisant la consommation de toutes les drogues il y a vingt-cinq ans, le pays a brisé un tabou et la consommation reste contenue à des niveaux parmi les plus faibles en Europe.
+|auteurs=François Musseau
+|article=Les 50 ans de l'Appel du 18 joint Au Portugal, le succès de la dépénalisation générale des drogues
+|ouvrage=Libération
+|date=17/06/2026
+|lien=https://www.liberation.fr/international/europe/au-portugal-le-succes-de-la-depenalisation-generale-des-drogues-20260617_PL2SYLOJTBCWXBSJ55WFL6TRWY/
+}}
+|références-vidéographiques={{Référence vidéographique
+|titre=ARTE Regards - Décriminaliser la drogue, le modèle portugais
+|lien=https://www.arte.tv/fr/videos/100834-005-A/arte-regards-decriminaliser-la-drogue-le-modele-portugais/
+}}
+|date-création=2022-02-16
+}}

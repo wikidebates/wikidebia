@@ -1,0 +1,18 @@
+{{Argument
+|initialisation=Argument pour@441
+|résumé=En légalisant le cannabis, l’État peut imposer des normes strictes de production et de distribution, garantissant l’absence de substances toxiques ou dangereuses ajoutées au produit. Cela protège les consommateurs des risques associés aux substances de coupe utilisées sur le marché noir, comme les solvants ou les métaux lourds.
+|citations={{Citation
+|citation=La régulation permet d’assurer que les produits vendus respectent des normes de pureté, réduisant considérablement les risques liés aux substances de coupe.
+|auteurs=Kilmer B.
+|article=Regulating Cannabis: The Path to Safer Consumption
+|ouvrage=RAND Corporation
+|date=2021
+}}
+|objections={{Objection
+|page=Un marché noir du cannabis peut subsister après sa légalisation
+|titre-affiché=Maintien d’un marché noir
+}}
+|rubriques=Droit, Santé, Société
+|mots-clés=protection des consommateurs, Marché noir
+|date-création=2024-11-28
+}}

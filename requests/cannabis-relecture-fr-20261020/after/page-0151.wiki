@@ -1,0 +1,15 @@
+{{Argument
+|initialisation=Objection@2820
+|résumé=Un marché légal peut coexister avec une offre illégale : prix, règles d'accès, produits recherchés ou habitudes peuvent influencer les achats. Dans l'enquête canadienne de 2024, parmi les personnes ayant consommé du cannabis au cours des douze derniers mois, 72 % déclarent une source habituelle légale et 3 % une source d'achat illégale. Ces proportions portent sur la source habituelle déclarée, non sur une part de marché en volume. Elles attestent la coexistence des circuits dans ce contexte et ne peuvent pas être assimilées à une estimation générale de 80 % de ventes clandestines en Californie.
+|citations=
+|références-sitographiques={{Référence sitographique
+|lien=https://www.canada.ca/fr/sante-canada/services/drogues-medicaments/cannabis/recherches-donnees/enquete-canadienne-cannabis-2024-sommaire.html
+|page=Enquête canadienne sur le cannabis de 2024 : Sommaire
+|site=Santé Canada
+|date=2024
+}}
+
+|rubriques=Droit, Économie, Géopolitique, Société
+|mots-clés=Contournement fiscal, économie informelle, criminalité
+|date-création=2024-11-28
+}}

@@ -1,0 +1,15 @@
+{{Argument
+|résumé=Un vendeur dépendant de ses ventes peut chercher à fidéliser sa clientèle et à élargir son marché. La clandestinité rend plus difficile l'application de règles sur les produits, leur information ou leur accès. L'intérêt d'une distribution contrôlée est de pouvoir lui imposer des objectifs de santé publique ; elle ne cherche pas automatiquement à réduire ses ventes, surtout si les acteurs sont commerciaux. Le rapport canadien de 2024 souligne précisément la nécessité de concilier le transfert vers le marché légal et la protection de la santé.
+
+|citations=
+|références-sitographiques={{Référence sitographique
+|lien=https://www.canada.ca/fr/sante-canada/services/publications/drogues-medicaments/examen-legislatif-loi-cannabis-rapport-final-comite-experts.html
+|page=Examen législatif de la Loi sur le cannabis : Rapport final du Comité d’experts
+|site=Santé Canada
+|date=2024
+}}
+
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

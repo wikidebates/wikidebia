@@ -1,0 +1,17 @@
+{{Argument
+|résumé=Un marché légal peut être encadré par des autorisations de production, des règles de distribution et des conditions d'accès. Le projet uruguayen examiné par l'OICS en 2013 confiait précisément à l'État le contrôle et la régulation d'activités liées au cannabis. Ce type de contrôle constitue une alternative à l'idée qu'une légalisation imposerait nécessairement une vente entièrement dérégulée ; il ne suffit toutefois pas à démontrer l'efficacité sanitaire du modèle.
+
+|références-sitographiques={{Référence sitographique
+|lien=https://www.incb.org/incb/uploads/documents/Publications/AnnualReports/AR2013/English/AR_2013_E.pdf
+|page=Rapport annuel 2013 — paragraphes 429 et 712, recommandation 15
+|site=Organe international de contrôle des stupéfiants
+|date=2013
+}}
+{{Référence sitographique
+|lien=https://www.incb.org/incb/uploads/documents/Publications/AnnualReports/AR2014/English/AR_2014_E_Chapter_III_Americas.pdf
+|page=Rapport annuel 2014 — chapitre III, Amériques, paragraphe 419
+|site=Organe international de contrôle des stupéfiants
+|date=2014
+}}
+|date-création=2022-12-19
+}}

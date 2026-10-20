@@ -1,0 +1,11 @@
+{{Argument
+|citations={{Citation
+|citation=Le pouvoir addictif du cannabis n'est ni faible ni fort en soi, mais dépend de son niveau d'usage. Il n'y a pas de drogues dures et de drogues douces mais des manières dures ou douces de consommer des drogues, quelles qu'elles soient. L'addiction est dans le rapport au produit.
+|auteurs=Jean-Luc Ferry
+|page=9
+|date=24/01/2014
+}}
+|rubriques=Philosophie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Santé, Addiction
+|date-création=2019-08-09
+}}

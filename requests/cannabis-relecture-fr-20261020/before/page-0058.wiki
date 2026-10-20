@@ -1,0 +1,12 @@
+{{Argument
+|objections={{Objection
+|page=Des solutions existent pour minimiser les impacts de la légalisation du cannabis sur les populations des banlieues
+|titre-affiché=Des solutions existent
+}}{{Objection
+|page=La guerre contre la drogue exacerbe les persécutions des minorités
+|titre-affiché=Les impacts sociaux de sa prohibition sont bien plus dévastateurs
+}}
+|rubriques=Économie, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Banlieue
+|date-création=2021-02-16
+}}

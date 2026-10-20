@@ -1,0 +1,44 @@
+{{Argument
+|références-sitographiques={{Référence sitographique
+|lien=https://www.lefigaro.fr/sciences/drogues-la-prohibition-une-efficacite-illusoire-20210505
+|page=Drogues: la prohibition, une efficacité illusoire
+|auteurs=Jean-Pierre Couteron, Pierre-Yves Geoffard, Katia Dubreuil
+|site=Le Figaro
+|date=05/05/2021
+}}
+|justifications={{Justification
+|page=La consommation de cannabis augmente en France
+|titre-affiché=La consommation de cannabis augmente
+}}{{Justification
+|page=Le cannabis reste très accessible
+|titre-affiché=Le cannabis reste très accessible
+}}{{Justification
+|page=L'interdit rend le cannabis plus attractif
+|titre-affiché=L'interdit rend le cannabis plus attractif
+}}{{Justification
+|page=Les sanctions contre les consommateurs de cannabis ne sont pas dissuasives
+|titre-affiché=Les sanctions ne sont pas dissuasives
+}}{{Justification
+|page=L'interdiction du cannabis peut être contournée
+|titre-affiché=L'interdiction peut être contournée
+}}{{Justification
+|page=La prohibition passe à côté des motifs de la consommation
+|titre-affiché=La prohibition passe à côté des motifs de la consommation
+}}{{Justification
+|page=La prohibition de l'alcool et certaines guerres contre les drogues ont eu des effets contre-productifs
+|titre-affiché=Plusieurs politiques de prohibition ont eu des effets contre-productifs
+}}
+|objections={{Objection
+|page=Ce n'est pas parce qu'une politique a échoué que l'on doit y renoncer
+|titre-affiché=Ce n'est pas parce qu'une politique a échoué que l'on doit y renoncer
+}}{{Objection
+|page=La prohibition du cannabis dissuade une partie de la population d'en consommer
+|titre-affiché=Réduction de la consommation
+}}{{Objection
+|page=Message sociétal clair
+|titre-affiché=Message sociétal clair
+}}
+|rubriques=Société
+|mots-clés=Cannabis, Dépénalisation, Légalisation, Prohibition
+|date-création=2019-01-07
+}}

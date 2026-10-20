@@ -1,0 +1,33 @@
+{{Argument
+|justifications={{Justification
+|page=La prohibition du cannabis génère beaucoup de contrôles qui peuvent toucher tout le monde
+|titre-affiché=La prohibition génère beaucoup de contrôles qui peuvent toucher tout le monde
+}}{{Justification
+|page=La prohibition du cannabis entraîne le développement d'une économie parallèle très lucrative avec ses conséquences : corruption, blanchiment d’argent, recrutement de jeunes, violence, insécurité, trafic d'armes
+|titre-affiché=Elle alimente le crime organisé
+}}{{Justification
+|page=La prohibition du cannabis accroît la rentabilité du cannabis en faisant monter les prix
+|titre-affiché=La prohibition accroît la rentabilité du cannabis en faisant monter les prix
+}}{{Justification
+|page=La lutte contre les trafics de cannabis coûte cher, et c'est un échec
+|titre-affiché=La lutte contre les trafics coûte cher, et c'est un échec
+}}{{Justification
+|page=Une économie parallèle cherche toujours à élargir son marché, alors qu'une distribution contrôlée cherche au contraire à le réduire
+|titre-affiché=Une économie parallèle cherche toujours à élargir son marché, alors qu'une distribution contrôlée cherche au contraire à le réduire
+}}{{Justification
+|page=La prohibition du cannabis entraîne une perte importante de recettes pour l'Etat et laisser se développer un marché échappant à toute taxe revient même à le subventionner
+|titre-affiché=Perte importante de recettes pour l'Etat. Laisser se développer un marché échappant à toute taxe revient même à le subventionner
+}}{{Justification
+|page=La production clandestine de cannabis est à l'origine de nombreux incendies
+|titre-affiché=La production clandestine de cannabis est à l'origine de nombreux incendies
+}}{{Justification
+|page=La guerre contre la drogue exacerbe les persécutions des minorités
+|titre-affiché=La guerre contre la drogue exacerbe les persécutions des minorités
+}}{{Justification
+|page=La majorité des peines concerne des délits liés à la précarité
+|titre-affiché=La prohibition alimente la surpopulation carcérale
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

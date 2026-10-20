@@ -1,0 +1,5 @@
+{{Argument
+|initialisation=Justification@2434
+|résumé=Si les gens tombent dans l'addiction, c'est principalement à cause d'une situation de précarité volontairement entretenue par les pouvoirs publics, qui en tirent un profit financier ou idéologique, l'approche répressive permet d'occulter ce fait aux yeux de la population.
+|date-création=2023-07-08
+}}

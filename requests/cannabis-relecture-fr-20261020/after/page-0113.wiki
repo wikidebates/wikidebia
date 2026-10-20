@@ -1,0 +1,11 @@
+{{Argument
+|résumé=La recherche de détente ou de soulagement d'une douleur fait partie des motifs possibles d'usage du cannabis. Elle doit être distinguée d'une efficacité médicale démontrée pour une indication précise. Le NIDA relève des usages thérapeutiques étudiés et certains médicaments à base de cannabinoïdes, tout en décrivant des risques et des limites. L'existence d'un usage antalgique ou d'une recherche de relaxation ne prouve donc pas l'innocuité d'un produit ou d'un mode de consommation.
+
+|références-sitographiques={{Référence sitographique
+|lien=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+|date=24/09/2024
+}}
+|date-création=2022-12-19
+}}

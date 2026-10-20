@@ -1,0 +1,22 @@
+{{Argument
+|résumé=Au niveau international, le cannabis est classé comme stupéfiant depuis 1925. Sa production, son commerce, sa cession, sa détention et son usage sont interdits dans tous les pays signataires des [https://fr.wikipedia.org/wiki/Prohibition_des_drogues#Mise_en_place_d.27une_r.C3.A9glementation_internationale conventions internationales] sur les stupéfiants (Convention unique de 1961, Convention de 1988).
+|objections={{Objection
+|page=Les conventions internationales n'imposent pas de pénaliser l'usage de cannabis
+|titre-affiché=Les conventions internationales n'imposent pas de pénaliser l'usage
+}}{{Objection
+|page=La légalisation du cannabis est préconisée par la Commission mondiale sur la politique des drogues
+|titre-affiché=La légalisation est préconisée par la Commission mondiale sur la politique des drogues
+}}{{Objection
+|page=Le strict respect des conventions sur les stupéfiants est contraire aux traités internationaux relatifs aux droits de l'homme
+|titre-affiché=Le strict respect des conventions sur les stupéfiants est contraire aux traités internationaux relatifs aux droits de l'homme
+}}{{Objection
+|page=La légalisation du cannabis serait possible au titre du principe d'opportunité ou d'une expérimentation scientifique
+|titre-affiché=Il devrait être possible de légaliser, sous couvert du principe d'opportunité ou d'une expérimentation scientifique
+}}{{Objection
+|page=Aucun État ni aucune institution internationale n'a condamné l'Uruguay pour la légalisation du cannabis en 2013
+|titre-affiché=Aucun État ni aucune institution internationale n'a condamné l'Uruguay pour la légalisation du cannabis en 2013
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Dépénalisation, Impossibilité
+|date-création=2021-02-16
+}}

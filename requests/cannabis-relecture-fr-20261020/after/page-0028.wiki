@@ -1,0 +1,10 @@
+{{Argument
+|résumé=Comparer le pouvoir addictif et la nocivité de plusieurs substances suppose de retenir les mêmes critères : dépendance, mortalité, maladies, accidents ou dommages à autrui. Le tabac et l'alcool peuvent servir de termes de comparaison parce qu'ils sont légaux malgré des risques documentés. Cela ne rend pas le cannabis inoffensif et ne signifie pas qu'un classement unique des dangers soit valable pour toutes les doses, populations et modalités de consommation.
+
+|références-sitographiques={{Référence sitographique
+|lien=https://www.who.int/fr/news-room/fact-sheets/detail/tobacco
+|page=Tabac
+|site=Organisation mondiale de la santé
+}}
+|date-création=2022-12-19
+}}

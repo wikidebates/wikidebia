@@ -1,0 +1,21 @@
+{{Argument
+|citations={{Citation
+|citation=Les États américains où le cannabis à usage récréatif est légal ont observé une réduction d'au moins 20 % des décès par overdose d'opiacés. […] En comparant les taux de décès par overdose avant et après la légalisation et entre les États à différents stades du processus de légalisation, les auteurs d'une étude publiée dans le journal Economic Inquiry ont déterminé un effet de causalité "très solide" dans la réduction de la mortalité liée aux opiacés. Cette baisse est comprise entre 20 et 35 %, selon leur analyse économétrique, avec un effet particulièrement marqué pour les morts provoquées par la consommation d'opiacés comme le fentanyl, la drogue la plus meurtrière aux Etats-Unis, selon les derniers chiffres officiels. […] Les États qui ont un accès légal à la marijuana via des dispensaires ont assisté à une plus importante baisse de mortalité que les autres […] Les différences pourraient être liées au nombre croissant de personnes qui s'auto-soignent et "soulagent la douleur par la consommation de marijuana et sont ainsi moins susceptibles de devenir accro aux opiacés".
+Certains travaux précédents étaient toutefois parvenus aux conclusions inverses : selon eux, le recours au cannabis augmente l'utilisation d'opiacés non prescrits par ordonnance.
+|auteurs=AFP
+|article=La légalisation du cannabis ferait baisser les morts par overdose
+|ouvrage=L'Express
+|date=8/08/2019
+|lien=https://www.lexpress.fr/actualite/monde/amerique-nord/la-legalisation-du-cannabis-ferait-baisser-les-morts-par-overdose_2093650.html
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://www.neonmag.fr/legaliser-le-cannabis-a-fait-diminuer-les-prescriptions-dopioides-aux-etats-unis-548169.html
+|page=Légaliser le cannabis a fait diminuer les prescriptions d'opioïdes aux États-Unis
+|auteurs=Marius François
+|site=Neonmag.fr
+|date=06.01.2020
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-19
+}}
