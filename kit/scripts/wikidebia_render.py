@@ -13,6 +13,8 @@ No remote access or publication is performed.
 
 from __future__ import annotations
 
+from wikidebia_citation_passages import render_sequence
+
 from wikidebia_release_info import KIT_VERSION
 
 import argparse
@@ -103,6 +105,18 @@ def _assert_translated_copy(workspace: Path, meta: Mapping[str, Any]) -> Path:
     ):
         if not (path / rel).is_file():
             raise RenderError(f"Verrou requis absent : {rel}")
+    # Old locks can be hash-valid yet have discarded prose during quote-only import.
+    from wikidebia_translation_review import _source_snapshot
+    from wikidebia_citation_passages import validate_translations
+    try:
+        _, _, french, _ = _source_snapshot(path)
+        english = load_json(path / "data/en_content_lock.json", "verrou anglais du contenu")
+        en_by_id = {r["id"]: r for r in english.get("arguments") or []}
+        for row in french.get("arguments") or []:
+            validate_translations(en_by_id.get(row["id"], {}).get("citation_passages", []),
+                                  row.get("citation_passages") or [], row["id"])
+    except (ValueError, EditorialReviewError) as exc:
+        raise RenderError("Passages hors Citation non conservés : " + str(exc)) from exc
     if (path / "output").exists():
         raise RenderError("translated-copy contient déjà des pages finales")
     return path
@@ -635,7 +649,7 @@ def _render_argument(
     node_id = str(node.get("id"))
     selected = content.get("sources") or {}
     if lang == "fr":
-        citations = _sequence(_citation_template(row, lang="fr") for row in content.get("citations") or [])
+        citations = render_sequence(content.get("citations") or [], content.get("citation_passages") or [], lambda row: _citation_template(row, lang="fr"))
         target = (node.get("en") or {}).get("canonical_title")
         params: list[tuple[str, Any]] = []
         for name, default in (
@@ -664,7 +678,7 @@ def _render_argument(
             _append_interlanguage_parameter(params, content, "interlangue", _template("Lien interlangue", (("langue", "en"), ("page", target))))
         _append_lifecycle_parameter(params, content, "date-création", creation_date)
     else:
-        citations = _sequence(_citation_template(row, lang="en") for row in content.get("citations") or [])
+        citations = render_sequence(content.get("citations") or [], content.get("citation_passages") or [], lambda row: _citation_template(row, lang="en"))
         params = []
         for name, default in (("initialization", None), ("established-name", content.get("argument_name")), ("name", None)):
             _append_lifecycle_parameter(params, content, name, default)

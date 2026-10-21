@@ -10,6 +10,8 @@ MediaWiki page is rendered and no remote access is performed.
 
 from __future__ import annotations
 
+from wikidebia_citation_passages import blank_translations, validate_translations
+
 from wikidebia_release_info import KIT_VERSION
 
 import argparse
@@ -45,6 +47,7 @@ from wikidebia_documentary_resources import (
 from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
 from wikidebia_editorial_review import EditorialReviewError, _assert_source_unchanged, _load_workspace, _run_validator
 from wikidebia_content_review import (
+    _source_imports,
     ARGUMENT_BUCKETS,
     SOURCE_METADATA_FIELDS,
     SUMMARY_TRUE_FIELDS,
@@ -225,6 +228,12 @@ def semantic_content_payload(review: Mapping[str, Any]) -> dict[str, Any]:
             "en_displayed_title": arg.get("displayed_title"),
             "en_summary": arg.get("summary"),
         })
+    for item, arg in zip(payload["arguments"], sorted(final.get("arguments") or [], key=lambda row: str(row.get("id")))):
+        original = original_by_id.get(str(arg.get("id"))) or {}
+        french = (((original.get("translation") or {}).get("french") or {}).get("content") or {})
+        if french.get("citation_passages") or arg.get("citation_passages"):
+            item["fr_citation_passages"] = copy.deepcopy(french.get("citation_passages") or [])
+            item["en_citation_passages"] = copy.deepcopy(arg.get("citation_passages") or [])
     return payload
 
 def semantic_content_sha256(review: Mapping[str, Any]) -> str:
@@ -642,6 +651,11 @@ def _source_snapshot(source: Path) -> tuple[dict[str, Any], dict[str, Any], dict
     registry = load_json(source / "data/registre_debat.json", "registre du débat")
     metadata = load_json(source / "data/fr_page_metadata_lock.json", "verrou des métadonnées françaises")
     content = load_json(source / "data/fr_content_lock.json", "verrou du contenu français")
+    _, _, imported = _source_imports(source)
+    locked = {r["id"]: r for r in content.get("arguments") or []}
+    for row in imported:
+        if (locked.get(row["id"], {}).get("citation_passages") or []) != (row.get("citation_passages") or []):
+            raise TranslationReviewError("Verrou français incomplet pour les passages hors Citation : " + row["id"] + "; reprendre la revue française")
     vocabulary = load_json(source / "data/keyword_vocabulary.json", "vocabulaire français")
     return registry, metadata, content, vocabulary
 
@@ -706,6 +720,7 @@ def _blank_argument(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -
         "keywords": [],
         "summary": "",
         "citations": [_blank_citation(row) for row in (fr_content.get("citations") or [])],
+        "citation_passages": blank_translations(fr_content.get("citation_passages") or []),
         "sources": {bucket: [] for bucket in ARGUMENT_BUCKETS},
         "argument_name_search_queries": [],
         "argument_name_search_scope_note": "",
@@ -1916,6 +1931,12 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         if numbers and (row.get("quantitative_claims_verified") is not True or len(str(row.get("quantitative_claims_note") or "").strip()) < 12):
             raise TranslationReviewError(f"Donnée chiffrée anglaise non vérifiée dans {node_id}")
     citations = _validate_citations(row.get("citations"), fr_content.get("citations") or [], node_id)
+    try:
+        passages = validate_translations(row.get("citation_passages", []), fr_content.get("citation_passages") or [], node_id)
+    except ValueError as exc:
+        raise TranslationReviewError(str(exc)) from exc
+    for passage in passages:
+        _assert_english_wikicode_localized(passage["text"], "passage hors Citation de " + node_id)
     selected = row.get("sources")
     if not isinstance(selected, dict) or set(selected) != set(ARGUMENT_BUCKETS):
         raise TranslationReviewError(f"Sélection documentaire anglaise absente pour {node_id}")
@@ -1935,7 +1956,7 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
     argument_name, name_discovery = _validate_argument_name_discovery(row, node_id, lifecycle["page_origin"])
     return {
         "id": node_id, "canonical_title": canonical, "displayed_title": displayed,
-        "sections": sections, "keywords": keywords, "summary": summary, "citations": citations, "sources": final_sources,
+        "sections": sections, "keywords": keywords, "summary": summary, "citations": citations, "citation_passages": passages, "sources": final_sources,
         "summary_provenance": summary_provenance or ("historical_absent" if summary_absent else "translated_source"),
         "summary_length_ratio": (round(ratio, 4) if ratio is not None else None),
         "summary_ratio_reviewed": bool(row.get("summary_ratio_reviewed")) if ratio is not None else True,

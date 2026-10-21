@@ -14,6 +14,8 @@ explicitly authorized. No English text is created.
 
 from __future__ import annotations
 
+from wikidebia_citation_passages import inventory_passages
+
 from wikidebia_release_info import KIT_VERSION
 
 import argparse
@@ -501,6 +503,7 @@ def _source_imports(reviewed: Path) -> tuple[dict[str, Any], dict[str, Any], lis
             "import_sha256": row.get("sha256"),
             "summary": tmpl.get("résumé").strip(),
             "citations": _citation_records(tmpl.get("citations"), node_id),
+            "citation_passages": inventory_passages(tmpl.get("citations"), node_id),
             "documentation_raw": {
                 "bibliography": tmpl.get("références-bibliographiques").strip(),
                 "webliography": tmpl.get("références-sitographiques").strip(),
@@ -1695,6 +1698,7 @@ def _validate_argument(
         "displayed_title": source.get("displayed_title"),
         "summary": summary,
         "citations": copy.deepcopy(source.get("citations") or []),
+        "citation_passages": copy.deepcopy(source.get("citation_passages") or []),
         "sources": selected_by_type,
         "status": (
             "historical_authorized_creation" if historical_summary_protected and historical_summary_authorized and not bool(historical_summary.strip()) and bool(str(summary or "").strip())
@@ -2017,6 +2021,9 @@ def _build_content_copy(project_root: Path, source: Path, target: Path, review: 
         if isinstance(row, Mapping)
     }
     for argument in final["arguments"]:
+        original = source_argument_presence.get(str(argument.get("id"))) or {}
+        if (argument.get("citation_passages") or []) != (original.get("citation_passages") or []):
+            raise ContentReviewError("Passages hors Citation non conservés ; reprendre la revue française : " + str(argument.get("id")))
         if argument.get("page_origin") != "preexisting":
             continue
         argument_id = str(argument.get("id"))

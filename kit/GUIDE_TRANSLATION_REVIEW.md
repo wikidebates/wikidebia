@@ -209,3 +209,21 @@ La revue éditoriale reste indépendante de la publication distante. Pour une cr
 - une `Quote` nouvellement traduite utilise `AI-translated quote`.
 
 Ces conventions ne changent pas la règle de traduction différentielle : une propriété formelle déjà validée dans la source française n'est pas « réparée » silencieusement en anglais.
+
+### Texte éditorial autour des citations
+
+Le champ français `citations` peut contenir du texte avant, entre ou après les
+modèles `Citation`. Cet inventaire est conservé séparément sous `citation_passages`
+dans le verrou français, avec un identifiant et un ancrage `before_citation_id`
+(`null` pour la fin du champ). Il ne s'agit pas de résumés ni de nouvelles citations.
+
+La revue anglaise fournit pour chaque passage la `source_text` immuable, la
+traduction `text`, `equivalent_to_french=true` après relecture effective et une
+`review_note` précise. Aucun passage ne peut être omis, déplacé, supprimé ou
+transformé en modèle `Quote`. Ces textes entrent dans l'empreinte sémantique et
+sont réinsérés à leur position dans les rendus français et anglais.
+
+Un ancien verrou qui omettait ces textes est refusé à la préparation anglaise
+ou au rendu. Reprendre les revues et les verrous concernés ; ne pas compléter
+leurs empreintes ou attestations à la main. Une source historique incertaine
+reste signalée séparément et n'autorise pas une correction silencieuse du passage.
