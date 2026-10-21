@@ -1566,6 +1566,65 @@ class RemoteUpdatePlanner:
         })
         return effective
 
+    def _imported_interlanguage_page(self, proposed: dict[str, Any]) -> tuple[dict[str, Any], int, str] | None:
+        """Recover an unchanged imported page from its exact, non-normalized title.
+
+        This is deliberately limited to the historical apostrophe normalization
+        and a remote revision identical to the imported snapshot. It is neither
+        a fuzzy title search nor authorization to create, rename or rewrite FR.
+        """
+        path = self.corpus_root / "data/import_provenance.json"
+        if not path.is_file():
+            return None
+        provenance = load_json(path)
+        rows = [
+            row for row in provenance.get("pages", [])
+            if row.get("page_id") == proposed["page_id"] and row.get("kind") == proposed["page_type"]
+        ]
+        if len(rows) != 1:
+            return None
+        row = rows[0]
+        title = str(row.get("canonical_title") or "")
+        normalized = title.replace("’", "'").replace("‘", "'")
+        if not title or title == proposed["title"] or normalized != proposed["title"]:
+            return None
+        revision = row.get("revision_id")
+        if type(revision) is not int or revision <= 0:
+            return None
+        source = (self.corpus_root / str(row.get("import_path") or "")).resolve()
+        import_root = (self.corpus_root / "imports/fr").resolve()
+        if not source.is_relative_to(import_root) or not source.is_file():
+            return None
+        if sha_file(source) != row.get("sha256"):
+            return None
+        exists, observed, text = self.adapter.read_page(title)
+        if not exists or observed is None:
+            return None
+        imported_text = source.read_text(encoding="utf-8")
+        original_revision = observed == revision and sha_text(text) == sha_text(imported_text)
+        if not original_revision:
+            # An earlier successful run may already have added exactly this link.
+            # Recognize it without authorizing any further French change.
+            expected_title = self._english_title_for(str(proposed["page_id"]), str(proposed["page_type"]))
+            try:
+                linked, _ = add_french_interlanguage_to_remote(imported_text, str(proposed["page_type"]), expected_title)
+            except UpdateError:
+                return None
+            if sha_text(text) != sha_text(linked) or sha_text(linked) == sha_text(imported_text):
+                return None
+        return {
+            **proposed,
+            "title": title,
+            "interlanguage_title_resolution": {
+                "policy": "exact-unchanged-imported-french-title-1.0",
+                "manifest_title": proposed["title"],
+                "source_title": title,
+                "revision_id": revision,
+                "source_file_sha256": row["sha256"],
+                "import_provenance_sha256": sha_file(path),
+            },
+        }, revision, text
+
     def _plan_interlanguage_only_page(
         self,
         language: str,
@@ -1584,6 +1643,8 @@ class RemoteUpdatePlanner:
             title=proposed["title"],
             justification="Ajout interlangue seul demandé par le propriétaire",
         )
+        if proposed.get("interlanguage_title_resolution"):
+            op["interlanguage_title_resolution"] = proposed["interlanguage_title_resolution"]
         if not exists or revision_id is None:
             op.update({
                 "source_path": proposed["source_path"],
@@ -1836,6 +1897,11 @@ class RemoteUpdatePlanner:
                 continue
             exists, revision_id, remote_text = self.adapter.read_page(proposed["title"])
             if self.interlanguage_only:
+                if not exists:
+                    imported = self._imported_interlanguage_page(proposed)
+                    if imported is not None:
+                        proposed, revision_id, remote_text = imported
+                        exists = True
                 self._plan_interlanguage_only_page(language, proposed, exists, revision_id, remote_text, buckets)
                 continue
             # An existing remote title that does not contain the main template
@@ -2786,6 +2852,22 @@ class PlanExecutor:
                     page_id = str(row.get("page_id"))
                     active_ids.add(page_id)
                     title = str(row.get("canonical_title"))
+                    if self.interlanguage_only:
+                        resolutions = [
+                            operation for name in ("update", "skip")
+                            for operation in operations.get(name, [])
+                            if operation.get("language") == language
+                            and operation.get("page_id") == page_id
+                            and operation.get("interlanguage_title_resolution")
+                        ]
+                        if len(resolutions) > 1:
+                            raise PlanConflict(f"Résolution de titre interlangue ambiguë : {page_id}")
+                        if resolutions:
+                            operation = resolutions[0]
+                            resolution = operation["interlanguage_title_resolution"]
+                            if resolution.get("manifest_title") != title or resolution.get("source_title") != operation["title"]:
+                                raise PlanConflict(f"Résolution de titre interlangue divergente : {page_id}")
+                            title = str(operation["title"])
                     _, desired_sha = self._planned_page_source(plan, language, page_id, row)
                     exists, revision_id, remote_text = self.adapter.read_page(title)
                     if not exists or revision_id is None or sha_text(remote_text) != desired_sha:

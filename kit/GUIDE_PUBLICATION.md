@@ -69,6 +69,20 @@ le journal contient l’événement `publication_date_refreshed`. Aucun réglage
 nouvelle commande n’est nécessaire. L’orchestrateur éditorial conserve sa reprise
 avec rescellement du préflight et de l’autorisation.
 
+### Noms français normalisés à l’import
+
+Pour `update --archive <SÉLECTEUR> --scope fr --interlanguage-only`, une page
+introuvable sous le nom du manifeste peut être retrouvée sous le nom exact
+consigné dans `data/import_provenance.json`, lorsque la seule différence est
+la normalisation d’une apostrophe typographique en apostrophe droite.
+Le fichier importé doit correspondre à son empreinte et la page distante à la
+révision et au contenu importés, ou à ce contenu déjà augmenté du seul lien
+interlangue attendu. Toute autre divergence reste bloquante.
+
+Le nom réellement retrouvé est signé dans le plan, utilisé pour l’écriture
+et conservé dans l’état publié. Cette reprise ne crée ni ne renomme de page
+française, ne réécrit aucun autre paramètre et ne change pas l’archive.
+
 ## Débat déjà publié — corpus installé
 
 Lancer `./wikidebia update <debate_id> --dry-run`, examiner le plan, puis relancer sans `--dry-run`. Sans `--archive`, la commande ne consulte que `corpus/<debate_id>/` et ne sélectionne jamais implicitement un ZIP de `incoming/`.
