@@ -1,0 +1,33 @@
+{{Argument
+|justifications={{Justification
+|page=Legalising recreational cannabis raises difficulties under international conventions
+|displayed-title=Cannabis decriminalisation conflicts with international conventions
+}}{{Justification
+|page=French surveys show opposition to unrestricted cannabis sales
+|displayed-title=Surveys show reservations about unrestricted sales
+}}{{Justification
+|page=Existing cannabis legislation should be left unchanged
+|displayed-title=Existing legislation should be left unchanged
+}}{{Justification
+|page=Legalising cannabis in just one country creates problems
+|displayed-title=Legalisation in just one country creates problems
+}}{{Justification
+|page=Legalising cannabis means subjecting it to market forces
+|displayed-title=Legalising cannabis means subjecting it to market forces
+}}{{Justification
+|page=Legalising cannabis opens the door to legalising hard drugs
+|displayed-title=Legalising cannabis opens the door to legalising hard drugs
+}}
+|objections={{Objection
+|page=Cannabis is legal in many countries
+|displayed-title=Cannabis is legal in many countries
+}}{{Objection
+|page=Criminalising cannabis is a failure
+|displayed-title=Criminalisation is a failure
+}}{{Objection
+|page=Cannabis will be legalised, just as many once-denounced social advances were adopted
+|displayed-title=Cannabis will be legalised, just as many once-denounced social advances were adopted
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

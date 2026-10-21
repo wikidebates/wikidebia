@@ -1,0 +1,14 @@
+{{Argument
+|quotes={{Quote
+|quote=Drugs do not belong in the realm of freedom. They produce dependence, addiction, habituation, enslavement—all synonymous terms.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=115
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, decriminalisation, individual liberties, legalisation, individual liberties
+}}

@@ -1,0 +1,44 @@
+{{Argument
+|quotes={{Quote
+|quote=Logically, the argument about harmfulness should lead us to prohibit and criminalise tobacco and alcohol use before cannabis use.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=94
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=As for whether ending prohibition would represent progress against addiction, one need only observe that the two drugs causing the most damage in France are tobacco and alcohol—that is, two entirely legal drugs!
+|authors=Nathalie Arthaud
+|article=Drogue et société
+|work=Lutte ouvrière
+|link=https://www.lutte-ouvriere.org/sites/default/files/presentation/Drogue-et-societe.pdf
+|warnings=AI-translated quote
+}}
+|justifications={{Justification
+|page=Alcohol and tobacco are among the most addictive and harmful substances
+|displayed-title=Alcohol and tobacco are among the most addictive and harmful substances
+}}{{Justification
+|page=Alcohol producers' economic interests can influence regulation
+|displayed-title=Economic interests can influence alcohol regulation
+}}{{Justification
+|page=Purdue Pharma is responsible for oxycodone addiction
+|displayed-title=Prescription medicines can cause severe dependence
+}}{{Justification
+|page=The food industry makes its products addictive to maximise profits
+|displayed-title=The food industry makes its products addictive to maximise profits
+}}{{Justification
+|page=The risks of cannabis must be distinguished from those of alcohol and tobacco
+|displayed-title=The risks of cannabis differ from those of alcohol and tobacco
+}}
+|objections={{Objection
+|page=Alcohol and tobacco are not inherently dangerous; only excessive use is
+|displayed-title=Alcohol and tobacco are not inherently dangerous; only excessive use is
+}}{{Objection
+|page=Cannabis is always dangerous because smokers only want to get high
+|displayed-title=Cannabis is always dangerous because smokers only want to get high
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition, alcohol, tobacco
+}}

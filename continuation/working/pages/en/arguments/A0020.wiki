@@ -1,0 +1,13 @@
+{{Argument
+|quotes={{Quote
+|quote=The proportion of 17-year-olds who have tried cannabis has been falling in France since 2003, and consumption has now returned to its level in the early 2000s.
+|authors=Claude Guéant, ministre de l'Intérieur (2011-12)
+|article=Dépénalisation du cannabis, un débat biaisé
+|work=Le Monde
+|date=15 June 2011
+|link=https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, consumption
+}}

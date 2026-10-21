@@ -1,0 +1,416 @@
+[
+  {
+    "fr": "Droit",
+    "en": "Law",
+    "keyword_en": "law",
+    "section_en": "Law"
+  },
+  {
+    "fr": "Économie",
+    "en": "Economy",
+    "keyword_en": "economy",
+    "section_en": "Economy"
+  },
+  {
+    "fr": "Santé",
+    "en": "Health",
+    "keyword_en": "health",
+    "section_en": "Health"
+  },
+  {
+    "fr": "Société",
+    "en": "Society",
+    "keyword_en": "society",
+    "section_en": "Society"
+  },
+  {
+    "fr": "Cannabis",
+    "en": "cannabis",
+    "keyword_en": "cannabis",
+    "section_en": null
+  },
+  {
+    "fr": "Légalisation",
+    "en": "legalisation",
+    "keyword_en": "legalisation",
+    "section_en": null
+  },
+  {
+    "fr": "Dépénalisation",
+    "en": "decriminalisation",
+    "keyword_en": "decriminalisation",
+    "section_en": null
+  },
+  {
+    "fr": "Prohibition",
+    "en": "prohibition",
+    "keyword_en": "prohibition",
+    "section_en": null
+  },
+  {
+    "fr": "Prison",
+    "en": "prison",
+    "keyword_en": "prison",
+    "section_en": null
+  },
+  {
+    "fr": "Justice",
+    "en": "justice",
+    "keyword_en": "justice",
+    "section_en": null
+  },
+  {
+    "fr": "Accidents de la route",
+    "en": "road accidents",
+    "keyword_en": "road accidents",
+    "section_en": null
+  },
+  {
+    "fr": "Alcool",
+    "en": "alcohol",
+    "keyword_en": "alcohol",
+    "section_en": null
+  },
+  {
+    "fr": "Philosophie",
+    "en": "Philosophy",
+    "keyword_en": "philosophy",
+    "section_en": "Philosophy"
+  },
+  {
+    "fr": "Overdose",
+    "en": "overdose",
+    "keyword_en": "overdose",
+    "section_en": null
+  },
+  {
+    "fr": "Dangerosité",
+    "en": "harmfulness",
+    "keyword_en": "harmfulness",
+    "section_en": null
+  },
+  {
+    "fr": "Politique",
+    "en": "Politics",
+    "keyword_en": "politics",
+    "section_en": "Politics"
+  },
+  {
+    "fr": "Echec",
+    "en": "failure",
+    "keyword_en": "failure",
+    "section_en": null
+  },
+  {
+    "fr": "Tabac",
+    "en": "tobacco",
+    "keyword_en": "tobacco",
+    "section_en": null
+  },
+  {
+    "fr": "Opinion publique",
+    "en": "public opinion",
+    "keyword_en": "public opinion",
+    "section_en": null
+  },
+  {
+    "fr": "Dissuasion",
+    "en": "deterrence",
+    "keyword_en": "deterrence",
+    "section_en": null
+  },
+  {
+    "fr": "Banlieue",
+    "en": "disadvantaged suburbs",
+    "keyword_en": "disadvantaged suburbs",
+    "section_en": null
+  },
+  {
+    "fr": "Addiction",
+    "en": "addiction",
+    "keyword_en": "addiction",
+    "section_en": null
+  },
+  {
+    "fr": "Consommation",
+    "en": "consumption",
+    "keyword_en": "consumption",
+    "section_en": null
+  },
+  {
+    "fr": "Qualité",
+    "en": "quality",
+    "keyword_en": "quality",
+    "section_en": null
+  },
+  {
+    "fr": "Attractivité",
+    "en": "appeal",
+    "keyword_en": "appeal",
+    "section_en": null
+  },
+  {
+    "fr": "Interdiction",
+    "en": "prohibition",
+    "keyword_en": "prohibition",
+    "section_en": null
+  },
+  {
+    "fr": "Dépendance",
+    "en": "dependence",
+    "keyword_en": "dependence",
+    "section_en": null
+  },
+  {
+    "fr": "Libertés individuelles",
+    "en": "individual liberties",
+    "keyword_en": "individual liberties",
+    "section_en": null
+  },
+  {
+    "fr": "Législation",
+    "en": "legislation",
+    "keyword_en": "legislation",
+    "section_en": null
+  },
+  {
+    "fr": "Usager",
+    "en": "user",
+    "keyword_en": "user",
+    "section_en": null
+  },
+  {
+    "fr": "Marché noir",
+    "en": "black market",
+    "keyword_en": "black market",
+    "section_en": null
+  },
+  {
+    "fr": "problèmes de santé publique",
+    "en": "public health issues",
+    "keyword_en": "public health issues",
+    "section_en": null
+  },
+  {
+    "fr": "fiscalité",
+    "en": "taxation",
+    "keyword_en": "taxation",
+    "section_en": null
+  },
+  {
+    "fr": "Géopolitique",
+    "en": "Geopolitics",
+    "keyword_en": "geopolitics",
+    "section_en": "Geopolitics"
+  },
+  {
+    "fr": "Conflits d’intérêts",
+    "en": "conflicts of interest",
+    "keyword_en": "conflicts of interest",
+    "section_en": null
+  },
+  {
+    "fr": "protection des consommateurs",
+    "en": "consumer protection",
+    "keyword_en": "consumer protection",
+    "section_en": null
+  },
+  {
+    "fr": "Drogues dures",
+    "en": "hard drugs",
+    "keyword_en": "hard drugs",
+    "section_en": null
+  },
+  {
+    "fr": "Éducation",
+    "en": "Education",
+    "keyword_en": "education",
+    "section_en": "Education"
+  },
+  {
+    "fr": "Psychologie",
+    "en": "Psychology",
+    "keyword_en": "psychology",
+    "section_en": "Psychology"
+  },
+  {
+    "fr": "Perception du risque",
+    "en": "risk perception",
+    "keyword_en": "risk perception",
+    "section_en": null
+  },
+  {
+    "fr": "Jeunesse",
+    "en": "young people",
+    "keyword_en": "young people",
+    "section_en": null
+  },
+  {
+    "fr": "Normalisation",
+    "en": "normalisation",
+    "keyword_en": "normalisation",
+    "section_en": null
+  },
+  {
+    "fr": "Impossibilité",
+    "en": "impossibility",
+    "keyword_en": "impossibility",
+    "section_en": null
+  },
+  {
+    "fr": "Science",
+    "en": "Science",
+    "keyword_en": "science",
+    "section_en": "Science"
+  },
+  {
+    "fr": "Expérimentation scientifique",
+    "en": "scientific experimentation",
+    "keyword_en": "scientific experimentation",
+    "section_en": null
+  },
+  {
+    "fr": "Mineurs",
+    "en": "minors",
+    "keyword_en": "minors",
+    "section_en": null
+  },
+  {
+    "fr": "Prévention",
+    "en": "prevention",
+    "keyword_en": "prevention",
+    "section_en": null
+  },
+  {
+    "fr": "Clandestinité",
+    "en": "underground activity",
+    "keyword_en": "underground activity",
+    "section_en": null
+  },
+  {
+    "fr": "Économie parallèle",
+    "en": "underground economy",
+    "keyword_en": "underground economy",
+    "section_en": null
+  },
+  {
+    "fr": "Dealer",
+    "en": "drug dealer",
+    "keyword_en": "drug dealer",
+    "section_en": null
+  },
+  {
+    "fr": "Drogue dure",
+    "en": "hard drug",
+    "keyword_en": "hard drug",
+    "section_en": null
+  },
+  {
+    "fr": "Toxicomanie",
+    "en": "drug addiction",
+    "keyword_en": "drug addiction",
+    "section_en": null
+  },
+  {
+    "fr": "Éthique",
+    "en": "Ethics",
+    "keyword_en": "ethics",
+    "section_en": "Ethics"
+  },
+  {
+    "fr": "normes sociales",
+    "en": "social norms",
+    "keyword_en": "social norms",
+    "section_en": null
+  },
+  {
+    "fr": "protection des vulnérables",
+    "en": "protection of vulnerable people",
+    "keyword_en": "protection of vulnerable people",
+    "section_en": null
+  },
+  {
+    "fr": "Coût",
+    "en": "cost",
+    "keyword_en": "cost",
+    "section_en": null
+  },
+  {
+    "fr": "Prix de vente",
+    "en": "retail price",
+    "keyword_en": "retail price",
+    "section_en": null
+  },
+  {
+    "fr": "Droits de l'homme",
+    "en": "human rights",
+    "keyword_en": "human rights",
+    "section_en": null
+  },
+  {
+    "fr": "Loi",
+    "en": "law",
+    "keyword_en": "law",
+    "section_en": null
+  },
+  {
+    "fr": "Conventions internationales",
+    "en": "international conventions",
+    "keyword_en": "international conventions",
+    "section_en": null
+  },
+  {
+    "fr": "Uruguay",
+    "en": "Uruguay",
+    "keyword_en": "Uruguay",
+    "section_en": null
+  },
+  {
+    "fr": "Pays-Bas",
+    "en": "Netherlands",
+    "keyword_en": "Netherlands",
+    "section_en": null
+  },
+  {
+    "fr": "Lois du marché",
+    "en": "market forces",
+    "keyword_en": "market forces",
+    "section_en": null
+  },
+  {
+    "fr": "État",
+    "en": "state",
+    "keyword_en": "state",
+    "section_en": null
+  },
+  {
+    "fr": "Contrôle",
+    "en": "regulation",
+    "keyword_en": "regulation",
+    "section_en": null
+  },
+  {
+    "fr": "Vente",
+    "en": "sales",
+    "keyword_en": "sales",
+    "section_en": null
+  },
+  {
+    "fr": "Contournement fiscal",
+    "en": "tax circumvention",
+    "keyword_en": "tax circumvention",
+    "section_en": null
+  },
+  {
+    "fr": "économie informelle",
+    "en": "informal economy",
+    "keyword_en": "informal economy",
+    "section_en": null
+  },
+  {
+    "fr": "criminalité",
+    "en": "crime",
+    "keyword_en": "crime",
+    "section_en": null
+  }
+]

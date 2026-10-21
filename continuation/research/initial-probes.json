@@ -1,0 +1,62 @@
+[
+  {
+    "id": "euda-portugal",
+    "url": "https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf",
+    "accessed_at": "2026-10-21T08:35:37.119581+00:00",
+    "http_status": 200,
+    "final_url": "https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf",
+    "content_type": "application/pdf",
+    "sha256": "2a1f0290c5f040687e2ab3f66e13c2e65f7c30102d7f650f650f1f7b02dee05f",
+    "bytes": 801198
+  },
+  {
+    "id": "canada-panel",
+    "url": "https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html",
+    "accessed_at": "2026-10-21T08:35:37.120016+00:00",
+    "http_status": 200,
+    "final_url": "https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html",
+    "content_type": "text/html;charset=utf-8",
+    "sha256": "d23baa113c2ee17098dd6a94c7f9f4364c784b4a8e77a1dab2c64468a4cdf0e8",
+    "bytes": 354663
+  },
+  {
+    "id": "service-public-en",
+    "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F33341?lang=en",
+    "accessed_at": "2026-10-21T08:35:37.120536+00:00",
+    "http_status": 200,
+    "final_url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F33341?lang=en",
+    "content_type": "text/html;charset=UTF-8",
+    "sha256": "bc725fcba29dee8289f04a90a06459a1c84ee84596891c38cf4dad166ec49b0b",
+    "bytes": 85451
+  },
+  {
+    "id": "bing-test",
+    "url": "https://www.bing.com/search?format=rss&q=cannabis+legalisation+independent+review+health",
+    "accessed_at": "2026-10-21T08:35:37.122775+00:00",
+    "http_status": 200,
+    "final_url": "https://www.bing.com/search?format=rss&q=cannabis+legalisation+independent+review+health",
+    "content_type": "text/xml; charset=utf-8",
+    "sha256": "656021e1c7ff0a034fed2a88857fdf3ef27f0d07ef48814fc034e325043f3b71",
+    "bytes": 5092
+  },
+  {
+    "id": "crossref-test",
+    "url": "https://api.crossref.org/works?query.title=Cannabis%20Commercialization%20Lessons%20from%20Big%20Tobacco&rows=3",
+    "accessed_at": "2026-10-21T08:35:37.125392+00:00",
+    "http_status": 200,
+    "final_url": "https://api.crossref.org/works?query.title=Cannabis%20Commercialization%20Lessons%20from%20Big%20Tobacco&rows=3",
+    "content_type": "application/json",
+    "sha256": "673766064bea5319fea879490138d321420359ce6751c3b9b1629e1c8945428e",
+    "bytes": 5881
+  },
+  {
+    "id": "guardian-jenkins",
+    "url": "https://www.theguardian.com/commentisfree/2013/dec/12/heroic-uruguay-deserves-nobel-prize-cannabis",
+    "accessed_at": "2026-10-21T08:35:37.555861+00:00",
+    "http_status": 200,
+    "final_url": "https://www.theguardian.com/commentisfree/2013/dec/12/heroic-uruguay-deserves-nobel-prize-cannabis",
+    "content_type": "text/html; charset=UTF-8",
+    "sha256": "ffe026028e3f3fb45d5897be54d60477c2966c4a03c2ce40ff4456f03d817c58",
+    "bytes": 424764
+  }
+]

@@ -1,0 +1,17 @@
+{{Argument
+|summary=Uruguay's state-regulated legalisation demonstrates that strict cannabis regulation works better than prohibition.
+
+* '''Description:''' Legalisation with state control over production and distribution. Only residents may buy cannabis, and quantity limits apply.
+* '''Advantages:'''
+** Almost complete elimination of the black market.
+** State control over quality and prices.
+** Tax revenue to fund prevention programmes.
+* '''Disadvantages:'''
+** Heavy bureaucracy and restrictions that can put users off.
+** Difficulty persuading consumers accustomed to the black market.
+* '''Results:'''
+** A substantial reduction in the black market, but a slight increase in overall consumption.
+** '''Overall assessment:''' A viable model that works better than strict prohibition, with scope for adjustment.
+|sections=Law, Economy, Politics, Health, Society
+|keywords=black market, public health issues, taxation
+}}

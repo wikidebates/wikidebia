@@ -1,0 +1,20 @@
+{{Argument
+|justifications={{Justification
+|page=Cannabis prohibition infringes individual liberty
+|displayed-title=Prohibition infringes individual liberty
+}}{{Justification
+|page=Cannabis prohibition varies across periods and cultures
+|displayed-title=Cannabis prohibition varies across periods and cultures
+}}{{Justification
+|page=Cannabis prohibition does not distinguish ordinary use from addiction
+|displayed-title=Prohibition does not distinguish ordinary use from addiction
+}}{{Justification
+|page=Many substances far more harmful and addictive than cannabis are legal
+|displayed-title=Many substances far more addictive and harmful than cannabis are entirely legal
+}}{{Justification
+|page=Addiction is an illness and should not be treated as a criminal offence
+|displayed-title=Addiction is an illness and should not be treated as a criminal offence
+}}
+|sections=Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition
+}}

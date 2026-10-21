@@ -1,0 +1,21 @@
+{
+  "schema": "wikidebia-translation-native-integration-preflight-1.0",
+  "checked_at": "2026-10-21T08:44:28.954271+00:00",
+  "command": [
+    "/workspace/wikidebia/.venv/bin/python",
+    "/workspace/work/cannabis-correction-relecture/kit/scripts/wikidebia_translation_review.py",
+    "--project-root",
+    "/workspace/work/cannabis-correction-relecture",
+    "cannabis",
+    "--work-id",
+    "W001",
+    "--prepare"
+  ],
+  "returncode": 2,
+  "stdout": "",
+  "stderr": "WIKIDEBIA BLOQUÉ : Workspace introuvable : .state/editorial-workspaces/cannabis/W001\n",
+  "source_build_status": "graph_draft",
+  "source_reviews_preserved": true,
+  "english_translation_applied": false,
+  "official_semantic_convergence_performed": false
+}

@@ -1,0 +1,14 @@
+{{Argument
+|quotes={{Quote
+|quote=Extending the harmful effects of regular use to all ordinary use, in order to claim that any consumption already constitutes addiction, would be like saying that all alcohol consumption already constitutes alcoholism. The striking slogan “the earlier you try it, the sooner you take to it” obscures the fact that most people who try cannabis give it up or restrict it to exceptional occasions.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=117
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition, drug addiction
+}}

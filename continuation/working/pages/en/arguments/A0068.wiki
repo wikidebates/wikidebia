@@ -1,0 +1,14 @@
+{{Argument
+|quotes={{Quote
+|quote=US states where recreational cannabis is legal have seen a reduction of at least 20% in opioid overdose deaths. […] By comparing overdose death rates before and after legalisation, and between states at different stages of legalisation, the authors of a study published in Economic Inquiry identified a “very robust” causal effect on the reduction in opioid-related mortality. Their econometric analysis puts the fall at between 20% and 35%, with a particularly marked effect on deaths caused by opioids such as fentanyl, the deadliest drug in the United States according to the latest official figures. […] States with legal access to marijuana through dispensaries saw a larger fall in mortality than other states […] The differences could be linked to the growing number of people who self-medicate and “relieve pain by using marijuana and are therefore less likely to become addicted to opioids”.
+Some earlier studies had nevertheless reached the opposite conclusion: they found that cannabis use increases the use of opioids obtained without a prescription.
+|authors=AFP
+|article=La légalisation du cannabis ferait baisser les morts par overdose
+|work=L'Express
+|date=8 August 2019
+|link=https://www.lexpress.fr/actualite/monde/amerique-nord/la-legalisation-du-cannabis-ferait-baisser-les-morts-par-overdose_2093650.html
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

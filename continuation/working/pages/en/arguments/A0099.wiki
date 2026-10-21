@@ -1,0 +1,19 @@
+{{Argument
+|summary=Prohibition sends a strong message about the dangers of cannabis, preventing its use from becoming normalised.
+|quotes={{Quote
+|quote=A society that abandons moral prohibition can only see its cohesion and its ability to protect the most vulnerable weaken.
+|authors=Habermas
+|work=La pensée post-morale
+|date=2003
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Prohibition increases appeal
+|displayed-title=Prohibition increases appeal
+}}{{Objection
+|page=Prohibition encourages attempts to circumvent the law
+|displayed-title=Prohibition encourages attempts to circumvent the law
+}}
+|sections=Education, Ethics, Philosophy, Society
+|keywords=social norms, protection of vulnerable people
+}}

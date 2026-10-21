@@ -1,0 +1,18 @@
+{{Argument
+|justifications={{Justification
+|page=Cannabis is harmful to physical and mental health
+|displayed-title=Cannabis is harmful to physical and mental health
+}}{{Justification
+|page=Cannabis amplifies the effects of alcohol and tobacco
+|displayed-title=It amplifies the effects of alcohol and tobacco
+}}{{Justification
+|page=Cannabis has substantial addictive potential
+|displayed-title=It has substantial addictive potential
+}}
+|objections={{Objection
+|page=Many substances far more harmful and addictive than cannabis are legal
+|displayed-title=If the real aim is to protect individuals, why keep alcohol and tobacco legal?
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, health, addiction
+}}

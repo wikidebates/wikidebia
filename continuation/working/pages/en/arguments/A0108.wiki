@@ -1,0 +1,42 @@
+{{Argument
+|quotes={{Quote
+|quote=The serious harms caused by drug addiction to human beings, both as individuals and as citizens, and to society as a whole have been demonstrated. Article 5 of the 1789 Declaration allows the law to prohibit “actions harmful to society”: drug use is certainly one such action.
+|authors=Françoise Branget, Gilbert Barbier
+|article=La dépénalisation de l'usage, une impasse éthique et juridique
+|work=MISSION D’INFORMATION SUR LES TOXICOMANIES. Rapport d'information sur les toxicomanies
+|publisher=Assemblée nationale (France)
+|date=30 June 2011
+|link=https://www.assemblee-nationale.fr/13/rap-info/i3612-ti.asp#P1085_352797
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Drugs are not merely a public health problem; they are also a threat to democracy.
+|authors=Paul Quilès
+|work=Faut-il dépénaliser le cannabis ?
+|page=71
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Expanding the range of legal drugs would cause far more deaths, with a major deterioration in collective intelligence into the bargain.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=111
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Private cannabis use alone does not harm others
+|displayed-title=Private use alone does not harm others
+}}{{Objection
+|page=Cannabis prohibition harms society
+|displayed-title=Cannabis prohibition is even more harmful
+}}{{Objection
+|page=Many substances far more harmful and addictive than cannabis are legal
+|displayed-title=So are alcohol and tobacco, yet they are legal
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, harmfulness
+}}

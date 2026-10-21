@@ -1,0 +1,18 @@
+{{Argument
+|quotes={{Quote
+|quote=This overlooks the thirteen million people dependent on tobacco and the four or five million people dependent on alcohol who cannot go without a drink for even one day a week, drawn into using these two drugs by their legal status.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=114
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Tobacco and alcohol are appealing because many vested interests work to make them so
+|displayed-title=Tobacco and alcohol are appealing because many vested interests work to make them so
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, appeal, prohibition, tobacco, alcohol
+}}

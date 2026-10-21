@@ -1,0 +1,18 @@
+{{Argument
+|quotes={{Quote
+|quote=Legalising cannabis would effectively force people intent on breaking the rules to turn straight to drugs higher up the addiction scale.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=41
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=It is entirely possible to decriminalise all drugs
+|displayed-title=It is entirely possible to decriminalise all drugs
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, hard drugs
+}}

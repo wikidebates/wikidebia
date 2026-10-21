@@ -1,0 +1,14 @@
+{{Argument
+|justifications={{Justification
+|page=Cannabis is harmful to society
+|displayed-title=Cannabis is harmful to society
+}}{{Justification
+|page=Cannabis imposes costs on society
+|displayed-title=Cannabis imposes costs on society
+}}{{Justification
+|page=Cannabis is implicated in road accidents
+|displayed-title=Cannabis is implicated in road accidents
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, harmfulness
+}}

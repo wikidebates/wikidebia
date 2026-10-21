@@ -1,0 +1,13 @@
+{{Argument
+|quotes={{Quote
+|quote=We relied on the fact that human rights conventions took legal precedence over drug conventions. Uruguay could therefore exercise its sovereignty by legalising cannabis if we demonstrated that doing so saved lives: those of young people risking their lives to obtain it on the black market, or of patients otherwise unable to relieve their pain.
+|authors=Raquel Peyraube
+|article=Raquel Peyraube, addictologue et militante pour le cannabis médical
+|work=Le Monde
+|date=8 July 2018
+|link=https://www.lemonde.fr/sciences/article/2018/07/08/raquel-peyraube-addictologue-et-militante-pour-le-cannabis-medical_5328066_1650684.html
+|warnings=AI-translated quote
+}}
+|sections=Law, Health, Society
+|keywords=cannabis, decriminalisation, human rights
+}}

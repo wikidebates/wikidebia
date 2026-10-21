@@ -1,0 +1,15 @@
+{{Argument
+|quotes={{Quote
+|quote=The question is this: does dependence on an illicit drug occur independently of the person and their environment? In that case, the drug causes the dependence. Or does dependence develop because the habit has met a person's needs in a particular environment? In that case, the drug is a solution, a way of coping with life, rather than a cause.
+These apparently innocuous questions are fundamental when assessing whether prohibition makes sense. The belief that illicit drugs cause dependence independently of the relationship a person develops with them and the circumstances in which they are used is the public's primary justification for prohibition. If the answer is that drugs help some people cope with their lives, and that some of those people develop a harmful habit, addressing the cause of the problem does not mean banning drugs. Drugs were one means among others. Addressing the problem means helping the person and/or changing their living conditions.
+If we had to ban every product or behaviour to which some people are vulnerable to harmful dependence, we would have to ban sweets, junk food, television, computer games and even work and romantic relationships.
+|authors=Lise Beauchesne
+|work=Les drogues. Les coûts cachés de la prohibition
+|page=133-134
+|publisher=Lanctôt
+|date=2003
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, health, addiction, dependence
+}}

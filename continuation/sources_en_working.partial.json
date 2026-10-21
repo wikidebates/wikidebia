@@ -1,0 +1,332 @@
+{
+  "schema": "wikidebia-en-source-registry-working-1.0",
+  "debate_id": "cannabis",
+  "work_id": null,
+  "status": "partial_documentary_registry_not_applied_to_native_workspace",
+  "sources": [
+    {
+      "id": "S90001",
+      "type": "bibliography",
+      "document_kind": "synthesis_report",
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Jonathan P. Caulkins",
+          "Beau Kilmer",
+          "Mark A. R. Kleiman",
+          "Robert J. MacCoun",
+          "Gregory Midgette",
+          "Pat Oglesby",
+          "Rosalie Liccardo Pacula",
+          "Peter Reuter"
+        ],
+        "article": null,
+        "work": "Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions",
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": "RAND Corporation",
+        "place": "Santa Monica, CA",
+        "date": "2015",
+        "link": "https://www.rand.org/pubs/research_reports/RR864.html",
+        "page": null,
+        "site": null,
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T08:39:07.865827+00:00",
+        "primary_source": false,
+        "notes": [
+          "Titre, huit auteurs, année et éditeur contrôlés sur la notice RAND. Rapport de synthèse des options, avantages, coûts et incertitudes ; pas une recommandation de légaliser. Les projections Vermont 2015 ne sont pas des observations France 2026."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "cannabis",
+          "language": "en",
+          "role": "neutral_reference",
+          "selection_reason": "Synthèse générale des régimes possibles et de leurs effets sanitaires, économiques et sociaux, avec limites et incertitudes.",
+          "documentary_scope": "broad_synthesis"
+        },
+        {
+          "page_id": "A0115",
+          "language": "en",
+          "role": "context",
+          "selection_reason": "Analyse le rôle des taxes, prix et marchés parallèles, sans démontrer une persistance inconditionnelle."
+        },
+        {
+          "page_id": "A0077",
+          "language": "en",
+          "role": "context",
+          "selection_reason": "Examine le commerce transfrontalier, le tourisme et les interactions entre politiques de juridictions voisines."
+        },
+        {
+          "page_id": "A0143",
+          "language": "en",
+          "role": "context",
+          "selection_reason": "Étudie explicitement le prix comme dimension structurante de la politique du cannabis."
+        },
+        {
+          "page_id": "A0055",
+          "language": "en",
+          "role": "context",
+          "selection_reason": "Fournit le contexte des prix, taxes et marchés illégaux dans différents modèles de régulation."
+        }
+      ],
+      "deduplication_key": "https://www.rand.org/pubs/research_reports/RR864.html",
+      "evidence": {
+        "url": "https://www.rand.org/pubs/research_reports/RR864.html",
+        "response_sha256": "9c59263341008edf3cda850d57a41a8dcd5612271085c07bc15cd8093b1751cc",
+        "local_response_path": "responses/rand-vermont.body"
+      }
+    },
+    {
+      "id": "S90002",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Morris Rosenberg",
+          "Oyedeji Ayonrinde",
+          "Patricia J. Conrod",
+          "Lynda L. Levesque",
+          "Peter Selby"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "March 2024",
+        "link": "https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html",
+        "page": "Legislative Review of the Cannabis Act: Final Report of the Expert Panel",
+        "site": "Health Canada",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T08:35:37.120016+00:00",
+        "primary_source": true,
+        "notes": [
+          "Version anglaise officielle. Les cinq membres sont explicitement crédités sous Prepared by. Source primaire pour les conclusions de ce comité ; celles-ci ne valident pas chaque résultat scientifique sous-jacent. Résumé exécutif et passages sur jeunesse, produits puissants et déplacement du marché illicite lus."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "cannabis",
+          "language": "en",
+          "role": "neutral_reference",
+          "selection_reason": "Documente la présentation nuancée de l’expérience canadienne dans l’introduction."
+        },
+        {
+          "page_id": "A0062",
+          "language": "en",
+          "role": "context",
+          "selection_reason": "Permet de confronter les bénéfices et difficultés du modèle canadien ; ne valide pas toutes les affirmations du résumé historique."
+        },
+        {
+          "page_id": "A0053",
+          "language": "en",
+          "role": "context",
+          "selection_reason": "Documente les préoccupations du comité sur les intérêts du marché et les produits puissants sans authentifier Q064."
+        },
+        {
+          "page_id": "A0007",
+          "language": "en",
+          "role": "context",
+          "selection_reason": "Contexte vérifié du contrôle réglementaire de l’offre canadienne, sans authentifier Q069."
+        },
+        {
+          "page_id": "A0051",
+          "language": "en",
+          "role": "context",
+          "selection_reason": "Évalue les tendances d’usage selon l’âge et les risques de produits puissants, sans conclure à une causalité générale."
+        }
+      ],
+      "deduplication_key": "https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html",
+      "evidence": {
+        "url": "https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html",
+        "response_sha256": "d23baa113c2ee17098dd6a94c7f9f4364c784b4a8e77a1dab2c64468a4cdf0e8",
+        "local_response_path": "canada-panel.body"
+      }
+    },
+    {
+      "id": "S90003",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2019",
+        "link": "https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf",
+        "page": "Portugal — Country Drug Report 2019",
+        "site": "European Monitoring Centre for Drugs and Drug Addiction",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T08:35:37.119581+00:00",
+        "primary_source": false,
+        "notes": [
+          "PDF officiel anglais réellement consulté, section National drug laws (p. 5 du fichier) : loi 30/2000 appliquée depuis juillet 2001, consommation/acquisition/détention personnelles dépénalisées sous conditions ; trafic toujours distinct. Rapport de synthèse, pas texte législatif original ni bilan actuel de 2026."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": false
+      },
+      "usage": [
+        {
+          "page_id": "cannabis",
+          "language": "en",
+          "role": "neutral_reference",
+          "selection_reason": "Vérifie la distinction entre la dépénalisation portugaise et la légalisation commerciale."
+        },
+        {
+          "page_id": "A0061",
+          "language": "en",
+          "role": "context",
+          "selection_reason": "Documente le cadre juridique et les commissions de dissuasion ; ne prouve pas une réussite générale et inconditionnelle du modèle."
+        },
+        {
+          "page_id": "A0144",
+          "language": "en",
+          "role": "context",
+          "selection_reason": "Documente un exemple effectif de dépénalisation de l’usage de plusieurs drogues sous conditions."
+        }
+      ],
+      "deduplication_key": "https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf",
+      "evidence": {
+        "url": "https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf",
+        "response_sha256": "2a1f0290c5f040687e2ab3f66e13c2e65f7c30102d7f650f650f1f7b02dee05f",
+        "local_response_path": "euda-portugal.body"
+      }
+    },
+    {
+      "id": "S90004",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "21 August 2026",
+        "link": "https://www.service-public.gouv.fr/particuliers/vosdroits/F33341?lang=en",
+        "page": "What is the risk for drug use?",
+        "site": "Service Public",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T08:35:37.120536+00:00",
+        "primary_source": false,
+        "notes": [
+          "Version anglaise effectivement publiée par Service Public ; traduction automatique signalée par le site. Fiche datée vérifiée, pas une édition inventée ni une lecture du texte législatif. Montants et maximum reproduits selon la fiche du 21 août 2026 ; ils ne s’appliquent pas indistinctement à tous les délits liés aux drogues."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": false
+      },
+      "usage": [
+        {
+          "page_id": "cannabis",
+          "language": "en",
+          "role": "neutral_reference",
+          "selection_reason": "Référence anglaise de la fiche française utilisée dans l’introduction, même identifiant F33341 et date indiquée."
+        }
+      ],
+      "deduplication_key": "https://www.service-public.gouv.fr/particuliers/vosdroits/F33341?lang=en",
+      "evidence": {
+        "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F33341?lang=en",
+        "response_sha256": "bc725fcba29dee8289f04a90a06459a1c84ee84596891c38cf4dad166ec49b0b",
+        "local_response_path": "service-public-en.body"
+      }
+    },
+    {
+      "id": "S90005",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": null,
+        "link": "https://nida.nih.gov/research-topics/cannabis-marijuana",
+        "page": "Cannabis (Marijuana)",
+        "site": "National Institute on Drug Abuse",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T08:39:10.569542+00:00",
+        "primary_source": false,
+        "notes": [
+          "Page institutionnelle anglaise lue, notamment définition, modes d’usage, THC, effets indésirables et usages thérapeutiques. Aucun auteur individuel distinct n’est crédité : liste d’auteurs vide ; NIDA conservé comme site, pas inventé comme auteur."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": false
+      },
+      "usage": [
+        {
+          "page_id": "A0065",
+          "language": "en",
+          "role": "context",
+          "selection_reason": "Synthèse de santé sur les risques physiques et mentaux, permettant d’évaluer l’argument sans généraliser un risque à tous les usages."
+        },
+        {
+          "page_id": "A0116",
+          "language": "en",
+          "role": "context",
+          "selection_reason": "Présente les risques liés au développement et à la santé mentale ; source de contexte, pas authentification des citations françaises."
+        },
+        {
+          "page_id": "A0067",
+          "language": "en",
+          "role": "context",
+          "selection_reason": "Information sur le trouble de l’usage et les facteurs de risque ; ne transforme pas les pourcentages historiques en statistiques actuelles."
+        },
+        {
+          "page_id": "A0118",
+          "language": "en",
+          "role": "context",
+          "selection_reason": "Décrit les modes d’usage et certains risques, sans prétendre qu’un mode serait sans danger."
+        }
+      ],
+      "deduplication_key": "https://nida.nih.gov/research-topics/cannabis-marijuana",
+      "evidence": {
+        "url": "https://nida.nih.gov/research-topics/cannabis-marijuana",
+        "response_sha256": "a1848830c6f3e23f15becdefe2bd7c341979acc883ac4cf62b632bd8b65ed15f",
+        "local_response_path": "responses/new-nida.body"
+      }
+    }
+  ]
+}

@@ -1,0 +1,816 @@
+{
+  "schema": "wikidebia-documentary-continuation-file-manifest-1.0",
+  "status": "working_documentation_incomplete_not_publication_ready",
+  "files": [
+    {
+      "path": "data/labels_bilingual.json",
+      "sha256": "f12c7daff1a0a15fe5e95352df7df5ec4d8680837145de07a1bd25c49922cb2f",
+      "size_bytes": 25000
+    },
+    {
+      "path": "data/relations_bilingual.json",
+      "sha256": "3fcb485b9da579af64b4fb23466eb660a9a6e097ac7373c6f5d7bea514a7c456",
+      "size_bytes": 100901
+    },
+    {
+      "path": "data/translation_editorial_notes.json",
+      "sha256": "0d69dc7c4eba88387f4e6669dbcde940913f122b2f52403375590a7504191ede",
+      "size_bytes": 867
+    },
+    {
+      "path": "data/translation_pages.json",
+      "sha256": "b81858ad82ada12708c3e5717601b2167719491972149a1b9f19d75f5c10be48",
+      "size_bytes": 218495
+    },
+    {
+      "path": "data/translation_quotes.json",
+      "sha256": "a8f032685de10e0dd665ec6e1b0e7a816cc3c3f0b62eea24bd071cd265416ff6",
+      "size_bytes": 406517
+    },
+    {
+      "path": "data/translation_texts.json",
+      "sha256": "2dfb0d5c2172815d3be8ba492309d647fe1a92543488da1e2aa0280a2045a2f1",
+      "size_bytes": 97165
+    },
+    {
+      "path": "data/vocabulary_bilingual.json",
+      "sha256": "43da28acc7da27079276a076b2e9c4afc29f996913eb5cbf66ab184c88ec4ac2",
+      "size_bytes": 8124
+    },
+    {
+      "path": "lecture_integrale_en.wiki",
+      "sha256": "1f28fc17f954c4924751eb73a7040d1078fd17e31b4868da353b2bee74a91637",
+      "size_bytes": 152193
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "5e3d51a3b923dd1f09cdc5df7fb7ed56c2743d48482cb01bd816b91d17f21204",
+      "size_bytes": 426
+    },
+    {
+      "path": "pages/en/arguments/A0001.wiki",
+      "sha256": "d02a00207f3300253af582b4a4c5dee7cbd97fa025931b8767638eeaf97895be",
+      "size_bytes": 1382
+    },
+    {
+      "path": "pages/en/arguments/A0002.wiki",
+      "sha256": "11cbea34456426df006b1453338b4928948f2da66b4a64cad18918d56c6e172c",
+      "size_bytes": 122
+    },
+    {
+      "path": "pages/en/arguments/A0003.wiki",
+      "sha256": "43fcbff0c8b5f96aa4a9f8e92cbf18bd8fc4290a00052b2081fe58044986a4b3",
+      "size_bytes": 424
+    },
+    {
+      "path": "pages/en/arguments/A0004.wiki",
+      "sha256": "af4d1d392c4fcf290fe02fbe209618dc8b68945bee65d830f5474bebc7ffa2f4",
+      "size_bytes": 425
+    },
+    {
+      "path": "pages/en/arguments/A0005.wiki",
+      "sha256": "d0f129acce8c98f01374019cd38602e9043ece2390640a588b7c13f2f5e5f15f",
+      "size_bytes": 666
+    },
+    {
+      "path": "pages/en/arguments/A0006.wiki",
+      "sha256": "2fd97cea54d973cb5ada1565ce1a2cdba950c5be7333f73c0fa724031ae3b22e",
+      "size_bytes": 189
+    },
+    {
+      "path": "pages/en/arguments/A0007.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0008.wiki",
+      "sha256": "ad0dd6422d64c290d28cb2e7190f6863791b40a08f3c5d6870de7ba7bdba2a90",
+      "size_bytes": 1187
+    },
+    {
+      "path": "pages/en/arguments/A0009.wiki",
+      "sha256": "1f705a5cf46174d897941efba5f22d663eacfab7bd4eaaf1e6c543ef4b5cd0ce",
+      "size_bytes": 916
+    },
+    {
+      "path": "pages/en/arguments/A0010.wiki",
+      "sha256": "52f3f4b7fc30dd53831b8dc6d723c36bdd5fc2d1e09f824efd01311664e31eec",
+      "size_bytes": 2161
+    },
+    {
+      "path": "pages/en/arguments/A0011.wiki",
+      "sha256": "d6ba261ca92510b9f17bf6d05e256bc88f50e5ea58974d6ad6314d8c67f984f8",
+      "size_bytes": 1544
+    },
+    {
+      "path": "pages/en/arguments/A0012.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0013.wiki",
+      "sha256": "a3c7488ab3fb20c0e6c9ba89c4c66961da69345b7571000c192046e1fe57eacc",
+      "size_bytes": 434
+    },
+    {
+      "path": "pages/en/arguments/A0014.wiki",
+      "sha256": "e0bd344d472ebaf8406705bb5b0c85a3bcdb9ba89e65d4ba81b79995e9dd7103",
+      "size_bytes": 523
+    },
+    {
+      "path": "pages/en/arguments/A0015.wiki",
+      "sha256": "2d58da0941fe2d9729fc3ea0c71c86a2de32b6b8e2ae34dda932c7777a2094ee",
+      "size_bytes": 1351
+    },
+    {
+      "path": "pages/en/arguments/A0016.wiki",
+      "sha256": "c259451d5a0aaac81b691e0b6a92fadf346ba90af89f0519f5fb0e117948782c",
+      "size_bytes": 856
+    },
+    {
+      "path": "pages/en/arguments/A0017.wiki",
+      "sha256": "436f1193b299d6a30223bdd13b9817e9eaa34befc72496352aa1455ee0ab6849",
+      "size_bytes": 749
+    },
+    {
+      "path": "pages/en/arguments/A0018.wiki",
+      "sha256": "6c1aba62201be7e96ab507180a1bbdd959875e38ca661c712c42847a2133ffae",
+      "size_bytes": 701
+    },
+    {
+      "path": "pages/en/arguments/A0019.wiki",
+      "sha256": "862d3d4a9a829eb541ecfde63cc622a345b953670d2b532128e90226c277e501",
+      "size_bytes": 832
+    },
+    {
+      "path": "pages/en/arguments/A0020.wiki",
+      "sha256": "1bdd16ca93389b87a50019c0db20624e2ee875d07ad9b8b751d67ea3b842f21f",
+      "size_bytes": 554
+    },
+    {
+      "path": "pages/en/arguments/A0021.wiki",
+      "sha256": "0b94f1e140f28f1937b5fe1fa494d5699f6d50026faceda800560af2dbbd54e9",
+      "size_bytes": 391
+    },
+    {
+      "path": "pages/en/arguments/A0022.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0023.wiki",
+      "sha256": "40fe0dcf01ec9abd49c542aad3a210ffbfdad4e9c71f07aff758e9aaf4d53273",
+      "size_bytes": 990
+    },
+    {
+      "path": "pages/en/arguments/A0024.wiki",
+      "sha256": "fc2d00514cd81d2a41bfa705bd8831453789b8bf6ed85bc2945652b5c9cc75a3",
+      "size_bytes": 758
+    },
+    {
+      "path": "pages/en/arguments/A0025.wiki",
+      "sha256": "9952585645ddfb896acbe614612824e8afba5607f725dda7c6e844eb75fed1ed",
+      "size_bytes": 514
+    },
+    {
+      "path": "pages/en/arguments/A0026.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0027.wiki",
+      "sha256": "d92665a678cf8b5069b62825a72d8decde76abc604cb7ab6e024fca337a58fc2",
+      "size_bytes": 251
+    },
+    {
+      "path": "pages/en/arguments/A0028.wiki",
+      "sha256": "e4b5e71d9cd110fbeac5578f96c42a6c7102d64e21cc55581420510b8571f4a7",
+      "size_bytes": 640
+    },
+    {
+      "path": "pages/en/arguments/A0029.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0030.wiki",
+      "sha256": "a709a7d119b688e5782997c93d60517042c673579f42a2542e975081847d858e",
+      "size_bytes": 1484
+    },
+    {
+      "path": "pages/en/arguments/A0031.wiki",
+      "sha256": "c226116653ec5b3bc079af378118e9c34481014084b2790be72051a251946a65",
+      "size_bytes": 536
+    },
+    {
+      "path": "pages/en/arguments/A0032.wiki",
+      "sha256": "fe41ba3c4d821da705e8123e82b8e7d2288a4bb7819966180c1e465a68e92369",
+      "size_bytes": 576
+    },
+    {
+      "path": "pages/en/arguments/A0033.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0034.wiki",
+      "sha256": "209e020f44c12bab78e6f14b95309891e744cb3c7f634610466a260b9f36c1e2",
+      "size_bytes": 1203
+    },
+    {
+      "path": "pages/en/arguments/A0035.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0036.wiki",
+      "sha256": "6d5e975b7eadca1a8d2ff9cd43848e8d9744aa5ba528ef57cbbbb99608e159c4",
+      "size_bytes": 479
+    },
+    {
+      "path": "pages/en/arguments/A0037.wiki",
+      "sha256": "95bd167f604a66ad808245346e33fb9e29934f0f0a1e8f94d747ef497e843537",
+      "size_bytes": 1034
+    },
+    {
+      "path": "pages/en/arguments/A0038.wiki",
+      "sha256": "b3d1db69f509453a312977a0109135df1f88050284cfeac789f1fc598a084315",
+      "size_bytes": 697
+    },
+    {
+      "path": "pages/en/arguments/A0039.wiki",
+      "sha256": "5ad8a121d480194ef17af5db83559b0a5476770b823314abd7e2973436affbc9",
+      "size_bytes": 1648
+    },
+    {
+      "path": "pages/en/arguments/A0040.wiki",
+      "sha256": "f9d07811fe63db269884405953885843be228c7ef854e2f18560abf0df616ddc",
+      "size_bytes": 1496
+    },
+    {
+      "path": "pages/en/arguments/A0041.wiki",
+      "sha256": "9df11363e8c0aa19957329765a160891a6a278845f0ed1e997f04ca6b5fdc0f6",
+      "size_bytes": 4496
+    },
+    {
+      "path": "pages/en/arguments/A0042.wiki",
+      "sha256": "b49bdd915231b3e455824e2ca3bd4c2cd2034e71b61c759f12694bce7fff79c5",
+      "size_bytes": 507
+    },
+    {
+      "path": "pages/en/arguments/A0043.wiki",
+      "sha256": "a24b3d79748ae5a05b58edfb886678626d3d0169fbde0d16aa8d2b99ad8d4410",
+      "size_bytes": 490
+    },
+    {
+      "path": "pages/en/arguments/A0044.wiki",
+      "sha256": "fe669d4757f8ed2865274204d60d30a17eafefec2a50811b39e210659196704a",
+      "size_bytes": 1490
+    },
+    {
+      "path": "pages/en/arguments/A0045.wiki",
+      "sha256": "9dfcae563b15d72d97c82a32587dda4b3458747567af7f3d5dd303355bbc2f2e",
+      "size_bytes": 1035
+    },
+    {
+      "path": "pages/en/arguments/A0046.wiki",
+      "sha256": "afc3596c93c34d24a4ca530456461b8be99c92629632011e196840f894cde588",
+      "size_bytes": 1943
+    },
+    {
+      "path": "pages/en/arguments/A0047.wiki",
+      "sha256": "3e898bcf5816894ba35ef9676689dec362c9cad2ab2117c58e1132158924bc2d",
+      "size_bytes": 1083
+    },
+    {
+      "path": "pages/en/arguments/A0048.wiki",
+      "sha256": "50a91560ad19829d21b7d2ad5d5dc16c1028656e2c82116d4942cc76d1f0604e",
+      "size_bytes": 476
+    },
+    {
+      "path": "pages/en/arguments/A0049.wiki",
+      "sha256": "8fca092009eb5abcfbc1e3616409cccd2da729dfce01fed8c739700ddedff559",
+      "size_bytes": 1136
+    },
+    {
+      "path": "pages/en/arguments/A0050.wiki",
+      "sha256": "baaf2d500d316958d6a881e21e639aaf192a6edd39847684d04799dc1fc81328",
+      "size_bytes": 665
+    },
+    {
+      "path": "pages/en/arguments/A0051.wiki",
+      "sha256": "e85dd8138dffe2ca27abbe0d2076c7bb6f665067a4987c9b92fcadca4e04e01e",
+      "size_bytes": 777
+    },
+    {
+      "path": "pages/en/arguments/A0052.wiki",
+      "sha256": "70adb560310cea1c25766ebf3545a2914a17e212f420c702d73e51d0710c290d",
+      "size_bytes": 1030
+    },
+    {
+      "path": "pages/en/arguments/A0053.wiki",
+      "sha256": "038a6530e18396e8469e2d99316dbaf37bd955ccb579d1fd2221e7570c24f96c",
+      "size_bytes": 1319
+    },
+    {
+      "path": "pages/en/arguments/A0054.wiki",
+      "sha256": "a23aa2e9ab550c0753f32889ff5c1a1ee7a5f932a09302ba077c307fb52782c0",
+      "size_bytes": 1451
+    },
+    {
+      "path": "pages/en/arguments/A0055.wiki",
+      "sha256": "35fd25152848fe13a29c30b7756709c99783459e9f25ad819a5a9da98f7ac0f2",
+      "size_bytes": 421
+    },
+    {
+      "path": "pages/en/arguments/A0056.wiki",
+      "sha256": "7428aa22239c684180d416117f1653f7bff8127366b2882e85da5c11a24a44f0",
+      "size_bytes": 691
+    },
+    {
+      "path": "pages/en/arguments/A0057.wiki",
+      "sha256": "a94c9c96710816eb54e791848de695d231a5de148d8bd91d1a2dc494dbf73542",
+      "size_bytes": 1041
+    },
+    {
+      "path": "pages/en/arguments/A0058.wiki",
+      "sha256": "94c20f531fb475ab476786d1cf14b7502b0591c07296e3186780a63ba988201e",
+      "size_bytes": 604
+    },
+    {
+      "path": "pages/en/arguments/A0059.wiki",
+      "sha256": "d9550419e1dfc2587ec4e96bc50c1f797d4f7cdba9ccdd9335f1df1631fcc7d1",
+      "size_bytes": 83
+    },
+    {
+      "path": "pages/en/arguments/A0060.wiki",
+      "sha256": "d8ea8bd8500a53f0cf3e03edae8389d1ea36ae351c1af1188171af53be4f324c",
+      "size_bytes": 1193
+    },
+    {
+      "path": "pages/en/arguments/A0061.wiki",
+      "sha256": "b2c1a8899353b3f0d451adeccca72a7196b847f8ee3d9223f95d6c7c488fa1bd",
+      "size_bytes": 1836
+    },
+    {
+      "path": "pages/en/arguments/A0062.wiki",
+      "sha256": "82faa3d6beca5a415e2f410c217d5fb16592a2ec9b8dd09d4f9313145cb9212a",
+      "size_bytes": 1494
+    },
+    {
+      "path": "pages/en/arguments/A0063.wiki",
+      "sha256": "c755bf042f70c839c94ff475371074d47f7fdd3e3bf648e4bc9844a0cf9db04d",
+      "size_bytes": 1229
+    },
+    {
+      "path": "pages/en/arguments/A0064.wiki",
+      "sha256": "905040d4e934e59ab340478b27ee9755ddce3a2ebd8871e81629058c0c4e8102",
+      "size_bytes": 1266
+    },
+    {
+      "path": "pages/en/arguments/A0065.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0066.wiki",
+      "sha256": "27ec744c8725e39b3ac11a04df273b5c964098c55a59042196f778299ab18e37",
+      "size_bytes": 810
+    },
+    {
+      "path": "pages/en/arguments/A0067.wiki",
+      "sha256": "4660aa0392ab55804d3ce1fce4713cec94e743dcb19d4c6fd2832ce8ecaf65f6",
+      "size_bytes": 699
+    },
+    {
+      "path": "pages/en/arguments/A0068.wiki",
+      "sha256": "b926ad9f8aa9021a0e2fee17b5f9cb97cc1b0c583ae32faeaaa697d14527ec44",
+      "size_bytes": 1489
+    },
+    {
+      "path": "pages/en/arguments/A0069.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0070.wiki",
+      "sha256": "f8f360230e8acbc67c3c678c4cbbdde99e621a3fb6875841f7a817c9588456ca",
+      "size_bytes": 633
+    },
+    {
+      "path": "pages/en/arguments/A0071.wiki",
+      "sha256": "b986805802e3e9009248d42f9d0108d7f61b62bd6b77d64552da5f133b947ba6",
+      "size_bytes": 1157
+    },
+    {
+      "path": "pages/en/arguments/A0072.wiki",
+      "sha256": "513e333be13ddbc31b18c2bc65b155640b2530dc20b73d022512657ff4656dcc",
+      "size_bytes": 1064
+    },
+    {
+      "path": "pages/en/arguments/A0073.wiki",
+      "sha256": "abc5e4cb3b65238b28f680b77fda42fc3a7298c9e856dea5da521e4b470c0ac0",
+      "size_bytes": 1362
+    },
+    {
+      "path": "pages/en/arguments/A0074.wiki",
+      "sha256": "de8f5cba7506ea14734ad581ea2ea4343c3b99833c461af53c0f1f356f38d21a",
+      "size_bytes": 728
+    },
+    {
+      "path": "pages/en/arguments/A0075.wiki",
+      "sha256": "f5e05716f933ba219e593d3c9a8e0ef8b81b05d5c1ae54e8325277c2799cb68d",
+      "size_bytes": 1856
+    },
+    {
+      "path": "pages/en/arguments/A0076.wiki",
+      "sha256": "e23b0d98e7ca8e0a4b8fe2674c1dc0fd1020eb7f7b07b38876a6557af70d308b",
+      "size_bytes": 469
+    },
+    {
+      "path": "pages/en/arguments/A0077.wiki",
+      "sha256": "1790f4ace545a64e562c73d9e7ec1a7d62efb9de5b7486aff1960ea0e2a4d745",
+      "size_bytes": 787
+    },
+    {
+      "path": "pages/en/arguments/A0078.wiki",
+      "sha256": "4010204919ac795a15caee0ea5cceb852321432e8e03152b1df491b6d6e8fed6",
+      "size_bytes": 925
+    },
+    {
+      "path": "pages/en/arguments/A0079.wiki",
+      "sha256": "913a525a0b33e9006c94968029741ed211bc952fc1aff42872368c60da8d1530",
+      "size_bytes": 92
+    },
+    {
+      "path": "pages/en/arguments/A0080.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0081.wiki",
+      "sha256": "f27a21cce19e72f1103324550c726c7cd5d850f9569777ea4f6299a41f838efb",
+      "size_bytes": 876
+    },
+    {
+      "path": "pages/en/arguments/A0082.wiki",
+      "sha256": "6f07a6a3d88ba29c5fc50e9aa30fcf2511660921e79ca7b417f8e33068c85f20",
+      "size_bytes": 1609
+    },
+    {
+      "path": "pages/en/arguments/A0083.wiki",
+      "sha256": "5b83af0356c80921d75326b567d406e97a4b1fccdac5867357bd4d4fb66cf23b",
+      "size_bytes": 732
+    },
+    {
+      "path": "pages/en/arguments/A0084.wiki",
+      "sha256": "078b622c590677b8940a73e7078cab8bb70e815b1e0738d23a87af5efbe872d6",
+      "size_bytes": 646
+    },
+    {
+      "path": "pages/en/arguments/A0085.wiki",
+      "sha256": "179f3f2b23ee0f57dcf2c61a2f827653707c32c11b6a72686224d8523b9c6208",
+      "size_bytes": 1933
+    },
+    {
+      "path": "pages/en/arguments/A0086.wiki",
+      "sha256": "a9be6af3208ca5746883a10e48945c3735f5cc8ffa6e22fac0f94133063a67d9",
+      "size_bytes": 1267
+    },
+    {
+      "path": "pages/en/arguments/A0087.wiki",
+      "sha256": "3f38fb620ecc4d0f2e375d6606ac9f3e1acce07b7b014fe0f8a26ecddb5b40e9",
+      "size_bytes": 2853
+    },
+    {
+      "path": "pages/en/arguments/A0088.wiki",
+      "sha256": "6e6bb9e72cd449252871b54407873908983bbf1e7ffac975e5331805262389a2",
+      "size_bytes": 607
+    },
+    {
+      "path": "pages/en/arguments/A0089.wiki",
+      "sha256": "1a550896c5cd633a732672f15738cbf447768bfc9a7f4efeb8f30eb832c2a806",
+      "size_bytes": 2817
+    },
+    {
+      "path": "pages/en/arguments/A0090.wiki",
+      "sha256": "8bb24efbd97ca8e11a0d76839f9089e9bf1720dae2c2f47244019b4678b7a292",
+      "size_bytes": 1254
+    },
+    {
+      "path": "pages/en/arguments/A0091.wiki",
+      "sha256": "7bb85bf7fed28eb129738cc54dc2839b4a44a15543f6f2a1bb62deb704df704a",
+      "size_bytes": 1412
+    },
+    {
+      "path": "pages/en/arguments/A0092.wiki",
+      "sha256": "129f164f699b610d337b4f31454fb33d8fa791fd72690463f840f84a258968b3",
+      "size_bytes": 981
+    },
+    {
+      "path": "pages/en/arguments/A0093.wiki",
+      "sha256": "4cecb59934f70b970c4b13a1b05c3dba59302b1b658b97b409435e72edfeff47",
+      "size_bytes": 1710
+    },
+    {
+      "path": "pages/en/arguments/A0094.wiki",
+      "sha256": "2ee54ac2738707e53498260f7a47fd3b2c3b5076d935883460ce399b3c8baa5a",
+      "size_bytes": 995
+    },
+    {
+      "path": "pages/en/arguments/A0095.wiki",
+      "sha256": "61ac7449e695a1ba89b00631a7070246b640a1c7da7093cba09b0efa9e895a53",
+      "size_bytes": 578
+    },
+    {
+      "path": "pages/en/arguments/A0096.wiki",
+      "sha256": "a8510505ec69a5edd4a7a5fb8708edf7c526b1189c984e5cc78ee86b35124134",
+      "size_bytes": 948
+    },
+    {
+      "path": "pages/en/arguments/A0097.wiki",
+      "sha256": "43e17571b3aebe80f6cefcd9d0163d9a148c44cddc45710ba479438526e5ce04",
+      "size_bytes": 978
+    },
+    {
+      "path": "pages/en/arguments/A0098.wiki",
+      "sha256": "3dd28c2d6fd525ae487a8fe56f9ead4e87881fde78472b24f96ff9b184e3a1af",
+      "size_bytes": 773
+    },
+    {
+      "path": "pages/en/arguments/A0099.wiki",
+      "sha256": "41baef1802a2d3e4724af1df21553c3662dfa49522015d1462f80d9ec2cb5eae",
+      "size_bytes": 729
+    },
+    {
+      "path": "pages/en/arguments/A0100.wiki",
+      "sha256": "c7245da5a48b00fa7f1eb6b2ca81b83bb38f3aefefa8e76b090a0a2ba8c7ab0b",
+      "size_bytes": 1692
+    },
+    {
+      "path": "pages/en/arguments/A0101.wiki",
+      "sha256": "84d2827803c0b4b00367b3c1338df9108fd7648d6f717e16de3371034e7f5152",
+      "size_bytes": 68
+    },
+    {
+      "path": "pages/en/arguments/A0102.wiki",
+      "sha256": "8de3d46c075a5232976cc27dcb5ef79e51cbaac5b2b35e8c54ca662cc625e469",
+      "size_bytes": 928
+    },
+    {
+      "path": "pages/en/arguments/A0103.wiki",
+      "sha256": "6835b21c48510186024fb9066e6cc5b7e76dd46949d539fa65d5e3562e0a45fd",
+      "size_bytes": 1400
+    },
+    {
+      "path": "pages/en/arguments/A0104.wiki",
+      "sha256": "06424cf985f097492b5384be9c3bbf6fcf5425fdc65de2b9bd97c67994379b5a",
+      "size_bytes": 457
+    },
+    {
+      "path": "pages/en/arguments/A0105.wiki",
+      "sha256": "09eb9195d1429717cdd5d23416d86cec43963f559f8b32fa7912d12ffe69faec",
+      "size_bytes": 608
+    },
+    {
+      "path": "pages/en/arguments/A0106.wiki",
+      "sha256": "7e861a8d4bebf9a072b53514214ec742bdf0fff6fe533833a07fb90ab09a4bba",
+      "size_bytes": 1936
+    },
+    {
+      "path": "pages/en/arguments/A0107.wiki",
+      "sha256": "e40cbf783a16fe29b2b5a817df9fe9330c1bfc46b5fc27f9443df8de07822d87",
+      "size_bytes": 1573
+    },
+    {
+      "path": "pages/en/arguments/A0108.wiki",
+      "sha256": "700d7ac959ff790586c047c35d213e0125f154ce532bb472ef08ab62eb451bd4",
+      "size_bytes": 1882
+    },
+    {
+      "path": "pages/en/arguments/A0109.wiki",
+      "sha256": "163eba58476f27593afc793eb509a75828d4fb14a0aa9b255ae469fc155ffd33",
+      "size_bytes": 157
+    },
+    {
+      "path": "pages/en/arguments/A0110.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0111.wiki",
+      "sha256": "17c9070dfc43f72b6bbf7d8dee1da2baa281604b541016fb451013d0a5d71f22",
+      "size_bytes": 627
+    },
+    {
+      "path": "pages/en/arguments/A0112.wiki",
+      "sha256": "f3db62ce7886b58797f023316d13adb494a91565a647c50fb88bae07632d5cf1",
+      "size_bytes": 1566
+    },
+    {
+      "path": "pages/en/arguments/A0113.wiki",
+      "sha256": "9a57e33d55d91984c6d4a5a6234427d96f0ff5f64db410ad0a6a3ee71d5bca15",
+      "size_bytes": 856
+    },
+    {
+      "path": "pages/en/arguments/A0114.wiki",
+      "sha256": "10f65a527512a113c2533da75779c5ddf94609186e49679cf6b011ee48185b95",
+      "size_bytes": 1509
+    },
+    {
+      "path": "pages/en/arguments/A0115.wiki",
+      "sha256": "4c2e861e440ffe537f4b1eb03e18fbb2b5b7f2846edf15596b1fc335a71c842f",
+      "size_bytes": 923
+    },
+    {
+      "path": "pages/en/arguments/A0116.wiki",
+      "sha256": "4fd919013ce41f0cd03ee9b6c6b78c30ce6a035dea6602b77a74e92fb13145d3",
+      "size_bytes": 1213
+    },
+    {
+      "path": "pages/en/arguments/A0117.wiki",
+      "sha256": "7196866053753eb362949b9557ce47fd913ef0a2292c86e53cb7c8666c127603",
+      "size_bytes": 1420
+    },
+    {
+      "path": "pages/en/arguments/A0118.wiki",
+      "sha256": "d2e5eea25baefd15ccde5ff31e20ca542e6d157677483ae627905a93d11c2e76",
+      "size_bytes": 493
+    },
+    {
+      "path": "pages/en/arguments/A0119.wiki",
+      "sha256": "a1edfbb2a439d94a7bf678dba4cc7ba46a0b71cbcaeef69a2700516c36908475",
+      "size_bytes": 1810
+    },
+    {
+      "path": "pages/en/arguments/A0120.wiki",
+      "sha256": "463ec14f54720dd0aa5aca68331a7806d2f9fdb9d2ffc93ae28b3a5ad192af7e",
+      "size_bytes": 780
+    },
+    {
+      "path": "pages/en/arguments/A0121.wiki",
+      "sha256": "16a4558920f931e8c5ffe2cf85d4f977156ad7e13f6d50f8c397545884d259cf",
+      "size_bytes": 377
+    },
+    {
+      "path": "pages/en/arguments/A0122.wiki",
+      "sha256": "3286be6063dae63b530252062908853834e69a5f4b539a2642a362bef0c5acec",
+      "size_bytes": 1313
+    },
+    {
+      "path": "pages/en/arguments/A0123.wiki",
+      "sha256": "ab695d8304334514d0f511edafd7ec580d7a201464108684019f21671a132045",
+      "size_bytes": 829
+    },
+    {
+      "path": "pages/en/arguments/A0124.wiki",
+      "sha256": "bc76971d4f5c015ad998a4dc611a8e21cd31ee3c7a15c5db724df39fcec52107",
+      "size_bytes": 766
+    },
+    {
+      "path": "pages/en/arguments/A0125.wiki",
+      "sha256": "4f1d3d75acb018c1474e52df9a5c0cc2cdb40e2f1777e08a3d7908fa138850e4",
+      "size_bytes": 455
+    },
+    {
+      "path": "pages/en/arguments/A0126.wiki",
+      "sha256": "80c6a0bd2190f5f73dbb3b18ce6bfc191e9351c3c76eee2b05793e036420f254",
+      "size_bytes": 82
+    },
+    {
+      "path": "pages/en/arguments/A0127.wiki",
+      "sha256": "721eaba04e2ed1b5f37f1ef154609d7833f3f49ae6d57427d17391c945b5a00d",
+      "size_bytes": 1048
+    },
+    {
+      "path": "pages/en/arguments/A0128.wiki",
+      "sha256": "f657e21a6243d230c9c8e45cb23bccd9dfa0869f87be27086564aa930e775121",
+      "size_bytes": 3026
+    },
+    {
+      "path": "pages/en/arguments/A0129.wiki",
+      "sha256": "614ec54892416bec3e3bb93ea592e3337b2fb41a73d4529935fc396fdd70f6b9",
+      "size_bytes": 1205
+    },
+    {
+      "path": "pages/en/arguments/A0130.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0131.wiki",
+      "sha256": "a29c716932e88dd5891a4b2dbe2ed61a893d48d38450ad4c12ad0d8a95d2648f",
+      "size_bytes": 247
+    },
+    {
+      "path": "pages/en/arguments/A0132.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0133.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0134.wiki",
+      "sha256": "8ad2456ebe7da54024ad7db5c15619543155ca19ab291e3ab5261b6e9303cabc",
+      "size_bytes": 1770
+    },
+    {
+      "path": "pages/en/arguments/A0135.wiki",
+      "sha256": "ba4ea19e5688e1ba386716641f592ec6afea84d3281a735a736c3b8a15cf19f7",
+      "size_bytes": 1509
+    },
+    {
+      "path": "pages/en/arguments/A0136.wiki",
+      "sha256": "6acf061a01d1c554bcf66cab662ed1eb65896e7332f53bb926c0f5279476f45f",
+      "size_bytes": 629
+    },
+    {
+      "path": "pages/en/arguments/A0137.wiki",
+      "sha256": "8385a67f06d1cec3c6fa9733b56a92ed71cd902a3c573a452b56ddd99c96c53f",
+      "size_bytes": 1049
+    },
+    {
+      "path": "pages/en/arguments/A0138.wiki",
+      "sha256": "2ba516fe29714efc69fc6beda36add241ed7a05d90f3526ffb2e7175a2bf4571",
+      "size_bytes": 968
+    },
+    {
+      "path": "pages/en/arguments/A0139.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0140.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0141.wiki",
+      "sha256": "70fa2906d654d371dbf3da3c73286ce76828c90ad6d87ce9430cdc8687ed719d",
+      "size_bytes": 968
+    },
+    {
+      "path": "pages/en/arguments/A0142.wiki",
+      "sha256": "c90ce8b83864573a9239b284169bb4755b78525bc020258bbe6ce190479e4c1e",
+      "size_bytes": 397
+    },
+    {
+      "path": "pages/en/arguments/A0143.wiki",
+      "sha256": "d158bf0ba90ac24b87e5d1afe84f15a0e28b1a8b78e2ee48dae8354a76b5aa2d",
+      "size_bytes": 528
+    },
+    {
+      "path": "pages/en/arguments/A0144.wiki",
+      "sha256": "51dc83908b080e6c7fdd77abcef68020854a0ac89641e6a036bccc693fcada2f",
+      "size_bytes": 562
+    },
+    {
+      "path": "pages/en/arguments/A0145.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0146.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0147.wiki",
+      "sha256": "0c1e31db1056353297a66adf4c69681aaf0d12a76870ff1e89ebc5abe2504178",
+      "size_bytes": 696
+    },
+    {
+      "path": "pages/en/arguments/A0148.wiki",
+      "sha256": "259ddead38946063de6f7188a2951d9ecdcad46a905c40fa71006749ca1baa2d",
+      "size_bytes": 13
+    },
+    {
+      "path": "pages/en/arguments/A0149.wiki",
+      "sha256": "1b4d664ad1f7e1cf17bed172bfb49d4e60bbcbd59a814f318b0e1d86a090f4ee",
+      "size_bytes": 254
+    },
+    {
+      "path": "pages/en/arguments/A0150.wiki",
+      "sha256": "f232b9bdb7083c5f5365f8a3d663f019600ec27042141c7d13d864dccd5cddeb",
+      "size_bytes": 127
+    },
+    {
+      "path": "pages/en/arguments/A0151.wiki",
+      "sha256": "6a609cf4aab45e89b617b387b7c92eec4b1af77be79367059398d8df560bbf37",
+      "size_bytes": 877
+    },
+    {
+      "path": "pages/en/arguments/A0152.wiki",
+      "sha256": "e74b82d3f91b14c649347140dc5ca7e2f5885b1632afd25ffd528229ec388dd7",
+      "size_bytes": 1470
+    },
+    {
+      "path": "pages/en/debate.wiki",
+      "sha256": "49a6a71b4c8f0537ff2a93a610962818a5bfe75d54aa5e294dcecf85af3da10e",
+      "size_bytes": 6702
+    }
+  ]
+}

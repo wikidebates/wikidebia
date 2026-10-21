@@ -1,0 +1,17 @@
+{{Argument
+|justifications={{Justification
+|page=Cannabis legalisation would greatly increase the number of users
+|displayed-title=Legalisation would greatly increase the number of users
+}}{{Justification
+|page=Cannabis legalisation would steer users towards hard drugs
+|displayed-title=Legalisation would steer users towards hard drugs
+}}{{Justification
+|page=Cannabis legalisation would endanger minors
+|displayed-title=Legalisation would endanger minors
+}}{{Justification
+|page=Cannabis legalisation would have excessive social and economic effects on disadvantaged suburbs
+|displayed-title=Legalisation would have excessive social and economic effects on disadvantaged suburbs
+}}
+|sections=Economy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, harmfulness
+}}

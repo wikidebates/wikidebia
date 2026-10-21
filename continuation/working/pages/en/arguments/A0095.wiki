@@ -1,0 +1,12 @@
+{{Argument
+|quotes={{Quote
+|quote=Enforcement agencies are now stepping up their efforts, particularly against users, and almost every detected offence now receives a criminal justice response.
+|authors=Robin Reda
+|article=Rapport d'étape sur le cannabis récréatif
+|work=Assemblée nationale
+|page=16
+|date=5 May 2021
+|link=https://www2.assemblee-nationale.fr/15/missions-d-information/missions-d-information-communes/reglementation-et-impact-des-differents-usages-du-cannabis/rapport-cannabis-recreatif/rapport-d-etape-cannabis-recreatif
+|warnings=AI-translated quote
+}}
+}}

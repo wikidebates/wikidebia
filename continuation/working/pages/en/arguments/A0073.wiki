@@ -1,0 +1,21 @@
+{{Argument
+|summary=Internationally, cannabis has been classified as a narcotic drug since 1925. Its production, trade, supply, possession and use are prohibited in all countries that have signed the [https://en.wikipedia.org/wiki/Drug_prohibition international drug conventions] (the 1961 Single Convention and the 1988 Convention).
+|objections={{Objection
+|page=International conventions do not require cannabis use to be criminalised
+|displayed-title=International conventions do not require use to be criminalised
+}}{{Objection
+|page=The Global Commission on Drug Policy advocates cannabis legalisation
+|displayed-title=The Global Commission on Drug Policy advocates legalisation
+}}{{Objection
+|page=Strict adherence to drug conventions conflicts with international human rights treaties
+|displayed-title=Strict adherence to drug conventions conflicts with international human rights treaties
+}}{{Objection
+|page=Cannabis legalisation might be possible through prosecutorial discretion or a scientific experiment
+|displayed-title=Legalisation should be possible through prosecutorial discretion or a scientific experiment
+}}{{Objection
+|page=INCB criticism did not prevent Uruguay from legalising cannabis
+|displayed-title=Uruguay legalised cannabis despite INCB criticism
+}}
+|sections=Health, Society
+|keywords=cannabis, decriminalisation, impossibility
+}}

@@ -1,0 +1,13 @@
+{{Argument
+|quotes={{Quote
+|quote=Legalising the market for certain forms of cannabis could also help create a parallel market selling more potent cannabis with stronger effects, which is also something consumers seek.
+|authors=Christophe Soullez
+|article=Légaliser le cannabis et sa production comme l'Uruguay est-il vraiment l'arme qui aura la peau des trafics ?
+|work=Atlantico
+|date=16 December 2013
+|link=https://www.atlantico.fr/decryptage/legaliser-cannabis-et-production-comme-uruguay-est-vraiment-arme-qui-aura-peau-trafics-christophe-soullez-david-weinberger-926125.html
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

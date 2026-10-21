@@ -1,0 +1,1501 @@
+{
+  "status": "incomplete_editorial_authentication",
+  "note": "A match is a lexical observation, not verification of attribution, original edition, truth or contemporary applicability. No quotation altered or removed.",
+  "quotes": [
+    {
+      "quote_id": "Q001",
+      "page_id": "A0001",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q002",
+      "page_id": "A0001",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "challenge_page_not_article",
+      "url": "https://www.lemonde.fr/societe/article/2011/06/15/la-france-plus-severe-que-ses-voisins-europeens_1536402_3224.html"
+    },
+    {
+      "quote_id": "Q003",
+      "page_id": "A0003",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q004",
+      "page_id": "A0004",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q005",
+      "page_id": "A0005",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q006",
+      "page_id": "A0008",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q007",
+      "page_id": "A0009",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_match_in_consulted_document",
+      "url": "https://www.assemblee-nationale.fr/13/rap-info/i3612-ti.asp#P1085_352797",
+      "response_sha256": "08674e92c45bf85de5ef6aa6d9e2b8dcf816955164c6c732a7da04738ff8279a",
+      "full_quoted_text_match": true
+    },
+    {
+      "quote_id": "Q008",
+      "page_id": "A0010",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q009",
+      "page_id": "A0010",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.lutte-ouvriere.org/sites/default/files/presentation/Drogue-et-societe.pdf"
+    },
+    {
+      "quote_id": "Q010",
+      "page_id": "A0011",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q011",
+      "page_id": "A0011",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q012",
+      "page_id": "A0013",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q013",
+      "page_id": "A0015",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "challenge_page_not_article",
+      "url": "https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html"
+    },
+    {
+      "quote_id": "Q014",
+      "page_id": "A0015",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q015",
+      "page_id": "A0016",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q016",
+      "page_id": "A0018",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "challenge_page_not_article",
+      "url": "https://www.lemonde.fr/idees/article/2011/12/30/il-faut-depenaliser-l-usage-de-drogue_1624418_3232.html"
+    },
+    {
+      "quote_id": "Q017",
+      "page_id": "A0019",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q018",
+      "page_id": "A0019",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q019",
+      "page_id": "A0020",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "challenge_page_not_article",
+      "url": "https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html"
+    },
+    {
+      "quote_id": "Q020",
+      "page_id": "A0021",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q021",
+      "page_id": "A0023",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q022",
+      "page_id": "A0023",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "challenge_page_not_article",
+      "url": "https://www.lemonde.fr/idees/article/2012/11/10/le-cannabis-chut_1787901_3232.html"
+    },
+    {
+      "quote_id": "Q023",
+      "page_id": "A0024",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_match_in_consulted_document",
+      "url": "https://www.rtbf.be/article/asia-argento-sur-metoo-cetait-mon-devoir-de-parler-11013220",
+      "response_sha256": "c710438373228dc81b78851ffa1ee3f277aab2ba259f0104cbafe3c897a1ddfb",
+      "full_quoted_text_match": true
+    },
+    {
+      "quote_id": "Q024",
+      "page_id": "A0025",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q025",
+      "page_id": "A0028",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://www.lesoir.be/art/1096562/article/actualite/sciences-et-sante/2016-01-18/vers-fin-prohibition-des-drogues",
+      "response_sha256": "73c14bb8a5784cde1e1193a1195ca00fac42041c84a90ec258d0c581543a6f10",
+      "full_quoted_text_match": false
+    },
+    {
+      "quote_id": "Q026",
+      "page_id": "A0030",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q027",
+      "page_id": "A0030",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "challenge_page_not_article",
+      "url": "https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html"
+    },
+    {
+      "quote_id": "Q028",
+      "page_id": "A0030",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q029",
+      "page_id": "A0031",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q030",
+      "page_id": "A0032",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q031",
+      "page_id": "A0034",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q032",
+      "page_id": "A0034",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q033",
+      "page_id": "A0036",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q034",
+      "page_id": "A0037",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q035",
+      "page_id": "A0037",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://hyperdebat.net/cannabis-ils-ont-change-d-avis.html",
+      "response_sha256": "c353dc02b8cad04777621a8c5704f85206f00a64daec701870ea1f616b7af870",
+      "full_quoted_text_match": false
+    },
+    {
+      "quote_id": "Q036",
+      "page_id": "A0038",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q037",
+      "page_id": "A0039",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q038",
+      "page_id": "A0039",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q039",
+      "page_id": "A0039",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q040",
+      "page_id": "A0039",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://inpes.santepubliquefrance.fr/cfesbases/catalogue/pdf/805.pdf"
+    },
+    {
+      "quote_id": "Q041",
+      "page_id": "A0040",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q042",
+      "page_id": "A0041",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_match_in_consulted_document",
+      "url": "http://www.slate.fr/story/201090/irene-terreur-feministe-bonnes-feuilles-violence-femmes-patriarcat-feminicides-viols-agressions",
+      "response_sha256": "4c80d480a01800bfa6565a29c629843490329fb055ef85b79f7fe99d3fed1466",
+      "full_quoted_text_match": true
+    },
+    {
+      "quote_id": "Q043",
+      "page_id": "A0041",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_match_in_consulted_document",
+      "url": "https://www.mediapart.fr/journal/france/190422/derriere-la-dediabolisation-de-marine-le-pen-le-veritable-danger-du-rn-pour-les-lgbti#at_medium=custom7&at_campaign=1047",
+      "response_sha256": "b81a8a1dd0854fe159ef8d49a535a4269e6b7a8e63af3639d34af7977d27ed80",
+      "full_quoted_text_match": true
+    },
+    {
+      "quote_id": "Q044",
+      "page_id": "A0041",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://www.slate.fr/story/115991/guerre-contre-la-drogue-nixon-noirs-hippies",
+      "response_sha256": "2ecf4737bc93795077a32010e73370effe7e58b7ebabd2853ae2ac0724817bb6",
+      "full_quoted_text_match": false
+    },
+    {
+      "quote_id": "Q045",
+      "page_id": "A0041",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 403,
+      "error": null,
+      "url": "https://reporterre.net/Et-si-on-vivait-sans-police"
+    },
+    {
+      "quote_id": "Q046",
+      "page_id": "A0041",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_match_in_consulted_document",
+      "url": "https://www.francetvinfo.fr/monde/asie/l-ex-president-des-philippines-rodrigo-duterte-accuse-de-crimes-contre-l-humanite-a-comparu-devant-la-cour-penale-internationale_7129974.html",
+      "response_sha256": "82b64bb8a71f718a09d7a24c5e7cce4b8e8f5a0ed97fc543ca8f1a1c4d60ae47",
+      "full_quoted_text_match": true
+    },
+    {
+      "quote_id": "Q047",
+      "page_id": "A0042",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q048",
+      "page_id": "A0043",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q049",
+      "page_id": "A0044",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q050",
+      "page_id": "A0044",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q051",
+      "page_id": "A0044",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q052",
+      "page_id": "A0044",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": null,
+      "error": "HTTPSConnectionPool(host='www.liberation.fr', port=443): Max retries exceeded with url: /societe/2014/02/05/cannabis-un-requisitoire-contre-la-loi_978254 (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))",
+      "url": "https://www.liberation.fr/societe/2014/02/05/cannabis-un-requisitoire-contre-la-loi_978254"
+    },
+    {
+      "quote_id": "Q053",
+      "page_id": "A0046",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q054",
+      "page_id": "A0046",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q055",
+      "page_id": "A0047",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q056",
+      "page_id": "A0047",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q057",
+      "page_id": "A0048",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q058",
+      "page_id": "A0049",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q059",
+      "page_id": "A0049",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q060",
+      "page_id": "A0050",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q061",
+      "page_id": "A0051",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "challenge_page_not_article",
+      "url": "https://www.lemonde.fr/societe/article/2011/06/15/la-france-plus-severe-que-ses-voisins-europeens_1536402_3224.html"
+    },
+    {
+      "quote_id": "Q062",
+      "page_id": "A0052",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": null,
+      "error": "HTTPSConnectionPool(host='www.liberation.fr', port=443): Max retries exceeded with url: /societe/2014/02/05/cannabis-un-requisitoire-contre-la-loi_978254 (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))",
+      "url": "https://www.liberation.fr/societe/2014/02/05/cannabis-un-requisitoire-contre-la-loi_978254"
+    },
+    {
+      "quote_id": "Q063",
+      "page_id": "A0053",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata",
+      "priority_review": "Titre/attribution exacts à authentifier ; les recherches bibliographiques consultées ne suffisent pas à établir l’édition et le texte cités. Ne pas conclure à une falsification sur la seule absence de résultat."
+    },
+    {
+      "quote_id": "Q064",
+      "page_id": "A0057",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata",
+      "priority_review": "Titre/attribution exacts à authentifier ; les recherches bibliographiques consultées ne suffisent pas à établir l’édition et le texte cités. Ne pas conclure à une falsification sur la seule absence de résultat."
+    },
+    {
+      "quote_id": "Q065",
+      "page_id": "A0060",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q066",
+      "page_id": "A0061",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q067",
+      "page_id": "A0061",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_match_in_consulted_document",
+      "url": "https://sante.lefigaro.fr/actualite/2011/09/04/11032-peut-on-envisager-legaliser-cannabis",
+      "response_sha256": "2ab4b98c49a95f22e67155158b786edd2faf9f9ef5af5bcba0cc8312bbc4d5cd",
+      "full_quoted_text_match": true
+    },
+    {
+      "quote_id": "Q068",
+      "page_id": "A0061",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "challenge_page_not_article",
+      "url": "https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html"
+    },
+    {
+      "quote_id": "Q069",
+      "page_id": "A0063",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata",
+      "priority_review": "Titre/attribution exacts à authentifier ; les recherches bibliographiques consultées ne suffisent pas à établir l’édition et le texte cités. Ne pas conclure à une falsification sur la seule absence de résultat."
+    },
+    {
+      "quote_id": "Q070",
+      "page_id": "A0064",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "challenge_page_not_article",
+      "url": "https://www.lemonde.fr/societe/article/2011/08/02/legaliser-le-cannabis-rapporterait-1-milliard-d-euros-miste-pierre-kopp-autoriser-la-consommation-degagerait-des-moyens-pour-la-prevention_1555243_3224.html"
+    },
+    {
+      "quote_id": "Q071",
+      "page_id": "A0064",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q072",
+      "page_id": "A0066",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://www.slate.fr/story/156994/etats-unis-legalisation-cannabis-chute-ventes-alcool",
+      "response_sha256": "101260be2dd2d8bb1df4358f280d7a1f3e021105fc1293acecddeab4e7b8ed3e",
+      "full_quoted_text_match": false
+    },
+    {
+      "quote_id": "Q073",
+      "page_id": "A0067",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 403,
+      "error": null,
+      "url": "https://www.franceinter.fr/emissions/les-histoires-du-monde/les-histoires-du-monde-15-janvier-2018"
+    },
+    {
+      "quote_id": "Q074",
+      "page_id": "A0068",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://www.lexpress.fr/actualite/monde/amerique-nord/la-legalisation-du-cannabis-ferait-baisser-les-morts-par-overdose_2093650.html",
+      "response_sha256": "203c0b7704c870fe69ab27f9f1652e0bcf6502b7ff5b0c2d4a116537ccbfdd20",
+      "full_quoted_text_match": false
+    },
+    {
+      "quote_id": "Q075",
+      "page_id": "A0070",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q076",
+      "page_id": "A0071",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q077",
+      "page_id": "A0072",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.lien-social.com/Depenalisation-legalisation-statu-quo"
+    },
+    {
+      "quote_id": "Q078",
+      "page_id": "A0074",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q079",
+      "page_id": "A0076",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q080",
+      "page_id": "A0078",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q081",
+      "page_id": "A0081",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_match_in_consulted_document",
+      "url": "https://fbe-international.com/articles/la-prohibition-aux-etats-unis-dans-les-1920-un-echec-cuisant/",
+      "response_sha256": "ac80a83b03288218d59149705c4b71ee08a0aa05adbd276a248dbf9a13a7d7bf",
+      "full_quoted_text_match": true
+    },
+    {
+      "quote_id": "Q082",
+      "page_id": "A0082",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": null,
+      "error": "HTTPSConnectionPool(host='www.liberation.fr', port=443): Max retries exceeded with url: /planete/2017/12/25/onze-ans-d-efforts-200-000-morts-et-des-cartels-au-plus-fort_1618862/ (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))",
+      "url": "https://www.liberation.fr/planete/2017/12/25/onze-ans-d-efforts-200-000-morts-et-des-cartels-au-plus-fort_1618862/"
+    },
+    {
+      "quote_id": "Q083",
+      "page_id": "A0083",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 403,
+      "error": null,
+      "url": "https://www.lecho.be/economie-politique/belgique-general/Le-cannabis-se-mutualise-a-defaut-d-etre-reglemente/9945069"
+    },
+    {
+      "quote_id": "Q084",
+      "page_id": "A0084",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q085",
+      "page_id": "A0085",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q086",
+      "page_id": "A0085",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q087",
+      "page_id": "A0086",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q088",
+      "page_id": "A0086",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q089",
+      "page_id": "A0087",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q090",
+      "page_id": "A0087",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q091",
+      "page_id": "A0087",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q092",
+      "page_id": "A0088",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_match_in_consulted_document",
+      "url": "https://www.theguardian.com/commentisfree/2013/dec/12/heroic-uruguay-deserves-nobel-prize-cannabis",
+      "response_sha256": "6ae659f80f451493fba41b0f2bedfa2ab26c6bb193920e9fbc566888daa13f71",
+      "full_quoted_text_match": true
+    },
+    {
+      "quote_id": "Q093",
+      "page_id": "A0089",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q094",
+      "page_id": "A0089",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://www.assemblee-nationale.fr/13/rap-info/i3612-ti.asp#P1085_352797",
+      "response_sha256": "08674e92c45bf85de5ef6aa6d9e2b8dcf816955164c6c732a7da04738ff8279a",
+      "full_quoted_text_match": false
+    },
+    {
+      "quote_id": "Q095",
+      "page_id": "A0089",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "challenge_page_not_article",
+      "url": "https://www.lemonde.fr/idees/article/2011/12/30/il-faut-depenaliser-l-usage-de-drogue_1624418_3232.html"
+    },
+    {
+      "quote_id": "Q096",
+      "page_id": "A0089",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q097",
+      "page_id": "A0094",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q098",
+      "page_id": "A0094",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "challenge_page_not_article",
+      "url": "https://www.lemonde.fr/sciences/article/2018/07/08/raquel-peyraube-addictologue-et-militante-pour-le-cannabis-medical_5328066_1650684.html"
+    },
+    {
+      "quote_id": "Q099",
+      "page_id": "A0095",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://www2.assemblee-nationale.fr/15/missions-d-information/missions-d-information-communes/reglementation-et-impact-des-differents-usages-du-cannabis/rapport-cannabis-recreatif/rapport-d-etape-cannabis-recreatif",
+      "response_sha256": "cacfcf9444921b849edf242cc640888063bc43639fbbc932a5540f73caffee34",
+      "full_quoted_text_match": false
+    },
+    {
+      "quote_id": "Q100",
+      "page_id": "A0097",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q101",
+      "page_id": "A0097",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "challenge_page_not_article",
+      "url": "https://www.lemonde.fr/idees/article/2012/11/10/le-cannabis-chut_1787901_3232.html"
+    },
+    {
+      "quote_id": "Q102",
+      "page_id": "A0098",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q103",
+      "page_id": "A0099",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata",
+      "priority_review": "Titre/attribution exacts à authentifier ; les recherches bibliographiques consultées ne suffisent pas à établir l’édition et le texte cités. Ne pas conclure à une falsification sur la seule absence de résultat."
+    },
+    {
+      "quote_id": "Q104",
+      "page_id": "A0100",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q105",
+      "page_id": "A0100",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.lutte-ouvriere.org/sites/default/files/presentation/Drogue-et-societe.pdf"
+    },
+    {
+      "quote_id": "Q106",
+      "page_id": "A0103",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://laclac.org/wp-content/uploads/2020/11/BROCHURE_de%CC%81construction.pdf&"
+    },
+    {
+      "quote_id": "Q107",
+      "page_id": "A0103",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_match_in_consulted_document",
+      "url": "https://www.ptb.be/actualites/un-depute-visite-la-prison-je-comprends-la-colere-des-gardiens",
+      "response_sha256": "98e7110eecb820f52853397e1aedf1b81a5932991ea945e0caad37a419658fcc",
+      "full_quoted_text_match": true
+    },
+    {
+      "quote_id": "Q108",
+      "page_id": "A0105",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q109",
+      "page_id": "A0106",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q110",
+      "page_id": "A0107",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://www.assemblee-nationale.fr/13/rap-info/i3612-ti.asp#P1085_352797",
+      "response_sha256": "08674e92c45bf85de5ef6aa6d9e2b8dcf816955164c6c732a7da04738ff8279a",
+      "full_quoted_text_match": false
+    },
+    {
+      "quote_id": "Q111",
+      "page_id": "A0107",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q112",
+      "page_id": "A0108",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://www.assemblee-nationale.fr/13/rap-info/i3612-ti.asp#P1085_352797",
+      "response_sha256": "08674e92c45bf85de5ef6aa6d9e2b8dcf816955164c6c732a7da04738ff8279a",
+      "full_quoted_text_match": false
+    },
+    {
+      "quote_id": "Q113",
+      "page_id": "A0108",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q114",
+      "page_id": "A0108",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q115",
+      "page_id": "A0111",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q116",
+      "page_id": "A0112",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://www.ofdt.fr/BDD/publications/docs/cdemarch.pdf",
+      "response_sha256": "eafb44ae9c2a1c43ca39d6ddec72419ff24c035827399a8e6cb1c1b98b3f980c",
+      "full_quoted_text_match": false
+    },
+    {
+      "quote_id": "Q117",
+      "page_id": "A0113",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_url_now_unrelated_gambling_page",
+      "url": "https://jeanyvesnau.com/2014/03/27/cannabis-non-lacademie-nationale-de-medecine-ne-remplit-pas-sa-mission/",
+      "observed_title": "TAMBANG888 | Akses Link Resmi Game Toto Online dan Tools Pola Kemenangan",
+      "archived_source_full_text_match": true,
+      "archived_attribution_checked": true,
+      "archive_access": {
+        "url": "https://web.archive.org/web/20140327135120/http://jeanyvesnau.com/2014/03/27/cannabis-non-lacademie-nationale-de-medecine-ne-remplit-pas-sa-mission/",
+        "http_status": 200,
+        "final_url": "https://web.archive.org/web/20140327135120/http://jeanyvesnau.com/2014/03/27/cannabis-non-lacademie-nationale-de-medecine-ne-remplit-pas-sa-mission/",
+        "accessed_at": "2026-10-21T08:44:08.044298+00:00",
+        "sha256": "1cbec2afe66fb2b293bd410a24c8b91c26641a2ba4caad90c1d1f7a1aea24c2b"
+      },
+      "note": "Le lien actuel est sans rapport avec la source. Le texte historique et l’attribution Didier Jayle sont retrouvés dans une capture de mars 2014. Les métadonnées de la Citation/Quote restent inchangées."
+    },
+    {
+      "quote_id": "Q118",
+      "page_id": "A0114",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_match_in_consulted_document",
+      "url": "https://www.madmoizelle.com/magouilles-pharmaceutiques-toxicomanie-dopesick-ou-lenfer-dune-amerique-en-pleine-crise-des-opioides-1213529",
+      "response_sha256": "4b8fe2ba077e1d1f2041ba175581387eb39d21967ddbcc9d344b321bf589ccc0",
+      "full_quoted_text_match": true
+    },
+    {
+      "quote_id": "Q119",
+      "page_id": "A0115",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": null,
+      "error": "HTTPSConnectionPool(host='www.liberation.fr', port=443): Max retries exceeded with url: /international/europe/au-portugal-le-succes-de-la-depenalisation-generale-des-drogues-20260617_PL2SYLOJTBCWXBSJ55WFL6TRWY/ (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))",
+      "url": "https://www.liberation.fr/international/europe/au-portugal-le-succes-de-la-depenalisation-generale-des-drogues-20260617_PL2SYLOJTBCWXBSJ55WFL6TRWY/"
+    },
+    {
+      "quote_id": "Q120",
+      "page_id": "A0116",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://edition.cnn.com/2013/08/08/health/gupta-changed-mind-marijuana/index.html",
+      "response_sha256": "60979f1d6e5f8b8ee5b926fa8de49e903214a3ae1063bda24793702e99e941c4",
+      "full_quoted_text_match": false,
+      "note": "Le texte anglais fourni par la Citation française omet sans marque d’ellipse la précision schedule 2 ... with less abuse potential ... du paragraphe CNN et la fin many of whom go on to die ... . Écart déjà présent dans la source française, conservé sans correction silencieuse ; ne pas le qualifier de copie intégrale du texte CNN."
+    },
+    {
+      "quote_id": "Q121",
+      "page_id": "A0116",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q122",
+      "page_id": "A0117",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q123",
+      "page_id": "A0118",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q124",
+      "page_id": "A0119",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "challenge_page_not_article",
+      "url": "https://www.lemonde.fr/societe/article/2011/08/02/legaliser-le-cannabis-rapporterait-1-milliard-d-euros-miste-pierre-kopp-autoriser-la-consommation-degagerait-des-moyens-pour-la-prevention_1555243_3224.html"
+    },
+    {
+      "quote_id": "Q125",
+      "page_id": "A0119",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://www.slate.fr/story/40067/cannabis-vente-libre-filiere-vaillant",
+      "response_sha256": "083de90965a67a602943572d0b5edfb5806b15c672feeb98b330b70104978831",
+      "full_quoted_text_match": false
+    },
+    {
+      "quote_id": "Q126",
+      "page_id": "A0120",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "challenge_page_not_article",
+      "url": "https://www.lemonde.fr/sciences/article/2018/07/08/raquel-peyraube-addictologue-et-militante-pour-le-cannabis-medical_5328066_1650684.html"
+    },
+    {
+      "quote_id": "Q127",
+      "page_id": "A0121",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q128",
+      "page_id": "A0122",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": null,
+      "error": "HTTPSConnectionPool(host='www.sciencesetavenir.fr', port=443): Max retries exceeded with url: /sante/l-alcool-dangereux-pour-la-sante-des-le-premier-verre-selon-une-meta-analyse-du-lancet_126904.amp (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))",
+      "url": "https://www.sciencesetavenir.fr/sante/l-alcool-dangereux-pour-la-sante-des-le-premier-verre-selon-une-meta-analyse-du-lancet_126904.amp"
+    },
+    {
+      "quote_id": "Q129",
+      "page_id": "A0122",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_match_in_consulted_document",
+      "url": "https://www.futura-sciences.com/sante/actualites/maladie-alzheimer-alzheimer-chercheurs-identifient-boisson-consommee-millions-francais-comme-facteur-risque-majeur-k2m6-135735/",
+      "response_sha256": "11e888cbbdc07742a519be7b4cb904fb99d7c7afb4549dd8da2fa7c09d45dbca",
+      "full_quoted_text_match": true
+    },
+    {
+      "quote_id": "Q130",
+      "page_id": "A0123",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q131",
+      "page_id": "A0124",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q132",
+      "page_id": "A0127",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://www.ofdt.fr/produits-et-addictions/de-z/cannabis/#perc",
+      "response_sha256": "311eabdac3dc30f947a4259349da5535047b733f1eb92b89341c2fa5ce4a1b10",
+      "full_quoted_text_match": false
+    },
+    {
+      "quote_id": "Q133",
+      "page_id": "A0127",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_match_in_consulted_document",
+      "url": "https://www.newsweed.fr/francais-legalisation-cannabis/",
+      "response_sha256": "41733a9247f23995a26e6757a7bb2e00864b8489b03c9a2c464100892efda574",
+      "full_quoted_text_match": true
+    },
+    {
+      "quote_id": "Q134",
+      "page_id": "A0128",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_match_in_consulted_document",
+      "url": "https://www.lefigaro.fr/sciences/drogues-la-prohibition-une-efficacite-illusoire-20210505",
+      "response_sha256": "cf0cff21a5c842e043974ea77a572bc0e8347ad518fb640e9aeea23bafa52476",
+      "full_quoted_text_match": true
+    },
+    {
+      "quote_id": "Q135",
+      "page_id": "A0128",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://www.agoravox.fr/tribune-libre/article/vin-sante-mensonges-et-propagande-136873",
+      "response_sha256": "719fc52a2fe9f903f0eb5bf9d99c5283e18904ae2b0ff81f1770d8838bb06184",
+      "full_quoted_text_match": false
+    },
+    {
+      "quote_id": "Q136",
+      "page_id": "A0128",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://www.lutte-ouvriere.org/breves/vino-veritas-726502.html",
+      "response_sha256": "e536541cbc664c6db65eea5ed0b11e9a6c6ee6207b92c8a66deb30ab19e0e007",
+      "full_quoted_text_match": false
+    },
+    {
+      "quote_id": "Q137",
+      "page_id": "A0128",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://lutte-ouvriere.org/portail/journal/2004-10-21-les-lobbies-vinicoles-poussent-la-consommation_9501.html",
+      "response_sha256": "d9de549e58452bd61bdcc0b0029321e25f5a14ac5ab13f631e21425f74ba4fcd",
+      "full_quoted_text_match": false
+    },
+    {
+      "quote_id": "Q138",
+      "page_id": "A0129",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "challenge_page_not_article",
+      "url": "https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html"
+    },
+    {
+      "quote_id": "Q139",
+      "page_id": "A0134",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q140",
+      "page_id": "A0134",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_match_in_consulted_document",
+      "url": "https://presse.inserm.fr/conduites-addictives-chez-les-adolescents-une-expertise-collective-de-linserm/11035/",
+      "response_sha256": "5ee79bc012e8195a1a770ffb4474923fbb2c0fe0dee75e45ec98bd0a56ab98e8",
+      "full_quoted_text_match": true
+    },
+    {
+      "quote_id": "Q141",
+      "page_id": "A0135",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q142",
+      "page_id": "A0135",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "challenge_page_not_article",
+      "url": "https://www.lemonde.fr/idees/article/2012/11/10/le-cannabis-chut_1787901_3232.html"
+    },
+    {
+      "quote_id": "Q143",
+      "page_id": "A0136",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": null,
+      "error": "HTTPSConnectionPool(host='ici.radio-canada.ca', port=443): Max retries exceeded with url: /nouvelle/1119257/legalisation-cannabis-vente-alcool-canada-impact (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))",
+      "url": "https://ici.radio-canada.ca/nouvelle/1119257/legalisation-cannabis-vente-alcool-canada-impact"
+    },
+    {
+      "quote_id": "Q144",
+      "page_id": "A0137",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": 404,
+      "error": null,
+      "url": "https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/"
+    },
+    {
+      "quote_id": "Q145",
+      "page_id": "A0138",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q146",
+      "page_id": "A0141",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "source_unavailable",
+      "http_status": null,
+      "error": "HTTPSConnectionPool(host='www.liberation.fr', port=443): Max retries exceeded with url: /societe/2014/04/13/il-faut-une-approche-ni-hypocrite-ni-bisounours_996796 (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))",
+      "url": "https://www.liberation.fr/societe/2014/04/13/il-faut-une-approche-ni-hypocrite-ni-bisounours_996796"
+    },
+    {
+      "quote_id": "Q147",
+      "page_id": "A0147",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "full_text_not_matched_requires_editorial_authentication",
+      "url": "https://www.atlantico.fr/decryptage/legaliser-cannabis-et-production-comme-uruguay-est-vraiment-arme-qui-aura-peau-trafics-christophe-soullez-david-weinberger-926125.html",
+      "response_sha256": "d5107cd994d2c23dfaaab7d91f130d1db9bceb000ee60e7f8a4323335dfe7652",
+      "full_quoted_text_match": false
+    },
+    {
+      "quote_id": "Q148",
+      "page_id": "A0151",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    },
+    {
+      "quote_id": "Q149",
+      "page_id": "A0152",
+      "quoted_text_preserved": true,
+      "online_authenticity_verified": false,
+      "english_edition_verified": false,
+      "status": "no_direct_source_url_in_original_metadata"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{{Argument
+|quotes={{Quote
+|quote=What is prohibited here is allowed elsewhere, and the same is true across different periods within a single civilisation. Private drug use was tolerated before the 1970 law and could just as well be tolerated again…
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=78
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition
+}}

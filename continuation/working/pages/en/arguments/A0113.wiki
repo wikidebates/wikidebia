@@ -1,0 +1,13 @@
+{{Argument
+|summary=Cannabis alone increases the risk, but by a factor of two—the same as alcohol at the permitted blood alcohol concentration of 0.5 g/L.
+|quotes={{Quote
+|quote=Alcohol is responsible for the majority of fatal road accidents (around 30%); combined alcohol and cannabis use is also a factor (risk multiplied by fifteen, whereas cannabis alone does increase the risk, but by a factor of two—the same as alcohol at the permitted concentration of 0.5 g/L). (SAM study)
+|authors=Didier Jayle
+|article=Cannabis : « Non l’Académie de Médecine ne remplit pas sa mission ! »
+|date=27 March 2014
+|link=https://jeanyvesnau.com/2014/03/27/cannabis-non-lacademie-nationale-de-medecine-ne-remplit-pas-sa-mission/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, road accidents
+}}

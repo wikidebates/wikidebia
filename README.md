@@ -24,3 +24,14 @@ cette autre branche dans main non plus. Aucun secret ni état privé n'est inclu
 
 Les travaux de reprise sont consignés séparément sous `continuation/` ;
 l'archive de version 2 et ses fichiers internes demeurent immuables.
+
+## Reprise documentaire en cours
+
+Voir [l'état détaillé](continuation/ETAT_REPRISE.md), les
+[pages de travail](continuation/working/pages/en/) et leur
+[manifeste d'intégrité](continuation/working-files-manifest.json).
+Cinq sources ont été sélectionnées après consultation ; la recherche et les
+revues restent ouvertes. Les 149 citations et les 120 absences de résumé sont
+conservées. Le correctif nécessaire au transport des deux passages hors citations
+est proposé séparément dans la [PR de code en brouillon n° 9](https://github.com/wikidebates/wikidebia/pull/9).
+Ni fusion ni validation officielle ni publication wiki.

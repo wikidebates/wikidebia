@@ -1,0 +1,12 @@
+{{Argument
+|quotes={{Quote
+|quote=By the early 1930s, the experiment's failure was obvious and widely acknowledged. It was clear that Prohibition had produced a boom in organised crime and had helped corruption spread considerably through politics and the judiciary. It had also caused obvious damage to public finances: lost tax and customs revenues were substantial, while fraud and smuggling were out of control.
+Nor was there any decisive fall in alcohol consumption to offset this heavy toll. Quite the contrary!
+|authors=François Bujon de l'Estang
+|article=La prohibition aux Etats-Unis dans les 1920 : Un échec cuisant
+|work=Colloque de l’Académie du Vin de France et de la Société de Géographie
+|date=27 January 2012
+|link=https://fbe-international.com/articles/la-prohibition-aux-etats-unis-dans-les-1920-un-echec-cuisant/
+|warnings=AI-translated quote
+}}
+}}

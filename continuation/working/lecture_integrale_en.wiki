@@ -1,0 +1,3297 @@
+== Should cannabis be legalised? ==
+
+{{Debate
+|topic=Cannabis
+|expanded-topic=the legalisation of cannabis
+|progress=Constructed debate
+|debate-warnings=Unbalanced debate
+|introduction={{Subsection
+|title=The question
+|content='''Should cannabis be legalised?''' The debate brings together competing assessments of public health, individual liberty, public safety and the effects of prohibition. Supporters of legalisation emphasise product regulation and a smaller illicit market; opponents highlight the risks of normalisation, dependence and commercialisation.
+
+This debate focuses on France. Experience elsewhere informs some of the arguments, but findings need to be understood in relation to the country, period and indicators studied.
+}}{{Subsection
+|title=Decriminalisation and legalisation: two different reforms
+|content=In this debate, '''decriminalisation''' means removing or reducing criminal penalties for certain conduct. Depending on the approach adopted, administrative sanctions may remain. Under French law, reclassifying a ''délit'' as a ''contravention'' does not, by itself, take an offence outside the criminal law.
+
+'''Legalisation''' permits previously prohibited activities within a defined framework, whether production, distribution, sale or use. It does not necessarily mean unrestricted or unregulated sales. Restrictions on age, advertising, quality and quantity may vary.
+
+Portugal's reform, which came into force in 2001, decriminalised drug use, acquisition and possession for personal use under the conditions set out in the law. It did not legalise trafficking or establish a legal commercial drug market<ref>[https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf EMCDDA, Portugal — Country Drug Report 2019, “National drug laws”].</ref>.
+<references />
+}}{{Subsection
+|title=The legal position in France
+|content=Unlawful use of controlled drugs remains a criminal offence in France. The Service Public information page reviewed on 21 August 2026 states that use carries a maximum penalty of one year's imprisonment and a €3,750 fine. Offences relating to supply, trafficking, cultivation or driving after drug use must be distinguished: this maximum cannot be applied indiscriminately to all of them<ref name="sp-usage-2026">[https://www.service-public.gouv.fr/particuliers/vosdroits/F33341?lang=en What is the risk for drug use?], Service Public / DILA, information page reviewed on 21 August 2026.</ref>.
+
+'''A fixed fine does not mean decriminalisation of use'''
+
+According to the same dated page, the fixed fine is €500, reduced to €400 if paid within fifteen days and increased to €1,000 after forty-five days. This procedure does not make drug use legal and is not the same as reclassifying the offence as a ''contravention''. The amounts and conditions must be checked against the law in force for the period concerned<ref name="sp-usage-2026" />.
+
+<references />
+}}{{Subsection
+|title=Comparing experience in other countries
+|content=Canada opened a legal market for non-medical cannabis in 2018. Its expert panel reported progress in 2024 in regulated supply and the shift in demand towards the legal market, alongside persistent problems, particularly protecting young people and addressing high-THC products<ref>[https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html Legislative Review of the Cannabis Act: Final Report of the Expert Panel], Health Canada, 2024.</ref>.
+
+Portugal's approach is one of decriminalisation and should not be equated with this form of legalisation. In each country, rules on use, the organisation of supply, health indicators and the role of the illicit market need to be considered separately.
+<references />
+}}
+|pro-arguments={{Pro argument
+|page=Cannabis prohibition is ineffective
+|displayed-title=Prohibition is ineffective
+}}{{Pro argument
+|page=Cannabis prohibition harms users
+|displayed-title=Prohibition harms users
+}}{{Pro argument
+|page=Cannabis prohibition harms society
+|displayed-title=Prohibition harms society
+}}{{Pro argument
+|page=Cannabis prohibition lacks legitimacy
+|displayed-title=Prohibition lacks legitimacy
+}}{{Pro argument
+|page=France's 1970 drug law is ill-suited to its purpose
+|displayed-title=The 1970 law is ill-suited to its purpose
+}}{{Pro argument
+|page=Cannabis legalisation would be beneficial
+|displayed-title=Legalisation would be beneficial
+}}{{Pro argument
+|page=Cannabis legalisation allows quality control
+|displayed-title=Legalisation allows quality control
+}}{{Pro argument
+|page=State-regulated legalisation works
+|displayed-title=State-regulated legalisation works
+}}
+|con-arguments={{Con argument
+|page=Cannabis prohibition is effective
+|displayed-title=Prohibition is effective
+}}{{Con argument
+|page=Individuals must be protected from the risks of cannabis
+|displayed-title=Individuals must be protected
+}}{{Con argument
+|page=Society must protect itself from the risks of cannabis
+|displayed-title=Society must protect itself
+}}{{Con argument
+|page=Cannabis legalisation is neither possible nor desirable
+|displayed-title=Legalisation is neither possible nor desirable
+}}{{Con argument
+|page=Cannabis legalisation would be harmful
+|displayed-title=Legalisation would be harmful
+}}
+|sections=Law, Economy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+|bibliography={{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+
+|webliography={{Web reference
+|link=https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html
+|page=Legislative Review of the Cannabis Act: Final Report of the Expert Panel
+|authors=Morris Rosenberg, Oyedeji Ayonrinde, Patricia J. Conrod, Lynda L. Levesque, Peter Selby
+|site=Health Canada
+|date=March 2024
+}}{{Web reference
+|link=https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf
+|page=Portugal — Country Drug Report 2019
+|site=European Monitoring Centre for Drugs and Drug Addiction
+|date=2019
+}}{{Web reference
+|link=https://www.service-public.gouv.fr/particuliers/vosdroits/F33341?lang=en
+|page=What is the risk for drug use?
+|site=Service Public
+|date=21 August 2026
+}}
+
+|wikipedia-articles={{Wikipedia article
+|page=Legality of cannabis
+}}
+
+}}
+
+
+== France's 1970 drug law should be enforced before it is repealed ==
+
+{{Argument
+|quotes={{Quote
+|quote=We cannot invoke the failure of legislation that has not been adequately enforced as a reason to repeal it. We must first make a serious effort to enforce it.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=224
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=“Over the past ten years, the range of punitive measures has clearly expanded,” explains Mr Bergeron, who speaks of “a trend towards recriminalisation”. “Drug addiction has not escaped the drive for zero tolerance running through society as a whole, which translates into harsher criminal penalties,” observes Nicole Maestracci, a judge who chaired the Interministerial Mission for the Fight against Drugs and Drug Addiction (MILDT) from 1998 to 2002.
+|authors=Laetitia Clavreul
+|work=Le Monde
+|date=15 June 2011
+|link=https://www.lemonde.fr/societe/article/2011/06/15/la-france-plus-severe-que-ses-voisins-europeens_1536402_3224.html
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=The law is enforced, and enforcement has become more punitive since 2001
+|displayed-title=The law is enforced, and enforcement has become more punitive since 2001
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Under cannabis prohibition, some users suffer the consequences of imprisonment, a criminal record or both ==
+
+{{Argument
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition, prison, justice
+}}
+
+
+== Alcohol is chiefly responsible for road accidents ==
+
+{{Argument
+|quotes={{Quote
+|quote=You are ten times as likely to be involved in a fatal accident if you consume alcohol alone as if you consume cannabis alone.
+|authors=Nicole Maestracci
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=231
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, road accidents, alcohol
+}}
+
+
+== The risks of cannabis do not depend on the substance alone ==
+
+{{Argument
+|quotes={{Quote
+|quote=The risks do not depend on the substance alone, but on patterns of use and the vulnerability of the person using it.
+|authors=Nicole Maestracci
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=226
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, overdose, harmfulness
+}}
+
+
+== The failure of a policy is not in itself a reason to abandon it ==
+
+{{Argument
+|quotes={{Quote
+|quote=Banning paedophilia, theft, rape and other serious crimes has not eradicated them, but that is no reason to abandon the ban.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=112
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=When a law worsens the problem it was meant to solve, repealing it becomes urgent
+|displayed-title=When a policy is costly, counterproductive and has harmful unintended effects, abolishing it becomes urgent
+}}
+|sections=Politics, Society
+|keywords=failure
+}}
+
+
+== Some laws opposed by the majority have brought genuine social progress ==
+
+{{Argument
+|summary=Abolishing the death penalty and decriminalising abortion and homosexuality brought genuine social progress, even though public opinion was opposed to these changes.
+}}
+
+
+== Countries such as Uruguay tightly regulate the cannabis market ==
+
+{{Argument}}
+
+
+== As tobacco shows, the black market will persist if legal cannabis is too expensive ==
+
+{{Argument
+|quotes={{Quote
+|quote=Nor should we be told that a high price would act as a deterrent. Tobacco smuggling provides a massive way around such a measure. Preventing legal cannabis from entering the country would be even harder than preventing the entry of cannabis that is currently prohibited.
+
+Giving up the war on traffickers, dealers and local cannabis growers (cannabis social clubs) would increase supply, lower prices and therefore cause consumption to soar.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=41, 114
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+|bibliography={{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+
+}}
+
+
+== Retaining the largely unenforced criminal penalties in France's 1970 drug law is unsound ==
+
+{{Argument
+|quotes={{Quote
+|quote=Retaining a criminal penalty that is hardly ever applied becomes farcical and undermines the standing of the justice system in adolescents' eyes. Some are no longer even aware that they are breaking a rule, so ordinary does the practice seem to them.
+|authors=Françoise Branget, Gilbert Barbier
+|article=La dépénalisation de l'usage, une impasse éthique et juridique
+|work=MISSION D’INFORMATION SUR LES TOXICOMANIES. Rapport d'information sur les toxicomanies
+|publisher=Assemblée nationale (France)
+|date=30 June 2011
+|link=https://www.assemblee-nationale.fr/13/rap-info/i3612-ti.asp#P1085_352797
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=France's 1970 drug law should be enforced before it is repealed
+|displayed-title=The law should be enforced before it is repealed
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Many substances far more harmful and addictive than cannabis are legal ==
+
+{{Argument
+|quotes={{Quote
+|quote=Logically, the argument about harmfulness should lead us to prohibit and criminalise tobacco and alcohol use before cannabis use.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=94
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=As for whether ending prohibition would represent progress against addiction, one need only observe that the two drugs causing the most damage in France are tobacco and alcohol—that is, two entirely legal drugs!
+|authors=Nathalie Arthaud
+|article=Drogue et société
+|work=Lutte ouvrière
+|link=https://www.lutte-ouvriere.org/sites/default/files/presentation/Drogue-et-societe.pdf
+|warnings=AI-translated quote
+}}
+|justifications={{Justification
+|page=Alcohol and tobacco are among the most addictive and harmful substances
+|displayed-title=Alcohol and tobacco are among the most addictive and harmful substances
+}}{{Justification
+|page=Alcohol producers' economic interests can influence regulation
+|displayed-title=Economic interests can influence alcohol regulation
+}}{{Justification
+|page=Purdue Pharma is responsible for oxycodone addiction
+|displayed-title=Prescription medicines can cause severe dependence
+}}{{Justification
+|page=The food industry makes its products addictive to maximise profits
+|displayed-title=The food industry makes its products addictive to maximise profits
+}}{{Justification
+|page=The risks of cannabis must be distinguished from those of alcohol and tobacco
+|displayed-title=The risks of cannabis differ from those of alcohol and tobacco
+}}
+|objections={{Objection
+|page=Alcohol and tobacco are not inherently dangerous; only excessive use is
+|displayed-title=Alcohol and tobacco are not inherently dangerous; only excessive use is
+}}{{Objection
+|page=Cannabis is always dangerous because smokers only want to get high
+|displayed-title=Cannabis is always dangerous because smokers only want to get high
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition, alcohol, tobacco
+}}
+
+
+== French surveys show opposition to unrestricted cannabis sales ==
+
+{{Argument
+|summary=According to an IFOP–Atlantico poll, 70% of French people opposed unrestricted sales in 2012, compared with 63% in 2011.
+|summary-warnings=Biased summary
+|quotes={{Quote
+|quote=There can be neither change nor success without public support for such a proposal.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=95
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=There is no collective support for a coherent system, because drugs frighten people and no one knows the effects of what we are going to allow or prohibit. If we knew for certain that regulation through something like coffee shops was beneficial, I think we would adopt it. But we know nothing, and prefer to bury our heads in the sand (…) That leaves the justice system to manage with whatever resources it has.
+|authors=Eric de Montgolfier
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=218
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=French people support allowing cannabis sales and use under certain conditions
+|displayed-title=French people support allowing cannabis sales and use under certain conditions
+}}{{Objection
+|page=Some laws opposed by the majority have brought genuine social progress
+|displayed-title=A reform can be justified even without majority support
+}}
+|sections=Society
+|keywords=cannabis, legalisation, public opinion
+}}
+
+
+== Experience shows that legalising a drug is not accompanied by increased consumption ==
+
+{{Argument}}
+
+
+== Evidence shows that penalties for cannabis users can have a deterrent effect ==
+
+{{Argument
+|quotes={{Quote
+|authors=Etienne Apaire
+|quote=The increase in arrests for cannabis use from 2003 onwards reduced the proportion of 17-year-olds who had tried it (49.4% in 2005, 42.2% in 2008).
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=204
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, deterrence
+}}
+
+
+== Ways exist to minimise the effects of cannabis legalisation on disadvantaged suburban communities ==
+
+{{Argument
+|summary=* [https://hyperdebat.net/un-modele-pragmatique-de.html Laurent Appel's pragmatic legalisation model] would create 260,000 jobs, three quarters of them low-skilled.
+* In California, where recreational cannabis has been legal since 1 January 2018, four cities—Oakland, San Francisco, Los Angeles and Sacramento—have adopted plans to reserve retail licences for residents of poor neighbourhoods.
+|sections=Economy, Society
+|keywords=cannabis, legalisation, decriminalisation, disadvantaged suburbs
+}}
+
+
+== Cannabis legalisation would shift trafficking to other substances unless all drugs were legalised, which seems difficult ==
+
+{{Argument
+|quotes={{Quote
+|quote=Relaxing cannabis legislation will prompt traffickers to adapt their strategies: distributing genetically modified, high-potency cannabis, shifting towards cocaine, heroin or synthetic drugs… Why does trafficking in cigarettes, a universally legal commodity, provide a major and rapidly growing source of income for international organised crime?
+|authors=Claude Guéant
+|article=Dépénalisation du cannabis, un débat biaisé
+|work=Le Monde
+|date=15 June 2011
+|link=https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The question of legalisation must be considered for all substances, including the most dangerous. If it applies to a substance such as cannabis, traffickers will try to develop other products, such as heroin, cocaine or synthetic drugs. I fear that accepting the legalisation of all these markets would make it difficult to maintain a certain standard of public health protection. Meeting demand is very difficult when addiction can develop very quickly.
+|authors=Etienne Apaire
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=206
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Cannabis use needs to be addressed through education ==
+
+{{Argument
+|quotes={{Quote
+|authors=Jean Costentin
+|quote=A law whose rationale is not explained, like an arbitrary decree, can be perceived as harassment or a pointless restriction. Explaining why the law exists and emphasising the protection it offers changes everything.
+
+A major reason for the legislation's failure is the lack of mobilisation against this scourge within the medical profession (apart from the French National Academy of Medicine), education and the media, to inform people about the risks and harms of cannabis and other illicit drugs.
+|work=Faut-il dépénaliser le cannabis ?
+|page=42 et 111
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, deterrence
+}}
+
+
+== Individuals must be protected from the risks of cannabis ==
+
+{{Argument
+|justifications={{Justification
+|page=Cannabis is harmful to physical and mental health
+|displayed-title=Cannabis is harmful to physical and mental health
+}}{{Justification
+|page=Cannabis amplifies the effects of alcohol and tobacco
+|displayed-title=It amplifies the effects of alcohol and tobacco
+}}{{Justification
+|page=Cannabis has substantial addictive potential
+|displayed-title=It has substantial addictive potential
+}}
+|objections={{Objection
+|page=Many substances far more harmful and addictive than cannabis are legal
+|displayed-title=If the real aim is to protect individuals, why keep alcohol and tobacco legal?
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, health, addiction
+}}
+
+
+== Punishing people for harm they do to themselves is illegitimate ==
+
+{{Argument
+|quotes={{Quote
+|quote=France's drug law of 31 December 1970 is a law that makes an exception to the general rule. This is the only area in which people can face imprisonment for harm they do to themselves. From an ethical standpoint, could we imagine trying to prevent suicide by imprisoning people who attempt it?
+|authors=Jean-Michel Costes
+|article=Il faut dépénaliser l'usage de drogue
+|work=Le Monde
+|date=31 December 2011
+|link=https://www.lemonde.fr/idees/article/2011/12/30/il-faut-depenaliser-l-usage-de-drogue_1624418_3232.html
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, overdose, harmfulness
+}}
+
+
+== Existing cannabis legislation should be left unchanged ==
+
+{{Argument
+|quotes={{Quote
+|quote=The balance we have reached, however unstable and approximate, is still a form of balance. Is it reasonable to disturb it when we have no certainty? If the scientific evidence were sufficiently robust, perhaps we could build an effective system?
+|authors=Eric de Montgolfier
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=222
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}{{Quote
+|quote=I am rather hesitant, mainly because of our experience of the difficulty of restricting access to legal products such as alcohol and tobacco.
+|authors=Nicole Maestracci
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=234
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Law, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== There are signs that cannabis use is declining ==
+
+{{Argument
+|quotes={{Quote
+|quote=The proportion of 17-year-olds who have tried cannabis has been falling in France since 2003, and consumption has now returned to its level in the early 2000s.
+|authors=Claude Guéant, ministre de l'Intérieur (2011-12)
+|article=Dépénalisation du cannabis, un débat biaisé
+|work=Le Monde
+|date=15 June 2011
+|link=https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, consumption
+}}
+
+
+== An illegal cannabis market for minors will always exist ==
+
+{{Argument
+|quotes={{Quote
+|quote=A state will never be able to distribute every drug; an illegal market will always remain—the market supplying minors.
+|authors=Etienne Apaire
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=206
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Banning a drug does not reduce its use ==
+
+{{Argument}}
+
+
+== The lack of product quality guarantees poses risks in itself ==
+
+{{Argument
+|quotes={{Quote
+|quote=The clandestine nature of supply makes it impossible to control the quality of the products sold or prevent other illicit substances from being offered alongside them, increasing the risks.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=90
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=With legalisation, we would know what we were smoking. State-supplied drugs would be of better quality and therefore slightly less harmful to health than those currently consumed.
+|authors=Groupe de lycéens de 1re ES
+|article=Le cannabis ? Chut !
+|work=Le Monde
+|date=9 November 2012
+|link=https://www.lemonde.fr/idees/article/2012/11/10/le-cannabis-chut_1787901_3232.html
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, harmfulness, quality
+}}
+
+
+== Addiction is an illness and should not be treated as a criminal offence ==
+
+{{Argument
+|quotes={{Quote
+|quote=I grew up with an alcoholic mother, and I have had addiction problems myself and always will. Society sees it as something you control, something you choose to do. People say things like “just stop” or “do it for your children”… But it is not seen as an illness. Yet it is one; that has been proved. We have enormous empathy for people with cancer. We have no empathy for addicts, who are also people whose genetics and physiology mean they cannot stop using.
+|authors=Asia Argento
+|article=Asia Argento sur #MeToo : "C’était mon devoir de parler"
+|work=rtbf.be
+|date=15 June 2022
+|link=https://www.rtbf.be/article/asia-argento-sur-metoo-cetait-mon-devoir-de-parler-11013220
+|warnings=AI-translated quote
+}}
+}}
+
+
+== Alcohol and tobacco are not inherently dangerous; only excessive use is ==
+
+{{Argument
+|quotes={{Quote
+|quote=With tobacco and alcohol, it can be accepted that the danger arises from excessive use, which does not appear to be the case with narcotic drugs.
+|authors=Eric de Montgolfier
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=219
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Tobacco and alcohol are harmful at any level of consumption
+|displayed-title=Tobacco and alcohol are harmful at any level of consumption.
+}}
+}}
+
+
+== Alcohol and tobacco are among the most addictive and harmful substances ==
+
+{{Argument}}
+
+
+== A punitive approach lets public authorities evade responsibility for cannabis use ==
+
+{{Argument
+|summary=People become addicted primarily because of precarious living conditions deliberately perpetuated by public authorities, which derive financial or ideological benefits from it. A punitive approach conceals this from the public.
+}}
+
+
+== Experience in some countries shows that cannabis legalisation does not increase the number of users ==
+
+{{Argument
+|quotes={{Quote
+|quote=[The Dutch cannabis] system is more coherent. Consumption is regulated, and adults can use cannabis in coffee shops. One argument made by opponents was that consumption would soar. That is false. It has actually fallen, particularly among young people.
+|authors=Camille Wernaers
+|article=Vers la fin de la prohibition des drogues?
+|work=Le soir
+|date=18 January 2016
+|link=https://www.lesoir.be/art/1096562/article/actualite/sciences-et-sante/2016-01-18/vers-fin-prohibition-des-drogues
+|warnings=AI-translated quote
+}}
+|sections=Society
+|keywords=cannabis, legalisation, decriminalisation, consumption
+}}
+
+
+== The food industry makes its products addictive to maximise profits ==
+
+{{Argument}}
+
+
+== Banning cannabis deters use more than it encourages it ==
+
+{{Argument
+|quotes={{Quote
+|authors=Jean Costentin
+|quote=Although this behaviour [breaking the rules] exists, it concerns a minority. The ban prevents far more of our young people from using cannabis than it attracts to it. Trying a prohibited substance produces a strong nocebo effect, and experiencing it discourages the person from trying again—hence the large gap between the number of people who have tried cannabis and the number who use it regularly.
+|work=Faut-il dépénaliser le cannabis ?
+|page=41 et 114
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|authors=Claude Guéant
+|quote=According to the studies, more than half of young non-users refrain from using cannabis because of the risks associated with its illegality.
+|article=Dépénalisation du cannabis, un débat biaisé
+|work=Le Monde
+|date=15 June 2011
+|link=https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html
+|warnings=AI-translated quote
+}}{{Quote
+|authors=Antonio Costa
+|quote=Of the 17-year-olds who had not smoked cannabis in the month before the 2008 ESCAPAD survey, 39% cited its illegality as a reason.
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=21
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, appeal, prohibition
+}}
+
+
+== The ban on cannabis can be circumvented ==
+
+{{Argument
+|quotes={{Quote
+|quote=The ban has been accompanied by the emergence of new synthetic compounds that mimic the effects of cannabis but, because they are not prohibited, fall outside the legislation.
+|authors=MacCoun et Reuter (2001)
+|work=Faut-il dépénaliser le cannabis ?
+|page=11
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, prohibition
+}}
+
+
+== Cannabis prohibition varies across periods and cultures ==
+
+{{Argument
+|quotes={{Quote
+|quote=What is prohibited here is allowed elsewhere, and the same is true across different periods within a single civilisation. Private drug use was tolerated before the 1970 law and could just as well be tolerated again…
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=78
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition
+}}
+
+
+== Prohibition encourages attempts to circumvent the law ==
+
+{{Argument}}
+
+
+== Prohibition makes cannabis more appealing ==
+
+{{Argument
+|summary=A legal product is less appealing than a prohibited one. Health risks or social disapproval are what deter young people.
+|quotes={{Quote
+|quote=Prohibition creates an attraction to what is forbidden: in countries where the drug is legal, consumption is stable.
+|authors=Frédéric Beigbeder
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=9
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Studies have looked at people who do not use cannabis, mainly students. They explained their choice not by reference to the law, but by fear of health risks or social disapproval within their own circles.
+|authors=Erickson - 2001
+|work=Les drogues. Les coûts cachés de la prohibition
+|page=190
+|publisher=Lanctôt
+|date=2003
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Banning cannabis deters use more than it encourages it
+|displayed-title=The ban deters use more than it encourages it
+}}{{Objection
+|page=Legal tobacco and alcohol are highly appealing
+|displayed-title=Legal tobacco and alcohol are highly appealing
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, appeal, prohibition
+}}
+
+
+== Prohibition increases appeal ==
+
+{{Argument}}
+
+
+== Private cannabis use alone does not harm others ==
+
+{{Argument
+|quotes={{Quote
+|quote=Private drug use alone is the only behaviour that causes no harm to others yet is currently prosecuted under French law.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=94
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, harmfulness
+}}
+
+
+== Medical cannabis use is not without risks ==
+
+{{Argument
+|quotes={{Quote
+|quote=Disguising cannabis as a medicine is a Trojan horse strategy, designed to bring it into the city to public acclaim. Why is THC not a medicine? It is therefore in no way irreplaceable. As for the risks associated with THC, they are numerous.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=64
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+'''Objection to Jean Costentin:''' The benefits of medical cannabis are concealed or underestimated.
+{{Quote
+|quote=The benefits of medical cannabis are concealed or underestimated, while its harms are exaggerated, as is its potential to cause addiction.
+|authors=Sanjay Gupta
+|article=Cannabis : ils ont changé d’avis
+|work=Hyperdébat
+|date=28 November 2013
+|link=https://hyperdebat.net/cannabis-ils-ont-change-d-avis.html
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Cannabis use is increasing in France ==
+
+{{Argument
+|quotes={{Quote
+|quote=More than 13 million French people have tried cannabis at least once, with a gradual increase since the early 1990s: the proportion of 18–64-year-olds who had tried it rose from 24% in 2000 to 29% in 2005 and then 33% in 2011.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=70
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=There are signs that cannabis use is declining
+|displayed-title=There are signs that consumption is declining
+}}
+|sections=Health, Society
+|keywords=cannabis, consumption
+}}
+
+
+== Cannabis poses relatively little harm ==
+
+{{Argument
+|quotes={{Quote
+|quote=Justifying cannabis prohibition on the grounds of its harmfulness is no longer credible: its impact on public health and the harm it causes individuals and society are limited, far below those of tobacco and alcohol.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=94
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Recreational cannabis use—that is, occasional use in small doses—is no more dangerous than the equivalent use of alcohol by 30 million French people.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=74
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The harmfulness of occasional cannabis use has not been convincingly documented.
+|authors=Nicole Maestracci
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=234
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}{{Quote
+|quote=You cannot die from a cannabis overdose, but you can experience acute intoxication, more commonly known as a “bad trip”.
+|authors=Institut national de prévention et d'éducation pour la santé
+|work=Cannabis, ce qu'il faut savoir
+|publisher=Drogues Info Service
+|date=2014
+|link=https://inpes.santepubliquefrance.fr/cfesbases/catalogue/pdf/805.pdf
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, overdose, harmfulness
+}}
+
+
+== Drug dependence is not independent of the person and their environment. Drugs are a way of coping with life, not the cause of dependence ==
+
+{{Argument
+|quotes={{Quote
+|quote=The question is this: does dependence on an illicit drug occur independently of the person and their environment? In that case, the drug causes the dependence. Or does dependence develop because the habit has met a person's needs in a particular environment? In that case, the drug is a solution, a way of coping with life, rather than a cause.
+These apparently innocuous questions are fundamental when assessing whether prohibition makes sense. The belief that illicit drugs cause dependence independently of the relationship a person develops with them and the circumstances in which they are used is the public's primary justification for prohibition. If the answer is that drugs help some people cope with their lives, and that some of those people develop a harmful habit, addressing the cause of the problem does not mean banning drugs. Drugs were one means among others. Addressing the problem means helping the person and/or changing their living conditions.
+If we had to ban every product or behaviour to which some people are vulnerable to harmful dependence, we would have to ban sweets, junk food, television, computer games and even work and romantic relationships.
+|authors=Lise Beauchesne
+|work=Les drogues. Les coûts cachés de la prohibition
+|page=133-134
+|publisher=Lanctôt
+|date=2003
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, health, addiction, dependence
+}}
+
+
+== The war on drugs intensifies the persecution of minorities ==
+
+{{Argument
+|summary=The wars on drugs, particularly under Nixon and his successors, are merely a cover for the institutionalised persecution of the most vulnerable groups. This is also felt in disadvantaged suburbs in France, where police intervene only over drug offences, often using disproportionate force, yet do not lift a finger over other crimes or offences.
+|quotes={{Quote
+|quote=The femicide rate in the state [of Chihuahua] soared in 2008 following the war on drug trafficking promoted by [President] Felipe Calderón. Between 1993 and 2007, a woman was murdered every twelve to fourteen days. In 2010, the worst year on record, there was a femicide every twenty hours. Between March 2012 and March 2013, the state prosecutor's office reported seventy-three women murdered.
+|authors=Irene
+|article=Le féminisme n'a-t-il vraiment jamais tué personne?
+|work=Slate
+|date=13 February 2021
+|link=http://www.slate.fr/story/201090/irene-terreur-feministe-bonnes-feuilles-violence-femmes-patriarcat-feminicides-viols-agressions
+|warnings=AI-translated quote
+}}{{Quote
+|quote=She also highlights the risk of undermining prevention efforts around “chemsex” (sex involving drugs), which is growing within the gay community and has only just begun to receive attention from public authorities. ''“Their highly punitive drug policy could have a considerable impact.”''
+|authors=David Perrotin
+|article=Derrière la « dédiabolisation » de Marine Le Pen, le véritable danger du RN pour les LGBTI+
+|work=Mediapart
+|date=19 April 2022
+|link=https://www.mediapart.fr/journal/france/190422/derriere-la-dediabolisation-de-marine-le-pen-le-veritable-danger-du-rn-pour-les-lgbti#at_medium=custom7&at_campaign=1047
+|warnings=AI-translated quote
+}}{{Quote
+|quote=In 1971, US president Richard Nixon declared war on drugs, which had become his ''“public enemy number one”''. He was the first US president to allocate substantial funding to [http://www.pbs.org/wgbh/pages/frontline/shows/drugs/buyers/doitwork.html combating addiction and providing treatment]. But these intentions, which so clearly made drugs a priority, may have been less benign than they appeared. An account published [https://harpers.org/archive/2016/04/legalize-it-all/ in the April issue of Harper's], picked up [http://mic.com/articles/138664/the-war-on-drugs-horribly-racist-origins-have-finally-been-revealed?utm_source=policymicTWTR&utm_medium=main&utm_campaign=social#.Ox494vrNQ by Mic], suggests that his real priority was to stigmatise Black people and hippies and legitimise harsh repression against them.
+
+According to John Ehrlichman, a former adviser to Richard Nixon, the White House's rhetoric about the harmfulness of drugs was nothing but a ''“lie”'': a lie designed to target the president's two main enemies at the time directly. These were African American activists, who had just secured victories after years of campaigning for civil rights, and opponents of the Vietnam War, some of whom had become radicalised within the [https://fr.wikipedia.org/wiki/Weather_Underground Weather Underground] movement.
+|authors=Aude Lorriaux
+|article=La guerre contre la drogue de Nixon était un «mensonge» qui visait à casser la communauté noire
+|work=Slate
+|date=27 March 2016
+|link=https://www.slate.fr/story/115991/guerre-contre-la-drogue-nixon-noirs-hippies
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The war on drugs has been highly effective at systematically criminalising communities of colour.
+|authors=Marie Astier
+|article=Et si on vivait sans police ?
+|work=Reporterre
+|date=22 February 2022
+|link=https://reporterre.net/Et-si-on-vivait-sans-police
+|warnings=AI-translated quote
+}}{{Quote
+|quote=A first step in proceedings expected to be lengthy. Former Philippine president Rodrigo Duterte appeared by video link for his first hearing before the International Criminal Court on Friday 14 March, to answer allegations of crimes against humanity arising from killings committed in the name of his “war on drugs”, which left tens of thousands dead during his time in office.
+|article=L'ex-président des Philippines Rodrigo Duterte, accusé de crimes contre l'humanité, a comparu devant la Cour pénale internationale
+|work=France Tv info
+|date=14 March 2025
+|link=https://www.francetvinfo.fr/monde/asie/l-ex-president-des-philippines-rodrigo-duterte-accuse-de-crimes-contre-l-humanite-a-comparu-devant-la-cour-penale-internationale_7129974.html
+|warnings=AI-translated quote
+}}
+}}
+
+
+== The freedom to use cannabis is the freedom to become enslaved ==
+
+{{Argument
+|quotes={{Quote
+|quote=Drugs do not belong in the realm of freedom. They produce dependence, addiction, habituation, enslavement—all synonymous terms.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=115
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, decriminalisation, individual liberties, legalisation, individual liberties
+}}
+
+
+== France's 1970 drug law was designed in response to the spread of cannabis ==
+
+{{Argument
+|quotes={{Quote
+|quote=In 1970, legislators observed the spread of cannabis use and devised legislation intended to curb it.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=32
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, cannabis, legalisation, decriminalisation, legislation
+}}
+
+
+== France's 1970 drug law is difficult to enforce ==
+
+{{Argument
+|quotes={{Quote
+|quote=Imprisonment seems to me rather remote from the aim we are trying to achieve […] When drug use occurs, I want it to be penalised intelligently.
+|authors=Etienne Apaire
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=209
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}{{Quote
+|quote=If the 1970 law were enforced, we would need another 100 prisons. In Spain or the Netherlands, the law is more flexible, but it is enforced. That seems more effective to me.
+|authors=Amine Benyamina
+|work=Le Monde
+|date=2 February 2013
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The criminal prohibition is therefore no longer consistently observed, nor can it be, given that imprisonment now appears wholly disproportionate, inappropriate and stigmatising.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=82
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Today, drug use is a criminal offence, but in practice it is not punished because doing so is too cumbersome.
+|authors=Emmanuel Roux
+|article=Cannabis : un réquisitoire contre la loi
+|work=Libération
+|date=5 February 2014
+|link=https://www.liberation.fr/societe/2014/02/05/cannabis-un-requisitoire-contre-la-loi_978254
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== France's 1970 drug law is ill-suited to its purpose ==
+
+{{Argument
+|justifications={{Justification
+|page=France's 1970 drug law was not designed for cannabis
+|displayed-title=It was not designed for cannabis
+}}{{Justification
+|page=France's 1970 drug law focuses too heavily on users
+|displayed-title=It focuses too heavily on users
+}}{{Justification
+|page=Users no longer understand France's 1970 drug law
+|displayed-title=Users no longer understand it
+}}{{Justification
+|page=France's 1970 drug law is difficult to enforce
+|displayed-title=It is difficult to enforce
+}}{{Justification
+|page=Retaining the largely unenforced criminal penalties in France's 1970 drug law is unsound
+|displayed-title=Retaining a largely unenforced criminal penalty is unsound
+}}{{Justification
+|page=France's 1970 drug law is applied too inconsistently
+|displayed-title=It is applied too inconsistently
+}}{{Justification
+|page=France's 1970 drug law has never been evaluated
+|displayed-title=It has never been evaluated
+}}
+|sections=Law, Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== France's 1970 drug law is applied too inconsistently ==
+
+{{Argument
+|quotes={{Quote
+|quote=We compared young people attending schools in priority education areas (ZEPs) with those attending other schools. Young people in ZEPs tend to use less cannabis, tobacco and alcohol. Yet the only young people we see in court are disadvantaged ones. So there is a bias that inevitably causes resentment. I am not saying that the police deliberately seek to arrest only disadvantaged young people. It is simply that they are where those young people are: outside, hanging around, while more privileged young people use drugs out of sight, often in their parents' flats.
+|authors=Nicole Maestracci
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=228
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Prosecutions for illicit use vary from one jurisdiction to another. There are substantial geographical differences depending on how acute the local problem is, and on the motivation and resources of the prosecutor's office. Alternatives to punitive action are considered according to the substance involved, the level of consumption and the user's profile (whether they have a criminal record), using criteria that vary between prosecutors' offices. (…) Another punitive approach has also emerged in recent years in an attempt to contain this mass phenomenon: imposing an immediately payable customs fine on the user. Unable to reach those organising the trade, the idea is to destabilise them by cutting off the flow of customers. For the time being, however, this measure is applied only in certain regions, notably Île-de-France and Bouches-du-Rhône.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=83
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== France's 1970 drug law focuses too heavily on users ==
+
+{{Argument
+|quotes={{Quote
+|quote=Use and possession account for the bulk of drug-related cases in France (86%, compared with 66% in the EU), an increasing trend that runs counter to developments elsewhere in Europe, where penalties for possessing drugs for personal use are declining (+3.1% in France, compared with −7.2% in the EU).
+|authors=OEDT
+|work=Faut-il dépénaliser le cannabis ?
+|page=18
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=We have returned to a policy of zero tolerance, even though everyone knows it is illusory. If arrests of cannabis users continue to rise, it is mainly because they are highly productive statistically. Yet everyone knows perfectly well that they almost never uncover a trafficking case.
+|authors=Nicole Maestracci
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=227
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== France's 1970 drug law has never been evaluated ==
+
+{{Argument
+|quotes={{Quote
+|quote=There is no interdisciplinary evaluation research on the suitability of the judicial or health measures that have been introduced.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=85
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== France's 1970 drug law was not designed for cannabis ==
+
+{{Argument
+|quotes={{Quote
+|quote=The 1970 law was devised to address problems that were still marginal in society. Since then, however, consumption has expanded enormously: the rise of cannabis and the arrival of heroin, cocaine and crack.
+|authors=Daniel Vaillant
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=171
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Court-ordered treatment is ill-suited to cannabis users, most of whom do not have problematic patterns of use. This shows how a more coherent approach should address addiction more broadly, whatever the substance involved.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=83
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=France's 1970 drug law was designed in response to the spread of cannabis
+|displayed-title=It was designed in response to the spread of cannabis
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, legislation
+}}
+
+
+== Users no longer understand France's 1970 drug law ==
+
+{{Argument
+|quotes={{Quote
+|quote=Quite apart from being outdated, the 1970 law is no longer understood by cannabis users. They recognise that its risks differ from those of other drugs and that regular use is harmful, but they also know that occasional recreational use is possible, just as it is for the many other French people who use alcohol.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=87
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, user
+}}
+
+
+== The law is enforced, and enforcement has become more punitive since 2001 ==
+
+{{Argument
+|quotes={{Quote
+|quote=“Over the past ten years, the range of punitive measures has clearly expanded,” explains Mr Bergeron, who speaks of “a trend towards recriminalisation”. “Drug addiction has not escaped the drive for zero tolerance running through society as a whole, which translates into harsher criminal penalties,” observes Nicole Maestracci, a judge who chaired the Interministerial Mission for the Fight against Drugs and Drug Addiction (MILDT) from 1998 to 2002.
+|authors=Laetitia Clavreul
+|work=Le Monde
+|date=15 June 2011
+|link=https://www.lemonde.fr/societe/article/2011/06/15/la-france-plus-severe-que-ses-voisins-europeens_1536402_3224.html
+|article=La France plus sévère que ses voisins européens
+|warnings=AI-translated quote
+}}
+}}
+
+
+== Efforts to combat cannabis trafficking are costly and unsuccessful ==
+
+{{Argument
+|summary=Serge Supersac, a former police officer and co-author of ''Pour en finir avec les dealers'' (2011), also makes this point in his book.
+|quotes={{Quote
+|quote=His colleagues and everyone who has passed through his office can attest to it: Grenoble's public prosecutor, Jean-Yves Coquillat, is neither an inveterate leftist nor a champion of leniency. Yet last week, delivering his New Year address at a formal court session, this prosecutor dared to break a taboo by raising the need for a debate on the punitive approach to cannabis consumption and sales, acknowledging the “failure” of current legislation. He also spoke of “changing the law in line with changes in society”.
+|authors=Alice Géraud
+|article=Cannabis : un réquisitoire contre la loi
+|work=Libération
+|date=5 February 2014
+|link=https://www.liberation.fr/societe/2014/02/05/cannabis-un-requisitoire-contre-la-loi_978254
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== State-regulated legalisation works ==
+
+{{Argument
+|summary=State-regulated legalisation shows that strict cannabis regulation can reduce the harmful effects associated with prohibition while producing tangible social and economic benefits.
+
+Although imperfect, the Canadian and Uruguayan models demonstrate that state-regulated legalisation works by providing an effective framework for reducing cannabis-related crime, improving consumer safety and generating revenue for essential public programmes. These results far exceed those of strict prohibition.
+|quotes={{Quote
+|quote=Cannabis regulation in Canada and Uruguay shows that a balanced approach combining prevention, controls and access can not only reduce the harms associated with the black market but also generate measurable benefits for society.
+|authors=Kilmer B.
+|article=Global Perspectives on Cannabis Legalization
+|work=RAND Corporation
+|date=2022
+|warnings=AI-translated quote
+}}
+|justifications={{Justification
+|page=Cannabis legalisation in Canada works better than prohibition
+|displayed-title=State-regulated legalisation (Canadian model)
+}}{{Justification
+|page=Cannabis regulation in Uruguay works better than prohibition
+|displayed-title=Regulated cannabis market (Uruguayan model)
+}}
+|sections=Law, Economy, Politics, Health, Society
+|keywords=black market, public health issues
+}}
+
+
+== Cannabis legalisation in Canada works better than prohibition ==
+
+{{Argument
+|summary=Canada's state-regulated legalisation demonstrates that strict cannabis regulation works better than prohibition.
+
+* '''Description:''' Full legalisation with strict regulation (minimum age, advertising restrictions, production controls and state distribution).
+* '''Examples:''' Canada and some US states.
+* '''Advantages:'''
+** A substantial reduction in the black market.
+** High tax revenues to fund public programmes.
+** Control over product quality and the varieties available.
+* '''Disadvantages:'''
+** The need for substantial legislative and administrative infrastructure.
+** Some consumers continue buying on the black market because legal prices are high.
+* '''Results:'''
+** '''Canada:''' A smaller black market and better product quality, although youth consumption remains a challenge.
+** '''Overall assessment:''' The best model for a nationwide approach, but one that requires constant monitoring and adjustment.
+|sections=Law, Economy, Politics, Health, Society
+|keywords=black market, taxation, public health issues
+|webliography={{Web reference
+|link=https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html
+|page=Legislative Review of the Cannabis Act: Final Report of the Expert Panel
+|authors=Morris Rosenberg, Oyedeji Ayonrinde, Patricia J. Conrod, Lynda L. Levesque, Peter Selby
+|site=Health Canada
+|date=March 2024
+}}
+
+}}
+
+
+== Cannabis legalisation would have excessive social and economic effects on disadvantaged suburbs ==
+
+{{Argument
+|objections={{Objection
+|page=Ways exist to minimise the effects of cannabis legalisation on disadvantaged suburban communities
+|displayed-title=Solutions exist
+}}{{Objection
+|page=The war on drugs intensifies the persecution of minorities
+|displayed-title=Punitive policies can also cause social harm
+}}
+|sections=Economy, Society
+|keywords=cannabis, legalisation, decriminalisation, disadvantaged suburbs
+}}
+
+
+== Legalising cannabis in just one country creates problems ==
+
+{{Argument
+|summary=According to the mayor of Windsor, a city on the Canada–US border, legalising cannabis in Canada could cause “longer delays at the border” and disrupt cross-border trade.
+|sections=Geopolitics, Society
+|keywords=cannabis, legalisation, decriminalisation
+|bibliography={{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+
+}}
+
+
+== Cannabis legalisation encourages an economy built on dependence ==
+
+{{Argument
+|summary=The cannabis industry will promote mass consumption at the expense of public health.
+
+Legalising cannabis creates a market dependent on continued, excessive consumption, similar to the tobacco and alcohol markets, with economic interests that run counter to public health.
+|quotes={{Quote
+|quote=The cannabis industry will inevitably follow in the tobacco companies' footsteps, targeting young people and maximising profits.
+|authors=Barry
+|article=Cannabis Commercialization: Lessons from Big Tobacco
+|work=JAMA
+|date=2020
+|warnings=AI-translated quote
+}}
+|sections=Economy, Health, Society
+|keywords=conflicts of interest
+|webliography={{Web reference
+|link=https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html
+|page=Legislative Review of the Cannabis Act: Final Report of the Expert Panel
+|authors=Morris Rosenberg, Oyedeji Ayonrinde, Patricia J. Conrod, Lynda L. Levesque, Peter Selby
+|site=Health Canada
+|date=March 2024
+}}
+
+}}
+
+
+== Cannabis is legal in many countries ==
+
+{{Argument
+|summary=Laws on possession of small amounts of cannabis:
+[[File:World-cannabis-laws.png|800px|center]]
+* Blue: Legal or largely legal
+* Orange: Illegal but decriminalised
+* Pink: Illegal but often not enforced
+* Red: Illegal
+* Grey: No information
+
+Source: [https://en.wikipedia.org/wiki/Legality_of_cannabis English Wikipedia: Legality of cannabis]
+|objections={{Objection
+|page=Countries that have decriminalised cannabis are reversing course
+|displayed-title=Countries that have decriminalised cannabis are reversing course
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation
+}}
+
+
+== The Global Commission on Drug Policy advocates cannabis legalisation ==
+
+{{Argument
+|sections=Law, Health, Society
+|keywords=cannabis, decriminalisation
+}}
+
+
+== Cannabis legalisation would put an end to trafficking ==
+
+{{Argument
+|quotes={{Quote
+|quote=Cannabis legalisation would dry up dealers' market, as happened in Chicago in 1933.
+|authors=Francis Caballero
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=15
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Cannabis legalisation would shift trafficking to other substances unless all drugs were legalised, which seems difficult
+|displayed-title=Trafficking would shift to other substances. Preventing this would require legalising all drugs, which seems difficult
+}}{{Objection
+|page=An illegal cannabis market for minors will always exist
+|displayed-title=An illegal market for minors will always exist
+}}{{Objection
+|page=If cannabis is legalised with restrictions, some users will continue buying on the black market
+|displayed-title=If the law is too restrictive, some users will continue buying on the black market
+}}{{Objection
+|page=As tobacco shows, the black market will persist if legal cannabis is too expensive
+|displayed-title=As tobacco shows, the black market will persist if prices are too high
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Cannabis legalisation would greatly increase the number of users ==
+
+{{Argument
+|quotes={{Quote
+|quote=Cannabis legalisation would be interpreted as a misleading signal that it is harmless.
+
+Many people who do not use cannabis abstain out of respect for the ban. Lifting it would propel many of them into using it.
+|authors=Jean Costentin
+|work=Pourquoi il ne faut pas dépénaliser l'usage du cannabis ?
+|page=24
+|publisher=Odile Jacob
+|date=2011
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Bringing cannabis legislation into line with tobacco legislation will multiply the number of users tenfold, from the current 1,600,000 to 15,000,000, matching the number of people dependent on tobacco.
+|authors=Jean Costentin
+|article=Peut-on envisager de légaliser le cannabis ?
+|work=Le Figaro
+|date=4 September 2011
+|link=https://sante.lefigaro.fr/actualite/2011/09/04/11032-peut-on-envisager-legaliser-cannabis
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Decriminalisation equals normalisation. If use is decriminalised, it will increase because access will be easier.
+|authors=Claude Guéant
+|article=Dépénalisation du cannabis, un débat biaisé
+|work=Le Monde
+|date=15 June 2011
+|link=https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Experience in some countries shows that cannabis legalisation does not increase the number of users
+|displayed-title=Experience in some countries shows that legalisation does not increase the number of users
+}}{{Objection
+|page=Retail price plays a decisive role in cannabis consumption
+|displayed-title=Retail price is the key variable
+}}{{Objection
+|page=Cannabis use is increasing in France
+|displayed-title=Prohibition does not reduce consumption
+}}
+|sections=Society
+|keywords=cannabis, legalisation, decriminalisation, consumption
+}}
+
+
+== Cannabis legalisation is neither possible nor desirable ==
+
+{{Argument
+|justifications={{Justification
+|page=Legalising recreational cannabis raises difficulties under international conventions
+|displayed-title=Cannabis decriminalisation conflicts with international conventions
+}}{{Justification
+|page=French surveys show opposition to unrestricted cannabis sales
+|displayed-title=Surveys show reservations about unrestricted sales
+}}{{Justification
+|page=Existing cannabis legislation should be left unchanged
+|displayed-title=Existing legislation should be left unchanged
+}}{{Justification
+|page=Legalising cannabis in just one country creates problems
+|displayed-title=Legalisation in just one country creates problems
+}}{{Justification
+|page=Legalising cannabis means subjecting it to market forces
+|displayed-title=Legalising cannabis means subjecting it to market forces
+}}{{Justification
+|page=Legalising cannabis opens the door to legalising hard drugs
+|displayed-title=Legalising cannabis opens the door to legalising hard drugs
+}}
+|objections={{Objection
+|page=Cannabis is legal in many countries
+|displayed-title=Cannabis is legal in many countries
+}}{{Objection
+|page=Criminalising cannabis is a failure
+|displayed-title=Criminalisation is a failure
+}}{{Objection
+|page=Cannabis will be legalised, just as many once-denounced social advances were adopted
+|displayed-title=Cannabis will be legalised, just as many once-denounced social advances were adopted
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Cannabis legalisation allows quality control ==
+
+{{Argument
+|summary=By legalising cannabis, the state can impose strict production and distribution standards, ensuring that no toxic or dangerous substances are added to the product. This protects consumers from the risks associated with adulterants used on the black market, such as solvents or heavy metals.
+|quotes={{Quote
+|quote=Regulation makes it possible to ensure that products sold meet purity standards, considerably reducing the risks associated with adulterants.
+|authors=Kilmer B.
+|article=Regulating Cannabis: The Path to Safer Consumption
+|work=RAND Corporation
+|date=2021
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=A cannabis black market may persist after legalisation
+|displayed-title=Persistence of a black market
+}}
+|sections=Law, Health, Society
+|keywords=consumer protection, black market
+|webliography={{Web reference
+|link=https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html
+|page=Legislative Review of the Cannabis Act: Final Report of the Expert Panel
+|authors=Morris Rosenberg, Oyedeji Ayonrinde, Patricia J. Conrod, Lynda L. Levesque, Peter Selby
+|site=Health Canada
+|date=March 2024
+}}
+
+}}
+
+
+== Cannabis legalisation would free up resources for prevention ==
+
+{{Argument
+|quotes={{Quote
+|quote=The state continues to spend around €300 million a year arresting some 80,000 people, without any fundamental effect on consumption (…) If cannabis were taxed like tobacco, it would bring the state more than €1 billion.
+|authors=Pierre Kopp
+|article=Légaliser le cannabis rapporterait 1 milliard d'euros selon l'économiste Pierre Kopp, autoriser la consommation dégagerait des moyens pour la prévention
+|work=Le Monde
+|date=3 August 2011
+|link=https://www.lemonde.fr/societe/article/2011/08/02/legaliser-le-cannabis-rapporterait-1-milliard-d-euros-miste-pierre-kopp-autoriser-la-consommation-degagerait-des-moyens-pour-la-prevention_1555243_3224.html
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Legalisation would both raise money and save it.
+|authors=Alain Labrousse
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=19
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Resources freed up by cannabis legalisation may have to be used to combat new forms of trafficking
+|displayed-title=Resources freed up by legalisation may have to be used to combat new forms of trafficking
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Cannabis legalisation would empty prisons and ease the burden on police and courts ==
+
+{{Argument}}
+
+
+== Cannabis legalisation may reduce alcohol consumption ==
+
+{{Argument
+|quotes={{Quote
+|quote=In US states where marijuana has been legalised, researchers observed an average 15% decline in alcohol consumption over almost ten years.
+|authors=Léa Polverini
+|article=Les ventes d'alcool ont chuté de 15% dans les États américains où le cannabis est légal
+|work=Slate
+|date=30 January 2018
+|link=https://www.slate.fr/story/156994/etats-unis-legalisation-cannabis-chute-ventes-alcool
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=US studies on the relationship between cannabis and alcohol consumption do not all reach the same conclusions
+|displayed-title=US studies on the relationship between cannabis and alcohol consumption do not all reach the same conclusions
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Cannabis legalisation may reduce crime ==
+
+{{Argument
+|quotes={{Quote
+|quote=Crime fell by an average of 13%, and by 15% in California, the most populous state [even though only medical cannabis had been legalised there up to that point]. The largest falls were in the most violent offences: armed robberies were down 19%, and murders generally fell by 10% everywhere!
+|authors=Anthony Bellanger
+|article=Aux États-Unis, la légalisation du cannabis a fait baisser la criminalité
+|work=France Inter
+|date=15 January 2018
+|link=https://www.franceinter.fr/emissions/les-histoires-du-monde/les-histoires-du-monde-15-janvier-2018
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Cannabis legalisation may reduce deaths from opioid overdoses ==
+
+{{Argument
+|quotes={{Quote
+|quote=US states where recreational cannabis is legal have seen a reduction of at least 20% in opioid overdose deaths. […] By comparing overdose death rates before and after legalisation, and between states at different stages of legalisation, the authors of a study published in Economic Inquiry identified a “very robust” causal effect on the reduction in opioid-related mortality. Their econometric analysis puts the fall at between 20% and 35%, with a particularly marked effect on deaths caused by opioids such as fentanyl, the deadliest drug in the United States according to the latest official figures. […] States with legal access to marijuana through dispensaries saw a larger fall in mortality than other states […] The differences could be linked to the growing number of people who self-medicate and “relieve pain by using marijuana and are therefore less likely to become addicted to opioids”.
+Some earlier studies had nevertheless reached the opposite conclusion: they found that cannabis use increases the use of opioids obtained without a prescription.
+|authors=AFP
+|article=La légalisation du cannabis ferait baisser les morts par overdose
+|work=L'Express
+|date=8 August 2019
+|link=https://www.lexpress.fr/actualite/monde/amerique-nord/la-legalisation-du-cannabis-ferait-baisser-les-morts-par-overdose_2093650.html
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Cannabis legalisation may reduce deaths from overdoses of harder drugs ==
+
+{{Argument}}
+
+
+== Cannabis legalisation would steer users towards hard drugs ==
+
+{{Argument
+|quotes={{Quote
+|quote=Legalising cannabis would effectively force people intent on breaking the rules to turn straight to drugs higher up the addiction scale.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=41
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=It is entirely possible to decriminalise all drugs
+|displayed-title=It is entirely possible to decriminalise all drugs
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, hard drugs
+}}
+
+
+== Cannabis legalisation risks increasing consumption ==
+
+{{Argument
+|summary=Legalisation risks increasing consumption, particularly among young people, through social normalisation and a lower perception of risk.
+|quotes={{Quote
+|quote=Legalisation sends an implicit message: if it is legal, it is harmless. That is a serious misconception.
+|authors=Volkow
+|article=Marijuana: Facts Parents Need to Know
+|work=National Institute on Drug Abuse (NIDA)
+|date=2020
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Experience shows that legalising a drug is not accompanied by increased consumption
+|displayed-title=Experience shows that legalising a drug is not accompanied by increased consumption
+}}
+|sections=Education, Psychology, Health, Society
+|keywords=risk perception, young people, normalisation
+|webliography={{Web reference
+|link=https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html
+|page=Legislative Review of the Cannabis Act: Final Report of the Expert Panel
+|authors=Morris Rosenberg, Oyedeji Ayonrinde, Patricia J. Conrod, Lynda L. Levesque, Peter Selby
+|site=Health Canada
+|date=March 2024
+}}
+
+}}
+
+
+== Legalising recreational cannabis would pave the way for medical use ==
+
+{{Argument
+|quotes={{Quote
+|quote=The idea is gaining ground in Western countries: Canada and thirteen US states permit it, while its use is tolerated in the Netherlands, Germany, Spain, Portugal, Italy, Austria, Iceland, Belgium, Denmark and the Czech Republic. In France at present, only temporary use authorisations (ATUs) issued by the National Agency for Medicines and Health Products Safety (ASNM) allow a very small number of patients access to cannabis-based products.
+|authors=Joël Plantet
+|article=Dépénalisation, légalisation, statu quo ?
+|work=Lien social
+|date=8 November 2012
+|link=https://www.lien-social.com/Depenalisation-legalisation-statu-quo
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Medical and recreational cannabis use can be kept separate
+|displayed-title=Medical and recreational cannabis use can be kept separate
+}}{{Objection
+|page=Medical cannabis use is not without risks
+|displayed-title=Is medical cannabis use appropriate?
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Legalising recreational cannabis raises difficulties under international conventions ==
+
+{{Argument
+|summary=Internationally, cannabis has been classified as a narcotic drug since 1925. Its production, trade, supply, possession and use are prohibited in all countries that have signed the [https://en.wikipedia.org/wiki/Drug_prohibition international drug conventions] (the 1961 Single Convention and the 1988 Convention).
+|objections={{Objection
+|page=International conventions do not require cannabis use to be criminalised
+|displayed-title=International conventions do not require use to be criminalised
+}}{{Objection
+|page=The Global Commission on Drug Policy advocates cannabis legalisation
+|displayed-title=The Global Commission on Drug Policy advocates legalisation
+}}{{Objection
+|page=Strict adherence to drug conventions conflicts with international human rights treaties
+|displayed-title=Strict adherence to drug conventions conflicts with international human rights treaties
+}}{{Objection
+|page=Cannabis legalisation might be possible through prosecutorial discretion or a scientific experiment
+|displayed-title=Legalisation should be possible through prosecutorial discretion or a scientific experiment
+}}{{Objection
+|page=INCB criticism did not prevent Uruguay from legalising cannabis
+|displayed-title=Uruguay legalised cannabis despite INCB criticism
+}}
+|sections=Health, Society
+|keywords=cannabis, decriminalisation, impossibility
+}}
+
+
+== Cannabis will be legalised, just as many once-denounced social advances were adopted ==
+
+{{Argument
+|quotes={{Quote
+|quote=We should remember that divorce was once impossible and later regulated, and that homosexuality was once a crime. Abortion was also a serious criminal offence tried in the assize courts. Removing it from the criminal courts did not cause a resurgence; instead, it enabled a health-based approach that reduced the harms associated with clandestine practice and provided support for women in difficulty.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=91
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation
+}}
+
+
+== Cannabis legalisation would be beneficial ==
+
+{{Argument
+|justifications={{Justification
+|page=Cannabis legalisation would free up resources for prevention
+|displayed-title=Legalisation would free up resources for prevention
+}}{{Justification
+|page=Cannabis legalisation would empty prisons and ease the burden on police and courts
+|displayed-title=Emptying prisons and easing the burden on police and courts
+}}{{Justification
+|page=Legalising recreational cannabis would pave the way for medical use
+|displayed-title=Legalising recreational cannabis would pave the way for medical use
+}}{{Justification
+|page=Cannabis legalisation may reduce alcohol consumption
+|displayed-title=Legalisation may reduce alcohol consumption
+}}{{Justification
+|page=Cannabis legalisation may reduce deaths from overdoses of harder drugs
+|displayed-title=Legalisation may reduce deaths from overdoses of harder drugs
+}}{{Justification
+|page=Cannabis legalisation may reduce deaths from opioid overdoses
+|displayed-title=Legalisation may reduce deaths from opioid overdoses
+}}{{Justification
+|page=Cannabis legalisation would put an end to trafficking
+|displayed-title=Legalisation would put an end to trafficking
+}}{{Justification
+|page=Cannabis legalisation may reduce crime
+|displayed-title=Legalisation may reduce crime
+}}{{Justification
+|page=The Portuguese model has proved its worth
+|displayed-title=The Portuguese model has proved its worth
+}}
+|objections={{Objection
+|page=Cannabis legalisation risks increasing consumption
+|displayed-title=Increased consumption
+}}{{Objection
+|page=Cannabis legalisation encourages an economy built on dependence
+|displayed-title=Encouraging an economy built on dependence
+}}{{Objection
+|page=A cannabis black market may persist after legalisation
+|displayed-title=Persistence of a black market
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Cannabis legalisation might be possible through prosecutorial discretion or a scientific experiment ==
+
+{{Argument
+|quotes={{Quote
+|quote=This is what legal experts such as Professor Francis Caballero and the Dutchman Mario Lap maintain.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=105
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Law, Health, Science, Society
+|keywords=cannabis, legalisation, scientific experimentation
+}}
+
+
+== Cannabis legalisation would be harmful ==
+
+{{Argument
+|justifications={{Justification
+|page=Cannabis legalisation would greatly increase the number of users
+|displayed-title=Legalisation would greatly increase the number of users
+}}{{Justification
+|page=Cannabis legalisation would steer users towards hard drugs
+|displayed-title=Legalisation would steer users towards hard drugs
+}}{{Justification
+|page=Cannabis legalisation would endanger minors
+|displayed-title=Legalisation would endanger minors
+}}{{Justification
+|page=Cannabis legalisation would have excessive social and economic effects on disadvantaged suburbs
+|displayed-title=Legalisation would have excessive social and economic effects on disadvantaged suburbs
+}}
+|sections=Economy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, harmfulness
+}}
+
+
+== Cannabis legalisation would endanger minors ==
+
+{{Argument
+|quotes={{Quote
+|quote=Above all, let no one claim that cannabis could be permitted for adults while prohibited for minors. Tobacco demonstrates the futility of such measures. A [https://www.ofdt.fr/ofdtdev/live/publi/rapports/rap13/epfxcdta.html recent survey] found that 60% of licensed tobacco retailers break the ban on tobacco sales to minors!
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=40
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Legalisation would make buying cannabis in shops harder for minors than obtaining it on the black market today
+|displayed-title=Buying in shops would be harder for minors than obtaining cannabis on the black market today
+}}
+|sections=Society
+|keywords=cannabis, legalisation, decriminalisation, harmfulness, minors
+}}
+
+
+== Clandestine cannabis cultivation causes many fires ==
+
+{{Argument
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Prohibition worsens the distress that leads to drug use ==
+
+{{Argument}}
+
+
+== Alcohol prohibition in the early twentieth century was a failure ==
+
+{{Argument
+|quotes={{Quote
+|quote=By the early 1930s, the experiment's failure was obvious and widely acknowledged. It was clear that Prohibition had produced a boom in organised crime and had helped corruption spread considerably through politics and the judiciary. It had also caused obvious damage to public finances: lost tax and customs revenues were substantial, while fraud and smuggling were out of control.
+Nor was there any decisive fall in alcohol consumption to offset this heavy toll. Quite the contrary!
+|authors=François Bujon de l'Estang
+|article=La prohibition aux Etats-Unis dans les 1920 : Un échec cuisant
+|work=Colloque de l’Académie du Vin de France et de la Société de Géographie
+|date=27 January 2012
+|link=https://fbe-international.com/articles/la-prohibition-aux-etats-unis-dans-les-1920-un-echec-cuisant/
+|warnings=AI-translated quote
+}}
+}}
+
+
+== Alcohol prohibition and some wars on drugs have had counterproductive effects ==
+
+{{Argument
+|quotes={{Quote
+|quote=Eleven years have passed since former Mexican president Felipe Calderón declared war on drug cartels in early December 2006, deploying the army in the country's most troubled areas. More than 200,000 people have died in this war according to official figures, with no prospect of victory for the Mexican authorities. Fuelled by growing US demand for drugs, particularly opioids, Mexican cartels are more powerful than ever. They control virtually all production of the heroin and synthetic drugs consumed north of the border, as well as the trade in South American cocaine destined for major US cities, not to mention some of the shipments sent to Europe. ''“Mexican criminal organisations show continuing signs of growth and expansion,”'' notes the annual report published in late October by the Drug Enforcement Administration (DEA), the US anti-drug agency. It adds: ''“No other group is in a position to compete with them.”''
+|authors=Emmanuelle Steels
+|article=Onze ans d’efforts, 200 000 morts… et des cartels au plus fort
+|work=Libération
+|date=25 December 2017
+|link=https://www.liberation.fr/planete/2017/12/25/onze-ans-d-efforts-200-000-morts-et-des-cartels-au-plus-fort_1618862/
+|warnings=AI-translated quote
+}}
+|justifications={{Justification
+|page=Alcohol prohibition in the early twentieth century was a failure
+|displayed-title=Alcohol prohibition in the early twentieth century was a failure
+}}{{Justification
+|page=Efforts to combat cannabis trafficking are costly and unsuccessful
+|displayed-title=Combating trafficking wastes resources
+}}
+}}
+
+
+== Cannabis prohibition increases profitability by driving up prices ==
+
+{{Argument
+|quotes={{Quote
+|quote=The cannabis market reveals a fundamental paradox. The more punitive enforcement becomes, the higher the price paid by consumers, through a basic economic mechanism. This makes drug production more profitable and intensifies the cannabis trade. In short, the harder we crack down, the more the cannabis trade flourishes…
+|authors=Paul De Grauwe
+|article=Le cannabis se mutualise, à défaut d'être réglementé
+|work=L'Écho (Belgique)
+|date=20 October 2017
+|link=https://www.lecho.be/economie-politique/belgique-general/Le-cannabis-se-mutualise-a-defaut-d-etre-reglemente/9945069
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Cannabis prohibition deters some people from using it ==
+
+{{Argument
+|summary=Prohibition deters some people, particularly young people, from using cannabis because of the legal risks.
+|quotes={{Quote
+|quote=Perception of risk plays a crucial role in reducing risky behaviour, particularly among young people. A legal ban reinforces that perception.
+|authors=Volkow
+|article=The Science of Addiction
+|work=National Institute on Drug Abuse
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Banning a drug does not reduce its use
+|displayed-title=Banning a drug does not reduce its use
+}}
+|sections=Education, Psychology, Health, Society
+|keywords=risk perception, young people, prevention
+}}
+
+
+== Cannabis prohibition obstructs prevention and treatment ==
+
+{{Argument
+|quotes={{Quote
+|quote=[Fear of punishment] discourages them from seeking care. […] “Punitive enforcement drives use underground. And going underground increases risky practices” (according to psychiatrist Béatrice Stambul). […] [Criminalisation] makes it harder for prevention workers to devise suitable campaigns, since logically they are supposed to have only one message: “Do not use drugs; it is illegal!” […] In a punitive environment, users place little trust in official information, which they often see as prohibitionist propaganda.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=87, 85, 88 et 89
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Prohibition makes life harder for those seeking to prevent problematic drug use among young people through an approach other than fear-based prohibition, which is not very effective. The most worrying unintended effect of this fear strategy is that many young people feel they are being lied to and reject the exaggerated portrayal of these substances' dangers in favour of an equally exaggerated downplaying of their risks. It is like telling young people that touching alcohol puts them on the road to alcoholism and homelessness. […] The result of prohibition is that parents leave the prevention of drug misuse among young people to the police, wrongly believing that they lack the knowledge to provide effective prevention themselves […] not talking about substances, but addressing the reasons that can lead to problematic use.
+|authors=Lise Beauchesne
+|work=Les drogues. Les coûts cachés de la prohibition
+|page=246 et 278
+|publisher=Lanctôt
+|date=2003
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition, prevention
+}}
+
+
+== Cannabis prohibition drives users underground and causes social exclusion and feelings of discrimination ==
+
+{{Argument
+|quotes={{Quote
+|quote=Punitive enforcement and criminalisation exclude and reject those who need help, create trafficking and more dangerous underground patterns of use, and obstruct information and prevention (according to doctors Béatrice Stambul and Jean-Pierre Lhomme). […] Punitive enforcement primarily affects young people from visible minorities and disadvantaged neighbourhoods. It deepens distrust of the police and sustains feelings of discrimination, especially among those stopped several times a day. The clearest example is Seine-Saint-Denis: in 2008, the department ranked 42nd for the number of regular users and first for arrests.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=88 et 78
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Most cannabis users are not on the margins of society. Why turn them into criminals?
+|authors=Michel Henry
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=13
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition, underground activity
+}}
+
+
+== Cannabis prohibition creates a lucrative underground economy with corruption, money laundering, youth recruitment, violence, insecurity and arms trafficking ==
+
+{{Argument
+|quotes={{Quote
+|quote=The billions of euros in profits laundered over the years are corroding the legitimate economy, encouraging corruption and overturning values. They intensify the slide of gangs on our housing estates towards mafia-style activity, along with the risk of spillover into public life. (…) Control of drug dealing often leads to clashes and score-settling with automatic weapons. This territorial war has caused dozens of deaths in recent years, mainly in the Paris region and Marseille, not to mention unlawful confinement involving abuse and disappearances. (…) The cannabis business draws many young people away from school and social integration. It creates palpable tension that exacerbates all human relationships and encourages violence and fear. The disruption caused by trafficking prompts residents of the worst-affected neighbourhoods to distance themselves from these gangs so as not to be associated with them. (…) The temptation to resort to self-defence and arm oneself in the American fashion grows stronger. Others favour vigilante patrols or defence militias, as in Italy or Hungary. Some propose security companies with armed guards, as in South Africa, or an army occupying the neighbourhoods. The social breakdown caused by cannabis prohibition fuels extremist temptations. The principal social harm associated with cannabis becomes the violence linked to its prohibition and clandestine market.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=79
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=For the mayor of a municipality of 51,000 residents, allowing this climate of fear to take hold is unacceptable: it places socially and economically vulnerable populations under the control of armed gangs.
+|authors=Stéphane Gatigon
+|work=Le Monde
+|date=16 June 2011
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Prohibition leads to numerous abusive checks, quite apart from the violence citizens experience locally because of the black market. Moreover, the power of the black market created by prohibition allows those at its head to use economic fraud and political and police corruption to maintain and increase their profits. Clearly, prohibition weakens democracy in the name of a deceptive moralism and legal paternalism. This happens insidiously, while public reactions to this erosion of democracy through the war on drugs are restrained by people's acceptance of prohibitionist rhetoric.
+|authors=Lise Beauchesne
+|work=Les drogues. Les coûts cachés de la prohibition
+|page=289
+|publisher=Lanctôt
+|date=2003
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, underground economy
+}}
+
+
+== Cannabis prohibition deprives the state of substantial revenue, and leaving this market untaxed effectively subsidises it ==
+
+{{Argument
+|quotes={{Quote
+|quote=This is little short of a state subsidy to organised crime.
+|authors=Simon Jenkins
+|article=Heroic Uruguay deserves a Nobel peace prize for legalising cannabis
+|work=The Guardian
+|date=12 December 2013
+|link=https://www.theguardian.com/commentisfree/2013/dec/12/heroic-uruguay-deserves-nobel-prize-cannabis
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Taxing every illicit market would be irresponsible
+|displayed-title=Taxing every illicit market would be irresponsible
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Cannabis prohibition infringes individual liberty ==
+
+{{Argument
+|quotes={{Quote
+|quote=The NGO Human Rights Watch regards criminalising drug use as “an infringement of fundamental human rights” and calls for the decriminalisation of all drug consumption.
+Prohibition appears to serve as a means of social control.
+These social developments are part of a redefinition of what belongs to the private sphere and personal preference, as opposed to what concerns the public sphere. They encompass religious beliefs, sexual preferences and many other life choices. We should remember that divorce was once impossible and later regulated, and that homosexuality was once a crime; abortion was also a serious criminal offence tried in the assize courts.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=78, 90 et 91
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The 1994 report on drug addiction adopted by the National Consultative Ethics Committee for Health and Life Sciences stated: “The mere use of a dangerous substance should be punishable only when it takes place in public, or when it has been established, with full procedural safeguards, that it has a harmful influence on those around the user, particularly their family.”
+|authors=Françoise Branget, Gilbert Barbier
+|article=La dépénalisation de l'usage, une impasse éthique et juridique
+|work=Mission d’information sur les toxicomanies
+|publisher=Assemblée nationale
+|date=30 June 2011
+|link=https://www.assemblee-nationale.fr/13/rap-info/i3612-ti.asp#P1085_352797
+|warnings=AI-translated quote
+}}{{Quote
+|quote=France's drug law of 31 December 1970 is a law that makes an exception to the general rule. This is the only area in which people can face imprisonment for harm they do to themselves. From an ethical standpoint, could we imagine trying to prevent suicide by imprisoning people who attempt it?
+|authors=Jean-Michel Costes
+|article=Il faut dépénaliser l'usage de drogue
+|work=Le Monde
+|date=31 December 2011
+|link=https://www.lemonde.fr/idees/article/2011/12/30/il-faut-depenaliser-l-usage-de-drogue_1624418_3232.html
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Once we start arresting citizens for their own good, where do we draw the line? (…) Doing good is always the excuse for totalitarianism.
+|authors=Frédéric Beigbeder
+|article=Préface
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=9
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=The freedom to use cannabis is the freedom to become enslaved
+|displayed-title=The freedom to become enslaved!
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition, individual liberties
+}}
+
+
+== Cannabis prohibition is effective ==
+
+{{Argument
+|summary=The ban and the penalties have a deterrent effect.
+|objections={{Objection
+|page=Cannabis use is increasing in France
+|displayed-title=Cannabis use is increasing in France
+}}{{Objection
+|page=Cannabis remains readily available
+|displayed-title=Cannabis remains readily available
+}}{{Objection
+|page=Prohibition makes cannabis more appealing
+|displayed-title=Prohibition makes cannabis more appealing
+}}{{Objection
+|page=Penalties do not deter cannabis users
+|displayed-title=Penalties do not deter cannabis users
+}}{{Objection
+|page=The ban on cannabis can be circumvented
+|displayed-title=The ban on cannabis can be circumvented
+}}{{Objection
+|page=Addictive behaviours are largely unresponsive to legislation
+|displayed-title=Addictive behaviours are largely unresponsive to legislation
+}}{{Objection
+|page=Prohibition fails to address the reasons for drug use
+|displayed-title=Prohibition fails to address the reasons for drug use
+}}{{Objection
+|page=Alcohol prohibition and some wars on drugs have had counterproductive effects
+|displayed-title=Decades of fighting drugs have not significantly reduced their use or trade
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition
+}}
+
+
+== Cannabis prohibition is ineffective ==
+
+{{Argument
+|justifications={{Justification
+|page=Cannabis use is increasing in France
+|displayed-title=Cannabis use is increasing
+}}{{Justification
+|page=Cannabis remains readily available
+|displayed-title=Cannabis remains readily available
+}}{{Justification
+|page=Prohibition makes cannabis more appealing
+|displayed-title=Prohibition makes cannabis more appealing
+}}{{Justification
+|page=Penalties do not deter cannabis users
+|displayed-title=The penalties have no deterrent effect
+}}{{Justification
+|page=The ban on cannabis can be circumvented
+|displayed-title=The ban can be circumvented
+}}{{Justification
+|page=Prohibition fails to address the reasons for drug use
+|displayed-title=Prohibition fails to address the reasons for drug use
+}}{{Justification
+|page=Alcohol prohibition and some wars on drugs have had counterproductive effects
+|displayed-title=Several prohibition policies have had counterproductive effects
+}}
+|objections={{Objection
+|page=The failure of a policy is not in itself a reason to abandon it
+|displayed-title=The failure of a policy is not in itself a reason to abandon it
+}}{{Objection
+|page=Cannabis prohibition deters some people from using it
+|displayed-title=Reduced consumption
+}}{{Objection
+|page=Prohibition sends a clear message to society
+|displayed-title=A clear message to society
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition
+}}
+
+
+== Cannabis prohibition harms users ==
+
+{{Argument
+|justifications={{Justification
+|page=Cannabis prohibition obstructs prevention and treatment
+|displayed-title=Obstacles to prevention and treatment
+}}{{Justification
+|page=Cannabis prohibition drives users underground and causes social exclusion and feelings of discrimination
+|displayed-title=Going underground, social exclusion and feelings of discrimination
+}}{{Justification
+|page=Under cannabis prohibition, some users suffer the consequences of imprisonment, a criminal record or both
+|displayed-title=Some users suffer the consequences of imprisonment, a criminal record or both
+}}{{Justification
+|page=Cannabis prohibition provides no guarantee of product quality
+|displayed-title=No guarantee of product quality
+}}{{Justification
+|page=Cannabis prohibition exposes users to drug dealers and harder drugs
+|displayed-title=Exposure to drug dealers and harder drugs
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition
+}}
+
+
+== Cannabis prohibition harms society ==
+
+{{Argument
+|justifications={{Justification
+|page=Cannabis prohibition leads to numerous checks that can affect anyone
+|displayed-title=Prohibition leads to numerous checks that can affect anyone
+}}{{Justification
+|page=Cannabis prohibition creates a lucrative underground economy with corruption, money laundering, youth recruitment, violence, insecurity and arms trafficking
+|displayed-title=It fuels organised crime
+}}{{Justification
+|page=Cannabis prohibition increases profitability by driving up prices
+|displayed-title=Prohibition increases cannabis profitability by driving up prices
+}}{{Justification
+|page=Efforts to combat cannabis trafficking are costly and unsuccessful
+|displayed-title=Efforts to combat trafficking are costly and unsuccessful
+}}{{Justification
+|page=Regulated distribution can place limits on commercial strategies
+|displayed-title=Controlled distribution can regulate commercial strategies
+}}{{Justification
+|page=Cannabis prohibition deprives the state of substantial revenue, and leaving this market untaxed effectively subsidises it
+|displayed-title=Substantial loss of state revenue. Leaving a market untaxed effectively subsidises it
+}}{{Justification
+|page=Clandestine cannabis cultivation causes many fires
+|displayed-title=Clandestine cannabis cultivation causes many fires
+}}{{Justification
+|page=The war on drugs intensifies the persecution of minorities
+|displayed-title=The war on drugs intensifies the persecution of minorities
+}}{{Justification
+|page=Punitive drug policies can burden vulnerable people and prisons
+|displayed-title=Drug penalties can increase pressure on prisons
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Cannabis prohibition exposes users to drug dealers and harder drugs ==
+
+{{Argument
+|quotes={{Quote
+|quote=[Prohibition] forces users to buy on the black market, exposing them to other drugs and crime.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=87
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The gateway to cocaine was therefore not cannabis, but the dealer. Moreover, going to the black market and mixing with dangerous people caused my patients considerable psychological stress.
+|authors=Raquel Peyraube
+|article=Raquel Peyraube, addictologue et militante pour le cannabis médical
+|work=Le Monde
+|date=8 July 2018
+|link=https://www.lemonde.fr/sciences/article/2018/07/08/raquel-peyraube-addictologue-et-militante-pour-le-cannabis-medical_5328066_1650684.html
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition, drug dealer, hard drug
+}}
+
+
+== Cannabis prohibition leads to numerous checks that can affect anyone ==
+
+{{Argument
+|quotes={{Quote
+|quote=Enforcement agencies are now stepping up their efforts, particularly against users, and almost every detected offence now receives a criminal justice response.
+|authors=Robin Reda
+|article=Rapport d'étape sur le cannabis récréatif
+|work=Assemblée nationale
+|page=16
+|date=5 May 2021
+|link=https://www2.assemblee-nationale.fr/15/missions-d-information/missions-d-information-communes/reglementation-et-impact-des-differents-usages-du-cannabis/rapport-cannabis-recreatif/rapport-d-etape-cannabis-recreatif
+|warnings=AI-translated quote
+}}
+}}
+
+
+== Cannabis prohibition lacks legitimacy ==
+
+{{Argument
+|justifications={{Justification
+|page=Cannabis prohibition infringes individual liberty
+|displayed-title=Prohibition infringes individual liberty
+}}{{Justification
+|page=Cannabis prohibition varies across periods and cultures
+|displayed-title=Cannabis prohibition varies across periods and cultures
+}}{{Justification
+|page=Cannabis prohibition does not distinguish ordinary use from addiction
+|displayed-title=Prohibition does not distinguish ordinary use from addiction
+}}{{Justification
+|page=Many substances far more harmful and addictive than cannabis are legal
+|displayed-title=Many substances far more addictive and harmful than cannabis are entirely legal
+}}{{Justification
+|page=Addiction is an illness and should not be treated as a criminal offence
+|displayed-title=Addiction is an illness and should not be treated as a criminal offence
+}}
+|sections=Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition
+}}
+
+
+== Cannabis prohibition provides no guarantee of product quality ==
+
+{{Argument
+|quotes={{Quote
+|quote=The clandestine nature of supply makes it impossible to control the quality of the products sold or prevent other illicit substances from being offered alongside them, increasing the risks.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=90
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=With legalisation, we would know what we were smoking. State-supplied drugs would be of better quality and therefore slightly less harmful to health than those currently consumed.
+|authors=Groupe de lycéens de 1re ES
+|article=Le cannabis ? Chut !
+|work=Le Monde
+|date=9 November 2012
+|link=https://www.lemonde.fr/idees/article/2012/11/10/le-cannabis-chut_1787901_3232.html
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition, quality
+}}
+
+
+== Cannabis prohibition does not distinguish ordinary use from addiction ==
+
+{{Argument
+|quotes={{Quote
+|quote=Extending the harmful effects of regular use to all ordinary use, in order to claim that any consumption already constitutes addiction, would be like saying that all alcohol consumption already constitutes alcoholism. The striking slogan “the earlier you try it, the sooner you take to it” obscures the fact that most people who try cannabis give it up or restrict it to exceptional occasions.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=117
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition, drug addiction
+}}
+
+
+== Prohibition sends a clear message to society ==
+
+{{Argument
+|summary=Prohibition sends a strong message about the dangers of cannabis, preventing its use from becoming normalised.
+|quotes={{Quote
+|quote=A society that abandons moral prohibition can only see its cohesion and its ability to protect the most vulnerable weaken.
+|authors=Habermas
+|work=La pensée post-morale
+|date=2003
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Prohibition increases appeal
+|displayed-title=Prohibition increases appeal
+}}{{Objection
+|page=Prohibition encourages attempts to circumvent the law
+|displayed-title=Prohibition encourages attempts to circumvent the law
+}}
+|sections=Education, Ethics, Philosophy, Society
+|keywords=social norms, protection of vulnerable people
+}}
+
+
+== Prohibition fails to address the reasons for drug use ==
+
+{{Argument
+|quotes={{Quote
+|quote=If some people eat quantities of food that damage their health, we do not look for the cause of that behaviour in the food, but in their reasons for eating compulsively. […] Similarly, if some people use illicit drugs to the point where they can no longer manage their lives, we should question not the drugs themselves but those people's reasons for using them in that way.
+|authors=Lise Beauchesne
+|work=Les drogues. Les coûts cachés de la prohibition
+|page=121
+|publisher=Lanctôt
+|date=2003
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Addiction is an illness, but one whose determinants are social long before they are physical. Uncontrolled gambling, like alcoholism and drug addiction in many cases, feeds on the anxiety about tomorrow that now afflicts most workers and very many young people. Prevention that tackles the roots of the problem requires profound social change: society must be put back on its feet and made to work first and foremost for humanity.
+|authors=Nathalie Arthaud
+|article=Drogue et société
+|work=Lutte ouvrière
+|link=https://www.lutte-ouvriere.org/sites/default/files/presentation/Drogue-et-societe.pdf
+|warnings=AI-translated quote
+}}
+|justifications={{Justification
+|page=A punitive approach lets public authorities evade responsibility for cannabis use
+|displayed-title=A punitive approach lets public authorities evade responsibility for cannabis use
+}}{{Justification
+|page=Prohibition worsens the distress that leads to drug use
+|displayed-title=Prohibition worsens the distress that leads to drug use
+}}
+|sections=Law, Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, consumption
+}}
+
+
+== Criminalising cannabis is a failure ==
+
+{{Argument
+|summary=See [[Cannabis prohibition is ineffective]].
+}}
+
+
+== Cannabis regulation in Uruguay works better than prohibition ==
+
+{{Argument
+|summary=Uruguay's state-regulated legalisation demonstrates that strict cannabis regulation works better than prohibition.
+
+* '''Description:''' Legalisation with state control over production and distribution. Only residents may buy cannabis, and quantity limits apply.
+* '''Advantages:'''
+** Almost complete elimination of the black market.
+** State control over quality and prices.
+** Tax revenue to fund prevention programmes.
+* '''Disadvantages:'''
+** Heavy bureaucracy and restrictions that can put users off.
+** Difficulty persuading consumers accustomed to the black market.
+* '''Results:'''
+** A substantial reduction in the black market, but a slight increase in overall consumption.
+** '''Overall assessment:''' A viable model that works better than strict prohibition, with scope for adjustment.
+|sections=Law, Economy, Politics, Health, Society
+|keywords=black market, public health issues, taxation
+}}
+
+
+== Punitive drug policies can burden vulnerable people and prisons ==
+
+{{Argument
+|quotes={{Quote
+|quote=One of the most persistent beliefs used to justify retaining the prison system is that imprisonment guarantees our safety. This implies that the people locked up are mainly those who have committed “violence against persons”. Yet a large majority of prisoners are held for offences relating to the use or trade of illicit substances, which puts the idea that “all prisoners are violent” into perspective.
+|authors=Collectif
+|article=Pourquoi faut-il en finir avec les prisons ?
+|work=Collectif de luttes anti-carcérales
+|date=November 2020
+|link=https://laclac.org/wp-content/uploads/2020/11/BROCHURE_de%CC%81construction.pdf&
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Who are these prisoners? Three quarters are in pre-trial detention. The others have problems that owe more to mental ill health or socioeconomic deprivation than to criminality. “Prisoners who are purely a matter for the Criminal Code account for only 10%,” the management stresses: people who are genuinely dangerous and must be isolated from the rest of society.
+|authors=Nabil Boukili, Morgane De Meur
+|article=Un député visite la prison : « Je comprends la colère des gardiens »
+|work=Parti du Travail de Belgique
+|date=9 January 2020
+|link=https://www.ptb.be/actualites/un-depute-visite-la-prison-je-comprends-la-colere-des-gardiens
+|warnings=AI-translated quote
+}}
+}}
+
+
+== Society must protect itself from the risks of cannabis ==
+
+{{Argument
+|justifications={{Justification
+|page=Cannabis is harmful to society
+|displayed-title=Cannabis is harmful to society
+}}{{Justification
+|page=Cannabis imposes costs on society
+|displayed-title=Cannabis imposes costs on society
+}}{{Justification
+|page=Cannabis is implicated in road accidents
+|displayed-title=Cannabis is implicated in road accidents
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, harmfulness
+}}
+
+
+== Cannabis imposes costs on society ==
+
+{{Argument
+|quotes={{Quote
+|quote=Society has the right to do everything it can to reduce the situations for which it will have to bear the cost.
+|authors=Jean Costentin
+|work=Pourquoi il ne faut pas dépénaliser l'usage du cannabis ?
+|page=24
+|publisher=Odile Jacob
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Efforts to combat cannabis trafficking are costly and unsuccessful
+|displayed-title=Prohibition entails substantial costs (lost tax revenue, policing, courts...)
+}}
+|sections=Economy, Society
+|keywords=cannabis, legalisation, decriminalisation, cost, prohibition
+}}
+
+
+== Cannabis is harmful to physical and mental health ==
+
+{{Argument
+|summary=This is Jean Costentin's central argument, which he develops in his books (see Bibliography) and articles.
+|quotes={{Quote
+|quote=Combating cannabis is just as legitimate as combating tuberculosis.
+|authors=Jean Costentin
+|work=Pourquoi il ne faut pas dépénaliser l'usage du cannabis ?
+|page=30
+|publisher=Odile Jacob
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=The risks of cannabis are particularly concerning when use begins early
+|displayed-title=The risks depend in particular on how early use begins
+}}{{Objection
+|page=Cannabis poses relatively little harm
+|displayed-title=Cannabis poses relatively little harm
+}}{{Objection
+|page=The risks of cannabis can be reduced by changing how it is consumed
+|displayed-title=The risks can be reduced by changing how it is consumed
+}}{{Objection
+|page=The risks of cannabis do not depend on the substance alone
+|displayed-title=The risks do not depend on the substance alone
+}}{{Objection
+|page=Punishing people for harm they do to themselves is illegitimate
+|displayed-title=Punishing people for harm they do to themselves is illegitimate
+}}{{Objection
+|page=If cannabis is dangerous, why leave it in the hands of organised crime?
+|displayed-title=If cannabis is dangerous, why leave it in the hands of organised crime?
+}}{{Objection
+|page=The lack of product quality guarantees poses risks in itself
+|displayed-title=The lack of product quality guarantees poses risks in itself
+}}{{Objection
+|page=Many substances far more harmful and addictive than cannabis are legal
+|displayed-title=Many legal substances are far more harmful to health than cannabis
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, overdose, harmfulness
+|webliography={{Web reference
+|link=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+}}
+
+}}
+
+
+== Cannabis is implicated in road accidents ==
+
+{{Argument
+|quotes={{Quote
+|quote=Cannabis alone: risk multiplied by 2.5.
+|authors=Françoise Branget, Gilbert Barbier
+|article=La dépénalisation de l'usage, une impasse éthique et juridique
+|work=MISSION D’INFORMATION SUR LES TOXICOMANIES. Rapport d'information sur les toxicomanies
+|publisher=Assemblée nationale
+|date=30 June 2011
+|link=https://www.assemblee-nationale.fr/13/rap-info/i3612-ti.asp#P1085_352797
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Cannabis intoxication causes around 300 road deaths each year, as the 2005 SAM study (Drugs and Fatal Road Traffic Accidents) revealed. Yet that study took account only of blood THC concentrations above 2 micrograms per litre (μg/L), whereas we can now measure THC at a concentration ten times lower (0.2 μg/L). Combining cannabis and alcohol multiplies the risk of a fatal accident by fourteen. Reducing road accidents requires the eradication of cannabis and stricter measures on alcohol.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=55
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Cannabis alone only slightly increases the risk of road accidents
+|displayed-title=Cannabis alone only slightly increases the risk of road accidents
+}}{{Objection
+|page=Alcohol is chiefly responsible for road accidents
+|displayed-title=Alcohol is chiefly responsible
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, road accidents
+}}
+
+
+== Cannabis is harmful to society ==
+
+{{Argument
+|quotes={{Quote
+|quote=The serious harms caused by drug addiction to human beings, both as individuals and as citizens, and to society as a whole have been demonstrated. Article 5 of the 1789 Declaration allows the law to prohibit “actions harmful to society”: drug use is certainly one such action.
+|authors=Françoise Branget, Gilbert Barbier
+|article=La dépénalisation de l'usage, une impasse éthique et juridique
+|work=MISSION D’INFORMATION SUR LES TOXICOMANIES. Rapport d'information sur les toxicomanies
+|publisher=Assemblée nationale (France)
+|date=30 June 2011
+|link=https://www.assemblee-nationale.fr/13/rap-info/i3612-ti.asp#P1085_352797
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Drugs are not merely a public health problem; they are also a threat to democracy.
+|authors=Paul Quilès
+|work=Faut-il dépénaliser le cannabis ?
+|page=71
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Expanding the range of legal drugs would cause far more deaths, with a major deterioration in collective intelligence into the bargain.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=111
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Private cannabis use alone does not harm others
+|displayed-title=Private use alone does not harm others
+}}{{Objection
+|page=Cannabis prohibition harms society
+|displayed-title=Cannabis prohibition is even more harmful
+}}{{Objection
+|page=Many substances far more harmful and addictive than cannabis are legal
+|displayed-title=So are alcohol and tobacco, yet they are legal
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, harmfulness
+}}
+
+
+== Cannabis is always dangerous because smokers only want to get high ==
+
+{{Argument
+|objections={{Objection
+|page=Cannabis can be used to relieve pain and relax
+|displayed-title=No, it is also used to relieve pain and relax
+}}
+}}
+
+
+== Cannabis can be used to relieve pain and relax ==
+
+{{Argument}}
+
+
+== Cannabis amplifies the effects of alcohol and tobacco ==
+
+{{Argument
+|quotes={{Quote
+|quote=Adding cannabis to tobacco increases its toxicity very substantially. (p. 33)
+Cannabis is also often combined with alcohol. Far from merely adding their respective effects, the resulting effect is much greater—what pharmacology calls potentiating synergy. (p. 59)
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, health, alcohol, tobacco
+}}
+
+
+== Cannabis remains readily available ==
+
+{{Argument
+|quotes={{Quote
+|authors=Observatoire français des drogues et toxicomanies
+|quote=General population surveys provide another measure of availability by asking people how easy they think it would be, or actually is, to obtain cannabis. They show that cannabis seems readily available to most French people, whether they use it or not: almost six in ten people aged 15 to 64 (58.0%) believe that, if they wanted it, obtaining cannabis within 24 hours would be easy (30.4% fairly easy and 27.5% very easy). Men aged 20–25 are particularly likely to hold this view (79.2%, compared with 61.3% in the rest of the population). Fewer than one person in ten (7.2%) says they cannot answer, a proportion that rises markedly with age, from 2.0% among 15–19-year-olds to 14.3% among those over 55. Admittedly, the question has limitations when put to people who have no desire to obtain cannabis and do not really accept the hypothetical situation presented to them.
+
+Difficulties seem to have little effect on most users. Keeping small supplies in reserve, helping one another out and using alternative supply networks tend to cushion the impact of a temporary reduction in availability. An experienced regular user can obtain some form of cannabis to meet their needs in any circumstances.
+|article=Cannabis, données essentielles. Partie 3 : le marché du cannabis en France
+|work=OFDT
+|page=67-68
+|date=2007
+|link=https://www.ofdt.fr/BDD/publications/docs/cdemarch.pdf
+|warnings=AI-translated quote
+}}
+|sections=Economy, Society
+|keywords=cannabis, cost
+}}
+
+
+== Cannabis alone only slightly increases the risk of road accidents ==
+
+{{Argument
+|summary=Cannabis alone increases the risk, but by a factor of two—the same as alcohol at the permitted blood alcohol concentration of 0.5 g/L.
+|quotes={{Quote
+|quote=Alcohol is responsible for the majority of fatal road accidents (around 30%); combined alcohol and cannabis use is also a factor (risk multiplied by fifteen, whereas cannabis alone does increase the risk, but by a factor of two—the same as alcohol at the permitted concentration of 0.5 g/L). (SAM study)
+|authors=Didier Jayle
+|article=Cannabis : « Non l’Académie de Médecine ne remplit pas sa mission ! »
+|date=27 March 2014
+|link=https://jeanyvesnau.com/2014/03/27/cannabis-non-lacademie-nationale-de-medecine-ne-remplit-pas-sa-mission/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, road accidents
+}}
+
+
+== Purdue Pharma is responsible for oxycodone addiction ==
+
+{{Argument
+|quotes={{Quote
+|quote=At the beginning of the twenty-first century, the painkiller OxyContin is selling like hot cakes.
+
+Prescribed for anything and everything, from the mildest headache to an inflamed knee, this “miracle” pill—normally intended for people with terminal cancer—is heavily marketed, and its use made to seem entirely routine.
+
+And with good reason: its use rests on a misleading percentage, turned into a selling point by Purdue's sales representatives, who repeat it like a slogan:
+
+“Fewer than 1% of patients who use OxyContin become addicted to it.”
+
+A thoroughly false percentage, as hundreds of thousands of Americans soon become hooked on OxyContin, some to the point of taking excessive amounts.
+
+The United States consequently sees a terrible rise in overdoses, under the indifferent gaze of a pharmaceutical company making a fortune.
+
+That very company—one of the compelling features of Dopesick is that it reveals the plans of both Purdue's top executives and their critics—has only one thing in mind: exceeding a billion dollars in revenue, even if it means sacrificing its patients.
+|authors=Kalindi Ramphul
+|article=Magouilles pharmaceutiques, toxicomanie : Dopesick ou l’enfer d’une Amérique en pleine crise des opioïdes
+|work=Madmoizelle.com
+|date=17 November 2021
+|link=https://www.madmoizelle.com/magouilles-pharmaceutiques-toxicomanie-dopesick-ou-lenfer-dune-amerique-en-pleine-crise-des-opioides-1213529
+|warnings=AI-translated quote
+}}
+}}
+
+
+== The Portuguese model has proved its worth ==
+
+{{Argument
+|summary=In Portugal, drug users are no longer treated as offenders but as patients in need of treatment.
+|quotes={{Quote
+|quote=By decriminalising the use of all drugs twenty-five years ago, the country broke a taboo, and consumption remains contained at levels among the lowest in Europe.
+|authors=François Musseau
+|article=Les 50 ans de l'Appel du 18 joint Au Portugal, le succès de la dépénalisation générale des drogues
+|work=Libération
+|date=17 June 2026
+|link=https://www.liberation.fr/international/europe/au-portugal-le-succes-de-la-depenalisation-generale-des-drogues-20260617_PL2SYLOJTBCWXBSJ55WFL6TRWY/
+|warnings=AI-translated quote
+}}
+|webliography={{Web reference
+|link=https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf
+|page=Portugal — Country Drug Report 2019
+|site=European Monitoring Centre for Drugs and Drug Addiction
+|date=2019
+}}
+
+}}
+
+
+== Cannabis has relatively low addictive potential ==
+
+{{Argument
+|quotes={{Quote
+|quote=We now know that while estimates vary, marijuana leads to dependence in around 9 to 10% of its adult users. By comparison, cocaine hooks 20% of those who use it. Around 25% of heroin users become addicted. The worst is tobacco, where the number is closer to 30% of smokers.
+|authors=Dr. Sanjay Gupta
+|article=Why I changed my mind on weed
+|work=CNN
+|date=9 August 2013
+|link=https://edition.cnn.com/2013/08/08/health/gupta-changed-mind-marijuana/index.html
+|warnings=AI-translated quote
+}}
+''The contradiction between the figures given by Dr Jean Costentin and Dr Sanjay Gupta is only apparent: only the latter is actually discussing dependence. Not all regular users are dependent.''
+{{Quote
+|quote=Cannabis use is most often temporary: even where dependence develops, two thirds of users stop using it spontaneously between the ages of 25 and 30.
+|authors=Laqueille, Liot
+|work=Faut-il dépénaliser le cannabis ?
+|page=22
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, health, addiction
+}}
+
+
+== Cannabis has substantial addictive potential ==
+
+{{Argument
+|quotes={{Quote
+|quote=One in three people who have tried cannabis becomes a regular user.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=54
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Cannabis has relatively low addictive potential
+|displayed-title=It has relatively low addictive potential
+}}{{Objection
+|page=The addictive potential of cannabis is neither inherently low nor high; it depends on the level of use
+|displayed-title=Its addictive potential is neither inherently low nor high; it depends on the level of use
+}}{{Objection
+|page=Drug dependence is not independent of the person and their environment. Drugs are a way of coping with life, not the cause of dependence
+|displayed-title=Drug dependence is not independent of the person and their environment. Drugs are a way of coping with life, not the cause of dependence
+}}{{Objection
+|page=Many substances far more harmful and addictive than cannabis are legal
+|displayed-title=Less so than alcohol, which is legal
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, health, addiction
+|webliography={{Web reference
+|link=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+}}
+
+}}
+
+
+== The addictive potential of cannabis is neither inherently low nor high; it depends on the level of use ==
+
+{{Argument
+|quotes={{Quote
+|quote=The addictive potential of cannabis is neither inherently low nor high, but depends on the level of use. There are no hard drugs and soft drugs, but hard or soft ways of using drugs, whatever they may be. Addiction lies in the relationship with the substance.
+|authors=Jean-Luc Ferry
+|page=9
+|date=24 January 2014
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, health, addiction
+}}
+
+
+== Retail price plays a decisive role in cannabis consumption ==
+
+{{Argument
+|quotes={{Quote
+|quote=Legalisation would not cause consumption to soar if the tax set by the state kept the price at its current level (around €5.50 per gram). Price is the key variable: if it were too high, it would encourage trafficking. If it were too low, consumption could increase.
+|authors=Pierre Kopp
+|article=Légaliser le cannabis rapporterait 1 milliard d'euros selon l'économiste Pierre Kopp, autoriser la consommation dégagerait des moyens pour la prévention
+|work=Le Monde
+|date=3 August 2011
+|link=https://www.lemonde.fr/societe/article/2011/08/02/legaliser-le-cannabis-rapporterait-1-milliard-d-euros-miste-pierre-kopp-autoriser-la-consommation-degagerait-des-moyens-pour-la-prevention_1555243_3224.html
+|warnings=AI-translated quote
+}}{{Quote
+|quote=A US study by RAND Corporation economists published in 2010 estimated that legalising cannabis production and distribution in California could generate up to $1 billion in tax revenue, but would drive prices down by 80%, inevitably causing a substantial rise in consumption.
+|authors=Grégoire Fleurot
+|article=A quoi ressemblerait une filière nationale du cannabis?
+|work=Slate
+|date=24 June 2011
+|link=https://www.slate.fr/story/40067/cannabis-vente-libre-filiere-vaillant
+|warnings=AI-translated quote
+}}
+|sections=Economy, Society
+|keywords=cannabis, legalisation, decriminalisation, consumption, retail price
+|bibliography={{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+
+}}
+
+
+== Strict adherence to drug conventions conflicts with international human rights treaties ==
+
+{{Argument
+|quotes={{Quote
+|quote=We relied on the fact that human rights conventions took legal precedence over drug conventions. Uruguay could therefore exercise its sovereignty by legalising cannabis if we demonstrated that doing so saved lives: those of young people risking their lives to obtain it on the black market, or of patients otherwise unable to relieve their pain.
+|authors=Raquel Peyraube
+|article=Raquel Peyraube, addictologue et militante pour le cannabis médical
+|work=Le Monde
+|date=8 July 2018
+|link=https://www.lemonde.fr/sciences/article/2018/07/08/raquel-peyraube-addictologue-et-militante-pour-le-cannabis-medical_5328066_1650684.html
+|warnings=AI-translated quote
+}}
+|sections=Law, Health, Society
+|keywords=cannabis, decriminalisation, human rights
+}}
+
+
+== Tobacco and alcohol are appealing because many vested interests work to make them so ==
+
+{{Argument
+|quotes={{Quote
+|quote=Tobacco and alcohol are also appealing because many vested interests work to make them so.
+|authors=Jean-Luc Ferry
+|page=9
+|date=24 January 2014
+|warnings=Référence de la citation incomplète, AI-translated quote
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, appeal, prohibition, tobacco, alcohol
+}}
+
+
+== Tobacco and alcohol are harmful at any level of consumption ==
+
+{{Argument
+|quotes={{Quote
+|quote=A large meta-analysis in The Lancet examined alcohol consumption and its effects on the health of 28 million people between 1990 and 2016. Its conclusion: alcohol is harmful, even in small amounts.
+|authors=Sarah Sermondadaz
+|article=L'idée d'une dose d'alcool "inoffensive" serait un mythe, affirme une vaste étude
+|work=sciences et avenir
+|date=24 August 2018
+|link=https://www.sciencesetavenir.fr/sante/l-alcool-dangereux-pour-la-sante-des-le-premier-verre-selon-une-meta-analyse-du-lancet_126904.amp
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The myth that a small daily glass protects your health has just been shattered. A large Brazilian study establishes a direct link between alcohol consumption, even in moderation, and the risk of dementia and Alzheimer's disease. More troubling still, the damage persists long after people stop drinking.
+|authors=Ghislaine Laussel
+|article=Alzheimer : les chercheurs identifient une boisson consommée par des millions de Français comme un facteur de risque majeur
+|work=Futura-sciences
+|date=30 June 2026
+|link=https://www.futura-sciences.com/sante/actualites/maladie-alzheimer-alzheimer-chercheurs-identifient-boisson-consommee-millions-francais-comme-facteur-risque-majeur-k2m6-135735/
+|warnings=AI-translated quote
+}}
+}}
+
+
+== Legal tobacco and alcohol are highly appealing ==
+
+{{Argument
+|quotes={{Quote
+|quote=This overlooks the thirteen million people dependent on tobacco and the four or five million people dependent on alcohol who cannot go without a drink for even one day a week, drawn into using these two drugs by their legal status.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=114
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Tobacco and alcohol are appealing because many vested interests work to make them so
+|displayed-title=Tobacco and alcohol are appealing because many vested interests work to make them so
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, appeal, prohibition, tobacco, alcohol
+}}
+
+
+== Addictive behaviours are largely unresponsive to legislation ==
+
+{{Argument
+|summary=People use cannabis even in countries where doing so is punishable by death.
+|quotes={{Quote
+|quote=Continuing to use a substance despite knowing its harmful consequences is, in fact, part of the definition of addiction. Prohibition and punitive enforcement against use therefore cannot be enough to prevent psychoactive substance use, because users find these substances not only harmful but also appealing.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=76
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Law, Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, addiction, law
+}}
+
+
+== International conventions do not require cannabis use to be criminalised ==
+
+{{Argument
+|summary=Ratified by all European Union (EU) member states, [https://en.wikipedia.org/wiki/Drug_prohibition these conventions] require drug supply (production, trafficking, transfer and possession) to be criminalised, but do not require criminal penalties for use. The decision to criminalise cannabis consumption directly is left to individual states.
+|sections=Law, Society
+|keywords=cannabis, decriminalisation, international conventions
+}}
+
+
+== INCB criticism did not prevent Uruguay from legalising cannabis ==
+
+{{Argument
+|sections=Health, Society
+|keywords=cannabis, Uruguay, legalisation
+}}
+
+
+== French people support allowing cannabis sales and use under certain conditions ==
+
+{{Argument
+|quotes={{Quote
+|quote=Six in ten French people believe that cannabis use could be permitted under certain conditions (adults only) and prohibited under others (before driving or for minors), compared with three in ten in 2008. However, a large majority of the population remains opposed to unrestricted cannabis sales (78%), although this proportion has fallen from the 85% who held that view in 2008.
+|authors=Observatoire français des drogues et toxicomanies
+|article=Synthèse thématique : cannabis
+|work=OFDT
+|link=https://www.ofdt.fr/produits-et-addictions/de-z/cannabis/#perc
+|warnings=AI-translated quote
+}}{{Quote
+|quote=52% of French people believe that state-controlled cannabis sales would be more effective than prohibition at combating trafficking.
+|authors=IPSOS
+|article=Une majorité de Français pour la légalisation du cannabis
+|date=11 October 2016
+|link=https://www.newsweed.fr/francais-legalisation-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Society
+|keywords=cannabis, legalisation, public opinion
+}}
+
+
+== Alcohol producers' economic interests can influence regulation ==
+
+{{Argument
+|summary=Alcohol is one of the few legal drugs because its producers rely on financial lobby groups to persuade legislators, through practices bordering on corruption, to adopt the most lenient possible rules.
+|quotes={{Quote
+|quote=On alcohol, the state has abandoned, in the name of financial interests, the regulatory stance it appeared to adopt with the Évin Law, whose thirtieth anniversary we have celebrated.
+|authors=Jean-Pierre Couteron, Pierre-Yves Geoffard, Katia Dubreuil
+|article=Drogues: la prohibition, une efficacité illusoire
+|work=Le Figaro
+|date=5 May 2021
+|link=https://www.lefigaro.fr/sciences/drogues-la-prohibition-une-efficacite-illusoire-20210505
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Investigators at the University of Connecticut produced a 60,000-page report identifying no fewer than 145 instances of fabricated or falsified data. This investigation completely discredits not only those fraudulent studies but also the others: why manipulate studies if wine's beneficial effects had really been proved? Might some scientists have taken bribes from wine-industry lobbyists? That appears to be the case.
+
+A 60,000-page report is no small matter; one imagines there must have been a great deal to say.
+
+The [http://tempsreel.nouvelobs.com/les-Internets-vous-parlent/20120116.OBS8929/le-vin-bon-pour-la-sante-des-etudes-etaient-bidonnees.html exposure] of this scientific fraud is far from an isolated case. It is much more widespread than we can imagine: scientists are, first and foremost, human beings, and therefore fallible and corruptible. Tell me who funds you, and I will tell you who you are.
+|article=Vin, santé, mensonges et propagande
+|work=Agoravox
+|date=13 June 2013
+|link=https://www.agoravox.fr/tribune-libre/article/vin-sante-mensonges-et-propagande-136873
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The government is going to shelve two alcohol-harm prevention campaigns that it had itself commissioned for the Rugby World Cup.
+
+Apparently, the message “do not let alcohol knock you out” was too blunt for the alcohol industry's heavyweights. In the government's eyes, their economic weight matters far more than the public's health.
+
+Clearly, alcohol is not the only thing that harms health: the alcohol industry's profits do too!
+|article=In vino veritas
+|work=Lutte ouvrière
+|date=12 September 2023
+|link=https://www.lutte-ouvriere.org/breves/vino-veritas-726502.html
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Between public health and the interests of wine-industry groups, the members of parliament seeking to amend the Évin Law have made their choice. They have chosen to defend wine-industry lobbyists, knowing full well that their vote threatened the community's health interests.
+|article=Les lobbies vinicoles poussent à la consommation
+|work=Lutte ouvrière
+|date=21 October 2004
+|link=https://lutte-ouvriere.org/portail/journal/2004-10-21-les-lobbies-vinicoles-poussent-la-consommation_9501.html
+|warnings=AI-translated quote
+}}
+}}
+
+
+== Countries that have decriminalised cannabis are reversing course ==
+
+{{Argument
+|quotes={{Quote
+|quote=Those of our partners who thought they were doing the right thing by relaxing cannabis legislation are reversing course! In the United Kingdom, the Labour government returned cannabis to the category of dangerous drugs four years after downgrading it. As for the Netherlands, that emblem of the so-called “tolerance” policy, it is changing its approach: sharply restricting access to coffee shops, now closed to non-residents, and gradually erasing the distinction between hard and soft drugs…
+|authors=Claude Guéant
+|article=Dépénalisation du cannabis, un débat biaisé
+|work=Le Monde
+|date=15 June 2011
+|link=https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=The Netherlands has not reversed course on cannabis decriminalisation
+|displayed-title=The Netherlands has not reversed course on decriminalisation
+}}{{Objection
+|page=More and more countries and states have decriminalised cannabis
+|displayed-title=More and more countries and states have decriminalised cannabis
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation
+}}
+
+
+== More and more countries and states have decriminalised cannabis ==
+
+{{Argument}}
+
+
+== The Netherlands has not reversed course on cannabis decriminalisation ==
+
+{{Argument
+|summary=The Netherlands has merely adjusted its coffee-shop regulations. Moreover, a majority of the public supports legalising the upstream supply chain.
+|sections=Health, Society
+|keywords=cannabis, decriminalisation, Netherlands
+}}
+
+
+== Resources freed up by cannabis legalisation may have to be used to combat new forms of trafficking ==
+
+{{Argument}}
+
+
+== The risks of cannabis must be distinguished from those of alcohol and tobacco ==
+
+{{Argument}}
+
+
+== The risks of cannabis are particularly concerning when use begins early ==
+
+{{Argument
+|quotes={{Quote
+|quote=As with any product, even water, the danger lies in excess, and excessive use should be avoided whether it begins early or not. Water can kill if consumed to excess. Cannabis can have a harmful effect on life if used to excess, even occasionally for fun. But this applies to everything: coffee (nervousness, insomnia and addiction), chocolate (indigestion and addiction), potatoes, cheese, cigars and so on. Cannabis use by people whose brains are not fully developed is controversial, and no tangible evidence has yet established that this argument is valid.
+|authors=Amine Benyamina
+|work=Le Monde
+|date=2 February 2013
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The adolescent brain is more vulnerable to psychoactive substances than the adult brain. It is in a transitional state on the way to adulthood. Brain maturation processes, which continue until around the age of 25, make adolescents particularly vulnerable to the neurotoxicity of psychoactive substances in general. One area, the prefrontal cortex, which enables decision-making and the adaptation of behaviour to circumstances, is particularly affected by this maturation during adolescence.
+|authors=Inserm
+|work=Conduites addictives chez les adolescents – Une expertise collective de l’Inserm
+|publisher=Inserm
+|date=6 February 2014
+|link=https://presse.inserm.fr/conduites-addictives-chez-les-adolescents-une-expertise-collective-de-linserm/11035/
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, overdose, harmfulness
+|webliography={{Web reference
+|link=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+}}
+
+}}
+
+
+== Penalties do not deter cannabis users ==
+
+{{Argument
+|quotes={{Quote
+|quote=Fear of punishment deters only those who are already least likely to use drugs and who do not have problematic patterns of use.
+
+According to the EMCDDA's 2011 report, there is no correlation between the level of punitive enforcement and declining use. Conversely, decriminalisation does not lead to a significant increase in cannabis consumption.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=87 et 90
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Most young people smoke it anyway; if all we do is punish them, trafficking will continue.
+|authors=Groupe de lycéens de 1re ES
+|article=Le cannabis ? Chut !
+|work=Le Monde
+|date=9 November 2012
+|link=https://www.lemonde.fr/idees/article/2012/11/10/le-cannabis-chut_1787901_3232.html
+|warnings=AI-translated quote
+}}
+|justifications={{Justification
+|page=Addictive behaviours are largely unresponsive to legislation
+|displayed-title=Addictive behaviours are largely unresponsive to legislation
+}}
+|objections={{Objection
+|page=Evidence shows that penalties for cannabis users can have a deterrent effect
+|displayed-title=Evidence shows that they can be a deterrent
+}}{{Objection
+|page=Cannabis use needs to be addressed through education
+|displayed-title=Education is needed
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, deterrence
+}}
+
+
+== US studies on the relationship between cannabis and alcohol consumption do not all reach the same conclusions ==
+
+{{Argument
+|quotes={{Quote
+|quote=Of around forty studies analysed by California statistician Meenakshi Sabina Subbaraman, sixteen conclude that alcohol and cannabis are substitutes, while ten conclude that they are instead consumed as complements.
+|authors=Stéphany Laperrière
+|article=Légalisation du cannabis : quel sera l'impact sur les ventes d'alcool au pays ?
+|publisher=Radio Canada
+|date=22 August 2018
+|link=https://ici.radio-canada.ca/nouvelle/1119257/legalisation-cannabis-vente-alcool-canada-impact
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Legalising cannabis opens the door to legalising hard drugs ==
+
+{{Argument
+|quotes={{Quote
+|quote=These same advocates of cannabis decriminalisation are often also campaigning for the decriminalisation of every other drug. As a first crowning achievement of their efforts to recruit addicts indiscriminately, they argued for the introduction of drug injection rooms and have just secured the ministry's approval for them.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=63
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=No state that has legalised cannabis has legalised a hard drug
+|displayed-title=No state that has legalised cannabis has legalised a hard drug
+}}{{Objection
+|page=Slippery slope fallacy
+|displayed-title=Slippery slope fallacy
+}}{{Objection
+|page=Legalising hard drugs would benefit society
+|displayed-title=Legalising hard drugs would benefit society
+}}
+|sections=Law, Society
+|keywords=cannabis, legalisation, decriminalisation, hard drugs
+}}
+
+
+== Legalising cannabis means subjecting it to market forces ==
+
+{{Argument
+|quotes={{Quote
+|quote=N. M. — If we legalise cannabis, it becomes a market product. A commercial company seeks to sell it. It wants market share. That is inevitable.
+
+M. H. — Unless we establish a state monopoly or state control.
+
+N. M. — I do not see how cannabis production and sales could become a state monopoly when the European Union requires us to end all protectionist policies.
+|authors=Nicole Maestracci
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=231
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Countries such as Uruguay tightly regulate the cannabis market
+|displayed-title=Countries such as Uruguay tightly regulate the cannabis market
+}}{{Objection
+|page=France could regulate cannabis sales through the state, as it does alcohol
+|displayed-title=State regulation is possible in France
+}}
+|sections=Economy, Society
+|keywords=cannabis, legalisation, market forces
+}}
+
+
+== Legalising hard drugs would benefit society ==
+
+{{Argument}}
+
+
+== Medical and recreational cannabis use can be kept separate ==
+
+{{Argument}}
+
+
+== The risks of cannabis can be reduced by changing how it is consumed ==
+
+{{Argument
+|quotes={{Quote
+|quote=We need to draw on users' expertise. We should take more interest in the person than in the substance. Cannabis is emblematic in this respect: a so-called soft drug that can be used in hard ways. The reverse can also be true: so-called hard substances can be used in soft ways. Use must therefore be placed at the centre of policy. In France, however, all we promote for cannabis is abstinence.
+|authors=Laurent Appel
+|article=«Il faut une approche ni hypocrite ni Bisounours»
+|work=Libération
+|date=13 April 2014
+|link=https://www.liberation.fr/societe/2014/04/13/il-faut-une-approche-ni-hypocrite-ni-bisounours_996796
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, overdose, harmfulness
+|webliography={{Web reference
+|link=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+}}
+
+}}
+
+
+== It is entirely possible to decriminalise all drugs ==
+
+{{Argument
+|summary=For example, by following the Portuguese model and treating users as patients in need of care rather than as offenders.
+|webliography={{Web reference
+|link=https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf
+|page=Portugal — Country Drug Report 2019
+|site=European Monitoring Centre for Drugs and Drug Addiction
+|date=2019
+}}
+
+}}
+
+
+== No state that has legalised cannabis has legalised a hard drug ==
+
+{{Argument
+|summary=Some countries, such as Portugal and the Czech Republic, have decriminalised possession of small amounts of certain hard drugs, but have not legalised them ([https://en.wikipedia.org/wiki/Drug_liberalization English Wikipedia: Drug liberalization]). It should nevertheless be noted that alcohol, which [https://www.croixbleue.fr/L-alcool-plus-dangereux-que-les some regard as a hard drug], is legal in most countries.
+|sections=Law, Society
+|keywords=cannabis, legalisation, decriminalisation, hard drugs
+}}
+
+
+== Legalisation would make buying cannabis in shops harder for minors than obtaining it on the black market today ==
+
+{{Argument
+|summary=Cannabis is not dangerous provided people do not start using it too early. Prohibition currently serves no purpose and therefore does not prevent use among the youngest people. The fact that some begin in adolescence shows that prohibition is pointless. If you want to “protect” your children, the best approach is to legalise cannabis so that the product can be controlled. It is much harder for a minor to obtain alcohol in a shop.
+|sections=Economy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, black market
+}}
+
+
+== When a law worsens the problem it was meant to solve, repealing it becomes urgent ==
+
+{{Argument}}
+
+
+== If cannabis is dangerous, why leave it in the hands of organised crime? ==
+
+{{Argument}}
+
+
+== If cannabis is legalised with restrictions, some users will continue buying on the black market ==
+
+{{Argument
+|quotes={{Quote
+|quote=Legalising the market for certain forms of cannabis could also help create a parallel market selling more potent cannabis with stronger effects, which is also something consumers seek.
+|authors=Christophe Soullez
+|article=Légaliser le cannabis et sa production comme l'Uruguay est-il vraiment l'arme qui aura la peau des trafics ?
+|work=Atlantico
+|date=16 December 2013
+|link=https://www.atlantico.fr/decryptage/legaliser-cannabis-et-production-comme-uruguay-est-vraiment-arme-qui-aura-peau-trafics-christophe-soullez-david-weinberger-926125.html
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}
+
+
+== Slippery slope fallacy ==
+
+{{Argument}}
+
+
+== Taxing every illicit market would be irresponsible ==
+
+{{Argument
+|summary=To be consistent, the rationale for legalising cannabis so that it can be taxed should also apply to all other illicit trades, such as child sexual abuse material or counterfeit goods. This would be both cynical and irresponsible.
+}}
+
+
+== France could regulate cannabis sales through the state, as it does alcohol ==
+
+{{Argument
+|sections=Economy, Politics, Health, Society
+|keywords=cannabis, legalisation, state, regulation, sales, alcohol
+}}
+
+
+== A cannabis black market may persist after legalisation ==
+
+{{Argument
+|summary=Even after legalisation, a substantial black market can persist because of high taxation or competition from unregulated producers.
+|quotes={{Quote
+|quote=The cannabis black market still accounts for 80% of sales in places that have legalised it, such as California.
+|article=UNODC
+|work=Cannabis Report
+|date=2021
+|warnings=AI-translated quote
+}}
+|sections=Law, Economy, Geopolitics, Society
+|keywords=tax circumvention, informal economy, crime
+|bibliography={{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+
+}}
+
+
+== Regulated distribution can place limits on commercial strategies ==
+
+{{Argument
+|quotes={{Quote
+|quote=Prohibition laws have made the illicit drug trade a thriving international market.
+These sellers operate in ways that meet the same needs as any legal market: identifying potential customers, ensuring repeat business, attracting new customers and so on. But since the trade, potency and quality of the products are unregulated, anything goes when it comes to expanding that market, whether selling drugs to children or introducing extremely toxic products. Some sellers aim to create lifelong customers by encouraging patterns of consumption more likely to cause dependence than other, safer ways of using drugs. Products also change over time to maintain customers' interest, creating trends and regularly bringing new products onto the market […]. Sellers also try to reach the widest possible customer base by offering drugs across a broad price range […]. Similarly, they seek to expand the market geographically by dumping drugs in previously little-affected areas to attract new customers. This situation should come as no surprise. The illicit drug market is a highly profitable global market. It is worth sellers' while to use the best possible techniques to distribute and promote their products.
+|authors=Lise Beauchesne
+|work=Les drogues. Les coûts cachés de la prohibition
+|publisher=Lanctôt
+|date=2003
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

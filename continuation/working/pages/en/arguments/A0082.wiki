@@ -1,0 +1,18 @@
+{{Argument
+|quotes={{Quote
+|quote=Eleven years have passed since former Mexican president Felipe Calderón declared war on drug cartels in early December 2006, deploying the army in the country's most troubled areas. More than 200,000 people have died in this war according to official figures, with no prospect of victory for the Mexican authorities. Fuelled by growing US demand for drugs, particularly opioids, Mexican cartels are more powerful than ever. They control virtually all production of the heroin and synthetic drugs consumed north of the border, as well as the trade in South American cocaine destined for major US cities, not to mention some of the shipments sent to Europe. ''“Mexican criminal organisations show continuing signs of growth and expansion,”'' notes the annual report published in late October by the Drug Enforcement Administration (DEA), the US anti-drug agency. It adds: ''“No other group is in a position to compete with them.”''
+|authors=Emmanuelle Steels
+|article=Onze ans d’efforts, 200 000 morts… et des cartels au plus fort
+|work=Libération
+|date=25 December 2017
+|link=https://www.liberation.fr/planete/2017/12/25/onze-ans-d-efforts-200-000-morts-et-des-cartels-au-plus-fort_1618862/
+|warnings=AI-translated quote
+}}
+|justifications={{Justification
+|page=Alcohol prohibition in the early twentieth century was a failure
+|displayed-title=Alcohol prohibition in the early twentieth century was a failure
+}}{{Justification
+|page=Efforts to combat cannabis trafficking are costly and unsuccessful
+|displayed-title=Combating trafficking wastes resources
+}}
+}}

@@ -1,0 +1,22 @@
+{{Argument
+|quotes={{Quote
+|quote=[Fear of punishment] discourages them from seeking care. […] “Punitive enforcement drives use underground. And going underground increases risky practices” (according to psychiatrist Béatrice Stambul). […] [Criminalisation] makes it harder for prevention workers to devise suitable campaigns, since logically they are supposed to have only one message: “Do not use drugs; it is illegal!” […] In a punitive environment, users place little trust in official information, which they often see as prohibitionist propaganda.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=87, 85, 88 et 89
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Prohibition makes life harder for those seeking to prevent problematic drug use among young people through an approach other than fear-based prohibition, which is not very effective. The most worrying unintended effect of this fear strategy is that many young people feel they are being lied to and reject the exaggerated portrayal of these substances' dangers in favour of an equally exaggerated downplaying of their risks. It is like telling young people that touching alcohol puts them on the road to alcoholism and homelessness. […] The result of prohibition is that parents leave the prevention of drug misuse among young people to the police, wrongly believing that they lack the knowledge to provide effective prevention themselves […] not talking about substances, but addressing the reasons that can lead to problematic use.
+|authors=Lise Beauchesne
+|work=Les drogues. Les coûts cachés de la prohibition
+|page=246 et 278
+|publisher=Lanctôt
+|date=2003
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition, prevention
+}}

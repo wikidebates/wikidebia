@@ -1,0 +1,45 @@
+{{Argument
+|summary=The wars on drugs, particularly under Nixon and his successors, are merely a cover for the institutionalised persecution of the most vulnerable groups. This is also felt in disadvantaged suburbs in France, where police intervene only over drug offences, often using disproportionate force, yet do not lift a finger over other crimes or offences.
+|quotes={{Quote
+|quote=The femicide rate in the state [of Chihuahua] soared in 2008 following the war on drug trafficking promoted by [President] Felipe Calderón. Between 1993 and 2007, a woman was murdered every twelve to fourteen days. In 2010, the worst year on record, there was a femicide every twenty hours. Between March 2012 and March 2013, the state prosecutor's office reported seventy-three women murdered.
+|authors=Irene
+|article=Le féminisme n'a-t-il vraiment jamais tué personne?
+|work=Slate
+|date=13 February 2021
+|link=http://www.slate.fr/story/201090/irene-terreur-feministe-bonnes-feuilles-violence-femmes-patriarcat-feminicides-viols-agressions
+|warnings=AI-translated quote
+}}{{Quote
+|quote=She also highlights the risk of undermining prevention efforts around “chemsex” (sex involving drugs), which is growing within the gay community and has only just begun to receive attention from public authorities. ''“Their highly punitive drug policy could have a considerable impact.”''
+|authors=David Perrotin
+|article=Derrière la « dédiabolisation » de Marine Le Pen, le véritable danger du RN pour les LGBTI+
+|work=Mediapart
+|date=19 April 2022
+|link=https://www.mediapart.fr/journal/france/190422/derriere-la-dediabolisation-de-marine-le-pen-le-veritable-danger-du-rn-pour-les-lgbti#at_medium=custom7&at_campaign=1047
+|warnings=AI-translated quote
+}}{{Quote
+|quote=In 1971, US president Richard Nixon declared war on drugs, which had become his ''“public enemy number one”''. He was the first US president to allocate substantial funding to [http://www.pbs.org/wgbh/pages/frontline/shows/drugs/buyers/doitwork.html combating addiction and providing treatment]. But these intentions, which so clearly made drugs a priority, may have been less benign than they appeared. An account published [https://harpers.org/archive/2016/04/legalize-it-all/ in the April issue of Harper's], picked up [http://mic.com/articles/138664/the-war-on-drugs-horribly-racist-origins-have-finally-been-revealed?utm_source=policymicTWTR&utm_medium=main&utm_campaign=social#.Ox494vrNQ by Mic], suggests that his real priority was to stigmatise Black people and hippies and legitimise harsh repression against them.
+
+According to John Ehrlichman, a former adviser to Richard Nixon, the White House's rhetoric about the harmfulness of drugs was nothing but a ''“lie”'': a lie designed to target the president's two main enemies at the time directly. These were African American activists, who had just secured victories after years of campaigning for civil rights, and opponents of the Vietnam War, some of whom had become radicalised within the [https://fr.wikipedia.org/wiki/Weather_Underground Weather Underground] movement.
+|authors=Aude Lorriaux
+|article=La guerre contre la drogue de Nixon était un «mensonge» qui visait à casser la communauté noire
+|work=Slate
+|date=27 March 2016
+|link=https://www.slate.fr/story/115991/guerre-contre-la-drogue-nixon-noirs-hippies
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The war on drugs has been highly effective at systematically criminalising communities of colour.
+|authors=Marie Astier
+|article=Et si on vivait sans police ?
+|work=Reporterre
+|date=22 February 2022
+|link=https://reporterre.net/Et-si-on-vivait-sans-police
+|warnings=AI-translated quote
+}}{{Quote
+|quote=A first step in proceedings expected to be lengthy. Former Philippine president Rodrigo Duterte appeared by video link for his first hearing before the International Criminal Court on Friday 14 March, to answer allegations of crimes against humanity arising from killings committed in the name of his “war on drugs”, which left tens of thousands dead during his time in office.
+|article=L'ex-président des Philippines Rodrigo Duterte, accusé de crimes contre l'humanité, a comparu devant la Cour pénale internationale
+|work=France Tv info
+|date=14 March 2025
+|link=https://www.francetvinfo.fr/monde/asie/l-ex-president-des-philippines-rodrigo-duterte-accuse-de-crimes-contre-l-humanite-a-comparu-devant-la-cour-penale-internationale_7129974.html
+|warnings=AI-translated quote
+}}
+}}

@@ -1,0 +1,45 @@
+{{Argument
+|summary=This is Jean Costentin's central argument, which he develops in his books (see Bibliography) and articles.
+|quotes={{Quote
+|quote=Combating cannabis is just as legitimate as combating tuberculosis.
+|authors=Jean Costentin
+|work=Pourquoi il ne faut pas dépénaliser l'usage du cannabis ?
+|page=30
+|publisher=Odile Jacob
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=The risks of cannabis are particularly concerning when use begins early
+|displayed-title=The risks depend in particular on how early use begins
+}}{{Objection
+|page=Cannabis poses relatively little harm
+|displayed-title=Cannabis poses relatively little harm
+}}{{Objection
+|page=The risks of cannabis can be reduced by changing how it is consumed
+|displayed-title=The risks can be reduced by changing how it is consumed
+}}{{Objection
+|page=The risks of cannabis do not depend on the substance alone
+|displayed-title=The risks do not depend on the substance alone
+}}{{Objection
+|page=Punishing people for harm they do to themselves is illegitimate
+|displayed-title=Punishing people for harm they do to themselves is illegitimate
+}}{{Objection
+|page=If cannabis is dangerous, why leave it in the hands of organised crime?
+|displayed-title=If cannabis is dangerous, why leave it in the hands of organised crime?
+}}{{Objection
+|page=The lack of product quality guarantees poses risks in itself
+|displayed-title=The lack of product quality guarantees poses risks in itself
+}}{{Objection
+|page=Many substances far more harmful and addictive than cannabis are legal
+|displayed-title=Many legal substances are far more harmful to health than cannabis
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, overdose, harmfulness
+|webliography={{Web reference
+|link=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+}}
+
+}}

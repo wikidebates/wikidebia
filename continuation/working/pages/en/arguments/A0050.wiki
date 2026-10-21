@@ -1,0 +1,14 @@
+{{Argument
+|quotes={{Quote
+|quote=Quite apart from being outdated, the 1970 law is no longer understood by cannabis users. They recognise that its risks differ from those of other drugs and that regular use is harmful, but they also know that occasional recreational use is possible, just as it is for the many other French people who use alcohol.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=87
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, user
+}}

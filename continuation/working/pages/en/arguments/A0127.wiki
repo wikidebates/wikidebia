@@ -1,0 +1,19 @@
+{{Argument
+|quotes={{Quote
+|quote=Six in ten French people believe that cannabis use could be permitted under certain conditions (adults only) and prohibited under others (before driving or for minors), compared with three in ten in 2008. However, a large majority of the population remains opposed to unrestricted cannabis sales (78%), although this proportion has fallen from the 85% who held that view in 2008.
+|authors=Observatoire français des drogues et toxicomanies
+|article=Synthèse thématique : cannabis
+|work=OFDT
+|link=https://www.ofdt.fr/produits-et-addictions/de-z/cannabis/#perc
+|warnings=AI-translated quote
+}}{{Quote
+|quote=52% of French people believe that state-controlled cannabis sales would be more effective than prohibition at combating trafficking.
+|authors=IPSOS
+|article=Une majorité de Français pour la légalisation du cannabis
+|date=11 October 2016
+|link=https://www.newsweed.fr/francais-legalisation-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Society
+|keywords=cannabis, legalisation, public opinion
+}}

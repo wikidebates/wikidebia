@@ -1,0 +1,16 @@
+{{Argument
+|summary=Prohibition deters some people, particularly young people, from using cannabis because of the legal risks.
+|quotes={{Quote
+|quote=Perception of risk plays a crucial role in reducing risky behaviour, particularly among young people. A legal ban reinforces that perception.
+|authors=Volkow
+|article=The Science of Addiction
+|work=National Institute on Drug Abuse
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Banning a drug does not reduce its use
+|displayed-title=Banning a drug does not reduce its use
+}}
+|sections=Education, Psychology, Health, Society
+|keywords=risk perception, young people, prevention
+}}

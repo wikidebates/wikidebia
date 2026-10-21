@@ -1,0 +1,25 @@
+{
+  "status": "fixed_in_separate_code_branch_not_merged",
+  "code_branch": "fix/preserve-interquotation-prose",
+  "findings": [
+    {
+      "page_id": "A0037",
+      "build_node_id": "A0110",
+      "passage_id": "A0110-P001",
+      "source_text": "\n'''Objection à Jean Costentin :''' Les bénéfices du cannabis médical sont occultés ou mésestimés.\n",
+      "target_text": "\n'''Objection to Jean Costentin:''' The benefits of medical cannabis are concealed or underestimated.\n",
+      "position_and_quotes_preserved_by_actual_native_renderer": true,
+      "official_workflow_applied": false
+    },
+    {
+      "page_id": "A0116",
+      "build_node_id": "A0123",
+      "passage_id": "A0123-P001",
+      "source_text": "\n''La contradiction entre les chiffres des docteurs Jean Costentin et Sanjay Gupta n'est qu'apparente : seul le second parle réellement de dépendance. Tous les consommateurs réguliers ne sont pas dépendants.''\n",
+      "target_text": "\n''The contradiction between the figures given by Dr Jean Costentin and Dr Sanjay Gupta is only apparent: only the latter is actually discussing dependence. Not all regular users are dependent.''\n",
+      "position_and_quotes_preserved_by_actual_native_renderer": true,
+      "official_workflow_applied": false
+    }
+  ],
+  "wiki_writes": false
+}

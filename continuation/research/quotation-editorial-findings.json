@@ -1,0 +1,70 @@
+[
+  {
+    "quote_id": "Q063",
+    "page_id": "A0053",
+    "quoted_text_preserved": true,
+    "online_authenticity_verified": false,
+    "english_edition_verified": false,
+    "status": "no_direct_source_url_in_original_metadata",
+    "priority_review": "Titre/attribution exacts à authentifier ; les recherches bibliographiques consultées ne suffisent pas à établir l’édition et le texte cités. Ne pas conclure à une falsification sur la seule absence de résultat."
+  },
+  {
+    "quote_id": "Q064",
+    "page_id": "A0057",
+    "quoted_text_preserved": true,
+    "online_authenticity_verified": false,
+    "english_edition_verified": false,
+    "status": "no_direct_source_url_in_original_metadata",
+    "priority_review": "Titre/attribution exacts à authentifier ; les recherches bibliographiques consultées ne suffisent pas à établir l’édition et le texte cités. Ne pas conclure à une falsification sur la seule absence de résultat."
+  },
+  {
+    "quote_id": "Q069",
+    "page_id": "A0063",
+    "quoted_text_preserved": true,
+    "online_authenticity_verified": false,
+    "english_edition_verified": false,
+    "status": "no_direct_source_url_in_original_metadata",
+    "priority_review": "Titre/attribution exacts à authentifier ; les recherches bibliographiques consultées ne suffisent pas à établir l’édition et le texte cités. Ne pas conclure à une falsification sur la seule absence de résultat."
+  },
+  {
+    "quote_id": "Q103",
+    "page_id": "A0099",
+    "quoted_text_preserved": true,
+    "online_authenticity_verified": false,
+    "english_edition_verified": false,
+    "status": "no_direct_source_url_in_original_metadata",
+    "priority_review": "Titre/attribution exacts à authentifier ; les recherches bibliographiques consultées ne suffisent pas à établir l’édition et le texte cités. Ne pas conclure à une falsification sur la seule absence de résultat."
+  },
+  {
+    "quote_id": "Q117",
+    "page_id": "A0113",
+    "quoted_text_preserved": true,
+    "online_authenticity_verified": false,
+    "english_edition_verified": false,
+    "status": "source_url_now_unrelated_gambling_page",
+    "url": "https://jeanyvesnau.com/2014/03/27/cannabis-non-lacademie-nationale-de-medecine-ne-remplit-pas-sa-mission/",
+    "observed_title": "TAMBANG888 | Akses Link Resmi Game Toto Online dan Tools Pola Kemenangan",
+    "archived_source_full_text_match": true,
+    "archived_attribution_checked": true,
+    "archive_access": {
+      "url": "https://web.archive.org/web/20140327135120/http://jeanyvesnau.com/2014/03/27/cannabis-non-lacademie-nationale-de-medecine-ne-remplit-pas-sa-mission/",
+      "http_status": 200,
+      "final_url": "https://web.archive.org/web/20140327135120/http://jeanyvesnau.com/2014/03/27/cannabis-non-lacademie-nationale-de-medecine-ne-remplit-pas-sa-mission/",
+      "accessed_at": "2026-10-21T08:44:08.044298+00:00",
+      "sha256": "1cbec2afe66fb2b293bd410a24c8b91c26641a2ba4caad90c1d1f7a1aea24c2b"
+    },
+    "note": "Le lien actuel est sans rapport avec la source. Le texte historique et l’attribution Didier Jayle sont retrouvés dans une capture de mars 2014. Les métadonnées de la Citation/Quote restent inchangées."
+  },
+  {
+    "quote_id": "Q120",
+    "page_id": "A0116",
+    "quoted_text_preserved": true,
+    "online_authenticity_verified": false,
+    "english_edition_verified": false,
+    "status": "full_text_not_matched_requires_editorial_authentication",
+    "url": "https://edition.cnn.com/2013/08/08/health/gupta-changed-mind-marijuana/index.html",
+    "response_sha256": "60979f1d6e5f8b8ee5b926fa8de49e903214a3ae1063bda24793702e99e941c4",
+    "full_quoted_text_match": false,
+    "note": "Le texte anglais fourni par la Citation française omet sans marque d’ellipse la précision schedule 2 ... with less abuse potential ... du paragraphe CNN et la fin many of whom go on to die ... . Écart déjà présent dans la source française, conservé sans correction silencieuse ; ne pas le qualifier de copie intégrale du texte CNN."
+  }
+]

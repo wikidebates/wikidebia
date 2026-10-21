@@ -1,0 +1,32 @@
+{{Argument
+|justifications={{Justification
+|page=Cannabis prohibition leads to numerous checks that can affect anyone
+|displayed-title=Prohibition leads to numerous checks that can affect anyone
+}}{{Justification
+|page=Cannabis prohibition creates a lucrative underground economy with corruption, money laundering, youth recruitment, violence, insecurity and arms trafficking
+|displayed-title=It fuels organised crime
+}}{{Justification
+|page=Cannabis prohibition increases profitability by driving up prices
+|displayed-title=Prohibition increases cannabis profitability by driving up prices
+}}{{Justification
+|page=Efforts to combat cannabis trafficking are costly and unsuccessful
+|displayed-title=Efforts to combat trafficking are costly and unsuccessful
+}}{{Justification
+|page=Regulated distribution can place limits on commercial strategies
+|displayed-title=Controlled distribution can regulate commercial strategies
+}}{{Justification
+|page=Cannabis prohibition deprives the state of substantial revenue, and leaving this market untaxed effectively subsidises it
+|displayed-title=Substantial loss of state revenue. Leaving a market untaxed effectively subsidises it
+}}{{Justification
+|page=Clandestine cannabis cultivation causes many fires
+|displayed-title=Clandestine cannabis cultivation causes many fires
+}}{{Justification
+|page=The war on drugs intensifies the persecution of minorities
+|displayed-title=The war on drugs intensifies the persecution of minorities
+}}{{Justification
+|page=Punitive drug policies can burden vulnerable people and prisons
+|displayed-title=Drug penalties can increase pressure on prisons
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

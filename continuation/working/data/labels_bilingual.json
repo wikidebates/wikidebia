@@ -1,0 +1,662 @@
+[
+  {
+    "fr": "La prohibition est inefficace",
+    "en": "Prohibition is ineffective"
+  },
+  {
+    "fr": "La prohibition est préjudiciable aux usagers",
+    "en": "Prohibition harms users"
+  },
+  {
+    "fr": "La prohibition est préjudiciable à la société",
+    "en": "Prohibition harms society"
+  },
+  {
+    "fr": "La prohibition manque de légitimité",
+    "en": "Prohibition lacks legitimacy"
+  },
+  {
+    "fr": "La loi de 1970 est inadaptée",
+    "en": "The 1970 law is ill-suited to its purpose"
+  },
+  {
+    "fr": "La légalisation serait bénéfique",
+    "en": "Legalisation would be beneficial"
+  },
+  {
+    "fr": "La légalisation permet un contrôle qualité",
+    "en": "Legalisation allows quality control"
+  },
+  {
+    "fr": "La légalisation contrôlée par l'État fonctionne",
+    "en": "State-regulated legalisation works"
+  },
+  {
+    "fr": "La prohibition est efficace",
+    "en": "Prohibition is effective"
+  },
+  {
+    "fr": "Il faut protéger l'individu",
+    "en": "Individuals must be protected"
+  },
+  {
+    "fr": "La société doit se protéger",
+    "en": "Society must protect itself"
+  },
+  {
+    "fr": "La légalisation n'est ni possible ni souhaitable",
+    "en": "Legalisation is neither possible nor desirable"
+  },
+  {
+    "fr": "La légalisation serait préjudiciable",
+    "en": "Legalisation would be harmful"
+  },
+  {
+    "fr": "La loi est non seulement appliquée, mais la répression s'est renforcée depuis 2001",
+    "en": "The law is enforced, and enforcement has become more punitive since 2001"
+  },
+  {
+    "fr": "Quand une politique est coûteuse, contreproductive et a des effets pervers, il devient urgent de l'abolir",
+    "en": "When a policy is costly, counterproductive and has harmful unintended effects, abolishing it becomes urgent"
+  },
+  {
+    "fr": "Avant de supprimer la loi, il faut la faire appliquer",
+    "en": "The law should be enforced before it is repealed"
+  },
+  {
+    "fr": "L'alcool et le tabac sont parmi les substances les plus addictogènes et nocives",
+    "en": "Alcohol and tobacco are among the most addictive and harmful substances"
+  },
+  {
+    "fr": "Les intérêts économiques peuvent influencer la réglementation de l'alcool",
+    "en": "Economic interests can influence alcohol regulation"
+  },
+  {
+    "fr": "Des médicaments prescrits peuvent entraîner une forte dépendance",
+    "en": "Prescription medicines can cause severe dependence"
+  },
+  {
+    "fr": "L'industrie agro-alimentaire rend ses aliments addictifs pour maximiser les profits",
+    "en": "The food industry makes its products addictive to maximise profits"
+  },
+  {
+    "fr": "Les risques du cannabis diffèrent de ceux de l'alcool et du tabac",
+    "en": "The risks of cannabis differ from those of alcohol and tobacco"
+  },
+  {
+    "fr": "L'alcool et le tabac ne sont pas dangereux en soi, seul leur abus l'est",
+    "en": "Alcohol and tobacco are not inherently dangerous; only excessive use is"
+  },
+  {
+    "fr": "Le cannabis est toujours dangereux car le seul but des fumeurs est de planer",
+    "en": "Cannabis is always dangerous because smokers only want to get high"
+  },
+  {
+    "fr": "Les Français sont favorables à ce que la vente et l'usage du cannabis soient autorisés sous certaines conditions",
+    "en": "French people support allowing cannabis sales and use under certain conditions"
+  },
+  {
+    "fr": "Une réforme peut se défendre même sans soutien majoritaire",
+    "en": "A reform can be justified even without majority support"
+  },
+  {
+    "fr": "Le cannabis est dangereux pour la santé physique et mentale",
+    "en": "Cannabis is harmful to physical and mental health"
+  },
+  {
+    "fr": "Il potentialise les effets de l’alcool et du tabac",
+    "en": "It amplifies the effects of alcohol and tobacco"
+  },
+  {
+    "fr": "Son pouvoir addictif est important",
+    "en": "It has substantial addictive potential"
+  },
+  {
+    "fr": "Si le but est réellement de protéger les individus, pourquoi laisser légaux l'alcool et le tabac ?",
+    "en": "If the real aim is to protect individuals, why keep alcohol and tobacco legal?"
+  },
+  {
+    "fr": "Le tabac et l'alcool sont dangereux quelle que soit la quantité.",
+    "en": "Tobacco and alcohol are harmful at any level of consumption."
+  },
+  {
+    "fr": "L'interdiction est plus dissuasive qu'attractive",
+    "en": "The ban deters use more than it encourages it"
+  },
+  {
+    "fr": "Le tabac et l'alcool, licites, sont très attractifs",
+    "en": "Legal tobacco and alcohol are highly appealing"
+  },
+  {
+    "fr": "Il y a des signes de fléchissement de la consommation",
+    "en": "There are signs that consumption is declining"
+  },
+  {
+    "fr": "Elle n'a pas été faite pour le cannabis",
+    "en": "It was not designed for cannabis"
+  },
+  {
+    "fr": "Elle focalise trop sur les usagers",
+    "en": "It focuses too heavily on users"
+  },
+  {
+    "fr": "Elle n'est plus comprise par les usagers",
+    "en": "Users no longer understand it"
+  },
+  {
+    "fr": "Elle est difficilement applicable",
+    "en": "It is difficult to enforce"
+  },
+  {
+    "fr": "Conserver une sanction pénale qui n'est pratiquement plus appliquée n'est pas sain",
+    "en": "Retaining a largely unenforced criminal penalty is unsound"
+  },
+  {
+    "fr": "Elle est trop diversement appliquée",
+    "en": "It is applied too inconsistently"
+  },
+  {
+    "fr": "Elle n'a jamais été évaluée",
+    "en": "It has never been evaluated"
+  },
+  {
+    "fr": "Elle a été conçue en réponse à l'extension du cannabis",
+    "en": "It was designed in response to the spread of cannabis"
+  },
+  {
+    "fr": "Légalisation contrôlée par l'État (Modèle canadien)",
+    "en": "State-regulated legalisation (Canadian model)"
+  },
+  {
+    "fr": "Régulation contrôlée du cannabis (Modèle Uruguayen)",
+    "en": "Regulated cannabis market (Uruguayan model)"
+  },
+  {
+    "fr": "Des solutions existent",
+    "en": "Solutions exist"
+  },
+  {
+    "fr": "La répression peut aussi entraîner des dommages sociaux",
+    "en": "Punitive policies can also cause social harm"
+  },
+  {
+    "fr": "Les pays ayant dépénalisé le cannabis font marche arrière",
+    "en": "Countries that have decriminalised cannabis are reversing course"
+  },
+  {
+    "fr": "Les trafics se reporteraient sur d'autres produits. Pour que cela n'arrive pas, il faudrait légaliser toutes les drogues, ce qui parait difficile",
+    "en": "Trafficking would shift to other substances. Preventing this would require legalising all drugs, which seems difficult"
+  },
+  {
+    "fr": "Il y aura toujours un marché prohibé, le marché destiné aux mineurs",
+    "en": "An illegal market for minors will always exist"
+  },
+  {
+    "fr": "Si la loi est trop restrictive, certains consommateurs continueront à se fournir au marché noir",
+    "en": "If the law is too restrictive, some users will continue buying on the black market"
+  },
+  {
+    "fr": "Comme on le constate avec le tabac, si le prix est trop élevé, le marché noir va se maintenir",
+    "en": "As tobacco shows, the black market will persist if prices are too high"
+  },
+  {
+    "fr": "L'exemple de certains pays montre que la légalisation n'augmente pas le nombre d'usagers",
+    "en": "Experience in some countries shows that legalisation does not increase the number of users"
+  },
+  {
+    "fr": "Le prix de vente est la variable essentielle",
+    "en": "Retail price is the key variable"
+  },
+  {
+    "fr": "La prohibition ne fait pas baisser la consommation",
+    "en": "Prohibition does not reduce consumption"
+  },
+  {
+    "fr": "La dépénalisation du cannabis est contraire aux conventions internationales",
+    "en": "Cannabis decriminalisation conflicts with international conventions"
+  },
+  {
+    "fr": "Des enquêtes montrent des réticences envers la vente libre",
+    "en": "Surveys show reservations about unrestricted sales"
+  },
+  {
+    "fr": "Il ne faut pas toucher à la législation en vigueur",
+    "en": "Existing legislation should be left unchanged"
+  },
+  {
+    "fr": "La légalisation dans un seul pays est source de problèmes",
+    "en": "Legalisation in just one country creates problems"
+  },
+  {
+    "fr": "Légaliser le cannabis, c'est le soumettre aux lois du marché",
+    "en": "Legalising cannabis means subjecting it to market forces"
+  },
+  {
+    "fr": "Légaliser le cannabis est la porte ouverte à la légalisation des drogues dures",
+    "en": "Legalising cannabis opens the door to legalising hard drugs"
+  },
+  {
+    "fr": "La légalisation du cannabis est en vigueur dans de nombreux pays",
+    "en": "Cannabis is legal in many countries"
+  },
+  {
+    "fr": "La pénalisation est un échec",
+    "en": "Criminalisation is a failure"
+  },
+  {
+    "fr": "La légalisation du cannabis sera mise en place, comme l'ont été de nombreuses avancées sociales décriées",
+    "en": "Cannabis will be legalised, just as many once-denounced social advances were adopted"
+  },
+  {
+    "fr": "Maintien d’un marché noir",
+    "en": "Persistence of a black market"
+  },
+  {
+    "fr": "Les ressources dégagées par la légalisation risquent de devoir être utilisées pour lutter contre de nouveaux trafics",
+    "en": "Resources freed up by legalisation may have to be used to combat new forms of trafficking"
+  },
+  {
+    "fr": "Les études américaines sur le lien entre cannabis et consommation d'alcool ne vont pas toutes dans le même sens",
+    "en": "US studies on the relationship between cannabis and alcohol consumption do not all reach the same conclusions"
+  },
+  {
+    "fr": "On peut tout à fait dépénaliser toutes les drogues",
+    "en": "It is entirely possible to decriminalise all drugs"
+  },
+  {
+    "fr": "Des expériences montrent que la légalisation d'une drogue ne s'accompagne pas d'une hausse de consommation",
+    "en": "Experience shows that legalising a drug is not accompanied by increased consumption"
+  },
+  {
+    "fr": "On peut dissocier l'utilisation thérapeutique et l'utilisation récréative du cannabis",
+    "en": "Medical and recreational cannabis use can be kept separate"
+  },
+  {
+    "fr": "L'utilisation thérapeutique du cannabis est-elle appropriée ?",
+    "en": "Is medical cannabis use appropriate?"
+  },
+  {
+    "fr": "Les conventions internationales n'imposent pas de pénaliser l'usage",
+    "en": "International conventions do not require use to be criminalised"
+  },
+  {
+    "fr": "La légalisation est préconisée par la Commission mondiale sur la politique des drogues",
+    "en": "The Global Commission on Drug Policy advocates legalisation"
+  },
+  {
+    "fr": "Le strict respect des conventions sur les stupéfiants est contraire aux traités internationaux relatifs aux droits de l'homme",
+    "en": "Strict adherence to drug conventions conflicts with international human rights treaties"
+  },
+  {
+    "fr": "Il devrait être possible de légaliser, sous couvert du principe d'opportunité ou d'une expérimentation scientifique",
+    "en": "Legalisation should be possible through prosecutorial discretion or a scientific experiment"
+  },
+  {
+    "fr": "L'Uruguay a légalisé le cannabis malgré les critiques de l'OICS",
+    "en": "Uruguay legalised cannabis despite INCB criticism"
+  },
+  {
+    "fr": "La légalisation permettrait de dégager des ressources pour la prévention",
+    "en": "Legalisation would free up resources for prevention"
+  },
+  {
+    "fr": "Vider les prisons, soulager les policiers, la justice",
+    "en": "Emptying prisons and easing the burden on police and courts"
+  },
+  {
+    "fr": "La légalisation du cannabis récréatif ouvrirait la voie à l'utilisation thérapeutique",
+    "en": "Legalising recreational cannabis would pave the way for medical use"
+  },
+  {
+    "fr": "La légalisation peut faire baisser la consommation d'alcool",
+    "en": "Legalisation may reduce alcohol consumption"
+  },
+  {
+    "fr": "La légalisation peut faire baisser la mortalité par overdose de drogues plus dures",
+    "en": "Legalisation may reduce deaths from overdoses of harder drugs"
+  },
+  {
+    "fr": "La légalisation peut faire baisser la mortalité par overdose d'opiacés",
+    "en": "Legalisation may reduce deaths from opioid overdoses"
+  },
+  {
+    "fr": "La légalisation mettrait fin aux trafics",
+    "en": "Legalisation would put an end to trafficking"
+  },
+  {
+    "fr": "La légalisation peut faire baisser la criminalité",
+    "en": "Legalisation may reduce crime"
+  },
+  {
+    "fr": "Le modèle portugais a fait ses preuves",
+    "en": "The Portuguese model has proved its worth"
+  },
+  {
+    "fr": "Augmentation de la consommation",
+    "en": "Increased consumption"
+  },
+  {
+    "fr": "Encouragement d’une économie de dépendance",
+    "en": "Encouraging an economy built on dependence"
+  },
+  {
+    "fr": "La légalisation multiplierait le nombre d'usagers",
+    "en": "Legalisation would greatly increase the number of users"
+  },
+  {
+    "fr": "La légalisation reporterait les usagers vers les drogues dures",
+    "en": "Legalisation would steer users towards hard drugs"
+  },
+  {
+    "fr": "La légalisation serait un danger pour les mineurs",
+    "en": "Legalisation would endanger minors"
+  },
+  {
+    "fr": "La légalisation aurait trop d'impacts sociaux et économiques sur les banlieues",
+    "en": "Legalisation would have excessive social and economic effects on disadvantaged suburbs"
+  },
+  {
+    "fr": "Pour un mineur, il serait plus difficile de s'approvisionner en magasin qu'actuellement au marché noir",
+    "en": "Buying in shops would be harder for minors than obtaining cannabis on the black market today"
+  },
+  {
+    "fr": "La prohibition de l'alcool au début du XXème siècle a été un échec",
+    "en": "Alcohol prohibition in the early twentieth century was a failure"
+  },
+  {
+    "fr": "La lutte contre les trafics est un gaspillage de moyens",
+    "en": "Combating trafficking wastes resources"
+  },
+  {
+    "fr": "Interdire une drogue n'en fait pas baisser la consommation",
+    "en": "Banning a drug does not reduce its use"
+  },
+  {
+    "fr": "Il serait irresponsable de taxer tous les marchés illicites",
+    "en": "Taxing every illicit market would be irresponsible"
+  },
+  {
+    "fr": "La liberté de devenir esclave !",
+    "en": "The freedom to become enslaved!"
+  },
+  {
+    "fr": "La consommation de cannabis augmente en France",
+    "en": "Cannabis use is increasing in France"
+  },
+  {
+    "fr": "Le cannabis reste très accessible",
+    "en": "Cannabis remains readily available"
+  },
+  {
+    "fr": "L'interdit rend le cannabis plus attractif",
+    "en": "Prohibition makes cannabis more appealing"
+  },
+  {
+    "fr": "Les sanctions contre les consommateurs de cannabis ne sont pas dissuasives",
+    "en": "Penalties do not deter cannabis users"
+  },
+  {
+    "fr": "L'interdiction du cannabis peut être contournée",
+    "en": "The ban on cannabis can be circumvented"
+  },
+  {
+    "fr": "Les comportements addictifs sont très peu sensibles aux lois",
+    "en": "Addictive behaviours are largely unresponsive to legislation"
+  },
+  {
+    "fr": "La prohibition passe à côté des motifs de la consommation",
+    "en": "Prohibition fails to address the reasons for drug use"
+  },
+  {
+    "fr": "Cela fait des décennies qu'on lutte contre les drogues sans que leur consommation et leur commerce ne diminuent significativement",
+    "en": "Decades of fighting drugs have not significantly reduced their use or trade"
+  },
+  {
+    "fr": "La consommation de cannabis augmente",
+    "en": "Cannabis use is increasing"
+  },
+  {
+    "fr": "Les sanctions ne sont pas dissuasives",
+    "en": "The penalties have no deterrent effect"
+  },
+  {
+    "fr": "L'interdiction peut être contournée",
+    "en": "The ban can be circumvented"
+  },
+  {
+    "fr": "Plusieurs politiques de prohibition ont eu des effets contre-productifs",
+    "en": "Several prohibition policies have had counterproductive effects"
+  },
+  {
+    "fr": "Ce n'est pas parce qu'une politique a échoué que l'on doit y renoncer",
+    "en": "The failure of a policy is not in itself a reason to abandon it"
+  },
+  {
+    "fr": "Réduction de la consommation",
+    "en": "Reduced consumption"
+  },
+  {
+    "fr": "Message sociétal clair",
+    "en": "A clear message to society"
+  },
+  {
+    "fr": "Entrave à la prévention et aux soins",
+    "en": "Obstacles to prevention and treatment"
+  },
+  {
+    "fr": "Clandestinité, exclusion sociale, sentiment de discrimination",
+    "en": "Going underground, social exclusion and feelings of discrimination"
+  },
+  {
+    "fr": "Une partie des usagers subit les conséquences de séjours en prison et/ou d'une inscription au casier judiciaire",
+    "en": "Some users suffer the consequences of imprisonment, a criminal record or both"
+  },
+  {
+    "fr": "Absence de garantie de qualité des produits",
+    "en": "No guarantee of product quality"
+  },
+  {
+    "fr": "Exposition à l’univers des dealers et à des drogues plus dures",
+    "en": "Exposure to drug dealers and harder drugs"
+  },
+  {
+    "fr": "La prohibition génère beaucoup de contrôles qui peuvent toucher tout le monde",
+    "en": "Prohibition leads to numerous checks that can affect anyone"
+  },
+  {
+    "fr": "Elle alimente le crime organisé",
+    "en": "It fuels organised crime"
+  },
+  {
+    "fr": "La prohibition accroît la rentabilité du cannabis en faisant monter les prix",
+    "en": "Prohibition increases cannabis profitability by driving up prices"
+  },
+  {
+    "fr": "La lutte contre les trafics coûte cher, et c'est un échec",
+    "en": "Efforts to combat trafficking are costly and unsuccessful"
+  },
+  {
+    "fr": "Une distribution contrôlée peut encadrer les stratégies commerciales",
+    "en": "Controlled distribution can regulate commercial strategies"
+  },
+  {
+    "fr": "Perte importante de recettes pour l'Etat. Laisser se développer un marché échappant à toute taxe revient même à le subventionner",
+    "en": "Substantial loss of state revenue. Leaving a market untaxed effectively subsidises it"
+  },
+  {
+    "fr": "La production clandestine de cannabis est à l'origine de nombreux incendies",
+    "en": "Clandestine cannabis cultivation causes many fires"
+  },
+  {
+    "fr": "La guerre contre la drogue exacerbe les persécutions des minorités",
+    "en": "The war on drugs intensifies the persecution of minorities"
+  },
+  {
+    "fr": "Les sanctions liées aux drogues peuvent accroître la pression carcérale",
+    "en": "Drug penalties can increase pressure on prisons"
+  },
+  {
+    "fr": "La prohibition est contraire à la liberté individuelle",
+    "en": "Prohibition infringes individual liberty"
+  },
+  {
+    "fr": "L'interdit attaché au cannabis dépend des époques et des cultures",
+    "en": "Cannabis prohibition varies across periods and cultures"
+  },
+  {
+    "fr": "La prohibition ne fait pas de distinction entre usage simple et toxicomanie",
+    "en": "Prohibition does not distinguish ordinary use from addiction"
+  },
+  {
+    "fr": "De nombreuses substances bien plus addictives et dangereuses que le cannabis sont totalement légales",
+    "en": "Many substances far more addictive and harmful than cannabis are entirely legal"
+  },
+  {
+    "fr": "L'addiction est une maladie, elle ne devrait pas être assimilée à un délit",
+    "en": "Addiction is an illness and should not be treated as a criminal offence"
+  },
+  {
+    "fr": "L'interdit rend plus attractif",
+    "en": "Prohibition increases appeal"
+  },
+  {
+    "fr": "L'interdit incite à chercher des moyens de contourner la loi",
+    "en": "Prohibition encourages attempts to circumvent the law"
+  },
+  {
+    "fr": "L'approche répressive permet aux pouvoirs publics de se dédouaner de leur responsabilité dans sa consommation",
+    "en": "A punitive approach lets public authorities evade responsibility for cannabis use"
+  },
+  {
+    "fr": "La prohibition aggrave le mal-être à l'origine de la consommation de drogues",
+    "en": "Prohibition worsens the distress that leads to drug use"
+  },
+  {
+    "fr": "Le cannabis est nuisible à la société",
+    "en": "Cannabis is harmful to society"
+  },
+  {
+    "fr": "Le cannabis engendre des coûts pour la société",
+    "en": "Cannabis imposes costs on society"
+  },
+  {
+    "fr": "Le cannabis est impliqué dans les accidents de la route",
+    "en": "Cannabis is implicated in road accidents"
+  },
+  {
+    "fr": "La prohibition engendre des coûts importants (perte de recettes fiscales, police, justice…)",
+    "en": "Prohibition entails substantial costs (lost tax revenue, policing, courts...)"
+  },
+  {
+    "fr": "Les risques dépendent notamment de la précocité de la consommation",
+    "en": "The risks depend in particular on how early use begins"
+  },
+  {
+    "fr": "La dangerosité du cannabis est faible",
+    "en": "Cannabis poses relatively little harm"
+  },
+  {
+    "fr": "On peut réduire les risques en jouant sur le mode de consommation",
+    "en": "The risks can be reduced by changing how it is consumed"
+  },
+  {
+    "fr": "Ce n'est pas le produit seul qui fait la dangerosité",
+    "en": "The risks do not depend on the substance alone"
+  },
+  {
+    "fr": "Il n'est pas légitime de punir quelqu'un pour un dommage qu'il se fait à lui-même",
+    "en": "Punishing people for harm they do to themselves is illegitimate"
+  },
+  {
+    "fr": "Si le cannabis est dangereux, pourquoi en confier la gestion au crime organisé ?",
+    "en": "If cannabis is dangerous, why leave it in the hands of organised crime?"
+  },
+  {
+    "fr": "L'absence de garantie sur la qualité du produit présente elle-même des risques",
+    "en": "The lack of product quality guarantees poses risks in itself"
+  },
+  {
+    "fr": "De nombreuses substances légales sont bien plus dangereuses pour la santé que le cannabis",
+    "en": "Many legal substances are far more harmful to health than cannabis"
+  },
+  {
+    "fr": "Le cannabis seul augmente peu le risque d'accidents de la route",
+    "en": "Cannabis alone only slightly increases the risk of road accidents"
+  },
+  {
+    "fr": "C'est avant tout l'alcool qui est responsable",
+    "en": "Alcohol is chiefly responsible"
+  },
+  {
+    "fr": "L'usage privé simple n'est pas dommageable à autrui",
+    "en": "Private use alone does not harm others"
+  },
+  {
+    "fr": "La prohibition du cannabis est plus nuisible encore",
+    "en": "Cannabis prohibition is even more harmful"
+  },
+  {
+    "fr": "L'alcool et le tabac aussi, et pourtant, ils sont légaux",
+    "en": "So are alcohol and tobacco, yet they are legal"
+  },
+  {
+    "fr": "Non, il sert aussi à calmer des douleurs et à se relaxer",
+    "en": "No, it is also used to relieve pain and relax"
+  },
+  {
+    "fr": "Son pouvoir addictif est assez faible",
+    "en": "It has relatively low addictive potential"
+  },
+  {
+    "fr": "Son pouvoir addictif n'est ni faible ni fort en soi, il dépend de son niveau d'usage",
+    "en": "Its addictive potential is neither inherently low nor high; it depends on the level of use"
+  },
+  {
+    "fr": "La dépendance à une drogue ne se produit pas indépendamment de la personne et de son environnement. La drogue est un moyen d'adaptation à la vie, pas une cause",
+    "en": "Drug dependence is not independent of the person and their environment. Drugs are a way of coping with life, not the cause of dependence"
+  },
+  {
+    "fr": "Il l'est moins que l'alcool, qui lui, est légal",
+    "en": "Less so than alcohol, which is legal"
+  },
+  {
+    "fr": "Le tabac et l'alcool sont attractifs parce que de nombreux intérêts s'emploient à les rendre attractifs",
+    "en": "Tobacco and alcohol are appealing because many vested interests work to make them so"
+  },
+  {
+    "fr": "Les Pays-Bas n'ont pas fait marche arrière sur la dépénalisation",
+    "en": "The Netherlands has not reversed course on decriminalisation"
+  },
+  {
+    "fr": "Les pays et états ayant dépénalisé le cannabis sont de plus en plus nombreux",
+    "en": "More and more countries and states have decriminalised cannabis"
+  },
+  {
+    "fr": "Des faits montrent qu'elles peuvent l'être",
+    "en": "Evidence shows that they can be a deterrent"
+  },
+  {
+    "fr": "Il faut faire preuve de pédagogie",
+    "en": "Education is needed"
+  },
+  {
+    "fr": "Parmi les États ayant légalisé le cannabis, aucun n'a légalisé de drogue dure",
+    "en": "No state that has legalised cannabis has legalised a hard drug"
+  },
+  {
+    "fr": "Sophisme de la pente glissante",
+    "en": "Slippery slope fallacy"
+  },
+  {
+    "fr": "Légaliser les drogues dures serait bénéfique pour la société",
+    "en": "Legalising hard drugs would benefit society"
+  },
+  {
+    "fr": "Certains pays comme l'Uruguay encadrent fortement le marché du cannabis",
+    "en": "Countries such as Uruguay tightly regulate the cannabis market"
+  },
+  {
+    "fr": "Un contrôle d'État est possible en France",
+    "en": "State regulation is possible in France"
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "status": "blocked_to_prevent_two_editorial_passage_omissions",
+  "repository_commit": "0ab6e46f62f76490a81431b75e02371df08ebc28",
+  "findings": [
+    {
+      "delivery_page_id": "A0037",
+      "build_node_id": "A0110",
+      "before_build_quote_id": "A0110-C002",
+      "passage_id": "N001",
+      "native_citation_sequence_loses_editorial_passage": true,
+      "working_draft_preserves_passage": true
+    },
+    {
+      "delivery_page_id": "A0116",
+      "build_node_id": "A0123",
+      "before_build_quote_id": "A0123-C002",
+      "passage_id": "N002",
+      "native_citation_sequence_loses_editorial_passage": true,
+      "working_draft_preserves_passage": true
+    }
+  ],
+  "code_paths": [
+    "kit/scripts/wikidebia_content_review.py:_citation_records/_source_imports",
+    "kit/scripts/wikidebia_translation_review.py:_blank_argument/_validate_argument",
+    "kit/scripts/wikidebia_render.py:_render_argument"
+  ],
+  "required_change": "Transporter et relire la prose hors modèles Citation, avec ancrage avant/après chaque citation, dans les verrous français/anglais et la convergence ; contrôler ensuite le rendu réel. Ne pas remplacer cette prose par un résumé ni la placer dans une nouvelle Quote.",
+  "code_modified": false,
+  "official_application_attempted": false
+}

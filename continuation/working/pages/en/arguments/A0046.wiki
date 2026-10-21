@@ -1,0 +1,22 @@
+{{Argument
+|quotes={{Quote
+|quote=We compared young people attending schools in priority education areas (ZEPs) with those attending other schools. Young people in ZEPs tend to use less cannabis, tobacco and alcohol. Yet the only young people we see in court are disadvantaged ones. So there is a bias that inevitably causes resentment. I am not saying that the police deliberately seek to arrest only disadvantaged young people. It is simply that they are where those young people are: outside, hanging around, while more privileged young people use drugs out of sight, often in their parents' flats.
+|authors=Nicole Maestracci
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=228
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Prosecutions for illicit use vary from one jurisdiction to another. There are substantial geographical differences depending on how acute the local problem is, and on the motivation and resources of the prosecutor's office. Alternatives to punitive action are considered according to the substance involved, the level of consumption and the user's profile (whether they have a criminal record), using criteria that vary between prosecutors' offices. (…) Another punitive approach has also emerged in recent years in an attempt to contain this mass phenomenon: imposing an immediately payable customs fine on the user. Unable to reach those organising the trade, the idea is to destabilise them by cutting off the flow of customers. For the time being, however, this measure is applied only in certain regions, notably Île-de-France and Bouches-du-Rhône.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=83
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

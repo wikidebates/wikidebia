@@ -1,0 +1,13 @@
+{{Argument
+|quotes={{Quote
+|quote=You are ten times as likely to be involved in a fatal accident if you consume alcohol alone as if you consume cannabis alone.
+|authors=Nicole Maestracci
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=231
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, road accidents, alcohol
+}}

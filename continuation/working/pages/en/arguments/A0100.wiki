@@ -1,0 +1,27 @@
+{{Argument
+|quotes={{Quote
+|quote=If some people eat quantities of food that damage their health, we do not look for the cause of that behaviour in the food, but in their reasons for eating compulsively. […] Similarly, if some people use illicit drugs to the point where they can no longer manage their lives, we should question not the drugs themselves but those people's reasons for using them in that way.
+|authors=Lise Beauchesne
+|work=Les drogues. Les coûts cachés de la prohibition
+|page=121
+|publisher=Lanctôt
+|date=2003
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Addiction is an illness, but one whose determinants are social long before they are physical. Uncontrolled gambling, like alcoholism and drug addiction in many cases, feeds on the anxiety about tomorrow that now afflicts most workers and very many young people. Prevention that tackles the roots of the problem requires profound social change: society must be put back on its feet and made to work first and foremost for humanity.
+|authors=Nathalie Arthaud
+|article=Drogue et société
+|work=Lutte ouvrière
+|link=https://www.lutte-ouvriere.org/sites/default/files/presentation/Drogue-et-societe.pdf
+|warnings=AI-translated quote
+}}
+|justifications={{Justification
+|page=A punitive approach lets public authorities evade responsibility for cannabis use
+|displayed-title=A punitive approach lets public authorities evade responsibility for cannabis use
+}}{{Justification
+|page=Prohibition worsens the distress that leads to drug use
+|displayed-title=Prohibition worsens the distress that leads to drug use
+}}
+|sections=Law, Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, consumption
+}}

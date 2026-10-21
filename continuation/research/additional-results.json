@@ -1,0 +1,162 @@
+[
+  {
+    "id": "wiki-drug-prohibition-full",
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Drug_prohibition&prop=text%7Csections&format=json",
+    "accessed_at": "2026-10-21T08:43:17.557905+00:00",
+    "http_status": 403,
+    "final_url": "https://en.wikipedia.org/w/api.php?action=parse&page=Drug_prohibition&prop=text%7Csections&format=json",
+    "sha256": "165da4d5af47d0a2008597750d184a3cef870aff9d0a5005b71d6bd17a75672e",
+    "body_path": "responses/wiki-drug-prohibition-full.body",
+    "content_type": "text/plain"
+  },
+  {
+    "id": "wiki-drug-liberalization-full",
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Drug_liberalization&prop=text&format=json",
+    "accessed_at": "2026-10-21T08:43:17.558368+00:00",
+    "http_status": 403,
+    "final_url": "https://en.wikipedia.org/w/api.php?action=parse&page=Drug_liberalization&prop=text&format=json",
+    "sha256": "165da4d5af47d0a2008597750d184a3cef870aff9d0a5005b71d6bd17a75672e",
+    "body_path": "responses/wiki-drug-liberalization-full.body",
+    "content_type": "text/plain"
+  },
+  {
+    "id": "publisher-muscadier-search",
+    "url": "https://www.muscadier.fr/?s=Faut-il+d%C3%A9p%C3%A9naliser+le+cannabis",
+    "accessed_at": "2026-10-21T08:43:17.560277+00:00",
+    "http_status": 200,
+    "final_url": "https://www.muscadier.fr/?s=Faut-il+d%C3%A9p%C3%A9naliser+le+cannabis",
+    "sha256": "dfa66626abc50ad73eb48e47e230ad606324c01035b2370beaeb6ae66e580777",
+    "body_path": "responses/publisher-muscadier-search.body",
+    "content_type": "text/html; charset=UTF-8"
+  },
+  {
+    "id": "bing-kilmer-global",
+    "url": "https://www.bing.com/search?format=rss&q=%22Global+Perspectives+on+Cannabis+Legalization%22+Kilmer",
+    "accessed_at": "2026-10-21T08:43:17.561456+00:00",
+    "http_status": 200,
+    "final_url": "https://www.bing.com/search?format=rss&q=%22Global+Perspectives+on+Cannabis+Legalization%22+Kilmer",
+    "sha256": "34691386f07a6d4ebf94cf9ae2e154d1af6f1f014a313662d2a6c3e0419cf1d8",
+    "body_path": "responses/bing-kilmer-global.body",
+    "content_type": "text/xml; charset=utf-8"
+  },
+  {
+    "id": "bing-barry-commercialization",
+    "url": "https://www.bing.com/search?format=rss&q=%22Cannabis+Commercialization%22+%22Barry%22",
+    "accessed_at": "2026-10-21T08:43:17.854534+00:00",
+    "http_status": 200,
+    "final_url": "https://www.bing.com/search?format=rss&q=%22Cannabis+Commercialization%22+%22Barry%22",
+    "sha256": "7c45ba4ca8c37c7cea03b311b447b8a40196e1287f245bec3ebf8c3f4a440c93",
+    "body_path": "responses/bing-barry-commercialization.body",
+    "content_type": "text/xml; charset=utf-8"
+  },
+  {
+    "id": "bing-kilmer-safer",
+    "url": "https://www.bing.com/search?format=rss&q=%22The+Path+to+Safer+Consumption%22+Kilmer",
+    "accessed_at": "2026-10-21T08:43:17.856703+00:00",
+    "http_status": 200,
+    "final_url": "https://www.bing.com/search?format=rss&q=%22The+Path+to+Safer+Consumption%22+Kilmer",
+    "sha256": "9d3a3da72d688c91707017d56b4596920d5cce4b9ceb080bcad97271bce6540d",
+    "body_path": "responses/bing-kilmer-safer.body",
+    "content_type": "text/xml; charset=utf-8"
+  },
+  {
+    "id": "quote117-archive-index",
+    "url": "https://web.archive.org/cdx/search/cdx?url=jeanyvesnau.com/2014/03/27/cannabis-non-lacademie-nationale-de-medecine-ne-remplit-pas-sa-mission/&output=json&filter=statuscode:200&filter=mimetype:text/html&collapse=digest&limit=4",
+    "accessed_at": "2026-10-21T08:43:18.074744+00:00",
+    "http_status": 200,
+    "final_url": "https://web.archive.org/cdx/search/cdx?url=jeanyvesnau.com/2014/03/27/cannabis-non-lacademie-nationale-de-medecine-ne-remplit-pas-sa-mission/&output=json&filter=statuscode:200&filter=mimetype:text/html&collapse=digest&limit=4",
+    "sha256": "de7b41c507771ae1b578a32dcd83a54b56d1f86eeb5383699eecea036d1dbe39",
+    "body_path": "responses/quote117-archive-index.body",
+    "content_type": "application/json"
+  },
+  {
+    "id": "pubmed-driving",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3277079/",
+    "accessed_at": "2026-10-21T08:43:18.239245+00:00",
+    "http_status": 200,
+    "final_url": "https://pmc.ncbi.nlm.nih.gov:443/articles/PMC3277079/",
+    "sha256": "4df34106503f486f60c8126fe52e72fcc56f600648c0c405db3489a46d82be5b",
+    "body_path": "responses/pubmed-driving.body",
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "id": "pubmed-opioid",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6595272/",
+    "accessed_at": "2026-10-21T08:43:18.266930+00:00",
+    "http_status": 200,
+    "final_url": "https://pmc.ncbi.nlm.nih.gov:443/articles/PMC6595272/",
+    "sha256": "85e85f2986b42cbd3b42650402aec5c61e0c1b32c5a08234c833f49ad9894cb2",
+    "body_path": "responses/pubmed-opioid.body",
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "id": "book-drug-war-heresies",
+    "url": "https://www.cambridge.org/core/books/drug-war-heresies/62BB70CFE3DECE875A31E474F73B1D32",
+    "accessed_at": "2026-10-21T08:43:18.640483+00:00",
+    "http_status": 500,
+    "final_url": "https://www.cambridge.org/core/books/drug-war-heresies/62BB70CFE3DECE875A31E474F73B1D32",
+    "sha256": "f9fff8fd65d04e08b86c54f5594cdb07e190407cd7ab2cbc224d48b6fda81571",
+    "body_path": "responses/book-drug-war-heresies.body",
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "id": "book-habermas-search",
+    "url": "https://openlibrary.org/search.json?title=Postmetaphysical+Thinking&author=Habermas&limit=3",
+    "accessed_at": "2026-10-21T08:43:19.134590+00:00",
+    "http_status": 200,
+    "final_url": "https://openlibrary.org/search.json?title=Postmetaphysical+Thinking&author=Habermas&limit=3",
+    "sha256": "1da6a50db01b96a1014e789ad6c507a831a0b869e12133dfe6a00bd3a3825a45",
+    "body_path": "responses/book-habermas-search.body",
+    "content_type": "application/json"
+  },
+  {
+    "id": "new-ccs-2024",
+    "url": "https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/research-data/canadian-cannabis-survey-2024-summary.html",
+    "accessed_at": "2026-10-21T08:43:19.164097+00:00",
+    "http_status": 200,
+    "final_url": "https://www.canada.ca/en/health-canada/services/drugs-medication/cannabis/research-data/canadian-cannabis-survey-2024-summary.html",
+    "sha256": "9eed8932f969a74be705f1948691340a63593901e1894bc38effe8d4154684e3",
+    "body_path": "responses/new-ccs-2024.body",
+    "content_type": "text/html;charset=utf-8"
+  },
+  {
+    "id": "who-cannabis-pdf",
+    "url": "https://iris.who.int/bitstream/handle/10665/251056/9789241510240-eng.pdf",
+    "accessed_at": "2026-10-21T08:43:20.131728+00:00",
+    "http_status": 403,
+    "final_url": "https://iris.who.int/bitstream/handle/10665/251056/9789241510240-eng.pdf",
+    "sha256": "ab768623070128ccef048c88def86155dbe776c3d8db423cc8fa89432673d8a8",
+    "body_path": "responses/who-cannabis-pdf.body",
+    "content_type": "text/html; charset=iso-8859-1"
+  },
+  {
+    "id": "rand-report-pdf",
+    "url": "https://www.rand.org/content/dam/rand/pubs/research_reports/RR800/RR864/RAND_RR864.pdf",
+    "accessed_at": "2026-10-21T08:43:20.159161+00:00",
+    "http_status": 200,
+    "final_url": "https://www.rand.org/content/dam/rand/pubs/research_reports/RR800/RR864/RAND_RR864.pdf",
+    "sha256": "070e16e317606773aabca344ede25d52abe177bb1dc8b45bc1bfb7db78c3ee3b",
+    "body_path": "responses/rand-report-pdf.body",
+    "content_type": "application/pdf"
+  },
+  {
+    "id": "stanford-fallacy",
+    "url": "https://plato.stanford.edu/entries/fallacies/",
+    "accessed_at": "2026-10-21T08:43:20.164256+00:00",
+    "http_status": 200,
+    "final_url": "https://plato.stanford.edu/entries/fallacies/",
+    "sha256": "45467658874e59756cafdde7e0efcaba81d7f7312ed7804b5560ac6c81db4e2f",
+    "body_path": "responses/stanford-fallacy.body",
+    "content_type": "text/html"
+  },
+  {
+    "id": "peertube-video",
+    "url": "https://tube.blueben.net/api/v1/videos/7d5b4c7a-5c1f-44f6-9603-6dfadd444040",
+    "accessed_at": "2026-10-21T08:43:20.527652+00:00",
+    "http_status": 200,
+    "final_url": "https://tube.blueben.net/api/v1/videos/7d5b4c7a-5c1f-44f6-9603-6dfadd444040",
+    "sha256": "4b6cdbd7a827c7a3c23c1d0f661d26a0290be4ec7769e9a51755768bba3bc488",
+    "body_path": "responses/peertube-video.body",
+    "content_type": "application/json; charset=utf-8"
+  }
+]

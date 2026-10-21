@@ -1,0 +1,250 @@
+{
+  "status": "working_draft_not_officially_finalized",
+  "publication_ready": false,
+  "registry_subset_validation_passed": true,
+  "official_workflow_validation": false,
+  "changes": [
+    {
+      "page_id": "debate",
+      "source_title_fr": "Le cannabis doit-il être légalisé ?",
+      "relative_path": "pages/en/debate.wiki",
+      "before_sha256": "0a69c178305dd54a4620ed77703e485e4aae768e4c8a3a24f3fb81d0ec5b7a7d",
+      "after_sha256": "49a6a71b4c8f0537ff2a93a610962818a5bfe75d54aa5e294dcecf85af3da10e",
+      "reference_replacements": 2,
+      "added_sources": [
+        "S90001",
+        "S90002",
+        "S90003",
+        "S90004"
+      ],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0008",
+      "source_title_fr": "Comme on le constate avec le tabac, si le prix du cannabis légalisé est trop élevé, le marché noir va se maintenir",
+      "relative_path": "pages/en/arguments/A0008.wiki",
+      "before_sha256": "3a8ced30d1641df48866f601d254334adceddbfa2e67e4cb885eecc420c12f3d",
+      "after_sha256": "ad0dd6422d64c290d28cb2e7190f6863791b40a08f3c5d6870de7ba7bdba2a90",
+      "reference_replacements": 0,
+      "added_sources": [
+        "S90001"
+      ],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0054",
+      "source_title_fr": "La légalisation du cannabis au Canada fonctionne mieux que la prohibition",
+      "relative_path": "pages/en/arguments/A0054.wiki",
+      "before_sha256": "7e076991ad3452a6dc23926c16712ee56d75e7e76c350d080ed49cd71eb82284",
+      "after_sha256": "a23aa2e9ab550c0753f32889ff5c1a1ee7a5f932a09302ba077c307fb52782c0",
+      "reference_replacements": 0,
+      "added_sources": [
+        "S90002"
+      ],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0056",
+      "source_title_fr": "La légalisation du cannabis dans un seul pays est source de problèmes",
+      "relative_path": "pages/en/arguments/A0056.wiki",
+      "before_sha256": "a5e70d59569b1ca6e601cd22f261b64269699863030e8cea18eaa75aaf5610c1",
+      "after_sha256": "7428aa22239c684180d416117f1653f7bff8127366b2882e85da5c11a24a44f0",
+      "reference_replacements": 0,
+      "added_sources": [
+        "S90001"
+      ],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0057",
+      "source_title_fr": "La légalisation du cannabis encourage une économie de dépendance",
+      "relative_path": "pages/en/arguments/A0057.wiki",
+      "before_sha256": "f4f30c2c3fd74d9e12ccf3dc14c89874775dd05433122d5e18b56a6a2b69e9b6",
+      "after_sha256": "a94c9c96710816eb54e791848de695d231a5de148d8bd91d1a2dc494dbf73542",
+      "reference_replacements": 0,
+      "added_sources": [
+        "S90002"
+      ],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0058",
+      "source_title_fr": "La légalisation du cannabis est en vigueur dans de nombreux pays",
+      "relative_path": "pages/en/arguments/A0058.wiki",
+      "before_sha256": "ba7480e3cbe7f46bde824bc4a30d1c12b6a7624a1b047a0467d862ed480cfa2e",
+      "after_sha256": "94c20f531fb475ab476786d1cf14b7502b0591c07296e3186780a63ba988201e",
+      "reference_replacements": 1,
+      "added_sources": [],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0063",
+      "source_title_fr": "La légalisation du cannabis permet un contrôle qualité",
+      "relative_path": "pages/en/arguments/A0063.wiki",
+      "before_sha256": "21d8333f2ab93231b3549c696c5ce2438bb0f5abf043df3b80a5ad50cf3d1d47",
+      "after_sha256": "c755bf042f70c839c94ff475371074d47f7fdd3e3bf648e4bc9844a0cf9db04d",
+      "reference_replacements": 0,
+      "added_sources": [
+        "S90002"
+      ],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0071",
+      "source_title_fr": "La légalisation du cannabis risque d'accroître la consommation",
+      "relative_path": "pages/en/arguments/A0071.wiki",
+      "before_sha256": "fded657d41ec05494ca307859555dc5e758f9a42acf9d2ae06031b54c5473d7b",
+      "after_sha256": "b986805802e3e9009248d42f9d0108d7f61b62bd6b77d64552da5f133b947ba6",
+      "reference_replacements": 0,
+      "added_sources": [
+        "S90002"
+      ],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0073",
+      "source_title_fr": "La légalisation du cannabis récréatif soulève des difficultés au regard des conventions internationales",
+      "relative_path": "pages/en/arguments/A0073.wiki",
+      "before_sha256": "e75160ddfea0c422eceb606d0407d476729c916c4e08cfc390bc3a06f834ba50",
+      "after_sha256": "abc5e4cb3b65238b28f680b77fda42fc3a7298c9e856dea5da521e4b470c0ac0",
+      "reference_replacements": 1,
+      "added_sources": [],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0106",
+      "source_title_fr": "Le cannabis est dangereux pour la santé physique et mentale",
+      "relative_path": "pages/en/arguments/A0106.wiki",
+      "before_sha256": "33c13f1e24e5692118c7082bfe07db8805929b02fc0e1a90fce475df0734bfc7",
+      "after_sha256": "7e861a8d4bebf9a072b53514214ec742bdf0fff6fe533833a07fb90ab09a4bba",
+      "reference_replacements": 0,
+      "added_sources": [
+        "S90005"
+      ],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0115",
+      "source_title_fr": "Le modèle portugais a fait ses preuves",
+      "relative_path": "pages/en/arguments/A0115.wiki",
+      "before_sha256": "88f740cab42bf860cb669ac6de350567ec5fb1f0885b265add2e41095a2d479e",
+      "after_sha256": "4c2e861e440ffe537f4b1eb03e18fbb2b5b7f2846edf15596b1fc335a71c842f",
+      "reference_replacements": 0,
+      "added_sources": [
+        "S90003"
+      ],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0117",
+      "source_title_fr": "Le pouvoir addictif du cannabis est important",
+      "relative_path": "pages/en/arguments/A0117.wiki",
+      "before_sha256": "b5ae1ce4784e995c87a0a5fdead72f3772d5c442317679f39c798130cf4ce707",
+      "after_sha256": "7196866053753eb362949b9557ce47fd913ef0a2292c86e53cb7c8666c127603",
+      "reference_replacements": 0,
+      "added_sources": [
+        "S90005"
+      ],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0119",
+      "source_title_fr": "Le prix de vente est ce qui joue un rôle déterminant dans la consommation de cannabis",
+      "relative_path": "pages/en/arguments/A0119.wiki",
+      "before_sha256": "59bef950237aa5e4eaf388e25fb9be225596abe46dd415f0a33943b757a7e182",
+      "after_sha256": "a1edfbb2a439d94a7bf678dba4cc7ba46a0b71cbcaeef69a2700516c36908475",
+      "reference_replacements": 0,
+      "added_sources": [
+        "S90001"
+      ],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0125",
+      "source_title_fr": "Les conventions internationales n'imposent pas de pénaliser l'usage de cannabis",
+      "relative_path": "pages/en/arguments/A0125.wiki",
+      "before_sha256": "b136f2acad7e37fc651a02b81227c5e64119fe70380126712587886fcece668a",
+      "after_sha256": "4f1d3d75acb018c1474e52df9a5c0cc2cdb40e2f1777e08a3d7908fa138850e4",
+      "reference_replacements": 1,
+      "added_sources": [],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0134",
+      "source_title_fr": "Les risques du cannabis sont particulièrement préoccupants lors d'une consommation précoce",
+      "relative_path": "pages/en/arguments/A0134.wiki",
+      "before_sha256": "6877048718dabf2d6a7447bfa807643ee42720724c5a34bbb09dc15b79794ff2",
+      "after_sha256": "8ad2456ebe7da54024ad7db5c15619543155ca19ab291e3ab5261b6e9303cabc",
+      "reference_replacements": 0,
+      "added_sources": [
+        "S90005"
+      ],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0141",
+      "source_title_fr": "On peut réduire les risques du cannabis en jouant sur le mode de consommation",
+      "relative_path": "pages/en/arguments/A0141.wiki",
+      "before_sha256": "2695ba9ec0e8a0af045b9ac1804f90c60a49d33bb032712ebdefd0d14eb9c797",
+      "after_sha256": "70fa2906d654d371dbf3da3c73286ce76828c90ad6d87ce9430cdc8687ed719d",
+      "reference_replacements": 0,
+      "added_sources": [
+        "S90005"
+      ],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0142",
+      "source_title_fr": "On peut tout à fait dépénaliser toutes les drogues",
+      "relative_path": "pages/en/arguments/A0142.wiki",
+      "before_sha256": "f09700686ed4c012ab4b357ddf1122511ce4407502d5b3df8f845cbe64a685cc",
+      "after_sha256": "c90ce8b83864573a9239b284169bb4755b78525bc020258bbe6ce190479e4c1e",
+      "reference_replacements": 0,
+      "added_sources": [
+        "S90003"
+      ],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0143",
+      "source_title_fr": "Parmi les États ayant légalisé le cannabis, aucun n'a légalisé de drogue dure",
+      "relative_path": "pages/en/arguments/A0143.wiki",
+      "before_sha256": "cf641275173ca0fedfee5925b66727b2e71588185f36a49af752c273ebc1e1f0",
+      "after_sha256": "d158bf0ba90ac24b87e5d1afe84f15a0e28b1a8b78e2ee48dae8354a76b5aa2d",
+      "reference_replacements": 1,
+      "added_sources": [],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    },
+    {
+      "page_id": "A0151",
+      "source_title_fr": "Un marché noir du cannabis peut subsister après sa légalisation",
+      "relative_path": "pages/en/arguments/A0151.wiki",
+      "before_sha256": "a9e2038b585710d99159b2adf0e232012b668f3a7ce168d33d9c172bf1c05fc6",
+      "after_sha256": "6a609cf4aab45e89b617b387b7c92eec4b1af77be79367059398d8df560bbf37",
+      "reference_replacements": 0,
+      "added_sources": [
+        "S90001"
+      ],
+      "summary_prose_changed": false,
+      "quote_changes": false
+    }
+  ]
+}

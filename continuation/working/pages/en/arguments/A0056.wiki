@@ -1,0 +1,14 @@
+{{Argument
+|summary=According to the mayor of Windsor, a city on the Canada–US border, legalising cannabis in Canada could cause “longer delays at the border” and disrupt cross-border trade.
+|sections=Geopolitics, Society
+|keywords=cannabis, legalisation, decriminalisation
+|bibliography={{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+
+}}

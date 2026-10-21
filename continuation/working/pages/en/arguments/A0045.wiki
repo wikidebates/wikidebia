@@ -1,0 +1,26 @@
+{{Argument
+|justifications={{Justification
+|page=France's 1970 drug law was not designed for cannabis
+|displayed-title=It was not designed for cannabis
+}}{{Justification
+|page=France's 1970 drug law focuses too heavily on users
+|displayed-title=It focuses too heavily on users
+}}{{Justification
+|page=Users no longer understand France's 1970 drug law
+|displayed-title=Users no longer understand it
+}}{{Justification
+|page=France's 1970 drug law is difficult to enforce
+|displayed-title=It is difficult to enforce
+}}{{Justification
+|page=Retaining the largely unenforced criminal penalties in France's 1970 drug law is unsound
+|displayed-title=Retaining a largely unenforced criminal penalty is unsound
+}}{{Justification
+|page=France's 1970 drug law is applied too inconsistently
+|displayed-title=It is applied too inconsistently
+}}{{Justification
+|page=France's 1970 drug law has never been evaluated
+|displayed-title=It has never been evaluated
+}}
+|sections=Law, Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

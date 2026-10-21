@@ -1,0 +1,14 @@
+{{Argument
+|quotes={{Quote
+|quote=The ban has been accompanied by the emergence of new synthetic compounds that mimic the effects of cannabis but, because they are not prohibited, fall outside the legislation.
+|authors=MacCoun et Reuter (2001)
+|work=Faut-il dépénaliser le cannabis ?
+|page=11
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, prohibition
+}}
