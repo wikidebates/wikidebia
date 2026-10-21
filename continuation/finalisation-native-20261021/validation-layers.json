@@ -1,0 +1,37 @@
+{
+  "schema": "wikidebia-validation-layers-1.0",
+  "debate_id": "cannabis",
+  "work_id": "EN-CANNABIS-20261021",
+  "archive_sha256": "fbb70744a0b0d67fdf4a556999cebb038babf754386a7ca6fca43584a6340cf4",
+  "validator_version": "0.4.105",
+  "layers": {
+    "structural": {
+      "status": "passed",
+      "errors": 0,
+      "warnings": 0,
+      "infos": 153,
+      "meaning": "Schémas, fichiers, graphe, wikicode, cohérence et workflow automatisables."
+    },
+    "documentary": {
+      "status": "passed",
+      "errors": 0,
+      "warnings": 0,
+      "infos": 3,
+      "meaning": "Identité, langue, usages, métadonnées et cohérence normalisée des ressources documentaires."
+    },
+    "semantic_review": {
+      "status": "passed",
+      "errors": 0,
+      "warnings": 0,
+      "infos": 57,
+      "meaning": "Heuristiques bilingues et présence/cohérence des attestations humaines encodées; ce statut ne remplace pas la lecture humaine elle-même."
+    },
+    "fresh_archive": {
+      "status": "passed",
+      "errors": 0,
+      "warnings": 0,
+      "infos": 213,
+      "meaning": "L'archive exacte a été créée, réextraite dans un dossier vierge, contrôlée CRC/sûreté puis revalidée sans modifier son contenu."
+    }
+  }
+}

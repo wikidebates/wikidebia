@@ -1,0 +1,468 @@
+[
+  {
+    "quote_id": "Q001",
+    "page_id": "A0001",
+    "signals": [
+      "marker_loss:possibility"
+    ]
+  },
+  {
+    "quote_id": "Q003",
+    "page_id": "A0003",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q006",
+    "page_id": "A0008",
+    "signals": [
+      "marker_loss:comparison",
+      "marker_loss:negation"
+    ]
+  },
+  {
+    "quote_id": "Q007",
+    "page_id": "A0009",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q009",
+    "page_id": "A0010",
+    "signals": [
+      "marker_loss:comparison",
+      "marker_loss:condition",
+      "marker_loss:universal_quantifier"
+    ]
+  },
+  {
+    "quote_id": "Q013",
+    "page_id": "A0015",
+    "signals": [
+      "marker_loss:strong_intensity"
+    ]
+  },
+  {
+    "quote_id": "Q014",
+    "page_id": "A0015",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q015",
+    "page_id": "A0016",
+    "signals": [
+      "marker_loss:condition",
+      "marker_loss:universal_quantifier"
+    ]
+  },
+  {
+    "quote_id": "Q021",
+    "page_id": "A0023",
+    "signals": [
+      "marker_loss:consequence_link"
+    ]
+  },
+  {
+    "quote_id": "Q023",
+    "page_id": "A0024",
+    "signals": [
+      "marker_loss:possibility"
+    ]
+  },
+  {
+    "quote_id": "Q026",
+    "page_id": "A0030",
+    "signals": [
+      "marker_loss:condition",
+      "marker_loss:many_quantifier",
+      "marker_loss:negation"
+    ]
+  },
+  {
+    "quote_id": "Q030",
+    "page_id": "A0032",
+    "signals": [
+      "marker_loss:consequence_link",
+      "marker_loss:universal_quantifier"
+    ]
+  },
+  {
+    "quote_id": "Q036",
+    "page_id": "A0038",
+    "signals": [
+      "marker_loss:consequence_link"
+    ]
+  },
+  {
+    "quote_id": "Q037",
+    "page_id": "A0039",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q041",
+    "page_id": "A0040",
+    "signals": [
+      "marker_loss:strong_probative_force"
+    ]
+  },
+  {
+    "quote_id": "Q043",
+    "page_id": "A0041",
+    "signals": [
+      "marker_loss:universal_quantifier"
+    ]
+  },
+  {
+    "quote_id": "Q044",
+    "page_id": "A0041",
+    "signals": [
+      "marker_loss:concession",
+      "marker_loss:several_quantifier",
+      "marker_loss:strong_intensity"
+    ]
+  },
+  {
+    "quote_id": "Q045",
+    "page_id": "A0041",
+    "signals": [
+      "marker_loss:strong_intensity"
+    ]
+  },
+  {
+    "quote_id": "Q047",
+    "page_id": "A0042",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q051",
+    "page_id": "A0044",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q053",
+    "page_id": "A0046",
+    "signals": [
+      "marker_loss:concession"
+    ]
+  },
+  {
+    "quote_id": "Q055",
+    "page_id": "A0047",
+    "signals": [
+      "marker_loss:attribution"
+    ]
+  },
+  {
+    "quote_id": "Q056",
+    "page_id": "A0047",
+    "signals": [
+      "marker_loss:universal_quantifier"
+    ]
+  },
+  {
+    "quote_id": "Q060",
+    "page_id": "A0050",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q062",
+    "page_id": "A0052",
+    "signals": [
+      "marker_loss:universal_quantifier"
+    ]
+  },
+  {
+    "quote_id": "Q068",
+    "page_id": "A0061",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q073",
+    "page_id": "A0067",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q075",
+    "page_id": "A0070",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q076",
+    "page_id": "A0071",
+    "signals": [
+      "marker_loss:consequence_link",
+      "marker_loss:negation"
+    ]
+  },
+  {
+    "quote_id": "Q077",
+    "page_id": "A0072",
+    "signals": [
+      "marker_loss:consequence_link",
+      "marker_loss:existential_quantifier"
+    ]
+  },
+  {
+    "quote_id": "Q080",
+    "page_id": "A0078",
+    "signals": [
+      "marker_loss:consequence_link"
+    ]
+  },
+  {
+    "quote_id": "Q081",
+    "page_id": "A0081",
+    "signals": [
+      "marker_loss:strong_intensity",
+      "marker_loss:universal_quantifier"
+    ]
+  },
+  {
+    "quote_id": "Q082",
+    "page_id": "A0082",
+    "signals": [
+      "marker_loss:consequence_link"
+    ]
+  },
+  {
+    "quote_id": "Q083",
+    "page_id": "A0083",
+    "signals": [
+      "marker_loss:consequence_link"
+    ]
+  },
+  {
+    "quote_id": "Q085",
+    "page_id": "A0085",
+    "signals": [
+      "marker_loss:many_quantifier"
+    ]
+  },
+  {
+    "quote_id": "Q086",
+    "page_id": "A0085",
+    "signals": [
+      "marker_loss:comparison",
+      "marker_loss:universal_quantifier"
+    ]
+  },
+  {
+    "quote_id": "Q089",
+    "page_id": "A0087",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q091",
+    "page_id": "A0087",
+    "signals": [
+      "marker_loss:comparison",
+      "marker_loss:negation"
+    ]
+  },
+  {
+    "quote_id": "Q093",
+    "page_id": "A0089",
+    "signals": [
+      "marker_loss:consequence_link"
+    ]
+  },
+  {
+    "quote_id": "Q098",
+    "page_id": "A0094",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q100",
+    "page_id": "A0097",
+    "signals": [
+      "marker_loss:consequence_link"
+    ]
+  },
+  {
+    "quote_id": "Q102",
+    "page_id": "A0098",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q103",
+    "page_id": "A0099",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q104",
+    "page_id": "A0100",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q105",
+    "page_id": "A0100",
+    "signals": [
+      "marker_loss:comparison",
+      "marker_loss:frequency_often"
+    ]
+  },
+  {
+    "quote_id": "Q106",
+    "page_id": "A0103",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q108",
+    "page_id": "A0105",
+    "signals": [
+      "marker_loss:universal_quantifier"
+    ]
+  },
+  {
+    "quote_id": "Q111",
+    "page_id": "A0107",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q112",
+    "page_id": "A0108",
+    "signals": [
+      "marker_loss:consequence_link"
+    ]
+  },
+  {
+    "quote_id": "Q116",
+    "page_id": "A0112",
+    "signals": [
+      "marker_loss:consequence_link",
+      "marker_loss:many_quantifier"
+    ]
+  },
+  {
+    "quote_id": "Q117",
+    "page_id": "A0113",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q118",
+    "page_id": "A0114",
+    "signals": [
+      "causal_relation_shifted_to_condition",
+      "marker_loss:causal_link",
+      "marker_loss:consequence_link",
+      "marker_loss:universal_quantifier"
+    ]
+  },
+  {
+    "quote_id": "Q119",
+    "page_id": "A0115",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q120",
+    "page_id": "A0116",
+    "signals": [
+      "marker_loss:comparison",
+      "marker_loss:concession",
+      "marker_loss:condition",
+      "marker_loss:possibility"
+    ]
+  },
+  {
+    "quote_id": "Q121",
+    "page_id": "A0116",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q126",
+    "page_id": "A0120",
+    "signals": [
+      "marker_loss:negation"
+    ]
+  },
+  {
+    "quote_id": "Q130",
+    "page_id": "A0123",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q135",
+    "page_id": "A0128",
+    "signals": [
+      "causal_relation_shifted_to_condition",
+      "marker_loss:causal_link",
+      "marker_loss:universal_quantifier"
+    ]
+  },
+  {
+    "quote_id": "Q137",
+    "page_id": "A0128",
+    "signals": [
+      "marker_loss:universal_quantifier"
+    ]
+  },
+  {
+    "quote_id": "Q139",
+    "page_id": "A0134",
+    "signals": [
+      "marker_loss:universal_quantifier"
+    ]
+  },
+  {
+    "quote_id": "Q141",
+    "page_id": "A0135",
+    "signals": [
+      "marker_loss:comparison"
+    ]
+  },
+  {
+    "quote_id": "Q142",
+    "page_id": "A0135",
+    "signals": [
+      "marker_loss:restriction_only"
+    ]
+  },
+  {
+    "quote_id": "Q149",
+    "page_id": "A0152",
+    "signals": [
+      "marker_loss:strong_intensity",
+      "marker_loss:universal_quantifier"
+    ]
+  }
+]

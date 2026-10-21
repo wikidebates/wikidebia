@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "debate",
+    "A0004",
+    "A0017",
+    "A0018",
+    "A0023",
+    "A0039",
+    "A0040",
+    "A0045",
+    "A0053",
+    "A0054",
+    "A0059",
+    "A0063",
+    "A0071",
+    "A0076",
+    "A0084",
+    "A0090",
+    "A0102",
+    "A0106",
+    "A0111",
+    "A0116",
+    "A0117",
+    "A0118",
+    "A0120",
+    "A0134",
+    "A0141",
+    "A0150",
+    "A0151"
+  ],
+  "changes": [
+    "Sections anglaises triées alphabétiquement selon la norme, mots-clés laissés dans l’ordre source.",
+    "Balise references supprimée de la seule introduction anglaise.",
+    "Ponctuation terminale retirée des notices inline, aucune référence supprimée."
+  ],
+  "french_changes": false
+}

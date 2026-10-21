@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "head_sha": "42527ffd078800ac9c4ae5f053217cc8cd3a0838",
+  "runs": [
+    {
+      "id": 39642932453,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/wikidebates/wikidebia/actions/runs/39642932453"
+    },
+    {
+      "id": 39642922602,
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/wikidebates/wikidebia/actions/runs/39642922602"
+    }
+  ],
+  "runtime_code_unchanged_since": "bfae7884b74ddb7cc61e59c86e8d04c8d669818f",
+  "test_dependency_fix": "Le test de conservation française utilise le parseur sans dépendance du kit ; aucune dépendance de parsing supplémentaire nécessaire en CI."
+}

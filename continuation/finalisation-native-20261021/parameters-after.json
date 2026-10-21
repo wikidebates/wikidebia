@@ -1,0 +1,6720 @@
+{
+  "schema": "wikidebia-exhaustive-template-parameter-review-1.0",
+  "source_page_count": 153,
+  "quoted_models_compared": 149,
+  "source_parameter_dispositions": [
+    {
+      "page_id": "debate",
+      "source_parameters": [
+        "sujet",
+        "sujet-développé",
+        "avancement",
+        "avertissements-débat",
+        "introduction",
+        "articles-Wikipédia",
+        "arguments-pour",
+        "arguments-contre",
+        "bibliographie-pour",
+        "bibliographie-contre",
+        "bibliographie-ni-pour-ni-contre",
+        "sitographie-pour",
+        "sitographie-contre",
+        "sitographie-ni-pour-ni-contre",
+        "vidéographie-pour",
+        "vidéographie-ni-pour-ni-contre",
+        "débats-connexes",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "topic",
+        "expanded-topic",
+        "progress",
+        "debate-warnings",
+        "introduction",
+        "pro-arguments",
+        "con-arguments",
+        "sections",
+        "keywords",
+        "bibliography",
+        "webliography",
+        "wikipedia-articles"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "sujet",
+          "target_parameter": "topic",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "sujet-développé",
+          "target_parameter": "expanded-topic",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "avancement",
+          "target_parameter": "progress",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "avertissements-débat",
+          "target_parameter": "debate-warnings",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "introduction",
+          "target_parameter": "introduction",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "articles-Wikipédia",
+          "target_parameter": "wikipedia-articles",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "arguments-pour",
+          "target_parameter": "pro-arguments",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "arguments-contre",
+          "target_parameter": "con-arguments",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "bibliographie-pour",
+          "target_parameter": "pro-bibliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "bibliographie-contre",
+          "target_parameter": "con-bibliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "bibliographie-ni-pour-ni-contre",
+          "target_parameter": "bibliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "sitographie-pour",
+          "target_parameter": "pro-webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "sitographie-contre",
+          "target_parameter": "con-webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "sitographie-ni-pour-ni-contre",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "vidéographie-pour",
+          "target_parameter": "pro-videography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "vidéographie-ni-pour-ni-contre",
+          "target_parameter": "videography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "débats-connexes",
+          "target_parameter": "related-debates",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0001",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0002",
+      "source_parameters": [
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0003",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0004",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0005",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0006",
+      "source_parameters": [
+        "initialisation",
+        "résumé",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0007",
+      "source_parameters": [
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0008",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0009",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0010",
+      "source_parameters": [
+        "citations",
+        "références-vidéographiques",
+        "justifications",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "justifications",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-vidéographiques",
+          "target_parameter": "videography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "justifications",
+          "target_parameter": "justifications",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0011",
+      "source_parameters": [
+        "avertissements-résumé",
+        "résumé",
+        "citations",
+        "références-sitographiques",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "summary-warnings",
+        "quotes",
+        "objections",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "avertissements-résumé",
+          "target_parameter": "summary-warnings",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0012",
+      "source_parameters": [
+        "initialisation",
+        "références-sitographiques",
+        "justifications",
+        "date-création"
+      ],
+      "english_parameters": [
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "justifications",
+          "target_parameter": "justifications",
+          "source_nonempty": false,
+          "disposition": "empty_parameter_omitted"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0013",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0014",
+      "source_parameters": [
+        "résumé",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0015",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0016",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0017",
+      "source_parameters": [
+        "justifications",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "justifications",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "justifications",
+          "target_parameter": "justifications",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0018",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0019",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0020",
+      "source_parameters": [
+        "citations",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0021",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0022",
+      "source_parameters": [
+        "initialisation",
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0023",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0024",
+      "source_parameters": [
+        "citations",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0025",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0026",
+      "source_parameters": [
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0027",
+      "source_parameters": [
+        "initialisation",
+        "résumé",
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0028",
+      "source_parameters": [
+        "citations",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0029",
+      "source_parameters": [
+        "initialisation",
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0030",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0031",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0032",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0033",
+      "source_parameters": [
+        "initialisation",
+        "date-création"
+      ],
+      "english_parameters": [
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0034",
+      "source_parameters": [
+        "résumé",
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "quotes",
+        "objections",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0035",
+      "source_parameters": [
+        "date-création"
+      ],
+      "english_parameters": [],
+      "dispositions": [
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0036",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0037",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0038",
+      "source_parameters": [
+        "citations",
+        "références-sitographiques",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0039",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0040",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0041",
+      "source_parameters": [
+        "résumé",
+        "citations",
+        "références-vidéographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "quotes",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-vidéographiques",
+          "target_parameter": "videography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0042",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0043",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0044",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0045",
+      "source_parameters": [
+        "justifications",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "justifications",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "justifications",
+          "target_parameter": "justifications",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0046",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0047",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0048",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0049",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0050",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0051",
+      "source_parameters": [
+        "citations",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0052",
+      "source_parameters": [
+        "résumé",
+        "citations",
+        "références-bibliographiques",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "quotes",
+        "sections",
+        "keywords",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-bibliographiques",
+          "target_parameter": "bibliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0053",
+      "source_parameters": [
+        "initialisation",
+        "résumé",
+        "citations",
+        "références-sitographiques",
+        "justifications",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "quotes",
+        "justifications",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "justifications",
+          "target_parameter": "justifications",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0054",
+      "source_parameters": [
+        "initialisation",
+        "résumé",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0055",
+      "source_parameters": [
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "objections",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0056",
+      "source_parameters": [
+        "résumé",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "sections",
+        "keywords",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0057",
+      "source_parameters": [
+        "initialisation",
+        "résumé",
+        "citations",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "quotes",
+        "sections",
+        "keywords",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0058",
+      "source_parameters": [
+        "résumé",
+        "références-sitographiques",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0059",
+      "source_parameters": [
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "sections",
+        "keywords",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0060",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "bibliography",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0061",
+      "source_parameters": [
+        "citations",
+        "références-sitographiques",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0062",
+      "source_parameters": [
+        "justifications",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "justifications",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "justifications",
+          "target_parameter": "justifications",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0063",
+      "source_parameters": [
+        "initialisation",
+        "résumé",
+        "citations",
+        "références-sitographiques",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0064",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0065",
+      "source_parameters": [
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "webliography",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0066",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0067",
+      "source_parameters": [
+        "citations",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0068",
+      "source_parameters": [
+        "citations",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0069",
+      "source_parameters": [
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0070",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0071",
+      "source_parameters": [
+        "initialisation",
+        "résumé",
+        "citations",
+        "références-sitographiques",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0072",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0073",
+      "source_parameters": [
+        "résumé",
+        "références-sitographiques",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0074",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0075",
+      "source_parameters": [
+        "références-sitographiques",
+        "justifications",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "justifications",
+        "objections",
+        "sections",
+        "keywords",
+        "bibliography",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "justifications",
+          "target_parameter": "justifications",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0076",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0077",
+      "source_parameters": [
+        "justifications",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "justifications",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "justifications",
+          "target_parameter": "justifications",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0078",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0079",
+      "source_parameters": [
+        "références-bibliographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "références-bibliographiques",
+          "target_parameter": "bibliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0080",
+      "source_parameters": [
+        "initialisation",
+        "date-création"
+      ],
+      "english_parameters": [],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0081",
+      "source_parameters": [
+        "citations",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0082",
+      "source_parameters": [
+        "initialisation",
+        "citations",
+        "références-vidéographiques",
+        "justifications",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "justifications",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-vidéographiques",
+          "target_parameter": "videography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "justifications",
+          "target_parameter": "justifications",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0083",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0084",
+      "source_parameters": [
+        "initialisation",
+        "résumé",
+        "citations",
+        "références-sitographiques",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0085",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0086",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0087",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0088",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0089",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0090",
+      "source_parameters": [
+        "résumé",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0091",
+      "source_parameters": [
+        "références-sitographiques",
+        "justifications",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "justifications",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "justifications",
+          "target_parameter": "justifications",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0092",
+      "source_parameters": [
+        "justifications",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "justifications",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "justifications",
+          "target_parameter": "justifications",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0093",
+      "source_parameters": [
+        "justifications",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "justifications",
+        "sections",
+        "keywords",
+        "bibliography",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "justifications",
+          "target_parameter": "justifications",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0094",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0095",
+      "source_parameters": [
+        "citations",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0096",
+      "source_parameters": [
+        "justifications",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "justifications",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "justifications",
+          "target_parameter": "justifications",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0097",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0098",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0099",
+      "source_parameters": [
+        "initialisation",
+        "résumé",
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "quotes",
+        "objections",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0100",
+      "source_parameters": [
+        "citations",
+        "références-sitographiques",
+        "justifications",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "justifications",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "justifications",
+          "target_parameter": "justifications",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0101",
+      "source_parameters": [
+        "résumé",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0102",
+      "source_parameters": [
+        "initialisation",
+        "résumé",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0103",
+      "source_parameters": [
+        "initialisation",
+        "citations",
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "webliography",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0104",
+      "source_parameters": [
+        "justifications",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "justifications",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "justifications",
+          "target_parameter": "justifications",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0105",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0106",
+      "source_parameters": [
+        "résumé",
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0107",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0108",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "bibliography",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0109",
+      "source_parameters": [
+        "objections",
+        "références-bibliographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "objections"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-bibliographiques",
+          "target_parameter": "bibliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0110",
+      "source_parameters": [
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0111",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0112",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0113",
+      "source_parameters": [
+        "résumé",
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0114",
+      "source_parameters": [
+        "citations",
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0115",
+      "source_parameters": [
+        "résumé",
+        "citations",
+        "références-vidéographiques",
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "quotes",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-vidéographiques",
+          "target_parameter": "videography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0116",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0117",
+      "source_parameters": [
+        "citations",
+        "références-sitographiques",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0118",
+      "source_parameters": [
+        "citations",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0119",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "bibliography",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0120",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0121",
+      "source_parameters": [
+        "citations",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0122",
+      "source_parameters": [
+        "citations",
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0123",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0124",
+      "source_parameters": [
+        "résumé",
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0125",
+      "source_parameters": [
+        "résumé",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0126",
+      "source_parameters": [
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0127",
+      "source_parameters": [
+        "citations",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0128",
+      "source_parameters": [
+        "résumé",
+        "citations",
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "quotes",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0129",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0130",
+      "source_parameters": [
+        "initialisation",
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0131",
+      "source_parameters": [
+        "résumé",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0132",
+      "source_parameters": [
+        "références-bibliographiques",
+        "date-création"
+      ],
+      "english_parameters": [],
+      "dispositions": [
+        {
+          "source_parameter": "références-bibliographiques",
+          "target_parameter": "bibliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0133",
+      "source_parameters": [
+        "initialisation",
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0134",
+      "source_parameters": [
+        "citations",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0135",
+      "source_parameters": [
+        "citations",
+        "justifications",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "justifications",
+        "objections",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "justifications",
+          "target_parameter": "justifications",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0136",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0137",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0138",
+      "source_parameters": [
+        "citations",
+        "objections",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "objections",
+        "sections",
+        "keywords",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "objections",
+          "target_parameter": "objections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0139",
+      "source_parameters": [
+        "initialisation",
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0140",
+      "source_parameters": [
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0141",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0142",
+      "source_parameters": [
+        "résumé",
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0143",
+      "source_parameters": [
+        "résumé",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0144",
+      "source_parameters": [
+        "résumé",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "sections",
+        "keywords",
+        "bibliography",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0145",
+      "source_parameters": [
+        "initialisation",
+        "date-création"
+      ],
+      "english_parameters": [],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0146",
+      "source_parameters": [
+        "références-sitographiques",
+        "date-création"
+      ],
+      "english_parameters": [
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0147",
+      "source_parameters": [
+        "citations",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "bibliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0148",
+      "source_parameters": [
+        "date-création"
+      ],
+      "english_parameters": [
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0149",
+      "source_parameters": [
+        "initialisation",
+        "résumé",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0150",
+      "source_parameters": [
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "sections",
+        "keywords"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0151",
+      "source_parameters": [
+        "initialisation",
+        "résumé",
+        "citations",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "summary",
+        "quotes",
+        "sections",
+        "keywords",
+        "bibliography",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "initialisation",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        },
+        {
+          "source_parameter": "résumé",
+          "target_parameter": "summary",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    },
+    {
+      "page_id": "A0152",
+      "source_parameters": [
+        "citations",
+        "références-sitographiques",
+        "rubriques",
+        "mots-clés",
+        "date-création"
+      ],
+      "english_parameters": [
+        "quotes",
+        "sections",
+        "keywords",
+        "webliography"
+      ],
+      "dispositions": [
+        {
+          "source_parameter": "citations",
+          "target_parameter": "quotes",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "références-sitographiques",
+          "target_parameter": "webliography",
+          "source_nonempty": true,
+          "disposition": "documentary_reselection_or_target_check_still_open"
+        },
+        {
+          "source_parameter": "rubriques",
+          "target_parameter": "sections",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "mots-clés",
+          "target_parameter": "keywords",
+          "source_nonempty": true,
+          "disposition": "translated_field_present"
+        },
+        {
+          "source_parameter": "date-création",
+          "target_parameter": null,
+          "source_nonempty": true,
+          "disposition": "omitted_by_explicit_english_lifecycle_rule"
+        }
+      ]
+    }
+  ],
+  "duplicate_parameters": [],
+  "historical_duplicate_values_preserved": [
+    {
+      "page": "A0042",
+      "parameter": "keywords",
+      "source": [
+        "Cannabis",
+        "Dépénalisation",
+        "Libertés individuelles",
+        "Légalisation",
+        "Libertés individuelles"
+      ],
+      "target": [
+        "cannabis",
+        "decriminalisation",
+        "individual liberties",
+        "legalisation",
+        "individual liberties"
+      ],
+      "disposition": "preserved_source_duplicate_not_silently_cleaned"
+    },
+    {
+      "page": "A0043",
+      "parameter": "keywords",
+      "source": [
+        "Cannabis",
+        "Légalisation",
+        "Dépénalisation",
+        "Cannabis",
+        "Légalisation",
+        "Dépénalisation",
+        "Législation"
+      ],
+      "target": [
+        "cannabis",
+        "legalisation",
+        "decriminalisation",
+        "cannabis",
+        "legalisation",
+        "decriminalisation",
+        "legislation"
+      ],
+      "disposition": "preserved_source_duplicate_not_silently_cleaned"
+    }
+  ],
+  "findings": [],
+  "official_kit_finalization": false
+}

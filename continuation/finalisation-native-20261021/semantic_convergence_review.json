@@ -1,0 +1,37 @@
+{
+  "schema": "wikidebia-semantic-convergence-review-1.1",
+  "schema_version": "1.1",
+  "normative_revision": "1.2.88",
+  "kit_version": "2.16.47",
+  "debate_id": "cannabis",
+  "work_id": "EN-CANNABIS-20261021",
+  "translation_review_sha256": "189db95cceca3792de051ff3cadf18d81a93f149870856170d677bc99efbe2f3",
+  "semantic_content_sha256": "61b4b211295198806324af535b7b30b82b72c866ea522bdb31244f5b0368dd05",
+  "status": "converged",
+  "passes": [
+    {
+      "pass_id": "P001",
+      "method_family": "risk_marker_review",
+      "method": "Recontrôle différentiel des degrés, modalités, conditions et chiffres après normalisation des notes",
+      "reviewer": "Codex — reprise de la relecture bilingue",
+      "reviewed_at": "2026-10-21T17:05:53+00:00",
+      "note": "Les 63 alertes sémantiques et les corrections ciblées restent revues ; aucun texte de citation ou résumé ne change dans cette révision de format. Introduction complète relue : conditions, montants datés et restrictions géographiques inchangés ; seules notices sans point final et balise references retirée.",
+      "new_certain_errors": 0,
+      "translation_review_sha256": "189db95cceca3792de051ff3cadf18d81a93f149870856170d677bc99efbe2f3",
+      "semantic_content_sha256": "61b4b211295198806324af535b7b30b82b72c866ea522bdb31244f5b0368dd05"
+    },
+    {
+      "pass_id": "P002",
+      "method_family": "field_boundary_review",
+      "method": "Recontrôle des frontières de champs et de la couverture après tri canonique des sections",
+      "reviewer": "Codex — reprise de la relecture bilingue",
+      "reviewed_at": "2026-10-21T17:05:54+00:00",
+      "note": "Les 153 identités, 149 citations, deux passages, 32 résumés et 120 absences restent inchangés ; les 170 libellés restent ancrés à leurs relations. Le tri alphabétique des seules sections ne réordonne pas les mots-clés. Les sources et citations ne sont ni supprimées ni réattribuées. Aucun nouveau défaut certain dans cette passe de reprise.",
+      "new_certain_errors": 0,
+      "translation_review_sha256": "189db95cceca3792de051ff3cadf18d81a93f149870856170d677bc99efbe2f3",
+      "semantic_content_sha256": "61b4b211295198806324af535b7b30b82b72c866ea522bdb31244f5b0368dd05"
+    }
+  ],
+  "converged_at": "2026-10-21T17:05:54+00:00",
+  "receipt_sha256": "d2a14561d349cc72bc3b735e091b84fab0a19d80511a41e88ac1c5ed6e558cfb"
+}

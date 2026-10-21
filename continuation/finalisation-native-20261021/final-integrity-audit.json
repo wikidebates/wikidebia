@@ -1,0 +1,7444 @@
+{
+  "status": "independent_textual_integrity_passed",
+  "checked_at": "2026-10-21T17:18:07.957175+00:00",
+  "checks_passed": 1794,
+  "checks": [
+    {
+      "check": "153_individual_textual_review_notes",
+      "passed": true
+    },
+    {
+      "check": "153_pages_exactly",
+      "passed": true
+    },
+    {
+      "check": "immutable_v2_manifest",
+      "passed": true
+    },
+    {
+      "check": "debate_source_identity",
+      "passed": true
+    },
+    {
+      "check": "debate_source_hash",
+      "passed": true
+    },
+    {
+      "check": "debate_target_hash",
+      "passed": true
+    },
+    {
+      "check": "debate_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "debate_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "debate_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "debate_edge_1_pro",
+      "passed": true
+    },
+    {
+      "check": "debate_rendered_edge_pro_1",
+      "passed": true
+    },
+    {
+      "check": "debate_edge_2_pro",
+      "passed": true
+    },
+    {
+      "check": "debate_rendered_edge_pro_2",
+      "passed": true
+    },
+    {
+      "check": "debate_edge_3_pro",
+      "passed": true
+    },
+    {
+      "check": "debate_rendered_edge_pro_3",
+      "passed": true
+    },
+    {
+      "check": "debate_edge_4_pro",
+      "passed": true
+    },
+    {
+      "check": "debate_rendered_edge_pro_4",
+      "passed": true
+    },
+    {
+      "check": "debate_edge_5_pro",
+      "passed": true
+    },
+    {
+      "check": "debate_rendered_edge_pro_5",
+      "passed": true
+    },
+    {
+      "check": "debate_edge_6_pro",
+      "passed": true
+    },
+    {
+      "check": "debate_rendered_edge_pro_6",
+      "passed": true
+    },
+    {
+      "check": "debate_edge_7_pro",
+      "passed": true
+    },
+    {
+      "check": "debate_rendered_edge_pro_7",
+      "passed": true
+    },
+    {
+      "check": "debate_edge_8_pro",
+      "passed": true
+    },
+    {
+      "check": "debate_rendered_edge_pro_8",
+      "passed": true
+    },
+    {
+      "check": "debate_edge_1_con",
+      "passed": true
+    },
+    {
+      "check": "debate_rendered_edge_con_1",
+      "passed": true
+    },
+    {
+      "check": "debate_edge_2_con",
+      "passed": true
+    },
+    {
+      "check": "debate_rendered_edge_con_2",
+      "passed": true
+    },
+    {
+      "check": "debate_edge_3_con",
+      "passed": true
+    },
+    {
+      "check": "debate_rendered_edge_con_3",
+      "passed": true
+    },
+    {
+      "check": "debate_edge_4_con",
+      "passed": true
+    },
+    {
+      "check": "debate_rendered_edge_con_4",
+      "passed": true
+    },
+    {
+      "check": "debate_edge_5_con",
+      "passed": true
+    },
+    {
+      "check": "debate_rendered_edge_con_5",
+      "passed": true
+    },
+    {
+      "check": "A0001_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0001_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0001_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0001_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0001_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0001_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0001_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q001_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q001_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q002_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q002_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0001_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0001_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0002_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0002_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0002_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0002_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0002_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0002_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0002_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0003_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0003_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0003_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0003_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0003_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0003_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0003_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q003_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q003_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0004_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0004_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0004_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0004_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0004_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0004_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0004_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q004_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q004_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0005_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0005_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0005_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0005_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0005_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0005_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0005_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q005_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q005_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0005_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0005_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0006_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0006_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0006_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0006_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0006_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0006_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0006_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0006_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0006_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0007_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0007_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0007_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0007_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0007_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0007_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0007_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0008_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0008_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0008_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0008_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0008_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0008_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0008_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q006_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q006_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0009_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0009_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0009_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0009_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0009_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0009_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0009_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q007_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q007_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0009_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0009_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0010_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0010_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0010_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0010_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0010_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0010_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0010_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q008_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q008_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q009_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q009_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0010_edge_1_justification",
+      "passed": true
+    },
+    {
+      "check": "A0010_rendered_edge_justification_1",
+      "passed": true
+    },
+    {
+      "check": "A0010_edge_2_justification",
+      "passed": true
+    },
+    {
+      "check": "A0010_rendered_edge_justification_2",
+      "passed": true
+    },
+    {
+      "check": "A0010_edge_3_justification",
+      "passed": true
+    },
+    {
+      "check": "A0010_rendered_edge_justification_3",
+      "passed": true
+    },
+    {
+      "check": "A0010_edge_4_justification",
+      "passed": true
+    },
+    {
+      "check": "A0010_rendered_edge_justification_4",
+      "passed": true
+    },
+    {
+      "check": "A0010_edge_5_justification",
+      "passed": true
+    },
+    {
+      "check": "A0010_rendered_edge_justification_5",
+      "passed": true
+    },
+    {
+      "check": "A0010_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0010_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0010_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0010_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0011_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0011_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0011_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0011_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0011_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0011_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0011_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0011_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0011_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q010_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q010_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q011_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q011_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0011_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0011_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0011_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0011_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0012_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0012_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0012_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0012_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0012_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0012_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0012_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0013_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0013_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0013_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0013_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0013_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0013_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0013_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q012_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q012_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0014_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0014_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0014_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0014_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0014_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0014_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0014_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0014_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0014_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0015_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0015_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0015_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0015_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0015_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0015_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0015_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q013_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q013_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q014_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q014_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0016_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0016_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0016_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0016_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0016_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0016_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0016_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q015_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q015_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0017_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0017_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0017_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0017_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0017_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0017_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0017_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0017_edge_1_justification",
+      "passed": true
+    },
+    {
+      "check": "A0017_rendered_edge_justification_1",
+      "passed": true
+    },
+    {
+      "check": "A0017_edge_2_justification",
+      "passed": true
+    },
+    {
+      "check": "A0017_rendered_edge_justification_2",
+      "passed": true
+    },
+    {
+      "check": "A0017_edge_3_justification",
+      "passed": true
+    },
+    {
+      "check": "A0017_rendered_edge_justification_3",
+      "passed": true
+    },
+    {
+      "check": "A0017_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0017_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0018_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0018_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0018_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0018_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0018_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0018_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0018_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q016_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q016_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0019_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0019_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0019_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0019_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0019_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0019_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0019_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q017_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q017_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q018_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q018_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0020_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0020_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0020_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0020_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0020_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0020_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0020_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q019_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q019_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0021_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0021_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0021_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0021_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0021_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0021_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0021_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q020_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q020_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0022_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0022_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0022_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0022_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0022_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0022_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0022_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0023_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0023_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0023_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0023_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0023_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0023_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0023_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q021_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q021_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q022_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q022_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0024_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0024_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0024_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0024_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0024_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0024_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0024_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q023_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q023_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0025_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0025_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0025_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0025_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0025_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0025_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0025_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q024_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q024_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0025_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0025_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0026_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0026_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0026_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0026_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0026_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0026_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0026_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0027_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0027_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0027_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0027_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0027_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0027_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0027_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0027_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0027_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0028_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0028_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0028_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0028_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0028_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0028_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0028_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q025_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q025_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0029_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0029_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0029_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0029_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0029_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0029_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0029_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0030_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0030_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0030_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0030_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0030_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0030_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0030_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q026_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q026_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q027_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q027_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q028_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q028_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0031_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0031_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0031_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0031_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0031_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0031_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0031_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q029_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q029_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0032_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0032_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0032_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0032_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0032_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0032_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0032_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q030_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q030_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0033_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0033_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0033_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0033_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0033_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0033_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0033_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0034_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0034_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0034_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0034_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0034_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0034_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0034_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0034_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0034_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q031_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q031_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q032_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q032_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0034_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0034_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0034_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0034_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0035_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0035_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0035_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0035_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0035_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0035_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0035_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0036_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0036_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0036_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0036_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0036_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0036_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0036_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q033_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q033_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0037_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0037_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0037_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0037_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0037_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0037_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0037_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q034_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q034_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q035_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q035_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0038_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0038_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0038_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0038_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0038_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0038_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0038_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q036_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q036_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0038_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0038_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0039_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0039_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0039_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0039_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0039_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0039_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0039_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q037_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q037_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q038_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q038_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q039_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q039_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q040_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q040_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0040_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0040_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0040_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0040_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0040_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0040_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0040_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q041_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q041_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0041_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0041_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0041_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0041_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0041_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0041_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0041_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0041_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0041_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q042_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q042_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q043_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q043_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q044_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q044_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q045_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q045_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q046_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q046_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0042_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0042_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0042_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0042_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0042_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0042_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0042_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q047_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q047_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0043_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0043_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0043_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0043_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0043_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0043_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0043_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q048_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q048_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0044_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0044_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0044_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0044_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0044_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0044_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0044_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q049_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q049_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q050_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q050_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q051_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q051_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q052_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q052_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0045_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0045_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0045_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0045_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0045_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0045_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0045_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0045_edge_1_justification",
+      "passed": true
+    },
+    {
+      "check": "A0045_rendered_edge_justification_1",
+      "passed": true
+    },
+    {
+      "check": "A0045_edge_2_justification",
+      "passed": true
+    },
+    {
+      "check": "A0045_rendered_edge_justification_2",
+      "passed": true
+    },
+    {
+      "check": "A0045_edge_3_justification",
+      "passed": true
+    },
+    {
+      "check": "A0045_rendered_edge_justification_3",
+      "passed": true
+    },
+    {
+      "check": "A0045_edge_4_justification",
+      "passed": true
+    },
+    {
+      "check": "A0045_rendered_edge_justification_4",
+      "passed": true
+    },
+    {
+      "check": "A0045_edge_5_justification",
+      "passed": true
+    },
+    {
+      "check": "A0045_rendered_edge_justification_5",
+      "passed": true
+    },
+    {
+      "check": "A0045_edge_6_justification",
+      "passed": true
+    },
+    {
+      "check": "A0045_rendered_edge_justification_6",
+      "passed": true
+    },
+    {
+      "check": "A0045_edge_7_justification",
+      "passed": true
+    },
+    {
+      "check": "A0045_rendered_edge_justification_7",
+      "passed": true
+    },
+    {
+      "check": "A0046_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0046_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0046_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0046_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0046_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0046_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0046_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q053_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q053_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q054_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q054_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0047_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0047_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0047_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0047_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0047_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0047_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0047_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q055_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q055_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q056_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q056_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0048_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0048_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0048_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0048_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0048_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0048_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0048_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q057_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q057_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0049_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0049_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0049_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0049_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0049_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0049_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0049_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q058_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q058_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q059_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q059_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0049_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0049_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0050_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0050_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0050_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0050_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0050_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0050_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0050_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q060_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q060_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0051_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0051_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0051_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0051_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0051_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0051_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0051_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q061_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q061_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0052_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0052_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0052_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0052_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0052_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0052_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0052_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0052_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0052_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q062_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q062_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0053_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0053_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0053_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0053_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0053_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0053_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0053_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0053_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0053_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q063_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q063_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0053_edge_1_justification",
+      "passed": true
+    },
+    {
+      "check": "A0053_rendered_edge_justification_1",
+      "passed": true
+    },
+    {
+      "check": "A0053_edge_2_justification",
+      "passed": true
+    },
+    {
+      "check": "A0053_rendered_edge_justification_2",
+      "passed": true
+    },
+    {
+      "check": "A0054_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0054_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0054_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0054_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0054_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0054_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0054_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0054_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0054_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0055_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0055_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0055_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0055_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0055_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0055_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0055_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0055_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0055_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0055_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0055_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0056_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0056_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0056_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0056_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0056_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0056_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0056_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0056_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0056_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0057_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0057_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0057_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0057_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0057_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0057_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0057_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0057_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0057_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q064_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q064_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0058_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0058_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0058_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0058_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0058_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0058_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0058_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0058_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0058_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0058_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0058_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0059_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0059_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0059_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0059_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0059_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0059_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0059_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0060_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0060_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0060_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0060_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0060_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0060_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0060_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q065_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q065_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0060_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0060_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0060_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0060_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0060_edge_3_objection",
+      "passed": true
+    },
+    {
+      "check": "A0060_rendered_edge_objection_3",
+      "passed": true
+    },
+    {
+      "check": "A0060_edge_4_objection",
+      "passed": true
+    },
+    {
+      "check": "A0060_rendered_edge_objection_4",
+      "passed": true
+    },
+    {
+      "check": "A0061_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0061_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0061_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0061_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0061_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0061_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0061_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q066_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q066_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q067_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q067_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q068_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q068_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0061_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0061_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0061_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0061_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0061_edge_3_objection",
+      "passed": true
+    },
+    {
+      "check": "A0061_rendered_edge_objection_3",
+      "passed": true
+    },
+    {
+      "check": "A0062_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0062_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0062_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0062_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0062_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0062_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0062_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0062_edge_1_justification",
+      "passed": true
+    },
+    {
+      "check": "A0062_rendered_edge_justification_1",
+      "passed": true
+    },
+    {
+      "check": "A0062_edge_2_justification",
+      "passed": true
+    },
+    {
+      "check": "A0062_rendered_edge_justification_2",
+      "passed": true
+    },
+    {
+      "check": "A0062_edge_3_justification",
+      "passed": true
+    },
+    {
+      "check": "A0062_rendered_edge_justification_3",
+      "passed": true
+    },
+    {
+      "check": "A0062_edge_4_justification",
+      "passed": true
+    },
+    {
+      "check": "A0062_rendered_edge_justification_4",
+      "passed": true
+    },
+    {
+      "check": "A0062_edge_5_justification",
+      "passed": true
+    },
+    {
+      "check": "A0062_rendered_edge_justification_5",
+      "passed": true
+    },
+    {
+      "check": "A0062_edge_6_justification",
+      "passed": true
+    },
+    {
+      "check": "A0062_rendered_edge_justification_6",
+      "passed": true
+    },
+    {
+      "check": "A0062_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0062_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0062_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0062_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0062_edge_3_objection",
+      "passed": true
+    },
+    {
+      "check": "A0062_rendered_edge_objection_3",
+      "passed": true
+    },
+    {
+      "check": "A0063_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0063_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0063_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0063_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0063_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0063_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0063_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0063_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0063_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q069_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q069_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0063_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0063_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0064_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0064_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0064_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0064_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0064_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0064_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0064_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q070_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q070_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q071_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q071_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0064_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0064_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0065_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0065_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0065_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0065_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0065_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0065_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0065_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0066_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0066_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0066_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0066_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0066_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0066_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0066_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q072_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q072_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0066_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0066_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0067_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0067_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0067_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0067_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0067_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0067_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0067_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q073_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q073_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0068_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0068_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0068_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0068_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0068_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0068_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0068_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q074_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q074_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0069_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0069_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0069_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0069_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0069_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0069_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0069_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0070_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0070_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0070_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0070_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0070_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0070_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0070_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q075_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q075_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0070_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0070_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0071_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0071_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0071_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0071_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0071_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0071_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0071_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0071_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0071_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q076_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q076_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0071_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0071_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0072_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0072_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0072_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0072_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0072_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0072_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0072_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q077_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q077_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0072_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0072_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0072_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0072_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0073_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0073_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0073_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0073_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0073_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0073_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0073_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0073_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0073_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0073_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0073_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0073_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0073_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0073_edge_3_objection",
+      "passed": true
+    },
+    {
+      "check": "A0073_rendered_edge_objection_3",
+      "passed": true
+    },
+    {
+      "check": "A0073_edge_4_objection",
+      "passed": true
+    },
+    {
+      "check": "A0073_rendered_edge_objection_4",
+      "passed": true
+    },
+    {
+      "check": "A0073_edge_5_objection",
+      "passed": true
+    },
+    {
+      "check": "A0073_rendered_edge_objection_5",
+      "passed": true
+    },
+    {
+      "check": "A0074_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0074_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0074_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0074_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0074_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0074_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0074_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q078_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q078_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0075_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0075_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0075_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0075_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0075_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0075_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0075_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0075_edge_1_justification",
+      "passed": true
+    },
+    {
+      "check": "A0075_rendered_edge_justification_1",
+      "passed": true
+    },
+    {
+      "check": "A0075_edge_2_justification",
+      "passed": true
+    },
+    {
+      "check": "A0075_rendered_edge_justification_2",
+      "passed": true
+    },
+    {
+      "check": "A0075_edge_3_justification",
+      "passed": true
+    },
+    {
+      "check": "A0075_rendered_edge_justification_3",
+      "passed": true
+    },
+    {
+      "check": "A0075_edge_4_justification",
+      "passed": true
+    },
+    {
+      "check": "A0075_rendered_edge_justification_4",
+      "passed": true
+    },
+    {
+      "check": "A0075_edge_5_justification",
+      "passed": true
+    },
+    {
+      "check": "A0075_rendered_edge_justification_5",
+      "passed": true
+    },
+    {
+      "check": "A0075_edge_6_justification",
+      "passed": true
+    },
+    {
+      "check": "A0075_rendered_edge_justification_6",
+      "passed": true
+    },
+    {
+      "check": "A0075_edge_7_justification",
+      "passed": true
+    },
+    {
+      "check": "A0075_rendered_edge_justification_7",
+      "passed": true
+    },
+    {
+      "check": "A0075_edge_8_justification",
+      "passed": true
+    },
+    {
+      "check": "A0075_rendered_edge_justification_8",
+      "passed": true
+    },
+    {
+      "check": "A0075_edge_9_justification",
+      "passed": true
+    },
+    {
+      "check": "A0075_rendered_edge_justification_9",
+      "passed": true
+    },
+    {
+      "check": "A0075_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0075_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0075_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0075_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0075_edge_3_objection",
+      "passed": true
+    },
+    {
+      "check": "A0075_rendered_edge_objection_3",
+      "passed": true
+    },
+    {
+      "check": "A0076_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0076_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0076_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0076_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0076_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0076_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0076_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q079_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q079_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0077_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0077_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0077_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0077_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0077_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0077_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0077_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0077_edge_1_justification",
+      "passed": true
+    },
+    {
+      "check": "A0077_rendered_edge_justification_1",
+      "passed": true
+    },
+    {
+      "check": "A0077_edge_2_justification",
+      "passed": true
+    },
+    {
+      "check": "A0077_rendered_edge_justification_2",
+      "passed": true
+    },
+    {
+      "check": "A0077_edge_3_justification",
+      "passed": true
+    },
+    {
+      "check": "A0077_rendered_edge_justification_3",
+      "passed": true
+    },
+    {
+      "check": "A0077_edge_4_justification",
+      "passed": true
+    },
+    {
+      "check": "A0077_rendered_edge_justification_4",
+      "passed": true
+    },
+    {
+      "check": "A0078_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0078_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0078_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0078_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0078_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0078_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0078_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q080_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q080_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0078_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0078_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0079_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0079_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0079_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0079_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0079_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0079_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0079_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0080_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0080_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0080_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0080_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0080_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0080_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0080_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0081_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0081_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0081_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0081_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0081_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0081_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0081_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q081_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q081_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0082_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0082_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0082_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0082_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0082_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0082_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0082_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q082_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q082_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0082_edge_1_justification",
+      "passed": true
+    },
+    {
+      "check": "A0082_rendered_edge_justification_1",
+      "passed": true
+    },
+    {
+      "check": "A0082_edge_2_justification",
+      "passed": true
+    },
+    {
+      "check": "A0082_rendered_edge_justification_2",
+      "passed": true
+    },
+    {
+      "check": "A0083_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0083_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0083_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0083_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0083_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0083_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0083_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q083_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q083_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0084_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0084_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0084_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0084_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0084_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0084_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0084_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0084_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0084_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q084_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q084_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0084_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0084_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0085_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0085_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0085_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0085_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0085_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0085_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0085_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q085_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q085_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q086_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q086_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0086_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0086_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0086_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0086_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0086_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0086_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0086_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q087_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q087_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q088_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q088_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0087_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0087_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0087_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0087_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0087_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0087_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0087_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q089_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q089_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q090_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q090_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q091_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q091_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0088_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0088_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0088_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0088_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0088_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0088_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0088_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q092_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q092_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0088_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0088_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0089_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0089_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0089_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0089_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0089_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0089_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0089_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q093_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q093_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q094_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q094_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q095_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q095_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q096_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q096_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0089_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0089_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0090_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0090_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0090_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0090_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0090_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0090_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0090_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0090_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0090_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0090_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0090_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0090_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0090_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0090_edge_3_objection",
+      "passed": true
+    },
+    {
+      "check": "A0090_rendered_edge_objection_3",
+      "passed": true
+    },
+    {
+      "check": "A0090_edge_4_objection",
+      "passed": true
+    },
+    {
+      "check": "A0090_rendered_edge_objection_4",
+      "passed": true
+    },
+    {
+      "check": "A0090_edge_5_objection",
+      "passed": true
+    },
+    {
+      "check": "A0090_rendered_edge_objection_5",
+      "passed": true
+    },
+    {
+      "check": "A0090_edge_6_objection",
+      "passed": true
+    },
+    {
+      "check": "A0090_rendered_edge_objection_6",
+      "passed": true
+    },
+    {
+      "check": "A0090_edge_7_objection",
+      "passed": true
+    },
+    {
+      "check": "A0090_rendered_edge_objection_7",
+      "passed": true
+    },
+    {
+      "check": "A0090_edge_8_objection",
+      "passed": true
+    },
+    {
+      "check": "A0090_rendered_edge_objection_8",
+      "passed": true
+    },
+    {
+      "check": "A0091_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0091_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0091_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0091_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0091_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0091_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0091_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0091_edge_1_justification",
+      "passed": true
+    },
+    {
+      "check": "A0091_rendered_edge_justification_1",
+      "passed": true
+    },
+    {
+      "check": "A0091_edge_2_justification",
+      "passed": true
+    },
+    {
+      "check": "A0091_rendered_edge_justification_2",
+      "passed": true
+    },
+    {
+      "check": "A0091_edge_3_justification",
+      "passed": true
+    },
+    {
+      "check": "A0091_rendered_edge_justification_3",
+      "passed": true
+    },
+    {
+      "check": "A0091_edge_4_justification",
+      "passed": true
+    },
+    {
+      "check": "A0091_rendered_edge_justification_4",
+      "passed": true
+    },
+    {
+      "check": "A0091_edge_5_justification",
+      "passed": true
+    },
+    {
+      "check": "A0091_rendered_edge_justification_5",
+      "passed": true
+    },
+    {
+      "check": "A0091_edge_6_justification",
+      "passed": true
+    },
+    {
+      "check": "A0091_rendered_edge_justification_6",
+      "passed": true
+    },
+    {
+      "check": "A0091_edge_7_justification",
+      "passed": true
+    },
+    {
+      "check": "A0091_rendered_edge_justification_7",
+      "passed": true
+    },
+    {
+      "check": "A0091_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0091_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0091_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0091_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0091_edge_3_objection",
+      "passed": true
+    },
+    {
+      "check": "A0091_rendered_edge_objection_3",
+      "passed": true
+    },
+    {
+      "check": "A0092_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0092_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0092_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0092_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0092_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0092_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0092_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0092_edge_1_justification",
+      "passed": true
+    },
+    {
+      "check": "A0092_rendered_edge_justification_1",
+      "passed": true
+    },
+    {
+      "check": "A0092_edge_2_justification",
+      "passed": true
+    },
+    {
+      "check": "A0092_rendered_edge_justification_2",
+      "passed": true
+    },
+    {
+      "check": "A0092_edge_3_justification",
+      "passed": true
+    },
+    {
+      "check": "A0092_rendered_edge_justification_3",
+      "passed": true
+    },
+    {
+      "check": "A0092_edge_4_justification",
+      "passed": true
+    },
+    {
+      "check": "A0092_rendered_edge_justification_4",
+      "passed": true
+    },
+    {
+      "check": "A0092_edge_5_justification",
+      "passed": true
+    },
+    {
+      "check": "A0092_rendered_edge_justification_5",
+      "passed": true
+    },
+    {
+      "check": "A0093_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0093_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0093_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0093_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0093_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0093_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0093_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0093_edge_1_justification",
+      "passed": true
+    },
+    {
+      "check": "A0093_rendered_edge_justification_1",
+      "passed": true
+    },
+    {
+      "check": "A0093_edge_2_justification",
+      "passed": true
+    },
+    {
+      "check": "A0093_rendered_edge_justification_2",
+      "passed": true
+    },
+    {
+      "check": "A0093_edge_3_justification",
+      "passed": true
+    },
+    {
+      "check": "A0093_rendered_edge_justification_3",
+      "passed": true
+    },
+    {
+      "check": "A0093_edge_4_justification",
+      "passed": true
+    },
+    {
+      "check": "A0093_rendered_edge_justification_4",
+      "passed": true
+    },
+    {
+      "check": "A0093_edge_5_justification",
+      "passed": true
+    },
+    {
+      "check": "A0093_rendered_edge_justification_5",
+      "passed": true
+    },
+    {
+      "check": "A0093_edge_6_justification",
+      "passed": true
+    },
+    {
+      "check": "A0093_rendered_edge_justification_6",
+      "passed": true
+    },
+    {
+      "check": "A0093_edge_7_justification",
+      "passed": true
+    },
+    {
+      "check": "A0093_rendered_edge_justification_7",
+      "passed": true
+    },
+    {
+      "check": "A0093_edge_8_justification",
+      "passed": true
+    },
+    {
+      "check": "A0093_rendered_edge_justification_8",
+      "passed": true
+    },
+    {
+      "check": "A0093_edge_9_justification",
+      "passed": true
+    },
+    {
+      "check": "A0093_rendered_edge_justification_9",
+      "passed": true
+    },
+    {
+      "check": "A0094_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0094_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0094_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0094_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0094_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0094_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0094_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q097_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q097_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q098_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q098_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0095_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0095_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0095_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0095_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0095_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0095_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0095_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q099_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q099_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0096_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0096_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0096_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0096_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0096_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0096_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0096_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0096_edge_1_justification",
+      "passed": true
+    },
+    {
+      "check": "A0096_rendered_edge_justification_1",
+      "passed": true
+    },
+    {
+      "check": "A0096_edge_2_justification",
+      "passed": true
+    },
+    {
+      "check": "A0096_rendered_edge_justification_2",
+      "passed": true
+    },
+    {
+      "check": "A0096_edge_3_justification",
+      "passed": true
+    },
+    {
+      "check": "A0096_rendered_edge_justification_3",
+      "passed": true
+    },
+    {
+      "check": "A0096_edge_4_justification",
+      "passed": true
+    },
+    {
+      "check": "A0096_rendered_edge_justification_4",
+      "passed": true
+    },
+    {
+      "check": "A0096_edge_5_justification",
+      "passed": true
+    },
+    {
+      "check": "A0096_rendered_edge_justification_5",
+      "passed": true
+    },
+    {
+      "check": "A0097_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0097_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0097_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0097_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0097_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0097_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0097_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q100_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q100_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q101_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q101_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0098_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0098_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0098_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0098_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0098_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0098_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0098_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q102_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q102_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0099_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0099_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0099_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0099_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0099_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0099_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0099_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0099_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0099_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q103_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q103_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0099_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0099_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0099_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0099_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0100_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0100_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0100_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0100_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0100_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0100_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0100_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q104_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q104_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q105_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q105_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0100_edge_1_justification",
+      "passed": true
+    },
+    {
+      "check": "A0100_rendered_edge_justification_1",
+      "passed": true
+    },
+    {
+      "check": "A0100_edge_2_justification",
+      "passed": true
+    },
+    {
+      "check": "A0100_rendered_edge_justification_2",
+      "passed": true
+    },
+    {
+      "check": "A0101_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0101_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0101_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0101_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0101_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0101_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0101_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0101_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0101_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0102_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0102_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0102_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0102_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0102_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0102_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0102_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0102_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0102_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0103_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0103_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0103_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0103_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0103_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0103_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0103_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q106_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q106_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q107_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q107_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0104_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0104_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0104_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0104_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0104_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0104_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0104_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0104_edge_1_justification",
+      "passed": true
+    },
+    {
+      "check": "A0104_rendered_edge_justification_1",
+      "passed": true
+    },
+    {
+      "check": "A0104_edge_2_justification",
+      "passed": true
+    },
+    {
+      "check": "A0104_rendered_edge_justification_2",
+      "passed": true
+    },
+    {
+      "check": "A0104_edge_3_justification",
+      "passed": true
+    },
+    {
+      "check": "A0104_rendered_edge_justification_3",
+      "passed": true
+    },
+    {
+      "check": "A0105_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0105_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0105_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0105_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0105_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0105_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0105_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q108_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q108_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0105_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0105_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0106_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0106_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0106_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0106_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0106_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0106_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0106_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0106_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0106_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q109_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q109_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0106_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0106_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0106_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0106_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0106_edge_3_objection",
+      "passed": true
+    },
+    {
+      "check": "A0106_rendered_edge_objection_3",
+      "passed": true
+    },
+    {
+      "check": "A0106_edge_4_objection",
+      "passed": true
+    },
+    {
+      "check": "A0106_rendered_edge_objection_4",
+      "passed": true
+    },
+    {
+      "check": "A0106_edge_5_objection",
+      "passed": true
+    },
+    {
+      "check": "A0106_rendered_edge_objection_5",
+      "passed": true
+    },
+    {
+      "check": "A0106_edge_6_objection",
+      "passed": true
+    },
+    {
+      "check": "A0106_rendered_edge_objection_6",
+      "passed": true
+    },
+    {
+      "check": "A0106_edge_7_objection",
+      "passed": true
+    },
+    {
+      "check": "A0106_rendered_edge_objection_7",
+      "passed": true
+    },
+    {
+      "check": "A0106_edge_8_objection",
+      "passed": true
+    },
+    {
+      "check": "A0106_rendered_edge_objection_8",
+      "passed": true
+    },
+    {
+      "check": "A0107_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0107_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0107_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0107_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0107_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0107_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0107_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q110_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q110_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q111_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q111_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0107_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0107_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0107_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0107_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0108_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0108_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0108_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0108_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0108_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0108_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0108_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q112_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q112_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q113_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q113_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q114_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q114_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0108_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0108_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0108_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0108_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0108_edge_3_objection",
+      "passed": true
+    },
+    {
+      "check": "A0108_rendered_edge_objection_3",
+      "passed": true
+    },
+    {
+      "check": "A0109_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0109_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0109_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0109_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0109_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0109_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0109_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0109_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0109_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0110_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0110_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0110_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0110_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0110_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0110_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0110_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0111_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0111_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0111_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0111_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0111_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0111_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0111_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q115_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q115_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0112_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0112_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0112_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0112_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0112_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0112_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0112_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q116_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q116_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0113_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0113_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0113_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0113_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0113_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0113_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0113_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0113_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0113_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q117_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q117_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0114_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0114_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0114_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0114_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0114_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0114_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0114_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q118_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q118_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0115_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0115_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0115_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0115_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0115_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0115_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0115_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0115_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0115_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q119_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q119_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0116_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0116_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0116_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0116_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0116_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0116_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0116_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q120_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q120_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q121_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q121_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0117_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0117_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0117_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0117_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0117_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0117_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0117_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q122_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q122_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0117_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0117_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0117_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0117_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0117_edge_3_objection",
+      "passed": true
+    },
+    {
+      "check": "A0117_rendered_edge_objection_3",
+      "passed": true
+    },
+    {
+      "check": "A0117_edge_4_objection",
+      "passed": true
+    },
+    {
+      "check": "A0117_rendered_edge_objection_4",
+      "passed": true
+    },
+    {
+      "check": "A0118_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0118_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0118_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0118_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0118_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0118_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0118_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q123_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q123_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0119_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0119_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0119_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0119_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0119_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0119_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0119_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q124_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q124_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q125_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q125_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0120_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0120_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0120_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0120_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0120_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0120_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0120_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q126_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q126_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0121_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0121_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0121_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0121_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0121_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0121_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0121_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q127_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q127_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0122_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0122_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0122_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0122_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0122_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0122_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0122_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q128_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q128_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q129_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q129_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0123_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0123_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0123_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0123_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0123_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0123_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0123_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q130_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q130_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0123_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0123_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0124_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0124_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0124_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0124_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0124_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0124_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0124_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0124_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0124_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q131_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q131_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0125_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0125_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0125_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0125_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0125_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0125_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0125_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0125_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0125_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0126_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0126_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0126_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0126_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0126_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0126_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0126_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0127_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0127_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0127_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0127_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0127_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0127_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0127_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q132_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q132_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q133_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q133_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0128_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0128_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0128_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0128_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0128_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0128_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0128_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0128_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0128_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q134_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q134_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q135_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q135_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q136_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q136_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q137_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q137_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0129_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0129_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0129_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0129_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0129_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0129_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0129_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q138_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q138_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0129_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0129_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0129_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0129_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0130_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0130_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0130_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0130_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0130_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0130_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0130_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0131_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0131_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0131_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0131_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0131_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0131_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0131_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0131_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0131_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0132_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0132_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0132_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0132_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0132_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0132_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0132_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0133_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0133_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0133_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0133_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0133_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0133_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0133_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0134_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0134_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0134_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0134_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0134_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0134_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0134_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q139_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q139_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q140_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q140_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0135_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0135_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0135_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0135_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0135_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0135_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0135_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q141_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q141_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "Q142_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q142_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0135_edge_1_justification",
+      "passed": true
+    },
+    {
+      "check": "A0135_rendered_edge_justification_1",
+      "passed": true
+    },
+    {
+      "check": "A0135_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0135_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0135_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0135_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0136_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0136_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0136_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0136_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0136_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0136_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0136_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q143_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q143_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0137_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0137_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0137_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0137_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0137_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0137_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0137_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q144_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q144_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0137_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0137_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0137_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0137_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0137_edge_3_objection",
+      "passed": true
+    },
+    {
+      "check": "A0137_rendered_edge_objection_3",
+      "passed": true
+    },
+    {
+      "check": "A0138_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0138_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0138_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0138_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0138_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0138_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0138_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q145_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q145_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0138_edge_1_objection",
+      "passed": true
+    },
+    {
+      "check": "A0138_rendered_edge_objection_1",
+      "passed": true
+    },
+    {
+      "check": "A0138_edge_2_objection",
+      "passed": true
+    },
+    {
+      "check": "A0138_rendered_edge_objection_2",
+      "passed": true
+    },
+    {
+      "check": "A0139_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0139_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0139_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0139_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0139_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0139_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0139_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0140_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0140_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0140_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0140_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0140_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0140_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0140_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0141_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0141_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0141_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0141_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0141_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0141_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0141_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q146_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q146_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0142_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0142_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0142_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0142_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0142_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0142_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0142_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0142_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0142_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0143_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0143_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0143_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0143_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0143_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0143_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0143_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0143_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0143_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0144_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0144_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0144_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0144_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0144_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0144_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0144_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0144_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0144_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0145_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0145_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0145_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0145_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0145_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0145_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0145_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0146_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0146_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0146_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0146_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0146_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0146_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0146_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0147_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0147_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0147_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0147_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0147_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0147_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0147_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q147_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q147_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0148_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0148_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0148_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0148_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0148_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0148_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0148_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0149_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0149_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0149_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0149_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0149_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0149_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0149_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0149_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0149_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0150_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0150_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0150_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0150_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0150_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0150_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0150_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "A0151_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0151_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0151_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0151_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0151_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0151_summary_data",
+      "passed": true
+    },
+    {
+      "check": "A0151_summary_length_risk",
+      "passed": true
+    },
+    {
+      "check": "A0151_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0151_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q148_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q148_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "A0152_source_identity",
+      "passed": true
+    },
+    {
+      "check": "A0152_source_hash",
+      "passed": true
+    },
+    {
+      "check": "A0152_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0152_canonical_data",
+      "passed": true
+    },
+    {
+      "check": "A0152_summary_presence",
+      "passed": true
+    },
+    {
+      "check": "A0152_no_french_lifecycle_copy",
+      "passed": true
+    },
+    {
+      "check": "A0152_quote_coverage",
+      "passed": true
+    },
+    {
+      "check": "Q149_quote_text_and_data",
+      "passed": true
+    },
+    {
+      "check": "Q149_all_target_params",
+      "passed": true
+    },
+    {
+      "check": "149_quotes_145_dates",
+      "passed": true
+    },
+    {
+      "check": "32_summaries_120_absences",
+      "passed": true
+    },
+    {
+      "check": "170_relation_occurrences",
+      "passed": true
+    },
+    {
+      "check": "source_quote_data_immutable",
+      "passed": true
+    },
+    {
+      "check": "N001_prose_preserved_and_anchored",
+      "passed": true
+    },
+    {
+      "check": "N002_prose_preserved_and_anchored",
+      "passed": true
+    },
+    {
+      "check": "no_unresolved_structural_parameter_findings",
+      "passed": true
+    },
+    {
+      "check": "only_known_english_templates",
+      "passed": true
+    },
+    {
+      "check": "allowed_parameter_names_Debate",
+      "passed": true
+    },
+    {
+      "check": "allowed_parameter_names_Subsection",
+      "passed": true
+    },
+    {
+      "check": "allowed_parameter_names_Pro argument",
+      "passed": true
+    },
+    {
+      "check": "allowed_parameter_names_Con argument",
+      "passed": true
+    },
+    {
+      "check": "allowed_parameter_names_Bibliographical reference",
+      "passed": true
+    },
+    {
+      "check": "allowed_parameter_names_Web reference",
+      "passed": true
+    },
+    {
+      "check": "allowed_parameter_names_Wikipedia article",
+      "passed": true
+    },
+    {
+      "check": "allowed_parameter_names_Argument",
+      "passed": true
+    },
+    {
+      "check": "allowed_parameter_names_Quote",
+      "passed": true
+    },
+    {
+      "check": "allowed_parameter_names_Objection",
+      "passed": true
+    },
+    {
+      "check": "allowed_parameter_names_Justification",
+      "passed": true
+    }
+  ],
+  "counts": {
+    "pages": 153,
+    "quotes": 149,
+    "quote_dates": 145,
+    "summaries": 32,
+    "absent_summaries": 120,
+    "relation_occurrences": 170,
+    "distinct_displayed_labels": 165
+  },
+  "template_parameter_inventory": {
+    "Argument": [
+      "bibliography",
+      "justifications",
+      "keywords",
+      "objections",
+      "quotes",
+      "sections",
+      "summary",
+      "summary-warnings",
+      "webliography"
+    ],
+    "Bibliographical reference": [
+      "authors",
+      "date",
+      "link",
+      "place",
+      "publisher",
+      "work"
+    ],
+    "Con argument": [
+      "displayed-title",
+      "page"
+    ],
+    "Debate": [
+      "bibliography",
+      "con-arguments",
+      "debate-warnings",
+      "expanded-topic",
+      "introduction",
+      "keywords",
+      "pro-arguments",
+      "progress",
+      "sections",
+      "topic",
+      "webliography",
+      "wikipedia-articles"
+    ],
+    "Justification": [
+      "displayed-title",
+      "page"
+    ],
+    "Objection": [
+      "displayed-title",
+      "page"
+    ],
+    "Pro argument": [
+      "displayed-title",
+      "page"
+    ],
+    "Quote": [
+      "article",
+      "authors",
+      "date",
+      "link",
+      "page",
+      "publisher",
+      "quote",
+      "warnings",
+      "work"
+    ],
+    "Subsection": [
+      "content",
+      "title"
+    ],
+    "Web reference": [
+      "authors",
+      "date",
+      "link",
+      "page",
+      "site"
+    ],
+    "Wikipedia article": [
+      "page"
+    ]
+  },
+  "summary_ratios": [
+    {
+      "page": "A0006",
+      "ratio": 0.9111111111111111
+    },
+    {
+      "page": "A0011",
+      "ratio": 1.3186813186813187
+    },
+    {
+      "page": "A0014",
+      "ratio": 0.8972602739726028
+    },
+    {
+      "page": "A0027",
+      "ratio": 0.8345588235294118
+    },
+    {
+      "page": "A0034",
+      "ratio": 0.7843137254901961
+    },
+    {
+      "page": "A0041",
+      "ratio": 0.8353510895883777
+    },
+    {
+      "page": "A0052",
+      "ratio": 1.1964285714285714
+    },
+    {
+      "page": "A0053",
+      "ratio": 0.8732394366197183
+    },
+    {
+      "page": "A0054",
+      "ratio": 0.9233830845771144
+    },
+    {
+      "page": "A0056",
+      "ratio": 0.8095238095238095
+    },
+    {
+      "page": "A0057",
+      "ratio": 0.9411764705882353
+    },
+    {
+      "page": "A0058",
+      "ratio": 0.8857142857142857
+    },
+    {
+      "page": "A0063",
+      "ratio": 0.8814589665653495
+    },
+    {
+      "page": "A0071",
+      "ratio": 0.9577464788732394
+    },
+    {
+      "page": "A0073",
+      "ratio": 0.7747524752475248
+    },
+    {
+      "page": "A0084",
+      "ratio": 0.905982905982906
+    },
+    {
+      "page": "A0090",
+      "ratio": 1.1363636363636365
+    },
+    {
+      "page": "A0099",
+      "ratio": 1.1224489795918366
+    },
+    {
+      "page": "A0101",
+      "ratio": 0.8627450980392157
+    },
+    {
+      "page": "A0102",
+      "ratio": 0.9312354312354313
+    },
+    {
+      "page": "A0106",
+      "ratio": 0.9724770642201835
+    },
+    {
+      "page": "A0113",
+      "ratio": 1.2293577981651376
+    },
+    {
+      "page": "A0115",
+      "ratio": 0.8275862068965517
+    },
+    {
+      "page": "A0124",
+      "ratio": 0.8351648351648352
+    },
+    {
+      "page": "A0125",
+      "ratio": 0.8014018691588785
+    },
+    {
+      "page": "A0128",
+      "ratio": 0.7662835249042146
+    },
+    {
+      "page": "A0131",
+      "ratio": 0.7604166666666666
+    },
+    {
+      "page": "A0142",
+      "ratio": 0.7777777777777778
+    },
+    {
+      "page": "A0143",
+      "ratio": 0.9476082004555809
+    },
+    {
+      "page": "A0144",
+      "ratio": 0.9331896551724138
+    },
+    {
+      "page": "A0149",
+      "ratio": 0.8614232209737828
+    },
+    {
+      "page": "A0151",
+      "ratio": 0.8506493506493507
+    }
+  ],
+  "historical_keyword_duplicates_preserved": [
+    {
+      "page": "A0042",
+      "parameter": "keywords",
+      "source": [
+        "Cannabis",
+        "Dépénalisation",
+        "Libertés individuelles",
+        "Légalisation",
+        "Libertés individuelles"
+      ],
+      "target": [
+        "cannabis",
+        "decriminalisation",
+        "individual liberties",
+        "legalisation",
+        "individual liberties"
+      ],
+      "disposition": "preserved_source_duplicate_not_silently_cleaned"
+    },
+    {
+      "page": "A0043",
+      "parameter": "keywords",
+      "source": [
+        "Cannabis",
+        "Légalisation",
+        "Dépénalisation",
+        "Cannabis",
+        "Légalisation",
+        "Dépénalisation",
+        "Législation"
+      ],
+      "target": [
+        "cannabis",
+        "legalisation",
+        "decriminalisation",
+        "cannabis",
+        "legalisation",
+        "decriminalisation",
+        "legislation"
+      ],
+      "disposition": "preserved_source_duplicate_not_silently_cleaned"
+    }
+  ],
+  "scope": "Text and parameter parity only; native release completion is attested separately by release-receipt.json and native-delivery-parity.json",
+  "wiki_writes": false
+}

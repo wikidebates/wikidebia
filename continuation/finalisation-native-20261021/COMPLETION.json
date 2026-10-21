@@ -1,0 +1,38 @@
+{
+  "status": "local_translation_release_completed",
+  "source_version_2_sha256": "b317df79f35b047af2bdead55c5adbdb33c835fae528ed69f0de78e5d8332eda",
+  "archive_sha256": "fbb70744a0b0d67fdf4a556999cebb038babf754386a7ca6fca43584a6340cf4",
+  "code_commit": "bfae7884b74ddb7cc61e59c86e8d04c8d669818f",
+  "code_pr": "https://github.com/wikidebates/wikidebia/pull/10",
+  "counts": {
+    "pages": 306,
+    "french_pages": 153,
+    "english_pages": 153,
+    "active_argument_nodes": 152,
+    "graph_edges": 157,
+    "graph_occurrences": 170,
+    "english_known_names": 0,
+    "english_quotes": 149,
+    "english_summaries_present": 32,
+    "english_summaries_absent": 120,
+    "documentary_resources": 41
+  },
+  "tests": {
+    "kit": 684,
+    "validator": 501,
+    "deploy": 22
+  },
+  "supplemental_integrity_checks": 1794,
+  "supplemental_native_parity_checks": 3211,
+  "publication_started": false,
+  "environment_published": false,
+  "main_merged": false,
+  "historical_authenticity_unverified_quotes": [
+    "Q063",
+    "Q064",
+    "Q069",
+    "Q103"
+  ],
+  "code_head": "42527ffd078800ac9c4ae5f053217cc8cd3a0838",
+  "github_checks": "passed"
+}

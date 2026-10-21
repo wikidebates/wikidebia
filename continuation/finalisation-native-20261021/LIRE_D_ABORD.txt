@@ -1,0 +1,4 @@
+Reprise de traduction finalisée localement. Lire RAPPORT_FINAL.md.
+Le seul corpus final faisant autorité est le ZIP delivery/cannabis_traduction_en_2026-10-21_finalisee.zip.
+Les JSON de recherche et scripts annexes sont des preuves supplémentaires ; ils ne sont pas des commandes de publication.
+Aucune publication wiki ni fusion de branche n’est autorisée par cette livraison.

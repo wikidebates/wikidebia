@@ -1,0 +1,3293 @@
+{
+  "status": "english_selection_reviewed_and_native_validation_passed",
+  "page_count": 153,
+  "pages_with_selected_references": 108,
+  "selected_resource_count": 41,
+  "rows": [
+    {
+      "delivery_id": "debate",
+      "native_id": "cannabis",
+      "source_title_fr": "Le cannabis doit-il être légalisé ?",
+      "source_revision_id": 245524,
+      "source_sha256": "d6496fcf21bff7bb3ee8375b053851f12f5cb70d267e2b8635be63ea563e40eb",
+      "selected_source_ids": [
+        "S90001",
+        "S90002",
+        "S90003",
+        "S90004"
+      ],
+      "selected_topics": [
+        "rand",
+        "canada",
+        "portugal",
+        "service-public"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Documentation générale conservée : synthèse RAND, droit français daté, distinction portugaise et bilan canadien ; aucun article spécialisé n’est promu artificiellement en synthèse générale.",
+      "textual_review_note": "Introduction entière comparée : distinctions dépénalisation/légalisation et délit/contravention, réserves de pays/période/indicateurs et montants datés conservés. Une sous-partie source sans titre a reçu The question : ajout formel à retirer. Logo non projeté explicitement dans la livraison ; existence cible et droit de réutilisation toujours à vérifier, pas une validation d’image. Références localisées réellement consultées au tour précédent.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0001",
+      "native_id": "A0106",
+      "source_title_fr": "Avant de supprimer la loi de 1970 sur les drogues, il faut la faire appliquer",
+      "source_revision_id": 245643,
+      "source_sha256": "1071d412fe280e96595d8e1c4f96b0820f5ad69938570255ca170e4f69d8a71f",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "france"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Le rapport français distingue infractions, poursuites simplifiées et alternatives ; contexte de l’injonction d’appliquer la loi, pas démonstration de son bien-fondé.",
+      "textual_review_note": "Avant/après abrogation, insuffisance d’application et opposition Q002 maintien/répression depuis dix ans conservés ; dates et fonction MILDT restent historiques.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0002",
+      "native_id": "A0026",
+      "source_title_fr": "Avec la prohibition du cannabis, une partie des usagers subit les conséquences de séjours en prison et/ou d'une inscription au casier judiciaire",
+      "source_revision_id": 245591,
+      "source_sha256": "32cf89ecc879b1eee010cb28eb5c055fc6010d29f2766839cae866e9105e2293",
+      "selected_source_ids": [
+        "S92003"
+      ],
+      "selected_topics": [
+        "aclu"
+      ],
+      "rejected_draft_topics": [
+        "equity"
+      ],
+      "selection_note": "Arrestations et réparations américaines documentées ; les conséquences individuelles de prison ou de casier ne sont pas quantifiées pour la France par ces travaux.",
+      "textual_review_note": "Conséquences effectivement subies, prison, casier ou cumul conservés ; aucun résumé à créer.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0003",
+      "native_id": "A0128",
+      "source_title_fr": "C'est avant tout l'alcool qui est responsable d'accidents de la route",
+      "source_revision_id": 207521,
+      "source_sha256": "3221cce604b0f7c64afd478044bc87eba2ed8ab80f4ec61ba82e959232418c75",
+      "selected_source_ids": [
+        "S91003",
+        "S91004"
+      ],
+      "selected_topics": [
+        "traffic-alcohol",
+        "traffic-original"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Deux études françaises anglaises distinguent poids attribuable de l’alcool et risque du cannabis ; la proposition historique reste inchangée.",
+      "textual_review_note": "Attribution de la responsabilité à l’alcool conservée et comparaison de risque dix fois pour accidents mortels strictement traduite, sans validation de la statistique.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0004",
+      "native_id": "A0119",
+      "source_title_fr": "Ce n'est pas le cannabis seul qui fait la dangerosité",
+      "source_revision_id": 206611,
+      "source_sha256": "0db69f5ba06dc931f7cd8bd6bbcfa6445ac06dd8baffa5462a156417d82cb700",
+      "selected_source_ids": [
+        "S91011"
+      ],
+      "selected_topics": [
+        "use-route"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les risques modifiables par âge, fréquence et mode d’usage éclairent le rôle du contexte sans nier la pharmacologie.",
+      "textual_review_note": "Produit seul opposé aux conduites et à la vulnérabilité de l’usager : distinction et négation conservées.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0005",
+      "native_id": "A0015",
+      "source_title_fr": "Ce n'est pas parce qu'une politique a échoué que l'on doit y renoncer",
+      "source_revision_id": 206252,
+      "source_sha256": "e3e47c55afc5247cd9f14de2e8111cc16b0c01777ab4809f566229a3fcd53da8",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Le choix de maintenir une politique malgré l’échec est normatif ; les résultats portant sur d’autres lois et la politique nucléaire sont rejetés, aucune preuve empirique générale n’est fabriquée.",
+      "textual_review_note": "Échec insuffisant pour abandonner une politique et analogie polémique de Q005 conservés ; l’objection affichée parle de coûts et effets pervers, sans reprendre mécaniquement le titre canonique du fils.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0006",
+      "native_id": "A0136",
+      "source_title_fr": "Certaines lois prises contre la majorité ont été de vrais progrès sociétaux",
+      "source_revision_id": 245592,
+      "source_sha256": "6093924ef4b248826b0d4be7a86ce9a9dcecb7f1765152e2ad35b6670c436844",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "mill"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Le texte de Mill éclaire la limite du critère majoritaire ; il n’est pas présenté comme preuve historique des exemples IVG, homosexualité ou peine de mort.",
+      "textual_review_note": "Exemples historiques et opinion hostile conservés. Résumé : or est plus fidèle au ou source pour IVG/homosexualité que le and fourni ; ajustement ciblé de la coordination, sans élargir le résumé.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0007",
+      "native_id": "A0137",
+      "source_title_fr": "Certains pays comme l'Uruguay encadrent fortement le marché du cannabis",
+      "source_revision_id": 245593,
+      "source_sha256": "1ac8317616c5892fe10d1ea49cacaf8e6e49a44dc73c53288e85f74152860c32",
+      "selected_source_ids": [
+        "S93001"
+      ],
+      "selected_topics": [
+        "uruguay-brookings"
+      ],
+      "rejected_draft_topics": [
+        "canada",
+        "uruguay"
+      ],
+      "selection_note": "Le rapport Brookings développe le dispositif uruguayen : État, autoculture, clubs, pharmacies, limites et publicité ; la seule enquête adolescente est écartée de cette justification réglementaire.",
+      "textual_review_note": "Some countries such as Uruguay et intensité tightly correspondent ; pas de résumé ni de citation dans la source.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0008",
+      "native_id": "A0115",
+      "source_title_fr": "Comme on le constate avec le tabac, si le prix du cannabis légalisé est trop élevé, le marché noir va se maintenir",
+      "source_revision_id": 206584,
+      "source_sha256": "04577379147f6dc566361284a99c42a4920e175bd151ba0d2aa17ac0169dd8e2",
+      "selected_source_ids": [
+        "S90001"
+      ],
+      "selected_topics": [
+        "rand"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "La synthèse RAND analyse prix, fiscalité et concurrence illicite ; le parallèle avec le tabac reste celui de la source.",
+      "textual_review_note": "Condition prix trop élevé et analogie tabac conservées ; deux paragraphes de Q006, offre/prix/consommation et comparaison des difficultés de contrôle tous présents.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0009",
+      "native_id": "A0047",
+      "source_title_fr": "Conserver les sanctions pénales de la loi de 1970 sur les drogues qui ne sont pratiquement plus appliquées n'est pas sain",
+      "source_revision_id": 245506,
+      "source_sha256": "c2f4fef1f977ebfeebd355c88c42b9e7a6462620f355480a3df2f69a08f9f536",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "france"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les alternatives aux poursuites et peines françaises nuancent la notion de sanctions inappliquées ; aucun titre anglais d’essai français n’est inventé.",
+      "textual_review_note": "Sanctions pratiquement inappliquées, atteinte à la crédibilité de la justice et banalisation chez adolescents préservées ; l’objection renvoie correctement à l’application préalable.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0010",
+      "native_id": "A0041",
+      "source_title_fr": "De nombreuses substances bien plus dangereuses et addictives que le cannabis sont légales",
+      "source_revision_id": 245531,
+      "source_sha256": "3b40ae5d578c4fe597a19d5892ebd07044dc3aeb95893b3530423134b85fd6eb",
+      "selected_source_ids": [
+        "S91021",
+        "S91009"
+      ],
+      "selected_topics": [
+        "relative-harm",
+        "dependence"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Comparaison de risques multicritère et de transitions vers la dépendance, en distinguant population, pondération et nature des indicateurs.",
+      "textual_review_note": "Comparaison substances légales/cannabis, critique de la prohibition en Q009 et sept relations avec leurs libellés contextuels relus ; aucun raccourcissement en étiquette.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0011",
+      "native_id": "A0073",
+      "source_title_fr": "Des enquêtes françaises montrent une opposition à la vente libre de cannabis",
+      "source_revision_id": 245603,
+      "source_sha256": "ce5f02c5a0e4cf9e7e164309f6bf030c58ddc3be9e457c38db7dfb893ddb9238",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les recherches génériques renvoyaient aux marchés américains et au Liban, sans rapport avec l’IFOP 2011–2012 ; aucune enquête étrangère ne remplace ce sondage français historique.",
+      "textual_review_note": "Vente libre distinguée de toute légalisation, chiffres 70/63 et dates 2012/2011 préservés. Les réserves et le reproche de politique de l’autruche sont présents ; contre-exemple des réformes sans majorité fidèle.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0012",
+      "native_id": "A0108",
+      "source_title_fr": "Des expériences montrent que la légalisation d'une drogue ne s'accompagne pas d'une hausse de consommation",
+      "source_revision_id": 245595,
+      "source_sha256": "eddea60913d5e93fda4b01201ccbfdb99bbeece992182d6a2420e2a2404efc4e",
+      "selected_source_ids": [
+        "S91001",
+        "S91016"
+      ],
+      "selected_topics": [
+        "youth-europe",
+        "uruguay"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les effets varient selon réforme et population ; absence d’effet détecté en Uruguay ne devient pas preuve d’absence dans tous les pays.",
+      "textual_review_note": "Concomitance is not accompanied by conservée, sans glisser vers une absence de causalité ; titre vide de résumé et de citations respecté.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0013",
+      "native_id": "A0091",
+      "source_title_fr": "Des faits montrent que les sanctions contre les consommateurs de cannabis peuvent être dissuasives",
+      "source_revision_id": 206245,
+      "source_sha256": "1ddd4674a431f0de8894e0979898a791236b5aabaca9f17b5aebf6a870e079ad",
+      "selected_source_ids": [
+        "S91001"
+      ],
+      "selected_topics": [
+        "youth-europe"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Certaines réformes restrictives sont associées à des baisses chez les adolescents ; cela renseigne la possibilité de dissuasion, pas chaque sanction individuelle.",
+      "textual_review_note": "Titre maintient peuvent ; la causalité plus forte de la citation source reduced reste dans la citation, sans la transférer au titre. 49,4/42,2 et 2005/2008 exacts.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0014",
+      "native_id": "A0146",
+      "source_title_fr": "Des solutions existent pour minimiser les impacts de la légalisation du cannabis sur les populations des banlieues",
+      "source_revision_id": 207548,
+      "source_sha256": "d6a73ce1106fc93b6a6801c4e877bc5cd5bafe7a189fb5acaf9690a66ed1f174",
+      "selected_source_ids": [
+        "S91017"
+      ],
+      "selected_topics": [
+        "equity"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "L’étude de cinq États développe les licences, réparations et réinvestissements comme mécanismes de transition inclusive. Elle n’authentifie pas les 260 000 emplois de la source française.",
+      "textual_review_note": "Conditionnel would, 260000, trois quarts, quatre villes et entrée en vigueur au 1 janvier 2018 préservés. Disadvantaged suburban communities explicite le sens contextuel des banlieues, pas toute banlieue. Référence Appel française toujours ouverte.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0015",
+      "native_id": "A0112",
+      "source_title_fr": "En cas de légalisation du cannabis, les trafics se reporteraient sur d'autres produits, à moins de légaliser toutes les drogues, ce qui parait difficile",
+      "source_revision_id": 232840,
+      "source_sha256": "cdef1e0dc846cdd525963e66cc1ab9b256efca21049724bab3c871b53a68c841",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "rand"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les modèles de réforme et leurs incitations éclairent la discussion ; aucune estimation identifiée ne prouve un report intégral vers les autres drogues.",
+      "textual_review_note": "Déplacement vers autres substances, exception légaliser toutes drogues et réserve seems difficult conservés. Les deux citations gardent condition, crainte exprimée et question cigarettes.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0016",
+      "native_id": "A0092",
+      "source_title_fr": "Il faut faire preuve de pédagogie envers la consommation de cannabis",
+      "source_revision_id": 206246,
+      "source_sha256": "15be00cf49b33b76dc592ea837d74be96219139d3470c4f05e6c4536186106ee",
+      "selected_source_ids": [
+        "S91011"
+      ],
+      "selected_topics": [
+        "use-route"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les recommandations de réduction des risques constituent une référence concrète pour l’éducation, avec abstinence, âge, fréquence et voies de consommation.",
+      "textual_review_note": "Le contexte justifications/protection de Q015 justifie rationale not explained ; deux paragraphes, réserve Académie de médecine et trois milieux médicaux/éducatifs/médias conservés.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0017",
+      "native_id": "A0010",
+      "source_title_fr": "Il faut protéger l'individu contre les dangers du cannabis",
+      "source_revision_id": 206606,
+      "source_sha256": "e106e1cec645f5b1409f5d6c4d9edd9cebee12ea370a61249ac525f8f3b9e6cd",
+      "selected_source_ids": [
+        "S91010",
+        "S91022"
+      ],
+      "selected_topics": [
+        "early-use",
+        "psychosis"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les associations sanitaires motivent le débat de protection ; les études ne décident pas seules de l’option juridique à adopter.",
+      "textual_review_note": "Protection de l’individu, trois justifications et question de cohérence avec alcool/tabac respectées ; anaphore It sur cannabis préservée dans le libellé.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0018",
+      "native_id": "A0120",
+      "source_title_fr": "Il n'est pas légitime de punir quelqu'un pour un dommage qu'il se fait à lui-même",
+      "source_revision_id": 206612,
+      "source_sha256": "2fd14085bdd593a8fb89e78840047598deacb867b27f8b6240e43ab2ece9ab20",
+      "selected_source_ids": [
+        "S92005"
+      ],
+      "selected_topics": [
+        "mill"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Le principe de non-nuisance est attesté dans le texte anglais, avec les limites concernant les mineurs ; ce n’est pas la preuve que tout usage serait sans effet sur autrui.",
+      "textual_review_note": "Interdiction morale de punir le tort à soi conservée ; loi d’exception rendue comme dérogation à la règle, pas comme appréciation élogieuse. Question suicide maintenue comme propos attribué.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0019",
+      "native_id": "A0075",
+      "source_title_fr": "Il ne faut pas toucher à la législation sur le cannabis en vigueur",
+      "source_revision_id": 207535,
+      "source_sha256": "edf6949d386ad79be5af1ab5e2959b21cc4124864e5fe7689e17422e519b12a7",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "france",
+        "service-public"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les textes présentent le droit et ses sanctions ; une description juridique n’est pas présentée comme argument suffisant pour son maintien.",
+      "textual_review_note": "Maintien du droit actuel, hésitation et double réserve absence de certitude/condition de science solide conservés ; ni recommandation nouvelle ni actualisation.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0020",
+      "native_id": "A0084",
+      "source_title_fr": "Il y a des signes de fléchissement de la consommation de cannabis",
+      "source_revision_id": 245596,
+      "source_sha256": "7d0b5057e1af7eed8d37f6ac4f3fa4db331d4d35ad8c6d05a7b92ff7df31780f",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "france",
+        "youth-europe"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les populations et périodes des indicateurs sont distinguées ; aucune baisse universelle ou actuelle n’est déduite d’un constat historique.",
+      "textual_review_note": "Signs conserve la prudence du titre ; since 2003 et retour aux années 2000 restent datés dans la citation, sans actualisation en 2026.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0021",
+      "native_id": "A0113",
+      "source_title_fr": "Il y aura toujours un marché prohibé du cannabis, le marché destiné aux mineurs",
+      "source_revision_id": 206582,
+      "source_sha256": "1d742b0d89c0000c10e48da8417ec86efc1a19d24fa6bbc33a9c3f32b3d5b9ec",
+      "selected_source_ids": [
+        "S90001"
+      ],
+      "selected_topics": [
+        "rand"
+      ],
+      "rejected_draft_topics": [
+        "canada-law",
+        "dutch"
+      ],
+      "selection_note": "RAND développe explicitement la demande exclue par l’âge, le détournement vers les mineurs et les limites de la régulation ; ce mécanisme étaye une persistance possible du marché illicite sans prouver always/never.",
+      "textual_review_note": "Always/never, marché mineurs et impossibilité pour un État de distribuer toutes drogues conservés.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0022",
+      "native_id": "A0086",
+      "source_title_fr": "Interdire une drogue n'en fait pas baisser la consommation",
+      "source_revision_id": 245597,
+      "source_sha256": "d1645beacba1fbcc507ff3103c050c3d2ab3a9538a068bdb80b6689ad33c213f",
+      "selected_source_ids": [
+        "S91001"
+      ],
+      "selected_topics": [
+        "youth-europe"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "L’étude hétérogène limite la généralisation « n’en fait pas baisser » ; la phrase française reste traduite sans correction factuelle silencieuse.",
+      "textual_review_note": "Négation catégorique du titre traduite sans atténuation ou élargissement ; absence de résumé et citation maintenue.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0023",
+      "native_id": "A0122",
+      "source_title_fr": "L'absence de garantie sur la qualité du produit présente elle-même des risques",
+      "source_revision_id": 232842,
+      "source_sha256": "e0867c3e02e61f963144ba6963102c8731692a88dc790a28ca18dee1561aaae7",
+      "selected_source_ids": [
+        "S91018"
+      ],
+      "selected_topics": [
+        "product-contaminants"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les méthodes de détection justifient la question des contaminants ; elles n’établissent pas leur fréquence dans chaque marché illicite.",
+      "textual_review_note": "Risques intrinsèques à l’absence de garantie, contrôle de qualité et offre d’autres substances illicites conservés ; Q022 garde conditionnel et amélioration seulement relative de la nocivité.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0024",
+      "native_id": "A0042",
+      "source_title_fr": "L'addiction est une maladie, elle ne devrait pas être assimilée à un délit",
+      "source_revision_id": 211079,
+      "source_sha256": "b44f97e08d046ecde85c77f485ef878d51c3cf6ce59a67d8e52b3043a302d47f",
+      "selected_source_ids": [
+        "S90005"
+      ],
+      "selected_topics": [
+        "nida"
+      ],
+      "rejected_draft_topics": [
+        "dependence",
+        "portugal"
+      ],
+      "selection_note": "La page NIDA explique le trouble de l’usage et les signes cliniques ; c’est la prémisse sanitaire du raisonnement, pas une justification génétique déterministe ni une preuve de l’illégitimité de toute peine.",
+      "textual_review_note": "Titre addiction maladie/délit et citation à la première personne entièrement comparés ; never/always et affirmation génétique ne sont ni renforcés ni corrigés factuellement.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0025",
+      "native_id": "A0099",
+      "source_title_fr": "L'alcool et le tabac ne sont pas dangereux en soi, seul leur abus l'est",
+      "source_revision_id": 208659,
+      "source_sha256": "b3a7fac6b3da509ddaf3dcb6f77fc5edd4d9f6f3a15aa0aebf6a69f88d787e4a",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "low-tobacco"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. La méta-analyse cardiovasculaire est une limite documentaire à l’absence de danger hors abus ; la citation historique n’est pas corrigée ni supprimée.",
+      "textual_review_note": "Only excessive use correspond à abus ; Q024 conserve it can be accepted et does not appear, sans certitude ajoutée. Objection quantité quelconque et ponctuation source maintenues.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0026",
+      "native_id": "A0098",
+      "source_title_fr": "L'alcool et le tabac sont parmi les substances les plus addictogènes et nocives",
+      "source_revision_id": 245599,
+      "source_sha256": "2def55b9d457d7b46bd162177f84cc4c69fe4a3754eeda3d5e5d92b2b9632cfa",
+      "selected_source_ids": [
+        "S91021",
+        "S91009"
+      ],
+      "selected_topics": [
+        "relative-harm",
+        "dependence"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les niveaux de dommages et de dépendance sont comparés avec leurs définitions, sans présenter une hiérarchie unique de danger intrinsèque.",
+      "textual_review_note": "Among conserve parmi : aucun classement absolu ou résumé ajouté.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0027",
+      "native_id": "A0093",
+      "source_title_fr": "L'approche répressive permet aux pouvoirs publics de se dédouaner de leur responsabilité dans sa consommation",
+      "source_revision_id": 245600,
+      "source_sha256": "47ddc41432ae7b72e4d675f3b972df006d3615f679bcbcf2d01eb26072fc1bcf",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "context-addiction"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. L’environnement peut contribuer à la dépendance ; la revue ne prouve pas l’entretien volontaire de la précarité ou un profit politique.",
+      "textual_review_note": "Thèse polémique sur précarité délibérément entretenue, responsabilité publique et bénéfices financiers ou idéologiques maintenue comme source ; pas une causalité validée par le traducteur.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0028",
+      "native_id": "A0142",
+      "source_title_fr": "L'exemple de certains pays montre que la légalisation du cannabis n'augmente pas son nombre d'usagers",
+      "source_revision_id": 207543,
+      "source_sha256": "5f31445f15cdbec695fcfd6daa77ea24d4088bdd9ae87599c22230e211cc2fae",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "uruguay",
+        "youth-europe"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. L’absence de hausse détectée doit rester circonscrite aux expériences et indicateurs étudiés.",
+      "textual_review_note": "Some countries évite de généraliser ; crochets d’attribution aux Pays-Bas et contraste prédiction d’explosion/consommation en baisse, surtout jeunes, conservés.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0029",
+      "native_id": "A0103",
+      "source_title_fr": "L'industrie agro-alimentaire rend ses aliments addictifs pour maximiser les profits",
+      "source_revision_id": 217332,
+      "source_sha256": "fbe1181dd3830b365421eb9a17277d5900f71ff2c7f7cb166771aa4cb4bcd31f",
+      "selected_source_ids": [
+        "S91015"
+      ],
+      "selected_topics": [
+        "food-industry"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les aliments transformés sont associés à des comportements alimentaires addictifs dans des études préliminaires ; l’intention de maximiser les profits n’y est pas testée.",
+      "textual_review_note": "But lucratif et causalité rend ses aliments addictifs conservés ; pas de développement créé.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0030",
+      "native_id": "A0087",
+      "source_title_fr": "L'interdiction du cannabis est plus dissuasive qu'attractive",
+      "source_revision_id": 206241,
+      "source_sha256": "f88cd4b1888494ef742348ae5123ce1fb62e0ddb5fdda6a7153a5112506ad890",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "youth-europe"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les effets différenciés des politiques informent la dissuasion ; aucun calcul net attrait/dissuasion propre à tous les consommateurs n’est fourni.",
+      "textual_review_note": "Comparaison dissuasion/attraction et caractère minoritaire de la transgression conservés. Nocebo distinct de placebo ; plus de moitié, 39 %, cohorte 17 ans et mois avant ESCAPAD 2008 exacts.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0031",
+      "native_id": "A0021",
+      "source_title_fr": "L'interdiction du cannabis peut être contournée",
+      "source_revision_id": 206249,
+      "source_sha256": "81f141c4a44d39b5c27e2ca143a9b40b7b42915a7e5492449f4dc25bf74d1627",
+      "selected_source_ids": [
+        "S90001"
+      ],
+      "selected_topics": [
+        "rand"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les marchés illicites et les mécanismes d’approvisionnement illustrent des contournements possibles, sans prétendre que toute interdiction est toujours contournée.",
+      "textual_review_note": "Can et has been accompanied by conservent possibilité et concomitance, sans faire de la synthèse chimique une conséquence démontrée.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0032",
+      "native_id": "A0039",
+      "source_title_fr": "L'interdit attaché au cannabis dépend des époques et des cultures",
+      "source_revision_id": 206568,
+      "source_sha256": "7f0c03a1a96a44fb7a325d7dc85f5230f656a4511e7f55d3dcc62a8933106d65",
+      "selected_source_ids": [
+        "S93003"
+      ],
+      "selected_topics": [
+        "euda-policy"
+      ],
+      "rejected_draft_topics": [
+        "france",
+        "mill"
+      ],
+      "selection_note": "EUDA compare des modèles et définitions juridiques différents ; ces variations étayent la contingence des normes, sans prétendre inventorier toutes les cultures.",
+      "textual_review_note": "Comparaison géographique et temporelle dans une même civilisation conservée ; usage privé avant 1970 et conditionnel de réadmission ne sont pas actualisés.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0033",
+      "native_id": "A0090",
+      "source_title_fr": "L'interdit incite à chercher des moyens de contourner la loi",
+      "source_revision_id": 245601,
+      "source_sha256": "2a173cb23688789a7479705f05d6e94ab695a3b8759d8d32aec31129b267923c",
+      "selected_source_ids": [
+        "S90001"
+      ],
+      "selected_topics": [
+        "rand"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les incitations des acteurs illicites éclairent la possibilité de contourner ; l’intention de chaque personne n’est pas généralisée.",
+      "textual_review_note": "Incitation au contournement de la loi traduite sans transformer la page vide en développement.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0034",
+      "native_id": "A0018",
+      "source_title_fr": "L'interdit rend le cannabis plus attractif",
+      "source_revision_id": 206240,
+      "source_sha256": "c6b49796685b22accb8ec88961d8306709e8545dd00662d006adad36e3b88169",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "youth-europe"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les politiques et perceptions d’accès sont étudiées, mais l’effet psychologique causal de l’interdit n’est pas isolé ; aucun résultat n’est présenté comme sa preuve directe.",
+      "textual_review_note": "Produit autorisé/interdit et disjonction health risks or social disapproval conservés ; les deux objections visent bien la dissuasion et l’attrait des produits légaux.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0035",
+      "native_id": "A0089",
+      "source_title_fr": "L'interdit rend plus attractif",
+      "source_revision_id": 245602,
+      "source_sha256": "a938914cc294ca6839eee5341111c24ee5c530d4fd8bee5d04debfe78a840f52",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les résultats Crossref portent sur les coûts de prohibition, pas sur une loi psychologique générale de l’attrait ; référence non ajoutée à seule fin de remplir la page.",
+      "textual_review_note": "Titre court et contextuel Prohibition increases appeal préservé, sans ajout d’un sujet particulier ou de résumé.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0036",
+      "native_id": "A0126",
+      "source_title_fr": "L'usage privé simple de cannabis n'est pas dommageable à autrui",
+      "source_revision_id": 207518,
+      "source_sha256": "863b78effa415095448d04b8078db39520a613faca7a88970ab744bd96c1e45b",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "mill",
+        "traffic-risk"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Mill fournit le principe normatif ; la méta-analyse routière rappelle un risque à autrui possible sans l’attribuer à tout usage privé.",
+      "textual_review_note": "Usage privé simple et seul comportement poursuivi sans dommage à autrui : deux restrictions conservées ; affirmation de la source non corrigée juridiquement.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0037",
+      "native_id": "A0110",
+      "source_title_fr": "L'utilisation thérapeutique du cannabis n'est pas sans danger",
+      "source_revision_id": 206585,
+      "source_sha256": "268be1dac53e2a62f07bda1d5a36c5e246dd5ceb0cb6b5f398d4f7444e5a14a8",
+      "selected_source_ids": [
+        "S91008"
+      ],
+      "selected_topics": [
+        "medical-benefits"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "La revue distingue indications, qualité des preuves et effets indésirables ; le passage d’objection à Costentin entre citations est conservé.",
+      "textual_review_note": "Not without risks et désaccord entre Q034/Q035 conservés. Cheval de Troie et non-irremplaçabilité gardés malgré l’ellipse logique de la source. Passage Objection à Costentin présent et à la bonne position.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0038",
+      "native_id": "A0014",
+      "source_title_fr": "La consommation de cannabis augmente en France",
+      "source_revision_id": 245604,
+      "source_sha256": "6f464c12f8442bec62fd3e7ec63a0ed22705395e1c2d97c501e1fdcc1ead3813",
+      "selected_source_ids": [
+        "S92001"
+      ],
+      "selected_topics": [
+        "france"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "La série française est datée et comporte des précautions de comparabilité ; les données de 2017 ne deviennent pas l’état de 2026.",
+      "textual_review_note": "13 millions, au moins une fois, 18–64 ans, 24/29/33 et 2000/2005/2011 préservés. L’objection de fléchissement demeure opposée, sans conciliation artificielle.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0039",
+      "native_id": "A0117",
+      "source_title_fr": "La dangerosité du cannabis est faible",
+      "source_revision_id": 232838,
+      "source_sha256": "fca6c1cf297edc3d1eed21d22deb16f3891aef9258a59ba7b5856570d153f5cb",
+      "selected_source_ids": [
+        "S91021"
+      ],
+      "selected_topics": [
+        "relative-harm"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Le classement multicritère britannique fournit une comparaison de dommages, sans transformer un score relatif en absence de danger.",
+      "textual_review_note": "Les quatre citations gardent faible nocivité, usage récréatif défini dans la source, trente millions et distinction overdose/intoxication aiguë ; aucune correction médicale silencieuse ni ajout au titre.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0040",
+      "native_id": "A0125",
+      "source_title_fr": "La dépendance à une drogue ne se produit pas indépendamment de la personne et de son environnement. La drogue est un moyen d'adaptation à la vie, pas une cause",
+      "source_revision_id": 206618,
+      "source_sha256": "9e0c521c228f8313b2d9ac5b43d620465ef453ecc27a1234ae06d2c1354b6b04",
+      "selected_source_ids": [
+        "S91020"
+      ],
+      "selected_topics": [
+        "context-addiction"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "La revue environnementale est pertinente pour les interactions ; elle ne valide pas la négation absolue d’un rôle causal de la substance.",
+      "textual_review_note": "Les trois paragraphes de Q041 sont complets : opposition produit-cause/adaptation, environnement, certains usagers, et/ou conditions de vie puis exemples comportements. Le référent dépendance dans le titre anglais est explicité par la citation.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0041",
+      "native_id": "A0036",
+      "source_title_fr": "La guerre contre la drogue exacerbe les persécutions des minorités",
+      "source_revision_id": 245605,
+      "source_sha256": "abf77bc0532494f62917597168e15151e0cf7406dfc04f38845b106d8e762a76",
+      "selected_source_ids": [
+        "S92003"
+      ],
+      "selected_topics": [
+        "aclu"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les disparités américaines d’arrestations sont documentées ; aucune extrapolation automatique à la France ni attribution d’intention historique n’est faite.",
+      "textual_review_note": "Résumé polémique, cinq citations et réserves may/suggests/according to gardés ; tous chiffres de féminicides et dates conservés. Q042 : on record élargit inutilement la portée de année affichant les pires chiffres ; préférer the year with the worst figures. Q044 : lien Weather Underground reste français dans le texte traduit, cible anglaise à vérifier.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0042",
+      "native_id": "A0097",
+      "source_title_fr": "La liberté de consommer du cannabis est la liberté de devenir esclave",
+      "source_revision_id": 206566,
+      "source_sha256": "bbc7d660980269240bec1e14410f7d6eec27b3aef7030e6ff9892d19bdbf35e7",
+      "selected_source_ids": [
+        "S90005"
+      ],
+      "selected_topics": [
+        "nida"
+      ],
+      "rejected_draft_topics": [
+        "dependence"
+      ],
+      "selection_note": "NIDA décrit perte de contrôle et poursuite malgré les dommages, mécanisme clinique pertinent pour la prémisse de dépendance ; la conclusion philosophique de servitude demeure celle de la citation.",
+      "textual_review_note": "Métaphore de l’esclavage et énumération de synonymes préservées. Habituation pour assuétude risque de réduire dépendance à une simple accoutumance : préférer dependency, sans modifier l’affirmation source tous synonymes.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0043",
+      "native_id": "A0105",
+      "source_title_fr": "La loi de 1970 sur les drogues a été conçue en réponse à l'extension du cannabis",
+      "source_revision_id": 206570,
+      "source_sha256": "87d3e9273f8ad2301f457769219100a6e5513289590ce81d68311b9bc4a20741",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "france"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. La notice française éclaire le dispositif légal, mais ne démontre pas à elle seule l’intention du législateur de 1970 ; les travaux d’ontologie botanique sont rejetés.",
+      "textual_review_note": "Consommation de cannabis, constat de diffusion et objectif d’entrave préservés ; réponse à la page opposée A0049 conservée sans trancher historiquement.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0044",
+      "native_id": "A0046",
+      "source_title_fr": "La loi de 1970 sur les drogues est difficilement applicable",
+      "source_revision_id": 245644,
+      "source_sha256": "4e2b90541eef813594421ceb715600382c60c862d438ff896edeccefd19bcde5",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "france"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les poursuites simplifiées et alternatives documentent des modes d’application ; elles ne démontrent pas une impossibilité d’appliquer la loi.",
+      "textual_review_note": "Quatre citations comparées : objectif, cent prisons, Espagne OU Pays-Bas, interdiction disproportionnée et lourdeur procédurale. Would, seems et opinion personnelle maintenus.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0045",
+      "native_id": "A0005",
+      "source_title_fr": "La loi de 1970 sur les drogues est inadaptée",
+      "source_revision_id": 245544,
+      "source_sha256": "c6ebadb526467bfb7349cc146d419a8c89ab7bba86e0694fafda79fc6a73407b",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "france"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Le cadre et les réponses pénales sont documentés sans présenter la source descriptive comme un verdict d’inadaptation.",
+      "textual_review_note": "Sept justifications avec leurs anaphores Elle/It et portée critique propre relues ; pas de substitution des libellés affichés par les titres canoniques.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0046",
+      "native_id": "A0048",
+      "source_title_fr": "La loi de 1970 sur les drogues est trop diversement appliquée",
+      "source_revision_id": 232849,
+      "source_sha256": "f0d0f7e8abd291b0b9233d47c8c735e8fb61310c141f7486de0fbb91322f7fbd",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "france"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Le contexte procédural est disponible ; aucune mesure anglaise vérifiée d’inégalité territoriale d’application de cette loi n’est ajoutée.",
+      "textual_review_note": "Q053 garde le contraste consommation plus faible/poursuites ciblant défavorisés et la réserve sur l’intention policière. Q054 complet : parquets, critères, amende douanière, objectif de tarissement et deux régions nommées.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0047",
+      "native_id": "A0044",
+      "source_title_fr": "La loi de 1970 sur les drogues focalise trop sur les usagers",
+      "source_revision_id": 232834,
+      "source_sha256": "c2cc4ae08b52b4add72a629f3f71adb6f6f7c8564539607f25c8db569992f087",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "france"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. La distinction usage/offre et les données d’infractions éclairent la focalisation alléguée ; aucune conclusion politique n’est attribuée au rapport.",
+      "textual_review_note": "86/66 et +3,1/−7,2 gardés ; Q056 conserve zero tolerance, rendement statistique et presque jamais, sans inverser consommation/détention.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0048",
+      "native_id": "A0049",
+      "source_title_fr": "La loi de 1970 sur les drogues n'a jamais été évaluée",
+      "source_revision_id": 206579,
+      "source_sha256": "ebe60afb79c6216a41f4e935c5c5241f4aefb530e3ae10fed914ee35e7904cbf",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. L’absence d’évaluation depuis 1970 ne peut être prouvée par une recherche générique infructueuse ; les résultats sur l’arme nucléaire sont rejetés.",
+      "textual_review_note": "Jamais et absence de recherche interdisciplinaire sur mesures judiciaires OU sanitaires préservées.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0049",
+      "native_id": "A0043",
+      "source_title_fr": "La loi de 1970 sur les drogues n'a pas été faite pour le cannabis",
+      "source_revision_id": 206562,
+      "source_sha256": "7039a1cd403cbb0b0a0f5a368e75f064db1b0624e72c190e83f6620ce0e2f25f",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "france"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Le rapport décrit le régime des stupéfiants mais n’établit pas que la loi ne visait pas le cannabis ; l’affirmation historique reste celle de la source.",
+      "textual_review_note": "Q058 garde la massification et la liste cannabis/héroïne/cocaïne/crack. Injonction thérapeutique explicitée par court-ordered treatment ; majorité non problématique et toutes substances conservées. Objection A0043 maintenue.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0050",
+      "native_id": "A0045",
+      "source_title_fr": "La loi de 1970 sur les drogues n'est plus comprise par les usagers",
+      "source_revision_id": 206575,
+      "source_sha256": "d4be012c87920d5b902a90d2063fb720429443dac8136b8cb2f1f805737bffdb",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les entretiens japonais et les articles de terminologie ne documentent pas la compréhension de la loi française par ses usagers ; aucun remplacement artificiel.",
+      "textual_review_note": "Obsolescence et incompréhension distinguées ; risques différents, usage régulier néfaste et possibilité occasionnelle sont tous maintenus comme propos de la source.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0051",
+      "native_id": "A0150",
+      "source_title_fr": "La loi est non seulement appliquée, mais la répression s'est renforcée depuis 2001",
+      "source_revision_id": 245545,
+      "source_sha256": "f1beef8a3cf20ab4033f9a942b10b2ec23ee091670817de3484e951d8a0653b7",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "france"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Le rapport décrit des politiques pénales et des infractions ; il ne suffit pas à mesurer à lui seul tout le renforcement depuis 2001.",
+      "textual_review_note": "Non seulement appliquée mais répression renforcée conservé ; Q061 identique de sens à Q002 et repères MILDT inchangés.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0052",
+      "native_id": "A0032",
+      "source_title_fr": "La lutte contre les trafics de cannabis coûte cher, et c'est un échec",
+      "source_revision_id": 222169,
+      "source_sha256": "df6b7c9aedab5f50da69109e22c5e0a6786d91101610cb91d1ce3c4606145d59",
+      "selected_source_ids": [
+        "S94001"
+      ],
+      "selected_topics": [
+        "commission-2011"
+      ],
+      "rejected_draft_topics": [
+        "france",
+        "rand"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Coûts des politiques et données d’infractions apportent du contexte ; ni tous les coûts français ni l’échec global ne sont déclarés démontrés. La Commission développe les coûts de criminalisation et les limites de la réduction de l’offre ; ce raisonnement étaye le rapport coût/échec, sans vérifier les coûts spécifiquement français cités par Supersac.",
+      "textual_review_note": "Coût et échec gardés ; résumé reste simple renvoi au livre français. Q062 conserve négations politiques, déclaration de vœux, ouverture d’un débat et adaptation du droit à la société.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0053",
+      "native_id": "A0008",
+      "source_title_fr": "La légalisation contrôlée par l'État fonctionne",
+      "source_revision_id": 245645,
+      "source_sha256": "a4902b98dea640ad7f4478a8fdf95d95291b7e50b83fb4d865098ea0c6de72d8",
+      "selected_source_ids": [
+        "S90002",
+        "S93001"
+      ],
+      "selected_topics": [
+        "canada",
+        "uruguay-brookings"
+      ],
+      "rejected_draft_topics": [
+        "uruguay"
+      ],
+      "selection_note": "Les expériences sont documentées séparément et leurs limites conservées ; aucun succès complet commun à toutes les dimensions n’est inféré.",
+      "textual_review_note": "Les deux paragraphes gardent peut réduire, bien qu’imparfaits et jugement fortement favorable final. Q063 fidélité textuelle distincte d’authentification non établie. Deux libellés nominaux conservés comme modèles, pas développés en nouvelles thèses.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0054",
+      "native_id": "A0062",
+      "source_title_fr": "La légalisation du cannabis au Canada fonctionne mieux que la prohibition",
+      "source_revision_id": 245607,
+      "source_sha256": "947a4a013ae8f8cd56bab8c3e80bdfc7766c48eb1eff326868452fe8a1626d34",
+      "selected_source_ids": [
+        "S90002"
+      ],
+      "selected_topics": [
+        "canada"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Le bilan officiel canadien confirme des évolutions et des difficultés ; il ne valide pas toutes les appréciations superlatives du résumé historique.",
+      "textual_review_note": "Toute la liste est conservée : réglementation, exemples, avantages, inconvénients et bilan. State distribution reste une affirmation source, sans corriger silencieusement la diversité des régimes canadiens.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0055",
+      "native_id": "A0083",
+      "source_title_fr": "La légalisation du cannabis aurait trop d'impacts sociaux et économiques sur les banlieues",
+      "source_revision_id": 245548,
+      "source_sha256": "5a2de307674ed2728475a37888abd7ca18ebc6c0d6c006535dcceede2baebc50",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "equity"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les politiques d’équité américaines éclairent la transition territoriale ; elles ne mesurent pas les conséquences économiques des banlieues françaises.",
+      "textual_review_note": "Would/excessive et contexte des banlieues préservés ; objections Solutions exist et dommages sociaux restent contextuelles et distinctes de leurs titres canoniques.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0056",
+      "native_id": "A0077",
+      "source_title_fr": "La légalisation du cannabis dans un seul pays est source de problèmes",
+      "source_revision_id": 207536,
+      "source_sha256": "5da22bd036812a30613aae465c18e33676a6e57ce8f2e7ba1e31b21993910ddc",
+      "selected_source_ids": [
+        "S90001"
+      ],
+      "selected_topics": [
+        "rand"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les interactions entre juridictions sont discutées ; aucune preuve directe de tous les délais frontaliers prédits à Windsor n’est inventée.",
+      "textual_review_note": "Could et attribution au maire de Windsor conservés : délais à la frontière et échanges, sans transformer la prédiction en effet observé.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0057",
+      "native_id": "A0053",
+      "source_title_fr": "La légalisation du cannabis encourage une économie de dépendance",
+      "source_revision_id": 245646,
+      "source_sha256": "ee7347e72491540d1a0a85480fe356021946c3ed8acdb5b6574f953be664a431",
+      "selected_source_ids": [
+        "S90001"
+      ],
+      "selected_topics": [
+        "rand"
+      ],
+      "rejected_draft_topics": [
+        "canada"
+      ],
+      "selection_note": "RAND analyse la concentration des ventes sur les consommateurs fréquents, les incitations commerciales et le lobbying : développement du mécanisme économique, avec solutions réglementaires concurrentes.",
+      "textual_review_note": "Consommation de masse, consommation continue ET excessive et intérêts contraires à santé publique gardés. Inevitably de Q064 préservé, sans attester sa référence Barry.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0058",
+      "native_id": "A0072",
+      "source_title_fr": "La légalisation du cannabis est en vigueur dans de nombreux pays",
+      "source_revision_id": 245609,
+      "source_sha256": "fa7be0d0b6bd2a0b1c88b0d2c546bbcd11c56d03201c7b6d467d6f1cf550013e",
+      "selected_source_ids": [
+        "S93003"
+      ],
+      "selected_topics": [
+        "euda-policy"
+      ],
+      "rejected_draft_topics": [
+        "canada-law",
+        "dutch"
+      ],
+      "selection_note": "Le corps historique EUDA documente les réformes américaines et uruguayenne en distinguant légalisation, dépénalisation et tolérance. Il ne valide ni la carte de 2024 ni un décompte actuel de tous les pays.",
+      "textual_review_note": "Nombreux pays, petites quantités, cinq couleurs et réserve essentiellement légal conservés ; image et légende intactes. Actualité de la carte et équivalence documentaires restent distinctes de la fidélité du résumé.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0059",
+      "native_id": "A0130",
+      "source_title_fr": "La légalisation du cannabis est préconisée par la Commission mondiale sur la politique des drogues",
+      "source_revision_id": 207529,
+      "source_sha256": "dd92a50ef290c5d2cd8884bb762df36862fa74c1e9ccaa8a441d1c7dc7f37c3e",
+      "selected_source_ids": [
+        "S94001"
+      ],
+      "selected_topics": [
+        "commission-2011"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Aucune édition anglaise vérifiée de la recommandation citée n’est déduite de résultats sur le cannabis médical ; la citation française est conservée. Le résumé exécutif p. 2 et la recommandation 3 p. 11 préconisent expressément l’expérimentation de modèles de régulation légale, particulièrement du cannabis : source primaire du raisonnement attribué à la Commission.",
+      "textual_review_note": "Nom de l’organisme correctement rendu Global Commission on Drug Policy ; préconisation conservée sans nouveau contenu.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0060",
+      "native_id": "A0059",
+      "source_title_fr": "La légalisation du cannabis mettrait fin aux trafics",
+      "source_revision_id": 245468,
+      "source_sha256": "d5dc9427fd7f460b2cfceec1631483f8a532495ef5a9caf8fb845eb41e4ca724",
+      "selected_source_ids": [
+        "S90001",
+        "S90002"
+      ],
+      "selected_topics": [
+        "rand",
+        "canada"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Le recul de parts illicites ne prouve pas disparition de tous les trafics ; la référence est retenue pour comparaison, pas validation de l’absolu.",
+      "textual_review_note": "Conditionnel et assèchement du marché des dealers maintenus ; quatre objections, prix, mineurs, report et restrictions gardent toutes leurs conditions.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0061",
+      "native_id": "A0080",
+      "source_title_fr": "La légalisation du cannabis multiplierait le nombre d'usagers",
+      "source_revision_id": 245611,
+      "source_sha256": "e881d02c3a7c9d012bb3b6708f7408176e9bb75ae4576d6a3855efed3ff35bbf",
+      "selected_source_ids": [
+        "S91001",
+        "S91016"
+      ],
+      "selected_topics": [
+        "youth-europe",
+        "uruguay"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les travaux montrent des effets hétérogènes ; ils ne prouvent ni multiplication inévitable ni invariance universelle.",
+      "textual_review_note": "Would greatly increase conserve multiplierait sans inventer un facteur dans le titre ; Q067 garde dix fois malgré 1,6/15 millions. Q068 garde dépénalisation/banalisation et non légalisation. Trois objections exactes.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0062",
+      "native_id": "A0012",
+      "source_title_fr": "La légalisation du cannabis n'est ni possible ni souhaitable",
+      "source_revision_id": 245553,
+      "source_sha256": "a8cde9e0c5cd7a0f6f4c9b64f102c6f9844b0d70e33808bd9e8f84d03563d462",
+      "selected_source_ids": [
+        "S93001"
+      ],
+      "selected_topics": [
+        "uruguay-brookings"
+      ],
+      "rejected_draft_topics": [
+        "canada-law",
+        "convention"
+      ],
+      "selection_note": "Brookings développe précisément l’obstacle des conventions et la réponse uruguayenne ; c’est le volet juridique du raisonnement, pas une preuve que toute légalisation serait indésirable.",
+      "textual_review_note": "Ni possible ni souhaitable maintenu ; neuf relations comparées. Le libellé source de l’objection internationale parle de dépénalisation alors que le titre enfant parle de légalisation : incohérence source conservée, pas normalisée.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0063",
+      "native_id": "A0007",
+      "source_title_fr": "La légalisation du cannabis permet un contrôle qualité",
+      "source_revision_id": 245647,
+      "source_sha256": "464a5dd10984246974d614c0d144588b28b5d5188eb0e65923c5f1a3b3285a15",
+      "selected_source_ids": [
+        "S90002",
+        "S91018"
+      ],
+      "selected_topics": [
+        "canada",
+        "product-contaminants"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les dispositifs de contrôle sont documentés ; ni la légalisation ni l’analyse ne garantissent à elles seules l’absence totale de contaminants.",
+      "textual_review_note": "Peut imposer et assurance de pureté traduits fidèlement ; solvants/métaux lourds gardés. Persistence of a black market reste nominal. Q069 fidèle textuellement, attribution non vérifiée.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0064",
+      "native_id": "A0050",
+      "source_title_fr": "La légalisation du cannabis permettrait de dégager des ressources pour la prévention",
+      "source_revision_id": 206561,
+      "source_sha256": "fe5cde588ba02071d334209475e3a7f835834da669d3817284f228cda4b7636b",
+      "selected_source_ids": [
+        "S90001",
+        "S94001"
+      ],
+      "selected_topics": [
+        "rand",
+        "commission-2011"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "RAND met en relation taxes, recettes et financement/coûts de régulation. Le mécanisme budgétaire est développé, sans garantie d’affectation effective à la prévention. Le résumé exécutif développe le déplacement des dépenses de répression et d’incarcération vers des investissements de prévention et réduction des risques : mécanisme d’allocation effectivement exposé.",
+      "textual_review_note": "Ressources pour prévention, environ 300 millions/80000/plus d’un milliard et hypothèse taxation comme tabac conservés ; objection may have to et nouveaux trafics gardée.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0065",
+      "native_id": "A0052",
+      "source_title_fr": "La légalisation du cannabis permettrait de vider les prisons, soulager les policiers, la justice",
+      "source_revision_id": 245613,
+      "source_sha256": "2bf7daa75e2efce7fb561e1a3f0fa7450f1d7482e6f9fa57a01d3ae4388d3bb6",
+      "selected_source_ids": [
+        "S92003",
+        "S94001"
+      ],
+      "selected_topics": [
+        "aclu",
+        "commission-2011"
+      ],
+      "rejected_draft_topics": [
+        "france"
+      ],
+      "selection_note": "Les infractions et arrestations sont documentées ; les études ne démontrent pas que la réforme viderait les prisons françaises. Le rapport développe l’engorgement carcéral sans réduction de disponibilité et recommande de réorienter les ressources ; la libération de moyens est argumentée, sans promettre de vider toutes les prisons.",
+      "textual_review_note": "Conditionnel et trois bénéficiaires prisons/policiers/justice conservés ; aucun résumé artificiel.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0066",
+      "native_id": "A0056",
+      "source_title_fr": "La légalisation du cannabis peut faire baisser la consommation d'alcool",
+      "source_revision_id": 206565,
+      "source_sha256": "34e03575ae0626652a5d9d5ec6a1acb2486c64c9da9ef51732685651f3c3516a",
+      "selected_source_ids": [
+        "S91005"
+      ],
+      "selected_topics": [
+        "alcohol-substitute"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "La revue conclut à une littérature inconclusive, conservée comme limite à l’hypothèse de substitution à l’alcool.",
+      "textual_review_note": "May, moyenne 15 % et presque dix ans conservés ; objection résultats non unanimes maintenue, sans harmonisation des études.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0067",
+      "native_id": "A0060",
+      "source_title_fr": "La légalisation du cannabis peut faire baisser la criminalité",
+      "source_revision_id": 206569,
+      "source_sha256": "2f45bc9b661ccd23272620322d4e38f857bc686651eb380da2dc9b340ff812ff",
+      "selected_source_ids": [
+        "S93006"
+      ],
+      "selected_topics": [
+        "crime"
+      ],
+      "rejected_draft_topics": [
+        "canada"
+      ],
+      "selection_note": "Morris et ses coauteurs analysent l’hypothèse de baisse des crimes et les résultats américains sous lois médicales ; résultats bornés à 1990–2006 et aux infractions étudiées.",
+      "textual_review_note": "May dans le titre, 13/15/19/10 et restriction au cannabis médical dans la citation conservés ; ponctuation expressive de la source gardée.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0068",
+      "native_id": "A0058",
+      "source_title_fr": "La légalisation du cannabis peut faire baisser la mortalité par overdose d'opiacés",
+      "source_revision_id": 245614,
+      "source_sha256": "1f5c43d05eb0d542addf3b37296fab2594e855c3ca5b2bfdcc230fbd0f356531",
+      "selected_source_ids": [
+        "S91007",
+        "S91006"
+      ],
+      "selected_topics": [
+        "opioid-original",
+        "opioid-reversal"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Bachhuber développe l’hypothèse de substitution aux opioïdes et l’association initiale ; Shover reprend ce même mécanisme puis examine sa non-réplication et le risque de confusion écologique.",
+      "textual_review_note": "Longue Q074 relue intégralement : au moins 20, intervalle 20–35, causalité attribuée à l’étude, dispensaires, hypothèse automédication et travaux inverses tous présents. Opioids rend ici opiacés au sens large explicitement employé pour le fentanyl dans la source, sans actualiser les résultats ni effacer la réserve contradictoire.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0069",
+      "native_id": "A0057",
+      "source_title_fr": "La légalisation du cannabis peut faire baisser la mortalité par overdose de drogues plus dures",
+      "source_revision_id": 245615,
+      "source_sha256": "600b456478fd5f6571057768046696edf9e0ee88ceb6adf6eef0e73ccb43bdaa",
+      "selected_source_ids": [
+        "S91007",
+        "S91006"
+      ],
+      "selected_topics": [
+        "opioid-original",
+        "opioid-reversal"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les deux études développent le mécanisme de substitution et de mortalité pour les opioïdes ; cette composante de l’argument ne prouve pas le même effet pour toutes les autres drogues.",
+      "textual_review_note": "Possibilité may et comparaison harder drugs, non toutes drogues, conservées ; page sans résumé ni citation.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0070",
+      "native_id": "A0081",
+      "source_title_fr": "La légalisation du cannabis reporterait les usagers vers les drogues dures",
+      "source_revision_id": 207545,
+      "source_sha256": "f122ba241ea7c93ecfd564333970a9d3e7bbed0c9cf762009d3d1969c6b9f263",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les résultats sur l’accès médical aux autres drogues ne prouvent pas un report général des consommateurs après légalisation ; pas de source hors sujet ajoutée.",
+      "textual_review_note": "Conditionnel et personnage transgressif conservés ; straight traduit d’emblée et addiction scale conserve la métaphore sans ajouter une hiérarchie médicale.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0071",
+      "native_id": "A0051",
+      "source_title_fr": "La légalisation du cannabis risque d'accroître la consommation",
+      "source_revision_id": 245648,
+      "source_sha256": "8a2dee0561cfb9cd264b35f9b721e2256120154b6c384291f3f200daaae07482",
+      "selected_source_ids": [
+        "S91001"
+      ],
+      "selected_topics": [
+        "youth-europe"
+      ],
+      "rejected_draft_topics": [
+        "uruguay"
+      ],
+      "selection_note": "Les risques de hausse sont confrontés à des résultats hétérogènes ; les limites d’âge et de régime sont explicites.",
+      "textual_review_note": "Risque et non effet certain, normalisation et baisse de perception distincts ; objection ne s’accompagne pas ne devient pas causalité.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0072",
+      "native_id": "A0054",
+      "source_title_fr": "La légalisation du cannabis récréatif ouvrirait la voie à l'utilisation thérapeutique",
+      "source_revision_id": 206564,
+      "source_sha256": "a7cfe1f0c054f662c7a943d48cfd214e391a299a2f166462e9ad20722d0b1ba3",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "canada-law",
+        "medical-benefits"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. L’efficacité médicale et les règles récréatives sont deux objets distincts ; aucun lien de nécessité entre ouvertures juridiques n’est affirmé par ces références.",
+      "textual_review_note": "Voie thérapeutique rendue au conditionnel ; treize États et dix pays dans la citation sont conservés. ASNM, typo de la source, non corrigée en ANSM. Libellé interrogatif de l’objection gardé au lieu du titre canonique affirmatif.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0073",
+      "native_id": "A0071",
+      "source_title_fr": "La légalisation du cannabis récréatif soulève des difficultés au regard des conventions internationales",
+      "source_revision_id": 245610,
+      "source_sha256": "92ea829f5a9cac25ac33e410ab1b9a00391cf61dafae21f70edaa762077fa20f",
+      "selected_source_ids": [
+        "S92004",
+        "S93004",
+        "S93001"
+      ],
+      "selected_topics": [
+        "convention",
+        "convention-1988",
+        "uruguay-brookings"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Lecture des articles pertinents des conventions de 1961 amendée et 1988, puis analyse Brookings de la tension entre légalisation uruguayenne et obligations : contraintes, réserves et réponses sont distinguées.",
+      "textual_review_note": "Intitulé prudent raises difficulties conservé alors que le résumé source est plus catégorique ; 1925/1961/1988 et cinq activités conservés. Cinq objections gardent leurs différences may/should et légalisation/dépénalisation historiques.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0074",
+      "native_id": "A0076",
+      "source_title_fr": "La légalisation du cannabis sera mise en place, comme l'ont été de nombreuses avancées sociales décriées",
+      "source_revision_id": 207526,
+      "source_sha256": "0c41e67609f44237f33668e372b1477a01a5981e8d99ed6ed9e49c351653f93d",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "mill"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. La limite de la majorité est documentée philosophiquement ; elle ne prouve pas la prédiction que la légalisation aura lieu.",
+      "textual_review_note": "Futur du titre conservé ; Q078 maintient divorce, homosexualité, assises et absence de recrudescence. Coordination source ou entre deux exemples rendue par and : préserver or pour éviter un changement gratuit de coordination.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0075",
+      "native_id": "A0006",
+      "source_title_fr": "La légalisation du cannabis serait bénéfique",
+      "source_revision_id": 245617,
+      "source_sha256": "051a6c6dd35e852c2a7c421af7e5b1c90fe81b1e8a9963458605541e89e2fecb",
+      "selected_source_ids": [
+        "S90001",
+        "S90002"
+      ],
+      "selected_topics": [
+        "rand",
+        "canada"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Bénéfices, coûts et incertitudes sont traités dans une synthèse et un bilan ; chaque bénéfice particulier garde sa portée propre.",
+      "textual_review_note": "Douze relations relues : may/would, périphrases courtes et trois objections nominales restent fidèles ; aucun habillage de génération pour Vider les prisons ou Maintien d’un marché noir.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0076",
+      "native_id": "A0132",
+      "source_title_fr": "La légalisation du cannabis serait possible au titre du principe d'opportunité ou d'une expérimentation scientifique",
+      "source_revision_id": 245488,
+      "source_sha256": "58d2440f867965cec104a68b4cf6a2cac8c1cdceb11a26f04f434fac3d1aafe0",
+      "selected_source_ids": [
+        "S92004"
+      ],
+      "selected_topics": [
+        "convention"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Article 4 : limitation aux fins médicales et scientifiques ; article 36 : réserves constitutionnelles. Cela développe une marge liée aux fins scientifiques, sans transformer une expérience commerciale en autorisation générale.",
+      "textual_review_note": "Conditionnel rapporté par des juristes rendu might be possible ; le libellé parent devrait reste should, sans les uniformiser. Opportunité traduit par prosecutorial discretion en contexte juridique.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0077",
+      "native_id": "A0013",
+      "source_title_fr": "La légalisation du cannabis serait préjudiciable",
+      "source_revision_id": 207541,
+      "source_sha256": "5ec50d1a7c959f94efc10c47017b9f5db30f2cf2b099ee0144ca17c4390d9708",
+      "selected_source_ids": [
+        "S91001",
+        "S90002"
+      ],
+      "selected_topics": [
+        "youth-europe",
+        "canada"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les effets possibles sur les usages et la protection des jeunes sont documentés ; l’évaluation globale préjudiciable reste une conclusion argumentative.",
+      "textual_review_note": "Would harmful et quatre conséquences justifiant la position contre préservés ; pas d’inversion pro/contre par réemploi de titres.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0078",
+      "native_id": "A0082",
+      "source_title_fr": "La légalisation du cannabis serait un danger pour les mineurs",
+      "source_revision_id": 207549,
+      "source_sha256": "096135f970d7b307bbdb5877d86bd0d398912916c70d2a0f8c994506224f8520",
+      "selected_source_ids": [
+        "S91010",
+        "S91011"
+      ],
+      "selected_topics": [
+        "early-use",
+        "use-route"
+      ],
+      "rejected_draft_topics": [
+        "canada"
+      ],
+      "selection_note": "Les risques d’usage précoce et la protection réglementaire sont documentés sans supposer un danger identique pour chaque mineur.",
+      "textual_review_note": "Raison de l’exemple tabac, 60 % et concession adultes/mineurs préservés ; libellé de l’objection conserve la comparaison avec le marché noir actuel.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0079",
+      "native_id": "A0035",
+      "source_title_fr": "La production clandestine de cannabis est à l'origine de nombreux incendies",
+      "source_revision_id": 206557,
+      "source_sha256": "42ff44f1955d2151d3b05fc280754ac1001152bbffc88bf8a7f698d6ea37b7fc",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Le résultat professionnel australien ne prouve pas la fréquence d’incendies dans la production clandestine française ; aucune statistique anglaise équivalente n’est inventée.",
+      "textual_review_note": "Cultivation restreint production à la seule culture alors que la page source ne fournit aucun texte permettant cette restriction : remplacer par production dans le titre et ses cibles ; vérifier séparément les libellés entrants.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0080",
+      "native_id": "A0094",
+      "source_title_fr": "La prohibition aggrave le mal-être à l'origine de la consommation de drogues",
+      "source_revision_id": 245619,
+      "source_sha256": "d7e8ec01b845041bacec13742123a182a9383d29755ad72258c4756db016b83b",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "context-addiction"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les dimensions environnementales de la dépendance sont pertinentes, sans preuve directe que chaque aggravation du mal-être est due à la prohibition.",
+      "textual_review_note": "Prohibition générale, aggravation et origine de la consommation conservées ; pas d’explication psychologique créée.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0081",
+      "native_id": "A0095",
+      "source_title_fr": "La prohibition de l'alcool au début du XXème siècle a été un échec",
+      "source_revision_id": 208295,
+      "source_sha256": "11aa98d5bf21691c707dd532b647e9850eacbc74445f100f55ea70e85fd1dc53",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les résultats d’économie du cannabis ne constituent pas une étude historique suffisante de la prohibition américaine de l’alcool ; citation héritée conservée.",
+      "textual_review_note": "Deux paragraphes de Q081 relus : années 1930, crime organisé, corruption politique/judiciaire, fiscalité/douanes et absence de baisse décisive gardés ; pas de correction historique ajoutée.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0082",
+      "native_id": "A0023",
+      "source_title_fr": "La prohibition de l'alcool et certaines guerres contre les drogues ont eu des effets contre-productifs",
+      "source_revision_id": 245639,
+      "source_sha256": "4bd8dd6316b33bdd008d1456ece8d067ac59fbe80ed018d697f13bf6a5923dd4",
+      "selected_source_ids": [
+        "S90001",
+        "S94001"
+      ],
+      "selected_topics": [
+        "rand",
+        "commission-2011"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "La synthèse permet d’examiner certains effets contre-productifs des marchés prohibés ; elle ne généralise pas à toutes les guerres contre les drogues. Le rapport développe les effets contre-productifs de certaines interventions de répression, notamment violence et déplacements de marchés pp. 14–15 ; il n’est pas donné comme étude historique de la prohibition de l’alcool.",
+      "textual_review_note": "Some conserve certaines guerres. Q082 complet : onze ans/décembre 2006, 200000, demande américaine, production (rétablie V2), héroïne/synthétiques/cocaïne et deux déclarations DEA tous présents.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0083",
+      "native_id": "A0031",
+      "source_title_fr": "La prohibition du cannabis accroît la rentabilité du cannabis en faisant monter les prix",
+      "source_revision_id": 206551,
+      "source_sha256": "0085bb6e9a86ffb4864517242e8309c88b6a408da06151108e93b34e1cb75d04",
+      "selected_source_ids": [
+        "S90001"
+      ],
+      "selected_topics": [
+        "rand"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les prix et incitations de marché sont explicitement abordés, sans attribuer une rentabilité uniforme à tous les acteurs.",
+      "textual_review_note": "Chaîne répression-prix-rentabilité-production-commerce et comparatif plus/plus préservés ; aucun effet de simple corrélation substitué à la causalité affirmée par la source.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0084",
+      "native_id": "A0017",
+      "source_title_fr": "La prohibition du cannabis dissuade une partie de la population d'en consommer",
+      "source_revision_id": 245649,
+      "source_sha256": "25cb827b0afa1de60ca4f57c20c2ca4594367968b11f71fde9ac54bb9b901b3f",
+      "selected_source_ids": [
+        "S91001"
+      ],
+      "selected_topics": [
+        "youth-europe"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Certaines interventions restrictives sont associées à des baisses ; cela ne quantifie pas la fraction de toute la population dissuadée.",
+      "textual_review_note": "Some people et legal risks dans résumé, particulièrement jeunes, ainsi que rôle crucial de perception et objection négative conservés.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0085",
+      "native_id": "A0024",
+      "source_title_fr": "La prohibition du cannabis entrave la prévention et les soins",
+      "source_revision_id": 232855,
+      "source_sha256": "a1d07c8f9d2b87d99133610ef48960565bb5258384f49543532c1bf7c788f6f0",
+      "selected_source_ids": [
+        "S93007",
+        "S94001"
+      ],
+      "selected_topics": [
+        "clinical-stigma",
+        "commission-2011"
+      ],
+      "rejected_draft_topics": [
+        "portugal"
+      ],
+      "selection_note": "La perspective clinique Smith–Sera développe les obstacles au dialogue et à la confiance liés à la stigmatisation et à l’héritage de la prohibition ; elle ne chiffre pas un effet français. Le résumé exécutif explique comment la répression des usagers entrave la prévention du VIH, des surdoses et l’accès aux soins ; c’est une contribution directe au mécanisme de la page.",
+      "textual_review_note": "Les deux longues citations sont complètes : soins, défiance, message institutionnel et motif d’usage. Banalisation n’est pas transformée en innocence totale ; motif de prévention et implication des parents maintenus.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0086",
+      "native_id": "A0025",
+      "source_title_fr": "La prohibition du cannabis entraîne clandestinité, exclusion sociale, sentiment de discrimination",
+      "source_revision_id": 232837,
+      "source_sha256": "1bf2e03325946fc6e0b96d4217107fe528533f10c35bd91a2fb729cd160fa1ed",
+      "selected_source_ids": [
+        "S92003"
+      ],
+      "selected_topics": [
+        "aclu"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les effets de criminalisation sont éclairés par des données américaines, avec limite géographique explicite.",
+      "textual_review_note": "Deux citations relues : aide, clandestinité, minorités visibles, contrôles répétés, 42e/1er rang en 2008 et question du statut criminel préservés.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0087",
+      "native_id": "A0030",
+      "source_title_fr": "La prohibition du cannabis entraîne le développement d'une économie parallèle très lucrative avec ses conséquences : corruption, blanchiment d’argent, recrutement de jeunes, violence, insécurité, trafic d'armes",
+      "source_revision_id": 245650,
+      "source_sha256": "bc0ef95ea4c6d6e9ef67663413e17677c4f8fdb345ad871fa58e0d66c655c9f1",
+      "selected_source_ids": [
+        "S90001"
+      ],
+      "selected_topics": [
+        "rand"
+      ],
+      "rejected_draft_topics": [
+        "aclu"
+      ],
+      "selection_note": "Marchés illicites et criminalisation sont documentés ; aucun document n’est présenté comme preuve exhaustive de toute la chaîne corruption/armes/violence.",
+      "textual_review_note": "Les trois longues citations gardent causalités, extorsion/séquestration sans sur-traduction en torture, pays et chiffres. Dans le titre, lucrative atténue très lucrative : rétablir highly lucrative et les liens correspondants.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0088",
+      "native_id": "A0034",
+      "source_title_fr": "La prohibition du cannabis entraîne une perte importante de recettes pour l'Etat et laisser se développer un marché échappant à toute taxe revient même à le subventionner",
+      "source_revision_id": 245503,
+      "source_sha256": "c59e90a965fe11dcc3c4ecdf38fec86a1220879c3de642ce62f369eafe097233",
+      "selected_source_ids": [
+        "S90001"
+      ],
+      "selected_topics": [
+        "rand"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les recettes potentielles et taxes sont discutées ; la qualification de subvention implicite reste l’argument de la page.",
+      "textual_review_note": "Perte substantielle et subvention publique implicite gardées ; Q092 conserve l’anglais fourni, la glose FR complète reste en provenance, pas de nouvelle traduction fabriquée.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0089",
+      "native_id": "A0038",
+      "source_title_fr": "La prohibition du cannabis est contraire à la liberté individuelle",
+      "source_revision_id": 206563,
+      "source_sha256": "99a51108a76ba58d458b6186ee8c0757ea703d8cdd8264000c3e1af2d839ca34",
+      "selected_source_ids": [
+        "S92005"
+      ],
+      "selected_topics": [
+        "mill"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Le texte du principe de non-nuisance est disponible en anglais ; son application précise au cannabis reste argumentative.",
+      "textual_review_note": "Quatre citations relues : toutes drogues, sphères publique/privée, seules conditions de répression avec OU, dérogation et totalitarisme conservés. Q093 reprend l’exemple divorce/homosexualité : même coordination or à préserver que Q078.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0090",
+      "native_id": "A0009",
+      "source_title_fr": "La prohibition du cannabis est efficace",
+      "source_revision_id": 245564,
+      "source_sha256": "618d1b8f4ab915ddd92dddcfba626217bf7f1d9979f973374c0567f2245fce5e",
+      "selected_source_ids": [
+        "S91001"
+      ],
+      "selected_topics": [
+        "youth-europe"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "La dissuasion est confrontée à des résultats différenciés ; ni toute sanction ni tout usage ne sont assimilés.",
+      "textual_review_note": "Résumé très court conservé ; huit objections précises relues, y compris decades et not significantly, distincts du titre canonique plus nuancé A0082.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0091",
+      "native_id": "A0001",
+      "source_title_fr": "La prohibition du cannabis est inefficace",
+      "source_revision_id": 245565,
+      "source_sha256": "3ead873fd874531514ff304e06ef108d10d1c155d37498bf83d1d0d26801e571",
+      "selected_source_ids": [
+        "S91001"
+      ],
+      "selected_topics": [
+        "youth-europe"
+      ],
+      "rejected_draft_topics": [
+        "france"
+      ],
+      "selection_note": "Des évolutions et limites sont documentées ; la présence d’usagers ne prouve pas à elle seule l’absence totale d’effet dissuasif.",
+      "textual_review_note": "Dix relations relues, sources nominales Reduced consumption/A clear message conservées. Le parent pro porte les mêmes pages comme justifications tandis que l’autre parent les porte comme objections : orientations intactes.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0092",
+      "native_id": "A0002",
+      "source_title_fr": "La prohibition du cannabis est préjudiciable aux usagers",
+      "source_revision_id": 206546,
+      "source_sha256": "302658191614821146d868d12b43cccadc287281f4d7c759d13e210be647bd1f",
+      "selected_source_ids": [
+        "S92003",
+        "S93007"
+      ],
+      "selected_topics": [
+        "aclu",
+        "clinical-stigma"
+      ],
+      "rejected_draft_topics": [
+        "portugal"
+      ],
+      "selection_note": "Dommages de criminalisation et réponses sanitaires sont documentés avec limites de pays ; pas de résumé nouveau.",
+      "textual_review_note": "Cinq justifications nominales et conséquences effectivement subies avec cumul prison/casier conservées, sans inventer de résumé ni transformer les libellés en thèses nouvelles.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0093",
+      "native_id": "A0003",
+      "source_title_fr": "La prohibition du cannabis est préjudiciable à la société",
+      "source_revision_id": 245566,
+      "source_sha256": "e5b07ed9fc2ddfab12ee67aa3af40e211c165d3f273b278fc87c394351b0d90f",
+      "selected_source_ids": [
+        "S90001",
+        "S92003",
+        "S94001"
+      ],
+      "selected_topics": [
+        "rand",
+        "aclu",
+        "commission-2011"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Coûts collectifs et disparités sont éclairés séparément ; les neuf justifications du graphe restent distinctes. Les conséquences sanitaires et sociales de la criminalisation sont développées dans le résumé exécutif et les recommandations ; la portée globale est distincte d’une estimation française actuelle.",
+      "textual_review_note": "Neuf justifications relues avec leurs libellés propres ; notamment crime organisé, stratégie commerciale, recettes et pression carcérale. A0079 et A0087 nécessitent de répercuter les corrections de titres dans les cibles, sans changer les libellés contextuels distincts.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0094",
+      "native_id": "A0028",
+      "source_title_fr": "La prohibition du cannabis expose les usagers à l’univers des dealers et à des drogues plus dures",
+      "source_revision_id": 232836,
+      "source_sha256": "ef3d158fca9c2ae209e71982fe2192b3de9a92533cb9254bbc6e36796b0bc32e",
+      "selected_source_ids": [
+        "S90001"
+      ],
+      "selected_topics": [
+        "rand"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "RAND p. 46 développe la séparation néerlandaise des marchés : obtenir du cannabis sans rencontrer les vendeurs de drogues dures. C’est un mécanisme social distinct d’une passerelle pharmacologique.",
+      "textual_review_note": "Contraindre à s’approvisionner et porte d’entrée dealer plutôt que cannabis conservés ; stress des patients de la locutrice reste personnel, pas une statistique générale.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0095",
+      "native_id": "A0029",
+      "source_title_fr": "La prohibition du cannabis génère beaucoup de contrôles qui peuvent toucher tout le monde",
+      "source_revision_id": 208287,
+      "source_sha256": "fd9471e812866af52aa08d02c8aaa05500000088ed8247bd90ecb51792327909",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "france"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les données d’infractions ne mesurent pas tous les contrôles et ne prouvent pas qu’ils touchent uniformément chacun.",
+      "textual_review_note": "Nombreux contrôles pouvant toucher quiconque, presque systématiquement et chaque infraction détectée préservés ; now reste celui de la citation historique.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0096",
+      "native_id": "A0004",
+      "source_title_fr": "La prohibition du cannabis manque de légitimité",
+      "source_revision_id": 206548,
+      "source_sha256": "86ebfe9ad06253dd35aa8799b49dfa1f041b9c2940a5400882917940060f886f",
+      "selected_source_ids": [
+        "S92005",
+        "S91021"
+      ],
+      "selected_topics": [
+        "mill",
+        "relative-harm"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Le raisonnement de légitimité et la comparaison des dommages sont documentés dans des registres différents, sans réduction de l’un à l’autre.",
+      "textual_review_note": "Cinq justifications relues ; bien plus addictives et dangereuses, totalement légales et toxicomanie/usage simple restent distincts. Pas d’inférence de légitimité nouvelle.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0097",
+      "native_id": "A0027",
+      "source_title_fr": "La prohibition du cannabis ne donne aucune garantie de qualité des produits",
+      "source_revision_id": 232853,
+      "source_sha256": "3bcdd7b7fe7fccfbb1cafebf027a01d3aa45876a6fda5798a205eb19f86291fe",
+      "selected_source_ids": [
+        "S90002",
+        "S91018"
+      ],
+      "selected_topics": [
+        "canada",
+        "product-contaminants"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Le bilan canadien développe les exigences de contrôle et l’intérêt d’analyser les produits saisis ; la revue analytique développe les méthodes de détection. Aucun contrôle n’est présenté comme garantie absolue.",
+      "textual_review_note": "Q100/Q101 cohérentes avec Q021/Q022 ; contrôle qualité et risque seulement un peu moins mauvais conservés.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0098",
+      "native_id": "A0040",
+      "source_title_fr": "La prohibition du cannabis ne fait pas de distinction entre usage simple et toxicomanie",
+      "source_revision_id": 206571,
+      "source_sha256": "3008e6eed7269f502fe817052a3047a07f8ac48f1b1c38935dd4baf51c3ade05",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "dependence",
+        "france"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les catégories pénales et la définition statistique de dépendance sont distinguées ; leur différence ne requalifie pas silencieusement les textes source.",
+      "textual_review_note": "Q102 conserve distinction usage régulier/usage simple, comparaison alcool et majorité arrêtant ou réduisant à l’exceptionnel ; slogan comparatif plus tôt/plus vite complet.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0099",
+      "native_id": "A0019",
+      "source_title_fr": "La prohibition envoie un message sociétal clair",
+      "source_revision_id": 245651,
+      "source_sha256": "3e66232b5429e4c0963f36953454ba24bbacc997fd2601119f18fd976ccde524",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Aucun travail consulté n’isole un effet protecteur du seul signal sociétal ; l’affirmation historique est conservée sans référence artificielle.",
+      "textual_review_note": "Résumé bref avec message fort et évitement de banalisation conservé ; Q103 traduit littéralement la nécessité ne peut que, sans authentifier l’attribution Habermas. Deux objections conservées.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0100",
+      "native_id": "A0022",
+      "source_title_fr": "La prohibition passe à côté des motifs de la consommation",
+      "source_revision_id": 206251,
+      "source_sha256": "4e4c2ba90bfff07983303091dd206c62a42386a5c91ffa21a37cf052cb455019",
+      "selected_source_ids": [
+        "S93007"
+      ],
+      "selected_topics": [
+        "clinical-stigma"
+      ],
+      "rejected_draft_topics": [
+        "context-addiction"
+      ],
+      "selection_note": "Smith–Sera développe l’exploration des intentions et expériences du patient plutôt qu’une lecture punitive ; cette démarche étaye la prise en compte des motifs, sans diagnostiquer chaque usager.",
+      "textual_review_note": "Deux citations longues complètes : analogie nourriture, motivations, définition sociale des déterminants, angoisse des travailleurs et transformation de la société. Perspective militante conservée sans neutralisation.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0101",
+      "native_id": "A0074",
+      "source_title_fr": "La pénalisation du cannabis est un échec",
+      "source_revision_id": 208288,
+      "source_sha256": "a5ba6ddb9b16aef2ec8ac431878345abe262415858ed31e7784cc69b84b769b4",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "youth-europe"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. La littérature hétérogène ne suffit pas à un verdict universel d’échec ; le renvoi vers l’argument d’inefficacité reste inchangé.",
+      "textual_review_note": "Simple renvoi Voir vers A0091 correctement raccordé au titre anglais, sans résumé de substitution.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0102",
+      "native_id": "A0063",
+      "source_title_fr": "La régulation du cannabis en Uruguay fonctionne mieux que la prohibition",
+      "source_revision_id": 245622,
+      "source_sha256": "b2f997b43b65a3ef20ab6aa43f8ba359f05651bfe78668a3083891b3fdfc7af9",
+      "selected_source_ids": [
+        "S93001"
+      ],
+      "selected_topics": [
+        "uruguay-brookings"
+      ],
+      "rejected_draft_topics": [
+        "uruguay"
+      ],
+      "selection_note": "Brookings examine le modèle uruguayen et ses résultats/limites de mise en œuvre ; aucune élimination quasi complète du marché noir n’est déclarée vérifiée.",
+      "textual_review_note": "Tout le résumé uruguayen est comparé : résidents seulement, plafonds, quasi-élimination, prix, bureaucratie, légère hausse, meilleur bilan. Affirmations contestables conservées sans validation documentaire implicite.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0103",
+      "native_id": "A0037",
+      "source_title_fr": "La répression des drogues peut peser sur les personnes précaires et sur les prisons",
+      "source_revision_id": 245618,
+      "source_sha256": "bf98e57357cf09d482e424b2339eb7e0d5ea45a18bd3d86c4df728f7cbdc100d",
+      "selected_source_ids": [
+        "S92003",
+        "S94001"
+      ],
+      "selected_topics": [
+        "aclu",
+        "commission-2011"
+      ],
+      "rejected_draft_topics": [
+        "france"
+      ],
+      "selection_note": "Le rapport ACLU développe les conséquences des arrestations et amendes sur emploi, logement et personnes pauvres : mécanisme social pertinent, avec limite au contexte américain. Le résumé exécutif développe l’incarcération des petits vendeurs et la vulnérabilité économique de ceux qui cherchent à sortir de la pauvreté ; argument social explicite, sans extrapolation chiffrée à la France.",
+      "textual_review_note": "Vulnerable people élargit personnes précaires à toutes vulnérabilités : préciser people in precarious circumstances. Les deux citations gardent leur cadrage, majorité, trois quarts, santé mentale, misère et 10 %, sans résoudre leur incohérence éventuelle.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0104",
+      "native_id": "A0011",
+      "source_title_fr": "La société doit se protéger contre les dangers du cannabis",
+      "source_revision_id": 207516,
+      "source_sha256": "6b6bfb0474f6c4a3dfd7217878a72b3286ca77d3a71153a79474d08cb257b428",
+      "selected_source_ids": [
+        "S91002"
+      ],
+      "selected_topics": [
+        "traffic-risk"
+      ],
+      "rejected_draft_topics": [
+        "canada"
+      ],
+      "selection_note": "Les dommages à autrui et les enjeux sanitaires sont documentés ; le choix de politique reste débattu.",
+      "textual_review_note": "Doit se protéger et les trois justifications nuisances/coûts/accidents gardent leur orientation, sans fusionner santé individuelle et société.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0105",
+      "native_id": "A0069",
+      "source_title_fr": "Le cannabis engendre des coûts pour la société",
+      "source_revision_id": 207519,
+      "source_sha256": "d05ddd39757066ffe5dd7f28b41da3a20521d4c74ac6fc93e66189e823fd2fc9",
+      "selected_source_ids": [
+        "S90001"
+      ],
+      "selected_topics": [
+        "rand"
+      ],
+      "rejected_draft_topics": [
+        "traffic-alcohol"
+      ],
+      "selection_note": "Des coûts et dommages sont discutés, sans chiffre agrégé inventé pour la France.",
+      "textual_review_note": "Droit de tout faire et situations à charge de la société préservés ; objection coûts fiscaux/police/justice reste une critique de la prohibition, pas des mêmes coûts du cannabis.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0106",
+      "native_id": "A0065",
+      "source_title_fr": "Le cannabis est dangereux pour la santé physique et mentale",
+      "source_revision_id": 245570,
+      "source_sha256": "fc79c78cde813eba365cb9a3dc76f2569d16720a585bd6d8c13cfa9337a98b10",
+      "selected_source_ids": [
+        "S90005",
+        "S91022",
+        "S91010"
+      ],
+      "selected_topics": [
+        "nida",
+        "psychosis",
+        "early-use"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Associations psychiatriques et usage adolescent sont documentés ; les effets physiques ne sont pas assimilés à ces seuls travaux.",
+      "textual_review_note": "Comparaison tuberculose et commentaire Costentin conservés. Les huit objections gardent leurs particularités : précocité, faibles risques, mode de consommation, contexte personnel, autonomie, crime organisé, qualité et alcool/tabac.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0107",
+      "native_id": "A0070",
+      "source_title_fr": "Le cannabis est impliqué dans les accidents de la route",
+      "source_revision_id": 207520,
+      "source_sha256": "d9aaaf8b6567783ced3f3ddcaa0d7ebb4e48289f0ae58d0c041aa3c1860f2db8",
+      "selected_source_ids": [
+        "S91002",
+        "S91003"
+      ],
+      "selected_topics": [
+        "traffic-risk",
+        "traffic-alcohol"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les études de collision et de responsabilité sont distinctes, avec rôle important de l’alcool et de la co-consommation.",
+      "textual_review_note": "2,5 et quatorze, 300 morts, SAM 2005, concentration 2 puis 0,2 µg/L et dix fois moindre tous exacts ; measure ne devient pas simplement detect. Les deux objections ne réconcilient pas les statistiques.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0108",
+      "native_id": "A0068",
+      "source_title_fr": "Le cannabis est nuisible à la société",
+      "source_revision_id": 207517,
+      "source_sha256": "ee47c8504eb94d98305adbe6101bf561efc29093a8be047aefc784fa387eff9a",
+      "selected_source_ids": [
+        "S91003",
+        "S90001"
+      ],
+      "selected_topics": [
+        "traffic-alcohol",
+        "rand"
+      ],
+      "rejected_draft_topics": [
+        "canada"
+      ],
+      "selection_note": "Des dommages collectifs sont décrits ; la létalité de la citation garde sa signification et n’est pas convertie en nombre de décès.",
+      "textual_review_note": "Trois citations relues avec article 5/1789 et thèse démocratie. Q114 traduit létalité par far more deaths : passage d’un degré de létalité à un nombre absolu et ajout causal ; rétablir much greater lethality. Trois objections fidèles.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0109",
+      "native_id": "A0101",
+      "source_title_fr": "Le cannabis est toujours dangereux car le seul but des fumeurs est de planer",
+      "source_revision_id": 208660,
+      "source_sha256": "597b479cc5a68f0a4b6b66c8c0529bdffd50df4af2335fd4abfd92731615d2e5",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "medical-benefits"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les usages thérapeutiques documentés sont des contre-exemples à l’exclusivité du but de planer ; les risques ne sont pas niés.",
+      "textual_review_note": "Always et only dans le titre absolu conservés ; objection No, it is also used garde la réfutation contextualisée.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0110",
+      "native_id": "A0149",
+      "source_title_fr": "Le cannabis peut être utilisé pour calmer des douleurs et se relaxer",
+      "source_revision_id": 245624,
+      "source_sha256": "9e42f05947ff5d0bb4430e6b94914bcf514b146c7fa49032afe2c1821a097089",
+      "selected_source_ids": [
+        "S91008"
+      ],
+      "selected_topics": [
+        "medical-benefits"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "L’analgésie et certaines indications ont des niveaux de preuve variables ; aucune efficacité relaxante universelle n’est déduite.",
+      "textual_review_note": "Can be used, douleurs et détente conservés ; page sans résumé ni citation complétée artificiellement.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0111",
+      "native_id": "A0066",
+      "source_title_fr": "Le cannabis potentialise les effets de l’alcool et du tabac",
+      "source_revision_id": 206614,
+      "source_sha256": "96f2f59f30c35c1109b1a66cc592bc11274873cf65d6a29914722be20f9d9e75",
+      "selected_source_ids": [
+        "S91003"
+      ],
+      "selected_topics": [
+        "traffic-alcohol"
+      ],
+      "rejected_draft_topics": [
+        "alcohol-substitute"
+      ],
+      "selection_note": "Martin et ses coauteurs analysent le risque routier et la co-consommation alcool/cannabis. Cette composante de l’interaction est développée ; les effets conjoints avec le tabac ne sont pas déclarés vérifiés.",
+      "textual_review_note": "Amplification et synergie supérieure à l’addition explicitement gardées ; références internes p.33/p.59 inchangées dans le texte cité.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0112",
+      "native_id": "A0016",
+      "source_title_fr": "Le cannabis reste très accessible",
+      "source_revision_id": 206239,
+      "source_sha256": "90558d993fc4f3b860d913691cc9e1fdd141808b0ffcdca38cacdd213ab77306",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "france"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les données d’accès et d’usage sont datées ; elles ne décrivent pas chaque territoire ni la situation actuelle de tous les mineurs.",
+      "textual_review_note": "Deux longs paragraphes entièrement relus, toutes valeurs et âges présents. Différence perception/obtention réelle, limites de question et stratégies de contournement de disponibilité gardées.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0113",
+      "native_id": "A0127",
+      "source_title_fr": "Le cannabis seul augmente peu le risque d'accidents de la route",
+      "source_revision_id": 207522,
+      "source_sha256": "4e816b03ef73e358e66aa6bd0bf8e6fe501b936357fdd4497fb133f614c93136",
+      "selected_source_ids": [
+        "S91002",
+        "S91004"
+      ],
+      "selected_topics": [
+        "traffic-risk",
+        "traffic-original"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les OR et fractions attribuables des études historiques sont distingués ; aucune normalisation des chiffres des citations n’est effectuée.",
+      "textual_review_note": "Résumé et Q117 conservent facteur 2, seuil 0,5, facteur 15 et incohérence majorité/environ 30 %, sans la résoudre en largest share. Distinct du facteur 14 de Q111.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0114",
+      "native_id": "A0102",
+      "source_title_fr": "Le groupe pharmaceutique Purdue est responsable de l'addiction à l'oxycodone",
+      "source_revision_id": 245625,
+      "source_sha256": "aedeb5069ac97299dc12b0f567db6e7977c0506476ac3f08c10dbba2f4b8edf0",
+      "selected_source_ids": [
+        "S91013"
+      ],
+      "selected_topics": [
+        "purdue"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "L’étude de Van Zee documente la promotion d’OxyContin ; aucune édition anglaise imaginaire d’un livre français n’est ajoutée.",
+      "textual_review_note": "Sept paragraphes de Q118 comparés : titre Purdue/OxyContin, terminal cancer, moins d’1 %, centaines de milliers, surdoses et milliard de recettes, non profits. Dessins interprété comme desseins évident, sans changer le fait allégué.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0115",
+      "native_id": "A0061",
+      "source_title_fr": "Le modèle portugais a fait ses preuves",
+      "source_revision_id": 245626,
+      "source_sha256": "8a1ae5566d0b93f571201a3530fefad2b16b89457550e15851f02cc2e33101b5",
+      "selected_source_ids": [
+        "S90003"
+      ],
+      "selected_topics": [
+        "portugal"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Le modèle sanitaire et administratif est distingué de la légalisation commerciale ; la qualification de tous les usagers comme malades reste celle de la source.",
+      "textual_review_note": "Résumé patients/opposés à délinquants et Q119 toutes drogues/vingt-cinq ans/parmi plus faibles gardés ; pas de mise à jour de la politique portugaise dans le texte historique.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0116",
+      "native_id": "A0123",
+      "source_title_fr": "Le pouvoir addictif du cannabis est assez faible",
+      "source_revision_id": 206616,
+      "source_sha256": "f4f9158e098844e81d0ecb9e11eefd8aaa3bc687330a0a9d8bf8f8b65152e7d4",
+      "selected_source_ids": [
+        "S91009"
+      ],
+      "selected_topics": [
+        "dependence"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les risques de transition vers la dépendance sont distingués des taux d’usage régulier ; le passage entre citations sur la contradiction apparente est conservé.",
+      "textual_review_note": "Q120 garde exactement l’anglais fourni, chiffres 9–10/20/25/30 ; glose française complète en source, pas une citation perdue. Q121 garde deux tiers/25–30/spontanément. Note hors citations sur dépendance et régularité présente avant Q121.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0117",
+      "native_id": "A0067",
+      "source_title_fr": "Le pouvoir addictif du cannabis est important",
+      "source_revision_id": 245627,
+      "source_sha256": "51934987dc08b166d4d8a292c33f471e9f749c432aaa74bd7cdda4e112e9acb5",
+      "selected_source_ids": [
+        "S90005",
+        "S91009"
+      ],
+      "selected_topics": [
+        "nida",
+        "dependence"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les indicateurs de dépendance sont contextualisés par substance et population ; leur importance ne devient pas un taux unique universel.",
+      "textual_review_note": "Substantial pour important, un sur trois devenant régulier (pas dépendant), et quatre objections gardant assez faible, dépendance au niveau d’usage, environnement et alcool conservés.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0118",
+      "native_id": "A0124",
+      "source_title_fr": "Le pouvoir addictif du cannabis n'est ni faible ni fort en soi, il dépend de son niveau d'usage",
+      "source_revision_id": 245653,
+      "source_sha256": "61a49cdcc34d175d4a727d21b10a0c4504861b8e73e4c7d2630eb3207dbb65b1",
+      "selected_source_ids": [
+        "S91009",
+        "S91011"
+      ],
+      "selected_topics": [
+        "dependence",
+        "use-route"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Fréquence, contexte et trajectoire sont distingués ; l’absence de danger intrinsèque n’est pas inférée.",
+      "textual_review_note": "Ni faible ni fort en soi et usage comme variable conservés ; opposition drogues dures/douces aux façons de consommer est intégrale, sans médicalisation ajoutée.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0119",
+      "native_id": "A0143",
+      "source_title_fr": "Le prix de vente est ce qui joue un rôle déterminant dans la consommation de cannabis",
+      "source_revision_id": 207544,
+      "source_sha256": "10885478ab79dfb7fc161de48e4910f3faaf7edaf7b7b0e69b12c81499564569",
+      "selected_source_ids": [
+        "S91019",
+        "S90001"
+      ],
+      "selected_topics": [
+        "commercialisation",
+        "rand"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les associations prix/usage adolescent et le marché global sont documentés sans déclarer le prix seul déterminant.",
+      "textual_review_note": "Deux citations gardent trois scénarios de prix, environ 5,50, jusqu’à un milliard et baisse 80 % ; conditions et inevitability restent celles des auteurs, pas de résultats nouveaux.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0120",
+      "native_id": "A0131",
+      "source_title_fr": "Le strict respect des conventions sur les stupéfiants est contraire aux traités internationaux relatifs aux droits de l'homme",
+      "source_revision_id": 207530,
+      "source_sha256": "1da55708f6f477247493837a4b84e5e0b4ef0431ed0dd15922a2f75f8e6798f0",
+      "selected_source_ids": [
+        "S93001"
+      ],
+      "selected_topics": [
+        "uruguay-brookings"
+      ],
+      "rejected_draft_topics": [
+        "convention"
+      ],
+      "selection_note": "Brookings expose expressément la défense uruguayenne fondée sur la priorité des droits humains face au régime de contrôle des drogues ; l’argument est documenté comme position juridique, sans jugement définitif de hiérarchie.",
+      "textual_review_note": "Prééminence juridique alléguée et condition si nous démontrions, vies de jeunes OU de malades sont gardées. Ne pas réparer l’assimilation sauver des vies/soulager la douleur de la source.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0121",
+      "native_id": "A0147",
+      "source_title_fr": "Le tabac et l'alcool sont attractifs parce que de nombreux intérêts s'emploient à les rendre attractifs",
+      "source_revision_id": 245654,
+      "source_sha256": "79b011374045f52aa7a8f2a6c229429d7c9202a41b930d65a7bf84cebee17891",
+      "selected_source_ids": [
+        "S90001"
+      ],
+      "selected_topics": [
+        "rand"
+      ],
+      "rejected_draft_topics": [
+        "industry-alcohol"
+      ],
+      "selection_note": "RAND p. 62 développe la publicité, les marques et l’innovation comme incitations à la consommation, avec exemples alcool/tabac ; le mécanisme d’attrait est distingué de la simple licéité.",
+      "textual_review_note": "Nombreux intérêts, causalité et ajout aussi de la citation conservés ; pas de nom de lobby inventé.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0122",
+      "native_id": "A0148",
+      "source_title_fr": "Le tabac et l'alcool sont dangereux quelle que soit la quantité",
+      "source_revision_id": 229814,
+      "source_sha256": "2a26dbedd8902d1608bb81e9e9dd7bad0b823319c9e669361db24fc2973b76ca",
+      "selected_source_ids": [
+        "S91014",
+        "S93002"
+      ],
+      "selected_topics": [
+        "low-tobacco",
+        "who-alcohol"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Hackshaw développe les risques cardiovasculaires du tabac même à faible dose ; le communiqué OMS développe le risque de cancer de l’alcool sans seuil sûr. Deux mécanismes sanitaires, sans taux universel commun.",
+      "textual_review_note": "Toutes quantités, même faible dose/modérée, 28 millions/1990–2016 et persistance des lésions conservés ; direct link ne devient pas une causalité démontrée par le traducteur.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0123",
+      "native_id": "A0088",
+      "source_title_fr": "Le tabac et l'alcool, licites, sont très attractifs",
+      "source_revision_id": 206242,
+      "source_sha256": "2c4afceb22c17d231eb8ebf49ea5c6edb69bc856b4f06ce7fb48443979f944d7",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "industry-alcohol"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les stratégies d’influence sont une explication possible de l’attrait ; la source n’isole pas l’effet comparé de licéité et de marketing.",
+      "textual_review_note": "Très attractifs traduit highly appealing ; treize millions, quatre OU cinq et absence d’abstinence un jour par semaine conservés. Origine attribuée à la licéité, non au seul marketing.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0124",
+      "native_id": "A0064",
+      "source_title_fr": "Les comportements addictifs sont très peu sensibles aux lois",
+      "source_revision_id": 206250,
+      "source_sha256": "6313e65743992bc4a5f7edce9f140055efcc84994fb3c70eeb6888a74775259a",
+      "selected_source_ids": [
+        "S91001"
+      ],
+      "selected_topics": [
+        "youth-europe"
+      ],
+      "rejected_draft_topics": [
+        "dependence"
+      ],
+      "selection_note": "L’étude européenne examine les effets selon fréquence et constate des effets non détectés sur les usagers fréquents ; cela étaye la limite de certaines sanctions, sans vérifier le cas de la peine de mort.",
+      "textual_review_note": "Très peu n’est pas devenu absence totale : largely unresponsive. Résumé avec peine de mort conservé et Q131 garde insuffisance des sanctions, non absence de tout effet.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0125",
+      "native_id": "A0129",
+      "source_title_fr": "Les conventions internationales n'imposent pas de pénaliser l'usage de cannabis",
+      "source_revision_id": 207528,
+      "source_sha256": "c78fa3c2fa1274354a8e0d9f2a34db8cb4d359ecc517be726badbac56e8599ce",
+      "selected_source_ids": [
+        "S93004",
+        "S90003"
+      ],
+      "selected_topics": [
+        "convention-1988",
+        "portugal"
+      ],
+      "rejected_draft_topics": [
+        "convention"
+      ],
+      "selection_note": "L’article 3(2) de 1988 distingue possession/achat/culture pour consommation personnelle et consommation elle-même ; le rapport portugais développe la réponse administrative, sans légalisation du trafic.",
+      "textual_review_note": "Offre/usage et sanctions pénales distingués ; liste production/trafic/cession/détention conservée même si juridiquement discutable. All EU member states et compétence des États inchangés.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0126",
+      "native_id": "A0133",
+      "source_title_fr": "Les critiques de l'OICS n'ont pas empêché l'adoption de la légalisation du cannabis en Uruguay",
+      "source_revision_id": 245590,
+      "source_sha256": "ad96c2263571d373d4cd512bb3d27d0df79283acd25e73d0888ad745b28da363",
+      "selected_source_ids": [
+        "S93001"
+      ],
+      "selected_topics": [
+        "uruguay-brookings"
+      ],
+      "rejected_draft_topics": [
+        "convention",
+        "uruguay"
+      ],
+      "selection_note": "Brookings relate directement les critiques OICS et l’adoption/mise en œuvre uruguayenne ; la référence documente le nouveau titre prudent, pas l’ancienne affirmation d’absence de critiques.",
+      "textual_review_note": "Négation n’ont pas empêché et adoption en Uruguay préservées ; ne pas revenir à l’ancien absolu aucune condamnation internationale.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0127",
+      "native_id": "A0135",
+      "source_title_fr": "Les Français sont favorables à ce que la vente et l'usage du cannabis soient autorisés sous certaines conditions",
+      "source_revision_id": 245655,
+      "source_sha256": "d4ac16ff0b541b1aad53c1d5729c495916b8e39e85544c37571c5c982f64422c",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les études de marché et le droit européen ne vérifient pas les enquêtes françaises conditionnelles ; pas de sondage étranger substitué.",
+      "textual_review_note": "Six/dix contre trois/dix, 78/85, 2008, restrictions adultes/conduite et 52 % avec contrôle étatique tous présents. Ne pas assimiler opposition vente libre à rejet de toute légalisation.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0128",
+      "native_id": "A0100",
+      "source_title_fr": "Les intérêts économiques des producteurs d'alcool peuvent peser sur la réglementation",
+      "source_revision_id": 245598,
+      "source_sha256": "59b597768a5fa9d299801a6c440af5ceafa11726c75a571f9c47ca8d9ac72cff",
+      "selected_source_ids": [
+        "S91012"
+      ],
+      "selected_topics": [
+        "industry-alcohol"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Le cas écossais atteste des stratégies d’influence sur la réglementation ; il n’établit pas la corruption alléguée dans le résumé français.",
+      "textual_review_note": "Titre prudent can influence et résumé source plus catégorique maintenus. Quatre citations relues : loi Évin, 60000 pages/145 cas, hypothèse bribes, campagnes rugby et choix des parlementaires ; puns knockout/heavyweights/economic weight cohérents.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0129",
+      "native_id": "A0134",
+      "source_title_fr": "Les pays ayant dépénalisé le cannabis font marche arrière",
+      "source_revision_id": 207524,
+      "source_sha256": "ff4eb256c5f8d7bfbbe27486f315e6e740338184afa1bddf8d2d3af543a5a257",
+      "selected_source_ids": [
+        "S92002"
+      ],
+      "selected_topics": [
+        "dutch"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les critères néerlandais sont vérifiés ; les évolutions d’autres pays ne sont pas généralisées à partir de ce seul cas.",
+      "textual_review_note": "Royaume-Uni, Labour et quatre ans gardés sans remplacer par données actuelles de classification. Accès non-résidents et distinction dur/doux gardés comme propos datés ; deux objections exactes.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0130",
+      "native_id": "A0152",
+      "source_title_fr": "Les pays et états ayant dépénalisé le cannabis sont de plus en plus nombreux",
+      "source_revision_id": 245631,
+      "source_sha256": "a27428eced69a7ebe95118c6416faf495cb29ecf9a77048d0800f57776ba0c9a",
+      "selected_source_ids": [
+        "S93003"
+      ],
+      "selected_topics": [
+        "euda-policy"
+      ],
+      "rejected_draft_topics": [
+        "canada-law",
+        "dutch"
+      ],
+      "selection_note": "EUDA décrit historiquement la diffusion de plusieurs réformes ; l’évolution du nombre de juridictions est documentée dans cette période, sans inventaire mondial en 2026.",
+      "textual_review_note": "More and more traduit de plus en plus et countries/states restent deux catégories, pas uniquement pays souverains.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0131",
+      "native_id": "A0151",
+      "source_title_fr": "Les Pays-Bas n'ont pas fait marche arrière sur la dépénalisation du cannabis",
+      "source_revision_id": 207525,
+      "source_sha256": "0b8bbbe4778f7fce1df3434b41820480fcf793d22da15c628987c170bb1b3055",
+      "selected_source_ids": [
+        "S92002"
+      ],
+      "selected_topics": [
+        "dutch"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Le droit de tolérance, les règles de résidence et leur application locale sont distingués ; aucune majorité d’opinion n’est déduite du site gouvernemental.",
+      "textual_review_note": "Merely conserve n’ont fait que ; majorité et amont de la chaîne logistique gardés, sans étendre le soutien à toute politique de vente libre.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0132",
+      "native_id": "A0107",
+      "source_title_fr": "Les ressources dégagées par la légalisation du cannabis risquent de devoir être utilisées pour lutter contre de nouveaux trafics",
+      "source_revision_id": 208670,
+      "source_sha256": "d0a80567f81bec15b5e0e6fa9879b5fcd4955e32e48f8484f432a89d41f9ddc7",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "rand"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. La discussion des effets et coûts ne prouve pas un report intégral des ressources sur d’autres trafics.",
+      "textual_review_note": "May have to conserve le risque de devoir réaffecter les moyens ; ne devient ni nécessité certaine ni simple possibilité de les dépenser ailleurs.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0133",
+      "native_id": "A0104",
+      "source_title_fr": "Les risques du cannabis doivent être distingués de ceux de l'alcool et du tabac",
+      "source_revision_id": 245594,
+      "source_sha256": "5aaa82821511da311b8ded1f9ced7f3e438d7d19c4a4442e1ca2e724fbbc86bd",
+      "selected_source_ids": [
+        "S91021",
+        "S91009"
+      ],
+      "selected_topics": [
+        "relative-harm",
+        "dependence"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les types de dommages et indicateurs de dépendance sont comparés sans assimiler toutes les dimensions sanitaires.",
+      "textual_review_note": "Must be distinguished respecte doivent être distingués : pas une affirmation de cannabis inoffensif ajoutée.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0134",
+      "native_id": "A0116",
+      "source_title_fr": "Les risques du cannabis sont particulièrement préoccupants lors d'une consommation précoce",
+      "source_revision_id": 245652,
+      "source_sha256": "8e5a34c567d69b7a6daf11dca74960710ca382997d6309ebce40113cb6fbc322",
+      "selected_source_ids": [
+        "S91010",
+        "S91011",
+        "S90005"
+      ],
+      "selected_topics": [
+        "early-use",
+        "use-route",
+        "nida"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Âge de début et modalités de réduction des risques sont documentés ; l’initiation précoce n’est pas présentée comme unique danger.",
+      "textual_review_note": "Particularly et début précoce conservés ; les deux citations opposées, leurs excès/toutes substances et cerveau jusqu’à environ 25 ans, restent distincts et complets. Crise de foie rendu idiomatiquement indigestion, non lésion hépatique inventée.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0135",
+      "native_id": "A0020",
+      "source_title_fr": "Les sanctions contre les consommateurs de cannabis ne sont pas dissuasives",
+      "source_revision_id": 206244,
+      "source_sha256": "8778626f105e4d8ad48d09164a20e8108ae1aef18cb119e4a59b82e3d8b192f8",
+      "selected_source_ids": [
+        "S91001"
+      ],
+      "selected_topics": [
+        "youth-europe"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les effets non uniformes des réformes empêchent de traiter toutes les sanctions comme également inefficaces.",
+      "textual_review_note": "Seulement personnes déjà moins susceptibles, aucune corrélation et pas de hausse significative restent distincts de pas de causalité ; deux paragraphes Q141 complets. Trois relations et pronom elles dans le libellé anglais they préservés.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0136",
+      "native_id": "A0111",
+      "source_title_fr": "Les études américaines sur le lien entre cannabis et consommation d'alcool ne vont pas toutes dans le même sens",
+      "source_revision_id": 206586,
+      "source_sha256": "1c12363324e279fa505a37f35d971abbf22c06ed7ffecce66999f0590c6668f0",
+      "selected_source_ids": [
+        "S91005"
+      ],
+      "selected_topics": [
+        "alcohol-substitute"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "La revue anglaise est directement pertinente pour l’hétérogénéité des résultats sur alcool et cannabis.",
+      "textual_review_note": "Do not all conserve pas toutes ; environ quarante, seize substituts et dix compléments, et nom de la statisticienne sont préservés, sans attribuer une conclusion aux autres études.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0137",
+      "native_id": "A0079",
+      "source_title_fr": "Légaliser le cannabis est la porte ouverte à la légalisation des drogues dures",
+      "source_revision_id": 207539,
+      "source_sha256": "bbd64bea273205e4af8cb42cf10ef9fcf734c90eb30f1cf791cb7a1c90e40709",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les études sur le cannabis médical et l’économie du cannabis ne démontrent pas la légalisation ultérieure des drogues dures ; aucune preuve d’une pente inévitable n’est ajoutée.",
+      "textual_review_note": "Métaphore porte ouverte conservée sans inevitably ; citation garde dépénalisation et accusation de recrutement, trois objections dont étiquette Slippery slope fallacy laissées sous forme source.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0138",
+      "native_id": "A0078",
+      "source_title_fr": "Légaliser le cannabis, c'est le soumettre aux lois du marché",
+      "source_revision_id": 207537,
+      "source_sha256": "617fe7890c8859890061780a79ebb056689beba7b44897f30efd622ea03eb0a8",
+      "selected_source_ids": [
+        "S90001"
+      ],
+      "selected_topics": [
+        "rand"
+      ],
+      "rejected_draft_topics": [
+        "canada-law"
+      ],
+      "selection_note": "Plusieurs architectures réglementaires existent ; les lois du marché ne signifient pas nécessairement absence de contrôle public.",
+      "textual_review_note": "Trois prises de parole N.M./M.H./N.M. sont complètes : intérêt commercial, exception monopole/contrôle d’État puis objection européenne. Deux objections au bon sens, aucun effacement du dialogue contradictoire.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0139",
+      "native_id": "A0141",
+      "source_title_fr": "Légaliser les drogues dures serait bénéfique pour la société",
+      "source_revision_id": 245632,
+      "source_sha256": "a3ed70f582c71f1df1dfc795cefad5bdd79971255b3797b6863cd1cb816f3b05",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "portugal"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Le Portugal documente une dépénalisation, pas un marché légal de toutes les drogues ; il n’est donc pas ajouté comme preuve du bénéfice de toute légalisation.",
+      "textual_review_note": "Conditionnel bénéfice pour société conservé, sans introduire une préférence actuelle du traducteur.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0140",
+      "native_id": "A0109",
+      "source_title_fr": "On peut dissocier l'utilisation thérapeutique et l'utilisation récréative du cannabis",
+      "source_revision_id": 245633,
+      "source_sha256": "ddcbc3b6dbb2506eae71ac4371b485000c4d31a8a13787d1912def92d6f21b9e",
+      "selected_source_ids": [
+        "S90002"
+      ],
+      "selected_topics": [
+        "canada"
+      ],
+      "rejected_draft_topics": [
+        "canada-law",
+        "medical-benefits"
+      ],
+      "selection_note": "Le panel canadien développe la nécessité de maintenir un programme médical distinct du circuit non médical : séparation des régimes et suivi clinique, pas simple constat d’efficacité thérapeutique.",
+      "textual_review_note": "Can be kept separate préserve possibilité de dissociation thérapeutique/récréative, pas une séparation déjà universellement réalisée.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0141",
+      "native_id": "A0118",
+      "source_title_fr": "On peut réduire les risques du cannabis en jouant sur le mode de consommation",
+      "source_revision_id": 206610,
+      "source_sha256": "4ec5cd2301cdc821f34cd8a9ac1c0d8a7bd8e3f7ce40c508316ec8d839d688c4",
+      "selected_source_ids": [
+        "S91011",
+        "S90005"
+      ],
+      "selected_topics": [
+        "use-route",
+        "nida"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les recommandations distinguent combustion, puissance, fréquence et âge ; réduire le risque n’est pas le supprimer.",
+      "textual_review_note": "Can et modes d’usage conservés ; expertise usagers, so-called soft/hard et critique abstinence en France, toutes parties de Q146 présentes.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0142",
+      "native_id": "A0144",
+      "source_title_fr": "On peut tout à fait dépénaliser toutes les drogues",
+      "source_revision_id": 245634,
+      "source_sha256": "7dc249ab491f44a948c10187c153c181b243e6a7052b1a0770b330a3f2457a84",
+      "selected_source_ids": [
+        "S90003"
+      ],
+      "selected_topics": [
+        "portugal"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Le rapport portugais documente l’exemple de décriminalisation de l’usage personnel, sans légalisation du trafic.",
+      "textual_review_note": "Entirely possible et toutes drogues préservés ; patients rather than offenders fidèle malgré faute maladesd dans la source, sans reprise de la faute ni nouvelle donnée portugaise.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0143",
+      "native_id": "A0139",
+      "source_title_fr": "Parmi les États ayant légalisé le cannabis, aucun n'a légalisé de drogue dure",
+      "source_revision_id": 207540,
+      "source_sha256": "c367ad00ba4b2683ef647b90f5602849a6dcd6d4b6a7832283a8db75dc65bb62",
+      "selected_source_ids": [
+        "S90003"
+      ],
+      "selected_topics": [
+        "portugal"
+      ],
+      "rejected_draft_topics": [
+        "canada-law"
+      ],
+      "selection_note": "Le rapport Portugal développe la dépénalisation de l’usage personnel évoquée dans le résumé. Il n’est pas transformé en preuve de légalisation générale, ni en vérification de toute la liste internationale.",
+      "textual_review_note": "Aucun État et aucune drogue dure gardés ; nuance petites quantités/certaines drogues et remarque alcool considéré dur par certains maintenues. Pour cohérence littérale, préserver or entre exemples Portugal/République tchèque.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0144",
+      "native_id": "A0145",
+      "source_title_fr": "Pour un mineur, avec la légalisation du cannabis, il serait plus difficile de s'approvisionner en magasin qu'actuellement au marché noir",
+      "source_revision_id": 245635,
+      "source_sha256": "8a7cdf081542c8ba5afe6f2e477c6f03428e16ab0119effabfc25a85215c121b",
+      "selected_source_ids": [
+        "S92002",
+        "S90001"
+      ],
+      "selected_topics": [
+        "dutch",
+        "rand"
+      ],
+      "rejected_draft_topics": [
+        "canada"
+      ],
+      "selection_note": "Les contrôles d’identité néerlandais et les scénarios RAND de vérification d’âge développent le mécanisme de restriction en magasin ; ils ne prouvent pas une impossibilité absolue d’accès pour un mineur.",
+      "textual_review_note": "Comparaison conditionnelle commerces/marché noir actuel conservée. Résumé, y compris thèse médicale forte et guillemets autour de protéger, restitué sans correction documentaire silencieuse.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0145",
+      "native_id": "A0085",
+      "source_title_fr": "Quand une loi aggrave un problème qu'elle était censée résoudre, il devient urgent de l'abolir",
+      "source_revision_id": 245636,
+      "source_sha256": "33d69e7b4aece35f4369b0d703608fc47200dd5af2a9d824ff46567ce1d8d6f2",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. La conclusion normative sur une loi aggravante ne reçoit pas une référence empirique hors sujet sur la migration ou les entreprises zombies.",
+      "textual_review_note": "Condition quand, aggravation d’un problème censé être résolu et urgence d’abolition inchangées ; pas de règle ajoutée pour tout échec.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0146",
+      "native_id": "A0121",
+      "source_title_fr": "Si le cannabis est dangereux, pourquoi en confier la gestion au crime organisé ?",
+      "source_revision_id": 245637,
+      "source_sha256": "ddcbc3b6dbb2506eae71ac4371b485000c4d31a8a13787d1912def92d6f21b9e",
+      "selected_source_ids": [
+        "S90001"
+      ],
+      "selected_topics": [
+        "rand"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "Les options de régulation et leurs risques sont comparées ; la question rhétorique demeure une question, sans transformation en thèse générée.",
+      "textual_review_note": "Question conditionnelle gardée comme question, avec objet cannabis explicite ; pas de transformation en affirmation de génération.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0147",
+      "native_id": "A0114",
+      "source_title_fr": "Si le cannabis est légalisé avec des restrictions, certains consommateurs continueront à se fournir au marché noir",
+      "source_revision_id": 245466,
+      "source_sha256": "bebf329f9fb577ba0bcccf4d97b17053f8769dab3fdc9e390b826ab24b68d330",
+      "selected_source_ids": [
+        "S90001"
+      ],
+      "selected_topics": [
+        "rand"
+      ],
+      "rejected_draft_topics": [
+        "dutch"
+      ],
+      "selection_note": "Restrictions légales et concurrence illicite sont documentées ; aucun pourcentage de consommateurs persistants n’est inventé.",
+      "textual_review_note": "Si restrictions et certains consommateurs conservés ; Q147 garde certaines formes, could also et puissance accrue, sans étendre à tous les consommateurs.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0148",
+      "native_id": "A0140",
+      "source_title_fr": "Sophisme de la pente glissante",
+      "source_revision_id": 245638,
+      "source_sha256": "10618dbd912b46d6f9cb471a3936a64f42d3c410323d4b79019d197335972540",
+      "selected_source_ids": [
+        "S93005"
+      ],
+      "selected_topics": [
+        "fallacies"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "La notice spécialisée de Hansen développe le raisonnement par chaîne de conséquences et l’insuffisance de ses maillons ; elle documente le sophisme sans inventer d’appellation supplémentaire.",
+      "textual_review_note": "Étiquette doctrinale courte Slippery slope fallacy conservée ; absence de résumé/citation et de established-name ajouté automatiquement respectée.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0149",
+      "native_id": "A0096",
+      "source_title_fr": "Taxer tous les marchés illicites serait irresponsable",
+      "source_revision_id": 245484,
+      "source_sha256": "74b6bc60a86d7ca13985e2361f5721a797fe28a0a79dfbf41fac752a5f141bc7",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Le désaccord normatif sur l’extension de la taxation n’est pas démontré par une étude de prix du cannabis ; aucun article non pertinent ajouté.",
+      "textual_review_note": "Every illicit market et exemple child sexual abuse material rendent les deux catégories sources ; should, cynical et irresponsible maintenus, sans faire du raisonnement une proposition du traducteur.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0150",
+      "native_id": "A0138",
+      "source_title_fr": "Un contrôle d'État de la vente de cannabis est possible en France, à l'image de l'alcool",
+      "source_revision_id": 245640,
+      "source_sha256": "4a4ebfd551e41556a1770a8eea36a684cf0671d36724cdfdc2986a2133210c84",
+      "selected_source_ids": [],
+      "selected_topics": [],
+      "rejected_draft_topics": [
+        "canada-law",
+        "dutch"
+      ],
+      "selection_note": "Aucun ajout retenu : les documents trouvés ne développent pas suffisamment ce raisonnement particulier. Les formes de contrôle public sont concrètement attestées à l’étranger ; leur faisabilité juridique en France reste à démontrer séparément.",
+      "textual_review_note": "Possible contrôle d’État, pays France et analogie alcool conservés ; aucune édition juridique ou forme de monopole nouvelle insérée.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0151",
+      "native_id": "A0055",
+      "source_title_fr": "Un marché noir du cannabis peut subsister après sa légalisation",
+      "source_revision_id": 245656,
+      "source_sha256": "413a2c99b6c247a0b77f8d14c045bc74fa66574623b6cf763f8248e024ff9849",
+      "selected_source_ids": [
+        "S90001",
+        "S90002"
+      ],
+      "selected_topics": [
+        "rand",
+        "canada"
+      ],
+      "rejected_draft_topics": [],
+      "selection_note": "La concurrence avec le marché illicite est documentée, sans transformer les 80 % californiens de la citation en chiffre actuel vérifié.",
+      "textual_review_note": "May/can, important marché noir et alternative taxation OU producteurs non régulés conservés ; 80 % et Californie restent assertions de Q148, pas statistiques vérifiées pour 2026.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    },
+    {
+      "delivery_id": "A0152",
+      "native_id": "A0033",
+      "source_title_fr": "Une distribution réglementée peut imposer des limites aux stratégies commerciales",
+      "source_revision_id": 245657,
+      "source_sha256": "4aee1b0f3daeab647e313ca431b9e516cfea22ce4cb75a031b03c05fac717e8b",
+      "selected_source_ids": [
+        "S92006",
+        "S93001"
+      ],
+      "selected_topics": [
+        "canada-law",
+        "uruguay-brookings"
+      ],
+      "rejected_draft_topics": [
+        "canada"
+      ],
+      "selection_note": "La loi canadienne et le dispositif uruguayen Brookings développent les limites légales à la promotion et à la distribution ; leur efficacité totale n’est pas postulée.",
+      "textual_review_note": "Can et limites aux stratégies commerciales conservés. Toute Q149 relue : clientèle régulière/nouvelle, puissance/qualité non contrôlées, enfants, modes d’usage dépendance, modes commerciales, prix, dumping géographique et rentabilité mondiale présents.",
+      "documentary_selection_reviewed": true,
+      "quotation_authenticity_fully_verified": false,
+      "native_lot_closed": false,
+      "reviewer": "Codex — sélection documentaire par raisonnement",
+      "reviewed_at": "2026-10-21T12:06:56.035339+00:00"
+    }
+  ],
+  "historical_citation_authenticity_not_claimed": true,
+  "exhaustive_literature_search_not_claimed": true,
+  "release_archive_sha256": "fbb70744a0b0d67fdf4a556999cebb038babf754386a7ca6fca43584a6340cf4"
+}

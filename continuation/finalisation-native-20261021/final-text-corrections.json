@@ -1,0 +1,113 @@
+{
+  "changes": [
+    {
+      "page_id": "A0051",
+      "field": "canonical_title_and_exact_displayed_label",
+      "before": "The law is enforced, and enforcement has become more punitive since 2001",
+      "after": "The law is not only enforced; enforcement has intensified since 2001",
+      "reason": "Renforcement de la répression : intensification sans restriction à la sévérité des sanctions."
+    },
+    {
+      "page_id": "A0051",
+      "quote_id": "Q061",
+      "field": "quote",
+      "before": "“Over the past ten years, the range of punitive measures has clearly expanded,” explains Mr Bergeron, who speaks of “a trend towards recriminalisation”. “Drug addiction has not escaped the drive for zero tolerance running through society as a whole, which translates into harsher criminal penalties,” observes Nicole Maestracci, a judge who chaired the Interministerial Mission for the Fight against Drugs and Drug Addiction (MILDT) from 1998 to 2002.",
+      "after": "“Over the past ten years, the range of punitive measures has clearly expanded,” explains Mr Bergeron, who speaks of “a trend towards recriminalisation”. “Drug addiction has not escaped the drive for zero tolerance running through society as a whole, which translates into increased use of criminal penalties,” observes Nicole Maestracci, a judge who chaired the Interministerial Mission for the Fight against Drugs and Drug Addiction (MILDT) from 1998 to 2002.",
+      "reason": "Pénalisation accrue : augmentation du recours aux sanctions pénales, sans affirmer seulement une sévérité accrue."
+    },
+    {
+      "page_id": "A0030",
+      "quote_id": "Q026",
+      "field": "quote",
+      "before": "Although this behaviour [breaking the rules] exists, it concerns a minority. The ban prevents far more of our young people from using cannabis than it attracts to it. Trying a prohibited substance produces a strong nocebo effect, and experiencing it discourages the person from trying again—hence the large gap between the number of people who have tried cannabis and the number who use it regularly.",
+      "after": "If this behaviour [breaking the rules] exists, it is confined to a minority. The ban prevents far more of our young people from using cannabis than it attracts to it. Trying a prohibited substance produces a strong nocebo effect, and experiencing it discourages the person from trying again—hence the large gap between the number of people who have tried cannabis and the number who use it regularly.",
+      "reason": "Maintien explicite du si source, sans affirmer inconditionnellement l’existence du comportement."
+    },
+    {
+      "page_id": "A0050",
+      "quote_id": "Q060",
+      "field": "quote",
+      "before": "Quite apart from being outdated, the 1970 law is no longer understood by cannabis users. They recognise that its risks differ from those of other drugs and that regular use is harmful, but they also know that occasional recreational use is possible, just as it is for the many other French people who use alcohol.",
+      "after": "Quite apart from being outdated, the 1970 law is no longer understood by cannabis users. They recognise that its risks differ from those of other drugs and that regular use is harmful, but they also know that cannabis can be used occasionally for recreation, just as many other French people use alcohol.",
+      "reason": "Comparaison directe des usages ; suppression de la tournure ambiguë just as it is for."
+    },
+    {
+      "page_id": "A0081",
+      "quote_id": "Q081",
+      "field": "quote",
+      "before": "By the early 1930s, the experiment's failure was obvious and widely acknowledged. It was clear that Prohibition had produced a boom in organised crime and had helped corruption spread considerably through politics and the judiciary. It had also caused obvious damage to public finances: lost tax and customs revenues were substantial, while fraud and smuggling were out of control.\nNor was there any decisive fall in alcohol consumption to offset this heavy toll. Quite the contrary!",
+      "after": "By the early 1930s, the experiment's failure was obvious and very widely acknowledged. It was clear that Prohibition had produced a boom in organised crime and had helped corruption spread considerably through politics and the judiciary. It had also caused obvious damage to public finances: lost tax and customs revenues were very substantial, while fraud and smuggling were out of control.\nNor was there any decisive fall in alcohol consumption to offset this heavy toll. Quite the contrary!",
+      "reason": "Maintien du degré très largement reconnu. Maintien aussi de très substantiel pour les recettes perdues."
+    },
+    {
+      "page_id": "A0083",
+      "quote_id": "Q083",
+      "field": "quote",
+      "before": "The cannabis market reveals a fundamental paradox. The more punitive enforcement becomes, the higher the price paid by consumers, through a basic economic mechanism. This makes drug production more profitable and intensifies the cannabis trade. In short, the harder we crack down, the more the cannabis trade flourishes…",
+      "after": "The cannabis market reveals a fundamental paradox. The more enforcement intensifies, the higher the price paid by consumers, through a basic economic mechanism. This makes drug production more profitable and intensifies the cannabis trade. In short, the harder we crack down, the more the cannabis trade flourishes…",
+      "reason": "Répression accrue : intensité sans restriction à la sévérité des sanctions."
+    },
+    {
+      "page_id": "A0114",
+      "quote_id": "Q118",
+      "field": "quote",
+      "before": "At the beginning of the twenty-first century, the painkiller OxyContin is selling like hot cakes.\n\nPrescribed for anything and everything, from the mildest headache to an inflamed knee, this “miracle” pill—normally intended for people with terminal cancer—is heavily marketed, and its use made to seem entirely routine.\n\nAnd with good reason: its use rests on a misleading percentage, turned into a selling point by Purdue's sales representatives, who repeat it like a slogan:\n\n“Fewer than 1% of patients who use OxyContin become addicted to it.”\n\nA thoroughly false percentage, as hundreds of thousands of Americans soon become hooked on OxyContin, some to the point of taking excessive amounts.\n\nThe United States consequently sees a terrible rise in overdoses, under the indifferent gaze of a pharmaceutical company making a fortune.\n\nThat very company—one of the compelling features of Dopesick is that it reveals the plans of both Purdue's top executives and their critics—has only one thing in mind: exceeding a billion dollars in revenue, even if it means sacrificing its patients.",
+      "after": "At the beginning of the twenty-first century, the painkiller OxyContin is selling like hot cakes.\n\nPrescribed for anything and everything, from the mildest headache to an inflamed knee, this “miracle” pill—normally intended for people with terminal cancer—is heavily marketed, and its use made to seem entirely routine.\n\nThis is because its use rests on a misleading percentage, turned into a selling point by Purdue's sales representatives, who repeat it like a slogan:\n\n“Fewer than 1% of patients who use OxyContin become addicted to it.”\n\nA thoroughly false percentage, as hundreds of thousands of Americans soon become hooked on OxyContin, some to the point of taking excessive amounts.\n\nThe United States consequently sees a terrible rise in overdoses, under the indifferent gaze of a pharmaceutical company making a fortune.\n\nThat very company—one of the compelling features of Dopesick is that it reveals the plans of both Purdue's top executives and their critics—has only one thing in mind: exceeding a billion dollars in revenue, even if it means sacrificing its patients.",
+      "reason": "Et pour cause indique une explication causale ; ne pas donner une apparence d’approbation à un pourcentage trompeur."
+    },
+    {
+      "page_id": "A0135",
+      "quote_id": "Q142",
+      "field": "quote",
+      "before": "Most young people smoke it anyway; if all we do is punish them, trafficking will continue.",
+      "after": "Most young people smoke it anyway; if we rely solely on punitive enforcement, trafficking will continue.",
+      "reason": "La répression seule n’est pas limitée aux seuls jeunes par le pronom them, absent de cette proposition française."
+    },
+    {
+      "page_id": "A0007",
+      "field": "canonical_or_displayed_title",
+      "before": "Countries such as Uruguay tightly regulate the cannabis market",
+      "after": "Some countries, such as Uruguay, tightly regulate the cannabis market",
+      "reason": "Conserver explicitement certains ; aucune généralisation sur tous les pays."
+    },
+    {
+      "page_id": "A0065",
+      "field": "canonical_or_displayed_title",
+      "before": "Cannabis legalisation would empty prisons and ease the burden on police and courts",
+      "after": "Cannabis legalisation could empty prisons and ease the burden on police and courts",
+      "reason": "Permettrait de décrit une possibilité rendue accessible, sans annoncer un résultat assuré."
+    },
+    {
+      "page_id": "A0088",
+      "field": "canonical_or_displayed_title",
+      "before": "Cannabis prohibition deprives the state of substantial revenue, and leaving this market untaxed effectively subsidises it",
+      "after": "Cannabis prohibition deprives the state of substantial revenue, and allowing this market to grow untaxed effectively subsidises it",
+      "reason": "Conserver laisser se développer, et pas seulement l’absence de taxe."
+    },
+    {
+      "page_id": "A0117",
+      "field": "canonical_or_displayed_title",
+      "before": "Less so than alcohol, which is legal",
+      "after": "It is less addictive than alcohol, which is legal",
+      "reason": "Conserver la proposition source Il l’est ; référent addictif confirmé par le parent A0117."
+    },
+    {
+      "page_id": "A0088",
+      "field": "canonical_or_displayed_title",
+      "before": "Substantial loss of state revenue. Leaving a market untaxed effectively subsidises it",
+      "after": "Substantial loss of state revenue. Allowing a market to grow untaxed effectively subsidises it",
+      "reason": "Conserver explicitement le développement du marché dans ce libellé contextuel."
+    },
+    {
+      "page_id": "A0001",
+      "quote_id": "Q002",
+      "field": "quote_data_alignment",
+      "before": "“Over the past ten years, the range of punitive measures has clearly expanded,” explains Mr Bergeron, who speaks of “a trend towards recriminalisation”. “Drug addiction has not escaped the drive for zero tolerance running through society as a whole, which translates into harsher criminal penalties,” observes Nicole Maestracci, a judge who chaired the Interministerial Mission for the Fight against Drugs and Drug Addiction (MILDT) from 1998 to 2002.",
+      "after": "“Over the past ten years, the range of punitive measures has clearly expanded,” explains Mr Bergeron, who speaks of “a trend towards recriminalisation”. “Drug addiction has not escaped the drive for zero tolerance running through society as a whole, which translates into increased use of criminal penalties,” observes Nicole Maestracci, a judge who chaired the Interministerial Mission for the Fight against Drugs and Drug Addiction (MILDT) from 1998 to 2002.",
+      "reason": "Seconde occurrence du même texte français que Q061 : donnée structurée et fiche native alignées sur le rendu déjà corrigé."
+    }
+  ],
+  "french_changed": false,
+  "summaries_changed": false,
+  "citations_removed": false
+}

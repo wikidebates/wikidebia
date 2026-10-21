@@ -1,0 +1,2519 @@
+{
+  "schema": "wikidebia-validator-report-1.0",
+  "schema_version": "1.0",
+  "validator_version": "0.4.105",
+  "producer": {
+    "component": "validator",
+    "version": "0.4.105"
+  },
+  "package_root": "extracted",
+  "scopes": [
+    "schema",
+    "coherence",
+    "graph",
+    "batches",
+    "sources",
+    "files",
+    "wikicode",
+    "bilingual",
+    "editorial",
+    "workflow"
+  ],
+  "result": "passed",
+  "result_scope": "automated_validation",
+  "result_meaning": "Automated structural, documentary and encoded editorial checks only; bilingual semantic fidelity still depends on the required human review attestations.",
+  "validation_layers": {
+    "structural": {
+      "status": "passed",
+      "errors": 0,
+      "warnings": 0,
+      "infos": 153,
+      "meaning": "Schémas, fichiers, graphe, wikicode, cohérence et workflow automatisables."
+    },
+    "documentary": {
+      "status": "passed",
+      "errors": 0,
+      "warnings": 0,
+      "infos": 3,
+      "meaning": "Identité, langue, usages, métadonnées et cohérence normalisée des ressources documentaires."
+    },
+    "semantic_review": {
+      "status": "passed",
+      "errors": 0,
+      "warnings": 0,
+      "infos": 57,
+      "meaning": "Heuristiques bilingues et présence/cohérence des attestations humaines encodées; ce statut ne remplace pas la lecture humaine elle-même."
+    },
+    "fresh_archive": {
+      "status": "not_run",
+      "errors": 0,
+      "warnings": 0,
+      "infos": 0,
+      "meaning": "Ce statut ne peut être établi qu'après création puis réextraction de l'archive exacte; il est scellé par le workflow de release."
+    }
+  },
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "infos": 213
+  },
+  "metrics": {
+    "runtime_attestation": {
+      "mode": "component_script_isolated_v2",
+      "cli_sha256": "6338d5bc331d22d66467c09b4ad2f2616b3c29db9b8c32c15e0f6d4c3f43a8d7",
+      "editorial_sha256": "d3d0633b8152ffd4b2c5132c71d3f005af45e5e7093e55e72eec27030cec8b05",
+      "wikicode_sha256": "85f8bfb82eab86e106dddca9511d87c639d2cd3039920470b1a0d791a1a335c3",
+      "historical_summary_sha256": "b987c154a4dbc09ad7a6376a4b348422ca373226832e2f2f20f956788cc7428a"
+    },
+    "coherence": {
+      "debate_id": "cannabis",
+      "english_translation_deferred": false
+    },
+    "graph": {
+      "main_pro": 8,
+      "main_con": 5,
+      "justifications_by_depth": {
+        "2": 60,
+        "3": 10
+      },
+      "objections_by_depth": {
+        "2": 19,
+        "3": 62,
+        "4": 6
+      },
+      "distinct_nodes": 152,
+      "total_occurrences": 170,
+      "reused_nodes": 13,
+      "additional_reuses": 18,
+      "developed_nodes": 50,
+      "leaf_nodes": 102,
+      "maximum_depth": 4
+    },
+    "batches": {
+      "count": 2,
+      "fr_owned": 152,
+      "en_owned": 152,
+      "english_translation_deferred": false
+    },
+    "sources": {
+      "count": 41,
+      "verified": 41
+    },
+    "documentary_resources": {
+      "count": 41,
+      "conflicts": 0,
+      "doi_identities": 0,
+      "url_identities": 41,
+      "bibliographic_fingerprints": 0
+    },
+    "files": {
+      "declared_pages": 306,
+      "core_files": 5
+    },
+    "wikicode": {
+      "declared_pages": 306,
+      "parsed_pages": 306
+    },
+    "bilingual": {
+      "active_nodes": 152,
+      "strict": true,
+      "english_translation_status": "ready",
+      "skipped_for_deferred_translation": false
+    },
+    "semantic_marker_engine": {
+      "summary_pages_with_signals": 13
+    },
+    "editorial": {
+      "active_nodes": 152,
+      "canonical_display_copy_ratio": {
+        "fr": 0.3355263157894737,
+        "fr_effective_after_owner_exception": 0.3355263157894737,
+        "fr_owner_exception_count": 0,
+        "en": 0.34210526315789475,
+        "en_effective_after_owner_exception": 0.34210526315789475,
+        "en_owner_exception_count": 0
+      },
+      "dominant_keyword_set_ratio": {
+        "fr": 0.24342105263157895,
+        "en": 0.24342105263157895
+      },
+      "generated_dominant_keyword_set_ratio": {
+        "fr": 0.0,
+        "en": 0.0
+      },
+      "displayed_title_quality_errors": {
+        "fr": 0,
+        "en": 0
+      },
+      "keyword_quality_errors": {
+        "fr": 0,
+        "en": 0
+      },
+      "dominant_classification_ratio": {
+        "fr": 0.3684210526315789,
+        "en": 0.3684210526315789
+      },
+      "summary_auto_objections": {
+        "fr": 0,
+        "en": 0
+      },
+      "summary_bilingual_ratio_errors": 0,
+      "documentary_pagination_errors": 0,
+      "documentary_access_date_errors": 0,
+      "debate_documentation": {
+        "fr": {
+          "introduction_subsections": 4,
+          "documentary_references": 24,
+          "bucket_counts": [
+            11,
+            1,
+            3,
+            2,
+            1,
+            3,
+            2,
+            0,
+            1
+          ],
+          "distinct_bucket_counts": [
+            11,
+            1,
+            3,
+            2,
+            1,
+            3,
+            2,
+            0,
+            1
+          ],
+          "profile_minima": {
+            "subsections": 1,
+            "references": 0
+          },
+          "profile_rationale": "Profil provisoire sans quota par orientation; la revue éditoriale retiendra uniquement les sous-parties et sources réellement informatives."
+        },
+        "en": {
+          "introduction_subsections": 4,
+          "documentary_references": 4,
+          "bucket_counts": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0
+          ],
+          "distinct_bucket_counts": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0
+          ],
+          "profile_minima": {
+            "subsections": 1,
+            "references": 0
+          },
+          "profile_rationale": "Profil provisoire sans quota par orientation; la revue éditoriale retiendra uniquement les sous-parties et sources réellement informatives."
+        }
+      },
+      "introduction_references": {
+        "fr": {
+          "subsections": 4,
+          "ref_calls": 4,
+          "references_blocks": 3,
+          "invalid_subsections": [
+            2,
+            3,
+            4
+          ],
+          "minimum": 1,
+          "claim_driven_policy": true,
+          "expected_inline_reference_model": null,
+          "inline_reference_body_mode": "direct_wikicode_without_templates",
+          "invalid_inline_reference_models": [],
+          "invalid_direct_reference_notes": [],
+          "undefined_named_references": [],
+          "machine_documentary_dates": [],
+          "terminal_period_reference_notes": [
+            {
+              "subsection": 2,
+              "body_sha256": "48ed9c2a59a0c03df8ae0d00ef67946159f1b6f7a2d50f4e9a59b8288cbee164",
+              "body_excerpt": "[https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf EMCDDA, Portugal — Country Drug Report 2019, rubrique « National drug laws »]."
+            },
+            {
+              "subsection": 3,
+              "body_sha256": "72e52dc4b87c1415c0105fdf6845c22ba586c9cde2f4a08f179b6853aad057f5",
+              "body_excerpt": "[https://www.service-public.gouv.fr/particuliers/vosdroits/F33341 Que risque-t-on pour usage de drogues ?], Service Public / DILA, fiche vérifiée le 21 août 2026."
+            },
+            {
+              "subsection": 4,
+              "body_sha256": "723b297ecc6af3c12ae8a4bd45b1730e842201f555cd8f97021c0d010c76b62c",
+              "body_excerpt": "[https://www.canada.ca/fr/sante-canada/services/publications/drogues-medicaments/examen-legislatif-loi-cannabis-rapport-final-comite-experts.html Examen législatif de la Loi sur le"
+            }
+          ],
+          "punctuation_policy_revision": "1.2.44",
+          "historical_preservation_exception": true
+        },
+        "en": {
+          "subsections": 4,
+          "ref_calls": 4,
+          "references_blocks": 0,
+          "invalid_subsections": [],
+          "minimum": 1,
+          "claim_driven_policy": true,
+          "expected_inline_reference_model": null,
+          "inline_reference_body_mode": "direct_wikicode_without_templates",
+          "invalid_inline_reference_models": [],
+          "invalid_direct_reference_notes": [],
+          "undefined_named_references": [],
+          "machine_documentary_dates": [],
+          "terminal_period_reference_notes": [],
+          "punctuation_policy_revision": "1.2.44"
+        }
+      },
+      "normative_non_regression": {
+        "active_norms": [
+          "WIKIDEBIA_NORME_CONSOLIDEE_1.2.88.md"
+        ],
+        "current_handoff": "handoffs/EN-CANNABIS-20261021-render.json"
+      },
+      "individual_editorial_review": {
+        "reviewed_nodes": 152,
+        "title_reformulated": 0,
+        "title_retained_after_review": 152,
+        "rubrics_adjusted": 0,
+        "rubric_rationales": 257,
+        "issues": 0
+      },
+      "graph_placement_review": {
+        "path": "reviews/graph_placement_review.json",
+        "reviewed_occurrences": 170,
+        "main_arguments": 13,
+        "moved_after_review": 0,
+        "issues": 0
+      },
+      "summary_style": {
+        "heuristic_warnings": 0,
+        "opening_similarity_warnings": 0,
+        "quantitative_summaries": 0,
+        "reviewed_language_pages": 304,
+        "review_issues": 0
+      },
+      "introduction_review": {
+        "path": "reviews/introduction_review.json",
+        "languages": [
+          "en",
+          "fr"
+        ],
+        "subsection_titles": {
+          "fr": [
+            "",
+            "Dépénalisation et légalisation : deux réformes différentes",
+            "Où en est la France ?",
+            "Comparer les expériences étrangères"
+          ],
+          "en": [
+            "",
+            "Decriminalisation and legalisation: two different reforms",
+            "The legal position in France",
+            "Comparing experience in other countries"
+          ]
+        },
+        "issues": []
+      },
+      "creation_date_errors": 0,
+      "traceability": {
+        "reports_missing": [],
+        "handoffs_declared": 1,
+        "handoffs_checked": 1,
+        "handoffs_missing": [],
+        "remote_write_authorized": false
+      },
+      "semantic_convergence": {
+        "required": true,
+        "status": "converged",
+        "passes": 2,
+        "issues": []
+      },
+      "english_translation_status": "ready",
+      "english_translation_deferred": false
+    },
+    "workflow": {
+      "global_status": "release_ready",
+      "passed_validation_scopes": [
+        "bilingual",
+        "en_debate",
+        "en_global",
+        "en_titles",
+        "fr_debate",
+        "fr_global",
+        "graph",
+        "interlanguage"
+      ],
+      "english_translation_status": "ready",
+      "english_translation_deferred": false
+    }
+  },
+  "findings": [
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/debate/debate.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0001.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0002.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0003.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0004.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0005.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0006.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0007.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0008.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0009.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0010.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0011.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0012.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0013.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0014.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0015.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0016.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0017.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0018.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0019.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0020.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0021.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0022.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0023.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0024.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0025.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0026.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0027.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0028.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0029.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0030.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0031.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0032.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0033.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0034.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0035.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0036.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0037.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0038.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0039.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0040.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0041.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0042.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0043.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0044.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0045.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0046.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0047.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0048.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0049.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0050.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0051.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0052.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0053.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0054.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0055.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0056.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0057.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0058.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0059.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0060.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0061.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0062.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0063.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0064.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0065.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0066.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0067.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0068.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0069.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0070.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0071.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0072.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0073.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0074.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0075.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0076.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0077.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0078.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0079.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0080.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0081.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0082.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0083.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0084.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0085.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0086.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0087.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0088.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0089.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0090.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0091.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0092.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0093.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0094.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0095.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0096.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0097.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0098.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0099.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0100.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0101.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0102.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0103.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0104.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0105.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0106.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0107.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0108.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0109.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0110.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0111.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0112.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0113.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0114.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0115.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0116.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0117.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0118.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0119.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0120.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0121.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0122.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0123.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0124.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0125.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0126.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0127.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0128.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0129.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0130.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0131.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0132.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0133.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0134.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0135.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0136.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0137.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0138.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0139.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0140.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0141.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0142.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0143.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0144.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0145.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0146.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0147.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0148.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0149.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0150.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0151.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-023",
+      "level": "INFO",
+      "message": "Page française historique conservée exactement ; seul le lien interlangue a été ajouté",
+      "path": "output/fr/arguments/A0152.wiki",
+      "pointer": null,
+      "details": {}
+    },
+    {
+      "code": "WDV-MWK-024",
+      "level": "INFO",
+      "message": "Ratio lexical faible mais seconde revue humaine de complétude attestée",
+      "path": "output/en/arguments/A0034.wiki",
+      "pointer": "quotes/1",
+      "details": {
+        "citation_id": "A0034-C001",
+        "fr_words": 20,
+        "en_words": 11,
+        "ratio": 0.55
+      }
+    },
+    {
+      "code": "WDV-MWK-024",
+      "level": "INFO",
+      "message": "Ratio lexical faible mais seconde revue humaine de complétude attestée",
+      "path": "output/en/arguments/A0123.wiki",
+      "pointer": "quotes/1",
+      "details": {
+        "citation_id": "A0123-C001",
+        "fr_words": 98,
+        "en_words": 50,
+        "ratio": 0.51
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0015",
+        "field": "canonical_title",
+        "fr_text": "Ce n'est pas parce qu'une politique a échoué que l'on doit y renoncer",
+        "en_text": "The failure of a policy is not in itself a reason to abandon it",
+        "marker_families": [
+          "necessity"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0015",
+        "fr_title": "Ce n'est pas parce qu'une politique a échoué que l'on doit y renoncer",
+        "en_title": "The failure of a policy is not in itself a reason to abandon it",
+        "marker_families": [
+          "necessity"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0016",
+        "field": "canonical_title",
+        "fr_text": "Le cannabis reste très accessible",
+        "en_text": "Cannabis remains readily available",
+        "marker_families": [
+          "strong_intensity"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0016",
+        "fr_title": "Le cannabis reste très accessible",
+        "en_title": "Cannabis remains readily available",
+        "marker_families": [
+          "strong_intensity"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0028",
+        "field": "canonical_title",
+        "fr_text": "La prohibition du cannabis expose les usagers à l'univers des dealers et à des drogues plus dures",
+        "en_text": "Cannabis prohibition exposes users to drug dealers and harder drugs",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0028",
+        "fr_title": "Exposition à l'univers des dealers et à des drogues plus dures",
+        "en_title": "Exposure to drug dealers and harder drugs",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0029",
+        "field": "canonical_title",
+        "fr_text": "La prohibition du cannabis génère beaucoup de contrôles qui peuvent toucher tout le monde",
+        "en_text": "Cannabis prohibition leads to numerous checks that can affect anyone",
+        "marker_families": [
+          "universal_quantifier"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0029",
+        "fr_title": "La prohibition génère beaucoup de contrôles qui peuvent toucher tout le monde",
+        "en_title": "Prohibition leads to numerous checks that can affect anyone",
+        "marker_families": [
+          "universal_quantifier"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0030",
+        "field": "canonical_title",
+        "fr_text": "La prohibition du cannabis entraîne le développement d'une économie parallèle très lucrative avec ses conséquences : corruption, blanchiment d'argent, recrutement de jeunes, violence, insécurité, trafic d'armes",
+        "en_text": "Cannabis prohibition creates a highly lucrative underground economy with corruption, money laundering, youth recruitment, violence, insecurity and arms trafficking",
+        "marker_families": [
+          "strong_intensity"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0045",
+        "field": "canonical_title",
+        "fr_text": "La loi de 1970 sur les drogues n'est plus comprise par les usagers",
+        "en_text": "Users no longer understand France's 1970 drug law",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0045",
+        "fr_title": "Elle n'est plus comprise par les usagers",
+        "en_title": "Users no longer understand it",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0047",
+        "field": "canonical_title",
+        "fr_text": "Conserver les sanctions pénales de la loi de 1970 sur les drogues qui ne sont pratiquement plus appliquées n'est pas sain",
+        "en_text": "Retaining the largely unenforced criminal penalties in France's 1970 drug law is unsound",
+        "marker_families": [
+          "comparison",
+          "negation"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0047",
+        "fr_title": "Conserver une sanction pénale qui n'est pratiquement plus appliquée n'est pas sain",
+        "en_title": "Retaining a largely unenforced criminal penalty is unsound",
+        "marker_families": [
+          "comparison",
+          "negation"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0057",
+        "field": "canonical_title",
+        "fr_text": "La légalisation du cannabis peut faire baisser la mortalité par overdose de drogues plus dures",
+        "en_text": "Cannabis legalisation may reduce deaths from overdoses of harder drugs",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0057",
+        "fr_title": "La légalisation peut faire baisser la mortalité par overdose de drogues plus dures",
+        "en_title": "Legalisation may reduce deaths from overdoses of harder drugs",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0064",
+        "field": "canonical_title",
+        "fr_text": "Les comportements addictifs sont très peu sensibles aux lois",
+        "en_text": "Addictive behaviours are largely unresponsive to legislation",
+        "marker_families": [
+          "strong_intensity"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0064",
+        "fr_title": "Les comportements addictifs sont très peu sensibles aux lois",
+        "en_title": "Addictive behaviours are largely unresponsive to legislation",
+        "marker_families": [
+          "strong_intensity"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0075",
+        "field": "canonical_title",
+        "fr_text": "Il ne faut pas toucher à la législation sur le cannabis en vigueur",
+        "en_text": "Existing cannabis legislation should be left unchanged",
+        "marker_families": [
+          "negation"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0075",
+        "fr_title": "Il ne faut pas toucher à la législation en vigueur",
+        "en_title": "Existing legislation should be left unchanged",
+        "marker_families": [
+          "negation"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0085",
+        "field": "canonical_title",
+        "fr_text": "Quand une loi aggrave un problème qu'elle était censée résoudre, il devient urgent de l'abolir",
+        "en_text": "When a law worsens the problem it was meant to solve, repealing it becomes urgent",
+        "marker_families": [
+          "attribution"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0088",
+        "field": "canonical_title",
+        "fr_text": "Le tabac et l'alcool, licites, sont très attractifs",
+        "en_text": "Legal tobacco and alcohol are highly appealing",
+        "marker_families": [
+          "strong_intensity"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0088",
+        "fr_title": "Le tabac et l'alcool, licites, sont très attractifs",
+        "en_title": "Legal tobacco and alcohol are highly appealing",
+        "marker_families": [
+          "strong_intensity"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0089",
+        "field": "canonical_title",
+        "fr_text": "L'interdit rend plus attractif",
+        "en_text": "Prohibition increases appeal",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0089",
+        "fr_title": "L'interdit rend plus attractif",
+        "en_title": "Prohibition increases appeal",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0098",
+        "field": "canonical_title",
+        "fr_text": "L'alcool et le tabac sont parmi les substances les plus addictogènes et nocives",
+        "en_text": "Alcohol and tobacco are among the most addictive and harmful substances",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0098",
+        "fr_title": "L'alcool et le tabac sont parmi les substances les plus addictogènes et nocives",
+        "en_title": "Alcohol and tobacco are among the most addictive and harmful substances",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0112",
+        "field": "canonical_title",
+        "fr_text": "En cas de légalisation du cannabis, les trafics se reporteraient sur d'autres produits, à moins de légaliser toutes les drogues, ce qui parait difficile",
+        "en_text": "Cannabis legalisation would shift trafficking to other substances unless all drugs were legalised, which seems difficult",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0112",
+        "fr_title": "Les trafics se reporteraient sur d'autres produits. Pour que cela n'arrive pas, il faudrait légaliser toutes les drogues, ce qui parait difficile",
+        "en_title": "Trafficking would shift to other substances. Preventing this would require legalising all drugs, which seems difficult",
+        "marker_families": [
+          "negation"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0120",
+        "field": "canonical_title",
+        "fr_text": "Il n'est pas légitime de punir quelqu'un pour un dommage qu'il se fait à lui-même",
+        "en_text": "Punishing people for harm they do to themselves is illegitimate",
+        "marker_families": [
+          "negation"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0120",
+        "fr_title": "Il n'est pas légitime de punir quelqu'un pour un dommage qu'il se fait à lui-même",
+        "en_title": "Punishing people for harm they do to themselves is illegitimate",
+        "marker_families": [
+          "negation"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0128",
+        "field": "canonical_title",
+        "fr_text": "C'est avant tout l'alcool qui est responsable d'accidents de la route",
+        "en_text": "Alcohol is chiefly responsible for road accidents",
+        "marker_families": [
+          "universal_quantifier"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0128",
+        "fr_title": "C'est avant tout l'alcool qui est responsable",
+        "en_title": "Alcohol is chiefly responsible",
+        "marker_families": [
+          "universal_quantifier"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-008",
+      "level": "INFO",
+      "message": "Structure sémantique FR→EN possiblement déplacée dans le titre affiché ; revue humaine requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0136",
+        "field": "displayed_title",
+        "fr_text": "Une réforme peut se défendre même sans soutien majoritaire",
+        "en_text": "A reform can be justified even without majority support",
+        "signals": [
+          "unsupported_qualifier_lost"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0137",
+        "field": "canonical_title",
+        "fr_text": "Certains pays comme l'Uruguay encadrent fortement le marché du cannabis",
+        "en_text": "Some countries, such as Uruguay, tightly regulate the cannabis market",
+        "marker_families": [
+          "strong_intensity"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0137",
+        "fr_title": "Certains pays comme l'Uruguay encadrent fortement le marché du cannabis",
+        "en_title": "Some countries, such as Uruguay, tightly regulate the cannabis market",
+        "marker_families": [
+          "strong_intensity"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0143",
+        "field": "canonical_title",
+        "fr_text": "Le prix de vente est ce qui joue un rôle déterminant dans la consommation de cannabis",
+        "en_text": "Retail price plays a decisive role in cannabis consumption",
+        "marker_families": [
+          "consequence_link"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0145",
+        "field": "canonical_title",
+        "fr_text": "Pour un mineur, avec la légalisation du cannabis, il serait plus difficile de s'approvisionner en magasin qu'actuellement au marché noir",
+        "en_text": "Legalisation would make buying cannabis in shops harder for minors than obtaining it on the black market today",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0145",
+        "fr_title": "Pour un mineur, il serait plus difficile de s'approvisionner en magasin qu'actuellement au marché noir",
+        "en_title": "Buying in shops would be harder for minors than obtaining cannabis on the black market today",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre canonique anglais ; revue bilingue requise",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0152",
+        "field": "canonical_title",
+        "fr_text": "Les pays et états ayant dépénalisé le cannabis sont de plus en plus nombreux",
+        "en_text": "More and more countries and states have decriminalised cannabis",
+        "marker_families": [
+          "many_quantifier"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le titre anglais ; revue bilingue requise avant toute correction",
+      "path": "data/registre_debat.json",
+      "pointer": null,
+      "details": {
+        "node_id": "A0152",
+        "fr_title": "Les pays et états ayant dépénalisé le cannabis sont de plus en plus nombreux",
+        "en_title": "More and more countries and states have decriminalised cannabis",
+        "marker_families": [
+          "many_quantifier"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-006",
+      "level": "INFO",
+      "message": "Ratio EN/FR atypique d’un résumé historique revu et explicitement justifié",
+      "path": null,
+      "pointer": null,
+      "details": {
+        "node_id": "A0009",
+        "word_ratio_en_over_fr": 1.5,
+        "historical_source": true,
+        "rationale": "La source très courte emploie des contractions et composés français : la formulation anglaise déploie les mêmes actions, sans ajout de proposition ni de degré. Le ratio lexical atypique est une différence de segmentation, relue face au texte complet."
+      }
+    },
+    {
+      "code": "WDV-EDT-010",
+      "level": "INFO",
+      "message": "Contrôles de création des références inline non appliqués rétroactivement à une introduction française historique préservée",
+      "path": "output/fr/debate/debate.wiki",
+      "pointer": null,
+      "details": {
+        "subsections": 4,
+        "ref_calls": 4,
+        "references_blocks": 3,
+        "invalid_subsections": [
+          2,
+          3,
+          4
+        ],
+        "minimum": 1,
+        "claim_driven_policy": true,
+        "expected_inline_reference_model": null,
+        "inline_reference_body_mode": "direct_wikicode_without_templates",
+        "invalid_inline_reference_models": [],
+        "invalid_direct_reference_notes": [],
+        "undefined_named_references": [],
+        "machine_documentary_dates": [],
+        "terminal_period_reference_notes": [
+          {
+            "subsection": 2,
+            "body_sha256": "48ed9c2a59a0c03df8ae0d00ef67946159f1b6f7a2d50f4e9a59b8288cbee164",
+            "body_excerpt": "[https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf EMCDDA, Portugal — Country Drug Report 2019, rubrique « National drug laws »]."
+          },
+          {
+            "subsection": 3,
+            "body_sha256": "72e52dc4b87c1415c0105fdf6845c22ba586c9cde2f4a08f179b6853aad057f5",
+            "body_excerpt": "[https://www.service-public.gouv.fr/particuliers/vosdroits/F33341 Que risque-t-on pour usage de drogues ?], Service Public / DILA, fiche vérifiée le 21 août 2026."
+          },
+          {
+            "subsection": 4,
+            "body_sha256": "723b297ecc6af3c12ae8a4bd45b1730e842201f555cd8f97021c0d010c76b62c",
+            "body_excerpt": "[https://www.canada.ca/fr/sante-canada/services/publications/drogues-medicaments/examen-legislatif-loi-cannabis-rapport-final-comite-experts.html Examen législatif de la Loi sur le"
+          }
+        ],
+        "punctuation_policy_revision": "1.2.44",
+        "historical_preservation_exception": true
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le résumé anglais ; revue bilingue requise",
+      "path": "output/en/arguments/A0008.wiki",
+      "pointer": null,
+      "details": {
+        "node_id": "A0008",
+        "field": "summary",
+        "marker_families": [
+          "universal_quantifier"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le résumé anglais ; revue bilingue requise",
+      "path": "output/en/arguments/A0036.wiki",
+      "pointer": null,
+      "details": {
+        "node_id": "A0036",
+        "field": "summary",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le résumé anglais ; revue bilingue requise",
+      "path": "output/en/arguments/A0061.wiki",
+      "pointer": null,
+      "details": {
+        "node_id": "A0061",
+        "field": "summary",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le résumé anglais ; revue bilingue requise",
+      "path": "output/en/arguments/A0077.wiki",
+      "pointer": null,
+      "details": {
+        "node_id": "A0077",
+        "field": "summary",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le résumé anglais ; revue bilingue requise",
+      "path": "output/en/arguments/A0093.wiki",
+      "pointer": null,
+      "details": {
+        "node_id": "A0093",
+        "field": "summary",
+        "marker_families": [
+          "condition"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le résumé anglais ; revue bilingue requise",
+      "path": "output/en/arguments/A0096.wiki",
+      "pointer": null,
+      "details": {
+        "node_id": "A0096",
+        "field": "summary",
+        "marker_families": [
+          "condition"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le résumé anglais ; revue bilingue requise",
+      "path": "output/en/arguments/A0100.wiki",
+      "pointer": null,
+      "details": {
+        "node_id": "A0100",
+        "field": "summary",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le résumé anglais ; revue bilingue requise",
+      "path": "output/en/arguments/A0127.wiki",
+      "pointer": null,
+      "details": {
+        "node_id": "A0127",
+        "field": "summary",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le résumé anglais ; revue bilingue requise",
+      "path": "output/en/arguments/A0136.wiki",
+      "pointer": null,
+      "details": {
+        "node_id": "A0136",
+        "field": "summary",
+        "marker_families": [
+          "consequence_link",
+          "negation"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le résumé anglais ; revue bilingue requise",
+      "path": "output/en/arguments/A0139.wiki",
+      "pointer": null,
+      "details": {
+        "node_id": "A0139",
+        "field": "summary",
+        "marker_families": [
+          "comparison",
+          "interpretation_status"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-008",
+      "level": "INFO",
+      "message": "Structure sémantique FR→EN possiblement déplacée dans le résumé ; revue humaine requise",
+      "path": "output/en/arguments/A0139.wiki",
+      "pointer": null,
+      "details": {
+        "node_id": "A0139",
+        "field": "summary",
+        "signals": [
+          "interpretation_status_lost"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le résumé anglais ; revue bilingue requise",
+      "path": "output/en/arguments/A0144.wiki",
+      "pointer": null,
+      "details": {
+        "node_id": "A0144",
+        "field": "summary",
+        "marker_families": [
+          "interpretation_status"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-008",
+      "level": "INFO",
+      "message": "Structure sémantique FR→EN possiblement déplacée dans le résumé ; revue humaine requise",
+      "path": "output/en/arguments/A0144.wiki",
+      "pointer": null,
+      "details": {
+        "node_id": "A0144",
+        "field": "summary",
+        "signals": [
+          "interpretation_status_lost"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le résumé anglais ; revue bilingue requise",
+      "path": "output/en/arguments/A0145.wiki",
+      "pointer": null,
+      "details": {
+        "node_id": "A0145",
+        "field": "summary",
+        "marker_families": [
+          "comparison",
+          "many_quantifier"
+        ]
+      }
+    },
+    {
+      "code": "WDV-BIL-007",
+      "level": "INFO",
+      "message": "Marqueurs sémantiques français possiblement perdus dans le résumé anglais ; revue bilingue requise",
+      "path": "output/en/arguments/A0151.wiki",
+      "pointer": null,
+      "details": {
+        "node_id": "A0151",
+        "field": "summary",
+        "marker_families": [
+          "comparison"
+        ]
+      }
+    },
+    {
+      "code": "WDV-DOC-001",
+      "level": "INFO",
+      "message": "Revue éditoriale humaine EN-CANNABIS-20261021-RENDER enregistrée et contrôles automatisés réussis.",
+      "path": "reports/render_report.json",
+      "pointer": null,
+      "details": {}
+    }
+  ]
+}
