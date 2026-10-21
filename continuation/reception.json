@@ -1,0 +1,78 @@
+{
+  "schema": "wikidebia-translation-takeover-reception-1.0",
+  "archive_sha256": "b317df79f35b047af2bdead55c5adbdb33c835fae528ed69f0de78e5d8332eda",
+  "checks": [
+    {
+      "check": "archive_sha256",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "zip_crc",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_339_declared_hashes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "file_coverage",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "original_french_zip_hash",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "all_original_french_bytes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "page_count",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "unique_ids_and_titles",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "page_hashes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "summary_and_quote_counts",
+      "passed": true,
+      "details": {
+        "quotes": 149,
+        "absent_summaries": 120,
+        "summaries": 32
+      }
+    },
+    {
+      "check": "A0037_restored_editorial_passage",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "A0116_restored_editorial_passage",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "not_publication_ready",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "official_kit_validation": false,
+  "documentation_complete": false,
+  "wiki_writes": false
+}
