@@ -235,6 +235,13 @@ def semantic_content_payload(review: Mapping[str, Any]) -> dict[str, Any]:
         if french.get("citation_passages") or arg.get("citation_passages"):
             item["fr_citation_passages"] = copy.deepcopy(french.get("citation_passages") or [])
             item["en_citation_passages"] = copy.deepcopy(arg.get("citation_passages") or [])
+        if french.get("citations") or arg.get("citations"):
+            item["fr_citations"] = copy.deepcopy(french.get("citations") or [])
+            item["en_citations"] = copy.deepcopy(arg.get("citations") or [])
+        if arg.get("relation_labels"):
+            item["relation_labels"] = copy.deepcopy(arg["relation_labels"])
+    if debate_final.get("relation_labels"):
+        payload["debate"]["relation_labels"] = copy.deepcopy(debate_final["relation_labels"])
     return payload
 
 def semantic_content_sha256(review: Mapping[str, Any]) -> str:
@@ -610,7 +617,7 @@ def _text(value: Any, label: str, minimum: int = 1) -> str:
     return value.strip()
 
 
-def _strings(value: Any, label: str) -> list[str]:
+def _strings(value: Any, label: str, *, allow_source_duplicates: bool = False) -> list[str]:
     if not isinstance(value, list):
         raise TranslationReviewError(f"{label} doit être une liste")
     result: list[str] = []
@@ -618,7 +625,7 @@ def _strings(value: Any, label: str) -> list[str]:
         if not isinstance(item, str) or not item.strip():
             raise TranslationReviewError(f"{label} contient une valeur vide")
         clean = item.strip()
-        if clean in result:
+        if clean in result and not allow_source_duplicates:
             raise TranslationReviewError(f"{label} contient un doublon : {clean}")
         result.append(clean)
     return result
@@ -679,6 +686,9 @@ def _source_snapshot(source: Path) -> tuple[dict[str, Any], dict[str, Any], dict
     metadata = load_json(source / "data/fr_page_metadata_lock.json", "verrou des métadonnées françaises")
     content = load_json(source / "data/fr_content_lock.json", "verrou du contenu français")
     _, _, imported = _source_imports(source)
+    if content.get("source_preservation_policy"):
+        from wikidebia_translation_source import verify_frozen_source
+        verify_frozen_source(source, metadata, content)
     locked = {r["id"]: r for r in content.get("arguments") or []}
     for row in imported:
         if (locked.get(row["id"], {}).get("citation_passages") or []) != (row.get("citation_passages") or []):
@@ -910,12 +920,12 @@ def _build_translation_review_units(argument_rows: Sequence[dict[str, Any]]) -> 
 
 def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrite: bool = False) -> dict[str, Any]:
     workspace, meta = _load_workspace(project_root, debate_id, work_id)
-    if meta.get("status") not in {"fr_content_applied", "en_translation_review_ready"}:
+    if meta.get("status") not in {"fr_content_applied", "fr_source_preserved", "en_translation_review_ready"}:
         raise TranslationReviewError(f"Statut incompatible avec la préparation anglaise : {meta.get('status')}")
     _assert_source_unchanged(project_root, debate_id, meta)
     source = _assert_content_copy(workspace, meta)
     readiness = load_json(workspace / "reviews/en/translation_readiness.json", "préparation anglaise")
-    if readiness.get("status") != "ready_for_translation":
+    if readiness.get("status") != "ready_for_translation" and not (overwrite and meta.get("status") == "en_translation_review_ready" and readiness.get("status") == "translation_review_in_progress"):
         raise TranslationReviewError("La préparation anglaise n’est pas ouverte")
     review_path = workspace / "reviews/en/translation_review.json"
     sources_path = workspace / "data/sources_en_working.json"
@@ -973,6 +983,9 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
         {"id": node_id, "review_risk": _translation_risk_profile(fr_meta_by_id[node_id], fr_content_by_id[node_id]), "translation": _blank_argument(fr_meta_by_id[node_id], fr_content_by_id[node_id])}
         for node_id in active_ids
     ]
+    if content_lock.get("source_preservation_policy"):
+        from wikidebia_translation_source import relation_labels_from_source
+        review["relation_labels"] = [{**r, "translated_text": "", "equivalent_to_french": False, "review_note": ""} for r in relation_labels_from_source(source)]
     review["review_units"] = _build_translation_review_units(review["arguments"])
     unit_by_page = {page_id: unit["id"] for unit in review["review_units"] for page_id in unit["page_ids"]}
     for item in review["arguments"]:
@@ -1359,8 +1372,11 @@ def _validate_sources(data: Mapping[str, Any], debate_id: str, french_ids: set[s
         if key in dedup:
             raise TranslationReviewError(f"Clé documentaire anglaise dupliquée : {key}")
         dedup.add(key)
-        by_id[sid] = copy.deepcopy(row)
-        result.append(copy.deepcopy(row))
+        projected = copy.deepcopy(row)
+        # Consultation receipts are working evidence, not source-registry fields.
+        projected.pop("evidence", None)
+        by_id[sid] = projected
+        result.append(copy.deepcopy(projected))
     return result, by_id
 
 
@@ -1511,9 +1527,10 @@ def _validate_vocabulary(rows: Any, french_entries: Sequence[Mapping[str, Any]])
     return result, mapping
 
 
-def _expected_sections(fr: Sequence[str]) -> list[str]:
+def _expected_sections(fr: Sequence[str], *, preserve_source_order: bool = False) -> list[str]:
     try:
-        return sorted((SECTION_MAP[item] for item in fr), key=lambda x: x.casefold())
+        values = [SECTION_MAP[item] for item in fr]
+        return sorted(values, key=lambda x: x.casefold())
     except KeyError as exc:
         raise TranslationReviewError(f"Rubrique française sans section anglaise contrôlée : {exc.args[0]}") from exc
 
@@ -1525,7 +1542,7 @@ def _expected_keywords(fr: Sequence[str], mapping: Mapping[str, str]) -> list[st
         raise TranslationReviewError(f"Mot-clé français sans équivalent anglais : {exc.args[0]}") from exc
 
 
-def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources: Mapping[str, Mapping[str, Any]], debate_id: str, *, authoritative_source_page_origin: str | None = None) -> dict[str, Any]:
+def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources: Mapping[str, Mapping[str, Any]], debate_id: str, *, authoritative_source_page_origin: str | None = None, authoritative_source_preservation_policy: str | None = None) -> dict[str, Any]:
     if row.get("status") != "approved":
         raise TranslationReviewError("Traduction de la page Debate non approuvée")
     fr_meta = ((row.get("french") or {}).get("metadata") or {})
@@ -1558,10 +1575,10 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
         "complete_topic": _semantic_risk_signals(fr_complete, complete),
     }
     sections = _strings(row.get("sections"), "sections de Debate")
-    expected_sections = _expected_sections(fr_meta.get("rubriques") or [])
+    expected_sections = _expected_sections(fr_meta.get("rubriques") or [], preserve_source_order=bool(authoritative_source_preservation_policy))
     if sections != expected_sections or row.get("sections_exactly_mapped") is not True:
         raise TranslationReviewError("Les sections anglaises de Debate ne correspondent pas aux rubriques françaises")
-    keywords = _strings(row.get("keywords"), "keywords de Debate")
+    keywords = _strings(row.get("keywords"), "keywords de Debate", allow_source_duplicates=bool(authoritative_source_preservation_policy))
     expected_keywords = _expected_keywords(fr_meta.get("keywords") or [], mapping)
     if keywords != expected_keywords or row.get("keywords_exactly_mapped") is not True:
         raise TranslationReviewError("Les keywords de Debate ne correspondent pas au vocabulaire contrôlé")
@@ -1604,10 +1621,12 @@ def _validate_debate(row: Mapping[str, Any], mapping: Mapping[str, str], sources
     if not isinstance(subsections, list) or not subsections:
         raise TranslationReviewError("L’introduction anglaise doit comporter des sous-parties")
     stakes_rows = []
-    for sub in subsections:
+    for subsection_index, sub in enumerate(subsections):
         if not isinstance(sub, dict):
             raise TranslationReviewError("Sous-partie anglaise invalide")
-        subtitle = _text(sub.get("title"), "titre de sous-partie anglaise", 3)
+        source_subsections = fr_content.get("subsections") or []
+        source_title_absent = source_page_origin == "preexisting" and subsection_index < len(source_subsections) and not str(source_subsections[subsection_index].get("title") or "").strip()
+        subtitle = "" if source_title_absent and not str(sub.get("title") or "").strip() else _text(sub.get("title"), "titre de sous-partie anglaise", 3)
         _text(sub.get("purpose"), "fonction de sous-partie anglaise", 12)
         if sub.get("necessary_for_understanding") is not True or sub.get("relevance_to_debate_explained") is not True:
             raise TranslationReviewError("Chaque sous-partie anglaise doit être nécessaire et contextualisée")
@@ -1788,7 +1807,7 @@ def _validate_argument_name_discovery(row: Mapping[str, Any], node_id: str, page
     }
 
 
-def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sources: Mapping[str, Mapping[str, Any]], *, authoritative_source_page_origin: str | None = None) -> dict[str, Any]:
+def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sources: Mapping[str, Mapping[str, Any]], *, authoritative_source_page_origin: str | None = None, authoritative_source_preservation_policy: str | None = None) -> dict[str, Any]:
     node_id = _text(item.get("id"), "identifiant d’argument")
     row = item.get("translation") or {}
     if row.get("status") != "approved":
@@ -1843,9 +1862,9 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
     if source_form == "proposition" and row.get("displayed_title_is_complete_proposition") is not True:
         raise TranslationReviewError(f"Un displayed-title source propositionnel doit rester propositionnel en anglais : {node_id}")
     sections = _strings(row.get("sections"), f"sections de {node_id}")
-    if sections != _expected_sections(fr_meta.get("rubriques") or []) or row.get("sections_exactly_mapped") is not True:
+    if sections != _expected_sections(fr_meta.get("rubriques") or [], preserve_source_order=bool(authoritative_source_preservation_policy)) or row.get("sections_exactly_mapped") is not True:
         raise TranslationReviewError(f"Sections anglaises divergentes pour {node_id}")
-    keywords = _strings(row.get("keywords"), f"keywords de {node_id}")
+    keywords = _strings(row.get("keywords"), f"keywords de {node_id}", allow_source_duplicates=bool(authoritative_source_preservation_policy))
     if keywords != _expected_keywords(fr_meta.get("keywords") or [], mapping) or row.get("keywords_exactly_mapped") is not True:
         raise TranslationReviewError(f"Keywords anglais divergents pour {node_id}")
     if source_page_origin == "new" and not 2 <= len(keywords) <= 4:
@@ -1956,7 +1975,12 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
                 raise TranslationReviewError(f"L’expression de force anglaise est absente du summary de {node_id}")
         numbers = NUMBER.findall(_plain(summary))
         if numbers and (row.get("quantitative_claims_verified") is not True or len(str(row.get("quantitative_claims_note") or "").strip()) < 12):
-            raise TranslationReviewError(f"Donnée chiffrée anglaise non vérifiée dans {node_id}")
+            from wikidebia_translation_source import POLICY, historical_numbers_preserved
+            preserved = historical_summary and authoritative_source_preservation_policy == POLICY and fr_content.get("source_preservation_policy") == POLICY
+            if not (preserved and row.get("historical_quantitative_transfer_reviewed") is True
+                    and len(str(row.get("historical_quantitative_transfer_note") or "").strip()) >= 24
+                    and historical_numbers_preserved(fr_summary, summary)):
+                raise TranslationReviewError(f"Donnée chiffrée anglaise non vérifiée dans {node_id}")
     citations = _validate_citations(row.get("citations"), fr_content.get("citations") or [], node_id)
     try:
         passages = validate_translations(row.get("citation_passages", []), fr_content.get("citation_passages") or [], node_id)
@@ -1991,6 +2015,8 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
         "source_page_origin": source_page_origin, "forceful_expression": expression,
         "quantitative_claims": numbers, "quantitative_claims_verified": bool(row.get("quantitative_claims_verified")),
         "quantitative_claims_note": row.get("quantitative_claims_note"),
+        "historical_quantitative_transfer_reviewed": bool(row.get("historical_quantitative_transfer_reviewed")),
+        "historical_quantitative_transfer_note": row.get("historical_quantitative_transfer_note"),
         "reviewer": row.get("reviewer"), "reviewed_at": row.get("reviewed_at"), "note": row.get("note"),
         "argument_name": argument_name, "argument_name_discovery": name_discovery,
         "canonical_title_semantic_inventory_reviewed": True,
@@ -2057,9 +2083,13 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
     english_rows, by_source = _validate_sources(load_json(workspace / "data/sources_en_working.json", "sources anglaises"), debate_id, french_ids)
     vocabulary, keyword_map = _validate_vocabulary(review.get("vocabulary"), vocabulary_fr.get("entries") or [])
     authoritative_debate_origin = _french_source_page_origin(metadata_lock.get("debate") or {}, content_lock.get("debate") or {})
+    source_policy = content_lock.get("source_preservation_policy")
+    if source_policy and (review.get("debate") or {}).get("french") != {"metadata": metadata_lock.get("debate"), "content": content_lock.get("debate")}:
+        raise TranslationReviewError("La source française intégrée de Debate diffère du snapshot gelé")
     final_debate = _validate_debate(
         review.get("debate") or {}, keyword_map, by_source, debate_id,
         authoritative_source_page_origin=authoritative_debate_origin,
+        authoritative_source_preservation_policy=source_policy,
     )
     items = review.get("arguments")
     if not isinstance(items, list):
@@ -2073,7 +2103,15 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
     for item in items:
         node_id = str(item.get("id") or "")
         authoritative_origin = _french_source_page_origin(fr_meta_by_id.get(node_id) or {}, fr_content_by_id.get(node_id) or {})
-        final_arguments.append(_validate_argument(item, keyword_map, by_source, authoritative_source_page_origin=authoritative_origin))
+        if source_policy and (item.get("translation") or {}).get("french") != {"metadata": fr_meta_by_id.get(node_id), "content": fr_content_by_id.get(node_id)}:
+            raise TranslationReviewError("Source française intégrée divergente du snapshot gelé : " + node_id)
+        final_arguments.append(_validate_argument(item, keyword_map, by_source, authoritative_source_page_origin=authoritative_origin, authoritative_source_preservation_policy=source_policy))
+    if source_policy:
+        from wikidebia_translation_source import validate_relation_labels
+        contextual_labels = validate_relation_labels(review.get("relation_labels"), source)
+        final_debate["relation_labels"] = [r for r in contextual_labels if r["source_page_id"] == "debate"]
+        for argument in final_arguments:
+            argument["relation_labels"] = [r for r in contextual_labels if r["source_page_id"] == argument["id"]]
     canonical_titles = [row["canonical_title"].casefold() for row in final_arguments]
     if len(set(canonical_titles)) != len(canonical_titles) or final_debate["canonical_title"].casefold() in canonical_titles:
         raise TranslationReviewError("Collision de titres canoniques anglais")
@@ -2305,6 +2343,15 @@ def _build_translated_copy(project_root: Path, source: Path, target: Path, revie
         },
     }
     vocabulary = load_json(target / "data/keyword_vocabulary.json", "vocabulaire français")
+    if content_lock.get("source_preservation_policy") or load_json(source / "data/fr_content_lock.json", "source française").get("source_preservation_policy"):
+        for entry in vocabulary.get("entries") or []:
+            multiword = len(str(entry.get("fr") or "").split()) > 1
+            entry.update(scope="site_navigation",cross_debate_reusable=True,local_frequency_is_validity_criterion=False,
+                usage_count_in_debate=len(entry.get("usages") or []),atomic_concept=True,compositional_intersection=False,
+                multiword_exception=multiword)
+            if multiword:
+                entry["multiword_exception_rationale"] = "Locution thématique conservée et relue dans la traduction : " + str(entry["fr"])
+        write_json(target / "data/keyword_vocabulary.json", vocabulary)
     by_fr = {row["fr"]: row for row in final["vocabulary"]}
     bilingual_entries = []
     for row in vocabulary.get("entries") or []:
@@ -2445,16 +2492,63 @@ def apply_review(project_root: Path, debate_id: str, work_id: str, confirm_revie
     return {"status": "en_translation_applied", "debate_id": debate_id, "work_id": work_id, "review_sha256": review["review_sha256"], "translated_copy": relative_to_project(target, project_root), "translated_copy_tree_sha256": tree_hash, "arguments": len(review["final_values"]["arguments"]), "sources": len(review["final_values"]["sources"]), "vocabulary_entries": len(review["final_values"]["vocabulary"]), "relations_mutated": False, "occurrences_mutated": False, "french_locks_mutated": False, "final_pages_generated": False, "remote_access": False, "validator_result": result["validator_result"]}
 
 
+def reopen_review(project_root: Path, debate_id: str, work_id: str, *, reviewer: str, note: str) -> dict[str, Any]:
+    workspace, meta = _load_workspace(project_root, debate_id, work_id)
+    applied = meta.get("status") == "en_translation_applied"
+    if meta.get("status") not in {"en_translation_review_finalized", "en_translation_applied"} or (workspace / "rendered-copy").exists():
+        raise TranslationReviewError("Seule une revue finalisée avant rendu peut être rouverte")
+    if applied and full_tree_sha256(workspace / "translated-copy") != (meta.get("translated_copy") or {}).get("tree_sha256"):
+        raise TranslationReviewError("La copie appliquée a changé ; réouverture refusée")
+    if not applied and (workspace / "translated-copy").exists():
+        raise TranslationReviewError("Copie appliquée sans reçu cohérent")
+    _text(reviewer, "relecteur de la réouverture", 3)
+    _text(note, "motif de la réouverture", 24)
+    _assert_source_unchanged(project_root, debate_id, meta)
+    _assert_content_copy(workspace, meta)
+    path = workspace / "reviews/en/translation_review.json"
+    review = load_json(path, "revue finalisée")
+    if review.get("status") != "approved" or review.get("review_sha256") != translation_review_sha256(review):
+        raise TranslationReviewError("La revue à archiver n’est pas un artefact scellé valide")
+    old_sha = review["review_sha256"]
+    archive = workspace / "reviews/en/history" / ("translation_review." + old_sha + ".json")
+    if archive.exists() and archive.read_bytes() != path.read_bytes():
+        raise TranslationReviewError("Archive de revue déjà occupée par un autre contenu")
+    if applied:
+        previous = workspace / "reviews/en/history" / ("translated-copy." + old_sha)
+        if previous.exists():
+            raise TranslationReviewError("Archive de copie appliquée déjà occupée")
+        previous.parent.mkdir(parents=True, exist_ok=True)
+        os.replace(workspace / "translated-copy", previous)
+        meta.setdefault("translation_application_history", []).append(copy.deepcopy(meta["translated_copy"]))
+        meta.pop("translated_copy", None)
+    archive.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(path, archive)
+    review.update(status="draft", review_sha256=None, reopening={"previous_review_sha256": old_sha, "reviewer": reviewer, "note": note, "reopened_at": now_iso()})
+    for key in ("final_values", "finalized_at", "semantic_content_sha256", "source_registry_sha256"):
+        review.pop(key, None)
+    write_json(path, review)
+    meta["status"] = "en_translation_review_ready"
+    meta["english_translation_review"] = {"status": "reopened", "previous_review_sha256": old_sha}
+    meta["workspace_sha256"] = None
+    meta["workspace_sha256"] = workspace_receipt_hash(meta)
+    write_json(workspace / "workspace.json", meta)
+    return {"status": "en_translation_review_ready", "archived_review_sha256": old_sha, "reviewer": reviewer, "note": note}
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Préparer, finaliser ou appliquer la traduction anglaise contrôlée.")
     parser.add_argument("debate_id")
     parser.add_argument("--work-id", required=True)
     action = parser.add_mutually_exclusive_group(required=True)
     action.add_argument("--prepare", action="store_true")
+    action.add_argument("--freeze-imported-source", action="store_true", help="Geler les pages françaises publiées telles qu’importées, sans réécriture ni revérification documentaire revendiquée")
+    action.add_argument("--reopen-review", action="store_true", help="Archiver et rouvrir une revue finalisée avant rendu, en préservant toute copie appliquée")
     action.add_argument("--finalize", action="store_true")
     action.add_argument("--apply", action="store_true")
     parser.add_argument("--overwrite-review", action="store_true")
     parser.add_argument("--confirm-review-sha256")
+    parser.add_argument("--reviewer")
+    parser.add_argument("--note")
     parser.add_argument("--project-root", type=Path, required=True)
     parser.add_argument("--machine-readable", action="store_true")
     return parser
@@ -2467,7 +2561,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.apply and not args.confirm_review_sha256:
         raise TranslationReviewError("--confirm-review-sha256 est obligatoire avec --apply")
     with exclusive_lock(project_root, args.debate_id, "editorial_translation_review"):
-        if args.prepare:
+        if args.reopen_review:
+            result = reopen_review(project_root, args.debate_id, work_id, reviewer=args.reviewer or "", note=args.note or "")
+        elif args.freeze_imported_source:
+            from wikidebia_translation_source import freeze_imported_source
+            result = freeze_imported_source(project_root, args.debate_id, work_id, reviewer=args.reviewer or "", note=args.note or "")
+        elif args.prepare:
             result = prepare_review(project_root, args.debate_id, work_id, overwrite=args.overwrite_review)
         elif args.finalize:
             result = finalize_review(project_root, args.debate_id, work_id)

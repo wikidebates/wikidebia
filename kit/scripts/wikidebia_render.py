@@ -57,6 +57,43 @@ class RenderError(WorkspaceError):
     pass
 
 
+def _render_preserved_french(source: Path, content: Mapping[str, Any], target_title: str) -> str:
+    """Add the interlanguage link without rebuilding any historical parameter."""
+    from wikidebia_graph_extract import _template_spans, _split_top_level, normalize_key, parse_template
+    path = source / str(content.get("import_path") or "")
+    if not path.is_file() or sha256_file(path) != content.get("import_sha256"):
+        raise RenderError("Import français historique absent ou modifié")
+    text = path.read_text(encoding="utf-8")
+    # Preserve offsets and comments, unlike the extraction parser's comment removal.
+    masked = re.sub(r"<!--.*?-->", lambda m: " " * len(m.group()), text, flags=re.S)
+    candidates = []
+    for start, end in _template_spans(masked):
+        call = parse_template(masked[start:end])
+        if call and normalize_key(call.name) in {"debat", "argument"}:
+            candidates.append((start, end, call))
+    if len(candidates) != 1 or any(c in target_title for c in "|{}\r\n"):
+        raise RenderError("Modèle historique ou titre interlangue ambigu")
+    start, end, call = candidates[0]
+    link = _template("Lien interlangue", (("langue", "en"), ("page", target_title)))
+    if call.get("interlangue"):
+        if call.get("interlangue") != link:
+            raise RenderError("Un lien interlangue historique existe déjà ; revue explicite requise")
+        return text.rstrip("\n") + "\n"
+    segments = _split_top_level(text[start + 2:end - 2], "|")
+    keys = [(i, normalize_key(_split_top_level(segment, "=", maxsplit=1)[0])) for i, segment in enumerate(segments[1:], 1)]
+    existing = [i for i, key in keys if key == "interlangue"]
+    if len(existing) > 1:
+        raise RenderError("Paramètre interlangue historique dupliqué")
+    if existing:
+        i = existing[0]
+        segments[i] = segments[i] + link
+    else:
+        insertion = next((i for i, key in keys if key == "date creation"), len(segments))
+        segments.insert(insertion, "interlangue=" + link + "\n")
+    rendered = text[:start] + "{{" + "|".join(segments) + "}}" + text[end:]
+    return rendered.rstrip("\n") + "\n"
+
+
 def _workspace_path(project_root: Path, debate_id: str, work_id: str) -> Path:
     debate_id = validate_debate_id(debate_id)
     work_id = validate_work_id(work_id)
@@ -256,7 +293,7 @@ def _citation_template(citation: Mapping[str, Any], *, lang: str) -> str:
     return _template("Citation" if lang == "fr" else "Quote", rows)
 
 
-def _relations(registry: Mapping[str, Any], node_id: str, relation: str, lang: str) -> str:
+def _relations(registry: Mapping[str, Any], node_id: str, relation: str, lang: str, contextual_labels: Sequence[Mapping[str, Any]] = ()) -> str:
     nodes = {str(node.get("id")): node for node in (registry.get("graph") or {}).get("nodes") or [] if node.get("status") == "active"}
     edges = [
         edge for edge in (registry.get("graph") or {}).get("edges") or []
@@ -270,11 +307,12 @@ def _relations(registry: Mapping[str, Any], node_id: str, relation: str, lang: s
             raise RenderError(f"Nœud enfant absent : {edge.get('child_node_id')}")
         data = child.get(lang) or {}
         display_param = "titre-affiché" if lang == "fr" else "displayed-title"
-        rendered.append(_template(relation.title(), (("page", data.get("canonical_title")), (display_param, data.get("displayed_title")))))
+        label = next((r.get("translated_text") if lang == "en" else r.get("source_text") for r in contextual_labels if r.get("id") == "edge:" + str(edge.get("id"))), data.get("displayed_title"))
+        rendered.append(_template(relation.title(), (("page", data.get("canonical_title")), (display_param, label))))
     return _sequence(rendered)
 
 
-def _main_arguments(registry: Mapping[str, Any], branch: str, lang: str) -> str:
+def _main_arguments(registry: Mapping[str, Any], branch: str, lang: str, contextual_labels: Sequence[Mapping[str, Any]] = ()) -> str:
     nodes = {str(node.get("id")): node for node in (registry.get("graph") or {}).get("nodes") or [] if node.get("status") == "active"}
     occurrences = [
         occurrence for occurrence in (registry.get("graph") or {}).get("occurrences") or []
@@ -294,7 +332,8 @@ def _main_arguments(registry: Mapping[str, Any], branch: str, lang: str) -> str:
         if node is None:
             raise RenderError(f"Nœud principal absent : {occurrence.get('node_id')}")
         data = node.get(lang) or {}
-        rows.append(_template(names[(lang, branch)], (("page", data.get("canonical_title")), (display_param, data.get("displayed_title")))))
+        label = next((r.get("translated_text") if lang == "en" else r.get("source_text") for r in contextual_labels if r.get("id") == "root:" + str(occurrence.get("id"))), data.get("displayed_title"))
+        rows.append(_template(names[(lang, branch)], (("page", data.get("canonical_title")), (display_param, label))))
     return _sequence(rows)
 
 
@@ -625,8 +664,8 @@ def _render_debate(
     params.extend([
         ("introduction", _normalize_sequence(_normalize_inline_documentary_dates(str(debate.get("introduction") or ""), "en"))),
         ("wikipedia-articles", _sequence(_template("Wikipedia article", (("page", title),)) for title in debate.get("wikipedia_articles") or [])),
-        ("pro-arguments", _main_arguments(registry, "pro", "en")),
-        ("con-arguments", _main_arguments(registry, "con", "en")),
+        ("pro-arguments", _main_arguments(registry, "pro", "en", debate.get("relation_labels") or [])),
+        ("con-arguments", _main_arguments(registry, "con", "en", debate.get("relation_labels") or [])),
     ])
     params.extend((bucket, rendered[bucket]) for bucket in (
         "pro-bibliography", "con-bibliography", "bibliography", "pro-webliography", "con-webliography", "webliography",
@@ -698,9 +737,9 @@ def _render_argument(
         ])
         detailed_present, detailed_value = _optional_preserved_parameter(content, "dedicated-debate")
         _append_lifecycle_parameter(params, content, "justification-warnings", None)
-        params.append(("justifications", None if detailed_present else _relations(registry, node_id, "justification", "en")))
+        params.append(("justifications", None if detailed_present else _relations(registry, node_id, "justification", "en", content.get("relation_labels") or [])))
         _append_lifecycle_parameter(params, content, "objection-warnings", None)
-        params.append(("objections", None if detailed_present else _relations(registry, node_id, "objection", "en")))
+        params.append(("objections", None if detailed_present else _relations(registry, node_id, "objection", "en", content.get("relation_labels") or [])))
         if detailed_present:
             params.append(("dedicated-debate", detailed_value))
         params.extend([
@@ -898,7 +937,8 @@ def _finalize_individual_review(
             "keyword_order_rationale_fr": str(fr_rationales.get("keyword_order") or "Les mots-clés sont classés du concept le plus directement pertinent au moins direct."),
             "keyword_order_rationale_en": "The English keywords preserve the exact French decreasing-relevance order.",
             "rubric_decision": rubric_decision,
-            "rubric_rationales": copy.deepcopy(fr_rationales.get("rubriques") or {}),
+            "rubric_rationales": ({r: "Rubrique de la source publiée conservée sans reclassement éditorial." for r in fr.get("rubriques") or []}
+                if fr_meta.get("source_preservation_policy") else copy.deepcopy(fr_rationales.get("rubriques") or {})),
         })
     write_json(target / "reviews/individual_review.json", {
         "normative_revision": NORM_VERSION,
@@ -1061,10 +1101,15 @@ def _finalize_keyword_vocabulary(target: Path) -> None:
     for entry in entries:
         if not isinstance(entry, dict):
             continue
+        if fr_lock.get("source_preservation_policy"):
+            entry["usage_count_in_debate"] = sum(1 for u in entry.get("usages") or [] if u.get("entity_type", u.get("page_type")) == "argument")
+            if entry.get("kind") in {"proper_name", "acronym"} and not entry.get("capitalization_rationale"):
+                entry["capitalization_rationale"] = "Forme propre historique conservée et relue dans le vocabulaire bilingue : " + str(entry.get("fr"))
+            changed = True
         usage_ids = {
-            str(row.get("entity_id"))
+            str(row.get("entity_id", row.get("page_id")))
             for row in entry.get("usages") or []
-            if isinstance(row, dict) and row.get("entity_type") == "argument" and row.get("entity_id")
+            if isinstance(row, dict) and row.get("entity_type", row.get("page_type")) == "argument" and row.get("entity_id", row.get("page_id"))
         }
         historical_fr_usage = bool(usage_ids) and usage_ids <= fr_historical
         historical_en_usage = bool(usage_ids) and usage_ids <= en_historical
@@ -1085,7 +1130,7 @@ def _finalize_keyword_vocabulary(target: Path) -> None:
                 changed = True
             elif not needs and entry.get("multiword_exception") is True:
                 entry["multiword_exception"] = False
-                entry["multiword_exception_rationale"] = ""
+                entry.pop("multiword_exception_rationale", None)
                 changed = True
 
         en_value = str(entry.get("en") or "").strip()
@@ -1141,6 +1186,14 @@ def _finalize_introduction_review(target: Path) -> None:
 
     fr_lock = load_json(target / "data/fr_content_lock.json", "verrou français du contenu")
     fr_debate = fr_lock.get("debate") if isinstance(fr_lock, dict) else None
+    if fr_lock.get("source_preservation_policy") and "fr" not in by_lang:
+        fr_entry_new = {"language": "fr", "status": "historical_existing",
+            "historical_content_preserved": True,
+            "historical_source_sha256": hashlib.sha256(fr_debate["introduction"].encode("utf-8")).hexdigest(),
+            "note": "Introduction historique française conservée exactement depuis l’import attesté, sans revendication de nouvelle revue documentaire."}
+        entries.append(fr_entry_new)
+        by_lang["fr"] = fr_entry_new
+        changed = True
     fr_entry = by_lang.get("fr")
     if (
         isinstance(fr_entry, dict)
@@ -1229,6 +1282,11 @@ def _prepare_final_controls(
     controls["individual_review_path"] = "reviews/individual_review.json"
     controls["graph_placement_review_path"] = "reviews/graph_placement_review.json"
     controls["summary_style_review_path"] = "reviews/summary_style_review.json"
+    controls.setdefault("summary_style", {"enabled": True, "min_sentences": 2, "long_sentence_words": 35,
+        "max_average_sentence_words": 30, "max_long_sentence_ratio": 0.5, "max_sentence_words": 60,
+        "opening_title_similarity_enabled": True,
+        "opening_similarity_threshold": 0.84, "opening_max_extra_significant_words": 4,
+        "quantitative_claim_review_required": True})
     controls["introduction_review_path"] = "reviews/introduction_review.json"
     controls["individual_review_report_path"] = "reports/render_report.json"
     controls["required_reports"] = [
@@ -1280,6 +1338,10 @@ def _build_rendered_copy(
     en_meta = load_json(target / "data/en_page_metadata_lock.json", "verrou anglais des métadonnées")
     en_content = load_json(target / "data/en_content_lock.json", "verrou anglais du contenu")
     en_translation = load_json(target / "data/en_translation_lock.json", "verrou de traduction")
+    from wikidebia_translation_source import POLICY, verify_frozen_source
+    preserve_french = fr_content.get("source_preservation_policy") == POLICY
+    if preserve_french:
+        verify_frozen_source(target, fr_meta, fr_content)
     source_registry = load_json(target / "data/sources.json", "registre documentaire")
     if en_translation.get("review_sha256") != translation_review_sha256:
         raise RenderError("Le verrou anglais ne correspond pas à l’empreinte confirmée")
@@ -1291,6 +1353,12 @@ def _build_rendered_copy(
     nodes.sort(key=lambda node: str(node.get("id")))
     fr_args = {str(row.get("id")): row for row in fr_content.get("arguments") or []}
     en_args = {str(row.get("id")): row for row in en_content.get("arguments") or []}
+    if preserve_french:
+        frozen_meta = {r.get("entity_id", r.get("id")): r for r in fr_meta["arguments"]}
+        for node in nodes:
+            actual = frozen_meta[node["id"]]
+            node["fr"]["rubriques"] = list(actual["rubriques"])
+            node["fr"]["keywords"] = list(actual["keywords"])
     if set(fr_args) != {str(node.get("id")) for node in nodes} or set(en_args) != set(fr_args):
         raise RenderError("Les verrous de contenu ne couvrent pas exactement les nœuds actifs")
 
@@ -1319,6 +1387,8 @@ def _build_rendered_copy(
             sources=source_by_id, creation_date=dates[(debate_id_actual, lang)],
             source_content=(fr_content.get("debate") or {}) if lang == "en" else None,
         )
+        if lang == "fr" and preserve_french:
+            debate_text = _render_preserved_french(target, fr_content["debate"], debate_pages["en"]["canonical_title"])
         debate_path = target / debate_rel
         debate_path.parent.mkdir(parents=True, exist_ok=True)
         debate_path.write_text(debate_text, encoding="utf-8", newline="\n")
@@ -1331,6 +1401,8 @@ def _build_rendered_copy(
                 registry=registry, sources=source_by_id, creation_date=dates[(node_id, lang)],
                 source_content=fr_args[node_id] if lang == "en" else None,
             )
+            if lang == "fr" and preserve_french:
+                text = _render_preserved_french(target, fr_args[node_id], node["en"]["canonical_title"])
             path = target / rel
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(text, encoding="utf-8", newline="\n")

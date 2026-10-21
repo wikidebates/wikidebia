@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "translation_source_preservation.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "policy", "debate_id", "work_id", "status", "reviewer", "reviewed_at", "note", "documentary_reverification_claimed", "french_pages_changed", "pages", "receipt_sha256"],
+  "properties": {
+    "schema": {"const": "wikidebia-translation-source-preservation-1.0"},
+    "policy": {"const": "published-french-import-preserved-for-translation-1.0"},
+    "debate_id": {"type": "string", "minLength": 1},
+    "work_id": {"type": "string", "minLength": 1},
+    "status": {"const": "frozen_as_imported"},
+    "reviewer": {"type": "string", "minLength": 3},
+    "reviewed_at": {"type": "string", "format": "date-time"},
+    "note": {"type": "string", "minLength": 30},
+    "documentary_reverification_claimed": {"const": false},
+    "french_pages_changed": {"const": false},
+    "receipt_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "pages": {
+      "type": "array", "minItems": 1,
+      "items": {"type": "object", "required": ["import_path", "revision_id", "sha256"], "properties": {
+        "import_path": {"type": "string", "pattern": "^imports/fr/"},
+        "revision_id": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }}
+    }
+  }
+}

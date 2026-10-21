@@ -1727,7 +1727,7 @@ def _validate_argument(
         "historical_content_preserved": historical_summary_protected and not historical_summary_authorized,
         "forceful_expression": expression,
         "quantitative_claims": numbers,
-        "quantitative_claims_verified": bool(numbers) and True or bool(review.get("quantitative_claims_verified")),
+        "quantitative_claims_verified": bool(review.get("quantitative_claims_verified")),
         "quantitative_claims_note": review.get("quantitative_claims_note"),
         "reviewer": review.get("reviewer"),
         "reviewed_at": review.get("reviewed_at"),

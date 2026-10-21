@@ -26,6 +26,12 @@ def validate_bilingual(ctx: PackageContext) -> None:
     strict = state_at_least(manifest.get("global_status"), "bilingual_validated") and not english_deferred
     nodes = [n for n in registry.get("graph", {}).get("nodes", []) if n.get("status") == "active"]
     pages = {(p.get("page_id"), p.get("language")): p for p in manifest.get("pages", [])}
+    from .schema_validation import _valid_translation_source_preservation
+    preserved = _valid_translation_source_preservation(ctx)
+    frozen = {}
+    if preserved:
+        lock = ctx.load_json("data/fr_page_metadata_lock.json") or {}
+        frozen = {r.get("entity_id", r.get("id")): r for r in lock.get("arguments", [])}
     for node in nodes:
         nid = node.get("id")
         fr = node.get("fr") or {}
@@ -37,7 +43,8 @@ def validate_bilingual(ctx: PackageContext) -> None:
                 ctx.report.error("WDV-BIL-001", f"Paire de pages bilingues incomplète pour {nid}", path="manifest.json")
         if english_deferred:
             continue
-        expected_sections = [SECTION_MAP[x] for x in fr.get("rubriques", []) if x in SECTION_MAP]
+        rubriques = frozen.get(nid, {}).get("rubriques", []) if preserved else fr.get("rubriques", [])
+        expected_sections = [SECTION_MAP[x] for x in rubriques if x in SECTION_MAP]
         expected_sections = alphabetically_sorted(expected_sections)
         if en.get("sections") and en.get("sections") != expected_sections:
             ctx.report.warning("WDV-BIL-004", f"Sections anglaises divergentes pour {nid}; une justification éditoriale est requise", path=ctx.core_paths()["registry"], details={"expected": expected_sections, "actual": en.get("sections")})
