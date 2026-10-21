@@ -63,7 +63,13 @@ class PackageContext:
             return None
         if b"\r" in raw:
             self.report.error("WDV-FS-005", "Fins de ligne CR/CRLF interdites ; LF requis", path=rel)
-        if raw and not raw.endswith(b"\n"):
+        preserved_import = False
+        if rel.startswith("imports/fr/") and raw and not raw.endswith(b"\n"):
+            from .schema_validation import _valid_translation_source_preservation
+            if _valid_translation_source_preservation(self):
+                receipt = self.load_json("data/source_preservation_receipt.json") or {}
+                preserved_import = any(row.get("import_path") == rel and row.get("sha256") == hashlib.sha256(raw).hexdigest() for row in receipt.get("pages") or [])
+        if raw and not raw.endswith(b"\n") and not preserved_import:
             self.report.error("WDV-FS-005", "Fin de ligne finale absente", path=rel)
         if raw.endswith(b"\n\n"):
             self.report.error("WDV-FS-005", "Plus d'une fin de ligne finale", path=rel)

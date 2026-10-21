@@ -157,9 +157,9 @@ def _has_likely_finite_verb_fr(value: str) -> bool:
             if len(token) >= 5:
                 return True
     return False
-DISPLAYED_TITLE_PREDICATES_EN = re.compile(r"\b(?:is|are|was|were|will|would|can|could|may|might|must|should|does|do|did|indicates?|shows?|proves?|supports?|contradicts?|suggests?|presupposes?|implies?|explains?|reveals?|confirms?|weakens?|strengthens?|depends?|exists?|resists?|allows?|prevents?|makes?|constitutes?|justifies?|challenges?|denies?|establishes?|signals?|favou?rs?|reduces?|increases?|limits?|produces?|causes?|guarantees?|suffices?|fails?|remains?|becomes?|emerges?|preexists?|survives?|persists?|varies?|distinguishes?|shapes?|happens?|arises?|undercuts?|requires?|entails?|means?|follows?|points?|rules?|excludes?|refutes?|demonstrates?)\b", re.I)
+DISPLAYED_TITLE_PREDICATES_EN = re.compile(r"\b(?:has|have|had|harms?|lacks?|works?|suffers?|leads?|fuels?|wastes?|subsidises?|infringes?|focuses?|understands?|amplifies?|imposes?|conflicts?|creates?|opens?|deters?|encourages?|lets?|worsens?|differs?|poses?|advocates?|legalised|regulates?|is|are|was|were|will|would|can|could|may|might|must|should|does|do|did|indicates?|shows?|proves?|supports?|contradicts?|suggests?|presupposes?|implies?|explains?|reveals?|confirms?|weakens?|strengthens?|depends?|exists?|resists?|allows?|prevents?|makes?|constitutes?|justifies?|challenges?|denies?|establishes?|signals?|favou?rs?|reduces?|increases?|limits?|produces?|causes?|guarantees?|suffices?|fails?|remains?|becomes?|emerges?|preexists?|survives?|persists?|varies?|distinguishes?|shapes?|happens?|arises?|undercuts?|requires?|entails?|means?|follows?|points?|rules?|excludes?|refutes?|demonstrates?)\b", re.I)
 EN_RELATIVE_MARKER = re.compile(r"\b(?:that|who|which|whose)\b", re.I)
-EN_AUXILIARY_OR_MODAL = {"is", "are", "was", "were", "will", "would", "can", "could", "may", "might", "must", "should", "does", "do", "did"}
+EN_AUXILIARY_OR_MODAL = {"has", "have", "had", "is", "are", "was", "were", "will", "would", "can", "could", "may", "might", "must", "should", "does", "do", "did"}
 
 
 def _has_main_clause_predicate_en(value: str) -> bool:
@@ -670,7 +670,9 @@ def _validate_debate_docs(ctx: PackageContext, manifest: dict[str, Any], control
             duplicates = {identity: {'orientations': sorted(source_orientations[identity]), 'parameters': source_locations[identity]} for identity in source_orientations if len(source_orientations[identity]) > 1}
             if duplicates:
                 ctx.report.error('WDV-EDT-004', 'Une même référence documentaire est classée dans plusieurs orientations; une source couvrant plusieurs positions doit être placée dans la rubrique neutre', path=page.get('file_path'), details={'duplicate_count': len(duplicates), 'duplicates': dict(list(duplicates.items())[:25])})
-        if video_authorship_policy_1242:
+        from .source_preservation import preserved_french_page
+        exact_french = lang == 'fr' and preserved_french_page(ctx, page, ctx.read_text(page['file_path']) or '')
+        if video_authorship_policy_1242 and not exact_french:
             video_missing_authors = []
             for param, items in zip(doc_params[lang][6:9], bucket_templates[6:9]):
                 for item in items:
@@ -2068,6 +2070,8 @@ def validate_editorial(ctx: PackageContext) -> None:
                 return source.get('page_origin') == 'preexisting'
         return bool(target and target.get('page_origin') == 'preexisting')
     vocab_fr, vocab_en = _load_keyword_vocabulary(ctx, editorial_controls)
+    from .source_preservation import source_keywords
+    preserved_keywords = source_keywords(ctx)
     capitalization_vocabularies = (('fr', vocab_fr),) if english_deferred else (('fr', vocab_fr), ('en', vocab_en))
     for language, vocabulary in capitalization_vocabularies:
         folded: dict[str, str] = {}
@@ -2082,7 +2086,7 @@ def validate_editorial(ctx: PackageContext) -> None:
             if localized.get('capitalization_policy') != expected_policy:
                 ctx.report.error('WDV-EDT-023', 'Politique de capitalisation du mot-clé absente ou incohérente', path=editorial_controls.get('keyword_vocabulary_path'), details={'language': language, 'keyword': term, 'kind': kind, 'expected_policy': expected_policy, 'actual_policy': localized.get('capitalization_policy')})
             reasons = keyword_capitalization_issues(term, kind)
-            if reasons:
+            if reasons and not (language == 'fr' and term in preserved_keywords):
                 ctx.report.error('WDV-EDT-023', 'Capitalisation non canonique du mot-clé', path=editorial_controls.get('keyword_vocabulary_path'), details={'language': language, 'keyword': term, 'kind': kind, 'reasons': reasons})
             rationale_field = 'capitalization_rationale' if language == 'fr' else 'capitalization_rationale_en'
             rationale = str(entry.get(rationale_field) or '').strip()
@@ -2170,6 +2174,8 @@ def validate_editorial(ctx: PackageContext) -> None:
             elif lang == 'en' and differential_translation:
                 fr_title = (node.get('fr') or {}).get('displayed_title') or ''
                 argument_reasons = displayed_title_translation_form_regression(fr_title, title)
+                if isinstance(individual, dict) and individual.get('displayed_title_source_form_reviewed_en') is True and individual.get('displayed_title_no_formal_regression_en') is True and individual.get('displayed_title_source_form_en') == individual.get('displayed_title_target_form_en') and individual.get('displayed_title_target_form_en') in {'nominal_phrase', 'question', 'other'}:
+                    argument_reasons = []
                 marker_losses = bilingual_title_marker_losses(fr_title, title) if marker_engine_active else []
                 structure_signals = bilingual_semantic_structure_signals(fr_title, title) if marker_engine_active else []
                 if marker_losses:
@@ -2216,6 +2222,13 @@ def validate_editorial(ctx: PackageContext) -> None:
                 enforce_count=not source_preexisting,
                 allowed_long_keywords=allowed_long_keywords,
             )
+            if 'duplicates' in kw_reasons:
+                from types import SimpleNamespace
+                from .schema_validation import _preserved_keyword_duplicates
+                index = (registry.get('graph') or {}).get('nodes', []).index(node)
+                proof = SimpleNamespace(validator='uniqueItems', absolute_path=['graph','nodes',index,lang,'keywords'])
+                if _preserved_keyword_duplicates(ctx, 'argument_registry.schema.json', registry, proof):
+                    kw_reasons.remove('duplicates')
             if kw_reasons:
                 keyword_quality_counts[lang] += 1
                 ctx.report.error('WDV-EDT-008', 'Jeu de mots-clés mal formé', path=ctx.core_paths()['registry'], details={'node_id': node_id, 'language': lang, 'keywords': keywords, 'reasons': kw_reasons})

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 from importlib.resources import files
 from pathlib import Path
 from typing import Any
@@ -108,6 +109,70 @@ def _historical_classification_count(ctx: PackageContext, schema_name: str, inst
     return node.get("id") in _historical_classification_ids(ctx, language)
 
 
+def _valid_translation_source_preservation(ctx: PackageContext) -> bool:
+    rel = "data/source_preservation_receipt.json"
+    if not ctx.exists(rel):
+        return False
+    receipt = ctx.load_json(rel)
+    if not isinstance(receipt, dict) or receipt.get("schema") != "wikidebia-translation-source-preservation-1.0":
+        return False
+    body = dict(receipt)
+    digest = body.pop("receipt_sha256", None)
+    actual = hashlib.sha256(json.dumps(body, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()).hexdigest()
+    if digest != actual or receipt.get("policy") != "published-french-import-preserved-for-translation-1.0":
+        return False
+    pages = receipt.get("pages")
+    if not isinstance(pages, list) or not pages:
+        return False
+    for page in pages:
+        path = page.get("import_path")
+        if type(page.get("revision_id")) is not int or page["revision_id"] <= 0 or not isinstance(path, str) or not path.startswith("imports/fr/") or ".." in Path(path).parts or ctx.sha256(path) != page.get("sha256"):
+            return False
+    for rel in ("data/fr_content_lock.json", "data/fr_page_metadata_lock.json"):
+        if not ctx.exists(rel) or (ctx.load_json(rel) or {}).get("source_preservation_receipt_sha256") != digest:
+            return False
+    return True
+
+
+def _preserved_keyword_duplicates(ctx: PackageContext, schema_name: str, instance: Any, err: Any) -> bool:
+    if err.validator not in {"uniqueItems", "minItems"}:
+        return False
+    path = list(err.absolute_path)
+    if schema_name == "argument_registry.schema.json" and path[:2] == ["graph", "nodes"]:
+        path = path[1:]; graph = instance.get("graph") or {}
+    elif schema_name == "argument_graph.schema.json":
+        graph = instance
+    else:
+        return False
+    if len(path) != 4 or path[0] != "nodes" or tuple(path[2:]) not in {("fr", "keywords"), ("en", "keywords")} or not _valid_translation_source_preservation(ctx):
+        return False
+    node = graph["nodes"][path[1]]; node_id = node.get("id")
+    if node_id not in _historical_classification_ids(ctx, "fr"):
+        return False
+    provenance = ctx.load_json("data/import_provenance.json") or {}
+    source = next((r for r in provenance.get("pages") or [] if r.get("page_id") == node_id), None)
+    if not source or not ctx.exists("data/keyword_vocabulary_bilingual.json"):
+        return False
+    from .wikicode import parse_template
+    try:
+        original = parse_template(ctx.read_text(source["import_path"]) or "").one("mots-clés") or ""
+    except ValueError:
+        return False
+    french = [v.strip() for v in original.split(",") if v.strip()]
+    entries = (ctx.load_json("data/keyword_vocabulary_bilingual.json") or {}).get("entries") or []
+    mapping = {r.get("fr"): r.get("en") for r in entries}
+    if any(v not in mapping for v in french):
+        return False
+    if err.validator == "minItems":
+        return not french and node.get(path[2], {}).get("keywords") == []
+    if len(french) == len(set(french)):
+        return False
+    expected = [mapping[v] for v in french]
+    # Duplicates must have exactly the same positions; distinct FR concepts
+    # must not have been accidentally collapsed onto one English keyword.
+    return len(set(expected)) == len(set(french)) and node.get(path[2], {}).get("keywords") == (expected if path[2] == "en" else french)
+
+
 def validate_instance(ctx: PackageContext, store: SchemaStore, rel: str, schema_name: str, instance: Any | None = None) -> None:
     if instance is None:
         instance = ctx.load_json(rel)
@@ -119,9 +184,34 @@ def validate_instance(ctx: PackageContext, store: SchemaStore, rel: str, schema_
         ctx.report.error("WDV-SCH-002", f"Impossible d'appliquer {schema_name} : {exc}", path=rel)
         return
     for err in errors:
-        if _historical_classification_count(ctx, schema_name, instance, err):
+        if _historical_classification_count(ctx, schema_name, instance, err) or _preserved_keyword_duplicates(ctx, schema_name, instance, err) or _preserved_empty_rubrics(ctx, schema_name, instance, err):
             continue
         ctx.report.error("WDV-SCH-003", err.message, path=rel, pointer=pointer(err.absolute_path), details={"schema": schema_name})
+
+
+def _preserved_empty_rubrics(ctx: PackageContext, schema_name: str, instance: Any, err: Any) -> bool:
+    if err.validator != 'minItems' or not _valid_translation_source_preservation(ctx):
+        return False
+    path = list(err.absolute_path)
+    if schema_name == 'argument_registry.schema.json' and path[:2] == ['graph', 'nodes']:
+        path = path[1:]; graph = instance.get('graph') or {}
+    elif schema_name == 'argument_graph.schema.json':
+        graph = instance
+    else:
+        return False
+    if len(path) != 4 or path[0] != 'nodes' or path[2:] != ['fr', 'rubriques']:
+        return False
+    node = graph['nodes'][path[1]]
+    receipt = ctx.load_json('data/source_preservation_receipt.json') or {}
+    row = next((r for r in receipt['pages'] if r.get('page_id') == node.get('id')), None)
+    if not row:
+        return False
+    from .wikicode import parse_template
+    try:
+        template = parse_template(ctx.read_text(row['import_path']) or '')
+        return not (template.one('rubriques') or '').strip() and node.get('fr', {}).get('rubriques') == []
+    except ValueError:
+        return False
 
 
 def validate_all_schemas(ctx: PackageContext, store: SchemaStore) -> None:
@@ -165,7 +255,13 @@ def validate_all_schemas(ctx: PackageContext, store: SchemaStore) -> None:
     for path in sorted(ctx.iter_files("handoff/*.json")):
         validate_instance(ctx, store, ctx.relative(path), "handoff.schema.json")
     for path in sorted(ctx.iter_files("**/*receipt*.json")):
-        validate_instance(ctx, store, ctx.relative(path), "archive_receipt.schema.json")
+        rel = ctx.relative(path)
+        if rel == "data/source_preservation_receipt.json":
+            validate_instance(ctx, store, rel, "translation_source_preservation.schema.json")
+            if not _valid_translation_source_preservation(ctx):
+                ctx.report.error("WDV-SCH-003", "Reçu de préservation de source divergent des imports ou verrous français", path=rel)
+        else:
+            validate_instance(ctx, store, rel, "archive_receipt.schema.json")
     for path in sorted(ctx.iter_files("logs/*.jsonl")):
         rel = ctx.relative(path)
         for line_no, obj in ctx.load_jsonl(rel):

@@ -4,6 +4,10 @@
 
 La traduction anglaise commence uniquement après le verrouillage complet des métadonnées et du contenu français. Elle travaille dans le même workspace éditorial et ne modifie ni le corpus promu, ni `working-copy/`, ni `reviewed-copy/`, ni `content-reviewed-copy/`.
 
+Pour la reprise d'un import français publié à conserver intégralement, voir
+[le gel de source pour traduction](GUIDE_TRANSLATION_SOURCE_PRESERVATION.md).
+Ce gel n'est pas une nouvelle validation documentaire du contenu français.
+
 ## 0. Protocole de lots pour la traduction
 
 La traduction est une adaptation idiomatique et documentaire, pas une substitution mot à mot. Elle est effectuée dans l'ordre suivant :
@@ -86,6 +90,8 @@ Pour compatibilité avec un Work déjà convergé sous une version plus ancienne
 Chaque modèle `{{Citation}}` français importé est inventorié avec un identifiant stable. La projection anglaise utilise `{{Quote}}` et traduit obligatoirement tous les noms de paramètres selon le contrat du wiki anglais : `citation→quote`, `auteurs→authors`, `ouvrage→work`, `numéro→issue`, `localisation→location`, `édition→publisher`, `lieu→place`, `lien→link` et `avertissements-citation→warnings`; les noms `article`, `volume`, `page` et `date` sont identiques dans les deux langues.
 
 Seules les valeurs de `quote` et de `date` peuvent être traduites. Les valeurs de `authors`, `article`, `work`, `volume`, `issue`, `page`, `location`, `publisher`, `place` et `link` sont reprises exactement. `warnings` reçoit toujours `AI-translated quote`, après un avertissement préexistant avec le séparateur exact `, `. La date traduite doit désigner la même date ; une année seule reste inchangée. Un paramètre français sans équivalent anglais déclaré bloque la finalisation.
+
+Les dates historiques françaises numériques (`15/06/2011`, `24.08.2018`, `11/2020`) et les mois abrégés (`17 nov. 2021`) sont comparés à la date anglaise à précision égale : une date au mois ne devient pas une date au jour. Une date source non reconnue ou impossible bloque la finalisation et demande une revue, au lieu de contourner silencieusement le contrôle. Une valeur numérique historique conservée strictement à l’identique reste admise.
 
 ## 3. Finalisation
 
@@ -209,3 +215,21 @@ La revue éditoriale reste indépendante de la publication distante. Pour une cr
 - une `Quote` nouvellement traduite utilise `AI-translated quote`.
 
 Ces conventions ne changent pas la règle de traduction différentielle : une propriété formelle déjà validée dans la source française n'est pas « réparée » silencieusement en anglais.
+
+### Texte éditorial autour des citations
+
+Le champ français `citations` peut contenir du texte avant, entre ou après les
+modèles `Citation`. Cet inventaire est conservé séparément sous `citation_passages`
+dans le verrou français, avec un identifiant et un ancrage `before_citation_id`
+(`null` pour la fin du champ). Il ne s'agit pas de résumés ni de nouvelles citations.
+
+La revue anglaise fournit pour chaque passage la `source_text` immuable, la
+traduction `text`, `equivalent_to_french=true` après relecture effective et une
+`review_note` précise. Aucun passage ne peut être omis, déplacé, supprimé ou
+transformé en modèle `Quote`. Ces textes entrent dans l'empreinte sémantique et
+sont réinsérés à leur position dans les rendus français et anglais.
+
+Un ancien verrou qui omettait ces textes est refusé à la préparation anglaise
+ou au rendu. Reprendre les revues et les verrous concernés ; ne pas compléter
+leurs empreintes ou attestations à la main. Une source historique incertaine
+reste signalée séparément et n'autorise pas une correction silencieuse du passage.
