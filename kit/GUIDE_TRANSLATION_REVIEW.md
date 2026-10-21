@@ -4,6 +4,10 @@
 
 La traduction anglaise commence uniquement après le verrouillage complet des métadonnées et du contenu français. Elle travaille dans le même workspace éditorial et ne modifie ni le corpus promu, ni `working-copy/`, ni `reviewed-copy/`, ni `content-reviewed-copy/`.
 
+Pour la reprise d'un import français publié à conserver intégralement, voir
+[le gel de source pour traduction](GUIDE_TRANSLATION_SOURCE_PRESERVATION.md).
+Ce gel n'est pas une nouvelle validation documentaire du contenu français.
+
 ## 0. Protocole de lots pour la traduction
 
 La traduction est une adaptation idiomatique et documentaire, pas une substitution mot à mot. Elle est effectuée dans l'ordre suivant :

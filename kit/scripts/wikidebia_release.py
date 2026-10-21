@@ -611,7 +611,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     project_root = args.project_root.expanduser().resolve()
     debate_id = validate_debate_id(args.debate_id)
     work_id = validate_work_id(args.work_id)
-    with exclusive_lock(project_root, "editorial_local_release"):
+    with exclusive_lock(project_root, debate_id, "editorial_local_release"):
         result = release_workspace(project_root, debate_id, work_id, str(args.confirm_render_sha256))
     print(json.dumps(result, ensure_ascii=False, sort_keys=True) if args.machine_readable else json.dumps(result, ensure_ascii=False, indent=2))
     return 0

@@ -55,6 +55,16 @@ def make_rendered(tmp_path: Path):
     return project, workspace, work_id, render_result["rendered_copy_tree_sha256"]
 
 
+def test_release_cli_acquires_the_debate_lock_and_creates_the_archive(tmp_path, capsys):
+    project, workspace, work_id, render_sha = make_rendered(tmp_path)
+    assert release.main(['debat_test', '--work-id', work_id, '--project-root', str(project),
+        '--confirm-render-sha256', render_sha, '--machine-readable']) == 0
+    result = json.loads(capsys.readouterr().out)
+    assert result['status'] == 'release_ready'
+    assert (project / result['archive']).is_file()
+    assert result['publication_started'] is False
+
+
 def test_release_creates_installable_archive_and_exact_manifest(tmp_path: Path):
     project, workspace, work_id, render_sha = make_rendered(tmp_path)
     rendered_before = common.full_tree_sha256(workspace / "rendered-copy")
