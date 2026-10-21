@@ -1,0 +1,28 @@
+{
+  "schema": "wikidebia-graph-build-review-1.0",
+  "schema_version": "1.0",
+  "normative_revision": "1.2.88",
+  "kit_version": "2.16.47",
+  "validator_version": "0.4.105",
+  "debate_id": "cannabis",
+  "prepared_at": "2026-10-21T10:02:02+00:00",
+  "source_build_sha256": "f5c52a6f840e5e7447baca2dab111311f6da1e5191ec94cd118fe4ab6b97c495",
+  "source_global_status": "graph_draft",
+  "decision": "approved",
+  "reviewer": "Codex — revue du snapshot conservé",
+  "reviewed_at": "2026-10-21T10:05:09.098880+00:00",
+  "attestations": {
+    "scope_and_proposition_reviewed": true,
+    "graph_completeness_reviewed": true,
+    "main_argument_placement_reviewed": true,
+    "parent_child_relations_reviewed": true,
+    "reuse_and_occurrences_reviewed": true,
+    "canonical_titles_reviewed": true,
+    "import_provenance_reviewed": true,
+    "imports_are_not_final_outputs_confirmed": true,
+    "no_final_pages_generated_confirmed": true
+  },
+  "blocking_issues": [],
+  "notes": "Les 170 occurrences ont été revues en regard des libellés et des contenus source. Les 13 racines organisent des familles directes ; les réutilisations gardent leur cible immédiate et leurs polarités. Approbation du placement du graphe historique à traduire, sans attestation de vérité des affirmations ni réécriture française. Les 153 imports et leurs identités titre/révision/hash restent intacts.",
+  "review_sha256": "d6746c3256dc135c1c1589c2b6257ff19bcc504e4c85dc39ab4eb4f5ea842a0f"
+}

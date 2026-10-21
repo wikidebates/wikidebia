@@ -1,0 +1,34 @@
+{{Argument
+|justifications={{Justification
+|page=Cannabis prohibition obstructs prevention and treatment
+|displayed-title=Obstacles to prevention and treatment
+}}{{Justification
+|page=Cannabis prohibition drives users underground and causes social exclusion and feelings of discrimination
+|displayed-title=Going underground, social exclusion and feelings of discrimination
+}}{{Justification
+|page=Under cannabis prohibition, some users suffer the consequences of imprisonment, a criminal record or both
+|displayed-title=Some users suffer the consequences of imprisonment, a criminal record or both
+}}{{Justification
+|page=Cannabis prohibition provides no guarantee of product quality
+|displayed-title=No guarantee of product quality
+}}{{Justification
+|page=Cannabis prohibition exposes users to drug dealers and harder drugs
+|displayed-title=Exposure to drug dealers and harder drugs
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition
+|webliography=
+{{Web reference
+|link=https://www.aclu.org/report/tale-two-countries-racially-targeted-arrests-era-marijuana-reform
+|page=A Tale of Two Countries: Racially Targeted Arrests in the Era of Marijuana Reform
+|site=American Civil Liberties Union
+|date=2020
+}}
+{{Web reference
+|link=https://europepmc.org/article/MED/41275252
+|page=The cannabis-mind connection: a clinician's perspective on mental health practice, harm reduction, and racial equity
+|authors=Smith PS, Sera L
+|site=Europe PMC
+|date=2025
+}}
+}}

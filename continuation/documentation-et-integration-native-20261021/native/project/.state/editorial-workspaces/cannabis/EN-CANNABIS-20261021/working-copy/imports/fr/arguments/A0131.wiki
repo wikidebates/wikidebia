@@ -1,0 +1,13 @@
+{{Argument
+|citations={{Citation
+|citation=Nous nous sommes appuyés sur le fait que les conventions ­concernant les droits de l’homme étaient supérieures, en droit, aux conventions sur les drogues. L’Uruguay pouvait donc exercer sa souveraineté en légalisant le cannabis, si nous démontrions que cela sauvait des vies : celles des jeunes qui la risquaient sur le marché noir pour s’en procurer, ou de malades qui sans cela ne pouvaient soulager leurs douleurs.
+|auteurs=Raquel Peyraube
+|article=Raquel Peyraube, addictologue et militante pour le cannabis médical
+|ouvrage=Le Monde
+|date=8/07/2018
+|lien=https://www.lemonde.fr/sciences/article/2018/07/08/raquel-peyraube-addictologue-et-militante-pour-le-cannabis-medical_5328066_1650684.html
+}}
+|rubriques=Droit, Santé, Société
+|mots-clés=Cannabis, Dépénalisation, Droits de l'homme
+|date-création=2021-02-16
+}}

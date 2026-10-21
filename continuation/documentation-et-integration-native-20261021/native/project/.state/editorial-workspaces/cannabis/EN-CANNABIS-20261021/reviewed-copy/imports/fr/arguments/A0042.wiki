@@ -1,0 +1,11 @@
+{{Argument
+|citations={{Citation
+|citation=J’ai grandi avec une mère alcoolique, j’ai moi-même eu et aurai toujours des problèmes d’addiction. Et c’est vu par la société comme quelque chose qu’on contrôle, qu’on choisit de faire. On nous dit des choses comme "tu n’as qu’à arrêter" ou "fais-le pour tes enfants"… Mais ce n’est pas vu comme une maladie. Alors que ça l’est, c’est prouvé. Les gens qui ont le cancer, on a plein d’empathie pour eux. On n’a aucune empathie pour les toxicos, et ce sont des personnes qui elles aussi, génétiquement et physiologiquement, ne peuvent pas s’arrêter de consommer.
+|auteurs=Asia Argento
+|article=Asia Argento sur #MeToo : "C’était mon devoir de parler"
+|ouvrage=rtbf.be
+|date=15 juin 2022
+|lien=https://www.rtbf.be/article/asia-argento-sur-metoo-cetait-mon-devoir-de-parler-11013220
+}}
+|date-création=2022-06-16
+}}

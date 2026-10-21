@@ -1,0 +1,14 @@
+{{Argument
+|citations={{Citation
+|citation=Étendre les effets néfastes de l’usage régulier à tout usage simple, pour mieux affirmer que toute consommation est déjà une toxicomanie, reviendrait à affirmer pour l’alcool que toute consommation est déjà de l’alcoolisme. Frapper les esprits avec la formule « plus tôt l’essayer, c’est plus vite l’adopter » fait oublier que la plupart des expérimentateurs de cannabis l’abandonne ou le cantonne à des usages exceptionnels.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=117
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Prohibition, Toxicomanie
+|date-création=2019-08-07
+}}

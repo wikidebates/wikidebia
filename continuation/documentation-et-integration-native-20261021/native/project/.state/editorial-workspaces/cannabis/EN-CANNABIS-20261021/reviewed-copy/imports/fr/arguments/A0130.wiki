@@ -1,0 +1,10 @@
+{{Argument
+|références-sitographiques={{Référence sitographique
+|lien=https://www.globalcommissionondrugs.org/wp-content/themes/gcdp_v1/pdf/Global_Commission_Report_French.pdf
+|page=La guerre aux drogues - Rapport de la commission mondiale de la politique des drogues
+|date=Juin 2011
+}}
+|rubriques=Droit, Santé, Société
+|mots-clés=Cannabis, Dépénalisation
+|date-création=2021-02-16
+}}

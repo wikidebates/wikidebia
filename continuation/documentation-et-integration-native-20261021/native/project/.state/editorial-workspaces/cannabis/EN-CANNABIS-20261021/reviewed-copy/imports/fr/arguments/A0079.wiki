@@ -1,0 +1,24 @@
+{{Argument
+|citations={{Citation
+|citation=Ces mêmes défenseurs de la dépénalisation du cannabis sont souvent aussi à la manœuvre pour revendiquer celle de toutes les autres drogues. Premier couronnement de leurs efforts de recrutement à tout-va de toxicomanes, ils ont plaidé pour l'instauration des salles de shoot et viennent d'obtenir du ministère leur instauration.
+|auteurs=Jean Costentin
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=63
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|objections={{Objection
+|page=Parmi les États ayant légalisé le cannabis, aucun n'a légalisé de drogue dure
+|titre-affiché=Parmi les États ayant légalisé le cannabis, aucun n'a légalisé de drogue dure
+}}{{Objection
+|page=Sophisme de la pente glissante
+|titre-affiché=Sophisme de la pente glissante
+}}{{Objection
+|page=Légaliser les drogues dures serait bénéfique pour la société
+|titre-affiché=Légaliser les drogues dures serait bénéfique pour la société
+}}
+|rubriques=Droit, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Drogues dures
+|date-création=2021-02-16
+}}

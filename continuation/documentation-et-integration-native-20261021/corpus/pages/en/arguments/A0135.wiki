@@ -1,0 +1,43 @@
+{{Argument
+|quotes={{Quote
+|quote=Fear of punishment deters only those who are already least likely to use drugs and who do not have problematic patterns of use.
+
+According to the EMCDDA's 2011 report, there is no correlation between the level of punitive enforcement and declining use. Conversely, decriminalisation does not lead to a significant increase in cannabis consumption.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=87 et 90
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Most young people smoke it anyway; if all we do is punish them, trafficking will continue.
+|authors=Groupe de lycéens de 1re ES
+|article=Le cannabis ? Chut !
+|work=Le Monde
+|date=9 November 2012
+|link=https://www.lemonde.fr/idees/article/2012/11/10/le-cannabis-chut_1787901_3232.html
+|warnings=AI-translated quote
+}}
+|justifications={{Justification
+|page=Addictive behaviours are largely unresponsive to legislation
+|displayed-title=Addictive behaviours are largely unresponsive to legislation
+}}
+|objections={{Objection
+|page=Evidence shows that penalties for cannabis users can have a deterrent effect
+|displayed-title=Evidence shows that they can be a deterrent
+}}{{Objection
+|page=Cannabis use needs to be addressed through education
+|displayed-title=Education is needed
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, deterrence
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/34068202
+|page=Cannabis Policy Changes and Adolescent Cannabis Use: Evidence from Europe
+|authors=Benedetti E, Resce G, Brunori P, Molinaro S
+|site=Europe PMC
+|date=2021
+}}
+}}

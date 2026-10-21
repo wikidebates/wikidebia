@@ -1,0 +1,19 @@
+{{Argument
+|citations={{Citation
+|citation=Les expérimentations du cannabis chez les jeunes de 17 ans diminuent en France depuis 2003, et le niveau de sa consommation a désormais été ramené à celui du début des années 2000.
+|auteurs=Claude Guéant, ministre de l'Intérieur (2011-12)
+|article=Dépénalisation du cannabis, un débat biaisé
+|ouvrage=Le Monde
+|date=15/6/2011
+|lien=https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://www.ofdt.fr/cannabis-resine-herbe-huile-cbd-synthese-des-connaissances-1724
+|page=Cannabis (résine, herbe, huile, CBD) — Synthèse des connaissances
+|site=OFDT
+}}
+
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Consommation
+|date-création=2019-01-30
+}}

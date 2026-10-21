@@ -1,0 +1,10 @@
+{{Argument
+|initialisation=Objection@29794
+|références-sitographiques={{Référence sitographique
+|lien=https://www.ofdt.fr/cannabis-resine-herbe-huile-cbd-synthese-des-connaissances-1724
+|page=Cannabis (résine, herbe, huile, CBD) — Synthèse des connaissances
+|site=OFDT
+}}
+
+|date-création=2025-04-15
+}}

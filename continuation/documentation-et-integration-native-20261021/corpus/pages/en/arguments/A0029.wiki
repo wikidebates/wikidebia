@@ -1,0 +1,9 @@
+{{Argument|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/25692302
+|page=Which foods may be addictive? The roles of processing, fat content, and glycemic load
+|authors=Schulte EM, Avena NM, Gearhardt AN
+|site=Europe PMC
+|date=2015
+}}
+}}

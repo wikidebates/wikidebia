@@ -1,0 +1,21 @@
+{{Argument
+|quotes={{Quote
+|authors=Etienne Apaire
+|quote=The increase in arrests for cannabis use from 2003 onwards reduced the proportion of 17-year-olds who had tried it (49.4% in 2005, 42.2% in 2008).
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=204
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, deterrence
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/34068202
+|page=Cannabis Policy Changes and Adolescent Cannabis Use: Evidence from Europe
+|authors=Benedetti E, Resce G, Brunori P, Molinaro S
+|site=Europe PMC
+|date=2021
+}}
+}}

@@ -1,0 +1,33 @@
+{
+  "schema": "wikidebia-fr-content-inventory-1.0",
+  "debate_id": "cannabis",
+  "work_id": "EN-CANNABIS-20261021",
+  "generated_at": "2026-10-21T10:08:48+00:00",
+  "debate": {
+    "subject_present": true,
+    "complete_topic_present": true,
+    "introduction_present": true,
+    "subsections": 4,
+    "wikipedia_articles": 1,
+    "documentary_buckets_nonempty": 8,
+    "historical_introduction_preserved_by_default": true,
+    "historical_introduction_sha256": "8d224c3e5592203629d681080c6a39fed6f6c91f1cfee4d051603b97164e4250"
+  },
+  "arguments": {
+    "count": 152,
+    "summaries_missing": 120,
+    "summaries_under_80_chars": 122,
+    "arguments_with_any_documentation": 61,
+    "citations": 149,
+    "arguments_with_citations": 100,
+    "historical_summaries_preserved_by_default": 152
+  },
+  "boundaries": {
+    "automatic_rewriting": false,
+    "historical_introduction_rewriting": false,
+    "historical_summary_rewriting": false,
+    "historical_absent_summary_generation": false,
+    "final_pages_generated": false,
+    "english_translation_started": false
+  }
+}

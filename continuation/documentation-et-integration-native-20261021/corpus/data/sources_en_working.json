@@ -1,0 +1,3095 @@
+{
+  "schema": "wikidebia-en-source-registry-working-1.0",
+  "debate_id": "cannabis",
+  "work_id": "EN-CANNABIS-20261021",
+  "status": "selected_by_reasoning_native_finalization_pending",
+  "sources": [
+    {
+      "id": "S90001",
+      "type": "bibliography",
+      "document_kind": "synthesis_report",
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Jonathan P. Caulkins",
+          "Beau Kilmer",
+          "Mark A. R. Kleiman",
+          "Robert J. MacCoun",
+          "Gregory Midgette",
+          "Pat Oglesby",
+          "Rosalie Liccardo Pacula",
+          "Peter Reuter"
+        ],
+        "article": null,
+        "work": "Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions",
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": "RAND Corporation",
+        "place": "Santa Monica, CA",
+        "date": "2015",
+        "link": "https://www.rand.org/pubs/research_reports/RR864.html",
+        "page": null,
+        "site": null,
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T08:39:07.865827+00:00",
+        "primary_source": false,
+        "notes": [
+          "Titre, huit auteurs, année et éditeur contrôlés sur la notice RAND. Rapport de synthèse des options, avantages, coûts et incertitudes ; pas une recommandation de légaliser. Les projections Vermont 2015 ne sont pas des observations France 2026."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "cannabis",
+          "language": "en",
+          "role": "neutral_reference",
+          "selection_reason": "Documentation générale conservée : synthèse RAND, droit français daté, distinction portugaise et bilan canadien ; aucun article spécialisé n’est promu artificiellement en synthèse générale.",
+          "documentary_scope": "broad_synthesis"
+        },
+        {
+          "page_id": "A0115",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "La synthèse RAND analyse prix, fiscalité et concurrence illicite ; le parallèle avec le tabac reste celui de la source.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0113",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "RAND développe explicitement la demande exclue par l’âge, le détournement vers les mineurs et les limites de la régulation ; ce mécanisme étaye une persistance possible du marché illicite sans prouver always/never.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0021",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les marchés illicites et les mécanismes d’approvisionnement illustrent des contournements possibles, sans prétendre que toute interdiction est toujours contournée.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0090",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les incitations des acteurs illicites éclairent la possibilité de contourner ; l’intention de chaque personne n’est pas généralisée.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0077",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les interactions entre juridictions sont discutées ; aucune preuve directe de tous les délais frontaliers prédits à Windsor n’est inventée.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0053",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "RAND analyse la concentration des ventes sur les consommateurs fréquents, les incitations commerciales et le lobbying : développement du mécanisme économique, avec solutions réglementaires concurrentes.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0059",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le recul de parts illicites ne prouve pas disparition de tous les trafics ; la référence est retenue pour comparaison, pas validation de l’absolu.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0050",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "RAND met en relation taxes, recettes et financement/coûts de régulation. Le mécanisme budgétaire est développé, sans garantie d’affectation effective à la prévention.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0006",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Bénéfices, coûts et incertitudes sont traités dans une synthèse et un bilan ; chaque bénéfice particulier garde sa portée propre.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0023",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "La synthèse permet d’examiner certains effets contre-productifs des marchés prohibés ; elle ne généralise pas à toutes les guerres contre les drogues.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0031",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les prix et incitations de marché sont explicitement abordés, sans attribuer une rentabilité uniforme à tous les acteurs.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0030",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Marchés illicites et criminalisation sont documentés ; aucun document n’est présenté comme preuve exhaustive de toute la chaîne corruption/armes/violence.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0034",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les recettes potentielles et taxes sont discutées ; la qualification de subvention implicite reste l’argument de la page.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0003",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Coûts collectifs et disparités sont éclairés séparément ; les neuf justifications du graphe restent distinctes.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0028",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "RAND p. 46 développe la séparation néerlandaise des marchés : obtenir du cannabis sans rencontrer les vendeurs de drogues dures. C’est un mécanisme social distinct d’une passerelle pharmacologique.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0069",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Des coûts et dommages sont discutés, sans chiffre agrégé inventé pour la France.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0068",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Des dommages collectifs sont décrits ; la létalité de la citation garde sa signification et n’est pas convertie en nombre de décès.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0143",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les associations prix/usage adolescent et le marché global sont documentés sans déclarer le prix seul déterminant.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0147",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "RAND p. 62 développe la publicité, les marques et l’innovation comme incitations à la consommation, avec exemples alcool/tabac ; le mécanisme d’attrait est distingué de la simple licéité.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0078",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Plusieurs architectures réglementaires existent ; les lois du marché ne signifient pas nécessairement absence de contrôle public.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0145",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les contrôles d’identité néerlandais et les scénarios RAND de vérification d’âge développent le mécanisme de restriction en magasin ; ils ne prouvent pas une impossibilité absolue d’accès pour un mineur.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0121",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les options de régulation et leurs risques sont comparées ; la question rhétorique demeure une question, sans transformation en thèse générée.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0114",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Restrictions légales et concurrence illicite sont documentées ; aucun pourcentage de consommateurs persistants n’est inventé.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0055",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "La concurrence avec le marché illicite est documentée, sans transformer les 80 % californiens de la citation en chiffre actuel vérifié.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        }
+      ],
+      "deduplication_key": "https://www.rand.org/pubs/research_reports/RR864.html",
+      "evidence": {
+        "url": "https://www.rand.org/pubs/research_reports/RR864.html",
+        "response_sha256": "9c59263341008edf3cda850d57a41a8dcd5612271085c07bc15cd8093b1751cc",
+        "local_response_path": "responses/rand-vermont.body"
+      }
+    },
+    {
+      "id": "S90002",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Morris Rosenberg",
+          "Oyedeji Ayonrinde",
+          "Patricia J. Conrod",
+          "Lynda L. Levesque",
+          "Peter Selby"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "March 2024",
+        "link": "https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html",
+        "page": "Legislative Review of the Cannabis Act: Final Report of the Expert Panel",
+        "site": "Health Canada",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T08:35:37.120016+00:00",
+        "primary_source": true,
+        "notes": [
+          "Version anglaise officielle. Les cinq membres sont explicitement crédités sous Prepared by. Source primaire pour les conclusions de ce comité ; celles-ci ne valident pas chaque résultat scientifique sous-jacent. Résumé exécutif et passages sur jeunesse, produits puissants et déplacement du marché illicite lus."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "cannabis",
+          "language": "en",
+          "role": "neutral_reference",
+          "selection_reason": "Documentation générale conservée : synthèse RAND, droit français daté, distinction portugaise et bilan canadien ; aucun article spécialisé n’est promu artificiellement en synthèse générale."
+        },
+        {
+          "page_id": "A0008",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les expériences sont documentées séparément et leurs limites conservées ; aucun succès complet commun à toutes les dimensions n’est inféré.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0062",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le bilan officiel canadien confirme des évolutions et des difficultés ; il ne valide pas toutes les appréciations superlatives du résumé historique.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0059",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le recul de parts illicites ne prouve pas disparition de tous les trafics ; la référence est retenue pour comparaison, pas validation de l’absolu.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0007",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les dispositifs de contrôle sont documentés ; ni la légalisation ni l’analyse ne garantissent à elles seules l’absence totale de contaminants.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0006",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Bénéfices, coûts et incertitudes sont traités dans une synthèse et un bilan ; chaque bénéfice particulier garde sa portée propre.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0013",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les effets possibles sur les usages et la protection des jeunes sont documentés ; l’évaluation globale préjudiciable reste une conclusion argumentative.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0027",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le bilan canadien développe les exigences de contrôle et l’intérêt d’analyser les produits saisis ; la revue analytique développe les méthodes de détection. Aucun contrôle n’est présenté comme garantie absolue.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0109",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le panel canadien développe la nécessité de maintenir un programme médical distinct du circuit non médical : séparation des régimes et suivi clinique, pas simple constat d’efficacité thérapeutique.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0055",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "La concurrence avec le marché illicite est documentée, sans transformer les 80 % californiens de la citation en chiffre actuel vérifié.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        }
+      ],
+      "deduplication_key": "https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html",
+      "evidence": {
+        "url": "https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html",
+        "response_sha256": "d23baa113c2ee17098dd6a94c7f9f4364c784b4a8e77a1dab2c64468a4cdf0e8",
+        "local_response_path": "canada-panel.body"
+      }
+    },
+    {
+      "id": "S90003",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2019",
+        "link": "https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf",
+        "page": "Portugal — Country Drug Report 2019",
+        "site": "European Monitoring Centre for Drugs and Drug Addiction",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T08:35:37.119581+00:00",
+        "primary_source": false,
+        "notes": [
+          "PDF officiel anglais réellement consulté, section National drug laws (p. 5 du fichier) : loi 30/2000 appliquée depuis juillet 2001, consommation/acquisition/détention personnelles dépénalisées sous conditions ; trafic toujours distinct. Rapport de synthèse, pas texte législatif original ni bilan actuel de 2026."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": false
+      },
+      "usage": [
+        {
+          "page_id": "cannabis",
+          "language": "en",
+          "role": "neutral_reference",
+          "selection_reason": "Documentation générale conservée : synthèse RAND, droit français daté, distinction portugaise et bilan canadien ; aucun article spécialisé n’est promu artificiellement en synthèse générale."
+        },
+        {
+          "page_id": "A0061",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le modèle sanitaire et administratif est distingué de la légalisation commerciale ; la qualification de tous les usagers comme malades reste celle de la source.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0129",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "L’article 3(2) de 1988 distingue possession/achat/culture pour consommation personnelle et consommation elle-même ; le rapport portugais développe la réponse administrative, sans légalisation du trafic.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0144",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le rapport portugais documente l’exemple de décriminalisation de l’usage personnel, sans légalisation du trafic.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0139",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le rapport Portugal développe la dépénalisation de l’usage personnel évoquée dans le résumé. Il n’est pas transformé en preuve de légalisation générale, ni en vérification de toute la liste internationale.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf",
+      "evidence": {
+        "url": "https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf",
+        "response_sha256": "2a1f0290c5f040687e2ab3f66e13c2e65f7c30102d7f650f650f1f7b02dee05f",
+        "local_response_path": "euda-portugal.body"
+      }
+    },
+    {
+      "id": "S90004",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "21 August 2026",
+        "link": "https://www.service-public.gouv.fr/particuliers/vosdroits/F33341?lang=en",
+        "page": "What is the risk for drug use?",
+        "site": "Service Public",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T08:35:37.120536+00:00",
+        "primary_source": false,
+        "notes": [
+          "Version anglaise effectivement publiée par Service Public ; traduction automatique signalée par le site. Fiche datée vérifiée, pas une édition inventée ni une lecture du texte législatif. Montants et maximum reproduits selon la fiche du 21 août 2026 ; ils ne s’appliquent pas indistinctement à tous les délits liés aux drogues."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": false
+      },
+      "usage": [
+        {
+          "page_id": "cannabis",
+          "language": "en",
+          "role": "neutral_reference",
+          "selection_reason": "Documentation générale conservée : synthèse RAND, droit français daté, distinction portugaise et bilan canadien ; aucun article spécialisé n’est promu artificiellement en synthèse générale."
+        }
+      ],
+      "deduplication_key": "https://www.service-public.gouv.fr/particuliers/vosdroits/F33341?lang=en",
+      "evidence": {
+        "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F33341?lang=en",
+        "response_sha256": "bc725fcba29dee8289f04a90a06459a1c84ee84596891c38cf4dad166ec49b0b",
+        "local_response_path": "service-public-en.body"
+      }
+    },
+    {
+      "id": "S90005",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": null,
+        "link": "https://nida.nih.gov/research-topics/cannabis-marijuana",
+        "page": "Cannabis (Marijuana)",
+        "site": "National Institute on Drug Abuse",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T08:39:10.569542+00:00",
+        "primary_source": false,
+        "notes": [
+          "Page institutionnelle anglaise lue, notamment définition, modes d’usage, THC, effets indésirables et usages thérapeutiques. Aucun auteur individuel distinct n’est crédité : liste d’auteurs vide ; NIDA conservé comme site, pas inventé comme auteur."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": false
+      },
+      "usage": [
+        {
+          "page_id": "A0042",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "La page NIDA explique le trouble de l’usage et les signes cliniques ; c’est la prémisse sanitaire du raisonnement, pas une justification génétique déterministe ni une preuve de l’illégitimité de toute peine.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0097",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "NIDA décrit perte de contrôle et poursuite malgré les dommages, mécanisme clinique pertinent pour la prémisse de dépendance ; la conclusion philosophique de servitude demeure celle de la citation.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0065",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Associations psychiatriques et usage adolescent sont documentés ; les effets physiques ne sont pas assimilés à ces seuls travaux.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0067",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les indicateurs de dépendance sont contextualisés par substance et population ; leur importance ne devient pas un taux unique universel.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0116",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Âge de début et modalités de réduction des risques sont documentés ; l’initiation précoce n’est pas présentée comme unique danger.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0118",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les recommandations distinguent combustion, puissance, fréquence et âge ; réduire le risque n’est pas le supprimer.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://nida.nih.gov/research-topics/cannabis-marijuana",
+      "evidence": {
+        "url": "https://nida.nih.gov/research-topics/cannabis-marijuana",
+        "response_sha256": "a1848830c6f3e23f15becdefe2bd7c341979acc883ac4cf62b632bd8b65ed15f",
+        "local_response_path": "responses/new-nida.body"
+      }
+    },
+    {
+      "id": "S91001",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Benedetti E",
+          "Resce G",
+          "Brunori P",
+          "Molinaro S"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2021",
+        "link": "https://europepmc.org/article/MED/34068202",
+        "page": "Cannabis Policy Changes and Adolescent Cannabis Use: Evidence from Europe",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "notes": [
+          "Analyse différentielle de réformes européennes 2001–2014, adolescents ESPAD ; effets hétérogènes, pas une loi universelle de dissuasion.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_relevant_fulltext_sections. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0108",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les effets varient selon réforme et population ; absence d’effet détecté en Uruguay ne devient pas preuve d’absence dans tous les pays.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0091",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Certaines réformes restrictives sont associées à des baisses chez les adolescents ; cela renseigne la possibilité de dissuasion, pas chaque sanction individuelle.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0086",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "L’étude hétérogène limite la généralisation « n’en fait pas baisser » ; la phrase française reste traduite sans correction factuelle silencieuse.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0080",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les travaux montrent des effets hétérogènes ; ils ne prouvent ni multiplication inévitable ni invariance universelle.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0051",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les risques de hausse sont confrontés à des résultats hétérogènes ; les limites d’âge et de régime sont explicites.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0013",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les effets possibles sur les usages et la protection des jeunes sont documentés ; l’évaluation globale préjudiciable reste une conclusion argumentative.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0017",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Certaines interventions restrictives sont associées à des baisses ; cela ne quantifie pas la fraction de toute la population dissuadée.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0009",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "La dissuasion est confrontée à des résultats différenciés ; ni toute sanction ni tout usage ne sont assimilés.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0001",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Des évolutions et limites sont documentées ; la présence d’usagers ne prouve pas à elle seule l’absence totale d’effet dissuasif.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0064",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "L’étude européenne examine les effets selon fréquence et constate des effets non détectés sur les usagers fréquents ; cela étaye la limite de certaines sanctions, sans vérifier le cas de la peine de mort.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0020",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les effets non uniformes des réformes empêchent de traiter toutes les sanctions comme également inefficaces.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/34068202",
+      "evidence": {
+        "topic": "youth-europe",
+        "pmid": "34068202",
+        "doi": "10.3390/ijerph18105174",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.3390%2Fijerph18105174&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "57bdb40fa8c8b7ce204ccca3f8085d266159288ea8df386809ebb678d0d11b3f",
+        "read_scope": "abstract_and_relevant_fulltext_sections",
+        "fulltext_http_status": 200
+      }
+    },
+    {
+      "id": "S91002",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Asbridge M",
+          "Hayden JA",
+          "Cartwright JL"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2012",
+        "link": "https://europepmc.org/article/MED/22323502",
+        "page": "Acute cannabis consumption and motor vehicle collision risk: systematic review of observational studies and meta-analysis",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": false,
+        "notes": [
+          "Neuf études, consommation aiguë et collisions, OR groupé 1,92 ; forte hétérogénéité, pas une hausse identique pour chaque dose.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_relevant_fulltext_sections. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0011",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les dommages à autrui et les enjeux sanitaires sont documentés ; le choix de politique reste débattu.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0070",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les études de collision et de responsabilité sont distinctes, avec rôle important de l’alcool et de la co-consommation.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0127",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les OR et fractions attribuables des études historiques sont distingués ; aucune normalisation des chiffres des citations n’est effectuée.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/22323502",
+      "evidence": {
+        "topic": "traffic-risk",
+        "pmid": "22323502",
+        "doi": "10.1136/bmj.e536",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1136%2Fbmj.e536&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "f36f51ed3ba68a9409383f0783956ee7d2b04e5d4fd71d9549a0bef8c4ae12f8",
+        "read_scope": "abstract_and_relevant_fulltext_sections",
+        "fulltext_http_status": 200
+      }
+    },
+    {
+      "id": "S91003",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Martin JL",
+          "Gadegbeku B",
+          "Wu D",
+          "Viallon V",
+          "Laumon B"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2017",
+        "link": "https://europepmc.org/article/MED/29117206",
+        "page": "Cannabis, alcohol and fatal road accidents",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "notes": [
+          "France, accidents mortels de 2011 : risque de responsabilité et fraction attribuable, à ne pas confondre avec tous les accidents.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_relevant_fulltext_sections. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0128",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Deux études françaises anglaises distinguent poids attribuable de l’alcool et risque du cannabis ; la proposition historique reste inchangée.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0070",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les études de collision et de responsabilité sont distinctes, avec rôle important de l’alcool et de la co-consommation.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0068",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Des dommages collectifs sont décrits ; la létalité de la citation garde sa signification et n’est pas convertie en nombre de décès.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0066",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Martin et ses coauteurs analysent le risque routier et la co-consommation alcool/cannabis. Cette composante de l’interaction est développée ; les effets conjoints avec le tabac ne sont pas déclarés vérifiés.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/29117206",
+      "evidence": {
+        "topic": "traffic-alcohol",
+        "pmid": "29117206",
+        "doi": "10.1371/journal.pone.0187320",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1371%2Fjournal.pone.0187320&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "b0f5e85a02092c61fd5c210bc967d8314da369b8ae7c21874065cead616faa7a",
+        "read_scope": "abstract_and_relevant_fulltext_sections",
+        "fulltext_http_status": 200
+      }
+    },
+    {
+      "id": "S91004",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Laumon B",
+          "Gadegbeku B",
+          "Martin JL",
+          "Biecheler MB",
+          "SAM Group"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2005",
+        "link": "https://europepmc.org/article/MED/16321993",
+        "page": "Cannabis intoxication and fatal road crashes in France: population based case-control study",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "notes": [
+          "France 2001–2003 : étude cas-témoins historique ; résultats différents des études ultérieures sans contradiction automatique.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_bibliographic_record. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0128",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Deux études françaises anglaises distinguent poids attribuable de l’alcool et risque du cannabis ; la proposition historique reste inchangée.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0127",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les OR et fractions attribuables des études historiques sont distingués ; aucune normalisation des chiffres des citations n’est effectuée.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/16321993",
+      "evidence": {
+        "topic": "traffic-original",
+        "pmid": "16321993",
+        "doi": "10.1136/bmj.38648.617986.1f",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1136%2Fbmj.38648.617986.1F&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "e15e7ded68173b616e27e3c1ed1e6f7e1cb2d4d35ab3334279e0588a94eef393",
+        "read_scope": "abstract_and_bibliographic_record",
+        "fulltext_http_status": 500
+      }
+    },
+    {
+      "id": "S91005",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Pacula RL",
+          "Smart R",
+          "Lira MC",
+          "Pessar SC",
+          "Blanchette JG",
+          "Naimi TS"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2022",
+        "link": "https://europepmc.org/article/MED/35360879",
+        "page": "Relationships of Cannabis Policy Liberalization With Alcohol Use and Co-Use With Cannabis: A Narrative Review",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": false,
+        "notes": [
+          "Revue 2015–2020 : résultats positifs, négatifs et nuls ; ne prouve ni substitution générale ni hausse générale.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_relevant_fulltext_sections. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0056",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "La revue conclut à une littérature inconclusive, conservée comme limite à l’hypothèse de substitution à l’alcool.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0111",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "La revue anglaise est directement pertinente pour l’hétérogénéité des résultats sur alcool et cannabis.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/35360879",
+      "evidence": {
+        "topic": "alcohol-substitute",
+        "pmid": "35360879",
+        "doi": "10.35946/arcr.v42.1.06",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.35946%2Farcr.v42.1.06&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "35050ce7bbc5e2ff150878b77a5f0c4b806367aaf85893b1c9efbcf07c101bd0",
+        "read_scope": "abstract_and_relevant_fulltext_sections",
+        "fulltext_http_status": 200
+      }
+    },
+    {
+      "id": "S91006",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Shover CL",
+          "Davis CS",
+          "Gordon SC",
+          "Humphreys K"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2019",
+        "link": "https://europepmc.org/article/MED/31182592",
+        "page": "Association between medical cannabis laws and opioid overdose mortality has reversed over time",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "notes": [
+          "Extension jusqu’en 2017 : changement de signe et explication possiblement fallacieuse ; ne prouve pas que le cannabis augmente causalement les décès.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_relevant_fulltext_sections. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0058",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Bachhuber développe l’hypothèse de substitution aux opioïdes et l’association initiale ; Shover reprend ce même mécanisme puis examine sa non-réplication et le risque de confusion écologique.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0057",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les deux études développent le mécanisme de substitution et de mortalité pour les opioïdes ; cette composante de l’argument ne prouve pas le même effet pour toutes les autres drogues.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/31182592",
+      "evidence": {
+        "topic": "opioid-reversal",
+        "pmid": "31182592",
+        "doi": "10.1073/pnas.1903434116",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1073%2Fpnas.1903434116&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "178fe245cc60919ca8acdc21964de190f4bfbb1970b8fb646b6aab32c591b184",
+        "read_scope": "abstract_and_relevant_fulltext_sections",
+        "fulltext_http_status": 200
+      }
+    },
+    {
+      "id": "S91007",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Bachhuber MA",
+          "Saloner B",
+          "Cunningham CO",
+          "Barry CL"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2014",
+        "link": "https://europepmc.org/article/MED/25154332",
+        "page": "Medical cannabis laws and opioid analgesic overdose mortality in the United States, 1999-2010",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "notes": [
+          "Association écologique sur 1999–2010, pas preuve causale individuelle ; doit être accompagnée de la réanalyse de 2019.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_bibliographic_record. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0058",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Bachhuber développe l’hypothèse de substitution aux opioïdes et l’association initiale ; Shover reprend ce même mécanisme puis examine sa non-réplication et le risque de confusion écologique.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0057",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les deux études développent le mécanisme de substitution et de mortalité pour les opioïdes ; cette composante de l’argument ne prouve pas le même effet pour toutes les autres drogues.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/25154332",
+      "evidence": {
+        "topic": "opioid-original",
+        "pmid": "25154332",
+        "doi": "10.1001/jamainternmed.2014.4005",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1001%2Fjamainternmed.2014.4005&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "385d051f578f30027ccbbdcafc55f2a6d71caa492659a3eaeddd08beab4b3a60",
+        "read_scope": "abstract_and_bibliographic_record",
+        "fulltext_http_status": 500
+      }
+    },
+    {
+      "id": "S91008",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Whiting PF",
+          "Wolff RF",
+          "Deshpande S",
+          "Di Nisio M",
+          "Duffy S",
+          "Hernandez AV",
+          "Keurentjes JC",
+          "Lang S",
+          "Misso K",
+          "Ryder S",
+          "Schmidlkofer S",
+          "Westwood M",
+          "Kleijnen J"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2015",
+        "link": "https://europepmc.org/article/MED/26103030",
+        "page": "Cannabinoids for Medical Use: A Systematic Review and Meta-analysis",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": false,
+        "notes": [
+          "79 essais ; efficacité et qualité des preuves variables selon l’indication, effets indésirables accrus ; ne justifie pas tout usage médical.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_bibliographic_record. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0110",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "La revue distingue indications, qualité des preuves et effets indésirables ; le passage d’objection à Costentin entre citations est conservé.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0149",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "L’analgésie et certaines indications ont des niveaux de preuve variables ; aucune efficacité relaxante universelle n’est déduite.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/26103030",
+      "evidence": {
+        "topic": "medical-benefits",
+        "pmid": "26103030",
+        "doi": "10.1001/jama.2015.6358",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1001%2Fjama.2015.6358&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "3a119e4d15529174486476173c880ceff9506c62ed5411cec41666f9faaf19ac",
+        "read_scope": "abstract_and_bibliographic_record",
+        "fulltext_http_status": null
+      }
+    },
+    {
+      "id": "S91009",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Lopez-Quintero C",
+          "Pérez de los Cobos J",
+          "Hasin DS",
+          "Okuda M",
+          "Wang S",
+          "Grant BF",
+          "Blanco C"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2011",
+        "link": "https://europepmc.org/article/MED/21145178",
+        "page": "Probability and predictors of transition from first use to dependence on nicotine, alcohol, cannabis, and cocaine: results of the National Epidemiologic Survey on Alcohol and Related Conditions (NESARC)",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "notes": [
+          "NESARC, risque cumulatif de transition parmi les personnes ayant déjà utilisé chaque substance ; pas prévalence actuelle de dépendance dans toute la population.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_bibliographic_record. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0041",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Comparaison de risques multicritère et de transitions vers la dépendance, en distinguant population, pondération et nature des indicateurs.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0098",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les niveaux de dommages et de dépendance sont comparés avec leurs définitions, sans présenter une hiérarchie unique de danger intrinsèque.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0123",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les risques de transition vers la dépendance sont distingués des taux d’usage régulier ; le passage entre citations sur la contradiction apparente est conservé.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0067",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les indicateurs de dépendance sont contextualisés par substance et population ; leur importance ne devient pas un taux unique universel.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0124",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Fréquence, contexte et trajectoire sont distingués ; l’absence de danger intrinsèque n’est pas inférée.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0104",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les types de dommages et indicateurs de dépendance sont comparés sans assimiler toutes les dimensions sanitaires.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/21145178",
+      "evidence": {
+        "topic": "dependence",
+        "pmid": "21145178",
+        "doi": "10.1016/j.drugalcdep.2010.11.004",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1016%2Fj.drugalcdep.2010.11.004&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "217683d3697b7f5d9db27ac2079384cab8a387afe8cc5955f687db946b6d5e26",
+        "read_scope": "abstract_and_bibliographic_record",
+        "fulltext_http_status": 500
+      }
+    },
+    {
+      "id": "S91010",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Gobbi G",
+          "Atkin T",
+          "Zytynski T",
+          "Wang S",
+          "Askari S",
+          "Boruff J",
+          "Ware M",
+          "Marmorstein N",
+          "Cipriani A",
+          "Dendukuri N",
+          "Mayo N"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2019",
+        "link": "https://europepmc.org/article/MED/30758486",
+        "page": "Association of Cannabis Use in Adolescence and Risk of Depression, Anxiety, and Suicidality in Young Adulthood: A Systematic Review and Meta-analysis",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": false,
+        "notes": [
+          "Association longitudinale adolescence/dépression et suicidalité, pas preuve que chaque jeune consommateur développera ces troubles.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_bibliographic_record. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0010",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les associations sanitaires motivent le débat de protection ; les études ne décident pas seules de l’option juridique à adopter.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0082",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les risques d’usage précoce et la protection réglementaire sont documentés sans supposer un danger identique pour chaque mineur.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0065",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Associations psychiatriques et usage adolescent sont documentés ; les effets physiques ne sont pas assimilés à ces seuls travaux.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0116",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Âge de début et modalités de réduction des risques sont documentés ; l’initiation précoce n’est pas présentée comme unique danger.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/30758486",
+      "evidence": {
+        "topic": "early-use",
+        "pmid": "30758486",
+        "doi": "10.1001/jamapsychiatry.2018.4500",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1001%2Fjamapsychiatry.2018.4500&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "857a95b1b602983471facb216715e2325a11eeded623e003d07f17494469687b",
+        "read_scope": "abstract_and_bibliographic_record",
+        "fulltext_http_status": 500
+      }
+    },
+    {
+      "id": "S91011",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Fischer B",
+          "Russell C",
+          "Sabioni P",
+          "van den Brink W",
+          "Le Foll B",
+          "Hall W",
+          "Rehm J",
+          "Room R"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2017",
+        "link": "https://europepmc.org/article/MED/28644037",
+        "page": "Lower-Risk Cannabis Use Guidelines: A Comprehensive Update of Evidence and Recommendations",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": false,
+        "notes": [
+          "Recommandations de réduction des risques, pas promesse de consommation sans danger ; médical exclu de ce périmètre.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_bibliographic_record. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0119",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les risques modifiables par âge, fréquence et mode d’usage éclairent le rôle du contexte sans nier la pharmacologie.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0092",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les recommandations de réduction des risques constituent une référence concrète pour l’éducation, avec abstinence, âge, fréquence et voies de consommation.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0082",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les risques d’usage précoce et la protection réglementaire sont documentés sans supposer un danger identique pour chaque mineur.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0124",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Fréquence, contexte et trajectoire sont distingués ; l’absence de danger intrinsèque n’est pas inférée.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0116",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Âge de début et modalités de réduction des risques sont documentés ; l’initiation précoce n’est pas présentée comme unique danger.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0118",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les recommandations distinguent combustion, puissance, fréquence et âge ; réduire le risque n’est pas le supprimer.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/28644037",
+      "evidence": {
+        "topic": "use-route",
+        "pmid": "28644037",
+        "doi": "10.2105/ajph.2017.303818",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.2105%2FAJPH.2017.303818&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "fa045622ac34919aeaefcd0583d5a24ddf3f014978eb1205ccdac886bd503a5b",
+        "read_scope": "abstract_and_bibliographic_record",
+        "fulltext_http_status": null
+      }
+    },
+    {
+      "id": "S91012",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "McCambridge J",
+          "Hawkins B",
+          "Holden C"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2013",
+        "link": "https://europepmc.org/article/MED/23630458",
+        "page": "Industry use of evidence to influence alcohol policy: a case study of submissions to the 2008 Scottish government consultation",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "notes": [
+          "Consultation écossaise 2008 : usages sélectifs de preuves ; ne démontre ni corruption générale ni origine exclusive de la licéité de l’alcool.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_relevant_fulltext_sections. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0100",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le cas écossais atteste des stratégies d’influence sur la réglementation ; il n’établit pas la corruption alléguée dans le résumé français.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/23630458",
+      "evidence": {
+        "topic": "industry-alcohol",
+        "pmid": "23630458",
+        "doi": "10.1371/journal.pmed.1001431",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Industry+Use+of+Evidence+to+Influence+Alcohol+Policy%22&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "3e0d17539d349e138e2ce58d253bf2b77ae1f42b76640d923f4482c0142fa8e2",
+        "read_scope": "abstract_and_relevant_fulltext_sections",
+        "fulltext_http_status": 200
+      }
+    },
+    {
+      "id": "S91013",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Van Zee A"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2009",
+        "link": "https://europepmc.org/article/MED/18799767",
+        "page": "The promotion and marketing of oxycontin: commercial triumph, public health tragedy",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": false,
+        "notes": [
+          "Analyse de la promotion d’OxyContin ; ne démontre pas que tous les usagers ou tous les opioïdes ont la même histoire.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_bibliographic_record. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0102",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "L’étude de Van Zee documente la promotion d’OxyContin ; aucune édition anglaise imaginaire d’un livre français n’est ajoutée.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/18799767",
+      "evidence": {
+        "topic": "purdue",
+        "pmid": "18799767",
+        "doi": "10.2105/ajph.2007.131714",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.2105%2FAJPH.2007.131714&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "392aa744a942ada2be469c1cb00ea79a2e10c2d2f821d4db071732e34e273198",
+        "read_scope": "abstract_and_bibliographic_record",
+        "fulltext_http_status": null
+      }
+    },
+    {
+      "id": "S91014",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Hackshaw A",
+          "Morris JK",
+          "Boniface S",
+          "Tang JL",
+          "Milenković D"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2018",
+        "link": "https://europepmc.org/article/MED/29367388",
+        "page": "Low cigarette consumption and risk of coronary heart disease and stroke: meta-analysis of 141 cohort studies in 55 study reports",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": false,
+        "notes": [
+          "Méta-analyse du risque cardiovasculaire à faible consommation ; ne généralise pas le chiffre à toutes les maladies ni à l’alcool.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_relevant_fulltext_sections. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0148",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Hackshaw développe les risques cardiovasculaires du tabac même à faible dose ; le communiqué OMS développe le risque de cancer de l’alcool sans seuil sûr. Deux mécanismes sanitaires, sans taux universel commun.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/29367388",
+      "evidence": {
+        "topic": "low-tobacco",
+        "pmid": "29367388",
+        "doi": "10.1136/bmj.j5855",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A10.1136%2Fbmj.j5855&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "3e3fef3d5a07c3e501210bafa50d094e18c8003972ff72794226cd03f7f33361",
+        "read_scope": "abstract_and_relevant_fulltext_sections",
+        "fulltext_http_status": 200
+      }
+    },
+    {
+      "id": "S91015",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Schulte EM",
+          "Avena NM",
+          "Gearhardt AN"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2015",
+        "link": "https://europepmc.org/article/MED/25692302",
+        "page": "Which foods may be addictive? The roles of processing, fat content, and glycemic load",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "notes": [
+          "Deux études transversales préliminaires sur aliments transformés ; ne démontre pas à elle seule une intention commerciale de rendre dépendant.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_relevant_fulltext_sections. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0103",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les aliments transformés sont associés à des comportements alimentaires addictifs dans des études préliminaires ; l’intention de maximiser les profits n’y est pas testée.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/25692302",
+      "evidence": {
+        "topic": "food-industry",
+        "pmid": "25692302",
+        "doi": "10.1371/journal.pone.0117959",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Which+foods+may+be+addictive%22&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "ed10a6b31ee104b710df6fab4e3c4cea3f8e03d66ea5bb0758e6dfc5451c220c",
+        "read_scope": "abstract_and_relevant_fulltext_sections",
+        "fulltext_http_status": 200
+      }
+    },
+    {
+      "id": "S91016",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Laqueur H",
+          "Rivera-Aguirre A",
+          "Shev A",
+          "Castillo-Carniglia A",
+          "Rudolph KE",
+          "Ramirez J",
+          "Martins SS",
+          "Cerdá M"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2020",
+        "link": "https://europepmc.org/article/MED/32388170",
+        "page": "The impact of cannabis legalization in Uruguay on adolescent cannabis use",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "notes": [
+          "Étude adolescents 2014–2018 ; absence d’effet détecté sur usage, disponibilité perçue accrue et mise en œuvre transitoire.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_bibliographic_record. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0108",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les effets varient selon réforme et population ; absence d’effet détecté en Uruguay ne devient pas preuve d’absence dans tous les pays.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0080",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les travaux montrent des effets hétérogènes ; ils ne prouvent ni multiplication inévitable ni invariance universelle.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/32388170",
+      "evidence": {
+        "topic": "uruguay",
+        "pmid": "32388170",
+        "doi": "10.1016/j.drugpo.2020.102748",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%28Uruguay+AND+cannabis%29+AND+FIRST_PDATE%3A%5B2013-01-01+TO+2025-12-31%5D&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "c56342adffe98029bf4dcaa3b875bb98d1788be3c85ef1eddcbcb493fe79fd9e",
+        "read_scope": "abstract_and_bibliographic_record",
+        "fulltext_http_status": 500
+      }
+    },
+    {
+      "id": "S91017",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Speer M",
+          "Chakraborty R",
+          "Yang YT",
+          "LoParco CR",
+          "Berg CJ"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2025",
+        "link": "https://europepmc.org/article/MED/40638921",
+        "page": "Cannabis Social Equity Initiatives Across 5 US States Case Studies of Colorado, Washington, Massachusetts, Connecticut, and Missouri",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "notes": [
+          "Cinq États américains et politiques recensées fin 2024 ; dispositifs de licences et réparation, efficacité à long terme encore à évaluer.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_bibliographic_record. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0146",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "L’étude de cinq États développe les licences, réparations et réinvestissements comme mécanismes de transition inclusive. Elle n’authentifie pas les 260 000 emplois de la source française.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/40638921",
+      "evidence": {
+        "topic": "equity",
+        "pmid": "40638921",
+        "doi": "10.1097/phh.0000000000002191",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%28cannabis+AND+equity%29+AND+FIRST_PDATE%3A%5B2018-01-01+TO+2025-12-31%5D&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "bd2f3ff59569138c70d9131a3f4665ddd204559c5492eeba4ea6d5a5478fc7d8",
+        "read_scope": "abstract_and_bibliographic_record",
+        "fulltext_http_status": 500
+      }
+    },
+    {
+      "id": "S91018",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "López-Ruiz R",
+          "Marín-Sáez J",
+          "Garrido Frenich A",
+          "Romero-González R"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2022",
+        "link": "https://europepmc.org/article/MED/34390132",
+        "page": "Recent applications of chromatography for analysis of contaminants in cannabis products: a review",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": false,
+        "notes": [
+          "Méthodes d’analyse des contaminants 2015–2020 ; ne garantit pas leur absence complète après légalisation.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_bibliographic_record. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0122",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les méthodes de détection justifient la question des contaminants ; elles n’établissent pas leur fréquence dans chaque marché illicite.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0007",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les dispositifs de contrôle sont documentés ; ni la légalisation ni l’analyse ne garantissent à elles seules l’absence totale de contaminants.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0027",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le bilan canadien développe les exigences de contrôle et l’intérêt d’analyser les produits saisis ; la revue analytique développe les méthodes de détection. Aucun contrôle n’est présenté comme garantie absolue.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/34390132",
+      "evidence": {
+        "topic": "product-contaminants",
+        "pmid": "34390132",
+        "doi": "10.1002/ps.6599",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%28cannabis+AND+contaminants+AND+review%29&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "86a51e4abe18588aab0160cf0b852aa80c3eb4cf411f3be2c9da78222fe85cb4",
+        "read_scope": "abstract_and_bibliographic_record",
+        "fulltext_http_status": null
+      }
+    },
+    {
+      "id": "S91019",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Han B",
+          "Park H",
+          "He Y",
+          "Shang C",
+          "Shi Y"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2026",
+        "link": "https://europepmc.org/article/MED/41003445",
+        "page": "Estimating Price Elasticity of Cannabis Use Among U.S. Adolescents: Evidence From States With Recreational Cannabis Commercialization",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "notes": [
+          "Adolescents de dix États américains, 2015–2022 ; association prix/usage courant, pas d’association significative pour tous les critères.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_bibliographic_record. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0143",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les associations prix/usage adolescent et le marché global sont documentés sans déclarer le prix seul déterminant.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/41003445",
+      "evidence": {
+        "topic": "commercialisation",
+        "pmid": "41003445",
+        "doi": "10.1016/j.jadohealth.2025.08.021",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%28cannabis+AND+%28commercialization+OR+commercialisation%29%29&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "83bc38baa8d9b30574d7d79e3c9a92910ed8798f06c6275c4a36e622c23f755a",
+        "read_scope": "abstract_and_bibliographic_record",
+        "fulltext_http_status": 500
+      }
+    },
+    {
+      "id": "S91020",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Ajonijebu DC",
+          "Abboussi O",
+          "Russell VA",
+          "Mabandla MV",
+          "Daniels WMU"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2017",
+        "link": "https://europepmc.org/article/MED/28255755",
+        "page": "Epigenetics: a link between addiction and social environment",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": false,
+        "notes": [
+          "Revue environnement/épigénétique ; ne démontre pas que la substance n’a aucun rôle causal ni une intention des pouvoirs publics.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_bibliographic_record. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0125",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "La revue environnementale est pertinente pour les interactions ; elle ne valide pas la négation absolue d’un rôle causal de la substance.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/28255755",
+      "evidence": {
+        "topic": "context-addiction",
+        "pmid": "28255755",
+        "doi": "10.1007/s00018-017-2493-1",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%28addiction+AND+social+AND+environment%29&format=json&resultType=core&pageSize=4",
+        "metadata_sha256": "7b55b9854e63196dd66721444980984d5ea2919d2aece35b223aea0468cc58aa",
+        "read_scope": "abstract_and_bibliographic_record",
+        "fulltext_http_status": 500
+      }
+    },
+    {
+      "id": "S91021",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Nutt DJ",
+          "King LA",
+          "Phillips LD",
+          "Independent Scientific Committee on Drugs"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2010",
+        "link": "https://europepmc.org/article/MED/21036393",
+        "page": "Drug harms in the UK: a multicriteria decision analysis",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "notes": [
+          "Jugement multicritère d’experts au Royaume-Uni en 2010 ; pondération et contexte comptent, pas classement universel de toxicité intrinsèque.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_bibliographic_record. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0041",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Comparaison de risques multicritère et de transitions vers la dépendance, en distinguant population, pondération et nature des indicateurs.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0098",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les niveaux de dommages et de dépendance sont comparés avec leurs définitions, sans présenter une hiérarchie unique de danger intrinsèque.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0117",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le classement multicritère britannique fournit une comparaison de dommages, sans transformer un score relatif en absence de danger.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0004",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le raisonnement de légitimité et la comparaison des dommages sont documentés dans des registres différents, sans réduction de l’un à l’autre.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0104",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les types de dommages et indicateurs de dépendance sont comparés sans assimiler toutes les dimensions sanitaires.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/21036393",
+      "evidence": {
+        "topic": "relative-harm",
+        "pmid": "21036393",
+        "doi": "10.1016/s0140-6736(10)61462-6",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2FS0140-6736%2810%2961462-6%22&format=json&resultType=core&pageSize=1",
+        "metadata_sha256": "e27c2793739752b476dace8e24ca453ed2a923dd2a91549995fdeee6e9eaad29",
+        "read_scope": "abstract_and_bibliographic_record",
+        "fulltext_http_status": null
+      }
+    },
+    {
+      "id": "S91022",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Di Forti M",
+          "Quattrone D",
+          "Freeman TP",
+          "Tripoli G",
+          "Gayer-Anderson C",
+          "Quigley H",
+          "Rodriguez V",
+          "Jongsma HE",
+          "Ferraro L",
+          "La Cascia C",
+          "La Barbera D",
+          "Tarricone I",
+          "Berardi D",
+          "Szöke A",
+          "Arango C",
+          "Tortelli A",
+          "Velthorst E",
+          "Bernardo M",
+          "Del-Ben CM",
+          "Menezes PR",
+          "Selten JP",
+          "Jones PB",
+          "Kirkbride JB",
+          "Rutten BP",
+          "de Haan L",
+          "Sham PC",
+          "van Os J",
+          "Lewis CM",
+          "Lynskey M",
+          "Morgan C",
+          "Murray RM",
+          "EU-GEI WP2 Group"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2019",
+        "link": "https://europepmc.org/article/MED/30902669",
+        "page": "The contribution of cannabis use to variation in the incidence of psychotic disorder across Europe (EU-GEI): a multicentre case-control study",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "notes": [
+          "Étude cas-témoins multicentrique ; fréquence et puissance associées aux troubles psychotiques, fractions attribuables conditionnées par une hypothèse de causalité.",
+          "Métadonnées et résumé anglais consultés sur la notice Europe PMC/PubMed. Portée de lecture : abstract_and_bibliographic_record. Aucune lecture intégrale non réalisée n’est revendiquée."
+        ],
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true
+      },
+      "usage": [
+        {
+          "page_id": "A0010",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les associations sanitaires motivent le débat de protection ; les études ne décident pas seules de l’option juridique à adopter.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0065",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Associations psychiatriques et usage adolescent sont documentés ; les effets physiques ne sont pas assimilés à ces seuls travaux.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/30902669",
+      "evidence": {
+        "topic": "psychosis",
+        "pmid": "30902669",
+        "doi": "10.1016/s2215-0366(19)30048-3",
+        "metadata_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2FS2215-0366%2819%2930048-3%22&format=json&resultType=core&pageSize=1",
+        "metadata_sha256": "afe0424e34d208d083c9504a2fdc417b55a0be9c15a0d6b2c0b235a678e8d12d",
+        "read_scope": "abstract_and_bibliographic_record",
+        "fulltext_http_status": null
+      }
+    },
+    {
+      "id": "S92001",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2019",
+        "link": "https://www.euda.europa.eu/system/files/media/publications/documents/11335/france-cdr-2019.pdf",
+        "page": "France — Country Drug Report 2019",
+        "site": "European Monitoring Centre for Drugs and Drug Addiction",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": false,
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": false,
+        "notes": [
+          "Cadre légal, usages et statistiques surtout de 2017. Ne décrit pas la totalité de l’évolution depuis 1970 ni le droit en vigueur en 2026.",
+          "Les auteurs personnels non vérifiés ne sont pas déduits du nom du site."
+        ]
+      },
+      "usage": [
+        {
+          "page_id": "A0014",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "La série française est datée et comporte des précautions de comparabilité ; les données de 2017 ne deviennent pas l’état de 2026.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://www.euda.europa.eu/system/files/media/publications/documents/11335/france-cdr-2019.pdf",
+      "evidence": {
+        "topic": "france",
+        "url": "https://www.euda.europa.eu/system/files/media/publications/documents/11335/france-cdr-2019.pdf",
+        "response_sha256": "ceed0658a8dbba14a85819015e427f44a9591a5b1b56c987357dc4086adb7344",
+        "read_scope": "relevant_document_sections"
+      }
+    },
+    {
+      "id": "S92002",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": null,
+        "link": "https://www.government.nl/topics/drugs/toleration-policy-regarding-soft-drugs-and-coffee-shops",
+        "page": "Toleration policy regarding soft drugs and coffee shops",
+        "site": "Government of the Netherlands",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": false,
+        "notes": [
+          "Distingue infraction pénale et non-poursuite, critères des coffee shops, mineurs et résidence ; ne prouve pas toutes les préférences de l’opinion.",
+          "Les auteurs personnels non vérifiés ne sont pas déduits du nom du site."
+        ]
+      },
+      "usage": [
+        {
+          "page_id": "A0134",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les critères néerlandais sont vérifiés ; les évolutions d’autres pays ne sont pas généralisées à partir de ce seul cas.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0151",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le droit de tolérance, les règles de résidence et leur application locale sont distingués ; aucune majorité d’opinion n’est déduite du site gouvernemental.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0145",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les contrôles d’identité néerlandais et les scénarios RAND de vérification d’âge développent le mécanisme de restriction en magasin ; ils ne prouvent pas une impossibilité absolue d’accès pour un mineur.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://www.government.nl/topics/drugs/toleration-policy-regarding-soft-drugs-and-coffee-shops",
+      "evidence": {
+        "topic": "dutch",
+        "url": "https://www.government.nl/themes/family-health-and-care/drugs/toleration-policy-regarding-soft-drugs-and-coffee-shops",
+        "response_sha256": "3cc4b8a8d5ae91e66c7af72381d731500d90f0507351a734fc8e3901f1305e53",
+        "read_scope": "relevant_document_sections"
+      }
+    },
+    {
+      "id": "S92003",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2020",
+        "link": "https://www.aclu.org/report/tale-two-countries-racially-targeted-arrests-era-marijuana-reform",
+        "page": "A Tale of Two Countries: Racially Targeted Arrests in the Era of Marijuana Reform",
+        "site": "American Civil Liberties Union",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": false,
+        "notes": [
+          "Analyse militante et chiffrée des arrestations américaines 2010–2018 ; ne démontre pas à elle seule l’intention de Nixon ni la situation française.",
+          "Les auteurs personnels non vérifiés ne sont pas déduits du nom du site."
+        ]
+      },
+      "usage": [
+        {
+          "page_id": "A0026",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Arrestations et réparations américaines documentées ; les conséquences individuelles de prison ou de casier ne sont pas quantifiées pour la France par ces travaux.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0036",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les disparités américaines d’arrestations sont documentées ; aucune extrapolation automatique à la France ni attribution d’intention historique n’est faite.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0052",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les infractions et arrestations sont documentées ; les études ne démontrent pas que la réforme viderait les prisons françaises.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0025",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les effets de criminalisation sont éclairés par des données américaines, avec limite géographique explicite.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0002",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Dommages de criminalisation et réponses sanitaires sont documentés avec limites de pays ; pas de résumé nouveau.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0003",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Coûts collectifs et disparités sont éclairés séparément ; les neuf justifications du graphe restent distinctes.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0037",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le rapport ACLU développe les conséquences des arrestations et amendes sur emploi, logement et personnes pauvres : mécanisme social pertinent, avec limite au contexte américain.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://www.aclu.org/report/tale-two-countries-racially-targeted-arrests-era-marijuana-reform",
+      "evidence": {
+        "topic": "aclu",
+        "url": "https://www.aclu.org/publications/tale-two-countries-racially-targeted-arrests-era-marijuana-reform",
+        "response_sha256": "9944860e35658406763ef11b5d151b44f3e6b024b79d1ee9e00c520e0a7a3b3d",
+        "read_scope": "relevant_document_sections"
+      }
+    },
+    {
+      "id": "S92004",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "1972",
+        "link": "https://www.unodc.org/pdf/convention_1961_en.pdf",
+        "page": "Single Convention on Narcotic Drugs, 1961, as amended by the 1972 Protocol",
+        "site": "United Nations Office on Drugs and Crime",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": false,
+        "notes": [
+          "Texte primaire anglais : articles 4, 33 et 36, limites constitutionnelles ; ne remplace pas l’analyse de la convention de 1988 ni des réserves nationales.",
+          "Les auteurs personnels non vérifiés ne sont pas déduits du nom du site."
+        ]
+      },
+      "usage": [
+        {
+          "page_id": "A0071",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Lecture des articles pertinents des conventions de 1961 amendée et 1988, puis analyse Brookings de la tension entre légalisation uruguayenne et obligations : contraintes, réserves et réponses sont distinguées.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0132",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Article 4 : limitation aux fins médicales et scientifiques ; article 36 : réserves constitutionnelles. Cela développe une marge liée aux fins scientifiques, sans transformer une expérience commerciale en autorisation générale.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://www.unodc.org/pdf/convention_1961_en.pdf",
+      "evidence": {
+        "topic": "convention",
+        "url": "https://www.unodc.org/pdf/convention_1961_en.pdf",
+        "response_sha256": "9977c85045cc42e364b7a3bb0bbebc3cb932742eda715f8dc160256e8d580405",
+        "read_scope": "relevant_document_sections"
+      }
+    },
+    {
+      "id": "S92005",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "John Stuart Mill"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": null,
+        "link": "https://www.gutenberg.org/cache/epub/34901/pg34901-images.html",
+        "page": "On Liberty",
+        "site": "Project Gutenberg",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:14:29.275553+00:00",
+        "primary_source": true,
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true,
+        "notes": [
+          "Texte anglais réellement consulté : chapitre I, principe de non-nuisance, maturité et exception des enfants. Œuvre publiée en 1859 ; pas de date arbitraire attribuée à cette édition numérique.",
+          "Les auteurs personnels non vérifiés ne sont pas déduits du nom du site."
+        ]
+      },
+      "usage": [
+        {
+          "page_id": "A0120",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le principe de non-nuisance est attesté dans le texte anglais, avec les limites concernant les mineurs ; ce n’est pas la preuve que tout usage serait sans effet sur autrui.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0038",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le texte du principe de non-nuisance est disponible en anglais ; son application précise au cannabis reste argumentative.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0004",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le raisonnement de légitimité et la comparaison des dommages sont documentés dans des registres différents, sans réduction de l’un à l’autre.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        }
+      ],
+      "deduplication_key": "https://www.gutenberg.org/cache/epub/34901/pg34901-images.html",
+      "evidence": {
+        "topic": "mill",
+        "url": "https://www.gutenberg.org/cache/epub/34901/pg34901-images.html",
+        "response_sha256": "b0724525c3fc36678fc31d219310b8112ede904c5f75b5fbc46fbe798dd1e5ed",
+        "read_scope": "relevant_document_sections"
+      }
+    },
+    {
+      "id": "S92006",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": null,
+        "link": "https://laws-lois.justice.gc.ca/eng/acts/C-24.5/FullText.html",
+        "page": "Cannabis Act",
+        "site": "Justice Laws Website — Government of Canada",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:18:51.638545+00:00",
+        "primary_source": true,
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": false,
+        "notes": [
+          "Texte consolidé anglais consulté : définitions de young person, activités autorisées et interdites, restrictions de promotion. Aucune date arbitraire ni auteur personnel déduit du site."
+        ]
+      },
+      "usage": [
+        {
+          "page_id": "A0033",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "La loi canadienne et le dispositif uruguayen Brookings développent les limites légales à la promotion et à la distribution ; leur efficacité totale n’est pas postulée.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://laws-lois.justice.gc.ca/eng/acts/C-24.5/FullText.html",
+      "evidence": {
+        "response_sha256": "de5af486acf9d4647f355f1115af4e6d11bed4c8dd760f8a393ac1a0b534191a",
+        "url": "https://laws-lois.justice.gc.ca/eng/acts/C-24.5/FullText.html",
+        "read_scope": "relevant_legal_sections"
+      }
+    },
+    {
+      "id": "S93001",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "John Hudak",
+          "Geoff Ramsey",
+          "John Walsh"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "21 March 2018",
+        "link": "https://www.brookings.edu/articles/uruguays-cannabis-law-pioneering-a-new-paradigm/",
+        "page": "Uruguay’s cannabis law: Pioneering a new paradigm",
+        "site": "Brookings Institution",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:25:15.927768+00:00",
+        "primary_source": false,
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true,
+        "notes": [
+          "Notice et PDF réel lus : résumé exécutif, mécanismes réglementaires, critiques OICS et argument de priorité des droits humains. Le rapport décrit aussi des limites de mise en œuvre et de déplacement du marché noir."
+        ]
+      },
+      "usage": [
+        {
+          "page_id": "A0137",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le rapport Brookings développe le dispositif uruguayen : État, autoculture, clubs, pharmacies, limites et publicité ; la seule enquête adolescente est écartée de cette justification réglementaire.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0008",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Les expériences sont documentées séparément et leurs limites conservées ; aucun succès complet commun à toutes les dimensions n’est inféré.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0012",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Brookings développe précisément l’obstacle des conventions et la réponse uruguayenne ; c’est le volet juridique du raisonnement, pas une preuve que toute légalisation serait indésirable.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0071",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Lecture des articles pertinents des conventions de 1961 amendée et 1988, puis analyse Brookings de la tension entre légalisation uruguayenne et obligations : contraintes, réserves et réponses sont distinguées.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0063",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Brookings examine le modèle uruguayen et ses résultats/limites de mise en œuvre ; aucune élimination quasi complète du marché noir n’est déclarée vérifiée.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0131",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Brookings expose expressément la défense uruguayenne fondée sur la priorité des droits humains face au régime de contrôle des drogues ; l’argument est documenté comme position juridique, sans jugement définitif de hiérarchie.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0133",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Brookings relate directement les critiques OICS et l’adoption/mise en œuvre uruguayenne ; la référence documente le nouveau titre prudent, pas l’ancienne affirmation d’absence de critiques.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0033",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "La loi canadienne et le dispositif uruguayen Brookings développent les limites légales à la promotion et à la distribution ; leur efficacité totale n’est pas postulée.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        }
+      ],
+      "deduplication_key": "https://www.brookings.edu/articles/uruguays-cannabis-law-pioneering-a-new-paradigm/",
+      "evidence": {
+        "url": "https://www.brookings.edu/articles/uruguays-cannabis-law-pioneering-a-new-paradigm/",
+        "response_sha256": "d9bd801c61fc4efe64d866ec80abb1d6e816fc7e84b3cdfdc48d52ee7359f176",
+        "read_scope": "relevant_document_sections",
+        "doi": null
+      }
+    },
+    {
+      "id": "S93002",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "4 January 2023",
+        "link": "https://www.who.int/europe/news/item/04-01-2023-no-level-of-alcohol-consumption-is-safe-for-our-health",
+        "page": "No level of alcohol consumption is safe for our health",
+        "site": "World Health Organization — Regional Office for Europe",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:25:15.928390+00:00",
+        "primary_source": true,
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": false,
+        "notes": [
+          "Communiqué anglais consulté : cancérogénicité et absence de seuil sans risque pour la santé. Aucune assimilation de toutes les doses à un même risque."
+        ]
+      },
+      "usage": [
+        {
+          "page_id": "A0148",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Hackshaw développe les risques cardiovasculaires du tabac même à faible dose ; le communiqué OMS développe le risque de cancer de l’alcool sans seuil sûr. Deux mécanismes sanitaires, sans taux universel commun.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://www.who.int/europe/news/item/04-01-2023-no-level-of-alcohol-consumption-is-safe-for-our-health",
+      "evidence": {
+        "url": "https://www.who.int/europe/news/item/04-01-2023-no-level-of-alcohol-consumption-is-safe-for-our-health",
+        "response_sha256": "1b4085076b9ccc1746d9e4a02527a2389ffb4cceab5992f8179979687ad2e835",
+        "read_scope": "relevant_document_sections",
+        "doi": null
+      }
+    },
+    {
+      "id": "S93003",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": null,
+        "link": "https://www.euda.europa.eu/publications/topic-overviews/cannabis-policy/html_en",
+        "page": "Cannabis policy: status and recent developments",
+        "site": "European Union Drugs Agency",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:33:19.853847+00:00",
+        "primary_source": false,
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": false,
+        "notes": [
+          "Corps historique anglais consulté : définitions, modèles réglementaires, réformes uruguayenne et américaines, tolérance néerlandaise. Les actualités et le corps de synthèse ont des dates différentes ; aucun inventaire mondial à jour en 2026 n’est revendiqué."
+        ]
+      },
+      "usage": [
+        {
+          "page_id": "A0039",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "EUDA compare des modèles et définitions juridiques différents ; ces variations étayent la contingence des normes, sans prétendre inventorier toutes les cultures.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0072",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Le corps historique EUDA documente les réformes américaines et uruguayenne en distinguant légalisation, dépénalisation et tolérance. Il ne valide ni la carte de 2024 ni un décompte actuel de tous les pays.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0152",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "EUDA décrit historiquement la diffusion de plusieurs réformes ; l’évolution du nombre de juridictions est documentée dans cette période, sans inventaire mondial en 2026.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        }
+      ],
+      "deduplication_key": "https://www.euda.europa.eu/publications/topic-overviews/cannabis-policy/html_en",
+      "evidence": {
+        "url": "https://www.euda.europa.eu/publications/topic-overviews/cannabis-policy/html_en",
+        "response_sha256": "aebd59234a1c6cd700e22d754e9e626b46c54547f06e4921ad849c80f346ef59",
+        "read_scope": "relevant_document_sections",
+        "doi": null
+      }
+    },
+    {
+      "id": "S93004",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "1988",
+        "link": "https://www.unodc.org/pdf/convention_1988_en.pdf",
+        "page": "United Nations Convention against Illicit Traffic in Narcotic Drugs and Psychotropic Substances, 1988",
+        "site": "United Nations Office on Drugs and Crime",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:33:20.252292+00:00",
+        "primary_source": true,
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": false,
+        "notes": [
+          "Texte primaire anglais, article 3(2) lu : possession, achat, culture pour consommation personnelle, sous réserves constitutionnelles ; le texte ne nomme pas la consommation elle-même dans cette disposition."
+        ]
+      },
+      "usage": [
+        {
+          "page_id": "A0071",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Lecture des articles pertinents des conventions de 1961 amendée et 1988, puis analyse Brookings de la tension entre légalisation uruguayenne et obligations : contraintes, réserves et réponses sont distinguées.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        },
+        {
+          "page_id": "A0129",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "L’article 3(2) de 1988 distingue possession/achat/culture pour consommation personnelle et consommation elle-même ; le rapport portugais développe la réponse administrative, sans légalisation du trafic.",
+          "argument_development_verified": true,
+          "also_develops_objections": false
+        }
+      ],
+      "deduplication_key": "https://www.unodc.org/pdf/convention_1988_en.pdf",
+      "evidence": {
+        "url": "https://www.unodc.org/pdf/convention_1988_en.pdf",
+        "response_sha256": "bdc7cef0def1aadc98dac8d6527076e32fe057722a7acacc348063bdd4b432c5",
+        "read_scope": "relevant_document_sections",
+        "doi": null
+      }
+    },
+    {
+      "id": "S93005",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Hans Hansen"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "30 August 2024",
+        "link": "https://plato.stanford.edu/entries/fallacies/",
+        "page": "Fallacies",
+        "site": "Stanford Encyclopedia of Philosophy",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:33:21.326531+00:00",
+        "primary_source": false,
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true,
+        "notes": [
+          "Notice anglaise, auteur et révision vérifiés ; passage sur slippery slope effectivement lu : enchaînement causal contestable et variante par termes vagues. Aucune sous-espèce précise n’est imposée à la page source."
+        ]
+      },
+      "usage": [
+        {
+          "page_id": "A0140",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "La notice spécialisée de Hansen développe le raisonnement par chaîne de conséquences et l’insuffisance de ses maillons ; elle documente le sophisme sans inventer d’appellation supplémentaire.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        }
+      ],
+      "deduplication_key": "https://plato.stanford.edu/entries/fallacies/",
+      "evidence": {
+        "url": "https://plato.stanford.edu/entries/fallacies/",
+        "response_sha256": "45467658874e59756cafdde7e0efcaba81d7f7312ed7804b5560ac6c81db4e2f",
+        "read_scope": "relevant_document_sections",
+        "doi": null
+      }
+    },
+    {
+      "id": "S93006",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Morris RG",
+          "TenEyck M",
+          "Barnes JC",
+          "Kovandzic TV"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2014",
+        "link": "https://europepmc.org/article/MED/24671103",
+        "page": "The effect of medical marijuana laws on crime: evidence from state panel data, 1990-2006",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T10:33:21.854669+00:00",
+        "primary_source": true,
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true,
+        "notes": [
+          "Résumé anglais et métadonnées lus : panel d’États américains 1990–2006, lois médicales, homicides et agressions. Association possible à une baisse ; aucune preuve causale de toute criminalité après légalisation récréative."
+        ]
+      },
+      "usage": [
+        {
+          "page_id": "A0060",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Morris et ses coauteurs analysent l’hypothèse de baisse des crimes et les résultats américains sous lois médicales ; résultats bornés à 1990–2006 et aux infractions étudiées.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/24671103",
+      "evidence": {
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1371%2Fjournal.pone.0092816%22&format=json&resultType=core&pageSize=1",
+        "response_sha256": "1e6297f614e2e9e7cce67a18ea85a438dfa7345fd3dda3dcd00808e58206187c",
+        "read_scope": "abstract_and_bibliographic_record",
+        "doi": "10.1371/journal.pone.0092816"
+      }
+    },
+    {
+      "id": "S93007",
+      "type": "webliography",
+      "document_kind": null,
+      "language": "en",
+      "metadata": {
+        "authors": [
+          "Smith PS",
+          "Sera L"
+        ],
+        "article": null,
+        "work": null,
+        "volume": null,
+        "issue": null,
+        "location": null,
+        "publisher": null,
+        "place": null,
+        "date": "2025",
+        "link": "https://europepmc.org/article/MED/41275252",
+        "page": "The cannabis-mind connection: a clinician's perspective on mental health practice, harm reduction, and racial equity",
+        "site": "Europe PMC",
+        "title": null
+      },
+      "verification": {
+        "status": "verified",
+        "verified_at": "2026-10-21T12:04:08.323874+00:00",
+        "primary_source": false,
+        "language_verified": true,
+        "authorship_checked": true,
+        "authorship_verified": true,
+        "notes": [
+          "Résumé anglais et métadonnées lus : perspective clinique, héritage de criminalisation, stigmatisation et obstacles au dialogue thérapeutique ; approche des intentions des patients sans jugement. Ce n’est pas une estimation causale des obstacles français."
+        ]
+      },
+      "usage": [
+        {
+          "page_id": "A0024",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "La perspective clinique Smith–Sera développe les obstacles au dialogue et à la confiance liés à la stigmatisation et à l’héritage de la prohibition ; elle ne chiffre pas un effet français.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0002",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Dommages de criminalisation et réponses sanitaires sont documentés avec limites de pays ; pas de résumé nouveau.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        },
+        {
+          "page_id": "A0022",
+          "language": "en",
+          "role": "supports_summary",
+          "selection_reason": "Smith–Sera développe l’exploration des intentions et expériences du patient plutôt qu’une lecture punitive ; cette démarche étaye la prise en compte des motifs, sans diagnostiquer chaque usager.",
+          "argument_development_verified": true,
+          "also_develops_objections": true
+        }
+      ],
+      "deduplication_key": "https://europepmc.org/article/MED/41275252",
+      "evidence": {
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A41275252+AND+SRC%3AMED&format=json&resultType=core",
+        "response_sha256": "ee496cca15c6763e5cfa5f790102a41afd2815fb102ce73917fa1a3024934148",
+        "read_scope": "abstract_and_bibliographic_record",
+        "doi": "10.1186/s42238-025-00360-1"
+      }
+    }
+  ],
+  "verification_scope": "Source identity, stated language, metadata and specified consulted sections; not all historical claims or quotations."
+}

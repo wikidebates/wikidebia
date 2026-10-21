@@ -1,0 +1,11 @@
+{{Argument
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition, prison, justice
+|webliography=
+{{Web reference
+|link=https://www.aclu.org/report/tale-two-countries-racially-targeted-arrests-era-marijuana-reform
+|page=A Tale of Two Countries: Racially Targeted Arrests in the Era of Marijuana Reform
+|site=American Civil Liberties Union
+|date=2020
+}}
+}}

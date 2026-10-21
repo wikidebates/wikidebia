@@ -1,0 +1,200 @@
+{
+  "schema": "wikidebia-detailed-bilingual-review-corrections-1.0",
+  "changes": [
+    {
+      "page_id": "A0079",
+      "field": "canonical_title",
+      "before": "Clandestine cannabis cultivation causes many fires",
+      "after": "Clandestine cannabis production causes many fires",
+      "reason": "Production source non limitée à la culture.",
+      "source_evidence": "La production clandestine de cannabis est à l'origine de nombreux incendies"
+    },
+    {
+      "page_id": "A0087",
+      "field": "canonical_title",
+      "before": "Cannabis prohibition creates a lucrative underground economy with corruption, money laundering, youth recruitment, violence, insecurity and arms trafficking",
+      "after": "Cannabis prohibition creates a highly lucrative underground economy with corruption, money laundering, youth recruitment, violence, insecurity and arms trafficking",
+      "reason": "Degré très lucrative conservé par highly lucrative.",
+      "source_evidence": "La prohibition du cannabis entraîne le développement d'une économie parallèle très lucrative avec ses conséquences : corruption, blanchiment d’argent, recrutement de jeunes, violence, insécurité, trafic d'armes"
+    },
+    {
+      "page_id": "A0103",
+      "field": "canonical_title",
+      "before": "Punitive drug policies can burden vulnerable people and prisons",
+      "after": "Punitive drug policies can burden people in precarious circumstances and prisons",
+      "reason": "Personnes précaires ne désigne pas toutes les vulnérabilités.",
+      "source_evidence": "La répression des drogues peut peser sur les personnes précaires et sur les prisons"
+    },
+    {
+      "page_id": "debate",
+      "field": "subsection[0].title",
+      "before": "The question",
+      "after": null,
+      "reason": "Préserver l’absence de titre de la sous-partie française historique.",
+      "source_evidence": "Premier modèle Sous-partie sans titre"
+    },
+    {
+      "page_id": "A0006",
+      "field": "summary",
+      "before": "decriminalising abortion and homosexuality",
+      "after": "decriminalising abortion or homosexuality",
+      "reason": "Coordination ou conservée entre exemples, sans modifier les exemples eux-mêmes.",
+      "source_evidence": "la dépénalisation de l’IVG ou de l’homosexualité"
+    },
+    {
+      "page_id": "A0041",
+      "field": "Q042.quote",
+      "before": "In 2010, the worst year on record,",
+      "after": "In 2010, the year with the worst figures,",
+      "reason": "Retrait de on record qui étend la portée temporelle au-delà de la formulation source.",
+      "source_evidence": "En 2010, année affichant les pires chiffres"
+    },
+    {
+      "page_id": "A0041",
+      "field": "Q044.quote",
+      "before": "https://fr.wikipedia.org/wiki/Weather_Underground",
+      "after": "https://en.wikipedia.org/wiki/Weather_Underground",
+      "reason": "Localisation du lien dans le texte traduit, cible anglaise consultée et vérifiée ; le paramètre link de la citation est inchangé.",
+      "source_evidence": "Weather Underground dans le texte source"
+    },
+    {
+      "page_id": "A0042",
+      "field": "Q047.quote",
+      "before": "habituation",
+      "after": "dependency",
+      "reason": "Assuétude désigne ici la dépendance, pas la seule accoutumance ; liste de synonymes source conservée.",
+      "source_evidence": "dépendance, addiction, assuétude, esclavage"
+    },
+    {
+      "page_id": "A0074",
+      "field": "Q078.quote",
+      "before": "and that homosexuality was once a crime",
+      "after": "or that homosexuality was once a crime",
+      "reason": "Coordination source ou conservée.",
+      "source_evidence": "ou que l’homosexualité fut un crime"
+    },
+    {
+      "page_id": "A0089",
+      "field": "Q093.quote",
+      "before": "and that homosexuality was once a crime",
+      "after": "or that homosexuality was once a crime",
+      "reason": "Même passage source que Q078 ; même coordination conservée.",
+      "source_evidence": "ou que l’homosexualité fut un crime"
+    },
+    {
+      "page_id": "A0108",
+      "field": "Q114.quote",
+      "before": "Expanding the range of legal drugs would cause far more deaths",
+      "after": "Expanding the range of legal drugs would mean much greater lethality",
+      "reason": "Conserver la létalité sans la remplacer par un nombre absolu de décès ni renforcer le lien causal.",
+      "source_evidence": "En élargissant la palette des drogues licites, la létalité serait bien supérieure"
+    },
+    {
+      "page_id": "A0143",
+      "field": "summary",
+      "before": "such as Portugal and the Czech Republic",
+      "after": "such as Portugal or the Czech Republic",
+      "reason": "Coordination illustrative ou conservée.",
+      "source_evidence": "Certains pays comme le Portugal ou la République tchèque"
+    },
+    {
+      "page_id": "A0030",
+      "field": "keywords",
+      "before": "cannabis, decriminalisation, legalisation, prohibition, appeal, prohibition",
+      "after": "cannabis, decriminalisation, legalisation, prohibition, appeal, ban",
+      "source_evidence": [
+        "Cannabis",
+        "Dépénalisation",
+        "Légalisation",
+        "Prohibition",
+        "Attractivité",
+        "Interdiction"
+      ],
+      "reason": "Distinguer Interdiction (ban) de Prohibition et conserver le sens large de Contrôle (control) ; aucun terme source ni ordre supprimé."
+    },
+    {
+      "page_id": "A0031",
+      "field": "keywords",
+      "before": "cannabis, decriminalisation, legalisation, prohibition, prohibition",
+      "after": "cannabis, decriminalisation, legalisation, prohibition, ban",
+      "source_evidence": [
+        "Cannabis",
+        "Dépénalisation",
+        "Légalisation",
+        "Prohibition",
+        "Interdiction"
+      ],
+      "reason": "Distinguer Interdiction (ban) de Prohibition et conserver le sens large de Contrôle (control) ; aucun terme source ni ordre supprimé."
+    },
+    {
+      "page_id": "A0034",
+      "field": "keywords",
+      "before": "cannabis, decriminalisation, legalisation, prohibition, appeal, prohibition",
+      "after": "cannabis, decriminalisation, legalisation, prohibition, appeal, ban",
+      "source_evidence": [
+        "Cannabis",
+        "Dépénalisation",
+        "Légalisation",
+        "Prohibition",
+        "Attractivité",
+        "Interdiction"
+      ],
+      "reason": "Distinguer Interdiction (ban) de Prohibition et conserver le sens large de Contrôle (control) ; aucun terme source ni ordre supprimé."
+    },
+    {
+      "page_id": "A0121",
+      "field": "keywords",
+      "before": "cannabis, decriminalisation, legalisation, prohibition, appeal, prohibition, tobacco, alcohol",
+      "after": "cannabis, decriminalisation, legalisation, prohibition, appeal, ban, tobacco, alcohol",
+      "source_evidence": [
+        "Cannabis",
+        "Dépénalisation",
+        "Légalisation",
+        "Prohibition",
+        "Attractivité",
+        "Interdiction",
+        "Tabac",
+        "Alcool"
+      ],
+      "reason": "Distinguer Interdiction (ban) de Prohibition et conserver le sens large de Contrôle (control) ; aucun terme source ni ordre supprimé."
+    },
+    {
+      "page_id": "A0123",
+      "field": "keywords",
+      "before": "cannabis, decriminalisation, legalisation, prohibition, appeal, prohibition, tobacco, alcohol",
+      "after": "cannabis, decriminalisation, legalisation, prohibition, appeal, ban, tobacco, alcohol",
+      "source_evidence": [
+        "Cannabis",
+        "Dépénalisation",
+        "Légalisation",
+        "Prohibition",
+        "Attractivité",
+        "Interdiction",
+        "Tabac",
+        "Alcool"
+      ],
+      "reason": "Distinguer Interdiction (ban) de Prohibition et conserver le sens large de Contrôle (control) ; aucun terme source ni ordre supprimé."
+    },
+    {
+      "page_id": "A0150",
+      "field": "keywords",
+      "before": "cannabis, legalisation, state, regulation, sales, alcohol",
+      "after": "cannabis, legalisation, state, control, sales, alcohol",
+      "source_evidence": [
+        "Cannabis",
+        "Légalisation",
+        "État",
+        "Contrôle",
+        "Vente",
+        "Alcool"
+      ],
+      "reason": "Distinguer Interdiction (ban) de Prohibition et conserver le sens large de Contrôle (control) ; aucun terme source ni ordre supprimé."
+    }
+  ],
+  "source_french_changed": false,
+  "quote_metadata_changed": false,
+  "summary_additions": 0,
+  "quote_deletions": 0,
+  "relations_changed": false,
+  "publication": false
+}

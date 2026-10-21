@@ -1,0 +1,25 @@
+{{Argument
+|citations={{Citation
+|citation=We now know that while estimates vary, marijuana leads to dependence in around 9 to 10% of its adult users. By comparison, cocaine hooks 20% of those who use it. Around 25% of heroin users become addicted. The worst is tobacco, where the number is closer to 30% of smokers.
+
+[Même si les estimations peuvent varier, nous savons que la marijuana rend dépendants de 9 à 10% des consommateurs adultes. En comparaison, la cocaïne accroche 20% des utilisateurs. Environ 25% des usagers d'héroïne deviennent toxicomanes. Le pire c'est le tabac, pour lequel le nombre approche 30% des fumeurs]
+|auteurs=Dr. Sanjay Gupta
+|article=Why I changed my mind on weed
+|ouvrage=CNN
+|date=9/08/2013
+|lien=https://edition.cnn.com/2013/08/08/health/gupta-changed-mind-marijuana/index.html
+}}
+''La contradiction entre les chiffres des docteurs Jean Costentin et Sanjay Gupta n'est qu'apparente : seul le second parle réellement de dépendance. Tous les consommateurs réguliers ne sont pas dépendants.''
+{{Citation
+|citation=L’usage de cannabis s’avère le plus souvent transitoire : même en cas de dépendance, deux tiers des usagers arrêtent spontanément leur consommation entre 25 et 30 ans.
+|auteurs=Laqueille, Liot
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=22
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|rubriques=Philosophie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Santé, Addiction
+|date-création=2019-08-09
+}}

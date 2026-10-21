@@ -1,0 +1,25 @@
+{{Argument
+|citations={{Citation
+|citation=Comme tout produit, même l'eau, le danger est dans l'excès, et qu'il soit précoce ou pas, il est à proscrire. L'eau peut tuer si on en abuse. Le cannabis peut avoir un impact négatif sur la vie si on en abuse même de façon festive et occasionnelle. Mais tout : le café (nervosité et insomnie et addiction), le chocolat (crise de foie et addiction), les patates, le fromage, les cigares etc etc. L'usage de cannabis par des personnes au cerveau non fini est un sujet de polémique, et aucune preuve tangible n'a encore été apportée que cet argument est avéré.
+|auteurs=Amine Benyamina
+|ouvrage=Le Monde
+|date=2/02/2013
+}}{{Citation
+|citation=Le cerveau de l’adolescent est plus vulnérable aux substances psychoactives que le cerveau de l’adulte. Il présente la particularité d’être dans un état de transition vers l’état adulte. Les processus de maturation cérébrale (qui se poursuivent jusqu’à environ 25 ans) entraînent une vulnérabilité exacerbée de l’adolescent vis-à-vis de la neurotoxicité des substances psychoactives en général. Une zone du cerveau, le cortex préfrontal, qui permet la prise de décision, l’adaptation du comportement à la situation, est plus particulièrement concernée par cette maturation à l’adolescence.
+|auteurs=Inserm
+|ouvrage=Conduites addictives chez les adolescents – Une expertise collective de l’Inserm
+|édition= Inserm
+|date=6/02/2014
+|lien=https://presse.inserm.fr/conduites-addictives-chez-les-adolescents-une-expertise-collective-de-linserm/11035/
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+|date=24/09/2024
+}}
+
+|rubriques=Philosophie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Overdose, Dangerosité
+|date-création=2019-08-09
+}}

@@ -1,0 +1,12 @@
+{{Argument
+|citations={{Citation
+|citation=Les services de contrôle redoublent aujourd’hui d’efforts, notamment en direction des usagers, et une réponse pénale est désormais presque systématiquement apportée à chaque infraction détectée.
+|auteurs=Robin Reda
+|article=Rapport d'étape sur le cannabis récréatif
+|ouvrage=Assemblée nationale
+|page=16
+|date=5/05/2021
+|lien=https://www2.assemblee-nationale.fr/15/missions-d-information/missions-d-information-communes/reglementation-et-impact-des-differents-usages-du-cannabis/rapport-cannabis-recreatif/rapport-d-etape-cannabis-recreatif
+}}
+|date-création=2021-05-10
+}}

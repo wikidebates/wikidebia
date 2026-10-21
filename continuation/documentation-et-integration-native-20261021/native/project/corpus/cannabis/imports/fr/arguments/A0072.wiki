@@ -1,0 +1,25 @@
+{{Argument
+|résumé=Lois sur la possession de petites quantités de cannabis :
+[[Fichier:World-cannabis-laws.png|800px|centre]]
+* Bleu : Légal ou essentiellement légal
+* Orange : Illégal mais dépénalisé
+* Rose : Illégal mais souvent inappliquées
+* Rouge : Illégal
+* Gris : Aucune information
+
+Source : [https://fr.wikipedia.org/wiki/L%C3%A9gislation_sur_le_cannabis Wikipédia : Législation sur le cannabis]
+|références-sitographiques={{Référence sitographique
+|lien=https://www.canada.ca/fr/sante-canada/services/drogues-medicaments/cannabis/recherches-donnees/enquete-canadienne-cannabis-2024-sommaire.html
+|page=Enquête canadienne sur le cannabis de 2024 : Sommaire
+|site=Santé Canada
+|date=2024
+}}
+
+|objections={{Objection
+|page=Les pays ayant dépénalisé le cannabis font marche arrière
+|titre-affiché=Les pays ayant dépénalisé le cannabis font marche arrière
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation
+|date-création=2021-02-16
+}}

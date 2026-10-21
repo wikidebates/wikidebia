@@ -1,0 +1,25 @@
+{{Argument
+|quotes={{Quote
+|quote=Nor should we be told that a high price would act as a deterrent. Tobacco smuggling provides a massive way around such a measure. Preventing legal cannabis from entering the country would be even harder than preventing the entry of cannabis that is currently prohibited.
+
+Giving up the war on traffickers, dealers and local cannabis growers (cannabis social clubs) would increase supply, lower prices and therefore cause consumption to soar.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=41, 114
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+|bibliography=
+{{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+}}

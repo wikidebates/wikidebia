@@ -1,0 +1,18 @@
+{{Argument
+|citations={{Citation
+|citation=L'interdiction de la pédophilie, des vols, viols et crimes ne les a pas éradiqués, mais ce n'est pas une raison pour y renoncer.
+|auteurs=Jean Costentin
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=112
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|objections={{Objection
+|page=Quand une loi aggrave un problème qu'elle était censée résoudre, il devient urgent de l'abolir
+|titre-affiché=Quand une politique est coûteuse, contreproductive et a des effets pervers, il devient urgent de l'abolir
+}}
+|rubriques=Politique, Société
+|mots-clés=Echec
+|date-création=2019-01-31
+}}

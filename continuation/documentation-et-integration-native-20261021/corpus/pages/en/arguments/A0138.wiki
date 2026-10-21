@@ -1,0 +1,33 @@
+{{Argument
+|quotes={{Quote
+|quote=N. M. — If we legalise cannabis, it becomes a market product. A commercial company seeks to sell it. It wants market share. That is inevitable.
+
+M. H. — Unless we establish a state monopoly or state control.
+
+N. M. — I do not see how cannabis production and sales could become a state monopoly when the European Union requires us to end all protectionist policies.
+|authors=Nicole Maestracci
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=231
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Countries such as Uruguay tightly regulate the cannabis market
+|displayed-title=Countries such as Uruguay tightly regulate the cannabis market
+}}{{Objection
+|page=France could regulate cannabis sales through the state, as it does alcohol
+|displayed-title=State regulation is possible in France
+}}
+|sections=Economy, Society
+|keywords=cannabis, legalisation, market forces
+|bibliography=
+{{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+}}

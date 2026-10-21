@@ -1,0 +1,8 @@
+{{Argument
+|références-sitographiques={{Référence sitographique
+|lien=https://www.who.int/fr/news-room/fact-sheets/detail/tobacco
+|page=Tabac
+|site=Organisation mondiale de la santé
+}}
+|date-création=2022-12-19
+}}

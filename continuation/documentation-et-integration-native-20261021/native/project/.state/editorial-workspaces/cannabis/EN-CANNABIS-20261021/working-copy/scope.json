@@ -1,0 +1,24 @@
+{
+  "canonical_title_fr": "Le cannabis doit-il être légalisé ?",
+  "debate_id": "cannabis",
+  "editorial_constraints": [
+    "Les fichiers sous imports/fr sont des sources historiques et ne sont pas des sorties validées."
+  ],
+  "excluded_topics": [],
+  "included_topics": [],
+  "jurisdiction": null,
+  "proposition_fr": "Le cannabis doit-il être légalisé ?",
+  "related_debates": [],
+  "residual_ambiguities": [
+    "Le cadrage et le placement de chaque occurrence restent à valider après l'import technique."
+  ],
+  "scope_schema_version": "1.0",
+  "scope_summary_fr": "Cadrage importé depuis la page « Le cannabis doit-il être légalisé ? »; périmètre éditorial à revoir avant validation du graphe.",
+  "source_documents": [
+    {
+      "path": "data/import_provenance.json",
+      "sha256": "1b862df020cc7176b79f8870518dd21aa331d5eba6805eefcc3273b51c8a02a1"
+    }
+  ],
+  "timeframe": null
+}

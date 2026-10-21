@@ -1,0 +1,13 @@
+{{Argument
+|citations={{Citation
+|citation=Vous avez 10 fois plus de risques d’être impliqué dans un accident mortel si vous consommez de l’alcool seul que si vous consommez du cannabis seul.
+|auteurs=Nicole Maestracci
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=231
+|édition=Denoël
+|date=2011
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Accidents de la route, Alcool
+|date-création=2021-02-16
+}}

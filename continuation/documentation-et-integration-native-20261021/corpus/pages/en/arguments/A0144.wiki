@@ -1,0 +1,20 @@
+{{Argument
+|summary=Cannabis is not dangerous provided people do not start using it too early. Prohibition currently serves no purpose and therefore does not prevent use among the youngest people. The fact that some begin in adolescence shows that prohibition is pointless. If you want to “protect” your children, the best approach is to legalise cannabis so that the product can be controlled. It is much harder for a minor to obtain alcohol in a shop.
+|sections=Economy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, black market
+|bibliography=
+{{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+|webliography=
+{{Web reference
+|link=https://www.government.nl/topics/drugs/toleration-policy-regarding-soft-drugs-and-coffee-shops
+|page=Toleration policy regarding soft drugs and coffee shops
+|site=Government of the Netherlands
+}}
+}}

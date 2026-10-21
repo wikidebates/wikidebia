@@ -1,0 +1,16 @@
+{{Argument|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/34068202
+|page=Cannabis Policy Changes and Adolescent Cannabis Use: Evidence from Europe
+|authors=Benedetti E, Resce G, Brunori P, Molinaro S
+|site=Europe PMC
+|date=2021
+}}
+{{Web reference
+|link=https://europepmc.org/article/MED/32388170
+|page=The impact of cannabis legalization in Uruguay on adolescent cannabis use
+|authors=Laqueur H, Rivera-Aguirre A, Shev A, Castillo-Carniglia A, Rudolph KE, Ramirez J, Martins SS, Cerdá M
+|site=Europe PMC
+|date=2020
+}}
+}}

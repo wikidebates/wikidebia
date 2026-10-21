@@ -1,0 +1,25 @@
+{{Argument
+|citations={{Citation
+|citation=La loi de 1970 a été fabriquée par rapport à des sujets qui restaient marginaux dans la société. Mais il y a eu, depuis, une massification énorme de la consommation. La montée en puissance du cannabis, l’arrivée de l’héroïne, de la cocaïne, du crack.
+|auteurs=Daniel Vaillant
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=171
+|édition=Denoël
+|date=2011
+}}{{Citation
+|citation=La mesure d’injonction thérapeutique s’avère inadaptée aux usagers de cannabis, en majorité non problématiques. Elle indique combien c’est plus largement au phénomène des addictions, quel que soit le produit support, qu’il convient de s’attaquer dans une approche plus cohérente.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=83
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|objections={{Objection
+|page=La loi de 1970 sur les drogues a été conçue en réponse à l'extension du cannabis
+|titre-affiché=Elle a été conçue en réponse à l'extension du cannabis
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Législation
+|date-création=2019-08-07
+}}

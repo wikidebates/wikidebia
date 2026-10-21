@@ -1,0 +1,26 @@
+{{Argument
+|quotes={{Quote
+|quote=One of the most persistent beliefs used to justify retaining the prison system is that imprisonment guarantees our safety. This implies that the people locked up are mainly those who have committed “violence against persons”. Yet a large majority of prisoners are held for offences relating to the use or trade of illicit substances, which puts the idea that “all prisoners are violent” into perspective.
+|authors=Collectif
+|article=Pourquoi faut-il en finir avec les prisons ?
+|work=Collectif de luttes anti-carcérales
+|date=November 2020
+|link=https://laclac.org/wp-content/uploads/2020/11/BROCHURE_de%CC%81construction.pdf&
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Who are these prisoners? Three quarters are in pre-trial detention. The others have problems that owe more to mental ill health or socioeconomic deprivation than to criminality. “Prisoners who are purely a matter for the Criminal Code account for only 10%,” the management stresses: people who are genuinely dangerous and must be isolated from the rest of society.
+|authors=Nabil Boukili, Morgane De Meur
+|article=Un député visite la prison : « Je comprends la colère des gardiens »
+|work=Parti du Travail de Belgique
+|date=9 January 2020
+|link=https://www.ptb.be/actualites/un-depute-visite-la-prison-je-comprends-la-colere-des-gardiens
+|warnings=AI-translated quote
+}}
+|webliography=
+{{Web reference
+|link=https://www.aclu.org/report/tale-two-countries-racially-targeted-arrests-era-marijuana-reform
+|page=A Tale of Two Countries: Racially Targeted Arrests in the Era of Marijuana Reform
+|site=American Civil Liberties Union
+|date=2020
+}}
+}}

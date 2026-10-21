@@ -1,0 +1,21 @@
+{{Argument
+|quotes={{Quote
+|quote=Crime fell by an average of 13%, and by 15% in California, the most populous state [even though only medical cannabis had been legalised there up to that point]. The largest falls were in the most violent offences: armed robberies were down 19%, and murders generally fell by 10% everywhere!
+|authors=Anthony Bellanger
+|article=Aux États-Unis, la légalisation du cannabis a fait baisser la criminalité
+|work=France Inter
+|date=15 January 2018
+|link=https://www.franceinter.fr/emissions/les-histoires-du-monde/les-histoires-du-monde-15-janvier-2018
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/24671103
+|page=The effect of medical marijuana laws on crime: evidence from state panel data, 1990-2006
+|authors=Morris RG, TenEyck M, Barnes JC, Kovandzic TV
+|site=Europe PMC
+|date=2014
+}}
+}}

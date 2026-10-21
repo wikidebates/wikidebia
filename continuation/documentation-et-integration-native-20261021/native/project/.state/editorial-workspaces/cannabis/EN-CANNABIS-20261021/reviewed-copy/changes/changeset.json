@@ -1,0 +1,16 @@
+{
+  "schema": "wikidebia-editorial-changeset-1.1",
+  "schema_version": "1.1",
+  "debate_id": "cannabis",
+  "work_id": "EN-CANNABIS-20261021",
+  "status": "applied",
+  "review_sha256": "c5510e1d020aa7d200d67bb30dcbdf68b24f142c7cab517efe96ea05fc442447",
+  "applied_at": "2026-10-21T10:07:22+00:00",
+  "old_structural_sha256": "49ff8e4e5efb0f755ddbb149966013beb14085eeca0d61fd7e63b86e4c939b89",
+  "new_structural_sha256": "49ff8e4e5efb0f755ddbb149966013beb14085eeca0d61fd7e63b86e4c939b89",
+  "operation_count": 0,
+  "operations": [],
+  "source_imports_mutated": false,
+  "final_pages_generated": false,
+  "english_translation_started": false
+}

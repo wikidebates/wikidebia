@@ -1,0 +1,29 @@
+{{Argument
+|summary=Even after legalisation, a substantial black market can persist because of high taxation or competition from unregulated producers.
+|quotes={{Quote
+|quote=The cannabis black market still accounts for 80% of sales in places that have legalised it, such as California.
+|article=UNODC
+|work=Cannabis Report
+|date=2021
+|warnings=AI-translated quote
+}}
+|sections=Law, Economy, Geopolitics, Society
+|keywords=tax circumvention, informal economy, crime
+|bibliography=
+{{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+|webliography=
+{{Web reference
+|link=https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html
+|page=Legislative Review of the Cannabis Act: Final Report of the Expert Panel
+|authors=Morris Rosenberg, Oyedeji Ayonrinde, Patricia J. Conrod, Lynda L. Levesque, Peter Selby
+|site=Health Canada
+|date=March 2024
+}}
+}}

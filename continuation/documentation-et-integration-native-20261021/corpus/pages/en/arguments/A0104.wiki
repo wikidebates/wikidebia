@@ -1,0 +1,22 @@
+{{Argument
+|justifications={{Justification
+|page=Cannabis is harmful to society
+|displayed-title=Cannabis is harmful to society
+}}{{Justification
+|page=Cannabis imposes costs on society
+|displayed-title=Cannabis imposes costs on society
+}}{{Justification
+|page=Cannabis is implicated in road accidents
+|displayed-title=Cannabis is implicated in road accidents
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, harmfulness
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/22323502
+|page=Acute cannabis consumption and motor vehicle collision risk: systematic review of observational studies and meta-analysis
+|authors=Asbridge M, Hayden JA, Cartwright JL
+|site=Europe PMC
+|date=2012
+}}
+}}

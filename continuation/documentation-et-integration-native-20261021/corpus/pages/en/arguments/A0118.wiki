@@ -1,0 +1,26 @@
+{{Argument
+|quotes={{Quote
+|quote=The addictive potential of cannabis is neither inherently low nor high, but depends on the level of use. There are no hard drugs and soft drugs, but hard or soft ways of using drugs, whatever they may be. Addiction lies in the relationship with the substance.
+|authors=Jean-Luc Ferry
+|page=9
+|date=24 January 2014
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, health, addiction
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/21145178
+|page=Probability and predictors of transition from first use to dependence on nicotine, alcohol, cannabis, and cocaine: results of the National Epidemiologic Survey on Alcohol and Related Conditions (NESARC)
+|authors=Lopez-Quintero C, Pérez de los Cobos J, Hasin DS, Okuda M, Wang S, Grant BF, Blanco C
+|site=Europe PMC
+|date=2011
+}}
+{{Web reference
+|link=https://europepmc.org/article/MED/28644037
+|page=Lower-Risk Cannabis Use Guidelines: A Comprehensive Update of Evidence and Recommendations
+|authors=Fischer B, Russell C, Sabioni P, van den Brink W, Le Foll B, Hall W, Rehm J, Room R
+|site=Europe PMC
+|date=2017
+}}
+}}

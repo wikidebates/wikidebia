@@ -1,0 +1,14 @@
+{{Argument
+|citations={{Citation
+|citation=Les drogues n’appartiennent pas au domaine de la liberté. Elles engendrent dépendance, addiction, assuétude, esclavage – autant d’expressions synonymes.
+|auteurs=Jean Costentin
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=115
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Dépénalisation, Libertés individuelles, Légalisation, Libertés individuelles
+|date-création=2019-08-07
+}}

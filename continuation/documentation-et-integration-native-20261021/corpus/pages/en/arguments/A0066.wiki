@@ -1,0 +1,25 @@
+{{Argument
+|quotes={{Quote
+|quote=In US states where marijuana has been legalised, researchers observed an average 15% decline in alcohol consumption over almost ten years.
+|authors=Léa Polverini
+|article=Les ventes d'alcool ont chuté de 15% dans les États américains où le cannabis est légal
+|work=Slate
+|date=30 January 2018
+|link=https://www.slate.fr/story/156994/etats-unis-legalisation-cannabis-chute-ventes-alcool
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=US studies on the relationship between cannabis and alcohol consumption do not all reach the same conclusions
+|displayed-title=US studies on the relationship between cannabis and alcohol consumption do not all reach the same conclusions
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/35360879
+|page=Relationships of Cannabis Policy Liberalization With Alcohol Use and Co-Use With Cannabis: A Narrative Review
+|authors=Pacula RL, Smart R, Lira MC, Pessar SC, Blanchette JG, Naimi TS
+|site=Europe PMC
+|date=2022
+}}
+}}

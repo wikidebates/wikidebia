@@ -1,0 +1,17 @@
+{{Argument
+|citations={{Citation
+|citation=La société a le droit de tout faire pour raréfier les situations qui seront à sa charge.
+|auteurs=Jean Costentin
+|ouvrage=Pourquoi il ne faut pas dépénaliser l'usage du cannabis ?
+|page=24
+|édition=Odile Jacob
+|date=2011
+}}
+|objections={{Objection
+|page=La lutte contre les trafics de cannabis coûte cher, et c'est un échec
+|titre-affiché=La prohibition engendre des coûts importants (perte de recettes fiscales, police, justice…)
+}}
+|rubriques=Économie, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Coût, Prohibition
+|date-création=2021-02-16
+}}

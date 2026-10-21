@@ -1,0 +1,14 @@
+{{Argument
+|citations={{Citation
+|citation=Ce qui est prohibé ici est autorisé là, et il en va de même d’une époque à une autre dans une même civilisation. L’usage privé de stupéfiants était toléré avant la loi de 1970 et pourrait ainsi tout aussi bien l’être à nouveau…
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=78
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Prohibition
+|date-création=2019-08-07
+}}

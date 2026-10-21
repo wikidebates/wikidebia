@@ -1,0 +1,26 @@
+{{Argument
+|quotes={{Quote
+|quote=This is little short of a state subsidy to organised crime.
+|authors=Simon Jenkins
+|article=Heroic Uruguay deserves a Nobel peace prize for legalising cannabis
+|work=The Guardian
+|date=12 December 2013
+|link=https://www.theguardian.com/commentisfree/2013/dec/12/heroic-uruguay-deserves-nobel-prize-cannabis
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Taxing every illicit market would be irresponsible
+|displayed-title=Taxing every illicit market would be irresponsible
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+|bibliography=
+{{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+}}

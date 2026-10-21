@@ -1,0 +1,76 @@
+TRADUCTION CANNABIS — FRANÇAIS / ANGLAIS
+Source : archive auditée du 21 octobre 2026
+État : traduction textuelle intégrale relue ; finalisation documentaire non terminée.
+
+CONTENU
+- 153 pages : 1 Debate et 152 Argument, sous pages/en/.
+- 153 titres canoniques et 165 libellés affichés traduits.
+- 32 résumés traduits ; les 120 absences de résumé restent des absences.
+- 149 citations conservées, avec auteurs et métadonnées documentaires d'origine.
+- 157 relations entre arguments, 13 liens de premier niveau : 8 pour et 5 contre.
+- 69 termes du vocabulaire français–anglais, dans l'ordre des listes sources.
+
+OUVRIR EN PREMIER
+Ouvrir lecture_bilingue.html dans un navigateur : recherche par titre, comparaison
+français/anglais, provenance et notes de relecture par page.
+lecture_integrale_en.wiki regroupe les pages anglaises pour une lecture continue.
+data/titres_bilingues.csv permet de travailler dans un tableur.
+
+CHOIX DE TRADUCTION
+Anglais britannique cohérent : legalisation, decriminalisation, offence, behaviour.
+Les titres affichés courts, nominaux ou contextuels restent traduits comme tels.
+La France, la loi française de 1970 et les distinctions juridiques sont explicitées
+quand le contexte l'exige. Les arguments et les citations gardent leurs positions,
+leurs conditions et leurs degrés de certitude, même lorsqu'ils se contredisent.
+Les citations nouvellement traduites portent AI-translated quote.
+Les titres publiés des ouvrages et articles ne sont pas inventés en anglais.
+Deux citations contenaient déjà leur texte anglais avec une glose française :
+l'anglais fourni est repris, et la source bilingue complète reste en provenance.
+
+PRÉSERVATION
+Les fichiers français de l'archive sont conservés octet pour octet sous
+provenance/source/. Aucun texte français ni aucune page wiki n'a été modifié.
+Les références séparées non vérifiées en anglais sont conservées dans
+provenance/documentation_originale.json, plutôt que d'être présentées comme des
+références anglophones. Les métadonnées à l'intérieur des citations sont conservées
+selon le contrat Citation → Quote. Un avertissement français préexistant de citation
+reste présent avant AI-translated quote, conformément au contrat du kit.
+
+VALIDATION EFFECTUÉE
+21 contrôles automatisés réussis : empreintes sources, couverture, unicité,
+syntaxe des modèles et paramètres, graphe, polarités, citations et métadonnées.
+Deux méthodes de relecture ont été utilisées dans la même session : comparaison
+proposition par proposition et contrôle transversal des marqueurs de risque.
+Il ne s'agit pas d'une validation indépendante par un second traducteur ni du reçu
+officiel de convergence du kit. Les notes précises sont sous reviews/.
+
+CE QUI RESTE AVANT PUBLICATION
+La consultation de deux sources officielles anglophones a été refusée par le proxy
+(HTTP CONNECT 403). La recherche documentaire anglaise indépendante, la vérification
+des citations, des auteurs, des éditions, des cibles Wikipédia, des images et des
+débats connexes restent ouvertes. Aucune référence anglaise n'est déclarée vérifiée
+sur la seule foi de sa présence dans le snapshot français.
+L'introduction et certains résumés contiennent encore des appels de référence
+français à traiter dans cette finalisation documentaire.
+Les affirmations médicales, statistiques ou juridiques de la source sont traduites
+fidèlement ; leur présence ne signifie pas qu'elles ont été validées ou actualisées.
+La date de création anglaise devra être établie par le workflow de publication ;
+la date française et initialisation ne sont pas recopiées.
+
+NE PAS IMPORTER CETTE ARCHIVE COMME UNE RELEASE VALIDÉE
+Il s'agit d'une livraison de traduction et de relecture, pas d'un corpus signé
+finalisé, d'un paquet upgrade ou d'une autorisation de publication.
+Aucune publication française ou anglaise n'a été effectuée pendant ce travail.
+
+VERSION VÉRIFIÉE ET CORRIGÉE — 21 OCTOBRE 2026
+La première livraison reste conservée. Le contrôle repris depuis le ZIP source
+a détecté deux passages éditoriaux manquants entre les modèles Citation.
+Ils sont désormais traduits et rétablis dans leur ordre d'origine, sous A0037
+et A0116. Il ne s'agit ni de citations nouvelles ni de résumés ajoutés.
+Les autres corrections de sens sont détaillées dans reviews/corrections_verification.json.
+Voir RAPPORT_VERIFICATION.md pour le bilan de cette vérification supplémentaire.
+
+IDENTIFIANTS
+Les identifiants A0001…A0152 sont locaux à cette livraison, selon l'ordre du
+snapshot. Ils ne sont pas les identifiants scellés d'un corpus Wikidéb'IA.
+Faire la correspondance future par titre français et révision source.

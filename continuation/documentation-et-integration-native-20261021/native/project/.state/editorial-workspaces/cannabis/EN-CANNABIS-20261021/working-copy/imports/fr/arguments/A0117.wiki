@@ -1,0 +1,36 @@
+{{Argument
+|citations={{Citation
+|citation=La justification de la prohibition du cannabis par sa dangerosité n’est plus crédible – celle-ci étant faible, en termes de santé publique et de dommages individuels comme sociaux, loin derrière le tabac et l’alcool.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=94
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}{{Citation
+|citation=Pour le cannabis, l’usage récréatif – c’est-à-dire épisodique et à faibles doses – n’est pas plus dangereux que celui identique que 30 millions de Français font de l’alcool.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=74
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}{{Citation
+|citation=La nocivité de l’usage occasionnel du cannabis n’est pas sérieusement documentée.
+|auteurs=Nicole Maestracci
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=234
+|édition= Denoël
+|date=2011
+}}{{Citation
+|citation=On ne peut pas mourir d’une overdose de cannabis mais on peut faire une intoxication aiguë, plus communément appelée “bad trip”.
+|auteurs=Institut national de prévention et d'éducation pour la santé
+|ouvrage=Cannabis, ce qu'il faut savoir
+|édition= Drogues Info Service
+|date=2014
+|lien=https://inpes.santepubliquefrance.fr/cfesbases/catalogue/pdf/805.pdf
+}}
+|rubriques=Philosophie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Overdose, Dangerosité
+|date-création=2019-08-09
+}}

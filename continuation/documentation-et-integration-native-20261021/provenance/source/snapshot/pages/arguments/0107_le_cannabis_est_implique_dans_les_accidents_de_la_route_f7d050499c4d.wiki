@@ -1,0 +1,29 @@
+{{Argument
+|citations={{Citation
+|citation=Cannabis seul, risque multiplié par 2,5.
+|auteurs=Françoise Branget, Gilbert Barbier
+|article=La dépénalisation de l'usage, une impasse éthique et juridique
+|ouvrage=MISSION D’INFORMATION SUR LES TOXICOMANIES. Rapport d'information sur les toxicomanies
+|édition=Assemblée nationale
+|date=30/06/2011
+|lien=https://www.assemblee-nationale.fr/13/rap-info/i3612-ti.asp#P1085_352797
+}}{{Citation
+|citation=L’ébriété cannabique est, sur la route, à l’origine d’environ 300 morts chaque année, comme l’a révélé l’étude SAM (Stupéfiants et accidents mortels de la circulation routière) menée en 2005. Pourtant, cette étude ne prenait en compte que les taux sanguins de THC supérieurs à 2 microgrammes par litre (μg/L) de sang, alors que l’on sait maintenant doser le THC à une concentration dix fois moindre (0,2 μg/L). L’association du cannabis et de l’alcool multiplie par 14 le risque d’un accident mortel. Baisser le nombre des accidents de la route passe par l’éradication du cannabis et par une plus grande rigueur vis-à-vis de l’alcool.
+|auteurs=Jean Costentin
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=55
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|objections={{Objection
+|page=Le cannabis seul augmente peu le risque d'accidents de la route
+|titre-affiché=Le cannabis seul augmente peu le risque d'accidents de la route
+}}{{Objection
+|page=C'est avant tout l'alcool qui est responsable d'accidents de la route
+|titre-affiché=C'est avant tout l'alcool qui est responsable
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Accidents de la route
+|date-création=2021-02-16
+}}

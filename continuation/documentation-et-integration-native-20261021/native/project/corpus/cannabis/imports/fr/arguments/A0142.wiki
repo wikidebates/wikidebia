@@ -1,0 +1,20 @@
+{{Argument
+|citations={{Citation
+|citation=[Le] système [néerlandais en matière de cannabis] est plus cohérent. La consommation est cadrée, les adultes peuvent consommer dans les coffee-shops. Un des arguments des opposants était que la consommation allait exploser. C’est faux. Elle a même diminué et surtout chez les jeunes.
+|auteurs=Camille Wernaers
+|article=Vers la fin de la prohibition des drogues?
+|ouvrage=Le soir
+|date=18/01/2016
+|lien=https://www.lesoir.be/art/1096562/article/actualite/sciences-et-sante/2016-01-18/vers-fin-prohibition-des-drogues
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://www.atlantico.fr/decryptage/2014-annee-grand-bond-vers-legalisation-cannabis-dans-monde-david-weinberger-947748.html
+|page=2014, l'année du grand bond vers la légalisation du cannabis dans le monde ?
+|auteurs=David Weinberger
+|site=Atlantico
+|date=08/01/2014
+}}
+|rubriques=Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Consommation
+|date-création=2021-02-16
+}}

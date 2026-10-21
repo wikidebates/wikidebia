@@ -1,0 +1,108 @@
+{
+  "schema": "wikidebia-validator-report-1.0",
+  "schema_version": "1.0",
+  "validator_version": "0.4.105",
+  "producer": {
+    "component": "validator",
+    "version": "0.4.105"
+  },
+  "package_root": "cannabis",
+  "scopes": [
+    "schema",
+    "coherence",
+    "graph",
+    "files",
+    "workflow"
+  ],
+  "result": "passed",
+  "result_scope": "automated_validation",
+  "result_meaning": "Automated structural, documentary and encoded editorial checks only; bilingual semantic fidelity still depends on the required human review attestations.",
+  "validation_layers": {
+    "structural": {
+      "status": "passed",
+      "errors": 0,
+      "warnings": 0,
+      "infos": 0,
+      "meaning": "Schémas, fichiers, graphe, wikicode, cohérence et workflow automatisables."
+    },
+    "documentary": {
+      "status": "not_run",
+      "errors": 0,
+      "warnings": 0,
+      "infos": 0,
+      "meaning": "Les portées nécessaires n'ont pas été exécutées."
+    },
+    "semantic_review": {
+      "status": "not_run",
+      "errors": 0,
+      "warnings": 0,
+      "infos": 0,
+      "meaning": "Les portées nécessaires n'ont pas été exécutées."
+    },
+    "fresh_archive": {
+      "status": "not_run",
+      "errors": 0,
+      "warnings": 0,
+      "infos": 0,
+      "meaning": "Ce statut ne peut être établi qu'après création puis réextraction de l'archive exacte; il est scellé par le workflow de release."
+    }
+  },
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  "metrics": {
+    "runtime_attestation": {
+      "mode": "component_script_isolated_v2",
+      "cli_sha256": "6338d5bc331d22d66467c09b4ad2f2616b3c29db9b8c32c15e0f6d4c3f43a8d7",
+      "editorial_sha256": "938ffbabc13e4c1959b9d269dbd86033f46c037d19ff042f36fa5db2854be2ae",
+      "wikicode_sha256": "1dea6b90e07e419a5bf7e5a1f6552854e7ba79fc470c548e7dd96c10cef59a1f",
+      "historical_summary_sha256": "b987c154a4dbc09ad7a6376a4b348422ca373226832e2f2f20f956788cc7428a"
+    },
+    "coherence": {
+      "debate_id": "cannabis",
+      "english_translation_deferred": true
+    },
+    "graph": {
+      "main_pro": 8,
+      "main_con": 5,
+      "justifications_by_depth": {
+        "2": 60,
+        "3": 10
+      },
+      "objections_by_depth": {
+        "2": 19,
+        "3": 62,
+        "4": 6
+      },
+      "distinct_nodes": 152,
+      "total_occurrences": 170,
+      "reused_nodes": 13,
+      "additional_reuses": 18,
+      "developed_nodes": 50,
+      "leaf_nodes": 102,
+      "maximum_depth": 4
+    },
+    "files": {
+      "declared_pages": 0,
+      "core_files": 5
+    },
+    "workflow": {
+      "global_status": "graph_draft",
+      "passed_validation_scopes": [],
+      "english_translation_status": "deferred",
+      "english_translation_deferred": true
+    }
+  },
+  "findings": [
+    {
+      "code": "WDV-DOC-001",
+      "level": "INFO",
+      "message": "Les contrôles de qualité argumentative, d'équilibre, de quasi-doublons sémantiques et de fidélité documentaire restent soumis à une revue humaine.",
+      "path": null,
+      "pointer": null,
+      "details": {}
+    }
+  ]
+}

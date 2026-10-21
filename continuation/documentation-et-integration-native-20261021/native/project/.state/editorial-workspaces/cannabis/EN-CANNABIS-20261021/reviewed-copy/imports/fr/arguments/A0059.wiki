@@ -1,0 +1,26 @@
+{{Argument
+|citations={{Citation
+|citation=La légalisation du cannabis assécherait le marché des dealers comme à Chicago en 1933.
+|auteurs=Francis Caballero
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=15
+|édition=Denoël
+|date=2011
+}}
+|objections={{Objection
+|page=En cas de légalisation du cannabis, les trafics se reporteraient sur d'autres produits, à moins de légaliser toutes les drogues, ce qui parait difficile
+|titre-affiché=Les trafics se reporteraient sur d'autres produits. Pour que cela n'arrive pas, il faudrait légaliser toutes les drogues, ce qui parait difficile
+}}{{Objection
+|page=Il y aura toujours un marché prohibé du cannabis, le marché destiné aux mineurs
+|titre-affiché=Il y aura toujours un marché prohibé, le marché destiné aux mineurs
+}}{{Objection
+|page=Si le cannabis est légalisé avec des restrictions, certains consommateurs continueront à se fournir au marché noir
+|titre-affiché=Si la loi est trop restrictive, certains consommateurs continueront à se fournir au marché noir
+}}{{Objection
+|page=Comme on le constate avec le tabac, si le prix du cannabis légalisé est trop élevé, le marché noir va se maintenir
+|titre-affiché=Comme on le constate avec le tabac, si le prix est trop élevé, le marché noir va se maintenir
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

@@ -1,0 +1,35 @@
+[
+  {
+    "id": "canada-law-full",
+    "url": "https://laws-lois.justice.gc.ca/eng/acts/C-24.5/FullText.html",
+    "params": null,
+    "accessed_at": "2026-10-21T10:18:51.638545+00:00",
+    "http_status": 200,
+    "final_url": "https://laws-lois.justice.gc.ca/eng/acts/C-24.5/FullText.html",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/canada-law-full.body",
+    "sha256": "de5af486acf9d4647f355f1115af4e6d11bed4c8dd760f8a393ac1a0b534191a",
+    "content_type": "text/html"
+  },
+  {
+    "id": "appel-fr",
+    "url": "https://hyperdebat.net/un-modele-pragmatique-de.html",
+    "params": null,
+    "accessed_at": "2026-10-21T10:18:51.642550+00:00",
+    "http_status": 200,
+    "final_url": "https://hyperdebat.net/un-modele-pragmatique-de-legalisation-du-cannabis",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/appel-fr.body",
+    "sha256": "8177818b8d99c68e709ef434a1c24dac30d69dc7873fe0a4ad73ce9a3de1d0b7",
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "id": "alcohol-fr",
+    "url": "https://www.croixbleue.fr/L-alcool-plus-dangereux-que-les",
+    "params": null,
+    "accessed_at": "2026-10-21T10:18:51.643573+00:00",
+    "http_status": 200,
+    "final_url": "https://www.croixbleue.fr/L-alcool-plus-dangereux-que-les",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/alcohol-fr.body",
+    "sha256": "b9e536c8f56d3a663554ffecd51f4cef5adf4401da0c244b2915665669adefd6",
+    "content_type": "text/html; charset=utf-8"
+  }
+]

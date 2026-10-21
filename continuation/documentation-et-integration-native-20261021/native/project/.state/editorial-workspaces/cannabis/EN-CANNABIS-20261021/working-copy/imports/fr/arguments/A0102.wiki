@@ -1,0 +1,30 @@
+{{Argument
+|citations={{Citation
+|citation=Au début du 21è siècle, un médicament anti-douleur, l’OxyContin, se vend comme des petits pains.
+
+Prescrit pour tout et n’importe quoi, du plus léger mal de crâne à une inflammation du genoux, ce cachet « miracle » — normalement destiné à des personnes qui souffrent de cancer phase terminale — est fortement commercialisé, et son usage terriblement banalisé.
+
+Et pour cause, sa consommation repose sur un pourcentage fallacieux, servant d’argument de vente aux VRP du groupe Purdue qui martèlent tel un slogan :
+
+    « Moins d’1% des patients qui utilisent l’OxyContin souffrent d’addiction à ce médicament ».
+
+Pourcentage bel et bien mensonger puisque des centaines de milliers d’Américains et d’Américaines se retrouvent vite accro à l’OxyContin, au point pour certains d’en consommer plus que de raison.
+
+Ainsi, les États-Unis assistent à une terrible augmentation des overdoses, sous le regard indifférent d’une entreprise pharmaceutique qui s’en met plein les fouilles.
+
+Cette entreprise justement — Dopesick a ceci de passionnant qu’elle donne à voir aussi bien les dessins des grands manitous de Purdue que de ses détracteurs — n’a qu’une idée en tête : dépasser le milliard de dollars de recettes, quitte à sacrifier ses patients.
+|auteurs=Kalindi Ramphul
+|article=Magouilles pharmaceutiques, toxicomanie : Dopesick ou l’enfer d’une Amérique en pleine crise des opioïdes
+|ouvrage=Madmoizelle.com
+|date=17 nov 2021
+|lien=https://www.madmoizelle.com/magouilles-pharmaceutiques-toxicomanie-dopesick-ou-lenfer-dune-amerique-en-pleine-crise-des-opioides-1213529
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://www.justice.gov/archives/opa/pr/opioid-manufacturer-purdue-pharma-pleads-guilty-fraud-and-kickback-conspiracies
+|page=Opioid Manufacturer Purdue Pharma Pleads Guilty to Fraud and Kickback Conspiracies
+|site=U.S. Department of Justice
+|date=2020
+}}
+
+|date-création=2021-11-21
+}}

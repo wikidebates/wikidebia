@@ -1,0 +1,14 @@
+{{Argument
+|citations={{Citation
+|citation=Il n’existe aucune recherche évaluation interdisciplinaire sur la pertinence des dispositifs judiciaires ou sanitaires mis en place.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=85
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

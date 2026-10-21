@@ -1,0 +1,14 @@
+{{Argument
+|citations={{Citation
+|citation=En 1970, le législateur, constatant l’extension de la consommation de cannabis, a conçu une législation visant à l’entraver.
+|auteurs=Jean Costentin
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=32
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation,Cannabis, Légalisation, Dépénalisation, Législation
+|date-création=2019-08-07
+}}

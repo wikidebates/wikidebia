@@ -1,0 +1,14 @@
+{{Argument
+|quotes={{Quote
+|quote=We should remember that divorce was once impossible and later regulated, or that homosexuality was once a crime. Abortion was also a serious criminal offence tried in the assize courts. Removing it from the criminal courts did not cause a resurgence; instead, it enabled a health-based approach that reduced the harms associated with clandestine practice and provided support for women in difficulty.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=91
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation
+}}

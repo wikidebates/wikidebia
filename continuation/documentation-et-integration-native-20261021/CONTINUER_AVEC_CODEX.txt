@@ -1,0 +1,15 @@
+Reprendre corpus/ de ce paquet, sans repartir de zéro et sans écraser les fichiers ou commits existants.
+Travailler en français. Lire les consignes actuelles du dépôt wikidebates/wikidebia.
+
+Origine V2 : SHA-256 b317df79f35b047af2bdead55c5adbdb33c835fae528ed69f0de78e5d8332eda.
+Lire RAPPORT_REPRISE.md et tous les blocages avant toute finalisation.
+La branche de sauvegarde est translation/cannabis-en-20261021-verifiee ; le code du kit utilisé est fix/preserve-interquotation-prose, PR 9, commit 4b2abbe. Ne fusionner aucune de ces branches dans main.
+
+Le sous-projet natif est dans native/project/. Le code et les dépendances ne sont pas dupliqués : utiliser le commit complet indiqué dans native/code-provenance.json avec les dépendances du dépôt ; conserver corpus/ et .state/ du sous-projet. Adapter les chemins des scripts de recherche locaux, qui ne sont pas des commandes de publication.
+Le workspace reste fr_content_review_ready. reviews/en/translation_review.pending.json est une fiche préparatoire ; ne pas la renommer en revue officielle ni cocher les approbations restantes automatiquement. Aucun fr_content_lock ni en_translation_lock n’est fabriqué.
+
+149 traductions de citations et les deux passages passent les validateurs natifs. Q092/Q120 sont des cas de source déjà bilingue, relus explicitement. Ne pas supprimer les 149 citations, les deux passages, les 32 résumés ou les 120 absences de résumé. Ne pas copier les dates de création ou initialisations françaises en anglais.
+Les identifiants locaux de livraison doivent être raccordés au natif par titre français, révision et hash, pas par numéro seul.
+
+Poursuivre les points exacts du rapport : authenticité des citations, références historiques incertaines, découverte de noms, existence des liens/images cibles, préservation compatible des métadonnées/références françaises avant verrouillage natif, puis seulement revues de lots et convergence sémantique officielles. Ne jamais présenter les deux audits d’intégrité comme une validation documentaire complète.
+Aucune page wiki à publier ; aucun relais de publication à utiliser ; aucun environnement à modifier ou republier.

@@ -1,0 +1,23 @@
+{{Argument
+|citations={{Citation
+|citation=Déguiser le cannabis en un médicament procède de la stratégie du cheval de Troie, pour le faire entrer dans la cité sous les acclamations. Pourquoi le THC n’est-il pas un médicament ? Il n’a donc aucun caractère irremplaçable. Quant aux risques associés au THC, ils sont multiples.
+|auteurs=Jean Costentin
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=64
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+'''Objection à Jean Costentin :''' Les bénéfices du cannabis médical sont occultés ou mésestimés.
+{{Citation
+|citation=Les bénéfices du cannabis médical sont occultés ou mésestimés et ses dommages sont exagérés, de même que sa capacité à induire des addictions.
+|auteurs=Sanjay Gupta
+|article=Cannabis : ils ont changé d’avis
+|ouvrage=Hyperdébat
+|date=28/11/2013
+|lien=https://hyperdebat.net/cannabis-ils-ont-change-d-avis.html
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

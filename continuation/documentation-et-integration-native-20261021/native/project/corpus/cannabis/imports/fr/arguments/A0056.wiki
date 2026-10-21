@@ -1,0 +1,17 @@
+{{Argument
+|citations={{Citation
+|citation=Dans les États américains où la marijuana a été légalisée, les chercheurs ont constaté en près de dix ans une baisse moyenne de 15% de la consommation d'alcool
+|auteurs=Léa Polverini
+|article=Les ventes d'alcool ont chuté de 15% dans les États américains où le cannabis est légal
+|ouvrage=Slate
+|date=30/01/2018
+|lien=https://www.slate.fr/story/156994/etats-unis-legalisation-cannabis-chute-ventes-alcool
+}}
+|objections={{Objection
+|page=Les études américaines sur le lien entre cannabis et consommation d'alcool ne vont pas toutes dans le même sens
+|titre-affiché=Les études américaines sur le lien entre cannabis et consommation d'alcool ne vont pas toutes dans le même sens
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

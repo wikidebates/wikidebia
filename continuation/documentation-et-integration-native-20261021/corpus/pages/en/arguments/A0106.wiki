@@ -1,0 +1,59 @@
+{{Argument
+|summary=This is Jean Costentin's central argument, which he develops in his books (see Bibliography) and articles.
+|quotes={{Quote
+|quote=Combating cannabis is just as legitimate as combating tuberculosis.
+|authors=Jean Costentin
+|work=Pourquoi il ne faut pas dépénaliser l'usage du cannabis ?
+|page=30
+|publisher=Odile Jacob
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=The risks of cannabis are particularly concerning when use begins early
+|displayed-title=The risks depend in particular on how early use begins
+}}{{Objection
+|page=Cannabis poses relatively little harm
+|displayed-title=Cannabis poses relatively little harm
+}}{{Objection
+|page=The risks of cannabis can be reduced by changing how it is consumed
+|displayed-title=The risks can be reduced by changing how it is consumed
+}}{{Objection
+|page=The risks of cannabis do not depend on the substance alone
+|displayed-title=The risks do not depend on the substance alone
+}}{{Objection
+|page=Punishing people for harm they do to themselves is illegitimate
+|displayed-title=Punishing people for harm they do to themselves is illegitimate
+}}{{Objection
+|page=If cannabis is dangerous, why leave it in the hands of organised crime?
+|displayed-title=If cannabis is dangerous, why leave it in the hands of organised crime?
+}}{{Objection
+|page=The lack of product quality guarantees poses risks in itself
+|displayed-title=The lack of product quality guarantees poses risks in itself
+}}{{Objection
+|page=Many substances far more harmful and addictive than cannabis are legal
+|displayed-title=Many legal substances are far more harmful to health than cannabis
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, overdose, harmfulness
+|webliography=
+{{Web reference
+|link=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+}}
+{{Web reference
+|link=https://europepmc.org/article/MED/30902669
+|page=The contribution of cannabis use to variation in the incidence of psychotic disorder across Europe (EU-GEI): a multicentre case-control study
+|authors=Di Forti M, Quattrone D, Freeman TP, Tripoli G, Gayer-Anderson C, Quigley H, Rodriguez V, Jongsma HE, Ferraro L, La Cascia C, La Barbera D, Tarricone I, Berardi D, Szöke A, Arango C, Tortelli A, Velthorst E, Bernardo M, Del-Ben CM, Menezes PR, Selten JP, Jones PB, Kirkbride JB, Rutten BP, de Haan L, Sham PC, van Os J, Lewis CM, Lynskey M, Morgan C, Murray RM, EU-GEI WP2 Group
+|site=Europe PMC
+|date=2019
+}}
+{{Web reference
+|link=https://europepmc.org/article/MED/30758486
+|page=Association of Cannabis Use in Adolescence and Risk of Depression, Anxiety, and Suicidality in Young Adulthood: A Systematic Review and Meta-analysis
+|authors=Gobbi G, Atkin T, Zytynski T, Wang S, Askari S, Boruff J, Ware M, Marmorstein N, Cipriani A, Dendukuri N, Mayo N
+|site=Europe PMC
+|date=2019
+}}
+}}

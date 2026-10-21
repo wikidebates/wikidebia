@@ -1,0 +1,13 @@
+{{Argument
+|citations={{Citation
+|auteurs=Etienne Apaire
+|citation=L'augmentation des interpellations pour usage de cannabis à partir de 2003 a fait baisser le pourcentage d'expérimentation chez les jeunes de 17 ans (49,4% en 2005, 42,2% en 2008).
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=204
+|édition=Denoël
+|date=2011
+}}
+|rubriques=Société
+|mots-clés=Cannabis, Dépénalisation, Légalisation, Prohibition, Dissuasion
+|date-création=2019-01-30
+}}

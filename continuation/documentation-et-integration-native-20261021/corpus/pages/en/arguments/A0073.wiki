@@ -1,0 +1,41 @@
+{{Argument
+|summary=Internationally, cannabis has been classified as a narcotic drug since 1925. Its production, trade, supply, possession and use are prohibited in all countries that have signed the [https://en.wikipedia.org/wiki/Drug_prohibition international drug conventions] (the 1961 Single Convention and the 1988 Convention).
+|objections={{Objection
+|page=International conventions do not require cannabis use to be criminalised
+|displayed-title=International conventions do not require use to be criminalised
+}}{{Objection
+|page=The Global Commission on Drug Policy advocates cannabis legalisation
+|displayed-title=The Global Commission on Drug Policy advocates legalisation
+}}{{Objection
+|page=Strict adherence to drug conventions conflicts with international human rights treaties
+|displayed-title=Strict adherence to drug conventions conflicts with international human rights treaties
+}}{{Objection
+|page=Cannabis legalisation might be possible through prosecutorial discretion or a scientific experiment
+|displayed-title=Legalisation should be possible through prosecutorial discretion or a scientific experiment
+}}{{Objection
+|page=INCB criticism did not prevent Uruguay from legalising cannabis
+|displayed-title=Uruguay legalised cannabis despite INCB criticism
+}}
+|sections=Health, Society
+|keywords=cannabis, decriminalisation, impossibility
+|webliography=
+{{Web reference
+|link=https://www.unodc.org/pdf/convention_1961_en.pdf
+|page=Single Convention on Narcotic Drugs, 1961, as amended by the 1972 Protocol
+|site=United Nations Office on Drugs and Crime
+|date=1972
+}}
+{{Web reference
+|link=https://www.unodc.org/pdf/convention_1988_en.pdf
+|page=United Nations Convention against Illicit Traffic in Narcotic Drugs and Psychotropic Substances, 1988
+|site=United Nations Office on Drugs and Crime
+|date=1988
+}}
+{{Web reference
+|link=https://www.brookings.edu/articles/uruguays-cannabis-law-pioneering-a-new-paradigm/
+|page=Uruguay’s cannabis law: Pioneering a new paradigm
+|authors=John Hudak, Geoff Ramsey, John Walsh
+|site=Brookings Institution
+|date=21 March 2018
+}}
+}}

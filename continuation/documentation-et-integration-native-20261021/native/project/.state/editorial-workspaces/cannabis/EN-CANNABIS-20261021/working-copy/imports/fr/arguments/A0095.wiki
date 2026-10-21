@@ -1,0 +1,12 @@
+{{Argument
+|citations={{Citation
+|citation=Au début des années 1930, l’échec de la tentative était patent et très largement reconnu. Il était évident que la Prohibition avait donné lieu à un boom de la criminalité organisée, et avait contribué à considérablement développer les ravages de la corruption au sein de la classe politique et de l’institution judiciaire. En outre, elle avait causé un dommage évident aux finances publiques : le manque à gagner fiscal et douanier était très  substantiel, fraude et contrebande échappaient à tout contrôle.
+En outre, aucune diminution décisive de la consommation d’alcool ne venait compenser ce lourd passif. Bien au contraire !
+|auteurs=François Bujon de l'Estang
+|article=La prohibition aux Etats-Unis dans les 1920 : Un échec cuisant
+|ouvrage=Colloque de l’Académie du Vin de France et de la Société de Géographie
+|date=27/01/2012
+|lien=https://fbe-international.com/articles/la-prohibition-aux-etats-unis-dans-les-1920-un-echec-cuisant/
+}}
+|date-création=2021-05-10
+}}

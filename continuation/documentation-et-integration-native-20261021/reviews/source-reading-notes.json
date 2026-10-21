@@ -1,0 +1,134 @@
+[
+  {
+    "topic": "youth-europe",
+    "source_id": "S91001",
+    "reading_scope": "abstract_and_relevant_fulltext_sections",
+    "limitations": "Analyse différentielle de réformes européennes 2001–2014, adolescents ESPAD ; effets hétérogènes, pas une loi universelle de dissuasion."
+  },
+  {
+    "topic": "traffic-risk",
+    "source_id": "S91002",
+    "reading_scope": "abstract_and_relevant_fulltext_sections",
+    "limitations": "Neuf études, consommation aiguë et collisions, OR groupé 1,92 ; forte hétérogénéité, pas une hausse identique pour chaque dose."
+  },
+  {
+    "topic": "traffic-alcohol",
+    "source_id": "S91003",
+    "reading_scope": "abstract_and_relevant_fulltext_sections",
+    "limitations": "France, accidents mortels de 2011 : risque de responsabilité et fraction attribuable, à ne pas confondre avec tous les accidents."
+  },
+  {
+    "topic": "traffic-original",
+    "source_id": "S91004",
+    "reading_scope": "abstract_and_bibliographic_record",
+    "limitations": "France 2001–2003 : étude cas-témoins historique ; résultats différents des études ultérieures sans contradiction automatique."
+  },
+  {
+    "topic": "alcohol-substitute",
+    "source_id": "S91005",
+    "reading_scope": "abstract_and_relevant_fulltext_sections",
+    "limitations": "Revue 2015–2020 : résultats positifs, négatifs et nuls ; ne prouve ni substitution générale ni hausse générale."
+  },
+  {
+    "topic": "opioid-reversal",
+    "source_id": "S91006",
+    "reading_scope": "abstract_and_relevant_fulltext_sections",
+    "limitations": "Extension jusqu’en 2017 : changement de signe et explication possiblement fallacieuse ; ne prouve pas que le cannabis augmente causalement les décès."
+  },
+  {
+    "topic": "opioid-original",
+    "source_id": "S91007",
+    "reading_scope": "abstract_and_bibliographic_record",
+    "limitations": "Association écologique sur 1999–2010, pas preuve causale individuelle ; doit être accompagnée de la réanalyse de 2019."
+  },
+  {
+    "topic": "medical-benefits",
+    "source_id": "S91008",
+    "reading_scope": "abstract_and_bibliographic_record",
+    "limitations": "79 essais ; efficacité et qualité des preuves variables selon l’indication, effets indésirables accrus ; ne justifie pas tout usage médical."
+  },
+  {
+    "topic": "dependence",
+    "source_id": "S91009",
+    "reading_scope": "abstract_and_bibliographic_record",
+    "limitations": "NESARC, risque cumulatif de transition parmi les personnes ayant déjà utilisé chaque substance ; pas prévalence actuelle de dépendance dans toute la population."
+  },
+  {
+    "topic": "early-use",
+    "source_id": "S91010",
+    "reading_scope": "abstract_and_bibliographic_record",
+    "limitations": "Association longitudinale adolescence/dépression et suicidalité, pas preuve que chaque jeune consommateur développera ces troubles."
+  },
+  {
+    "topic": "use-route",
+    "source_id": "S91011",
+    "reading_scope": "abstract_and_bibliographic_record",
+    "limitations": "Recommandations de réduction des risques, pas promesse de consommation sans danger ; médical exclu de ce périmètre."
+  },
+  {
+    "topic": "industry-alcohol",
+    "source_id": "S91012",
+    "reading_scope": "abstract_and_relevant_fulltext_sections",
+    "limitations": "Consultation écossaise 2008 : usages sélectifs de preuves ; ne démontre ni corruption générale ni origine exclusive de la licéité de l’alcool."
+  },
+  {
+    "topic": "purdue",
+    "source_id": "S91013",
+    "reading_scope": "abstract_and_bibliographic_record",
+    "limitations": "Analyse de la promotion d’OxyContin ; ne démontre pas que tous les usagers ou tous les opioïdes ont la même histoire."
+  },
+  {
+    "topic": "low-tobacco",
+    "source_id": "S91014",
+    "reading_scope": "abstract_and_relevant_fulltext_sections",
+    "limitations": "Méta-analyse du risque cardiovasculaire à faible consommation ; ne généralise pas le chiffre à toutes les maladies ni à l’alcool."
+  },
+  {
+    "topic": "food-industry",
+    "source_id": "S91015",
+    "reading_scope": "abstract_and_relevant_fulltext_sections",
+    "limitations": "Deux études transversales préliminaires sur aliments transformés ; ne démontre pas à elle seule une intention commerciale de rendre dépendant."
+  },
+  {
+    "topic": "uruguay",
+    "source_id": "S91016",
+    "reading_scope": "abstract_and_bibliographic_record",
+    "limitations": "Étude adolescents 2014–2018 ; absence d’effet détecté sur usage, disponibilité perçue accrue et mise en œuvre transitoire."
+  },
+  {
+    "topic": "equity",
+    "source_id": "S91017",
+    "reading_scope": "abstract_and_bibliographic_record",
+    "limitations": "Cinq États américains et politiques recensées fin 2024 ; dispositifs de licences et réparation, efficacité à long terme encore à évaluer."
+  },
+  {
+    "topic": "product-contaminants",
+    "source_id": "S91018",
+    "reading_scope": "abstract_and_bibliographic_record",
+    "limitations": "Méthodes d’analyse des contaminants 2015–2020 ; ne garantit pas leur absence complète après légalisation."
+  },
+  {
+    "topic": "commercialisation",
+    "source_id": "S91019",
+    "reading_scope": "abstract_and_bibliographic_record",
+    "limitations": "Adolescents de dix États américains, 2015–2022 ; association prix/usage courant, pas d’association significative pour tous les critères."
+  },
+  {
+    "topic": "context-addiction",
+    "source_id": "S91020",
+    "reading_scope": "abstract_and_bibliographic_record",
+    "limitations": "Revue environnement/épigénétique ; ne démontre pas que la substance n’a aucun rôle causal ni une intention des pouvoirs publics."
+  },
+  {
+    "topic": "relative-harm",
+    "source_id": "S91021",
+    "reading_scope": "abstract_and_bibliographic_record",
+    "limitations": "Jugement multicritère d’experts au Royaume-Uni en 2010 ; pondération et contexte comptent, pas classement universel de toxicité intrinsèque."
+  },
+  {
+    "topic": "psychosis",
+    "source_id": "S91022",
+    "reading_scope": "abstract_and_bibliographic_record",
+    "limitations": "Étude cas-témoins multicentrique ; fréquence et puissance associées aux troubles psychotiques, fractions attribuables conditionnées par une hypothèse de causalité."
+  }
+]

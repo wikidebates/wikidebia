@@ -1,0 +1,33 @@
+{{Argument
+|citations={{Citation
+|citation=Si certaines personnes consomment des quantités de nourriture telles qu'elles nuisent à leur santé, on ne cherche pas la cause de ce comportement dans la nourriture, mais dans les motivations qu'elles ont à manger de manière compulsive. […] De la même manière, si certaines personnes consomment des drogues illicites au point de ne plus pouvoir gérer leur vie, il y a lieu de s'interroger non pas sur les drogues, mais sur les motivations de ces personnes à les consommer de cette manière.
+|auteurs=Lise Beauchesne
+|ouvrage=Les drogues. Les coûts cachés de la prohibition
+|page=121
+|édition=Lanctôt
+|date=2003
+}}{{Citation
+|citation=L’addiction est une maladie, mais une maladie dont les déterminants sont sociaux bien avant d’être physiques. Les jeux d’argent incontrôlés comme, souvent, l’alcoolisme et la toxicomanie se nourrissent de l’angoisse du lendemain qui taraude aujourd’hui la plus grande partie des travailleurs et de très nombreux jeunes. Une prévention radicale réside dans un changement profond de la société, qu’il faut remettre sur ses pieds, refaire fonctionner d’abord au service de l’humanité.
+|auteurs=Nathalie Arthaud
+|article=Drogue et société
+|ouvrage=Lutte ouvrière
+|lien=https://www.lutte-ouvriere.org/sites/default/files/presentation/Drogue-et-societe.pdf
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://www.madmoizelle.com/au-royaume-uni-les-jeunes-se-droguent-de-plus-en-plus-pour-echapper-a-la-realite-anxiogene-1447509
+|page=Au Royaume-Uni, les jeunes se droguent de plus en plus pour échapper à la réalité anxiogène
+|auteurs=Anthony Vincent
+|site=Madmoizelle.com
+|date=06 octobre 2022
+}}
+|justifications={{Justification
+|page=L'approche répressive permet aux pouvoirs publics de se dédouaner de leur responsabilité dans sa consommation
+|titre-affiché=L'approche répressive permet aux pouvoirs publics de se dédouaner de leur responsabilité dans sa consommation
+}}{{Justification
+|page=La prohibition aggrave le mal-être à l'origine de la consommation de drogues
+|titre-affiché=La prohibition aggrave le mal-être à l'origine de la consommation de drogues
+}}
+|rubriques=Droit, Société
+|mots-clés=Cannabis, Dépénalisation, Légalisation, Prohibition, Consommation
+|date-création=2019-01-31
+}}

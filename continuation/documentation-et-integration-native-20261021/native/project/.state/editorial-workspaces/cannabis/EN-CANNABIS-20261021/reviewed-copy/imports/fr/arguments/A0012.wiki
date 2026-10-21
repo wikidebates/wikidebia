@@ -1,0 +1,34 @@
+{{Argument
+|justifications={{Justification
+|page=La légalisation du cannabis récréatif soulève des difficultés au regard des conventions internationales
+|titre-affiché=La dépénalisation du cannabis est contraire aux conventions internationales
+}}{{Justification
+|page=Des enquêtes françaises montrent une opposition à la vente libre de cannabis
+|titre-affiché=Des enquêtes montrent des réticences envers la vente libre
+}}{{Justification
+|page=Il ne faut pas toucher à la législation sur le cannabis en vigueur
+|titre-affiché=Il ne faut pas toucher à la législation en vigueur
+}}{{Justification
+|page=La légalisation du cannabis dans un seul pays est source de problèmes
+|titre-affiché=La légalisation dans un seul pays est source de problèmes
+}}{{Justification
+|page=Légaliser le cannabis, c'est le soumettre aux lois du marché
+|titre-affiché=Légaliser le cannabis, c'est le soumettre aux lois du marché
+}}{{Justification
+|page=Légaliser le cannabis est la porte ouverte à la légalisation des drogues dures
+|titre-affiché=Légaliser le cannabis est la porte ouverte à la légalisation des drogues dures
+}}
+|objections={{Objection
+|page=La légalisation du cannabis est en vigueur dans de nombreux pays
+|titre-affiché=La légalisation du cannabis est en vigueur dans de nombreux pays
+}}{{Objection
+|page=La pénalisation du cannabis est un échec
+|titre-affiché=La pénalisation est un échec
+}}{{Objection
+|page=La légalisation du cannabis sera mise en place, comme l'ont été de nombreuses avancées sociales décriées
+|titre-affiché=La légalisation du cannabis sera mise en place, comme l'ont été de nombreuses avancées sociales décriées
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2021-02-10
+}}

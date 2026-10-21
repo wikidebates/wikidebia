@@ -1,0 +1,28 @@
+{{Argument
+|résumé=Un produit autorisé est moins attractif qu'un produit interdit. Ce sont les risques pour la santé ou la désapprobation sociale qui dissuadent les jeunes.
+|citations={{Citation
+|citation=La prohibition crée une attirance pour l'interdit : dans les pays où la drogue est légale, la consommation stagne.
+|auteurs=Frédéric Beigbeder
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=9
+|édition=Denoël
+|date=2011
+}}{{Citation
+|citation=Il y a eu des études sur des personnes qui ne consomment pas de cannabis (ces études ont surtout porté sur des étudiants). Celles-ci ont motivé leur choix non pas à cause de la loi, mais par crainte des risques pour la santé ou encore d'une désapprobation sociale dans leur milieu.
+|auteurs=Erickson - 2001
+|ouvrage=Les drogues. Les coûts cachés de la prohibition
+|page=190
+|édition=Lanctôt
+|date=2003
+}}
+|objections={{Objection
+|page=L'interdiction du cannabis est plus dissuasive qu'attractive
+|titre-affiché=L'interdiction est plus dissuasive qu'attractive
+}}{{Objection
+|page=Le tabac et l'alcool, licites, sont très attractifs
+|titre-affiché=Le tabac et l'alcool, licites, sont très attractifs
+}}
+|rubriques=Société
+|mots-clés=Cannabis, Dépénalisation, Légalisation, Prohibition, Attractivité, Interdiction
+|date-création=2019-01-30
+}}

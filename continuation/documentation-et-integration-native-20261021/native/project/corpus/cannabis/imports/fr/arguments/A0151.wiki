@@ -1,0 +1,13 @@
+{{Argument
+|résumé=Les Pays-Bas n'ont fait qu'aménager la réglementation relative aux coffee-shops. De plus, la majorité de l'opinion est en faveur de la légalisation de l'amont de la chaîne d'approvisionnement.
+|références-sitographiques={{Référence sitographique
+|lien=https://hyperdebat.net/cannabis-pays-bas-coffee-shops.html
+|page=Cannabis : les Pays-Bas ont-ils fait marche arrière sur les coffee-shops ?
+|auteurs=Eric Lombard
+|site=Hyperdébat
+|date=30 décembre 2013
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Dépénalisation, Pays-Bas
+|date-création=2021-02-16
+}}

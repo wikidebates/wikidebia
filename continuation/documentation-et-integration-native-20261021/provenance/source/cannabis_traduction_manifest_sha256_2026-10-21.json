@@ -1,0 +1,806 @@
+{
+  "audit_status": "passed",
+  "debate": "Le cannabis doit-il être légalisé ?",
+  "declared_file_count": 159,
+  "extraction_date": "2026-10-21",
+  "extractor_version": "1.0.2",
+  "files": [
+    {
+      "path": "cannabis_traduction_audit_graphe_2026-10-21.md",
+      "sha256": "04dff8ff21faee8370985b375c6ce90c0e2ac8ad5988d29d65fdde2fc7597049",
+      "size_bytes": 1133
+    },
+    {
+      "path": "cannabis_traduction_graphe_recursif_2026-10-21.json",
+      "sha256": "fabf0a537a4817f6f9e12a5f3f465b7d2e7ed39f1f0e0c1906301adae5dec6ca",
+      "size_bytes": 272559
+    },
+    {
+      "path": "cannabis_traduction_noeuds_2026-10-21.csv",
+      "sha256": "6da55037a453bf95151efcf22527114a7383a397d2b4bd0ee076a3baf14e6dcd",
+      "size_bytes": 69105
+    },
+    {
+      "path": "cannabis_traduction_rapport_graphe_2026-10-21.md",
+      "sha256": "a61af58ceb6701898caa2a01002c860aafffab48b3a49c28ade2052b1b0dc9f8",
+      "size_bytes": 3788
+    },
+    {
+      "path": "cannabis_traduction_relations_2026-10-21.csv",
+      "sha256": "e7c550af4675a6c7a7d5262ebd7719f2bb6022b8f6e6c032bac08b6e6c501990",
+      "size_bytes": 38394
+    },
+    {
+      "path": "snapshot/pages/arguments/0001_avant_de_supprimer_la_loi_de_1970_sur_les_drogues_il_faut_la_faire_appli_8d83d7af49dd.wiki",
+      "sha256": "1071d412fe280e96595d8e1c4f96b0820f5ad69938570255ca170e4f69d8a71f",
+      "size_bytes": 1421
+    },
+    {
+      "path": "snapshot/pages/arguments/0002_avec_la_prohibition_du_cannabis_une_partie_des_usagers_subit_les_consequ_e72d8a740f70.wiki",
+      "sha256": "32cf89ecc879b1eee010cb28eb5c055fc6010d29f2766839cae866e9105e2293",
+      "size_bytes": 376
+    },
+    {
+      "path": "snapshot/pages/arguments/0003_c_est_avant_tout_l_alcool_qui_est_responsable_d_accidents_de_la_route_d9ac1a9df270.wiki",
+      "sha256": "3221cce604b0f7c64afd478044bc87eba2ed8ab80f4ec61ba82e959232418c75",
+      "size_bytes": 471
+    },
+    {
+      "path": "snapshot/pages/arguments/0004_ce_n_est_pas_le_cannabis_seul_qui_fait_la_dangerosite_680245f01280.wiki",
+      "sha256": "0db69f5ba06dc931f7cd8bd6bbcfa6445ac06dd8baffa5462a156417d82cb700",
+      "size_bytes": 457
+    },
+    {
+      "path": "snapshot/pages/arguments/0005_ce_n_est_pas_parce_qu_une_politique_a_echoue_que_l_on_doit_y_renoncer_e43d4d4276d2.wiki",
+      "sha256": "e3e47c55afc5247cd9f14de2e8111cc16b0c01777ab4809f566229a3fcd53da8",
+      "size_bytes": 699
+    },
+    {
+      "path": "snapshot/pages/arguments/0006_certaines_lois_prises_contre_la_majorite_ont_ete_de_vrais_progres_societ_57315af19382.wiki",
+      "sha256": "6093924ef4b248826b0d4be7a86ce9a9dcecb7f1765152e2ad35b6670c436844",
+      "size_bytes": 272
+    },
+    {
+      "path": "snapshot/pages/arguments/0007_certains_pays_comme_l_uruguay_encadrent_fortement_le_marche_du_cannabis_ab751fe9fb25.wiki",
+      "sha256": "1ac8317616c5892fe10d1ea49cacaf8e6e49a44dc73c53288e85f74152860c32",
+      "size_bytes": 643
+    },
+    {
+      "path": "snapshot/pages/arguments/0008_comme_on_le_constate_avec_le_tabac_si_le_prix_du_cannabis_legalise_est_t_47f4710027f0.wiki",
+      "sha256": "04577379147f6dc566361284a99c42a4920e175bd151ba0d2aa17ac0169dd8e2",
+      "size_bytes": 870
+    },
+    {
+      "path": "snapshot/pages/arguments/0009_conserver_les_sanctions_penales_de_la_loi_de_1970_sur_les_drogues_qui_ne_e37392508708.wiki",
+      "sha256": "c2f4fef1f977ebfeebd355c88c42b9e7a6462620f355480a3df2f69a08f9f536",
+      "size_bytes": 945
+    },
+    {
+      "path": "snapshot/pages/arguments/0010_de_nombreuses_substances_bien_plus_dangereuses_et_addictives_que_le_cann_9d0c3fcb3727.wiki",
+      "sha256": "3b40ae5d578c4fe597a19d5892ebd07044dc3aeb95893b3530423134b85fd6eb",
+      "size_bytes": 2567
+    },
+    {
+      "path": "snapshot/pages/arguments/0011_des_enquetes_francaises_montrent_une_opposition_a_la_vente_libre_de_cann_4f83def18098.wiki",
+      "sha256": "ce5f02c5a0e4cf9e7e164309f6bf030c58ddc3be9e457c38db7dfb893ddb9238",
+      "size_bytes": 1885
+    },
+    {
+      "path": "snapshot/pages/arguments/0012_des_experiences_montrent_que_la_legalisation_d_une_drogue_ne_s_accompagn_d03a4ad51125.wiki",
+      "sha256": "eddea60913d5e93fda4b01201ccbfdb99bbeece992182d6a2420e2a2404efc4e",
+      "size_bytes": 390
+    },
+    {
+      "path": "snapshot/pages/arguments/0013_des_faits_montrent_que_les_sanctions_contre_les_consommateurs_de_cannabi_7b38c4f98efe.wiki",
+      "sha256": "1ddd4674a431f0de8894e0979898a791236b5aabaca9f17b5aebf6a870e079ad",
+      "size_bytes": 482
+    },
+    {
+      "path": "snapshot/pages/arguments/0014_des_solutions_existent_pour_minimiser_les_impacts_de_la_legalisation_du__526cab5a26b6.wiki",
+      "sha256": "d6a73ce1106fc93b6a6801c4e877bc5cd5bafe7a189fb5acaf9690a66ed1f174",
+      "size_bytes": 986
+    },
+    {
+      "path": "snapshot/pages/arguments/0015_en_cas_de_legalisation_du_cannabis_les_trafics_se_reporteraient_sur_d_au_3192a86e8854.wiki",
+      "sha256": "cdef1e0dc846cdd525963e66cc1ab9b256efca21049724bab3c871b53a68c841",
+      "size_bytes": 1498
+    },
+    {
+      "path": "snapshot/pages/arguments/0016_il_faut_faire_preuve_de_pedagogie_envers_la_consommation_de_cannabis_c6fe850556fe.wiki",
+      "sha256": "15be00cf49b33b76dc592ea837d74be96219139d3470c4f05e6c4536186106ee",
+      "size_bytes": 909
+    },
+    {
+      "path": "snapshot/pages/arguments/0017_il_faut_proteger_l_individu_contre_les_dangers_du_cannabis_6c7623f8cffc.wiki",
+      "sha256": "e106e1cec645f5b1409f5d6c4d9edd9cebee12ea370a61249ac525f8f3b9e6cd",
+      "size_bytes": 852
+    },
+    {
+      "path": "snapshot/pages/arguments/0018_il_n_est_pas_legitime_de_punir_quelqu_un_pour_un_dommage_qu_il_se_fait_a_fe6f12aaa74f.wiki",
+      "sha256": "2fd14085bdd593a8fb89e78840047598deacb867b27f8b6240e43ab2ece9ab20",
+      "size_bytes": 774
+    },
+    {
+      "path": "snapshot/pages/arguments/0019_il_ne_faut_pas_toucher_a_la_legislation_sur_le_cannabis_en_vigueur_d632f7ef6a3a.wiki",
+      "sha256": "edf6949d386ad79be5af1ab5e2959b21cc4124864e5fe7689e17422e519b12a7",
+      "size_bytes": 924
+    },
+    {
+      "path": "snapshot/pages/arguments/0020_il_y_a_des_signes_de_flechissement_de_la_consommation_de_cannabis_88e334875eb0.wiki",
+      "sha256": "7d0b5057e1af7eed8d37f6ac4f3fa4db331d4d35ad8c6d05a7b92ff7df31780f",
+      "size_bytes": 832
+    },
+    {
+      "path": "snapshot/pages/arguments/0021_il_y_aura_toujours_un_marche_prohibe_du_cannabis_le_marche_destine_aux_m_42fa065692e5.wiki",
+      "sha256": "1d742b0d89c0000c10e48da8417ec86efc1a19d24fa6bbc33a9c3f32b3d5b9ec",
+      "size_bytes": 413
+    },
+    {
+      "path": "snapshot/pages/arguments/0022_interdire_une_drogue_n_en_fait_pas_baisser_la_consommation_bd694dca95b0.wiki",
+      "sha256": "d1645beacba1fbcc507ff3103c050c3d2ab3a9538a068bdb80b6689ad33c213f",
+      "size_bytes": 310
+    },
+    {
+      "path": "snapshot/pages/arguments/0023_l_absence_de_garantie_sur_la_qualite_du_produit_presente_elle_meme_des_r_201e02c5d41d.wiki",
+      "sha256": "e0867c3e02e61f963144ba6963102c8731692a88dc790a28ca18dee1561aaae7",
+      "size_bytes": 974
+    },
+    {
+      "path": "snapshot/pages/arguments/0024_l_addiction_est_une_maladie_elle_ne_devrait_pas_etre_assimilee_a_un_deli_932ee20361ae.wiki",
+      "sha256": "b44f97e08d046ecde85c77f485ef878d51c3cf6ce59a67d8e52b3043a302d47f",
+      "size_bytes": 901
+    },
+    {
+      "path": "snapshot/pages/arguments/0025_l_alcool_et_le_tabac_ne_sont_pas_dangereux_en_soi_seul_leur_abus_l_est_a9e32cddcd3c.wiki",
+      "sha256": "b3a7fac6b3da509ddaf3dcb6f77fc5edd4d9f6f3a15aa0aebf6a69f88d787e4a",
+      "size_bytes": 513
+    },
+    {
+      "path": "snapshot/pages/arguments/0026_l_alcool_et_le_tabac_sont_parmi_les_substances_les_plus_addictogenes_et__4bfea21609ab.wiki",
+      "sha256": "2def55b9d457d7b46bd162177f84cc4c69fe4a3754eeda3d5e5d92b2b9632cfa",
+      "size_bytes": 219
+    },
+    {
+      "path": "snapshot/pages/arguments/0027_l_approche_repressive_permet_aux_pouvoirs_publics_de_se_dedouaner_de_leu_f9821c1d0e3b.wiki",
+      "sha256": "47ddc41432ae7b72e4d675f3b972df006d3615f679bcbcf2d01eb26072fc1bcf",
+      "size_bytes": 569
+    },
+    {
+      "path": "snapshot/pages/arguments/0028_l_exemple_de_certains_pays_montre_que_la_legalisation_du_cannabis_n_augm_b1232844f502.wiki",
+      "sha256": "5f31445f15cdbec695fcfd6daa77ea24d4088bdd9ae87599c22230e211cc2fae",
+      "size_bytes": 1025
+    },
+    {
+      "path": "snapshot/pages/arguments/0029_l_industrie_agro_alimentaire_rend_ses_aliments_addictifs_pour_maximiser__58e25319b6e4.wiki",
+      "sha256": "fbe1181dd3830b365421eb9a17277d5900f71ff2c7f7cb166771aa4cb4bcd31f",
+      "size_bytes": 344
+    },
+    {
+      "path": "snapshot/pages/arguments/0030_l_interdiction_du_cannabis_est_plus_dissuasive_qu_attractive_b76ffb5d4884.wiki",
+      "sha256": "f88cd4b1888494ef742348ae5123ce1fb62e0ddb5fdda6a7153a5112506ad890",
+      "size_bytes": 1505
+    },
+    {
+      "path": "snapshot/pages/arguments/0031_l_interdiction_du_cannabis_peut_etre_contournee_6ee9ebf0a508.wiki",
+      "sha256": "81f141c4a44d39b5c27e2ca143a9b40b7b42915a7e5492449f4dc25bf74d1627",
+      "size_bytes": 567
+    },
+    {
+      "path": "snapshot/pages/arguments/0032_l_interdit_attache_au_cannabis_depend_des_epoques_et_des_cultures_72a2c106c3cc.wiki",
+      "sha256": "7f0c03a1a96a44fb7a325d7dc85f5230f656a4511e7f55d3dcc62a8933106d65",
+      "size_bytes": 620
+    },
+    {
+      "path": "snapshot/pages/arguments/0033_l_interdit_incite_a_chercher_des_moyens_de_contourner_la_loi_561a4dd817ed.wiki",
+      "sha256": "2a173cb23688789a7479705f05d6e94ab695a3b8759d8d32aec31129b267923c",
+      "size_bytes": 72
+    },
+    {
+      "path": "snapshot/pages/arguments/0034_l_interdit_rend_le_cannabis_plus_attractif_4842c69a7ffb.wiki",
+      "sha256": "c6b49796685b22accb8ec88961d8306709e8545dd00662d006adad36e3b88169",
+      "size_bytes": 1343
+    },
+    {
+      "path": "snapshot/pages/arguments/0035_l_interdit_rend_plus_attractif_04ff89230de7.wiki",
+      "sha256": "a938914cc294ca6839eee5341111c24ee5c530d4fd8bee5d04debfe78a840f52",
+      "size_bytes": 40
+    },
+    {
+      "path": "snapshot/pages/arguments/0036_l_usage_prive_simple_de_cannabis_n_est_pas_dommageable_a_autrui_5692741ad39b.wiki",
+      "sha256": "863b78effa415095448d04b8078db39520a613faca7a88970ab744bd96c1e45b",
+      "size_bytes": 514
+    },
+    {
+      "path": "snapshot/pages/arguments/0037_l_utilisation_therapeutique_du_cannabis_n_est_pas_sans_danger_b6ac203005bd.wiki",
+      "sha256": "268be1dac53e2a62f07bda1d5a36c5e246dd5ceb0cb6b5f398d4f7444e5a14a8",
+      "size_bytes": 1092
+    },
+    {
+      "path": "snapshot/pages/arguments/0038_la_consommation_de_cannabis_augmente_en_france_008bc8177f34.wiki",
+      "sha256": "6f464c12f8442bec62fd3e7ec63a0ed22705395e1c2d97c501e1fdcc1ead3813",
+      "size_bytes": 1040
+    },
+    {
+      "path": "snapshot/pages/arguments/0039_la_dangerosite_du_cannabis_est_faible_09dcb9e79110.wiki",
+      "sha256": "fca6c1cf297edc3d1eed21d22deb16f3891aef9258a59ba7b5856570d153f5cb",
+      "size_bytes": 1668
+    },
+    {
+      "path": "snapshot/pages/arguments/0040_la_dependance_a_une_drogue_ne_se_produit_pas_independamment_de_la_person_7a8343bcccc7.wiki",
+      "sha256": "9e0c521c228f8313b2d9ac5b43d620465ef453ecc27a1234ae06d2c1354b6b04",
+      "size_bytes": 1779
+    },
+    {
+      "path": "snapshot/pages/arguments/0041_la_guerre_contre_la_drogue_exacerbe_les_persecutions_des_minorites_8de5e78a2613.wiki",
+      "sha256": "abf77bc0532494f62917597168e15151e0cf7406dfc04f38845b106d8e762a76",
+      "size_bytes": 5026
+    },
+    {
+      "path": "snapshot/pages/arguments/0042_la_liberte_de_consommer_du_cannabis_est_la_liberte_de_devenir_esclave_9fa548918c95.wiki",
+      "sha256": "bbc7d660980269240bec1e14410f7d6eec27b3aef7030e6ff9892d19bdbf35e7",
+      "size_bytes": 557
+    },
+    {
+      "path": "snapshot/pages/arguments/0043_la_loi_de_1970_sur_les_drogues_a_ete_concue_en_reponse_a_l_extension_du__e1a1a6a2eed8.wiki",
+      "sha256": "87d3e9273f8ad2301f457769219100a6e5513289590ce81d68311b9bc4a20741",
+      "size_bytes": 533
+    },
+    {
+      "path": "snapshot/pages/arguments/0044_la_loi_de_1970_sur_les_drogues_est_difficilement_applicable_50f36eae89be.wiki",
+      "sha256": "4e2b90541eef813594421ceb715600382c60c862d438ff896edeccefd19bcde5",
+      "size_bytes": 1509
+    },
+    {
+      "path": "snapshot/pages/arguments/0045_la_loi_de_1970_sur_les_drogues_est_inadaptee_ce304d8932e1.wiki",
+      "sha256": "c6ebadb526467bfb7349cc146d419a8c89ab7bba86e0694fafda79fc6a73407b",
+      "size_bytes": 1234
+    },
+    {
+      "path": "snapshot/pages/arguments/0046_la_loi_de_1970_sur_les_drogues_est_trop_diversement_appliquee_8046614be1f2.wiki",
+      "sha256": "f0d0f7e8abd291b0b9233d47c8c735e8fb61310c141f7486de0fbb91322f7fbd",
+      "size_bytes": 2061
+    },
+    {
+      "path": "snapshot/pages/arguments/0047_la_loi_de_1970_sur_les_drogues_focalise_trop_sur_les_usagers_ae900225ff01.wiki",
+      "sha256": "c2cc4ae08b52b4add72a629f3f71adb6f6f7c8564539607f25c8db569992f087",
+      "size_bytes": 1200
+    },
+    {
+      "path": "snapshot/pages/arguments/0048_la_loi_de_1970_sur_les_drogues_n_a_jamais_ete_evaluee_201c1b644119.wiki",
+      "sha256": "ebe60afb79c6216a41f4e935c5c5241f4aefb530e3ae10fed914ee35e7904cbf",
+      "size_bytes": 493
+    },
+    {
+      "path": "snapshot/pages/arguments/0049_la_loi_de_1970_sur_les_drogues_n_a_pas_ete_faite_pour_le_cannabis_76fd8ccfeb5f.wiki",
+      "sha256": "7039a1cd403cbb0b0a0f5a368e75f064db1b0624e72c190e83f6620ce0e2f25f",
+      "size_bytes": 1279
+    },
+    {
+      "path": "snapshot/pages/arguments/0050_la_loi_de_1970_sur_les_drogues_n_est_plus_comprise_par_les_usagers_5537942c8b00.wiki",
+      "sha256": "d4be012c87920d5b902a90d2063fb720429443dac8136b8cb2f1f805737bffdb",
+      "size_bytes": 741
+    },
+    {
+      "path": "snapshot/pages/arguments/0051_la_loi_est_non_seulement_appliquee_mais_la_repression_s_est_renforcee_de_d60ace9caff7.wiki",
+      "sha256": "f1beef8a3cf20ab4033f9a942b10b2ec23ee091670817de3484e951d8a0653b7",
+      "size_bytes": 795
+    },
+    {
+      "path": "snapshot/pages/arguments/0052_la_lutte_contre_les_trafics_de_cannabis_coute_cher_et_c_est_un_echec_207e7e0910b8.wiki",
+      "sha256": "df6b7c9aedab5f50da69109e22c5e0a6786d91101610cb91d1ce3c4606145d59",
+      "size_bytes": 1578
+    },
+    {
+      "path": "snapshot/pages/arguments/0053_la_legalisation_controlee_par_l_etat_fonctionne_903be0a1683e.wiki",
+      "sha256": "a4902b98dea640ad7f4478a8fdf95d95291b7e50b83fb4d865098ea0c6de72d8",
+      "size_bytes": 1916
+    },
+    {
+      "path": "snapshot/pages/arguments/0054_la_legalisation_du_cannabis_au_canada_fonctionne_mieux_que_la_prohibitio_7be15b7eef01.wiki",
+      "sha256": "947a4a013ae8f8cd56bab8c3e80bdfc7766c48eb1eff326868452fe8a1626d34",
+      "size_bytes": 1595
+    },
+    {
+      "path": "snapshot/pages/arguments/0055_la_legalisation_du_cannabis_aurait_trop_d_impacts_sociaux_et_economiques_a4a6f9c40fba.wiki",
+      "sha256": "5a2de307674ed2728475a37888abd7ca18ebc6c0d6c006535dcceede2baebc50",
+      "size_bytes": 487
+    },
+    {
+      "path": "snapshot/pages/arguments/0056_la_legalisation_du_cannabis_dans_un_seul_pays_est_source_de_problemes_2d269f4e2a88.wiki",
+      "sha256": "5da22bd036812a30613aae465c18e33676a6e57ce8f2e7ba1e31b21993910ddc",
+      "size_bytes": 681
+    },
+    {
+      "path": "snapshot/pages/arguments/0057_la_legalisation_du_cannabis_encourage_une_economie_de_dependance_ded17901b71f.wiki",
+      "sha256": "ee7347e72491540d1a0a85480fe356021946c3ed8acdb5b6574f953be664a431",
+      "size_bytes": 1054
+    },
+    {
+      "path": "snapshot/pages/arguments/0058_la_legalisation_du_cannabis_est_en_vigueur_dans_de_nombreux_pays_37229b90b8c8.wiki",
+      "sha256": "fa7be0d0b6bd2a0b1c88b0d2c546bbcd11c56d03201c7b6d467d6f1cf550013e",
+      "size_bytes": 987
+    },
+    {
+      "path": "snapshot/pages/arguments/0059_la_legalisation_du_cannabis_est_preconisee_par_la_commission_mondiale_su_d5d6f4c683e2.wiki",
+      "sha256": "dd92a50ef290c5d2cd8884bb762df36862fa74c1e9ccaa8a441d1c7dc7f37c3e",
+      "size_bytes": 395
+    },
+    {
+      "path": "snapshot/pages/arguments/0060_la_legalisation_du_cannabis_mettrait_fin_aux_trafics_f21768409dd0.wiki",
+      "sha256": "d5dc9427fd7f460b2cfceec1631483f8a532495ef5a9caf8fb845eb41e4ca724",
+      "size_bytes": 1425
+    },
+    {
+      "path": "snapshot/pages/arguments/0061_la_legalisation_du_cannabis_multiplierait_le_nombre_d_usagers_3aa0e52dacb0.wiki",
+      "sha256": "e881d02c3a7c9d012bb3b6708f7408176e9bb75ae4576d6a3855efed3ff35bbf",
+      "size_bytes": 2193
+    },
+    {
+      "path": "snapshot/pages/arguments/0062_la_legalisation_du_cannabis_n_est_ni_possible_ni_souhaitable_cb1eade6f019.wiki",
+      "sha256": "a8cde9e0c5cd7a0f6f4c9b64f102c6f9844b0d70e33808bd9e8f84d03563d462",
+      "size_bytes": 1801
+    },
+    {
+      "path": "snapshot/pages/arguments/0063_la_legalisation_du_cannabis_permet_un_controle_qualite_b489102684f5.wiki",
+      "sha256": "464a5dd10984246974d614c0d144588b28b5d5188eb0e65923c5f1a3b3285a15",
+      "size_bytes": 1310
+    },
+    {
+      "path": "snapshot/pages/arguments/0064_la_legalisation_du_cannabis_permettrait_de_degager_des_ressources_pour_l_e79a84ff5b94.wiki",
+      "sha256": "fe5cde588ba02071d334209475e3a7f835834da669d3817284f228cda4b7636b",
+      "size_bytes": 1388
+    },
+    {
+      "path": "snapshot/pages/arguments/0065_la_legalisation_du_cannabis_permettrait_de_vider_les_prisons_soulager_le_518da80453e6.wiki",
+      "sha256": "2bf7daa75e2efce7fb561e1a3f0fa7450f1d7482e6f9fa57a01d3ae4388d3bb6",
+      "size_bytes": 262
+    },
+    {
+      "path": "snapshot/pages/arguments/0066_la_legalisation_du_cannabis_peut_faire_baisser_la_consommation_d_alcool_dc0f588e11b3.wiki",
+      "sha256": "34e03575ae0626652a5d9d5ec6a1acb2486c64c9da9ef51732685651f3c3516a",
+      "size_bytes": 857
+    },
+    {
+      "path": "snapshot/pages/arguments/0067_la_legalisation_du_cannabis_peut_faire_baisser_la_criminalite_8ff6efdf4fff.wiki",
+      "sha256": "2f45bc9b661ccd23272620322d4e38f857bc686651eb380da2dc9b340ff812ff",
+      "size_bytes": 1056
+    },
+    {
+      "path": "snapshot/pages/arguments/0068_la_legalisation_du_cannabis_peut_faire_baisser_la_mortalite_par_overdose_4a13a656c250.wiki",
+      "sha256": "1f5c43d05eb0d542addf3b37296fab2594e855c3ca5b2bfdcc230fbd0f356531",
+      "size_bytes": 2334
+    },
+    {
+      "path": "snapshot/pages/arguments/0069_la_legalisation_du_cannabis_peut_faire_baisser_la_mortalite_par_overdose_2dfe2147987b.wiki",
+      "sha256": "600b456478fd5f6571057768046696edf9e0ee88ceb6adf6eef0e73ccb43bdaa",
+      "size_bytes": 499
+    },
+    {
+      "path": "snapshot/pages/arguments/0070_la_legalisation_du_cannabis_reporterait_les_usagers_vers_les_drogues_dur_b73ea976bcf3.wiki",
+      "sha256": "f122ba241ea7c93ecfd564333970a9d3e7bbed0c9cf762009d3d1969c6b9f263",
+      "size_bytes": 679
+    },
+    {
+      "path": "snapshot/pages/arguments/0071_la_legalisation_du_cannabis_risque_d_accroitre_la_consommation_f4b1950cda88.wiki",
+      "sha256": "8a2dee0561cfb9cd264b35f9b721e2256120154b6c384291f3f200daaae07482",
+      "size_bytes": 1179
+    },
+    {
+      "path": "snapshot/pages/arguments/0072_la_legalisation_du_cannabis_recreatif_ouvrirait_la_voie_a_l_utilisation__7a5f54ef0d91.wiki",
+      "sha256": "a7cfe1f0c054f662c7a943d48cfd214e391a299a2f166462e9ad20722d0b1ba3",
+      "size_bytes": 1299
+    },
+    {
+      "path": "snapshot/pages/arguments/0073_la_legalisation_du_cannabis_recreatif_souleve_des_difficultes_au_regard__0d7aa52189c9.wiki",
+      "sha256": "92ea829f5a9cac25ac33e410ab1b9a00391cf61dafae21f70edaa762077fa20f",
+      "size_bytes": 2046
+    },
+    {
+      "path": "snapshot/pages/arguments/0074_la_legalisation_du_cannabis_sera_mise_en_place_comme_l_ont_ete_de_nombre_e3fbe84caf4e.wiki",
+      "sha256": "0c41e67609f44237f33668e372b1477a01a5981e8d99ed6ed9e49c351653f93d",
+      "size_bytes": 716
+    },
+    {
+      "path": "snapshot/pages/arguments/0075_la_legalisation_du_cannabis_serait_benefique_8a7ca057aa9b.wiki",
+      "sha256": "051a6c6dd35e852c2a7c421af7e5b1c90fe81b1e8a9963458605541e89e2fecb",
+      "size_bytes": 2434
+    },
+    {
+      "path": "snapshot/pages/arguments/0076_la_legalisation_du_cannabis_serait_possible_au_titre_du_principe_d_oppor_d9a5797cd4a6.wiki",
+      "sha256": "58d2440f867965cec104a68b4cf6a2cac8c1cdceb11a26f04f434fac3d1aafe0",
+      "size_bytes": 490
+    },
+    {
+      "path": "snapshot/pages/arguments/0077_la_legalisation_du_cannabis_serait_prejudiciable_b8efbb4e716a.wiki",
+      "sha256": "5ec50d1a7c959f94efc10c47017b9f5db30f2cf2b099ee0144ca17c4390d9708",
+      "size_bytes": 867
+    },
+    {
+      "path": "snapshot/pages/arguments/0078_la_legalisation_du_cannabis_serait_un_danger_pour_les_mineurs_57922b9c1068.wiki",
+      "sha256": "096135f970d7b307bbdb5877d86bd0d398912916c70d2a0f8c994506224f8520",
+      "size_bytes": 1037
+    },
+    {
+      "path": "snapshot/pages/arguments/0079_la_production_clandestine_de_cannabis_est_a_l_origine_de_nombreux_incend_c1539dc886c9.wiki",
+      "sha256": "42ff44f1955d2151d3b05fc280754ac1001152bbffc88bf8a7f698d6ea37b7fc",
+      "size_bytes": 398
+    },
+    {
+      "path": "snapshot/pages/arguments/0080_la_prohibition_aggrave_le_mal_etre_a_l_origine_de_la_consommation_de_dro_13b3d2f3312b.wiki",
+      "sha256": "d7e8ec01b845041bacec13742123a182a9383d29755ad72258c4756db016b83b",
+      "size_bytes": 75
+    },
+    {
+      "path": "snapshot/pages/arguments/0081_la_prohibition_de_l_alcool_au_debut_du_xxeme_siecle_a_ete_un_echec_f253d0b34659.wiki",
+      "sha256": "11aa98d5bf21691c707dd532b647e9850eacbc74445f100f55ea70e85fd1dc53",
+      "size_bytes": 1055
+    },
+    {
+      "path": "snapshot/pages/arguments/0082_la_prohibition_de_l_alcool_et_certaines_guerres_contre_les_drogues_ont_e_11258eeb8676.wiki",
+      "sha256": "4bd8dd6316b33bdd008d1456ece8d067ac59fbe80ed018d697f13bf6a5923dd4",
+      "size_bytes": 2091
+    },
+    {
+      "path": "snapshot/pages/arguments/0083_la_prohibition_du_cannabis_accroit_la_rentabilite_du_cannabis_en_faisant_0491d847dd7e.wiki",
+      "sha256": "0085bb6e9a86ffb4864517242e8309c88b6a408da06151108e93b34e1cb75d04",
+      "size_bytes": 791
+    },
+    {
+      "path": "snapshot/pages/arguments/0084_la_prohibition_du_cannabis_dissuade_une_partie_de_la_population_d_en_con_7ea08e7abfe0.wiki",
+      "sha256": "25cb827b0afa1de60ca4f57c20c2ca4594367968b11f71fde9ac54bb9b901b3f",
+      "size_bytes": 1000
+    },
+    {
+      "path": "snapshot/pages/arguments/0085_la_prohibition_du_cannabis_entrave_la_prevention_et_les_soins_aaa49199afae.wiki",
+      "sha256": "a1d07c8f9d2b87d99133610ef48960565bb5258384f49543532c1bf7c788f6f0",
+      "size_bytes": 2045
+    },
+    {
+      "path": "snapshot/pages/arguments/0086_la_prohibition_du_cannabis_entraine_clandestinite_exclusion_sociale_sent_863577a0543f.wiki",
+      "sha256": "1bf2e03325946fc6e0b96d4217107fe528533f10c35bd91a2fb729cd160fa1ed",
+      "size_bytes": 1398
+    },
+    {
+      "path": "snapshot/pages/arguments/0087_la_prohibition_du_cannabis_entraine_le_developpement_d_une_economie_para_a057500921ad.wiki",
+      "sha256": "bc0ef95ea4c6d6e9ef67663413e17677c4f8fdb345ad871fa58e0d66c655c9f1",
+      "size_bytes": 3159
+    },
+    {
+      "path": "snapshot/pages/arguments/0088_la_prohibition_du_cannabis_entraine_une_perte_importante_de_recettes_pou_9dd1621f4a79.wiki",
+      "sha256": "c59e90a965fe11dcc3c4ecdf38fec86a1220879c3de642ce62f369eafe097233",
+      "size_bytes": 690
+    },
+    {
+      "path": "snapshot/pages/arguments/0089_la_prohibition_du_cannabis_est_contraire_a_la_liberte_individuelle_9ed7b7a76d1c.wiki",
+      "sha256": "99a51108a76ba58d458b6186ee8c0757ea703d8cdd8264000c3e1af2d839ca34",
+      "size_bytes": 2961
+    },
+    {
+      "path": "snapshot/pages/arguments/0090_la_prohibition_du_cannabis_est_efficace_32c6755a6a59.wiki",
+      "sha256": "618d1b8f4ab915ddd92dddcfba626217bf7f1d9979f973374c0567f2245fce5e",
+      "size_bytes": 1485
+    },
+    {
+      "path": "snapshot/pages/arguments/0091_la_prohibition_du_cannabis_est_inefficace_26a1bc0daf68.wiki",
+      "sha256": "3ead873fd874531514ff304e06ef108d10d1c155d37498bf83d1d0d26801e571",
+      "size_bytes": 1899
+    },
+    {
+      "path": "snapshot/pages/arguments/0092_la_prohibition_du_cannabis_est_prejudiciable_aux_usagers_614cf634b3aa.wiki",
+      "sha256": "302658191614821146d868d12b43cccadc287281f4d7c759d13e210be647bd1f",
+      "size_bytes": 1170
+    },
+    {
+      "path": "snapshot/pages/arguments/0093_la_prohibition_du_cannabis_est_prejudiciable_a_la_societe_ef434a756c52.wiki",
+      "sha256": "e5b07ed9fc2ddfab12ee67aa3af40e211c165d3f273b278fc87c394351b0d90f",
+      "size_bytes": 2153
+    },
+    {
+      "path": "snapshot/pages/arguments/0094_la_prohibition_du_cannabis_expose_les_usagers_a_l_univers_des_dealers_et_5b1d1ee8a8a8.wiki",
+      "sha256": "ef3d158fca9c2ae209e71982fe2192b3de9a92533cb9254bbc6e36796b0bc32e",
+      "size_bytes": 1062
+    },
+    {
+      "path": "snapshot/pages/arguments/0095_la_prohibition_du_cannabis_genere_beaucoup_de_controles_qui_peuvent_touc_9d83ff451041.wiki",
+      "sha256": "fd9471e812866af52aa08d02c8aaa05500000088ed8247bd90ecb51792327909",
+      "size_bytes": 633
+    },
+    {
+      "path": "snapshot/pages/arguments/0096_la_prohibition_du_cannabis_manque_de_legitimite_a81acfa3a0ff.wiki",
+      "sha256": "86ebfe9ad06253dd35aa8799b49dfa1f041b9c2940a5400882917940060f886f",
+      "size_bytes": 1121
+    },
+    {
+      "path": "snapshot/pages/arguments/0097_la_prohibition_du_cannabis_ne_donne_aucune_garantie_de_qualite_des_produ_c3a716f805eb.wiki",
+      "sha256": "3bcdd7b7fe7fccfbb1cafebf027a01d3aa45876a6fda5798a205eb19f86291fe",
+      "size_bytes": 960
+    },
+    {
+      "path": "snapshot/pages/arguments/0098_la_prohibition_du_cannabis_ne_fait_pas_de_distinction_entre_usage_simple_3964ec014414.wiki",
+      "sha256": "3008e6eed7269f502fe817052a3047a07f8ac48f1b1c38935dd4baf51c3ade05",
+      "size_bytes": 838
+    },
+    {
+      "path": "snapshot/pages/arguments/0099_la_prohibition_envoie_un_message_societal_clair_64f86a150f16.wiki",
+      "sha256": "3e66232b5429e4c0963f36953454ba24bbacc997fd2601119f18fd976ccde524",
+      "size_bytes": 804
+    },
+    {
+      "path": "snapshot/pages/arguments/0100_la_prohibition_passe_a_cote_des_motifs_de_la_consommation_3cc2aa9b52bc.wiki",
+      "sha256": "4e4c2ba90bfff07983303091dd206c62a42386a5c91ffa21a37cf052cb455019",
+      "size_bytes": 2361
+    },
+    {
+      "path": "snapshot/pages/arguments/0101_la_penalisation_du_cannabis_est_un_echec_677ace29f75b.wiki",
+      "sha256": "a5ba6ddb9b16aef2ec8ac431878345abe262415858ed31e7784cc69b84b769b4",
+      "size_bytes": 102
+    },
+    {
+      "path": "snapshot/pages/arguments/0102_la_regulation_du_cannabis_en_uruguay_fonctionne_mieux_que_la_prohibition_bfe4566ba947.wiki",
+      "sha256": "b2f997b43b65a3ef20ab6aa43f8ba359f05651bfe78668a3083891b3fdfc7af9",
+      "size_bytes": 1416
+    },
+    {
+      "path": "snapshot/pages/arguments/0103_la_repression_des_drogues_peut_peser_sur_les_personnes_precaires_et_sur__25c19aa99754.wiki",
+      "sha256": "bf98e57357cf09d482e424b2339eb7e0d5ea45a18bd3d86c4df728f7cbdc100d",
+      "size_bytes": 1732
+    },
+    {
+      "path": "snapshot/pages/arguments/0104_la_societe_doit_se_proteger_contre_les_dangers_du_cannabis_98a617742b69.wiki",
+      "sha256": "6b6bfb0474f6c4a3dfd7217878a72b3286ca77d3a71153a79474d08cb257b428",
+      "size_bytes": 570
+    },
+    {
+      "path": "snapshot/pages/arguments/0105_le_cannabis_engendre_des_couts_pour_la_societe_44cda287728f.wiki",
+      "sha256": "d05ddd39757066ffe5dd7f28b41da3a20521d4c74ac6fc93e66189e823fd2fc9",
+      "size_bytes": 625
+    },
+    {
+      "path": "snapshot/pages/arguments/0106_le_cannabis_est_dangereux_pour_la_sante_physique_et_mentale_0dfa5f1eda4b.wiki",
+      "sha256": "fc79c78cde813eba365cb9a3dc76f2569d16720a585bd6d8c13cfa9337a98b10",
+      "size_bytes": 2008
+    },
+    {
+      "path": "snapshot/pages/arguments/0107_le_cannabis_est_implique_dans_les_accidents_de_la_route_f7d050499c4d.wiki",
+      "sha256": "d9aaaf8b6567783ced3f3ddcaa0d7ebb4e48289f0ae58d0c041aa3c1860f2db8",
+      "size_bytes": 1783
+    },
+    {
+      "path": "snapshot/pages/arguments/0108_le_cannabis_est_nuisible_a_la_societe_10d784ad51c6.wiki",
+      "sha256": "ee47c8504eb94d98305adbe6101bf561efc29093a8be047aefc784fa387eff9a",
+      "size_bytes": 2084
+    },
+    {
+      "path": "snapshot/pages/arguments/0109_le_cannabis_est_toujours_dangereux_car_le_seul_but_des_fumeurs_est_de_pl_61587aba77cd.wiki",
+      "sha256": "597b479cc5a68f0a4b6b66c8c0529bdffd50df4af2335fd4abfd92731615d2e5",
+      "size_bytes": 583
+    },
+    {
+      "path": "snapshot/pages/arguments/0110_le_cannabis_peut_etre_utilise_pour_calmer_des_douleurs_et_se_relaxer_f033500b1242.wiki",
+      "sha256": "9e42f05947ff5d0bb4430e6b94914bcf514b146c7fa49032afe2c1821a097089",
+      "size_bytes": 245
+    },
+    {
+      "path": "snapshot/pages/arguments/0111_le_cannabis_potentialise_les_effets_de_l_alcool_et_du_tabac_d7a1a4fe98c6.wiki",
+      "sha256": "96f2f59f30c35c1109b1a66cc592bc11274873cf65d6a29914722be20f9d9e75",
+      "size_bytes": 688
+    },
+    {
+      "path": "snapshot/pages/arguments/0112_le_cannabis_reste_tres_accessible_420bee029a09.wiki",
+      "sha256": "90558d993fc4f3b860d913691cc9e1fdd141808b0ffcdca38cacdd213ab77306",
+      "size_bytes": 1919
+    },
+    {
+      "path": "snapshot/pages/arguments/0113_le_cannabis_seul_augmente_peu_le_risque_d_accidents_de_la_route_7f73d73a4eb6.wiki",
+      "sha256": "4e816b03ef73e358e66aa6bd0bf8e6fe501b936357fdd4497fb133f614c93136",
+      "size_bytes": 884
+    },
+    {
+      "path": "snapshot/pages/arguments/0114_le_groupe_pharmaceutique_purdue_est_responsable_de_l_addiction_a_l_oxyco_75f96b789278.wiki",
+      "sha256": "aedeb5069ac97299dc12b0f567db6e7977c0506476ac3f08c10dbba2f4b8edf0",
+      "size_bytes": 2035
+    },
+    {
+      "path": "snapshot/pages/arguments/0115_le_modele_portugais_a_fait_ses_preuves_b888561b64ce.wiki",
+      "sha256": "8a1ae5566d0b93f571201a3530fefad2b16b89457550e15851f02cc2e33101b5",
+      "size_bytes": 1209
+    },
+    {
+      "path": "snapshot/pages/arguments/0116_le_pouvoir_addictif_du_cannabis_est_assez_faible_b2e0fd879cad.wiki",
+      "sha256": "f4f9158e098844e81d0ecb9e11eefd8aaa3bc687330a0a9d8bf8f8b65152e7d4",
+      "size_bytes": 1566
+    },
+    {
+      "path": "snapshot/pages/arguments/0117_le_pouvoir_addictif_du_cannabis_est_important_2d3a8239218e.wiki",
+      "sha256": "51934987dc08b166d4d8a292c33f471e9f749c432aaa74bd7cdda4e112e9acb5",
+      "size_bytes": 1557
+    },
+    {
+      "path": "snapshot/pages/arguments/0118_le_pouvoir_addictif_du_cannabis_n_est_ni_faible_ni_fort_en_soi_il_depend_248d9ab01028.wiki",
+      "sha256": "61a49cdcc34d175d4a727d21b10a0c4504861b8e73e4c7d2630eb3207dbb65b1",
+      "size_bytes": 726
+    },
+    {
+      "path": "snapshot/pages/arguments/0119_le_prix_de_vente_est_ce_qui_joue_un_role_determinant_dans_la_consommatio_ab9a98e5e4a3.wiki",
+      "sha256": "10885478ab79dfb7fc161de48e4910f3faaf7edaf7b7b0e69b12c81499564569",
+      "size_bytes": 1519
+    },
+    {
+      "path": "snapshot/pages/arguments/0120_le_strict_respect_des_conventions_sur_les_stupefiants_est_contraire_aux__0692babba502.wiki",
+      "sha256": "1da55708f6f477247493837a4b84e5e0b4ef0431ed0dd15922a2f75f8e6798f0",
+      "size_bytes": 883
+    },
+    {
+      "path": "snapshot/pages/arguments/0121_le_tabac_et_l_alcool_sont_attractifs_parce_que_de_nombreux_interets_s_em_24695bd2a205.wiki",
+      "sha256": "79b011374045f52aa7a8f2a6c229429d7c9202a41b930d65a7bf84cebee17891",
+      "size_bytes": 605
+    },
+    {
+      "path": "snapshot/pages/arguments/0122_le_tabac_et_l_alcool_sont_dangereux_quelle_que_soit_la_quantite_649534ce9d97.wiki",
+      "sha256": "2a26dbedd8902d1608bb81e9e9dd7bad0b823319c9e669361db24fc2973b76ca",
+      "size_bytes": 1530
+    },
+    {
+      "path": "snapshot/pages/arguments/0123_le_tabac_et_l_alcool_licites_sont_tres_attractifs_687eb111e4cf.wiki",
+      "sha256": "2c4afceb22c17d231eb8ebf49ea5c6edb69bc856b4f06ce7fb48443979f944d7",
+      "size_bytes": 895
+    },
+    {
+      "path": "snapshot/pages/arguments/0124_les_comportements_addictifs_sont_tres_peu_sensibles_aux_lois_7ec220ddc886.wiki",
+      "sha256": "6313e65743992bc4a5f7edce9f140055efcc84994fb3c70eeb6888a74775259a",
+      "size_bytes": 860
+    },
+    {
+      "path": "snapshot/pages/arguments/0125_les_conventions_internationales_n_imposent_pas_de_penaliser_l_usage_de_c_a03ad24ab792.wiki",
+      "sha256": "c78fa3c2fa1274354a8e0d9f2a34db8cb4d359ecc517be726badbac56e8599ce",
+      "size_bytes": 600
+    },
+    {
+      "path": "snapshot/pages/arguments/0126_les_critiques_de_l_oics_n_ont_pas_empeche_l_adoption_de_la_legalisation__4befb3228583.wiki",
+      "sha256": "ad96c2263571d373d4cd512bb3d27d0df79283acd25e73d0888ad745b28da363",
+      "size_bytes": 717
+    },
+    {
+      "path": "snapshot/pages/arguments/0127_les_francais_sont_favorables_a_ce_que_la_vente_et_l_usage_du_cannabis_so_dfe8acff0de1.wiki",
+      "sha256": "d4ac16ff0b541b1aad53c1d5729c495916b8e39e85544c37571c5c982f64422c",
+      "size_bytes": 1365
+    },
+    {
+      "path": "snapshot/pages/arguments/0128_les_interets_economiques_des_producteurs_d_alcool_peuvent_peser_sur_la_r_040039bca924.wiki",
+      "sha256": "59b597768a5fa9d299801a6c440af5ceafa11726c75a571f9c47ca8d9ac72cff",
+      "size_bytes": 3402
+    },
+    {
+      "path": "snapshot/pages/arguments/0129_les_pays_ayant_depenalise_le_cannabis_font_marche_arriere_bdcebf503251.wiki",
+      "sha256": "ff4eb256c5f8d7bfbbe27486f315e6e740338184afa1bddf8d2d3af543a5a257",
+      "size_bytes": 1350
+    },
+    {
+      "path": "snapshot/pages/arguments/0130_les_pays_et_etats_ayant_depenalise_le_cannabis_sont_de_plus_en_plus_nomb_14b70120256b.wiki",
+      "sha256": "a27428eced69a7ebe95118c6416faf495cb29ecf9a77048d0800f57776ba0c9a",
+      "size_bytes": 310
+    },
+    {
+      "path": "snapshot/pages/arguments/0131_les_pays_bas_n_ont_pas_fait_marche_arriere_sur_la_depenalisation_du_cann_a960da9c51f6.wiki",
+      "sha256": "0b8bbbe4778f7fce1df3434b41820480fcf793d22da15c628987c170bb1b3055",
+      "size_bytes": 597
+    },
+    {
+      "path": "snapshot/pages/arguments/0132_les_ressources_degagees_par_la_legalisation_du_cannabis_risquent_de_devo_8cf19cfbce7c.wiki",
+      "sha256": "d0a80567f81bec15b5e0e6fa9879b5fcd4955e32e48f8484f432a89d41f9ddc7",
+      "size_bytes": 252
+    },
+    {
+      "path": "snapshot/pages/arguments/0133_les_risques_du_cannabis_doivent_etre_distingues_de_ceux_de_l_alcool_et_d_5f81bd89236a.wiki",
+      "sha256": "5aaa82821511da311b8ded1f9ced7f3e438d7d19c4a4442e1ca2e724fbbc86bd",
+      "size_bytes": 281
+    },
+    {
+      "path": "snapshot/pages/arguments/0134_les_risques_du_cannabis_sont_particulierement_preoccupants_lors_d_une_co_ba427371935a.wiki",
+      "sha256": "8e5a34c567d69b7a6daf11dca74960710ca382997d6309ebce40113cb6fbc322",
+      "size_bytes": 1945
+    },
+    {
+      "path": "snapshot/pages/arguments/0135_les_sanctions_contre_les_consommateurs_de_cannabis_ne_sont_pas_dissuasiv_440b26247e96.wiki",
+      "sha256": "8778626f105e4d8ad48d09164a20e8108ae1aef18cb119e4a59b82e3d8b192f8",
+      "size_bytes": 1592
+    },
+    {
+      "path": "snapshot/pages/arguments/0136_les_etudes_americaines_sur_le_lien_entre_cannabis_et_consommation_d_alco_f685379fa002.wiki",
+      "sha256": "1c12363324e279fa505a37f35d971abbf22c06ed7ffecce66999f0590c6668f0",
+      "size_bytes": 676
+    },
+    {
+      "path": "snapshot/pages/arguments/0137_legaliser_le_cannabis_est_la_porte_ouverte_a_la_legalisation_des_drogues_101b4fd91333.wiki",
+      "sha256": "bbd64bea273205e4af8cb42cf10ef9fcf734c90eb30f1cf791cb7a1c90e40709",
+      "size_bytes": 1176
+    },
+    {
+      "path": "snapshot/pages/arguments/0138_legaliser_le_cannabis_c_est_le_soumettre_aux_lois_du_marche_a41db1e39e5e.wiki",
+      "sha256": "617fe7890c8859890061780a79ebb056689beba7b44897f30efd622ea03eb0a8",
+      "size_bytes": 1123
+    },
+    {
+      "path": "snapshot/pages/arguments/0139_legaliser_les_drogues_dures_serait_benefique_pour_la_societe_617cd0332298.wiki",
+      "sha256": "a3ed70f582c71f1df1dfc795cefad5bdd79971255b3797b6863cd1cb816f3b05",
+      "size_bytes": 310
+    },
+    {
+      "path": "snapshot/pages/arguments/0140_on_peut_dissocier_l_utilisation_therapeutique_et_l_utilisation_recreativ_2a0338100c50.wiki",
+      "sha256": "ddcbc3b6dbb2506eae71ac4371b485000c4d31a8a13787d1912def92d6f21b9e",
+      "size_bytes": 372
+    },
+    {
+      "path": "snapshot/pages/arguments/0141_on_peut_reduire_les_risques_du_cannabis_en_jouant_sur_le_mode_de_consomm_ef03004f4475.wiki",
+      "sha256": "4ec5cd2301cdc821f34cd8a9ac1c0d8a7bd8e3f7ce40c508316ec8d839d688c4",
+      "size_bytes": 856
+    },
+    {
+      "path": "snapshot/pages/arguments/0142_on_peut_tout_a_fait_depenaliser_toutes_les_drogues_e7504d119759.wiki",
+      "sha256": "7dc249ab491f44a948c10187c153c181b243e6a7052b1a0770b330a3f2457a84",
+      "size_bytes": 447
+    },
+    {
+      "path": "snapshot/pages/arguments/0143_parmi_les_etats_ayant_legalise_le_cannabis_aucun_n_a_legalise_de_drogue__696900c67b6e.wiki",
+      "sha256": "c367ad00ba4b2683ef647b90f5602849a6dcd6d4b6a7832283a8db75dc65bb62",
+      "size_bytes": 600
+    },
+    {
+      "path": "snapshot/pages/arguments/0144_pour_un_mineur_avec_la_legalisation_du_cannabis_il_serait_plus_difficile_408f8ba2ac9f.wiki",
+      "sha256": "8a7cdf081542c8ba5afe6f2e477c6f03428e16ab0119effabfc25a85215c121b",
+      "size_bytes": 840
+    },
+    {
+      "path": "snapshot/pages/arguments/0145_quand_une_loi_aggrave_un_probleme_qu_elle_etait_censee_resoudre_il_devie_d84005e18034.wiki",
+      "sha256": "33d69e7b4aece35f4369b0d703608fc47200dd5af2a9d824ff46567ce1d8d6f2",
+      "size_bytes": 71
+    },
+    {
+      "path": "snapshot/pages/arguments/0146_si_le_cannabis_est_dangereux_pourquoi_en_confier_la_gestion_au_crime_org_59789429f17f.wiki",
+      "sha256": "ddcbc3b6dbb2506eae71ac4371b485000c4d31a8a13787d1912def92d6f21b9e",
+      "size_bytes": 372
+    },
+    {
+      "path": "snapshot/pages/arguments/0147_si_le_cannabis_est_legalise_avec_des_restrictions_certains_consommateurs_7b6869fbba6c.wiki",
+      "sha256": "bebf329f9fb577ba0bcccf4d97b17053f8769dab3fdc9e390b826ab24b68d330",
+      "size_bytes": 777
+    },
+    {
+      "path": "snapshot/pages/arguments/0148_sophisme_de_la_pente_glissante_c0de8c905585.wiki",
+      "sha256": "10618dbd912b46d6f9cb471a3936a64f42d3c410323d4b79019d197335972540",
+      "size_bytes": 40
+    },
+    {
+      "path": "snapshot/pages/arguments/0149_taxer_tous_les_marches_illicites_serait_irresponsable_db13a1709260.wiki",
+      "sha256": "74b6bc60a86d7ca13985e2361f5721a797fe28a0a79dfbf41fac752a5f141bc7",
+      "size_bytes": 357
+    },
+    {
+      "path": "snapshot/pages/arguments/0150_un_controle_d_etat_de_la_vente_de_cannabis_est_possible_en_france_a_l_im_baeea299345a.wiki",
+      "sha256": "4a4ebfd551e41556a1770a8eea36a684cf0671d36724cdfdc2986a2133210c84",
+      "size_bytes": 493
+    },
+    {
+      "path": "snapshot/pages/arguments/0151_un_marche_noir_du_cannabis_peut_subsister_apres_sa_legalisation_a71b39f044b8.wiki",
+      "sha256": "413a2c99b6c247a0b77f8d14c045bc74fa66574623b6cf763f8248e024ff9849",
+      "size_bytes": 878
+    },
+    {
+      "path": "snapshot/pages/arguments/0152_une_distribution_reglementee_peut_imposer_des_limites_aux_strategies_com_f32b6380e2d8.wiki",
+      "sha256": "4aee1b0f3daeab647e313ca431b9e516cfea22ce4cb75a031b03c05fac717e8b",
+      "size_bytes": 2201
+    },
+    {
+      "path": "snapshot/pages/debate.wiki",
+      "sha256": "d6496fcf21bff7bb3ee8375b053851f12f5cb70d267e2b8635be63ea563e40eb",
+      "size_bytes": 10795
+    },
+    {
+      "path": "snapshot/snapshot_manifest.json",
+      "sha256": "b4ea25cdd7634a51bf426c3a9df6b36002e0a0c24a187b61e65ffb14a15327af",
+      "size_bytes": 117660
+    }
+  ],
+  "kit_version": "2.16.47",
+  "schema": "wikidebia-graph-extraction-package-1.0"
+}

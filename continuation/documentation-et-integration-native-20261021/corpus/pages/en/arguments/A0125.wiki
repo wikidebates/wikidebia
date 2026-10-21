@@ -1,0 +1,18 @@
+{{Argument
+|summary=Ratified by all European Union (EU) member states, [https://en.wikipedia.org/wiki/Drug_prohibition these conventions] require drug supply (production, trafficking, transfer and possession) to be criminalised, but do not require criminal penalties for use. The decision to criminalise cannabis consumption directly is left to individual states.
+|sections=Law, Society
+|keywords=cannabis, decriminalisation, international conventions
+|webliography=
+{{Web reference
+|link=https://www.unodc.org/pdf/convention_1988_en.pdf
+|page=United Nations Convention against Illicit Traffic in Narcotic Drugs and Psychotropic Substances, 1988
+|site=United Nations Office on Drugs and Crime
+|date=1988
+}}
+{{Web reference
+|link=https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf
+|page=Portugal — Country Drug Report 2019
+|site=European Monitoring Centre for Drugs and Drug Addiction
+|date=2019
+}}
+}}

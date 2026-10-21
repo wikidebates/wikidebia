@@ -1,0 +1,20 @@
+{{Argument
+|citations={{Citation
+|citation=L’équilibre auquel nous sommes parvenus, si instable et approximatif soit-il, reste une forme d’équilibre. Est-il raisonnable d’y toucher, alors que nous ne disposons d’aucune certitude ? Si la science était assez ferme sur le sujet, peut-être pourrions-nous construire un système efficace ?
+|auteurs=Eric de Montgolfier
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=222
+|édition=Denoël
+|date=2011
+}}{{Citation
+|citation=Je suis assez hésitante, essentiellement en raison de l’expérience que nous avons des difficultés à limiter l’accès aux produits légalisés tels que l’alcool et le tabac.
+|auteurs=Nicole Maestracci
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=234
+|édition=Denoël
+|date=2011
+}}
+|rubriques=Droit, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2021-02-16
+}}

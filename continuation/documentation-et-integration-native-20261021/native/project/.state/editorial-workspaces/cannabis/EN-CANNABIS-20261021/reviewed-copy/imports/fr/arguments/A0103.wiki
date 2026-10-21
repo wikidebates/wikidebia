@@ -1,0 +1,11 @@
+{{Argument
+|initialisation=Justification@2835
+|références-sitographiques={{Référence sitographique
+|lien=https://www.nytimes.com/2013/02/24/magazine/the-extraordinary-science-of-junk-food.html
+|page=The Extraordinary Science of Addictive Junk Food
+|auteurs=Michael Moss
+|site=New-York Times
+|date=20/02/2013
+}}
+|date-création=2023-06-18
+}}

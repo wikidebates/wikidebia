@@ -1,0 +1,21 @@
+{{Argument
+|justifications={{Justification
+|page=La prohibition du cannabis entrave la prévention et les soins
+|titre-affiché=Entrave à la prévention et aux soins
+}}{{Justification
+|page=La prohibition du cannabis entraîne clandestinité, exclusion sociale, sentiment de discrimination
+|titre-affiché=Clandestinité, exclusion sociale, sentiment de discrimination
+}}{{Justification
+|page=Avec la prohibition du cannabis, une partie des usagers subit les conséquences de séjours en prison et/ou d'une inscription au casier judiciaire
+|titre-affiché=Une partie des usagers subit les conséquences de séjours en prison et/ou d'une inscription au casier judiciaire
+}}{{Justification
+|page=La prohibition du cannabis ne donne aucune garantie de qualité des produits
+|titre-affiché=Absence de garantie de qualité des produits
+}}{{Justification
+|page=La prohibition du cannabis expose les usagers à l’univers des dealers et à des drogues plus dures
+|titre-affiché=Exposition à l’univers des dealers et à des drogues plus dures
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Prohibition
+|date-création=2019-08-07
+}}

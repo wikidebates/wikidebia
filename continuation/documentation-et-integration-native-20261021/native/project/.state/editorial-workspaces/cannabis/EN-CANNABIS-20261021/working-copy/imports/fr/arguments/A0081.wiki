@@ -1,0 +1,18 @@
+{{Argument
+|citations={{Citation
+|citation=Légaliser le cannabis reviendrait à contraindre le transgressif à se tourner d’emblée vers des drogues situées plus haut sur l’échelle des toxicomanies.
+|auteurs=Jean Costentin
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=41
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|objections={{Objection
+|page=On peut tout à fait dépénaliser toutes les drogues
+|titre-affiché=On peut tout à fait dépénaliser toutes les drogues
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Drogues dures
+|date-création=2021-02-16
+}}

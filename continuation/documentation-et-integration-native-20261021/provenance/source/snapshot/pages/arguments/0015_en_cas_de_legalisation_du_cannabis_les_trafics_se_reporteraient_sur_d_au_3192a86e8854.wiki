@@ -1,0 +1,20 @@
+{{Argument
+|citations={{Citation|
+|citation=Un assouplissement de la législation relative au cannabis générera des stratégies d’adaptation de la part des trafiquants: diffusion de cannabis génétiquement modifié et fortement dosé, report vers la cocaïne, l’héroïne ou les drogues de synthèse…Pourquoi le trafic de cigarettes, marchandise universellement légale, constitue une ressource majeure et en forte croissance de la criminalité organisée internationale ?
+|auteurs=Claude Guéant
+|article=Dépénalisation du cannabis, un débat biaisé
+|ouvrage=Le Monde
+|date=15/6/2011
+|lien=https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html
+}}{{Citation
+|citation=L’idée de la légalisation doit se poser pour tous les produits, y compris les plus dangereux. Si elle s’applique à un produit type cannabis, les trafiquants essayeront de développer d’autres produits, type héroïne, cocaïne, drogues de synthèse. Accepter la légalisation de tous les marchés, je crains que ce soit quelque-chose de difficile en termes de respect d’un certain ordre public sanitaire. Il est très difficile de répondre à la demande quand l’addiction peut s’installer très rapidement.
+|auteurs=Etienne Apaire
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=206
+|édition= Denoël
+|date=2011
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

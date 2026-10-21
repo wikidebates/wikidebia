@@ -1,0 +1,12 @@
+{{Argument
+|références-bibliographiques={{Référence bibliographique
+|auteurs=Medical Observer
+|article=Dutch cities want cannabis cultivation decriminalized
+|ouvrage=AFP
+|date=31/01/2014
+|lien=https://medicalobserverph.com/dutch-cities-wants-cannabis-cultivation-decriminalised/
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

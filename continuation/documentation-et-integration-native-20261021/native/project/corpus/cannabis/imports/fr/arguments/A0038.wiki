@@ -1,0 +1,43 @@
+{{Argument
+|citations={{Citation
+|citation=L’ONG Human rights watch considère ainsi que la pénalisation de l’usage de stupéfiants constitue « une atteinte aux droits humains fondamentaux » et demande la dépénalisation de la consommation de toutes les drogues.
+La prohibition apparait comme au service d’un contrôle social.
+Ces évolutions sociétales s’inscrivent dans un mouvement de redéfinition de ce qui relève de la sphère privée et des préférences personnelles face à ce qui regarde la sphère publique. Ces évolutions concernent les croyances religieuses, les préférences sexuelles et bien d’autres choix de vie. On se souviendra que le divorce fut impossible puis encadré, ou que l’homosexualité fut un crime ; l’avortement était également un crime passible des assises.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=78, 90 et 91
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}{{Citation
+|citation=Le rapport de 1994 sur les toxicomanies adopté par le Comité consultatif national d’éthique pour les sciences de la vie et de la santé affirmait : « Le simple usage d’un produit dangereux ne devrait être réprimé que lorsqu’il est public, ou lorsque la preuve est apportée (en toute régularité de procédure) qu’il a une influence néfaste sur l’entourage, notamment familial. »
+|auteurs=Françoise Branget, Gilbert Barbier
+|article=La dépénalisation de l'usage, une impasse éthique et juridique
+|ouvrage=Mission d’information sur les toxicomanies
+|édition=Assemblée nationale
+|date=30/06/2011
+|lien=https://www.assemblee-nationale.fr/13/rap-info/i3612-ti.asp#P1085_352797
+}}{{Citation
+|citation=La loi du 31 décembre 1970 sur les drogues est une loi d'exception. C’est le seul domaine dans lequel un individu est passible d’une peine d’emprisonnement pour un dommage qu’il se fait à lui-même. Peut-on en effet imaginer sur le plan éthique de prévenir et d’agir sur le suicide en mettant en prison ceux qui en commettent des tentatives ?
+|auteurs=Jean-Michel Costes
+|article=Il faut dépénaliser l'usage de drogue
+|ouvrage=Le Monde
+|date=31/12/2011
+|lien=https://www.lemonde.fr/idees/article/2011/12/30/il-faut-depenaliser-l-usage-de-drogue_1624418_3232.html
+}}{{Citation
+|citation=Quand on commence à arrêter les citoyens pour leur bien, où est la limite ? (…) Le bien est toujours l’excuse du totalitarisme.
+|auteurs=Frédéric Beigbeder
+|article=Préface
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=9
+|édition=Denoël
+|date=2011
+}}
+|objections={{Objection
+|page=La liberté de consommer du cannabis est la liberté de devenir esclave
+|titre-affiché=La liberté de devenir esclave !
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Prohibition, Libertés individuelles
+|date-création=2019-08-07
+}}

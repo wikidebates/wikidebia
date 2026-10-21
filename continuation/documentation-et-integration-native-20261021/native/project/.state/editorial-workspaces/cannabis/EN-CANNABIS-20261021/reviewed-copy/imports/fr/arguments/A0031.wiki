@@ -1,0 +1,14 @@
+{{Argument
+|citations={{Citation
+|citation=Le marché du cannabis montre un paradoxe fondamental. Plus la répression augmente, plus le prix pour le consommateur augmente par un mécanisme économique de base. Ce qui a pour conséquence une rentabilité
+accrue de la production de drogue et une intensification du commerce de cannabis. Pour résumer, plus on le réprime, plus le trafic de cannabis est florissant…
+|auteurs=Paul De Grauwe
+|article=Le cannabis se mutualise, à défaut d'être réglementé
+|ouvrage=L'Écho (Belgique)
+|date=20/10/2017
+|lien=https://www.lecho.be/economie-politique/belgique-general/Le-cannabis-se-mutualise-a-defaut-d-etre-reglemente/9945069
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

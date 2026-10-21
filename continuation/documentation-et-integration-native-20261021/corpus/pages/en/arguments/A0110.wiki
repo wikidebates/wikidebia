@@ -1,0 +1,9 @@
+{{Argument|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/26103030
+|page=Cannabinoids for Medical Use: A Systematic Review and Meta-analysis
+|authors=Whiting PF, Wolff RF, Deshpande S, Di Nisio M, Duffy S, Hernandez AV, Keurentjes JC, Lang S, Misso K, Ryder S, Schmidlkofer S, Westwood M, Kleijnen J
+|site=Europe PMC
+|date=2015
+}}
+}}

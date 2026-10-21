@@ -1,0 +1,28 @@
+{{Argument
+|citations={{Citation
+|auteurs=Jean Costentin
+|citation=Si ce comportement [la transgression] existe, il est minoritaire. L'interdiction empêche un nombre beaucoup plus grand de nos jeunes de consommer du cannabis que son interdiction n'en attire. Expérimenter une substance interdite suscite intensément l'effet nocebo dont la perception incite l'expérimentateur à ne pas réitérer – d'où la large différence entre le nombre d'expérimentateurs et celui des usagers réguliers de cannabis.
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=41 et 114
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}{{Citation
+|auteurs=Claude Guéant
+|citation=D'après les études, plus de la moitié des jeunes non consommateurs renoncent au cannabis du fait des risques liés à l'interdit.
+|article=Dépénalisation du cannabis, un débat biaisé
+|ouvrage=Le Monde
+|date=15/6/2011
+|lien=https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html
+}}{{Citation
+|auteurs=Antonio Costa
+|citation=39% des jeunes de 17 ans qui n'ont pas fumé de cannabis dans le mois précédent l'enquête Escapad 2008 donnent comme motif son illégalité.
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=21
+|édition=Denoël
+|date=2011
+}}
+|rubriques=Société
+|mots-clés=Cannabis, Dépénalisation, Légalisation, Prohibition, Attractivité, Interdiction
+|date-création=2019-01-30
+}}

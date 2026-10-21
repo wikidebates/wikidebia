@@ -1,0 +1,173 @@
+# Inventaire éditorial — cannabis
+
+Work : `EN-CANNABIS-20261021`
+
+Ce rapport ouvre des tâches de revue. Il n'applique aucune correction et ne génère aucune page finale.
+
+- Pages examinées : 153
+- Pages Argument : 152
+- Diagnostics : 310
+- Titres affichés identiques : 51 (33.6%)
+- Jeu exact de mots-clés dominant : 37 (24.3%)
+
+## Pages
+
+- `debate` — Le cannabis doit-il être légalisé ? : KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0001` — La prohibition du cannabis est inefficace : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0002` — La prohibition du cannabis est préjudiciable aux usagers : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0003` — La prohibition du cannabis est préjudiciable à la société : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0004` — La prohibition du cannabis manque de légitimité : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0005` — La loi de 1970 sur les drogues est inadaptée : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0006` — La légalisation du cannabis serait bénéfique : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0007` — La légalisation du cannabis permet un contrôle qualité : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0008` — La légalisation contrôlée par l'État fonctionne : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0009` — La prohibition du cannabis est efficace : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0010` — Il faut protéger l'individu contre les dangers du cannabis : TITLE_CANONICAL_POSSIBLE_CONTEXT_DEPENDENCY, KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0011` — La société doit se protéger contre les dangers du cannabis : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0012` — La légalisation du cannabis n'est ni possible ni souhaitable : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0013` — La légalisation du cannabis serait préjudiciable : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0014` — La consommation de cannabis augmente en France : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0015` — Ce n'est pas parce qu'une politique a échoué que l'on doit y renoncer : TITLE_CANONICAL_POSSIBLE_CONTEXT_DEPENDENCY, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0016` — Le cannabis reste très accessible : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0017` — La prohibition du cannabis dissuade une partie de la population d'en consommer : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0018` — L'interdit rend le cannabis plus attractif : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0019` — La prohibition envoie un message sociétal clair : revue obligatoire sans anomalie automatique
+- `A0020` — Les sanctions contre les consommateurs de cannabis ne sont pas dissuasives : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0021` — L'interdiction du cannabis peut être contournée : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0022` — La prohibition passe à côté des motifs de la consommation : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0023` — La prohibition de l'alcool et certaines guerres contre les drogues ont eu des effets contre-productifs : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0024` — La prohibition du cannabis entrave la prévention et les soins : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0025` — La prohibition du cannabis entraîne clandestinité, exclusion sociale, sentiment de discrimination : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0026` — Avec la prohibition du cannabis, une partie des usagers subit les conséquences de séjours en prison et/ou d'une inscription au casier judiciaire : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0027` — La prohibition du cannabis ne donne aucune garantie de qualité des produits : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0028` — La prohibition du cannabis expose les usagers à l'univers des dealers et à des drogues plus dures : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0029` — La prohibition du cannabis génère beaucoup de contrôles qui peuvent toucher tout le monde : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0030` — La prohibition du cannabis entraîne le développement d'une économie parallèle très lucrative avec ses conséquences : corruption, blanchiment d'argent, recrutement de jeunes, violence, insécurité, trafic d'armes : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0031` — La prohibition du cannabis accroît la rentabilité du cannabis en faisant monter les prix : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0032` — La lutte contre les trafics de cannabis coûte cher, et c'est un échec : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0033` — Une distribution réglementée peut imposer des limites aux stratégies commerciales : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0034` — La prohibition du cannabis entraîne une perte importante de recettes pour l'Etat et laisser se développer un marché échappant à toute taxe revient même à le subventionner : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0035` — La production clandestine de cannabis est à l'origine de nombreux incendies : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0036` — La guerre contre la drogue exacerbe les persécutions des minorités : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0037` — La répression des drogues peut peser sur les personnes précaires et sur les prisons : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0038` — La prohibition du cannabis est contraire à la liberté individuelle : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0039` — L'interdit attaché au cannabis dépend des époques et des cultures : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0040` — La prohibition du cannabis ne fait pas de distinction entre usage simple et toxicomanie : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0041` — De nombreuses substances bien plus dangereuses et addictives que le cannabis sont légales : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0042` — L'addiction est une maladie, elle ne devrait pas être assimilée à un délit : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0043` — La loi de 1970 sur les drogues n'a pas été faite pour le cannabis : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0044` — La loi de 1970 sur les drogues focalise trop sur les usagers : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0045` — La loi de 1970 sur les drogues n'est plus comprise par les usagers : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0046` — La loi de 1970 sur les drogues est difficilement applicable : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0047` — Conserver les sanctions pénales de la loi de 1970 sur les drogues qui ne sont pratiquement plus appliquées n'est pas sain : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0048` — La loi de 1970 sur les drogues est trop diversement appliquée : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0049` — La loi de 1970 sur les drogues n'a jamais été évaluée : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0050` — La légalisation du cannabis permettrait de dégager des ressources pour la prévention : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0051` — La légalisation du cannabis risque d'accroître la consommation : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0052` — La légalisation du cannabis permettrait de vider les prisons, soulager les policiers, la justice : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0053` — La légalisation du cannabis encourage une économie de dépendance : KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0054` — La légalisation du cannabis récréatif ouvrirait la voie à l'utilisation thérapeutique : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0055` — Un marché noir du cannabis peut subsister après sa légalisation : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0056` — La légalisation du cannabis peut faire baisser la consommation d'alcool : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0057` — La légalisation du cannabis peut faire baisser la mortalité par overdose de drogues plus dures : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0058` — La légalisation du cannabis peut faire baisser la mortalité par overdose d'opiacés : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0059` — La légalisation du cannabis mettrait fin aux trafics : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0060` — La légalisation du cannabis peut faire baisser la criminalité : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0061` — Le modèle portugais a fait ses preuves : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0062` — La légalisation du cannabis au Canada fonctionne mieux que la prohibition : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0063` — La régulation du cannabis en Uruguay fonctionne mieux que la prohibition : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0064` — Les comportements addictifs sont très peu sensibles aux lois : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0065` — Le cannabis est dangereux pour la santé physique et mentale : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0066` — Le cannabis potentialise les effets de l'alcool et du tabac : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0067` — Le pouvoir addictif du cannabis est important : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0068` — Le cannabis est nuisible à la société : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0069` — Le cannabis engendre des coûts pour la société : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0070` — Le cannabis est impliqué dans les accidents de la route : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0071` — La légalisation du cannabis récréatif soulève des difficultés au regard des conventions internationales : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0072` — La légalisation du cannabis est en vigueur dans de nombreux pays : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0073` — Des enquêtes françaises montrent une opposition à la vente libre de cannabis : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0074` — La pénalisation du cannabis est un échec : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0075` — Il ne faut pas toucher à la législation sur le cannabis en vigueur : TITLE_CANONICAL_POSSIBLE_CONTEXT_DEPENDENCY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0076` — La légalisation du cannabis sera mise en place, comme l'ont été de nombreuses avancées sociales décriées : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0077` — La légalisation du cannabis dans un seul pays est source de problèmes : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0078` — Légaliser le cannabis, c'est le soumettre aux lois du marché : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0079` — Légaliser le cannabis est la porte ouverte à la légalisation des drogues dures : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0080` — La légalisation du cannabis multiplierait le nombre d'usagers : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0081` — La légalisation du cannabis reporterait les usagers vers les drogues dures : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0082` — La légalisation du cannabis serait un danger pour les mineurs : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0083` — La légalisation du cannabis aurait trop d'impacts sociaux et économiques sur les banlieues : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0084` — Il y a des signes de fléchissement de la consommation de cannabis : TITLE_CANONICAL_POSSIBLE_CONTEXT_DEPENDENCY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0085` — Quand une loi aggrave un problème qu'elle était censée résoudre, il devient urgent de l'abolir : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0086` — Interdire une drogue n'en fait pas baisser la consommation : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0087` — L'interdiction du cannabis est plus dissuasive qu'attractive : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0088` — Le tabac et l'alcool, licites, sont très attractifs : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0089` — L'interdit rend plus attractif : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0090` — L'interdit incite à chercher des moyens de contourner la loi : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0091` — Des faits montrent que les sanctions contre les consommateurs de cannabis peuvent être dissuasives : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0092` — Il faut faire preuve de pédagogie envers la consommation de cannabis : TITLE_CANONICAL_POSSIBLE_CONTEXT_DEPENDENCY, KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0093` — L'approche répressive permet aux pouvoirs publics de se dédouaner de leur responsabilité dans sa consommation : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0094` — La prohibition aggrave le mal-être à l'origine de la consommation de drogues : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0095` — La prohibition de l'alcool au début du XXème siècle a été un échec : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0096` — Taxer tous les marchés illicites serait irresponsable : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0097` — La liberté de consommer du cannabis est la liberté de devenir esclave : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0098` — L'alcool et le tabac sont parmi les substances les plus addictogènes et nocives : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0099` — L'alcool et le tabac ne sont pas dangereux en soi, seul leur abus l'est : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0100` — Les intérêts économiques des producteurs d'alcool peuvent peser sur la réglementation : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0101` — Le cannabis est toujours dangereux car le seul but des fumeurs est de planer : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0102` — Le groupe pharmaceutique Purdue est responsable de l'addiction à l'oxycodone : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0103` — L'industrie agro-alimentaire rend ses aliments addictifs pour maximiser les profits : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0104` — Les risques du cannabis doivent être distingués de ceux de l'alcool et du tabac : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0105` — La loi de 1970 sur les drogues a été conçue en réponse à l'extension du cannabis : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0106` — Avant de supprimer la loi de 1970 sur les drogues, il faut la faire appliquer : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0107` — Les ressources dégagées par la légalisation du cannabis risquent de devoir être utilisées pour lutter contre de nouveaux trafics : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0108` — Des expériences montrent que la légalisation d'une drogue ne s'accompagne pas d'une hausse de consommation : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0109` — On peut dissocier l'utilisation thérapeutique et l'utilisation récréative du cannabis : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0110` — L'utilisation thérapeutique du cannabis n'est pas sans danger : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0111` — Les études américaines sur le lien entre cannabis et consommation d'alcool ne vont pas toutes dans le même sens : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0112` — En cas de légalisation du cannabis, les trafics se reporteraient sur d'autres produits, à moins de légaliser toutes les drogues, ce qui parait difficile : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0113` — Il y aura toujours un marché prohibé du cannabis, le marché destiné aux mineurs : TITLE_CANONICAL_POSSIBLE_CONTEXT_DEPENDENCY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0114` — Si le cannabis est légalisé avec des restrictions, certains consommateurs continueront à se fournir au marché noir : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0115` — Comme on le constate avec le tabac, si le prix du cannabis légalisé est trop élevé, le marché noir va se maintenir : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0116` — Les risques du cannabis sont particulièrement préoccupants lors d'une consommation précoce : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0117` — La dangerosité du cannabis est faible : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0118` — On peut réduire les risques du cannabis en jouant sur le mode de consommation : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0119` — Ce n'est pas le cannabis seul qui fait la dangerosité : TITLE_CANONICAL_POSSIBLE_CONTEXT_DEPENDENCY, KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0120` — Il n'est pas légitime de punir quelqu'un pour un dommage qu'il se fait à lui-même : TITLE_CANONICAL_POSSIBLE_CONTEXT_DEPENDENCY, KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0121` — Si le cannabis est dangereux, pourquoi en confier la gestion au crime organisé ? : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0122` — L'absence de garantie sur la qualité du produit présente elle-même des risques : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0123` — Le pouvoir addictif du cannabis est assez faible : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0124` — Le pouvoir addictif du cannabis n'est ni faible ni fort en soi, il dépend de son niveau d'usage : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0125` — La dépendance à une drogue ne se produit pas indépendamment de la personne et de son environnement. La drogue est un moyen d'adaptation à la vie, pas une cause : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0126` — L'usage privé simple de cannabis n'est pas dommageable à autrui : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0127` — Le cannabis seul augmente peu le risque d'accidents de la route : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0128` — C'est avant tout l'alcool qui est responsable d'accidents de la route : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0129` — Les conventions internationales n'imposent pas de pénaliser l'usage de cannabis : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0130` — La légalisation du cannabis est préconisée par la Commission mondiale sur la politique des drogues : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0131` — Le strict respect des conventions sur les stupéfiants est contraire aux traités internationaux relatifs aux droits de l'homme : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0132` — La légalisation du cannabis serait possible au titre du principe d'opportunité ou d'une expérimentation scientifique : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0133` — Les critiques de l'OICS n'ont pas empêché l'adoption de la légalisation du cannabis en Uruguay : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0134` — Les pays ayant dépénalisé le cannabis font marche arrière : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0135` — Les Français sont favorables à ce que la vente et l'usage du cannabis soient autorisés sous certaines conditions : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0136` — Certaines lois prises contre la majorité ont été de vrais progrès sociétaux : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0137` — Certains pays comme l'Uruguay encadrent fortement le marché du cannabis : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0138` — Un contrôle d'État de la vente de cannabis est possible en France, à l'image de l'alcool : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0139` — Parmi les États ayant légalisé le cannabis, aucun n'a légalisé de drogue dure : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0140` — Sophisme de la pente glissante : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0141` — Légaliser les drogues dures serait bénéfique pour la société : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0142` — L'exemple de certains pays montre que la légalisation du cannabis n'augmente pas son nombre d'usagers : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0143` — Le prix de vente est ce qui joue un rôle déterminant dans la consommation de cannabis : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0144` — On peut tout à fait dépénaliser toutes les drogues : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0145` — Pour un mineur, avec la légalisation du cannabis, il serait plus difficile de s'approvisionner en magasin qu'actuellement au marché noir : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0146` — Des solutions existent pour minimiser les impacts de la légalisation du cannabis sur les populations des banlieues : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0147` — Le tabac et l'alcool sont attractifs parce que de nombreux intérêts s'emploient à les rendre attractifs : KEYWORDS_TOO_MANY, KEYWORDS_CAPITALIZATION_REVIEW
+- `A0148` — Le tabac et l'alcool sont dangereux quelle que soit la quantité : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0149` — Le cannabis peut être utilisé pour calmer des douleurs et se relaxer : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0150` — La loi est non seulement appliquée, mais la répression s'est renforcée depuis 2001 : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+- `A0151` — Les Pays-Bas n'ont pas fait marche arrière sur la dépénalisation du cannabis : KEYWORDS_CAPITALIZATION_REVIEW
+- `A0152` — Les pays et états ayant dépénalisé le cannabis sont de plus en plus nombreux : RUBRIQUES_IMPORTED_FALLBACK, KEYWORDS_TOO_FEW, KEYWORDS_CAPITALIZATION_REVIEW, KEYWORDS_IMPORTED_FALLBACK
+
+## Limites
+
+- Les diagnostics de propositionnalité et d'autonomie des titres sont heuristiques et exigent une revue humaine.
+- La pertinence sémantique des rubriques et mots-clés ne peut pas être décidée automatiquement.
+- Aucune traduction anglaise et aucun wikicode final ne sont produits dans cette phase.

@@ -1,0 +1,25 @@
+{{Argument
+|quotes={{Quote
+|quote=More than 13 million French people have tried cannabis at least once, with a gradual increase since the early 1990s: the proportion of 18–64-year-olds who had tried it rose from 24% in 2000 to 29% in 2005 and then 33% in 2011.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=70
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=There are signs that cannabis use is declining
+|displayed-title=There are signs that consumption is declining
+}}
+|sections=Health, Society
+|keywords=cannabis, consumption
+|webliography=
+{{Web reference
+|link=https://www.euda.europa.eu/system/files/media/publications/documents/11335/france-cdr-2019.pdf
+|page=France — Country Drug Report 2019
+|site=European Monitoring Centre for Drugs and Drug Addiction
+|date=2019
+}}
+}}

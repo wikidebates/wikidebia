@@ -1,0 +1,18 @@
+{{Argument
+|justifications={{Justification
+|page=La légalisation du cannabis multiplierait le nombre d'usagers
+|titre-affiché=La légalisation multiplierait le nombre d'usagers
+}}{{Justification
+|page=La légalisation du cannabis reporterait les usagers vers les drogues dures
+|titre-affiché=La légalisation reporterait les usagers vers les drogues dures
+}}{{Justification
+|page=La légalisation du cannabis serait un danger pour les mineurs
+|titre-affiché=La légalisation serait un danger pour les mineurs
+}}{{Justification
+|page=La légalisation du cannabis aurait trop d'impacts sociaux et économiques sur les banlieues
+|titre-affiché=La légalisation aurait trop d'impacts sociaux et économiques sur les banlieues
+}}
+|rubriques=Économie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Dangerosité
+|date-création=2021-02-16
+}}

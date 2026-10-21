@@ -1,0 +1,16 @@
+{{Argument|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/25154332
+|page=Medical cannabis laws and opioid analgesic overdose mortality in the United States, 1999-2010
+|authors=Bachhuber MA, Saloner B, Cunningham CO, Barry CL
+|site=Europe PMC
+|date=2014
+}}
+{{Web reference
+|link=https://europepmc.org/article/MED/31182592
+|page=Association between medical cannabis laws and opioid overdose mortality has reversed over time
+|authors=Shover CL, Davis CS, Gordon SC, Humphreys K
+|site=Europe PMC
+|date=2019
+}}
+}}

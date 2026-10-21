@@ -1,0 +1,24 @@
+{{Argument
+|quotes={{Quote
+|authors=Jean Costentin
+|quote=A law whose rationale is not explained, like an arbitrary decree, can be perceived as harassment or a pointless restriction. Explaining why the law exists and emphasising the protection it offers changes everything.
+
+A major reason for the legislation's failure is the lack of mobilisation against this scourge within the medical profession (apart from the French National Academy of Medicine), education and the media, to inform people about the risks and harms of cannabis and other illicit drugs.
+|work=Faut-il dépénaliser le cannabis ?
+|page=42 et 111
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, deterrence
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/28644037
+|page=Lower-Risk Cannabis Use Guidelines: A Comprehensive Update of Evidence and Recommendations
+|authors=Fischer B, Russell C, Sabioni P, van den Brink W, Le Foll B, Hall W, Rehm J, Room R
+|site=Europe PMC
+|date=2017
+}}
+}}

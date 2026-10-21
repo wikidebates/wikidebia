@@ -1,0 +1,13 @@
+{{Argument
+|citations={{Citation|
+|citation=Sur une quarantaine d'études analysées par une statisticienne de la Californie, Meenakshi Sabina Subbaraman, 16 concluent que l'alcool et le cannabis sont des substituts, tandis que 10 concluent plutôt qu'ils sont consommés de façon complémentaire.
+|auteurs=Stéphany Laperrière
+|article=Légalisation du cannabis : quel sera l'impact sur les ventes d'alcool au pays ?
+|édition= Radio Canada
+|date=22/08/2018
+|lien=https://ici.radio-canada.ca/nouvelle/1119257/legalisation-cannabis-vente-alcool-canada-impact
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

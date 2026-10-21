@@ -1,0 +1,33 @@
+{{Argument
+|justifications={{Justification
+|page=Cannabis is harmful to physical and mental health
+|displayed-title=Cannabis is harmful to physical and mental health
+}}{{Justification
+|page=Cannabis amplifies the effects of alcohol and tobacco
+|displayed-title=It amplifies the effects of alcohol and tobacco
+}}{{Justification
+|page=Cannabis has substantial addictive potential
+|displayed-title=It has substantial addictive potential
+}}
+|objections={{Objection
+|page=Many substances far more harmful and addictive than cannabis are legal
+|displayed-title=If the real aim is to protect individuals, why keep alcohol and tobacco legal?
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, health, addiction
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/30758486
+|page=Association of Cannabis Use in Adolescence and Risk of Depression, Anxiety, and Suicidality in Young Adulthood: A Systematic Review and Meta-analysis
+|authors=Gobbi G, Atkin T, Zytynski T, Wang S, Askari S, Boruff J, Ware M, Marmorstein N, Cipriani A, Dendukuri N, Mayo N
+|site=Europe PMC
+|date=2019
+}}
+{{Web reference
+|link=https://europepmc.org/article/MED/30902669
+|page=The contribution of cannabis use to variation in the incidence of psychotic disorder across Europe (EU-GEI): a multicentre case-control study
+|authors=Di Forti M, Quattrone D, Freeman TP, Tripoli G, Gayer-Anderson C, Quigley H, Rodriguez V, Jongsma HE, Ferraro L, La Cascia C, La Barbera D, Tarricone I, Berardi D, Szöke A, Arango C, Tortelli A, Velthorst E, Bernardo M, Del-Ben CM, Menezes PR, Selten JP, Jones PB, Kirkbride JB, Rutten BP, de Haan L, Sham PC, van Os J, Lewis CM, Lynskey M, Morgan C, Murray RM, EU-GEI WP2 Group
+|site=Europe PMC
+|date=2019
+}}
+}}

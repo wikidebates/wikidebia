@@ -1,0 +1,26 @@
+{{Argument
+|résumé=Serge Supersac, ex-policier, coauteur de ''Pour en finir avec les dealers'' (2011), le dit aussi dans son livre.
+|citations={{Citation
+|citation=Ses collègues et tous ceux qui sont passés dans son bureau peuvent en témoigner : le procureur de la République de Grenoble, Jean-Yves Coquillat, n’est ni un fieffé gauchiste ni un grand laxiste. Et pourtant, la semaine dernière, présentant ses vœux en audience solennelle, ce magistrat a osé briser un tabou en évoquant la nécessité d’ouvrir un débat sur la politique de répression de la consommation et de la vente de cannabis, actant «l’échec» de la législation actuelle. Il a aussi évoqué «de faire évoluer le droit en fonction de l’évolution de la société».
+|auteurs=Alice Géraud
+|article=Cannabis : un réquisitoire contre la loi
+|ouvrage=Libération
+|date=5/02/2014
+|lien=https://www.liberation.fr/societe/2014/02/05/cannabis-un-requisitoire-contre-la-loi_978254
+}}
+|références-bibliographiques={{Référence bibliographique
+|auteurs=Serge Supersac, Stéphane Gatignon
+|ouvrage=Pour en finir avec les dealers
+|édition=Grasset
+|date=2011
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://www.ldh-france.org/proposition-de-loi-sur-le-narcotrafic-vers-un-nouvel-echec-du-tout-repressif/
+|page=Proposition de loi sur le « narcotrafic » : vers un nouvel échec du tout répressif
+|site=Ligue des droits de l'homme
+|date=09.04.2025
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

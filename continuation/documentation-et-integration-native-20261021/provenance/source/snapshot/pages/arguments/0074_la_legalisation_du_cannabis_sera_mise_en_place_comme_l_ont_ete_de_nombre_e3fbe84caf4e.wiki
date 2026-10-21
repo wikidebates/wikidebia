@@ -1,0 +1,14 @@
+{{Argument
+|citations={{Citation
+|citation=On se souviendra que le divorce fut impossible puis encadré, ou que l'homosexualité fut un crime ; l’avortement était également un crime passible des assises, et sa déjudiciarisation n’a pas eu d’effet de recrudescence, mais a permis une approche sanitaire qui a réduit les dommages liés à la clandestinité et permis un accompagnement des femmes en difficulté.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=91
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation
+|date-création=2021-02-16
+}}

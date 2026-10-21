@@ -1,0 +1,15 @@
+{{Argument
+|justifications={{Justification
+|page=Le cannabis est nuisible à la société
+|titre-affiché=Le cannabis est nuisible à la société
+}}{{Justification
+|page=Le cannabis engendre des coûts pour la société
+|titre-affiché=Le cannabis engendre des coûts pour la société
+}}{{Justification
+|page=Le cannabis est impliqué dans les accidents de la route
+|titre-affiché=Le cannabis est impliqué dans les accidents de la route
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Dangerosité
+|date-création=2021-02-16
+}}

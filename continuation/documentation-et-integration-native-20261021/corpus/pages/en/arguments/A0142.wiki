@@ -1,0 +1,10 @@
+{{Argument
+|summary=For example, by following the Portuguese model and treating users as patients in need of care rather than as offenders.
+|webliography=
+{{Web reference
+|link=https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf
+|page=Portugal — Country Drug Report 2019
+|site=European Monitoring Centre for Drugs and Drug Addiction
+|date=2019
+}}
+}}

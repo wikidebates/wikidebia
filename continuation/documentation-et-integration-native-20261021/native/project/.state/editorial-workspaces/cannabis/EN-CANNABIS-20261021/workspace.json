@@ -1,0 +1,67 @@
+{
+  "schema": "wikidebia-editorial-workspace-1.0",
+  "schema_version": "1.0",
+  "normative_revision": "1.2.88",
+  "validator_version": "0.4.105",
+  "kit_version": "2.16.47",
+  "debate_id": "cannabis",
+  "work_id": "EN-CANNABIS-20261021",
+  "status": "fr_content_review_ready",
+  "source": {
+    "path": "corpus/cannabis",
+    "global_status": "graph_validated",
+    "tree_sha256": "424e40e60288563462e658f9a69ce8f8ac58d6e346922c5dcaec8c23b0d608b4",
+    "structural_sha256": "49ff8e4e5efb0f755ddbb149966013beb14085eeca0d61fd7e63b86e4c939b89"
+  },
+  "working_copy": {
+    "path": "working-copy",
+    "initial_tree_sha256": "424e40e60288563462e658f9a69ce8f8ac58d6e346922c5dcaec8c23b0d608b4",
+    "current_status": "preserved_pristine"
+  },
+  "artifacts": {
+    "audit_json": "audits/editorial_inventory.json",
+    "audit_markdown": "audits/editorial_inventory.md",
+    "french_metadata_review": "reviews/fr/page_metadata_review.json",
+    "translation_readiness": "reviews/en/translation_readiness.json",
+    "task_ledger": "tasks/editorial_tasks.json",
+    "keyword_vocabulary": "data/keyword_vocabulary_working.json",
+    "changeset": "changes/changeset.json",
+    "french_title_review": "reviews/fr/page_metadata_review.json",
+    "french_metadata_lock": "data/fr_page_metadata_lock.json",
+    "reviewed_copy": "reviewed-copy",
+    "french_content_review": "reviews/fr/content_review.json",
+    "sources_working": "data/sources_working.json",
+    "classification_review": "reviews/fr/classification_review.json",
+    "keyword_vocabulary_working": "data/keyword_vocabulary_working.json",
+    "content_reviewed_copy": "content-reviewed-copy"
+  },
+  "boundaries": {
+    "source_corpus_mutated": false,
+    "automatic_editorial_corrections_applied": false,
+    "final_pages_generated": false,
+    "english_translation_started": false,
+    "remote_access": false,
+    "publication_started": false
+  },
+  "created_at": "2026-10-21T10:06:04+00:00",
+  "workspace_sha256": "2f15174660ed1b3c03d2a9cd8ac693ee86f3c3849bf0f391a512e57dc9819ea7",
+  "french_review": {
+    "status": "titles_applied",
+    "applied_at": "2026-10-21T10:07:22+00:00",
+    "review_sha256": "c5510e1d020aa7d200d67bb30dcbdf68b24f142c7cab517efe96ea05fc442447"
+  },
+  "reviewed_copy": {
+    "path": "reviewed-copy",
+    "tree_sha256": "fff97ab50815cdaa8c130f09a5fb9c6b78f6eeab2e05f6fbb327d2a232be5b35",
+    "status": "fr_titles_locked",
+    "review_sha256": "c5510e1d020aa7d200d67bb30dcbdf68b24f142c7cab517efe96ea05fc442447",
+    "old_structural_sha256": "49ff8e4e5efb0f755ddbb149966013beb14085eeca0d61fd7e63b86e4c939b89",
+    "new_structural_sha256": "49ff8e4e5efb0f755ddbb149966013beb14085eeca0d61fd7e63b86e4c939b89",
+    "applied_at": "2026-10-21T10:07:22+00:00"
+  },
+  "french_content_review": {
+    "status": "prepared",
+    "prepared_at": "2026-10-21T10:08:48+00:00",
+    "prepared_reviewed_copy_sha256": "fff97ab50815cdaa8c130f09a5fb9c6b78f6eeab2e05f6fbb327d2a232be5b35"
+  }
+}

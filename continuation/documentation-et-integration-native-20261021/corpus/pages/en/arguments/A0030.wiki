@@ -1,0 +1,30 @@
+{{Argument
+|quotes={{Quote
+|authors=Jean Costentin
+|quote=Although this behaviour [breaking the rules] exists, it concerns a minority. The ban prevents far more of our young people from using cannabis than it attracts to it. Trying a prohibited substance produces a strong nocebo effect, and experiencing it discourages the person from trying again—hence the large gap between the number of people who have tried cannabis and the number who use it regularly.
+|work=Faut-il dépénaliser le cannabis ?
+|page=41 et 114
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|authors=Claude Guéant
+|quote=According to the studies, more than half of young non-users refrain from using cannabis because of the risks associated with its illegality.
+|article=Dépénalisation du cannabis, un débat biaisé
+|work=Le Monde
+|date=15 June 2011
+|link=https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html
+|warnings=AI-translated quote
+}}{{Quote
+|authors=Antonio Costa
+|quote=Of the 17-year-olds who had not smoked cannabis in the month before the 2008 ESCAPAD survey, 39% cited its illegality as a reason.
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=21
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, appeal, ban
+}}

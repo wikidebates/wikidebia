@@ -1,0 +1,24 @@
+{{Argument
+|citations={{Citation
+|citation=N. M. - Si on légalise le cannabis, c’est un produit qui rentre dans le marché. C’est une société commerciale qui cherche à vendre. Elle veut des parts de marché. C’est inévitable.
+
+M. H. - Sauf si on organise un monopole ou un contrôle d’Etat.
+
+N. M. - Je ne vois pas comment la production et la vente du cannabis pourraient devenir un monopole d’Etat, alors que l’Union européenne nous oblige à mettre fin à toutes politiques protectionnistes.
+|auteurs=Nicole Maestracci
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=231
+|édition=Denoël
+|date=2011
+}}
+|objections={{Objection
+|page=Certains pays comme l'Uruguay encadrent fortement le marché du cannabis
+|titre-affiché=Certains pays comme l'Uruguay encadrent fortement le marché du cannabis
+}}{{Objection
+|page=Un contrôle d'État de la vente de cannabis est possible en France, à l'image de l'alcool
+|titre-affiché=Un contrôle d'État est possible en France
+}}
+|rubriques=Économie, Société
+|mots-clés=Cannabis, Légalisation, Lois du marché
+|date-création=2021-02-16
+}}

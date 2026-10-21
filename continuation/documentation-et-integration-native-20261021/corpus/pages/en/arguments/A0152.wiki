@@ -1,0 +1,26 @@
+{{Argument
+|quotes={{Quote
+|quote=Prohibition laws have made the illicit drug trade a thriving international market.
+These sellers operate in ways that meet the same needs as any legal market: identifying potential customers, ensuring repeat business, attracting new customers and so on. But since the trade, potency and quality of the products are unregulated, anything goes when it comes to expanding that market, whether selling drugs to children or introducing extremely toxic products. Some sellers aim to create lifelong customers by encouraging patterns of consumption more likely to cause dependence than other, safer ways of using drugs. Products also change over time to maintain customers' interest, creating trends and regularly bringing new products onto the market […]. Sellers also try to reach the widest possible customer base by offering drugs across a broad price range […]. Similarly, they seek to expand the market geographically by dumping drugs in previously little-affected areas to attract new customers. This situation should come as no surprise. The illicit drug market is a highly profitable global market. It is worth sellers' while to use the best possible techniques to distribute and promote their products.
+|authors=Lise Beauchesne
+|work=Les drogues. Les coûts cachés de la prohibition
+|publisher=Lanctôt
+|date=2003
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+|webliography=
+{{Web reference
+|link=https://laws-lois.justice.gc.ca/eng/acts/C-24.5/FullText.html
+|page=Cannabis Act
+|site=Justice Laws Website — Government of Canada
+}}
+{{Web reference
+|link=https://www.brookings.edu/articles/uruguays-cannabis-law-pioneering-a-new-paradigm/
+|page=Uruguay’s cannabis law: Pioneering a new paradigm
+|authors=John Hudak, Geoff Ramsey, John Walsh
+|site=Brookings Institution
+|date=21 March 2018
+}}
+}}

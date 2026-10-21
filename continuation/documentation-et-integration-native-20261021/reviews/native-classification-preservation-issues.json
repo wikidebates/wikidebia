@@ -1,0 +1,631 @@
+[
+  {
+    "delivery_id": "A0082",
+    "native_id": "A0023",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0095",
+    "native_id": "A0029",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0041",
+    "native_id": "A0036",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0103",
+    "native_id": "A0037",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0024",
+    "native_id": "A0042",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0065",
+    "native_id": "A0052",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0069",
+    "native_id": "A0057",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0115",
+    "native_id": "A0061",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0101",
+    "native_id": "A0074",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0145",
+    "native_id": "A0085",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0022",
+    "native_id": "A0086",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0035",
+    "native_id": "A0089",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0033",
+    "native_id": "A0090",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0027",
+    "native_id": "A0093",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0080",
+    "native_id": "A0094",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0081",
+    "native_id": "A0095",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0149",
+    "native_id": "A0096",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0026",
+    "native_id": "A0098",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0025",
+    "native_id": "A0099",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0128",
+    "native_id": "A0100",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0109",
+    "native_id": "A0101",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0114",
+    "native_id": "A0102",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0029",
+    "native_id": "A0103",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0133",
+    "native_id": "A0104",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0132",
+    "native_id": "A0107",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0012",
+    "native_id": "A0108",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0140",
+    "native_id": "A0109",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0146",
+    "native_id": "A0121",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0006",
+    "native_id": "A0136",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0007",
+    "native_id": "A0137",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0148",
+    "native_id": "A0140",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0139",
+    "native_id": "A0141",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0142",
+    "native_id": "A0144",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0122",
+    "native_id": "A0148",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0110",
+    "native_id": "A0149",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0051",
+    "native_id": "A0150",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  },
+  {
+    "delivery_id": "A0130",
+    "native_id": "A0152",
+    "source_absent_parameters": [
+      "rubriques",
+      "mots-clés"
+    ],
+    "native_import_fallbacks": {
+      "rubriques": [
+        "Société"
+      ],
+      "keywords": [
+        "Cannabis"
+      ]
+    },
+    "disposition": "English source absence retained; FR classification must not silently project import defaults."
+  }
+]

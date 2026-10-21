@@ -1,0 +1,40 @@
+{{Argument
+|citations={{Citation
+|citation=On a montré les graves nuisances qui résultent pour l’être humain, en tant que personne et en tant que citoyen, ainsi que pour la société dans son ensemble, des toxicomanies. L’article 5 de la Déclaration de 1789 permet à la loi d’interdire les « actions nuisibles à la société » : la consommation de drogues est assurément l’une de ces actions.
+|auteurs=Françoise Branget, Gilbert Barbier
+|article=La dépénalisation de l'usage, une impasse éthique et juridique
+|ouvrage=MISSION D’INFORMATION SUR LES TOXICOMANIES. Rapport d'information sur les toxicomanies
+|édition=Assemblée nationale (France)
+|date=30/06/2011
+|lien=https://www.assemblee-nationale.fr/13/rap-info/i3612-ti.asp#P1085_352797
+}}{{Citation
+|citation=La drogue n’est pas seulement un problème de santé publique, c’est aussi une menace pour la démocratie.
+|auteurs=Paul Quilès
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=71
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}{{Citation
+|citation=En élargissant la palette des drogues licites, la létalité serait bien supérieure avec, en prime, une détérioration majeure de l’intelligence collective.
+|auteurs=Jean Costentin
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=111
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|objections={{Objection
+|page=L'usage privé simple de cannabis n'est pas dommageable à autrui
+|titre-affiché=L'usage privé simple n'est pas dommageable à autrui
+}}{{Objection
+|page=La prohibition du cannabis est préjudiciable à la société
+|titre-affiché=La prohibition du cannabis est plus nuisible encore
+}}{{Objection
+|page=L'alcool et le tabac sont autorisés alors qu’ils sont plus dangereux que le cannabis
+|titre-affiché=L'alcool et le tabac aussi, et pourtant, ils sont légaux
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Dangerosité
+|date-création=2021-02-16
+}}

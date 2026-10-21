@@ -1,0 +1,4309 @@
+{
+  "schema_version": "1.0",
+  "normative_revision": "1.2.88",
+  "debate_id": "cannabis",
+  "entries": [
+    {
+      "occurrence_id": "O00001",
+      "node_id": "A0001",
+      "declared_depth": 1,
+      "placement_status": "approved",
+      "declared_function": "main_argument",
+      "semantic_target": "debate",
+      "direct_fit": true,
+      "rationale": "L’efficacité instrumentale de la prohibition est directement contestée ; disponibilité, usages, dissuasion et contournement constituent cette famille. Cible : La prohibition du cannabis est inefficace. Lecture de contenu : Dix relations relues, sources nominales Reduced consumption/A clear message conservées. Le parent pro porte les mêmes pages comme justifications tandis que l’autre parent les porte comme objections : orientations intactes.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "main_argument_review": {
+        "direct_answer_to_debate": true,
+        "autonomous_without_parent": true,
+        "organizes_distinct_argument_family": true,
+        "more_general_nonduplicate_parent_available": false,
+        "principally_supports_or_attacks_specific_argument": false,
+        "principally_example_or_specialization": false
+      }
+    },
+    {
+      "occurrence_id": "O00002",
+      "node_id": "A0002",
+      "declared_depth": 1,
+      "placement_status": "approved",
+      "declared_function": "main_argument",
+      "semantic_target": "debate",
+      "direct_fit": true,
+      "rationale": "Les dommages propres aux usagers (soins, exclusion, prison, produit, dealers) constituent une raison autonome de légaliser. Cible : La prohibition du cannabis est préjudiciable aux usagers. Lecture de contenu : Cinq justifications nominales et conséquences effectivement subies avec cumul prison/casier conservées, sans inventer de résumé ni transformer les libellés en thèses nouvelles.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "main_argument_review": {
+        "direct_answer_to_debate": true,
+        "autonomous_without_parent": true,
+        "organizes_distinct_argument_family": true,
+        "more_general_nonduplicate_parent_available": false,
+        "principally_supports_or_attacks_specific_argument": false,
+        "principally_example_or_specialization": false
+      }
+    },
+    {
+      "occurrence_id": "O00003",
+      "node_id": "A0003",
+      "declared_depth": 1,
+      "placement_status": "approved",
+      "declared_function": "main_argument",
+      "semantic_target": "debate",
+      "direct_fit": true,
+      "rationale": "Les externalités de la prohibition sur la société (coûts, recettes, crime, contrôles et incendies) sont distinctes des dommages individuels. Cible : La prohibition du cannabis est préjudiciable à la société. Lecture de contenu : Neuf justifications relues avec leurs libellés propres ; notamment crime organisé, stratégie commerciale, recettes et pression carcérale. A0079 et A0087 nécessitent de répercuter les corrections de titres dans les cibles, sans changer les libellés contextuels distincts.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "main_argument_review": {
+        "direct_answer_to_debate": true,
+        "autonomous_without_parent": true,
+        "organizes_distinct_argument_family": true,
+        "more_general_nonduplicate_parent_available": false,
+        "principally_supports_or_attacks_specific_argument": false,
+        "principally_example_or_specialization": false
+      }
+    },
+    {
+      "occurrence_id": "O00004",
+      "node_id": "A0004",
+      "declared_depth": 1,
+      "placement_status": "approved",
+      "declared_function": "main_argument",
+      "semantic_target": "debate",
+      "direct_fit": true,
+      "rationale": "La légitimité de punir et la cohérence des interdictions sont une famille normative autonome, distincte de leur efficacité. Cible : La prohibition du cannabis manque de légitimité. Lecture de contenu : Cinq justifications relues ; bien plus addictives et dangereuses, totalement légales et toxicomanie/usage simple restent distincts. Pas d’inférence de légitimité nouvelle.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "main_argument_review": {
+        "direct_answer_to_debate": true,
+        "autonomous_without_parent": true,
+        "organizes_distinct_argument_family": true,
+        "more_general_nonduplicate_parent_available": false,
+        "principally_supports_or_attacks_specific_argument": false,
+        "principally_example_or_specialization": false
+      }
+    },
+    {
+      "occurrence_id": "O00005",
+      "node_id": "A0005",
+      "declared_depth": 1,
+      "placement_status": "approved",
+      "declared_function": "main_argument",
+      "semantic_target": "debate",
+      "direct_fit": true,
+      "rationale": "L’adéquation de la loi française de 1970 est discutée dans son objet, sa compréhension et ses modalités d’application. Cible : La loi de 1970 sur les drogues est inadaptée. Lecture de contenu : Sept justifications avec leurs anaphores Elle/It et portée critique propre relues ; pas de substitution des libellés affichés par les titres canoniques.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "main_argument_review": {
+        "direct_answer_to_debate": true,
+        "autonomous_without_parent": true,
+        "organizes_distinct_argument_family": true,
+        "more_general_nonduplicate_parent_available": false,
+        "principally_supports_or_attacks_specific_argument": false,
+        "principally_example_or_specialization": false
+      }
+    },
+    {
+      "occurrence_id": "O00006",
+      "node_id": "A0006",
+      "declared_depth": 1,
+      "placement_status": "approved",
+      "declared_function": "main_argument",
+      "semantic_target": "debate",
+      "direct_fit": true,
+      "rationale": "Cette famille réunit les avantages positifs allégués de la réforme ; elle ne se réduit pas au seul constat des dommages de la prohibition. Cible : La légalisation du cannabis serait bénéfique. Lecture de contenu : Douze relations relues : may/would, périphrases courtes et trois objections nominales restent fidèles ; aucun habillage de génération pour Vider les prisons ou Maintien d’un marché noir.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "main_argument_review": {
+        "direct_answer_to_debate": true,
+        "autonomous_without_parent": true,
+        "organizes_distinct_argument_family": true,
+        "more_general_nonduplicate_parent_available": false,
+        "principally_supports_or_attacks_specific_argument": false,
+        "principally_example_or_specialization": false
+      }
+    },
+    {
+      "occurrence_id": "O00007",
+      "node_id": "A0007",
+      "declared_depth": 1,
+      "placement_status": "approved",
+      "declared_function": "main_argument",
+      "semantic_target": "debate",
+      "direct_fit": true,
+      "rationale": "La possibilité de contrôler le produit est une réponse directe de politique sanitaire ; l’objection du marché noir en limite la couverture. Cible : La légalisation du cannabis permet un contrôle qualité. Lecture de contenu : Peut imposer et assurance de pureté traduits fidèlement ; solvants/métaux lourds gardés. Persistence of a black market reste nominal. Q069 fidèle textuellement, attribution non vérifiée.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "main_argument_review": {
+        "direct_answer_to_debate": true,
+        "autonomous_without_parent": true,
+        "organizes_distinct_argument_family": true,
+        "more_general_nonduplicate_parent_available": false,
+        "principally_supports_or_attacks_specific_argument": false,
+        "principally_example_or_specialization": false
+      }
+    },
+    {
+      "occurrence_id": "O00008",
+      "node_id": "A0008",
+      "declared_depth": 1,
+      "placement_status": "approved",
+      "declared_function": "main_argument",
+      "semantic_target": "debate",
+      "direct_fit": true,
+      "rationale": "L’existence alléguée de modèles étatiques fonctionnels ouvre la comparaison des modèles canadien et uruguayen, pas une simple anecdote isolée. Cible : La légalisation contrôlée par l'État fonctionne. Lecture de contenu : Les deux paragraphes gardent peut réduire, bien qu’imparfaits et jugement fortement favorable final. Q063 fidélité textuelle distincte d’authentification non établie. Deux libellés nominaux conservés comme modèles, pas développés en nouvelles thèses.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "main_argument_review": {
+        "direct_answer_to_debate": true,
+        "autonomous_without_parent": true,
+        "organizes_distinct_argument_family": true,
+        "more_general_nonduplicate_parent_available": false,
+        "principally_supports_or_attacks_specific_argument": false,
+        "principally_example_or_specialization": false
+      }
+    },
+    {
+      "occurrence_id": "O00009",
+      "node_id": "A0009",
+      "declared_depth": 1,
+      "placement_status": "approved",
+      "declared_function": "main_argument",
+      "semantic_target": "debate",
+      "direct_fit": true,
+      "rationale": "La dissuasion et le signal de l’interdit soutiennent directement le maintien de la prohibition, avec leurs objections propres. Cible : La prohibition du cannabis est efficace. Lecture de contenu : Résumé très court conservé ; huit objections précises relues, y compris decades et not significantly, distincts du titre canonique plus nuancé A0082.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "main_argument_review": {
+        "direct_answer_to_debate": true,
+        "autonomous_without_parent": true,
+        "organizes_distinct_argument_family": true,
+        "more_general_nonduplicate_parent_available": false,
+        "principally_supports_or_attacks_specific_argument": false,
+        "principally_example_or_specialization": false
+      }
+    },
+    {
+      "occurrence_id": "O00010",
+      "node_id": "A0010",
+      "declared_depth": 1,
+      "placement_status": "approved",
+      "declared_function": "main_argument",
+      "semantic_target": "debate",
+      "direct_fit": true,
+      "rationale": "La protection individuelle contre les risques sanitaires constitue la famille de raisons opposées à la légalisation. Cible : Il faut protéger l'individu contre les dangers du cannabis. Lecture de contenu : Protection de l’individu, trois justifications et question de cohérence avec alcool/tabac respectées ; anaphore It sur cannabis préservée dans le libellé.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "main_argument_review": {
+        "direct_answer_to_debate": true,
+        "autonomous_without_parent": true,
+        "organizes_distinct_argument_family": true,
+        "more_general_nonduplicate_parent_available": false,
+        "principally_supports_or_attacks_specific_argument": false,
+        "principally_example_or_specialization": false
+      }
+    },
+    {
+      "occurrence_id": "O00011",
+      "node_id": "A0011",
+      "declared_depth": 1,
+      "placement_status": "approved",
+      "declared_function": "main_argument",
+      "semantic_target": "debate",
+      "direct_fit": true,
+      "rationale": "Les dommages à autrui et à la collectivité organisent une famille distincte de la seule protection du consommateur. Cible : La société doit se protéger contre les dangers du cannabis. Lecture de contenu : Doit se protéger et les trois justifications nuisances/coûts/accidents gardent leur orientation, sans fusionner santé individuelle et société.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "main_argument_review": {
+        "direct_answer_to_debate": true,
+        "autonomous_without_parent": true,
+        "organizes_distinct_argument_family": true,
+        "more_general_nonduplicate_parent_available": false,
+        "principally_supports_or_attacks_specific_argument": false,
+        "principally_example_or_specialization": false
+      }
+    },
+    {
+      "occurrence_id": "O00012",
+      "node_id": "A0012",
+      "declared_depth": 1,
+      "placement_status": "approved",
+      "declared_function": "main_argument",
+      "semantic_target": "debate",
+      "direct_fit": true,
+      "rationale": "La faisabilité juridique et l’opportunité politique regroupent les objections internationales, sociales et institutionnelles à la réforme. Cible : La légalisation du cannabis n'est ni possible ni souhaitable. Lecture de contenu : Ni possible ni souhaitable maintenu ; neuf relations comparées. Le libellé source de l’objection internationale parle de dépénalisation alors que le titre enfant parle de légalisation : incohérence source conservée, pas normalisée.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "main_argument_review": {
+        "direct_answer_to_debate": true,
+        "autonomous_without_parent": true,
+        "organizes_distinct_argument_family": true,
+        "more_general_nonduplicate_parent_available": false,
+        "principally_supports_or_attacks_specific_argument": false,
+        "principally_example_or_specialization": false
+      }
+    },
+    {
+      "occurrence_id": "O00013",
+      "node_id": "A0013",
+      "declared_depth": 1,
+      "placement_status": "approved",
+      "declared_function": "main_argument",
+      "semantic_target": "debate",
+      "direct_fit": true,
+      "rationale": "Les conséquences défavorables propres à une réforme (usages, drogues plus dures, mineurs, territoires) constituent une famille prospective autonome. Cible : La légalisation du cannabis serait préjudiciable. Lecture de contenu : Would harmful et quatre conséquences justifiant la position contre préservés ; pas d’inversion pro/contre par réemploi de titres.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "main_argument_review": {
+        "direct_answer_to_debate": true,
+        "autonomous_without_parent": true,
+        "organizes_distinct_argument_family": true,
+        "more_general_nonduplicate_parent_available": false,
+        "principally_supports_or_attacks_specific_argument": false,
+        "principally_example_or_specialization": false
+      }
+    },
+    {
+      "occurrence_id": "O00014",
+      "node_id": "A0014",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00001",
+      "direct_fit": true,
+      "rationale": "L’efficacité instrumentale de la prohibition est directement contestée ; disponibilité, usages, dissuasion et contournement constituent cette famille. Cible : La consommation de cannabis augmente en France. Lecture de contenu : 13 millions, au moins une fois, 18–64 ans, 24/29/33 et 2000/2005/2011 préservés. L’objection de fléchissement demeure opposée, sans conciliation artificielle.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00015",
+      "node_id": "A0015",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00001",
+      "direct_fit": true,
+      "rationale": "L’efficacité instrumentale de la prohibition est directement contestée ; disponibilité, usages, dissuasion et contournement constituent cette famille. Cible : Ce n'est pas parce qu'une politique a échoué que l'on doit y renoncer. Lecture de contenu : Échec insuffisant pour abandonner une politique et analogie polémique de Q005 conservés ; l’objection affichée parle de coûts et effets pervers, sans reprendre mécaniquement le titre canonique du fils.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00016",
+      "node_id": "A0016",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00001",
+      "direct_fit": true,
+      "rationale": "L’efficacité instrumentale de la prohibition est directement contestée ; disponibilité, usages, dissuasion et contournement constituent cette famille. Cible : Le cannabis reste très accessible. Lecture de contenu : Deux longs paragraphes entièrement relus, toutes valeurs et âges présents. Différence perception/obtention réelle, limites de question et stratégies de contournement de disponibilité gardées.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00017",
+      "node_id": "A0017",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00001",
+      "direct_fit": true,
+      "rationale": "L’efficacité instrumentale de la prohibition est directement contestée ; disponibilité, usages, dissuasion et contournement constituent cette famille. Cible : La prohibition du cannabis dissuade une partie de la population d'en consommer. Lecture de contenu : Some people et legal risks dans résumé, particulièrement jeunes, ainsi que rôle crucial de perception et objection négative conservés.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00018",
+      "node_id": "A0018",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00001",
+      "direct_fit": true,
+      "rationale": "L’efficacité instrumentale de la prohibition est directement contestée ; disponibilité, usages, dissuasion et contournement constituent cette famille. Cible : L'interdit rend le cannabis plus attractif. Lecture de contenu : Produit autorisé/interdit et disjonction health risks or social disapproval conservés ; les deux objections visent bien la dissuasion et l’attrait des produits légaux.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00019",
+      "node_id": "A0019",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00001",
+      "direct_fit": true,
+      "rationale": "L’efficacité instrumentale de la prohibition est directement contestée ; disponibilité, usages, dissuasion et contournement constituent cette famille. Cible : La prohibition envoie un message sociétal clair. Lecture de contenu : Résumé bref avec message fort et évitement de banalisation conservé ; Q103 traduit littéralement la nécessité ne peut que, sans authentifier l’attribution Habermas. Deux objections conservées.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00020",
+      "node_id": "A0020",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00001",
+      "direct_fit": true,
+      "rationale": "L’efficacité instrumentale de la prohibition est directement contestée ; disponibilité, usages, dissuasion et contournement constituent cette famille. Cible : Les sanctions contre les consommateurs de cannabis ne sont pas dissuasives. Lecture de contenu : Seulement personnes déjà moins susceptibles, aucune corrélation et pas de hausse significative restent distincts de pas de causalité ; deux paragraphes Q141 complets. Trois relations et pronom elles dans le libellé anglais they préservés.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00021",
+      "node_id": "A0021",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00001",
+      "direct_fit": true,
+      "rationale": "L’efficacité instrumentale de la prohibition est directement contestée ; disponibilité, usages, dissuasion et contournement constituent cette famille. Cible : L'interdiction du cannabis peut être contournée. Lecture de contenu : Can et has been accompanied by conservent possibilité et concomitance, sans faire de la synthèse chimique une conséquence démontrée.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00022",
+      "node_id": "A0022",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00001",
+      "direct_fit": true,
+      "rationale": "L’efficacité instrumentale de la prohibition est directement contestée ; disponibilité, usages, dissuasion et contournement constituent cette famille. Cible : La prohibition passe à côté des motifs de la consommation. Lecture de contenu : Deux citations longues complètes : analogie nourriture, motivations, définition sociale des déterminants, angoisse des travailleurs et transformation de la société. Perspective militante conservée sans neutralisation.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00023",
+      "node_id": "A0023",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00001",
+      "direct_fit": true,
+      "rationale": "L’efficacité instrumentale de la prohibition est directement contestée ; disponibilité, usages, dissuasion et contournement constituent cette famille. Cible : La prohibition de l'alcool et certaines guerres contre les drogues ont eu des effets contre-productifs. Lecture de contenu : Some conserve certaines guerres. Q082 complet : onze ans/décembre 2006, 200000, demande américaine, production (rétablie V2), héroïne/synthétiques/cocaïne et deux déclarations DEA tous présents.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00024",
+      "node_id": "A0024",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00002",
+      "direct_fit": true,
+      "rationale": "Les dommages propres aux usagers (soins, exclusion, prison, produit, dealers) constituent une raison autonome de légaliser. Cible : La prohibition du cannabis entrave la prévention et les soins. Lecture de contenu : Les deux longues citations sont complètes : soins, défiance, message institutionnel et motif d’usage. Banalisation n’est pas transformée en innocence totale ; motif de prévention et implication des parents maintenus.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00025",
+      "node_id": "A0025",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00002",
+      "direct_fit": true,
+      "rationale": "Les dommages propres aux usagers (soins, exclusion, prison, produit, dealers) constituent une raison autonome de légaliser. Cible : La prohibition du cannabis entraîne clandestinité, exclusion sociale, sentiment de discrimination. Lecture de contenu : Deux citations relues : aide, clandestinité, minorités visibles, contrôles répétés, 42e/1er rang en 2008 et question du statut criminel préservés.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00026",
+      "node_id": "A0026",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00002",
+      "direct_fit": true,
+      "rationale": "Les dommages propres aux usagers (soins, exclusion, prison, produit, dealers) constituent une raison autonome de légaliser. Cible : Avec la prohibition du cannabis, une partie des usagers subit les conséquences de séjours en prison et/ou d'une inscription au casier judiciaire. Lecture de contenu : Conséquences effectivement subies, prison, casier ou cumul conservés ; aucun résumé à créer.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00027",
+      "node_id": "A0027",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00002",
+      "direct_fit": true,
+      "rationale": "Les dommages propres aux usagers (soins, exclusion, prison, produit, dealers) constituent une raison autonome de légaliser. Cible : La prohibition du cannabis ne donne aucune garantie de qualité des produits. Lecture de contenu : Q100/Q101 cohérentes avec Q021/Q022 ; contrôle qualité et risque seulement un peu moins mauvais conservés.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00028",
+      "node_id": "A0028",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00002",
+      "direct_fit": true,
+      "rationale": "Les dommages propres aux usagers (soins, exclusion, prison, produit, dealers) constituent une raison autonome de légaliser. Cible : La prohibition du cannabis expose les usagers à l’univers des dealers et à des drogues plus dures. Lecture de contenu : Contraindre à s’approvisionner et porte d’entrée dealer plutôt que cannabis conservés ; stress des patients de la locutrice reste personnel, pas une statistique générale.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00029",
+      "node_id": "A0029",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00003",
+      "direct_fit": true,
+      "rationale": "Les externalités de la prohibition sur la société (coûts, recettes, crime, contrôles et incendies) sont distinctes des dommages individuels. Cible : La prohibition du cannabis génère beaucoup de contrôles qui peuvent toucher tout le monde. Lecture de contenu : Nombreux contrôles pouvant toucher quiconque, presque systématiquement et chaque infraction détectée préservés ; now reste celui de la citation historique.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00030",
+      "node_id": "A0030",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00003",
+      "direct_fit": true,
+      "rationale": "Les externalités de la prohibition sur la société (coûts, recettes, crime, contrôles et incendies) sont distinctes des dommages individuels. Cible : La prohibition du cannabis entraîne le développement d'une économie parallèle très lucrative avec ses conséquences : corruption, blanchiment d’argent, recrutement de jeunes, violence, insécurité, trafic d'armes. Lecture de contenu : Les trois longues citations gardent causalités, extorsion/séquestration sans sur-traduction en torture, pays et chiffres. Dans le titre, lucrative atténue très lucrative : rétablir highly lucrative et les liens correspondants.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00031",
+      "node_id": "A0031",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00003",
+      "direct_fit": true,
+      "rationale": "Les externalités de la prohibition sur la société (coûts, recettes, crime, contrôles et incendies) sont distinctes des dommages individuels. Cible : La prohibition du cannabis accroît la rentabilité du cannabis en faisant monter les prix. Lecture de contenu : Chaîne répression-prix-rentabilité-production-commerce et comparatif plus/plus préservés ; aucun effet de simple corrélation substitué à la causalité affirmée par la source.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00032",
+      "node_id": "A0032",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00003",
+      "direct_fit": true,
+      "rationale": "Les externalités de la prohibition sur la société (coûts, recettes, crime, contrôles et incendies) sont distinctes des dommages individuels. Cible : La lutte contre les trafics de cannabis coûte cher, et c'est un échec. Lecture de contenu : Coût et échec gardés ; résumé reste simple renvoi au livre français. Q062 conserve négations politiques, déclaration de vœux, ouverture d’un débat et adaptation du droit à la société.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00033",
+      "node_id": "A0033",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00003",
+      "direct_fit": true,
+      "rationale": "Les externalités de la prohibition sur la société (coûts, recettes, crime, contrôles et incendies) sont distinctes des dommages individuels. Cible : Une distribution réglementée peut imposer des limites aux stratégies commerciales. Lecture de contenu : Can et limites aux stratégies commerciales conservés. Toute Q149 relue : clientèle régulière/nouvelle, puissance/qualité non contrôlées, enfants, modes d’usage dépendance, modes commerciales, prix, dumping géographique et rentabilité mondiale présents.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00034",
+      "node_id": "A0034",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00003",
+      "direct_fit": true,
+      "rationale": "Les externalités de la prohibition sur la société (coûts, recettes, crime, contrôles et incendies) sont distinctes des dommages individuels. Cible : La prohibition du cannabis entraîne une perte importante de recettes pour l'Etat et laisser se développer un marché échappant à toute taxe revient même à le subventionner. Lecture de contenu : Perte substantielle et subvention publique implicite gardées ; Q092 conserve l’anglais fourni, la glose FR complète reste en provenance, pas de nouvelle traduction fabriquée.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00035",
+      "node_id": "A0035",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00003",
+      "direct_fit": true,
+      "rationale": "Les externalités de la prohibition sur la société (coûts, recettes, crime, contrôles et incendies) sont distinctes des dommages individuels. Cible : La production clandestine de cannabis est à l'origine de nombreux incendies. Lecture de contenu : Cultivation restreint production à la seule culture alors que la page source ne fournit aucun texte permettant cette restriction : remplacer par production dans le titre et ses cibles ; vérifier séparément les libellés entrants.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00036",
+      "node_id": "A0036",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00003",
+      "direct_fit": true,
+      "rationale": "Les externalités de la prohibition sur la société (coûts, recettes, crime, contrôles et incendies) sont distinctes des dommages individuels. Cible : La guerre contre la drogue exacerbe les persécutions des minorités. Lecture de contenu : Résumé polémique, cinq citations et réserves may/suggests/according to gardés ; tous chiffres de féminicides et dates conservés. Q042 : on record élargit inutilement la portée de année affichant les pires chiffres ; préférer the year with the worst figures. Q044 : lien Weather Underground reste français dans le texte traduit, cible anglaise à vérifier.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00037",
+      "node_id": "A0037",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00003",
+      "direct_fit": true,
+      "rationale": "Les externalités de la prohibition sur la société (coûts, recettes, crime, contrôles et incendies) sont distinctes des dommages individuels. Cible : La répression des drogues peut peser sur les personnes précaires et sur les prisons. Lecture de contenu : Vulnerable people élargit personnes précaires à toutes vulnérabilités : préciser people in precarious circumstances. Les deux citations gardent leur cadrage, majorité, trois quarts, santé mentale, misère et 10 %, sans résoudre leur incohérence éventuelle.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00038",
+      "node_id": "A0038",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00004",
+      "direct_fit": true,
+      "rationale": "La légitimité de punir et la cohérence des interdictions sont une famille normative autonome, distincte de leur efficacité. Cible : La prohibition du cannabis est contraire à la liberté individuelle. Lecture de contenu : Quatre citations relues : toutes drogues, sphères publique/privée, seules conditions de répression avec OU, dérogation et totalitarisme conservés. Q093 reprend l’exemple divorce/homosexualité : même coordination or à préserver que Q078.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00039",
+      "node_id": "A0039",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00004",
+      "direct_fit": true,
+      "rationale": "La légitimité de punir et la cohérence des interdictions sont une famille normative autonome, distincte de leur efficacité. Cible : L'interdit attaché au cannabis dépend des époques et des cultures. Lecture de contenu : Comparaison géographique et temporelle dans une même civilisation conservée ; usage privé avant 1970 et conditionnel de réadmission ne sont pas actualisés.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00040",
+      "node_id": "A0040",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00004",
+      "direct_fit": true,
+      "rationale": "La légitimité de punir et la cohérence des interdictions sont une famille normative autonome, distincte de leur efficacité. Cible : La prohibition du cannabis ne fait pas de distinction entre usage simple et toxicomanie. Lecture de contenu : Q102 conserve distinction usage régulier/usage simple, comparaison alcool et majorité arrêtant ou réduisant à l’exceptionnel ; slogan comparatif plus tôt/plus vite complet.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00041",
+      "node_id": "A0041",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00004",
+      "direct_fit": true,
+      "rationale": "La légitimité de punir et la cohérence des interdictions sont une famille normative autonome, distincte de leur efficacité. Cible : De nombreuses substances bien plus dangereuses et addictives que le cannabis sont légales. Lecture de contenu : Comparaison substances légales/cannabis, critique de la prohibition en Q009 et sept relations avec leurs libellés contextuels relus ; aucun raccourcissement en étiquette.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00042",
+      "node_id": "A0042",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00004",
+      "direct_fit": true,
+      "rationale": "La légitimité de punir et la cohérence des interdictions sont une famille normative autonome, distincte de leur efficacité. Cible : L'addiction est une maladie, elle ne devrait pas être assimilée à un délit. Lecture de contenu : Titre addiction maladie/délit et citation à la première personne entièrement comparés ; never/always et affirmation génétique ne sont ni renforcés ni corrigés factuellement.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00043",
+      "node_id": "A0043",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00005",
+      "direct_fit": true,
+      "rationale": "L’adéquation de la loi française de 1970 est discutée dans son objet, sa compréhension et ses modalités d’application. Cible : La loi de 1970 sur les drogues n'a pas été faite pour le cannabis. Lecture de contenu : Q058 garde la massification et la liste cannabis/héroïne/cocaïne/crack. Injonction thérapeutique explicitée par court-ordered treatment ; majorité non problématique et toutes substances conservées. Objection A0043 maintenue.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00044",
+      "node_id": "A0044",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00005",
+      "direct_fit": true,
+      "rationale": "L’adéquation de la loi française de 1970 est discutée dans son objet, sa compréhension et ses modalités d’application. Cible : La loi de 1970 sur les drogues focalise trop sur les usagers. Lecture de contenu : 86/66 et +3,1/−7,2 gardés ; Q056 conserve zero tolerance, rendement statistique et presque jamais, sans inverser consommation/détention.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00045",
+      "node_id": "A0045",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00005",
+      "direct_fit": true,
+      "rationale": "L’adéquation de la loi française de 1970 est discutée dans son objet, sa compréhension et ses modalités d’application. Cible : La loi de 1970 sur les drogues n'est plus comprise par les usagers. Lecture de contenu : Obsolescence et incompréhension distinguées ; risques différents, usage régulier néfaste et possibilité occasionnelle sont tous maintenus comme propos de la source.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00046",
+      "node_id": "A0046",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00005",
+      "direct_fit": true,
+      "rationale": "L’adéquation de la loi française de 1970 est discutée dans son objet, sa compréhension et ses modalités d’application. Cible : La loi de 1970 sur les drogues est difficilement applicable. Lecture de contenu : Quatre citations comparées : objectif, cent prisons, Espagne OU Pays-Bas, interdiction disproportionnée et lourdeur procédurale. Would, seems et opinion personnelle maintenus.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00047",
+      "node_id": "A0047",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00005",
+      "direct_fit": true,
+      "rationale": "L’adéquation de la loi française de 1970 est discutée dans son objet, sa compréhension et ses modalités d’application. Cible : Conserver les sanctions pénales de la loi de 1970 sur les drogues qui ne sont pratiquement plus appliquées n'est pas sain. Lecture de contenu : Sanctions pratiquement inappliquées, atteinte à la crédibilité de la justice et banalisation chez adolescents préservées ; l’objection renvoie correctement à l’application préalable.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00048",
+      "node_id": "A0048",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00005",
+      "direct_fit": true,
+      "rationale": "L’adéquation de la loi française de 1970 est discutée dans son objet, sa compréhension et ses modalités d’application. Cible : La loi de 1970 sur les drogues est trop diversement appliquée. Lecture de contenu : Q053 garde le contraste consommation plus faible/poursuites ciblant défavorisés et la réserve sur l’intention policière. Q054 complet : parquets, critères, amende douanière, objectif de tarissement et deux régions nommées.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00049",
+      "node_id": "A0049",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00005",
+      "direct_fit": true,
+      "rationale": "L’adéquation de la loi française de 1970 est discutée dans son objet, sa compréhension et ses modalités d’application. Cible : La loi de 1970 sur les drogues n'a jamais été évaluée. Lecture de contenu : Jamais et absence de recherche interdisciplinaire sur mesures judiciaires OU sanitaires préservées.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00050",
+      "node_id": "A0050",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00006",
+      "direct_fit": true,
+      "rationale": "Cette famille réunit les avantages positifs allégués de la réforme ; elle ne se réduit pas au seul constat des dommages de la prohibition. Cible : La légalisation du cannabis permettrait de dégager des ressources pour la prévention. Lecture de contenu : Ressources pour prévention, environ 300 millions/80000/plus d’un milliard et hypothèse taxation comme tabac conservés ; objection may have to et nouveaux trafics gardée.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00051",
+      "node_id": "A0051",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00006",
+      "direct_fit": true,
+      "rationale": "Cette famille réunit les avantages positifs allégués de la réforme ; elle ne se réduit pas au seul constat des dommages de la prohibition. Cible : La légalisation du cannabis risque d'accroître la consommation. Lecture de contenu : Risque et non effet certain, normalisation et baisse de perception distincts ; objection ne s’accompagne pas ne devient pas causalité.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00052",
+      "node_id": "A0052",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00006",
+      "direct_fit": true,
+      "rationale": "Cette famille réunit les avantages positifs allégués de la réforme ; elle ne se réduit pas au seul constat des dommages de la prohibition. Cible : La légalisation du cannabis permettrait de vider les prisons, soulager les policiers, la justice. Lecture de contenu : Conditionnel et trois bénéficiaires prisons/policiers/justice conservés ; aucun résumé artificiel.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00053",
+      "node_id": "A0053",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00006",
+      "direct_fit": true,
+      "rationale": "Cette famille réunit les avantages positifs allégués de la réforme ; elle ne se réduit pas au seul constat des dommages de la prohibition. Cible : La légalisation du cannabis encourage une économie de dépendance. Lecture de contenu : Consommation de masse, consommation continue ET excessive et intérêts contraires à santé publique gardés. Inevitably de Q064 préservé, sans attester sa référence Barry.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00054",
+      "node_id": "A0054",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00006",
+      "direct_fit": true,
+      "rationale": "Cette famille réunit les avantages positifs allégués de la réforme ; elle ne se réduit pas au seul constat des dommages de la prohibition. Cible : La légalisation du cannabis récréatif ouvrirait la voie à l'utilisation thérapeutique. Lecture de contenu : Voie thérapeutique rendue au conditionnel ; treize États et dix pays dans la citation sont conservés. ASNM, typo de la source, non corrigée en ANSM. Libellé interrogatif de l’objection gardé au lieu du titre canonique affirmatif.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00055",
+      "node_id": "A0055",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00006",
+      "direct_fit": true,
+      "rationale": "Cette famille réunit les avantages positifs allégués de la réforme ; elle ne se réduit pas au seul constat des dommages de la prohibition. Cible : Un marché noir du cannabis peut subsister après sa légalisation. Lecture de contenu : May/can, important marché noir et alternative taxation OU producteurs non régulés conservés ; 80 % et Californie restent assertions de Q148, pas statistiques vérifiées pour 2026.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00056",
+      "node_id": "A0056",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00006",
+      "direct_fit": true,
+      "rationale": "Cette famille réunit les avantages positifs allégués de la réforme ; elle ne se réduit pas au seul constat des dommages de la prohibition. Cible : La légalisation du cannabis peut faire baisser la consommation d'alcool. Lecture de contenu : May, moyenne 15 % et presque dix ans conservés ; objection résultats non unanimes maintenue, sans harmonisation des études.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00057",
+      "node_id": "A0057",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00006",
+      "direct_fit": true,
+      "rationale": "Cette famille réunit les avantages positifs allégués de la réforme ; elle ne se réduit pas au seul constat des dommages de la prohibition. Cible : La légalisation du cannabis peut faire baisser la mortalité par overdose de drogues plus dures. Lecture de contenu : Possibilité may et comparaison harder drugs, non toutes drogues, conservées ; page sans résumé ni citation.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00058",
+      "node_id": "A0058",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00006",
+      "direct_fit": true,
+      "rationale": "Cette famille réunit les avantages positifs allégués de la réforme ; elle ne se réduit pas au seul constat des dommages de la prohibition. Cible : La légalisation du cannabis peut faire baisser la mortalité par overdose d'opiacés. Lecture de contenu : Longue Q074 relue intégralement : au moins 20, intervalle 20–35, causalité attribuée à l’étude, dispensaires, hypothèse automédication et travaux inverses tous présents. Opioids rend ici opiacés au sens large explicitement employé pour le fentanyl dans la source, sans actualiser les résultats ni effacer la réserve contradictoire.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00059",
+      "node_id": "A0059",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00006",
+      "direct_fit": true,
+      "rationale": "Cette famille réunit les avantages positifs allégués de la réforme ; elle ne se réduit pas au seul constat des dommages de la prohibition. Cible : La légalisation du cannabis mettrait fin aux trafics. Lecture de contenu : Conditionnel et assèchement du marché des dealers maintenus ; quatre objections, prix, mineurs, report et restrictions gardent toutes leurs conditions.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00060",
+      "node_id": "A0060",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00006",
+      "direct_fit": true,
+      "rationale": "Cette famille réunit les avantages positifs allégués de la réforme ; elle ne se réduit pas au seul constat des dommages de la prohibition. Cible : La légalisation du cannabis peut faire baisser la criminalité. Lecture de contenu : May dans le titre, 13/15/19/10 et restriction au cannabis médical dans la citation conservés ; ponctuation expressive de la source gardée.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00061",
+      "node_id": "A0061",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00006",
+      "direct_fit": true,
+      "rationale": "Cette famille réunit les avantages positifs allégués de la réforme ; elle ne se réduit pas au seul constat des dommages de la prohibition. Cible : Le modèle portugais a fait ses preuves. Lecture de contenu : Résumé patients/opposés à délinquants et Q119 toutes drogues/vingt-cinq ans/parmi plus faibles gardés ; pas de mise à jour de la politique portugaise dans le texte historique.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00062",
+      "node_id": "A0055",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00007",
+      "direct_fit": true,
+      "rationale": "La possibilité de contrôler le produit est une réponse directe de politique sanitaire ; l’objection du marché noir en limite la couverture. Cible : Un marché noir du cannabis peut subsister après sa légalisation. Lecture de contenu : May/can, important marché noir et alternative taxation OU producteurs non régulés conservés ; 80 % et Californie restent assertions de Q148, pas statistiques vérifiées pour 2026.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00063",
+      "node_id": "A0062",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00008",
+      "direct_fit": true,
+      "rationale": "L’existence alléguée de modèles étatiques fonctionnels ouvre la comparaison des modèles canadien et uruguayen, pas une simple anecdote isolée. Cible : La légalisation du cannabis au Canada fonctionne mieux que la prohibition. Lecture de contenu : Toute la liste est conservée : réglementation, exemples, avantages, inconvénients et bilan. State distribution reste une affirmation source, sans corriger silencieusement la diversité des régimes canadiens.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00064",
+      "node_id": "A0063",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00008",
+      "direct_fit": true,
+      "rationale": "L’existence alléguée de modèles étatiques fonctionnels ouvre la comparaison des modèles canadien et uruguayen, pas une simple anecdote isolée. Cible : La régulation du cannabis en Uruguay fonctionne mieux que la prohibition. Lecture de contenu : Tout le résumé uruguayen est comparé : résidents seulement, plafonds, quasi-élimination, prix, bureaucratie, légère hausse, meilleur bilan. Affirmations contestables conservées sans validation documentaire implicite.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00065",
+      "node_id": "A0014",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00009",
+      "direct_fit": true,
+      "rationale": "La dissuasion et le signal de l’interdit soutiennent directement le maintien de la prohibition, avec leurs objections propres. Cible : La consommation de cannabis augmente en France. Lecture de contenu : 13 millions, au moins une fois, 18–64 ans, 24/29/33 et 2000/2005/2011 préservés. L’objection de fléchissement demeure opposée, sans conciliation artificielle.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00066",
+      "node_id": "A0016",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00009",
+      "direct_fit": true,
+      "rationale": "La dissuasion et le signal de l’interdit soutiennent directement le maintien de la prohibition, avec leurs objections propres. Cible : Le cannabis reste très accessible. Lecture de contenu : Deux longs paragraphes entièrement relus, toutes valeurs et âges présents. Différence perception/obtention réelle, limites de question et stratégies de contournement de disponibilité gardées.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00067",
+      "node_id": "A0018",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00009",
+      "direct_fit": true,
+      "rationale": "La dissuasion et le signal de l’interdit soutiennent directement le maintien de la prohibition, avec leurs objections propres. Cible : L'interdit rend le cannabis plus attractif. Lecture de contenu : Produit autorisé/interdit et disjonction health risks or social disapproval conservés ; les deux objections visent bien la dissuasion et l’attrait des produits légaux.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00068",
+      "node_id": "A0020",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00009",
+      "direct_fit": true,
+      "rationale": "La dissuasion et le signal de l’interdit soutiennent directement le maintien de la prohibition, avec leurs objections propres. Cible : Les sanctions contre les consommateurs de cannabis ne sont pas dissuasives. Lecture de contenu : Seulement personnes déjà moins susceptibles, aucune corrélation et pas de hausse significative restent distincts de pas de causalité ; deux paragraphes Q141 complets. Trois relations et pronom elles dans le libellé anglais they préservés.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00069",
+      "node_id": "A0021",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00009",
+      "direct_fit": true,
+      "rationale": "La dissuasion et le signal de l’interdit soutiennent directement le maintien de la prohibition, avec leurs objections propres. Cible : L'interdiction du cannabis peut être contournée. Lecture de contenu : Can et has been accompanied by conservent possibilité et concomitance, sans faire de la synthèse chimique une conséquence démontrée.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00070",
+      "node_id": "A0064",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00009",
+      "direct_fit": true,
+      "rationale": "La dissuasion et le signal de l’interdit soutiennent directement le maintien de la prohibition, avec leurs objections propres. Cible : Les comportements addictifs sont très peu sensibles aux lois. Lecture de contenu : Très peu n’est pas devenu absence totale : largely unresponsive. Résumé avec peine de mort conservé et Q131 garde insuffisance des sanctions, non absence de tout effet.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00071",
+      "node_id": "A0022",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00009",
+      "direct_fit": true,
+      "rationale": "La dissuasion et le signal de l’interdit soutiennent directement le maintien de la prohibition, avec leurs objections propres. Cible : La prohibition passe à côté des motifs de la consommation. Lecture de contenu : Deux citations longues complètes : analogie nourriture, motivations, définition sociale des déterminants, angoisse des travailleurs et transformation de la société. Perspective militante conservée sans neutralisation.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00072",
+      "node_id": "A0023",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00009",
+      "direct_fit": true,
+      "rationale": "La dissuasion et le signal de l’interdit soutiennent directement le maintien de la prohibition, avec leurs objections propres. Cible : La prohibition de l'alcool et certaines guerres contre les drogues ont eu des effets contre-productifs. Lecture de contenu : Some conserve certaines guerres. Q082 complet : onze ans/décembre 2006, 200000, demande américaine, production (rétablie V2), héroïne/synthétiques/cocaïne et deux déclarations DEA tous présents.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00073",
+      "node_id": "A0065",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00010",
+      "direct_fit": true,
+      "rationale": "La protection individuelle contre les risques sanitaires constitue la famille de raisons opposées à la légalisation. Cible : Le cannabis est dangereux pour la santé physique et mentale. Lecture de contenu : Comparaison tuberculose et commentaire Costentin conservés. Les huit objections gardent leurs particularités : précocité, faibles risques, mode de consommation, contexte personnel, autonomie, crime organisé, qualité et alcool/tabac.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00074",
+      "node_id": "A0041",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00010",
+      "direct_fit": true,
+      "rationale": "La protection individuelle contre les risques sanitaires constitue la famille de raisons opposées à la légalisation. Cible : De nombreuses substances bien plus dangereuses et addictives que le cannabis sont légales. Lecture de contenu : Comparaison substances légales/cannabis, critique de la prohibition en Q009 et sept relations avec leurs libellés contextuels relus ; aucun raccourcissement en étiquette.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00075",
+      "node_id": "A0066",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00010",
+      "direct_fit": true,
+      "rationale": "La protection individuelle contre les risques sanitaires constitue la famille de raisons opposées à la légalisation. Cible : Le cannabis potentialise les effets de l’alcool et du tabac. Lecture de contenu : Amplification et synergie supérieure à l’addition explicitement gardées ; références internes p.33/p.59 inchangées dans le texte cité.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00076",
+      "node_id": "A0067",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00010",
+      "direct_fit": true,
+      "rationale": "La protection individuelle contre les risques sanitaires constitue la famille de raisons opposées à la légalisation. Cible : Le pouvoir addictif du cannabis est important. Lecture de contenu : Substantial pour important, un sur trois devenant régulier (pas dépendant), et quatre objections gardant assez faible, dépendance au niveau d’usage, environnement et alcool conservés.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00077",
+      "node_id": "A0068",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00011",
+      "direct_fit": true,
+      "rationale": "Les dommages à autrui et à la collectivité organisent une famille distincte de la seule protection du consommateur. Cible : Le cannabis est nuisible à la société. Lecture de contenu : Trois citations relues avec article 5/1789 et thèse démocratie. Q114 traduit létalité par far more deaths : passage d’un degré de létalité à un nombre absolu et ajout causal ; rétablir much greater lethality. Trois objections fidèles.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00078",
+      "node_id": "A0069",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00011",
+      "direct_fit": true,
+      "rationale": "Les dommages à autrui et à la collectivité organisent une famille distincte de la seule protection du consommateur. Cible : Le cannabis engendre des coûts pour la société. Lecture de contenu : Droit de tout faire et situations à charge de la société préservés ; objection coûts fiscaux/police/justice reste une critique de la prohibition, pas des mêmes coûts du cannabis.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00079",
+      "node_id": "A0070",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00011",
+      "direct_fit": true,
+      "rationale": "Les dommages à autrui et à la collectivité organisent une famille distincte de la seule protection du consommateur. Cible : Le cannabis est impliqué dans les accidents de la route. Lecture de contenu : 2,5 et quatorze, 300 morts, SAM 2005, concentration 2 puis 0,2 µg/L et dix fois moindre tous exacts ; measure ne devient pas simplement detect. Les deux objections ne réconcilient pas les statistiques.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00080",
+      "node_id": "A0071",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00012",
+      "direct_fit": true,
+      "rationale": "La faisabilité juridique et l’opportunité politique regroupent les objections internationales, sociales et institutionnelles à la réforme. Cible : La légalisation du cannabis récréatif soulève des difficultés au regard des conventions internationales. Lecture de contenu : Intitulé prudent raises difficulties conservé alors que le résumé source est plus catégorique ; 1925/1961/1988 et cinq activités conservés. Cinq objections gardent leurs différences may/should et légalisation/dépénalisation historiques.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00081",
+      "node_id": "A0072",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00012",
+      "direct_fit": true,
+      "rationale": "La faisabilité juridique et l’opportunité politique regroupent les objections internationales, sociales et institutionnelles à la réforme. Cible : La légalisation du cannabis est en vigueur dans de nombreux pays. Lecture de contenu : Nombreux pays, petites quantités, cinq couleurs et réserve essentiellement légal conservés ; image et légende intactes. Actualité de la carte et équivalence documentaires restent distinctes de la fidélité du résumé.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00082",
+      "node_id": "A0073",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00012",
+      "direct_fit": true,
+      "rationale": "La faisabilité juridique et l’opportunité politique regroupent les objections internationales, sociales et institutionnelles à la réforme. Cible : Des enquêtes françaises montrent une opposition à la vente libre de cannabis. Lecture de contenu : Vente libre distinguée de toute légalisation, chiffres 70/63 et dates 2012/2011 préservés. Les réserves et le reproche de politique de l’autruche sont présents ; contre-exemple des réformes sans majorité fidèle.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00083",
+      "node_id": "A0074",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00012",
+      "direct_fit": true,
+      "rationale": "La faisabilité juridique et l’opportunité politique regroupent les objections internationales, sociales et institutionnelles à la réforme. Cible : La pénalisation du cannabis est un échec. Lecture de contenu : Simple renvoi Voir vers A0091 correctement raccordé au titre anglais, sans résumé de substitution.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00084",
+      "node_id": "A0075",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00012",
+      "direct_fit": true,
+      "rationale": "La faisabilité juridique et l’opportunité politique regroupent les objections internationales, sociales et institutionnelles à la réforme. Cible : Il ne faut pas toucher à la législation sur le cannabis en vigueur. Lecture de contenu : Maintien du droit actuel, hésitation et double réserve absence de certitude/condition de science solide conservés ; ni recommandation nouvelle ni actualisation.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00085",
+      "node_id": "A0076",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00012",
+      "direct_fit": true,
+      "rationale": "La faisabilité juridique et l’opportunité politique regroupent les objections internationales, sociales et institutionnelles à la réforme. Cible : La légalisation du cannabis sera mise en place, comme l'ont été de nombreuses avancées sociales décriées. Lecture de contenu : Futur du titre conservé ; Q078 maintient divorce, homosexualité, assises et absence de recrudescence. Coordination source ou entre deux exemples rendue par and : préserver or pour éviter un changement gratuit de coordination.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00086",
+      "node_id": "A0077",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00012",
+      "direct_fit": true,
+      "rationale": "La faisabilité juridique et l’opportunité politique regroupent les objections internationales, sociales et institutionnelles à la réforme. Cible : La légalisation du cannabis dans un seul pays est source de problèmes. Lecture de contenu : Could et attribution au maire de Windsor conservés : délais à la frontière et échanges, sans transformer la prédiction en effet observé.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00087",
+      "node_id": "A0078",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00012",
+      "direct_fit": true,
+      "rationale": "La faisabilité juridique et l’opportunité politique regroupent les objections internationales, sociales et institutionnelles à la réforme. Cible : Légaliser le cannabis, c'est le soumettre aux lois du marché. Lecture de contenu : Trois prises de parole N.M./M.H./N.M. sont complètes : intérêt commercial, exception monopole/contrôle d’État puis objection européenne. Deux objections au bon sens, aucun effacement du dialogue contradictoire.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00088",
+      "node_id": "A0079",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00012",
+      "direct_fit": true,
+      "rationale": "La faisabilité juridique et l’opportunité politique regroupent les objections internationales, sociales et institutionnelles à la réforme. Cible : Légaliser le cannabis est la porte ouverte à la légalisation des drogues dures. Lecture de contenu : Métaphore porte ouverte conservée sans inevitably ; citation garde dépénalisation et accusation de recrutement, trois objections dont étiquette Slippery slope fallacy laissées sous forme source.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00089",
+      "node_id": "A0080",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00013",
+      "direct_fit": true,
+      "rationale": "Les conséquences défavorables propres à une réforme (usages, drogues plus dures, mineurs, territoires) constituent une famille prospective autonome. Cible : La légalisation du cannabis multiplierait le nombre d'usagers. Lecture de contenu : Would greatly increase conserve multiplierait sans inventer un facteur dans le titre ; Q067 garde dix fois malgré 1,6/15 millions. Q068 garde dépénalisation/banalisation et non légalisation. Trois objections exactes.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00090",
+      "node_id": "A0081",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00013",
+      "direct_fit": true,
+      "rationale": "Les conséquences défavorables propres à une réforme (usages, drogues plus dures, mineurs, territoires) constituent une famille prospective autonome. Cible : La légalisation du cannabis reporterait les usagers vers les drogues dures. Lecture de contenu : Conditionnel et personnage transgressif conservés ; straight traduit d’emblée et addiction scale conserve la métaphore sans ajouter une hiérarchie médicale.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00091",
+      "node_id": "A0082",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00013",
+      "direct_fit": true,
+      "rationale": "Les conséquences défavorables propres à une réforme (usages, drogues plus dures, mineurs, territoires) constituent une famille prospective autonome. Cible : La légalisation du cannabis serait un danger pour les mineurs. Lecture de contenu : Raison de l’exemple tabac, 60 % et concession adultes/mineurs préservés ; libellé de l’objection conserve la comparaison avec le marché noir actuel.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00092",
+      "node_id": "A0083",
+      "declared_depth": 2,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00013",
+      "direct_fit": true,
+      "rationale": "Les conséquences défavorables propres à une réforme (usages, drogues plus dures, mineurs, territoires) constituent une famille prospective autonome. Cible : La légalisation du cannabis aurait trop d'impacts sociaux et économiques sur les banlieues. Lecture de contenu : Would/excessive et contexte des banlieues préservés ; objections Solutions exist et dommages sociaux restent contextuelles et distinctes de leurs titres canoniques.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00093",
+      "node_id": "A0084",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00014",
+      "direct_fit": true,
+      "rationale": "La baisse alléguée de certains indicateurs conteste l’affirmation d’augmentation ; périodes et populations restent celles des sources. Cible : Il y a des signes de fléchissement de la consommation de cannabis. Lecture de contenu : Signs conserve la prudence du titre ; since 2003 et retour aux années 2000 restent datés dans la citation, sans actualisation en 2026.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00094",
+      "node_id": "A0085",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00015",
+      "direct_fit": true,
+      "rationale": "L’objection oppose au maintien malgré l’échec un critère de coûts et d’effets pervers justifiant l’abrogation. Cible : Quand une loi aggrave un problème qu'elle était censée résoudre, il devient urgent de l'abolir. Lecture de contenu : Condition quand, aggravation d’un problème censé être résolu et urgence d’abolition inchangées ; pas de règle ajoutée pour tout échec.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00095",
+      "node_id": "A0086",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00017",
+      "direct_fit": true,
+      "rationale": "L’absence alléguée de réduction des usages conteste directement l’effet dissuasif attribué à l’interdit. Cible : Interdire une drogue n'en fait pas baisser la consommation. Lecture de contenu : Négation catégorique du titre traduite sans atténuation ou élargissement ; absence de résumé et citation maintenue.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00096",
+      "node_id": "A0087",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00018",
+      "direct_fit": true,
+      "rationale": "Les objections opposent l’effet dissuasif à l’attrait de l’interdit et l’exemple de produits licites attractifs. Cible : L'interdiction du cannabis est plus dissuasive qu'attractive. Lecture de contenu : Comparaison dissuasion/attraction et caractère minoritaire de la transgression conservés. Nocebo distinct de placebo ; plus de moitié, 39 %, cohorte 17 ans et mois avant ESCAPAD 2008 exacts.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00097",
+      "node_id": "A0088",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00018",
+      "direct_fit": true,
+      "rationale": "Les objections opposent l’effet dissuasif à l’attrait de l’interdit et l’exemple de produits licites attractifs. Cible : Le tabac et l'alcool, licites, sont très attractifs. Lecture de contenu : Très attractifs traduit highly appealing ; treize millions, quatre OU cinq et absence d’abstinence un jour par semaine conservés. Origine attribuée à la licéité, non au seul marketing.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00098",
+      "node_id": "A0089",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00019",
+      "direct_fit": true,
+      "rationale": "L’attrait de l’interdit et les stratégies de contournement contestent les effets attendus du signal sociétal. Cible : L'interdit rend plus attractif. Lecture de contenu : Titre court et contextuel Prohibition increases appeal préservé, sans ajout d’un sujet particulier ou de résumé.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00099",
+      "node_id": "A0090",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00019",
+      "direct_fit": true,
+      "rationale": "L’attrait de l’interdit et les stratégies de contournement contestent les effets attendus du signal sociétal. Cible : L'interdit incite à chercher des moyens de contourner la loi. Lecture de contenu : Incitation au contournement de la loi traduite sans transformer la page vide en développement.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00100",
+      "node_id": "A0064",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00020",
+      "direct_fit": true,
+      "rationale": "La faible sensibilité aux lois soutient l’inefficacité alléguée ; les faits de dissuasion et l’éducation la contestent ou proposent une autre stratégie. Cible : Les comportements addictifs sont très peu sensibles aux lois. Lecture de contenu : Très peu n’est pas devenu absence totale : largely unresponsive. Résumé avec peine de mort conservé et Q131 garde insuffisance des sanctions, non absence de tout effet.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00101",
+      "node_id": "A0091",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00020",
+      "direct_fit": true,
+      "rationale": "La faible sensibilité aux lois soutient l’inefficacité alléguée ; les faits de dissuasion et l’éducation la contestent ou proposent une autre stratégie. Cible : Des faits montrent que les sanctions contre les consommateurs de cannabis peuvent être dissuasives. Lecture de contenu : Titre maintient peuvent ; la causalité plus forte de la citation source reduced reste dans la citation, sans la transférer au titre. 49,4/42,2 et 2005/2008 exacts.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00102",
+      "node_id": "A0092",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00020",
+      "direct_fit": true,
+      "rationale": "La faible sensibilité aux lois soutient l’inefficacité alléguée ; les faits de dissuasion et l’éducation la contestent ou proposent une autre stratégie. Cible : Il faut faire preuve de pédagogie envers la consommation de cannabis. Lecture de contenu : Le contexte justifications/protection de Q015 justifie rationale not explained ; deux paragraphes, réserve Académie de médecine et trois milieux médicaux/éducatifs/médias conservés.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00103",
+      "node_id": "A0093",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00022",
+      "direct_fit": true,
+      "rationale": "Les causes sociales et le mal-être explicitent les motifs que l’approche répressive serait censée négliger. Cible : L'approche répressive permet aux pouvoirs publics de se dédouaner de leur responsabilité dans sa consommation. Lecture de contenu : Thèse polémique sur précarité délibérément entretenue, responsabilité publique et bénéfices financiers ou idéologiques maintenue comme source ; pas une causalité validée par le traducteur.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00104",
+      "node_id": "A0094",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00022",
+      "direct_fit": true,
+      "rationale": "Les causes sociales et le mal-être explicitent les motifs que l’approche répressive serait censée négliger. Cible : La prohibition aggrave le mal-être à l'origine de la consommation de drogues. Lecture de contenu : Prohibition générale, aggravation et origine de la consommation conservées ; pas d’explication psychologique créée.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00105",
+      "node_id": "A0095",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00023",
+      "direct_fit": true,
+      "rationale": "L’expérience de la prohibition de l’alcool et le coût de la lutte contre le trafic servent de cas à l’argument historique d’effets contre-productifs. Cible : La prohibition de l'alcool au début du XXème siècle a été un échec. Lecture de contenu : Deux paragraphes de Q081 relus : années 1930, crime organisé, corruption politique/judiciaire, fiscalité/douanes et absence de baisse décisive gardés ; pas de correction historique ajoutée.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00106",
+      "node_id": "A0032",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00023",
+      "direct_fit": true,
+      "rationale": "L’expérience de la prohibition de l’alcool et le coût de la lutte contre le trafic servent de cas à l’argument historique d’effets contre-productifs. Cible : La lutte contre les trafics de cannabis coûte cher, et c'est un échec. Lecture de contenu : Coût et échec gardés ; résumé reste simple renvoi au livre français. Q062 conserve négations politiques, déclaration de vœux, ouverture d’un débat et adaptation du droit à la société.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00107",
+      "node_id": "A0096",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00034",
+      "direct_fit": true,
+      "rationale": "L’objection refuse la généralisation normative du raisonnement fiscal à tous les marchés illicites. Cible : Taxer tous les marchés illicites serait irresponsable. Lecture de contenu : Every illicit market et exemple child sexual abuse material rendent les deux catégories sources ; should, cynical et irresponsible maintenus, sans faire du raisonnement une proposition du traducteur.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00108",
+      "node_id": "A0097",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00038",
+      "direct_fit": true,
+      "rationale": "La dépendance comme perte de liberté s’oppose à la justification par la liberté de consommer. Cible : La liberté de consommer du cannabis est la liberté de devenir esclave. Lecture de contenu : Métaphore de l’esclavage et énumération de synonymes préservées. Habituation pour assuétude risque de réduire dépendance à une simple accoutumance : préférer dependency, sans modifier l’affirmation source tous synonymes.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00109",
+      "node_id": "A0098",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00041",
+      "direct_fit": true,
+      "rationale": "Les justifications développent la comparaison avec des produits licites et les intérêts qui les entourent ; les objections distinguent le risque intrinsèque et l’usage recherché. Cible : L'alcool et le tabac sont parmi les substances les plus addictogènes et nocives. Lecture de contenu : Among conserve parmi : aucun classement absolu ou résumé ajouté.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00110",
+      "node_id": "A0099",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00041",
+      "direct_fit": true,
+      "rationale": "Les justifications développent la comparaison avec des produits licites et les intérêts qui les entourent ; les objections distinguent le risque intrinsèque et l’usage recherché. Cible : L'alcool et le tabac ne sont pas dangereux en soi, seul leur abus l'est. Lecture de contenu : Only excessive use correspond à abus ; Q024 conserve it can be accepted et does not appear, sans certitude ajoutée. Objection quantité quelconque et ponctuation source maintenues.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00111",
+      "node_id": "A0100",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00041",
+      "direct_fit": true,
+      "rationale": "Les justifications développent la comparaison avec des produits licites et les intérêts qui les entourent ; les objections distinguent le risque intrinsèque et l’usage recherché. Cible : Les intérêts économiques des producteurs d'alcool peuvent peser sur la réglementation. Lecture de contenu : Titre prudent can influence et résumé source plus catégorique maintenus. Quatre citations relues : loi Évin, 60000 pages/145 cas, hypothèse bribes, campagnes rugby et choix des parlementaires ; puns knockout/heavyweights/economic weight cohérents.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00112",
+      "node_id": "A0101",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00041",
+      "direct_fit": true,
+      "rationale": "Les justifications développent la comparaison avec des produits licites et les intérêts qui les entourent ; les objections distinguent le risque intrinsèque et l’usage recherché. Cible : Le cannabis est toujours dangereux car le seul but des fumeurs est de planer. Lecture de contenu : Always et only dans le titre absolu conservés ; objection No, it is also used garde la réfutation contextualisée.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00113",
+      "node_id": "A0102",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00041",
+      "direct_fit": true,
+      "rationale": "Les justifications développent la comparaison avec des produits licites et les intérêts qui les entourent ; les objections distinguent le risque intrinsèque et l’usage recherché. Cible : Le groupe pharmaceutique Purdue est responsable de l'addiction à l'oxycodone. Lecture de contenu : Sept paragraphes de Q118 comparés : titre Purdue/OxyContin, terminal cancer, moins d’1 %, centaines de milliers, surdoses et milliard de recettes, non profits. Dessins interprété comme desseins évident, sans changer le fait allégué.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00114",
+      "node_id": "A0103",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00041",
+      "direct_fit": true,
+      "rationale": "Les justifications développent la comparaison avec des produits licites et les intérêts qui les entourent ; les objections distinguent le risque intrinsèque et l’usage recherché. Cible : L'industrie agro-alimentaire rend ses aliments addictifs pour maximiser les profits. Lecture de contenu : But lucratif et causalité rend ses aliments addictifs conservés ; pas de développement créé.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00115",
+      "node_id": "A0104",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "justification",
+      "semantic_target": "O00041",
+      "direct_fit": true,
+      "rationale": "Les justifications développent la comparaison avec des produits licites et les intérêts qui les entourent ; les objections distinguent le risque intrinsèque et l’usage recherché. Cible : Les risques du cannabis doivent être distingués de ceux de l'alcool et du tabac. Lecture de contenu : Must be distinguished respecte doivent être distingués : pas une affirmation de cannabis inoffensif ajoutée.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00116",
+      "node_id": "A0105",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00043",
+      "direct_fit": true,
+      "rationale": "L’origine historique de la loi dans la diffusion du cannabis est opposée à l’affirmation qu’elle ne le visait pas. Cible : La loi de 1970 sur les drogues a été conçue en réponse à l'extension du cannabis. Lecture de contenu : Consommation de cannabis, constat de diffusion et objectif d’entrave préservés ; réponse à la page opposée A0049 conservée sans trancher historiquement.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00117",
+      "node_id": "A0106",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00047",
+      "direct_fit": true,
+      "rationale": "La priorité de faire appliquer la loi répond à l’argument tiré de sa faible application. Cible : Avant de supprimer la loi de 1970 sur les drogues, il faut la faire appliquer. Lecture de contenu : Avant/après abrogation, insuffisance d’application et opposition Q002 maintien/répression depuis dix ans conservés ; dates et fonction MILDT restent historiques.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00118",
+      "node_id": "A0107",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00050",
+      "direct_fit": true,
+      "rationale": "Le coût de nouveaux trafics est opposé à la disponibilité des ressources annoncées pour la prévention. Cible : Les ressources dégagées par la légalisation du cannabis risquent de devoir être utilisées pour lutter contre de nouveaux trafics. Lecture de contenu : May have to conserve le risque de devoir réaffecter les moyens ; ne devient ni nécessité certaine ni simple possibilité de les dépenser ailleurs.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00119",
+      "node_id": "A0108",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00051",
+      "direct_fit": true,
+      "rationale": "Les expériences sans hausse s’opposent à la prédiction d’augmentation ; la force de possibilité de chaque source reste inchangée. Cible : Des expériences montrent que la légalisation d'une drogue ne s'accompagne pas d'une hausse de consommation. Lecture de contenu : Concomitance is not accompanied by conservée, sans glisser vers une absence de causalité ; titre vide de résumé et de citations respecté.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00120",
+      "node_id": "A0109",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00054",
+      "direct_fit": true,
+      "rationale": "La distinction thérapeutique/récréatif et la discussion des risques thérapeutiques répondent au lien annoncé entre les deux ouvertures. Cible : On peut dissocier l'utilisation thérapeutique et l'utilisation récréative du cannabis. Lecture de contenu : Can be kept separate préserve possibilité de dissociation thérapeutique/récréative, pas une séparation déjà universellement réalisée.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00121",
+      "node_id": "A0110",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00054",
+      "direct_fit": true,
+      "rationale": "La distinction thérapeutique/récréatif et la discussion des risques thérapeutiques répondent au lien annoncé entre les deux ouvertures. Cible : L'utilisation thérapeutique du cannabis n'est pas sans danger. Lecture de contenu : Not without risks et désaccord entre Q034/Q035 conservés. Cheval de Troie et non-irremplaçabilité gardés malgré l’ellipse logique de la source. Passage Objection à Costentin présent et à la bonne position.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00122",
+      "node_id": "A0111",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00056",
+      "direct_fit": true,
+      "rationale": "L’hétérogénéité des études limite la généralisation d’une substitution à l’alcool. Cible : Les études américaines sur le lien entre cannabis et consommation d'alcool ne vont pas toutes dans le même sens. Lecture de contenu : Do not all conserve pas toutes ; environ quarante, seize substituts et dix compléments, et nom de la statisticienne sont préservés, sans attribuer une conclusion aux autres études.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00123",
+      "node_id": "A0112",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00059",
+      "direct_fit": true,
+      "rationale": "Les quatre objections contestent la disparition des trafics par report de produit, clientèle mineure, restrictions et prix. Cible : En cas de légalisation du cannabis, les trafics se reporteraient sur d'autres produits, à moins de légaliser toutes les drogues, ce qui parait difficile. Lecture de contenu : Déplacement vers autres substances, exception légaliser toutes drogues et réserve seems difficult conservés. Les deux citations gardent condition, crainte exprimée et question cigarettes.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00124",
+      "node_id": "A0113",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00059",
+      "direct_fit": true,
+      "rationale": "Les quatre objections contestent la disparition des trafics par report de produit, clientèle mineure, restrictions et prix. Cible : Il y aura toujours un marché prohibé du cannabis, le marché destiné aux mineurs. Lecture de contenu : Always/never, marché mineurs et impossibilité pour un État de distribuer toutes drogues conservés.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00125",
+      "node_id": "A0114",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00059",
+      "direct_fit": true,
+      "rationale": "Les quatre objections contestent la disparition des trafics par report de produit, clientèle mineure, restrictions et prix. Cible : Si le cannabis est légalisé avec des restrictions, certains consommateurs continueront à se fournir au marché noir. Lecture de contenu : Si restrictions et certains consommateurs conservés ; Q147 garde certaines formes, could also et puissance accrue, sans étendre à tous les consommateurs.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00126",
+      "node_id": "A0115",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00059",
+      "direct_fit": true,
+      "rationale": "Les quatre objections contestent la disparition des trafics par report de produit, clientèle mineure, restrictions et prix. Cible : Comme on le constate avec le tabac, si le prix du cannabis légalisé est trop élevé, le marché noir va se maintenir. Lecture de contenu : Condition prix trop élevé et analogie tabac conservées ; deux paragraphes de Q006, offre/prix/consommation et comparaison des difficultés de contrôle tous présents.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00127",
+      "node_id": "A0116",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00073",
+      "direct_fit": true,
+      "rationale": "Les objections différencient précocité, intensité, voie de consommation, contexte et alternative réglementaire ; elles ne changent pas la polarité du parent. Cible : Les risques du cannabis sont particulièrement préoccupants lors d'une consommation précoce. Lecture de contenu : Particularly et début précoce conservés ; les deux citations opposées, leurs excès/toutes substances et cerveau jusqu’à environ 25 ans, restent distincts et complets. Crise de foie rendu idiomatiquement indigestion, non lésion hépatique inventée.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00128",
+      "node_id": "A0117",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00073",
+      "direct_fit": true,
+      "rationale": "Les objections différencient précocité, intensité, voie de consommation, contexte et alternative réglementaire ; elles ne changent pas la polarité du parent. Cible : La dangerosité du cannabis est faible. Lecture de contenu : Les quatre citations gardent faible nocivité, usage récréatif défini dans la source, trente millions et distinction overdose/intoxication aiguë ; aucune correction médicale silencieuse ni ajout au titre.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00129",
+      "node_id": "A0118",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00073",
+      "direct_fit": true,
+      "rationale": "Les objections différencient précocité, intensité, voie de consommation, contexte et alternative réglementaire ; elles ne changent pas la polarité du parent. Cible : On peut réduire les risques du cannabis en jouant sur le mode de consommation. Lecture de contenu : Can et modes d’usage conservés ; expertise usagers, so-called soft/hard et critique abstinence en France, toutes parties de Q146 présentes.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00130",
+      "node_id": "A0119",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00073",
+      "direct_fit": true,
+      "rationale": "Les objections différencient précocité, intensité, voie de consommation, contexte et alternative réglementaire ; elles ne changent pas la polarité du parent. Cible : Ce n'est pas le cannabis seul qui fait la dangerosité. Lecture de contenu : Produit seul opposé aux conduites et à la vulnérabilité de l’usager : distinction et négation conservées.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00131",
+      "node_id": "A0120",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00073",
+      "direct_fit": true,
+      "rationale": "Les objections différencient précocité, intensité, voie de consommation, contexte et alternative réglementaire ; elles ne changent pas la polarité du parent. Cible : Il n'est pas légitime de punir quelqu'un pour un dommage qu'il se fait à lui-même. Lecture de contenu : Interdiction morale de punir le tort à soi conservée ; loi d’exception rendue comme dérogation à la règle, pas comme appréciation élogieuse. Question suicide maintenue comme propos attribué.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00132",
+      "node_id": "A0121",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00073",
+      "direct_fit": true,
+      "rationale": "Les objections différencient précocité, intensité, voie de consommation, contexte et alternative réglementaire ; elles ne changent pas la polarité du parent. Cible : Si le cannabis est dangereux, pourquoi en confier la gestion au crime organisé ?. Lecture de contenu : Question conditionnelle gardée comme question, avec objet cannabis explicite ; pas de transformation en affirmation de génération.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00133",
+      "node_id": "A0122",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00073",
+      "direct_fit": true,
+      "rationale": "Les objections différencient précocité, intensité, voie de consommation, contexte et alternative réglementaire ; elles ne changent pas la polarité du parent. Cible : L'absence de garantie sur la qualité du produit présente elle-même des risques. Lecture de contenu : Risques intrinsèques à l’absence de garantie, contrôle de qualité et offre d’autres substances illicites conservés ; Q022 garde conditionnel et amélioration seulement relative de la nocivité.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00134",
+      "node_id": "A0041",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00073",
+      "direct_fit": true,
+      "rationale": "Les objections différencient précocité, intensité, voie de consommation, contexte et alternative réglementaire ; elles ne changent pas la polarité du parent. Cible : De nombreuses substances bien plus dangereuses et addictives que le cannabis sont légales. Lecture de contenu : Comparaison substances légales/cannabis, critique de la prohibition en Q009 et sept relations avec leurs libellés contextuels relus ; aucun raccourcissement en étiquette.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00135",
+      "node_id": "A0123",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00076",
+      "direct_fit": true,
+      "rationale": "Les objections discutent l’ampleur de la dépendance, l’intensité d’usage, le contexte et la comparaison avec l’alcool. Cible : Le pouvoir addictif du cannabis est assez faible. Lecture de contenu : Q120 garde exactement l’anglais fourni, chiffres 9–10/20/25/30 ; glose française complète en source, pas une citation perdue. Q121 garde deux tiers/25–30/spontanément. Note hors citations sur dépendance et régularité présente avant Q121.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00136",
+      "node_id": "A0124",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00076",
+      "direct_fit": true,
+      "rationale": "Les objections discutent l’ampleur de la dépendance, l’intensité d’usage, le contexte et la comparaison avec l’alcool. Cible : Le pouvoir addictif du cannabis n'est ni faible ni fort en soi, il dépend de son niveau d'usage. Lecture de contenu : Ni faible ni fort en soi et usage comme variable conservés ; opposition drogues dures/douces aux façons de consommer est intégrale, sans médicalisation ajoutée.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00137",
+      "node_id": "A0125",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00076",
+      "direct_fit": true,
+      "rationale": "Les objections discutent l’ampleur de la dépendance, l’intensité d’usage, le contexte et la comparaison avec l’alcool. Cible : La dépendance à une drogue ne se produit pas indépendamment de la personne et de son environnement. La drogue est un moyen d'adaptation à la vie, pas une cause. Lecture de contenu : Les trois paragraphes de Q041 sont complets : opposition produit-cause/adaptation, environnement, certains usagers, et/ou conditions de vie puis exemples comportements. Le référent dépendance dans le titre anglais est explicité par la citation.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00138",
+      "node_id": "A0041",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00076",
+      "direct_fit": true,
+      "rationale": "Les objections discutent l’ampleur de la dépendance, l’intensité d’usage, le contexte et la comparaison avec l’alcool. Cible : De nombreuses substances bien plus dangereuses et addictives que le cannabis sont légales. Lecture de contenu : Comparaison substances légales/cannabis, critique de la prohibition en Q009 et sept relations avec leurs libellés contextuels relus ; aucun raccourcissement en étiquette.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00139",
+      "node_id": "A0126",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00077",
+      "direct_fit": true,
+      "rationale": "Les objections distinguent dommage à autrui, comparaison avec la prohibition et comparaison avec d’autres produits licites. Cible : L'usage privé simple de cannabis n'est pas dommageable à autrui. Lecture de contenu : Usage privé simple et seul comportement poursuivi sans dommage à autrui : deux restrictions conservées ; affirmation de la source non corrigée juridiquement.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00140",
+      "node_id": "A0003",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00077",
+      "direct_fit": true,
+      "rationale": "Les objections distinguent dommage à autrui, comparaison avec la prohibition et comparaison avec d’autres produits licites. Cible : La prohibition du cannabis est préjudiciable à la société. Lecture de contenu : Neuf justifications relues avec leurs libellés propres ; notamment crime organisé, stratégie commerciale, recettes et pression carcérale. A0079 et A0087 nécessitent de répercuter les corrections de titres dans les cibles, sans changer les libellés contextuels distincts.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00141",
+      "node_id": "A0041",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00077",
+      "direct_fit": true,
+      "rationale": "Les objections distinguent dommage à autrui, comparaison avec la prohibition et comparaison avec d’autres produits licites. Cible : De nombreuses substances bien plus dangereuses et addictives que le cannabis sont légales. Lecture de contenu : Comparaison substances légales/cannabis, critique de la prohibition en Q009 et sept relations avec leurs libellés contextuels relus ; aucun raccourcissement en étiquette.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00142",
+      "node_id": "A0032",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00078",
+      "direct_fit": true,
+      "rationale": "Les coûts de la politique prohibitive servent de comparaison aux coûts sociaux attribués au produit. Cible : La lutte contre les trafics de cannabis coûte cher, et c'est un échec. Lecture de contenu : Coût et échec gardés ; résumé reste simple renvoi au livre français. Q062 conserve négations politiques, déclaration de vœux, ouverture d’un débat et adaptation du droit à la société.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00143",
+      "node_id": "A0127",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00079",
+      "direct_fit": true,
+      "rationale": "Le faible sur-risque attribué au cannabis seul et le poids de l’alcool contestent la portée de l’implication routière. Cible : Le cannabis seul augmente peu le risque d'accidents de la route. Lecture de contenu : Résumé et Q117 conservent facteur 2, seuil 0,5, facteur 15 et incohérence majorité/environ 30 %, sans la résoudre en largest share. Distinct du facteur 14 de Q111.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00144",
+      "node_id": "A0128",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00079",
+      "direct_fit": true,
+      "rationale": "Le faible sur-risque attribué au cannabis seul et le poids de l’alcool contestent la portée de l’implication routière. Cible : C'est avant tout l'alcool qui est responsable d'accidents de la route. Lecture de contenu : Attribution de la responsabilité à l’alcool conservée et comparaison de risque dix fois pour accidents mortels strictement traduite, sans validation de la statistique.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00145",
+      "node_id": "A0129",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00080",
+      "direct_fit": true,
+      "rationale": "Les objections distinguent offre et usage, recommandation internationale, droits humains, marges juridiques et précédent uruguayen ; elles ciblent la difficulté juridique. Cible : Les conventions internationales n'imposent pas de pénaliser l'usage de cannabis. Lecture de contenu : Offre/usage et sanctions pénales distingués ; liste production/trafic/cession/détention conservée même si juridiquement discutable. All EU member states et compétence des États inchangés.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00146",
+      "node_id": "A0130",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00080",
+      "direct_fit": true,
+      "rationale": "Les objections distinguent offre et usage, recommandation internationale, droits humains, marges juridiques et précédent uruguayen ; elles ciblent la difficulté juridique. Cible : La légalisation du cannabis est préconisée par la Commission mondiale sur la politique des drogues. Lecture de contenu : Nom de l’organisme correctement rendu Global Commission on Drug Policy ; préconisation conservée sans nouveau contenu.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00147",
+      "node_id": "A0131",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00080",
+      "direct_fit": true,
+      "rationale": "Les objections distinguent offre et usage, recommandation internationale, droits humains, marges juridiques et précédent uruguayen ; elles ciblent la difficulté juridique. Cible : Le strict respect des conventions sur les stupéfiants est contraire aux traités internationaux relatifs aux droits de l'homme. Lecture de contenu : Prééminence juridique alléguée et condition si nous démontrions, vies de jeunes OU de malades sont gardées. Ne pas réparer l’assimilation sauver des vies/soulager la douleur de la source.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00148",
+      "node_id": "A0132",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00080",
+      "direct_fit": true,
+      "rationale": "Les objections distinguent offre et usage, recommandation internationale, droits humains, marges juridiques et précédent uruguayen ; elles ciblent la difficulté juridique. Cible : La légalisation du cannabis serait possible au titre du principe d'opportunité ou d'une expérimentation scientifique. Lecture de contenu : Conditionnel rapporté par des juristes rendu might be possible ; le libellé parent devrait reste should, sans les uniformiser. Opportunité traduit par prosecutorial discretion en contexte juridique.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00149",
+      "node_id": "A0133",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00080",
+      "direct_fit": true,
+      "rationale": "Les objections distinguent offre et usage, recommandation internationale, droits humains, marges juridiques et précédent uruguayen ; elles ciblent la difficulté juridique. Cible : Les critiques de l'OICS n'ont pas empêché l'adoption de la légalisation du cannabis en Uruguay. Lecture de contenu : Négation n’ont pas empêché et adoption en Uruguay préservées ; ne pas revenir à l’ancien absolu aucune condamnation internationale.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00150",
+      "node_id": "A0134",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00081",
+      "direct_fit": true,
+      "rationale": "Un mouvement de retour en arrière limite l’argument tiré de la diffusion internationale de la réforme. Cible : Les pays ayant dépénalisé le cannabis font marche arrière. Lecture de contenu : Royaume-Uni, Labour et quatre ans gardés sans remplacer par données actuelles de classification. Accès non-résidents et distinction dur/doux gardés comme propos datés ; deux objections exactes.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00151",
+      "node_id": "A0135",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00082",
+      "direct_fit": true,
+      "rationale": "Les objections distinguent vente libre et vente encadrée, puis contestent qu’un défaut de majorité suffise à rejeter la réforme. Cible : Les Français sont favorables à ce que la vente et l'usage du cannabis soient autorisés sous certaines conditions. Lecture de contenu : Six/dix contre trois/dix, 78/85, 2008, restrictions adultes/conduite et 52 % avec contrôle étatique tous présents. Ne pas assimiler opposition vente libre à rejet de toute légalisation.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00152",
+      "node_id": "A0136",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00082",
+      "direct_fit": true,
+      "rationale": "Les objections distinguent vente libre et vente encadrée, puis contestent qu’un défaut de majorité suffise à rejeter la réforme. Cible : Certaines lois prises contre la majorité ont été de vrais progrès sociétaux. Lecture de contenu : Exemples historiques et opinion hostile conservés. Résumé : or est plus fidèle au ou source pour IVG/homosexualité que le and fourni ; ajustement ciblé de la coordination, sans élargir le résumé.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00153",
+      "node_id": "A0137",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00087",
+      "direct_fit": true,
+      "rationale": "Les exemples de régulation stricte et de contrôle étatique contestent que le marché impose nécessairement un modèle commercial dérégulé. Cible : Certains pays comme l'Uruguay encadrent fortement le marché du cannabis. Lecture de contenu : Some countries such as Uruguay et intensité tightly correspondent ; pas de résumé ni de citation dans la source.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00154",
+      "node_id": "A0138",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00087",
+      "direct_fit": true,
+      "rationale": "Les exemples de régulation stricte et de contrôle étatique contestent que le marché impose nécessairement un modèle commercial dérégulé. Cible : Un contrôle d'État de la vente de cannabis est possible en France, à l'image de l'alcool. Lecture de contenu : Possible contrôle d’État, pays France et analogie alcool conservés ; aucune édition juridique ou forme de monopole nouvelle insérée.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00155",
+      "node_id": "A0139",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00088",
+      "direct_fit": true,
+      "rationale": "Le contre-exemple des réformes sans légalisation des drogues dures et la pente glissante contestent l’enchaînement ; l’argument sur les drogues dures en conteste aussi la valeur négative. Cible : Parmi les États ayant légalisé le cannabis, aucun n'a légalisé de drogue dure. Lecture de contenu : Aucun État et aucune drogue dure gardés ; nuance petites quantités/certaines drogues et remarque alcool considéré dur par certains maintenues. Pour cohérence littérale, préserver or entre exemples Portugal/République tchèque.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00156",
+      "node_id": "A0140",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00088",
+      "direct_fit": true,
+      "rationale": "Le contre-exemple des réformes sans légalisation des drogues dures et la pente glissante contestent l’enchaînement ; l’argument sur les drogues dures en conteste aussi la valeur négative. Cible : Sophisme de la pente glissante. Lecture de contenu : Étiquette doctrinale courte Slippery slope fallacy conservée ; absence de résumé/citation et de established-name ajouté automatiquement respectée.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00157",
+      "node_id": "A0141",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00088",
+      "direct_fit": true,
+      "rationale": "Le contre-exemple des réformes sans légalisation des drogues dures et la pente glissante contestent l’enchaînement ; l’argument sur les drogues dures en conteste aussi la valeur négative. Cible : Légaliser les drogues dures serait bénéfique pour la société. Lecture de contenu : Conditionnel bénéfice pour société conservé, sans introduire une préférence actuelle du traducteur.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00158",
+      "node_id": "A0142",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00089",
+      "direct_fit": true,
+      "rationale": "Les objections discutent l’inévitabilité de la hausse par comparaison internationale, effet du prix et tendances sous prohibition. Cible : L'exemple de certains pays montre que la légalisation du cannabis n'augmente pas son nombre d'usagers. Lecture de contenu : Some countries évite de généraliser ; crochets d’attribution aux Pays-Bas et contraste prédiction d’explosion/consommation en baisse, surtout jeunes, conservés.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00159",
+      "node_id": "A0143",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00089",
+      "direct_fit": true,
+      "rationale": "Les objections discutent l’inévitabilité de la hausse par comparaison internationale, effet du prix et tendances sous prohibition. Cible : Le prix de vente est ce qui joue un rôle déterminant dans la consommation de cannabis. Lecture de contenu : Deux citations gardent trois scénarios de prix, environ 5,50, jusqu’à un milliard et baisse 80 % ; conditions et inevitability restent celles des auteurs, pas de résultats nouveaux.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00160",
+      "node_id": "A0014",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00089",
+      "direct_fit": true,
+      "rationale": "Les objections discutent l’inévitabilité de la hausse par comparaison internationale, effet du prix et tendances sous prohibition. Cible : La consommation de cannabis augmente en France. Lecture de contenu : 13 millions, au moins une fois, 18–64 ans, 24/29/33 et 2000/2005/2011 préservés. L’objection de fléchissement demeure opposée, sans conciliation artificielle.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00161",
+      "node_id": "A0144",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00090",
+      "direct_fit": true,
+      "rationale": "La possibilité de dépénaliser l’ensemble des drogues répond au risque de report vers les produits encore interdits. Cible : On peut tout à fait dépénaliser toutes les drogues. Lecture de contenu : Entirely possible et toutes drogues préservés ; patients rather than offenders fidèle malgré faute maladesd dans la source, sans reprise de la faute ni nouvelle donnée portugaise.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00162",
+      "node_id": "A0145",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00091",
+      "direct_fit": true,
+      "rationale": "La difficulté d’achat légal des mineurs oppose un mécanisme de protection à l’annonce d’un danger accru. Cible : Pour un mineur, avec la légalisation du cannabis, il serait plus difficile de s'approvisionner en magasin qu'actuellement au marché noir. Lecture de contenu : Comparaison conditionnelle commerces/marché noir actuel conservée. Résumé, y compris thèse médicale forte et guillemets autour de protéger, restitué sans correction documentaire silencieuse.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00163",
+      "node_id": "A0146",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00092",
+      "direct_fit": true,
+      "rationale": "Les réponses invoquent des mesures de transition et les dommages territoriaux de la politique concurrente. Cible : Des solutions existent pour minimiser les impacts de la légalisation du cannabis sur les populations des banlieues. Lecture de contenu : Conditionnel would, 260000, trois quarts, quatre villes et entrée en vigueur au 1 janvier 2018 préservés. Disadvantaged suburban communities explicite le sens contextuel des banlieues, pas toute banlieue. Référence Appel française toujours ouverte.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00164",
+      "node_id": "A0036",
+      "declared_depth": 3,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00092",
+      "direct_fit": true,
+      "rationale": "Les réponses invoquent des mesures de transition et les dommages territoriaux de la politique concurrente. Cible : La guerre contre la drogue exacerbe les persécutions des minorités. Lecture de contenu : Résumé polémique, cinq citations et réserves may/suggests/according to gardés ; tous chiffres de féminicides et dates conservés. Q042 : on record élargit inutilement la portée de année affichant les pires chiffres ; préférer the year with the worst figures. Q044 : lien Weather Underground reste français dans le texte traduit, cible anglaise à vérifier.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00165",
+      "node_id": "A0147",
+      "declared_depth": 4,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00097",
+      "direct_fit": true,
+      "rationale": "L’action d’intérêts économiques fournit une autre explication de l’attractivité que la seule licéité. Cible : Le tabac et l'alcool sont attractifs parce que de nombreux intérêts s'emploient à les rendre attractifs. Lecture de contenu : Nombreux intérêts, causalité et ajout aussi de la citation conservés ; pas de nom de lobby inventé.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00166",
+      "node_id": "A0148",
+      "declared_depth": 4,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00110",
+      "direct_fit": true,
+      "rationale": "Le risque à toute dose attaque directement la restriction de danger au seul abus. Cible : Le tabac et l'alcool sont dangereux quelle que soit la quantité. Lecture de contenu : Toutes quantités, même faible dose/modérée, 28 millions/1990–2016 et persistance des lésions conservés ; direct link ne devient pas une causalité démontrée par le traducteur.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00167",
+      "node_id": "A0149",
+      "declared_depth": 4,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00112",
+      "direct_fit": true,
+      "rationale": "L’usage antalgique et relaxant fournit un contre-exemple au seul but de planer. Cible : Le cannabis peut être utilisé pour calmer des douleurs et se relaxer. Lecture de contenu : Can be used, douleurs et détente conservés ; page sans résumé ni citation complétée artificiellement.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00168",
+      "node_id": "A0150",
+      "declared_depth": 4,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00117",
+      "direct_fit": true,
+      "rationale": "L’objection conteste le présupposé d’une loi non appliquée en invoquant le renforcement de la répression. Cible : La loi est non seulement appliquée, mais la répression s'est renforcée depuis 2001. Lecture de contenu : Non seulement appliquée mais répression renforcée conservé ; Q061 identique de sens à Q002 et repères MILDT inchangés.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00169",
+      "node_id": "A0151",
+      "declared_depth": 4,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00150",
+      "direct_fit": true,
+      "rationale": "Les deux objections contestent une généralisation des retours en arrière, par le cas néerlandais et la diffusion des réformes. Cible : Les Pays-Bas n'ont pas fait marche arrière sur la dépénalisation du cannabis. Lecture de contenu : Merely conserve n’ont fait que ; majorité et amont de la chaîne logistique gardés, sans étendre le soutien à toute politique de vente libre.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    },
+    {
+      "occurrence_id": "O00170",
+      "node_id": "A0152",
+      "declared_depth": 4,
+      "placement_status": "approved",
+      "declared_function": "objection",
+      "semantic_target": "O00150",
+      "direct_fit": true,
+      "rationale": "Les deux objections contestent une généralisation des retours en arrière, par le cas néerlandais et la diffusion des réformes. Cible : Les pays et états ayant dépénalisé le cannabis sont de plus en plus nombreux. Lecture de contenu : More and more traduit de plus en plus et countries/states restent deux catégories, pas uniquement pays souverains.",
+      "correction": {
+        "action": "none",
+        "target_node_id": null,
+        "new_parent_occurrence_id": null,
+        "new_relation": null,
+        "new_branch": null,
+        "page_disposition": null,
+        "reason": "",
+        "edit_summary_parent": "",
+        "edit_summary_page": ""
+      },
+      "subordinate_review": {
+        "parent_is_best_immediate_target": true,
+        "relation_to_parent_explicit": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{{Argument
+|quotes={{Quote
+|quote=One in three people who have tried cannabis becomes a regular user.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=54
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Cannabis has relatively low addictive potential
+|displayed-title=It has relatively low addictive potential
+}}{{Objection
+|page=The addictive potential of cannabis is neither inherently low nor high; it depends on the level of use
+|displayed-title=Its addictive potential is neither inherently low nor high; it depends on the level of use
+}}{{Objection
+|page=Drug dependence is not independent of the person and their environment. Drugs are a way of coping with life, not the cause of dependence
+|displayed-title=Drug dependence is not independent of the person and their environment. Drugs are a way of coping with life, not the cause of dependence
+}}{{Objection
+|page=Many substances far more harmful and addictive than cannabis are legal
+|displayed-title=Less so than alcohol, which is legal
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, health, addiction
+|webliography=
+{{Web reference
+|link=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+}}
+{{Web reference
+|link=https://europepmc.org/article/MED/21145178
+|page=Probability and predictors of transition from first use to dependence on nicotine, alcohol, cannabis, and cocaine: results of the National Epidemiologic Survey on Alcohol and Related Conditions (NESARC)
+|authors=Lopez-Quintero C, Pérez de los Cobos J, Hasin DS, Okuda M, Wang S, Grant BF, Blanco C
+|site=Europe PMC
+|date=2011
+}}
+}}

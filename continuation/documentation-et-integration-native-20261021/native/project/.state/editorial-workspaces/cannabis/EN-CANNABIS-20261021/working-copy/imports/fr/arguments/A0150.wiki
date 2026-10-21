@@ -1,0 +1,13 @@
+{{Argument
+|citations={{Citation
+|citation=Depuis dix ans, l’arsenal répressif s’est clairement développé, explique M.Bergeron, qui évoque « une tendance à la repénalisation ». « La toxicomanie n’a pas échappé à la volonté de tolérance zéro qui traverse toute la société, et qui se traduit par une pénalisation accrue », remarque de son côté Nicole Maestracci, magistrate et présidente de la Mission interministérielle de lutte contre la drogue et la toxicomanie (Mildt) de 1998 à 2002.
+|auteurs=Laetitia Clavreul
+|ouvrage=Le Monde
+|date=15/06/2011
+|lien=https://www.lemonde.fr/societe/article/2011/06/15/la-france-plus-severe-que-ses-voisins-europeens_1536402_3224.html
+
+|article=La France plus sévère que ses voisins européens
+
+}}
+|date-création=2021-08-05
+}}

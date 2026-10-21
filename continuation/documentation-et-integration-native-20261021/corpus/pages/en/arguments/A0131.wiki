@@ -1,0 +1,11 @@
+{{Argument
+|summary=The Netherlands has merely adjusted its coffee-shop regulations. Moreover, a majority of the public supports legalising the upstream supply chain.
+|sections=Health, Society
+|keywords=cannabis, decriminalisation, Netherlands
+|webliography=
+{{Web reference
+|link=https://www.government.nl/topics/drugs/toleration-policy-regarding-soft-drugs-and-coffee-shops
+|page=Toleration policy regarding soft drugs and coffee shops
+|site=Government of the Netherlands
+}}
+}}

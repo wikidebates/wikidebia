@@ -1,0 +1,16 @@
+{
+  "schema": "wikidebia-corpus-promotion-ready-1.0",
+  "debate_id": "cannabis",
+  "global_status": "graph_validated",
+  "review_sha256": "d6746c3256dc135c1c1589c2b6257ff19bcc504e4c85dc39ab4eb4f5ea842a0f",
+  "source_build_sha256": "f5c52a6f840e5e7447baca2dab111311f6da1e5191ec94cd118fe4ab6b97c495",
+  "approved_build_sha256": "98e868fd81a4e3edcab4afd0a23ee9bf2f26b1098841519d02f4016e562a56da",
+  "structural_sha256": "49ff8e4e5efb0f755ddbb149966013beb14085eeca0d61fd7e63b86e4c939b89",
+  "validator_version": "0.4.105",
+  "preflight_report_path": "reports/graph_review_preflight.json",
+  "preflight_report_sha256": "74a75fd689458e3787a8b91e0343768b10d0c2ff18f036077676cddec8f0df53",
+  "validation_report_path": "reports/graph_review_validation.json",
+  "validation_report_sha256": "0f5bc3cd0124a21dfd716ca4e775fe1c509ba66c075abcd63a389b4d08977b95",
+  "prepared_at": "2026-10-21T10:05:11+00:00",
+  "no_final_pages": true
+}

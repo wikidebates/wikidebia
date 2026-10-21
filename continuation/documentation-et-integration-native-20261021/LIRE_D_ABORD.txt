@@ -1,0 +1,8 @@
+WIKIDÉB’IA — TRADUCTION CANNABIS FR → EN
+
+Copie à reprendre : corpus/.
+Lire RAPPORT_REPRISE.md puis CONTINUER_AVEC_CODEX.txt.
+153 pages relues, 149 citations et deux passages conservés, 40 références sélectionnées.
+État : relecture textuelle et sélection documentaire effectuées ; validation documentaire complète et workflow natif non finalisés.
+Aucune publication wiki. Aucune convergence officielle revendiquée.
+Le MANIFEST_SHA256.json à la racine est celui de ce nouveau paquet. Le manifeste sous provenance/livraison-v2 est uniquement historique.

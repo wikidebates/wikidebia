@@ -1,0 +1,20 @@
+{{Argument
+|quotes={{Quote
+|quote=The idea is gaining ground in Western countries: Canada and thirteen US states permit it, while its use is tolerated in the Netherlands, Germany, Spain, Portugal, Italy, Austria, Iceland, Belgium, Denmark and the Czech Republic. In France at present, only temporary use authorisations (ATUs) issued by the National Agency for Medicines and Health Products Safety (ASNM) allow a very small number of patients access to cannabis-based products.
+|authors=Joël Plantet
+|article=Dépénalisation, légalisation, statu quo ?
+|work=Lien social
+|date=8 November 2012
+|link=https://www.lien-social.com/Depenalisation-legalisation-statu-quo
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Medical and recreational cannabis use can be kept separate
+|displayed-title=Medical and recreational cannabis use can be kept separate
+}}{{Objection
+|page=Medical cannabis use is not without risks
+|displayed-title=Is medical cannabis use appropriate?
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

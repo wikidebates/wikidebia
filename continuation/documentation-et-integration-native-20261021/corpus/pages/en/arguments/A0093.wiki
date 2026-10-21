@@ -1,0 +1,48 @@
+{{Argument
+|justifications={{Justification
+|page=Cannabis prohibition leads to numerous checks that can affect anyone
+|displayed-title=Prohibition leads to numerous checks that can affect anyone
+}}{{Justification
+|page=Cannabis prohibition creates a highly lucrative underground economy with corruption, money laundering, youth recruitment, violence, insecurity and arms trafficking
+|displayed-title=It fuels organised crime
+}}{{Justification
+|page=Cannabis prohibition increases profitability by driving up prices
+|displayed-title=Prohibition increases cannabis profitability by driving up prices
+}}{{Justification
+|page=Efforts to combat cannabis trafficking are costly and unsuccessful
+|displayed-title=Efforts to combat trafficking are costly and unsuccessful
+}}{{Justification
+|page=Regulated distribution can place limits on commercial strategies
+|displayed-title=Controlled distribution can regulate commercial strategies
+}}{{Justification
+|page=Cannabis prohibition deprives the state of substantial revenue, and leaving this market untaxed effectively subsidises it
+|displayed-title=Substantial loss of state revenue. Leaving a market untaxed effectively subsidises it
+}}{{Justification
+|page=Clandestine cannabis production causes many fires
+|displayed-title=Clandestine cannabis production causes many fires
+}}{{Justification
+|page=The war on drugs intensifies the persecution of minorities
+|displayed-title=The war on drugs intensifies the persecution of minorities
+}}{{Justification
+|page=Punitive drug policies can burden people in precarious circumstances and prisons
+|displayed-title=Drug penalties can increase pressure on prisons
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+|bibliography=
+{{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+|webliography=
+{{Web reference
+|link=https://www.aclu.org/report/tale-two-countries-racially-targeted-arrests-era-marijuana-reform
+|page=A Tale of Two Countries: Racially Targeted Arrests in the Era of Marijuana Reform
+|site=American Civil Liberties Union
+|date=2020
+}}
+}}

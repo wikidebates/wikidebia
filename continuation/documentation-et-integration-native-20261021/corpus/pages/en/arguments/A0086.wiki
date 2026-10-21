@@ -1,0 +1,29 @@
+{{Argument
+|quotes={{Quote
+|quote=Punitive enforcement and criminalisation exclude and reject those who need help, create trafficking and more dangerous underground patterns of use, and obstruct information and prevention (according to doctors Béatrice Stambul and Jean-Pierre Lhomme). […] Punitive enforcement primarily affects young people from visible minorities and disadvantaged neighbourhoods. It deepens distrust of the police and sustains feelings of discrimination, especially among those stopped several times a day. The clearest example is Seine-Saint-Denis: in 2008, the department ranked 42nd for the number of regular users and first for arrests.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=88 et 78
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Most cannabis users are not on the margins of society. Why turn them into criminals?
+|authors=Michel Henry
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=13
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition, underground activity
+|webliography=
+{{Web reference
+|link=https://www.aclu.org/report/tale-two-countries-racially-targeted-arrests-era-marijuana-reform
+|page=A Tale of Two Countries: Racially Targeted Arrests in the Era of Marijuana Reform
+|site=American Civil Liberties Union
+|date=2020
+}}
+}}

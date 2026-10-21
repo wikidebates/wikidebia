@@ -1,0 +1,23 @@
+{{Argument
+|summary=People use cannabis even in countries where doing so is punishable by death.
+|quotes={{Quote
+|quote=Continuing to use a substance despite knowing its harmful consequences is, in fact, part of the definition of addiction. Prohibition and punitive enforcement against use therefore cannot be enough to prevent psychoactive substance use, because users find these substances not only harmful but also appealing.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=76
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Law, Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, addiction, law
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/34068202
+|page=Cannabis Policy Changes and Adolescent Cannabis Use: Evidence from Europe
+|authors=Benedetti E, Resce G, Brunori P, Molinaro S
+|site=Europe PMC
+|date=2021
+}}
+}}

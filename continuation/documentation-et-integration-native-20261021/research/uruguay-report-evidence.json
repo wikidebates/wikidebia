@@ -1,0 +1,11 @@
+{
+  "id": "uruguay-pdf",
+  "url": "https://www.brookings.edu/wp-content/uploads/2018/03/gs_032118_uruguaye28099s-cannabis-law_final.pdf",
+  "params": null,
+  "accessed_at": "2026-10-21T10:26:25.622196+00:00",
+  "http_status": 200,
+  "final_url": "https://www.brookings.edu/wp-content/uploads/2018/03/gs_032118_uruguaye28099s-cannabis-law_final.pdf",
+  "body_path": "/workspace/work/cannabis-completion-20261021/responses/uruguay-pdf.body",
+  "sha256": "9f2f3a607ee69baddb4084c6071f457387f03545a6b8d3e884da942e906d3627",
+  "content_type": "application/pdf"
+}

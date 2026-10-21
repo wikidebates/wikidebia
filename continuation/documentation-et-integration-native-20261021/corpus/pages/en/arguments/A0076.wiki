@@ -1,0 +1,21 @@
+{{Argument
+|quotes={{Quote
+|quote=This is what legal experts such as Professor Francis Caballero and the Dutchman Mario Lap maintain.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=105
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Law, Health, Science, Society
+|keywords=cannabis, legalisation, scientific experimentation
+|webliography=
+{{Web reference
+|link=https://www.unodc.org/pdf/convention_1961_en.pdf
+|page=Single Convention on Narcotic Drugs, 1961, as amended by the 1972 Protocol
+|site=United Nations Office on Drugs and Crime
+|date=1972
+}}
+}}

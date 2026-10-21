@@ -1,0 +1,13 @@
+{{Argument
+|citations={{Citation
+|citation=Il faut s’appuyer sur l’expertise de l’usager. On doit s’intéresser à lui plus qu’à la substance. Le cannabis est en ce sens symbolique : une drogue dite douce qui peut faire l’objet d’un usage dur. L’inverse aussi peut être vrai, de substances dites dures dont on peut faire un usage doux. Il faut donc mettre l’usage au centre des politiques. Mais en France, sur le cannabis, on promeut juste l’abstinence.
+|auteurs=Laurent Appel
+|article=«Il faut une approche ni hypocrite ni Bisounours»
+|ouvrage=Libération
+|date=13/04/2014
+|lien=https://www.liberation.fr/societe/2014/04/13/il-faut-une-approche-ni-hypocrite-ni-bisounours_996796
+}}
+|rubriques=Philosophie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Overdose, Dangerosité
+|date-création=2019-08-09
+}}

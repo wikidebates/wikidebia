@@ -1,0 +1,20 @@
+{{Argument
+|citations={{Citation
+|citation=L’idée fait son chemin dans les pays occidentaux : ainsi, le Canada et treize états des États-Unis l’autorisent ; son usage est toléré aux Pays-Bas, en Allemagne, en Espagne, au Portugal, en Italie, en Autriche, en Islande, en Belgique, au Danemark, ou encore en République tchèque. En France actuellement, seules des autorisations temporaires d’utilisation (ATU) délivrées par l’Agence nationale de sécurité du médicament et des produits de santé (ASNM) permettent à quelques rares patients de pouvoir disposer de produits issus du cannabis.
+|auteurs=Joël Plantet
+|article=Dépénalisation, légalisation, statu quo ?
+|ouvrage=Lien social
+|date=8/11/2012
+|lien=https://www.lien-social.com/Depenalisation-legalisation-statu-quo
+}}
+|objections={{Objection
+|page=On peut dissocier l'utilisation thérapeutique et l'utilisation récréative du cannabis
+|titre-affiché=On peut dissocier l'utilisation thérapeutique et l'utilisation récréative du cannabis
+}}{{Objection
+|page=L'utilisation thérapeutique du cannabis n'est pas sans danger
+|titre-affiché=L'utilisation thérapeutique du cannabis est-elle appropriée ?
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

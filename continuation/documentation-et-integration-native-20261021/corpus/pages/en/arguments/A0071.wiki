@@ -1,0 +1,25 @@
+{{Argument
+|summary=Legalisation risks increasing consumption, particularly among young people, through social normalisation and a lower perception of risk.
+|quotes={{Quote
+|quote=Legalisation sends an implicit message: if it is legal, it is harmless. That is a serious misconception.
+|authors=Volkow
+|article=Marijuana: Facts Parents Need to Know
+|work=National Institute on Drug Abuse (NIDA)
+|date=2020
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Experience shows that legalising a drug is not accompanied by increased consumption
+|displayed-title=Experience shows that legalising a drug is not accompanied by increased consumption
+}}
+|sections=Education, Psychology, Health, Society
+|keywords=risk perception, young people, normalisation
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/34068202
+|page=Cannabis Policy Changes and Adolescent Cannabis Use: Evidence from Europe
+|authors=Benedetti E, Resce G, Brunori P, Molinaro S
+|site=Europe PMC
+|date=2021
+}}
+}}

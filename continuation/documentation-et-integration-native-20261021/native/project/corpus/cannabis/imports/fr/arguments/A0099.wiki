@@ -1,0 +1,15 @@
+{{Argument
+|citations={{Citation
+|citation=Pour le tabac et l’alcool, il peut être admis que le danger naît de l’abus, ce qui ne semble pas le cas des stupéfiants.
+|auteurs=Eric de Montgolfier
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=219
+|édition=Denoël
+|date=2011
+}}
+|objections={{Objection
+|page=Le tabac et l'alcool sont dangereux quelle que soit la quantité.
+|titre-affiché=Le tabac et l'alcool sont dangereux quelle que soit la quantité.
+}}
+|date-création=2021-08-05
+}}

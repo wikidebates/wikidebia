@@ -1,0 +1,24 @@
+{{Argument
+|citations={{Citation
+|citation=On ne peut arguer de l’échec d’une législation qui a été insuffisamment appliquée pour la faire disparaître. Il faut d’abord s’appliquer à la faire appliquer.
+|auteurs=Jean Costentin
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=224
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}{{Citation
+|citation=Depuis dix ans, l’arsenal répressif s’est clairement développé, explique M.Bergeron, qui évoque « une tendance à la repénalisation ». « La toxicomanie n’a pas échappé à la volonté de tolérance zéro qui traverse toute la société, et qui se traduit par une pénalisation accrue », remarque de son côté Nicole Maestracci, magistrate et présidente de la Mission interministérielle de lutte contre la drogue et la toxicomanie (Mildt) de 1998 à 2002.
+|auteurs=Laetitia Clavreul
+|ouvrage=Le Monde
+|date=15/06/2011
+|lien=https://www.lemonde.fr/societe/article/2011/06/15/la-france-plus-severe-que-ses-voisins-europeens_1536402_3224.html
+}}
+|objections={{Objection
+|page=La loi est non seulement appliquée, mais la répression s'est renforcée depuis 2001
+|titre-affiché=La loi est non seulement appliquée, mais la répression s'est renforcée depuis 2001
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

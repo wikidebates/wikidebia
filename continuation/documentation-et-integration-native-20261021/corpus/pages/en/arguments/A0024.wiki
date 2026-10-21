@@ -1,0 +1,17 @@
+{{Argument
+|quotes={{Quote
+|quote=I grew up with an alcoholic mother, and I have had addiction problems myself and always will. Society sees it as something you control, something you choose to do. People say things like “just stop” or “do it for your children”… But it is not seen as an illness. Yet it is one; that has been proved. We have enormous empathy for people with cancer. We have no empathy for addicts, who are also people whose genetics and physiology mean they cannot stop using.
+|authors=Asia Argento
+|article=Asia Argento sur #MeToo : "C’était mon devoir de parler"
+|work=rtbf.be
+|date=15 June 2022
+|link=https://www.rtbf.be/article/asia-argento-sur-metoo-cetait-mon-devoir-de-parler-11013220
+|warnings=AI-translated quote
+}}
+|webliography=
+{{Web reference
+|link=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+}}
+}}

@@ -1,0 +1,16 @@
+{{Argument|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/21036393
+|page=Drug harms in the UK: a multicriteria decision analysis
+|authors=Nutt DJ, King LA, Phillips LD, Independent Scientific Committee on Drugs
+|site=Europe PMC
+|date=2010
+}}
+{{Web reference
+|link=https://europepmc.org/article/MED/21145178
+|page=Probability and predictors of transition from first use to dependence on nicotine, alcohol, cannabis, and cocaine: results of the National Epidemiologic Survey on Alcohol and Related Conditions (NESARC)
+|authors=Lopez-Quintero C, Pérez de los Cobos J, Hasin DS, Okuda M, Wang S, Grant BF, Blanco C
+|site=Europe PMC
+|date=2011
+}}
+}}

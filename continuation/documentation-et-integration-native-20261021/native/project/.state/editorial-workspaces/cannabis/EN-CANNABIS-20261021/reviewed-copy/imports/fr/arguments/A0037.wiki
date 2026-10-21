@@ -1,0 +1,28 @@
+{{Argument
+|initialisation=Justification@6284
+|citations={{Citation
+|citation=Une des croyances les plus tenaces pour justifier le maintien du système carcéral, c’est que la prison garantirait notre sécurité. Elle implique l’idée qu’on enfermerait surtout des personnes auteur.e.s de « violences sur personne ». Pourtant, une large majorité des détenu·e·s est enfermée pour des faits liés à
+
+la consommation ou au commerce de substances illicites, ce qui fait relativiser cette idée de « détenu.e.s tou.te.s violent.e.s ».
+|auteurs=Collectif
+|article=Pourquoi faut-il en finir avec les prisons ?
+|ouvrage=Collectif de luttes anti-carcérales
+|date=11/2020
+|lien=https://laclac.org/wp-content/uploads/2020/11/BROCHURE_de%CC%81construction.pdf&
+}}{{Citation
+|citation=Qui sont-ils, ces détenus ? Les trois quarts sont en détention préventive. Les autres ont des problèmes relevant plus de la santé mentale ou de la misère socio-économique que la délinquance. « Des détenus, purement “code Pénal”, ce n’est que 10 % » souligne la direction. C’est-à-dire des personnes réellement dangereuses qu’il faut impérativement isoler du reste de la société.
+|auteurs=Nabil Boukili, Morgane De Meur
+|article=Un député visite la prison : « Je comprends la colère des gardiens »
+|ouvrage=Parti du Travail de Belgique
+|date=9 janvier 2020
+|lien=https://www.ptb.be/actualites/un-depute-visite-la-prison-je-comprends-la-colere-des-gardiens
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://www.service-public.gouv.fr/particuliers/vosdroits/F33341
+|page=Que risque-t-on pour usage de drogues ?
+|site=Service Public / DILA
+|date=21/08/2026
+}}
+
+|date-création=2022-12-27
+}}

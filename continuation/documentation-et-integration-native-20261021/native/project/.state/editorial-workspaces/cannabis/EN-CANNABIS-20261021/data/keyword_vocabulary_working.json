@@ -1,0 +1,2939 @@
+{
+  "schema": "wikidebia-keyword-vocabulary-working-1.0",
+  "debate_id": "cannabis",
+  "work_id": "EN-CANNABIS-20261021",
+  "status": "draft",
+  "entries": [
+    {
+      "fr": "Accidents de la route",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « Accidents de la route » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0070"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0127"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0128"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Addiction",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0010"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0064"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0067"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0123"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0124"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0125"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Alcool",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0041"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0066"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0088"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0128"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0138"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0147"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Attractivité",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0018"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0087"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0088"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0147"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Banlieue",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0083"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0146"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Cannabis",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "debate",
+          "entity_id": "debate"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0001"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0002"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0003"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0004"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0005"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0006"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0009"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0010"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0011"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0012"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0013"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0014"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0016"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0018"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0020"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0021"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0022"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0023"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0024"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0025"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0026"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0027"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0028"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0029"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0030"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0031"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0032"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0033"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0034"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0035"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0036"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0037"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0038"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0039"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0040"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0041"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0042"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0043"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0044"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0045"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0046"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0047"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0048"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0049"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0050"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0052"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0054"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0056"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0057"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0058"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0059"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0060"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0061"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0064"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0065"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0066"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0067"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0068"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0069"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0070"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0071"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0072"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0073"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0074"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0075"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0076"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0077"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0078"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0079"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0080"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0081"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0082"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0083"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0084"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0085"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0086"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0087"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0088"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0089"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0090"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0091"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0092"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0093"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0094"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0095"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0096"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0097"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0098"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0099"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0100"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0101"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0102"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0103"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0104"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0105"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0106"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0107"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0108"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0109"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0110"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0111"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0112"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0113"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0114"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0115"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0116"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0117"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0118"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0119"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0120"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0121"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0122"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0123"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0124"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0125"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0126"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0127"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0128"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0129"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0130"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0131"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0132"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0133"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0134"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0135"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0136"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0137"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0138"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0139"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0140"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0141"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0142"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0143"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0144"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0145"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0146"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0147"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0148"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0149"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0150"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0151"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0152"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Clandestinité",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0025"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Conflits d’intérêts",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « Conflits d’intérêts » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0053"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Consommation",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0014"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0022"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0080"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0084"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0142"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0143"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Contournement fiscal",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « Contournement fiscal » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0055"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Contrôle",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0138"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Conventions internationales",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « Conventions internationales » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0129"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Coût",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0016"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0069"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "criminalité",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0055"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Dangerosité",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0011"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0013"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0065"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0068"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0082"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0116"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0117"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0118"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0119"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0120"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0122"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0126"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Dealer",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0028"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Dissuasion",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0020"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0091"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0092"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Drogue dure",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « Drogue dure » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0028"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Drogues dures",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « Drogues dures » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0079"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0081"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0139"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Droits de l'homme",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « Droits de l'homme » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0131"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Dépendance",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0125"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Dépénalisation",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "debate",
+          "entity_id": "debate"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0001"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0002"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0003"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0004"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0005"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0006"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0009"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0010"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0011"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0012"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0013"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0018"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0020"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0021"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0022"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0024"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0025"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0026"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0027"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0028"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0030"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0031"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0032"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0033"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0034"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0035"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0038"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0039"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0040"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0041"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0043"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0044"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0045"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0046"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0047"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0048"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0049"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0050"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0054"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0056"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0058"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0059"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0060"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0064"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0065"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0066"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0067"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0068"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0069"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0070"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0071"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0075"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0077"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0079"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0080"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0081"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0082"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0083"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0087"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0088"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0091"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0092"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0097"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0105"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0106"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0110"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0111"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0112"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0113"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0114"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0115"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0116"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0117"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0118"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0119"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0120"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0122"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0123"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0124"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0125"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0126"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0127"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0128"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0129"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0130"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0131"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0139"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0142"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0143"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0145"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0146"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0147"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0151"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Echec",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0015"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Expérimentation scientifique",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « Expérimentation scientifique » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0132"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "fiscalité",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0062"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0063"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Impossibilité",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0071"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Interdiction",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0018"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0021"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0087"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0088"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0147"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Jeunesse",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0017"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0051"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Justice",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0026"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Libertés individuelles",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « Libertés individuelles » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0038"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0097"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Loi",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0064"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Lois du marché",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « Lois du marché » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0078"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Légalisation",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "debate",
+          "entity_id": "debate"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0001"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0002"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0003"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0004"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0005"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0006"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0009"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0010"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0011"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0012"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0013"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0018"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0020"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0021"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0022"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0024"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0025"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0026"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0027"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0028"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0030"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0031"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0032"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0033"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0034"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0035"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0038"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0039"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0040"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0041"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0043"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0044"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0045"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0046"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0047"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0048"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0049"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0050"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0054"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0056"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0058"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0059"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0060"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0064"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0065"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0066"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0067"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0068"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0069"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0070"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0072"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0073"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0075"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0076"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0077"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0078"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0079"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0080"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0081"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0082"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0083"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0087"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0088"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0091"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0092"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0097"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0105"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0106"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0110"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0111"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0112"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0113"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0114"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0115"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0116"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0117"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0118"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0119"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0120"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0122"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0123"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0124"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0125"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0126"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0127"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0128"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0132"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0133"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0134"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0135"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0138"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0139"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0142"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0143"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0145"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0146"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0147"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Législation",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0043"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0105"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Marché noir",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « Marché noir » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0007"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0008"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0062"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0063"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0145"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Mineurs",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0082"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Normalisation",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0051"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "normes sociales",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « normes sociales » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0019"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Opinion publique",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « Opinion publique » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0073"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0135"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Overdose",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0065"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0116"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0117"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0118"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0119"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0120"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Pays-Bas",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0151"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Perception du risque",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « Perception du risque » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0017"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0051"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Prison",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0026"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Prix de vente",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « Prix de vente » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0143"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "problèmes de santé publique",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « problèmes de santé publique » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0008"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0062"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0063"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Prohibition",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0001"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0002"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0004"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0009"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0018"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0020"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0021"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0022"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0024"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0025"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0026"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0027"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0028"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0038"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0039"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0040"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0041"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0064"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0069"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0087"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0088"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0091"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0092"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0147"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "protection des consommateurs",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « protection des consommateurs » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0007"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "protection des vulnérables",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « protection des vulnérables » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0019"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Prévention",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0017"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0024"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Qualité",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0027"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0122"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Santé",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0010"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0066"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0067"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0123"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0124"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0125"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Tabac",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0041"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0066"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0088"
+        },
+        {
+          "entity_type": "argument",
+          "entity_id": "A0147"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Toxicomanie",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0040"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Uruguay",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0133"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Usager",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0045"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Vente",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0138"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "économie informelle",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « économie informelle » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0055"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "Économie parallèle",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": true,
+      "multiword_exception_rationale": "Locution thématique conventionnelle « Économie parallèle » : son sens encyclopédique ne se réduit pas à une simple intersection de ses constituants.",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0030"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    },
+    {
+      "fr": "État",
+      "en": null,
+      "definition": "",
+      "kind": null,
+      "capitalization_policy": null,
+      "capitalization_rationale": "",
+      "atomic_concept": true,
+      "compositional_intersection": false,
+      "multiword_exception": false,
+      "multiword_exception_rationale": "",
+      "status": "pending_review",
+      "usages": [
+        {
+          "entity_type": "argument",
+          "entity_id": "A0138"
+        }
+      ],
+      "decision": "pending",
+      "rationale": ""
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{{Argument
+|quotes={{Quote
+|quote=Adding cannabis to tobacco increases its toxicity very substantially. (p. 33)
+Cannabis is also often combined with alcohol. Far from merely adding their respective effects, the resulting effect is much greater—what pharmacology calls potentiating synergy. (p. 59)
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, health, alcohol, tobacco
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/29117206
+|page=Cannabis, alcohol and fatal road accidents
+|authors=Martin JL, Gadegbeku B, Wu D, Viallon V, Laumon B
+|site=Europe PMC
+|date=2017
+}}
+}}

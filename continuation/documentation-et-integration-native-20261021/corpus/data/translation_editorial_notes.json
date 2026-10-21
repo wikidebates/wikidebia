@@ -1,0 +1,16 @@
+[
+  {
+    "id": "N001",
+    "page_id": "A0037",
+    "before_quote_id": "Q035",
+    "source_text": "'''Objection à Jean Costentin :''' Les bénéfices du cannabis médical sont occultés ou mésestimés.",
+    "target_text": "'''Objection to Jean Costentin:''' The benefits of medical cannabis are concealed or underestimated."
+  },
+  {
+    "id": "N002",
+    "page_id": "A0116",
+    "before_quote_id": "Q121",
+    "source_text": "''La contradiction entre les chiffres des docteurs Jean Costentin et Sanjay Gupta n'est qu'apparente : seul le second parle réellement de dépendance. Tous les consommateurs réguliers ne sont pas dépendants.''",
+    "target_text": "''The contradiction between the figures given by Dr Jean Costentin and Dr Sanjay Gupta is only apparent: only the latter is actually discussing dependence. Not all regular users are dependent.''"
+  }
+]

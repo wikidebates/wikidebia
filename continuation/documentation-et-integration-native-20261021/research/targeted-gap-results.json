@@ -1,0 +1,108 @@
+[
+  {
+    "id": "cae-search",
+    "url": "https://www.bing.com/search",
+    "params": {
+      "format": "rss",
+      "q": "site:cae-eco.fr cannabis 2019 English Auriol Geoffard"
+    },
+    "accessed_at": "2026-10-21T10:33:19.853549+00:00",
+    "http_status": 200,
+    "final_url": "https://www.bing.com/search?format=rss&q=site%3Acae-eco.fr+cannabis+2019+English+Auriol+Geoffard",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/cae-search.body",
+    "sha256": "6dc96fa222abea347918eda48c462f3a6b485ff28949ab0ff289356c87006e8f",
+    "content_type": "text/xml; charset=utf-8",
+    "candidates": [
+      {
+        "title": "THE BEST 10 CANNABIS DISPENSARIES IN SLIDELL, LA - Yelp",
+        "link": "https://www.yelp.com/search?cflt=cannabisdispensaries&find_loc=slidell%2C+la",
+        "description": "Best Cannabis Dispensaries in Slidell, LA - Last Updated October 2026 - search by hours, location, and more attributes."
+      },
+      {
+        "title": "TOP 10 BEST Cannabis Dispensaries in Slidell, LA - Updated 2026 ... - Yelp",
+        "link": "https://www.yelp.com/search?find_desc=Cannabis+Dispensaries&find_loc=Slidell%2C+LA",
+        "description": "\"Great place to get legal THC cannabinoid! They have gummies, drinks, chocolate, and more."
+      },
+      {
+        "title": "Cannabis - Wikipedia",
+        "link": "https://en.m.wikipedia.org/wiki/Cannabis",
+        "description": "Industrial hemp textile products are made from cannabis plants selected to produce an abundance of fibre. Cannabis also has a long history of being used for medicinal purposes, and as a recreational drug known by several slang terms, such as marijuana, pot or weed."
+      },
+      {
+        "title": "Cannabis (drug) - Wikipedia",
+        "link": "https://en.m.wikipedia.org/wiki/Cannabis_(drug)",
+        "description": "Tetrahydrocannabinol (THC) is the main psychoactive component of cannabis, and is one of the 483 known compounds in the plant along with at least 65 other cannabinoids, such as cannabidiol (CBD). Cannabis can be used by smoking, vaporizing, within food, or as an extract."
+      },
+      {
+        "title": "Cannabis (Marijuana, Weed): What It Is, Uses & Side Effects",
+        "link": "https://my.clevelandclinic.org/health/articles/4392-marijuana-cannabis",
+        "description": "Marijuana is a mind-altering substance that comes from the Cannabis sativa plant. It has several short-term and long-term effects, many of which scientists are still studying. As a substance, marijuana increases your risk of physical or psychological dependence. The effects of marijuana use can vary greatly from person to person. What Is Marijuana?"
+      },
+      {
+        "title": "Cannabis Program - Louisiana Department of Health",
+        "link": "https://ldh.la.gov/page/Cannabis",
+        "description": "The Cannabis Program regulates consumable hemp and therapeutic marijuana in the state of Louisiana."
+      }
+    ]
+  },
+  {
+    "id": "euda-policy",
+    "url": "https://www.euda.europa.eu/publications/topic-overviews/cannabis-policy/html_en",
+    "params": null,
+    "accessed_at": "2026-10-21T10:33:19.853847+00:00",
+    "http_status": 200,
+    "final_url": "https://www.euda.europa.eu/publications/topic-overviews/cannabis-policy/html_en",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/euda-policy.body",
+    "sha256": "aebd59234a1c6cd700e22d754e9e626b46c54547f06e4921ad849c80f346ef59",
+    "content_type": "text/html; charset=UTF-8"
+  },
+  {
+    "id": "commission-report",
+    "url": "https://www.globalcommissionondrugs.org/reports/war-on-drugs",
+    "params": null,
+    "accessed_at": "2026-10-21T10:33:19.855973+00:00",
+    "http_status": 200,
+    "final_url": "https://globalcommissionondrugs.org/war-on-drugs-an-epic-fail-bmj-editors-say/",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/commission-report.body",
+    "sha256": "26ceb88be01e0a7a3e61e70ca8f487f0bfd6f1d340f9c02458ded316022cd87d",
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "id": "convention-1988",
+    "url": "https://www.unodc.org/pdf/convention_1988_en.pdf",
+    "params": null,
+    "accessed_at": "2026-10-21T10:33:20.252292+00:00",
+    "http_status": 200,
+    "final_url": "https://www.unodc.org/pdf/convention_1988_en.pdf",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/convention-1988.body",
+    "sha256": "bdc7cef0def1aadc98dac8d6527076e32fe057722a7acacc348063bdd4b432c5",
+    "content_type": "application/pdf"
+  },
+  {
+    "id": "stanford-fallacies",
+    "url": "https://plato.stanford.edu/entries/fallacies/",
+    "params": null,
+    "accessed_at": "2026-10-21T10:33:21.326531+00:00",
+    "http_status": 200,
+    "final_url": "https://plato.stanford.edu/entries/fallacies/",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/stanford-fallacies.body",
+    "sha256": "45467658874e59756cafdde7e0efcaba81d7f7312ed7804b5560ac6c81db4e2f",
+    "content_type": "text/html"
+  },
+  {
+    "id": "crime-paper",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+    "params": {
+      "query": "DOI:\"10.1371/journal.pone.0092816\"",
+      "format": "json",
+      "resultType": "core",
+      "pageSize": 1
+    },
+    "accessed_at": "2026-10-21T10:33:21.854669+00:00",
+    "http_status": 200,
+    "final_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1371%2Fjournal.pone.0092816%22&format=json&resultType=core&pageSize=1",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/crime-paper.body",
+    "sha256": "1e6297f614e2e9e7cce67a18ea85a438dfa7345fd3dda3dcd00808e58206187c",
+    "content_type": "application/json;charset=UTF-8"
+  }
+]

@@ -1,0 +1,21 @@
+{{Argument
+|citations={{Citation
+|citation=La répression et la criminalisation excluent et rejettent ceux qui ont besoin d’aide, fabriquent du trafic et des consommations clandestines plus dangereuses et font obstacle à l’information et à la prévention. (Selon les docteurs Béatrice Stambul et Jean-Pierre Lhomme) […] La répression s’applique surtout aux jeunes issus des minorités visibles et de quartiers défavorisés. Elle renforce la défiance à l’égard de la police et entretient le sentiment de discrimination – surtout chez ceux contrôlés plusieurs fois par jour. L’exemple le plus probant est celui de la Seine-Saint- Denis : en 2008, le département se classe au 42e rang pour le nombre d’usagers réguliers et au 1er rang pour le nombre d’interpellations.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=88 et 78
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}{{Citation
+|citation=La plupart des consommateurs de cannabis ne sont pas des marginaux, pourquoi les transformer en criminels ?
+|auteurs=Michel Henry
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=13
+|édition= Denoël
+|date=2011
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Prohibition, Clandestinité
+|date-création=2019-08-07
+}}

@@ -1,0 +1,15 @@
+{{Argument
+|références-sitographiques={{Référence sitographique
+|lien=https://www.incb.org/incb/uploads/documents/Publications/AnnualReports/AR2013/English/AR_2013_E.pdf
+|page=Rapport annuel 2013 — paragraphes 429 et 712, recommandation 15
+|site=Organe international de contrôle des stupéfiants
+|date=2013
+}}
+{{Référence sitographique
+|lien=https://www.incb.org/incb/uploads/documents/Publications/AnnualReports/AR2014/English/AR_2014_E_Chapter_III_Americas.pdf
+|page=Rapport annuel 2014 — chapitre III, Amériques, paragraphe 419
+|site=Organe international de contrôle des stupéfiants
+|date=2014
+}}
+|date-création=2022-12-19
+}}

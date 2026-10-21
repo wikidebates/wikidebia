@@ -1,0 +1,11 @@
+{{Argument
+|résumé=Par exemple, en se calquant sur le modèle portugais en considérant les usagers non pas comme des délinquants mais comme des maladesd à prendre en charge.
+|références-sitographiques={{Référence sitographique
+|lien=https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf
+|page=Portugal — Country Drug Report 2019
+|site=EMCDDA / EUDA
+|date=2019
+}}
+
+|date-création=2022-08-29
+}}

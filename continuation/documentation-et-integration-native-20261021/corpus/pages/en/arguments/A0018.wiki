@@ -1,0 +1,20 @@
+{{Argument
+|quotes={{Quote
+|quote=France's drug law of 31 December 1970 is a law that makes an exception to the general rule. This is the only area in which people can face imprisonment for harm they do to themselves. From an ethical standpoint, could we imagine trying to prevent suicide by imprisoning people who attempt it?
+|authors=Jean-Michel Costes
+|article=Il faut dépénaliser l'usage de drogue
+|work=Le Monde
+|date=31 December 2011
+|link=https://www.lemonde.fr/idees/article/2011/12/30/il-faut-depenaliser-l-usage-de-drogue_1624418_3232.html
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, overdose, harmfulness
+|webliography=
+{{Web reference
+|link=https://www.gutenberg.org/cache/epub/34901/pg34901-images.html
+|page=On Liberty
+|authors=John Stuart Mill
+|site=Project Gutenberg
+}}
+}}

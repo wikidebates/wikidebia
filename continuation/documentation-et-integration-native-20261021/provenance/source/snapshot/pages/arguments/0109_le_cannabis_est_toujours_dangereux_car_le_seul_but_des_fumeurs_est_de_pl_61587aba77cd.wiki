@@ -1,0 +1,14 @@
+{{Argument
+|objections={{Objection
+|page=Non, il sert aussi à calmer des douleurs et à se relaxer
+|titre-affiché=Non, il sert aussi à calmer des douleurs et à se relaxer
+}}
+|références-bibliographiques={{Référence bibliographique
+|auteurs=Serge Lebigot
+|article=Cannabis : comment démonter l'argumentaire de ceux qui veulent en légaliser la consommation
+|ouvrage=Atlantico
+|date=27/10/2013
+|lien=https://www.atlantico.fr/decryptage/cannabis-comment-demonter-argumentaire-ceux-qui-veulent-en-legaliser-consommation-serge-lebigot-880078.html
+}}
+|date-création=2021-08-05
+}}

@@ -1,0 +1,27 @@
+{{Argument
+|justifications={{Justification
+|page=La loi de 1970 sur les drogues n'a pas été faite pour le cannabis
+|titre-affiché=Elle n'a pas été faite pour le cannabis
+}}{{Justification
+|page=La loi de 1970 sur les drogues focalise trop sur les usagers
+|titre-affiché=Elle focalise trop sur les usagers
+}}{{Justification
+|page=La loi de 1970 sur les drogues n'est plus comprise par les usagers
+|titre-affiché=Elle n'est plus comprise par les usagers
+}}{{Justification
+|page=La loi de 1970 sur les drogues est difficilement applicable
+|titre-affiché=Elle est difficilement applicable
+}}{{Justification
+|page=Conserver les sanctions pénales de la loi de 1970 sur les drogues qui ne sont pratiquement plus appliquées n'est pas sain
+|titre-affiché=Conserver une sanction pénale qui n'est pratiquement plus appliquée n'est pas sain
+}}{{Justification
+|page=La loi de 1970 sur les drogues est trop diversement appliquée
+|titre-affiché=Elle est trop diversement appliquée
+}}{{Justification
+|page=La loi de 1970 sur les drogues n'a jamais été évaluée
+|titre-affiché=Elle n'a jamais été évaluée
+}}
+|rubriques=Droit, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

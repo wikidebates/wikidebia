@@ -1,0 +1,192 @@
+# Graphe argumentatif importé — Le cannabis doit-il être légalisé ?
+
+Statut : brouillon importé, non verrouillé.
+
+## Compteurs normatifs
+
+- Nœuds distincts : 152
+- Relations : 157
+- Occurrences normatives : 170
+- Réutilisations supplémentaires : 18
+- Profondeur maximale : 4
+
+## Arguments principaux
+
+### Pour
+
+- `A0001` La prohibition du cannabis est inefficace
+- `A0002` La prohibition du cannabis est préjudiciable aux usagers
+- `A0003` La prohibition du cannabis est préjudiciable à la société
+- `A0004` La prohibition du cannabis manque de légitimité
+- `A0005` La loi de 1970 sur les drogues est inadaptée
+- `A0006` La légalisation du cannabis serait bénéfique
+- `A0007` La légalisation du cannabis permet un contrôle qualité
+- `A0008` La légalisation contrôlée par l'État fonctionne
+
+### Contre
+
+- `A0009` La prohibition du cannabis est efficace
+- `A0010` Il faut protéger l'individu contre les dangers du cannabis
+- `A0011` La société doit se protéger contre les dangers du cannabis
+- `A0012` La légalisation du cannabis n'est ni possible ni souhaitable
+- `A0013` La légalisation du cannabis serait préjudiciable
+
+## Relations
+
+- `E00001` `A0001` → **justification** → `A0014`
+- `E00002` `A0001` → **objection** → `A0015`
+- `E00003` `A0001` → **justification** → `A0016`
+- `E00004` `A0001` → **objection** → `A0017`
+- `E00005` `A0001` → **justification** → `A0018`
+- `E00006` `A0001` → **objection** → `A0019`
+- `E00007` `A0001` → **justification** → `A0020`
+- `E00008` `A0001` → **justification** → `A0021`
+- `E00009` `A0001` → **justification** → `A0022`
+- `E00010` `A0001` → **justification** → `A0023`
+- `E00011` `A0002` → **justification** → `A0024`
+- `E00012` `A0002` → **justification** → `A0025`
+- `E00013` `A0002` → **justification** → `A0026`
+- `E00014` `A0002` → **justification** → `A0027`
+- `E00015` `A0002` → **justification** → `A0028`
+- `E00016` `A0003` → **justification** → `A0029`
+- `E00017` `A0003` → **justification** → `A0030`
+- `E00018` `A0003` → **justification** → `A0031`
+- `E00019` `A0003` → **justification** → `A0032`
+- `E00020` `A0003` → **justification** → `A0033`
+- `E00021` `A0003` → **justification** → `A0034`
+- `E00022` `A0003` → **justification** → `A0035`
+- `E00023` `A0003` → **justification** → `A0036`
+- `E00024` `A0003` → **justification** → `A0037`
+- `E00025` `A0004` → **justification** → `A0038`
+- `E00026` `A0004` → **justification** → `A0039`
+- `E00027` `A0004` → **justification** → `A0040`
+- `E00028` `A0004` → **justification** → `A0041`
+- `E00029` `A0004` → **justification** → `A0042`
+- `E00030` `A0005` → **justification** → `A0043`
+- `E00031` `A0005` → **justification** → `A0044`
+- `E00032` `A0005` → **justification** → `A0045`
+- `E00033` `A0005` → **justification** → `A0046`
+- `E00034` `A0005` → **justification** → `A0047`
+- `E00035` `A0005` → **justification** → `A0048`
+- `E00036` `A0005` → **justification** → `A0049`
+- `E00037` `A0006` → **justification** → `A0050`
+- `E00038` `A0006` → **objection** → `A0051`
+- `E00039` `A0006` → **justification** → `A0052`
+- `E00040` `A0006` → **objection** → `A0053`
+- `E00041` `A0006` → **justification** → `A0054`
+- `E00042` `A0006` → **objection** → `A0055`
+- `E00043` `A0006` → **justification** → `A0056`
+- `E00044` `A0006` → **justification** → `A0057`
+- `E00045` `A0006` → **justification** → `A0058`
+- `E00046` `A0006` → **justification** → `A0059`
+- `E00047` `A0006` → **justification** → `A0060`
+- `E00048` `A0006` → **justification** → `A0061`
+- `E00049` `A0007` → **objection** → `A0055`
+- `E00050` `A0008` → **justification** → `A0062`
+- `E00051` `A0008` → **justification** → `A0063`
+- `E00052` `A0009` → **objection** → `A0014`
+- `E00053` `A0009` → **objection** → `A0016`
+- `E00054` `A0009` → **objection** → `A0018`
+- `E00055` `A0009` → **objection** → `A0020`
+- `E00056` `A0009` → **objection** → `A0021`
+- `E00057` `A0009` → **objection** → `A0064`
+- `E00058` `A0009` → **objection** → `A0022`
+- `E00059` `A0009` → **objection** → `A0023`
+- `E00060` `A0010` → **justification** → `A0065`
+- `E00061` `A0010` → **objection** → `A0041`
+- `E00062` `A0010` → **justification** → `A0066`
+- `E00063` `A0010` → **justification** → `A0067`
+- `E00064` `A0011` → **justification** → `A0068`
+- `E00065` `A0011` → **justification** → `A0069`
+- `E00066` `A0011` → **justification** → `A0070`
+- `E00067` `A0012` → **justification** → `A0071`
+- `E00068` `A0012` → **objection** → `A0072`
+- `E00069` `A0012` → **justification** → `A0073`
+- `E00070` `A0012` → **objection** → `A0074`
+- `E00071` `A0012` → **justification** → `A0075`
+- `E00072` `A0012` → **objection** → `A0076`
+- `E00073` `A0012` → **justification** → `A0077`
+- `E00074` `A0012` → **justification** → `A0078`
+- `E00075` `A0012` → **justification** → `A0079`
+- `E00076` `A0013` → **justification** → `A0080`
+- `E00077` `A0013` → **justification** → `A0081`
+- `E00078` `A0013` → **justification** → `A0082`
+- `E00079` `A0013` → **justification** → `A0083`
+- `E00080` `A0014` → **objection** → `A0084`
+- `E00081` `A0015` → **objection** → `A0085`
+- `E00082` `A0017` → **objection** → `A0086`
+- `E00083` `A0018` → **objection** → `A0087`
+- `E00084` `A0018` → **objection** → `A0088`
+- `E00085` `A0019` → **objection** → `A0089`
+- `E00086` `A0019` → **objection** → `A0090`
+- `E00087` `A0020` → **justification** → `A0064`
+- `E00088` `A0020` → **objection** → `A0091`
+- `E00089` `A0020` → **objection** → `A0092`
+- `E00090` `A0022` → **justification** → `A0093`
+- `E00091` `A0022` → **justification** → `A0094`
+- `E00092` `A0023` → **justification** → `A0095`
+- `E00093` `A0023` → **justification** → `A0032`
+- `E00094` `A0034` → **objection** → `A0096`
+- `E00095` `A0038` → **objection** → `A0097`
+- `E00096` `A0041` → **justification** → `A0098`
+- `E00097` `A0041` → **objection** → `A0099`
+- `E00098` `A0041` → **justification** → `A0100`
+- `E00099` `A0041` → **objection** → `A0101`
+- `E00100` `A0041` → **justification** → `A0102`
+- `E00101` `A0041` → **justification** → `A0103`
+- `E00102` `A0041` → **justification** → `A0104`
+- `E00103` `A0043` → **objection** → `A0105`
+- `E00104` `A0047` → **objection** → `A0106`
+- `E00105` `A0050` → **objection** → `A0107`
+- `E00106` `A0051` → **objection** → `A0108`
+- `E00107` `A0054` → **objection** → `A0109`
+- `E00108` `A0054` → **objection** → `A0110`
+- `E00109` `A0056` → **objection** → `A0111`
+- `E00110` `A0059` → **objection** → `A0112`
+- `E00111` `A0059` → **objection** → `A0113`
+- `E00112` `A0059` → **objection** → `A0114`
+- `E00113` `A0059` → **objection** → `A0115`
+- `E00114` `A0065` → **objection** → `A0116`
+- `E00115` `A0065` → **objection** → `A0117`
+- `E00116` `A0065` → **objection** → `A0118`
+- `E00117` `A0065` → **objection** → `A0119`
+- `E00118` `A0065` → **objection** → `A0120`
+- `E00119` `A0065` → **objection** → `A0121`
+- `E00120` `A0065` → **objection** → `A0122`
+- `E00121` `A0065` → **objection** → `A0041`
+- `E00122` `A0067` → **objection** → `A0123`
+- `E00123` `A0067` → **objection** → `A0124`
+- `E00124` `A0067` → **objection** → `A0125`
+- `E00125` `A0067` → **objection** → `A0041`
+- `E00126` `A0068` → **objection** → `A0126`
+- `E00127` `A0068` → **objection** → `A0003`
+- `E00128` `A0068` → **objection** → `A0041`
+- `E00129` `A0069` → **objection** → `A0032`
+- `E00130` `A0070` → **objection** → `A0127`
+- `E00131` `A0070` → **objection** → `A0128`
+- `E00132` `A0071` → **objection** → `A0129`
+- `E00133` `A0071` → **objection** → `A0130`
+- `E00134` `A0071` → **objection** → `A0131`
+- `E00135` `A0071` → **objection** → `A0132`
+- `E00136` `A0071` → **objection** → `A0133`
+- `E00137` `A0072` → **objection** → `A0134`
+- `E00138` `A0073` → **objection** → `A0135`
+- `E00139` `A0073` → **objection** → `A0136`
+- `E00140` `A0078` → **objection** → `A0137`
+- `E00141` `A0078` → **objection** → `A0138`
+- `E00142` `A0079` → **objection** → `A0139`
+- `E00143` `A0079` → **objection** → `A0140`
+- `E00144` `A0079` → **objection** → `A0141`
+- `E00145` `A0080` → **objection** → `A0142`
+- `E00146` `A0080` → **objection** → `A0143`
+- `E00147` `A0080` → **objection** → `A0014`
+- `E00148` `A0081` → **objection** → `A0144`
+- `E00149` `A0082` → **objection** → `A0145`
+- `E00150` `A0083` → **objection** → `A0146`
+- `E00151` `A0083` → **objection** → `A0036`
+- `E00152` `A0088` → **objection** → `A0147`
+- `E00153` `A0099` → **objection** → `A0148`
+- `E00154` `A0101` → **objection** → `A0149`
+- `E00155` `A0106` → **objection** → `A0150`
+- `E00156` `A0134` → **objection** → `A0151`
+- `E00157` `A0134` → **objection** → `A0152`

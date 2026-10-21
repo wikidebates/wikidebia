@@ -1,0 +1,40 @@
+[
+  {
+    "id": "public-health-regulation",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+    "params": {
+      "query": "TITLE:\"Developing public health regulations for marijuana\"",
+      "format": "json",
+      "resultType": "core",
+      "pageSize": 2
+    },
+    "accessed_at": "2026-10-21T10:25:15.927122+00:00",
+    "http_status": 200,
+    "final_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22Developing+public+health+regulations+for+marijuana%22&format=json&resultType=core&pageSize=2",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/public-health-regulation.body",
+    "sha256": "e244b2699dd1962e2f43e12b065a936baa809159997fb45df71b066f854091fa",
+    "content_type": "application/json;charset=UTF-8"
+  },
+  {
+    "id": "uruguay-brookings",
+    "url": "https://www.brookings.edu/articles/uruguays-cannabis-law-pioneering-a-new-paradigm/",
+    "params": null,
+    "accessed_at": "2026-10-21T10:25:15.927768+00:00",
+    "http_status": 200,
+    "final_url": "https://www.brookings.edu/articles/uruguays-cannabis-law-pioneering-a-new-paradigm/",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/uruguay-brookings.body",
+    "sha256": "d9bd801c61fc4efe64d866ec80abb1d6e816fc7e84b3cdfdc48d52ee7359f176",
+    "content_type": "text/html; charset=UTF-8"
+  },
+  {
+    "id": "who-alcohol-risk",
+    "url": "https://www.who.int/europe/news/item/04-01-2023-no-level-of-alcohol-consumption-is-safe-for-our-health",
+    "params": null,
+    "accessed_at": "2026-10-21T10:25:15.928390+00:00",
+    "http_status": 200,
+    "final_url": "https://www.who.int/europe/news/item/04-01-2023-no-level-of-alcohol-consumption-is-safe-for-our-health",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/who-alcohol-risk.body",
+    "sha256": "1b4085076b9ccc1746d9e4a02527a2389ffb4cceab5992f8179979687ad2e835",
+    "content_type": "text/html; charset=utf-8"
+  }
+]

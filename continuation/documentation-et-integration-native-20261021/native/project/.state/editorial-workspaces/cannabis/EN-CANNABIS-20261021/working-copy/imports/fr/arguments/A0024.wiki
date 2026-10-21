@@ -1,0 +1,21 @@
+{{Argument
+|citations={{Citation
+|citation=[La peur de la sanction] les détourne de l’accès aux soins. […] « La répression fabrique de la clandestinité. Et la clandestinité augmente les pratiques à risques ». (selon la psychiatre Béatrice Stambul ) […] [La pénalisation] complique l’élaboration de campagnes adéquates par les acteurs de prévention qui sont en toute logique censés n’avoir d’autre message à passer que : « Ne consommez pas, c’est interdit ! » […] Dans le contexte répressif, les consommateurs n’accordent pas beaucoup de crédit à l’information officielle, souvent assimilée à de la propagande prohibitionniste.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=87, 85, 88 et 89
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}{{Citation
+|citation=La prohibition complique la tâche de ceux qui veulent faire une bonne prévention des usages problématiques de drogues chez les jeunes qui se fonde sur une autre base que l'interdit par la peur, peu efficace. L'effet pervers le plus inquiétant de cette stratégie de la peur est que de nombreux jeunes sentent qu'on leur ment et rejettent cette dramatisation des produits au profit d'une banalisation tout aussi exagérée. C'est comme affirmer aux jeunes que toucher à l'alcool c'est se diriger vers l'alcoolisme et l'itinérance. […] Le résultat de la prohibition est que les parents confient à la police la prévention de l'abus des drogues chez les jeunes, croyant, à tort, qu'ils n'ont pas les connaissances pour faire de la bonne prévention […] non pas parler des produits, mais prévenir les motifs qui peuvent mener à des usages problématiques.
+|auteurs=Lise Beauchesne
+|ouvrage=Les drogues. Les coûts cachés de la prohibition
+|page=246 et 278
+|édition= Lanctôt
+|date=2003
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Prohibition, Prévention
+|date-création=2019-08-07
+}}

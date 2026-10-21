@@ -1,0 +1,20 @@
+{{Argument
+|citations={{Citation
+|citation=Ceux de nos partenaires qui ont cru bien faire en engageant un assouplissement de la législation sur le cannabis : ils font machine arrière ! Au Royaume-Uni, le gouvernement travailliste a réintégré le cannabis parmi les drogues dangereuses, quatre ans après l’avoir déclassé. Quant aux Pays-Bas, nation emblématique s’il en est de la politique dite de «tolérance», ils modifient leur approche : restriction drastique de l’accès aux coffee-shops désormais interdits aux non-résidents, disparition progressive de la distinction entre drogue dure et drogue douce…
+|auteurs=Claude Guéant
+|article=Dépénalisation du cannabis, un débat biaisé
+|ouvrage=Le Monde
+|date=15/6/2011
+|lien=https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html
+}}
+|objections={{Objection
+|page=Les Pays-Bas n'ont pas fait marche arrière sur la dépénalisation du cannabis
+|titre-affiché=Les Pays-Bas n'ont pas fait marche arrière sur la dépénalisation
+}}{{Objection
+|page=Les pays et états ayant dépénalisé le cannabis sont de plus en plus nombreux
+|titre-affiché=Les pays et états ayant dépénalisé le cannabis sont de plus en plus nombreux
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation
+|date-création=2021-02-16
+}}

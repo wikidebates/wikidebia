@@ -1,0 +1,14 @@
+{{Argument
+|résumé=* Le [https://hyperdebat.net/un-modele-pragmatique-de.html modèle pragmatique de légalisation de Laurent Appel] entraînerait la création de 260 000 emplois, dont les trois quarts faiblement qualifiés.
+* En Californie, où le cannabis récréatif est légal depuis le 1er janvier 2018, quatre villes (Oakland, San Francisco, Los Angeles et Sacramento) ont adopté un plan pour réserver des licences de vente aux habitants des quartiers pauvres.
+|références-sitographiques={{Référence sitographique
+|lien=https://www.europe1.fr/emissions/Le-vrai-faux-de-l-info2/en-californie-les-licences-de-vente-de-cannabis-attribuees-en-priorite-a-des-anciens-dealers-3660200
+|page=En Californie, les licences de vente de cannabis attribuées en priorité à des anciens dealers ?
+|auteurs=Géraldine Woessner
+|site=Europe 1
+|date=23/05/2018
+}}
+|rubriques=Économie, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Banlieue
+|date-création=2021-02-16
+}}

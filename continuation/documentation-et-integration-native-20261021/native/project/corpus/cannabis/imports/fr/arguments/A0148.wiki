@@ -1,0 +1,23 @@
+{{Argument
+|citations={{Citation
+|citation=Une vaste méta-analyse du Lancet a enquêté sur la consommation d'alcool et son effet sur la santé de 28 millions de personnes entre 1990 et 2016. Sa conclusion : l'alcool est dangereux, même à faible dose.
+|auteurs=Sarah Sermondadaz
+|article=L'idée d'une dose d'alcool "inoffensive" serait un mythe, affirme une vaste étude
+|ouvrage=sciences et avenir
+|date=24.08.2018
+|lien=https://www.sciencesetavenir.fr/sante/l-alcool-dangereux-pour-la-sante-des-le-premier-verre-selon-une-meta-analyse-du-lancet_126904.amp
+}}{{Citation
+|citation=Le mythe du petit verre quotidien protecteur vient de voler en éclats. Une vaste étude brésilienne établit un lien direct entre la consommation d'alcool, même modérée, et le risque de démence et d'Alzheimer. Plus troublant encore : les lésions persistent longtemps après l'arrêt.
+|auteurs=Ghislaine Laussel
+|article=Alzheimer : les chercheurs identifient une boisson consommée par des millions de Français comme un facteur de risque majeur
+|ouvrage=Futura-sciences
+|date=30 juin 2026
+|lien=https://www.futura-sciences.com/sante/actualites/maladie-alzheimer-alzheimer-chercheurs-identifient-boisson-consommee-millions-francais-comme-facteur-risque-majeur-k2m6-135735/
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://www.alcool-info-service.fr/Alcool/Home-Professionnels/Alcool-Sante/les-risques/cancers
+|page=Cancers : risques dès le premier verre
+|site=Alcool info service
+}}
+|date-création=2022-12-19
+}}

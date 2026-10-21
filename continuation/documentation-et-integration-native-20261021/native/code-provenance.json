@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/wikidebates/wikidebia",
+  "branch": "fix/preserve-interquotation-prose",
+  "commit": "4b2abbe714a603814eb4710ab5e5827cb56aa804",
+  "pull_request": "https://github.com/wikidebates/wikidebia/pull/9",
+  "merged_to_main": false
+}

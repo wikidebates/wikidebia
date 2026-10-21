@@ -1,0 +1,15 @@
+{{Argument
+|références-sitographiques={{Référence sitographique
+|lien=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+|date=24/09/2024
+}}
+{{Référence sitographique
+|lien=https://pubmed.ncbi.nlm.nih.gov/31182592/
+|page=Association between medical cannabis laws and opioid overdose mortality has reversed over time
+|site=Proceedings of the National Academy of Sciences / PubMed
+|date=2019
+}}
+|date-création=2022-12-19
+}}

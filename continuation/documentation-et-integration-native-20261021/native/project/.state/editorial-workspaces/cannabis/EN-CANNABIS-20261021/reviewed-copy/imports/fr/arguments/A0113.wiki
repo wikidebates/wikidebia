@@ -1,0 +1,13 @@
+{{Argument
+|citations={{Citation
+|citation=Un état ne pourra jamais distribuer toutes les drogues, il y aura toujours un marché prohibé, le marché destiné aux mineurs.
+|auteurs=Etienne Apaire
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=206
+|édition= Denoël
+|date=2011
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

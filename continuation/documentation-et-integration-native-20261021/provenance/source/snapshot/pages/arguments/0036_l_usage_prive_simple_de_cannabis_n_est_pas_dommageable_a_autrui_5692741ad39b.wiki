@@ -1,0 +1,14 @@
+{{Argument
+|citations={{Citation
+|citation=L’usage privé simple de stupéfiant est le seul comportement non dommageable à autrui qui soit aujourd’hui poursuivi en droit français.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=94
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Dangerosité
+|date-création=2021-02-16
+}}

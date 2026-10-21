@@ -1,0 +1,3695 @@
+{
+  "status": "passed_integrity_and_documentary_selection_subset",
+  "checks_passed": 921,
+  "checks": [
+    {
+      "check": "debate_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "debate_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "debate_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "debate_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "debate_S90002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "debate_S90003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "debate_S90004_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "debate_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0001_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0001_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0001_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0001_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0002_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0002_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0002_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0002_S92003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0002_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0003_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0003_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0003_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0003_S91003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0003_S91004_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0003_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0004_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0004_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0004_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0004_S91011_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0004_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0005_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0005_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0005_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0005_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0006_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0006_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0006_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0006_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0007_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0007_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0007_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0007_S93001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0007_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0008_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0008_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0008_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0008_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0008_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0009_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0009_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0009_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0009_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0010_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0010_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0010_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0010_S91021_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0010_S91009_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0010_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0011_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0011_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0011_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0011_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0012_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0012_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0012_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0012_S91001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0012_S91016_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0012_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0013_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0013_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0013_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0013_S91001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0013_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0014_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0014_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0014_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0014_S91017_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0014_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0015_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0015_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0015_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0015_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0016_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0016_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0016_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0016_S91011_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0016_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0017_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0017_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0017_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0017_S91010_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0017_S91022_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0017_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0018_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0018_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0018_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0018_S92005_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0018_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0019_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0019_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0019_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0019_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0020_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0020_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0020_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0020_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0021_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0021_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0021_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0021_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0021_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0022_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0022_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0022_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0022_S91001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0022_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0023_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0023_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0023_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0023_S91018_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0023_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0024_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0024_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0024_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0024_S90005_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0024_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0025_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0025_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0025_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0025_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0026_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0026_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0026_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0026_S91021_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0026_S91009_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0026_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0027_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0027_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0027_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0027_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0028_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0028_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0028_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0028_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0029_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0029_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0029_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0029_S91015_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0029_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0030_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0030_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0030_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0030_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0031_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0031_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0031_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0031_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0031_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0032_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0032_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0032_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0032_S93003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0032_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0033_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0033_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0033_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0033_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0033_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0034_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0034_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0034_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0034_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0035_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0035_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0035_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0035_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0036_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0036_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0036_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0036_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0037_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0037_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0037_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0037_S91008_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0037_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0038_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0038_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0038_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0038_S92001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0038_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0039_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0039_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0039_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0039_S91021_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0039_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0040_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0040_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0040_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0040_S91020_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0040_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0041_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0041_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0041_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0041_S92003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0041_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0042_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0042_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0042_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0042_S90005_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0042_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0043_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0043_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0043_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0043_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0044_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0044_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0044_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0044_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0045_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0045_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0045_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0045_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0046_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0046_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0046_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0046_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0047_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0047_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0047_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0047_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0048_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0048_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0048_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0048_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0049_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0049_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0049_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0049_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0050_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0050_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0050_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0050_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0051_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0051_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0051_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0051_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0052_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0052_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0052_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0052_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0053_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0053_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0053_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0053_S90002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0053_S93001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0053_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0054_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0054_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0054_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0054_S90002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0054_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0055_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0055_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0055_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0055_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0056_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0056_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0056_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0056_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0056_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0057_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0057_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0057_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0057_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0057_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0058_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0058_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0058_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0058_S93003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0058_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0059_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0059_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0059_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0059_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0060_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0060_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0060_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0060_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0060_S90002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0060_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0061_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0061_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0061_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0061_S91001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0061_S91016_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0061_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0062_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0062_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0062_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0062_S93001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0062_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0063_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0063_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0063_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0063_S90002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0063_S91018_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0063_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0064_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0064_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0064_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0064_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0064_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0065_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0065_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0065_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0065_S92003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0065_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0066_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0066_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0066_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0066_S91005_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0066_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0067_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0067_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0067_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0067_S93006_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0067_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0068_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0068_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0068_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0068_S91007_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0068_S91006_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0068_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0069_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0069_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0069_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0069_S91007_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0069_S91006_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0069_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0070_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0070_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0070_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0070_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0071_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0071_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0071_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0071_S91001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0071_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0072_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0072_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0072_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0072_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0073_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0073_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0073_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0073_S92004_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0073_S93004_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0073_S93001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0073_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0074_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0074_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0074_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0074_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0075_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0075_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0075_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0075_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0075_S90002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0075_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0076_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0076_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0076_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0076_S92004_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0076_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0077_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0077_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0077_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0077_S91001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0077_S90002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0077_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0078_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0078_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0078_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0078_S91010_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0078_S91011_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0078_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0079_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0079_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0079_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0079_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0080_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0080_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0080_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0080_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0081_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0081_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0081_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0081_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0082_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0082_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0082_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0082_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0082_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0083_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0083_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0083_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0083_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0083_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0084_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0084_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0084_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0084_S91001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0084_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0085_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0085_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0085_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0085_S93007_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0085_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0086_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0086_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0086_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0086_S92003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0086_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0087_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0087_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0087_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0087_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0087_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0088_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0088_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0088_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0088_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0088_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0089_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0089_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0089_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0089_S92005_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0089_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0090_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0090_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0090_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0090_S91001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0090_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0091_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0091_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0091_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0091_S91001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0091_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0092_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0092_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0092_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0092_S92003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0092_S93007_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0092_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0093_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0093_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0093_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0093_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0093_S92003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0093_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0094_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0094_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0094_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0094_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0094_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0095_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0095_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0095_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0095_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0096_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0096_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0096_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0096_S92005_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0096_S91021_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0096_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0097_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0097_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0097_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0097_S90002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0097_S91018_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0097_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0098_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0098_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0098_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0098_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0099_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0099_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0099_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0099_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0100_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0100_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0100_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0100_S93007_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0100_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0101_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0101_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0101_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0101_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0102_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0102_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0102_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0102_S93001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0102_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0103_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0103_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0103_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0103_S92003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0103_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0104_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0104_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0104_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0104_S91002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0104_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0105_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0105_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0105_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0105_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0105_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0106_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0106_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0106_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0106_S90005_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0106_S91022_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0106_S91010_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0106_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0107_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0107_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0107_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0107_S91002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0107_S91003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0107_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0108_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0108_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0108_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0108_S91003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0108_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0108_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0109_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0109_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0109_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0109_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0110_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0110_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0110_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0110_S91008_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0110_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0111_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0111_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0111_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0111_S91003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0111_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0112_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0112_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0112_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0112_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0113_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0113_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0113_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0113_S91002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0113_S91004_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0113_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0114_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0114_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0114_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0114_S91013_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0114_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0115_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0115_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0115_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0115_S90003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0115_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0116_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0116_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0116_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0116_S91009_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0116_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0117_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0117_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0117_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0117_S90005_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0117_S91009_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0117_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0118_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0118_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0118_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0118_S91009_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0118_S91011_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0118_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0119_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0119_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0119_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0119_S91019_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0119_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0119_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0120_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0120_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0120_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0120_S93001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0120_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0121_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0121_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0121_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0121_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0121_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0122_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0122_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0122_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0122_S91014_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0122_S93002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0122_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0123_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0123_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0123_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0123_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0124_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0124_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0124_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0124_S91001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0124_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0125_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0125_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0125_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0125_S93004_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0125_S90003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0125_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0126_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0126_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0126_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0126_S93001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0126_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0127_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0127_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0127_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0127_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0128_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0128_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0128_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0128_S91012_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0128_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0129_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0129_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0129_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0129_S92002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0129_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0130_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0130_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0130_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0130_S93003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0130_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0131_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0131_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0131_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0131_S92002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0131_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0132_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0132_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0132_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0132_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0133_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0133_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0133_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0133_S91021_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0133_S91009_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0133_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0134_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0134_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0134_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0134_S91010_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0134_S91011_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0134_S90005_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0134_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0135_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0135_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0135_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0135_S91001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0135_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0136_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0136_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0136_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0136_S91005_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0136_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0137_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0137_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0137_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0137_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0138_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0138_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0138_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0138_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0138_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0139_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0139_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0139_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0139_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0140_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0140_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0140_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0140_S90002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0140_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0141_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0141_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0141_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0141_S91011_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0141_S90005_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0141_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0142_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0142_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0142_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0142_S90003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0142_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0143_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0143_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0143_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0143_S90003_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0143_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0144_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0144_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0144_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0144_S92002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0144_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0144_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0145_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0145_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0145_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0145_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0146_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0146_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0146_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0146_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0146_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0147_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0147_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0147_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0147_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0147_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0148_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0148_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0148_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0148_S93005_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0148_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0149_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0149_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0149_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0149_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0150_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0150_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0150_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0150_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0151_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0151_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0151_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0151_S90001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0151_S90002_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0151_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "A0152_all_non_documentary_fields_unchanged",
+      "passed": true
+    },
+    {
+      "check": "A0152_recorded_target_hash",
+      "passed": true
+    },
+    {
+      "check": "A0152_rendered_references_exact_selected_registry",
+      "passed": true
+    },
+    {
+      "check": "A0152_S92006_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0152_S93001_actual_argument_role",
+      "passed": true
+    },
+    {
+      "check": "A0152_not_declared_ready",
+      "passed": true
+    },
+    {
+      "check": "translation_texts.json_unchanged_from_full_textual_review",
+      "passed": true
+    },
+    {
+      "check": "translation_quotes.json_unchanged_from_full_textual_review",
+      "passed": true
+    },
+    {
+      "check": "translation_editorial_notes.json_unchanged_from_full_textual_review",
+      "passed": true
+    },
+    {
+      "check": "relations_bilingual.json_unchanged_from_full_textual_review",
+      "passed": true
+    },
+    {
+      "check": "labels_bilingual.json_unchanged_from_full_textual_review",
+      "passed": true
+    },
+    {
+      "check": "vocabulary_bilingual.json_unchanged_from_full_textual_review",
+      "passed": true
+    },
+    {
+      "check": "debate_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0001_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0002_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0003_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0004_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0005_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0006_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0007_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0008_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0009_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0010_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0011_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0012_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0013_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0014_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0015_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0016_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0017_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0018_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0019_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0020_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0021_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0022_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0023_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0024_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0025_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0026_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0027_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0028_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0029_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0030_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0031_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0032_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0033_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0034_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0035_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0036_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0037_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0038_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0039_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0040_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0041_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0042_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0043_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0044_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0045_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0046_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0047_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0048_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0049_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0050_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0051_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0052_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0053_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0054_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0055_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0056_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0057_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0058_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0059_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0060_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0061_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0062_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0063_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0064_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0065_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0066_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0067_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0068_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0069_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0070_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0071_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0072_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0073_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0074_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0075_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0076_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0077_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0078_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0079_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0080_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0081_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0082_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0083_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0084_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0085_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0086_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0087_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0088_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0089_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0090_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0091_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0092_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0093_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0094_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0095_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0096_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0097_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0098_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0099_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0100_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0101_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0102_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0103_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0104_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0105_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0106_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0107_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0108_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0109_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0110_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0111_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0112_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0113_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0114_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0115_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0116_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0117_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0118_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0119_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0120_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0121_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0122_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0123_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0124_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0125_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0126_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0127_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0128_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0129_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0130_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0131_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0132_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0133_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0134_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0135_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0136_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0137_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0138_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0139_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0140_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0141_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0142_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0143_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0144_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0145_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0146_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0147_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0148_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0149_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0150_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0151_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "A0152_native_source_revision_hash_identity",
+      "passed": true
+    },
+    {
+      "check": "149_native_quotes_2_native_passages",
+      "passed": true
+    },
+    {
+      "check": "1794_integrity_assertions_passed",
+      "passed": true
+    },
+    {
+      "check": "no_structural_parameter_findings",
+      "passed": true
+    },
+    {
+      "check": "no_false_native_translation_lock",
+      "passed": true
+    }
+  ],
+  "registered_sources": 40,
+  "pages_with_selected_sources": 106,
+  "native_validation_scope": "Source registry and all quotations/passage translations; not global translation finalization.",
+  "official_semantic_convergence": false,
+  "wiki_writes": false
+}

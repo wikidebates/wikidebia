@@ -1,0 +1,9 @@
+{{Argument|webliography=
+{{Web reference
+|link=https://www.brookings.edu/articles/uruguays-cannabis-law-pioneering-a-new-paradigm/
+|page=Uruguay’s cannabis law: Pioneering a new paradigm
+|authors=John Hudak, Geoff Ramsey, John Walsh
+|site=Brookings Institution
+|date=21 March 2018
+}}
+}}

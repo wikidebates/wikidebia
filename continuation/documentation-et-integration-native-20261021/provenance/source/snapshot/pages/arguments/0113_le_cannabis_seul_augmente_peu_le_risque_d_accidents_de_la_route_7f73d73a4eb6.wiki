@@ -1,0 +1,13 @@
+{{Argument
+|résumé=Le cannabis seul augmente le risque, mais d’un facteur 2, soit autant que l’alcool au taux toléré de 0,5 g/l.
+|citations={{Citation
+|citation=C’est l’alcool qui est responsable de la majorité des accidents mortels sur la route (environ 30%) et aussi la consommation associée d’alcool et de cannabis (risque multiplié par 15 alors que le cannabis seul augmente le risque, certes, mais d’un facteur 2, soit autant que l’alcool à un taux toléré (0,5 g/l). (étude SAM)
+|auteurs=Didier Jayle
+|article=Cannabis : « Non l’Académie de Médecine ne remplit pas sa mission ! »
+|date=27/03/2014
+|lien=https://jeanyvesnau.com/2014/03/27/cannabis-non-lacademie-nationale-de-medecine-ne-remplit-pas-sa-mission/
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Accidents de la route
+|date-création=2021-02-16
+}}

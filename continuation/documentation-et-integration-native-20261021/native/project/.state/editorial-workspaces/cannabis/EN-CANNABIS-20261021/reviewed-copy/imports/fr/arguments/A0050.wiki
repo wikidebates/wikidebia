@@ -1,0 +1,24 @@
+{{Argument
+|citations={{Citation
+|citation=L’Etat continue de dépenser autour de 300 millions d’euros par an pour interpeller environ 80000 personnes, sans que cela ait un effet radical sur la consommation (…) Si le cannabis était taxé comme le tabac, il rapporterait plus de 1 Md € à l’Etat.
+|auteurs=Pierre Kopp
+|article=Légaliser le cannabis rapporterait 1 milliard d'euros selon l'économiste Pierre Kopp, autoriser la consommation dégagerait des moyens pour la prévention
+|ouvrage=Le Monde
+|date=3/08/2011
+|lien=https://www.lemonde.fr/societe/article/2011/08/02/legaliser-le-cannabis-rapporterait-1-milliard-d-euros-miste-pierre-kopp-autoriser-la-consommation-degagerait-des-moyens-pour-la-prevention_1555243_3224.html
+}}{{Citation
+|citation=La légalisation permettrait d’engranger de l’argent et d’en économiser.
+|auteurs=Alain Labrousse
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=19
+|édition=Denoël
+|date=2011
+}}
+|objections={{Objection
+|page=Les ressources dégagées par la légalisation du cannabis risquent de devoir être utilisées pour lutter contre de nouveaux trafics
+|titre-affiché=Les ressources dégagées par la légalisation risquent de devoir être utilisées pour lutter contre de nouveaux trafics
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

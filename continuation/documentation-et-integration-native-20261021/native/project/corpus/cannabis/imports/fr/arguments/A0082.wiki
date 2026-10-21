@@ -1,0 +1,18 @@
+{{Argument
+|citations={{Citation
+|citation=Que l’on ne prétende surtout pas qu’autorisant le cannabis aux adultes, on l’interdirait aux mineurs. L’exemple du tabac nous démontre l’inanité de ce type de disposition. Une [https://www.ofdt.fr/ofdtdev/live/publi/rapports/rap13/epfxcdta.html enquête récente] révèle ainsi que l’interdiction de la vente du tabac aux mineurs est enfreinte par 60 % des buralistes !
+|auteurs=Jean Costentin
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=40
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|objections={{Objection
+|page=Pour un mineur, avec la légalisation du cannabis, il serait plus difficile de s'approvisionner en magasin qu'actuellement au marché noir
+|titre-affiché=Pour un mineur, il serait plus difficile de s'approvisionner en magasin qu'actuellement au marché noir
+}}
+|rubriques=Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Dangerosité, Mineurs
+|date-création=2021-02-16
+}}

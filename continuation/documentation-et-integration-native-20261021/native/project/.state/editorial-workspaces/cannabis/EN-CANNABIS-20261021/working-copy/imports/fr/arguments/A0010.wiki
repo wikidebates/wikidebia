@@ -1,0 +1,19 @@
+{{Argument
+|justifications={{Justification
+|page=Le cannabis est dangereux pour la santé physique et mentale
+|titre-affiché=Le cannabis est dangereux pour la santé physique et mentale
+}}{{Justification
+|page=Le cannabis potentialise les effets de l’alcool et du tabac
+|titre-affiché=Il potentialise les effets de l’alcool et du tabac
+}}{{Justification
+|page=Le pouvoir addictif du cannabis est important
+|titre-affiché=Son pouvoir addictif est important
+}}
+|objections={{Objection
+|page=De nombreuses substances bien plus dangereuses et addictives que le cannabis sont légales
+|titre-affiché=Si le but est réellement de protéger les individus, pourquoi laisser légaux l'alcool et le tabac ?
+}}
+|rubriques=Philosophie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Santé, Addiction
+|date-création=2019-08-09
+}}

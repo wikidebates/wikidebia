@@ -1,0 +1,46 @@
+[
+  {
+    "id": "france-pdf",
+    "url": "https://www.euda.europa.eu/system/files/media/publications/documents/11335/france-cdr-2019.pdf",
+    "params": null,
+    "accessed_at": "2026-10-21T10:06:50.185153+00:00",
+    "http_status": 200,
+    "final_url": "https://www.euda.europa.eu/system/files/media/publications/documents/11335/france-cdr-2019.pdf",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/france-pdf.body",
+    "sha256": "ceed0658a8dbba14a85819015e427f44a9591a5b1b56c987357dc4086adb7344",
+    "content_type": "application/pdf"
+  },
+  {
+    "id": "who-pdf",
+    "url": "https://iris.who.int/server/api/core/bitstreams/f1375889-3f54-40d4-b640-0377ff977074/content",
+    "params": null,
+    "accessed_at": "2026-10-21T10:06:50.185807+00:00",
+    "http_status": 200,
+    "final_url": "https://iris.who.int/server/api/core/bitstreams/f1375889-3f54-40d4-b640-0377ff977074/content",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/who-pdf.body",
+    "sha256": "ee56e567f7e9cb76e20d8c18f961423fdd2b30814fbdb8a715b39f04629b7d50",
+    "content_type": "image/jpeg;charset=UTF-8"
+  },
+  {
+    "id": "mill-full",
+    "url": "https://www.gutenberg.org/cache/epub/34901/pg34901-images.html",
+    "params": null,
+    "accessed_at": "2026-10-21T10:06:50.186566+00:00",
+    "http_status": 200,
+    "final_url": "https://www.gutenberg.org/cache/epub/34901/pg34901-images.html",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/mill-full.body",
+    "sha256": "b0724525c3fc36678fc31d219310b8112ede904c5f75b5fbc46fbe798dd1e5ed",
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "id": "aclu-pdf",
+    "url": "https://assets.aclu.org/live/uploads/publications/marijuanareport_03232021.pdf",
+    "params": null,
+    "accessed_at": "2026-10-21T10:06:51.332765+00:00",
+    "http_status": 200,
+    "final_url": "https://assets.aclu.org/live/uploads/publications/marijuanareport_03232021.pdf",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/aclu-pdf.body",
+    "sha256": "85c0786a16c17439ee7186976e80aa62d0e0a5afbe980f28bec9491054f8a8bd",
+    "content_type": "application/pdf"
+  }
+]

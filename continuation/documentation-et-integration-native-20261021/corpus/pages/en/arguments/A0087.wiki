@@ -1,0 +1,37 @@
+{{Argument
+|quotes={{Quote
+|quote=The billions of euros in profits laundered over the years are corroding the legitimate economy, encouraging corruption and overturning values. They intensify the slide of gangs on our housing estates towards mafia-style activity, along with the risk of spillover into public life. (…) Control of drug dealing often leads to clashes and score-settling with automatic weapons. This territorial war has caused dozens of deaths in recent years, mainly in the Paris region and Marseille, not to mention unlawful confinement involving abuse and disappearances. (…) The cannabis business draws many young people away from school and social integration. It creates palpable tension that exacerbates all human relationships and encourages violence and fear. The disruption caused by trafficking prompts residents of the worst-affected neighbourhoods to distance themselves from these gangs so as not to be associated with them. (…) The temptation to resort to self-defence and arm oneself in the American fashion grows stronger. Others favour vigilante patrols or defence militias, as in Italy or Hungary. Some propose security companies with armed guards, as in South Africa, or an army occupying the neighbourhoods. The social breakdown caused by cannabis prohibition fuels extremist temptations. The principal social harm associated with cannabis becomes the violence linked to its prohibition and clandestine market.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=79
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=For the mayor of a municipality of 51,000 residents, allowing this climate of fear to take hold is unacceptable: it places socially and economically vulnerable populations under the control of armed gangs.
+|authors=Stéphane Gatigon
+|work=Le Monde
+|date=16 June 2011
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Prohibition leads to numerous abusive checks, quite apart from the violence citizens experience locally because of the black market. Moreover, the power of the black market created by prohibition allows those at its head to use economic fraud and political and police corruption to maintain and increase their profits. Clearly, prohibition weakens democracy in the name of a deceptive moralism and legal paternalism. This happens insidiously, while public reactions to this erosion of democracy through the war on drugs are restrained by people's acceptance of prohibitionist rhetoric.
+|authors=Lise Beauchesne
+|work=Les drogues. Les coûts cachés de la prohibition
+|page=289
+|publisher=Lanctôt
+|date=2003
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, underground economy
+|bibliography=
+{{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+}}

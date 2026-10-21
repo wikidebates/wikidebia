@@ -1,0 +1,43 @@
+{{Argument
+|quotes={{Quote
+|quote=Cannabis legalisation would dry up dealers' market, as happened in Chicago in 1933.
+|authors=Francis Caballero
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=15
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Cannabis legalisation would shift trafficking to other substances unless all drugs were legalised, which seems difficult
+|displayed-title=Trafficking would shift to other substances. Preventing this would require legalising all drugs, which seems difficult
+}}{{Objection
+|page=An illegal cannabis market for minors will always exist
+|displayed-title=An illegal market for minors will always exist
+}}{{Objection
+|page=If cannabis is legalised with restrictions, some users will continue buying on the black market
+|displayed-title=If the law is too restrictive, some users will continue buying on the black market
+}}{{Objection
+|page=As tobacco shows, the black market will persist if legal cannabis is too expensive
+|displayed-title=As tobacco shows, the black market will persist if prices are too high
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+|bibliography=
+{{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+|webliography=
+{{Web reference
+|link=https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html
+|page=Legislative Review of the Cannabis Act: Final Report of the Expert Panel
+|authors=Morris Rosenberg, Oyedeji Ayonrinde, Patricia J. Conrod, Lynda L. Levesque, Peter Selby
+|site=Health Canada
+|date=March 2024
+}}
+}}

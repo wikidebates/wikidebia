@@ -1,0 +1,21 @@
+{{Argument
+|citations={{Citation
+|citation=[La prohibition] contraint les usagers à s’approvisionner au marché noir qui les expose à d’autres drogues et à la criminalité.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=87
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}{{Citation
+|citation=La porte d'entrée vers la cocaïne, ce n'était donc pas le cannabis, mais le dealer. De plus, le fait d'aller sur le marché noir côtoyer des personnes dangereuses induisait des stress psychiques importants chez mes patients.
+|auteurs=Raquel Peyraube
+|article=Raquel Peyraube, addictologue et militante pour le cannabis médical
+|ouvrage=Le Monde
+|date=8/07/2018
+|lien=https://www.lemonde.fr/sciences/article/2018/07/08/raquel-peyraube-addictologue-et-militante-pour-le-cannabis-medical_5328066_1650684.html
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Prohibition, Dealer, Drogue dure
+|date-création=2019-08-07
+}}

@@ -1,0 +1,21 @@
+{{Argument
+|citations={{Citation
+|citation=La clandestinité de l’offre ne permet pas de contrôler la qualité des produits vendus ni d’éviter l’offre simultanée d’autres substances illicites, ce qui augmente les risques.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=90
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}{{Citation
+|citation=Avec la légalisation, on saurait ce qu’on fume. La drogue d’Etat serait de meilleure qualité donc un peu moins mauvaise pour la santé que celle consommée actuellement.
+|auteurs=Groupe de lycéens de 1re ES
+|article=Le cannabis ? Chut !
+|ouvrage=Le Monde
+|date=9/11/2012
+|lien=https://www.lemonde.fr/idees/article/2012/11/10/le-cannabis-chut_1787901_3232.html
+}}
+|rubriques=Philosophie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Dangerosité, Qualité
+|date-création=2019-08-09
+}}

@@ -1,0 +1,7 @@
+{
+  "id": "clinical-stigma",
+  "http_status": 200,
+  "final_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A41275252+AND+SRC%3AMED&format=json&resultType=core",
+  "accessed_at": "2026-10-21T12:04:08.323874+00:00",
+  "sha256": "ee496cca15c6763e5cfa5f790102a41afd2815fb102ce73917fa1a3024934148"
+}

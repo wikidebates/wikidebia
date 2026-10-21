@@ -1,0 +1,21 @@
+{{Argument
+|quotes={{Quote
+|quote=The balance we have reached, however unstable and approximate, is still a form of balance. Is it reasonable to disturb it when we have no certainty? If the scientific evidence were sufficiently robust, perhaps we could build an effective system?
+|authors=Eric de Montgolfier
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=222
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}{{Quote
+|quote=I am rather hesitant, mainly because of our experience of the difficulty of restricting access to legal products such as alcohol and tobacco.
+|authors=Nicole Maestracci
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=234
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Law, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

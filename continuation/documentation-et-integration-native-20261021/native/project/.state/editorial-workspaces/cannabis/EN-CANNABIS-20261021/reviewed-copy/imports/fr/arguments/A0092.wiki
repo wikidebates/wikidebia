@@ -1,0 +1,16 @@
+{{Argument
+|citations={{Citation
+|auteurs=Jean Costentin
+|citation=Une loi non justifiée, tel un oukase, peut être perçue comme une vexation, une contrainte gratuite. Si l'on donne les justifications de cette loi, si l'on insiste sur la protection qu'elle confère, cela change tout.
+
+Une cause majeure de l'échec de la législation tient à l'absence de mobilisation contre ce fléau, tant dans le monde médical (à l'exception de l'Académie de médecine) que dans le monde de l'éducation et celui des médias, afin d'informer sur les risques et méfaits du cannabis et des autres drogues illicites.
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=42 et 111
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|rubriques=Société
+|mots-clés=Cannabis, Dépénalisation, Légalisation, Prohibition, Dissuasion
+|date-création=2019-01-30
+}}

@@ -1,0 +1,12 @@
+{{Argument
+|résumé=Selon le maire de Windsor, une localité frontalière entre le Canada et les Ėtats-Unis, la légalisation du cannabis au Canada pourrait créer « plus de délais à la frontière » et perturber le commerce frontalier.
+|références-sitographiques={{Référence sitographique
+|lien=https://ici.radio-canada.ca/nouvelle/1095557/drew-dilkens-comite-senatorial-legalisation-marijuana-senat-c-45
+|page=Légalisation du cannabis : le maire d'une ville ontarienne inquiet des conséquences à la frontière
+|site=Radio Canada
+|date=7/04/2018
+}}
+|rubriques=Géopolitique, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2021-02-16
+}}

@@ -1,0 +1,15 @@
+{{Argument
+|quotes={{Quote
+|quote=With tobacco and alcohol, it can be accepted that the danger arises from excessive use, which does not appear to be the case with narcotic drugs.
+|authors=Eric de Montgolfier
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=219
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Tobacco and alcohol are harmful at any level of consumption
+|displayed-title=Tobacco and alcohol are harmful at any level of consumption.
+}}
+}}

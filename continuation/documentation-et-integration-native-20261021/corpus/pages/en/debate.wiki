@@ -1,0 +1,108 @@
+{{Debate
+|topic=Cannabis
+|expanded-topic=the legalisation of cannabis
+|progress=Constructed debate
+|debate-warnings=Unbalanced debate
+|introduction={{Subsection
+|content='''Should cannabis be legalised?''' The debate brings together competing assessments of public health, individual liberty, public safety and the effects of prohibition. Supporters of legalisation emphasise product regulation and a smaller illicit market; opponents highlight the risks of normalisation, dependence and commercialisation.
+
+This debate focuses on France. Experience elsewhere informs some of the arguments, but findings need to be understood in relation to the country, period and indicators studied.
+}}{{Subsection
+|title=Decriminalisation and legalisation: two different reforms
+|content=In this debate, '''decriminalisation''' means removing or reducing criminal penalties for certain conduct. Depending on the approach adopted, administrative sanctions may remain. Under French law, reclassifying a ''délit'' as a ''contravention'' does not, by itself, take an offence outside the criminal law.
+
+'''Legalisation''' permits previously prohibited activities within a defined framework, whether production, distribution, sale or use. It does not necessarily mean unrestricted or unregulated sales. Restrictions on age, advertising, quality and quantity may vary.
+
+Portugal's reform, which came into force in 2001, decriminalised drug use, acquisition and possession for personal use under the conditions set out in the law. It did not legalise trafficking or establish a legal commercial drug market<ref>[https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf EMCDDA, Portugal — Country Drug Report 2019, “National drug laws”].</ref>.
+<references />
+}}{{Subsection
+|title=The legal position in France
+|content=Unlawful use of controlled drugs remains a criminal offence in France. The Service Public information page reviewed on 21 August 2026 states that use carries a maximum penalty of one year's imprisonment and a €3,750 fine. Offences relating to supply, trafficking, cultivation or driving after drug use must be distinguished: this maximum cannot be applied indiscriminately to all of them<ref name="sp-usage-2026">[https://www.service-public.gouv.fr/particuliers/vosdroits/F33341?lang=en What is the risk for drug use?], Service Public / DILA, information page reviewed on 21 August 2026.</ref>.
+
+'''A fixed fine does not mean decriminalisation of use'''
+
+According to the same dated page, the fixed fine is €500, reduced to €400 if paid within fifteen days and increased to €1,000 after forty-five days. This procedure does not make drug use legal and is not the same as reclassifying the offence as a ''contravention''. The amounts and conditions must be checked against the law in force for the period concerned<ref name="sp-usage-2026" />.
+
+<references />
+}}{{Subsection
+|title=Comparing experience in other countries
+|content=Canada opened a legal market for non-medical cannabis in 2018. Its expert panel reported progress in 2024 in regulated supply and the shift in demand towards the legal market, alongside persistent problems, particularly protecting young people and addressing high-THC products<ref>[https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html Legislative Review of the Cannabis Act: Final Report of the Expert Panel], Health Canada, 2024.</ref>.
+
+Portugal's approach is one of decriminalisation and should not be equated with this form of legalisation. In each country, rules on use, the organisation of supply, health indicators and the role of the illicit market need to be considered separately.
+<references />
+}}
+|pro-arguments={{Pro argument
+|page=Cannabis prohibition is ineffective
+|displayed-title=Prohibition is ineffective
+}}{{Pro argument
+|page=Cannabis prohibition harms users
+|displayed-title=Prohibition harms users
+}}{{Pro argument
+|page=Cannabis prohibition harms society
+|displayed-title=Prohibition harms society
+}}{{Pro argument
+|page=Cannabis prohibition lacks legitimacy
+|displayed-title=Prohibition lacks legitimacy
+}}{{Pro argument
+|page=France's 1970 drug law is ill-suited to its purpose
+|displayed-title=The 1970 law is ill-suited to its purpose
+}}{{Pro argument
+|page=Cannabis legalisation would be beneficial
+|displayed-title=Legalisation would be beneficial
+}}{{Pro argument
+|page=Cannabis legalisation allows quality control
+|displayed-title=Legalisation allows quality control
+}}{{Pro argument
+|page=State-regulated legalisation works
+|displayed-title=State-regulated legalisation works
+}}
+|con-arguments={{Con argument
+|page=Cannabis prohibition is effective
+|displayed-title=Prohibition is effective
+}}{{Con argument
+|page=Individuals must be protected from the risks of cannabis
+|displayed-title=Individuals must be protected
+}}{{Con argument
+|page=Society must protect itself from the risks of cannabis
+|displayed-title=Society must protect itself
+}}{{Con argument
+|page=Cannabis legalisation is neither possible nor desirable
+|displayed-title=Legalisation is neither possible nor desirable
+}}{{Con argument
+|page=Cannabis legalisation would be harmful
+|displayed-title=Legalisation would be harmful
+}}
+|sections=Law, Economy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+|bibliography={{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+
+|webliography={{Web reference
+|link=https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html
+|page=Legislative Review of the Cannabis Act: Final Report of the Expert Panel
+|authors=Morris Rosenberg, Oyedeji Ayonrinde, Patricia J. Conrod, Lynda L. Levesque, Peter Selby
+|site=Health Canada
+|date=March 2024
+}}{{Web reference
+|link=https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf
+|page=Portugal — Country Drug Report 2019
+|site=European Monitoring Centre for Drugs and Drug Addiction
+|date=2019
+}}{{Web reference
+|link=https://www.service-public.gouv.fr/particuliers/vosdroits/F33341?lang=en
+|page=What is the risk for drug use?
+|site=Service Public
+|date=21 August 2026
+}}
+
+|wikipedia-articles={{Wikipedia article
+|page=Legality of cannabis
+}}
+
+}}

@@ -1,0 +1,36 @@
+{{Argument
+|quotes={{Quote
+|quote=Imprisonment seems to me rather remote from the aim we are trying to achieve […] When drug use occurs, I want it to be penalised intelligently.
+|authors=Etienne Apaire
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=209
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}{{Quote
+|quote=If the 1970 law were enforced, we would need another 100 prisons. In Spain or the Netherlands, the law is more flexible, but it is enforced. That seems more effective to me.
+|authors=Amine Benyamina
+|work=Le Monde
+|date=2 February 2013
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The criminal prohibition is therefore no longer consistently observed, nor can it be, given that imprisonment now appears wholly disproportionate, inappropriate and stigmatising.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=82
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Today, drug use is a criminal offence, but in practice it is not punished because doing so is too cumbersome.
+|authors=Emmanuel Roux
+|article=Cannabis : un réquisitoire contre la loi
+|work=Libération
+|date=5 February 2014
+|link=https://www.liberation.fr/societe/2014/02/05/cannabis-un-requisitoire-contre-la-loi_978254
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

@@ -1,0 +1,54 @@
+[
+  {
+    "id": "cae-notice",
+    "url": "https://www.cae-eco.fr/une-politique-du-cannabis",
+    "params": null,
+    "accessed_at": "2026-10-21T10:34:48.204919+00:00",
+    "http_status": 200,
+    "final_url": "https://cae-eco.fr/une-politique-du-cannabis",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/cae-notice.body",
+    "sha256": "74bf752555f0129a2fda3691a6ead223fc4f7f41eade1413b1356d3bbae0de7c",
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "id": "cae-en-pdf",
+    "url": "https://www.cae-eco.fr/staticfiles/pdf/cae-note052v3-en.pdf",
+    "params": null,
+    "accessed_at": "2026-10-21T10:34:48.205689+00:00",
+    "http_status": 404,
+    "final_url": "http://cae-eco.fr/static/pdf/cae-note052v3-en.pdf",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/cae-en-pdf.body",
+    "sha256": "3bbc5d4c3853f73bc6e6aadcfdf974746e4eadf059cf7f9afe7ebd3bb9b6c8c0",
+    "content_type": "text/html"
+  },
+  {
+    "id": "cae-legacy-pdf",
+    "url": "https://www.cae-eco.fr/IMG/pdf/cae-note052-env2.pdf",
+    "params": null,
+    "accessed_at": "2026-10-21T10:34:48.206081+00:00",
+    "http_status": 200,
+    "final_url": "https://cae-eco.fr/IMG/pdf/cae-note052-env2.pdf",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/cae-legacy-pdf.body",
+    "sha256": "74bf752555f0129a2fda3691a6ead223fc4f7f41eade1413b1356d3bbae0de7c",
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "id": "wiki-argument-terms",
+    "url": "https://en.wikipedia.org/w/api.php",
+    "params": {
+      "action": "query",
+      "format": "json",
+      "prop": "extracts",
+      "explaintext": 1,
+      "exintro": 1,
+      "redirects": 1,
+      "titles": "Harm principle|Legal paternalism|Victimless crime|Gateway drug effect|Iron law of prohibition|Deterrence theory|Reactance (psychology)|Slippery slope|Drug liberalization|Prohibition|Cannabis legalization|Addiction|Social determinants of health|Commercial determinants of health|Drug policy reform|Taxation|Regulatory capture"
+    },
+    "accessed_at": "2026-10-21T10:34:49.825996+00:00",
+    "http_status": 200,
+    "final_url": "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&explaintext=1&exintro=1&redirects=1&titles=Harm+principle%7CLegal+paternalism%7CVictimless+crime%7CGateway+drug+effect%7CIron+law+of+prohibition%7CDeterrence+theory%7CReactance+%28psychology%29%7CSlippery+slope%7CDrug+liberalization%7CProhibition%7CCannabis+legalization%7CAddiction%7CSocial+determinants+of+health%7CCommercial+determinants+of+health%7CDrug+policy+reform%7CTaxation%7CRegulatory+capture",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/wiki-argument-terms.body",
+    "sha256": "7a04a0e87f0d7199c199a11345bb04016f4cece7bf1752e4ac91236b0dd6d71f",
+    "content_type": "application/json; charset=utf-8"
+  }
+]

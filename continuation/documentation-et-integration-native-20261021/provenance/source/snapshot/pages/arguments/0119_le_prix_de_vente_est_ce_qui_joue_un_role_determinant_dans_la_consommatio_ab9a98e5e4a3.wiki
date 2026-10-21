@@ -1,0 +1,20 @@
+{{Argument
+|citations={{Citation
+|citation=Légaliser ne conduirait pas à une explosion de la consommation si la taxe fixée par l’Etat permettait de maintenir le prix actuel (environ 5,50 euros le gramme). Le prix est la variable essentielle : s’il était trop élevé, cela susciterait du trafic. S’il était trop bas, la consommation pourrait se développer.
+|auteurs=Pierre Kopp
+|article=Légaliser le cannabis rapporterait 1 milliard d'euros selon l'économiste Pierre Kopp, autoriser la consommation dégagerait des moyens pour la prévention
+|ouvrage=Le Monde
+|date=3/08/2011
+|lien=https://www.lemonde.fr/societe/article/2011/08/02/legaliser-le-cannabis-rapporterait-1-milliard-d-euros-miste-pierre-kopp-autoriser-la-consommation-degagerait-des-moyens-pour-la-prevention_1555243_3224.html
+}}{{Citation
+|citation=Une étude américaine des économistes de la RAND Corporation publiée en 2010 estimait que la légalisation de la production et de la distribution du cannabis en Californie, pourrait rapporter jusqu’à 1 milliard de dollars en taxes, mais ferait chuter son prix de 80%, entraînant inévitablement une hausse importante de la consommation.
+|auteurs=Grégoire Fleurot
+|article=A quoi ressemblerait une filière nationale du cannabis?
+|ouvrage=Slate
+|date=24/06/2011
+|lien=https://www.slate.fr/story/40067/cannabis-vente-libre-filiere-vaillant
+}}
+|rubriques=Économie, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Consommation, Prix de vente
+|date-création=2021-02-16
+}}

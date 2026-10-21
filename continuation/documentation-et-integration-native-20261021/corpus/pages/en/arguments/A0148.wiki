@@ -1,0 +1,9 @@
+{{Argument|webliography=
+{{Web reference
+|link=https://plato.stanford.edu/entries/fallacies/
+|page=Fallacies
+|authors=Hans Hansen
+|site=Stanford Encyclopedia of Philosophy
+|date=30 August 2024
+}}
+}}

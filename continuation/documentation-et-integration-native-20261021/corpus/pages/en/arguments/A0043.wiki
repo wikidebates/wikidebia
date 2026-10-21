@@ -1,0 +1,14 @@
+{{Argument
+|quotes={{Quote
+|quote=In 1970, legislators observed the spread of cannabis use and devised legislation intended to curb it.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=32
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, cannabis, legalisation, decriminalisation, legislation
+}}

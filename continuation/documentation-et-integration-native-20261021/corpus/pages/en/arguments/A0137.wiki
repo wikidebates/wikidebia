@@ -1,0 +1,24 @@
+{{Argument
+|quotes={{Quote
+|quote=These same advocates of cannabis decriminalisation are often also campaigning for the decriminalisation of every other drug. As a first crowning achievement of their efforts to recruit addicts indiscriminately, they argued for the introduction of drug injection rooms and have just secured the ministry's approval for them.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=63
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=No state that has legalised cannabis has legalised a hard drug
+|displayed-title=No state that has legalised cannabis has legalised a hard drug
+}}{{Objection
+|page=Slippery slope fallacy
+|displayed-title=Slippery slope fallacy
+}}{{Objection
+|page=Legalising hard drugs would benefit society
+|displayed-title=Legalising hard drugs would benefit society
+}}
+|sections=Law, Society
+|keywords=cannabis, legalisation, decriminalisation, hard drugs
+}}

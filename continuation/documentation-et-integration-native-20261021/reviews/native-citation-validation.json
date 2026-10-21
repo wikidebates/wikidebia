@@ -1,0 +1,1202 @@
+{
+  "status": "passed_translation_and_parameter_subset_only",
+  "native_code_commit": "4b2abbe",
+  "quotes": 149,
+  "passages": 2,
+  "rows": [
+    {
+      "delivery_page_id": "A0063",
+      "native_page_id": "A0007",
+      "delivery_quote_id": "Q069",
+      "native_quote_id": "A0007-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0053",
+      "native_page_id": "A0008",
+      "delivery_quote_id": "Q063",
+      "native_quote_id": "A0008-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0038",
+      "native_page_id": "A0014",
+      "delivery_quote_id": "Q036",
+      "native_quote_id": "A0014-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0005",
+      "native_page_id": "A0015",
+      "delivery_quote_id": "Q005",
+      "native_quote_id": "A0015-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0112",
+      "native_page_id": "A0016",
+      "delivery_quote_id": "Q116",
+      "native_quote_id": "A0016-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0084",
+      "native_page_id": "A0017",
+      "delivery_quote_id": "Q084",
+      "native_quote_id": "A0017-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0034",
+      "native_page_id": "A0018",
+      "delivery_quote_id": "Q031",
+      "native_quote_id": "A0018-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0034",
+      "native_page_id": "A0018",
+      "delivery_quote_id": "Q032",
+      "native_quote_id": "A0018-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0099",
+      "native_page_id": "A0019",
+      "delivery_quote_id": "Q103",
+      "native_quote_id": "A0019-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0135",
+      "native_page_id": "A0020",
+      "delivery_quote_id": "Q141",
+      "native_quote_id": "A0020-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0135",
+      "native_page_id": "A0020",
+      "delivery_quote_id": "Q142",
+      "native_quote_id": "A0020-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0031",
+      "native_page_id": "A0021",
+      "delivery_quote_id": "Q029",
+      "native_quote_id": "A0021-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0100",
+      "native_page_id": "A0022",
+      "delivery_quote_id": "Q104",
+      "native_quote_id": "A0022-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0100",
+      "native_page_id": "A0022",
+      "delivery_quote_id": "Q105",
+      "native_quote_id": "A0022-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0082",
+      "native_page_id": "A0023",
+      "delivery_quote_id": "Q082",
+      "native_quote_id": "A0023-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0085",
+      "native_page_id": "A0024",
+      "delivery_quote_id": "Q085",
+      "native_quote_id": "A0024-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0085",
+      "native_page_id": "A0024",
+      "delivery_quote_id": "Q086",
+      "native_quote_id": "A0024-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0086",
+      "native_page_id": "A0025",
+      "delivery_quote_id": "Q087",
+      "native_quote_id": "A0025-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0086",
+      "native_page_id": "A0025",
+      "delivery_quote_id": "Q088",
+      "native_quote_id": "A0025-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0097",
+      "native_page_id": "A0027",
+      "delivery_quote_id": "Q100",
+      "native_quote_id": "A0027-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0097",
+      "native_page_id": "A0027",
+      "delivery_quote_id": "Q101",
+      "native_quote_id": "A0027-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0094",
+      "native_page_id": "A0028",
+      "delivery_quote_id": "Q097",
+      "native_quote_id": "A0028-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0094",
+      "native_page_id": "A0028",
+      "delivery_quote_id": "Q098",
+      "native_quote_id": "A0028-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0095",
+      "native_page_id": "A0029",
+      "delivery_quote_id": "Q099",
+      "native_quote_id": "A0029-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0087",
+      "native_page_id": "A0030",
+      "delivery_quote_id": "Q089",
+      "native_quote_id": "A0030-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0087",
+      "native_page_id": "A0030",
+      "delivery_quote_id": "Q090",
+      "native_quote_id": "A0030-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0087",
+      "native_page_id": "A0030",
+      "delivery_quote_id": "Q091",
+      "native_quote_id": "A0030-C003",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0083",
+      "native_page_id": "A0031",
+      "delivery_quote_id": "Q083",
+      "native_quote_id": "A0031-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0052",
+      "native_page_id": "A0032",
+      "delivery_quote_id": "Q062",
+      "native_quote_id": "A0032-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0152",
+      "native_page_id": "A0033",
+      "delivery_quote_id": "Q149",
+      "native_quote_id": "A0033-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0088",
+      "native_page_id": "A0034",
+      "delivery_quote_id": "Q092",
+      "native_quote_id": "A0034-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0041",
+      "native_page_id": "A0036",
+      "delivery_quote_id": "Q042",
+      "native_quote_id": "A0036-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0041",
+      "native_page_id": "A0036",
+      "delivery_quote_id": "Q043",
+      "native_quote_id": "A0036-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0041",
+      "native_page_id": "A0036",
+      "delivery_quote_id": "Q044",
+      "native_quote_id": "A0036-C003",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0041",
+      "native_page_id": "A0036",
+      "delivery_quote_id": "Q045",
+      "native_quote_id": "A0036-C004",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0041",
+      "native_page_id": "A0036",
+      "delivery_quote_id": "Q046",
+      "native_quote_id": "A0036-C005",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0103",
+      "native_page_id": "A0037",
+      "delivery_quote_id": "Q106",
+      "native_quote_id": "A0037-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0103",
+      "native_page_id": "A0037",
+      "delivery_quote_id": "Q107",
+      "native_quote_id": "A0037-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0089",
+      "native_page_id": "A0038",
+      "delivery_quote_id": "Q093",
+      "native_quote_id": "A0038-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0089",
+      "native_page_id": "A0038",
+      "delivery_quote_id": "Q094",
+      "native_quote_id": "A0038-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0089",
+      "native_page_id": "A0038",
+      "delivery_quote_id": "Q095",
+      "native_quote_id": "A0038-C003",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0089",
+      "native_page_id": "A0038",
+      "delivery_quote_id": "Q096",
+      "native_quote_id": "A0038-C004",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0032",
+      "native_page_id": "A0039",
+      "delivery_quote_id": "Q030",
+      "native_quote_id": "A0039-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0098",
+      "native_page_id": "A0040",
+      "delivery_quote_id": "Q102",
+      "native_quote_id": "A0040-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0010",
+      "native_page_id": "A0041",
+      "delivery_quote_id": "Q008",
+      "native_quote_id": "A0041-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0010",
+      "native_page_id": "A0041",
+      "delivery_quote_id": "Q009",
+      "native_quote_id": "A0041-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0024",
+      "native_page_id": "A0042",
+      "delivery_quote_id": "Q023",
+      "native_quote_id": "A0042-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0049",
+      "native_page_id": "A0043",
+      "delivery_quote_id": "Q058",
+      "native_quote_id": "A0043-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0049",
+      "native_page_id": "A0043",
+      "delivery_quote_id": "Q059",
+      "native_quote_id": "A0043-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0047",
+      "native_page_id": "A0044",
+      "delivery_quote_id": "Q055",
+      "native_quote_id": "A0044-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0047",
+      "native_page_id": "A0044",
+      "delivery_quote_id": "Q056",
+      "native_quote_id": "A0044-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0050",
+      "native_page_id": "A0045",
+      "delivery_quote_id": "Q060",
+      "native_quote_id": "A0045-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0044",
+      "native_page_id": "A0046",
+      "delivery_quote_id": "Q049",
+      "native_quote_id": "A0046-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0044",
+      "native_page_id": "A0046",
+      "delivery_quote_id": "Q050",
+      "native_quote_id": "A0046-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0044",
+      "native_page_id": "A0046",
+      "delivery_quote_id": "Q051",
+      "native_quote_id": "A0046-C003",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0044",
+      "native_page_id": "A0046",
+      "delivery_quote_id": "Q052",
+      "native_quote_id": "A0046-C004",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0009",
+      "native_page_id": "A0047",
+      "delivery_quote_id": "Q007",
+      "native_quote_id": "A0047-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0046",
+      "native_page_id": "A0048",
+      "delivery_quote_id": "Q053",
+      "native_quote_id": "A0048-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0046",
+      "native_page_id": "A0048",
+      "delivery_quote_id": "Q054",
+      "native_quote_id": "A0048-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0048",
+      "native_page_id": "A0049",
+      "delivery_quote_id": "Q057",
+      "native_quote_id": "A0049-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0064",
+      "native_page_id": "A0050",
+      "delivery_quote_id": "Q070",
+      "native_quote_id": "A0050-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0064",
+      "native_page_id": "A0050",
+      "delivery_quote_id": "Q071",
+      "native_quote_id": "A0050-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0071",
+      "native_page_id": "A0051",
+      "delivery_quote_id": "Q076",
+      "native_quote_id": "A0051-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0057",
+      "native_page_id": "A0053",
+      "delivery_quote_id": "Q064",
+      "native_quote_id": "A0053-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0072",
+      "native_page_id": "A0054",
+      "delivery_quote_id": "Q077",
+      "native_quote_id": "A0054-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0151",
+      "native_page_id": "A0055",
+      "delivery_quote_id": "Q148",
+      "native_quote_id": "A0055-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0066",
+      "native_page_id": "A0056",
+      "delivery_quote_id": "Q072",
+      "native_quote_id": "A0056-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0068",
+      "native_page_id": "A0058",
+      "delivery_quote_id": "Q074",
+      "native_quote_id": "A0058-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0060",
+      "native_page_id": "A0059",
+      "delivery_quote_id": "Q065",
+      "native_quote_id": "A0059-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0067",
+      "native_page_id": "A0060",
+      "delivery_quote_id": "Q073",
+      "native_quote_id": "A0060-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0115",
+      "native_page_id": "A0061",
+      "delivery_quote_id": "Q119",
+      "native_quote_id": "A0061-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0124",
+      "native_page_id": "A0064",
+      "delivery_quote_id": "Q131",
+      "native_quote_id": "A0064-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0106",
+      "native_page_id": "A0065",
+      "delivery_quote_id": "Q109",
+      "native_quote_id": "A0065-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0111",
+      "native_page_id": "A0066",
+      "delivery_quote_id": "Q115",
+      "native_quote_id": "A0066-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0117",
+      "native_page_id": "A0067",
+      "delivery_quote_id": "Q122",
+      "native_quote_id": "A0067-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0108",
+      "native_page_id": "A0068",
+      "delivery_quote_id": "Q112",
+      "native_quote_id": "A0068-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0108",
+      "native_page_id": "A0068",
+      "delivery_quote_id": "Q113",
+      "native_quote_id": "A0068-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0108",
+      "native_page_id": "A0068",
+      "delivery_quote_id": "Q114",
+      "native_quote_id": "A0068-C003",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0105",
+      "native_page_id": "A0069",
+      "delivery_quote_id": "Q108",
+      "native_quote_id": "A0069-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0107",
+      "native_page_id": "A0070",
+      "delivery_quote_id": "Q110",
+      "native_quote_id": "A0070-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0107",
+      "native_page_id": "A0070",
+      "delivery_quote_id": "Q111",
+      "native_quote_id": "A0070-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0011",
+      "native_page_id": "A0073",
+      "delivery_quote_id": "Q010",
+      "native_quote_id": "A0073-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0011",
+      "native_page_id": "A0073",
+      "delivery_quote_id": "Q011",
+      "native_quote_id": "A0073-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0019",
+      "native_page_id": "A0075",
+      "delivery_quote_id": "Q017",
+      "native_quote_id": "A0075-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0019",
+      "native_page_id": "A0075",
+      "delivery_quote_id": "Q018",
+      "native_quote_id": "A0075-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0074",
+      "native_page_id": "A0076",
+      "delivery_quote_id": "Q078",
+      "native_quote_id": "A0076-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0138",
+      "native_page_id": "A0078",
+      "delivery_quote_id": "Q145",
+      "native_quote_id": "A0078-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0137",
+      "native_page_id": "A0079",
+      "delivery_quote_id": "Q144",
+      "native_quote_id": "A0079-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0061",
+      "native_page_id": "A0080",
+      "delivery_quote_id": "Q066",
+      "native_quote_id": "A0080-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0061",
+      "native_page_id": "A0080",
+      "delivery_quote_id": "Q067",
+      "native_quote_id": "A0080-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0061",
+      "native_page_id": "A0080",
+      "delivery_quote_id": "Q068",
+      "native_quote_id": "A0080-C003",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0070",
+      "native_page_id": "A0081",
+      "delivery_quote_id": "Q075",
+      "native_quote_id": "A0081-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0078",
+      "native_page_id": "A0082",
+      "delivery_quote_id": "Q080",
+      "native_quote_id": "A0082-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0020",
+      "native_page_id": "A0084",
+      "delivery_quote_id": "Q019",
+      "native_quote_id": "A0084-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0030",
+      "native_page_id": "A0087",
+      "delivery_quote_id": "Q026",
+      "native_quote_id": "A0087-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0030",
+      "native_page_id": "A0087",
+      "delivery_quote_id": "Q027",
+      "native_quote_id": "A0087-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0030",
+      "native_page_id": "A0087",
+      "delivery_quote_id": "Q028",
+      "native_quote_id": "A0087-C003",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0123",
+      "native_page_id": "A0088",
+      "delivery_quote_id": "Q130",
+      "native_quote_id": "A0088-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0013",
+      "native_page_id": "A0091",
+      "delivery_quote_id": "Q012",
+      "native_quote_id": "A0091-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0016",
+      "native_page_id": "A0092",
+      "delivery_quote_id": "Q015",
+      "native_quote_id": "A0092-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0081",
+      "native_page_id": "A0095",
+      "delivery_quote_id": "Q081",
+      "native_quote_id": "A0095-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0042",
+      "native_page_id": "A0097",
+      "delivery_quote_id": "Q047",
+      "native_quote_id": "A0097-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0025",
+      "native_page_id": "A0099",
+      "delivery_quote_id": "Q024",
+      "native_quote_id": "A0099-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0128",
+      "native_page_id": "A0100",
+      "delivery_quote_id": "Q134",
+      "native_quote_id": "A0100-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0128",
+      "native_page_id": "A0100",
+      "delivery_quote_id": "Q135",
+      "native_quote_id": "A0100-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0128",
+      "native_page_id": "A0100",
+      "delivery_quote_id": "Q136",
+      "native_quote_id": "A0100-C003",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0128",
+      "native_page_id": "A0100",
+      "delivery_quote_id": "Q137",
+      "native_quote_id": "A0100-C004",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0114",
+      "native_page_id": "A0102",
+      "delivery_quote_id": "Q118",
+      "native_quote_id": "A0102-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0043",
+      "native_page_id": "A0105",
+      "delivery_quote_id": "Q048",
+      "native_quote_id": "A0105-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0001",
+      "native_page_id": "A0106",
+      "delivery_quote_id": "Q001",
+      "native_quote_id": "A0106-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0001",
+      "native_page_id": "A0106",
+      "delivery_quote_id": "Q002",
+      "native_quote_id": "A0106-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0037",
+      "native_page_id": "A0110",
+      "delivery_quote_id": "Q034",
+      "native_quote_id": "A0110-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0037",
+      "native_page_id": "A0110",
+      "delivery_quote_id": "Q035",
+      "native_quote_id": "A0110-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0136",
+      "native_page_id": "A0111",
+      "delivery_quote_id": "Q143",
+      "native_quote_id": "A0111-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0015",
+      "native_page_id": "A0112",
+      "delivery_quote_id": "Q013",
+      "native_quote_id": "A0112-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0015",
+      "native_page_id": "A0112",
+      "delivery_quote_id": "Q014",
+      "native_quote_id": "A0112-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0021",
+      "native_page_id": "A0113",
+      "delivery_quote_id": "Q020",
+      "native_quote_id": "A0113-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0147",
+      "native_page_id": "A0114",
+      "delivery_quote_id": "Q147",
+      "native_quote_id": "A0114-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0008",
+      "native_page_id": "A0115",
+      "delivery_quote_id": "Q006",
+      "native_quote_id": "A0115-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0134",
+      "native_page_id": "A0116",
+      "delivery_quote_id": "Q139",
+      "native_quote_id": "A0116-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0134",
+      "native_page_id": "A0116",
+      "delivery_quote_id": "Q140",
+      "native_quote_id": "A0116-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0039",
+      "native_page_id": "A0117",
+      "delivery_quote_id": "Q037",
+      "native_quote_id": "A0117-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0039",
+      "native_page_id": "A0117",
+      "delivery_quote_id": "Q038",
+      "native_quote_id": "A0117-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0039",
+      "native_page_id": "A0117",
+      "delivery_quote_id": "Q039",
+      "native_quote_id": "A0117-C003",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0039",
+      "native_page_id": "A0117",
+      "delivery_quote_id": "Q040",
+      "native_quote_id": "A0117-C004",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0141",
+      "native_page_id": "A0118",
+      "delivery_quote_id": "Q146",
+      "native_quote_id": "A0118-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0004",
+      "native_page_id": "A0119",
+      "delivery_quote_id": "Q004",
+      "native_quote_id": "A0119-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0018",
+      "native_page_id": "A0120",
+      "delivery_quote_id": "Q016",
+      "native_quote_id": "A0120-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0023",
+      "native_page_id": "A0122",
+      "delivery_quote_id": "Q021",
+      "native_quote_id": "A0122-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0023",
+      "native_page_id": "A0122",
+      "delivery_quote_id": "Q022",
+      "native_quote_id": "A0122-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0116",
+      "native_page_id": "A0123",
+      "delivery_quote_id": "Q120",
+      "native_quote_id": "A0123-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0116",
+      "native_page_id": "A0123",
+      "delivery_quote_id": "Q121",
+      "native_quote_id": "A0123-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0118",
+      "native_page_id": "A0124",
+      "delivery_quote_id": "Q123",
+      "native_quote_id": "A0124-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0040",
+      "native_page_id": "A0125",
+      "delivery_quote_id": "Q041",
+      "native_quote_id": "A0125-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0036",
+      "native_page_id": "A0126",
+      "delivery_quote_id": "Q033",
+      "native_quote_id": "A0126-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0113",
+      "native_page_id": "A0127",
+      "delivery_quote_id": "Q117",
+      "native_quote_id": "A0127-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0003",
+      "native_page_id": "A0128",
+      "delivery_quote_id": "Q003",
+      "native_quote_id": "A0128-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0120",
+      "native_page_id": "A0131",
+      "delivery_quote_id": "Q126",
+      "native_quote_id": "A0131-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0076",
+      "native_page_id": "A0132",
+      "delivery_quote_id": "Q079",
+      "native_quote_id": "A0132-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0129",
+      "native_page_id": "A0134",
+      "delivery_quote_id": "Q138",
+      "native_quote_id": "A0134-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0127",
+      "native_page_id": "A0135",
+      "delivery_quote_id": "Q132",
+      "native_quote_id": "A0135-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0127",
+      "native_page_id": "A0135",
+      "delivery_quote_id": "Q133",
+      "native_quote_id": "A0135-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0028",
+      "native_page_id": "A0142",
+      "delivery_quote_id": "Q025",
+      "native_quote_id": "A0142-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0119",
+      "native_page_id": "A0143",
+      "delivery_quote_id": "Q124",
+      "native_quote_id": "A0143-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0119",
+      "native_page_id": "A0143",
+      "delivery_quote_id": "Q125",
+      "native_quote_id": "A0143-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0121",
+      "native_page_id": "A0147",
+      "delivery_quote_id": "Q127",
+      "native_quote_id": "A0147-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0122",
+      "native_page_id": "A0148",
+      "delivery_quote_id": "Q128",
+      "native_quote_id": "A0148-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0122",
+      "native_page_id": "A0148",
+      "delivery_quote_id": "Q129",
+      "native_quote_id": "A0148-C002",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    },
+    {
+      "delivery_page_id": "A0051",
+      "native_page_id": "A0150",
+      "delivery_quote_id": "Q061",
+      "native_quote_id": "A0150-C001",
+      "parameter_contract": "passed",
+      "external_authenticity_verified": false
+    }
+  ],
+  "official_translation_finalized": false,
+  "external_authenticity_verified": false
+}

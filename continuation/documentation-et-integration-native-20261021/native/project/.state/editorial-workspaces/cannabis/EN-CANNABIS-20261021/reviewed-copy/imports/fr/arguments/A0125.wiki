@@ -1,0 +1,15 @@
+{{Argument
+|citations={{Citation
+|citation=Le débat est le suivant : la dépendance à une drogue illicite se produit-elle indépendamment de la personne et de l'environnement ? Dans ce cas, la drogue est cause de la dépendance. Ou la dépendance à une drogue se produit-elle parce que cette habitude a répondu aux besoins d'une personne dans un environnement donné ? Dans ce cas, la drogue est une solution, un moyen d'adaptation à la vie, non pas une cause.
+Ces questions en apparence anodines, sont fondamentales quand on analyse la pertinence de la prohibition. La croyance que les drogues illicites causent la dépendance indépendamment du rapport que la personne établit avec ces drogues et de l'environnement de cette consommation, constitue la première justification de la prohibition dans la population. Si la réponse est que la drogue constitue un moyen d'adaptation pour certaines personnes à leur vie et que, parmi ces personnes, certaines développeront une habitude néfaste au produit, corriger la cause du problème ne signifie pas interdire les drogues. Les drogues furent un moyen parmi d'autres. Corriger le problème signifie agir pour aider la personne et/ou modifier ses conditions de vie.
+S'il fallait interdire tous les produits ou comportements pour lesquels certaines personnes ont des vulnérabilités de dépendance négative, il faudrait interdire les sucreries, la junk food, la télé, les jeux d'ordi et même le travail et les rapports amoureux.
+|auteurs=Lise Beauchesne
+|ouvrage=Les drogues. Les coûts cachés de la prohibition
+|page=133-134
+|édition= Lanctôt
+|date=2003
+}}
+|rubriques=Philosophie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Santé, Addiction, Dépendance
+|date-création=2019-08-09
+}}

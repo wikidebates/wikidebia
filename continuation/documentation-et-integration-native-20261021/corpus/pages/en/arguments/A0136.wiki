@@ -1,0 +1,21 @@
+{{Argument
+|quotes={{Quote
+|quote=Of around forty studies analysed by California statistician Meenakshi Sabina Subbaraman, sixteen conclude that alcohol and cannabis are substitutes, while ten conclude that they are instead consumed as complements.
+|authors=Stéphany Laperrière
+|article=Légalisation du cannabis : quel sera l'impact sur les ventes d'alcool au pays ?
+|publisher=Radio Canada
+|date=22 August 2018
+|link=https://ici.radio-canada.ca/nouvelle/1119257/legalisation-cannabis-vente-alcool-canada-impact
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/35360879
+|page=Relationships of Cannabis Policy Liberalization With Alcohol Use and Co-Use With Cannabis: A Narrative Review
+|authors=Pacula RL, Smart R, Lira MC, Pessar SC, Blanchette JG, Naimi TS
+|site=Europe PMC
+|date=2022
+}}
+}}

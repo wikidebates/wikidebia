@@ -1,0 +1,13 @@
+{{Argument
+|citations={{Citation
+|citation=Ce n’est pas le produit seul qui fait la dangerosité, mais le comportement de consommation et la fragilité de celui qui consomme.
+|auteurs=Nicole Maestracci
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=226
+|édition= Denoël
+|date=2011
+}}
+|rubriques=Philosophie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Overdose, Dangerosité
+|date-création=2019-08-09
+}}

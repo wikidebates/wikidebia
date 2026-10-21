@@ -1,0 +1,18 @@
+{{Argument
+|quotes={{Quote
+|quote=Retaining a criminal penalty that is hardly ever applied becomes farcical and undermines the standing of the justice system in adolescents' eyes. Some are no longer even aware that they are breaking a rule, so ordinary does the practice seem to them.
+|authors=Françoise Branget, Gilbert Barbier
+|article=La dépénalisation de l'usage, une impasse éthique et juridique
+|work=MISSION D’INFORMATION SUR LES TOXICOMANIES. Rapport d'information sur les toxicomanies
+|publisher=Assemblée nationale (France)
+|date=30 June 2011
+|link=https://www.assemblee-nationale.fr/13/rap-info/i3612-ti.asp#P1085_352797
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=France's 1970 drug law should be enforced before it is repealed
+|displayed-title=The law should be enforced before it is repealed
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

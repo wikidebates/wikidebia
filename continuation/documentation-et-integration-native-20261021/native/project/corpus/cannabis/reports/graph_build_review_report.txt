@@ -1,0 +1,6 @@
+REVUE DU BUILD GRAPH_DRAFT : APPROUVÉE
+Débat : cannabis
+SHA-256 de la revue : d6746c3256dc135c1c1589c2b6257ff19bcc504e4c85dc39ab4eb4f5ea842a0f
+SHA-256 structurel : 49ff8e4e5efb0f755ddbb149966013beb14085eeca0d61fd7e63b86e4c939b89
+État obtenu : graph_validated
+Pages finales générées : non

@@ -1,0 +1,17 @@
+{
+  "workspace": "/workspace/work/cannabis-interquotation-code/.state/editorial-workspaces/cannabis/EN-CANNABIS-20261021",
+  "state": "fr_content_review_ready",
+  "pending_review_relative_path": ".state/editorial-workspaces/cannabis/EN-CANNABIS-20261021/reviews/en/translation_review.pending.json",
+  "pending_review_sha256": "0466b3249234c53a4e4e0d871cf35216dbd0b437b5ce1ab65ba833cb43cde1dd",
+  "coverage": {
+    "arguments": 152,
+    "quotes": 149,
+    "passages": 2,
+    "review_units": 20
+  },
+  "classification_source_absence_pages": 37,
+  "french_content_lock_present": false,
+  "official_translation_prepared": false,
+  "official_translation_finalized": false,
+  "wiki_writes": false
+}

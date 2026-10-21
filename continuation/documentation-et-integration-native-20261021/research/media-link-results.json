@@ -1,0 +1,87 @@
+[
+  {
+    "id": "image-en-logo",
+    "url": "https://en.wikidebates.org/w/api.php",
+    "params": {
+      "action": "query",
+      "format": "json",
+      "titles": "File:Logo_debat_cannabis.jpg",
+      "prop": "imageinfo",
+      "iiprop": "url|extmetadata"
+    },
+    "accessed_at": "2026-10-21T10:11:37.148950+00:00",
+    "http_status": 403,
+    "final_url": "https://en.wikidebates.org/w/api.php?action=query&format=json&titles=File%3ALogo_debat_cannabis.jpg&prop=imageinfo&iiprop=url%7Cextmetadata",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/image-en-logo.body",
+    "sha256": "56471b2dc280a97b0d811d69f817f0711b6e860774000107d80b544b310a41a6",
+    "content_type": "text/html; charset=UTF-8"
+  },
+  {
+    "id": "image-fr-logo",
+    "url": "https://fr.wikidebates.org/w/api.php",
+    "params": {
+      "action": "query",
+      "format": "json",
+      "titles": "Fichier:Logo_debat_cannabis.jpg",
+      "prop": "imageinfo",
+      "iiprop": "url|extmetadata"
+    },
+    "accessed_at": "2026-10-21T10:11:37.149416+00:00",
+    "http_status": 403,
+    "final_url": "https://fr.wikidebates.org/w/api.php?action=query&format=json&titles=Fichier%3ALogo_debat_cannabis.jpg&prop=imageinfo&iiprop=url%7Cextmetadata",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/image-fr-logo.body",
+    "sha256": "7983eec6addf713192ed7535e5a26cf0fa2cff6fa9de73c44e210d45cc5a6661",
+    "content_type": "text/html; charset=UTF-8"
+  },
+  {
+    "id": "image-commons-map",
+    "url": "https://commons.wikimedia.org/w/api.php",
+    "params": {
+      "action": "query",
+      "format": "json",
+      "titles": "File:World-cannabis-laws.png",
+      "prop": "imageinfo",
+      "iiprop": "url|extmetadata"
+    },
+    "accessed_at": "2026-10-21T10:11:37.152826+00:00",
+    "http_status": 200,
+    "final_url": "https://commons.wikimedia.org/w/api.php?action=query&format=json&titles=File%3AWorld-cannabis-laws.png&prop=imageinfo&iiprop=url%7Cextmetadata",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/image-commons-map.body",
+    "sha256": "6acf8c1b5a17aa58d75edeeb09f3fa1749f288d68ebd6c2046d64daca60d4086",
+    "content_type": "application/json; charset=utf-8"
+  },
+  {
+    "id": "wp-legalisation",
+    "url": "https://en.wikipedia.org/w/api.php",
+    "params": {
+      "action": "query",
+      "format": "json",
+      "titles": "Legality of cannabis|Drug liberalization|Slippery slope",
+      "prop": "info",
+      "inprop": "url"
+    },
+    "accessed_at": "2026-10-21T10:11:37.649139+00:00",
+    "http_status": 200,
+    "final_url": "https://en.wikipedia.org/w/api.php?action=query&format=json&titles=Legality+of+cannabis%7CDrug+liberalization%7CSlippery+slope&prop=info&inprop=url",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/wp-legalisation.body",
+    "sha256": "422c59d48482a01a4cc5d8ad838a9c06344aedc3b274bf15eb2b507f04610bb2",
+    "content_type": "application/json; charset=utf-8"
+  },
+  {
+    "id": "wiki-fr-legality",
+    "url": "https://fr.wikipedia.org/w/api.php",
+    "params": {
+      "action": "query",
+      "format": "json",
+      "titles": "Libéralisation du cannabis",
+      "prop": "info",
+      "inprop": "url"
+    },
+    "accessed_at": "2026-10-21T10:11:38.044592+00:00",
+    "http_status": 200,
+    "final_url": "https://fr.wikipedia.org/w/api.php?action=query&format=json&titles=Lib%C3%A9ralisation+du+cannabis&prop=info&inprop=url",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/wiki-fr-legality.body",
+    "sha256": "ed1bd611a25bdb65ec4c48be942dfac66af8fef02cee9c472276ec9990b58522",
+    "content_type": "application/json; charset=utf-8"
+  }
+]

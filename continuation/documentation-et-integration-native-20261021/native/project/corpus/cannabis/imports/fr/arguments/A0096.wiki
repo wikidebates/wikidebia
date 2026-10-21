@@ -1,0 +1,5 @@
+{{Argument
+|initialisation=Objection@2816
+|résumé=Si on veut rester cohérent, la logique visant à légaliser le cannabis pour pouvoir le taxer devrait également s'appliquer à tous les autres commerces illicites, tels que les contenus pédocriminels ou les contrefaçons, ce qui serait à la fois cynique et irresponsable.
+|date-création=2023-07-28
+}}

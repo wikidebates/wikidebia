@@ -1,0 +1,24 @@
+[
+  {
+    "id": "commission-2011-pdf",
+    "url": "https://www.globalcommissionondrugs.org/wp-content/themes/gcdp_v1/pdf/Global_Commission_Report_English.pdf",
+    "params": null,
+    "accessed_at": "2026-10-21T10:35:18.526305+00:00",
+    "http_status": 404,
+    "final_url": "https://globalcommissionondrugs.org/wp-content/themes/gcdp_v1/pdf/Global_Commission_Report_English.pdf",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/commission-2011-pdf.body",
+    "sha256": "2f18f13a9caf1506682be806d6c3095446b5296e9eb5abbf54359c5a1bd58ef2",
+    "content_type": "text/html; charset=UTF-8"
+  },
+  {
+    "id": "public-health-regulation-full",
+    "url": "https://www.rand.org/pubs/external_publications/EP50320.html",
+    "params": null,
+    "accessed_at": "2026-10-21T10:35:18.527930+00:00",
+    "http_status": 404,
+    "final_url": "https://www.rand.org/pubs/external_publications/EP50320.html",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/public-health-regulation-full.body",
+    "sha256": "bc5af09291540102242c98d34971db67ed54f873f97ddade51e688c241d4145d",
+    "content_type": "text/html; charset=UTF-8"
+  }
+]

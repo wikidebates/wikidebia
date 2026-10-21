@@ -1,0 +1,6 @@
+{{Argument
+|objections={{Objection
+|page=Cannabis can be used to relieve pain and relax
+|displayed-title=No, it is also used to relieve pain and relax
+}}
+}}

@@ -1,0 +1,46 @@
+SUITE POUR CODEX — TRADUCTION CANNABIS
+
+Version 2 vérifiée et corrigée le 21 octobre 2026.
+Lire aussi RAPPORT_VERIFICATION.md.
+La traduction textuelle des 153 pages est réalisée. Ne pas repartir de zéro.
+Commencer par LIRE_D_ABORD.txt et lecture_bilingue.html.
+
+Source : snapshot français auditée du 21 octobre 2026, conservée intégralement
+sous provenance/source/. Consignes du dépôt lues au commit
+0ab6e46f62f76490a81431b75e02371df08ebc28.
+
+Les pages anglaises sont sous pages/en/. Les traductions structurées, les
+149 citations et leurs paramètres source/cible, les titres, les 165 libellés et
+les relations sont sous data/. Les notes et résultats se trouvent sous reviews/.
+Les identifiants A0001 à A0152 sont LOCAUX À LA LIVRAISON, selon le snapshot ;
+faire le raccord au corpus cible par titre français et révision, pas par numéro.
+
+Ne pas développer les libellés courts ou nominaux pour satisfaire une règle de
+génération. Ne pas ajouter de résumé aux 120 arguments qui n'en ont pas.
+Ne modifier aucune source française. Ne supprimer aucune citation.
+
+Deux citations (Q092 et Q120) contenaient déjà leur anglais avec une glose FR.
+Le texte anglais fourni est conservé ; la source bilingue complète reste dans
+les paramètres source et le snapshot, sans citation perdue.
+
+Reste à effectuer : recherche documentaire anglaise indépendante par page,
+vérification des éditions et citations, recherche éventuelle de noms consacrés,
+contrôle des liens Wikipédia, des débats connexes et des images. Les probes
+EUDA et Health Canada ont reçu HTTP CONNECT 403 dans cet environnement.
+Aucune source anglaise n'a été déclarée vérifiée sur cette seule base.
+Les références françaises séparées sont dans provenance/documentation_originale.json.
+Certaines références en ligne des résumés et de l'introduction restent françaises.
+
+Ensuite seulement, intégrer les traductions aux vrais verrous et revues du kit,
+reprendre ses contrôles documentaires et sa convergence sémantique officielle.
+Ne pas marquer la traduction ready/published sur la seule foi de cet export.
+Les dates anglaises dépendent des premières créations distantes et ne sont pas
+copiées des dates françaises. Aucun initialization français ne doit être copié.
+
+AUCUNE PUBLICATION WIKI N'A ÉTÉ EFFECTUÉE PAR CE TRAVAIL.
+L'utilisateur a demandé la traduction, pas une nouvelle publication anglaise.
+
+Deux passages éditoriaux entre les modèles Citation ont été rétablis dans
+A0037 et A0116. Les préserver, avec leur position. Ils sont recensés dans
+data/translation_editorial_notes.json. Les 18 corrections de la vérification
+sont détaillées dans reviews/corrections_verification.json.

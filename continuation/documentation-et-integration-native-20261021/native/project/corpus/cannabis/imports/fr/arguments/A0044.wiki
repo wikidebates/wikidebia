@@ -1,0 +1,21 @@
+{{Argument
+|citations={{Citation
+|citation=L’usage et la détention représentent en France l’essentiel du contentieux des stupéfiants (86%, contre 66% dans l’UE) selon une tendance accrue, à rebours de l’évolution européenne, où les sanctions réprimant la détention de drogues pour usage personnel diminuent (+ 3,1 % en France contre – 7,2 % dans l’UE).
+|auteurs=OEDT
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=18
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}{{Citation
+|citation=On est à nouveau partis sur une politique de tolérance zéro, dont tout le monde sait pourtant qu’elle est illusoire. Si les interpellations d’usagers de cannabis continuent à progresser, c’est surtout parce qu’elles sont très rentables sur le plan statistique. Mais tout le monde sait très bien que cela ne permet presque jamais de mettre à jour une affaire de trafic.
+|auteurs=Nicole Maestracci
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=227
+|édition= Denoël
+|date=2011
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

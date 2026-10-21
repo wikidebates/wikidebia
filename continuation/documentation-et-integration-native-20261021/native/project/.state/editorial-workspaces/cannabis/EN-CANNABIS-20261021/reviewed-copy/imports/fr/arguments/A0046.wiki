@@ -1,0 +1,33 @@
+{{Argument
+|citations={{Citation
+|citation=L’incarcération me parait un peu loin de l’objectif qu’on cherche à atteindre […] Je souhaite que quand l’usage intervient, il soit sanctionné de manière intelligente.
+|auteurs=Etienne Apaire
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=209
+|édition=Denoël
+|date=2011
+}}{{Citation
+|citation=Si la loi de 1970 était appliquée, il faudrait 100 prisons de plus. En Espagne ou aux Pays-Bas, la loi est plus souple, mais appliquée. Cela me semble davantage efficace.
+|auteurs=Amine Benyamina
+|ouvrage=Le Monde
+|date=2/02/2013
+}}{{Citation
+|citation=L’interdit pénal n’est donc plus systématiquement respecté, et ne peut plus l’être tant le recours à l’emprisonnement apparaît aujourd’hui comme totalement disproportionné, inapproprié et stigmatisant.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=82
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}{{Citation
+|citation=Aujourd’hui, l’usage est un délit mais il n’est, en réalité, pas sanctionné parce que c’est trop lourd.
+|auteurs=Emmanuel Roux
+|article=Cannabis : un réquisitoire contre la loi
+|ouvrage=Libération
+|date=5/02/2014
+|lien=https://www.liberation.fr/societe/2014/02/05/cannabis-un-requisitoire-contre-la-loi_978254
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

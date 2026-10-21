@@ -1,0 +1,20 @@
+{{Argument
+|citations={{Citation
+|citation=La criminalité a baissé de 13% en moyenne, de 15% en Californie, l'Etat le plus peuplé [alors que jusque là, seul le cannabis médical y avait été légalisé]. Et ce sont les délits les plus violents qui ont baissé le plus : les attaques à main armées, -19% et d'une façon générale, les meurtres ont partout baissé de 10% !
+|auteurs=Anthony Bellanger
+|article=Aux États-Unis, la légalisation du cannabis a fait baisser la criminalité
+|ouvrage=France Inter
+|date=15/01/2018
+|lien=https://www.franceinter.fr/emissions/les-histoires-du-monde/les-histoires-du-monde-15-janvier-2018
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://stratcann.com/news/cannabis-legalization-drives-significant-decline-in-canadian-drug-crime/
+|page=Cannabis legalization drives significant decline in Canadian drug crime
+|auteurs=Sarah Clark
+|site=Stratcann
+|date=30 octobre 2025
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

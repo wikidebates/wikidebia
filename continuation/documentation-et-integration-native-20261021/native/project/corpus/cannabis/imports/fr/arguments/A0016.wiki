@@ -1,0 +1,16 @@
+{{Argument
+|citations={{Citation
+|auteurs=Observatoire français des drogues et toxicomanies
+|citation=Les enquêtes en population générale fournissent une autre mesure de l'accessibilité en questionnant la perception qu'ont les individus de la facilité avec laquelle ils pourraient ou peuvent se procurer du cannabis. Elles montrent ainsi que le cannabis paraît très accessible à la majorité des Français, qu'ils consomment ou non : près de six personnes âgées de 15 à 64 ans sur dix (58,0 %) jugent qu'il leur serait facile d'obtenir du cannabis en 24 heures, s'ils en voulaient (30,4 % assez facile et 27,5 % très facile). Les hommes de 20-25 ans sont particulièrement nombreux à partager cette opinion (79,2 % contre 61,3 % dans le reste de la population). Moins d'une personne sur dix (7,2 %) dit ne pas pouvoir se prononcer sur la question, cette proportion augmentant de façon nette avec l'âge des personnes interrogées, de 2,0 % parmi les 15-19 ans à 14,3 % parmi les plus de 55 ans. Il faut reconnaître que cette question trouve ses limites face aux individus qui n'ont aucune envie de se procurer du cannabis et n'acceptent pas vraiment la mise en situation qui leur est proposée.
+
+Les difficultés semblent peu affecter la plupart des consommateurs. L'anticipation par la constitution des petites réserves, le dépannage entre usagers et le recours à d'autres réseaux d'approvisionnement tendent à amortir l'impact d'une réduction momentanée de la disponibilité. Un consommateur régulier et averti est en mesure, en toute circonstance, de satisfaire ses besoins d'une forme ou d'une autre de cannabis.
+|article=Cannabis, données essentielles. Partie 3 : le marché du cannabis en France
+|ouvrage=OFDT
+|page=67-68
+|date=2007
+|lien=https://www.ofdt.fr/BDD/publications/docs/cdemarch.pdf
+}}
+|rubriques=Économie, Société
+|mots-clés=Cannabis, Coût
+|date-création=2019-01-30
+}}

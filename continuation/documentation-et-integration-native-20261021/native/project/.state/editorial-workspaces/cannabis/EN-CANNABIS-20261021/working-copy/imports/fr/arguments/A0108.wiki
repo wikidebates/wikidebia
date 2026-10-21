@@ -1,0 +1,12 @@
+{{Argument
+|initialisation=Objection@29798
+|références-sitographiques={{Référence sitographique
+|lien=https://www.canada.ca/fr/sante-canada/services/drogues-medicaments/cannabis/recherches-donnees/enquete-canadienne-cannabis-2024-sommaire.html
+|page=Enquête canadienne sur le cannabis de 2024 : Sommaire
+|site=Santé Canada
+|date=2024
+}}
+
+|justifications=
+|date-création=2025-04-15
+}}

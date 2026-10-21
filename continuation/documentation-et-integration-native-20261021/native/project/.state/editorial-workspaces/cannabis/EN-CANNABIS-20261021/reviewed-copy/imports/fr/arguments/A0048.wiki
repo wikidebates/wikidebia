@@ -1,0 +1,21 @@
+{{Argument
+|citations={{Citation
+|citation=On a comparé des populations de jeunes en établissements scolaires ZEP et non ZEP. Les jeunes en ZEP consomment plutôt moins de cannabis, de tabac et d’alcool. Néanmoins, on ne voit devant les tribunaux, que des jeunes défavorisés. Donc il y a un biais qui est forcément mal ressenti. Je ne dis pas que la police ne cherche à interpeller que des jeunes défavorisés. Simplement, elle est là où sont ces jeunes, qui sont dehors et qui « tiennent les murs », alors que les jeunes plus favorisés consomment à l’abri des regards, souvent dans les appartements de leurs parents.
+|auteurs=Nicole Maestracci
+|ouvrage=Drogues : Pourquoi la légalisation est inévitable
+|page=228
+|édition= Denoël
+|date=2011
+}}{{Citation
+|citation=Les poursuites pour usage illicite varient d’une juridiction à l’autre. Des écarts géographiques importants s’observent en fonction de l’acuité locale du problème, de la motivation et des moyens du parquet. Les options alternatives à la répression sont envisagées en fonction du type de produit en cause, du niveau de consommation et du profil de l’usager (antécédents judiciaires ou non) selon des critères variables d’un parquet à l’autre. (…) En outre, une autre voie répressive émerge ces dernières années pour tenter d’endiguer ce phénomène de masse : il s’agit de punir le consommateur par une amende douanière payable immédiatement. Faute de pouvoir atteindre les organisateurs du trafic, l’idée est de déstabiliser ceux-ci en tarissant le flux de consommateurs. Cette mesure n’est toutefois appliquée pour le moment que dans certaines régions (notamment en Île-de-France et dans les Bouches-du-Rhône).
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=83
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

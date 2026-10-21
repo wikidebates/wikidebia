@@ -1,0 +1,10 @@
+{{Argument
+|références-bibliographiques={{Référence bibliographique
+|auteurs=Jean Costentin
+|ouvrage=Pourquoi il ne faut pas dépénaliser l'usage du cannabis ?
+|localisation=page 24
+|édition=Odile Jacob
+|date=2011
+}}
+|date-création=2021-08-07
+}}

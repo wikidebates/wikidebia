@@ -1,0 +1,21 @@
+{{Argument
+|justifications={{Justification
+|page=La prohibition du cannabis est contraire à la liberté individuelle
+|titre-affiché=La prohibition est contraire à la liberté individuelle
+}}{{Justification
+|page=L'interdit attaché au cannabis dépend des époques et des cultures
+|titre-affiché=L'interdit attaché au cannabis dépend des époques et des cultures
+}}{{Justification
+|page=La prohibition du cannabis ne fait pas de distinction entre usage simple et toxicomanie
+|titre-affiché=La prohibition ne fait pas de distinction entre usage simple et toxicomanie
+}}{{Justification
+|page=L'alcool et le tabac sont autorisés alors qu’ils sont plus dangereux que le cannabis
+|titre-affiché=De nombreuses substances bien plus addictives et dangereuses que le cannabis sont totalement légales
+}}{{Justification
+|page=L'addiction est une maladie, elle ne devrait pas être assimilée à un délit
+|titre-affiché=L'addiction est une maladie, elle ne devrait pas être assimilée à un délit
+}}
+|rubriques=Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Prohibition
+|date-création=2019-08-07
+}}

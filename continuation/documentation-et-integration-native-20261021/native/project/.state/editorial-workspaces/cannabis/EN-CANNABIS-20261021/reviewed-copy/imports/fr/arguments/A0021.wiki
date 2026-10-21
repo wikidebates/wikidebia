@@ -1,0 +1,14 @@
+{{Argument
+|citations={{Citation
+|citation=L'interdiction a été accompagnée par l'essor de nouvelles molécules de synthèse qui imitent les effets du cannabis mais qui, n'étant pas interdites, échappent de fait à la législation.
+|auteurs=MacCoun et Reuter (2001)
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=11
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|rubriques=Société
+|mots-clés=Cannabis, Dépénalisation, Légalisation, Prohibition, Interdiction
+|date-création=2019-01-31
+}}

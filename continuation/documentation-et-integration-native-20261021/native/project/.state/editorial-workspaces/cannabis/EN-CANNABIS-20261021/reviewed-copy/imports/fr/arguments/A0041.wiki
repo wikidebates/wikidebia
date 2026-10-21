@@ -1,0 +1,48 @@
+{{Argument
+|citations={{Citation
+|citation=L’argument de la dangerosité devrait logiquement conduire à prohiber et pénaliser l’usage du tabac et de l’alcool avant celui du cannabis.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=94
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}{{Citation
+|citation=Quant à savoir si la fin de la prohibition serait un progrès contre l'addiction il suffit de voir que les deux drogues qui font le plus de dégâts en France sont le tabac et l'alcool, c'est-à-dire deux drogues tout à fait légalisées !
+|auteurs=Nathalie Arthaud
+|article=Drogue et société
+|ouvrage=Lutte ouvrière
+|lien=https://www.lutte-ouvriere.org/sites/default/files/presentation/Drogue-et-societe.pdf
+}}
+|références-vidéographiques={{Référence vidéographique
+|titre=LE CANNABIS EST MOINS DANGEREUX QUE LE TABAC ? Vrai ou Faux #49
+|auteurs=Dr Nozman
+|lien=https://www.youtube.com/watch?v=bmOI5M_g5fE
+}}
+|justifications={{Justification
+|page=L'alcool et le tabac sont parmi les substances les plus addictogènes et nocives
+|titre-affiché=L'alcool et le tabac sont parmi les substances les plus addictogènes et nocives
+}}{{Justification
+|page=Les intérêts économiques des producteurs d'alcool peuvent peser sur la réglementation
+|titre-affiché=Les intérêts économiques peuvent influencer la réglementation de l'alcool
+}}{{Justification
+|page=Le groupe pharmaceutique Purdue est responsable de l'addiction à l'oxycodone
+|titre-affiché=Des médicaments prescrits peuvent entraîner une forte dépendance
+}}{{Justification
+|page=L'industrie agro-alimentaire rend ses aliments addictifs pour maximiser les profits
+|titre-affiché=L'industrie agro-alimentaire rend ses aliments addictifs pour maximiser les profits
+}}{{Justification
+|page=Les risques du cannabis doivent être distingués de ceux de l'alcool et du tabac
+|titre-affiché=Les risques du cannabis diffèrent de ceux de l'alcool et du tabac
+}}
+|objections={{Objection
+|page=L'alcool et le tabac ne sont pas dangereux en soi, seul leur abus l'est
+|titre-affiché=L'alcool et le tabac ne sont pas dangereux en soi, seul leur abus l'est
+}}{{Objection
+|page=Le cannabis est toujours dangereux car le seul but des fumeurs est de planer
+|titre-affiché=Le cannabis est toujours dangereux car le seul but des fumeurs est de planer
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Prohibition, Alcool, Tabac
+|date-création=2019-08-07
+}}

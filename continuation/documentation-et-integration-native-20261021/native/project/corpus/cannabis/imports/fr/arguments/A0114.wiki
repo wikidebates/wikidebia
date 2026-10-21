@@ -1,0 +1,13 @@
+{{Argument
+|citations={{Citation
+|citation=Le fait de légaliser le marché de certaines formes de cannabis pourrait aussi contribuer au développement d’un marché parallèle où le cannabis vendu serait plus puissant et donc avec plus d’effets, ce qui est aussi recherché par les consommateurs.
+|auteurs=Christophe Soullez
+|article=Légaliser le cannabis et sa production comme l'Uruguay est-il vraiment l'arme qui aura la peau des trafics ?
+|ouvrage=Atlantico
+|date=16/12/2013
+|lien=https://www.atlantico.fr/decryptage/legaliser-cannabis-et-production-comme-uruguay-est-vraiment-arme-qui-aura-peau-trafics-christophe-soullez-david-weinberger-926125.html
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation
+|date-création=2019-08-07
+}}

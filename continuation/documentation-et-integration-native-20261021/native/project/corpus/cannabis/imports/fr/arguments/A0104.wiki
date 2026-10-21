@@ -1,0 +1,11 @@
+{{Argument
+|initialisation=Justification@2835
+|références-sitographiques={{Référence sitographique
+|lien=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+|date=24/09/2024
+}}
+
+|date-création=2025-09-16
+}}

@@ -1,0 +1,14 @@
+{{Argument
+|summary=* [https://hyperdebat.net/un-modele-pragmatique-de.html Laurent Appel's pragmatic legalisation model] would create 260,000 jobs, three quarters of them low-skilled.
+* In California, where recreational cannabis has been legal since 1 January 2018, four cities—Oakland, San Francisco, Los Angeles and Sacramento—have adopted plans to reserve retail licences for residents of poor neighbourhoods.
+|sections=Economy, Society
+|keywords=cannabis, legalisation, decriminalisation, disadvantaged suburbs
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/40638921
+|page=Cannabis Social Equity Initiatives Across 5 US States Case Studies of Colorado, Washington, Massachusetts, Connecticut, and Missouri
+|authors=Speer M, Chakraborty R, Yang YT, LoParco CR, Berg CJ
+|site=Europe PMC
+|date=2025
+}}
+}}

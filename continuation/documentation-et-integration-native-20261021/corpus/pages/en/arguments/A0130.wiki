@@ -1,0 +1,7 @@
+{{Argument|webliography=
+{{Web reference
+|link=https://www.euda.europa.eu/publications/topic-overviews/cannabis-policy/html_en
+|page=Cannabis policy: status and recent developments
+|site=European Union Drugs Agency
+}}
+}}

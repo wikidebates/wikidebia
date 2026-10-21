@@ -1,0 +1,14 @@
+{{Argument
+|citations={{Citation
+|citation=Au-delà de son obsolescence, la loi de 1970 n’est plus comprise par les usagers de cannabis. Conscients que sa dangerosité est différente de celle des autres drogues, et que son usage régulier est néfaste, ils savent également qu’il est possible d’en faire un usage épisodique à des fins récréatives, comme beaucoup d’autres Français en font de l’alcool.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=87
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|rubriques=Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Usager
+|date-création=2019-08-07
+}}

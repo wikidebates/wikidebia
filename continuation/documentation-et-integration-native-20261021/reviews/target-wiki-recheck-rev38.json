@@ -1,0 +1,26 @@
+[
+  {
+    "id": "en-logo",
+    "url": "https://en.wikidebates.org/w/api.php?action=query&format=json&titles=File%3ALogoWikidebats.png",
+    "http_status": 403,
+    "accessed_at": "2026-10-21T12:11:17.025414+00:00",
+    "sha256": "b2351ee6224f641cfe06ddafe0c8f526cbbb94556ec7f68f7c93fa68c0e8d23a",
+    "body_excerpt": "<!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>"
+  },
+  {
+    "id": "en-related",
+    "url": "https://en.wikidebates.org/w/api.php?action=query&format=json&titles=Should+drugs+be+legalised%3F",
+    "http_status": 403,
+    "accessed_at": "2026-10-21T12:11:16.934448+00:00",
+    "sha256": "ca0db6d0687d86a0a7f3c33c05b1e103c0e52fba6ce128b82f178ee1af7968ad",
+    "body_excerpt": "<!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>"
+  },
+  {
+    "id": "fr-api",
+    "url": "https://fr.wikidebates.org/w/api.php?action=query&format=json&titles=Le+cannabis+doit-il+%C3%AAtre+l%C3%A9galis%C3%A9+%3F",
+    "http_status": 403,
+    "accessed_at": "2026-10-21T12:11:17.030675+00:00",
+    "sha256": "59650ea6e55ffb8a7ec37f0d4da6efff7acc9ee234d72e97db568b426b51c2ef",
+    "body_excerpt": "<!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>"
+  }
+]

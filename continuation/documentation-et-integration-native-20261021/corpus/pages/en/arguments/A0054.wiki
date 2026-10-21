@@ -1,0 +1,26 @@
+{{Argument
+|summary=Canada's state-regulated legalisation demonstrates that strict cannabis regulation works better than prohibition.
+
+* '''Description:''' Full legalisation with strict regulation (minimum age, advertising restrictions, production controls and state distribution).
+* '''Examples:''' Canada and some US states.
+* '''Advantages:'''
+** A substantial reduction in the black market.
+** High tax revenues to fund public programmes.
+** Control over product quality and the varieties available.
+* '''Disadvantages:'''
+** The need for substantial legislative and administrative infrastructure.
+** Some consumers continue buying on the black market because legal prices are high.
+* '''Results:'''
+** '''Canada:''' A smaller black market and better product quality, although youth consumption remains a challenge.
+** '''Overall assessment:''' The best model for a nationwide approach, but one that requires constant monitoring and adjustment.
+|sections=Law, Economy, Politics, Health, Society
+|keywords=black market, taxation, public health issues
+|webliography=
+{{Web reference
+|link=https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html
+|page=Legislative Review of the Cannabis Act: Final Report of the Expert Panel
+|authors=Morris Rosenberg, Oyedeji Ayonrinde, Patricia J. Conrod, Lynda L. Levesque, Peter Selby
+|site=Health Canada
+|date=March 2024
+}}
+}}

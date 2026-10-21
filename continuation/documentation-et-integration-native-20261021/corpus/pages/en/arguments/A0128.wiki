@@ -1,0 +1,49 @@
+{{Argument
+|summary=Alcohol is one of the few legal drugs because its producers rely on financial lobby groups to persuade legislators, through practices bordering on corruption, to adopt the most lenient possible rules.
+|quotes={{Quote
+|quote=On alcohol, the state has abandoned, in the name of financial interests, the regulatory stance it appeared to adopt with the Évin Law, whose thirtieth anniversary we have celebrated.
+|authors=Jean-Pierre Couteron, Pierre-Yves Geoffard, Katia Dubreuil
+|article=Drogues: la prohibition, une efficacité illusoire
+|work=Le Figaro
+|date=5 May 2021
+|link=https://www.lefigaro.fr/sciences/drogues-la-prohibition-une-efficacite-illusoire-20210505
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Investigators at the University of Connecticut produced a 60,000-page report identifying no fewer than 145 instances of fabricated or falsified data. This investigation completely discredits not only those fraudulent studies but also the others: why manipulate studies if wine's beneficial effects had really been proved? Might some scientists have taken bribes from wine-industry lobbyists? That appears to be the case.
+
+A 60,000-page report is no small matter; one imagines there must have been a great deal to say.
+
+The [http://tempsreel.nouvelobs.com/les-Internets-vous-parlent/20120116.OBS8929/le-vin-bon-pour-la-sante-des-etudes-etaient-bidonnees.html exposure] of this scientific fraud is far from an isolated case. It is much more widespread than we can imagine: scientists are, first and foremost, human beings, and therefore fallible and corruptible. Tell me who funds you, and I will tell you who you are.
+|article=Vin, santé, mensonges et propagande
+|work=Agoravox
+|date=13 June 2013
+|link=https://www.agoravox.fr/tribune-libre/article/vin-sante-mensonges-et-propagande-136873
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The government is going to shelve two alcohol-harm prevention campaigns that it had itself commissioned for the Rugby World Cup.
+
+Apparently, the message “do not let alcohol knock you out” was too blunt for the alcohol industry's heavyweights. In the government's eyes, their economic weight matters far more than the public's health.
+
+Clearly, alcohol is not the only thing that harms health: the alcohol industry's profits do too!
+|article=In vino veritas
+|work=Lutte ouvrière
+|date=12 September 2023
+|link=https://www.lutte-ouvriere.org/breves/vino-veritas-726502.html
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Between public health and the interests of wine-industry groups, the members of parliament seeking to amend the Évin Law have made their choice. They have chosen to defend wine-industry lobbyists, knowing full well that their vote threatened the community's health interests.
+|article=Les lobbies vinicoles poussent à la consommation
+|work=Lutte ouvrière
+|date=21 October 2004
+|link=https://lutte-ouvriere.org/portail/journal/2004-10-21-les-lobbies-vinicoles-poussent-la-consommation_9501.html
+|warnings=AI-translated quote
+}}
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/23630458
+|page=Industry use of evidence to influence alcohol policy: a case study of submissions to the 2008 Scottish government consultation
+|authors=McCambridge J, Hawkins B, Holden C
+|site=Europe PMC
+|date=2013
+}}
+}}

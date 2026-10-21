@@ -1,0 +1,59 @@
+{{Argument
+|justifications={{Justification
+|page=Cannabis legalisation would free up resources for prevention
+|displayed-title=Legalisation would free up resources for prevention
+}}{{Justification
+|page=Cannabis legalisation would empty prisons and ease the burden on police and courts
+|displayed-title=Emptying prisons and easing the burden on police and courts
+}}{{Justification
+|page=Legalising recreational cannabis would pave the way for medical use
+|displayed-title=Legalising recreational cannabis would pave the way for medical use
+}}{{Justification
+|page=Cannabis legalisation may reduce alcohol consumption
+|displayed-title=Legalisation may reduce alcohol consumption
+}}{{Justification
+|page=Cannabis legalisation may reduce deaths from overdoses of harder drugs
+|displayed-title=Legalisation may reduce deaths from overdoses of harder drugs
+}}{{Justification
+|page=Cannabis legalisation may reduce deaths from opioid overdoses
+|displayed-title=Legalisation may reduce deaths from opioid overdoses
+}}{{Justification
+|page=Cannabis legalisation would put an end to trafficking
+|displayed-title=Legalisation would put an end to trafficking
+}}{{Justification
+|page=Cannabis legalisation may reduce crime
+|displayed-title=Legalisation may reduce crime
+}}{{Justification
+|page=The Portuguese model has proved its worth
+|displayed-title=The Portuguese model has proved its worth
+}}
+|objections={{Objection
+|page=Cannabis legalisation risks increasing consumption
+|displayed-title=Increased consumption
+}}{{Objection
+|page=Cannabis legalisation encourages an economy built on dependence
+|displayed-title=Encouraging an economy built on dependence
+}}{{Objection
+|page=A cannabis black market may persist after legalisation
+|displayed-title=Persistence of a black market
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+|bibliography=
+{{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+|webliography=
+{{Web reference
+|link=https://www.canada.ca/en/health-canada/services/publications/drugs-medication/legislative-review-cannabis-act-final-report-expert-panel.html
+|page=Legislative Review of the Cannabis Act: Final Report of the Expert Panel
+|authors=Morris Rosenberg, Oyedeji Ayonrinde, Patricia J. Conrod, Lynda L. Levesque, Peter Selby
+|site=Health Canada
+|date=March 2024
+}}
+}}

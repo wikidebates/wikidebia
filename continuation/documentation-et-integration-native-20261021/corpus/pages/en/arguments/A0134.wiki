@@ -1,0 +1,39 @@
+{{Argument
+|quotes={{Quote
+|quote=As with any product, even water, the danger lies in excess, and excessive use should be avoided whether it begins early or not. Water can kill if consumed to excess. Cannabis can have a harmful effect on life if used to excess, even occasionally for fun. But this applies to everything: coffee (nervousness, insomnia and addiction), chocolate (indigestion and addiction), potatoes, cheese, cigars and so on. Cannabis use by people whose brains are not fully developed is controversial, and no tangible evidence has yet established that this argument is valid.
+|authors=Amine Benyamina
+|work=Le Monde
+|date=2 February 2013
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The adolescent brain is more vulnerable to psychoactive substances than the adult brain. It is in a transitional state on the way to adulthood. Brain maturation processes, which continue until around the age of 25, make adolescents particularly vulnerable to the neurotoxicity of psychoactive substances in general. One area, the prefrontal cortex, which enables decision-making and the adaptation of behaviour to circumstances, is particularly affected by this maturation during adolescence.
+|authors=Inserm
+|work=Conduites addictives chez les adolescents – Une expertise collective de l’Inserm
+|publisher=Inserm
+|date=6 February 2014
+|link=https://presse.inserm.fr/conduites-addictives-chez-les-adolescents-une-expertise-collective-de-linserm/11035/
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, overdose, harmfulness
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/30758486
+|page=Association of Cannabis Use in Adolescence and Risk of Depression, Anxiety, and Suicidality in Young Adulthood: A Systematic Review and Meta-analysis
+|authors=Gobbi G, Atkin T, Zytynski T, Wang S, Askari S, Boruff J, Ware M, Marmorstein N, Cipriani A, Dendukuri N, Mayo N
+|site=Europe PMC
+|date=2019
+}}
+{{Web reference
+|link=https://europepmc.org/article/MED/28644037
+|page=Lower-Risk Cannabis Use Guidelines: A Comprehensive Update of Evidence and Recommendations
+|authors=Fischer B, Russell C, Sabioni P, van den Brink W, Le Foll B, Hall W, Rehm J, Room R
+|site=Europe PMC
+|date=2017
+}}
+{{Web reference
+|link=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+}}
+}}

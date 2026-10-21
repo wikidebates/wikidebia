@@ -1,0 +1,53 @@
+{{Argument
+|quotes={{Quote
+|quote=The NGO Human Rights Watch regards criminalising drug use as “an infringement of fundamental human rights” and calls for the decriminalisation of all drug consumption.
+Prohibition appears to serve as a means of social control.
+These social developments are part of a redefinition of what belongs to the private sphere and personal preference, as opposed to what concerns the public sphere. They encompass religious beliefs, sexual preferences and many other life choices. We should remember that divorce was once impossible and later regulated, or that homosexuality was once a crime; abortion was also a serious criminal offence tried in the assize courts.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=78, 90 et 91
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The 1994 report on drug addiction adopted by the National Consultative Ethics Committee for Health and Life Sciences stated: “The mere use of a dangerous substance should be punishable only when it takes place in public, or when it has been established, with full procedural safeguards, that it has a harmful influence on those around the user, particularly their family.”
+|authors=Françoise Branget, Gilbert Barbier
+|article=La dépénalisation de l'usage, une impasse éthique et juridique
+|work=Mission d’information sur les toxicomanies
+|publisher=Assemblée nationale
+|date=30 June 2011
+|link=https://www.assemblee-nationale.fr/13/rap-info/i3612-ti.asp#P1085_352797
+|warnings=AI-translated quote
+}}{{Quote
+|quote=France's drug law of 31 December 1970 is a law that makes an exception to the general rule. This is the only area in which people can face imprisonment for harm they do to themselves. From an ethical standpoint, could we imagine trying to prevent suicide by imprisoning people who attempt it?
+|authors=Jean-Michel Costes
+|article=Il faut dépénaliser l'usage de drogue
+|work=Le Monde
+|date=31 December 2011
+|link=https://www.lemonde.fr/idees/article/2011/12/30/il-faut-depenaliser-l-usage-de-drogue_1624418_3232.html
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Once we start arresting citizens for their own good, where do we draw the line? (…) Doing good is always the excuse for totalitarianism.
+|authors=Frédéric Beigbeder
+|article=Préface
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=9
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=The freedom to use cannabis is the freedom to become enslaved
+|displayed-title=The freedom to become enslaved!
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition, individual liberties
+|webliography=
+{{Web reference
+|link=https://www.gutenberg.org/cache/epub/34901/pg34901-images.html
+|page=On Liberty
+|authors=John Stuart Mill
+|site=Project Gutenberg
+}}
+}}

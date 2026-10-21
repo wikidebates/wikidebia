@@ -1,0 +1,21 @@
+{{Argument
+|quotes={{Quote
+|quote=The risks do not depend on the substance alone, but on patterns of use and the vulnerability of the person using it.
+|authors=Nicole Maestracci
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=226
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, overdose, harmfulness
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/28644037
+|page=Lower-Risk Cannabis Use Guidelines: A Comprehensive Update of Evidence and Recommendations
+|authors=Fischer B, Russell C, Sabioni P, van den Brink W, Le Foll B, Hall W, Rehm J, Room R
+|site=Europe PMC
+|date=2017
+}}
+}}

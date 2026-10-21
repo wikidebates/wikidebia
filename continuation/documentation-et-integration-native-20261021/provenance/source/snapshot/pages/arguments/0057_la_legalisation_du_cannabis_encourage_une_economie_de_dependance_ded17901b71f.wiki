@@ -1,0 +1,23 @@
+{{Argument
+|initialisation=Objection@2820
+|résumé=L'industrie du cannabis poussera à la consommation de masse au détriment de la santé publique.
+
+Légaliser le cannabis crée un marché dépendant de la consommation continue et excessive, similaire à celui du tabac et de l’alcool, avec des intérêts économiques contraires à la santé publique.
+|citations={{Citation
+|citation=L'industrie du cannabis suivra inévitablement les traces des cigarettiers, ciblant les jeunes et maximisant les profits.
+|auteurs=Barry
+|article=Cannabis Commercialization: Lessons from Big Tobacco
+|ouvrage=JAMA
+|date=2020
+}}
+|références-sitographiques={{Référence sitographique
+|lien=https://www.canada.ca/fr/sante-canada/services/publications/drogues-medicaments/examen-legislatif-loi-cannabis-rapport-final-comite-experts.html
+|page=Examen législatif de la Loi sur le cannabis : Rapport final du Comité d’experts
+|site=Santé Canada
+|date=2024
+}}
+
+|rubriques=Économie, Santé, Société
+|mots-clés=Conflits d’intérêts
+|date-création=2024-11-28
+}}

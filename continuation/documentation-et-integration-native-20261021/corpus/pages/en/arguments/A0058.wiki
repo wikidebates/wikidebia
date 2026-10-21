@@ -1,0 +1,23 @@
+{{Argument
+|summary=Laws on possession of small amounts of cannabis:
+[[File:World-cannabis-laws.png|800px|center]]
+* Blue: Legal or largely legal
+* Orange: Illegal but decriminalised
+* Pink: Illegal but often not enforced
+* Red: Illegal
+* Grey: No information
+
+Source: [https://en.wikipedia.org/wiki/Legality_of_cannabis English Wikipedia: Legality of cannabis]
+|objections={{Objection
+|page=Countries that have decriminalised cannabis are reversing course
+|displayed-title=Countries that have decriminalised cannabis are reversing course
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation
+|webliography=
+{{Web reference
+|link=https://www.euda.europa.eu/publications/topic-overviews/cannabis-policy/html_en
+|page=Cannabis policy: status and recent developments
+|site=European Union Drugs Agency
+}}
+}}

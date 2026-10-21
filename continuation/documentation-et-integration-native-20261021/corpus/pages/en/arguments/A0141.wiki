@@ -1,0 +1,26 @@
+{{Argument
+|quotes={{Quote
+|quote=We need to draw on users' expertise. We should take more interest in the person than in the substance. Cannabis is emblematic in this respect: a so-called soft drug that can be used in hard ways. The reverse can also be true: so-called hard substances can be used in soft ways. Use must therefore be placed at the centre of policy. In France, however, all we promote for cannabis is abstinence.
+|authors=Laurent Appel
+|article=«Il faut une approche ni hypocrite ni Bisounours»
+|work=Libération
+|date=13 April 2014
+|link=https://www.liberation.fr/societe/2014/04/13/il-faut-une-approche-ni-hypocrite-ni-bisounours_996796
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, overdose, harmfulness
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/28644037
+|page=Lower-Risk Cannabis Use Guidelines: A Comprehensive Update of Evidence and Recommendations
+|authors=Fischer B, Russell C, Sabioni P, van den Brink W, Le Foll B, Hall W, Rehm J, Room R
+|site=Europe PMC
+|date=2017
+}}
+{{Web reference
+|link=https://nida.nih.gov/research-topics/cannabis-marijuana
+|page=Cannabis (Marijuana)
+|site=National Institute on Drug Abuse
+}}
+}}

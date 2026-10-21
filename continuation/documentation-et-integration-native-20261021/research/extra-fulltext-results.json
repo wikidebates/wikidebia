@@ -1,0 +1,67 @@
+[
+  {
+    "id": "volkow-html",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4827335/",
+    "params": null,
+    "accessed_at": "2026-10-21T10:11:09.024277+00:00",
+    "http_status": 200,
+    "final_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4827335/",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/volkow-html.body",
+    "sha256": "493a78a7247cb097ca83e89e149fbe3509c863fa823211a05ee2bd97a93963c1",
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "id": "relative-harm-exact",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+    "params": {
+      "query": "DOI:\"10.1016/S0140-6736(10)61462-6\"",
+      "format": "json",
+      "resultType": "core",
+      "pageSize": 1
+    },
+    "accessed_at": "2026-10-21T10:11:09.024621+00:00",
+    "http_status": 200,
+    "final_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2FS0140-6736%2810%2961462-6%22&format=json&resultType=core&pageSize=1",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/relative-harm-exact.body",
+    "sha256": "e27c2793739752b476dace8e24ca453ed2a923dd2a91549995fdeee6e9eaad29",
+    "content_type": "application/json;charset=UTF-8"
+  },
+  {
+    "id": "psychosis-exact",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+    "params": {
+      "query": "DOI:\"10.1016/S2215-0366(19)30048-3\"",
+      "format": "json",
+      "resultType": "core",
+      "pageSize": 1
+    },
+    "accessed_at": "2026-10-21T10:11:09.027590+00:00",
+    "http_status": 200,
+    "final_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI%3A%2210.1016%2FS2215-0366%2819%2930048-3%22&format=json&resultType=core&pageSize=1",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/psychosis-exact.body",
+    "sha256": "afe0424e34d208d083c9504a2fdc417b55a0be9c15a0d6b2c0b235a678e8d12d",
+    "content_type": "application/json;charset=UTF-8"
+  },
+  {
+    "id": "opoid-original-html",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4392651/",
+    "params": null,
+    "accessed_at": "2026-10-21T10:11:09.606741+00:00",
+    "http_status": 200,
+    "final_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4392651/",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/opoid-original-html.body",
+    "sha256": "c0054ba0345458882f56e871132f2987204187cc99fc50a67f2814f658d15ae7",
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "id": "uruguay-html",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10686048/",
+    "params": null,
+    "accessed_at": "2026-10-21T10:11:10.027138+00:00",
+    "http_status": 200,
+    "final_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10686048/",
+    "body_path": "/workspace/work/cannabis-completion-20261021/responses/uruguay-html.body",
+    "sha256": "ea66494af4c9c4232d5212cb17d9f60b882b0e0f04e339794b499cd0cda07927",
+    "content_type": "text/html; charset=utf-8"
+  }
+]

@@ -1,0 +1,44 @@
+{{Argument
+|justifications={{Justification
+|page=Cannabis use is increasing in France
+|displayed-title=Cannabis use is increasing
+}}{{Justification
+|page=Cannabis remains readily available
+|displayed-title=Cannabis remains readily available
+}}{{Justification
+|page=Prohibition makes cannabis more appealing
+|displayed-title=Prohibition makes cannabis more appealing
+}}{{Justification
+|page=Penalties do not deter cannabis users
+|displayed-title=The penalties have no deterrent effect
+}}{{Justification
+|page=The ban on cannabis can be circumvented
+|displayed-title=The ban can be circumvented
+}}{{Justification
+|page=Prohibition fails to address the reasons for drug use
+|displayed-title=Prohibition fails to address the reasons for drug use
+}}{{Justification
+|page=Alcohol prohibition and some wars on drugs have had counterproductive effects
+|displayed-title=Several prohibition policies have had counterproductive effects
+}}
+|objections={{Objection
+|page=The failure of a policy is not in itself a reason to abandon it
+|displayed-title=The failure of a policy is not in itself a reason to abandon it
+}}{{Objection
+|page=Cannabis prohibition deters some people from using it
+|displayed-title=Reduced consumption
+}}{{Objection
+|page=Prohibition sends a clear message to society
+|displayed-title=A clear message to society
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/34068202
+|page=Cannabis Policy Changes and Adolescent Cannabis Use: Evidence from Europe
+|authors=Benedetti E, Resce G, Brunori P, Molinaro S
+|site=Europe PMC
+|date=2021
+}}
+}}

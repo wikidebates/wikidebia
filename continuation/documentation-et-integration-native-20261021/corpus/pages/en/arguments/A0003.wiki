@@ -1,0 +1,28 @@
+{{Argument
+|quotes={{Quote
+|quote=You are ten times as likely to be involved in a fatal accident if you consume alcohol alone as if you consume cannabis alone.
+|authors=Nicole Maestracci
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=231
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, road accidents, alcohol
+|webliography=
+{{Web reference
+|link=https://europepmc.org/article/MED/29117206
+|page=Cannabis, alcohol and fatal road accidents
+|authors=Martin JL, Gadegbeku B, Wu D, Viallon V, Laumon B
+|site=Europe PMC
+|date=2017
+}}
+{{Web reference
+|link=https://europepmc.org/article/MED/16321993
+|page=Cannabis intoxication and fatal road crashes in France: population based case-control study
+|authors=Laumon B, Gadegbeku B, Martin JL, Biecheler MB, SAM Group
+|site=Europe PMC
+|date=2005
+}}
+}}

@@ -1,0 +1,14 @@
+{{Argument
+|citations={{Citation
+|citation=Le cannabis, ajouté au tabac, en accroît très notablement la toxicité. (p. 33)
+Le cannabis est également souvent associé à l’alcool. Loin d’une simple addition de leurs effets respectifs, l’effet résultant est très supérieur – ce que la pharmacologie qualifie de synergie potentialisatrice. (p. 59)
+|auteurs=Jean Costentin
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|rubriques=Philosophie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Santé, Alcool, Tabac
+|date-création=2019-08-09
+}}

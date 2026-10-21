@@ -1,0 +1,18 @@
+{{Argument
+|citations={{Citation
+|citation=C'est oublier les treize millions de sujets tabacodépendants, et les quatre ou cinq millions d'alcoolodépendants incapables de se priver d'alcool au moins un jour par semaine, qui ont été recrutés par la licité de ces deux drogues.
+|auteurs=Jean Costentin
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=114
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|objections={{Objection
+|page=Le tabac et l'alcool sont attractifs parce que de nombreux intérêts s'emploient à les rendre attractifs
+|titre-affiché=Le tabac et l'alcool sont attractifs parce que de nombreux intérêts s'emploient à les rendre attractifs
+}}
+|rubriques=Société
+|mots-clés=Cannabis, Dépénalisation, Légalisation, Prohibition, Attractivité, Interdiction, Tabac, Alcool
+|date-création=2019-01-30
+}}

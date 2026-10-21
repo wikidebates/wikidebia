@@ -1,0 +1,13 @@
+{{Argument
+|citations={{Citation
+|citation=La loi du 31 décembre 1970 sur les drogues est une loi d'exception. C’est le seul domaine dans lequel un individu est passible d’une peine d’emprisonnement pour un dommage qu’il se fait à lui-même. Peut-on en effet imaginer sur le plan éthique de prévenir et d’agir sur le suicide en mettant en prison ceux qui en commettent des tentatives ?
+|auteurs=Jean-Michel Costes
+|article=Il faut dépénaliser l'usage de drogue
+|ouvrage=Le Monde
+|date=31/12/2011
+|lien=https://www.lemonde.fr/idees/article/2011/12/30/il-faut-depenaliser-l-usage-de-drogue_1624418_3232.html
+}}
+|rubriques=Philosophie, Santé, Société
+|mots-clés=Cannabis, Légalisation, Dépénalisation, Overdose, Dangerosité
+|date-création=2019-08-09
+}}

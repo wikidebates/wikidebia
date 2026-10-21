@@ -1,0 +1,15 @@
+{{Argument
+|résumé=Il y a des consommateurs de cannabis même dans les pays où c'est passible de peine de mort.
+|citations={{Citation
+|citation=La poursuite de la consommation malgré la connaissance de ses conséquences négatives fait d'ailleurs partie de la définition de l'addiction. La prohibition et la répression de l'usage ne sauraient donc être suffisantes pour empêcher les consommations des substances psychoactives car, pour les usagers, elles ne sont pas seulement nocives, mais aussi attractives.
+|auteurs=Alain Rigaud, Laurent Appel
+|ouvrage=Faut-il dépénaliser le cannabis ?
+|page=76
+|édition=Le Muscadier
+|date=2013
+|lien=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+}}
+|rubriques=Droit, Société
+|mots-clés=Cannabis, Dépénalisation, Légalisation, Prohibition, Addiction, Loi
+|date-création=2019-01-31
+}}
