@@ -426,118 +426,15 @@ def _english_plan_rollover_transition(
     new_plan: Mapping[str, Any],
     current_date: str,
 ) -> dict[str, Any]:
-    old_date = str(old_plan.get("publication_date") or "")
-    if not old_date or current_date <= old_date:
-        raise FinalPublicationError(
-            f"Changement de jour de publication non croissant : {old_date!r} -> {current_date!r}",
-            remote_execution_started=True,
-        )
-    if str(new_plan.get("publication_date") or "") != current_date:
-        raise FinalPublicationError("Le plan anglais successeur ne porte pas le jour de publication courant", remote_execution_started=True)
-
-    def keyed(plan: Mapping[str, Any]) -> dict[tuple[str, str], Mapping[str, Any]]:
-        return {
-            (str(row.get("language") or ""), str(row.get("page_id") or "")): row
-            for row in (plan.get("actions") or [])
-        }
-
-    old_actions = keyed(old_plan)
-    new_actions = keyed(new_plan)
-    if set(old_actions) != set(new_actions):
-        raise FinalPublicationError("Le plan anglais successeur ne couvre pas exactement les mêmes pages", remote_execution_started=True)
-
-    invariant_fields = (
-        "operation_id", "kind", "language", "page_id", "page_type", "title", "source_path",
-        "parameter", "local_file_sha256", "local_target_sha256", "edit_summary", "change_tags",
+    from wikidebia_publication_dates import (
+        PublicationDateTransitionError,
+        english_plan_rollover_transition,
     )
-    completed: list[dict[str, Any]] = []
-    remaining: list[dict[str, Any]] = []
-    unchanged_skips: list[dict[str, Any]] = []
 
-    for key in sorted(old_actions):
-        old = old_actions[key]
-        new = new_actions[key]
-        for field in invariant_fields:
-            if old.get(field) != new.get(field):
-                raise FinalPublicationError(
-                    f"Le plan anglais successeur modifie {field} pour {old.get('page_id')}",
-                    remote_execution_started=True,
-                )
-        old_op = str(old.get("operation") or "")
-        new_op = str(new.get("operation") or "")
-        if old_op not in {"create", "skip"} or new_op not in {"create", "skip"}:
-            raise FinalPublicationError("Le plan anglais successeur contient une opération non autorisée", remote_execution_started=True)
-
-        if old_op == "skip":
-            if new_op != "skip" or old.get("desired_sha256") != new.get("desired_sha256"):
-                raise FinalPublicationError(
-                    f"Une page déjà équivalente a changé pendant le basculement de date : {old.get('title')}",
-                    remote_execution_started=True,
-                )
-            unchanged_skips.append({"page_id": old.get("page_id"), "title": old.get("title")})
-            continue
-
-        old_creation_date = str(old.get("publication_creation_date") or "")
-        if old_creation_date != old_date:
-            raise FinalPublicationError(
-                f"Date de création de l'ancien plan incohérente : {old.get('page_id')}",
-                remote_execution_started=True,
-            )
-
-        if new_op == "skip":
-            # GenericPublisher only emits this skip after proving that the current
-            # remote revision is the original AI translation creation (parent=0,
-            # expected user, exact summary/tags/content).  Requiring the old
-            # desired hash/date proves that this page was created under the old plan.
-            if str(new.get("publication_creation_date") or "") != old_date:
-                raise FinalPublicationError(
-                    f"Une page déjà créée a changé de date pendant la reprise : {old.get('title')}",
-                    remote_execution_started=True,
-                )
-            if new.get("desired_sha256") != old.get("desired_sha256"):
-                raise FinalPublicationError(
-                    f"Une page déjà créée ne correspond plus exactement à l'ancien plan : {old.get('title')}",
-                    remote_execution_started=True,
-                )
-            completed.append({
-                "page_id": old.get("page_id"), "title": old.get("title"),
-                "creation_date": old_date, "desired_sha256": old.get("desired_sha256"),
-                "remote_revision_id": new.get("remote_revision_id"),
-            })
-            continue
-
-        if str(new.get("publication_creation_date") or "") != current_date:
-            raise FinalPublicationError(
-                f"Une page restante ne porte pas la nouvelle date de publication : {old.get('title')}",
-                remote_execution_started=True,
-            )
-        row = publisher._manifest_page("en", str(old.get("page_id") or ""))
-        if row is None:
-            raise FinalPublicationError(f"Page anglaise absente du manifeste : {old.get('page_id')}", remote_execution_started=True)
-        source = publisher.root / str(old.get("source_path") or "")
-        source_text = source.read_text(encoding="utf-8")
-        expected_old = publisher._english_translation_creation_text(row, source_text, old_date)
-        expected_new = publisher._english_translation_creation_text(row, source_text, current_date)
-        if sha_text(expected_old) != old.get("desired_sha256") or sha_text(expected_new) != new.get("desired_sha256"):
-            raise FinalPublicationError(
-                f"Le plan successeur modifie autre chose que creation-date : {old.get('title')}",
-                remote_execution_started=True,
-            )
-        remaining.append({
-            "page_id": old.get("page_id"), "title": old.get("title"),
-            "old_creation_date": old_date, "new_creation_date": current_date,
-            "old_desired_sha256": old.get("desired_sha256"), "new_desired_sha256": new.get("desired_sha256"),
-        })
-
-    if not remaining and not completed:
-        raise FinalPublicationError("Aucune création anglaise n'est concernée par le changement de jour", remote_execution_started=True)
-    return {
-        "old_publication_date": old_date,
-        "new_publication_date": current_date,
-        "completed_before_rollover": completed,
-        "remaining_after_rollover": remaining,
-        "unchanged_skips": unchanged_skips,
-    }
+    try:
+        return english_plan_rollover_transition(publisher, old_plan, new_plan, current_date)
+    except PublicationDateTransitionError as exc:
+        raise FinalPublicationError(str(exc), remote_execution_started=True) from exc
 
 
 def _rollover_english_publication_date(

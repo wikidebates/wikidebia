@@ -10,6 +10,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 import time
 import unicodedata
 from dataclasses import asdict, dataclass
@@ -30,6 +31,10 @@ DEFAULT_FAMILY_DIR = Path(__file__).resolve().parent.parent / "families"
 
 class PublicationError(RuntimeError):
     pass
+
+
+class PublicationDateChanged(PublicationError):
+    """The verified plan has become stale solely because the civil day changed."""
 
 
 class IdentityError(PublicationError):
@@ -1169,6 +1174,7 @@ class GenericPublisher:
             "selected_sources_fingerprint": sha_object(selected),
             "validator_fingerprint": sha_tree(validator_path),
             "kit_script_sha256": sha_file(Path(__file__).resolve()),
+            "publication_date_rules_sha256": sha_file(Path(__file__).with_name("wikidebia_publication_dates.py")),
             "config_sha256": sha_file(self.config_path),
         }
 
@@ -1407,7 +1413,7 @@ class GenericPublisher:
             note=note,
         )
 
-    def _verify_plan(self, plan: dict[str, Any], confirmation: str) -> None:
+    def _verify_plan(self, plan: dict[str, Any], confirmation: str, *, check_publication_date: bool = True) -> None:
         copy = dict(plan)
         claimed = copy.pop("plan_sha256", None)
         if not claimed or claimed != sha_object(copy) or confirmation != claimed:
@@ -1435,11 +1441,6 @@ class GenericPublisher:
             and action.get("publication_creation_date")
         ]
         if english_creates:
-            current_date = self._current_publication_date()
-            if current_date != plan.get("publication_date"):
-                raise PublicationError(
-                    "Le jour de publication a changé depuis le plan ; régénérez le plan avant de créer les pages anglaises"
-                )
             for action in english_creates:
                 if action.get("publication_creation_date") != plan.get("publication_date"):
                     raise PublicationError(
@@ -1452,6 +1453,14 @@ class GenericPublisher:
             self._tags_for_action(action)
         if plan.get("blockers"):
             raise CollisionError("Le plan contient des bloqueurs")
+        if (
+            english_creates
+            and check_publication_date
+            and self._current_publication_date() != plan.get("publication_date")
+        ):
+            raise PublicationDateChanged(
+                "Le jour de publication a changé depuis le plan ; régénérez le plan avant de créer les pages anglaises"
+            )
 
     def _desired_text(self, action: dict[str, Any], remote_text: str) -> tuple[str, str]:
         source_path = self.root / action["source_path"]
@@ -1462,6 +1471,13 @@ class GenericPublisher:
         local_target = local_text if not parameter else extract_parameter(local_text, str(parameter))
         if sha_text(local_target) != action["local_target_sha256"]:
             raise PublicationError(f"Cible locale modifiée depuis le plan : {action['page_id']}")
+        if not parameter and action.get("publication_creation_date"):
+            row = self._manifest_page(str(action["language"]), str(action["page_id"]))
+            if row is None:
+                raise PublicationError(f"Page absente du manifeste : {action['page_id']}")
+            local_text = self._english_translation_creation_text(
+                row, local_text, str(action["publication_creation_date"])
+            )
         desired = (
             local_text
             if not parameter
@@ -1769,6 +1785,7 @@ class GenericPublisher:
         page_id: str | None = None,
         page_type: str | None = None,
         debate_test_receipt: dict[str, Any] | None = None,
+        _progress: dict[tuple[str, str], str] | None = None,
     ) -> dict[str, int]:
         self._verify_plan(plan, confirmation)
         self._verify_debate_test_receipt(plan, debate_test_receipt)
@@ -1796,6 +1813,10 @@ class GenericPublisher:
                 for action in language_actions:
                     summary = self._summary_for_action(action)
                     result = self._execute_action(action, user, summary)
+                    if _progress is not None:
+                        key = (str(action["language"]), str(action["page_id"]))
+                        if key not in _progress or result != "skipped":
+                            _progress[key] = result
                     counts[result] += 1
                     delay = max(0.0, float(self.config.get("write_delay_seconds", 0.5)))
                     if result in {"created", "updated"} and delay:
@@ -1804,6 +1825,88 @@ class GenericPublisher:
             finally:
                 self.adapter.close_language()
         return counts
+
+    def publish_with_date_refresh(
+        self,
+        *,
+        plan: dict[str, Any],
+        confirmation: str,
+        rollover_dir: Path | None = None,
+        language: str | None = None,
+        page_id: str | None = None,
+        page_type: str | None = None,
+        debate_test_receipt: dict[str, Any] | None = None,
+    ) -> dict[str, int]:
+        """Resume a date-only successor, retaining all other signed constraints.
+
+        Strict ``publish`` stays available to orchestrators that seal additional
+        preflight/authorization artifacts. The standalone CLI uses this wrapper.
+        """
+        from wikidebia_publication_dates import (
+            PublicationDateTransitionError,
+            publication_plan_rollover_transition,
+        )
+
+        self._verify_plan(plan, confirmation, check_publication_date=False)
+        progress: dict[tuple[str, str], str] = {}
+        while True:
+            try:
+                self.publish(
+                    plan=plan,
+                    confirmation=confirmation,
+                    language=language,
+                    page_id=page_id,
+                    page_type=page_type,
+                    debate_test_receipt=debate_test_receipt,
+                    _progress=progress,
+                )
+                return {
+                    name: sum(result == name for result in progress.values())
+                    for name in ("created", "updated", "skipped")
+                }
+            except PublicationDateChanged:
+                # Check the original authorization again before inspecting a successor.
+                self._verify_plan(plan, confirmation, check_publication_date=False)
+                old_date = str(plan.get("publication_date") or "")
+                new_date = self._current_publication_date()
+                if new_date <= old_date:
+                    raise PublicationError(f"Changement de jour non croissant : {old_date!r} -> {new_date!r}")
+                self.publication_date = new_date
+                self._tag_cache.clear()
+                successor = self.build_plan()
+                self._verify_plan(successor, successor["plan_sha256"], check_publication_date=False)
+                try:
+                    transition = publication_plan_rollover_transition(self, plan, successor, new_date)
+                except PublicationDateTransitionError as exc:
+                    raise PublicationError(str(exc)) from exc
+                parent = (
+                    rollover_dir
+                    if rollover_dir is not None
+                    else self.log_path.parent / "publication-date-rollovers"
+                )
+                parent.mkdir(parents=True, exist_ok=True)
+                history = Path(tempfile.mkdtemp(prefix=f"{old_date}-to-{new_date}-", dir=parent))
+                audit = {
+                    "schema": "wikidebia-publication-date-rollover-1.0",
+                    "debate_id": self.config["debate_id"],
+                    "publication_timezone": self.publication_timezone,
+                    "previous_plan_sha256": confirmation,
+                    "successor_plan_sha256": successor["plan_sha256"],
+                    **transition,
+                }
+                audit["rollover_sha256"] = sha_object(audit)
+                for name, value in (
+                    ("previous-plan.json", plan),
+                    ("successor-plan.json", successor),
+                    ("rollover.json", audit),
+                ):
+                    (history / name).write_text(
+                        json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+                    )
+                self._log({"event": "publication_date_refreshed", **audit, "history_path": str(history)})
+                print(f"Date de publication actualisée automatiquement : {old_date} → {new_date}", file=sys.stderr)
+                plan = successor
+                confirmation = successor["plan_sha256"]
 
     def _execute_action(self, action: dict[str, Any], user: str, summary: str) -> str:
         action_tags = self._tags_for_action(action)
@@ -1820,7 +1923,7 @@ class GenericPublisher:
             if publication_creation_date:
                 current_publication_date = self._current_publication_date()
                 if current_publication_date != str(publication_creation_date):
-                    raise PublicationError(
+                    raise PublicationDateChanged(
                         "Le jour de publication a changé avant la création de "
                         f"{action['title']} ; régénérez le plan pour dater correctement les pages restantes"
                     )
@@ -1871,6 +1974,8 @@ class GenericPublisher:
         desired_text, _ = self._desired_text(action, remote_text)
         current_sha = sha_text(remote_text)
         desired_sha = sha_text(desired_text)
+        if action.get("publication_creation_date") and desired_sha != action["desired_sha256"]:
+            raise PublicationError(f"Contenu daté divergent du plan : {action['title']}")
         if desired_sha == current_sha:
             self._log({"event": "skip_equivalent", **self._identity(action), "revision_id": revision_id})
             return "skipped"
@@ -1997,9 +2102,10 @@ def main(argv: list[str] | None = None) -> int:
     receipt = None
     if args.debate_test_receipt:
         receipt = json.loads(Path(args.debate_test_receipt).read_text(encoding="utf-8"))
-    counts = publisher.publish(
+    counts = publisher.publish_with_date_refresh(
         plan=plan,
         confirmation=args.confirm_plan_sha256,
+        rollover_dir=Path(args.plan_input).resolve().parent / "publication-date-rollovers",
         language=args.language,
         page_id=args.page_id,
         page_type=args.page_type,
