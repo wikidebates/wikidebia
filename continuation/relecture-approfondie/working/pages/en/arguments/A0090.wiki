@@ -1,0 +1,30 @@
+{{Argument
+|summary=The ban and the penalties have a deterrent effect.
+|objections={{Objection
+|page=Cannabis use is increasing in France
+|displayed-title=Cannabis use is increasing in France
+}}{{Objection
+|page=Cannabis remains readily available
+|displayed-title=Cannabis remains readily available
+}}{{Objection
+|page=Prohibition makes cannabis more appealing
+|displayed-title=Prohibition makes cannabis more appealing
+}}{{Objection
+|page=Penalties do not deter cannabis users
+|displayed-title=Penalties do not deter cannabis users
+}}{{Objection
+|page=The ban on cannabis can be circumvented
+|displayed-title=The ban on cannabis can be circumvented
+}}{{Objection
+|page=Addictive behaviours are largely unresponsive to legislation
+|displayed-title=Addictive behaviours are largely unresponsive to legislation
+}}{{Objection
+|page=Prohibition fails to address the reasons for drug use
+|displayed-title=Prohibition fails to address the reasons for drug use
+}}{{Objection
+|page=Alcohol prohibition and some wars on drugs have had counterproductive effects
+|displayed-title=Decades of fighting drugs have not significantly reduced their use or trade
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition
+}}

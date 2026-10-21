@@ -1,0 +1,22 @@
+{{Argument
+|summary=State-regulated legalisation shows that strict cannabis regulation can reduce the harmful effects associated with prohibition while producing tangible social and economic benefits.
+
+Although imperfect, the Canadian and Uruguayan models demonstrate that state-regulated legalisation works by providing an effective framework for reducing cannabis-related crime, improving consumer safety and generating revenue for essential public programmes. These results far exceed those of strict prohibition.
+|quotes={{Quote
+|quote=Cannabis regulation in Canada and Uruguay shows that a balanced approach combining prevention, controls and access can not only reduce the harms associated with the black market but also generate measurable benefits for society.
+|authors=Kilmer B.
+|article=Global Perspectives on Cannabis Legalization
+|work=RAND Corporation
+|date=2022
+|warnings=AI-translated quote
+}}
+|justifications={{Justification
+|page=Cannabis legalisation in Canada works better than prohibition
+|displayed-title=State-regulated legalisation (Canadian model)
+}}{{Justification
+|page=Cannabis regulation in Uruguay works better than prohibition
+|displayed-title=Regulated cannabis market (Uruguayan model)
+}}
+|sections=Law, Economy, Politics, Health, Society
+|keywords=black market, public health issues
+}}

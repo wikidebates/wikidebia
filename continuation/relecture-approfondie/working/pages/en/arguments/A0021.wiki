@@ -1,0 +1,13 @@
+{{Argument
+|quotes={{Quote
+|quote=A state will never be able to distribute every drug; an illegal market will always remain—the market supplying minors.
+|authors=Etienne Apaire
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=206
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

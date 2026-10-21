@@ -1,0 +1,24 @@
+{{Argument
+|quotes={{Quote
+|quote=Disguising cannabis as a medicine is a Trojan horse strategy, designed to bring it into the city to public acclaim. Why is THC not a medicine? It is therefore in no way irreplaceable. As for the risks associated with THC, they are numerous.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=64
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+'''Objection to Jean Costentin:''' The benefits of medical cannabis are concealed or underestimated.
+{{Quote
+|quote=The benefits of medical cannabis are concealed or underestimated, while its harms are exaggerated, as is its potential to cause addiction.
+|authors=Sanjay Gupta
+|article=Cannabis : ils ont changé d’avis
+|work=Hyperdébat
+|date=28 November 2013
+|link=https://hyperdebat.net/cannabis-ils-ont-change-d-avis.html
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

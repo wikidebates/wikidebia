@@ -1,0 +1,29 @@
+{{Argument
+|summary=A legal product is less appealing than a prohibited one. Health risks or social disapproval are what deter young people.
+|quotes={{Quote
+|quote=Prohibition creates an attraction to what is forbidden: in countries where the drug is legal, consumption is stable.
+|authors=Frédéric Beigbeder
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=9
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Studies have looked at people who do not use cannabis, mainly students. They explained their choice not by reference to the law, but by fear of health risks or social disapproval within their own circles.
+|authors=Erickson - 2001
+|work=Les drogues. Les coûts cachés de la prohibition
+|page=190
+|publisher=Lanctôt
+|date=2003
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Banning cannabis deters use more than it encourages it
+|displayed-title=The ban deters use more than it encourages it
+}}{{Objection
+|page=Legal tobacco and alcohol are highly appealing
+|displayed-title=Legal tobacco and alcohol are highly appealing
+}}
+|sections=Society
+|keywords=cannabis, decriminalisation, legalisation, prohibition, appeal, ban
+}}

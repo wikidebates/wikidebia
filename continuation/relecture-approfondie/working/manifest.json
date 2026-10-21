@@ -1,0 +1,13 @@
+{
+  "schema": "wikidebia-documentary-continuation-working-1.0",
+  "status": "bilingual_text_reread_documentation_and_native_reviews_incomplete",
+  "source_delivery_sha256": "b317df79f35b047af2bdead55c5adbdb33c835fae528ed69f0de78e5d8332eda",
+  "page_count": 153,
+  "quote_count": 149,
+  "summary_count": 32,
+  "absent_summary_count": 120,
+  "publication_ready": false,
+  "official_kit_validation": false,
+  "remote_writes_performed": false,
+  "text_reviewed_page_count": 153
+}

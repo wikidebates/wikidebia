@@ -1,0 +1,14 @@
+{{Argument
+|quotes={{Quote
+|quote=Private drug use alone is the only behaviour that causes no harm to others yet is currently prosecuted under French law.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=94
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, harmfulness
+}}

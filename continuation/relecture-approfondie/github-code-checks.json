@@ -1,0 +1,17 @@
+{
+  "commit": "4b2abbe",
+  "checks": [
+    {
+      "name": "tests",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/wikidebates/wikidebia/actions/runs/39580310246/job/119155995994"
+    },
+    {
+      "name": "tests",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/wikidebates/wikidebia/actions/runs/39580302290/job/119155970494"
+    }
+  ]
+}

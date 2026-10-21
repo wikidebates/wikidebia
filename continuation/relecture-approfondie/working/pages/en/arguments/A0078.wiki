@@ -1,0 +1,18 @@
+{{Argument
+|quotes={{Quote
+|quote=Above all, let no one claim that cannabis could be permitted for adults while prohibited for minors. Tobacco demonstrates the futility of such measures. A [https://www.ofdt.fr/ofdtdev/live/publi/rapports/rap13/epfxcdta.html recent survey] found that 60% of licensed tobacco retailers break the ban on tobacco sales to minors!
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=40
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Legalisation would make buying cannabis in shops harder for minors than obtaining it on the black market today
+|displayed-title=Buying in shops would be harder for minors than obtaining cannabis on the black market today
+}}
+|sections=Society
+|keywords=cannabis, legalisation, decriminalisation, harmfulness, minors
+}}

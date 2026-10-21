@@ -1,0 +1,22 @@
+{{Argument
+|quotes={{Quote
+|quote=Use and possession account for the bulk of drug-related cases in France (86%, compared with 66% in the EU), an increasing trend that runs counter to developments elsewhere in Europe, where penalties for possessing drugs for personal use are declining (+3.1% in France, compared with −7.2% in the EU).
+|authors=OEDT
+|work=Faut-il dépénaliser le cannabis ?
+|page=18
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=We have returned to a policy of zero tolerance, even though everyone knows it is illusory. If arrests of cannabis users continue to rise, it is mainly because they are highly productive statistically. Yet everyone knows perfectly well that they almost never uncover a trafficking case.
+|authors=Nicole Maestracci
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=227
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

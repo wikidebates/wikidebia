@@ -1,0 +1,20 @@
+{
+  "status": "supplemental_risk_pass_not_official_native_convergence",
+  "scope": [
+    "Tous les 153 titres canoniques relus en regard du français sur la copie corrigée.",
+    "Les 165 libellés distincts relus avec leurs couples français-anglais ; relations contrôlées en structure et en orientation.",
+    "Les 32 résumés relus entièrement une seconde fois, avec négations, quantificateurs, modalités et exemples.",
+    "Les citations et passages signalés dans les notes de première lecture ont été comparés ; aucune correction factuelle silencieuse de la source.",
+    "Cohérence des termes de légalisation, dépénalisation, prohibition, dependence/addiction, harm/risk et des noms propres."
+  ],
+  "corrections_reviewed": 18,
+  "working_manifest_fingerprint": "4cddf04f76adab1d1e8d0f55cc8497d1c3ae6539a07748e268e433466a4b0f08",
+  "second_pass_repeats_full_149_quote_read": false,
+  "official_native_convergence": false,
+  "remaining": [
+    "Documentation indépendante de chaque page non achevée.",
+    "Vocabulaire natif français vide et verrous français non établis.",
+    "Deux passes officielles sur revue finalisée non exécutées."
+  ],
+  "note": "La première lecture a porté intégralement sur les citations. Cette passe complémentaire cible titres, libellés, résumés et marqueurs de risque ; elle ne prétend pas constituer une seconde lecture intégrale de toutes les citations ni des lots documentaires clos."
+}

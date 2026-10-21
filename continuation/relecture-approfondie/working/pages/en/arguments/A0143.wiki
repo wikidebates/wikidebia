@@ -1,0 +1,5 @@
+{{Argument
+|summary=Some countries, such as Portugal or the Czech Republic, have decriminalised possession of small amounts of certain hard drugs, but have not legalised them ([https://en.wikipedia.org/wiki/Drug_liberalization English Wikipedia: Drug liberalization]). It should nevertheless be noted that alcohol, which [https://www.croixbleue.fr/L-alcool-plus-dangereux-que-les some regard as a hard drug], is legal in most countries.
+|sections=Law, Society
+|keywords=cannabis, legalisation, decriminalisation, hard drugs
+}}

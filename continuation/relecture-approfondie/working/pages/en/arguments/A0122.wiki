@@ -1,0 +1,19 @@
+{{Argument
+|quotes={{Quote
+|quote=A large meta-analysis in The Lancet examined alcohol consumption and its effects on the health of 28 million people between 1990 and 2016. Its conclusion: alcohol is harmful, even in small amounts.
+|authors=Sarah Sermondadaz
+|article=L'idée d'une dose d'alcool "inoffensive" serait un mythe, affirme une vaste étude
+|work=sciences et avenir
+|date=24 August 2018
+|link=https://www.sciencesetavenir.fr/sante/l-alcool-dangereux-pour-la-sante-des-le-premier-verre-selon-une-meta-analyse-du-lancet_126904.amp
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The myth that a small daily glass protects your health has just been shattered. A large Brazilian study establishes a direct link between alcohol consumption, even in moderation, and the risk of dementia and Alzheimer's disease. More troubling still, the damage persists long after people stop drinking.
+|authors=Ghislaine Laussel
+|article=Alzheimer : les chercheurs identifient une boisson consommée par des millions de Français comme un facteur de risque majeur
+|work=Futura-sciences
+|date=30 June 2026
+|link=https://www.futura-sciences.com/sante/actualites/maladie-alzheimer-alzheimer-chercheurs-identifient-boisson-consommee-millions-francais-comme-facteur-risque-majeur-k2m6-135735/
+|warnings=AI-translated quote
+}}
+}}

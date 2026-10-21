@@ -1,0 +1,25 @@
+{{Argument
+|quotes={{Quote
+|quote=The state continues to spend around €300 million a year arresting some 80,000 people, without any fundamental effect on consumption (…) If cannabis were taxed like tobacco, it would bring the state more than €1 billion.
+|authors=Pierre Kopp
+|article=Légaliser le cannabis rapporterait 1 milliard d'euros selon l'économiste Pierre Kopp, autoriser la consommation dégagerait des moyens pour la prévention
+|work=Le Monde
+|date=3 August 2011
+|link=https://www.lemonde.fr/societe/article/2011/08/02/legaliser-le-cannabis-rapporterait-1-milliard-d-euros-miste-pierre-kopp-autoriser-la-consommation-degagerait-des-moyens-pour-la-prevention_1555243_3224.html
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Legalisation would both raise money and save it.
+|authors=Alain Labrousse
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=19
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Resources freed up by cannabis legalisation may have to be used to combat new forms of trafficking
+|displayed-title=Resources freed up by legalisation may have to be used to combat new forms of trafficking
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

@@ -1,0 +1,13 @@
+{{Argument
+|quotes={{Quote
+|quote=The cannabis market reveals a fundamental paradox. The more punitive enforcement becomes, the higher the price paid by consumers, through a basic economic mechanism. This makes drug production more profitable and intensifies the cannabis trade. In short, the harder we crack down, the more the cannabis trade flourishes…
+|authors=Paul De Grauwe
+|article=Le cannabis se mutualise, à défaut d'être réglementé
+|work=L'Écho (Belgique)
+|date=20 October 2017
+|link=https://www.lecho.be/economie-politique/belgique-general/Le-cannabis-se-mutualise-a-defaut-d-etre-reglemente/9945069
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

@@ -1,0 +1,19 @@
+{{Argument
+|summary=In Portugal, drug users are no longer treated as offenders but as patients in need of treatment.
+|quotes={{Quote
+|quote=By decriminalising the use of all drugs twenty-five years ago, the country broke a taboo, and consumption remains contained at levels among the lowest in Europe.
+|authors=François Musseau
+|article=Les 50 ans de l'Appel du 18 joint Au Portugal, le succès de la dépénalisation générale des drogues
+|work=Libération
+|date=17 June 2026
+|link=https://www.liberation.fr/international/europe/au-portugal-le-succes-de-la-depenalisation-generale-des-drogues-20260617_PL2SYLOJTBCWXBSJ55WFL6TRWY/
+|warnings=AI-translated quote
+}}
+|webliography={{Web reference
+|link=https://www.euda.europa.eu/system/files/media/publications/documents/11331/portugal-cdr-2019.pdf
+|page=Portugal — Country Drug Report 2019
+|site=European Monitoring Centre for Drugs and Drug Addiction
+|date=2019
+}}
+
+}}

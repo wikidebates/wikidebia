@@ -1,0 +1,11 @@
+{
+  "code_commit": "4b2abbe714a603814eb4710ab5e5827cb56aa804",
+  "kit_tests_passed": 667,
+  "validator_suite_passed": true,
+  "deployment_tests_passed": 22,
+  "self_audit_passed": true,
+  "pr": "https://github.com/wikidebates/wikidebia/pull/9",
+  "draft": true,
+  "merged": false,
+  "wiki_writes": false
+}

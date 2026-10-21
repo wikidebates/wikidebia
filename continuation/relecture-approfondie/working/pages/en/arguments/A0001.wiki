@@ -1,0 +1,25 @@
+{{Argument
+|quotes={{Quote
+|quote=We cannot invoke the failure of legislation that has not been adequately enforced as a reason to repeal it. We must first make a serious effort to enforce it.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=224
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=“Over the past ten years, the range of punitive measures has clearly expanded,” explains Mr Bergeron, who speaks of “a trend towards recriminalisation”. “Drug addiction has not escaped the drive for zero tolerance running through society as a whole, which translates into harsher criminal penalties,” observes Nicole Maestracci, a judge who chaired the Interministerial Mission for the Fight against Drugs and Drug Addiction (MILDT) from 1998 to 2002.
+|authors=Laetitia Clavreul
+|work=Le Monde
+|date=15 June 2011
+|link=https://www.lemonde.fr/societe/article/2011/06/15/la-france-plus-severe-que-ses-voisins-europeens_1536402_3224.html
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=The law is enforced, and enforcement has become more punitive since 2001
+|displayed-title=The law is enforced, and enforcement has become more punitive since 2001
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

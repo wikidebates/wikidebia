@@ -1,0 +1,23 @@
+{{Argument
+|quotes={{Quote
+|quote=At the beginning of the twenty-first century, the painkiller OxyContin is selling like hot cakes.
+
+Prescribed for anything and everything, from the mildest headache to an inflamed knee, this “miracle” pill—normally intended for people with terminal cancer—is heavily marketed, and its use made to seem entirely routine.
+
+And with good reason: its use rests on a misleading percentage, turned into a selling point by Purdue's sales representatives, who repeat it like a slogan:
+
+“Fewer than 1% of patients who use OxyContin become addicted to it.”
+
+A thoroughly false percentage, as hundreds of thousands of Americans soon become hooked on OxyContin, some to the point of taking excessive amounts.
+
+The United States consequently sees a terrible rise in overdoses, under the indifferent gaze of a pharmaceutical company making a fortune.
+
+That very company—one of the compelling features of Dopesick is that it reveals the plans of both Purdue's top executives and their critics—has only one thing in mind: exceeding a billion dollars in revenue, even if it means sacrificing its patients.
+|authors=Kalindi Ramphul
+|article=Magouilles pharmaceutiques, toxicomanie : Dopesick ou l’enfer d’une Amérique en pleine crise des opioïdes
+|work=Madmoizelle.com
+|date=17 November 2021
+|link=https://www.madmoizelle.com/magouilles-pharmaceutiques-toxicomanie-dopesick-ou-lenfer-dune-amerique-en-pleine-crise-des-opioides-1213529
+|warnings=AI-translated quote
+}}
+}}

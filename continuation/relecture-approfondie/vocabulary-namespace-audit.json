@@ -1,0 +1,289 @@
+{
+  "status": "mapping_candidates_only_not_native_approved_vocabulary",
+  "source_native_vocabulary_status": "draft_and_empty",
+  "keyword_mapping": [
+    {
+      "fr": "Accidents de la route",
+      "en": "road accidents"
+    },
+    {
+      "fr": "Addiction",
+      "en": "addiction"
+    },
+    {
+      "fr": "Alcool",
+      "en": "alcohol"
+    },
+    {
+      "fr": "Attractivité",
+      "en": "appeal"
+    },
+    {
+      "fr": "Banlieue",
+      "en": "disadvantaged suburbs"
+    },
+    {
+      "fr": "Cannabis",
+      "en": "cannabis"
+    },
+    {
+      "fr": "Clandestinité",
+      "en": "underground activity"
+    },
+    {
+      "fr": "Conflits d’intérêts",
+      "en": "conflicts of interest"
+    },
+    {
+      "fr": "Consommation",
+      "en": "consumption"
+    },
+    {
+      "fr": "Contournement fiscal",
+      "en": "tax circumvention"
+    },
+    {
+      "fr": "Contrôle",
+      "en": "control"
+    },
+    {
+      "fr": "Conventions internationales",
+      "en": "international conventions"
+    },
+    {
+      "fr": "Coût",
+      "en": "cost"
+    },
+    {
+      "fr": "Dangerosité",
+      "en": "harmfulness"
+    },
+    {
+      "fr": "Dealer",
+      "en": "drug dealer"
+    },
+    {
+      "fr": "Dissuasion",
+      "en": "deterrence"
+    },
+    {
+      "fr": "Drogue dure",
+      "en": "hard drug"
+    },
+    {
+      "fr": "Drogues dures",
+      "en": "hard drugs"
+    },
+    {
+      "fr": "Droits de l'homme",
+      "en": "human rights"
+    },
+    {
+      "fr": "Dépendance",
+      "en": "dependence"
+    },
+    {
+      "fr": "Dépénalisation",
+      "en": "decriminalisation"
+    },
+    {
+      "fr": "Echec",
+      "en": "failure"
+    },
+    {
+      "fr": "Expérimentation scientifique",
+      "en": "scientific experimentation"
+    },
+    {
+      "fr": "Impossibilité",
+      "en": "impossibility"
+    },
+    {
+      "fr": "Interdiction",
+      "en": "ban"
+    },
+    {
+      "fr": "Jeunesse",
+      "en": "young people"
+    },
+    {
+      "fr": "Justice",
+      "en": "justice"
+    },
+    {
+      "fr": "Libertés individuelles",
+      "en": "individual liberties"
+    },
+    {
+      "fr": "Loi",
+      "en": "law"
+    },
+    {
+      "fr": "Lois du marché",
+      "en": "market forces"
+    },
+    {
+      "fr": "Légalisation",
+      "en": "legalisation"
+    },
+    {
+      "fr": "Législation",
+      "en": "legislation"
+    },
+    {
+      "fr": "Marché noir",
+      "en": "black market"
+    },
+    {
+      "fr": "Mineurs",
+      "en": "minors"
+    },
+    {
+      "fr": "Normalisation",
+      "en": "normalisation"
+    },
+    {
+      "fr": "Opinion publique",
+      "en": "public opinion"
+    },
+    {
+      "fr": "Overdose",
+      "en": "overdose"
+    },
+    {
+      "fr": "Pays-Bas",
+      "en": "Netherlands"
+    },
+    {
+      "fr": "Perception du risque",
+      "en": "risk perception"
+    },
+    {
+      "fr": "Prison",
+      "en": "prison"
+    },
+    {
+      "fr": "Prix de vente",
+      "en": "retail price"
+    },
+    {
+      "fr": "Prohibition",
+      "en": "prohibition"
+    },
+    {
+      "fr": "Prévention",
+      "en": "prevention"
+    },
+    {
+      "fr": "Qualité",
+      "en": "quality"
+    },
+    {
+      "fr": "Santé",
+      "en": "health"
+    },
+    {
+      "fr": "Tabac",
+      "en": "tobacco"
+    },
+    {
+      "fr": "Toxicomanie",
+      "en": "drug addiction"
+    },
+    {
+      "fr": "Uruguay",
+      "en": "Uruguay"
+    },
+    {
+      "fr": "Usager",
+      "en": "user"
+    },
+    {
+      "fr": "Vente",
+      "en": "sales"
+    },
+    {
+      "fr": "criminalité",
+      "en": "crime"
+    },
+    {
+      "fr": "fiscalité",
+      "en": "taxation"
+    },
+    {
+      "fr": "normes sociales",
+      "en": "social norms"
+    },
+    {
+      "fr": "problèmes de santé publique",
+      "en": "public health issues"
+    },
+    {
+      "fr": "protection des consommateurs",
+      "en": "consumer protection"
+    },
+    {
+      "fr": "protection des vulnérables",
+      "en": "protection of vulnerable people"
+    },
+    {
+      "fr": "Économie parallèle",
+      "en": "underground economy"
+    },
+    {
+      "fr": "État",
+      "en": "state"
+    },
+    {
+      "fr": "économie informelle",
+      "en": "informal economy"
+    }
+  ],
+  "section_mapping": [
+    {
+      "fr": "Droit",
+      "en": "Law"
+    },
+    {
+      "fr": "Économie",
+      "en": "Economy"
+    },
+    {
+      "fr": "Santé",
+      "en": "Health"
+    },
+    {
+      "fr": "Société",
+      "en": "Society"
+    },
+    {
+      "fr": "Philosophie",
+      "en": "Philosophy"
+    },
+    {
+      "fr": "Politique",
+      "en": "Politics"
+    },
+    {
+      "fr": "Géopolitique",
+      "en": "Geopolitics"
+    },
+    {
+      "fr": "Éducation",
+      "en": "Education"
+    },
+    {
+      "fr": "Psychologie",
+      "en": "Psychology"
+    },
+    {
+      "fr": "Science",
+      "en": "Science"
+    },
+    {
+      "fr": "Éthique",
+      "en": "Ethics"
+    }
+  ],
+  "note": "Les rubriques et mots-clés ont des espaces de noms distincts. Droit est une rubrique, Loi est un mot-clé ; aucune collision law entre mots-clés réels. Définitions, usages et revue native restent à compléter."
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "weather-underground",
+    "url": "https://en.wikipedia.org/api/rest_v1/page/summary/Weather_Underground",
+    "accessed_at": "2026-10-21T09:35:44.235674+00:00",
+    "http_status": 403,
+    "final_url": "https://en.wikipedia.org/api/rest_v1/page/summary/Weather_Underground",
+    "sha256": "165da4d5af47d0a2008597750d184a3cef870aff9d0a5005b71d6bd17a75672e"
+  },
+  {
+    "id": "logo-commons",
+    "url": "https://commons.wikimedia.org/w/api.php?action=query&titles=File:Logo_debat_cannabis.jpg&prop=imageinfo&format=json",
+    "accessed_at": "2026-10-21T09:35:45.226964+00:00",
+    "http_status": 403,
+    "final_url": "https://commons.wikimedia.org/w/api.php?action=query&titles=File:Logo_debat_cannabis.jpg&prop=imageinfo&format=json",
+    "sha256": "165da4d5af47d0a2008597750d184a3cef870aff9d0a5005b71d6bd17a75672e"
+  },
+  {
+    "id": "logo-enwiki",
+    "url": "https://en.wikidebates.org/w/api.php?action=query&titles=File:Logo_debat_cannabis.jpg&prop=imageinfo&format=json",
+    "accessed_at": "2026-10-21T09:35:45.613709+00:00",
+    "http_status": 403,
+    "final_url": "https://en.wikidebates.org/w/api.php?action=query&titles=File:Logo_debat_cannabis.jpg&prop=imageinfo&format=json",
+    "sha256": "82e92a0cea9cffafa7e965637e34530c758ea83157e8874b4ef1717b9bf7be09"
+  }
+]

@@ -1,0 +1,30 @@
+{{Argument
+|quotes={{Quote
+|quote=Legalisation would not cause consumption to soar if the tax set by the state kept the price at its current level (around €5.50 per gram). Price is the key variable: if it were too high, it would encourage trafficking. If it were too low, consumption could increase.
+|authors=Pierre Kopp
+|article=Légaliser le cannabis rapporterait 1 milliard d'euros selon l'économiste Pierre Kopp, autoriser la consommation dégagerait des moyens pour la prévention
+|work=Le Monde
+|date=3 August 2011
+|link=https://www.lemonde.fr/societe/article/2011/08/02/legaliser-le-cannabis-rapporterait-1-milliard-d-euros-miste-pierre-kopp-autoriser-la-consommation-degagerait-des-moyens-pour-la-prevention_1555243_3224.html
+|warnings=AI-translated quote
+}}{{Quote
+|quote=A US study by RAND Corporation economists published in 2010 estimated that legalising cannabis production and distribution in California could generate up to $1 billion in tax revenue, but would drive prices down by 80%, inevitably causing a substantial rise in consumption.
+|authors=Grégoire Fleurot
+|article=A quoi ressemblerait une filière nationale du cannabis?
+|work=Slate
+|date=24 June 2011
+|link=https://www.slate.fr/story/40067/cannabis-vente-libre-filiere-vaillant
+|warnings=AI-translated quote
+}}
+|sections=Economy, Society
+|keywords=cannabis, legalisation, decriminalisation, consumption, retail price
+|bibliography={{Bibliographical reference
+|authors=Jonathan P. Caulkins, Beau Kilmer, Mark A. R. Kleiman, Robert J. MacCoun, Gregory Midgette, Pat Oglesby, Rosalie Liccardo Pacula, Peter Reuter
+|work=Considering Marijuana Legalization: Insights for Vermont and Other Jurisdictions
+|publisher=RAND Corporation
+|place=Santa Monica, CA
+|date=2015
+|link=https://www.rand.org/pubs/research_reports/RR864.html
+}}
+
+}}

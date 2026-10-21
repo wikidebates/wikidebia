@@ -1,0 +1,18 @@
+{{Argument
+|quotes={{Quote
+|quote=Banning paedophilia, theft, rape and other serious crimes has not eradicated them, but that is no reason to abandon the ban.
+|authors=Jean Costentin
+|work=Faut-il dépénaliser le cannabis ?
+|page=112
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=When a law worsens the problem it was meant to solve, repealing it becomes urgent
+|displayed-title=When a policy is costly, counterproductive and has harmful unintended effects, abolishing it becomes urgent
+}}
+|sections=Politics, Society
+|keywords=failure
+}}

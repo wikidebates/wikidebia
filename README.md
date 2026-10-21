@@ -35,3 +35,8 @@ revues restent ouvertes. Les 149 citations et les 120 absences de résumé sont
 conservées. Le correctif nécessaire au transport des deux passages hors citations
 est proposé séparément dans la [PR de code en brouillon n° 9](https://github.com/wikidebates/wikidebia/pull/9).
 Ni fusion ni validation officielle ni publication wiki.
+
+
+## Relecture approfondie du 21 octobre 2026
+
+La suite relue est conservée séparément dans [continuation/relecture-approfondie/RAPPORT_RELECTURE.md](continuation/relecture-approfondie/RAPPORT_RELECTURE.md). Les 153 fiches ont chacune une note de comparaison bilingue ; 18 interventions ciblées ont été appliquées à la nouvelle copie `working/`. Les anciens fichiers `delivery/` et `continuation/working/` sont conservés. Cette étape reste **documentairement incomplète et non publiable** : aucune clôture native de lots ni convergence officielle n’est revendiquée.

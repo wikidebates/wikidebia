@@ -1,0 +1,13 @@
+{{Argument
+|quotes={{Quote
+|quote=The risks do not depend on the substance alone, but on patterns of use and the vulnerability of the person using it.
+|authors=Nicole Maestracci
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=226
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, overdose, harmfulness
+}}

@@ -1,0 +1,22 @@
+{{Argument
+|quotes={{Quote
+|quote=[Prohibition] forces users to buy on the black market, exposing them to other drugs and crime.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=87
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The gateway to cocaine was therefore not cannabis, but the dealer. Moreover, going to the black market and mixing with dangerous people caused my patients considerable psychological stress.
+|authors=Raquel Peyraube
+|article=Raquel Peyraube, addictologue et militante pour le cannabis médical
+|work=Le Monde
+|date=8 July 2018
+|link=https://www.lemonde.fr/sciences/article/2018/07/08/raquel-peyraube-addictologue-et-militante-pour-le-cannabis-medical_5328066_1650684.html
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition, drug dealer, hard drug
+}}

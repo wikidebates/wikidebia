@@ -1,0 +1,13 @@
+{{Argument
+|quotes={{Quote
+|quote=[The Dutch cannabis] system is more coherent. Consumption is regulated, and adults can use cannabis in coffee shops. One argument made by opponents was that consumption would soar. That is false. It has actually fallen, particularly among young people.
+|authors=Camille Wernaers
+|article=Vers la fin de la prohibition des drogues?
+|work=Le soir
+|date=18 January 2016
+|link=https://www.lesoir.be/art/1096562/article/actualite/sciences-et-sante/2016-01-18/vers-fin-prohibition-des-drogues
+|warnings=AI-translated quote
+}}
+|sections=Society
+|keywords=cannabis, legalisation, decriminalisation, consumption
+}}

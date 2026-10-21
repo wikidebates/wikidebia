@@ -1,0 +1,14 @@
+{{Argument
+|summary=Serge Supersac, a former police officer and co-author of ''Pour en finir avec les dealers'' (2011), also makes this point in his book.
+|quotes={{Quote
+|quote=His colleagues and everyone who has passed through his office can attest to it: Grenoble's public prosecutor, Jean-Yves Coquillat, is neither an inveterate leftist nor a champion of leniency. Yet last week, delivering his New Year address at a formal court session, this prosecutor dared to break a taboo by raising the need for a debate on the punitive approach to cannabis consumption and sales, acknowledging the “failure” of current legislation. He also spoke of “changing the law in line with changes in society”.
+|authors=Alice Géraud
+|article=Cannabis : un réquisitoire contre la loi
+|work=Libération
+|date=5 February 2014
+|link=https://www.liberation.fr/societe/2014/02/05/cannabis-un-requisitoire-contre-la-loi_978254
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

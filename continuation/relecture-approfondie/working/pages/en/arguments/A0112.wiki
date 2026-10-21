@@ -1,0 +1,16 @@
+{{Argument
+|quotes={{Quote
+|authors=Observatoire français des drogues et toxicomanies
+|quote=General population surveys provide another measure of availability by asking people how easy they think it would be, or actually is, to obtain cannabis. They show that cannabis seems readily available to most French people, whether they use it or not: almost six in ten people aged 15 to 64 (58.0%) believe that, if they wanted it, obtaining cannabis within 24 hours would be easy (30.4% fairly easy and 27.5% very easy). Men aged 20–25 are particularly likely to hold this view (79.2%, compared with 61.3% in the rest of the population). Fewer than one person in ten (7.2%) says they cannot answer, a proportion that rises markedly with age, from 2.0% among 15–19-year-olds to 14.3% among those over 55. Admittedly, the question has limitations when put to people who have no desire to obtain cannabis and do not really accept the hypothetical situation presented to them.
+
+Difficulties seem to have little effect on most users. Keeping small supplies in reserve, helping one another out and using alternative supply networks tend to cushion the impact of a temporary reduction in availability. An experienced regular user can obtain some form of cannabis to meet their needs in any circumstances.
+|article=Cannabis, données essentielles. Partie 3 : le marché du cannabis en France
+|work=OFDT
+|page=67-68
+|date=2007
+|link=https://www.ofdt.fr/BDD/publications/docs/cdemarch.pdf
+|warnings=AI-translated quote
+}}
+|sections=Economy, Society
+|keywords=cannabis, cost
+}}

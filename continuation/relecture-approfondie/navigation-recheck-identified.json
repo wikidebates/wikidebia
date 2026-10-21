@@ -1,0 +1,86 @@
+[
+  {
+    "id": "weather-underground",
+    "url": "https://en.wikipedia.org/api/rest_v1/page/summary/Weather_Underground",
+    "user_agent_specified": true,
+    "http_status": 200,
+    "accessed_at": "2026-10-21T09:38:13.411882+00:00",
+    "sha256": "3148117cb30a03e525fa4a9e0fed5049283dfbec5ed58c31b006ebb4937b0aa6",
+    "result": {
+      "type": "standard",
+      "title": "Weather Underground",
+      "displaytitle": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Weather Underground</span></span>",
+      "namespace": {
+        "id": 0,
+        "text": ""
+      },
+      "wikibase_item": "Q1163724",
+      "titles": {
+        "canonical": "Weather_Underground",
+        "normalized": "Weather Underground",
+        "display": "<span lang=\"en\" dir=\"ltr\"><span class=\"mw-page-title-main\">Weather Underground</span></span>"
+      },
+      "pageid": 33984,
+      "thumbnail": {
+        "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Weather_Underground_logo.svg/330px-Weather_Underground_logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+        "width": 330,
+        "height": 151
+      },
+      "originalimage": {
+        "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Weather_Underground_logo.svg/1920px-Weather_Underground_logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+        "width": 1368,
+        "height": 626
+      },
+      "lang": "en",
+      "dir": "ltr",
+      "revision": "1379210193",
+      "tid": "b4d705ea-c331-11f1-b587-f4f884ae20f5",
+      "timestamp": "2026-10-08T16:02:48Z",
+      "description": "American left-wing militant organization (1969–1977)",
+      "description_source": "local",
+      "content_urls": {
+        "desktop": {
+          "page": "https://en.wikipedia.org/wiki/Weather_Underground",
+          "revisions": "https://en.wikipedia.org/wiki/Weather_Underground?action=history",
+          "edit": "https://en.wikipedia.org/wiki/Weather_Underground?action=edit",
+          "talk": "https://en.wikipedia.org/wiki/Talk:Weather_Underground"
+        },
+        "mobile": {
+          "page": "https://en.wikipedia.org/wiki/Weather_Underground",
+          "revisions": "https://en.wikipedia.org/wiki/Special:History/Weather_Underground",
+          "edit": "https://en.wikipedia.org/wiki/Weather_Underground?action=edit",
+          "talk": "https://en.wikipedia.org/wiki/Talk:Weather_Underground"
+        }
+      },
+      "extract": "The Weather Underground was an American Marxist militant organization active from 1969 until 1977. Originally known as the Weathermen, or simply Weatherman, the group originated as a faction of the national leadership of Students for a Democratic Society (SDS).\nThe group adopted the name Weather Underground Organization (WUO) in 1970. Its members advocated revolutionary struggle against the United States government and described their politics as anti-imperialist and anti-racist. The group's ideology was influenced by Black Power and the anti-war movement. The Federal Bureau of Investigation (FBI) regarded the WUO as a domestic terrorist group.",
+      "extract_html": "<p>The <b>Weather Underground</b> was an American Marxist militant organization active from 1969 until 1977. Originally known as the <b>Weathermen</b>, or simply <b>Weatherman</b>, the group originated as a faction of the national leadership of Students for a Democratic Society (SDS).\nThe group adopted the name <b>Weather Underground Organization</b> (<b>WUO</b>) in 1970. Its members advocated revolutionary struggle against the United States government and described their politics as anti-imperialist and anti-racist. The group's ideology was influenced by Black Power and the anti-war movement. The Federal Bureau of Investigation (FBI) regarded the WUO as a domestic terrorist group.</p>"
+    }
+  },
+  {
+    "id": "logo-commons",
+    "url": "https://commons.wikimedia.org/w/api.php?action=query&titles=File:Logo_debat_cannabis.jpg&prop=imageinfo&format=json",
+    "user_agent_specified": true,
+    "http_status": 200,
+    "accessed_at": "2026-10-21T09:38:13.912837+00:00",
+    "sha256": "3e32bf986cd741da003281f6fbf3d486be3e632482aa049b4010a2c620162531",
+    "result": {
+      "batchcomplete": "",
+      "query": {
+        "normalized": [
+          {
+            "from": "File:Logo_debat_cannabis.jpg",
+            "to": "File:Logo debat cannabis.jpg"
+          }
+        ],
+        "pages": {
+          "-1": {
+            "ns": 6,
+            "title": "File:Logo debat cannabis.jpg",
+            "missing": "",
+            "imagerepository": ""
+          }
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,20 @@
+{{Argument
+|quotes={{Quote
+|quote=Those of our partners who thought they were doing the right thing by relaxing cannabis legislation are reversing course! In the United Kingdom, the Labour government returned cannabis to the category of dangerous drugs four years after downgrading it. As for the Netherlands, that emblem of the so-called “tolerance” policy, it is changing its approach: sharply restricting access to coffee shops, now closed to non-residents, and gradually erasing the distinction between hard and soft drugs…
+|authors=Claude Guéant
+|article=Dépénalisation du cannabis, un débat biaisé
+|work=Le Monde
+|date=15 June 2011
+|link=https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=The Netherlands has not reversed course on cannabis decriminalisation
+|displayed-title=The Netherlands has not reversed course on decriminalisation
+}}{{Objection
+|page=More and more countries and states have decriminalised cannabis
+|displayed-title=More and more countries and states have decriminalised cannabis
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation
+}}

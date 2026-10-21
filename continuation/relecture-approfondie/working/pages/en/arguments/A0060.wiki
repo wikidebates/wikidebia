@@ -1,0 +1,26 @@
+{{Argument
+|quotes={{Quote
+|quote=Cannabis legalisation would dry up dealers' market, as happened in Chicago in 1933.
+|authors=Francis Caballero
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=15
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Cannabis legalisation would shift trafficking to other substances unless all drugs were legalised, which seems difficult
+|displayed-title=Trafficking would shift to other substances. Preventing this would require legalising all drugs, which seems difficult
+}}{{Objection
+|page=An illegal cannabis market for minors will always exist
+|displayed-title=An illegal market for minors will always exist
+}}{{Objection
+|page=If cannabis is legalised with restrictions, some users will continue buying on the black market
+|displayed-title=If the law is too restrictive, some users will continue buying on the black market
+}}{{Objection
+|page=As tobacco shows, the black market will persist if legal cannabis is too expensive
+|displayed-title=As tobacco shows, the black market will persist if prices are too high
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

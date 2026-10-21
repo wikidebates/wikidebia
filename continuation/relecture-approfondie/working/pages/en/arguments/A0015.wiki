@@ -1,0 +1,21 @@
+{{Argument
+|quotes={{Quote
+|quote=Relaxing cannabis legislation will prompt traffickers to adapt their strategies: distributing genetically modified, high-potency cannabis, shifting towards cocaine, heroin or synthetic drugs… Why does trafficking in cigarettes, a universally legal commodity, provide a major and rapidly growing source of income for international organised crime?
+|authors=Claude Guéant
+|article=Dépénalisation du cannabis, un débat biaisé
+|work=Le Monde
+|date=15 June 2011
+|link=https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The question of legalisation must be considered for all substances, including the most dangerous. If it applies to a substance such as cannabis, traffickers will try to develop other products, such as heroin, cocaine or synthetic drugs. I fear that accepting the legalisation of all these markets would make it difficult to maintain a certain standard of public health protection. Meeting demand is very difficult when addiction can develop very quickly.
+|authors=Etienne Apaire
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=206
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation
+}}

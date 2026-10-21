@@ -1,0 +1,39 @@
+{{Argument
+|quotes={{Quote
+|quote=Justifying cannabis prohibition on the grounds of its harmfulness is no longer credible: its impact on public health and the harm it causes individuals and society are limited, far below those of tobacco and alcohol.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=94
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Recreational cannabis use—that is, occasional use in small doses—is no more dangerous than the equivalent use of alcohol by 30 million French people.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=74
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=The harmfulness of occasional cannabis use has not been convincingly documented.
+|authors=Nicole Maestracci
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=234
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}{{Quote
+|quote=You cannot die from a cannabis overdose, but you can experience acute intoxication, more commonly known as a “bad trip”.
+|authors=Institut national de prévention et d'éducation pour la santé
+|work=Cannabis, ce qu'il faut savoir
+|publisher=Drogues Info Service
+|date=2014
+|link=https://inpes.santepubliquefrance.fr/cfesbases/catalogue/pdf/805.pdf
+|warnings=AI-translated quote
+}}
+|sections=Philosophy, Health, Society
+|keywords=cannabis, legalisation, decriminalisation, overdose, harmfulness
+}}

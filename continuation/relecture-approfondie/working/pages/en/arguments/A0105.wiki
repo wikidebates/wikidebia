@@ -1,0 +1,17 @@
+{{Argument
+|quotes={{Quote
+|quote=Society has the right to do everything it can to reduce the situations for which it will have to bear the cost.
+|authors=Jean Costentin
+|work=Pourquoi il ne faut pas dépénaliser l'usage du cannabis ?
+|page=24
+|publisher=Odile Jacob
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Efforts to combat cannabis trafficking are costly and unsuccessful
+|displayed-title=Prohibition entails substantial costs (lost tax revenue, policing, courts...)
+}}
+|sections=Economy, Society
+|keywords=cannabis, legalisation, decriminalisation, cost, prohibition
+}}

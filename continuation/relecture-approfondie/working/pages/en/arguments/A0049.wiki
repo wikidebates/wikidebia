@@ -1,0 +1,26 @@
+{{Argument
+|quotes={{Quote
+|quote=The 1970 law was devised to address problems that were still marginal in society. Since then, however, consumption has expanded enormously: the rise of cannabis and the arrival of heroin, cocaine and crack.
+|authors=Daniel Vaillant
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=171
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Court-ordered treatment is ill-suited to cannabis users, most of whom do not have problematic patterns of use. This shows how a more coherent approach should address addiction more broadly, whatever the substance involved.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=83
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=France's 1970 drug law was designed in response to the spread of cannabis
+|displayed-title=It was designed in response to the spread of cannabis
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, legislation
+}}

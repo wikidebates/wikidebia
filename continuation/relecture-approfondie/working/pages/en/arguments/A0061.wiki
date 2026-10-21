@@ -1,0 +1,41 @@
+{{Argument
+|quotes={{Quote
+|quote=Cannabis legalisation would be interpreted as a misleading signal that it is harmless.
+
+Many people who do not use cannabis abstain out of respect for the ban. Lifting it would propel many of them into using it.
+|authors=Jean Costentin
+|work=Pourquoi il ne faut pas dépénaliser l'usage du cannabis ?
+|page=24
+|publisher=Odile Jacob
+|date=2011
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Bringing cannabis legislation into line with tobacco legislation will multiply the number of users tenfold, from the current 1,600,000 to 15,000,000, matching the number of people dependent on tobacco.
+|authors=Jean Costentin
+|article=Peut-on envisager de légaliser le cannabis ?
+|work=Le Figaro
+|date=4 September 2011
+|link=https://sante.lefigaro.fr/actualite/2011/09/04/11032-peut-on-envisager-legaliser-cannabis
+|warnings=AI-translated quote
+}}{{Quote
+|quote=Decriminalisation equals normalisation. If use is decriminalised, it will increase because access will be easier.
+|authors=Claude Guéant
+|article=Dépénalisation du cannabis, un débat biaisé
+|work=Le Monde
+|date=15 June 2011
+|link=https://www.lemonde.fr/idees/article/2011/06/15/depenalisation-du-cannabis-un-debat-biaise_1536435_3232.html
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=Experience in some countries shows that cannabis legalisation does not increase the number of users
+|displayed-title=Experience in some countries shows that legalisation does not increase the number of users
+}}{{Objection
+|page=Retail price plays a decisive role in cannabis consumption
+|displayed-title=Retail price is the key variable
+}}{{Objection
+|page=Cannabis use is increasing in France
+|displayed-title=Prohibition does not reduce consumption
+}}
+|sections=Society
+|keywords=cannabis, legalisation, decriminalisation, consumption
+}}

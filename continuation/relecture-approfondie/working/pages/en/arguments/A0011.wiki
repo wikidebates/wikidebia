@@ -1,0 +1,31 @@
+{{Argument
+|summary=According to an IFOP–Atlantico poll, 70% of French people opposed unrestricted sales in 2012, compared with 63% in 2011.
+|summary-warnings=Biased summary
+|quotes={{Quote
+|quote=There can be neither change nor success without public support for such a proposal.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=95
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=There is no collective support for a coherent system, because drugs frighten people and no one knows the effects of what we are going to allow or prohibit. If we knew for certain that regulation through something like coffee shops was beneficial, I think we would adopt it. But we know nothing, and prefer to bury our heads in the sand (…) That leaves the justice system to manage with whatever resources it has.
+|authors=Eric de Montgolfier
+|work=Drogues : Pourquoi la légalisation est inévitable
+|page=218
+|publisher=Denoël
+|date=2011
+|warnings=AI-translated quote
+}}
+|objections={{Objection
+|page=French people support allowing cannabis sales and use under certain conditions
+|displayed-title=French people support allowing cannabis sales and use under certain conditions
+}}{{Objection
+|page=Some laws opposed by the majority have brought genuine social progress
+|displayed-title=A reform can be justified even without majority support
+}}
+|sections=Society
+|keywords=cannabis, legalisation, public opinion
+}}

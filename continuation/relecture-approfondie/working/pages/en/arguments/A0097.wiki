@@ -1,0 +1,22 @@
+{{Argument
+|quotes={{Quote
+|quote=The clandestine nature of supply makes it impossible to control the quality of the products sold or prevent other illicit substances from being offered alongside them, increasing the risks.
+|authors=Alain Rigaud, Laurent Appel
+|work=Faut-il dépénaliser le cannabis ?
+|page=90
+|publisher=Le Muscadier
+|date=2013
+|link=https://www.muscadier.fr/catalogue/faut-il-depenaliser-le-cannabis/
+|warnings=AI-translated quote
+}}{{Quote
+|quote=With legalisation, we would know what we were smoking. State-supplied drugs would be of better quality and therefore slightly less harmful to health than those currently consumed.
+|authors=Groupe de lycéens de 1re ES
+|article=Le cannabis ? Chut !
+|work=Le Monde
+|date=9 November 2012
+|link=https://www.lemonde.fr/idees/article/2012/11/10/le-cannabis-chut_1787901_3232.html
+|warnings=AI-translated quote
+}}
+|sections=Health, Society
+|keywords=cannabis, legalisation, decriminalisation, prohibition, quality
+}}

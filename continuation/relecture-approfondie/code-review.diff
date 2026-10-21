@@ -1,0 +1,522 @@
+diff --git a/kit/GUIDE_TRANSLATION_REVIEW.md b/kit/GUIDE_TRANSLATION_REVIEW.md
+index d7da080..79e3886 100644
+--- a/kit/GUIDE_TRANSLATION_REVIEW.md
++++ b/kit/GUIDE_TRANSLATION_REVIEW.md
+@@ -87,6 +87,8 @@ Chaque modèle `{{Citation}}` français importé est inventorié avec un identif
+ 
+ Seules les valeurs de `quote` et de `date` peuvent être traduites. Les valeurs de `authors`, `article`, `work`, `volume`, `issue`, `page`, `location`, `publisher`, `place` et `link` sont reprises exactement. `warnings` reçoit toujours `AI-translated quote`, après un avertissement préexistant avec le séparateur exact `, `. La date traduite doit désigner la même date ; une année seule reste inchangée. Un paramètre français sans équivalent anglais déclaré bloque la finalisation.
+ 
++Les dates historiques françaises numériques (`15/06/2011`, `24.08.2018`, `11/2020`) et les mois abrégés (`17 nov. 2021`) sont comparés à la date anglaise à précision égale : une date au mois ne devient pas une date au jour. Une date source non reconnue ou impossible bloque la finalisation et demande une revue, au lieu de contourner silencieusement le contrôle. Une valeur numérique historique conservée strictement à l’identique reste admise.
++
+ ## 3. Finalisation
+ 
+ Avant d’exécuter `--finalize`, la revue éditoriale du travail doit avoir contrôlé et consigné : la clôture de chaque lot ; l’existence d’un équivalent anglais réel pour toute référence française projetée ; la recherche indépendante de nouvelles références anglophones ; la recherche autonome de `established-name=` dans la littérature anglophone ; et la passe globale inter-lots. Ces opérations de recherche ne sont pas toutes déductibles automatiquement du wikicode final : elles restent des obligations éditoriales même lorsque le validateur ne peut en vérifier que les traces structurées disponibles.
+@@ -209,3 +211,21 @@ La revue éditoriale reste indépendante de la publication distante. Pour une cr
+ - une `Quote` nouvellement traduite utilise `AI-translated quote`.
+ 
+ Ces conventions ne changent pas la règle de traduction différentielle : une propriété formelle déjà validée dans la source française n'est pas « réparée » silencieusement en anglais.
++
++### Texte éditorial autour des citations
++
++Le champ français `citations` peut contenir du texte avant, entre ou après les
++modèles `Citation`. Cet inventaire est conservé séparément sous `citation_passages`
++dans le verrou français, avec un identifiant et un ancrage `before_citation_id`
++(`null` pour la fin du champ). Il ne s'agit pas de résumés ni de nouvelles citations.
++
++La revue anglaise fournit pour chaque passage la `source_text` immuable, la
++traduction `text`, `equivalent_to_french=true` après relecture effective et une
++`review_note` précise. Aucun passage ne peut être omis, déplacé, supprimé ou
++transformé en modèle `Quote`. Ces textes entrent dans l'empreinte sémantique et
++sont réinsérés à leur position dans les rendus français et anglais.
++
++Un ancien verrou qui omettait ces textes est refusé à la préparation anglaise
++ou au rendu. Reprendre les revues et les verrous concernés ; ne pas compléter
++leurs empreintes ou attestations à la main. Une source historique incertaine
++reste signalée séparément et n'autorise pas une correction silencieuse du passage.
+diff --git a/kit/scripts/wikidebia_citation_passages.py b/kit/scripts/wikidebia_citation_passages.py
+new file mode 100644
+index 0000000..191db7a
+--- /dev/null
++++ b/kit/scripts/wikidebia_citation_passages.py
+@@ -0,0 +1,79 @@
++"""Preserve editorial prose before, between and after imported quotations."""
++
++from __future__ import annotations
++
++import copy
++from typing import Any, Mapping, Sequence, Callable
++
++from wikidebia_graph_extract import iter_templates, normalize_key
++
++
++def inventory_passages(value: str, node_id: str) -> list[dict[str, Any]]:
++    calls = [c for c in iter_templates(value or "") if normalize_key(c.name) == "citation"]
++    result: list[dict[str, Any]] = []
++    cursor = 0
++    for index, call in enumerate(calls, 1):
++        start = value.find(call.raw, cursor)
++        if start < 0:
++            raise ValueError(f"Citations imbriquées ou chevauchantes dans {node_id}")
++        gap = value[cursor:start]
++        if gap.strip():
++            result.append({"id": f"{node_id}-P{len(result)+1:03d}",
++                           "before_citation_id": f"{node_id}-C{index:03d}", "text": gap})
++        cursor = start + len(call.raw)
++    gap = (value or "")[cursor:]
++    if gap.strip():
++        result.append({"id": f"{node_id}-P{len(result)+1:03d}",
++                       "before_citation_id": None, "text": gap})
++    return result
++
++
++def blank_translations(passages: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
++    return [{"id": p["id"], "before_citation_id": p["before_citation_id"],
++             "source_text": p["text"], "text": "", "equivalent_to_french": False,
++             "review_note": ""} for p in passages]
++
++
++def validate_translations(rows: Any, sources: Sequence[Mapping[str, Any]], node_id: str) -> list[dict[str, Any]]:
++    if not isinstance(rows, list) or len(rows) != len(sources):
++        raise ValueError(f"Couverture des passages hors Citation incomplète dans {node_id}")
++    result = []
++    for row, source in zip(rows, sources):
++        if not isinstance(row, dict) or any(row.get(k) != source.get(k) for k in ("id", "before_citation_id")):
++            raise ValueError(f"Ordre ou ancrage des passages hors Citation modifié dans {node_id}")
++        if row.get("source_text") != source.get("text"):
++            raise ValueError(f"Source d'un passage hors Citation modifiée dans {node_id}")
++        if not isinstance(row.get("text"), str) or not row["text"].strip():
++            raise ValueError(f"Traduction d'un passage hors Citation absente dans {node_id}")
++        if row.get("equivalent_to_french") is not True or len(str(row.get("review_note") or "").strip()) < 12:
++            raise ValueError(f"Revue d'un passage hors Citation absente dans {node_id}")
++        result.append(copy.deepcopy(row))
++    return result
++
++
++def render_sequence(citations: Sequence[Mapping[str, Any]], passages: Sequence[Mapping[str, Any]],
++                    renderer: Callable[[Mapping[str, Any]], str]) -> str:
++    ids = [c.get("id") for c in citations]
++    if len(set(ids)) != len(ids):
++        raise ValueError("Identifiants de citation dupliqués")
++    positions = {value: i for i, value in enumerate(ids)}
++    positions[None] = len(ids)
++    previous = -1
++    by_anchor: dict[Any, list[str]] = {}
++    passage_ids = set()
++    for passage in passages:
++        anchor = passage.get("before_citation_id")
++        if anchor not in positions or positions[anchor] < previous or passage.get("id") in passage_ids:
++            raise ValueError("Ancrage, ordre ou identité des passages hors Citation invalide")
++        text = passage.get("text")
++        if not isinstance(text, str) or not text.strip():
++            raise ValueError("Passage hors Citation vide")
++        previous = positions[anchor]
++        passage_ids.add(passage.get("id"))
++        by_anchor.setdefault(anchor, []).append(text)
++    result = []
++    for citation in citations:
++        result.extend(by_anchor.get(citation.get("id"), []))
++        result.append(renderer(citation))
++    result.extend(by_anchor.get(None, []))
++    return "".join(result)
+diff --git a/kit/scripts/wikidebia_content_review.py b/kit/scripts/wikidebia_content_review.py
+index 275a37c..eab4baf 100644
+--- a/kit/scripts/wikidebia_content_review.py
++++ b/kit/scripts/wikidebia_content_review.py
+@@ -14,6 +14,8 @@ explicitly authorized. No English text is created.
+ 
+ from __future__ import annotations
+ 
++from wikidebia_citation_passages import inventory_passages
++
+ from wikidebia_release_info import KIT_VERSION
+ 
+ import argparse
+@@ -501,6 +503,7 @@ def _source_imports(reviewed: Path) -> tuple[dict[str, Any], dict[str, Any], lis
+             "import_sha256": row.get("sha256"),
+             "summary": tmpl.get("résumé").strip(),
+             "citations": _citation_records(tmpl.get("citations"), node_id),
++            "citation_passages": inventory_passages(tmpl.get("citations"), node_id),
+             "documentation_raw": {
+                 "bibliography": tmpl.get("références-bibliographiques").strip(),
+                 "webliography": tmpl.get("références-sitographiques").strip(),
+@@ -1695,6 +1698,7 @@ def _validate_argument(
+         "displayed_title": source.get("displayed_title"),
+         "summary": summary,
+         "citations": copy.deepcopy(source.get("citations") or []),
++        "citation_passages": copy.deepcopy(source.get("citation_passages") or []),
+         "sources": selected_by_type,
+         "status": (
+             "historical_authorized_creation" if historical_summary_protected and historical_summary_authorized and not bool(historical_summary.strip()) and bool(str(summary or "").strip())
+@@ -2017,6 +2021,9 @@ def _build_content_copy(project_root: Path, source: Path, target: Path, review:
+         if isinstance(row, Mapping)
+     }
+     for argument in final["arguments"]:
++        original = source_argument_presence.get(str(argument.get("id"))) or {}
++        if (argument.get("citation_passages") or []) != (original.get("citation_passages") or []):
++            raise ContentReviewError("Passages hors Citation non conservés ; reprendre la revue française : " + str(argument.get("id")))
+         if argument.get("page_origin") != "preexisting":
+             continue
+         argument_id = str(argument.get("id"))
+diff --git a/kit/scripts/wikidebia_render.py b/kit/scripts/wikidebia_render.py
+index e7236f9..8d5c195 100644
+--- a/kit/scripts/wikidebia_render.py
++++ b/kit/scripts/wikidebia_render.py
+@@ -13,6 +13,8 @@ No remote access or publication is performed.
+ 
+ from __future__ import annotations
+ 
++from wikidebia_citation_passages import render_sequence
++
+ from wikidebia_release_info import KIT_VERSION
+ 
+ import argparse
+@@ -103,6 +105,18 @@ def _assert_translated_copy(workspace: Path, meta: Mapping[str, Any]) -> Path:
+     ):
+         if not (path / rel).is_file():
+             raise RenderError(f"Verrou requis absent : {rel}")
++    # Old locks can be hash-valid yet have discarded prose during quote-only import.
++    from wikidebia_translation_review import _source_snapshot
++    from wikidebia_citation_passages import validate_translations
++    try:
++        _, _, french, _ = _source_snapshot(path)
++        english = load_json(path / "data/en_content_lock.json", "verrou anglais du contenu")
++        en_by_id = {r["id"]: r for r in english.get("arguments") or []}
++        for row in french.get("arguments") or []:
++            validate_translations(en_by_id.get(row["id"], {}).get("citation_passages", []),
++                                  row.get("citation_passages") or [], row["id"])
++    except (ValueError, EditorialReviewError) as exc:
++        raise RenderError("Passages hors Citation non conservés : " + str(exc)) from exc
+     if (path / "output").exists():
+         raise RenderError("translated-copy contient déjà des pages finales")
+     return path
+@@ -635,7 +649,7 @@ def _render_argument(
+     node_id = str(node.get("id"))
+     selected = content.get("sources") or {}
+     if lang == "fr":
+-        citations = _sequence(_citation_template(row, lang="fr") for row in content.get("citations") or [])
++        citations = render_sequence(content.get("citations") or [], content.get("citation_passages") or [], lambda row: _citation_template(row, lang="fr"))
+         target = (node.get("en") or {}).get("canonical_title")
+         params: list[tuple[str, Any]] = []
+         for name, default in (
+@@ -664,7 +678,7 @@ def _render_argument(
+             _append_interlanguage_parameter(params, content, "interlangue", _template("Lien interlangue", (("langue", "en"), ("page", target))))
+         _append_lifecycle_parameter(params, content, "date-création", creation_date)
+     else:
+-        citations = _sequence(_citation_template(row, lang="en") for row in content.get("citations") or [])
++        citations = render_sequence(content.get("citations") or [], content.get("citation_passages") or [], lambda row: _citation_template(row, lang="en"))
+         params = []
+         for name, default in (("initialization", None), ("established-name", content.get("argument_name")), ("name", None)):
+             _append_lifecycle_parameter(params, content, name, default)
+diff --git a/kit/scripts/wikidebia_translation_review.py b/kit/scripts/wikidebia_translation_review.py
+index e6d4a1c..b48b45e 100644
+--- a/kit/scripts/wikidebia_translation_review.py
++++ b/kit/scripts/wikidebia_translation_review.py
+@@ -10,10 +10,13 @@ MediaWiki page is rendered and no remote access is performed.
+ 
+ from __future__ import annotations
+ 
++from wikidebia_citation_passages import blank_translations, validate_translations
++
+ from wikidebia_release_info import KIT_VERSION
+ 
+ import argparse
+ import collections
++from datetime import date as calendar_date
+ import copy
+ import json
+ import os
+@@ -45,6 +48,7 @@ from wikidebia_documentary_resources import (
+ from wikidebia_editorial_workspace import WorkspaceError, fsync_directory, validate_work_id, workspace_receipt_hash
+ from wikidebia_editorial_review import EditorialReviewError, _assert_source_unchanged, _load_workspace, _run_validator
+ from wikidebia_content_review import (
++    _source_imports,
+     ARGUMENT_BUCKETS,
+     SOURCE_METADATA_FIELDS,
+     SUMMARY_TRUE_FIELDS,
+@@ -225,6 +229,12 @@ def semantic_content_payload(review: Mapping[str, Any]) -> dict[str, Any]:
+             "en_displayed_title": arg.get("displayed_title"),
+             "en_summary": arg.get("summary"),
+         })
++    for item, arg in zip(payload["arguments"], sorted(final.get("arguments") or [], key=lambda row: str(row.get("id")))):
++        original = original_by_id.get(str(arg.get("id"))) or {}
++        french = (((original.get("translation") or {}).get("french") or {}).get("content") or {})
++        if french.get("citation_passages") or arg.get("citation_passages"):
++            item["fr_citation_passages"] = copy.deepcopy(french.get("citation_passages") or [])
++            item["en_citation_passages"] = copy.deepcopy(arg.get("citation_passages") or [])
+     return payload
+ 
+ def semantic_content_sha256(review: Mapping[str, Any]) -> str:
+@@ -407,14 +417,38 @@ def _date_signature(value: Any, language: str) -> tuple[int, int | None, int | N
+     text = re.sub(r"\s+", " ", str(value or "").strip())
+     if not text:
+         return None
+-    if re.fullmatch(r"\d{4}", text):
++    if re.fullmatch(r"\d{4}", text) and int(text) > 0:
+         return (int(text), None, None)
+-    months = FR_MONTHS if language == "fr" else EN_MONTHS
++    months = dict(FR_MONTHS if language == "fr" else EN_MONTHS)
++    if language == "fr":
++        # Historical French imports also use day/month/year and month/year.
++        numeric = re.fullmatch(r"(\d{1,2})([/.])(\d{1,2})\2(\d{4})", text)
++        if numeric:
++            day, month, year = int(numeric[1]), int(numeric[3]), int(numeric[4])
++            try:
++                calendar_date(year, month, day)
++            except ValueError:
++                return None
++            return (year, month, day)
++        numeric_month = re.fullmatch(r"(\d{1,2})/(\d{4})", text)
++        if numeric_month:
++            month, year = int(numeric_month[1]), int(numeric_month[2])
++            if 1 <= month <= 12 and year > 0:
++                return (year, month, None)
++            return None
++        months.update({"janv": 1, "févr": 2, "fevr": 2, "avr": 4,
++                       "juil": 7, "sept": 9, "oct": 10, "nov": 11, "déc": 12, "dec": 12})
++        text = re.sub(r"([A-Za-zÀ-ÿ]+)\.(?=\s)", r"\1", text)
+     match = re.fullmatch(r"(\d{1,2})\s+([A-Za-zÀ-ÿ]+)\s+(\d{4})", text, re.I)
+     if match and match.group(2).casefold() in months:
+-        return (int(match.group(3)), months[match.group(2).casefold()], int(match.group(1)))
++        year, month, day = int(match.group(3)), months[match.group(2).casefold()], int(match.group(1))
++        try:
++            calendar_date(year, month, day)
++        except ValueError:
++            return None
++        return (year, month, day)
+     match = re.fullmatch(r"([A-Za-zÀ-ÿ]+)\s+(\d{4})", text, re.I)
+-    if match and match.group(1).casefold() in months:
++    if match and match.group(1).casefold() in months and int(match.group(2)) > 0:
+         return (int(match.group(2)), months[match.group(1).casefold()], None)
+     return None
+ 
+@@ -477,12 +511,14 @@ def _validate_citations(rows: Any, french_rows: Sequence[Mapping[str, Any]], nod
+         if source_date:
+             if not translated_date:
+                 raise TranslationReviewError(f"Date anglaise absente pour la citation {citation_id}")
+-            fr_sig = _date_signature(source_date, "fr")
++            fr_sig = _date_signature(source_date, "fr") or _date_signature(source_date, "en")
++            if fr_sig is None:
++                raise TranslationReviewError(f"Format de date source non reconnu pour {citation_id}; revue nécessaire : {source_date}")
+             en_sig = _date_signature(translated_date, "en")
+-            if fr_sig is not None and en_sig != fr_sig:
++            if translated_date == source_date and not re.search(r"[A-Za-zÀ-ÿ]", source_date):
++                en_sig = fr_sig  # Preserve an identical historical numeric date.
++            if en_sig != fr_sig:
+                 raise TranslationReviewError(f"La date traduite ne désigne pas la même date pour {citation_id}")
+-            if fr_sig is None and translated_date == source_date and re.search(r"[A-Za-zÀ-ÿ]", source_date):
+-                raise TranslationReviewError(f"La date textuelle de {citation_id} n’a pas été traduite")
+         for field in ("citation_translated", "date_translated_or_language_neutral", "preserved_parameters_unchanged", "translation_warning_appended", "quote_completeness_reviewed"):
+             if row.get(field) is not True:
+                 raise TranslationReviewError(f"Attestation de citation manquante pour {citation_id} : {field}")
+@@ -642,6 +678,11 @@ def _source_snapshot(source: Path) -> tuple[dict[str, Any], dict[str, Any], dict
+     registry = load_json(source / "data/registre_debat.json", "registre du débat")
+     metadata = load_json(source / "data/fr_page_metadata_lock.json", "verrou des métadonnées françaises")
+     content = load_json(source / "data/fr_content_lock.json", "verrou du contenu français")
++    _, _, imported = _source_imports(source)
++    locked = {r["id"]: r for r in content.get("arguments") or []}
++    for row in imported:
++        if (locked.get(row["id"], {}).get("citation_passages") or []) != (row.get("citation_passages") or []):
++            raise TranslationReviewError("Verrou français incomplet pour les passages hors Citation : " + row["id"] + "; reprendre la revue française")
+     vocabulary = load_json(source / "data/keyword_vocabulary.json", "vocabulaire français")
+     return registry, metadata, content, vocabulary
+ 
+@@ -706,6 +747,7 @@ def _blank_argument(fr_meta: Mapping[str, Any], fr_content: Mapping[str, Any]) -
+         "keywords": [],
+         "summary": "",
+         "citations": [_blank_citation(row) for row in (fr_content.get("citations") or [])],
++        "citation_passages": blank_translations(fr_content.get("citation_passages") or []),
+         "sources": {bucket: [] for bucket in ARGUMENT_BUCKETS},
+         "argument_name_search_queries": [],
+         "argument_name_search_scope_note": "",
+@@ -1916,6 +1958,12 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
+         if numbers and (row.get("quantitative_claims_verified") is not True or len(str(row.get("quantitative_claims_note") or "").strip()) < 12):
+             raise TranslationReviewError(f"Donnée chiffrée anglaise non vérifiée dans {node_id}")
+     citations = _validate_citations(row.get("citations"), fr_content.get("citations") or [], node_id)
++    try:
++        passages = validate_translations(row.get("citation_passages", []), fr_content.get("citation_passages") or [], node_id)
++    except ValueError as exc:
++        raise TranslationReviewError(str(exc)) from exc
++    for passage in passages:
++        _assert_english_wikicode_localized(passage["text"], "passage hors Citation de " + node_id)
+     selected = row.get("sources")
+     if not isinstance(selected, dict) or set(selected) != set(ARGUMENT_BUCKETS):
+         raise TranslationReviewError(f"Sélection documentaire anglaise absente pour {node_id}")
+@@ -1935,7 +1983,7 @@ def _validate_argument(item: Mapping[str, Any], mapping: Mapping[str, str], sour
+     argument_name, name_discovery = _validate_argument_name_discovery(row, node_id, lifecycle["page_origin"])
+     return {
+         "id": node_id, "canonical_title": canonical, "displayed_title": displayed,
+-        "sections": sections, "keywords": keywords, "summary": summary, "citations": citations, "sources": final_sources,
++        "sections": sections, "keywords": keywords, "summary": summary, "citations": citations, "citation_passages": passages, "sources": final_sources,
+         "summary_provenance": summary_provenance or ("historical_absent" if summary_absent else "translated_source"),
+         "summary_length_ratio": (round(ratio, 4) if ratio is not None else None),
+         "summary_ratio_reviewed": bool(row.get("summary_ratio_reviewed")) if ratio is not None else True,
+diff --git a/kit/tests/test_imported_citation_dates.py b/kit/tests/test_imported_citation_dates.py
+new file mode 100644
+index 0000000..cc92a60
+--- /dev/null
++++ b/kit/tests/test_imported_citation_dates.py
+@@ -0,0 +1,43 @@
++"""French numeric dates must not bypass translation equivalence checks."""
++from pathlib import Path
++import sys
++import pytest
++sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
++from wikidebia_content_review import _citation_records
++import wikidebia_translation_review as translation
++
++
++def validate(source_date, target_date):
++    original=_citation_records('{{Citation|citation=Une citation de test complète.|date='+source_date+'}}','A0001')[0]
++    row=translation._blank_citation(original)
++    row.update(status='approved', translated_citation='A complete test quotation.', translated_date=target_date,
++        citation_translated=True, date_translated_or_language_neutral=True, preserved_parameters_unchanged=True,
++        translation_warning_appended=True, quote_completeness_reviewed=True,
++        quote_completeness_note='The complete source text and its historical date were compared.',
++        reviewer='Reviewer', reviewed_at='2026-10-21',note='Historical date equivalence reviewed.')
++    return translation._validate_citations([row],[original],'A0001')
++
++
++@pytest.mark.parametrize('fr,en',[
++ ('15/06/2011','15 June 2011'),('15/6/2011','15 June 2011'),
++ ('24.08.2018','24 August 2018'),('11/2020','November 2020'),
++ ('17 nov 2021','17 November 2021'),('17 nov. 2021','17 November 2021'),
++ ('29/02/2024','29 February 2024'),('2013','2013'),
++ ('15/06/2011','15/06/2011'),('June 2011','June 2011')])
++def test_accepts_equivalent_historical_date_at_same_precision(fr,en):
++    assert validate(fr,en)[0]['date']==en
++
++
++@pytest.mark.parametrize('fr,en',[
++ ('15/06/2011','16 June 2011'),('15/06/2011','15 July 2011'),
++ ('15/06/2011','15 June 2012'),('11/2020','12 November 2020'),
++ ('17 nov 2021','17 October 2021'),('24.08.2018','24 August 2019')])
++def test_rejects_different_date_or_invented_precision(fr,en):
++    with pytest.raises(translation.TranslationReviewError,match='même date'):
++        validate(fr,en)
++
++
++@pytest.mark.parametrize('fr',['31/02/2011','13/2020','31 février 2011','0000','été 2011','unknown'])
++def test_unrecognized_date_cannot_silently_validate_a_translation(fr):
++    with pytest.raises(translation.TranslationReviewError,match='Format de date source'):
++        validate(fr,'15 June 2011')
+diff --git a/kit/tests/test_interquotation_passages.py b/kit/tests/test_interquotation_passages.py
+new file mode 100644
+index 0000000..8d099af
+--- /dev/null
++++ b/kit/tests/test_interquotation_passages.py
+@@ -0,0 +1,115 @@
++"""Regression coverage for editorial text lost by quote-only assembly."""
++import copy
++import json
++import sys
++from pathlib import Path
++
++import pytest
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
++import wikidebia_citation_passages as passages
++import wikidebia_content_review as content
++import wikidebia_translation_review as translation
++import wikidebia_render as render
++
++FR = "Préambule.\n{{Citation|citation=Une première citation.|auteurs=Alice}}\n'''Objection :''' Deux lectures restent possibles.\n{{Citation|citation=Une seconde citation.|auteurs=Bob}}\nConclusion historique."
++EN = ["Preamble.\n", "\n'''Objection:''' Two readings remain possible.\n", "\nHistorical conclusion."]
++
++
++def translated_passages():
++    source = passages.inventory_passages(FR, 'A0001')
++    rows = passages.blank_translations(source)
++    for row, text in zip(rows, EN):
++        row.update(text=text, equivalent_to_french=True,
++                   review_note='The qualification and its position relative to the quotations are preserved.')
++    return source, rows
++
++
++@pytest.mark.parametrize('lang', ['fr', 'en'])
++def test_prose_survives_actual_argument_renderer_in_order(lang):
++    source, rows = translated_passages()
++    citations = content._citation_records(FR, 'A0001')
++    if lang == 'en':
++        for row, text in zip(citations, ['A first quotation.', 'A second quotation.']):
++            row['parameters'] = [{'name': 'quote', 'value': text}]
++    prose = passages.validate_translations(rows, source, 'A0001') if lang == 'en' else source
++    output = render._render_argument(
++        lang=lang, node={'id': 'A0001', 'fr': {}, 'en': {}},
++        content={'citations': citations, 'citation_passages': prose},
++        registry={'graph': {'nodes': [], 'edges': []}}, sources={},
++        creation_date='21 October 2026', include_interlanguage=False,
++    )
++    expected = EN if lang == 'en' else [p['text'] for p in source]
++    assert output.index(expected[0]) < output.index('{{Quote' if lang == 'en' else '{{Citation')
++    assert output.index(expected[1]) < output.index('{{Quote' if lang == 'en' else '{{Citation', output.index(expected[1]))
++    assert output.index(expected[2]) > output.rindex('{{Quote' if lang == 'en' else '{{Citation')
++    assert output.count('{{Quote' if lang == 'en' else '{{Citation') == 2
++
++
++@pytest.mark.parametrize('mutation', ['delete', 'reorder', 'move', 'source', 'empty', 'unreviewed'])
++def test_translation_cannot_drop_move_or_silently_rewrite_passages(mutation):
++    source, rows = translated_passages()
++    if mutation == 'delete': rows.pop(1)
++    elif mutation == 'reorder': rows.reverse()
++    elif mutation == 'move': rows[1]['before_citation_id'] = 'A0001-C001'
++    elif mutation == 'source': rows[1]['source_text'] = 'A different French claim.'
++    elif mutation == 'empty': rows[1]['text'] = ' '
++    else: rows[1]['equivalent_to_french'] = False
++    with pytest.raises(ValueError):
++        passages.validate_translations(rows, source, 'A0001')
++
++
++def test_prose_without_any_quote_is_preserved():
++    source = passages.inventory_passages('Une précision sans citation.', 'A0001')
++    assert passages.render_sequence([], source, lambda row: '') == 'Une précision sans citation.'
++
++
++def test_legacy_locks_missing_original_prose_cannot_start_translation(tmp_path, monkeypatch):
++    data = tmp_path / 'data'
++    data.mkdir()
++    for name in ['registre_debat.json', 'fr_page_metadata_lock.json', 'keyword_vocabulary.json']:
++        (data / name).write_text('{}')
++    (data / 'fr_content_lock.json').write_text(json.dumps({'arguments': [{'id': 'A0001'}]}))
++    monkeypatch.setattr(translation, '_source_imports', lambda source: ({}, {}, [
++        {'id': 'A0001', 'citation_passages': passages.inventory_passages(FR, 'A0001')}
++    ]))
++    with pytest.raises(translation.TranslationReviewError, match='Verrou français incomplet'):
++        translation._source_snapshot(tmp_path)
++
++
++def test_semantic_fingerprint_covers_translated_editorial_prose():
++    source, rows = translated_passages()
++    review = {'arguments': [{'id': 'A0001', 'translation': {'french': {
++        'content': {'citation_passages': source}}}}],
++        'final_values': {'arguments': [{'id': 'A0001', 'citation_passages': rows}]}}
++    before = translation.semantic_content_sha256(review)
++    review['final_values']['arguments'][0]['citation_passages'][1]['text'] += ' Certainly.'
++    assert translation.semantic_content_sha256(review) != before
++
++
++def test_renderer_rejects_missing_anchor_instead_of_omitting_prose():
++    with pytest.raises(ValueError, match='Ancrage'):
++        passages.render_sequence([], [{'id': 'P1', 'before_citation_id': 'missing', 'text': 'Keep this.'}], lambda row: '')
++
++
++def test_translation_preparation_exposes_unreviewed_prose_without_auto_translation():
++    source, _ = translated_passages()
++    row = translation._blank_argument({'id': 'A0001', 'page_origin': 'preexisting'},
++                                     {'citation_passages': source})
++    assert [p['source_text'] for p in row['citation_passages']] == [p['text'] for p in source]
++    assert all(p['text'] == '' and p['equivalent_to_french'] is False for p in row['citation_passages'])
++
++
++def test_finalized_argument_retains_separately_reviewed_prose():
++    from test_wikidebia_translation_review import nominal_argument_translation
++    row, mapping = nominal_argument_translation()
++    source = passages.inventory_passages('Une précision historique.', 'A-HIST')
++    row['french']['content']['citation_passages'] = source
++    row['citation_passages'] = passages.blank_translations(source)
++    row['citation_passages'][0].update(text='A historical clarification.', equivalent_to_french=True,
++        review_note='The historical qualification is faithfully translated as separate editorial prose.')
++    final = translation._validate_argument({'id': 'A-HIST', 'translation': row}, mapping, {},
++                                           authoritative_source_page_origin='preexisting')
++    assert final['citation_passages'][0]['text'] == 'A historical clarification.'
++    assert final['summary'] is None
++    assert final['citations'] == []

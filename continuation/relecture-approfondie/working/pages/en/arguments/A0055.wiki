@@ -1,0 +1,11 @@
+{{Argument
+|objections={{Objection
+|page=Ways exist to minimise the effects of cannabis legalisation on disadvantaged suburban communities
+|displayed-title=Solutions exist
+}}{{Objection
+|page=The war on drugs intensifies the persecution of minorities
+|displayed-title=Punitive policies can also cause social harm
+}}
+|sections=Economy, Society
+|keywords=cannabis, legalisation, decriminalisation, disadvantaged suburbs
+}}
