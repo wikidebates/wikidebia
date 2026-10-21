@@ -130,6 +130,146 @@ def test_preflight_performs_no_mutations(tmp_path):
     assert not (tmp_path / "server/.state/fr-publication-relay").exists()
 
 
+def replace_request_text(directory, request, row, before, after):
+    for path_key, hash_key, text in (
+        ("before_file", "source_sha256", before), ("after_file", "target_sha256", after),
+    ):
+        (directory / row[path_key]).write_text(text)
+        row[hash_key] = relay.digest(text.encode())
+    save_request(directory, request)
+
+
+@pytest.mark.parametrize("before,after", [
+    ("{{Argument|citations=Source}}", "{{Argument|résumé=Ajout|citations=Source}}"),
+    ("{{Argument|résumé=|citations=Source}}", "{{Argument|résumé=Ajout|citations=Source}}"),
+    ("{{Argument|résumé=Ancien}}", "{{Argument|résumé=Nouveau}}"),
+    ("{{Argument|résumé=Ancien}}", "{{Argument}}"),
+])
+@pytest.mark.parametrize("authorization", [None, {"decision": "explicit_user_request"}])
+def test_summary_changes_require_specific_permission_before_any_move_or_write(tmp_path, before, after, authorization):
+    directory = tmp_path / "request"
+    request, pages = request_fixture(directory)
+    row = request["pages"][0]
+    row["summary_change_authorization"] = authorization
+    replace_request_text(directory, request, row, before, after)
+    pages["Child"] = (10, before)
+    wiki = FakeWiki(pages)
+    with pytest.raises(relay.Blocked, match="résumé"):
+        publish(tmp_path, directory, wiki)
+    assert not wiki.writes
+    # Enqueue must reject the same request before touching Git or the server.
+    with pytest.raises(relay.Blocked, match="résumé"):
+        relay.enqueue(tmp_path, directory, request["request_sha256"])
+
+
+def test_explicit_summary_restoration_is_allowed_and_comment_matches_actual_diff(tmp_path):
+    directory = tmp_path / "request"
+    request, pages = request_fixture(directory)
+    row = request["pages"][0]
+    row["new_title"] = row["old_title"]
+    row["summary_change_authorization"] = {
+        "decision": "explicit_user_request", "action": "restore",
+        "instruction": "Restaure le résumé antérieur de cet argument.",
+    }
+    before, after = "{{Argument|résumé=Ajout indu|citations=Source}}", "{{Argument|citations=Source}}"
+    replace_request_text(directory, request, row, before, after)
+    # Keep the second row unchanged: this test only restores a summary.
+    parent = request["pages"][1]
+    replace_request_text(directory, request, parent, pages["Parent"][1], pages["Parent"][1])
+    pages["Child"] = (10, before)
+    wiki = FakeWiki(pages)
+    assert publish(tmp_path, directory, wiki)["status"] == "completed"
+    assert wiki.pages["Child"][1] == after
+    summary = next(iter(wiki.revisions.values()))["summary"]
+    assert summary == "Restauration du résumé antérieur ; annulation des changements non demandés"
+    assert "titres" not in summary and "liens" not in summary
+
+
+@pytest.mark.parametrize("before,after,expected", [
+    ("{{Argument|citations=Ancien}}", "{{Argument|citations=Nouveau}}", "Mise à jour des citations"),
+    ("{{Argument|références-sitographiques=Ancien}}", "{{Argument|références-sitographiques=Nouveau}}", "Mise à jour des références"),
+    ("{{Débat|introduction=Ancienne}}", "{{Débat|introduction=Nouvelle}}", "Mise à jour de l'introduction"),
+])
+def test_relay_comments_are_computed_from_changed_fields(tmp_path, before, after, expected):
+    directory = tmp_path / "request"
+    request, _ = request_fixture(directory)
+    row = request["pages"][0]
+    replace_request_text(directory, request, row, before, after)
+    assert relay.request_editorial_checks(request, directory)[row["page_id"]] == expected
+    row["edit_summary"] = "Corrections des titres et liens"
+    save_request(directory, request)
+    with pytest.raises(relay.Blocked, match="Commentaire"):
+        relay.request_editorial_checks(request, directory)
+
+
+def test_historical_completed_request_is_not_replayed_or_blocked_by_new_scope(tmp_path):
+    directory = tmp_path / "request"
+    request, pages = request_fixture(directory)
+    request["schema"] = "wikidebia-fr-publication-request-1.0"
+    row = request["pages"][0]
+    before, after = "{{Argument}}", "{{Argument|résumé=Ancien ajout indu}}"
+    replace_request_text(directory, request, row, before, after)
+    state = relay.state_file(tmp_path / "server", request["request_id"])
+    completed = {"request_sha256": request["request_sha256"], "status": "completed"}
+    relay.write_json(state, completed)
+    wiki = FakeWiki(pages)
+    assert publish(tmp_path, directory, wiki) == completed
+    assert not wiki.writes and not wiki.opened
+
+
+def test_pending_legacy_request_cannot_bypass_summary_scope(tmp_path):
+    directory = tmp_path / "request"
+    request, pages = request_fixture(directory)
+    request["schema"] = "wikidebia-fr-publication-request-1.0"
+    row = request["pages"][0]
+    replace_request_text(directory, request, row, "{{Argument}}", "{{Argument|résumé=Ajout non demandé}}")
+    wiki = FakeWiki(pages)
+    with pytest.raises(relay.Blocked, match="résumé"):
+        publish(tmp_path, directory, wiki)
+    assert not wiki.writes
+
+
+@pytest.mark.parametrize("after", [
+    "{{Argument}}",
+    "{{Argument|citations={{Citation|citation=Texte réécrit|auteurs=Auteur|lien=https://example.org}}}}",
+    "{{Argument|citations={{Citation|citation=Texte original|auteurs=Autre auteur|lien=https://example.org}}}}",
+    "{{Argument|citations={{Citation|citation=Texte original|auteurs=Auteur}}}}",
+])
+def test_existing_citations_cannot_be_removed_or_rewritten_without_permission(tmp_path, after):
+    directory = tmp_path / "request"
+    request, pages = request_fixture(directory)
+    row = request["pages"][0]
+    before = "{{Argument|citations={{Citation|citation=Texte original|auteurs=Auteur|lien=https://example.org}}}}"
+    replace_request_text(directory, request, row, before, after)
+    pages["Child"] = (10, before)
+    wiki = FakeWiki(pages)
+    with pytest.raises(relay.Blocked, match="citation existante"):
+        publish(tmp_path, directory, wiki)
+    assert not wiki.writes
+    with pytest.raises(relay.Blocked, match="citation existante"):
+        relay.enqueue(tmp_path, directory, request["request_sha256"])
+
+
+def test_citation_restoration_has_a_specific_accurate_edit_comment(tmp_path):
+    directory = tmp_path / "request"
+    request, pages = request_fixture(directory)
+    row = request["pages"][0]
+    row["citation_change_authorization"] = {
+        "decision":"explicit_user_request", "action":"restore",
+        "instruction":"Rétablis les citations supprimées sur cette page.",
+    }
+    before="{{Argument|résumé=Historique}}"
+    after="{{Argument|résumé=Historique|citations={{Citation|citation=Texte original|auteurs=Auteur}}}}"
+    replace_request_text(directory, request, row, before, after)
+    pages["Child"]=(10,before)
+    wiki=FakeWiki(pages)
+    assert publish(tmp_path,directory,wiki)["status"]=="completed"
+    assert wiki.pages["Renamed child"][1]==after
+    comments={revision["text"]:revision["summary"] for revision in wiki.revisions.values()}
+    assert comments[after] == "Restauration des citations antérieures ; annulation des retraits non demandés"
+    assert "Mise à jour des justifications" in comments.values()
+
+
 @pytest.mark.parametrize("problem", ("stale_parent", "changed_parent", "collision", "rights", "identity", "tag"))
 def test_all_pages_are_checked_before_any_write(tmp_path, problem):
     directory = tmp_path / "request"

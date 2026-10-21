@@ -12,6 +12,7 @@ import os
 import re
 import sys
 import time
+from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable
@@ -325,6 +326,60 @@ def content_diff_edit_summary(old_text: str, new_text: str, language: str, page_
     if language == "fr":
         return "Mise à jour " + _join_summary_items(groups or ["du contenu de la page"], language)
     return "Update to " + _join_summary_items(groups or ["the page content"], language)
+
+
+def assert_summary_change_authorized(
+    old_text: str, new_text: str, language: str, page_type: str,
+    authorization: dict[str, Any] | None = None,
+) -> None:
+    """An existing argument's summary is outside a generic correction scope.
+
+    Creation is handled separately. Updates, including filling an empty field,
+    removal and renames, need a page-specific, quoted user instruction. A broad
+    publication/adoption authorization does not grant this editorial permission.
+    """
+    if page_type != "argument":
+        return
+    key = normalize_key("résumé" if language == "fr" else "summary")
+    def summary(text: str) -> dict[str, str]:
+        _, _, params = top_level_parameter_map(text, language, page_type)
+        return {normalize_key(name): value for name, value in params.items()
+                if normalize_key(name) == key}
+    if summary(old_text) == summary(new_text):
+        return
+    if not (
+        isinstance(authorization, dict)
+        and authorization.get("decision") == "explicit_user_request"
+        and authorization.get("action") in {"edit", "restore"}
+        and isinstance(authorization.get("instruction"), str)
+        and authorization["instruction"].strip()
+    ):
+        raise UpdateError("Modification du résumé d’argument sans demande utilisateur explicite et spécifique")
+
+
+def assert_citation_change_authorized(
+    old_text: str, new_text: str, authorization: dict[str, Any] | None = None,
+) -> None:
+    """Keep every existing quote, including its attribution and source.
+
+    A missing/unverified source is not permission to delete a quotation. Generic
+    correction, deduplication and publication authorizations do not grant it.
+    Count occurrences so removing a duplicate is also an editorial deletion.
+    Inspect the whole page, including quotes outside the usual citation field.
+    """
+    def citations(text: str) -> Counter:
+        return Counter(call.raw for call in iter_templates(text)
+                       if normalize_key(call.name) in {"citation", "quote"})
+    if not citations(old_text) - citations(new_text):
+        return
+    if not (
+        isinstance(authorization, dict)
+        and authorization.get("decision") == "explicit_user_request"
+        and authorization.get("action") in ("edit", "restore")
+        and isinstance(authorization.get("instruction"), str)
+        and authorization["instruction"].strip()
+    ):
+        raise UpdateError("Suppression ou réécriture d’une citation existante sans demande utilisateur explicite et spécifique")
 
 
 def corpus_creation_edit_summary(language: str, page_type: str) -> str:
@@ -1339,6 +1394,8 @@ class RemoteUpdatePlanner:
                 "file_sha256": sha_file(source),
                 "page_origin": str(row.get("page_origin") or ""),
                 "preserved_parameters": row.get("preserved_parameters") or {},
+                "summary_change_authorization": row.get("summary_change_authorization"),
+                "citation_change_authorization": row.get("citation_change_authorization"),
             }
         if not result:
             raise UpdateError("Le nouveau manifeste ne contient aucune page sélectionnée")
@@ -1830,7 +1887,20 @@ class RemoteUpdatePlanner:
                 "observed_revision_id": revision_id,
                 "remote_sha256": sha_text(remote_text) if exists else None,
                 "phase": 1 if effective["page_type"] == "debate" else 2,
+                "summary_change_authorization": effective.get("summary_change_authorization"),
+                "citation_change_authorization": effective.get("citation_change_authorization"),
             })
+            if exists:
+                try:
+                    assert_summary_change_authorized(
+                        remote_text, effective["content"], language, effective["page_type"],
+                        effective.get("summary_change_authorization"),
+                    )
+                    assert_citation_change_authorized(remote_text, effective["content"], effective.get("citation_change_authorization"))
+                except UpdateError as exc:
+                    op.update(justification=str(exc), phase=0)
+                    buckets["blocked"].append(op)
+                    continue
             if lifecycle_preservation is not None:
                 op.update({
                     "lifecycle_preservation": lifecycle_preservation,
@@ -1974,6 +2044,8 @@ class RemoteUpdatePlanner:
             "observed_revision_id": source_rev,
             "target_revision_id": target_rev,
             "policy": "move",
+            "summary_change_authorization": effective.get("summary_change_authorization"),
+            "citation_change_authorization": effective.get("citation_change_authorization"),
             "leave_redirect": bool(self.config.get("move_leave_redirect", True)),
             "phase": 4,
             "preconditions": ["source_matches_published_state", "target_absent", "move_right"],
@@ -2008,6 +2080,16 @@ class RemoteUpdatePlanner:
             op["justification"] = "Source du déplacement modifiée depuis la publication automatisée"
             op["phase"] = 0
             buckets["manual_review"].append(op)
+            return
+        try:
+            assert_summary_change_authorized(
+                source_text, effective["content"], prior.language, prior.page_type,
+                effective.get("summary_change_authorization"),
+            )
+            assert_citation_change_authorized(source_text, effective["content"], effective.get("citation_change_authorization"))
+        except UpdateError as exc:
+            op.update(justification=str(exc), phase=0)
+            buckets["blocked"].append(op)
             return
         op["preconditions"].append("remote_lifecycle_parameters_preserved")
         if lifecycle_preservation is not None:
@@ -2217,6 +2299,18 @@ class PlanExecutor:
                         f"Droits MediaWiki absents sur {language} : {', '.join(missing)}. "
                         "Aucune écriture n’a été effectuée."
                     )
+                # Check every existing summary before the first mutation, even
+                # for historical plans which did not enforce this scope.
+                for row in relevant:
+                    if row["operation"] not in {"update", "move"}:
+                        continue
+                    source = row.get("old_title", row["title"])
+                    exists, _, text = self.adapter.read_page(source)
+                    if row["operation"] == "move" and not exists:
+                        exists, _, text = self.adapter.read_page(row["new_title"])
+                    if exists:
+                        self._assert_summary_scope(row, text, self._source_text(row))
+                        self._assert_citation_scope(row, text, self._source_text(row))
             finally:
                 self.adapter.close_language()
 
@@ -2434,6 +2528,43 @@ class PlanExecutor:
             raise PlanConflict(f"Contenu local divergent du plan : {row['title']}")
         return text
 
+    def _assert_summary_scope(self, row: dict[str, Any], old_text: str, new_text: str) -> None:
+        try:
+            assert_summary_change_authorized(old_text, new_text, row["language"], row["page_type"])
+            return
+        except UpdateError:
+            pass
+        source_page = next((page for page in self.manifest.get("pages", [])
+                            if page.get("language") == row["language"]
+                            and page.get("page_id") == row["page_id"]), {})
+        authorization = row.get("summary_change_authorization")
+        if authorization != source_page.get("summary_change_authorization"):
+            raise PlanConflict(f"Autorisation de modification du résumé divergente du manifeste : {row['title']}")
+        try:
+            assert_summary_change_authorized(
+                old_text, new_text, row["language"], row["page_type"],
+                authorization,
+            )
+        except UpdateError as exc:
+            raise PlanConflict(f"{row['title']} : {exc}") from exc
+
+    def _assert_citation_scope(self, row: dict[str, Any], old_text: str, new_text: str) -> None:
+        try:
+            assert_citation_change_authorized(old_text, new_text)
+            return
+        except UpdateError:
+            pass
+        source_page = next((page for page in self.manifest.get("pages", [])
+                            if page.get("language") == row["language"]
+                            and page.get("page_id") == row["page_id"]), {})
+        authorization = row.get("citation_change_authorization")
+        if authorization != source_page.get("citation_change_authorization"):
+            raise PlanConflict(f"Autorisation de modification des citations divergente du manifeste : {row['title']}")
+        try:
+            assert_citation_change_authorized(old_text, new_text, authorization)
+        except UpdateError as exc:
+            raise PlanConflict(f"{row['title']} : {exc}") from exc
+
     def _execute_one(self, row: dict[str, Any], user: str, plan: dict[str, Any]) -> dict[str, Any]:
         operation = row["operation"]
         title = row["title"]
@@ -2460,6 +2591,8 @@ class PlanExecutor:
                 return result
             if revision_id != row.get("expected_revision_id") or sha_text(remote_text) != row.get("old_sha256"):
                 raise PlanConflict(f"Modification distante intervenue depuis le plan : {title}")
+            self._assert_summary_scope(row, remote_text, desired)
+            self._assert_citation_scope(row, remote_text, desired)
             summary = self._expected_row_summary(row, operation, plan, remote_text)
             if row.get("edit_summary_policy") == "french_interlanguage_addition":
                 expected_title = self._english_title_for(str(row.get("page_id") or ""), str(row.get("page_type") or ""))
@@ -2481,6 +2614,8 @@ class PlanExecutor:
                 if target_exists and sha_text(target_text) == row.get("old_sha256") and target_rev is not None:
                     # Interrupted after the move itself but before the content
                     # replacement. Finish the exact signed target update.
+                    self._assert_summary_scope(row, target_text, desired)
+                    self._assert_citation_scope(row, target_text, desired)
                     summary = self._expected_row_summary(row, operation, plan, target_text)
                     moved_rev = self.adapter.write_page(
                         title=new_title, text=desired, summary=summary, tags=["chatgpt"],
@@ -2494,6 +2629,8 @@ class PlanExecutor:
                 raise PlanConflict(f"Cible du déplacement apparue : {new_title}")
             if source_rev != row.get("expected_revision_id") or sha_text(source_text) != row.get("old_sha256"):
                 raise PlanConflict(f"Source du déplacement modifiée : {old_title}")
+            self._assert_summary_scope(row, source_text, desired)
+            self._assert_citation_scope(row, source_text, desired)
             summary = self._expected_row_summary(row, operation, plan, source_text)
             self.adapter.move_page(old_title=old_title, new_title=new_title, reason=summary, expected_user=user, leave_redirect=bool(row.get("leave_redirect", True)))
             moved_exists, moved_rev, moved_text = self.adapter.read_page(new_title)
