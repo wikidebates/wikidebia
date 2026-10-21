@@ -87,6 +87,8 @@ Chaque modèle `{{Citation}}` français importé est inventorié avec un identif
 
 Seules les valeurs de `quote` et de `date` peuvent être traduites. Les valeurs de `authors`, `article`, `work`, `volume`, `issue`, `page`, `location`, `publisher`, `place` et `link` sont reprises exactement. `warnings` reçoit toujours `AI-translated quote`, après un avertissement préexistant avec le séparateur exact `, `. La date traduite doit désigner la même date ; une année seule reste inchangée. Un paramètre français sans équivalent anglais déclaré bloque la finalisation.
 
+Les dates historiques françaises numériques (`15/06/2011`, `24.08.2018`, `11/2020`) et les mois abrégés (`17 nov. 2021`) sont comparés à la date anglaise à précision égale : une date au mois ne devient pas une date au jour. Une date source non reconnue ou impossible bloque la finalisation et demande une revue, au lieu de contourner silencieusement le contrôle. Une valeur numérique historique conservée strictement à l’identique reste admise.
+
 ## 3. Finalisation
 
 Avant d’exécuter `--finalize`, la revue éditoriale du travail doit avoir contrôlé et consigné : la clôture de chaque lot ; l’existence d’un équivalent anglais réel pour toute référence française projetée ; la recherche indépendante de nouvelles références anglophones ; la recherche autonome de `established-name=` dans la littérature anglophone ; et la passe globale inter-lots. Ces opérations de recherche ne sont pas toutes déductibles automatiquement du wikicode final : elles restent des obligations éditoriales même lorsque le validateur ne peut en vérifier que les traces structurées disponibles.

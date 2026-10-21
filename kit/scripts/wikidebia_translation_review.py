@@ -16,6 +16,7 @@ from wikidebia_release_info import KIT_VERSION
 
 import argparse
 import collections
+from datetime import date as calendar_date
 import copy
 import json
 import os
@@ -416,14 +417,38 @@ def _date_signature(value: Any, language: str) -> tuple[int, int | None, int | N
     text = re.sub(r"\s+", " ", str(value or "").strip())
     if not text:
         return None
-    if re.fullmatch(r"\d{4}", text):
+    if re.fullmatch(r"\d{4}", text) and int(text) > 0:
         return (int(text), None, None)
-    months = FR_MONTHS if language == "fr" else EN_MONTHS
+    months = dict(FR_MONTHS if language == "fr" else EN_MONTHS)
+    if language == "fr":
+        # Historical French imports also use day/month/year and month/year.
+        numeric = re.fullmatch(r"(\d{1,2})([/.])(\d{1,2})\2(\d{4})", text)
+        if numeric:
+            day, month, year = int(numeric[1]), int(numeric[3]), int(numeric[4])
+            try:
+                calendar_date(year, month, day)
+            except ValueError:
+                return None
+            return (year, month, day)
+        numeric_month = re.fullmatch(r"(\d{1,2})/(\d{4})", text)
+        if numeric_month:
+            month, year = int(numeric_month[1]), int(numeric_month[2])
+            if 1 <= month <= 12 and year > 0:
+                return (year, month, None)
+            return None
+        months.update({"janv": 1, "févr": 2, "fevr": 2, "avr": 4,
+                       "juil": 7, "sept": 9, "oct": 10, "nov": 11, "déc": 12, "dec": 12})
+        text = re.sub(r"([A-Za-zÀ-ÿ]+)\.(?=\s)", r"\1", text)
     match = re.fullmatch(r"(\d{1,2})\s+([A-Za-zÀ-ÿ]+)\s+(\d{4})", text, re.I)
     if match and match.group(2).casefold() in months:
-        return (int(match.group(3)), months[match.group(2).casefold()], int(match.group(1)))
+        year, month, day = int(match.group(3)), months[match.group(2).casefold()], int(match.group(1))
+        try:
+            calendar_date(year, month, day)
+        except ValueError:
+            return None
+        return (year, month, day)
     match = re.fullmatch(r"([A-Za-zÀ-ÿ]+)\s+(\d{4})", text, re.I)
-    if match and match.group(1).casefold() in months:
+    if match and match.group(1).casefold() in months and int(match.group(2)) > 0:
         return (int(match.group(2)), months[match.group(1).casefold()], None)
     return None
 
@@ -486,12 +511,14 @@ def _validate_citations(rows: Any, french_rows: Sequence[Mapping[str, Any]], nod
         if source_date:
             if not translated_date:
                 raise TranslationReviewError(f"Date anglaise absente pour la citation {citation_id}")
-            fr_sig = _date_signature(source_date, "fr")
+            fr_sig = _date_signature(source_date, "fr") or _date_signature(source_date, "en")
+            if fr_sig is None:
+                raise TranslationReviewError(f"Format de date source non reconnu pour {citation_id}; revue nécessaire : {source_date}")
             en_sig = _date_signature(translated_date, "en")
-            if fr_sig is not None and en_sig != fr_sig:
+            if translated_date == source_date and not re.search(r"[A-Za-zÀ-ÿ]", source_date):
+                en_sig = fr_sig  # Preserve an identical historical numeric date.
+            if en_sig != fr_sig:
                 raise TranslationReviewError(f"La date traduite ne désigne pas la même date pour {citation_id}")
-            if fr_sig is None and translated_date == source_date and re.search(r"[A-Za-zÀ-ÿ]", source_date):
-                raise TranslationReviewError(f"La date textuelle de {citation_id} n’a pas été traduite")
         for field in ("citation_translated", "date_translated_or_language_neutral", "preserved_parameters_unchanged", "translation_warning_appended", "quote_completeness_reviewed"):
             if row.get(field) is not True:
                 raise TranslationReviewError(f"Attestation de citation manquante pour {citation_id} : {field}")
