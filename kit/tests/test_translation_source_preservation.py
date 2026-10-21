@@ -111,18 +111,20 @@ def test_historical_numbers_do_not_acquire_a_false_verification(tmp_path):
     assert content._validate_argument(item,by_id)['quantitative_claims_verified'] is False
 
 def test_french_render_preserves_every_historical_parameter_and_comments(tmp_path):
-    import mwparserfromhell
+    import re
+    from wikidebia_graph_extract import parse_template
     from wikidebia_render import _render_preserved_french, RenderError
     raw = "<!-- header {{ignored}} -->\n{{Argument\n|résumé=Une ancienne formulation.\n|citations={{Citation|citation=Exactement !|auteurs=Un auteur}}\nTexte entre les citations.\n|webliographie=[https://example.org Ancienne source]\n|mots-clés=justice, justice\n|date-création=2001-01-01\n}}"
     p=tmp_path/'imports/fr/arguments/A1.wiki';p.parent.mkdir(parents=True);p.write_text(raw)
     locked={'import_path':str(p.relative_to(tmp_path)),'import_sha256':hashlib.sha256(p.read_bytes()).hexdigest()}
     result=_render_preserved_french(tmp_path,locked,'An English title')
-    fr=next(t for t in mwparserfromhell.parse(raw).filter_templates() if str(t.name).strip()=='Argument')
-    en=next(t for t in mwparserfromhell.parse(result).filter_templates() if str(t.name).strip()=='Argument')
+    fr=parse_template(raw[raw.index('{{Argument'):].strip())
+    en=parse_template(result[result.index('{{Argument'):].strip())
     assert len(en.params)==len(fr.params)+1
-    assert all(str(en.get(str(v.name)).value)==str(v.value) for v in fr.params)
+    assert all(en.get(k)==v for k,v in fr.params.items())
+    assert re.sub(r'\|interlangue=\{\{Lien interlangue.*?\}\}\n','',result,flags=re.S).rstrip('\n')==raw
     assert result.startswith('<!-- header {{ignored}} -->')
-    assert 'langue=en' in str(en.get('interlangue').value)
+    assert 'langue=en' in en.get('interlangue')
     p.write_text(raw+'changed')
     with pytest.raises(RenderError,match='modifié'):_render_preserved_french(tmp_path,locked,'Title')
 
