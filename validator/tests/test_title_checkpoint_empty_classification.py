@@ -33,12 +33,15 @@ def fixture(root):
         "schema": "wikidebia-import-provenance-1.0",
         "pages": [page],
     })
-    review_sha = "a" * 64
-    dump(root / "reviews/fr/page_metadata_review.json", {
+    review = {
         "review_scope": "graph_and_titles",
         "status": "approved",
-        "review_sha256": review_sha,
-    })
+    }
+    review_sha = hashlib.sha256(
+        json.dumps(review, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    review["review_sha256"] = review_sha
+    dump(root / "reviews/fr/page_metadata_review.json", review)
     dump(root / "data/fr_page_metadata_lock.json", {
         "schema": "wikidebia-fr-page-metadata-lock-1.0",
         "review_sha256": review_sha,
@@ -92,4 +95,15 @@ def test_title_checkpoint_rejects_changed_import_or_unscoped_lock(tmp_path):
     dump(tmp_path / "data/fr_page_metadata_lock.json", lock)
     assert not _preserved_empty_rubrics(
         ctx, "argument_registry.schema.json", registry, error("rubriques")
+    )
+
+
+def test_title_checkpoint_rejects_a_tampered_signed_review(tmp_path):
+    ctx, registry = fixture(tmp_path)
+    review_path = tmp_path / "reviews/fr/page_metadata_review.json"
+    review = json.loads(review_path.read_text(encoding="utf-8"))
+    review["review_scope"] = "graph_and_titles_tampered"
+    dump(review_path, review)
+    assert not _preserved_keyword_duplicates(
+        ctx, "argument_registry.schema.json", registry, error("keywords")
     )

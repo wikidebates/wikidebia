@@ -162,7 +162,22 @@ def _title_checkpoint_preserves_empty_classification(
     if not isinstance(provenance, dict) or provenance.get("schema") != "wikidebia-import-provenance-1.0":
         return False
     review_sha = review.get("review_sha256")
-    if not isinstance(review_sha, str) or lock.get("review_sha256") != review_sha:
+    review_body = dict(review)
+    review_body.pop("review_sha256", None)
+    computed_review_sha = hashlib.sha256(
+        json.dumps(
+            review_body,
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+            allow_nan=False,
+        ).encode("utf-8")
+    ).hexdigest()
+    if (
+        not isinstance(review_sha, str)
+        or review_sha != computed_review_sha
+        or lock.get("review_sha256") != review_sha
+    ):
         return False
     locked = next(
         (row for row in lock.get("arguments") or [] if isinstance(row, dict) and row.get("entity_id") == node_id),

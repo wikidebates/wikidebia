@@ -17,7 +17,7 @@
 - correctif générique ajouté pour préserver une classification historiquement
   absente pendant le checkpoint « graphe + titres », avec preuve par la revue
   approuvée, son verrou et l’import exact ;
-- tests ciblés, tests de corpus et tests d’orchestration : 100 réussites.
+- tests ciblés, tests de corpus et tests d’orchestration : 101 réussites.
 
 ## Prochaine commande
 
@@ -35,9 +35,10 @@ français. Avant toute écriture distante, contrôler le plan produit par le kit
 
 Le kit 2.16.47 ne transmettait pas au validateur isolé le registre approuvé qui
 prouve que rubriques et mots-clés restent différés pendant la revue de titres.
-Le correctif copie le registre finalisé dans la copie revue et n’accorde
-l’exception qu’aux champs vides attestés simultanément par ce registre, son
-verrou dérivé et le wikicode importé intact.
+Le correctif copie le registre finalisé dans la copie revue, recalcule et vérifie
+son empreinte cryptographique, puis n’accorde l’exception qu’aux champs vides
+attestés simultanément par ce registre signé, son verrou dérivé et le wikicode
+importé intact.
 
 ## Vérification
 
