@@ -1404,7 +1404,22 @@ def start_workflow(
             state["status"] = "running"
             state["updated_at"] = now_iso()
             _save_workflow(project_root, state)
-        return _mechanical_advance(project_root, state)
+        if state.get("status") == "blocked_remote_publication":
+            state["status"] = "running"
+            state.pop("last_remote_publication_error", None)
+            state.pop("last_remote_publication_execution_started", None)
+            state["updated_at"] = now_iso()
+            _save_workflow(project_root, state)
+        try:
+            return _mechanical_advance(project_root, state)
+        except FrenchCheckpointError as exc:
+            current = _load_workflow(project_root, selected_id)
+            current["status"] = "blocked_remote_publication"
+            current["last_remote_publication_error"] = str(exc)
+            current["last_remote_publication_execution_started"] = bool(exc.remote_execution_started)
+            current["updated_at"] = now_iso()
+            _save_workflow(project_root, current)
+            raise
 
     state = {
         "schema": WORKFLOW_SCHEMA,
@@ -1428,7 +1443,16 @@ def start_workflow(
     state["snapshot_path"] = _stage_snapshot_input(project_root, selected_id, snapshot)
     state["updated_at"] = now_iso()
     _save_workflow(project_root, state)
-    return _mechanical_advance(project_root, state)
+    try:
+        return _mechanical_advance(project_root, state)
+    except FrenchCheckpointError as exc:
+        current = _load_workflow(project_root, selected_id)
+        current["status"] = "blocked_remote_publication"
+        current["last_remote_publication_error"] = str(exc)
+        current["last_remote_publication_execution_started"] = bool(exc.remote_execution_started)
+        current["updated_at"] = now_iso()
+        _save_workflow(project_root, current)
+        raise
 
 
 def _validate_pending_identity(state: Mapping[str, Any], manifest: Mapping[str, Any]) -> None:
@@ -1825,6 +1849,13 @@ def _print_user_result(state: Mapping[str, Any]) -> None:
         print(f"Écriture distante déjà commencée : {'oui' if final.get('remote_execution_started') else 'non'}")
         print(f"Cause : {final.get('error')}")
         print("Après résolution du conflit ou correction du kit, relancez simplement ./wikidebia workflow avec le même débat.")
+        return
+    if state.get("status") == "blocked_remote_publication":
+        print("Publication française bloquée avant la prochaine revue éditoriale.")
+        print(f"Étape : {state.get('remote_publication_stage') or 'inconnue'}")
+        print(f"Écriture distante déjà commencée : {'oui' if state.get('last_remote_publication_execution_started') else 'non'}")
+        print(f"Cause : {state.get('last_remote_publication_error')}")
+        print("Après rétablissement de l'accès distant, relancez ./wikidebia workflow avec le même débat.")
         return
     if state.get("status") == "published":
         release = state.get("release") or {}
