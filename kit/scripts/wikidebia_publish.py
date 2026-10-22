@@ -426,9 +426,29 @@ class PywikibotAdapter:
                 raise PublicationError(f"Fichier de famille introuvable : {self.family_file}")
             family_files[self.family] = str(self.family_file)
 
+    def _configure_access_header(self, pywikibot: Any) -> None:
+        """Forward the managed Wikidebates access secret to Cloudflare.
+
+        Managed environment secrets exposed as variables are not converted to
+        HTTP headers automatically.  Keep this opt-in limited to the custom
+        Wikidebates family and never log the value.
+        """
+        if self.family != "wikidebates":
+            return
+        access_token = os.environ.get("WIKIDEBIA_API_TOKEN")
+        if not access_token:
+            return
+        config = getattr(pywikibot, "config", None)
+        if config is None:
+            raise PublicationError("Configuration Pywikibot indisponible")
+        headers = dict(getattr(config, "extra_headers", {}) or {})
+        headers["X-Wikidebia-Access"] = access_token
+        config.extra_headers = headers
+
     def open_language(self, language: str, expected_user: str) -> None:
         self._prepare_environment()
         import pywikibot
+        self._configure_access_header(pywikibot)
         self._register_family(pywikibot)
         self.site = pywikibot.Site(code=self.codes[language], fam=self.family)
         if self.site.user() is not None:

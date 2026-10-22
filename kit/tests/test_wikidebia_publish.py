@@ -4,6 +4,7 @@ import importlib.util
 import json
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "wikidebia_publish.py"
 CURRENT_VERSIONS = json.loads((SCRIPT.parents[1] / "VERSIONS.json").read_text(encoding="utf-8"))
@@ -44,6 +45,29 @@ class FakeAdapter:
             "text": text, "summary": summary, "tags": tags,
         }
         return revision
+
+
+def test_pywikibot_adapter_forwards_managed_access_token(monkeypatch, tmp_path):
+    monkeypatch.setenv("WIKIDEBIA_API_TOKEN", "managed-placeholder")
+    adapter = module.PywikibotAdapter("wikidebates", {"fr": "fr"}, tmp_path)
+    fake = SimpleNamespace(config=SimpleNamespace(extra_headers={"Existing": "kept"}))
+
+    adapter._configure_access_header(fake)
+
+    assert fake.config.extra_headers == {
+        "Existing": "kept",
+        "X-Wikidebia-Access": "managed-placeholder",
+    }
+
+
+def test_pywikibot_adapter_does_not_forward_token_to_another_family(monkeypatch, tmp_path):
+    monkeypatch.setenv("WIKIDEBIA_API_TOKEN", "managed-placeholder")
+    adapter = module.PywikibotAdapter("wikipedia", {"fr": "fr"}, tmp_path)
+    fake = SimpleNamespace(config=SimpleNamespace(extra_headers={}))
+
+    adapter._configure_access_header(fake)
+
+    assert fake.config.extra_headers == {}
 
 
 def write_fixture(tmp_path: Path, kind: str):
