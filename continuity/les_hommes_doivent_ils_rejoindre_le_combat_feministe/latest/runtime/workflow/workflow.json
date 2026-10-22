@@ -7,25 +7,15 @@
   "debate_id": "les_hommes_doivent_ils_rejoindre_le_combat_feministe",
   "debate_title": "Les hommes doivent-ils rejoindre le combat féministe ?",
   "short_code": "LHDIRLCF",
-  "phase": "graph_review",
-  "status": "awaiting_review",
+  "phase": "graph_publication_resume",
+  "status": "blocked_remote_publication",
   "work_id": "EDIT-20261022-001",
-  "pending_review": {
-    "package_id": "aaae9264-68f8-4ef5-88ed-08ed8f51fffe",
-    "review_type": "graph_review",
-    "package_path": "outgoing/les_hommes_doivent_ils_rejoindre_le_combat_feministe_graph_review.zip",
-    "archive_sha256": "ad5d136937e242abad1000c58923a8aacadc4ebe1d9f68c48b6321701025f127",
-    "manifest_sha256": "b404339ee694d08474b30924da536ea59f5d6ff540479cf166a9b562aa1b3272",
-    "base_path": ".state/corpus-builds/les_hommes_doivent_ils_rejoindre_le_combat_feministe",
-    "work_id": "EDIT-20261022-001",
-    "created_at": "2026-10-22T11:58:42+00:00",
-    "counts": {
-      "placements": 125,
-      "pages": 101
-    }
-  },
+  "pending_review": null,
   "snapshot_path": ".state/workflows/les_hommes_doivent_ils_rejoindre_le_combat_feministe/snapshot-input.zip",
   "force_refresh": false,
   "created_at": "2026-10-22T11:58:41+00:00",
-  "updated_at": "2026-10-22T11:58:42+00:00"
+  "updated_at": "2026-10-22T14:40:10+00:00",
+  "remote_publication_stage": "graph",
+  "last_remote_publication_error": "Maximum retries attempted without success.",
+  "last_remote_publication_execution_started": false
 }

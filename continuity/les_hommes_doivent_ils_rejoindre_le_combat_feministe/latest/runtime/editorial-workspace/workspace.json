@@ -1,0 +1,57 @@
+{
+  "schema": "wikidebia-editorial-workspace-1.0",
+  "schema_version": "1.0",
+  "normative_revision": "1.2.88",
+  "validator_version": "0.4.105",
+  "kit_version": "2.16.47",
+  "debate_id": "les_hommes_doivent_ils_rejoindre_le_combat_feministe",
+  "work_id": "EDIT-20261022-001",
+  "status": "fr_titles_applied",
+  "source": {
+    "path": "corpus/les_hommes_doivent_ils_rejoindre_le_combat_feministe",
+    "global_status": "graph_validated",
+    "tree_sha256": "cba4265ca0df180f0240547c9b556ede70d49d17e62d4b1d330979fa00c77659",
+    "structural_sha256": "e9fbfc80def372a7370567a985a704eb41cb6417c51c59e423d3ad7a3002993d"
+  },
+  "working_copy": {
+    "path": "working-copy",
+    "initial_tree_sha256": "cba4265ca0df180f0240547c9b556ede70d49d17e62d4b1d330979fa00c77659",
+    "current_status": "preserved_pristine"
+  },
+  "artifacts": {
+    "audit_json": "audits/editorial_inventory.json",
+    "audit_markdown": "audits/editorial_inventory.md",
+    "french_metadata_review": "reviews/fr/page_metadata_review.json",
+    "translation_readiness": "reviews/en/translation_readiness.json",
+    "task_ledger": "tasks/editorial_tasks.json",
+    "keyword_vocabulary": "data/keyword_vocabulary_working.json",
+    "changeset": "changes/changeset.json",
+    "french_title_review": "reviews/fr/page_metadata_review.json",
+    "french_metadata_lock": "data/fr_page_metadata_lock.json",
+    "reviewed_copy": "reviewed-copy"
+  },
+  "boundaries": {
+    "source_corpus_mutated": false,
+    "automatic_editorial_corrections_applied": false,
+    "final_pages_generated": false,
+    "english_translation_started": false,
+    "remote_access": false,
+    "publication_started": false
+  },
+  "created_at": "2026-10-22T14:33:11+00:00",
+  "workspace_sha256": "98428176cdbc619c49c4c8bc036df00d26b6929e6a1b6070b0806f701ca73bfa",
+  "french_review": {
+    "status": "titles_applied",
+    "applied_at": "2026-10-22T14:33:11+00:00",
+    "review_sha256": "30bbc1ae45b8b43b31d36d480b60799b4c13f6fd32cdd9dcc5d1ed075f84bf6b"
+  },
+  "reviewed_copy": {
+    "path": "reviewed-copy",
+    "tree_sha256": "0d4b9f488f7a231fa9c338f28d98a595af7d7b66cc2a08a503b870cd6989884f",
+    "status": "fr_titles_locked",
+    "review_sha256": "30bbc1ae45b8b43b31d36d480b60799b4c13f6fd32cdd9dcc5d1ed075f84bf6b",
+    "old_structural_sha256": "e9fbfc80def372a7370567a985a704eb41cb6417c51c59e423d3ad7a3002993d",
+    "new_structural_sha256": "c8ff80690e18e000501acf3f64f34757bd5c7d9061b74eae1c99849db843a9d9",
+    "applied_at": "2026-10-22T14:33:11+00:00"
+  }
+}
