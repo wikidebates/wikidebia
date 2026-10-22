@@ -60,6 +60,24 @@ explicitement les noms français et anglais concernés. Cette investigation
 n’a ni renommé ces pages ni modifié leurs citations ou résumés, et n’a pas
 requalifié silencieusement les anciens reçus de convergence en nouvelle revue.
 
+## Correctif préparé après accord du propriétaire
+
+La garde partagée `wikidebia_title_structure.py` est maintenant appelée dans
+la revue française, la revue anglaise et sa garde pré-application, le publisher
+et les créations/déplacements de l'updater. L'exécuteur relit également les
+titres des anciens plans signés avant leur application. Elle ne s'applique pas
+rétroactivement aux libellés affichés historiques ou à un ajout pur de lien
+interlangue. Les limites de l'heuristique et le besoin de vraie revue de sens
+sont explicités dans `GUIDE_CANONICAL_TITLE_REVIEW.md`.
+
+Les huit nouveaux noms et leurs justifications individuelles sont conservés
+dans `tests/fixtures/cannabis_title_corrections_20261022.json`. La comparaison
+avec le ZIP historique vérifie la correspondance des anciens noms et l'absence
+de collision dans le corpus. Douze cibles de relations ou liens interlangues
+sont inventoriées pour une reprise ultérieure, sans réécrire leurs libellés.
+Cette préparation n'est pas une nouvelle archive `release_ready` : les contrôles
+distants, renommages et nouveaux verrous et reçus restent nécessaires.
+
 ## Accès externes de cette investigation
 
 La tentative GitHub retourne HTTP 401 `Bad credentials`; Git HTTPS n’a pas

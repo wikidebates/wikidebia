@@ -13,6 +13,7 @@ import sys
 import tempfile
 import time
 import unicodedata
+from wikidebia_title_structure import canonical_title_structure_issues
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Protocol
@@ -1085,6 +1086,12 @@ class GenericPublisher:
     def _validate_local_files(self) -> None:
         parameter_kind = self.operation["kind"] == "parameter_update"
         for row in self._selected_pages():
+            if self.operation["kind"] == "full_page":
+                title_issues = canonical_title_structure_issues(str(row.get("canonical_title") or ""))
+                if title_issues:
+                    raise PublicationError(
+                        f"Titre canonique à revoir : {row['language']}/{row['page_id']} ({', '.join(title_issues)})"
+                    )
             path = self._source_path(row)
             if not path.is_file():
                 raise PublicationError(f"Fichier local absent : {path}")
@@ -1175,6 +1182,7 @@ class GenericPublisher:
             "validator_fingerprint": sha_tree(validator_path),
             "kit_script_sha256": sha_file(Path(__file__).resolve()),
             "publication_date_rules_sha256": sha_file(Path(__file__).with_name("wikidebia_publication_dates.py")),
+            "title_structure_rules_sha256": sha_file(Path(__file__).with_name("wikidebia_title_structure.py")),
             "config_sha256": sha_file(self.config_path),
         }
 

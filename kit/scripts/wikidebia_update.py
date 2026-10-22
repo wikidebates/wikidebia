@@ -19,6 +19,7 @@ from typing import Any, Iterable
 
 from wikidebia_graph_extract import iter_templates, normalize_key, parse_template
 from wikidebia_workflow_baseline import WorkflowBaselineError, resolve_workflow_release_baseline
+from wikidebia_title_structure import canonical_title_structure_issues
 
 # Import the publication adapter without requiring installation as a package.
 _PUBLISH_PATH = Path(__file__).resolve().with_name("wikidebia_publish.py")
@@ -1904,6 +1905,8 @@ class RemoteUpdatePlanner:
                         exists = True
                 self._plan_interlanguage_only_page(language, proposed, exists, revision_id, remote_text, buckets)
                 continue
+            if not exists and self._block_compound_title(language, proposed, buckets):
+                continue
             # An existing remote title that does not contain the main template
             # expected for this logical page must never abort the whole plan. It
             # may be a redirect, a moved page, or a human/legacy format. Surface
@@ -2085,7 +2088,21 @@ class RemoteUpdatePlanner:
         payload["comparison_id"] = sha_object(payload)[:20]
         return payload
 
+    def _block_compound_title(self, language: str, proposed: dict[str, Any], buckets: dict[str, list[dict[str, Any]]]) -> bool:
+        issues = canonical_title_structure_issues(proposed["title"])
+        if not issues:
+            return False
+        operation = self._base_operation(
+            language=language, page_id=proposed["page_id"], page_type=proposed["page_type"],
+            title=proposed["title"], justification="Titre canonique à revoir avant création ou renommage",
+        )
+        operation.update(title_structure_issues=issues, phase=0)
+        buckets["blocked"].append(operation)
+        return True
+
     def _plan_move(self, prior: StatePage, proposed: dict[str, Any], buckets: dict[str, list[dict[str, Any]]], comparisons: list[dict[str, Any]]) -> None:
+        if self._block_compound_title(prior.language, proposed, buckets):
+            return
         source_exists, source_rev, source_text = self.adapter.read_page(prior.title)
         target_exists, target_rev, target_text = self.adapter.read_page(proposed["title"])
         effective = proposed
@@ -2322,6 +2339,12 @@ class PlanExecutor:
             raise PlanConflict("Le plan contient des opérations bloquées")
         if operations.get("manual_review"):
             raise PlanConflict("Le plan contient des opérations nécessitant une révision manuelle")
+        for name in ("create", "move"):
+            for operation in operations.get(name, []):
+                target = operation.get("new_title") if name == "move" else operation.get("title")
+                issues = canonical_title_structure_issues(str(target or ""))
+                if issues:
+                    raise PlanConflict(f"Titre canonique à revoir avant {name} : {target} ({', '.join(issues)})")
 
     def _selected_operations(self, plan: dict[str, Any], *, only_delete: bool, no_delete: bool) -> list[dict[str, Any]]:
         operations = plan.get("operations") or {}

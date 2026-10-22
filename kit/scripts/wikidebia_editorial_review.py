@@ -13,6 +13,7 @@ No final MediaWiki page is rendered and no English translation is started.
 from __future__ import annotations
 
 from wikidebia_release_info import KIT_VERSION, require_validator_report
+from wikidebia_title_structure import canonical_title_structure_issues
 
 import argparse
 import collections
@@ -304,6 +305,9 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
     if not isinstance(canonical_raw, str) or canonical_raw != normalized_text(canonical_raw):
         raise EditorialReviewError(f"Titre canonique non normalisé : {entity_id}")
     canonical = canonical_raw
+    structure_issues = canonical_title_structure_issues(canonical)
+    if structure_issues:
+        raise EditorialReviewError(f"Titre canonique à revoir : {entity_id} ({', '.join(structure_issues)})")
     displayed_raw = _decision_value(decision, source, "displayed_title", entity_type)
     if displayed_raw is not None and (not isinstance(displayed_raw, str) or displayed_raw != normalized_text(displayed_raw)):
         raise EditorialReviewError(f"Titre affiché non normalisé : {entity_id}")
@@ -464,6 +468,9 @@ def _validate_title_item(item: Mapping[str, Any]) -> dict[str, Any]:
     canonical_raw = _decision_value(decision, source, "canonical_title", entity_type)
     if not isinstance(canonical_raw, str) or canonical_raw != normalized_text(canonical_raw) or not canonical_raw:
         raise EditorialReviewError(f"Titre canonique non normalisé : {entity_id}")
+    structure_issues = canonical_title_structure_issues(canonical_raw)
+    if structure_issues:
+        raise EditorialReviewError(f"Titre canonique à revoir : {entity_id} ({', '.join(structure_issues)})")
     displayed_raw = _decision_value(decision, source, "displayed_title", entity_type)
     if displayed_raw is not None and (not isinstance(displayed_raw, str) or displayed_raw != normalized_text(displayed_raw)):
         raise EditorialReviewError(f"Titre affiché non normalisé : {entity_id}")
