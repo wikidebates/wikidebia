@@ -704,23 +704,28 @@ def publish_checkpoint(project_root: Path, debate_id: str, work_id: str, *, stag
     inventory_root = _write_import_inventory(project_root, debate_id, checkpoint, work_id, stage) if stage == "graph" else None
     config_path = _config(project_root, debate_id, work_id, checkpoint, stage, inventory_root)
     config = load_json(config_path, "configuration de publication française")
-    actual_adapter = adapter if adapter is not None else build_adapter(config, project_root)
     plan_path = state_dir / "update-plan.json"
-    if plan_path.is_file():
-        plan = load_json(plan_path, "plan de publication française")
-    else:
-        planner = RemoteUpdatePlanner(config, actual_adapter, config_path)
-        plan = planner.build_plan(mode="all")
-        operations = plan.get("operations") or {}
-        if operations.get("blocked") or operations.get("manual_review"):
-            write_json(plan_path, plan)
-            raise FrenchCheckpointError("Le préflight de publication française contient des opérations bloquées ou à revoir")
-        if stage == "content":
-            unexpected = sum(len(operations.get(name) or []) for name in ("move", "redirect", "delete"))
-            if unexpected:
+    try:
+        actual_adapter = adapter if adapter is not None else build_adapter(config, project_root)
+        if plan_path.is_file():
+            plan = load_json(plan_path, "plan de publication française")
+        else:
+            planner = RemoteUpdatePlanner(config, actual_adapter, config_path)
+            plan = planner.build_plan(mode="all")
+            operations = plan.get("operations") or {}
+            if operations.get("blocked") or operations.get("manual_review"):
                 write_json(plan_path, plan)
-                raise FrenchCheckpointError("Le second checkpoint français ne peut contenir ni renommage, ni redirection, ni suppression")
-        write_json(plan_path, plan)
+                raise FrenchCheckpointError("Le préflight de publication française contient des opérations bloquées ou à revoir")
+            if stage == "content":
+                unexpected = sum(len(operations.get(name) or []) for name in ("move", "redirect", "delete"))
+                if unexpected:
+                    write_json(plan_path, plan)
+                    raise FrenchCheckpointError("Le second checkpoint français ne peut contenir ni renommage, ni redirection, ni suppression")
+            write_json(plan_path, plan)
+    except FrenchCheckpointError:
+        raise
+    except Exception as exc:
+        raise FrenchCheckpointError(str(exc), remote_execution_started=False) from exc
     operations = plan.get("operations") or {}
     if operations.get("blocked") or operations.get("manual_review"):
         raise FrenchCheckpointError("Le plan français sauvegardé contient des opérations non résolues")

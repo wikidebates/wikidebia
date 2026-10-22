@@ -3,6 +3,8 @@ import json
 import subprocess
 import sys
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / "scripts"
 if str(SCRIPTS) not in sys.path:
@@ -41,6 +43,23 @@ def test_title_checkpoint_does_not_publish_classification_changes(tmp_path: Path
     assert delta["status"] == "passed"
     assert {row["page_id"] for row in delta["pages"]} == {"debat_test", "A0001", "A0002", "A0003", "A0004"}
     assert all(row["status"] == "verified" for row in delta["pages"])
+
+
+def test_checkpoint_wraps_remote_plan_connectivity_failure(tmp_path: Path, monkeypatch):
+    project, _workspace, work_id = _title_applied(tmp_path)
+
+    class FailingPlanner:
+        def __init__(self, *_args, **_kwargs):
+            pass
+
+        def build_plan(self, *, mode):
+            assert mode == "all"
+            raise RuntimeError("Cloudflare 403")
+
+    monkeypatch.setattr(checkpoint, "RemoteUpdatePlanner", FailingPlanner)
+    with pytest.raises(checkpoint.FrenchCheckpointError, match="Cloudflare 403") as caught:
+        checkpoint.publish_checkpoint(project, "debat_test", work_id, stage="graph", adapter=object())
+    assert caught.value.remote_execution_started is False
 
 
 def test_review_packages_split_titles_from_classification_and_content(tmp_path: Path):
