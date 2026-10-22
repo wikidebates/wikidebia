@@ -19,7 +19,12 @@
   approuvée, son verrou et l’import exact ;
 - la preuve lit désormais les octets historiques sans leur appliquer la règle
   de saut de ligne réservée aux fichiers générés ;
-- tests ciblés, tests de corpus et tests d’orchestration : 101 réussites.
+- le checkpoint « graphe + titres » possède désormais un profil de validation
+  différentiel : chaque sortie doit être reconstruite exactement depuis son
+  import, avec pour seules mutations les paramètres de relations autorisés ;
+- le checkpoint de contenu conserve le profil complet, dont le contrôle du
+  wikicode final ;
+- tests ciblés, tests de corpus et tests d’orchestration : 106 réussites.
 
 ## Prochaine commande
 
@@ -41,6 +46,12 @@ Le correctif copie le registre finalisé dans la copie revue, recalcule et véri
 son empreinte cryptographique, puis n’accorde l’exception qu’aux champs vides
 attestés simultanément par ce registre signé, son verrou dérivé et le wikicode
 importé intact.
+
+Une seconde anomalie faisait ensuite valider le checkpoint « graphe + titres »
+comme s’il contenait déjà les résumés, classifications, sources et verrous du
+checkpoint final. Le kit sépare maintenant les deux profils : le premier exige
+la preuve différentielle et tous les contrôles structurels, tandis que le
+second reste soumis au contrôle documentaire et wikicode complet.
 
 ## Vérification
 
