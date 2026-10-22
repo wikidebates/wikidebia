@@ -1251,6 +1251,10 @@ def _build_reviewed_copy(project_root: Path, source: Path, target: Path, review:
     write_json(target / "data" / "fr_page_metadata_lock.json", metadata_lock)
     write_json(target / "data" / "keyword_vocabulary.json", vocabulary)
     write_json(target / "changes" / "changeset.json", changeset)
+    # The isolated validator must receive the exact finalized title review in
+    # order to prove that historical empty classification is intentionally
+    # deferred, rather than trusting the derived lock alone.
+    write_json(target / "reviews" / "fr" / "page_metadata_review.json", review)
     manifest["updated_at"] = timestamp
     write_json(target / "manifest.json", manifest)
     assert_graph_validated_without_final_pages(target)

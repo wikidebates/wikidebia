@@ -10,6 +10,38 @@ Pour lancer ou reprendre la préparation bilingue d'un débat existant :
 
 La commande réutilise un snapshot `graph-extract` compatible déjà présent lorsque c'est possible ; sinon elle effectue l'extraction en lecture seule. Elle initialise le corpus, lance les validations mécaniques et s'arrête au premier point où une décision éditoriale externe est requise.
 
+## Continuité obligatoire sur GitHub
+
+Une production longue doit rester reprenable depuis un autre compte ou une autre
+session sans dépendre du contexte de conversation. Les règles suivantes font
+partie de la méthode de travail :
+
+1. Tout défaut reproductible rencontré dans le workflow est corrigé dans le code
+   générique, avec un test de régression ciblé. Il ne doit pas être contourné en
+   falsifiant un artefact du corpus ou en affaiblissant un contrôle de sécurité.
+2. Le correctif cohérent est validé, commité et poussé sur la branche GitHub de
+   travail dès qu'il est prêt. Les correctifs ne sont pas accumulés jusqu'à la
+   fin de la traduction.
+3. Après chaque phase ou checkpoint, une sauvegarde assainie est mise à jour sous
+   `continuity/<debate_id>/latest/`, puis commitée et poussée. L'historique Git
+   conserve les états antérieurs. Cette sauvegarde contient au minimum le corpus
+   de travail complet nécessaire à la reprise, l'état d'orchestration, les ZIP de
+   revue utiles, un handoff lisible et les pages wikicode créées ou modifiées sur
+   le wiki pendant la phase.
+4. Le handoff indique le commit source, la phase atteinte, la prochaine commande,
+   les validations exécutées, les écritures MediaWiki déjà attestées et les
+   éventuels blocages. Un manifeste SHA-256 couvre tous les fichiers sauvegardés.
+5. `private/`, les jetons, mots de passe, cookies, configurations Pywikibot,
+   environnements virtuels, caches et autres secrets ne sont jamais copiés dans
+   `continuity/`. Avant chaque commit, contrôler la liste des fichiers suivis et
+   rechercher les chemins ou données privés accidentels.
+
+Les répertoires d'exécution (`.state/`, `corpus/`, `incoming/`, `outgoing/`) restent
+ignorés et ne sont pas ajoutés de force. Seule leur projection assainie et
+explicitement contrôlée sous `continuity/` est versionnée. Chaque reprise commence
+par la lecture du handoff et la vérification de son manifeste avant de restaurer
+les données dans les zones locales ignorées.
+
 Exemple :
 
 ```text

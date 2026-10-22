@@ -702,11 +702,13 @@ def _install_editable_files(base: Path, manifest: Mapping[str, Any], files: Mapp
 
 
 
-def _validation_errors(validation: Mapping[str, Any]) -> list[dict[str, Any]]:
+def _validation_errors(validation: Mapping[str, Any], package: Path | None = None) -> list[dict[str, Any]]:
     report_path = validation.get("report_json")
     if not report_path:
         return []
     path = Path(str(report_path))
+    if not path.is_absolute() and package is not None:
+        path = package / path
     if not path.is_file():
         return []
     try:
@@ -751,7 +753,7 @@ def _create_initial_validation_diagnostic(
                 "sha256": _sha256_file(source),
                 "size_bytes": source.stat().st_size,
             })
-        errors = _validation_errors(validation)
+        errors = _validation_errors(validation, build_dir)
         manifest = {
             "schema": DIAGNOSTIC_SCHEMA,
             "schema_version": "1.0",
@@ -774,7 +776,7 @@ def _create_initial_validation_diagnostic(
     return {
         "diagnostic_path": _relative(target, project_root),
         "diagnostic_sha256": _sha256_file(target),
-        "errors": _validation_errors(validation),
+        "errors": _validation_errors(validation, build_dir),
     }
 
 
