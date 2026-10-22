@@ -93,6 +93,47 @@ def test_pywikibot_adapter_rejects_unexpected_managed_identity(monkeypatch, tmp_
         raise AssertionError("identité gérée inattendue acceptée")
 
 
+def test_pywikibot_adapter_injects_managed_bot_password_in_memory(monkeypatch, tmp_path):
+    monkeypatch.setenv("WIKIDEBIA_FR_BOT_USERNAME", "ChatGPT@Codex-FR")
+    monkeypatch.setenv("WIKIDEBIA_FR_BOT_PASSWORD", "managed-placeholder")
+    captured = {}
+
+    class FakeLoginManager:
+        def __init__(self, *args, **kwargs):
+            captured["password"] = kwargs.get("password")
+            captured["login_name"] = None
+
+        def login(self, *args, **kwargs):
+            captured["login_name"] = self.login_name
+            return True
+
+    login_module = SimpleNamespace(ClientLoginManager=FakeLoginManager)
+    fake = SimpleNamespace(login=login_module)
+    adapter = module.PywikibotAdapter("wikidebates", {"fr": "fr"}, tmp_path)
+    adapter.site = SimpleNamespace(login=lambda: login_module.ClientLoginManager().login())
+
+    adapter._login(fake, "fr", "ChatGPT")
+
+    assert captured == {
+        "password": "managed-placeholder",
+        "login_name": "ChatGPT@Codex-FR",
+    }
+    assert login_module.ClientLoginManager is FakeLoginManager
+
+
+def test_pywikibot_adapter_rejects_partial_managed_credentials(monkeypatch, tmp_path):
+    monkeypatch.setenv("WIKIDEBIA_FR_BOT_PASSWORD", "managed-placeholder")
+    adapter = module.PywikibotAdapter("wikidebates", {"fr": "fr"}, tmp_path)
+    adapter.site = SimpleNamespace(login=lambda: None)
+
+    try:
+        adapter._login(SimpleNamespace(), "fr", "ChatGPT")
+    except module.PublicationError as exc:
+        assert "WIKIDEBIA_FR_BOT_USERNAME" in str(exc)
+    else:
+        raise AssertionError("identifiants gérés partiels acceptés")
+
+
 def write_fixture(tmp_path: Path, kind: str):
     corpus = tmp_path / "corpus" / "demo"
     (corpus / "output" / "fr").mkdir(parents=True)

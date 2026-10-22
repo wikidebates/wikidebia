@@ -462,6 +462,38 @@ class PywikibotAdapter:
             raise PublicationError("Configuration des identités Pywikibot indisponible")
         usernames.setdefault(self.family, {})[self.codes[language]] = main_username
 
+    def _login(self, pywikibot: Any, language: str, expected_user: str) -> None:
+        """Authenticate with a managed BotPassword without persisting its value."""
+        username_variable = f"WIKIDEBIA_{language.upper()}_BOT_USERNAME"
+        password_variable = f"WIKIDEBIA_{language.upper()}_BOT_PASSWORD"
+        login_name = os.environ.get(username_variable)
+        password = os.environ.get(password_variable)
+        if not login_name and not password:
+            self.site.login()
+            return
+        if not login_name or not password:
+            missing = username_variable if not login_name else password_variable
+            raise PublicationError(f"Secret d’authentification incomplet : {missing} absent")
+        main_username = login_name.partition("@")[0]
+        if not main_username or main_username != expected_user:
+            raise IdentityError(
+                f"Le compte principal de {username_variable} ne correspond pas à l’identité attendue {expected_user!r}"
+            )
+
+        original_manager = pywikibot.login.ClientLoginManager
+
+        class ManagedClientLoginManager(original_manager):
+            def __init__(self, *args: Any, **kwargs: Any) -> None:
+                kwargs["password"] = password
+                super().__init__(*args, **kwargs)
+                self.login_name = login_name
+
+        pywikibot.login.ClientLoginManager = ManagedClientLoginManager
+        try:
+            self.site.login()
+        finally:
+            pywikibot.login.ClientLoginManager = original_manager
+
     def open_language(self, language: str, expected_user: str) -> None:
         self._prepare_environment()
         import pywikibot
@@ -471,7 +503,7 @@ class PywikibotAdapter:
         self.site = pywikibot.Site(code=self.codes[language], fam=self.family)
         if self.site.user() is not None:
             self.site.logout()
-        self.site.login()
+        self._login(pywikibot, language, expected_user)
         self.assert_identity(expected_user)
 
     def close_language(self) -> None:
