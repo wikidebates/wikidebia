@@ -1,4 +1,4 @@
-cbbaf0d1f67691832162f86df504330b8c8aa3fde06836b777ff435a787cad63  ./HANDOFF.md
+88a27fcc1b92b74a76aacab8078bf9dc54c937bd527eb03aba13eedf8e6af804  ./HANDOFF.md
 3df6ba74ac220578fb2fcdeb59ff5be579ce28b1253a21b780746b78f4ec7e21  ./reviews/les_hommes_doivent_ils_rejoindre_le_combat_feministe_graph_review_completed.zip
 af94fb9d7c183f80e78582b160b612f0d6897bbc2d3f28d86b29e3bc3ec1ad02  ./runtime/corpus-promotion/2026-10-22T143310+0000.receipt.json
 3a4edf72be27346ff3acfe75f09b599356d2732dc859f0a126b01bf421fd8a8a  ./runtime/corpus/data/import_provenance.json
@@ -641,6 +641,7 @@ ae73de16e07c8ec1621dc1474331cf64cd304ee5ac2e75eed238d4b90ba67fd2  ./runtime/fr-p
 588f54daf5c0745e987bbacaf6272f956205128ace1b89b215b8cb14c5ed0acf  ./runtime/fr-publication/graph/checkpoint.json
 e108c29f8937ca894bee742a311c1305f18d33fb7583210d62003040fd806b22  ./runtime/fr-publication/graph/inventory/fr.json
 63b64c4031a7dafba21e1d89b84cc3b8ba9d25c5986217c2e4a88752be611fe0  ./runtime/fr-publication/graph/remote-update-config.json
+907f821ec81209b4f0ee66182995d6d082d89923d1b0a2f687c354cad03f6f88  ./runtime/fr-publication/graph/update-plan.json
 ef473a1bd645d82ba29efedd0058f473066cad88d9849e3530eb990fca235e0e  ./runtime/workflow/snapshot-input.zip
 800ecd6162de53c7cd4ad1a0df19b75f92febb7af77afc722656a39fe25025b4  ./runtime/workflow/workflow.json
 ef473a1bd645d82ba29efedd0058f473066cad88d9849e3530eb990fca235e0e  ./source/les_hommes_doivent_ils_rejoindre_le_combat_feministe_graphe_recursif_2026-10-22_audite.zip
