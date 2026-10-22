@@ -1,0 +1,64 @@
+{
+  "schema": "wikidebia-reviewed-title-corrections-1.0",
+  "debate_id": "cannabis",
+  "status": "editorial_reviewed_remote_checks_pending",
+  "source_archive_sha256": "fbb70744a0b0d67fdf4a556999cebb038babf754386a7ca6fca43584a6340cf4",
+  "native_page_ids": true,
+  "changes": [
+    {
+      "page_id": "A0099",
+      "fr": {
+        "old_title": "L'alcool et le tabac ne sont pas dangereux en soi, seul leur abus l'est",
+        "new_title": "L'alcool et le tabac ne sont dangereux qu'en cas d'abus"
+      },
+      "en": {
+        "old_title": "Alcohol and tobacco are not inherently dangerous; only excessive use is",
+        "new_title": "Alcohol and tobacco are dangerous only when used excessively"
+      },
+      "review_note": "Le titre conserve la restriction seul/only et la thèse historique sur l'abus. Il ne devient pas une affirmation de danger à toute dose. L'objection soutenant cette dernière thèse demeure distincte. La citation prudente de Montgolfier reste intégrale et n'est pas réécrite pour se conformer au titre."
+    },
+    {
+      "page_id": "A0124",
+      "fr": {
+        "old_title": "Le pouvoir addictif du cannabis n'est ni faible ni fort en soi, il dépend de son niveau d'usage",
+        "new_title": "Le pouvoir addictif du cannabis dépend du niveau d'usage"
+      },
+      "en": {
+        "old_title": "The addictive potential of cannabis is neither inherently low nor high; it depends on the level of use",
+        "new_title": "The addictive potential of cannabis depends on the level of use"
+      },
+      "review_note": "La variable décisive reste le niveau d'usage. Le titre ne classe pas intrinsèquement le cannabis comme faiblement ou fortement addictif. La citation de Jean-Luc Ferry conserve explicitement ni faible ni fort en soi et les façons de consommer ; le raccourcissement du nom de page ne retranche aucun passage de citation."
+    },
+    {
+      "page_id": "A0125",
+      "fr": {
+        "old_title": "La dépendance à une drogue ne se produit pas indépendamment de la personne et de son environnement. La drogue est un moyen d'adaptation à la vie, pas une cause",
+        "new_title": "La dépendance à une drogue dépend de la personne et de son environnement"
+      },
+      "en": {
+        "old_title": "Drug dependence is not independent of the person and their environment. Drugs are a way of coping with life, not the cause of dependence",
+        "new_title": "Drug dependence depends on the person and their environment"
+      },
+      "review_note": "Le nom exprime la thèse relationnelle sans juxtaposer son explication. Les trois paragraphes de Lise Beauchesne conservent l'alternative produit-cause/moyen d'adaptation, les besoins dans un environnement particulier, certains usagers, les conditions de vie et les exemples. Le titre n'affirme ni que tout usager est dépendant ni que le produit est sans effet."
+    },
+    {
+      "page_id": "A0150",
+      "fr": {
+        "old_title": "La loi est non seulement appliquée, mais la répression s'est renforcée depuis 2001",
+        "new_title": "La répression des drogues s'est renforcée en France depuis 2001"
+      },
+      "en": {
+        "old_title": "The law is not only enforced; enforcement has intensified since 2001",
+        "new_title": "Enforcement of France's drug laws has intensified since 2001"
+      },
+      "review_note": "Le pays et l'objet de la répression rendent le nom autonome. L'intensification implique une application effective, sans réduire la thèse à la sévérité des seules peines. Le repère 2001 reste celui de l'argument historique et de sa source française datée du 15 juin 2011 ; aucune mise à jour factuelle pour 2026 n'est prétendue. La citation demeure inchangée."
+    }
+  ],
+  "publication_preconditions": [
+    "Read current FR and EN revisions and verify the expected source pages and targets",
+    "Verify move rights and destination absence; preserve redirects",
+    "Prepare and review exact relation-target and interlanguage-target changes while preserving displayed labels",
+    "Rebuild the native corpus and complete fresh sealed reviews and semantic convergence after the French title corrections",
+    "Do not execute the historical full publication archive as a correction package"
+  ]
+}

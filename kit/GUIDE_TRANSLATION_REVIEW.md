@@ -1,5 +1,10 @@
 # Guide de traduction anglaise contrôlée — Kit 2.16.32
 
+Pour les noms de pages français et anglais, appliquer aussi la
+[revue des titres canoniques](GUIDE_CANONICAL_TITLE_REVIEW.md) : une phrase par
+nom, avec contrôle avant finalisation et publication. La fidélité à la source
+ne dispense pas de cette revue ; les citations et résumés restent inchangés.
+
 > Les règles ci-dessous sont cumulatives et ne dépendent pas d’un numéro `*_revision`. Cette architecture cumulative a été formalisée par la révision 1.2.54.
 
 La traduction anglaise commence uniquement après le verrouillage complet des métadonnées et du contenu français. Elle travaille dans le même workspace éditorial et ne modifie ni le corpus promu, ni `working-copy/`, ni `reviewed-copy/`, ni `content-reviewed-copy/`.

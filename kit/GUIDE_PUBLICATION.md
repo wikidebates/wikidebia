@@ -49,6 +49,40 @@ La deuxième commande effectue réellement les écritures distantes. Toute diver
 
 Déposer le ZIP du corpus dans `incoming/`, puis lancer `./wikidebia publish [SÉLECTEUR] --scope all`.
 
+### Transfert anglais qui passe minuit
+
+`publish` actualise automatiquement la date si le transfert des traductions anglaises
+passe au jour suivant dans le fuseau de publication (par défaut `Europe/Paris`).
+Les pages déjà créées conservent leur date réelle ; seules les créations restantes
+reçoivent la nouvelle date. Une reprise ultérieure reconnaît également ces pages
+sans les réécrire. L’archive et les fichiers du corpus restent inchangés.
+
+Avant de continuer, la commande relit le wiki, relance les contrôles locaux et
+vérifie que le nouveau plan change uniquement les dates des créations restantes
+et le statut des opérations déjà terminées. Les collisions, modifications
+concurrentes et divergences de contenu, de configuration, de résumé d’édition ou
+de balises restent bloquantes. Aucun autre changement n’est autorisé par cette reprise.
+
+Le plan initial est conservé. Chaque basculement archive les deux plans signés
+et `rollover.json` sous `plans/<débat>/<exécution>/publication-date-rollovers/` ;
+le journal contient l’événement `publication_date_refreshed`. Aucun réglage ni
+nouvelle commande n’est nécessaire. L’orchestrateur éditorial conserve sa reprise
+avec rescellement du préflight et de l’autorisation.
+
+### Noms français normalisés à l’import
+
+Pour `update --archive <SÉLECTEUR> --scope fr --interlanguage-only`, une page
+introuvable sous le nom du manifeste peut être retrouvée sous le nom exact
+consigné dans `data/import_provenance.json`, lorsque la seule différence est
+la normalisation d’une apostrophe typographique en apostrophe droite.
+Le fichier importé doit correspondre à son empreinte et la page distante à la
+révision et au contenu importés, ou à ce contenu déjà augmenté du seul lien
+interlangue attendu. Toute autre divergence reste bloquante.
+
+Le nom réellement retrouvé est signé dans le plan, utilisé pour l’écriture
+et conservé dans l’état publié. Cette reprise ne crée ni ne renomme de page
+française, ne réécrit aucun autre paramètre et ne change pas l’archive.
+
 ## Débat déjà publié — corpus installé
 
 Lancer `./wikidebia update <debate_id> --dry-run`, examiner le plan, puis relancer sans `--dry-run`. Sans `--archive`, la commande ne consulte que `corpus/<debate_id>/` et ne sélectionne jamais implicitement un ZIP de `incoming/`.

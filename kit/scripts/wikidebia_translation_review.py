@@ -13,6 +13,7 @@ from __future__ import annotations
 from wikidebia_citation_passages import blank_translations, validate_translations
 
 from wikidebia_release_info import KIT_VERSION
+from wikidebia_title_structure import canonical_title_structure_issues
 
 import argparse
 import collections
@@ -1384,7 +1385,7 @@ def _has_usage(source: Mapping[str, Any], page_id: str, roles: set[str]) -> bool
     return any(u.get("page_id") == page_id and u.get("language") == "en" and u.get("role") in roles for u in source.get("usage") or [])
 
 
-def _title_format_issues(value: Any) -> list[str]:
+def _title_format_issues(value: Any, *, canonical: bool = False) -> list[str]:
     text = str(value or "").strip()
     issues: list[str] = []
     if BAD_QUOTES.search(text):
@@ -1395,12 +1396,14 @@ def _title_format_issues(value: Any) -> list[str]:
         issues.append("ellipsis")
     if text.endswith("."):
         issues.append("terminal_period")
+    if canonical:
+        issues.extend(canonical_title_structure_issues(text))
     return issues
 
 
 def _validate_title(value: Any, label: str, *, displayed: bool = False) -> str:
     text = _text(value, label, 1 if displayed else 8)
-    issues = _title_format_issues(text)
+    issues = _title_format_issues(text, canonical=not displayed)
     if issues:
         raise TranslationReviewError(f"Titre anglais non conforme : {label} ({', '.join(issues)})")
     return text
@@ -1420,13 +1423,13 @@ def collect_english_title_format_findings(review: Mapping[str, Any]) -> list[dic
     if isinstance(final_values, Mapping):
         debate = final_values.get("debate") or {}
         value = debate.get("canonical_title") if isinstance(debate, Mapping) else None
-        issues = _title_format_issues(value)
+        issues = _title_format_issues(value, canonical=True)
         if issues:
             findings.append({
                 "entity_type": "debate", "entity_id": str(review.get("debate_id") or ""),
                 "field": "canonical_title", "current_value": str(value or ""),
                 "issues": issues,
-                "required_correction": "Replace typographic punctuation with the canonical ASCII title punctuation without changing semantics.",
+                "required_correction": "Review the canonical title as one sentence preserving its meaning and scope; do not merely swap punctuation or rewrite quotations.",
             })
         arguments = final_values.get("arguments") or []
         for row in arguments:
@@ -1434,13 +1437,13 @@ def collect_english_title_format_findings(review: Mapping[str, Any]) -> list[dic
                 continue
             for field in ("canonical_title", "displayed_title"):
                 value = row.get(field)
-                issues = _title_format_issues(value)
+                issues = _title_format_issues(value, canonical=field == "canonical_title")
                 if issues:
                     findings.append({
                         "entity_type": "argument", "entity_id": str(row.get("id") or ""),
                         "field": field, "current_value": str(value or ""),
                         "issues": issues,
-                        "required_correction": "Replace typographic punctuation with the canonical ASCII title punctuation without changing semantics.",
+                        "required_correction": "Review the title without changing its meaning; canonical titles require one sentence, while historical displayed labels retain their source form.",
                     })
         return findings
 
@@ -1449,7 +1452,7 @@ def collect_english_title_format_findings(review: Mapping[str, Any]) -> list[dic
     if isinstance(debate, Mapping):
         translation = debate.get("translation") if isinstance(debate.get("translation"), Mapping) else debate
         value = translation.get("canonical_title") if isinstance(translation, Mapping) else None
-        issues = _title_format_issues(value)
+        issues = _title_format_issues(value, canonical=True)
         if issues:
             findings.append({"entity_type": "debate", "entity_id": str(review.get("debate_id") or ""), "field": "canonical_title", "current_value": str(value or ""), "issues": issues})
     for item in review.get("arguments") or [] if isinstance(review, Mapping) else []:
@@ -1460,7 +1463,7 @@ def collect_english_title_format_findings(review: Mapping[str, Any]) -> list[dic
             continue
         for field in ("canonical_title", "displayed_title"):
             value = row.get(field)
-            issues = _title_format_issues(value)
+            issues = _title_format_issues(value, canonical=field == "canonical_title")
             if issues:
                 findings.append({"entity_type": "argument", "entity_id": str(item.get("id") or ""), "field": field, "current_value": str(value or ""), "issues": issues})
     return findings
