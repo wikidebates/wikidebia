@@ -445,11 +445,29 @@ class PywikibotAdapter:
         headers["X-Wikidebia-Access"] = access_token
         config.extra_headers = headers
 
+    def _configure_managed_username(self, pywikibot: Any, language: str, expected_user: str) -> None:
+        """Load a managed BotPassword login name without weakening identity checks."""
+        variable = f"WIKIDEBIA_{language.upper()}_BOT_USERNAME"
+        login_name = os.environ.get(variable)
+        if not login_name:
+            return
+        main_username = login_name.partition("@")[0]
+        if not main_username or main_username != expected_user:
+            raise IdentityError(
+                f"Le compte principal de {variable} ne correspond pas à l’identité attendue {expected_user!r}"
+            )
+        config = getattr(pywikibot, "config", None)
+        usernames = getattr(config, "usernames", None)
+        if usernames is None:
+            raise PublicationError("Configuration des identités Pywikibot indisponible")
+        usernames.setdefault(self.family, {})[self.codes[language]] = main_username
+
     def open_language(self, language: str, expected_user: str) -> None:
         self._prepare_environment()
         import pywikibot
         self._configure_access_header(pywikibot)
         self._register_family(pywikibot)
+        self._configure_managed_username(pywikibot, language, expected_user)
         self.site = pywikibot.Site(code=self.codes[language], fam=self.family)
         if self.site.user() is not None:
             self.site.logout()

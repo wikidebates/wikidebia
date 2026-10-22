@@ -70,6 +70,29 @@ def test_pywikibot_adapter_does_not_forward_token_to_another_family(monkeypatch,
     assert fake.config.extra_headers == {}
 
 
+def test_pywikibot_adapter_loads_managed_bot_username(monkeypatch, tmp_path):
+    monkeypatch.setenv("WIKIDEBIA_FR_BOT_USERNAME", "ChatGPT@Codex-FR")
+    adapter = module.PywikibotAdapter("wikidebates", {"fr": "fr"}, tmp_path)
+    fake = SimpleNamespace(config=SimpleNamespace(usernames={"wikidebates": {}}))
+
+    adapter._configure_managed_username(fake, "fr", "ChatGPT")
+
+    assert fake.config.usernames["wikidebates"]["fr"] == "ChatGPT"
+
+
+def test_pywikibot_adapter_rejects_unexpected_managed_identity(monkeypatch, tmp_path):
+    monkeypatch.setenv("WIKIDEBIA_FR_BOT_USERNAME", "AnotherUser@Codex-FR")
+    adapter = module.PywikibotAdapter("wikidebates", {"fr": "fr"}, tmp_path)
+    fake = SimpleNamespace(config=SimpleNamespace(usernames={"wikidebates": {}}))
+
+    try:
+        adapter._configure_managed_username(fake, "fr", "ChatGPT")
+    except module.IdentityError as exc:
+        assert "ne correspond pas" in str(exc)
+    else:
+        raise AssertionError("identité gérée inattendue acceptée")
+
+
 def write_fixture(tmp_path: Path, kind: str):
     corpus = tmp_path / "corpus" / "demo"
     (corpus / "output" / "fr").mkdir(parents=True)
