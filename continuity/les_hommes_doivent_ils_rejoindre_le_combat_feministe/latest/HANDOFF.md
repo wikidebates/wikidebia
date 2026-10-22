@@ -17,6 +17,8 @@
 - correctif générique ajouté pour préserver une classification historiquement
   absente pendant le checkpoint « graphe + titres », avec preuve par la revue
   approuvée, son verrou et l’import exact ;
+- la preuve lit désormais les octets historiques sans leur appliquer la règle
+  de saut de ligne réservée aux fichiers générés ;
 - tests ciblés, tests de corpus et tests d’orchestration : 101 réussites.
 
 ## Prochaine commande

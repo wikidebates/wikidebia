@@ -18,7 +18,7 @@ def dump(path, value):
 
 
 def fixture(root):
-    source = "{{Argument|date-création=2021-03-18}}\n"
+    source = "{{Argument|date-création=2021-03-18}}"
     source_path = root / "imports/fr/arguments/A0001.wiki"
     source_path.parent.mkdir(parents=True)
     source_path.write_text(source, encoding="utf-8")
@@ -80,6 +80,7 @@ def test_title_checkpoint_accepts_only_proven_historical_empty_fields(tmp_path):
     assert _preserved_keyword_duplicates(
         ctx, "argument_registry.schema.json", registry, error("keywords")
     )
+    assert not any(f.code == "WDV-FS-005" for f in ctx.report.findings)
 
 
 def test_title_checkpoint_rejects_changed_import_or_unscoped_lock(tmp_path):

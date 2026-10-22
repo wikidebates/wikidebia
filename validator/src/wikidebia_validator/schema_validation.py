@@ -210,8 +210,11 @@ def _title_checkpoint_preserves_empty_classification(
         return False
     from .wikicode import parse_template
     try:
-        template = parse_template(ctx.read_text(path) or "")
-    except ValueError:
+        # The import hash was verified immediately above.  Read it without the
+        # generated-file newline policy: historical wiki revisions are immutable
+        # evidence and may legitimately lack a trailing newline.
+        template = parse_template((ctx.root / path).read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, ValueError):
         return False
     parameter = "rubriques" if field == "rubriques" else "mots-clés"
     return not (template.one(parameter) or "").strip()
