@@ -19,6 +19,11 @@
   approuvée, son verrou et l’import exact ;
 - la preuve lit désormais les octets historiques sans leur appliquer la règle
   de saut de ligne réservée aux fichiers générés ;
+- la sauvegarde conserve aussi octet pour octet le reçu d'exécution de la
+  validation initiale déjà inclus dans l'empreinte source, y compris ses deux
+  chemins historiques absolus ; les nouvelles exécutions utilisent désormais
+  des chemins relatifs, mais une ancienne preuve scellée ne doit pas être
+  normalisée rétroactivement ;
 - le checkpoint « graphe + titres » possède désormais un profil de validation
   différentiel : chaque sortie doit être reconstruite exactement depuis son
   import, avec pour seules mutations les paramètres de relations autorisés ;
@@ -52,6 +57,13 @@ comme s’il contenait déjà les résumés, classifications, sources et verrous
 checkpoint final. Le kit sépare maintenant les deux profils : le premier exige
 la preuve différentielle et tous les contrôles structurels, tandis que le
 second reste soumis au contrôle documentaire et wikicode complet.
+
+Lors de la première projection de continuité, les deux chemins absolus du reçu
+`reports/initial_validation_execution.json` avaient été rendus relatifs après
+le calcul de `source_build_sha256`. Cette modification pourtant informative
+invalidait la preuve cryptographique au réimport. Les octets historiques ont été
+restaurés ; la correction générique qui produit des chemins relatifs reste
+applicable uniquement aux nouvelles validations.
 
 ## Vérification
 

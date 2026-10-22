@@ -35,6 +35,14 @@ partie de la méthode de travail :
    environnements virtuels, caches et autres secrets ne sont jamais copiés dans
    `continuity/`. Avant chaque commit, contrôler la liste des fichiers suivis et
    rechercher les chemins ou données privés accidentels.
+6. Une projection de continuité conserve octet pour octet tout fichier déjà
+   couvert par une empreinte de workflow ou de revue. Une amélioration de
+   portabilité (par exemple remplacer un ancien chemin absolu par un chemin
+   relatif) s'applique à la génération des nouveaux artefacts, jamais par
+   réécriture rétroactive d'une preuve scellée. Si un artefact contient une
+   donnée réellement sensible, la sauvegarde est bloquée et la reprise exige
+   une migration explicite et attestée ; le fichier n'est pas normalisé en
+   silence.
 
 Les répertoires d'exécution (`.state/`, `corpus/`, `incoming/`, `outgoing/`) restent
 ignorés et ne sont pas ajoutés de force. Seule leur projection assainie et

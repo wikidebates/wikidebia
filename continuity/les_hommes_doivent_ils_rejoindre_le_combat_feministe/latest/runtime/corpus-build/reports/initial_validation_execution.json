@@ -1,6 +1,6 @@
 {
-  "report_json": "reports/initial_validation.json",
-  "report_text": "reports/initial_validation.txt",
+  "report_json": "/workspace/wikidebia/.state/corpus-builds/les_hommes_doivent_ils_rejoindre_le_combat_feministe/reports/initial_validation.json",
+  "report_text": "/workspace/wikidebia/.state/corpus-builds/les_hommes_doivent_ils_rejoindre_le_combat_feministe/reports/initial_validation.txt",
   "returncode": 0,
   "status": "passed",
   "stderr": "",
