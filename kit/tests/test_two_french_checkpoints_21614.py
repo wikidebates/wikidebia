@@ -45,6 +45,16 @@ def test_title_checkpoint_does_not_publish_classification_changes(tmp_path: Path
     assert all(row["status"] == "verified" for row in delta["pages"])
 
 
+def test_graph_checkpoint_omits_empty_relation_parameters(tmp_path: Path):
+    project, _workspace, work_id = _title_applied(tmp_path)
+    cp = checkpoint.build_checkpoint(project, "debat_test", work_id, stage="graph")
+
+    for path in (cp / "output/fr/arguments").glob("*.wiki"):
+        text = path.read_text(encoding="utf-8")
+        assert "|justifications=\n" not in text
+        assert "|objections=\n" not in text
+
+
 def test_checkpoint_wraps_remote_plan_connectivity_failure(tmp_path: Path, monkeypatch):
     project, _workspace, work_id = _title_applied(tmp_path)
 

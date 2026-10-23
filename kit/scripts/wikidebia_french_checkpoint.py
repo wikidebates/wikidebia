@@ -42,7 +42,7 @@ from wikidebia_render import (
     _write_aggregate,
     _copy_active_norm,
 )
-from wikidebia_graph_actions import _replace_parameter_value
+from wikidebia_graph_actions import _set_optional_parameter_value
 from wikidebia_content_review import _outer_template, _page_lifecycle_snapshot
 from wikidebia_update import (
     PlanExecutor,
@@ -356,8 +356,8 @@ def _verify_graph_checkpoint_delta(target: Path, registry: dict[str, Any], rows:
         text = imported.read_text(encoding="utf-8")
         if kind == "debate":
             rel = "output/fr/debate/debate.wiki"
-            text = _replace_parameter_value(text, "debate", "arguments-pour", _main_arguments(registry, "pro", "fr"), create_if_missing=True)
-            text = _replace_parameter_value(text, "debate", "arguments-contre", _main_arguments(registry, "con", "fr"), create_if_missing=True)
+            text = _set_optional_parameter_value(text, "debate", "arguments-pour", _main_arguments(registry, "pro", "fr"))
+            text = _set_optional_parameter_value(text, "debate", "arguments-contre", _main_arguments(registry, "con", "fr"))
             allowed = ["arguments-pour", "arguments-contre"]
             proof_id = str((registry.get("debate") or {}).get("id") or debate_id)
         else:
@@ -367,8 +367,8 @@ def _verify_graph_checkpoint_delta(target: Path, registry: dict[str, Any], rows:
             template = _outer_template(imported, {"argument"})
             allowed = []
             if not bool(template.get("débat-dédié", "débat-détaillé").strip()):
-                text = _replace_parameter_value(text, "argument", "justifications", _relations(registry, page_id, "justification", "fr"), create_if_missing=True)
-                text = _replace_parameter_value(text, "argument", "objections", _relations(registry, page_id, "objection", "fr"), create_if_missing=True)
+                text = _set_optional_parameter_value(text, "argument", "justifications", _relations(registry, page_id, "justification", "fr"))
+                text = _set_optional_parameter_value(text, "argument", "objections", _relations(registry, page_id, "objection", "fr"))
                 allowed = ["justifications", "objections"]
             proof_id = page_id
         if rel in expected:
@@ -453,8 +453,8 @@ def _build_graph_checkpoint_copy(project_root: Path, source: Path, target: Path,
     if not debate_import.is_file():
         raise FrenchCheckpointError("Import de la page Débat absent")
     debate_text = debate_import.read_text(encoding="utf-8")
-    debate_text = _replace_parameter_value(debate_text, "debate", "arguments-pour", _main_arguments(registry, "pro", "fr"), create_if_missing=True)
-    debate_text = _replace_parameter_value(debate_text, "debate", "arguments-contre", _main_arguments(registry, "con", "fr"), create_if_missing=True)
+    debate_text = _set_optional_parameter_value(debate_text, "debate", "arguments-pour", _main_arguments(registry, "pro", "fr"))
+    debate_text = _set_optional_parameter_value(debate_text, "debate", "arguments-contre", _main_arguments(registry, "con", "fr"))
     debate_id_actual = str((registry.get("debate") or {}).get("id") or debate_id)
     debate_rel = "output/fr/debate/debate.wiki"
     debate_out = target / debate_rel; debate_out.parent.mkdir(parents=True, exist_ok=True); debate_out.write_text(debate_text, encoding="utf-8", newline="\n")
@@ -470,8 +470,8 @@ def _build_graph_checkpoint_copy(project_root: Path, source: Path, target: Path,
         template = _outer_template(imported, {"argument"})
         dedicated = bool(template.get("débat-dédié", "débat-détaillé").strip())
         if not dedicated:
-            text = _replace_parameter_value(text, "argument", "justifications", _relations(registry, node_id, "justification", "fr"), create_if_missing=True)
-            text = _replace_parameter_value(text, "argument", "objections", _relations(registry, node_id, "objection", "fr"), create_if_missing=True)
+            text = _set_optional_parameter_value(text, "argument", "justifications", _relations(registry, node_id, "justification", "fr"))
+            text = _set_optional_parameter_value(text, "argument", "objections", _relations(registry, node_id, "objection", "fr"))
         rel = f"output/fr/arguments/{node_id}.wiki"
         out = target / rel; out.parent.mkdir(parents=True, exist_ok=True); out.write_text(text, encoding="utf-8", newline="\n")
         output_rows.append((node_id, "argument", rel, sha256_file(out), {"page_origin":"preexisting", "preserved_parameters":_page_lifecycle_snapshot(template,"argument")}))
