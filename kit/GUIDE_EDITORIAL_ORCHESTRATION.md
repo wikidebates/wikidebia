@@ -29,9 +29,11 @@ partie de la méthode de travail :
    revue utiles, un handoff lisible et les pages wikicode créées ou modifiées sur
    le wiki pendant la phase.
    Après toute écriture distante, elle contient aussi obligatoirement les états
-   signés `.state/published/<debate_id>/<langue>/latest.json`, les reçus
-   `.state/receipts/<debate_id>/` et les plans/reçus du checkpoint. Un reçu de
-   checkpoint sans son état publié signé n’est pas un point de reprise complet.
+   signés `.state/published/<debate_id>/<langue>/latest.json`, tous les états
+   historiques horodatés nécessaires pour relier le dernier checkpoint à cet
+   état courant, les reçus `.state/receipts/<debate_id>/` et les plans/reçus du
+   checkpoint et des corrections ultérieures. Un reçu de checkpoint sans toute
+   sa succession d’états publiés signés n’est pas un point de reprise complet.
 4. Le handoff indique le commit source, la phase atteinte, la prochaine commande,
    les validations exécutées, les écritures MediaWiki déjà attestées et les
    éventuels blocages. Un manifeste SHA-256 couvre tous les fichiers sauvegardés.
@@ -53,6 +55,20 @@ ignorés et ne sont pas ajoutés de force. Seule leur projection assainie et
 explicitement contrôlée sous `continuity/` est versionnée. Chaque reprise commence
 par la lecture du handoff et la vérification de son manifeste avant de restaurer
 les données dans les zones locales ignorées.
+
+Après avoir actualisé les autres fichiers et le handoff d'un snapshot, projeter
+la succession française signée et régénérer son manifeste avec :
+
+```bash
+./wikidebia continuity-sync <debate_id>
+./wikidebia continuity-sync <debate_id> --check
+```
+
+La première commande copie octet pour octet les états horodatés, l'état courant
+et les reçus du même Work, puis régénère `SHA256SUMS`. La seconde est sans écriture
+et bloque si une pièce manque, si une révision régresse ou si un reçu sort du
+Work. Les tests du dépôt vérifient aussi chaque snapshot `latest` commité afin
+qu'une sauvegarde incomplète ne passe pas la validation GitHub.
 
 Exemple :
 
