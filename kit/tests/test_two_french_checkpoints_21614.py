@@ -156,3 +156,27 @@ def test_graph_checkpoint_uses_differential_validation_until_content_is_complete
     assert content_result.returncode != 0
     report = json.loads(content_result.stdout)
     assert report["summary"]["errors"] > 0
+
+
+def test_checkpoint_published_state_evidence_is_signed_and_portable(tmp_path: Path):
+    project = tmp_path / "project"
+    state_path = project / ".state/published/debat_test/fr/latest.json"
+    state_path.parent.mkdir(parents=True)
+    state = {
+        "state_version": "wikidebia-published-state-1.0",
+        "debate_id": "debat_test",
+        "language": "fr",
+        "pages": [{"page_id": "A0001"}],
+    }
+    state["state_sha256"] = checkpoint.sha_object(state)
+    state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    evidence = checkpoint._published_state_evidence(project, "debat_test")
+    assert evidence["path"] == ".state/published/debat_test/fr/latest.json"
+    assert evidence["state_sha256"] == state["state_sha256"]
+    assert evidence["pages"] == 1
+
+    state["language"] = "en"
+    state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    with pytest.raises(checkpoint.FrenchCheckpointError, match="Empreinte"):
+        checkpoint._published_state_evidence(project, "debat_test")
