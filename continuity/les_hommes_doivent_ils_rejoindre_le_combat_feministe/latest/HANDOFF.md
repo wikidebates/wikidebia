@@ -115,3 +115,5 @@ sauvegarde. Le brouillon d’environnement révision 3 et le runtime enregistren
 les identités `ChatGPT@Codex-FR` et `ChatGPT@Codex-EN`. Le secret anglais injecté
 doit être considéré comme invalide jusqu’à son remplacement effectif ; ne pas
 reprendre automatiquement une tentative de connexion avant cette modification.
+Le kit diagnostique désormais explicitement une identité ou une paire de
+variables BotPassword absente avant de laisser Pywikibot ouvrir une connexion.

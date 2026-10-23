@@ -122,6 +122,7 @@ def test_pywikibot_adapter_injects_managed_bot_password_in_memory(monkeypatch, t
 
 
 def test_pywikibot_adapter_rejects_partial_managed_credentials(monkeypatch, tmp_path):
+    monkeypatch.delenv("WIKIDEBIA_FR_BOT_USERNAME", raising=False)
     monkeypatch.setenv("WIKIDEBIA_FR_BOT_PASSWORD", "managed-placeholder")
     adapter = module.PywikibotAdapter("wikidebates", {"fr": "fr"}, tmp_path)
     adapter.site = SimpleNamespace(login=lambda: None)
@@ -132,6 +133,23 @@ def test_pywikibot_adapter_rejects_partial_managed_credentials(monkeypatch, tmp_
         assert "WIKIDEBIA_FR_BOT_USERNAME" in str(exc)
     else:
         raise AssertionError("identifiants gérés partiels acceptés")
+
+
+def test_pywikibot_adapter_reports_missing_managed_write_identity(monkeypatch, tmp_path):
+    monkeypatch.delenv("WIKIDEBIA_EN_BOT_USERNAME", raising=False)
+    monkeypatch.delenv("WIKIDEBIA_EN_BOT_PASSWORD", raising=False)
+    adapter = module.PywikibotAdapter("wikidebates", {"en": "en"}, tmp_path)
+    adapter.site = SimpleNamespace(login=lambda: (_ for _ in ()).throw(AssertionError("login must not start")))
+    fake = SimpleNamespace(config=SimpleNamespace(usernames={"wikidebates": {}}))
+
+    try:
+        adapter._login(fake, "en", "ChatGPT")
+    except module.PublicationError as exc:
+        message = str(exc)
+        assert "WIKIDEBIA_EN_BOT_USERNAME" in message
+        assert "WIKIDEBIA_EN_BOT_PASSWORD" in message
+    else:
+        raise AssertionError("identité d’écriture absente non détectée")
 
 
 def test_pywikibot_adapter_read_only_open_does_not_require_credentials(monkeypatch, tmp_path):
