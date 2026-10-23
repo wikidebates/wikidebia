@@ -32,7 +32,8 @@ Empreintes courantes :
   `9e221ecb06eef460f1abeda04a858c50edc2c83f6b5e59411a847609052d8f18`.
 
 La validation finale compte zéro erreur et zéro avertissement. Après intégration
-des correctifs parallèles, la suite ciblée combinée compte 193 réussites.
+des correctifs parallèles et de la réconciliation post-checkpoint, la suite
+ciblée combinée compte 282 réussites.
 L’audit couvre les 125 libellés de relation.
 
 La revue française de contenu complétée, intégrée depuis le travail parallèle,
@@ -89,11 +90,17 @@ relu sans divergence. Les preuves se trouvent dans :
 
 ## Reprise de la publication finale
 
-Ne pas se connecter au wiki anglais tant que le mot de passe de bot n’a pas été
-remplacé. L’ancien essai d’authentification anglaise a échoué avant toute
-écriture. Après rotation du secret, restaurer le workspace depuis l’archive de
-release et les états `runtime/editorial-workspace/workspace.json` et
-`runtime/workflow/workflow.json`, puis reprendre uniquement la phase
+La baseline finale accepte désormais les deux corrections françaises
+postérieures au checkpoint uniquement après vérification de leur succession
+signée : même Work, même corpus, même ensemble de 101 pages, révisions
+monotones et reçus de correction valides.
+
+Le préflight du 24 octobre a authentifié l’accès français puis a échoué sur
+l’authentification anglaise avant toute écriture distante. Le runtime utilisait
+encore l’ancien secret, car le nouveau brouillon d’environnement n’avait pas
+encore été publié. Après application du secret renouvelé, restaurer le workspace
+depuis l’archive de release et les états `runtime/editorial-workspace/workspace.json`
+et `runtime/workflow/workflow.json`, puis reprendre uniquement la phase
 `final_publication` avec un préflight distant neuf.
 
 La phase doit créer les 101 pages anglaises puis ajouter les liens interlangues
@@ -103,5 +110,8 @@ aux 101 pages françaises. Elle ne doit modifier aucun autre contenu français.
 
 L’accès français `ChatGPT@Codex-FR` a servi uniquement aux corrections décrites
 ci-dessus et a été vérifié après écriture. Aucun secret n’est inclus dans cette
-sauvegarde. Le secret anglais actuel doit être considéré comme invalide jusqu’à
-sa rotation ; ne pas reprendre automatiquement une tentative de connexion.
+sauvegarde. Le brouillon d’environnement révision 2 enregistre les identités non
+secrètes `ChatGPT@Codex-FR` et `ChatGPT@Codex-EN`. Le secret anglais du runtime
+courant doit être considéré comme invalide jusqu’à la publication de ce
+brouillon ; ne pas reprendre automatiquement une tentative de connexion avant
+le redémarrage de l’environnement.
