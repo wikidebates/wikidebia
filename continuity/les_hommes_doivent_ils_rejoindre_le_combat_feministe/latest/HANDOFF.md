@@ -111,10 +111,8 @@ aux 101 pages françaises. Elle ne doit modifier aucun autre contenu français.
 
 L’accès français `ChatGPT@Codex-FR` a servi uniquement aux corrections décrites
 ci-dessus et a été vérifié après écriture. Aucun secret n’est inclus dans cette
-sauvegarde. Le brouillon d’environnement révision 3 et le runtime enregistrent
-les identités `ChatGPT@Codex-FR` et `ChatGPT@Codex-EN`. Le secret anglais injecté
-doit être considéré comme invalide jusqu’à son remplacement effectif ; ne pas
-reprendre automatiquement une tentative de connexion avant cette modification.
+sauvegarde. Le refus anglais observé dans l’ancien runtime est historique : le
+contrôle neuf décrit ci-dessous authentifie désormais les deux identités.
 Le kit diagnostique désormais explicitement une identité ou une paire de
 variables BotPassword absente avant de laisser Pywikibot ouvrir une connexion.
 
@@ -148,10 +146,13 @@ Preuve du contrôle courant :
 Le préflight global n’a pas été validé et aucune autorisation finale n’a été
 scellée. Aucune création anglaise ni addition interlangue française n’a eu lieu.
 
-Prochaine étape : récupérer les états historiques signés originaux depuis le
-workspace de la session précédente, notamment celui du checkpoint final de
-contenu et celui suivant la restauration des titres affichés contextuels.
-Les placer dans `.state/published/<débat>/fr/` sans réécrire leurs preuves,
-compléter la projection de continuité, puis refaire tous les contrôles et le
-préflight global avant `final_publication`. Ne pas reconstruire ni resigner
-ces preuves à partir de l’état distant actuel ; ne réappliquer aucune correction.
+Les cinq états historiques signés originaux ont ensuite été récupérés sans
+réécriture depuis le workspace de la session précédente et ajoutés sous
+`runtime/published/fr/`. Ils couvrent le checkpoint graphe, la correction des
+paramètres vides, le checkpoint final de contenu, la restauration des titres
+affichés contextuels et la restauration de `oe`. Le dernier état horodaté est
+strictement identique à `latest.json`.
+
+Prochaine étape : restaurer ces fichiers dans
+`.state/published/<débat>/fr/`, refaire le contrôle de succession puis le
+préflight global avant `final_publication`. Ne réappliquer aucune correction.
