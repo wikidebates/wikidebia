@@ -92,3 +92,23 @@ L’accès API français et l’identité `ChatGPT@Codex-FR` ont été vérifié
 secret ni fichier privé n’est présent dans cette sauvegarde. Le secret anglais
 est injecté dans l’environnement, mais l’identité essayée `ChatGPT@Codex-EN` a
 été refusée par le wiki anglais et ne doit pas être considérée comme prête.
+
+Le mot de passe anglais a été renouvelé dans l’environnement le 23 octobre ;
+l’identité devra être retestée sans journaliser ni versionner le secret avant la
+première publication anglaise.
+
+## Portabilité des reprises
+
+La reprise a révélé que
+`reports/initial_validation_execution.json` : les anciennes versions y
+enregistraient deux chemins absolus et incluaient pourtant ce fichier dans
+l’empreinte du build. Son assainissement légitime rendait alors la revue
+inutilisable sur une autre machine. La trace non normative est maintenant hors
+de l’empreinte portable, avec une compatibilité ancienne limitée aux deux
+champs concernés et vérifiée par le SHA-256 historique.
+
+## Vérification
+
+Vérifier `SHA256SUMS` avant restauration. Le commit Git contenant ce fichier est
+le commit de référence du snapshot ; les états antérieurs restent dans
+l’historique de la branche.
