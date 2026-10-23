@@ -249,6 +249,17 @@ def _decision_value(review: Mapping[str, Any], source: Mapping[str, Any], field:
         if entity_type == "debate":
             return None
         decision = review.get("displayed_title_decision")
+        if _source_page_origin(source) == "preexisting":
+            if decision != "keep":
+                raise EditorialReviewError(
+                    "Le titre affiché d’une page source préexistante doit être conservé à l’identique"
+                )
+            proposed = review.get("proposed_displayed_title")
+            if proposed not in {None, source.get("displayed_title")}:
+                raise EditorialReviewError(
+                    "Le titre affiché proposé diffère de celui de la page source préexistante"
+                )
+            return source.get("displayed_title")
         if decision == "keep":
             return source.get("displayed_title")
         if decision == "change":

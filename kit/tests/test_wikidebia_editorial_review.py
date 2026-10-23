@@ -8,6 +8,8 @@ import shutil
 import sys
 from pathlib import Path
 
+import pytest
+
 SCRIPTS = Path(__file__).resolve().parents[1] / "scripts"
 sys.path.insert(0, str(SCRIPTS))
 
@@ -162,13 +164,13 @@ def complete_review(workspace: Path) -> None:
             decision["canonical_title_decision"] = "not_applicable"
             decision["displayed_title_decision"] = "not_applicable"
         else:
-            canonical, displayed = title_pairs[entity_id]
+            canonical, _displayed = title_pairs[entity_id]
             decision["canonical_title_decision"] = "change"
             decision["proposed_canonical_title"] = canonical
             decision["canonical_title_rationale"] = "Le titre nomme explicitement le sujet et reste autonome hors de sa branche."
-            decision["displayed_title_decision"] = "change"
-            decision["proposed_displayed_title"] = displayed
-            decision["displayed_title_rationale"] = "Le titre affiché conserve la proposition argumentative sous une forme réellement plus concise."
+            decision["displayed_title_decision"] = "keep"
+            decision["proposed_displayed_title"] = item["source"]["displayed_title"]
+            decision["displayed_title_rationale"] = "Le titre affiché historique de la page source est conservé à l’identique."
             decision["canonical_referents_explicit"] = True
             decision["displayed_title_complete_proposition"] = True
             decision["displayed_title_argument_intelligible"] = True
@@ -447,7 +449,9 @@ def test_finalize_accepts_canonical_titles_as_displayed_titles(tmp_path: Path):
     for item in data["items"]:
         if item["entity_type"] != "argument":
             continue
+        item["source"]["page_origin"] = "new"
         review = item["review"]
+        review["displayed_title_decision"] = "change"
         review["proposed_displayed_title"] = review["proposed_canonical_title"]
         review["displayed_title_rationale"] = "Le titre canonique est déjà clair, autonome et immédiatement intelligible; aucune reformulation ne l'améliore."
         review["displayed_title_semantically_equivalent"] = True
@@ -620,6 +624,31 @@ def test_canonical_rename_preserves_short_historical_displayed_title_in_both_rev
         assert result["canonical_title"] == "Le revenu de base entraîne des coûts économiques"
         assert result["displayed_title"] == "Coûts"
         assert result["decisions"]["displayed_title"] == "keep"
+
+
+def test_preexisting_displayed_title_change_is_rejected_in_both_reviews():
+    item = _preexisting_item(rubriques=["Économie"], keywords=["revenu", "travail"])
+    item["review"].update(
+        displayed_title_decision="change",
+        proposed_displayed_title="Le revenu modifie les incitations",
+    )
+    for validate in (review_tool._validate_item, review_tool._validate_title_item):
+        with pytest.raises(
+            review_tool.EditorialReviewError,
+            match="titre affiché d’une page source préexistante doit être conservé",
+        ):
+            validate(item)
+
+
+def test_preexisting_displayed_title_keep_cannot_hide_a_different_proposal():
+    item = _preexisting_item(rubriques=["Économie"], keywords=["revenu", "travail"])
+    item["review"]["proposed_displayed_title"] = "Le revenu modifie les incitations"
+    for validate in (review_tool._validate_item, review_tool._validate_title_item):
+        with pytest.raises(
+            review_tool.EditorialReviewError,
+            match="titre affiché proposé diffère",
+        ):
+            validate(item)
 
 
 def test_preexisting_rubrique_correction_requires_and_records_rationale():
