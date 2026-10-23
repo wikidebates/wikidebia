@@ -470,6 +470,16 @@ class PywikibotAdapter:
         login_name = os.environ.get(username_variable)
         password = os.environ.get(password_variable)
         if not login_name and not password:
+            config = getattr(pywikibot, "config", None)
+            usernames = getattr(config, "usernames", {}) if config is not None else {}
+            family_users = usernames.get(self.family, {}) if isinstance(usernames, dict) else {}
+            configured = family_users.get(self.codes[language]) or family_users.get("*")
+            if not configured:
+                raise PublicationError(
+                    "Identité d’écriture absente : configurez "
+                    f"{username_variable} et {password_variable}, ou une identité Pywikibot "
+                    f"pour {self.family}:{self.codes[language]}"
+                )
             self.site.login()
             return
         if not login_name or not password:
