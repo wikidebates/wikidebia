@@ -909,6 +909,15 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
         page_key = (page_manifest.get('page_id'), lang)
         if page_key in _historically_absent_summary_keys(ctx) | _owner_removed_summary_keys(ctx) and summary_parameter in spec['required']:
             spec['required'].remove(summary_parameter)
+    if (
+        page_type == 'debate'
+        and lang == 'fr'
+        and page_manifest is not None
+        and page_manifest.get('page_origin') == 'preexisting'
+        and _historically_absent_french_introduction(ctx)
+        and 'introduction' in spec['required']
+    ):
+        spec['required'].remove('introduction')
     _apply_page_lifecycle_contract(ctx, spec, tmpl, lang, page_type, rel, page_manifest)
     if tmpl.name != spec['model']:
         ctx.report.error('WDV-MWK-002', f"Modèle principal attendu {spec['model']}, trouvé {tmpl.name}", path=rel)
@@ -1494,6 +1503,26 @@ def _protected_historical_summary_keys(ctx: PackageContext) -> set[tuple[str, st
 
 def _historically_absent_summary_keys(ctx: PackageContext) -> set[tuple[str, str]]:
     return _shared_historically_absent_summary_keys(ctx)
+
+
+def _historically_absent_french_introduction(ctx: PackageContext) -> bool:
+    """Return whether a pre-existing French debate had no introduction to preserve."""
+    cached = getattr(ctx, '_historically_absent_french_introduction_cache', None)
+    if isinstance(cached, bool):
+        return cached
+    result = False
+    if ctx.exists('data/fr_content_lock.json'):
+        lock = ctx.load_json('data/fr_content_lock.json')
+        decisions = lock.get('historical_text_decisions') if isinstance(lock, dict) else None
+        row = decisions.get('debate') if isinstance(decisions, dict) else None
+        result = bool(
+            isinstance(row, dict)
+            and row.get('page_origin') == 'preexisting'
+            and row.get('historical_status') == 'historical_absent'
+            and row.get('decision') == 'preserved'
+        )
+    setattr(ctx, '_historically_absent_french_introduction_cache', result)
+    return result
 
 def _preserved_historical_french_introduction(ctx: PackageContext) -> bool:
     cached = getattr(ctx, '_preserved_historical_french_introduction_cache', None)
