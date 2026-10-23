@@ -1,7 +1,7 @@
 # Handoff — Les hommes doivent-ils rejoindre le combat féministe ?
 
 - Branche : `codex/traduction-combat-feministe`
-- Correctifs GitHub synchronisés jusqu’à : `74b1d26`
+- Correctifs GitHub synchronisés jusqu’à : `36be15c`
 - Commit de référence du snapshot : commit contenant ce fichier
 - Date du snapshot : 23 octobre 2026
 - Phase : `fr_content_review`
@@ -70,13 +70,15 @@ dans
 
 ## Prochaine étape
 
-La revue du contenu français est préparée pour 100 arguments :
+La revue du contenu français est terminée pour 100 arguments et son ZIP complété
+porte l’empreinte
+`26d3c3de52b9d90a837d58bb73bef66bba7ccaa746b7564bdb1029823fe7cb07` :
 
 ```text
 reviews/les_hommes_doivent_ils_rejoindre_le_combat_feministe_fr_content_review.zip
 ```
 
-Après revue éditoriale, placer le ZIP corrigé dans `incoming/`, puis lancer :
+Le ZIP doit être placé dans `incoming/`, puis importé avec :
 
 ```bash
 ./wikidebia review-import les_hommes_doivent_ils_rejoindre_le_combat_feministe
@@ -85,6 +87,14 @@ Après revue éditoriale, placer le ZIP corrigé dans `incoming/`, puis lancer :
 Cette commande finalisera la revue française de contenu et déclenchera le second
 checkpoint français. La traduction anglaise ne doit commencer qu’après ce second
 checkpoint.
+
+La revue conserve exactement les 22 résumés historiques et les 78 absences de
+résumé, ainsi que les sept citations. Elle normalise de façon traçable les
+capitales de noms communs, l’orthographe d’« émotions » et les variantes
+singulier/pluriel, puis ajoute un concept distinctif aux pages auparavant
+classées par le seul terme « féminisme ». Les deux références web historiques
+(Slate pour A0012 et France Inter pour A0041) sont conservées dans le registre
+contrôlé ; aucun texte historique n’est réécrit.
 
 ## Accès distant
 
