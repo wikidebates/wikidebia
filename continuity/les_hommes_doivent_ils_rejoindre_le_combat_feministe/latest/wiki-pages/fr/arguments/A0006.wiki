@@ -29,7 +29,7 @@
 |titre-affiché=Les hommes ont le devoir de réparer les injustices dont ils sont les auteurs
 }}{{Objection
 |page=Il est possible de donner aux hommes une éducation non sexiste
-|titre-affiché=Il est possible de donner aux hommes une éducation non sexiste
+|titre-affiché=Il est possible de leur donner une autre éducation
 }}
 |rubriques=Éducation, Politique, Société
 |mots-clés=Hommes, Domination masculine, Féminisme, Socialisation

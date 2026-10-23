@@ -1,7 +1,7 @@
 {{Argument
 |justifications={{Justification
 |page=L'injonction à réprimer ses émotions détériore la santé mentale des hommes
-|titre-affiché=L'injonction à réprimer ses émotions détériore la santé mentale des hommes
+|titre-affiché=L'injonction à la répression des émotions déteriore la santé mentale des hommes
 }}
 |objections={{Objection
 |page=L'expression des émotions affaiblirait la domination des hommes

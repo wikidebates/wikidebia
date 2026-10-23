@@ -2,7 +2,7 @@
   "schema": "fr_graph_checkpoint_differential_v1",
   "schema_version": "1.0",
   "debate_id": "les_hommes_doivent_ils_rejoindre_le_combat_feministe",
-  "work_id": "EDIT-20261022-001",
+  "work_id": "EDIT-20261023-001",
   "status": "passed",
   "policy": "exact_import_plus_graph_parameters",
   "pages": [
@@ -25,7 +25,7 @@
       "import_path": "imports/fr/arguments/A0002.wiki",
       "import_sha256": "0b6538f7b4f1a97675852fb57a44e529215f0421889b8456f16482edd48f9ef3",
       "output_path": "output/fr/arguments/A0002.wiki",
-      "output_sha256": "ade50d2f0d0d961b8a7c70c6f3525941d2ec08adc3c3acddc572824f8c13fb09",
+      "output_sha256": "6a753685aa7944cc10937c2728ff9c44d5c181a07615caa5b907bdbce3218398",
       "allowed_parameters": [
         "justifications",
         "objections"
@@ -38,7 +38,7 @@
       "import_path": "imports/fr/arguments/A0003.wiki",
       "import_sha256": "0f5622f6207b61a1087d9156f9a00335bbdeada2a391c11e84fe816b8d8a3c13",
       "output_path": "output/fr/arguments/A0003.wiki",
-      "output_sha256": "9f93ec2fbbafdb3456d7d31370e16063c469783f30c1cd4f28e79bc4c3b8fb69",
+      "output_sha256": "0f5622f6207b61a1087d9156f9a00335bbdeada2a391c11e84fe816b8d8a3c13",
       "allowed_parameters": [
         "justifications",
         "objections"
@@ -51,7 +51,7 @@
       "import_path": "imports/fr/arguments/A0004.wiki",
       "import_sha256": "42b915543cc7c9a06bd16a5205c9e94153681d585fd380cd2a81d7a7538a98b6",
       "output_path": "output/fr/arguments/A0004.wiki",
-      "output_sha256": "1c643db31f3174801884f1ea34169f2f2d2b9e09cba95a5ef9575bde0c080686",
+      "output_sha256": "9d47ba8e5dfd5bff0ce52f25a12a800ff9eedb1c4c3c445db680b3badfe7b618",
       "allowed_parameters": [
         "justifications",
         "objections"
@@ -77,7 +77,7 @@
       "import_path": "imports/fr/arguments/A0006.wiki",
       "import_sha256": "1a385a0bc5c356639bd3acdcc7b4061e6675631bb4f211a50b868696ebb93116",
       "output_path": "output/fr/arguments/A0006.wiki",
-      "output_sha256": "f36f8c76b327bc0868c97b037d3af3d3fe64bbab24039dfe0827ac998f9f175b",
+      "output_sha256": "9f23ed4565a826d24bce3d54ecfb6aefc6059a157d90cd259feb02c52be53b20",
       "allowed_parameters": [
         "justifications",
         "objections"
@@ -90,7 +90,7 @@
       "import_path": "imports/fr/arguments/A0007.wiki",
       "import_sha256": "efd7e0780d4a121636b2afd9d8c37e19681c30ae1898d6492de87cfad3dd5480",
       "output_path": "output/fr/arguments/A0007.wiki",
-      "output_sha256": "e5ca9eb512fd60def860769095e30c00d97145dee752625a72032d597e743464",
+      "output_sha256": "31cb3b9669469ff5f5dfc6da785383ea4fbdecbe9b4a79224afe278a8340f13d",
       "allowed_parameters": [
         "justifications",
         "objections"
@@ -103,7 +103,7 @@
       "import_path": "imports/fr/arguments/A0008.wiki",
       "import_sha256": "d6402147a5138b1b728a79a758f4004f450cc65fee21fdcc8658a914792cee3f",
       "output_path": "output/fr/arguments/A0008.wiki",
-      "output_sha256": "0b5ed1dad78571126d062228f28a4872bb24628dbd44356b6ad14978757306de",
+      "output_sha256": "d6402147a5138b1b728a79a758f4004f450cc65fee21fdcc8658a914792cee3f",
       "allowed_parameters": [
         "justifications",
         "objections"
@@ -116,7 +116,7 @@
       "import_path": "imports/fr/arguments/A0009.wiki",
       "import_sha256": "18724e166d8a0fbe818bab3d211ab0b40a92d9eceb7056f36ff3f97b8625a04d",
       "output_path": "output/fr/arguments/A0009.wiki",
-      "output_sha256": "7d1dd44621798c874803b8411f020806dc8cc8d8817f4ca2b31df8530d7acc61",
+      "output_sha256": "d7bbb6c9263b1a7d678627d6b4e381e4f3d313f77c68e4fb8d2365b0aa55cc43",
       "allowed_parameters": [
         "justifications",
         "objections"
@@ -168,7 +168,7 @@
       "import_path": "imports/fr/arguments/A0013.wiki",
       "import_sha256": "4cd33e5c0623e85e14f9bdbbedf34b611ae1061f3d880eaf15721f15b90584d1",
       "output_path": "output/fr/arguments/A0013.wiki",
-      "output_sha256": "ca177031685385b3dea5ce68f7be64ba4cb358fdf55777560fa6debde2376829",
+      "output_sha256": "96eb94f511e762ea1cc7fb7e6830fc5ea362f5ba3889940ae6540af641f02382",
       "allowed_parameters": [
         "justifications",
         "objections"
@@ -220,7 +220,7 @@
       "import_path": "imports/fr/arguments/A0017.wiki",
       "import_sha256": "036c92c4329a82bdaf1a894a1207577fd53628982ad7a174498a95db447e1aff",
       "output_path": "output/fr/arguments/A0017.wiki",
-      "output_sha256": "daa71a22b6f3a38c7895bffd6d11480cc06800cd8384660342b2f8ce68970e71",
+      "output_sha256": "640553ca4b91c713755c7daa30d9509f61e971856527fb2d4bc23f26aabcfd8e",
       "allowed_parameters": [
         "justifications",
         "objections"
@@ -246,7 +246,7 @@
       "import_path": "imports/fr/arguments/A0019.wiki",
       "import_sha256": "cc137e34ffa27036b5b2f2178b1a3956fb0f034490a876de1f5d84813fc2ffed",
       "output_path": "output/fr/arguments/A0019.wiki",
-      "output_sha256": "7af448e12cb69a11b8f64d9e1c586cc7c07d46a133760b4ce035d5759cfd4cd1",
+      "output_sha256": "f4587221e76871a335835bfbcd3422309e63ddda61d1f44f15ba3824605455f6",
       "allowed_parameters": [
         "justifications",
         "objections"
@@ -259,7 +259,7 @@
       "import_path": "imports/fr/arguments/A0020.wiki",
       "import_sha256": "5b85022c189c5fe18730c955eaf787fa265ff5fb72d8780fc9f15d150cba07fa",
       "output_path": "output/fr/arguments/A0020.wiki",
-      "output_sha256": "b8606b55ad226b8f695aee9c774234d977edc3cd6c911185ba89db56c07a42fb",
+      "output_sha256": "8c8196ce8e53a8f512f82bbe2d15b4cf5c368052e203ee5b2ec7b438cd0c6158",
       "allowed_parameters": [
         "justifications",
         "objections"
@@ -337,7 +337,7 @@
       "import_path": "imports/fr/arguments/A0026.wiki",
       "import_sha256": "6af1924196ddb1a365a9cb71696142837d447fc6d3c380afc5a175ef4a9d7693",
       "output_path": "output/fr/arguments/A0026.wiki",
-      "output_sha256": "773ffbfa785b8719fa6706f42783c6d64538f3cb0a2d24ca6b0d419936368391",
+      "output_sha256": "59d2cb4ec9f6f840c4ac4afe868793780e850a490c22c5e5da65fd93b17c631d",
       "allowed_parameters": [
         "justifications",
         "objections"
@@ -350,7 +350,7 @@
       "import_path": "imports/fr/arguments/A0027.wiki",
       "import_sha256": "a3c4f62dc88242b51e7c102f43c9fd3dc145e0e6945363f4af78bdc034989c07",
       "output_path": "output/fr/arguments/A0027.wiki",
-      "output_sha256": "cb1fe9a6a6f040895404ea7b85a03c190611d07aa303fc9e6c11a01ee2faa861",
+      "output_sha256": "1a4961a98bcf3a1c214b58ed1f3abb30824e250849dfeb22e40eae73f5d32831",
       "allowed_parameters": [
         "justifications",
         "objections"
@@ -389,7 +389,7 @@
       "import_path": "imports/fr/arguments/A0030.wiki",
       "import_sha256": "ac713cc4c7552b7784c17b5548c68426aa6a08bdde90bc28c65bbe41d82e473e",
       "output_path": "output/fr/arguments/A0030.wiki",
-      "output_sha256": "6803e6f011cce52d52d9c34987c59203edb4949cc5722b60a4771c6547397083",
+      "output_sha256": "3fd74d6e8337a2393368b03fbc8e0ffaa68a3ad11cf6791644458da0eb861a9d",
       "allowed_parameters": [
         "justifications",
         "objections"
@@ -402,7 +402,7 @@
       "import_path": "imports/fr/arguments/A0031.wiki",
       "import_sha256": "f97f85b2b971feb1c4c9a3cb96b08b48ac55be630f7feb12e17249a6db613203",
       "output_path": "output/fr/arguments/A0031.wiki",
-      "output_sha256": "1968dbd9bbf6f5cba7cdf5cf70c88d1c9505505ec90d617b81fd68345c43d75e",
+      "output_sha256": "89ff42d5062bb404ba7d519f81c8057e886713130a39ad6e723267916510a870",
       "allowed_parameters": [
         "justifications",
         "objections"
@@ -428,7 +428,7 @@
       "import_path": "imports/fr/arguments/A0033.wiki",
       "import_sha256": "4d1597d8f4cabca6655509977afe4880d741a09f68334f8cdbaeafcd18c1140d",
       "output_path": "output/fr/arguments/A0033.wiki",
-      "output_sha256": "93b9e1398a6773e65c1999f3dca68609b932fe2c27d5abae4b9835ebf3024965",
+      "output_sha256": "e50de2c7b6c666f695d8e6d4f91e2dbaf9bec9d293a553354e00aaa3e2a2add4",
       "allowed_parameters": [
         "justifications",
         "objections"
@@ -961,7 +961,7 @@
       "import_path": "imports/fr/arguments/A0074.wiki",
       "import_sha256": "4e1098a441ee3517c95901befc4e9c9ab0147b84555069e57136b3d159a395fe",
       "output_path": "output/fr/arguments/A0074.wiki",
-      "output_sha256": "a583eda9f2a91c791f1a263ac4fabfe8ed64da86fdcb94ff00d5bf60b6c3eedd",
+      "output_sha256": "1a2ce865ce91511fecd9876af4932845c5089cb7dca5a3e5d68d2aeaedea2836",
       "allowed_parameters": [
         "justifications",
         "objections"

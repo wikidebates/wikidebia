@@ -5,10 +5,10 @@
 * car décident de la répartition de la parole et peuvent la rendre plus égalitaire
 |objections={{Objection
 |page=Les hommes utilisent leur accès privilégié à la parole pour conforter la domination masculine
-|titre-affiché=Les hommes utilisent leur accès privilégié à la parole pour conforter la domination masculine
+|titre-affiché=Les hommes utilisent ce privilège pour conforter la domination masculine
 }}{{Objection
 |page=Les hommes n'ont aucun intérêt à utiliser leur accès privilégié à la parole pour dénoncer le sexisme
-|titre-affiché=Les hommes n'ont aucun intérêt à utiliser leur accès privilégié à la parole pour dénoncer le sexisme
+|titre-affiché=Les hommes n'ont aucun intérêt à dénoncer le sexisme
 }}{{Objection
 |page=Les hommes devraient donner la parole aux femmes plutôt que de parler à leur place
 |titre-affiché=Les hommes devraient donner la parole aux femmes plutôt que de parler à leur place

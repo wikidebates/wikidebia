@@ -6,7 +6,7 @@
 |titre-affiché=Les hommes n'ont aucun intérêt à renoncer à leurs privilèges
 }}{{Objection
 |page=L'émancipation des femmes doit être l'œuvre des femmes elles-mêmes
-|titre-affiché=L'émancipation des femmes doit être l'œuvre des femmes elles-mêmes
+|titre-affiché=L'émancipation des femmes doit être l'oeuvre des femmes elles-mêmes
 }}
 |justifications=
 |rubriques=Politique, Société

@@ -52,7 +52,7 @@
   "translation_status": {
     "en": "deferred"
   },
-  "updated_at": "2026-10-22T14:33:11+00:00",
+  "updated_at": "2026-10-23T06:34:03+00:00",
   "validations": [
     {
       "id": "V20261022-001",
@@ -67,12 +67,12 @@
       "report_path": "reports/graph_review_preflight.json"
     },
     {
-      "id": "V20261022-002",
+      "id": "V20261023-001",
       "scope": "graph",
       "language": null,
       "validator_version": "0.4.105",
-      "executed_at": "2026-10-22T14:33:11+00:00",
-      "input_sha256": "c8ff80690e18e000501acf3f64f34757bd5c7d9061b74eae1c99849db843a9d9",
+      "executed_at": "2026-10-23T06:34:03+00:00",
+      "input_sha256": "83262089d6216339a5c54f338590b92823df30e58cea1ade1a06d1eadc5fc3c9",
       "result": "passed",
       "blocking_errors": 0,
       "warnings": 0,

@@ -35,22 +35,22 @@
 {{Argument
 |justifications={{Justification
 |page=Les hommes ont intérêt à en finir avec le machisme pour assumer leur sensibilité et leurs émotions
-|titre-affiché=Les hommes ont intérêt à en finir avec le machisme pour assumer leur sensibilité et leurs émotions
+|titre-affiché=Pour assumer leur sensibilité et leurs émotions
 }}{{Justification
 |page=Les hommes ont intérêt à en finir avec le machisme pour se délivrer de l'injonction à la virilité
-|titre-affiché=Les hommes ont intérêt à en finir avec le machisme pour se délivrer de l'injonction à la virilité
+|titre-affiché=Pour se délivrer de l'injonction à la virilité
 }}{{Justification
 |page=Les hommes ont intérêt à en finir avec le machisme pour sortir des rapports de rivalité entre hommes
-|titre-affiché=Les hommes ont intérêt à en finir avec le machisme pour sortir des rapports de rivalité entre hommes
+|titre-affiché=Pour sortir des rapports de rivalité entre hommes
 }}{{Justification
 |page=Les hommes ont intérêt à en finir avec le machisme pour simplifier et libérer les rapports de séduction
-|titre-affiché=Les hommes ont intérêt à en finir avec le machisme pour simplifier et libérer les rapports de séduction
+|titre-affiché=Pour simplifier et libérer les rapports de séduction
 }}{{Justification
 |page=La masculinité toxique génère des troubles mentaux et des suicides chez les hommes
-|titre-affiché=La masculinité toxique génère des troubles mentaux et des suicides chez les hommes
+|titre-affiché=Pour en finir avec la souffrance que la masculinité toxique génère chez eux
 }}{{Justification
 |page=La masculinité toxique est le terreau de l'homophobie
-|titre-affiché=La masculinité toxique est le terreau de l'homophobie
+|titre-affiché=Pour ne plus subir l'homophobie
 }}
 |objections={{Objection
 |page=Les hommes bénéficient des discriminations envers les femmes
@@ -89,7 +89,7 @@
 |titre-affiché=Le féminisme sera victorieux quand tous les hommes y adhèreront
 }}{{Justification
 |page=Les hommes ne subissent pas l'épuisement généré par les discriminations sexistes
-|titre-affiché=Les hommes ne subissent pas l'épuisement généré par les discriminations sexistes
+|titre-affiché=L'absence de discrimination à leur égard leur facilite la tâche pour militer
 }}
 |objections={{Objection
 |page=Les femmes sont parfaitement capables de mener le combat féministe par elles-mêmes
@@ -116,7 +116,7 @@
 }}
 |justifications={{Justification
 |page=Le médecin communiste Willy Peers a permis la légalisation de l'avortement et la démocratisation de la contraception en Belgique
-|titre-affiché=Le médecin communiste Willy Peers a permis la légalisation de l'avortement et la démocratisation de la contraception en Belgique
+|titre-affiché=Les femmes belges doivent leur droit à l'avortement, à la contraception et à l'accouchement sans douleur à Willy Peers
 }}{{Justification
 |page=Lénine avait lui-même des sensibilités féministes
 |titre-affiché=Lénine avait lui-même des sensibilités féministes
@@ -175,7 +175,7 @@
 |titre-affiché=Les hommes ont le devoir de réparer les injustices dont ils sont les auteurs
 }}{{Objection
 |page=Il est possible de donner aux hommes une éducation non sexiste
-|titre-affiché=Il est possible de donner aux hommes une éducation non sexiste
+|titre-affiché=Il est possible de leur donner une autre éducation
 }}
 |rubriques=Éducation, Politique, Société
 |mots-clés=Hommes, Domination masculine, Féminisme, Socialisation
@@ -196,16 +196,16 @@
 }}
 |objections={{Objection
 |page=Les hommes ont intérêt à en finir avec le machisme pour assumer leur sensibilité et leurs émotions
-|titre-affiché=Les hommes ont intérêt à en finir avec le machisme pour assumer leur sensibilité et leurs émotions
+|titre-affiché=Pour assumer leur sensibilité et leurs émotions
 }}{{Objection
 |page=Les hommes ont intérêt à en finir avec le machisme pour se délivrer de l'injonction à la virilité
-|titre-affiché=Les hommes ont intérêt à en finir avec le machisme pour se délivrer de l'injonction à la virilité
+|titre-affiché=Pour se délivrer de l'injonction à la virilité
 }}{{Objection
 |page=Les hommes ont intérêt à en finir avec le machisme pour sortir des rapports de rivalité entre hommes
-|titre-affiché=Les hommes ont intérêt à en finir avec le machisme pour sortir des rapports de rivalité entre hommes
+|titre-affiché=Pour sortir des rapports de rivalité entre hommes
 }}{{Objection
 |page=Les hommes ont intérêt à en finir avec le machisme pour simplifier et libérer les rapports de séduction
-|titre-affiché=Les hommes ont intérêt à en finir avec le machisme pour simplifier et libérer les rapports de séduction
+|titre-affiché=Pour simplifier et libérer les rapports de séduction
 }}{{Objection
 |page=Les hommes n'ont pas de privilèges
 |titre-affiché=Les hommes n'ont pas de privilèges
@@ -222,31 +222,31 @@
 {{Argument
 |justifications={{Justification
 |page=Les femmes doivent s'organiser en non-mixité pour créer un espace d'échange sûr et rassurant
-|titre-affiché=Les femmes doivent s'organiser en non-mixité pour créer un espace d'échange sûr et rassurant
+|titre-affiché=Pour créer un espace d'échange sûr et rassurant
 }}{{Justification
 |page=Les femmes doivent s'organiser en non-mixité pour ne pas avoir à tout réexpliquer
-|titre-affiché=Les femmes doivent s'organiser en non-mixité pour ne pas avoir à tout réexpliquer
+|titre-affiché=Pour ne pas avoir à tout réexpliquer
 }}{{Justification
 |page=Les femmes doivent s'organiser en non-mixité pour parler et communiquer librement
-|titre-affiché=Les femmes doivent s'organiser en non-mixité pour parler et communiquer librement
+|titre-affiché=Pour parler et communiquer librement
 }}{{Justification
 |page=Les femmes doivent s'organiser en non-mixité pour prendre conscience du caractère systémique de la domination
-|titre-affiché=Les femmes doivent s'organiser en non-mixité pour prendre conscience du caractère systémique de la domination
+|titre-affiché=Pour prendre conscience du caractère systémique de la domination
 }}{{Justification
 |page=Les femmes doivent s'organiser en non-mixité pour renforcer la sororité
-|titre-affiché=Les femmes doivent s'organiser en non-mixité pour renforcer la sororité
+|titre-affiché=Pour renforcer la sororité
 }}{{Justification
 |page=Les femmes doivent s'organiser en non-mixité pour diriger la lutte par elles-mêmes
-|titre-affiché=Les femmes doivent s'organiser en non-mixité pour diriger la lutte par elles-mêmes
+|titre-affiché=Pour diriger la lutte par elles-mêmes
 }}{{Justification
 |page=Les femmes doivent s'organiser en non-mixité pour apprendre à être autonomes
-|titre-affiché=Les femmes doivent s'organiser en non-mixité pour apprendre à être autonomes
+|titre-affiché=Pour apprendre à être autonomes
 }}{{Justification
 |page=Les femmes doivent s'organiser en non-mixité pour prendre conscience de leur valeur individuelle
-|titre-affiché=Les femmes doivent s'organiser en non-mixité pour prendre conscience de leur valeur individuelle
+|titre-affiché=Pour prendre conscience de leur valeur individuelle
 }}{{Justification
 |page=Les femmes doivent s'organiser en non-mixité pour prendre conscience de leur force collective
-|titre-affiché=Les femmes doivent s'organiser en non-mixité pour prendre conscience de leur force collective
+|titre-affiché=Pour prendre conscience de leur force collective
 }}
 |objections={{Objection
 |page=La non-mixité doit être une solution temporaire
@@ -264,7 +264,7 @@
 {{Argument
 |objections={{Objection
 |page=L'absence d'égalité empêche une société de fonctionner correctement
-|titre-affiché=L'absence d'égalité empêche une société de fonctionner correctement
+|titre-affiché=C'est plutôt l'inverse
 }}
 |justifications=
 |date-création=2021-03-18
@@ -342,7 +342,7 @@
 |titre-affiché=Le traitement médiatique du sexisme est encore insuffisant
 }}{{Objection
 |page=De nombreuses victimes n'osent pas parler des violences sexistes qu'elles ont subies, encore moins aux hommes
-|titre-affiché=De nombreuses victimes n'osent pas parler des violences sexistes qu'elles ont subies, encore moins aux hommes
+|titre-affiché=De nombreuses victimes n'osent pas parler des violences qu'elles ont subies, encore moins aux hommes
 }}{{Objection
 |page=Les hommes sont socialisés pour être égoïstes
 |titre-affiché=Les hommes sont socialisés pour être égoïstes
@@ -409,13 +409,13 @@
 |titre-affiché=La domination masculine est de nos jours largement contestée dans tous les domaines de la société
 }}{{Objection
 |page=Les hommes sont capables de déconstruire leurs préjugés et leurs pratiques sexistes
-|titre-affiché=Les hommes sont capables de déconstruire leurs préjugés et leurs pratiques sexistes
+|titre-affiché=Les hommes sont capables de déconstruire leurs préjugés et leurs pratiques
 }}{{Objection
 |page=L'éducation vise à développer notre empathie
-|titre-affiché=L'éducation vise à développer notre empathie
+|titre-affiché=L'éducation vise au contraire à développer notre empathie
 }}{{Objection
 |page=Qualifier le traitement des femmes de déshumanisation est démesuré et discrédite la cause féministe
-|titre-affiché=Qualifier le traitement des femmes de déshumanisation est démesuré et discrédite la cause féministe
+|titre-affiché=Le terme "déshumaniser" est démesuré, il y a une instrumentalisation des corps certes et une altère expression de la domination mais déshumaniser ne fait que décrédibiliser la cause féministe
 }}
 |justifications=
 |rubriques=Éducation, Politique, Société
@@ -434,7 +434,7 @@
 {{Argument
 |justifications={{Justification
 |page=L'injonction à réprimer ses émotions détériore la santé mentale des hommes
-|titre-affiché=L'injonction à réprimer ses émotions détériore la santé mentale des hommes
+|titre-affiché=L'injonction à la répression des émotions déteriore la santé mentale des hommes
 }}
 |objections={{Objection
 |page=L'expression des émotions affaiblirait la domination des hommes
@@ -449,7 +449,7 @@
 {{Argument
 |objections={{Objection
 |page=Seuls les hommes qui se conforment à l'injonction à la virilité bénéficient des discriminations envers les femmes
-|titre-affiché=Seuls les hommes qui se conforment à l'injonction à la virilité bénéficient des discriminations envers les femmes
+|titre-affiché=Seulement ceux qui se conforment à l'injonction à la virilité
 }}
 |justifications=
 |date-création=2021-03-18
@@ -524,7 +524,7 @@
 |titre-affiché=Les hommes n'ont aucun intérêt à renoncer à leurs privilèges
 }}{{Objection
 |page=L'émancipation des femmes doit être l'œuvre des femmes elles-mêmes
-|titre-affiché=L'émancipation des femmes doit être l'œuvre des femmes elles-mêmes
+|titre-affiché=L'émancipation des femmes doit être l'oeuvre des femmes elles-mêmes
 }}
 |justifications=
 |rubriques=Politique, Société
@@ -536,7 +536,7 @@
 {{Argument
 |objections={{Objection
 |page=Les hommes peuvent très facilement tuer dans l'œuf les actions militantes des femmes
-|titre-affiché=Les hommes peuvent très facilement tuer dans l'œuf les actions militantes des femmes
+|titre-affiché=Les hommes peuvent très facilement tuer dans l'oeuf toutes leurs actions militantes
 }}
 |justifications=
 |date-création=2021-03-18
@@ -571,10 +571,10 @@ Amitié, policiers, juges, journalistes.
 * car décident de la répartition de la parole et peuvent la rendre plus égalitaire
 |objections={{Objection
 |page=Les hommes utilisent leur accès privilégié à la parole pour conforter la domination masculine
-|titre-affiché=Les hommes utilisent leur accès privilégié à la parole pour conforter la domination masculine
+|titre-affiché=Les hommes utilisent ce privilège pour conforter la domination masculine
 }}{{Objection
 |page=Les hommes n'ont aucun intérêt à utiliser leur accès privilégié à la parole pour dénoncer le sexisme
-|titre-affiché=Les hommes n'ont aucun intérêt à utiliser leur accès privilégié à la parole pour dénoncer le sexisme
+|titre-affiché=Les hommes n'ont aucun intérêt à dénoncer le sexisme
 }}{{Objection
 |page=Les hommes devraient donner la parole aux femmes plutôt que de parler à leur place
 |titre-affiché=Les hommes devraient donner la parole aux femmes plutôt que de parler à leur place
@@ -603,7 +603,7 @@ Amitié, policiers, juges, journalistes.
 |titre-affiché=La majorité des hommes dominent leur compagne et freinent leur émancipation
 }}{{Objection
 |page=L'émancipation des femmes doit être l'œuvre des femmes elles-mêmes
-|titre-affiché=L'émancipation des femmes doit être l'œuvre des femmes elles-mêmes
+|titre-affiché=L'émancipation des femmes doit être l'oeuvre des femmes elles-mêmes
 }}
 |justifications=
 |rubriques=Politique, Société
@@ -644,7 +644,7 @@ Amitié, policiers, juges, journalistes.
 |titre-affiché=Les hommes n'ont aucun intérêt à renoncer à leurs privilèges
 }}{{Objection
 |page=Les hommes proféministes ne sont pas pris au sérieux par les autres hommes
-|titre-affiché=Les hommes proféministes ne sont pas pris au sérieux par les autres hommes
+|titre-affiché=Les hommes pro féministes ne sont pas pris au sérieux par les autres hommes
 }}
 |justifications=
 |rubriques=Politique, Société
@@ -1028,7 +1028,7 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 |initialisation=Objection@3698
 |objections={{Objection
 |page=La manière dont les femmes sont traitées ne saurait être décrite autrement que comme de la déshumanisation
-|titre-affiché=La manière dont les femmes sont traitées ne saurait être décrite autrement que comme de la déshumanisation
+|titre-affiché=La manière dont le femmes sont traitées ne saurait être décrite autrement que comme de la déshumanisation
 }}{{Objection
 |page=Le féminisme ne se décrédibilise jamais qu'aux yeux de ceux qui y sont déjà hostiles à la base
 |titre-affiché=Le féminisme ne se décrédibilise jamais qu'aux yeux de ceux qui y sont déjà hostiles à la base

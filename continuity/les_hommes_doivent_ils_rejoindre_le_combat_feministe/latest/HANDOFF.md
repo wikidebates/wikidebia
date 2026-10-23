@@ -1,90 +1,72 @@
 # Handoff — Les hommes doivent-ils rejoindre le combat féministe ?
 
 - Branche : `codex/traduction-combat-feministe`
-- Correctifs GitHub synchronisés jusqu’à : `26fedd9`
+- Correctifs GitHub synchronisés jusqu’à : `317dbbe`
 - Commit de référence du snapshot : commit contenant ce fichier
-- Date du snapshot : 22 octobre 2026
-- Phase : `graph_publication_resume`
-- Statut : `graph_publication_plan_ready`
-- Work : `EDIT-20261022-001`
-- Écritures MediaWiki effectuées : aucune
+- Date du snapshot : 23 octobre 2026
+- Phase : `fr_content_review`
+- Statut : `awaiting_review`
+- Work actif : `EDIT-20261023-001`
+- Work remplacé : `EDIT-20261022-001`
 
-## Travail accompli
+## Correction des titres affichés
 
-- extraction auditée : 100 arguments, 115 relations et 125 occurrences ;
-- revue indépendante des 125 placements approuvée, sans mutation structurelle ;
-- graphe validé puis promu dans `runtime/corpus/` ;
-- workspace éditorial créé et revue combinée graphe/titres appliquée ;
-- dix pages d’arguments reçoivent une correction certaine de titre canonique et
-  de titre affiché, soit vingt opérations tracées ;
-- aucun résumé, citation, référence, rubrique, mot-clé ou autre contenu
-  historique n’a été supprimé ni réécrit ;
-- premier checkpoint français rendu et validé avec le profil différentiel
-  `fr_graph_checkpoint_differential_v1` ;
-- 101 pages et l’agrégat français prêts sont conservés dans `wiki-pages/fr/` ;
-- le préflight distant authentifié a produit le plan signé
-  `runtime/fr-publication/graph/update-plan.json` : 89 mises à jour, dix
-  renommages, deux pages inchangées, aucun blocage et aucune revue manuelle ;
-- aucun reçu de publication ou état d’exécution distant n’existe encore ;
-- tests ciblés du workflow, des deux checkpoints et du validateur : 42 réussites.
-- tests ciblés du connecteur d’authentification : 60 réussites.
+Le Work initial modifiait les titres affichés de pages françaises sources. Son
+exécution a été interrompue après dix-neuf mises à jour et avant tout renommage.
+Six lignes `titre-affiché` effectivement modifiées ont été restaurées sur le wiki
+français, avec contrôle de révision, identité `ChatGPT`, balise `chatgpt` et
+relecture après écriture.
 
-## État distant courant
+Le correctif générique `317dbbe` interdit désormais toute modification du titre
+affiché d’une page source préexistante. Un nouveau Work a été construit depuis le
+corpus promu. Sa revue conserve les 100 titres affichés historiques et garde les
+dix corrections de titres canoniques : A0024, A0043, A0059, A0074, A0075,
+A0077, A0084, A0085, A0096 et A0099. Le validateur a accepté le Work corrigé.
 
-L’accès API français et l’identité `ChatGPT@Codex-FR` ont été vérifiés. Les
-secrets gérés sont transmis directement en mémoire au gestionnaire de connexion,
-sans copie dans la sauvegarde. Le secret anglais est injecté, mais l’identité
-essayée `ChatGPT@Codex-EN` est refusée par le wiki anglais ; elle n’est donc pas
-attestée prête. Ce point ne bloque pas le checkpoint français.
+## Checkpoint français graphe et titres
 
-Le workflow restauré conserve encore l’attestation historique antérieure au
-préflight :
+Les sept révisions que le nouveau préflight ne pouvait plus rattacher au snapshot
+initial ont été réconciliées uniquement après vérification de leur chaîne : toutes
+étaient signées par `ChatGPT`, portaient la balise `chatgpt`, utilisaient un résumé
+attendu et remontaient directement à la révision source.
+
+Le plan final signé
+`runtime/fr-publication/graph/update-plan.json` porte l’empreinte
+`2e934627a817399ad9ab8887c99df8b915d027e7e130385cc0352c2c2c3d3d67` :
+77 mises à jour, dix renommages, quatorze pages déjà conformes, aucune revue
+manuelle et aucun blocage. Son exécution et sa vérification ont réussi. Le reçu
+de checkpoint `runtime/fr-publication/graph/publication-receipt.json` porte
+l’empreinte
+`69af472f704df97375b319f1b33e9bbde45598d5d884b27ef852882da9cf9767`.
+
+La restauration ciblée et la réconciliation de l’exécution interrompue restent
+attestées dans :
+
+- `runtime/fr-publication/graph/displayed-title-restoration-plan.json` ;
+- `runtime/fr-publication/graph/displayed-title-restoration-receipt.json` ;
+- `runtime/fr-publication/graph/interrupted-checkpoint-reconciliation.json`.
+
+## Prochaine étape
+
+La revue du contenu français est préparée pour 100 arguments :
 
 ```text
-phase=graph_publication_resume
-status=blocked_remote_publication
-remote_publication_stage=graph
-last_remote_publication_execution_started=false
+reviews/les_hommes_doivent_ils_rejoindre_le_combat_feministe_fr_content_review.zip
 ```
 
-Le plan signé porte l’empreinte
-`fc0200ff9ba45f40fdf7af6c185eb63e94fae1a8cf6de8581c3077a88106584a`.
-L’exécution distante n’a pas commencé.
-
-## Reprise
-
-1. Vérifier `SHA256SUMS`.
-2. Restaurer `runtime/corpus/` dans `corpus/<debate_id>/`.
-3. Restaurer `runtime/editorial-workspace/` dans
-   `.state/editorial-workspaces/<debate_id>/EDIT-20261022-001/`.
-4. Restaurer `runtime/fr-publication/graph/` dans
-   `.state/fr-publication/<debate_id>/EDIT-20261022-001/graph/`.
-5. Restaurer `runtime/corpus-promotion/` dans
-   `.state/corpus-promotions/<debate_id>/` et `runtime/workflow/` dans
-   `.state/workflows/<debate_id>/`.
-6. Vérifier que l’identité FR est toujours disponible, puis lancer :
+Après revue éditoriale, placer le ZIP corrigé dans `incoming/`, puis lancer :
 
 ```bash
-./wikidebia workflow 'Les hommes doivent-ils rejoindre le combat féministe ?' \
-  --debate-id les_hommes_doivent_ils_rejoindre_le_combat_feministe
+./wikidebia review-import les_hommes_doivent_ils_rejoindre_le_combat_feministe
 ```
 
-La commande doit réutiliser ou vérifier le plan du checkpoint graphe/titres,
-l’exécuter de façon contrôlée et produire son reçu signé. Elle préparera ensuite
-automatiquement la revue française de contenu ; la traduction anglaise ne doit
-commencer qu’après le second checkpoint français.
+Cette commande finalisera la revue française de contenu et déclenchera le second
+checkpoint français. La traduction anglaise ne doit commencer qu’après ce second
+checkpoint.
 
-## Correctifs génériques ajoutés pendant cette reprise
+## Accès distant
 
-- conservation octet pour octet des preuves déjà scellées dans une sauvegarde de
-  continuité (`ecb5f95`) ;
-- enregistrement explicite d’un blocage réseau lors de la reprise d’un checkpoint
-  (`3177331`) ;
-- conversion des échecs de connexion pendant le préflight en
-  `FrenchCheckpointError`, avec attestation qu’aucune écriture n’a commencé
-  (`8b35e41`) ;
-- transmission en mémoire des BotPasswords gérés, sans fichier secret local
-  (`26fedd9`).
-
-Les états antérieurs et le build préparatoire restent accessibles dans
-l’historique Git de la branche.
+L’accès API français et l’identité `ChatGPT@Codex-FR` ont été vérifiés. Aucun
+secret ni fichier privé n’est présent dans cette sauvegarde. Le secret anglais
+est injecté dans l’environnement, mais l’identité essayée `ChatGPT@Codex-EN` a
+été refusée par le wiki anglais et ne doit pas être considérée comme prête.

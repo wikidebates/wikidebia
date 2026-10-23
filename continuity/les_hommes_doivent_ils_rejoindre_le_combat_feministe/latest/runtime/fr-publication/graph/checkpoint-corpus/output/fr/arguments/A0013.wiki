@@ -8,7 +8,7 @@
 |titre-affiché=Le traitement médiatique du sexisme est encore insuffisant
 }}{{Objection
 |page=De nombreuses victimes n'osent pas parler des violences sexistes qu'elles ont subies, encore moins aux hommes
-|titre-affiché=De nombreuses victimes n'osent pas parler des violences sexistes qu'elles ont subies, encore moins aux hommes
+|titre-affiché=De nombreuses victimes n'osent pas parler des violences qu'elles ont subies, encore moins aux hommes
 }}{{Objection
 |page=Les hommes sont socialisés pour être égoïstes
 |titre-affiché=Les hommes sont socialisés pour être égoïstes

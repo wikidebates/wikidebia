@@ -14,8 +14,8 @@
     "fr"
   ],
   "debate_id": "les_hommes_doivent_ils_rejoindre_le_combat_feministe",
-  "corpus_root": "/workspace/wikidebia-project/.state/fr-publication/les_hommes_doivent_ils_rejoindre_le_combat_feministe/EDIT-20261022-001/graph/checkpoint-corpus",
-  "logs_dir": "/workspace/wikidebia-project/logs/les_hommes_doivent_ils_rejoindre_le_combat_feministe/fr-checkpoint-EDIT-20261022-001-graph",
+  "corpus_root": "/workspace/wikidebia-project/.state/fr-publication/les_hommes_doivent_ils_rejoindre_le_combat_feministe/EDIT-20261023-001/graph/checkpoint-corpus",
+  "logs_dir": "/workspace/wikidebia-project/logs/les_hommes_doivent_ils_rejoindre_le_combat_feministe/fr-checkpoint-EDIT-20261023-001-graph",
   "published_state_dir": "/workspace/wikidebia-project/.state/published",
   "receipts_dir": "/workspace/wikidebia-project/.state/receipts",
   "validator": {
@@ -36,5 +36,5 @@
       "workflow"
     ]
   },
-  "state_inventory_root": "/workspace/wikidebia-project/.state/fr-publication/les_hommes_doivent_ils_rejoindre_le_combat_feministe/EDIT-20261022-001/graph/inventory"
+  "state_inventory_root": "/workspace/wikidebia-project/.state/fr-publication/les_hommes_doivent_ils_rejoindre_le_combat_feministe/EDIT-20261023-001/graph/inventory"
 }

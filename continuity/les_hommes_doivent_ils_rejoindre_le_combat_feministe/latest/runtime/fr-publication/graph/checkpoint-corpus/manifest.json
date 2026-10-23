@@ -124,22 +124,22 @@
       "dependency_node_ids": [],
       "status": "validated",
       "inputs": {
-        "registry_sha256": "f21f40a410df31d1a1b70b5bae9af98c87cb81226bd721840ded15961939599c",
-        "structural_sha256": "c8ff80690e18e000501acf3f64f34757bd5c7d9061b74eae1c99849db843a9d9",
+        "registry_sha256": "95b9c8269c8bbb2c04c38e6754e4e4936f0c639803619bc6fdd1dc4188ffea35",
+        "structural_sha256": "83262089d6216339a5c54f338590b92823df30e58cea1ade1a06d1eadc5fc3c9",
         "render_profile_version": "1.0",
         "handoff_path": null
       },
       "outputs": {
         "individual_directory": "output/fr/arguments",
         "aggregate_path": "output/fr/aggregates/arguments_batch_001.wiki",
-        "aggregate_sha256": "e7afa051e0f93dbceee6930b5bba9e37889f6143b0c1a4e196d59fbf45c6f3ce",
+        "aggregate_sha256": "c16b633f9ab539a38b8905885ac88522a5dc758a454df75c781201dff423a02a",
         "report_path": "reports/fr_batch_001.txt"
       },
       "work": {
-        "work_id": "EDIT-20261022-001-FR-RENDER",
+        "work_id": "EDIT-20261023-001-FR-RENDER",
         "conversation_name": "Rendu déterministe des arguments fr",
-        "started_at": "2026-10-22T14:33:14+00:00",
-        "completed_at": "2026-10-22T14:33:14+00:00"
+        "started_at": "2026-10-23T06:34:51+00:00",
+        "completed_at": "2026-10-23T06:34:51+00:00"
       }
     }
   ],
@@ -240,7 +240,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -320,7 +320,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -340,7 +340,7 @@
       "language": "fr",
       "canonical_title": "Les hommes ont intérêt à en finir avec le sexisme",
       "file_path": "output/fr/arguments/A0002.wiki",
-      "sha256": "ade50d2f0d0d961b8a7c70c6f3525941d2ec08adc3c3acddc572824f8c13fb09",
+      "sha256": "6a753685aa7944cc10937c2728ff9c44d5c181a07615caa5b907bdbce3218398",
       "creation_date": "2019-11-24",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -400,7 +400,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -420,7 +420,7 @@
       "language": "fr",
       "canonical_title": "Les femmes ont besoin des hommes pour en finir avec le sexisme",
       "file_path": "output/fr/arguments/A0003.wiki",
-      "sha256": "9f93ec2fbbafdb3456d7d31370e16063c469783f30c1cd4f28e79bc4c3b8fb69",
+      "sha256": "0f5622f6207b61a1087d9156f9a00335bbdeada2a391c11e84fe816b8d8a3c13",
       "creation_date": "2019-11-24",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -480,7 +480,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -500,7 +500,7 @@
       "language": "fr",
       "canonical_title": "Bien des hommes ont fait la preuve de leur engagement pour le combat féministe",
       "file_path": "output/fr/arguments/A0004.wiki",
-      "sha256": "1c643db31f3174801884f1ea34169f2f2d2b9e09cba95a5ef9575bde0c080686",
+      "sha256": "9d47ba8e5dfd5bff0ce52f25a12a800ff9eedb1c4c3c445db680b3badfe7b618",
       "creation_date": "2023-04-03",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -560,7 +560,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -640,7 +640,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -660,7 +660,7 @@
       "language": "fr",
       "canonical_title": "Les hommes sont socialisés pour dominer les femmes",
       "file_path": "output/fr/arguments/A0006.wiki",
-      "sha256": "f36f8c76b327bc0868c97b037d3af3d3fe64bbab24039dfe0827ac998f9f175b",
+      "sha256": "9f23ed4565a826d24bce3d54ecfb6aefc6059a157d90cd259feb02c52be53b20",
       "creation_date": "2019-11-24",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -720,7 +720,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -740,7 +740,7 @@
       "language": "fr",
       "canonical_title": "Les hommes n'ont aucun intérêt à renoncer à leurs privilèges",
       "file_path": "output/fr/arguments/A0007.wiki",
-      "sha256": "e5ca9eb512fd60def860769095e30c00d97145dee752625a72032d597e743464",
+      "sha256": "31cb3b9669469ff5f5dfc6da785383ea4fbdecbe9b4a79224afe278a8340f13d",
       "creation_date": "2019-11-24",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -800,7 +800,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -820,7 +820,7 @@
       "language": "fr",
       "canonical_title": "Les femmes doivent s'organiser en non-mixité",
       "file_path": "output/fr/arguments/A0008.wiki",
-      "sha256": "0b5ed1dad78571126d062228f28a4872bb24628dbd44356b6ad14978757306de",
+      "sha256": "d6402147a5138b1b728a79a758f4004f450cc65fee21fdcc8658a914792cee3f",
       "creation_date": "2020-03-22",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -880,7 +880,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -900,7 +900,7 @@
       "language": "fr",
       "canonical_title": "Une société ne peut pas fonctionner correctement si elle est égalitaire",
       "file_path": "output/fr/arguments/A0009.wiki",
-      "sha256": "7d1dd44621798c874803b8411f020806dc8cc8d8817f4ca2b31df8530d7acc61",
+      "sha256": "d7bbb6c9263b1a7d678627d6b4e381e4f3d313f77c68e4fb8d2365b0aa55cc43",
       "creation_date": "2021-03-18",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -960,7 +960,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -1040,7 +1040,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -1120,7 +1120,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -1200,7 +1200,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -1220,7 +1220,7 @@
       "language": "fr",
       "canonical_title": "Les hommes ne peuvent pas ne pas voir les violences et les discriminations sexistes",
       "file_path": "output/fr/arguments/A0013.wiki",
-      "sha256": "ca177031685385b3dea5ce68f7be64ba4cb358fdf55777560fa6debde2376829",
+      "sha256": "96eb94f511e762ea1cc7fb7e6830fc5ea362f5ba3889940ae6540af641f02382",
       "creation_date": "2019-11-24",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -1280,7 +1280,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -1360,7 +1360,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -1440,7 +1440,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -1520,7 +1520,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -1540,7 +1540,7 @@
       "language": "fr",
       "canonical_title": "Les hommes sont socialisés pour déshumaniser les femmes",
       "file_path": "output/fr/arguments/A0017.wiki",
-      "sha256": "daa71a22b6f3a38c7895bffd6d11480cc06800cd8384660342b2f8ce68970e71",
+      "sha256": "640553ca4b91c713755c7daa30d9509f61e971856527fb2d4bc23f26aabcfd8e",
       "creation_date": "2020-03-26",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -1600,7 +1600,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -1680,7 +1680,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -1700,7 +1700,7 @@
       "language": "fr",
       "canonical_title": "Les hommes ont intérêt à en finir avec le machisme pour assumer leur sensibilité et leurs émotions",
       "file_path": "output/fr/arguments/A0019.wiki",
-      "sha256": "7af448e12cb69a11b8f64d9e1c586cc7c07d46a133760b4ce035d5759cfd4cd1",
+      "sha256": "f4587221e76871a335835bfbcd3422309e63ddda61d1f44f15ba3824605455f6",
       "creation_date": "2019-12-25",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -1760,7 +1760,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -1780,7 +1780,7 @@
       "language": "fr",
       "canonical_title": "Les hommes bénéficient des discriminations envers les femmes",
       "file_path": "output/fr/arguments/A0020.wiki",
-      "sha256": "b8606b55ad226b8f695aee9c774234d977edc3cd6c911185ba89db56c07a42fb",
+      "sha256": "8c8196ce8e53a8f512f82bbe2d15b4cf5c368052e203ee5b2ec7b438cd0c6158",
       "creation_date": "2021-03-18",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -1840,7 +1840,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -1920,7 +1920,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -2000,7 +2000,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -2080,7 +2080,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -2160,7 +2160,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -2240,7 +2240,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -2260,7 +2260,7 @@
       "language": "fr",
       "canonical_title": "Seul un changement de comportement des hommes pourra mettre fin au sexisme",
       "file_path": "output/fr/arguments/A0026.wiki",
-      "sha256": "773ffbfa785b8719fa6706f42783c6d64538f3cb0a2d24ca6b0d419936368391",
+      "sha256": "59d2cb4ec9f6f840c4ac4afe868793780e850a490c22c5e5da65fd93b17c631d",
       "creation_date": "2019-11-24",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -2320,7 +2320,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -2340,7 +2340,7 @@
       "language": "fr",
       "canonical_title": "Les femmes sont parfaitement capables de mener le combat féministe par elles-mêmes",
       "file_path": "output/fr/arguments/A0027.wiki",
-      "sha256": "cb1fe9a6a6f040895404ea7b85a03c190611d07aa303fc9e6c11a01ee2faa861",
+      "sha256": "1a4961a98bcf3a1c214b58ed1f3abb30824e250849dfeb22e40eae73f5d32831",
       "creation_date": "2021-03-18",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -2400,7 +2400,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -2480,7 +2480,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -2560,7 +2560,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -2580,7 +2580,7 @@
       "language": "fr",
       "canonical_title": "Les hommes ont davantage de moyens d'être entendus dans la société",
       "file_path": "output/fr/arguments/A0030.wiki",
-      "sha256": "6803e6f011cce52d52d9c34987c59203edb4949cc5722b60a4771c6547397083",
+      "sha256": "3fd74d6e8337a2393368b03fbc8e0ffaa68a3ad11cf6791644458da0eb861a9d",
       "creation_date": "2019-11-24",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -2640,7 +2640,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -2660,7 +2660,7 @@
       "language": "fr",
       "canonical_title": "Les hommes peuvent faciliter et encourager l'émancipation de leur compagne",
       "file_path": "output/fr/arguments/A0031.wiki",
-      "sha256": "1968dbd9bbf6f5cba7cdf5cf70c88d1c9505505ec90d617b81fd68345c43d75e",
+      "sha256": "89ff42d5062bb404ba7d519f81c8057e886713130a39ad6e723267916510a870",
       "creation_date": "2019-11-24",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -2720,7 +2720,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -2800,7 +2800,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -2820,7 +2820,7 @@
       "language": "fr",
       "canonical_title": "Les hommes peuvent parler et convaincre d'autres hommes de la nécessité du féminisme",
       "file_path": "output/fr/arguments/A0033.wiki",
-      "sha256": "93b9e1398a6773e65c1999f3dca68609b932fe2c27d5abae4b9835ebf3024965",
+      "sha256": "e50de2c7b6c666f695d8e6d4f91e2dbaf9bec9d293a553354e00aaa3e2a2add4",
       "creation_date": "2020-03-19",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -2880,7 +2880,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -2960,7 +2960,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -3040,7 +3040,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -3120,7 +3120,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -3200,7 +3200,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -3280,7 +3280,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -3360,7 +3360,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -3440,7 +3440,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -3520,7 +3520,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -3600,7 +3600,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -3680,7 +3680,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -3760,7 +3760,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -3840,7 +3840,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -3920,7 +3920,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -4000,7 +4000,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -4080,7 +4080,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -4160,7 +4160,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -4240,7 +4240,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -4320,7 +4320,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -4400,7 +4400,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -4480,7 +4480,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -4560,7 +4560,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -4640,7 +4640,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -4720,7 +4720,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -4800,7 +4800,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -4880,7 +4880,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -4960,7 +4960,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -5040,7 +5040,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -5120,7 +5120,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -5200,7 +5200,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -5280,7 +5280,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -5360,7 +5360,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -5440,7 +5440,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -5520,7 +5520,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -5600,7 +5600,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -5680,7 +5680,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -5760,7 +5760,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -5840,7 +5840,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -5920,7 +5920,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -6000,7 +6000,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -6080,7 +6080,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -6100,7 +6100,7 @@
       "language": "fr",
       "canonical_title": "Qualifier le traitement des femmes de déshumanisation est démesuré et discrédite la cause féministe",
       "file_path": "output/fr/arguments/A0074.wiki",
-      "sha256": "a583eda9f2a91c791f1a263ac4fabfe8ed64da86fdcb94ff00d5bf60b6c3eedd",
+      "sha256": "1a2ce865ce91511fecd9876af4932845c5089cb7dca5a3e5d68d2aeaedea2836",
       "creation_date": "2024-02-02",
       "batch_id": "FR-A-001",
       "status": "validated",
@@ -6160,7 +6160,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -6240,7 +6240,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -6320,7 +6320,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -6400,7 +6400,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -6480,7 +6480,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -6560,7 +6560,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -6640,7 +6640,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -6720,7 +6720,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -6800,7 +6800,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -6880,7 +6880,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -6960,7 +6960,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -7040,7 +7040,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -7120,7 +7120,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -7200,7 +7200,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -7280,7 +7280,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -7360,7 +7360,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -7440,7 +7440,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -7520,7 +7520,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -7600,7 +7600,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -7680,7 +7680,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -7760,7 +7760,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -7840,7 +7840,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -7920,7 +7920,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -8000,7 +8000,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -8080,7 +8080,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -8160,7 +8160,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -8240,7 +8240,7 @@
       "validation": {
         "status": "passed",
         "report_path": "reports/fr_checkpoint_validation.json",
-        "validated_at": "2026-10-22T14:33:14+00:00"
+        "validated_at": "2026-10-23T06:34:51+00:00"
       },
       "wiki": {
         "check_status": "unchecked",
@@ -8264,39 +8264,39 @@
   "translation_status": {
     "en": "deferred"
   },
-  "updated_at": "2026-10-22T14:33:14+00:00",
+  "updated_at": "2026-10-23T06:34:51+00:00",
   "validations": [
     {
-      "id": "V20261022-001",
+      "id": "V20261023-001",
       "scope": "graph",
       "language": null,
       "validator_version": "0.4.105",
-      "executed_at": "2026-10-22T14:33:14+00:00",
-      "input_sha256": "c8ff80690e18e000501acf3f64f34757bd5c7d9061b74eae1c99849db843a9d9",
+      "executed_at": "2026-10-23T06:34:51+00:00",
+      "input_sha256": "83262089d6216339a5c54f338590b92823df30e58cea1ade1a06d1eadc5fc3c9",
       "result": "passed",
       "blocking_errors": 0,
       "warnings": 0,
       "report_path": "reports/fr_checkpoint_validation.json"
     },
     {
-      "id": "V20261022-002",
+      "id": "V20261023-002",
       "scope": "fr_debate",
       "language": null,
       "validator_version": "0.4.105",
-      "executed_at": "2026-10-22T14:33:14+00:00",
-      "input_sha256": "c8ff80690e18e000501acf3f64f34757bd5c7d9061b74eae1c99849db843a9d9",
+      "executed_at": "2026-10-23T06:34:51+00:00",
+      "input_sha256": "83262089d6216339a5c54f338590b92823df30e58cea1ade1a06d1eadc5fc3c9",
       "result": "passed",
       "blocking_errors": 0,
       "warnings": 0,
       "report_path": "reports/fr_checkpoint_validation.json"
     },
     {
-      "id": "V20261022-003",
+      "id": "V20261023-003",
       "scope": "fr_global",
       "language": null,
       "validator_version": "0.4.105",
-      "executed_at": "2026-10-22T14:33:14+00:00",
-      "input_sha256": "c8ff80690e18e000501acf3f64f34757bd5c7d9061b74eae1c99849db843a9d9",
+      "executed_at": "2026-10-23T06:34:51+00:00",
+      "input_sha256": "83262089d6216339a5c54f338590b92823df30e58cea1ade1a06d1eadc5fc3c9",
       "result": "passed",
       "blocking_errors": 0,
       "warnings": 0,
@@ -8320,6 +8320,6 @@
     "remote_write_authorized": true,
     "remote_template_compatibility": "not_checked",
     "blocking_reason": null,
-    "checked_at": "2026-10-22T14:33:14+00:00"
+    "checked_at": "2026-10-23T06:34:51+00:00"
   }
 }

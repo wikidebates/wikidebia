@@ -4,13 +4,13 @@
   "normative_revision": "1.2.88",
   "kit_version": "2.16.47",
   "debate_id": "les_hommes_doivent_ils_rejoindre_le_combat_feministe",
-  "work_id": "EDIT-20261022-001",
+  "work_id": "EDIT-20261023-001",
   "language": "fr",
   "status": "locked_for_generation",
-  "review_sha256": "30bbc1ae45b8b43b31d36d480b60799b4c13f6fd32cdd9dcc5d1ed075f84bf6b",
-  "applied_at": "2026-10-22T14:33:11+00:00",
+  "review_sha256": "2deaafb2133429bcf5033e6e69bd43e7972a7f2655c073b1bb96f4e550a9b211",
+  "applied_at": "2026-10-23T06:34:03+00:00",
   "old_structural_sha256": "e9fbfc80def372a7370567a985a704eb41cb6417c51c59e423d3ad7a3002993d",
-  "new_structural_sha256": "c8ff80690e18e000501acf3f64f34757bd5c7d9061b74eae1c99849db843a9d9",
+  "new_structural_sha256": "83262089d6216339a5c54f338590b92823df30e58cea1ade1a06d1eadc5fc3c9",
   "debate": {
     "entity_type": "debate",
     "entity_id": "debate",
@@ -86,7 +86,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -95,7 +95,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -150,7 +150,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -159,7 +159,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -210,7 +210,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -219,7 +219,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -268,7 +268,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -277,7 +277,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -314,11 +314,15 @@
       "page_origin": "preexisting",
       "canonical_title": "La société doit en finir avec le sexisme",
       "displayed_title": "La société doit en finir avec le sexisme",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -327,7 +331,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -344,8 +348,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -369,7 +377,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -378,7 +386,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -428,7 +436,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -437,7 +445,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -486,7 +494,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -495,7 +503,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -534,11 +542,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Une société ne peut pas fonctionner correctement si elle est égalitaire",
       "displayed_title": "Une société ne peut pas fonctionner correctement si elle est égalitaire",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -547,7 +559,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -564,8 +576,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -584,7 +600,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -593,7 +609,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -636,7 +652,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -645,7 +661,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -694,7 +710,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -703,7 +719,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -758,7 +774,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -767,7 +783,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -826,7 +842,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -835,7 +851,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -894,7 +910,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -903,7 +919,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -946,11 +962,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Les hommes sont socialisés pour se sentir supérieurs aux femmes",
       "displayed_title": "Les hommes sont socialisés pour se sentir supérieurs aux femmes",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -959,7 +979,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -976,8 +996,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -1002,7 +1026,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1011,7 +1035,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1052,11 +1076,15 @@
       "page_origin": "preexisting",
       "canonical_title": "La solidarité masculine est construite sur le dénigrement et l'exclusion des femmes",
       "displayed_title": "La solidarité masculine est construite sur le dénigrement et l'exclusion des femmes",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1065,7 +1093,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1082,8 +1110,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -1093,7 +1125,7 @@
       "entity_id": "A0019",
       "page_origin": "preexisting",
       "canonical_title": "Les hommes ont intérêt à en finir avec le machisme pour assumer leur sensibilité et leurs émotions",
-      "displayed_title": "Les hommes ont intérêt à en finir avec le machisme pour assumer leur sensibilité et leurs émotions",
+      "displayed_title": "Pour assumer leur sensibilité et leurs émotions",
       "rubriques": [
         "Politique",
         "Société"
@@ -1110,7 +1142,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1119,7 +1151,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1166,11 +1198,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Les hommes bénéficient des discriminations envers les femmes",
       "displayed_title": "Les hommes bénéficient des discriminations envers les femmes",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1179,7 +1215,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1196,8 +1232,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -1207,7 +1247,7 @@
       "entity_id": "A0021",
       "page_origin": "preexisting",
       "canonical_title": "Les hommes ont intérêt à en finir avec le machisme pour se délivrer de l'injonction à la virilité",
-      "displayed_title": "Les hommes ont intérêt à en finir avec le machisme pour se délivrer de l'injonction à la virilité",
+      "displayed_title": "Pour se délivrer de l'injonction à la virilité",
       "rubriques": [
         "Politique",
         "Société"
@@ -1221,7 +1261,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1230,7 +1270,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1270,7 +1310,7 @@
       "entity_id": "A0022",
       "page_origin": "preexisting",
       "canonical_title": "Les hommes ont intérêt à en finir avec le machisme pour sortir des rapports de rivalité entre hommes",
-      "displayed_title": "Les hommes ont intérêt à en finir avec le machisme pour sortir des rapports de rivalité entre hommes",
+      "displayed_title": "Pour sortir des rapports de rivalité entre hommes",
       "rubriques": [
         "Politique",
         "Société"
@@ -1285,7 +1325,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1294,7 +1334,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1336,7 +1376,7 @@
       "entity_id": "A0023",
       "page_origin": "preexisting",
       "canonical_title": "Les hommes ont intérêt à en finir avec le machisme pour simplifier et libérer les rapports de séduction",
-      "displayed_title": "Les hommes ont intérêt à en finir avec le machisme pour simplifier et libérer les rapports de séduction",
+      "displayed_title": "Pour simplifier et libérer les rapports de séduction",
       "rubriques": [
         "Politique",
         "Société"
@@ -1352,7 +1392,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1361,7 +1401,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1405,21 +1445,25 @@
       "entity_id": "A0024",
       "page_origin": "preexisting",
       "canonical_title": "La masculinité toxique génère des troubles mentaux et des suicides chez les hommes",
-      "displayed_title": "La masculinité toxique génère des troubles mentaux et des suicides chez les hommes",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Pour en finir avec la souffrance que la masculinité toxique génère chez eux",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.",
+      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "change",
-        "displayed_title": "change",
+        "displayed_title": "keep",
         "rubriques": "deferred_to_content_review",
         "keywords": "deferred_to_content_review"
       },
       "rationales": {
         "canonical_title": "Correction de l’accord du verbe avec le sujet singulier « la masculinité toxique », sans changer la thèse.",
-        "displayed_title": "Le titre affiché historique présente le même défaut manifeste que le nom de page ; la même correction est appliquée pour conserver leur équivalence exacte. Correction de l’accord du verbe avec le sujet singulier « la masculinité toxique », sans changer la thèse.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1436,8 +1480,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -1447,12 +1495,16 @@
       "entity_id": "A0025",
       "page_origin": "preexisting",
       "canonical_title": "La masculinité toxique est le terreau de l'homophobie",
-      "displayed_title": "La masculinité toxique est le terreau de l'homophobie",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Pour ne plus subir l'homophobie",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1461,7 +1513,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1478,8 +1530,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -1502,7 +1558,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1511,7 +1567,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1550,11 +1606,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Les femmes sont parfaitement capables de mener le combat féministe par elles-mêmes",
       "displayed_title": "Les femmes sont parfaitement capables de mener le combat féministe par elles-mêmes",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1563,7 +1623,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1580,8 +1640,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -1606,7 +1670,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1615,7 +1679,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1658,11 +1722,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Les femmes ont intérêt à mener le combat féministe sans les hommes",
       "displayed_title": "Les femmes ont intérêt à mener le combat féministe sans les hommes",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1671,7 +1739,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1688,8 +1756,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -1712,7 +1784,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1721,7 +1793,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1773,7 +1845,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1782,7 +1854,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1836,7 +1908,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1845,7 +1917,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1897,7 +1969,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1906,7 +1978,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1947,11 +2019,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Le combat féministe n'avancera que si les hommes décident de lâcher du lest",
       "displayed_title": "Le combat féministe n'avancera que si les hommes décident de lâcher du lest",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -1960,7 +2036,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -1977,8 +2053,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -1989,11 +2069,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Le féminisme sera victorieux quand tous les hommes y adhèreront",
       "displayed_title": "Le féminisme sera victorieux quand tous les hommes y adhèreront",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2002,7 +2086,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2019,8 +2103,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2030,12 +2118,16 @@
       "entity_id": "A0036",
       "page_origin": "preexisting",
       "canonical_title": "Les hommes ne subissent pas l'épuisement généré par les discriminations sexistes",
-      "displayed_title": "Les hommes ne subissent pas l'épuisement généré par les discriminations sexistes",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "L'absence de discrimination à leur égard leur facilite la tâche pour militer",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2044,7 +2136,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2061,8 +2153,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2072,12 +2168,16 @@
       "entity_id": "A0037",
       "page_origin": "preexisting",
       "canonical_title": "Le médecin communiste Willy Peers a permis la légalisation de l'avortement et la démocratisation de la contraception en Belgique",
-      "displayed_title": "Le médecin communiste Willy Peers a permis la légalisation de l'avortement et la démocratisation de la contraception en Belgique",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Les femmes belges doivent leur droit à l'avortement, à la contraception et à l'accouchement sans douleur à Willy Peers",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2086,7 +2186,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2103,8 +2203,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2115,11 +2219,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Lénine avait lui-même des sensibilités féministes",
       "displayed_title": "Lénine avait lui-même des sensibilités féministes",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2128,7 +2236,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2145,8 +2253,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2157,11 +2269,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Victor Hugo avait des idées très féministes",
       "displayed_title": "Victor Hugo avait des idées très féministes",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2170,7 +2286,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2187,8 +2303,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2199,11 +2319,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Une société n'est fonctionnelle que si elle est égalitaire",
       "displayed_title": "Une société n'est fonctionnelle que si elle est égalitaire",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2212,7 +2336,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2229,8 +2353,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2241,11 +2369,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Les inégalités hommes/femmes sont un gouffre financier pour la société",
       "displayed_title": "Les inégalités hommes/femmes sont un gouffre financier pour la société",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2254,7 +2386,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2271,8 +2403,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2298,7 +2434,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2307,7 +2443,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2349,21 +2485,25 @@
       "entity_id": "A0043",
       "page_origin": "preexisting",
       "canonical_title": "Il est possible de donner aux hommes une éducation non sexiste",
-      "displayed_title": "Il est possible de donner aux hommes une éducation non sexiste",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Il est possible de leur donner une autre éducation",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.",
+      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "change",
-        "displayed_title": "change",
+        "displayed_title": "keep",
         "rubriques": "deferred_to_content_review",
         "keywords": "deferred_to_content_review"
       },
       "rationales": {
         "canonical_title": "Le référent vague « leur » est remplacé par « aux hommes » et la finalité non sexiste est rendue explicite d’après le parent immédiat.",
-        "displayed_title": "Le titre affiché historique présente le même défaut manifeste que le nom de page ; la même correction est appliquée pour conserver leur équivalence exacte. Le référent vague « leur » est remplacé par « aux hommes » et la finalité non sexiste est rendue explicite d’après le parent immédiat.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2380,8 +2520,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2392,11 +2536,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Le mouvement féministe doit rester à l'abri de la domination masculine",
       "displayed_title": "Le mouvement féministe doit rester à l'abri de la domination masculine",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2405,7 +2553,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2422,8 +2570,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2445,7 +2597,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2454,7 +2606,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2491,11 +2643,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Les hommes qui assument leur féminisme sont rejetés par les autres hommes",
       "displayed_title": "Les hommes qui assument leur féminisme sont rejetés par les autres hommes",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2504,7 +2660,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2521,8 +2677,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2533,11 +2693,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Les hommes n'ont pas de privilèges",
       "displayed_title": "Les hommes n'ont pas de privilèges",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2546,7 +2710,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2563,8 +2727,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2574,12 +2742,16 @@
       "entity_id": "A0048",
       "page_origin": "preexisting",
       "canonical_title": "Les femmes doivent s'organiser en non-mixité pour créer un espace d'échange sûr et rassurant",
-      "displayed_title": "Les femmes doivent s'organiser en non-mixité pour créer un espace d'échange sûr et rassurant",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Pour créer un espace d'échange sûr et rassurant",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2588,7 +2760,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2605,8 +2777,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2617,11 +2793,15 @@
       "page_origin": "preexisting",
       "canonical_title": "La non-mixité doit être une solution temporaire",
       "displayed_title": "La non-mixité doit être une solution temporaire",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2630,7 +2810,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2647,8 +2827,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2658,12 +2842,16 @@
       "entity_id": "A0050",
       "page_origin": "preexisting",
       "canonical_title": "Les femmes doivent s'organiser en non-mixité pour ne pas avoir à tout réexpliquer",
-      "displayed_title": "Les femmes doivent s'organiser en non-mixité pour ne pas avoir à tout réexpliquer",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Pour ne pas avoir à tout réexpliquer",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2672,7 +2860,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2689,8 +2877,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2701,11 +2893,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Le combat n'avancera pas si on n'éduque pas les hommes",
       "displayed_title": "Le combat n'avancera pas si on n'éduque pas les hommes",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2714,7 +2910,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2731,8 +2927,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2742,12 +2942,16 @@
       "entity_id": "A0052",
       "page_origin": "preexisting",
       "canonical_title": "Les femmes doivent s'organiser en non-mixité pour parler et communiquer librement",
-      "displayed_title": "Les femmes doivent s'organiser en non-mixité pour parler et communiquer librement",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Pour parler et communiquer librement",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2756,7 +2960,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2773,8 +2977,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2784,12 +2992,16 @@
       "entity_id": "A0053",
       "page_origin": "preexisting",
       "canonical_title": "Les femmes doivent s'organiser en non-mixité pour prendre conscience du caractère systémique de la domination",
-      "displayed_title": "Les femmes doivent s'organiser en non-mixité pour prendre conscience du caractère systémique de la domination",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Pour prendre conscience du caractère systémique de la domination",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2798,7 +3010,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2815,8 +3027,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2826,12 +3042,16 @@
       "entity_id": "A0054",
       "page_origin": "preexisting",
       "canonical_title": "Les femmes doivent s'organiser en non-mixité pour renforcer la sororité",
-      "displayed_title": "Les femmes doivent s'organiser en non-mixité pour renforcer la sororité",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Pour renforcer la sororité",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2840,7 +3060,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2857,8 +3077,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2868,12 +3092,16 @@
       "entity_id": "A0055",
       "page_origin": "preexisting",
       "canonical_title": "Les femmes doivent s'organiser en non-mixité pour diriger la lutte par elles-mêmes",
-      "displayed_title": "Les femmes doivent s'organiser en non-mixité pour diriger la lutte par elles-mêmes",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Pour diriger la lutte par elles-mêmes",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2882,7 +3110,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2899,8 +3127,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2910,12 +3142,16 @@
       "entity_id": "A0056",
       "page_origin": "preexisting",
       "canonical_title": "Les femmes doivent s'organiser en non-mixité pour apprendre à être autonomes",
-      "displayed_title": "Les femmes doivent s'organiser en non-mixité pour apprendre à être autonomes",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Pour apprendre à être autonomes",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2924,7 +3160,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2941,8 +3177,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2952,12 +3192,16 @@
       "entity_id": "A0057",
       "page_origin": "preexisting",
       "canonical_title": "Les femmes doivent s'organiser en non-mixité pour prendre conscience de leur valeur individuelle",
-      "displayed_title": "Les femmes doivent s'organiser en non-mixité pour prendre conscience de leur valeur individuelle",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Pour prendre conscience de leur valeur individuelle",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -2966,7 +3210,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -2983,8 +3227,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -2994,12 +3242,16 @@
       "entity_id": "A0058",
       "page_origin": "preexisting",
       "canonical_title": "Les femmes doivent s'organiser en non-mixité pour prendre conscience de leur force collective",
-      "displayed_title": "Les femmes doivent s'organiser en non-mixité pour prendre conscience de leur force collective",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Pour prendre conscience de leur force collective",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3008,7 +3260,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3025,8 +3277,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -3036,21 +3292,25 @@
       "entity_id": "A0059",
       "page_origin": "preexisting",
       "canonical_title": "L'absence d'égalité empêche une société de fonctionner correctement",
-      "displayed_title": "L'absence d'égalité empêche une société de fonctionner correctement",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "C'est plutôt l'inverse",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.",
+      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "change",
-        "displayed_title": "change",
+        "displayed_title": "keep",
         "rubriques": "deferred_to_content_review",
         "keywords": "deferred_to_content_review"
       },
       "rationales": {
         "canonical_title": "Le libellé contextuel « C’est plutôt l’inverse » est remplacé par la proposition autonome qu’expriment sa relation d’objection et sa citation.",
-        "displayed_title": "Le titre affiché historique présente le même défaut manifeste que le nom de page ; la même correction est appliquée pour conserver leur équivalence exacte. Le libellé contextuel « C’est plutôt l’inverse » est remplacé par la proposition autonome qu’expriment sa relation d’objection et sa citation.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3067,8 +3327,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -3090,7 +3354,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3099,7 +3363,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3148,7 +3412,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3157,7 +3421,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3205,7 +3469,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3214,7 +3478,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3262,7 +3526,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3271,7 +3535,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3320,7 +3584,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3329,7 +3593,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3368,11 +3632,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Les femmes sont sans cesse ramenées à leur corps et à leur apparence",
       "displayed_title": "Les femmes sont sans cesse ramenées à leur corps et à leur apparence",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3381,7 +3649,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3398,8 +3666,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -3410,11 +3682,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Beaucoup d'hommes ne sont pas égoïstes",
       "displayed_title": "Beaucoup d'hommes ne sont pas égoïstes",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3423,7 +3699,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3440,8 +3716,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -3452,11 +3732,15 @@
       "page_origin": "preexisting",
       "canonical_title": "La socialisation vise à lutter contre notre égoïsme naturel",
       "displayed_title": "La socialisation vise à lutter contre notre égoïsme naturel",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3465,7 +3749,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3482,8 +3766,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -3505,7 +3793,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3514,7 +3802,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3563,7 +3851,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3572,7 +3860,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3610,7 +3898,7 @@
       "entity_id": "A0070",
       "page_origin": "preexisting",
       "canonical_title": "De nombreuses victimes n'osent pas parler des violences sexistes qu'elles ont subies, encore moins aux hommes",
-      "displayed_title": "De nombreuses victimes n'osent pas parler des violences sexistes qu'elles ont subies, encore moins aux hommes",
+      "displayed_title": "De nombreuses victimes n'osent pas parler des violences qu'elles ont subies, encore moins aux hommes",
       "rubriques": [
         "Politique",
         "Société"
@@ -3624,7 +3912,7 @@
       ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3633,7 +3921,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3674,11 +3962,15 @@
       "page_origin": "preexisting",
       "canonical_title": "La domination masculine est de nos jours largement contestée dans tous les domaines de la société",
       "displayed_title": "La domination masculine est de nos jours largement contestée dans tous les domaines de la société",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3687,7 +3979,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3704,8 +3996,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -3715,12 +4011,16 @@
       "entity_id": "A0072",
       "page_origin": "preexisting",
       "canonical_title": "Les hommes sont capables de déconstruire leurs préjugés et leurs pratiques sexistes",
-      "displayed_title": "Les hommes sont capables de déconstruire leurs préjugés et leurs pratiques sexistes",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Les hommes sont capables de déconstruire leurs préjugés et leurs pratiques",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3729,7 +4029,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3746,8 +4046,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -3757,12 +4061,16 @@
       "entity_id": "A0073",
       "page_origin": "preexisting",
       "canonical_title": "L'éducation vise à développer notre empathie",
-      "displayed_title": "L'éducation vise à développer notre empathie",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "L'éducation vise au contraire à développer notre empathie",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3771,7 +4079,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3788,8 +4096,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -3799,21 +4111,25 @@
       "entity_id": "A0074",
       "page_origin": "preexisting",
       "canonical_title": "Qualifier le traitement des femmes de déshumanisation est démesuré et discrédite la cause féministe",
-      "displayed_title": "Qualifier le traitement des femmes de déshumanisation est démesuré et discrédite la cause féministe",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Le terme \"déshumaniser\" est démesuré, il y a une instrumentalisation des corps certes et une altère expression de la domination mais déshumaniser ne fait que décrédibiliser la cause féministe",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.",
+      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "change",
-        "displayed_title": "change",
+        "displayed_title": "keep",
         "rubriques": "deferred_to_content_review",
         "keywords": "deferred_to_content_review"
       },
       "rationales": {
         "canonical_title": "La formulation est ramenée à une seule proposition grammaticale qui conserve les deux prédicats centraux : caractère démesuré et effet discréditant.",
-        "displayed_title": "Le titre affiché historique présente le même défaut manifeste que le nom de page ; la même correction est appliquée pour conserver leur équivalence exacte. La formulation est ramenée à une seule proposition grammaticale qui conserve les deux prédicats centraux : caractère démesuré et effet discréditant.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3830,8 +4146,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -3841,21 +4161,25 @@
       "entity_id": "A0075",
       "page_origin": "preexisting",
       "canonical_title": "L'injonction à réprimer ses émotions détériore la santé mentale des hommes",
-      "displayed_title": "L'injonction à réprimer ses émotions détériore la santé mentale des hommes",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "L'injonction à la répression des émotions déteriore la santé mentale des hommes",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.",
+      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "change",
-        "displayed_title": "change",
+        "displayed_title": "keep",
         "rubriques": "deferred_to_content_review",
         "keywords": "deferred_to_content_review"
       },
       "rationales": {
         "canonical_title": "Correction orthographique de « détériore » et formulation plus directe de la même relation causale, sans élargissement de portée.",
-        "displayed_title": "Le titre affiché historique présente le même défaut manifeste que le nom de page ; la même correction est appliquée pour conserver leur équivalence exacte. Correction orthographique de « détériore » et formulation plus directe de la même relation causale, sans élargissement de portée.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3872,8 +4196,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -3884,11 +4212,15 @@
       "page_origin": "preexisting",
       "canonical_title": "L'expression des émotions affaiblirait la domination des hommes",
       "displayed_title": "L'expression des émotions affaiblirait la domination des hommes",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3897,7 +4229,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3914,8 +4246,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -3925,21 +4261,25 @@
       "entity_id": "A0077",
       "page_origin": "preexisting",
       "canonical_title": "Seuls les hommes qui se conforment à l'injonction à la virilité bénéficient des discriminations envers les femmes",
-      "displayed_title": "Seuls les hommes qui se conforment à l'injonction à la virilité bénéficient des discriminations envers les femmes",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Seulement ceux qui se conforment à l'injonction à la virilité",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.",
+      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "change",
-        "displayed_title": "change",
+        "displayed_title": "keep",
         "rubriques": "deferred_to_content_review",
         "keywords": "deferred_to_content_review"
       },
       "rationales": {
         "canonical_title": "Le fragment contextuel est développé en proposition autonome en reprenant exactement la restriction portée par le résumé historique.",
-        "displayed_title": "Le titre affiché historique présente le même défaut manifeste que le nom de page ; la même correction est appliquée pour conserver leur équivalence exacte. Le fragment contextuel est développé en proposition autonome en reprenant exactement la restriction portée par le résumé historique.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3956,8 +4296,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -3968,11 +4312,15 @@
       "page_origin": "preexisting",
       "canonical_title": "En renonçant à la virilité, les hommes perdraient leur pouvoir",
       "displayed_title": "En renonçant à la virilité, les hommes perdraient leur pouvoir",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -3981,7 +4329,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -3998,8 +4346,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4010,11 +4362,15 @@
       "page_origin": "preexisting",
       "canonical_title": "La virilité n'a pas que des mauvais côtés",
       "displayed_title": "La virilité n'a pas que des mauvais côtés",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4023,7 +4379,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4040,8 +4396,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4052,11 +4412,15 @@
       "page_origin": "preexisting",
       "canonical_title": "La rivalité est une source d'émulation",
       "displayed_title": "La rivalité est une source d'émulation",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4065,7 +4429,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4082,8 +4446,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4094,11 +4462,15 @@
       "page_origin": "preexisting",
       "canonical_title": "La fin du sexisme entraînerait de nouvelles rivalités entre hommes et femmes",
       "displayed_title": "La fin du sexisme entraînerait de nouvelles rivalités entre hommes et femmes",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4107,7 +4479,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4124,8 +4496,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4136,11 +4512,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Les hommes ont intérêt à conserver leur rôle de dominants dans les rapports de séduction",
       "displayed_title": "Les hommes ont intérêt à conserver leur rôle de dominants dans les rapports de séduction",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4149,7 +4529,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4166,8 +4546,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4178,11 +4562,15 @@
       "page_origin": "preexisting",
       "canonical_title": "De nombreuses femmes préfèrent les hommes dominants",
       "displayed_title": "De nombreuses femmes préfèrent les hommes dominants",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4191,7 +4579,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4208,8 +4596,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4219,21 +4611,25 @@
       "entity_id": "A0084",
       "page_origin": "preexisting",
       "canonical_title": "L'émancipation des femmes doit être l'œuvre des femmes elles-mêmes",
-      "displayed_title": "L'émancipation des femmes doit être l'œuvre des femmes elles-mêmes",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "L'émancipation des femmes doit être l'oeuvre des femmes elles-mêmes",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.",
+      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "change",
-        "displayed_title": "change",
+        "displayed_title": "keep",
         "rubriques": "deferred_to_content_review",
         "keywords": "deferred_to_content_review"
       },
       "rationales": {
         "canonical_title": "Correction orthotypographique de la ligature française, sans aucune modification du sens, de la modalité ou de la portée.",
-        "displayed_title": "Le titre affiché historique présente le même défaut manifeste que le nom de page ; la même correction est appliquée pour conserver leur équivalence exacte. Correction orthotypographique de la ligature française, sans aucune modification du sens, de la modalité ou de la portée.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4250,8 +4646,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4261,21 +4661,25 @@
       "entity_id": "A0085",
       "page_origin": "preexisting",
       "canonical_title": "Les hommes peuvent très facilement tuer dans l'œuf les actions militantes des femmes",
-      "displayed_title": "Les hommes peuvent très facilement tuer dans l'œuf les actions militantes des femmes",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Les hommes peuvent très facilement tuer dans l'oeuf toutes leurs actions militantes",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.",
+      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "change",
-        "displayed_title": "change",
+        "displayed_title": "keep",
         "rubriques": "deferred_to_content_review",
         "keywords": "deferred_to_content_review"
       },
       "rationales": {
         "canonical_title": "Correction orthotypographique et explicitation du référent des actions militantes, déduit sans ambiguïté de l’argument parent.",
-        "displayed_title": "Le titre affiché historique présente le même défaut manifeste que le nom de page ; la même correction est appliquée pour conserver leur équivalence exacte. Correction orthotypographique et explicitation du référent des actions militantes, déduit sans ambiguïté de l’argument parent.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4292,8 +4696,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4303,12 +4711,16 @@
       "entity_id": "A0086",
       "page_origin": "preexisting",
       "canonical_title": "Les hommes utilisent leur accès privilégié à la parole pour conforter la domination masculine",
-      "displayed_title": "Les hommes utilisent leur accès privilégié à la parole pour conforter la domination masculine",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Les hommes utilisent ce privilège pour conforter la domination masculine",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4317,7 +4729,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4334,8 +4746,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4345,12 +4761,16 @@
       "entity_id": "A0087",
       "page_origin": "preexisting",
       "canonical_title": "Les hommes n'ont aucun intérêt à utiliser leur accès privilégié à la parole pour dénoncer le sexisme",
-      "displayed_title": "Les hommes n'ont aucun intérêt à utiliser leur accès privilégié à la parole pour dénoncer le sexisme",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Les hommes n'ont aucun intérêt à dénoncer le sexisme",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4359,7 +4779,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4376,8 +4796,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4388,11 +4812,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Les hommes devraient donner la parole aux femmes plutôt que de parler à leur place",
       "displayed_title": "Les hommes devraient donner la parole aux femmes plutôt que de parler à leur place",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4401,7 +4829,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4418,8 +4846,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4430,11 +4862,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Les femmes sont les mieux placées pour parler des discriminations qu'elles subissent",
       "displayed_title": "Les femmes sont les mieux placées pour parler des discriminations qu'elles subissent",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4443,7 +4879,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4460,8 +4896,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4472,11 +4912,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Les hommes qui défendent le féminisme ne sont pas pris au sérieux",
       "displayed_title": "Les hommes qui défendent le féminisme ne sont pas pris au sérieux",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4485,7 +4929,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4502,8 +4946,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4514,11 +4962,15 @@
       "page_origin": "preexisting",
       "canonical_title": "La majorité des hommes dominent leur compagne et freinent leur émancipation",
       "displayed_title": "La majorité des hommes dominent leur compagne et freinent leur émancipation",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4527,7 +4979,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4544,8 +4996,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4556,11 +5012,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Dans la plupart des familles, ce sont les femmes qui s'occupent des enfants et des tâches domestiques",
       "displayed_title": "Dans la plupart des familles, ce sont les femmes qui s'occupent des enfants et des tâches domestiques",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4569,7 +5029,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4586,8 +5046,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4598,11 +5062,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Même quand ils s'occupent de leurs enfants, la plupart des hommes renforcent les stéréotypes sexistes",
       "displayed_title": "Même quand ils s'occupent de leurs enfants, la plupart des hommes renforcent les stéréotypes sexistes",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4611,7 +5079,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4628,8 +5096,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4640,11 +5112,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Les hommes ont intérêt à conserver les rôles traditionnels au sein de la famille",
       "displayed_title": "Les hommes ont intérêt à conserver les rôles traditionnels au sein de la famille",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4653,7 +5129,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4670,8 +5146,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4682,11 +5162,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Les couples lesbiens sont tout à fait aptes à élever un enfant",
       "displayed_title": "Les couples lesbiens sont tout à fait aptes à élever un enfant",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4695,7 +5179,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4712,8 +5196,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4723,21 +5211,25 @@
       "entity_id": "A0096",
       "page_origin": "preexisting",
       "canonical_title": "Les hommes proféministes ne sont pas pris au sérieux par les autres hommes",
-      "displayed_title": "Les hommes proféministes ne sont pas pris au sérieux par les autres hommes",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "Les hommes pro féministes ne sont pas pris au sérieux par les autres hommes",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.",
+      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "change",
-        "displayed_title": "change",
+        "displayed_title": "keep",
         "rubriques": "deferred_to_content_review",
         "keywords": "deferred_to_content_review"
       },
       "rationales": {
         "canonical_title": "Correction lexicale de « pro féministes » en « proféministes », en conservant le groupe qui exerce le jugement négatif.",
-        "displayed_title": "Le titre affiché historique présente le même défaut manifeste que le nom de page ; la même correction est appliquée pour conserver leur équivalence exacte. Correction lexicale de « pro féministes » en « proféministes », en conservant le groupe qui exerce le jugement négatif.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4754,8 +5246,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4766,11 +5262,15 @@
       "page_origin": "preexisting",
       "canonical_title": "C'est la société qui est responsable du sexisme, pas les hommes",
       "displayed_title": "C'est la société qui est responsable du sexisme, pas les hommes",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4779,7 +5279,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4796,8 +5296,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4808,11 +5312,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Les hommes ne sont pas capables d'agir par devoir",
       "displayed_title": "Les hommes ne sont pas capables d'agir par devoir",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4821,7 +5329,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4838,8 +5346,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4849,21 +5361,25 @@
       "entity_id": "A0099",
       "page_origin": "preexisting",
       "canonical_title": "La manière dont les femmes sont traitées ne saurait être décrite autrement que comme de la déshumanisation",
-      "displayed_title": "La manière dont les femmes sont traitées ne saurait être décrite autrement que comme de la déshumanisation",
-      "rubriques": [],
-      "keywords": [],
+      "displayed_title": "La manière dont le femmes sont traitées ne saurait être décrite autrement que comme de la déshumanisation",
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.",
+      "notes": "Correction limitée à une faute certaine, une ambiguïté flagrante ou un défaut d’autonomie du titre.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "change",
-        "displayed_title": "change",
+        "displayed_title": "keep",
         "rubriques": "deferred_to_content_review",
         "keywords": "deferred_to_content_review"
       },
       "rationales": {
         "canonical_title": "Correction de la faute grammaticale « le femmes » en « les femmes », sans modification de la conclusion argumentative.",
-        "displayed_title": "Le titre affiché historique présente le même défaut manifeste que le nom de page ; la même correction est appliquée pour conserver leur équivalence exacte. Correction de la faute grammaticale « le femmes » en « les femmes », sans modification de la conclusion argumentative.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4880,8 +5396,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }
@@ -4892,11 +5412,15 @@
       "page_origin": "preexisting",
       "canonical_title": "Le féminisme ne se décrédibilise jamais qu'aux yeux de ceux qui y sont déjà hostiles à la base",
       "displayed_title": "Le féminisme ne se décrédibilise jamais qu'aux yeux de ceux qui y sont déjà hostiles à la base",
-      "rubriques": [],
-      "keywords": [],
+      "rubriques": [
+        "Politique"
+      ],
+      "keywords": [
+        "Féminisme"
+      ],
       "reviewer": "ChatGPT editorial review",
       "reviewed_at": "2026-10-22T12:01:04Z",
-      "notes": "Préservation différentielle du titre affiché préexistant.",
+      "notes": "Préservation différentielle du titre affiché préexistant.\nCorrection demandée : conservation stricte du titre affiché de la page source.",
       "decisions": {
         "canonical_title": "keep",
         "displayed_title": "keep",
@@ -4905,7 +5429,7 @@
       },
       "rationales": {
         "canonical_title": "Le titre canonique historique forme une seule proposition autonome, conserve la thèse et rend ses référents suffisamment explicites dans le débat.",
-        "displayed_title": "Le titre affiché historique est conservé exactement : il reste intelligible, fidèle à la thèse et ne présente aucune faute ou ambiguïté flagrante justifiant une réécriture.",
+        "displayed_title": "Le titre affiché historique de la page source française est conservé à l’identique pendant la traduction.",
         "rubriques": {},
         "keywords": {},
         "keyword_order": "",
@@ -4922,8 +5446,12 @@
         "classification_review_deferred": true
       },
       "preexisting_keyword_preservation": {
-        "source_keywords": [],
-        "historical_final_keywords": [],
+        "source_keywords": [
+          "Féminisme"
+        ],
+        "historical_final_keywords": [
+          "Féminisme"
+        ],
         "corrected": {},
         "removed_as_irrelevant": []
       }

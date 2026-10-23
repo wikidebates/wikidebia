@@ -2,8 +2,8 @@
   "schema": "wikidebia-editorial-task-ledger-1.0",
   "schema_version": "1.0",
   "debate_id": "les_hommes_doivent_ils_rejoindre_le_combat_feministe",
-  "work_id": "EDIT-20261022-001",
-  "generated_at": "2026-10-22T14:33:11+00:00",
+  "work_id": "EDIT-20261023-001",
+  "generated_at": "2026-10-23T06:31:55+00:00",
   "counts": {
     "blocked_by_french_content_review": 1,
     "completed": 100,
@@ -50,7 +50,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00004",
@@ -92,7 +92,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00007",
@@ -133,7 +133,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00010",
@@ -174,7 +174,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00013",
@@ -213,7 +213,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00016",
@@ -258,7 +258,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00019",
@@ -299,7 +299,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00022",
@@ -340,7 +340,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00025",
@@ -381,7 +381,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00028",
@@ -426,7 +426,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00031",
@@ -468,7 +468,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00034",
@@ -509,7 +509,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00037",
@@ -551,7 +551,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00040",
@@ -593,7 +593,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00043",
@@ -635,7 +635,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00046",
@@ -677,7 +677,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00049",
@@ -722,7 +722,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00052",
@@ -764,7 +764,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00055",
@@ -809,7 +809,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00058",
@@ -851,7 +851,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00061",
@@ -896,7 +896,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00064",
@@ -938,7 +938,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00067",
@@ -980,7 +980,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00070",
@@ -1022,7 +1022,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00073",
@@ -1067,7 +1067,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00076",
@@ -1112,7 +1112,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00079",
@@ -1153,7 +1153,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00082",
@@ -1198,7 +1198,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00085",
@@ -1240,7 +1240,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00088",
@@ -1285,7 +1285,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00091",
@@ -1326,7 +1326,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00094",
@@ -1368,7 +1368,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00097",
@@ -1409,7 +1409,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00100",
@@ -1451,7 +1451,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00103",
@@ -1496,7 +1496,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00106",
@@ -1541,7 +1541,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00109",
@@ -1586,7 +1586,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00112",
@@ -1631,7 +1631,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00115",
@@ -1676,7 +1676,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00118",
@@ -1721,7 +1721,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00121",
@@ -1766,7 +1766,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00124",
@@ -1811,7 +1811,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00127",
@@ -1855,7 +1855,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00130",
@@ -1900,7 +1900,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00133",
@@ -1945,7 +1945,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00136",
@@ -1986,7 +1986,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00139",
@@ -2031,7 +2031,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00142",
@@ -2076,7 +2076,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00145",
@@ -2121,7 +2121,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00148",
@@ -2166,7 +2166,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00151",
@@ -2211,7 +2211,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00154",
@@ -2256,7 +2256,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00157",
@@ -2301,7 +2301,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00160",
@@ -2346,7 +2346,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00163",
@@ -2391,7 +2391,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00166",
@@ -2436,7 +2436,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00169",
@@ -2481,7 +2481,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00172",
@@ -2526,7 +2526,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00175",
@@ -2571,7 +2571,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00178",
@@ -2616,7 +2616,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00181",
@@ -2657,7 +2657,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00184",
@@ -2698,7 +2698,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00187",
@@ -2739,7 +2739,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00190",
@@ -2780,7 +2780,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00193",
@@ -2821,7 +2821,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00196",
@@ -2866,7 +2866,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00199",
@@ -2911,7 +2911,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00202",
@@ -2956,7 +2956,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00205",
@@ -2997,7 +2997,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00208",
@@ -3038,7 +3038,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00211",
@@ -3080,7 +3080,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00214",
@@ -3125,7 +3125,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00217",
@@ -3170,7 +3170,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00220",
@@ -3215,7 +3215,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00223",
@@ -3260,7 +3260,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00226",
@@ -3305,7 +3305,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00229",
@@ -3350,7 +3350,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00232",
@@ -3395,7 +3395,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00235",
@@ -3440,7 +3440,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00238",
@@ -3485,7 +3485,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00241",
@@ -3530,7 +3530,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00244",
@@ -3575,7 +3575,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00247",
@@ -3620,7 +3620,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00250",
@@ -3665,7 +3665,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00253",
@@ -3710,7 +3710,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00256",
@@ -3755,7 +3755,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00259",
@@ -3800,7 +3800,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00262",
@@ -3845,7 +3845,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00265",
@@ -3890,7 +3890,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00268",
@@ -3935,7 +3935,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00271",
@@ -3980,7 +3980,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00274",
@@ -4025,7 +4025,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00277",
@@ -4070,7 +4070,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00280",
@@ -4115,7 +4115,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00283",
@@ -4160,7 +4160,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00286",
@@ -4205,7 +4205,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00289",
@@ -4250,7 +4250,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00292",
@@ -4295,7 +4295,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00295",
@@ -4340,7 +4340,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00298",
@@ -4385,7 +4385,7 @@
       "review_path": "reviews/fr/page_metadata_review.json",
       "dependencies": [],
       "assignee": null,
-      "completed_at": "2026-10-22T14:33:11+00:00"
+      "completed_at": "2026-10-23T06:34:03+00:00"
     },
     {
       "task_id": "T00301",
@@ -4855,5 +4855,5 @@
       "completed_at": null
     }
   ],
-  "updated_at": "2026-10-22T14:33:11+00:00"
+  "updated_at": "2026-10-23T06:34:03+00:00"
 }

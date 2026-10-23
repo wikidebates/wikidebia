@@ -1,6 +1,6 @@
 # Inventaire éditorial — les_hommes_doivent_ils_rejoindre_le_combat_feministe
 
-Work : `EDIT-20261022-001`
+Work : `EDIT-20261023-001`
 
 Ce rapport ouvre des tâches de revue. Il n'applique aucune correction et ne génère aucune page finale.
 

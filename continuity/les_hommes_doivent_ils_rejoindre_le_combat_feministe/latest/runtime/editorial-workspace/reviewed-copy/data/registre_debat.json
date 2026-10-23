@@ -1152,7 +1152,7 @@
       "locked_at": null,
       "locked_by_stage": null,
       "status": "validated",
-      "structural_sha256": "c8ff80690e18e000501acf3f64f34757bd5c7d9061b74eae1c99849db843a9d9",
+      "structural_sha256": "83262089d6216339a5c54f338590b92823df30e58cea1ade1a06d1eadc5fc3c9",
       "validated_at": "2026-10-22T14:33:09+00:00"
     },
     "nodes": [
@@ -1591,8 +1591,12 @@
         "fr": {
           "canonical_title": "La société doit en finir avec le sexisme",
           "displayed_title": "La société doit en finir avec le sexisme",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0005",
@@ -1999,8 +2003,12 @@
         "fr": {
           "canonical_title": "Une société ne peut pas fonctionner correctement si elle est égalitaire",
           "displayed_title": "Une société ne peut pas fonctionner correctement si elle est égalitaire",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0009",
@@ -2723,8 +2731,12 @@
         "fr": {
           "canonical_title": "Les hommes sont socialisés pour se sentir supérieurs aux femmes",
           "displayed_title": "Les hommes sont socialisés pour se sentir supérieurs aux femmes",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0016",
@@ -2925,8 +2937,12 @@
         "fr": {
           "canonical_title": "La solidarité masculine est construite sur le dénigrement et l'exclusion des femmes",
           "displayed_title": "La solidarité masculine est construite sur le dénigrement et l'exclusion des femmes",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0018",
@@ -3020,7 +3036,7 @@
         },
         "fr": {
           "canonical_title": "Les hommes ont intérêt à en finir avec le machisme pour assumer leur sensibilité et leurs émotions",
-          "displayed_title": "Les hommes ont intérêt à en finir avec le machisme pour assumer leur sensibilité et leurs émotions",
+          "displayed_title": "Pour assumer leur sensibilité et leurs émotions",
           "keywords": [
             "Féminisme",
             "Hommes",
@@ -3129,8 +3145,12 @@
         "fr": {
           "canonical_title": "Les hommes bénéficient des discriminations envers les femmes",
           "displayed_title": "Les hommes bénéficient des discriminations envers les femmes",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0020",
@@ -3224,7 +3244,7 @@
         },
         "fr": {
           "canonical_title": "Les hommes ont intérêt à en finir avec le machisme pour se délivrer de l'injonction à la virilité",
-          "displayed_title": "Les hommes ont intérêt à en finir avec le machisme pour se délivrer de l'injonction à la virilité",
+          "displayed_title": "Pour se délivrer de l'injonction à la virilité",
           "keywords": [
             "Féminisme",
             "Hommes",
@@ -3329,7 +3349,7 @@
         },
         "fr": {
           "canonical_title": "Les hommes ont intérêt à en finir avec le machisme pour sortir des rapports de rivalité entre hommes",
-          "displayed_title": "Les hommes ont intérêt à en finir avec le machisme pour sortir des rapports de rivalité entre hommes",
+          "displayed_title": "Pour sortir des rapports de rivalité entre hommes",
           "keywords": [
             "Féminisme",
             "Hommes",
@@ -3435,7 +3455,7 @@
         },
         "fr": {
           "canonical_title": "Les hommes ont intérêt à en finir avec le machisme pour simplifier et libérer les rapports de séduction",
-          "displayed_title": "Les hommes ont intérêt à en finir avec le machisme pour simplifier et libérer les rapports de séduction",
+          "displayed_title": "Pour simplifier et libérer les rapports de séduction",
           "keywords": [
             "Féminisme",
             "Hommes",
@@ -3542,9 +3562,13 @@
         },
         "fr": {
           "canonical_title": "La masculinité toxique génère des troubles mentaux et des suicides chez les hommes",
-          "displayed_title": "La masculinité toxique génère des troubles mentaux et des suicides chez les hommes",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Pour en finir avec la souffrance que la masculinité toxique génère chez eux",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0024",
@@ -3638,9 +3662,13 @@
         },
         "fr": {
           "canonical_title": "La masculinité toxique est le terreau de l'homophobie",
-          "displayed_title": "La masculinité toxique est le terreau de l'homophobie",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Pour ne plus subir l'homophobie",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0025",
@@ -3839,8 +3867,12 @@
         "fr": {
           "canonical_title": "Les femmes sont parfaitement capables de mener le combat féministe par elles-mêmes",
           "displayed_title": "Les femmes sont parfaitement capables de mener le combat féministe par elles-mêmes",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0027",
@@ -4041,8 +4073,12 @@
         "fr": {
           "canonical_title": "Les femmes ont intérêt à mener le combat féministe sans les hommes",
           "displayed_title": "Les femmes ont intérêt à mener le combat féministe sans les hommes",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0029",
@@ -4556,8 +4592,12 @@
         "fr": {
           "canonical_title": "Le combat féministe n'avancera que si les hommes décident de lâcher du lest",
           "displayed_title": "Le combat féministe n'avancera que si les hommes décident de lâcher du lest",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0034",
@@ -4652,8 +4692,12 @@
         "fr": {
           "canonical_title": "Le féminisme sera victorieux quand tous les hommes y adhèreront",
           "displayed_title": "Le féminisme sera victorieux quand tous les hommes y adhèreront",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0035",
@@ -4747,9 +4791,13 @@
         },
         "fr": {
           "canonical_title": "Les hommes ne subissent pas l'épuisement généré par les discriminations sexistes",
-          "displayed_title": "Les hommes ne subissent pas l'épuisement généré par les discriminations sexistes",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "L'absence de discrimination à leur égard leur facilite la tâche pour militer",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0036",
@@ -4843,9 +4891,13 @@
         },
         "fr": {
           "canonical_title": "Le médecin communiste Willy Peers a permis la légalisation de l'avortement et la démocratisation de la contraception en Belgique",
-          "displayed_title": "Le médecin communiste Willy Peers a permis la légalisation de l'avortement et la démocratisation de la contraception en Belgique",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Les femmes belges doivent leur droit à l'avortement, à la contraception et à l'accouchement sans douleur à Willy Peers",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0037",
@@ -4940,8 +4992,12 @@
         "fr": {
           "canonical_title": "Lénine avait lui-même des sensibilités féministes",
           "displayed_title": "Lénine avait lui-même des sensibilités féministes",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0038",
@@ -5036,8 +5092,12 @@
         "fr": {
           "canonical_title": "Victor Hugo avait des idées très féministes",
           "displayed_title": "Victor Hugo avait des idées très féministes",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0039",
@@ -5132,8 +5192,12 @@
         "fr": {
           "canonical_title": "Une société n'est fonctionnelle que si elle est égalitaire",
           "displayed_title": "Une société n'est fonctionnelle que si elle est égalitaire",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0040",
@@ -5228,8 +5292,12 @@
         "fr": {
           "canonical_title": "Les inégalités hommes/femmes sont un gouffre financier pour la société",
           "displayed_title": "Les inégalités hommes/femmes sont un gouffre financier pour la société",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0041",
@@ -5430,9 +5498,13 @@
         },
         "fr": {
           "canonical_title": "Il est possible de donner aux hommes une éducation non sexiste",
-          "displayed_title": "Il est possible de donner aux hommes une éducation non sexiste",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Il est possible de leur donner une autre éducation",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0043",
@@ -5527,8 +5599,12 @@
         "fr": {
           "canonical_title": "Le mouvement féministe doit rester à l'abri de la domination masculine",
           "displayed_title": "Le mouvement féministe doit rester à l'abri de la domination masculine",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0044",
@@ -5726,8 +5802,12 @@
         "fr": {
           "canonical_title": "Les hommes qui assument leur féminisme sont rejetés par les autres hommes",
           "displayed_title": "Les hommes qui assument leur féminisme sont rejetés par les autres hommes",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0046",
@@ -5822,8 +5902,12 @@
         "fr": {
           "canonical_title": "Les hommes n'ont pas de privilèges",
           "displayed_title": "Les hommes n'ont pas de privilèges",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0047",
@@ -5917,9 +6001,13 @@
         },
         "fr": {
           "canonical_title": "Les femmes doivent s'organiser en non-mixité pour créer un espace d'échange sûr et rassurant",
-          "displayed_title": "Les femmes doivent s'organiser en non-mixité pour créer un espace d'échange sûr et rassurant",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Pour créer un espace d'échange sûr et rassurant",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0048",
@@ -6014,8 +6102,12 @@
         "fr": {
           "canonical_title": "La non-mixité doit être une solution temporaire",
           "displayed_title": "La non-mixité doit être une solution temporaire",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0049",
@@ -6109,9 +6201,13 @@
         },
         "fr": {
           "canonical_title": "Les femmes doivent s'organiser en non-mixité pour ne pas avoir à tout réexpliquer",
-          "displayed_title": "Les femmes doivent s'organiser en non-mixité pour ne pas avoir à tout réexpliquer",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Pour ne pas avoir à tout réexpliquer",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0050",
@@ -6206,8 +6302,12 @@
         "fr": {
           "canonical_title": "Le combat n'avancera pas si on n'éduque pas les hommes",
           "displayed_title": "Le combat n'avancera pas si on n'éduque pas les hommes",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0051",
@@ -6301,9 +6401,13 @@
         },
         "fr": {
           "canonical_title": "Les femmes doivent s'organiser en non-mixité pour parler et communiquer librement",
-          "displayed_title": "Les femmes doivent s'organiser en non-mixité pour parler et communiquer librement",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Pour parler et communiquer librement",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0052",
@@ -6397,9 +6501,13 @@
         },
         "fr": {
           "canonical_title": "Les femmes doivent s'organiser en non-mixité pour prendre conscience du caractère systémique de la domination",
-          "displayed_title": "Les femmes doivent s'organiser en non-mixité pour prendre conscience du caractère systémique de la domination",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Pour prendre conscience du caractère systémique de la domination",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0053",
@@ -6493,9 +6601,13 @@
         },
         "fr": {
           "canonical_title": "Les femmes doivent s'organiser en non-mixité pour renforcer la sororité",
-          "displayed_title": "Les femmes doivent s'organiser en non-mixité pour renforcer la sororité",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Pour renforcer la sororité",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0054",
@@ -6589,9 +6701,13 @@
         },
         "fr": {
           "canonical_title": "Les femmes doivent s'organiser en non-mixité pour diriger la lutte par elles-mêmes",
-          "displayed_title": "Les femmes doivent s'organiser en non-mixité pour diriger la lutte par elles-mêmes",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Pour diriger la lutte par elles-mêmes",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0055",
@@ -6685,9 +6801,13 @@
         },
         "fr": {
           "canonical_title": "Les femmes doivent s'organiser en non-mixité pour apprendre à être autonomes",
-          "displayed_title": "Les femmes doivent s'organiser en non-mixité pour apprendre à être autonomes",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Pour apprendre à être autonomes",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0056",
@@ -6781,9 +6901,13 @@
         },
         "fr": {
           "canonical_title": "Les femmes doivent s'organiser en non-mixité pour prendre conscience de leur valeur individuelle",
-          "displayed_title": "Les femmes doivent s'organiser en non-mixité pour prendre conscience de leur valeur individuelle",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Pour prendre conscience de leur valeur individuelle",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0057",
@@ -6877,9 +7001,13 @@
         },
         "fr": {
           "canonical_title": "Les femmes doivent s'organiser en non-mixité pour prendre conscience de leur force collective",
-          "displayed_title": "Les femmes doivent s'organiser en non-mixité pour prendre conscience de leur force collective",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Pour prendre conscience de leur force collective",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0058",
@@ -6973,9 +7101,13 @@
         },
         "fr": {
           "canonical_title": "L'absence d'égalité empêche une société de fonctionner correctement",
-          "displayed_title": "L'absence d'égalité empêche une société de fonctionner correctement",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "C'est plutôt l'inverse",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0059",
@@ -7587,8 +7719,12 @@
         "fr": {
           "canonical_title": "Les femmes sont sans cesse ramenées à leur corps et à leur apparence",
           "displayed_title": "Les femmes sont sans cesse ramenées à leur corps et à leur apparence",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0065",
@@ -7683,8 +7819,12 @@
         "fr": {
           "canonical_title": "Beaucoup d'hommes ne sont pas égoïstes",
           "displayed_title": "Beaucoup d'hommes ne sont pas égoïstes",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0066",
@@ -7779,8 +7919,12 @@
         "fr": {
           "canonical_title": "La socialisation vise à lutter contre notre égoïsme naturel",
           "displayed_title": "La socialisation vise à lutter contre notre égoïsme naturel",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0067",
@@ -8081,7 +8225,7 @@
         },
         "fr": {
           "canonical_title": "De nombreuses victimes n'osent pas parler des violences sexistes qu'elles ont subies, encore moins aux hommes",
-          "displayed_title": "De nombreuses victimes n'osent pas parler des violences sexistes qu'elles ont subies, encore moins aux hommes",
+          "displayed_title": "De nombreuses victimes n'osent pas parler des violences qu'elles ont subies, encore moins aux hommes",
           "keywords": [
             "Féminisme",
             "Victime",
@@ -8187,8 +8331,12 @@
         "fr": {
           "canonical_title": "La domination masculine est de nos jours largement contestée dans tous les domaines de la société",
           "displayed_title": "La domination masculine est de nos jours largement contestée dans tous les domaines de la société",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0071",
@@ -8282,9 +8430,13 @@
         },
         "fr": {
           "canonical_title": "Les hommes sont capables de déconstruire leurs préjugés et leurs pratiques sexistes",
-          "displayed_title": "Les hommes sont capables de déconstruire leurs préjugés et leurs pratiques sexistes",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Les hommes sont capables de déconstruire leurs préjugés et leurs pratiques",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0072",
@@ -8378,9 +8530,13 @@
         },
         "fr": {
           "canonical_title": "L'éducation vise à développer notre empathie",
-          "displayed_title": "L'éducation vise à développer notre empathie",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "L'éducation vise au contraire à développer notre empathie",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0073",
@@ -8474,9 +8630,13 @@
         },
         "fr": {
           "canonical_title": "Qualifier le traitement des femmes de déshumanisation est démesuré et discrédite la cause féministe",
-          "displayed_title": "Qualifier le traitement des femmes de déshumanisation est démesuré et discrédite la cause féministe",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Le terme \"déshumaniser\" est démesuré, il y a une instrumentalisation des corps certes et une altère expression de la domination mais déshumaniser ne fait que décrédibiliser la cause féministe",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0074",
@@ -8570,9 +8730,13 @@
         },
         "fr": {
           "canonical_title": "L'injonction à réprimer ses émotions détériore la santé mentale des hommes",
-          "displayed_title": "L'injonction à réprimer ses émotions détériore la santé mentale des hommes",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "L'injonction à la répression des émotions déteriore la santé mentale des hommes",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0075",
@@ -8667,8 +8831,12 @@
         "fr": {
           "canonical_title": "L'expression des émotions affaiblirait la domination des hommes",
           "displayed_title": "L'expression des émotions affaiblirait la domination des hommes",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0076",
@@ -8762,9 +8930,13 @@
         },
         "fr": {
           "canonical_title": "Seuls les hommes qui se conforment à l'injonction à la virilité bénéficient des discriminations envers les femmes",
-          "displayed_title": "Seuls les hommes qui se conforment à l'injonction à la virilité bénéficient des discriminations envers les femmes",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Seulement ceux qui se conforment à l'injonction à la virilité",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0077",
@@ -8859,8 +9031,12 @@
         "fr": {
           "canonical_title": "En renonçant à la virilité, les hommes perdraient leur pouvoir",
           "displayed_title": "En renonçant à la virilité, les hommes perdraient leur pouvoir",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0078",
@@ -8955,8 +9131,12 @@
         "fr": {
           "canonical_title": "La virilité n'a pas que des mauvais côtés",
           "displayed_title": "La virilité n'a pas que des mauvais côtés",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0079",
@@ -9051,8 +9231,12 @@
         "fr": {
           "canonical_title": "La rivalité est une source d'émulation",
           "displayed_title": "La rivalité est une source d'émulation",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0080",
@@ -9147,8 +9331,12 @@
         "fr": {
           "canonical_title": "La fin du sexisme entraînerait de nouvelles rivalités entre hommes et femmes",
           "displayed_title": "La fin du sexisme entraînerait de nouvelles rivalités entre hommes et femmes",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0081",
@@ -9243,8 +9431,12 @@
         "fr": {
           "canonical_title": "Les hommes ont intérêt à conserver leur rôle de dominants dans les rapports de séduction",
           "displayed_title": "Les hommes ont intérêt à conserver leur rôle de dominants dans les rapports de séduction",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0082",
@@ -9339,8 +9531,12 @@
         "fr": {
           "canonical_title": "De nombreuses femmes préfèrent les hommes dominants",
           "displayed_title": "De nombreuses femmes préfèrent les hommes dominants",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0083",
@@ -9434,9 +9630,13 @@
         },
         "fr": {
           "canonical_title": "L'émancipation des femmes doit être l'œuvre des femmes elles-mêmes",
-          "displayed_title": "L'émancipation des femmes doit être l'œuvre des femmes elles-mêmes",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "L'émancipation des femmes doit être l'oeuvre des femmes elles-mêmes",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0084",
@@ -9530,9 +9730,13 @@
         },
         "fr": {
           "canonical_title": "Les hommes peuvent très facilement tuer dans l'œuf les actions militantes des femmes",
-          "displayed_title": "Les hommes peuvent très facilement tuer dans l'œuf les actions militantes des femmes",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Les hommes peuvent très facilement tuer dans l'oeuf toutes leurs actions militantes",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0085",
@@ -9626,9 +9830,13 @@
         },
         "fr": {
           "canonical_title": "Les hommes utilisent leur accès privilégié à la parole pour conforter la domination masculine",
-          "displayed_title": "Les hommes utilisent leur accès privilégié à la parole pour conforter la domination masculine",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Les hommes utilisent ce privilège pour conforter la domination masculine",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0086",
@@ -9722,9 +9930,13 @@
         },
         "fr": {
           "canonical_title": "Les hommes n'ont aucun intérêt à utiliser leur accès privilégié à la parole pour dénoncer le sexisme",
-          "displayed_title": "Les hommes n'ont aucun intérêt à utiliser leur accès privilégié à la parole pour dénoncer le sexisme",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Les hommes n'ont aucun intérêt à dénoncer le sexisme",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0087",
@@ -9819,8 +10031,12 @@
         "fr": {
           "canonical_title": "Les hommes devraient donner la parole aux femmes plutôt que de parler à leur place",
           "displayed_title": "Les hommes devraient donner la parole aux femmes plutôt que de parler à leur place",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0088",
@@ -9915,8 +10131,12 @@
         "fr": {
           "canonical_title": "Les femmes sont les mieux placées pour parler des discriminations qu'elles subissent",
           "displayed_title": "Les femmes sont les mieux placées pour parler des discriminations qu'elles subissent",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0089",
@@ -10011,8 +10231,12 @@
         "fr": {
           "canonical_title": "Les hommes qui défendent le féminisme ne sont pas pris au sérieux",
           "displayed_title": "Les hommes qui défendent le féminisme ne sont pas pris au sérieux",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0090",
@@ -10107,8 +10331,12 @@
         "fr": {
           "canonical_title": "La majorité des hommes dominent leur compagne et freinent leur émancipation",
           "displayed_title": "La majorité des hommes dominent leur compagne et freinent leur émancipation",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0091",
@@ -10203,8 +10431,12 @@
         "fr": {
           "canonical_title": "Dans la plupart des familles, ce sont les femmes qui s'occupent des enfants et des tâches domestiques",
           "displayed_title": "Dans la plupart des familles, ce sont les femmes qui s'occupent des enfants et des tâches domestiques",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0092",
@@ -10299,8 +10531,12 @@
         "fr": {
           "canonical_title": "Même quand ils s'occupent de leurs enfants, la plupart des hommes renforcent les stéréotypes sexistes",
           "displayed_title": "Même quand ils s'occupent de leurs enfants, la plupart des hommes renforcent les stéréotypes sexistes",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0093",
@@ -10395,8 +10631,12 @@
         "fr": {
           "canonical_title": "Les hommes ont intérêt à conserver les rôles traditionnels au sein de la famille",
           "displayed_title": "Les hommes ont intérêt à conserver les rôles traditionnels au sein de la famille",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0094",
@@ -10491,8 +10731,12 @@
         "fr": {
           "canonical_title": "Les couples lesbiens sont tout à fait aptes à élever un enfant",
           "displayed_title": "Les couples lesbiens sont tout à fait aptes à élever un enfant",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0095",
@@ -10586,9 +10830,13 @@
         },
         "fr": {
           "canonical_title": "Les hommes proféministes ne sont pas pris au sérieux par les autres hommes",
-          "displayed_title": "Les hommes proféministes ne sont pas pris au sérieux par les autres hommes",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "Les hommes pro féministes ne sont pas pris au sérieux par les autres hommes",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0096",
@@ -10683,8 +10931,12 @@
         "fr": {
           "canonical_title": "C'est la société qui est responsable du sexisme, pas les hommes",
           "displayed_title": "C'est la société qui est responsable du sexisme, pas les hommes",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0097",
@@ -10779,8 +11031,12 @@
         "fr": {
           "canonical_title": "Les hommes ne sont pas capables d'agir par devoir",
           "displayed_title": "Les hommes ne sont pas capables d'agir par devoir",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0098",
@@ -10874,9 +11130,13 @@
         },
         "fr": {
           "canonical_title": "La manière dont les femmes sont traitées ne saurait être décrite autrement que comme de la déshumanisation",
-          "displayed_title": "La manière dont les femmes sont traitées ne saurait être décrite autrement que comme de la déshumanisation",
-          "keywords": [],
-          "rubriques": [],
+          "displayed_title": "La manière dont le femmes sont traitées ne saurait être décrite autrement que comme de la déshumanisation",
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0099",
@@ -10971,8 +11231,12 @@
         "fr": {
           "canonical_title": "Le féminisme ne se décrédibilise jamais qu'aux yeux de ceux qui y sont déjà hostiles à la base",
           "displayed_title": "Le féminisme ne se décrédibilise jamais qu'aux yeux de ceux qui y sont déjà hostiles à la base",
-          "keywords": [],
-          "rubriques": [],
+          "keywords": [
+            "Féminisme"
+          ],
+          "rubriques": [
+            "Politique"
+          ],
           "title_status": "validated"
         },
         "id": "A0100",
