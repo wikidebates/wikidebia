@@ -124,7 +124,6 @@
 |page=Victor Hugo avait des idées très féministes
 |titre-affiché=Victor Hugo avait des idées très féministes
 }}
-|objections=
 |rubriques=Politique
 |mots-clés=hommes, preuve, féminisme
 |date-création=2023-04-03
@@ -139,7 +138,6 @@
 |page=Les inégalités hommes/femmes sont un gouffre financier pour la société
 |titre-affiché=Les inégalités hommes/femmes sont un gouffre financier pour la société
 }}
-|objections=
 |date-création=2021-03-18
 }}
 
@@ -266,7 +264,6 @@
 |page=L'absence d'égalité empêche une société de fonctionner correctement
 |titre-affiché=C'est plutôt l'inverse
 }}
-|justifications=
 |date-création=2021-03-18
 }}
 
@@ -274,8 +271,6 @@
 {{Argument
 |initialisation=Argument contre@3040
 |résumé=Le féminisme est un mouvement politique qui prône l'égalité des sexes mais fait le constat que les femmes sont désavantagé dans la société, beaucoup d'hommes ne sont pas d'accord avec celui-ci et explique donc leur non-implication.
-|justifications=
-|objections=
 |rubriques=Politique
 |mots-clés=Féminisme
 |date-création=2023-05-18
@@ -302,7 +297,6 @@
 |page=Les femmes sont sans cesse ramenées à leur corps et à leur apparence
 |titre-affiché=Les femmes sont sans cesse ramenées à leur corps et à leur apparence
 }}
-|objections=
 |rubriques=Politique, Société
 |mots-clés=Sexisme, Femmes
 |date-création=2019-11-24
@@ -325,7 +319,6 @@
 |site=Slate
 |date=07/02/2020
 }}
-|justifications=
 |rubriques=Éducation, Politique, Société
 |mots-clés=Féminisme, Hommes, Femmes, Socialisation, Égoïsme
 |date-création=2020-03-26
@@ -350,7 +343,6 @@
 |page=Les hommes sont socialisés pour être indifférents à la souffrance
 |titre-affiché=Les hommes sont socialisés pour être indifférents à la souffrance
 }}
-|justifications=
 |rubriques=Politique, Société
 |mots-clés=Féminisme, Hommes, Sexisme, Discrimination, Violence, Femmes
 |date-création=2019-11-24
@@ -363,8 +355,6 @@
 |citation=virilité
 |auteurs=Christophe Dejours
 }}
-|justifications=
-|objections=
 |rubriques=Éducation, Politique, Société
 |mots-clés=Hommes, Domination masculine, Féminisme, Socialisation, Souffrance, Empathie, Virilité
 |date-création=2019-11-24
@@ -389,7 +379,6 @@
 |page=La solidarité masculine est construite sur le dénigrement et l'exclusion des femmes
 |titre-affiché=La solidarité masculine est construite sur le dénigrement et l'exclusion des femmes
 }}
-|justifications=
 |rubriques=Politique, Société
 |mots-clés=Discrimination, Femmes, Féminisme, Hommes, Sexisme, Violence
 |date-création=2019-12-07
@@ -397,8 +386,6 @@
 
 ===== PAGE : Les hommes sont socialisés pour se sentir supérieurs aux femmes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
@@ -417,7 +404,6 @@
 |page=Qualifier le traitement des femmes de déshumanisation est démesuré et discrédite la cause féministe
 |titre-affiché=Le terme "déshumaniser" est démesuré, il y a une instrumentalisation des corps certes et une altère expression de la domination mais déshumaniser ne fait que décrédibiliser la cause féministe
 }}
-|justifications=
 |rubriques=Éducation, Politique, Société
 |mots-clés=Féminisme, Hommes, Socialisation, Déshumanisation, Femmes
 |date-création=2020-03-26
@@ -425,8 +411,6 @@
 
 ===== PAGE : La solidarité masculine est construite sur le dénigrement et l'exclusion des femmes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
@@ -451,7 +435,6 @@
 |page=Seuls les hommes qui se conforment à l'injonction à la virilité bénéficient des discriminations envers les femmes
 |titre-affiché=Seulement ceux qui se conforment à l'injonction à la virilité
 }}
-|justifications=
 |date-création=2021-03-18
 }}
 
@@ -464,7 +447,6 @@
 |page=La virilité n'a pas que des mauvais côtés
 |titre-affiché=La virilité n'a pas que des mauvais côtés
 }}
-|justifications=
 |rubriques=Politique, Société
 |mots-clés=Féminisme, Hommes, Machisme, Sexisme, Virilisme
 |date-création=2019-12-25
@@ -479,7 +461,6 @@
 |page=La fin du sexisme entraînerait de nouvelles rivalités entre hommes et femmes
 |titre-affiché=La fin du sexisme entraînerait de nouvelles rivalités entre hommes et femmes
 }}
-|justifications=
 |rubriques=Politique, Société
 |mots-clés=Féminisme, Hommes, Machisme, Sexisme, Virilisme, Rivalité
 |date-création=2019-12-25
@@ -495,7 +476,6 @@
 |page=De nombreuses femmes préfèrent les hommes dominants
 |titre-affiché=De nombreuses femmes préfèrent les hommes dominants
 }}
-|justifications=
 |rubriques=Politique, Société
 |mots-clés=Féminisme, Hommes, Machisme, Sexisme, Virilisme, Émancipation, Séduction
 |date-création=2019-12-25
@@ -503,15 +483,11 @@
 
 ===== PAGE : La masculinité toxique génère des troubles mentaux et des suicides chez les hommes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : La masculinité toxique est le terreau de l'homophobie =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
@@ -526,7 +502,6 @@
 |page=L'émancipation des femmes doit être l'œuvre des femmes elles-mêmes
 |titre-affiché=L'émancipation des femmes doit être l'oeuvre des femmes elles-mêmes
 }}
-|justifications=
 |rubriques=Politique, Société
 |mots-clés=Féminisme, Hommes, Sexisme, Domination masculine
 |date-création=2019-11-24
@@ -538,7 +513,6 @@
 |page=Les hommes peuvent très facilement tuer dans l'œuf les actions militantes des femmes
 |titre-affiché=Les hommes peuvent très facilement tuer dans l'oeuf toutes leurs actions militantes
 }}
-|justifications=
 |date-création=2021-03-18
 }}
 
@@ -550,7 +524,6 @@ Amitié, policiers, juges, journalistes.
 |page=Les hommes sont socialisés pour être indifférents à la souffrance
 |titre-affiché=Les hommes sont socialisés pour être indifférents à la souffrance
 }}
-|justifications=
 |rubriques=Politique, Société
 |mots-clés=Féminisme, Hommes, Sexisme, Femmes, Violences sexistes, Parole
 |date-création=2019-11-24
@@ -558,8 +531,6 @@ Amitié, policiers, juges, journalistes.
 
 ===== PAGE : Les femmes ont intérêt à mener le combat féministe sans les hommes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
@@ -585,7 +556,6 @@ Amitié, policiers, juges, journalistes.
 |page=Les hommes qui défendent le féminisme ne sont pas pris au sérieux
 |titre-affiché=Les hommes qui défendent le féminisme ne sont pas pris au sérieux
 }}
-|justifications=
 |rubriques=Politique, Société
 |mots-clés=Féminisme, Hommes, Sexisme, Femmes
 |date-création=2019-11-24
@@ -605,7 +575,6 @@ Amitié, policiers, juges, journalistes.
 |page=L'émancipation des femmes doit être l'œuvre des femmes elles-mêmes
 |titre-affiché=L'émancipation des femmes doit être l'oeuvre des femmes elles-mêmes
 }}
-|justifications=
 |rubriques=Politique, Société
 |mots-clés=Féminisme, Hommes, Sexisme, Femmes, Émancipation
 |date-création=2019-11-24
@@ -631,7 +600,6 @@ Amitié, policiers, juges, journalistes.
 |page=Les couples lesbiens sont tout à fait aptes à élever un enfant
 |titre-affiché=Les couples lesbiens sont tout à fait aptes à élever un enfant
 }}
-|justifications=
 |rubriques=Éducation, Politique, Société
 |mots-clés=Féminisme, Hommes, Sexisme, Éducation
 |date-création=2019-11-24
@@ -646,7 +614,6 @@ Amitié, policiers, juges, journalistes.
 |page=Les hommes proféministes ne sont pas pris au sérieux par les autres hommes
 |titre-affiché=Les hommes pro féministes ne sont pas pris au sérieux par les autres hommes
 }}
-|justifications=
 |rubriques=Politique, Société
 |mots-clés=Féminisme, Hommes, Sexisme, Femmes, Prosélytisme
 |date-création=2020-03-19
@@ -654,22 +621,16 @@ Amitié, policiers, juges, journalistes.
 
 ===== PAGE : Le combat féministe n'avancera que si les hommes décident de lâcher du lest =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Le féminisme sera victorieux quand tous les hommes y adhèreront =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les hommes ne subissent pas l'épuisement généré par les discriminations sexistes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
@@ -688,8 +649,6 @@ Amitié, policiers, juges, journalistes.
 |ouvrage=Centre d’Action Laïque de la Province de Namur
 |lien=https://www.ihoes.be/PDF/expositions/EXPO_Willy_Peers_humaniste_medecine.pdf
 }}
-|justifications=
-|objections=
 |date-création=2023-07-16
 }}
 
@@ -710,8 +669,6 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 |date=18/02/2024
 |lien=https://www.gaucheanticapitaliste.org/kollontai-et-lenine-pour-un-communisme-qui-libere-les-femmes/
 }}
-|justifications=
-|objections=
 |date-création=2024-11-19
 }}
 
@@ -723,15 +680,11 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 |auteurs=Victor Hugo
 |date=1872
 }}
-|justifications=
-|objections=
 |date-création=2024-11-24
 }}
 
 ===== PAGE : Une société n'est fonctionnelle que si elle est égalitaire =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
@@ -744,8 +697,6 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 |site=France Inter
 |date=2 mars 2022
 }}
-|justifications=
-|objections=
 |date-création=2022-03-06
 }}
 
@@ -761,7 +712,6 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 |page=Les hommes n'ont aucun intérêt à renoncer à leurs privilèges
 |titre-affiché=Les hommes n'ont aucun intérêt à renoncer à leurs privilèges
 }}
-|justifications=
 |rubriques=Éthique, Politique, Société
 |mots-clés=Discrimination, Femmes, Hommes, Sexisme, Injustice, Devoir de réparation
 |date-création=2019-12-07
@@ -769,15 +719,11 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 
 ===== PAGE : Il est possible de donner aux hommes une éducation non sexiste =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Le mouvement féministe doit rester à l'abri de la domination masculine =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
@@ -786,8 +732,6 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 |résumé=En particulier :
 * Accès à l'emploi, au logement, aux fonctions prestigieuses
 * Implication dans les tâches domestiques
-|justifications=
-|objections=
 |rubriques=Politique, Société
 |mots-clés=Féminisme, Hommes, Privilèges
 |date-création=2019-11-24
@@ -795,93 +739,67 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 
 ===== PAGE : Les hommes qui assument leur féminisme sont rejetés par les autres hommes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les hommes n'ont pas de privilèges =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2021-03-18
 }}
 
 ===== PAGE : Les femmes doivent s'organiser en non-mixité pour créer un espace d'échange sûr et rassurant =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : La non-mixité doit être une solution temporaire =====
 {{Argument
 |résumé=Il est impensable de construire une société basée sur un apartheid genré.
-|justifications=
-|objections=
 |date-création=2021-12-09
 }}
 
 ===== PAGE : Les femmes doivent s'organiser en non-mixité pour ne pas avoir à tout réexpliquer =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Le combat n'avancera pas si on n'éduque pas les hommes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les femmes doivent s'organiser en non-mixité pour parler et communiquer librement =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les femmes doivent s'organiser en non-mixité pour prendre conscience du caractère systémique de la domination =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les femmes doivent s'organiser en non-mixité pour renforcer la sororité =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les femmes doivent s'organiser en non-mixité pour diriger la lutte par elles-mêmes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les femmes doivent s'organiser en non-mixité pour apprendre à être autonomes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les femmes doivent s'organiser en non-mixité pour prendre conscience de leur valeur individuelle =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les femmes doivent s'organiser en non-mixité pour prendre conscience de leur force collective =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
@@ -891,8 +809,6 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 |citation=Sans égalité, pas de démocratie.
 |auteurs=Eleanor Roosvelt
 }}
-|justifications=
-|objections=
 |date-création=2021-08-09
 }}
 
@@ -902,8 +818,6 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 * Violences psychologiques : harcèlement moral, insultes, rabaissement
 * Violences physiques : féminicides, violence conjuguale, 
 * Violences sexuelles : harcèlement sexuel, viol, viol conjugual
-|justifications=
-|objections=
 |rubriques=Politique, Société
 |mots-clés=Sexisme, Femmes, Violences
 |date-création=2019-11-24
@@ -912,8 +826,6 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 ===== PAGE : Les femmes sont victimes de discriminations économiques =====
 {{Argument
 |résumé=Écarts de salaires, pauvreté, précarité économique, discriminations à l'embauche
-|justifications=
-|objections=
 |rubriques=Économie, Politique, Société
 |mots-clés=Sexisme, Femmes, Discriminations
 |date-création=2019-11-24
@@ -922,8 +834,6 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 ===== PAGE : Les femmes assument la majeure partie des tâches domestiques =====
 {{Argument
 |résumé=Double journée de travail et charge mentale
-|justifications=
-|objections=
 |rubriques=Politique, Société
 |mots-clés=Sexisme, Tâches domestiques, Femmes
 |date-création=2019-11-24
@@ -932,8 +842,6 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 ===== PAGE : Le pouvoir est encore monopolisé par les hommes =====
 {{Argument
 |résumé=Monopolisation du pouvoir sphères de la politique, culture et art, économie et finance
-|justifications=
-|objections=
 |rubriques=Politique, Société
 |mots-clés=Sexisme, Femmes, Pouvoir
 |date-création=2019-11-24
@@ -944,8 +852,6 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 |résumé=En particulier :
 * Moins de prix de concours
 * intériorisation de l'infériorité et autocensure
-|justifications=
-|objections=
 |rubriques=Politique, Société
 |mots-clés=Sexisme, Femmes, Dévalorisation, Intériorisation
 |date-création=2019-11-24
@@ -953,30 +859,22 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 
 ===== PAGE : Les femmes sont sans cesse ramenées à leur corps et à leur apparence =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Beaucoup d'hommes ne sont pas égoïstes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : La socialisation vise à lutter contre notre égoïsme naturel =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Le sexisme est tellement banalisé qu'il n'est même pas perçu comme tel =====
 {{Argument
 |résumé=La plupart des gens n'ont pas conscience du sexisme, car nous y sommes habitués depuis l'enfance. Le sexisme est naturalisé, il ne nous choque pas. Par exemple, de nombreuses personnes sont incapables d'identifier une publicité sexiste. De même, les crimes conjugaux sont qualifiés de "crimes passionnels", la dimension sexiste n'est pas perçue. La violence envers les femmes est considérée comme une preuve d'amour, et non comme un acte de domination et d'appropriation machiste. Il est donc difficile pour les hommes de percevoir la dimension sexiste d'un acte ou d'une situation.
-|justifications=
-|objections=
 |rubriques=Politique, Société
 |mots-clés=Hommes, Banalisation, Sexisme
 |date-création=2020-04-16
@@ -985,8 +883,6 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 ===== PAGE : Le traitement médiatique du sexisme est encore insuffisant =====
 {{Argument
 |résumé=Le discours féministe est combattu, dénigré par un discours sexiste très virulent (exemple : Éric Zemmour). Le mouvement féministe est caricaturé et stigmatisé. Il y a encore beaucoup de sexisme dans les médias (télé-réalité, émissions de divertissement). La pensée dominante est encore du côté du sexisme. La culture du viol est encore présente. La prise de conscience du sexisme est donc difficile pour les hommes.
-|justifications=
-|objections=
 |rubriques=Politique, Société
 |mots-clés=Féminisme, Médias, Sexisme, Traitement médiatique
 |date-création=2020-04-16
@@ -995,8 +891,6 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 ===== PAGE : De nombreuses victimes n'osent pas parler des violences sexistes qu'elles ont subies, encore moins aux hommes =====
 {{Argument
 |résumé=Les femmes victimes préfèrent souvent garder le silence car elles ont peur de déranger ou de mettre l'autre mal à l'aise, elles ont un sentiment de honte ou de culpabilité, ou elles craignent les réactions de l'entourage : ne pas être prise au sérieux, ne pas être crue, être stigmatisée ou moquée (blâme de la victime). Les femmes parlent plus facilement à d'autres femmes, car elles se sentent davantage comprises, ont moins peur d'être jugées.
-|justifications=
-|objections=
 |rubriques=Politique, Société
 |mots-clés=Féminisme, Victime, Sexisme, Femmes, Violences sexistes
 |date-création=2020-04-16
@@ -1004,22 +898,16 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 
 ===== PAGE : La domination masculine est de nos jours largement contestée dans tous les domaines de la société =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les hommes sont capables de déconstruire leurs préjugés et leurs pratiques sexistes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : L'éducation vise à développer notre empathie =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
@@ -1033,191 +921,138 @@ Il ne s’agissait pas seulement d’un accord philosophique entre les deux pens
 |page=Le féminisme ne se décrédibilise jamais qu'aux yeux de ceux qui y sont déjà hostiles à la base
 |titre-affiché=Le féminisme ne se décrédibilise jamais qu'aux yeux de ceux qui y sont déjà hostiles à la base
 }}
-|justifications=
 |date-création=2024-02-02
 }}
 
 ===== PAGE : L'injonction à réprimer ses émotions détériore la santé mentale des hommes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : L'expression des émotions affaiblirait la domination des hommes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Seuls les hommes qui se conforment à l'injonction à la virilité bénéficient des discriminations envers les femmes =====
 {{Argument
 |résumé=Les hommes jugés pas assez virils subissent du rejet et des violences.
-|justifications=
-|objections=
 |date-création=2021-12-09
 }}
 
 ===== PAGE : En renonçant à la virilité, les hommes perdraient leur pouvoir =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : La virilité n'a pas que des mauvais côtés =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : La rivalité est une source d'émulation =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : La fin du sexisme entraînerait de nouvelles rivalités entre hommes et femmes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les hommes ont intérêt à conserver leur rôle de dominants dans les rapports de séduction =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : De nombreuses femmes préfèrent les hommes dominants =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : L'émancipation des femmes doit être l'œuvre des femmes elles-mêmes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les hommes peuvent très facilement tuer dans l'œuf les actions militantes des femmes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les hommes utilisent leur accès privilégié à la parole pour conforter la domination masculine =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les hommes n'ont aucun intérêt à utiliser leur accès privilégié à la parole pour dénoncer le sexisme =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les hommes devraient donner la parole aux femmes plutôt que de parler à leur place =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les femmes sont les mieux placées pour parler des discriminations qu'elles subissent =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les hommes qui défendent le féminisme ne sont pas pris au sérieux =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : La majorité des hommes dominent leur compagne et freinent leur émancipation =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Dans la plupart des familles, ce sont les femmes qui s'occupent des enfants et des tâches domestiques =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Même quand ils s'occupent de leurs enfants, la plupart des hommes renforcent les stéréotypes sexistes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les hommes ont intérêt à conserver les rôles traditionnels au sein de la famille =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les couples lesbiens sont tout à fait aptes à élever un enfant =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les hommes proféministes ne sont pas pris au sérieux par les autres hommes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : C'est la société qui est responsable du sexisme, pas les hommes =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : Les hommes ne sont pas capables d'agir par devoir =====
 {{Argument
-|justifications=
-|objections=
 |date-création=2022-12-19
 }}
 
 ===== PAGE : La manière dont les femmes sont traitées ne saurait être décrite autrement que comme de la déshumanisation =====
 {{Argument
 |initialisation=Objection@24385
-|justifications=
-|objections=
 |date-création=2024-02-02
 }}
 
 ===== PAGE : Le féminisme ne se décrédibilise jamais qu'aux yeux de ceux qui y sont déjà hostiles à la base =====
 {{Argument
 |initialisation=Objection@24385
-|justifications=
-|objections=
 |date-création=2024-02-02
 }}

@@ -1,7 +1,7 @@
 # Handoff — Les hommes doivent-ils rejoindre le combat féministe ?
 
 - Branche : `codex/traduction-combat-feministe`
-- Correctifs GitHub synchronisés jusqu’à : `317dbbe`
+- Correctifs GitHub synchronisés jusqu’à : `74b1d26`
 - Commit de référence du snapshot : commit contenant ce fichier
 - Date du snapshot : 23 octobre 2026
 - Phase : `fr_content_review`
@@ -45,6 +45,28 @@ attestées dans :
 - `runtime/fr-publication/graph/displayed-title-restoration-plan.json` ;
 - `runtime/fr-publication/graph/displayed-title-restoration-receipt.json` ;
 - `runtime/fr-publication/graph/interrupted-checkpoint-reconciliation.json`.
+
+## Correction des paramètres de relations vides
+
+Le premier checkpoint ajoutait à tort `justifications` et `objections` avec une
+valeur vide sur les pages sans relation correspondante. Le correctif générique
+`74b1d26` impose désormais l’omission canonique de ces paramètres dans le
+checkpoint de graphe.
+
+Le plan correctif signé
+`runtime/fr-publication/graph/empty-relation-parameter-restoration-plan.json`
+porte l’empreinte
+`0b67e8983509c9d97682585fa8fcb1abb8d43a9a23acae3abdf6836945fbc5a4`.
+Il a retiré 90 paramètres `justifications` vides et 75 paramètres `objections`
+vides sur 93 pages. Les 93 révisions ont été contrôlées sous l’identité
+`ChatGPT`, avec la balise `chatgpt`.
+
+Le reçu porte l’empreinte
+`31ad1aae68486cf1ef8a40a52260d59f085aa278fd8a0a103449968212fc52c6`.
+Une relecture distante indépendante des 100 arguments n’a trouvé aucun
+paramètre vide restant ni aucune divergence avec le reçu ; elle est consignée
+dans
+`runtime/fr-publication/graph/empty-relation-parameter-restoration-verification.json`.
 
 ## Prochaine étape
 

@@ -1,5 +1,3 @@
 {{Argument
-|justifications=
-|objections=
 |date-création=2021-03-18
 }}

@@ -1,6 +1,4 @@
 {{Argument
 |résumé=Il est impensable de construire une société basée sur un apartheid genré.
-|justifications=
-|objections=
 |date-création=2021-12-09
 }}

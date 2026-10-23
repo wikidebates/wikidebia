@@ -12,7 +12,5 @@
 |ouvrage=Centre d’Action Laïque de la Province de Namur
 |lien=https://www.ihoes.be/PDF/expositions/EXPO_Willy_Peers_humaniste_medecine.pdf
 }}
-|justifications=
-|objections=
 |date-création=2023-07-16
 }}
