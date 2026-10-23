@@ -4,7 +4,7 @@
 - Commit de référence du snapshot : commit contenant ce fichier
 - Date du snapshot : 24 octobre 2026
 - Phase : `final_publication`
-- Statut local : `release_ready`
+- Statut local : `release_ready` ; publication bloquée sur historique FR signé manquant
 - Work actif : `EDIT-20261023-001`
 - Publication anglaise distante commencée : non
 
@@ -117,3 +117,41 @@ doit être considéré comme invalide jusqu’à son remplacement effectif ; ne 
 reprendre automatiquement une tentative de connexion avant cette modification.
 Le kit diagnostique désormais explicitement une identité ou une paire de
 variables BotPassword absente avant de laisser Pywikibot ouvrir une connexion.
+
+
+## Reprise du 24 octobre 2026 — contrôles neufs
+
+Commit source vérifié : `1352f78c272697968e2f026c02400a875693f304`.
+Le correctif de succession française `3fa6d67` est ancêtre du HEAD ; ses
+13 tests ciblés passent. Les 780 fichiers du manifeste initial sont intègres.
+Le workspace restauré conserve son empreinte signée et le `release-copy`
+extrait de l’archive conserve exactement son empreinte attendue.
+
+Les cinq variables requises sont présentes sans exposition de leurs valeurs.
+Les nouvelles connexions FR et EN réussissent avec identité `ChatGPT`, droits
+`edit`/`createpage` et balises requises. Le refus anglais décrit plus haut est
+donc historique : l’authentification courante a réussi. Les 101 pages françaises
+ont été relues via MediaWiki ; leurs révisions et SHA-256 correspondent tous à
+`runtime/published/fr/latest.json`.
+
+La publication reste bloquée, sans aucune écriture de contenu distante : la
+projection ne contient pas les états historiques français signés nécessaires
+pour relier le checkpoint de contenu aux deux corrections postérieures. Le
+contrôle générique échoue avec : « État historique du dernier checkpoint
+français introuvable ». Le reçu du checkpoint contenu, absent comme fichier
+autonome, a pu être restauré depuis l’objet identique déjà signé inclus dans
+`workflow.json`, après vérification de son `receipt_sha256`. Il est maintenant
+conservé sous `runtime/fr-publication/content/publication-receipt.json`.
+
+Preuve du contrôle courant :
+`runtime/resume-audit/2026-10-24-read-only-audit.json`.
+Le préflight global n’a pas été validé et aucune autorisation finale n’a été
+scellée. Aucune création anglaise ni addition interlangue française n’a eu lieu.
+
+Prochaine étape : récupérer les états historiques signés originaux depuis le
+workspace de la session précédente, notamment celui du checkpoint final de
+contenu et celui suivant la restauration des titres affichés contextuels.
+Les placer dans `.state/published/<débat>/fr/` sans réécrire leurs preuves,
+compléter la projection de continuité, puis refaire tous les contrôles et le
+préflight global avant `final_publication`. Ne pas reconstruire ni resigner
+ces preuves à partir de l’état distant actuel ; ne réappliquer aucune correction.
