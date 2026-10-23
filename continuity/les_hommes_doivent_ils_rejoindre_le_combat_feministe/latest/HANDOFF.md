@@ -115,3 +115,21 @@ secrètes `ChatGPT@Codex-FR` et `ChatGPT@Codex-EN`. Le secret anglais du runtime
 courant doit être considéré comme invalide jusqu’à la publication de ce
 brouillon ; ne pas reprendre automatiquement une tentative de connexion avant
 le redémarrage de l’environnement.
+
+## Retest de l’accès anglais
+
+Après resynchronisation au commit `55f8987`, un nouveau test authentifié et
+strictement sans écriture a été exécuté depuis le runtime courant. Le secret
+d’accès HTTP `WIKIDEBIA_API_TOKEN` y est prêt, mais les deux variables attendues
+pour le BotPassword anglais sont absentes :
+
+- `WIKIDEBIA_EN_BOT_USERNAME` ;
+- `WIKIDEBIA_EN_BOT_PASSWORD`.
+
+Pywikibot s’est donc arrêté avant l’authentification avec une identité anglaise
+non définie. Aucune écriture distante n’a commencé. Le correctif `3631a48`
+transforme désormais ce cas en diagnostic explicite et testé, au lieu de laisser
+remonter l’erreur interne de Pywikibot. La publication finale pourra reprendre
+dès qu’un nouvel environnement exposera ces deux variables, avec le nom de bot
+`ChatGPT@Codex-EN`, et que le contrôle de l’utilisateur actif retournera
+exactement `ChatGPT`.
