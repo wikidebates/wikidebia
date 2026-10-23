@@ -911,9 +911,6 @@ def validate_template_shape(ctx: PackageContext, tmpl: Template, lang: str, page
             spec['required'].remove(summary_parameter)
     if (
         page_type == 'debate'
-        and lang == 'fr'
-        and page_manifest is not None
-        and page_manifest.get('page_origin') == 'preexisting'
         and _historically_absent_french_introduction(ctx)
         and 'introduction' in spec['required']
     ):
