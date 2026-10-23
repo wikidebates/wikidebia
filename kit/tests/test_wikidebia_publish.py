@@ -134,6 +134,30 @@ def test_pywikibot_adapter_rejects_partial_managed_credentials(monkeypatch, tmp_
         raise AssertionError("identifiants gérés partiels acceptés")
 
 
+def test_pywikibot_adapter_read_only_open_does_not_require_credentials(monkeypatch, tmp_path):
+    (tmp_path / "user-config.py").write_text("# test\n", encoding="utf-8")
+    calls = []
+
+    class FakeSite:
+        pass
+
+    fake = SimpleNamespace(
+        config=SimpleNamespace(extra_headers={}, family_files={}),
+        Site=lambda **kwargs: calls.append(kwargs) or FakeSite(),
+    )
+    monkeypatch.setitem(sys.modules, "pywikibot", fake)
+    monkeypatch.delenv("WIKIDEBIA_FR_BOT_USERNAME", raising=False)
+    monkeypatch.delenv("WIKIDEBIA_FR_BOT_PASSWORD", raising=False)
+    adapter = module.PywikibotAdapter(
+        "wikidebates", {"fr": "fr"}, tmp_path, SCRIPT.parents[1] / "families" / "wikidebates_family.py"
+    )
+
+    adapter.open_language_read_only("fr")
+
+    assert calls == [{"code": "fr", "fam": "wikidebates"}]
+    assert isinstance(adapter.site, FakeSite)
+
+
 def write_fixture(tmp_path: Path, kind: str):
     corpus = tmp_path / "corpus" / "demo"
     (corpus / "output" / "fr").mkdir(parents=True)
