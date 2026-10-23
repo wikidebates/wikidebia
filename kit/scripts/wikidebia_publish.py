@@ -374,6 +374,7 @@ class PageAction:
 
 class Adapter(Protocol):
     def open_language(self, language: str, expected_user: str) -> None: ...
+    def open_language_read_only(self, language: str) -> None: ...
     def close_language(self) -> None: ...
     def assert_identity(self, expected_user: str) -> None: ...
     def available_change_tags(self) -> set[str]: ...
@@ -505,6 +506,20 @@ class PywikibotAdapter:
             self.site.logout()
         self._login(pywikibot, language, expected_user)
         self.assert_identity(expected_user)
+
+    def open_language_read_only(self, language: str) -> None:
+        """Open a public wiki without requiring publication credentials.
+
+        Audits and recovery checks must be able to compare immutable evidence
+        with the live wiki even when BotPassword credentials are intentionally
+        unavailable.  The managed access header remains configured, but this
+        path never logs in and therefore cannot accidentally authorize writes.
+        """
+        self._prepare_environment()
+        import pywikibot
+        self._configure_access_header(pywikibot)
+        self._register_family(pywikibot)
+        self.site = pywikibot.Site(code=self.codes[language], fam=self.family)
 
     def close_language(self) -> None:
         try:

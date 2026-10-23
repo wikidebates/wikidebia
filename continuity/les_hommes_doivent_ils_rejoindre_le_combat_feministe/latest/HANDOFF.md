@@ -31,8 +31,16 @@ Empreintes courantes :
 - archive de release :
   `9e221ecb06eef460f1abeda04a858c50edc2c83f6b5e59411a847609052d8f18`.
 
-La validation finale compte zéro erreur et zéro avertissement. Les tests ciblés
-comptent 119 réussites. L’audit couvre les 125 libellés de relation.
+La validation finale compte zéro erreur et zéro avertissement. Après intégration
+des correctifs parallèles, la suite ciblée combinée compte 193 réussites.
+L’audit couvre les 125 libellés de relation.
+
+La revue française de contenu complétée, intégrée depuis le travail parallèle,
+porte l’empreinte
+`26d3c3de52b9d90a837d58bb73bef66bba7ccaa746b7564bdb1029823fe7cb07`.
+Elle conserve les 22 résumés historiques, les 78 absences de résumé, les sept
+citations et les deux références web historiques. Les changements de
+classification restent traçables dans cette revue.
 
 ## Titres affichés contextuels
 
@@ -50,6 +58,19 @@ le reçu signés se trouvent dans :
 Le rendu, les deux checkpoints français, la revue anglaise et le validateur
 utilisent désormais les libellés contextuels. Les cinq traductions anglaises
 proviennent des titres affichés historiques, et non des reformulations globales.
+
+## Portabilité et audit distant
+
+La trace non normative `reports/initial_validation_execution.json` est exclue
+de l’empreinte portable du build. La compatibilité avec les anciennes traces
+reste limitée aux deux champs de chemin absolu et contrôlée par leur SHA-256
+historique.
+
+Le mode d’audit distant intégré aux outils de publication est strictement en
+lecture seule et n’exige aucun identifiant d’écriture. L’audit des opérations
+parallèles du 24 octobre a confirmé que les huit dernières révisions françaises
+sont exactement les corrections attendues et que les 101 pages relues
+correspondent aux empreintes de l’état publié.
 
 ## Règle `oe`
 

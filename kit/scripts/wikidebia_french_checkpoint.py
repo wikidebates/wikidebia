@@ -704,6 +704,26 @@ def _config(project_root: Path, debate_id: str, work_id: str, checkpoint: Path, 
     return config_path
 
 
+def _published_state_evidence(project_root: Path, debate_id: str, language: str = "fr") -> dict[str, Any]:
+    """Return the signed state required to resume after a remote checkpoint."""
+    path = project_root / ".state" / "published" / debate_id / language / "latest.json"
+    if not path.is_file() or path.is_symlink():
+        raise FrenchCheckpointError(f"État publié signé absent après le checkpoint : {language}")
+    state = load_json(path, "état publié du checkpoint français")
+    unsigned = dict(state)
+    claimed = unsigned.pop("state_sha256", None)
+    if claimed != sha_object(unsigned):
+        raise FrenchCheckpointError(f"Empreinte de l’état publié divergente après le checkpoint : {language}")
+    if state.get("debate_id") != debate_id or state.get("language") != language:
+        raise FrenchCheckpointError("État publié rattaché à un autre débat ou une autre langue")
+    return {
+        "path": relative_to_project(path, project_root),
+        "file_sha256": sha256_file(path),
+        "state_sha256": claimed,
+        "pages": len(state.get("pages") or []),
+    }
+
+
 def publish_checkpoint(project_root: Path, debate_id: str, work_id: str, *, stage: str = "content", adapter: Any | None = None) -> dict[str, Any]:
     """Publish one sealed French stage using the ordinary signed update engine."""
     project_root = project_root.resolve()
@@ -774,6 +794,7 @@ def publish_checkpoint(project_root: Path, debate_id: str, work_id: str, *, stag
         "plan_path":relative_to_project(plan_path,project_root), "plan_sha256":plan.get("plan_sha256"),
         "edit_summary_contract":plan.get("edit_summary_contract"), "counts":copy.deepcopy(plan.get("counts") or {}),
         "remote_receipt_sha256":receipt.get("receipt_sha256"),
+        "published_state":_published_state_evidence(project_root, debate_id),
         "next_stage_authorized":"fr_content_review" if stage == "graph" else "en_translation_review",
     }
     publication["receipt_sha256"] = sha_object(publication)

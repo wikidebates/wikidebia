@@ -28,6 +28,10 @@ partie de la méthode de travail :
    de travail complet nécessaire à la reprise, l'état d'orchestration, les ZIP de
    revue utiles, un handoff lisible et les pages wikicode créées ou modifiées sur
    le wiki pendant la phase.
+   Après toute écriture distante, elle contient aussi obligatoirement les états
+   signés `.state/published/<debate_id>/<langue>/latest.json`, les reçus
+   `.state/receipts/<debate_id>/` et les plans/reçus du checkpoint. Un reçu de
+   checkpoint sans son état publié signé n’est pas un point de reprise complet.
 4. Le handoff indique le commit source, la phase atteinte, la prochaine commande,
    les validations exécutées, les écritures MediaWiki déjà attestées et les
    éventuels blocages. Un manifeste SHA-256 couvre tous les fichiers sauvegardés.
