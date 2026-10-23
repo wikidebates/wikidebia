@@ -682,6 +682,32 @@ def _french_source_page_origin(fr_meta: Mapping[str, Any], fr_content: Mapping[s
     return "new"
 
 
+def _requires_contextual_relation_labels(
+    metadata_lock: Mapping[str, Any], content_lock: Mapping[str, Any]
+) -> bool:
+    """Require occurrence-level labels whenever the French source is imported.
+
+    Translation fidelity follows the exact ``titre-affiché`` used by each
+    relation.  The source-preservation mode is only one way to reach an
+    imported corpus; a normal French content review must keep the same rule.
+    """
+    pairs = [
+        (metadata_lock.get("debate") or {}, content_lock.get("debate") or {}),
+    ]
+    metadata_arguments = {
+        str(row.get("entity_id") or row.get("id")): row
+        for row in metadata_lock.get("arguments") or [] if isinstance(row, Mapping)
+    }
+    for row in content_lock.get("arguments") or []:
+        if not isinstance(row, Mapping):
+            continue
+        pairs.append((metadata_arguments.get(str(row.get("id"))) or {}, row))
+    return bool(pairs) and all(
+        _french_source_page_origin(metadata, content) == "preexisting"
+        for metadata, content in pairs
+    )
+
+
 def _source_snapshot(source: Path) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], dict[str, Any]]:
     registry = load_json(source / "data/registre_debat.json", "registre du débat")
     metadata = load_json(source / "data/fr_page_metadata_lock.json", "verrou des métadonnées françaises")
@@ -984,7 +1010,7 @@ def prepare_review(project_root: Path, debate_id: str, work_id: str, *, overwrit
         {"id": node_id, "review_risk": _translation_risk_profile(fr_meta_by_id[node_id], fr_content_by_id[node_id]), "translation": _blank_argument(fr_meta_by_id[node_id], fr_content_by_id[node_id])}
         for node_id in active_ids
     ]
-    if content_lock.get("source_preservation_policy"):
+    if _requires_contextual_relation_labels(metadata_lock, content_lock):
         from wikidebia_translation_source import relation_labels_from_source
         review["relation_labels"] = [{**r, "translated_text": "", "equivalent_to_french": False, "review_note": ""} for r in relation_labels_from_source(source)]
     review["review_units"] = _build_translation_review_units(review["arguments"])
@@ -2130,7 +2156,7 @@ def finalize_review(project_root: Path, debate_id: str, work_id: str) -> dict[st
         if source_policy and (item.get("translation") or {}).get("french") != {"metadata": fr_meta_by_id.get(node_id), "content": fr_content_by_id.get(node_id)}:
             raise TranslationReviewError("Source française intégrée divergente du snapshot gelé : " + node_id)
         final_arguments.append(_validate_argument(item, keyword_map, by_source, authoritative_source_page_origin=authoritative_origin, authoritative_source_preservation_policy=source_policy))
-    if source_policy:
+    if _requires_contextual_relation_labels(metadata_lock, content_lock):
         from wikidebia_translation_source import validate_relation_labels
         contextual_labels = validate_relation_labels(review.get("relation_labels"), source)
         final_debate["relation_labels"] = [r for r in contextual_labels if r["source_page_id"] == "debate"]

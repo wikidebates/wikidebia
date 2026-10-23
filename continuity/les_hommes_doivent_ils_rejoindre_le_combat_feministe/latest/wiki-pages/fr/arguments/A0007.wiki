@@ -11,16 +11,16 @@
 }}
 |objections={{Objection
 |page=Les hommes ont intérêt à en finir avec le machisme pour assumer leur sensibilité et leurs émotions
-|titre-affiché=Pour assumer leur sensibilité et leurs émotions
+|titre-affiché=Les hommes gagneraient à assumer leur sensibilité et leurs émotions
 }}{{Objection
 |page=Les hommes ont intérêt à en finir avec le machisme pour se délivrer de l'injonction à la virilité
-|titre-affiché=Pour se délivrer de l'injonction à la virilité
+|titre-affiché=Les hommes gagneraient à se délivrer de l'injonction à la virilité
 }}{{Objection
 |page=Les hommes ont intérêt à en finir avec le machisme pour sortir des rapports de rivalité entre hommes
-|titre-affiché=Pour sortir des rapports de rivalité entre hommes
+|titre-affiché=Les hommes gagneraient à sortir des rapports de rivalité machistes
 }}{{Objection
 |page=Les hommes ont intérêt à en finir avec le machisme pour simplifier et libérer les rapports de séduction
-|titre-affiché=Pour simplifier et libérer les rapports de séduction
+|titre-affiché=Les hommes gagneraient à ce que les rapports de séduction soient plus simples
 }}{{Objection
 |page=Les hommes n'ont pas de privilèges
 |titre-affiché=Les hommes n'ont pas de privilèges
@@ -29,6 +29,6 @@
 |titre-affiché=Bien des hommes ont fait la preuve de leur engagement pour le combat féministe
 }}
 |rubriques=Politique, Société
-|mots-clés=Féminisme, Hommes, Privilèges
+|mots-clés=féminisme, hommes, privilèges
 |date-création=2019-11-24
 }}

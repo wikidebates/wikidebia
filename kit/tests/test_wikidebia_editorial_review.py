@@ -651,6 +651,21 @@ def test_preexisting_displayed_title_keep_cannot_hide_a_different_proposal():
             validate(item)
 
 
+def test_titles_never_introduce_oe_ligature():
+    diagnostics = workspace_tool.title_diagnostics(
+        "L'émancipation doit être l'œuvre de tous",
+        "L'émancipation doit être l'œuvre de tous",
+        enforce_creation_form=True,
+    )
+    assert {row["code"] for row in diagnostics} >= {
+        "TITLE_CANONICAL_OE_LIGATURE", "TITLE_DISPLAYED_OE_LIGATURE",
+    }
+    source = {"page_origin": "preexisting", "canonical_title": "L'oeuvre commune"}
+    decision = {"canonical_title_decision": "change", "proposed_canonical_title": "L'œuvre commune"}
+    with pytest.raises(review_tool.EditorialReviewError, match="ligature"):
+        review_tool._decision_value(decision, source, "canonical_title", "argument")
+
+
 def test_preexisting_rubrique_correction_requires_and_records_rationale():
     item = _preexisting_item(
         rubriques=["Économie", "Société"],

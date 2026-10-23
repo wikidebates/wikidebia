@@ -114,6 +114,8 @@ def title_diagnostics(canonical: str, displayed: str, *, enforce_creation_form: 
             issues.append({"code": "TITLE_CANONICAL_ELLIPSIS", "severity": "blocking", "field": "canonical_title"})
         if canonical.casefold().startswith(CONTEXT_DEPENDENT_STARTS):
             issues.append({"code": "TITLE_CANONICAL_POSSIBLE_CONTEXT_DEPENDENCY", "severity": "review", "field": "canonical_title"})
+        if enforce_creation_form and "œ" in canonical.casefold():
+            issues.append({"code": "TITLE_CANONICAL_OE_LIGATURE", "severity": "blocking", "field": "canonical_title"})
     if not displayed.strip():
         issues.append({"code": "TITLE_DISPLAYED_MISSING", "severity": "blocking", "field": "displayed_title"})
     else:
@@ -125,6 +127,8 @@ def title_diagnostics(canonical: str, displayed: str, *, enforce_creation_form: 
             issues.append({"code": "TITLE_DISPLAYED_NON_ASCII_QUOTES", "severity": "correction", "field": "displayed_title"})
         if any(mark in displayed for mark in ELLIPSES):
             issues.append({"code": "TITLE_DISPLAYED_ELLIPSIS", "severity": "blocking", "field": "displayed_title"})
+        if enforce_creation_form and "œ" in displayed.casefold():
+            issues.append({"code": "TITLE_DISPLAYED_OE_LIGATURE", "severity": "blocking", "field": "displayed_title"})
         words = token_words(displayed)
         if words and words[-1].casefold() in TRAILING_CONNECTORS:
             issues.append({"code": "TITLE_DISPLAYED_TRAILING_CONNECTOR", "severity": "blocking", "field": "displayed_title"})

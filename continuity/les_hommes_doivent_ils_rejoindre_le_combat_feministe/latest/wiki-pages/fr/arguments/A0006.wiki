@@ -32,6 +32,6 @@
 |titre-affiché=Il est possible de leur donner une autre éducation
 }}
 |rubriques=Éducation, Politique, Société
-|mots-clés=Hommes, Domination masculine, Féminisme, Socialisation
+|mots-clés=hommes, domination masculine, féminisme, socialisation
 |date-création=2019-11-24
 }}

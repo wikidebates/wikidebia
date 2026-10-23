@@ -7,6 +7,6 @@
 |titre-affiché=La virilité n'a pas que des mauvais côtés
 }}
 |rubriques=Politique, Société
-|mots-clés=Féminisme, Hommes, Machisme, Sexisme, Virilisme
+|mots-clés=féminisme, hommes, machisme, sexisme, virilisme
 |date-création=2019-12-25
 }}

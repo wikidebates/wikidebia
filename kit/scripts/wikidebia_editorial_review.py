@@ -243,7 +243,17 @@ def _decision_value(review: Mapping[str, Any], source: Mapping[str, Any], field:
         if decision == "keep":
             return source.get("canonical_title")
         if decision == "change":
-            return review.get("proposed_canonical_title")
+            proposed = review.get("proposed_canonical_title")
+            source_title = str(source.get("canonical_title") or "")
+            if (
+                _source_page_origin(source) == "preexisting"
+                and isinstance(proposed, str)
+                and proposed.casefold().count("œ") > source_title.casefold().count("œ")
+            ):
+                raise EditorialReviewError(
+                    "Une reprise de titre ne doit pas remplacer la séquence oe par la ligature œ"
+                )
+            return proposed
         raise EditorialReviewError("Décision de titre canonique absente ou invalide")
     if field == "displayed_title":
         if entity_type == "debate":
@@ -336,6 +346,7 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
             "TITLE_CANONICAL_NON_ASCII_QUOTES", "TITLE_CANONICAL_ELLIPSIS", "TITLE_DISPLAYED_MISSING",
             "TITLE_DISPLAYED_SPACING", "TITLE_DISPLAYED_TRAILING_PERIOD", "TITLE_DISPLAYED_NON_ASCII_QUOTES",
             "TITLE_DISPLAYED_ELLIPSIS", "TITLE_DISPLAYED_TRAILING_CONNECTOR",
+            "TITLE_CANONICAL_OE_LIGATURE", "TITLE_DISPLAYED_OE_LIGATURE",
         }
         remaining = [row for row in title_diagnostics(canonical, displayed, enforce_creation_form=(page_origin == "new")) if row.get("code") in blocking_codes]
         if remaining:
@@ -494,6 +505,7 @@ def _validate_title_item(item: Mapping[str, Any]) -> dict[str, Any]:
             "TITLE_CANONICAL_NON_ASCII_QUOTES", "TITLE_CANONICAL_ELLIPSIS", "TITLE_DISPLAYED_MISSING",
             "TITLE_DISPLAYED_SPACING", "TITLE_DISPLAYED_TRAILING_PERIOD", "TITLE_DISPLAYED_NON_ASCII_QUOTES",
             "TITLE_DISPLAYED_ELLIPSIS", "TITLE_DISPLAYED_TRAILING_CONNECTOR",
+            "TITLE_CANONICAL_OE_LIGATURE", "TITLE_DISPLAYED_OE_LIGATURE",
         }
         remaining = [row for row in title_diagnostics(canonical_raw, displayed_raw, enforce_creation_form=(page_origin == "new")) if row.get("code") in blocking_codes]
         if remaining:

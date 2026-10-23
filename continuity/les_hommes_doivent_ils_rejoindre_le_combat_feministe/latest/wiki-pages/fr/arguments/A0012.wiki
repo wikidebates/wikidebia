@@ -7,14 +7,7 @@
 |page=La socialisation vise à lutter contre notre égoïsme naturel
 |titre-affiché=La socialisation vise à lutter contre notre égoïsme naturel
 }}
-|références-sitographiques={{Référence sitographique
-|lien=http://www.slate.fr/story/187230/education-positive-sexisme-petits-garcons-centre-univers-maitrise-emotions
-|page=Les hommes doivent-ils rejoindre le combat féministe ?
-|auteurs=Titou Lecoq
-|site=Slate
-|date=07/02/2020
-}}
 |rubriques=Éducation, Politique, Société
-|mots-clés=Féminisme, Hommes, Femmes, Socialisation, Égoïsme
+|mots-clés=féminisme, hommes, femmes, socialisation, égoïsme
 |date-création=2020-03-26
 }}

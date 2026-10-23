@@ -35,6 +35,6 @@
 |titre-affiché=Le combat n'avancera pas si on n'éduque pas les hommes
 }}
 |rubriques=Politique, Société
-|mots-clés=Féminisme, Hommes, Femmes, Non-mixité
+|mots-clés=féminisme, hommes, femmes, non-mixité
 |date-création=2020-03-22
 }}

@@ -7,26 +7,14 @@
   "debate_id": "les_hommes_doivent_ils_rejoindre_le_combat_feministe",
   "debate_title": "Les hommes doivent-ils rejoindre le combat féministe ?",
   "short_code": "LHDIRLCF",
-  "phase": "fr_content_review",
-  "status": "awaiting_review",
+  "phase": "final_publication",
+  "status": "final_publication",
   "work_id": "EDIT-20261023-001",
-  "pending_review": {
-    "package_id": "9898cdeb-d972-4003-bab0-650b4be0ac95",
-    "review_type": "fr_content_review",
-    "package_path": "outgoing/les_hommes_doivent_ils_rejoindre_le_combat_feministe_fr_content_review.zip",
-    "archive_sha256": "558a536fe38df56f07a0ee1e56b1e97ceebf0fa762234db1ef60eb997650373b",
-    "manifest_sha256": "89a1aabc9f89e192e4fc0f11c5c3a306a366601f6c4a6448f04cd0c879dfaa6a",
-    "base_path": ".state/editorial-workspaces/les_hommes_doivent_ils_rejoindre_le_combat_feministe/EDIT-20261023-001",
-    "work_id": "EDIT-20261023-001",
-    "created_at": "2026-10-23T06:58:42+00:00",
-    "counts": {
-      "arguments": 100
-    }
-  },
+  "pending_review": null,
   "snapshot_path": ".state/workflows/les_hommes_doivent_ils_rejoindre_le_combat_feministe/snapshot-input.zip",
   "force_refresh": false,
   "created_at": "2026-10-22T11:58:41+00:00",
-  "updated_at": "2026-10-23T06:58:42+00:00",
+  "updated_at": "2026-10-23T18:08:19+00:00",
   "superseded_works": [
     {
       "work_id": "EDIT-20261022-001",
@@ -62,5 +50,72 @@
     "remote_receipt_sha256": "c1b6736a42a8a179a98daeda533a971de916c7794ee25a75c0a2e0708146770d",
     "next_stage_authorized": "fr_content_review",
     "receipt_sha256": "69af472f704df97375b319f1b33e9bbde45598d5d884b27ef852882da9cf9767"
+  },
+  "french_content_publication": {
+    "schema": "wikidebia-french-checkpoint-publication-receipt-1.0",
+    "schema_version": "1.0",
+    "debate_id": "les_hommes_doivent_ils_rejoindre_le_combat_feministe",
+    "work_id": "EDIT-20261023-001",
+    "stage": "content",
+    "status": "published",
+    "published_at": "2026-10-23T13:28:23+00:00",
+    "checkpoint_path": ".state/fr-publication/les_hommes_doivent_ils_rejoindre_le_combat_feministe/EDIT-20261023-001/content/checkpoint-corpus",
+    "checkpoint_tree_sha256": "d29351af777b0ce3ead6d7bd5c24b2b5e01f68e409af343d3a9422aba21e6f15",
+    "plan_path": ".state/fr-publication/les_hommes_doivent_ils_rejoindre_le_combat_feministe/EDIT-20261023-001/content/update-plan.json",
+    "plan_sha256": "95ebe98402232102cd642d2cbaf9bd161ad9e9c5043cbeaffe719c524966b8ba",
+    "edit_summary_contract": "page_specific_v1",
+    "counts": {
+      "create": 0,
+      "update": 100,
+      "move": 0,
+      "redirect": 0,
+      "delete": 0,
+      "skip": 1,
+      "manual_review": 0,
+      "blocked": 0
+    },
+    "remote_receipt_sha256": "07aa82ed23910bf221988152bbc4328e9d5b4212d07fe4be33865d9b21e848f7",
+    "next_stage_authorized": "en_translation_review",
+    "receipt_sha256": "d6e6b951a0f4a2de725733d5e54e5b8385167a5beb20819608f6d91fd1fc9a0e"
+  },
+  "french_publication": {
+    "schema": "wikidebia-french-checkpoint-publication-receipt-1.0",
+    "schema_version": "1.0",
+    "debate_id": "les_hommes_doivent_ils_rejoindre_le_combat_feministe",
+    "work_id": "EDIT-20261023-001",
+    "stage": "content",
+    "status": "published",
+    "published_at": "2026-10-23T13:28:23+00:00",
+    "checkpoint_path": ".state/fr-publication/les_hommes_doivent_ils_rejoindre_le_combat_feministe/EDIT-20261023-001/content/checkpoint-corpus",
+    "checkpoint_tree_sha256": "d29351af777b0ce3ead6d7bd5c24b2b5e01f68e409af343d3a9422aba21e6f15",
+    "plan_path": ".state/fr-publication/les_hommes_doivent_ils_rejoindre_le_combat_feministe/EDIT-20261023-001/content/update-plan.json",
+    "plan_sha256": "95ebe98402232102cd642d2cbaf9bd161ad9e9c5043cbeaffe719c524966b8ba",
+    "edit_summary_contract": "page_specific_v1",
+    "counts": {
+      "create": 0,
+      "update": 100,
+      "move": 0,
+      "redirect": 0,
+      "delete": 0,
+      "skip": 1,
+      "manual_review": 0,
+      "blocked": 0
+    },
+    "remote_receipt_sha256": "07aa82ed23910bf221988152bbc4328e9d5b4212d07fe4be33865d9b21e848f7",
+    "next_stage_authorized": "en_translation_review",
+    "receipt_sha256": "d6e6b951a0f4a2de725733d5e54e5b8385167a5beb20819608f6d91fd1fc9a0e"
+  },
+  "release": {
+    "status": "release_ready",
+    "debate_id": "les_hommes_doivent_ils_rejoindre_le_combat_feministe",
+    "work_id": "EDIT-20261023-001",
+    "release_copy": ".state/editorial-workspaces/les_hommes_doivent_ils_rejoindre_le_combat_feministe/EDIT-20261023-001/release-copy",
+    "release_copy_tree_sha256": "65d4a71510b05f4d25b39b2ab6bb9d4c8feb8b0460cb0dd21d04edf8dedd6b22",
+    "archive": ".state/corpus-releases/les_hommes_doivent_ils_rejoindre_le_combat_feministe/EDIT-20261023-001/les_hommes_doivent_ils_rejoindre_le_combat_feministe.zip",
+    "archive_sha256": "9e221ecb06eef460f1abeda04a858c50edc2c83f6b5e59411a847609052d8f18",
+    "release_manifest_sha256": "7f8f86329e74a5c6d5b0eb5e2adb286a31fc97689f612bf2beb391727adb3024",
+    "remote_comparison_prepared": true,
+    "remote_access": false,
+    "publication_started": false
   }
 }

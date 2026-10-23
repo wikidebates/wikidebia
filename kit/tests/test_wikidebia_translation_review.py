@@ -307,6 +307,12 @@ def complete_translation_review(workspace: Path) -> None:
             })
         for field in translation.SUMMARY_TRUE_FIELDS:
             row[field] = True
+    for label in review.get("relation_labels") or []:
+        label.update({
+            "translated_text": f"Contextual translation for {label['id']}",
+            "equivalent_to_french": True,
+            "review_note": "The occurrence-level French label was translated and checked independently.",
+        })
     for unit in review.get("review_units") or []:
         unit.update({
             "status": "approved", "reviewer": "Unit reviewer",

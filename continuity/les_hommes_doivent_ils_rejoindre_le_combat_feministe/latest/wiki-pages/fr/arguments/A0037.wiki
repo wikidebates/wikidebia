@@ -12,5 +12,7 @@
 |ouvrage=Centre d’Action Laïque de la Province de Namur
 |lien=https://www.ihoes.be/PDF/expositions/EXPO_Willy_Peers_humaniste_medecine.pdf
 }}
+|rubriques=Politique
+|mots-clés=féminisme, avortement, contraception
 |date-création=2023-07-16
 }}

@@ -243,14 +243,17 @@ def _instructions(review_type: str, debate_id: str, work_id: str | None, editabl
             "Les décisions structurelles sont d’abord appliquées localement au graphe puis soumises à une nouvelle revue complète. Aucune page distante n’est modifiée pendant cette boucle.",
             "Après réimport approuvé de ce même ZIP, toutes les mutations structurelles et de titres validées sont publiées immédiatement au premier checkpoint français, avec un résumé MediaWiki individualisé par page.",
             "Pour un doublon, le résumé de la page mère mentionne la page conservée sous la forme `[[Titre de destination]]`.",
+            "Corrigez les titres affichés pendant la génération d’un nouveau débat. Lors de la reprise ou de la traduction d’un débat préexistant, conservez chaque `titre-affiché` historique exactement à l’occurrence où il apparaît ; un même argument peut avoir plusieurs libellés contextuels.",
+            "N’introduisez jamais la ligature `œ` à la place de la séquence `oe`, ni dans un titre généré ni dans une correction ou une traduction.",
         ]
     if review_type == "fr_metadata_review":
         lines += [
             "",
             "Cette revue clôt le premier ensemble français : graphe + titres. Elle porte exclusivement sur les titres canoniques / noms de pages et les titres affichés.",
-            "Pour un Argument préexistant du wiki, conservez par défaut `titre-affiché`, même s’il est nominal ou non propositionnel. Ne le modifiez que pour une faute ou un problème flagrant, ou sur décision explicite du propriétaire.",
+            "Pour un Argument préexistant du wiki repris en vue d’une traduction, conservez exactement chaque `titre-affiché`, même s’il est nominal, non propositionnel ou différent selon les occurrences. Les corrections de titres affichés appartiennent à la génération d’un nouveau débat, pas à la traduction d’un débat existant.",
             "Le titre canonique / nom de page reste à corriger lorsqu’il est incomplet, contextuel, ambigu ou fautif.",
             "Un renommage canonique modifie les cibles `page=`, sans recopier le nouveau nom dans `titre-affiché`. Un libellé court, nominal ou sans verbe se conserve : ces seules caractéristiques ne constituent pas un défaut d’une page existante.",
+            "Écrivez toujours `oe` et ne remplacez jamais cette séquence par la ligature `œ`.",
             "Ne modifiez pas ici les rubriques ni les mots-clés : ils seront revus et publiés avec le contenu au second checkpoint français.",
             "Après réimport validé, Wikidéb’IA publie automatiquement les changements structurels et de titres sur le wiki français avant de préparer la revue de contenu.",
         ]
@@ -282,6 +285,8 @@ def _instructions(review_type: str, debate_id: str, work_id: str | None, editabl
             "",
             "Distinguez `page_origin` (cycle de vie de la page anglaise cible) de `source_page_origin` (provenance éditoriale de la source française). Ne modifiez jamais `source_page_origin` : il est dérivé des verrous français.",
             "La traduction respecte la forme du `titre-affiché` français validé, quelle que soit sa provenance : un libellé court ou nominal reste traduisible comme tel. Les exigences de génération (longueur, verbe, proposition complète, gain de concision) ne justifient aucune réécriture de la source ni aucun allongement de sa traduction. Vérifiez uniquement la fidélité et les dégradations introduites par la traduction.",
+            "Traduisez séparément le `titre-affiché` de chaque occurrence relationnelle : ne remplacez jamais un libellé contextuel historique par le titre affiché global du nœud, même lorsque les deux pointent vers la même page.",
+            "Ne remplacez jamais la séquence `oe` par la ligature `œ`. Cette règle vaut pour la génération française, les corrections et toute donnée source recopiée pendant une traduction.",
             "Lorsque `source_page_origin=preexisting`, ne ramenez pas les keywords historiques aux quotas de création et ne transformez pas un `displayed-title` historique nominal en proposition pour satisfaire une préférence de génération. Traduisez la classification et les mots-clés français finalement validés dans le même ordre conceptuel.",
             "Les règles qualitatives intrinsèques des keywords restent applicables : la version anglaise doit utiliser les équivalents idiomatiques du vocabulaire français final, y compris après une correction ou une décomposition historique validée.",
             "Pour une introduction française historique, produisez une adaptation anglaise autonome : examinez explicitement le contexte franco-français et condensez, contextualisez ou omettez ce qui ne doit pas être traduit mécaniquement, sans changer la substance du débat. `Stakes of the debate` et les autres contraintes de profil d’une introduction nouvellement créée ne sont pas obligatoires pour les sous-parties historiques inchangées.",

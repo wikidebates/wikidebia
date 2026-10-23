@@ -35,6 +35,6 @@
 |titre-affiché=Les femmes ont intérêt à mener le combat féministe sans les hommes
 }}
 |rubriques=Politique, Société
-|mots-clés=Féminisme, Hommes, Sexisme, Femmes
+|mots-clés=féminisme, hommes, sexisme, femmes
 |date-création=2019-11-24
 }}

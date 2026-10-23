@@ -57,22 +57,50 @@ def _csv(value: str) -> list[str]:
 def relation_labels_from_source(source: Path) -> list[dict[str,Any]]:
     from wikidebia_translation_review import TranslationReviewError
     registry,debate,arguments=_source_imports(source)
-    result=[]
+    provenance=load_json(source/'data/import_provenance.json','provenance française')
+    title_to_id={}
+    for row in provenance.get('pages') or []:
+        if not isinstance(row,Mapping) or row.get('kind')!='argument' or not row.get('page_id'):
+            continue
+        for key in ('canonical_title','requested_title','source_graph_title'):
+            title=str(row.get(key) or '').strip()
+            if title:title_to_id[title]=str(row['page_id'])
+    nodes={str(node.get('id')):node for node in (registry.get('graph') or {}).get('nodes') or [] if node.get('status')=='active'}
+    for node_id,node in nodes.items():
+        title=str((node.get('fr') or {}).get('canonical_title') or '').strip()
+        if title:title_to_id[title]=node_id
+    historical_roots={}
     debate_template=_outer_template(source/debate['import_path'],{'debat'})
     for branch,param,name in [('pro','arguments-pour','argument pour'),('con','arguments-contre','argument contre')]:
         calls=[c for c in iter_templates(debate_template.get(param)) if normalize_key(c.name)==name]
-        occs=sorted([o for o in registry['graph']['occurrences'] if o.get('depth')==1 and o.get('branch')==branch],key=lambda o:int(o.get('order') or 0))
-        if len(calls)!=len(occs):raise TranslationReviewError('Occurrences principales divergentes du snapshot')
-        for call,occ in zip(calls,occs):
-            result.append(dict(id='root:'+occ['id'],source_page_id='debate',target_node_id=occ['node_id'],relation=branch,source_text=call.get('titre-affiché').strip() or call.get('page').strip()))
+        for call in calls:
+            page=call.get('page').strip();node_id=title_to_id.get(page)
+            if node_id:
+                historical_roots[(branch,node_id)]=call.get('titre-affiché').strip() or page
+    historical_edges={}
     for arg in arguments:
         template=_outer_template(source/arg['import_path'],{'argument'})
         for relation,param in [('justification','justifications'),('objection','objections')]:
             calls=[c for c in iter_templates(template.get(param)) if normalize_key(c.name)==relation]
-            edges=sorted([e for e in registry['graph']['edges'] if e.get('status')=='active' and e.get('parent_node_id')==arg['id'] and e.get('relation')==relation],key=lambda e:int(e.get('order') or 0))
-            if len(calls)!=len(edges):raise TranslationReviewError('Relations divergentes du snapshot : '+arg['id'])
-            for call,edge in zip(calls,edges):
-                result.append(dict(id='edge:'+edge['id'],source_page_id=arg['id'],target_node_id=edge['child_node_id'],relation=relation,source_text=call.get('titre-affiché').strip() or call.get('page').strip()))
+            for call in calls:
+                page=call.get('page').strip();child_id=title_to_id.get(page)
+                if child_id:
+                    historical_edges[(arg['id'],relation,child_id)]=call.get('titre-affiché').strip() or page
+    result=[]
+    for branch in ('pro','con'):
+        occs=sorted([o for o in registry['graph']['occurrences'] if o.get('depth')==1 and o.get('branch')==branch],key=lambda o:(int(o.get('order') or 0),str(o.get('id') or '')))
+        for occ in occs:
+            node_id=str(occ['node_id']);fallback=str((nodes.get(node_id,{}).get('fr') or {}).get('displayed_title') or '')
+            source_text=historical_roots.get((branch,node_id),fallback)
+            if not source_text:raise TranslationReviewError('Titre affiché français principal absent : '+node_id)
+            result.append(dict(id='root:'+occ['id'],source_page_id='debate',target_node_id=node_id,relation=branch,source_text=source_text))
+    edges=sorted([e for e in registry['graph']['edges'] if e.get('status')=='active'],key=lambda e:(str(e.get('parent_node_id') or ''),str(e.get('relation') or ''),int(e.get('order') or 0),str(e.get('id') or '')))
+    for edge in edges:
+        parent_id=str(edge['parent_node_id']);child_id=str(edge['child_node_id']);relation=str(edge['relation'])
+        fallback=str((nodes.get(child_id,{}).get('fr') or {}).get('displayed_title') or '')
+        source_text=historical_edges.get((parent_id,relation,child_id),fallback)
+        if not source_text:raise TranslationReviewError('Titre affiché français relationnel absent : '+str(edge.get('id')))
+        result.append(dict(id='edge:'+str(edge['id']),source_page_id=parent_id,target_node_id=child_id,relation=relation,source_text=source_text))
     return result
 
 def validate_relation_labels(rows: Any, source: Path) -> list[dict[str,Any]]:
