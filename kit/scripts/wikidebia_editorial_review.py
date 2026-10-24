@@ -349,6 +349,11 @@ def _validate_item(item: Mapping[str, Any]) -> dict[str, Any]:
             "TITLE_CANONICAL_OE_LIGATURE", "TITLE_DISPLAYED_OE_LIGATURE",
         }
         remaining = [row for row in title_diagnostics(canonical, displayed, enforce_creation_form=(page_origin == "new")) if row.get("code") in blocking_codes]
+        if page_origin == "preexisting" and displayed == source.get("displayed_title"):
+            # A preexisting displayed title is immutable.  Legacy diagnostics
+            # remain useful for inventory, but cannot demand a value that the
+            # same review contract explicitly forbids us to change.
+            remaining = [row for row in remaining if row.get("field") != "displayed_title"]
         if remaining:
             raise EditorialReviewError(f"Titres non conformes pour {entity_id} : {[row.get('code') for row in remaining]}")
         if not _text_ok(decision.get("canonical_title_rationale"), 20):
@@ -508,6 +513,8 @@ def _validate_title_item(item: Mapping[str, Any]) -> dict[str, Any]:
             "TITLE_CANONICAL_OE_LIGATURE", "TITLE_DISPLAYED_OE_LIGATURE",
         }
         remaining = [row for row in title_diagnostics(canonical_raw, displayed_raw, enforce_creation_form=(page_origin == "new")) if row.get("code") in blocking_codes]
+        if page_origin == "preexisting" and displayed_raw == source.get("displayed_title"):
+            remaining = [row for row in remaining if row.get("field") != "displayed_title"]
         if remaining:
             raise EditorialReviewError(f"Titres non conformes pour {entity_id} : {[row.get('code') for row in remaining]}")
         if not _text_ok(decision.get("canonical_title_rationale"), 20):

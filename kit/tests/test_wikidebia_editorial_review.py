@@ -651,6 +651,23 @@ def test_preexisting_displayed_title_keep_cannot_hide_a_different_proposal():
             validate(item)
 
 
+def test_preexisting_displayed_title_keeps_legacy_ellipsis_in_both_reviews():
+    item = _preexisting_item(rubriques=["Économie"], keywords=["revenu", "travail"])
+    item["source"]["displayed_title"] = "Coûts …"
+    item["review"].update(
+        canonical_title_decision="change",
+        proposed_canonical_title="Le revenu de base entraîne des coûts économiques",
+        displayed_title_decision="keep",
+        proposed_displayed_title="Coûts …",
+        displayed_title_complete_proposition=False,
+    )
+    for validate in (review_tool._validate_item, review_tool._validate_title_item):
+        result = validate(item)
+        assert result["canonical_title"] == "Le revenu de base entraîne des coûts économiques"
+        assert result["displayed_title"] == "Coûts …"
+        assert result["decisions"]["displayed_title"] == "keep"
+
+
 def test_titles_never_introduce_oe_ligature():
     diagnostics = workspace_tool.title_diagnostics(
         "L'émancipation doit être l'œuvre de tous",
