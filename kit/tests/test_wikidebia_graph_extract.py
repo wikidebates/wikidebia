@@ -58,6 +58,42 @@ class ParserTests(unittest.TestCase):
 
 
 class CrawlTests(unittest.TestCase):
+    def test_max_depth_limits_traversal_and_counts_arguments_by_level(self):
+        pages = {
+            "Débat test": "{{Débat|arguments-pour={{Argument pour|page=A}}|arguments-contre=}}",
+            "A": "{{Argument|justifications={{Justification|page=B}}|objections=}}",
+            "B": "{{Argument|justifications={{Justification|page=C}}|objections=}}",
+            "C": "{{Argument|justifications={{Justification|page=D}}|objections=}}",
+        }
+        result = mod.crawl_graph(
+            FakeClient(pages),
+            debate_title="Débat test",
+            max_depth=1,
+            progress_every=0,
+        )
+        graph = mod.analyze_graph(result)
+        self.assertEqual(set(result.parsed_arguments), {"A", "B"})
+        self.assertEqual([(edge.source, edge.target) for edge in result.relations], [("A", "B")])
+        self.assertEqual(result.depth_frontiers, {"B": 1})
+        self.assertEqual(graph["metadata"]["arguments_par_niveau"], {1: 1, 2: 1})
+        self.assertEqual(graph["metadata"]["limite_profondeur"], 1)
+        self.assertEqual(graph["metadata"]["relations_ignorees_limite_profondeur"], 1)
+        b = next(row for row in graph["noeuds"] if row["titre"] == "B")
+        self.assertEqual(b["statut"], "frontière_profondeur")
+
+    def test_default_depth_remains_unbounded(self):
+        pages = {
+            "Débat test": "{{Débat|arguments-pour={{Argument pour|page=A}}|arguments-contre=}}",
+            "A": "{{Argument|justifications={{Justification|page=B}}|objections=}}",
+            "B": "{{Argument|justifications={{Justification|page=C}}|objections=}}",
+            "C": "{{Argument|justifications=|objections=}}",
+        }
+        result = mod.crawl_graph(FakeClient(pages), debate_title="Débat test", progress_every=0)
+        graph = mod.analyze_graph(result)
+        self.assertEqual(set(result.parsed_arguments), {"A", "B", "C"})
+        self.assertIsNone(graph["metadata"]["limite_profondeur"])
+        self.assertEqual(graph["metadata"]["arguments_par_niveau"], {1: 1, 2: 1, 3: 1})
+
     def test_recursive_graph_reuse_and_redirect(self):
         pages = {
             "Débat test": """{{Débat
@@ -199,6 +235,31 @@ class CrawlTests(unittest.TestCase):
         self.assertIn("## Avertissements réels", report)
         self.assertNotIn("Frontière débat détaillé", report)
 
+    def test_report_exposes_depth_frontiers_and_argument_counts(self):
+        pages = {
+            "Débat test": "{{Débat|arguments-pour={{Argument pour|page=A}}|arguments-contre=}}",
+            "A": "{{Argument|justifications={{Justification|page=B}}|objections=}}",
+            "B": "{{Argument|justifications={{Justification|page=C}}|objections=}}",
+            "C": "{{Argument|justifications=|objections=}}",
+        }
+        result = mod.crawl_graph(
+            FakeClient(pages), debate_title="Débat test", max_depth=1, progress_every=0
+        )
+        graph = mod.analyze_graph(result)
+        with tempfile.TemporaryDirectory() as directory:
+            paths = mod.write_outputs(
+                graph,
+                result,
+                output_dir=Path(directory),
+                slug="debat_test",
+                extraction_date="2026-10-24",
+            )
+            report = paths["report"].read_text(encoding="utf-8")
+        self.assertIn("### Nombre d’arguments par niveau", report)
+        self.assertIn("## Frontières de profondeur", report)
+        self.assertIn("Limite demandée : **1 arête(s)**", report)
+        self.assertIn("Relations vers le niveau suivant non suivies : **1**", report)
+
     def test_cache_is_reusable(self):
         with tempfile.TemporaryDirectory() as directory:
             cache = mod.JsonPageCache(Path(directory))
@@ -232,6 +293,10 @@ class DedicatedDebateCliRegressionTests(unittest.TestCase):
             args = mod.build_parser().parse_args(["--debate", "Débat test", option])
             self.assertTrue(args.follow_local_relations_at_dedicated_debate)
             self.assertFalse(hasattr(args, "follow_local_relations_at_detailed_debate"))
+
+    def test_parser_accepts_max_depth(self):
+        args = mod.build_parser().parse_args(["--debate", "Débat test", "--max-depth", "4"])
+        self.assertEqual(args.max_depth, 4)
 
 if __name__ == "__main__":
     unittest.main()

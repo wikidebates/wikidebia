@@ -68,7 +68,13 @@ Le snapshot est l'entrée de `./wikidebia corpus-init-from-snapshot`. L'extracte
 --allow-missing           exporter malgré des pages liées inexistantes
 --login                   utiliser le compte Pywikibot configuré
 --force-refresh           ignorer les pages déjà mises en cache
+--max-depth N             limiter la profondeur en arêtes (niveau 1 = profondeur 0)
 ```
+
+Sans `--max-depth`, le parcours récursif reste illimité. Avec
+`--max-depth 4`, les arguments principaux et les quatre générations de relations
+suivantes sont conservés ; les relations qui partiraient vers la profondeur 5
+sont comptées mais ne sont ni suivies ni ajoutées au graphe extrait.
 
 L'option suivante suit les relations locales d'une page frontière, sans ouvrir le débat sous-jacent :
 
@@ -102,7 +108,12 @@ niveau_maximal_occurrences
 profondeur_maximale_en_aretes
 occurrences_argumentatives_depliees_par_chemins
 occurrences_depliees_par_niveau
+arguments_par_niveau
 ```
+
+Le rapport Markdown contient une table « Nombre d’arguments par niveau ».
+`arguments_par_niveau` compte les pages Argument uniques selon leur niveau minimal ;
+les occurrences réutilisées par plusieurs chemins restent présentées séparément.
 
 Une ligne de niveau contenant des occurrences mais aucune page unique est normale lorsque toutes ces occurrences réutilisent des pages déjà rencontrées à un niveau inférieur.
 

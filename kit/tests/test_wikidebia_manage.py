@@ -752,6 +752,7 @@ def test_graph_extract_command_is_routed_read_only(monkeypatch, tmp_path: Path):
         login=False,
         force_refresh=False,
         allow_missing=False,
+        max_depth=4,
         max_pages=1000,
         retries=3,
         retry_delay=1.5,
@@ -766,14 +767,18 @@ def test_graph_extract_command_is_routed_read_only(monkeypatch, tmp_path: Path):
     assert command[command.index("--output-dir") + 1].endswith(".state/graph-extract/dieu_existe_t_il")
     assert "--machine-readable" in command
     assert "--force-refresh" not in command
+    assert command[command.index("--max-depth") + 1] == "4"
     assert "--follow-local-relations-at-dedicated-debate" not in command
 
 
 def test_graph_extract_parser_exposes_native_command():
-    args = module.build_parser().parse_args(["graph-extract", "Débat test", "--max-pages", "50"])
+    args = module.build_parser().parse_args([
+        "graph-extract", "Débat test", "--max-pages", "50", "--max-depth", "4"
+    ])
     assert args.command == "graph-extract"
     assert args.debate_title == "Débat test"
     assert args.max_pages == 50
+    assert args.max_depth == 4
 
 
 
@@ -795,6 +800,7 @@ def test_graph_extract_main_routes_dedicated_debate_option_without_namespace_reg
     assert code == 0
     assert captured["debate_title"] == "Débat test"
     assert captured["follow_local_relations_at_dedicated_debate"] is True
+    assert captured["max_depth"] is None
 
 
 def test_graph_extract_legacy_option_alias_maps_to_dedicated_destination():
@@ -826,6 +832,7 @@ def test_graph_extract_rejects_output_outside_project(tmp_path: Path):
             login=False,
             force_refresh=False,
             allow_missing=False,
+            max_depth=None,
             max_pages=10,
             retries=0,
             retry_delay=0,

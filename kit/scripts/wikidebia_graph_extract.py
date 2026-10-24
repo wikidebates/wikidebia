@@ -585,6 +585,7 @@ class CrawlResult:
     aliases: dict[str, str]
     warnings: list[str]
     frontier_information: list[str]
+    depth_frontiers: dict[str, int]
     missing_pages: list[str]
     crawl_options: dict[str, Any]
 
@@ -610,14 +611,18 @@ def crawl_graph(
     *,
     debate_title: str,
     stop_on_detailed_debate: bool = True,
+    max_depth: int | None = None,
     max_pages: int = 5000,
     allow_missing: bool = False,
     progress_every: int = 25,
 ) -> CrawlResult:
+    if max_depth is not None and max_depth < 0:
+        raise RuntimeError("--max-depth doit être positif ou nul")
     debate_record = client.fetch(debate_title)
     parsed_debate = parse_debate_wikitext(debate_record.text)
     warnings = [f"Débat: {warning}" for warning in parsed_debate.warnings]
     frontier_information: list[str] = []
+    depth_frontiers: dict[str, int] = {}
     if not parsed_debate.pro and not parsed_debate.con:
         raise RuntimeError("Aucun argument principal n'a été trouvé dans la page Débat")
 
@@ -628,10 +633,10 @@ def crawl_graph(
     root_displayed: dict[str, set[str]] = defaultdict(set)
     missing: list[str] = []
     relation_map: dict[tuple[str, str, str], RelationDraft] = {}
-    queue: deque[str] = deque()
-    queued: set[str] = set()
+    queue: deque[tuple[str, int]] = deque()
+    queued_depth: dict[str, int] = {}
 
-    def resolve(entry: LinkEntry, *, context: str) -> str | None:
+    def resolve(entry: LinkEntry, *, context: str, depth: int) -> str | None:
         try:
             record = client.fetch(entry.page)
         except PageMissingError:
@@ -644,23 +649,23 @@ def crawl_graph(
         page_records[canonical] = record
         if entry.displayed_title:
             root_displayed[canonical].add(entry.displayed_title)
-        if canonical not in queued:
-            queued.add(canonical)
-            queue.append(canonical)
+        if canonical not in queued_depth or depth < queued_depth[canonical]:
+            queued_depth[canonical] = depth
+            queue.append((canonical, depth))
         return canonical
 
     for entry in parsed_debate.pro:
-        canonical = resolve(entry, context="argument pour")
+        canonical = resolve(entry, context="argument pour", depth=0)
         if canonical and canonical not in roots_pro:
             roots_pro.append(canonical)
     for entry in parsed_debate.con:
-        canonical = resolve(entry, context="argument contre")
+        canonical = resolve(entry, context="argument contre", depth=0)
         if canonical and canonical not in roots_con:
             roots_con.append(canonical)
 
     processed = 0
     while queue:
-        title = queue.popleft()
+        title, depth = queue.popleft()
         if title in parsed_arguments:
             continue
         if len(parsed_arguments) >= max_pages:
@@ -684,15 +689,22 @@ def crawl_graph(
             ("justification", parsed.justifications),
             ("objection", parsed.objections),
         ):
+            if max_depth is not None and depth >= max_depth:
+                if entries:
+                    depth_frontiers[record.canonical_title] = (
+                        depth_frontiers.get(record.canonical_title, 0) + len(entries)
+                    )
+                continue
             for entry in entries:
                 relation_order[relation_type] += 1
                 try:
                     child_record = client.fetch(entry.page)
                     child = child_record.canonical_title
                     page_records[child] = child_record
-                    if child not in queued:
-                        queued.add(child)
-                        queue.append(child)
+                    child_depth = depth + 1
+                    if child not in queued_depth or child_depth < queued_depth[child]:
+                        queued_depth[child] = child_depth
+                        queue.append((child, child_depth))
                 except PageMissingError:
                     missing.append(entry.page)
                     warnings.append(
@@ -740,9 +752,11 @@ def crawl_graph(
         aliases=dict(sorted(client.aliases.items())),
         warnings=warnings,
         frontier_information=frontier_information,
+        depth_frontiers=dict(sorted(depth_frontiers.items(), key=lambda item: item[0].casefold())),
         missing_pages=sorted(set(missing)),
         crawl_options={
             "stop_on_detailed_debate": stop_on_detailed_debate,
+            "max_depth": max_depth,
             "max_pages": max_pages,
             "allow_missing": allow_missing,
         },
@@ -824,7 +838,9 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
         detailed = parsed.detailed_debate if parsed else ""
         ignored_at_frontier = parsed.ignored_relations_at_frontier if parsed else 0
         out_count = len({target for target, _ in adjacency[title]})
-        if detailed:
+        if title in result.depth_frontiers:
+            status = "frontière_profondeur"
+        elif detailed:
             status = "frontière_débat_détaillé"
         elif out_count:
             status = "branche"
@@ -993,6 +1009,7 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
         "profondeur_maximale_en_aretes": maximum_edge_depth,
         "profondeur_maximale": maximum_minimum_level,
         "pages_uniques_par_niveau_minimal": dict(sorted(pages_by_minimum_level.items())),
+        "arguments_par_niveau": dict(sorted(pages_by_minimum_level.items())),
         "occurrences_depliees_par_niveau": dict(sorted(occurrences_by_level.items())),
         "occurrences_par_niveau": dict(sorted(occurrences_by_level.items())),
         "occurrences_reutilisees_par_niveau": reused_occurrences_by_level,
@@ -1005,6 +1022,8 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
         "frontières_débat_détaillé": boundaries,
         "nombre_frontières_débat_détaillé": len(boundaries),
         "relations_locales_ignorees_aux_frontières": ignored_frontier_relations,
+        "limite_profondeur": result.crawl_options.get("max_depth"),
+        "relations_ignorees_limite_profondeur": sum(result.depth_frontiers.values()),
         "graphe_sans_cycle": not cycle_nodes,
         "nœuds_dans_cycles": cycle_nodes,
         "pages_manquantes": result.missing_pages,
@@ -1024,6 +1043,7 @@ def analyze_graph(result: CrawlResult) -> dict[str, Any]:
         "relations": relation_rows,
         "branches_niveau_1": branch_rows,
         "informations_frontières": result.frontier_information,
+        "frontières_profondeur": result.depth_frontiers,
         "warnings": result.warnings,
     }
 
@@ -1077,6 +1097,12 @@ def audit_graph(graph: Mapping[str, Any]) -> list[dict[str, Any]]:
         if row["débat_détaillé"] and row["nombre_enfants"] != 0
     ]
     check("frontières sans sorties", not boundary_bad, boundary_bad)
+    depth_boundary_bad = [
+        row["titre"]
+        for row in graph["noeuds"]
+        if row["statut"] == "frontière_profondeur" and row["nombre_enfants"] != 0
+    ]
+    check("frontières de profondeur sans sorties", not depth_boundary_bad, depth_boundary_bad)
     check(
         "compteur nœuds",
         metadata["pages_arguments_uniques"] == len(nodes),
@@ -1092,6 +1118,11 @@ def audit_graph(graph: Mapping[str, Any]) -> list[dict[str, Any]]:
         metadata["justifications"] + metadata["objections"] == len(relations),
     )
     pages_by_level = metadata["pages_uniques_par_niveau_minimal"]
+    check(
+        "compteur des arguments par niveau",
+        metadata["arguments_par_niveau"] == pages_by_level,
+        metadata["arguments_par_niveau"],
+    )
     occurrences_by_level = metadata["occurrences_depliees_par_niveau"]
     check(
         "somme des pages par niveau minimal",
@@ -1136,6 +1167,12 @@ def audit_graph(graph: Mapping[str, Any]) -> list[dict[str, Any]]:
         metadata["relations_locales_ignorees_aux_frontières"]
         == sum(row["relations_locales_ignorees_frontiere"] for row in graph["noeuds"]),
         metadata["relations_locales_ignorees_aux_frontières"],
+    )
+    check(
+        "relations ignorées à la limite de profondeur",
+        metadata["relations_ignorees_limite_profondeur"]
+        == sum(graph.get("frontières_profondeur", {}).values()),
+        metadata["relations_ignorees_limite_profondeur"],
     )
     check("aucune page manquante", not metadata["pages_manquantes"], metadata["pages_manquantes"])
     return checks
@@ -1279,6 +1316,8 @@ def write_outputs(
         "",
         "## Statistiques",
         "",
+        "### Nombre d’arguments par niveau",
+        "",
         "| Niveau | Pages uniques | Occurrences |",
         "|---:|---:|---:|",
     ]
@@ -1324,6 +1363,27 @@ def write_outputs(
                 "supérieur à son niveau minimal. La profondeur compte les arêtes : une occurrence "
                 "de niveau 8 se trouve à une profondeur de 7."
             ),
+        ]
+    )
+    report_lines.extend(["", "## Frontières de profondeur", ""])
+    if m["limite_profondeur"] is None:
+        report_lines.append("Aucune limite de profondeur demandée.")
+    else:
+        report_lines.extend(
+            [
+                f"Limite demandée : **{m['limite_profondeur']} arête(s)**.",
+                (
+                    "Relations vers le niveau suivant non suivies : "
+                    f"**{m['relations_ignorees_limite_profondeur']}**."
+                ),
+            ]
+        )
+        if result.depth_frontiers:
+            report_lines.append("")
+            for page, count in result.depth_frontiers.items():
+                report_lines.append(f"- **{page}** — {count} relation(s) non suivie(s)")
+    report_lines.extend(
+        [
             "",
             "## Réutilisations sans nouvelle page au niveau considéré",
             "",
@@ -1485,6 +1545,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--login", action="store_true", help="Se connecter avant les lectures")
     parser.add_argument("--force-refresh", action="store_true", help="Ignorer le cache local")
     parser.add_argument("--allow-missing", action="store_true")
+    parser.add_argument(
+        "--max-depth",
+        type=int,
+        help="Profondeur maximale en arêtes; 0 conserve uniquement les arguments de niveau 1",
+    )
     parser.add_argument("--max-pages", type=int, default=5000)
     parser.add_argument("--retries", type=int, default=4)
     parser.add_argument("--retry-delay", type=float, default=2.0)
@@ -1525,6 +1590,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         client,
         debate_title=args.debate,
         stop_on_detailed_debate=not args.follow_local_relations_at_dedicated_debate,
+        max_depth=args.max_depth,
         max_pages=args.max_pages,
         allow_missing=args.allow_missing,
         progress_every=args.progress_every,

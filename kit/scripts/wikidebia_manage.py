@@ -1602,6 +1602,7 @@ def graph_extract_debate(
     login: bool,
     force_refresh: bool,
     allow_missing: bool,
+    max_depth: int | None,
     max_pages: int,
     retries: int,
     retry_delay: float,
@@ -1617,6 +1618,8 @@ def graph_extract_debate(
         raise ManagementError("Fichier de famille Pywikibot Wikidébates absent")
     if max_pages < 1:
         raise ManagementError("--max-pages doit être supérieur à zéro")
+    if max_depth is not None and max_depth < 0:
+        raise ManagementError("--max-depth doit être positif ou nul")
     if retries < 0 or retry_delay < 0 or progress_every < 0:
         raise ManagementError("Les options de reprise et de progression ne peuvent pas être négatives")
 
@@ -1650,6 +1653,8 @@ def graph_extract_debate(
         "--progress-every", str(progress_every),
         "--machine-readable",
     ]
+    if max_depth is not None:
+        command.extend(["--max-depth", str(max_depth)])
     if family == "wikidebates":
         command.extend(["--family-file", str(family_file)])
     if selected_cache is not None:
@@ -2252,6 +2257,11 @@ def build_parser() -> argparse.ArgumentParser:
     graph.add_argument("--login", action="store_true", help="Ouvrir une session Pywikibot avant les lectures")
     graph.add_argument("--force-refresh", action="store_true", help="Ignorer le cache et relire toutes les pages")
     graph.add_argument("--allow-missing", action="store_true", help="Exporter même si certaines pages liées sont absentes")
+    graph.add_argument(
+        "--max-depth",
+        type=int,
+        help="Profondeur maximale en arêtes; 0 conserve uniquement les arguments de niveau 1",
+    )
     graph.add_argument("--max-pages", type=int, default=5000, help="Limite de sécurité du nombre de pages Argument")
     graph.add_argument("--retries", type=int, default=4, help="Nombre de nouvelles tentatives après erreur réseau")
     graph.add_argument("--retry-delay", type=float, default=2.0, help="Délai initial entre les tentatives")
@@ -2495,6 +2505,7 @@ def main(argv: list[str] | None = None) -> int:
             login=args.login,
             force_refresh=args.force_refresh,
             allow_missing=args.allow_missing,
+            max_depth=args.max_depth,
             max_pages=args.max_pages,
             retries=args.retries,
             retry_delay=args.retry_delay,
