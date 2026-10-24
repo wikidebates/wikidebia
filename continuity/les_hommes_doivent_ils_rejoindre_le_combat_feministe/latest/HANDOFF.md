@@ -3,156 +3,83 @@
 - Branche : `codex/traduction-combat-feministe`
 - Commit de référence du snapshot : commit contenant ce fichier
 - Date du snapshot : 24 octobre 2026
-- Phase : `final_publication`
-- Statut local : `release_ready` ; publication bloquée sur historique FR signé manquant
-- Work actif : `EDIT-20261023-001`
-- Publication anglaise distante commencée : non
+- Phase : `published`
+- Statut : publication bilingue terminée et attestée
+- Work : `EDIT-20261023-001`
 
-## Point de reprise
+## Résultat final
 
-La traduction française vers l’anglais est terminée, relue par deux passes
-sémantiques convergentes, rendue et empaquetée. La release complète et validée
-est conservée dans :
+Le workflow normal et idempotent a terminé la publication sans divergence :
+
+- les 101 pages anglaises prévues sont créées et leur contenu distant
+  correspond au plan signé ;
+- les 101 pages françaises contiennent uniquement le lien interlangue attendu ;
+- 100 opérations françaises ont été reconnues comme déjà faites et la
+  dernière (`A0100`) a été exécutée par la reprise idempotente ;
+- la relecture distante finale retrouve exactement les 101 pages anglaises et
+  les 101 pages françaises attendues, sans anomalie de contenu, de révision ou
+  de provenance d'édition.
+
+Aucune correction française antérieure n'a été rejouée. Aucun titre affiché
+français n'a été modifié et aucune forme `oe` n'a été remplacée par `œ`.
+
+## Chaîne signée finale
+
+- baseline :
+  `5dfd553e6270157cda7f3561bd98f8fb81c7398640b00792f0f9b98845b4237d` ;
+- préflight :
+  `88eab051b06dbdce1aaf8abb550cee961a8dcb02c49895a409a872ba601bb041` ;
+- autorisation :
+  `a959f9e41e65e474ce60b5e493f6b96b27604277f2be94da8c1b1d1096e1396b` ;
+- plan anglais :
+  `2f3e1dc83966e6b771e7af0dc00808ac5caf0d6c70970dc747bbeeb9e7d099b9` ;
+- reçu anglais :
+  `f0852ab42fa307640b17e903c0c82755cd5f07dab932a367841999a628c73eba` ;
+- état anglais :
+  `cb6ac10d35a5655a215012b67e77d3120bd5c9685343ef2b794b4f3bdcb26f0f` ;
+- plan français :
+  `c109366e7967badee08dbb84ab96d78f6af1fd9e9599887b0ba5e5aa86abe141` ;
+- reçu français :
+  `25f75ab18c9adcdd526a0df91135cc3a43477c3ea595e707c8eead1319e97743` ;
+- état français :
+  `1b180e13b037a7c4f2f3d596931adf36d773996d34b5065a1bec5e56482c0caf` ;
+- reçu bilingue terminal :
+  `c3c0ace7bae3b3fa3e0ba2cce804eca60dff3b7045722317819a09b8e328795f`.
+
+Les preuves autonomes sont conservées dans :
+
+- `runtime/final-publication/` pour la baseline, les plans, le préflight,
+  l'autorisation et les reçus de haut niveau ;
+- `runtime/receipts/` pour les reçus d'exécution originaux ;
+- `runtime/published/en/` et `runtime/published/fr/` pour les états signés ;
+- `runtime/workflow/workflow.json` pour l'état final du workflow.
+
+## Succession française préservée
+
+La continuité contient les cinq états historiques français originaux, puis
+l'état terminal du 24 octobre 2026. Le checkpoint historique reconnu est
+`20261023T132822Z.json`. Les deux corrections post-checkpoint restent ordonnées
+et inchangées :
+
+1. restauration des titres affichés contextuels, reçu
+   `4f2df84b11ac0e4bcbaa7eae413a9d432d5f783cac96a3ee49fb1f80fb18668c` ;
+2. restauration des titres canoniques avec `oe`, reçu
+   `f118b68b13dbf1f0128c596d6a53f6ce0bd984b97ede7fdd32b56a7b16b73109`.
+
+Le validateur de continuité accepte ensuite un seul état bilingue terminal,
+uniquement si les plans, les reçus d'exécution, les reçus de haut niveau et
+les états anglais et français forment une chaîne signée cohérente. Toute
+correction après cet état terminal ou toute divergence reste bloquante.
+
+## Intégrité et reprise
+
+`SHA256SUMS` couvre exactement chaque fichier de cette projection et exclut
+seulement son propre fichier. La commande suivante doit rester un contrôle
+sans écriture distante :
 
 ```text
-runtime/final-checkpoint/release/les_hommes_doivent_ils_rejoindre_le_combat_feministe.zip
+./wikidebia continuity-sync les_hommes_doivent_ils_rejoindre_le_combat_feministe --check
 ```
 
-Empreintes courantes :
-
-- revue anglaise :
-  `75dc7ef38c90a0cabd6247c7ccea55bfe0ba22bf3d88502402854939852981dc` ;
-- copie traduite :
-  `c4811acc57803056e6b3117a755f07fd3a37d17b3f4f8cedbb9f32ed2bd7c405` ;
-- copie rendue :
-  `a4d8eb2a12113cda269970f1270cc4909d57be75affb092d0bc705ae5cae0c06` ;
-- copie de release :
-  `65d4a71510b05f4d25b39b2ab6bb9d4c8feb8b0460cb0dd21d04edf8dedd6b22` ;
-- archive de release :
-  `9e221ecb06eef460f1abeda04a858c50edc2c83f6b5e59411a847609052d8f18`.
-
-La validation finale compte zéro erreur et zéro avertissement. Après intégration
-des correctifs parallèles et de la réconciliation post-checkpoint, la suite
-ciblée combinée compte 282 réussites.
-L’audit couvre les 125 libellés de relation.
-
-La revue française de contenu complétée, intégrée depuis le travail parallèle,
-porte l’empreinte
-`26d3c3de52b9d90a837d58bb73bef66bba7ccaa746b7564bdb1029823fe7cb07`.
-Elle conserve les 22 résumés historiques, les 78 absences de résumé, les sept
-citations et les deux références web historiques. Les changements de
-classification restent traçables dans cette revue.
-
-## Titres affichés contextuels
-
-La régression venait du fait que les titres affichés étaient protégés au niveau
-du nœud, sans verrouiller chaque occurrence dans les relations. Cinq libellés
-historiques différaient du titre global : `E00043`, `E00045`, `E00047`,
-`E00048` sous `A0007`, et `E00097` sous `A0028`.
-
-Les cinq formes françaises ont été rétablies sur le wiki français. Le plan et
-le reçu signés se trouvent dans :
-
-- `runtime/fr-publication/content/contextual-displayed-title-restoration-plan.json` ;
-- `runtime/fr-publication/content/contextual-displayed-title-restoration-receipt.json`.
-
-Le rendu, les deux checkpoints français, la revue anglaise et le validateur
-utilisent désormais les libellés contextuels. Les cinq traductions anglaises
-proviennent des titres affichés historiques, et non des reformulations globales.
-
-## Portabilité et audit distant
-
-La trace non normative `reports/initial_validation_execution.json` est exclue
-de l’empreinte portable du build. La compatibilité avec les anciennes traces
-reste limitée aux deux champs de chemin absolu et contrôlée par leur SHA-256
-historique.
-
-Le mode d’audit distant intégré aux outils de publication est strictement en
-lecture seule et n’exige aucun identifiant d’écriture. L’audit des opérations
-parallèles du 24 octobre a confirmé que les huit dernières révisions françaises
-sont exactement les corrections attendues et que les 101 pages relues
-correspondent aux empreintes de l’état publié.
-
-## Règle `oe`
-
-Les consignes du dépôt interdisent désormais de remplacer `oe` par `œ`, aussi
-bien lors de la génération d’un débat que lors d’une traduction. Les formes
-historiques qui contiennent déjà `œ` restent inchangées.
-
-Deux titres canoniques corrigés auparavant ont été rétablis avec `oe` (`A0084`
-et `A0085`). Quatre liens entrants ont été réécrits et les anciennes formes avec
-ligature redirigent vers les formes accessibles au clavier. L’état distant a été
-relu sans divergence. Les preuves se trouvent dans :
-
-- `runtime/fr-publication/content/oe-canonical-title-restoration-plan.json` ;
-- `runtime/fr-publication/content/oe-canonical-title-restoration-receipt.json` ;
-- `runtime/published/fr/latest.json`.
-
-## Reprise de la publication finale
-
-La baseline finale accepte désormais les deux corrections françaises
-postérieures au checkpoint uniquement après vérification de leur succession
-signée : même Work, même corpus, même ensemble de 101 pages, révisions
-monotones et reçus de correction valides.
-
-Deux préflights du 24 octobre ont authentifié l’accès français puis ont échoué
-sur l’authentification anglaise avant toute écriture distante. Lors du second,
-le runtime portait bien les cinq variables requises et utilisait explicitement
-`ChatGPT@Codex-EN` ; le wiki anglais a néanmoins refusé le mot de passe injecté.
-Après remplacement effectif du secret anglais, restaurer le workspace depuis
-l’archive de release et les états `runtime/editorial-workspace/workspace.json`
-et `runtime/workflow/workflow.json`, puis reprendre uniquement la phase
-`final_publication` avec un préflight distant neuf.
-
-La phase doit créer les 101 pages anglaises puis ajouter les liens interlangues
-aux 101 pages françaises. Elle ne doit modifier aucun autre contenu français.
-
-## État des accès
-
-L’accès français `ChatGPT@Codex-FR` a servi uniquement aux corrections décrites
-ci-dessus et a été vérifié après écriture. Aucun secret n’est inclus dans cette
-sauvegarde. Le refus anglais observé dans l’ancien runtime est historique : le
-contrôle neuf décrit ci-dessous authentifie désormais les deux identités.
-Le kit diagnostique désormais explicitement une identité ou une paire de
-variables BotPassword absente avant de laisser Pywikibot ouvrir une connexion.
-
-
-## Reprise du 24 octobre 2026 — contrôles neufs
-
-Commit source vérifié : `1352f78c272697968e2f026c02400a875693f304`.
-Le correctif de succession française `3fa6d67` est ancêtre du HEAD ; ses
-13 tests ciblés passent. Les 780 fichiers du manifeste initial sont intègres.
-Le workspace restauré conserve son empreinte signée et le `release-copy`
-extrait de l’archive conserve exactement son empreinte attendue.
-
-Les cinq variables requises sont présentes sans exposition de leurs valeurs.
-Les nouvelles connexions FR et EN réussissent avec identité `ChatGPT`, droits
-`edit`/`createpage` et balises requises. Le refus anglais décrit plus haut est
-donc historique : l’authentification courante a réussi. Les 101 pages françaises
-ont été relues via MediaWiki ; leurs révisions et SHA-256 correspondent tous à
-`runtime/published/fr/latest.json`.
-
-La publication reste bloquée, sans aucune écriture de contenu distante : la
-projection ne contient pas les états historiques français signés nécessaires
-pour relier le checkpoint de contenu aux deux corrections postérieures. Le
-contrôle générique échoue avec : « État historique du dernier checkpoint
-français introuvable ». Le reçu du checkpoint contenu, absent comme fichier
-autonome, a pu être restauré depuis l’objet identique déjà signé inclus dans
-`workflow.json`, après vérification de son `receipt_sha256`. Il est maintenant
-conservé sous `runtime/fr-publication/content/publication-receipt.json`.
-
-Preuve du contrôle courant :
-`runtime/resume-audit/2026-10-24-read-only-audit.json`.
-Le préflight global n’a pas été validé et aucune autorisation finale n’a été
-scellée. Aucune création anglaise ni addition interlangue française n’a eu lieu.
-
-Les cinq états historiques signés originaux ont ensuite été récupérés sans
-réécriture depuis le workspace de la session précédente et ajoutés sous
-`runtime/published/fr/`. Ils couvrent le checkpoint graphe, la correction des
-paramètres vides, le checkpoint final de contenu, la restauration des titres
-affichés contextuels et la restauration de `oe`. Le dernier état horodaté est
-strictement identique à `latest.json`.
-
-Prochaine étape : restaurer ces fichiers dans
-`.state/published/<débat>/fr/`, refaire le contrôle de succession puis le
-préflight global avant `final_publication`. Ne réappliquer aucune correction.
+La publication est close ; aucune nouvelle exécution de publication n'est
+nécessaire en l'absence d'un nouveau Work explicitement autorisé.
