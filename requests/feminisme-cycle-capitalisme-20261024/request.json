@@ -1,0 +1,20 @@
+{
+  "schema": "wikidebia-fr-publication-request-1.2",
+  "request_id": "feminisme-cycle-capitalisme-20261024",
+  "language": "fr",
+  "site": "https://fr.wikidebates.org",
+  "authorization": "explicit_user_request",
+  "pages": [
+    {
+      "page_id": "9308",
+      "old_title": "Le capitalisme est structurellement sexiste",
+      "new_title": "Le capitalisme est structurellement sexiste",
+      "source_revision_id": 214559,
+      "before_file": "before/page.wiki",
+      "after_file": "after/page.wiki",
+      "source_sha256": "a8bdc7ddb93e20b26a0378b747e794f2359b0228b7c676fe7ffcf9b857aaa258",
+      "target_sha256": "00254ae367b12c8d774c4d259a62000ea74f9b8c32b92d701a96d654f135b58e"
+    }
+  ],
+  "request_sha256": "ff1e5c3f2165bed07e47cbac5dfdd3beffaab716665d83d339abadf10d0389a6"
+}
