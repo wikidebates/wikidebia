@@ -625,8 +625,8 @@ def _render_debate(
         _append_lifecycle_parameter(params, debate, "avertissements-débat", "Débat généré par IA")
         _append_editorial_parameter(params, debate, "introduction", _normalize_sequence(str(debate.get("introduction") or "")))
         _append_editorial_parameter(params, debate, "articles-Wikipédia", _sequence(_template("Article Wikipédia", (("page", title),)) for title in debate.get("wikipedia_articles") or []))
-        _append_editorial_parameter(params, debate, "arguments-pour", _main_arguments(registry, "pro", "fr"))
-        _append_editorial_parameter(params, debate, "arguments-contre", _main_arguments(registry, "con", "fr"))
+        _append_editorial_parameter(params, debate, "arguments-pour", _main_arguments(registry, "pro", "fr", debate.get("relation_labels") or []))
+        _append_editorial_parameter(params, debate, "arguments-contre", _main_arguments(registry, "con", "fr", debate.get("relation_labels") or []))
         _append_lifecycle_parameter(params, debate, "avertissements-bibliographie", None)
         for bucket in ("bibliographie-pour", "bibliographie-contre", "bibliographie-ni-pour-ni-contre"):
             _append_editorial_parameter(params, debate, bucket, rendered[bucket])
@@ -705,10 +705,10 @@ def _render_argument(
         detailed_present, detailed_value = _optional_preserved_parameter(content, "débat-dédié")
         _append_lifecycle_parameter(params, content, "avertissements-justifications", None)
         if not detailed_present:
-            _append_editorial_parameter(params, content, "justifications", _relations(registry, node_id, "justification", "fr"))
+            _append_editorial_parameter(params, content, "justifications", _relations(registry, node_id, "justification", "fr", content.get("relation_labels") or []))
         _append_lifecycle_parameter(params, content, "avertissements-objections", None)
         if not detailed_present:
-            _append_editorial_parameter(params, content, "objections", _relations(registry, node_id, "objection", "fr"))
+            _append_editorial_parameter(params, content, "objections", _relations(registry, node_id, "objection", "fr", content.get("relation_labels") or []))
         if detailed_present:
             params.append(("débat-dédié", detailed_value))
         _append_editorial_parameter(params, content, "rubriques", ", ".join((node.get("fr") or {}).get("rubriques") or []))
@@ -1353,6 +1353,17 @@ def _build_rendered_copy(
     nodes.sort(key=lambda node: str(node.get("id")))
     fr_args = {str(row.get("id")): row for row in fr_content.get("arguments") or []}
     en_args = {str(row.get("id")): row for row in en_content.get("arguments") or []}
+    french_pages = [fr_content.get("debate") or {}, *fr_args.values()]
+    if french_pages and all(page.get("page_origin") == "preexisting" for page in french_pages):
+        from wikidebia_translation_source import relation_labels_from_source
+        contextual_labels = relation_labels_from_source(target)
+        fr_content["debate"]["relation_labels"] = [
+            row for row in contextual_labels if row["source_page_id"] == "debate"
+        ]
+        for node_id, argument in fr_args.items():
+            argument["relation_labels"] = [
+                row for row in contextual_labels if row["source_page_id"] == node_id
+            ]
     if preserve_french:
         frozen_meta = {r.get("entity_id", r.get("id")): r for r in fr_meta["arguments"]}
         for node in nodes:

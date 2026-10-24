@@ -42,7 +42,7 @@ from wikidebia_render import (
     _write_aggregate,
     _copy_active_norm,
 )
-from wikidebia_graph_actions import _replace_parameter_value
+from wikidebia_graph_actions import _set_optional_parameter_value
 from wikidebia_content_review import _outer_template, _page_lifecycle_snapshot
 from wikidebia_update import (
     PlanExecutor,
@@ -55,6 +55,10 @@ from wikidebia_update import (
 
 CHECKPOINT_SCHEMA = "wikidebia-french-publication-checkpoint-1.0"
 RECEIPT_SCHEMA = "wikidebia-french-checkpoint-publication-receipt-1.0"
+GRAPH_VALIDATION_PROFILE = "fr_graph_checkpoint_differential_v1"
+CONTENT_VALIDATION_PROFILE = "fr_content_checkpoint_complete_v1"
+GRAPH_VALIDATION_SCOPES = ("schema", "coherence", "graph", "files", "batches", "sources", "workflow")
+CONTENT_VALIDATION_SCOPES = ("schema", "coherence", "graph", "files", "batches", "sources", "wikicode", "workflow")
 
 
 class FrenchCheckpointError(RuntimeError):
@@ -130,6 +134,17 @@ def _build_content_checkpoint_copy(project_root: Path, source: Path, target: Pat
     fr_args = {str(row.get("id")): row for row in fr_content.get("arguments") or []}
     if set(fr_args) != {str(node.get("id")) for node in nodes}:
         raise FrenchCheckpointError("Le verrou français ne couvre pas exactement les arguments actifs")
+    french_pages = [fr_content.get("debate") or {}, *fr_args.values()]
+    if french_pages and all(page.get("page_origin") == "preexisting" for page in french_pages):
+        from wikidebia_translation_source import relation_labels_from_source
+        contextual_labels = relation_labels_from_source(target)
+        fr_content["debate"]["relation_labels"] = [
+            row for row in contextual_labels if row["source_page_id"] == "debate"
+        ]
+        for node_id, argument in fr_args.items():
+            argument["relation_labels"] = [
+                row for row in contextual_labels if row["source_page_id"] == node_id
+            ]
     source_by_id = {str(row.get("id")): row for row in source_registry.get("sources") or []}
 
     timestamp = now_iso()
@@ -325,6 +340,98 @@ def _graph_migrations(source: Path, debate_id: str) -> list[dict[str, Any]]:
     return entries
 
 
+def _verify_graph_checkpoint_delta(target: Path, registry: dict[str, Any], rows: list[dict[str, Any]], debate_id: str, work_id: str) -> None:
+    """Prove that checkpoint 1 only changes graph-bearing parameters.
+
+    Historical pages are intentionally incomplete under the current final-content
+    wikicode contract.  They therefore cannot use the final ``wikicode`` scope at
+    this stage.  This differential proof is the replacement safety boundary: it
+    rebuilds every expected page from the hash-checked import and rejects any
+    additional output or content mutation.
+    """
+    from wikidebia_translation_source import relation_labels_from_source
+    contextual_labels = relation_labels_from_source(target)
+    debate_relation_labels = [row for row in contextual_labels if row["source_page_id"] == "debate"]
+    argument_relation_labels: dict[str, list[dict[str, Any]]] = {}
+    for row in contextual_labels:
+        argument_relation_labels.setdefault(str(row["source_page_id"]), []).append(row)
+    active_nodes = {
+        str(node.get("id")): node
+        for node in (registry.get("graph") or {}).get("nodes") or []
+        if node.get("status") == "active"
+    }
+    expected: dict[str, tuple[str, dict[str, Any], list[str]]] = {}
+    for row in rows:
+        kind = str(row.get("kind") or "")
+        page_id = str(row.get("page_id") or "")
+        imported = target / str(row.get("import_path") or "")
+        if kind not in {"debate", "argument"} or not imported.is_file():
+            continue
+        imported_sha = sha256_file(imported)
+        if str(row.get("sha256") or "") != imported_sha:
+            raise FrenchCheckpointError(f"Import historique divergent pendant le checkpoint graphe : {page_id or debate_id}")
+        text = imported.read_text(encoding="utf-8")
+        if kind == "debate":
+            rel = "output/fr/debate/debate.wiki"
+            text = _set_optional_parameter_value(text, "debate", "arguments-pour", _main_arguments(registry, "pro", "fr", debate_relation_labels))
+            text = _set_optional_parameter_value(text, "debate", "arguments-contre", _main_arguments(registry, "con", "fr", debate_relation_labels))
+            allowed = ["arguments-pour", "arguments-contre"]
+            proof_id = str((registry.get("debate") or {}).get("id") or debate_id)
+        else:
+            if page_id not in active_nodes:
+                continue
+            rel = f"output/fr/arguments/{page_id}.wiki"
+            template = _outer_template(imported, {"argument"})
+            allowed = []
+            if not bool(template.get("débat-dédié", "débat-détaillé").strip()):
+                labels = argument_relation_labels.get(page_id, [])
+                text = _set_optional_parameter_value(text, "argument", "justifications", _relations(registry, page_id, "justification", "fr", labels))
+                text = _set_optional_parameter_value(text, "argument", "objections", _relations(registry, page_id, "objection", "fr", labels))
+                allowed = ["justifications", "objections"]
+            proof_id = page_id
+        if rel in expected:
+            raise FrenchCheckpointError(f"Sortie française dupliquée dans la provenance : {rel}")
+        expected[rel] = (text, {"page_id": proof_id, "page_type": kind, "import_path": str(row.get("import_path")), "import_sha256": imported_sha}, allowed)
+
+    expected_ids = {debate_id, *active_nodes}
+    actual_ids = {details[1]["page_id"] for details in expected.values()}
+    if actual_ids != expected_ids:
+        raise FrenchCheckpointError("La preuve différentielle ne couvre pas exactement les pages actives")
+    page_directories = (target / "output/fr/debate", target / "output/fr/arguments")
+    actual_paths = {
+        path.relative_to(target).as_posix()
+        for directory in page_directories
+        if directory.is_dir()
+        for path in directory.glob("*.wiki")
+        if path.is_file()
+    }
+    if actual_paths != set(expected):
+        raise FrenchCheckpointError("Les sorties du checkpoint graphe divergent de la provenance active")
+
+    proof_rows: list[dict[str, Any]] = []
+    for rel, (expected_text, metadata, allowed) in sorted(expected.items()):
+        output = target / rel
+        actual_text = output.read_text(encoding="utf-8")
+        if actual_text != expected_text:
+            raise FrenchCheckpointError(f"Mutation hors portée dans le checkpoint graphe : {metadata['page_id']}")
+        proof_rows.append({
+            **metadata,
+            "output_path": rel,
+            "output_sha256": sha256_file(output),
+            "allowed_parameters": allowed,
+            "status": "verified",
+        })
+    write_json(target / "data/fr_graph_checkpoint_delta.json", {
+        "schema": GRAPH_VALIDATION_PROFILE,
+        "schema_version": "1.0",
+        "debate_id": debate_id,
+        "work_id": work_id,
+        "status": "passed",
+        "policy": "exact_import_plus_graph_parameters",
+        "pages": proof_rows,
+    })
+
+
 def _build_graph_checkpoint_copy(project_root: Path, source: Path, target: Path, debate_id: str, work_id: str) -> dict[str, Any]:
     shutil.copytree(source, target, symlinks=False, copy_function=shutil.copy2)
     assert_no_symlinks(target)
@@ -333,6 +440,12 @@ def _build_graph_checkpoint_copy(project_root: Path, source: Path, target: Path,
     if manifest.get("debate_id") != debate_id:
         raise FrenchCheckpointError("Identité du corpus français divergente")
     rows = _import_rows(target)
+    from wikidebia_translation_source import relation_labels_from_source
+    contextual_labels = relation_labels_from_source(target)
+    debate_relation_labels = [row for row in contextual_labels if row["source_page_id"] == "debate"]
+    argument_relation_labels: dict[str, list[dict[str, Any]]] = {}
+    for row in contextual_labels:
+        argument_relation_labels.setdefault(str(row["source_page_id"]), []).append(row)
     active_nodes = [node for node in (registry.get("graph") or {}).get("nodes") or [] if node.get("status") == "active"]
     active_nodes.sort(key=lambda node: str(node.get("id")))
     active_ids = {str(node.get("id")) for node in active_nodes}
@@ -364,8 +477,8 @@ def _build_graph_checkpoint_copy(project_root: Path, source: Path, target: Path,
     if not debate_import.is_file():
         raise FrenchCheckpointError("Import de la page Débat absent")
     debate_text = debate_import.read_text(encoding="utf-8")
-    debate_text = _replace_parameter_value(debate_text, "debate", "arguments-pour", _main_arguments(registry, "pro", "fr"), create_if_missing=True)
-    debate_text = _replace_parameter_value(debate_text, "debate", "arguments-contre", _main_arguments(registry, "con", "fr"), create_if_missing=True)
+    debate_text = _set_optional_parameter_value(debate_text, "debate", "arguments-pour", _main_arguments(registry, "pro", "fr", debate_relation_labels))
+    debate_text = _set_optional_parameter_value(debate_text, "debate", "arguments-contre", _main_arguments(registry, "con", "fr", debate_relation_labels))
     debate_id_actual = str((registry.get("debate") or {}).get("id") or debate_id)
     debate_rel = "output/fr/debate/debate.wiki"
     debate_out = target / debate_rel; debate_out.parent.mkdir(parents=True, exist_ok=True); debate_out.write_text(debate_text, encoding="utf-8", newline="\n")
@@ -381,8 +494,9 @@ def _build_graph_checkpoint_copy(project_root: Path, source: Path, target: Path,
         template = _outer_template(imported, {"argument"})
         dedicated = bool(template.get("débat-dédié", "débat-détaillé").strip())
         if not dedicated:
-            text = _replace_parameter_value(text, "argument", "justifications", _relations(registry, node_id, "justification", "fr"), create_if_missing=True)
-            text = _replace_parameter_value(text, "argument", "objections", _relations(registry, node_id, "objection", "fr"), create_if_missing=True)
+            labels = argument_relation_labels.get(node_id, [])
+            text = _set_optional_parameter_value(text, "argument", "justifications", _relations(registry, node_id, "justification", "fr", labels))
+            text = _set_optional_parameter_value(text, "argument", "objections", _relations(registry, node_id, "objection", "fr", labels))
         rel = f"output/fr/arguments/{node_id}.wiki"
         out = target / rel; out.parent.mkdir(parents=True, exist_ok=True); out.write_text(text, encoding="utf-8", newline="\n")
         output_rows.append((node_id, "argument", rel, sha256_file(out), {"page_origin":"preexisting", "preserved_parameters":_page_lifecycle_snapshot(template,"argument")}))
@@ -430,7 +544,8 @@ def _build_graph_checkpoint_copy(project_root: Path, source: Path, target: Path,
     if migrations:
         write_json(target / "data/remote_migrations.json", {"version":"1.0","debate_id":debate_id,"entries":migrations})
     _copy_active_norm(project_root,target)
-    checkpoint={"schema":CHECKPOINT_SCHEMA,"schema_version":"1.0","debate_id":debate_id,"work_id":work_id,"stage":"graph","status":"rendered","created_at":timestamp,"source_reviewed_copy_sha256":full_tree_sha256(source),"page_count":len(pages),"english_translation_status":"deferred","interlanguage_links":0}
+    _verify_graph_checkpoint_delta(target, registry, rows, debate_id, work_id)
+    checkpoint={"schema":CHECKPOINT_SCHEMA,"schema_version":"1.0","debate_id":debate_id,"work_id":work_id,"stage":"graph","status":"rendered","created_at":timestamp,"source_reviewed_copy_sha256":full_tree_sha256(source),"page_count":len(pages),"english_translation_status":"deferred","interlanguage_links":0,"validation_profile":GRAPH_VALIDATION_PROFILE}
     write_json(target / "data/fr_publication_checkpoint.json",checkpoint)
     return {"checkpoint":checkpoint,"pages":len(pages),"timestamp":timestamp}
 
@@ -579,7 +694,8 @@ def _config(project_root: Path, debate_id: str, work_id: str, checkpoint: Path, 
         "validator": {
             "command": [sys.executable, str(validator_script), "validate"],
             "required_version": VALIDATOR_VERSION,
-            "scopes": ["schema", "coherence", "graph", "files", "batches", "sources", "wikicode", "workflow"],
+            "profile": GRAPH_VALIDATION_PROFILE if stage == "graph" else CONTENT_VALIDATION_PROFILE,
+            "scopes": list(GRAPH_VALIDATION_SCOPES if stage == "graph" else CONTENT_VALIDATION_SCOPES),
         },
     }
     if inventory_root is not None:

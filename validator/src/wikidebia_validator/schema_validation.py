@@ -134,6 +134,69 @@ def _valid_translation_source_preservation(ctx: PackageContext) -> bool:
     return True
 
 
+def _title_checkpoint_preserves_empty_classification(
+    ctx: PackageContext, node_id: str, field: str, value: Any
+) -> bool:
+    """Accept a proven historical empty field during the title-only checkpoint."""
+    if field not in {"rubriques", "keywords"} or value != []:
+        return False
+    lock_rel = "data/fr_page_metadata_lock.json"
+    review_rel = "reviews/fr/page_metadata_review.json"
+    provenance_rel = "data/import_provenance.json"
+    if not all(ctx.exists(rel) for rel in (lock_rel, review_rel, provenance_rel)):
+        return False
+    lock = ctx.load_json(lock_rel)
+    review = ctx.load_json(review_rel)
+    provenance = ctx.load_json(provenance_rel)
+    if not isinstance(lock, dict) or lock.get("schema") != "wikidebia-fr-page-metadata-lock-1.0":
+        return False
+    if not isinstance(review, dict) or review.get("review_scope") != "graph_and_titles" or review.get("status") != "approved":
+        return False
+    if not isinstance(provenance, dict) or provenance.get("schema") != "wikidebia-import-provenance-1.0":
+        return False
+    review_sha = review.get("review_sha256")
+    if not isinstance(review_sha, str) or lock.get("review_sha256") != review_sha:
+        return False
+    locked = next(
+        (row for row in lock.get("arguments") or [] if isinstance(row, dict) and row.get("entity_id") == node_id),
+        None,
+    )
+    if not locked or locked.get("page_origin") != "preexisting" or locked.get(field) != []:
+        return False
+    if (locked.get("decisions") or {}).get(field) != "deferred_to_content_review":
+        return False
+    if (locked.get("attestations") or {}).get("classification_review_deferred") is not True:
+        return False
+    page = next(
+        (
+            row for row in provenance.get("pages") or []
+            if isinstance(row, dict) and row.get("kind") == "argument" and row.get("page_id") == node_id
+        ),
+        None,
+    )
+    if not page:
+        return False
+    path = page.get("import_path")
+    if (
+        not isinstance(path, str)
+        or not path.startswith("imports/fr/arguments/")
+        or ".." in Path(path).parts
+        or type(page.get("revision_id")) is not int
+        or page["revision_id"] <= 0
+        or ctx.sha256(path) != page.get("sha256")
+    ):
+        return False
+    from .wikicode import parse_template
+    try:
+        # The import hash was verified immediately above. Read historical wiki
+        # evidence without imposing the newline policy for generated files.
+        template = parse_template((ctx.root / path).read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, ValueError):
+        return False
+    parameter = "rubriques" if field == "rubriques" else "mots-clés"
+    return not (template.one(parameter) or "").strip()
+
+
 def _preserved_keyword_duplicates(ctx: PackageContext, schema_name: str, instance: Any, err: Any) -> bool:
     if err.validator not in {"uniqueItems", "minItems"}:
         return False
@@ -144,9 +207,19 @@ def _preserved_keyword_duplicates(ctx: PackageContext, schema_name: str, instanc
         graph = instance
     else:
         return False
-    if len(path) != 4 or path[0] != "nodes" or tuple(path[2:]) not in {("fr", "keywords"), ("en", "keywords")} or not _valid_translation_source_preservation(ctx):
+    if len(path) != 4 or path[0] != "nodes" or tuple(path[2:]) not in {("fr", "keywords"), ("en", "keywords")}:
         return False
     node = graph["nodes"][path[1]]; node_id = node.get("id")
+    if (
+        err.validator == "minItems"
+        and path[2] == "fr"
+        and _title_checkpoint_preserves_empty_classification(
+            ctx, str(node_id), "keywords", node.get("fr", {}).get("keywords")
+        )
+    ):
+        return True
+    if not _valid_translation_source_preservation(ctx):
+        return False
     if node_id not in _historical_classification_ids(ctx, "fr"):
         return False
     provenance = ctx.load_json("data/import_provenance.json") or {}
@@ -190,7 +263,7 @@ def validate_instance(ctx: PackageContext, store: SchemaStore, rel: str, schema_
 
 
 def _preserved_empty_rubrics(ctx: PackageContext, schema_name: str, instance: Any, err: Any) -> bool:
-    if err.validator != 'minItems' or not _valid_translation_source_preservation(ctx):
+    if err.validator != 'minItems':
         return False
     path = list(err.absolute_path)
     if schema_name == 'argument_registry.schema.json' and path[:2] == ['graph', 'nodes']:
@@ -202,6 +275,12 @@ def _preserved_empty_rubrics(ctx: PackageContext, schema_name: str, instance: An
     if len(path) != 4 or path[0] != 'nodes' or path[2:] != ['fr', 'rubriques']:
         return False
     node = graph['nodes'][path[1]]
+    if _title_checkpoint_preserves_empty_classification(
+        ctx, str(node.get('id')), 'rubriques', node.get('fr', {}).get('rubriques')
+    ):
+        return True
+    if not _valid_translation_source_preservation(ctx):
+        return False
     receipt = ctx.load_json('data/source_preservation_receipt.json') or {}
     row = next((r for r in receipt['pages'] if r.get('page_id') == node.get('id')), None)
     if not row:

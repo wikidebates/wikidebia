@@ -2,7 +2,42 @@ from pathlib import Path
 import json
 
 from wikidebia_validator.validator import validate_package
+from wikidebia_validator.wikicode import expected_relations
 from .helpers import create_fr_package
+
+
+def test_contextual_relation_labels_use_source_in_french_and_translation_in_english():
+    registry = {
+        "graph": {
+            "nodes": [
+                {"id": "A0001", "status": "active", "fr": {}, "en": {}},
+                {
+                    "id": "A0002",
+                    "status": "active",
+                    "fr": {"canonical_title": "Cible", "displayed_title": "Titre global"},
+                    "en": {"canonical_title": "Target", "displayed_title": "Global title"},
+                },
+            ],
+            "edges": [
+                {
+                    "id": "E00001",
+                    "status": "active",
+                    "parent_node_id": "A0001",
+                    "child_node_id": "A0002",
+                    "relation": "objection",
+                    "order": 1,
+                }
+            ],
+        }
+    }
+    labels = [{
+        "id": "edge:E00001",
+        "target_node_id": "A0002",
+        "source_text": "Titre français historique",
+        "translated_text": "Historical English title",
+    }]
+    assert expected_relations(registry, "A0001", "fr", "objection", labels) == [("Cible", "Titre français historique")]
+    assert expected_relations(registry, "A0001", "en", "objection", labels) == [("Target", "Historical English title")]
 
 
 def test_old_minimal_fr_fixture_is_subject_to_current_cumulative_rules(tmp_path: Path):

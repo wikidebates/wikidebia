@@ -619,3 +619,25 @@ def test_finalize_introduction_review_does_not_invent_exception_for_bibliographi
     final = json.loads((tmp_path / "reviews/introduction_review.json").read_text(encoding="utf-8"))
     en = next(row for row in final["entries"] if row["language"] == "en")
     assert en.get("terminal_period_sentence_exceptions") == []
+
+
+def test_relation_renderer_prefers_occurrence_level_displayed_title():
+    registry = {
+        "graph": {
+            "nodes": [{
+                "id": "A0002", "status": "active",
+                "fr": {"canonical_title": "Titre cible", "displayed_title": "Titre global"},
+                "en": {"canonical_title": "Target title", "displayed_title": "Global title"},
+            }],
+            "edges": [{
+                "id": "E00001", "status": "active", "parent_node_id": "A0001",
+                "child_node_id": "A0002", "relation": "objection", "order": 1,
+            }],
+        }
+    }
+    rendered = render._relations(
+        registry, "A0001", "objection", "fr",
+        [{"id": "edge:E00001", "source_text": "Libellé historique contextuel"}],
+    )
+    assert "titre-affiché=Libellé historique contextuel" in rendered
+    assert "titre-affiché=Titre global" not in rendered

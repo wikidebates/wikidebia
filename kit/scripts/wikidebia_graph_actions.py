@@ -424,6 +424,31 @@ def _replace_parameter_value(text: str, page_type: str, parameter: str, new_valu
     return text[:start] + new_raw + text[end:]
 
 
+def _set_optional_parameter_value(text: str, page_type: str, parameter: str, new_value: str) -> str:
+    """Set a non-empty top-level value, or omit the parameter when empty."""
+    if new_value.strip():
+        return _replace_parameter_value(
+            text, page_type, parameter, new_value, create_if_missing=True,
+        )
+
+    raw, start, end = _main_template_raw(text, page_type)
+    inner = raw[2:-2]
+    wanted = normalize_key(parameter)
+    for index, (seg_start, seg_end) in enumerate(_segment_offsets(inner)):
+        if index == 0:
+            continue
+        segment = inner[seg_start:seg_end]
+        eq = _top_level_equals(segment)
+        if eq is None or normalize_key(segment[:eq].strip()) != wanted:
+            continue
+        # ``seg_start`` points just after the top-level pipe. Removing from the
+        # pipe through the segment end also consumes its formatting newline.
+        abs_a = start + 2 + seg_start - 1
+        abs_b = start + 2 + seg_end
+        return text[:abs_a] + text[abs_b:]
+    return text
+
+
 def _find_link_model(value: str, template_name: str, child_title: str) -> tuple[int, int, str]:
     matches: list[tuple[int, int, str]] = []
     for start, end in _template_spans(value):

@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,6 +37,20 @@ def test_title_checkpoint_does_not_publish_classification_changes(tmp_path: Path
     assert manifest["translation_status"]["en"] == "deferred"
     receipt = json.loads((project / ".state/fr-publication/debat_test" / work_id / "graph/checkpoint.json").read_text(encoding="utf-8"))
     assert receipt["stage"] == "graph"
+    delta = json.loads((cp / "data/fr_graph_checkpoint_delta.json").read_text(encoding="utf-8"))
+    assert delta["status"] == "passed"
+    assert {row["page_id"] for row in delta["pages"]} == {"debat_test", "A0001", "A0002", "A0003", "A0004"}
+    assert all(row["status"] == "verified" for row in delta["pages"])
+
+
+def test_graph_checkpoint_omits_empty_relation_parameters(tmp_path: Path):
+    project, _workspace, work_id = _title_applied(tmp_path)
+    cp = checkpoint.build_checkpoint(project, "debat_test", work_id, stage="graph")
+
+    for path in (cp / "output/fr/arguments").glob("*.wiki"):
+        text = path.read_text(encoding="utf-8")
+        assert "|justifications=\n" not in text
+        assert "|objections=\n" not in text
 
 
 def test_review_packages_split_titles_from_classification_and_content(tmp_path: Path):
@@ -91,3 +106,34 @@ def test_content_checkpoint_uses_published_graph_state_not_import_inventory(tmp_
     assert g["state_inventory_root"] == str(inv)
     assert "state_inventory_root" not in c
     assert c["published_state_dir"].endswith("/.state/published")
+    assert g["validator"]["profile"] == checkpoint.GRAPH_VALIDATION_PROFILE
+    assert g["validator"]["scopes"] == list(checkpoint.GRAPH_VALIDATION_SCOPES)
+    assert "wikicode" not in g["validator"]["scopes"]
+    assert c["validator"]["profile"] == checkpoint.CONTENT_VALIDATION_PROFILE
+    assert "wikicode" in c["validator"]["scopes"]
+
+
+def test_graph_checkpoint_uses_differential_validation_until_content_is_complete(tmp_path: Path):
+    project, _workspace, work_id = _title_applied(tmp_path)
+    cp = checkpoint.build_checkpoint(project, "debat_test", work_id, stage="graph")
+    graph_config_path = checkpoint._config(project, "debat_test", work_id, cp, "graph", tmp_path / "inventory")
+    graph_config = json.loads(graph_config_path.read_text(encoding="utf-8"))
+
+    def validate(config):
+        command = list(config["validator"]["command"])
+        command.insert(command.index("validate") + 1, str(cp))
+        for scope in config["validator"]["scopes"]:
+            command.extend(["--scope", scope])
+        command.extend(["--format", "json"])
+        return subprocess.run(command, cwd=project, text=True, capture_output=True, check=False)
+
+    graph_result = validate(graph_config)
+    assert graph_result.returncode == 0, graph_result.stdout + graph_result.stderr
+    assert not (cp / "data/fr_content_lock.json").exists()
+
+    content_config_path = checkpoint._config(project, "debat_test", work_id, cp, "content", None)
+    content_config = json.loads(content_config_path.read_text(encoding="utf-8"))
+    content_result = validate(content_config)
+    assert content_result.returncode != 0
+    report = json.loads(content_result.stdout)
+    assert report["summary"]["errors"] > 0

@@ -1108,9 +1108,34 @@ def expected_relations(registry: dict[str, Any], node_id: str, lang: str, relati
         child = nodes.get(e.get('child_node_id'))
         if child:
             data = child.get(lang) or {}
-            label = next((r.get('translated_text') for r in contextual_labels or [] if r.get('id') == 'edge:' + str(e.get('id')) and r.get('target_node_id') == child.get('id')), data.get('displayed_title'))
+            contextual_key = 'source_text' if lang == 'fr' else 'translated_text'
+            label = next((r.get(contextual_key) for r in contextual_labels or [] if r.get('id') == 'edge:' + str(e.get('id')) and r.get('target_node_id') == child.get('id') and r.get(contextual_key)), data.get('displayed_title'))
             out.append((data.get('canonical_title'), label))
     return out
+
+def _contextual_relation_labels(ctx: PackageContext, page_id: str, lang: str, page_type: str) -> list[dict[str, Any]]:
+    """Return occurrence labels locked by the translation review.
+
+    Legacy French content locks do not contain occurrence-level labels.  Once a
+    translation review exists, its English content lock is also the authoritative
+    record of the French source labels, under ``source_text``.  This fallback keeps
+    the French render differential exact without changing the historical lock.
+    """
+    paths = ['data/en_content_lock.json'] if lang == 'en' else ['data/fr_content_lock.json', 'data/en_content_lock.json']
+    for path in paths:
+        if not ctx.exists(path):
+            continue
+        lock = ctx.load_json(path)
+        if not isinstance(lock, dict):
+            continue
+        if page_type == 'debate':
+            row = lock.get('debate') or {}
+        else:
+            row = next((entry for entry in lock.get('arguments') or [] if str(entry.get('id')) == page_id), {})
+        labels = row.get('relation_labels') if isinstance(row, dict) else None
+        if isinstance(labels, list) and labels:
+            return labels
+    return []
 
 def relation_pairs(subs: list[Template], lang: str) -> list[tuple[str | None, str | None]]:
     display = 'titre-affiché' if lang == 'fr' else 'displayed-title'
@@ -1291,8 +1316,7 @@ def _validate_argument_content(ctx: PackageContext, tmpl: Template, rel: str, la
     obj_param = 'objections'
     actual_just = relation_pairs(get_subs(tmpl, just_param), lang)
     actual_obj = relation_pairs(get_subs(tmpl, obj_param), lang)
-    lock = ctx.load_json('data/en_content_lock.json') if lang == 'en' else {}
-    contextual = next((r.get('relation_labels') for r in (lock or {}).get('arguments', []) if r.get('id') == page_id), [])
+    contextual = _contextual_relation_labels(ctx, page_id, lang, 'argument')
     expected_just = expected_relations(registry, page_id, lang, 'justification', contextual)
     expected_obj = expected_relations(registry, page_id, lang, 'objection', contextual)
     expected_just.extend(_manual_external_relations(ctx, page_id, lang, 'justification'))
@@ -1334,13 +1358,13 @@ def _validate_debate_content(ctx: PackageContext, tmpl: Template, rel: str, lang
         ctx.report.error('WDV-MWK-019', f'{wikipedia_parameter} doit contenir au moins un article Wikipédia vérifié', path=rel)
     occs = [o for o in registry.get('graph', {}).get('occurrences', []) if o.get('depth') == 1]
     nodes = {n.get('id'): n for n in registry.get('graph', {}).get('nodes', [])}
-    lock = ctx.load_json('data/en_content_lock.json') if lang == 'en' else {}
-    contextual = ((lock or {}).get('debate') or {}).get('relation_labels') or []
+    contextual = _contextual_relation_labels(ctx, 'debate', lang, 'debate')
     for branch, param in (('pro', 'arguments-pour' if lang == 'fr' else 'pro-arguments'), ('con', 'arguments-contre' if lang == 'fr' else 'con-arguments')):
         expected = []
         for occ in sorted((o for o in occs if o.get('branch') == branch), key=lambda o: (o.get('order', 0), o.get('id', ''))):
             data = (nodes.get(occ.get('node_id')) or {}).get(lang) or {}
-            label = next((r.get('translated_text') for r in contextual if r.get('id') == 'root:' + str(occ.get('id')) and r.get('target_node_id') == occ.get('node_id')), data.get('displayed_title'))
+            contextual_key = 'source_text' if lang == 'fr' else 'translated_text'
+            label = next((r.get(contextual_key) for r in contextual if r.get('id') == 'root:' + str(occ.get('id')) and r.get('target_node_id') == occ.get('node_id') and r.get(contextual_key)), data.get('displayed_title'))
             expected.append((data.get('canonical_title'), label))
         actual = relation_pairs(get_subs(tmpl, param), lang)
         if actual != expected:
