@@ -180,6 +180,30 @@ def _canonical_referent_manually_verified(ctx: PackageContext, node_id: str, lan
     row=next((e for e in data.get('entries') or [] if isinstance(e,dict) and str(e.get('id'))==str(node_id)),None)
     return isinstance(row,dict) and row.get(f'canonical_referents_explicit_{language}') is True
 
+
+def _locked_preexisting_displayed_title(
+    ctx: PackageContext, node_id: str, language: str, value: Any
+) -> bool:
+    """Return whether the French metadata lock proves exact historical preservation."""
+    if language != "fr" or not ctx.exists("data/fr_page_metadata_lock.json"):
+        return False
+    lock = ctx.load_json("data/fr_page_metadata_lock.json")
+    if not isinstance(lock, dict) or lock.get("schema") != "wikidebia-fr-page-metadata-lock-1.0":
+        return False
+    row = next(
+        (
+            entry for entry in lock.get("arguments") or []
+            if isinstance(entry, dict) and str(entry.get("entity_id")) == str(node_id)
+        ),
+        None,
+    )
+    return bool(
+        row
+        and row.get("page_origin") == "preexisting"
+        and (row.get("decisions") or {}).get("displayed_title") == "keep"
+        and row.get("displayed_title") == value
+    )
+
 def validate_graph(ctx: PackageContext) -> None:
     registry = ctx.registry()
     if not registry:
@@ -224,6 +248,10 @@ def validate_graph(ctx: PackageContext) -> None:
             displayed_title = language_data.get("displayed_title")
             for field_name, field_value in (("canonical_title", title), ("displayed_title", displayed_title)):
                 if field_value and (field_value.endswith(".") or any(ch in field_value for ch in "’‘ʼ＇")):
+                    if field_name == "displayed_title" and _locked_preexisting_displayed_title(
+                        ctx, str(node.get("id")), lang, field_value
+                    ):
+                        continue
                     title_reporter(
                         "WDV-GRA-016",
                         f"Titre {lang} non conforme : {field_value}",

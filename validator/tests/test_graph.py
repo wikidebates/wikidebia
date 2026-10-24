@@ -90,3 +90,36 @@ def test_typographic_apostrophe_in_english_title_is_rejected_after_lock(tmp_path
         f.code == "WDV-GRA-016" and f.level == "ERROR" and "women’s" in f.message
         for f in report.findings
     ), report.to_text()
+
+
+def test_historical_french_displayed_title_is_preserved_after_lock(tmp_path: Path):
+    create_graph_package(tmp_path)
+    import json
+    from wikidebia_validator.graph import structural_sha256
+
+    reg_path = tmp_path / "data/registre_debat.json"
+    graph_path = tmp_path / "graph/graphe_argumentatif.json"
+    reg = json.loads(reg_path.read_text(encoding="utf-8"))
+    historical = "L’autonomie économique des femmes"
+    reg["graph"]["nodes"][0]["fr"]["displayed_title"] = historical
+    reg["graph"]["lifecycle"]["structural_sha256"] = structural_sha256(reg)
+    dump(reg_path, reg)
+    projection = json.loads(graph_path.read_text(encoding="utf-8"))
+    projection["nodes"] = reg["graph"]["nodes"]
+    projection["lifecycle"] = reg["graph"]["lifecycle"]
+    dump(graph_path, projection)
+    dump(tmp_path / "data/fr_page_metadata_lock.json", {
+        "schema": "wikidebia-fr-page-metadata-lock-1.0",
+        "arguments": [{
+            "entity_id": "A0001",
+            "page_origin": "preexisting",
+            "displayed_title": historical,
+            "decisions": {"displayed_title": "keep"},
+        }],
+    })
+
+    report = validate_package(tmp_path, scopes=["graph"])
+    assert not any(
+        f.code == "WDV-GRA-016" and f.level == "ERROR" and historical in f.message
+        for f in report.findings
+    ), report.to_text()
