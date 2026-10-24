@@ -86,4 +86,9 @@ Ces commandes ne génèrent pas encore de pages. Voir `GUIDE_CORPUS_REVIEW.md`.
 
 ## Profondeur
 
-Le build courant utilise `depth_policy.limit_policy=unbounded`, indépendamment de la révision de provenance du corpus. La profondeur maximale observée est descriptive ; aucune limite, cible normale, justification d’exception ou alerte numérique n’est générée.
+Sans limite dans le snapshot, le build utilise `depth_policy.limit_policy=unbounded`.
+Lorsqu’une extraction a été produite avec `--max-depth`, le build conserve au
+contraire `limit_policy=bounded`, la profondeur demandée, la liste des nœuds de
+frontière et le nombre de relations non suivies. Le checkpoint français ne
+réécrit jamais les paramètres relationnels de ces pages de frontière : leurs
+relations historiques hors périmètre restent intactes.

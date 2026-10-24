@@ -1093,7 +1093,8 @@ def apply_local_result(build: Path, plan: Mapping[str, Any], desired_by_path: Ma
     lifecycle = copy.deepcopy((registry.get("graph") or {}).get("lifecycle") or {})
     lifecycle.update({"status": "draft", "validated_at": None, "locked_at": None, "locked_by_stage": None, "structural_sha256": None})
     depth_policy = copy.deepcopy((registry.get("graph") or {}).get("depth_policy") or {})
-    depth_policy["limit_policy"] = "unbounded"; depth_policy["maximum_observed"] = new_graph["derived_counts"]["maximum_depth"]
+    depth_policy.setdefault("limit_policy", "unbounded")
+    depth_policy["maximum_observed"] = new_graph["derived_counts"]["maximum_depth"]
     registry["graph"] = {"lifecycle": lifecycle, "depth_policy": depth_policy, **new_graph}
     for key in ("lifecycle", "depth_policy", "nodes", "edges", "occurrences", "derived_counts"):
         projection[key] = copy.deepcopy(registry["graph"][key])
@@ -1150,7 +1151,7 @@ def apply_review_actions_locally(
     lifecycle = copy.deepcopy((registry.get("graph") or {}).get("lifecycle") or {})
     lifecycle.update({"status": "draft", "validated_at": None, "locked_at": None, "locked_by_stage": None, "structural_sha256": None})
     depth_policy = copy.deepcopy((registry.get("graph") or {}).get("depth_policy") or {})
-    depth_policy["limit_policy"] = "unbounded"
+    depth_policy.setdefault("limit_policy", "unbounded")
     depth_policy["maximum_observed"] = new_graph["derived_counts"]["maximum_depth"]
     registry["graph"] = {"lifecycle": lifecycle, "depth_policy": depth_policy, **new_graph}
     for key in ("lifecycle", "depth_policy", "nodes", "edges", "occurrences", "derived_counts"):

@@ -567,6 +567,37 @@ def _markdown_graph(debate_title: str, nodes: list[dict[str, Any]], edges: list[
     return "\n".join(lines) + "\n"
 
 
+def _depth_policy(
+    graph: Mapping[str, Any], title_to_id: Mapping[str, str], maximum_observed: int
+) -> dict[str, Any]:
+    metadata = graph.get("metadata") or {}
+    requested = metadata.get("limite_profondeur")
+    if requested is None:
+        return {"limit_policy": "unbounded", "maximum_observed": maximum_observed}
+    frontier = graph.get("frontières_profondeur") or {}
+    if not isinstance(frontier, Mapping):
+        raise CorpusInitError("Frontières de profondeur invalides dans le snapshot")
+    frontier_ids: list[str] = []
+    for title in frontier:
+        node_id = title_to_id.get(str(title))
+        if node_id is None:
+            normalized, _ = normalize_title(str(title))
+            node_id = next(
+                (candidate for source, candidate in title_to_id.items() if normalize_title(source)[0] == normalized),
+                None,
+            )
+        if node_id is None:
+            raise CorpusInitError(f"Frontière de profondeur sans nœud actif : {title}")
+        frontier_ids.append(node_id)
+    return {
+        "limit_policy": "bounded",
+        "maximum_observed": maximum_observed,
+        "maximum_edge_depth": int(requested),
+        "frontier_node_ids": sorted(set(frontier_ids)),
+        "relations_omitted_at_frontier": int(metadata.get("relations_ignorees_limite_profondeur") or 0),
+    }
+
+
 def copy_import_pages(inp: ExtractionInput, snapshot: Mapping[str, Any], output_root: Path, title_to_id: Mapping[str, str]) -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
     snapshot_root = inp.snapshot_manifest_path.parent
     imported: dict[str, dict[str, Any]] = {}
@@ -646,7 +677,7 @@ def build_corpus(
         timestamp = now_iso()
         depth_max = counts["maximum_depth"]
         lifecycle = {"status": "draft", "validated_at": None, "locked_at": None, "locked_by_stage": None, "structural_sha256": None}
-        depth_policy = {"limit_policy": "unbounded", "maximum_observed": depth_max}
+        depth_policy = _depth_policy(graph, title_to_id, depth_max)
         labels = {"fr": {"pro": "Arguments pour", "con": "Arguments contre"}, "en": {"pro": None, "con": None}}
         graph_block = {"lifecycle": lifecycle, "depth_policy": depth_policy, "nodes": nodes, "edges": edges, "occurrences": occurrences, "derived_counts": counts}
 

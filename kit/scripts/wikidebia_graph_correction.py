@@ -277,8 +277,9 @@ def apply_correction(project_root: Path, build: Path, debate_id: str) -> dict[st
     graph["edges"] = edges
     graph["occurrences"] = occurrences
     graph["derived_counts"] = derived["counts"]
-    graph.setdefault("depth_policy", {})["limit_policy"] = "unbounded"
-    graph["depth_policy"]["maximum_observed"] = derived["counts"]["maximum_depth"]
+    depth_policy = graph.setdefault("depth_policy", {})
+    depth_policy.setdefault("limit_policy", "unbounded")
+    depth_policy["maximum_observed"] = derived["counts"]["maximum_depth"]
     lifecycle = graph.setdefault("lifecycle", {})
     lifecycle.update({"status": "draft", "validated_at": None, "locked_at": None, "locked_by_stage": None, "structural_sha256": None})
 

@@ -11,6 +11,7 @@ if str(SCRIPTS) not in sys.path:
 import wikidebia_editorial_review as editorial
 import wikidebia_content_review as content
 import wikidebia_french_checkpoint as checkpoint
+import wikidebia_graph_actions as graph_actions
 import wikidebia_review_workflow as workflow
 from test_wikidebia_editorial_review import make_workspace, complete_review
 
@@ -51,6 +52,68 @@ def test_graph_checkpoint_omits_empty_relation_parameters(tmp_path: Path):
         text = path.read_text(encoding="utf-8")
         assert "|justifications=\n" not in text
         assert "|objections=\n" not in text
+
+
+def test_depth_frontier_identification_is_explicit_and_bounded():
+    assert checkpoint._depth_frontier_node_ids({
+        "graph": {
+            "depth_policy": {
+                "limit_policy": "bounded",
+                "frontier_node_ids": ["A0003", "A0004"],
+            }
+        }
+    }) == {"A0003", "A0004"}
+    assert checkpoint._depth_frontier_node_ids({
+        "graph": {"depth_policy": {"limit_policy": "unbounded"}}
+    }) == set()
+
+
+def test_graph_checkpoint_preserves_out_of_scope_relations_on_depth_frontier(tmp_path: Path):
+    project, workspace, work_id = _title_applied(tmp_path)
+    source = workspace / "reviewed-copy"
+    import_path = source / "imports/fr/arguments/A0001.wiki"
+    historical_relation = (
+        "{{Justification|page=Hors périmètre|"
+        "titre-affiché=Relation historique hors périmètre}}"
+    )
+    text = graph_actions._set_optional_parameter_value(
+        import_path.read_text(encoding="utf-8"),
+        "argument",
+        "justifications",
+        historical_relation,
+    )
+    import_path.write_text(text, encoding="utf-8", newline="\n")
+
+    provenance_path = source / "data/import_provenance.json"
+    provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+    row = next(entry for entry in provenance["pages"] if entry.get("page_id") == "A0001")
+    row["sha256"] = checkpoint.sha256_file(import_path)
+    row["size_bytes"] = import_path.stat().st_size
+    provenance_path.write_text(json.dumps(provenance, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    for relative in ("data/registre_debat.json", "graph/graphe_argumentatif.json"):
+        path = source / relative
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        graph = payload["graph"] if relative.startswith("data/") else payload
+        graph["depth_policy"] = {
+            "limit_policy": "bounded",
+            "maximum_observed": 2,
+            "maximum_edge_depth": 1,
+            "frontier_node_ids": ["A0001"],
+            "relations_omitted_at_frontier": 1,
+        }
+        path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    workspace_path = workspace / "workspace.json"
+    metadata = json.loads(workspace_path.read_text(encoding="utf-8"))
+    metadata["reviewed_copy"]["tree_sha256"] = editorial.full_tree_sha256(source)
+    metadata["workspace_sha256"] = None
+    metadata["workspace_sha256"] = editorial.workspace_receipt_hash(metadata)
+    workspace_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    cp = checkpoint.build_checkpoint(project, "debat_test", work_id, stage="graph")
+    output = (cp / "output/fr/arguments/A0001.wiki").read_text(encoding="utf-8")
+    assert historical_relation in output
 
 
 def test_review_packages_split_titles_from_classification_and_content(tmp_path: Path):

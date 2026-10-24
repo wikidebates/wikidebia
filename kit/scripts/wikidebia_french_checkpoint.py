@@ -67,6 +67,16 @@ class FrenchCheckpointError(RuntimeError):
         self.remote_execution_started = remote_execution_started
 
 
+def _depth_frontier_node_ids(registry: Mapping[str, Any]) -> set[str]:
+    policy = (registry.get("graph") or {}).get("depth_policy") or {}
+    if policy.get("limit_policy") != "bounded":
+        return set()
+    rows = policy.get("frontier_node_ids") or []
+    if not isinstance(rows, list) or any(not isinstance(row, str) or not row for row in rows):
+        raise FrenchCheckpointError("Nœuds de frontière de profondeur invalides")
+    return set(rows)
+
+
 def _workspace(project_root: Path, debate_id: str, work_id: str, stage: str) -> tuple[Path, dict[str, Any], Path]:
     debate_id = validate_debate_id(debate_id)
     work_id = validate_work_id(work_id)
@@ -360,6 +370,7 @@ def _verify_graph_checkpoint_delta(target: Path, registry: dict[str, Any], rows:
         for node in (registry.get("graph") or {}).get("nodes") or []
         if node.get("status") == "active"
     }
+    depth_frontiers = _depth_frontier_node_ids(registry)
     expected: dict[str, tuple[str, dict[str, Any], list[str]]] = {}
     for row in rows:
         kind = str(row.get("kind") or "")
@@ -383,7 +394,7 @@ def _verify_graph_checkpoint_delta(target: Path, registry: dict[str, Any], rows:
             rel = f"output/fr/arguments/{page_id}.wiki"
             template = _outer_template(imported, {"argument"})
             allowed = []
-            if not bool(template.get("débat-dédié", "débat-détaillé").strip()):
+            if page_id not in depth_frontiers and not bool(template.get("débat-dédié", "débat-détaillé").strip()):
                 labels = argument_relation_labels.get(page_id, [])
                 text = _set_optional_parameter_value(text, "argument", "justifications", _relations(registry, page_id, "justification", "fr", labels))
                 text = _set_optional_parameter_value(text, "argument", "objections", _relations(registry, page_id, "objection", "fr", labels))
@@ -449,6 +460,7 @@ def _build_graph_checkpoint_copy(project_root: Path, source: Path, target: Path,
     active_nodes = [node for node in (registry.get("graph") or {}).get("nodes") or [] if node.get("status") == "active"]
     active_nodes.sort(key=lambda node: str(node.get("id")))
     active_ids = {str(node.get("id")) for node in active_nodes}
+    depth_frontiers = _depth_frontier_node_ids(registry)
     row_by_id: dict[str, dict[str, Any]] = {}
     debate_row = None
     for row in rows:
@@ -493,7 +505,7 @@ def _build_graph_checkpoint_copy(project_root: Path, source: Path, target: Path,
         text = imported.read_text(encoding="utf-8")
         template = _outer_template(imported, {"argument"})
         dedicated = bool(template.get("débat-dédié", "débat-détaillé").strip())
-        if not dedicated:
+        if node_id not in depth_frontiers and not dedicated:
             labels = argument_relation_labels.get(node_id, [])
             text = _set_optional_parameter_value(text, "argument", "justifications", _relations(registry, node_id, "justification", "fr", labels))
             text = _set_optional_parameter_value(text, "argument", "objections", _relations(registry, node_id, "objection", "fr", labels))

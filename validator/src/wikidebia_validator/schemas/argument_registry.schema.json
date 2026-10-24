@@ -251,10 +251,26 @@
               "type": "integer",
               "minimum": 0
             },
+            "maximum_edge_depth": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "frontier_node_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/nodeId"
+              },
+              "uniqueItems": true
+            },
+            "relations_omitted_at_frontier": {
+              "type": "integer",
+              "minimum": 0
+            },
             "limit_policy": {
               "type": "string",
               "enum": [
-                "unbounded"
+                "unbounded",
+                "bounded"
               ]
             }
           },
